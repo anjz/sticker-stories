@@ -1,19 +1,19 @@
 import SwiftUI
 
-/// Guideline 5.1.4 parental gate: an adult-level challenge presented every
-/// time (no persistence), not passable by random tapping. Gates everything
-/// commerce-related; nothing else in the app leads out of the child
-/// experience. See docs/compliance.md.
+/// Guideline 5.1.4 parental gate, presented every time (no persistence) and
+/// not passable by random tapping. Gates everything commerce-related; nothing
+/// else in the app leads out of the child experience. Challenge strength is a
+/// deliberate product decision — see docs/compliance.md before changing it.
 struct ParentalGateView: View {
     let onSuccess: () -> Void
     let onCancel: () -> Void
 
-    @State private var left = Int.random(in: 12...19)
-    @State private var right = Int.random(in: 3...9)
+    @State private var left = Int.random(in: 2...9)
+    @State private var right = Int.random(in: 2...9)
     @State private var entry = ""
     @State private var wrongAttempt = false
 
-    private var answer: String { String(left * right) }
+    private var answer: String { String(left + right) }
 
     var body: some View {
         VStack(spacing: 24) {
@@ -22,7 +22,7 @@ struct ParentalGateView: View {
             Text("To continue, solve:")
                 .foregroundStyle(.secondary)
 
-            Text("\(left) × \(right) = \(entry.isEmpty ? "?" : entry)")
+            Text("\(left) + \(right) = \(entry.isEmpty ? "?" : entry)")
                 .font(.system(size: 40, weight: .bold, design: .rounded))
                 .monospacedDigit()
                 .foregroundStyle(wrongAttempt ? .red : .primary)
@@ -93,8 +93,8 @@ struct ParentalGateView: View {
             // be brute-forced by cycling digits.
             wrongAttempt = true
             entry = ""
-            left = Int.random(in: 12...19)
-            right = Int.random(in: 3...9)
+            left = Int.random(in: 2...9)
+            right = Int.random(in: 2...9)
         }
     }
 }

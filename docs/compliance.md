@@ -24,9 +24,12 @@ pass review, it is a product constraint.
 
 ## Parental gate
 
-- Full-screen challenge that pre-literate children cannot pass: a spoken-free,
-  randomised multiplication of two-digit numbers with digit-pad entry
-  (e.g. "17 × 4"). Regenerated per attempt; no persistence of failures.
+- Challenge: a randomised **single-digit addition** (e.g. "4 + 7") with
+  digit-pad entry, regenerated on every wrong attempt; no persistence of
+  failures. Product decision (2026-07): keep it friction-light for parents.
+  ⚠️ Revisit before App Store submission — the target age band (≤5) mostly
+  cannot read the instruction or add, but early readers can; if review flags
+  5.1.4, harden to multiplication or a hold-three-fingers pattern.
 - Gates: the Grown-Ups area (purchases, restore, future links). Nothing else in
   the app leads out of the child experience.
 - Review expectation: gate must not be defeatable by random tapping and must be
