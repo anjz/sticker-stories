@@ -56,7 +56,9 @@ struct RootView: View {
                     onCancel: { grownUps = nil })
                 .presentationDetents([.medium, .large])
             case .area:
-                GrownUpsView(store: StoreService(entitlements: entitlements))
+                GrownUpsView(
+                    store: StoreService(entitlements: entitlements),
+                    packs: library.packs)
             }
         }
     }
