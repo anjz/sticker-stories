@@ -26,9 +26,6 @@ packs are non-consumable IAPs (~1.99); one "Forest" pack ships bundled and free.
 
 ## Build & test commands
 
-Xcode is not `xcode-select`ed on this machine — prefix xcodebuild/xcrun with
-`DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer`.
-
 ```sh
 # Core logic tests (fast, macOS host, no simulator)
 cd app/StickerStoriesKit && swift test

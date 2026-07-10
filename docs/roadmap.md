@@ -2,29 +2,29 @@
 
 ## Iteration 1 — runnable core (current)
 
-- [ ] Repo scaffold: CLAUDE.md, README, docs/, .gitignore, git history started
-- [ ] Go tools module: `packager validate` v0 + tests; `placeholdergen`;
+- [x] Repo scaffold: CLAUDE.md, README, docs/, .gitignore, git history started
+- [x] Go tools module: `packager validate` v0 + tests; `placeholdergen`;
       story-gen/tts stubs
-- [ ] Forest starter pack: manifest v1, 9 placeholder stickers, background +
+- [x] Forest starter pack: manifest v1, 9 placeholder stickers, background +
       foreground art, 10 placeholder stories with `say`-rendered audio,
       passes `packager validate`
-- [ ] Xcode project (hand-rolled pbxproj, synchronized folders) +
+- [x] Xcode project (hand-rolled pbxproj, synchronized folders) +
       StickerStoriesKit local package; app builds for iPad & iPhone simulators
-- [ ] Pack loading layer: manifest decoding + validation (mirrors packager),
+- [x] Pack loading layer: manifest decoding + validation (mirrors packager),
       `PackLoader(directory:)`, bundled pack loads via the same path a
       purchased pack will; unit tests
-- [ ] Canvas: tray → canvas continuous drag & drop, sticker selection with
+- [x] Canvas: tray → canvas continuous drag & drop, sticker selection with
       outline + drop shadow, send-to-back, delete, landing animation, haptics
-- [ ] `CanvasState` Codable snapshot model
-- [ ] Story selection: scoring per docs/architecture.md, recently-played
+- [x] `CanvasState` Codable snapshot model
+- [x] Story selection: scoring per docs/architecture.md, recently-played
       deprioritisation, fallback guarantee; unit tests
-- [ ] Playback: `Narrator` protocol + `AudioFileNarrator`, play button,
+- [x] Playback: `Narrator` protocol + `AudioFileNarrator`, play button,
       playing-state HUD with stop
-- [ ] StoreKit 2 scaffolding: `EntitlementStore` + launch reconciliation +
+- [x] StoreKit 2 scaffolding: `EntitlementStore` + launch reconciliation +
       `Transaction.updates` listener + unit tests; `.storekit` testing config;
       parental gate; Grown-Ups area shell
-- [ ] PrivacyInfo.xcprivacy; compliance checklist satisfied
-- [ ] Runs and feels right on iPad **and** iPhone simulators
+- [x] PrivacyInfo.xcprivacy; compliance checklist satisfied
+- [x] Runs and feels right on iPad **and** iPhone simulators
 
 ## Iteration 2 — proposed
 
