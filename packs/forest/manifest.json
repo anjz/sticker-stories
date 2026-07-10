@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "id": "forest",
+  "version": 1,
+  "displayName": "Forest Friends",
+  "theme": "forest",
+  "background": "art/background.png",
+  "foreground": "art/foreground.png",
+  "stickers": [
+    { "id": "mushroom", "name": "Mushroom", "image": "stickers/mushroom.png" },
+    { "id": "fox", "name": "Fox", "image": "stickers/fox.png" },
+    { "id": "rabbit", "name": "Rabbit", "image": "stickers/rabbit.png" },
+    { "id": "tree", "name": "Tree", "image": "stickers/tree.png" },
+    { "id": "flower", "name": "Flower", "image": "stickers/flower.png" },
+    { "id": "butterfly", "name": "Butterfly", "image": "stickers/butterfly.png" },
+    { "id": "hedgehog", "name": "Hedgehog", "image": "stickers/hedgehog.png" },
+    { "id": "owl", "name": "Owl", "image": "stickers/owl.png" },
+    { "id": "snail", "name": "Snail", "image": "stickers/snail.png" }
+  ],
+  "stories": [
+    {
+      "id": "forest-day",
+      "title": "A Day in the Forest",
+      "text": "Good morning, forest! The sun stretched its warm yellow arms over the hills, and everything began to wake up. The leaves whispered hello to the wind. The grass wiggled its toes in the warm light. Somewhere, tiny feet went pitter-patter down a secret path. It was going to be a wonderful day in the forest, full of games and surprises. And the best part? It was only just beginning.",
+      "audio": "audio/forest-day.m4a",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1.0,
+      "tags": ["gentle", "morning"]
+    },
+    {
+      "id": "quiet-evening",
+      "title": "The Quiet Evening",
+      "text": "When the sky turned orange and pink, the forest grew quiet and soft. The hills tucked themselves under a blanket of golden light. One by one, the little forest friends yawned very big yawns. The wind sang a slow, sleepy song through the branches. Shhh, said the leaves. Shhh, said the grass. And the whole forest closed its eyes, dreaming sweet dreams until morning.",
+      "audio": "audio/quiet-evening.m4a",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1.0,
+      "tags": ["gentle", "bedtime"]
+    },
+    {
+      "id": "hide-and-seek",
+      "title": "Forest Hide and Seek",
+      "text": "One, two, three... ready or not, here I come! The forest loved playing hide and seek. The wind hid behind the hills. The sunbeams hid behind the clouds, giggling so much they peeked out again straight away. Even the little stream tried to hide, but its splashing gave it away every time. Found you, laughed the forest. And everyone agreed: the best hiding place is always right next to a friend.",
+      "audio": "audio/hide-and-seek.m4a",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 0.8,
+      "tags": ["funny", "play"]
+    },
+    {
+      "id": "shy-mushroom",
+      "title": "The Shy Mushroom",
+      "text": "Under a leafy corner of the forest lived a small red mushroom with white spots. It was very, very shy. When anyone walked past, it pulled its cap down low like a hat. One rainy day, drip drop, drip drop, the rain drummed on its cap and made the loveliest sound. Everyone came to listen! The little mushroom stood up tall and proud. Being small, it learned, doesn't mean being quiet.",
+      "audio": "audio/shy-mushroom.m4a",
+      "requiredStickers": ["mushroom"],
+      "optionalStickers": ["tree", "snail"],
+      "weight": 1.0,
+      "tags": ["gentle"]
+    },
+    {
+      "id": "fox-and-rabbit",
+      "title": "Fox and Rabbit's Big Race",
+      "text": "Ready, steady, go! Fox and Rabbit raced across the meadow. Fox was fast like a whoosh of wind. Rabbit was bouncy like a spring. Halfway there, Fox tripped over his own fluffy tail and rolled, tumble tumble tumble, into a pile of leaves. Rabbit hopped back to help him up. They crossed the finish line together, holding paws. Who won? Both of them, of course. That's how best friends race.",
+      "audio": "audio/fox-and-rabbit.m4a",
+      "requiredStickers": ["fox", "rabbit"],
+      "optionalStickers": ["flower", "tree"],
+      "weight": 1.2,
+      "tags": ["funny", "friendship"]
+    },
+    {
+      "id": "tallest-tree",
+      "title": "The Tallest Tree",
+      "text": "The tallest tree in the forest could tickle the clouds with its highest leaves. Hello up there! the little plants called from below. The tall tree loved to help. It gave shade when the sun was too hot. It caught raindrops when the rain was too splashy. And when the wind blew, it waved its branches like a big green flag. Every forest, you see, needs a gentle giant.",
+      "audio": "audio/tallest-tree.m4a",
+      "requiredStickers": ["tree"],
+      "optionalStickers": ["owl", "butterfly"],
+      "weight": 1.0,
+      "tags": ["gentle"]
+    },
+    {
+      "id": "butterfly-ball",
+      "title": "The Butterfly Ball",
+      "text": "The flowers were having a party, and everyone was invited! The butterfly arrived first, wearing her very best blue wings. She fluttered and twirled from petal to petal, dancing with every flower in the meadow. Spin, flutter, dip! The flowers swayed along to the music of the breeze. When the dance was over, the butterfly took a bow, and the flowers clapped with their leaves. What a wonderful ball!",
+      "audio": "audio/butterfly-ball.m4a",
+      "requiredStickers": ["butterfly", "flower"],
+      "optionalStickers": ["snail", "rabbit"],
+      "weight": 1.0,
+      "tags": ["play", "dance"]
+    },
+    {
+      "id": "owl-lullaby",
+      "title": "Owl's Lullaby",
+      "text": "When the moon climbed up the sky, the owl opened her big round eyes. Whoo-hoo, she sang softly. Time to sleep, little forest. Her lullaby floated down from the branches like a warm blanket. The mushrooms nodded their caps. The flowers folded their petals. Even the busy stream slowed down to listen. Whoo-hoo, whoo-hoo. Goodnight, forest. Goodnight, friends. Goodnight, everyone, everywhere.",
+      "audio": "audio/owl-lullaby.m4a",
+      "requiredStickers": ["owl"],
+      "optionalStickers": ["tree", "mushroom"],
+      "weight": 1.0,
+      "tags": ["bedtime", "gentle"]
+    },
+    {
+      "id": "hedgehog-parade",
+      "title": "The Hedgehog's Leaf Parade",
+      "text": "The little hedgehog loved autumn leaves. Red ones, yellow ones, crunchy brown ones! He rolled through a big leaf pile and stood up covered from nose to tail. Look at me, he giggled, I'm a walking leaf pile! He marched through the forest, rustle rustle rustle, and all his friends lined up behind him. It became the very first Forest Leaf Parade, and it was magnificent.",
+      "audio": "audio/hedgehog-parade.m4a",
+      "requiredStickers": ["hedgehog"],
+      "optionalStickers": ["mushroom", "snail", "fox"],
+      "weight": 1.0,
+      "tags": ["funny", "autumn"]
+    },
+    {
+      "id": "snails-journey",
+      "title": "The Snail's Great Journey",
+      "text": "The snail decided to visit the big flower on the other side of the meadow. It was a very long way for a very small snail. Slide, slide, slide. She passed a pebble as big as a mountain. Slide, slide, slide. She waved at a friendly beetle. When she finally arrived, the flower bent down low and said, You are the bravest explorer I have ever met. The snail smiled all the way home.",
+      "audio": "audio/snails-journey.m4a",
+      "requiredStickers": ["snail"],
+      "optionalStickers": ["flower", "butterfly"],
+      "weight": 1.0,
+      "tags": ["adventure", "gentle"]
+    }
+  ]
+}
