@@ -26,8 +26,8 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
   -destination 'platform=iOS Simulator,name=iPad Pro 11-inch (M4)' build
 ```
 
-If `xcode-select` points at the Command Line Tools, prefix commands with
-`DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer`.
+If `xcode-select` points at the Command Line Tools instead of Xcode, run
+`sudo xcode-select -s /Applications/Xcode.app/Contents/Developer` once.
 
 ## Running the tests
 

@@ -40,6 +40,7 @@ struct RootView: View {
             }
         }
         .persistentSystemOverlays(.hidden)
+        .statusBarHidden(true)
         .task {
             // Entitlement enforcement runs before pack discovery on every
             // launch (docs/commerce.md).
