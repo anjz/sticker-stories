@@ -8,8 +8,10 @@ import UIKit
 final class StickerNode: SKSpriteNode {
     /// Node names the scene uses to route button touches.
     enum ControlName {
+        static let prefix = "sticker-control-"
         static let delete = "sticker-control-delete"
         static let layer = "sticker-control-layer"
+        static let rotate = "sticker-control-rotate"
     }
 
     let instanceID = UUID()
@@ -18,6 +20,7 @@ final class StickerNode: SKSpriteNode {
 
     private let shadow: SKSpriteNode
     private var selectionOverlay: SKNode?
+    private var controlButtons: [SKNode] = []
 
     private(set) var isSelected = false
 
@@ -44,35 +47,51 @@ final class StickerNode: SKSpriteNode {
         isSelected = selected
         selectionOverlay?.removeFromParent()
         selectionOverlay = nil
+        controlButtons = []
         guard selected else { return }
 
         let overlay = SKNode()
         overlay.zPosition = 10
 
-        let padding: CGFloat = 10
+        let padding: CGFloat = 14
         let rect = CGRect(
             x: -size.width / 2 - padding, y: -size.height / 2 - padding,
             width: size.width + 2 * padding, height: size.height + 2 * padding)
 
         let outline = SKShapeNode(rect: rect, cornerRadius: 16)
         outline.strokeColor = .white
-        outline.lineWidth = 3
+        outline.lineWidth = 4
         outline.fillColor = .clear
         outline.alpha = 0.95
         overlay.addChild(outline)
 
         let layerSymbol = canvasLayer == .foreground ? "square.3.layers.3d.bottom.filled" : "square.3.layers.3d.top.filled"
-        overlay.addChild(
+        controlButtons = [
             Self.makeControlButton(
                 named: ControlName.layer, symbol: layerSymbol,
-                fill: .systemBlue, at: CGPoint(x: rect.minX, y: rect.maxY)))
-        overlay.addChild(
+                fill: .systemBlue, at: CGPoint(x: rect.minX, y: rect.maxY)),
             Self.makeControlButton(
                 named: ControlName.delete, symbol: "xmark",
-                fill: .systemRed, at: CGPoint(x: rect.maxX, y: rect.maxY)))
+                fill: .systemRed, at: CGPoint(x: rect.maxX, y: rect.maxY)),
+            Self.makeControlButton(
+                named: ControlName.rotate, symbol: "arrow.clockwise",
+                fill: .systemGreen, at: CGPoint(x: rect.maxX, y: rect.minY)),
+        ]
+        for button in controlButtons {
+            overlay.addChild(button)
+        }
 
         addChild(overlay)
         selectionOverlay = overlay
+        keepControlsUpright()
+    }
+
+    /// Control buttons ride on the (possibly rotated) sticker, but their
+    /// glyphs should always read upright.
+    func keepControlsUpright() {
+        for button in controlButtons {
+            button.zRotation = -zRotation
+        }
     }
 
     /// Refreshes the layer button glyph after a send-to-back/bring-to-front.
@@ -91,15 +110,15 @@ final class StickerNode: SKSpriteNode {
     // MARK: Controls
 
     private static func makeControlButton(named name: String, symbol: String, fill: UIColor, at position: CGPoint) -> SKNode {
-        let radius: CGFloat = 21
+        let radius: CGFloat = 30
         let button = SKShapeNode(circleOfRadius: radius)
         button.name = name
         button.fillColor = fill
         button.strokeColor = .white
-        button.lineWidth = 2.5
+        button.lineWidth = 3
         button.position = position
         button.zPosition = 1
-        if let texture = symbolTexture(symbol, pointSize: 17, color: .white) {
+        if let texture = symbolTexture(symbol, pointSize: 25, color: .white) {
             let glyph = SKSpriteNode(texture: texture)
             glyph.name = name  // touches on the glyph route the same way
             let fit = min((radius * 1.15) / max(texture.size().width, texture.size().height), 1)
