@@ -1,0 +1,66 @@
+import Foundation
+import Observation
+import StickerStoriesKit
+import StoreKit
+
+/// Purchase flow for the Grown-Ups area. Only reachable behind the parental
+/// gate — never from any child-facing surface (docs/compliance.md).
+@MainActor
+@Observable
+final class StoreService {
+    private(set) var products: [Product] = []
+    private(set) var ownedProductIDs: Set<String> = []
+    private(set) var isWorking = false
+    private(set) var lastMessage: String?
+
+    private let entitlements: EntitlementCoordinator
+
+    init(entitlements: EntitlementCoordinator) {
+        self.entitlements = entitlements
+    }
+
+    func refresh() async {
+        let ids = StoreConfiguration.purchasableProductIDs + [StoreConfiguration.catalog.allAccessProductID]
+        products = (try? await Product.products(for: ids)) ?? []
+        ownedProductIDs = await StoreKitTransactionProvider().currentEntitledProductIDs()
+    }
+
+    func purchase(_ product: Product) async {
+        isWorking = true
+        defer { isWorking = false }
+        do {
+            switch try await product.purchase() {
+            case .success(let verification):
+                guard case .verified(let transaction) = verification else {
+                    lastMessage = "Purchase could not be verified."
+                    return
+                }
+                entitlements.recordEntitlement(for: transaction)
+                // v1 ships only the bundled pack; purchased pack assets
+                // install here once packs are delivered separately.
+                await transaction.finish()
+                ownedProductIDs.insert(transaction.productID)
+                lastMessage = "Purchase complete."
+            case .userCancelled:
+                break
+            case .pending:
+                lastMessage = "Waiting for approval (Ask to Buy)."
+            @unknown default:
+                break
+            }
+        } catch {
+            lastMessage = "Purchase failed. Please try again."
+        }
+    }
+
+    /// Restore = re-sync with the App Store and re-run the same
+    /// reconciliation used at launch.
+    func restorePurchases() async {
+        isWorking = true
+        defer { isWorking = false }
+        try? await AppStore.sync()
+        await entitlements.validateOnLaunch()
+        await refresh()
+        lastMessage = "Purchases restored."
+    }
+}
