@@ -37,6 +37,13 @@ final class CanvasScene: SKScene {
     }
     private var drags: [UITouch: DragInfo] = [:]
 
+    private struct RotationInfo {
+        let node: StickerNode
+        let initialRotation: CGFloat
+        let initialTouchAngle: CGFloat
+    }
+    private var rotations: [UITouch: RotationInfo] = [:]
+
     private let softHaptic = UIImpactFeedbackGenerator(style: .light)
     private let firmHaptic = UIImpactFeedbackGenerator(style: .medium)
 
@@ -183,13 +190,18 @@ final class CanvasScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            let hit = atPoint(location)
+            // `atPoint` would return only the topmost node — and the
+            // foreground art plane covers the whole scene, swallowing taps
+            // meant for background-layer stickers. Inspect everything under
+            // the touch instead: controls first, then tray, then the topmost
+            // sticker on either layer.
+            let hits = nodes(at: location)
 
-            if let (control, sticker) = controlHit(at: hit) {
-                handleControlTap(control, on: sticker)
-            } else if let trayItem = ancestor(of: hit, as: TrayItemNode.self) {
+            if let (control, sticker) = controlHit(in: hits) {
+                handleControlTap(control, on: sticker, touch: touch, at: location)
+            } else if let trayItem = hits.lazy.compactMap({ self.ancestor(of: $0, as: TrayItemNode.self) }).first {
                 spawnSticker(from: trayItem, touch: touch, at: location)
-            } else if let sticker = ancestor(of: hit, as: StickerNode.self) {
+            } else if let sticker = topSticker(in: hits) {
                 beginDrag(of: sticker, touch: touch, at: location, fromTray: false)
                 select(sticker)
             } else {
@@ -198,8 +210,33 @@ final class CanvasScene: SKScene {
         }
     }
 
+    /// The sticker closest to the viewer among the hit nodes, comparing
+    /// accumulated z (layer zPosition + node zPosition).
+    private func topSticker(in hits: [SKNode]) -> StickerNode? {
+        var best: StickerNode?
+        var bestZ = -CGFloat.infinity
+        for node in hits {
+            guard let sticker = ancestor(of: node, as: StickerNode.self) else { continue }
+            let z = (sticker.parent?.zPosition ?? 0) + sticker.zPosition
+            if z > bestZ {
+                bestZ = z
+                best = sticker
+            }
+        }
+        return best
+    }
+
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
+            if let rotation = rotations[touch] {
+                let location = touch.location(in: self)
+                let angle = atan2(
+                    location.y - rotation.node.position.y, location.x - rotation.node.position.x)
+                rotation.node.zRotation =
+                    rotation.initialRotation + (angle - rotation.initialTouchAngle)
+                rotation.node.keepControlsUpright()
+                continue
+            }
             guard var info = drags[touch] else { continue }
             let location = touch.location(in: self)
             info.node.position = CGPoint(
@@ -214,11 +251,17 @@ final class CanvasScene: SKScene {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches { endDrag(for: touch, cancelled: false) }
+        for touch in touches {
+            endRotation(for: touch)
+            endDrag(for: touch, cancelled: false)
+        }
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches { endDrag(for: touch, cancelled: true) }
+        for touch in touches {
+            endRotation(for: touch)
+            endDrag(for: touch, cancelled: true)
+        }
     }
 
     private func ancestor<T: SKNode>(of node: SKNode, as type: T.Type) -> T? {
@@ -230,13 +273,15 @@ final class CanvasScene: SKScene {
         return nil
     }
 
-    private func controlHit(at node: SKNode) -> (name: String, sticker: StickerNode)? {
-        guard
-            let name = node.name,
-            name == StickerNode.ControlName.delete || name == StickerNode.ControlName.layer,
-            let sticker = ancestor(of: node, as: StickerNode.self)
-        else { return nil }
-        return (name, sticker)
+    private func controlHit(in hits: [SKNode]) -> (name: String, sticker: StickerNode)? {
+        for node in hits {
+            if let name = node.name,
+                name.hasPrefix(StickerNode.ControlName.prefix),
+                let sticker = ancestor(of: node, as: StickerNode.self) {
+                return (name, sticker)
+            }
+        }
+        return nil
     }
 
     // MARK: Dragging
@@ -352,16 +397,42 @@ final class CanvasScene: SKScene {
         node?.setSelected(true)
     }
 
-    private func handleControlTap(_ control: String, on sticker: StickerNode) {
+    private func handleControlTap(_ control: String, on sticker: StickerNode, touch: UITouch, at location: CGPoint) {
         switch control {
         case StickerNode.ControlName.delete:
             select(nil)
             removeSticker(sticker, haptic: true)
         case StickerNode.ControlName.layer:
             toggleLayer(of: sticker)
+        case StickerNode.ControlName.rotate:
+            beginRotation(of: sticker, touch: touch, at: location)
         default:
             break
         }
+    }
+
+    // MARK: Rotation
+
+    private func beginRotation(of sticker: StickerNode, touch: UITouch, at location: CGPoint) {
+        let angle = atan2(location.y - sticker.position.y, location.x - sticker.position.x)
+        rotations[touch] = RotationInfo(
+            node: sticker, initialRotation: sticker.zRotation, initialTouchAngle: angle)
+        softHaptic.impactOccurred()
+    }
+
+    private func endRotation(for touch: UITouch) {
+        guard let rotation = rotations.removeValue(forKey: touch) else { return }
+        let node = rotation.node
+        // Snap back to upright when close — easy tidiness for small hands.
+        var remainder = node.zRotation.truncatingRemainder(dividingBy: 2 * .pi)
+        if remainder > .pi { remainder -= 2 * .pi }
+        if remainder < -.pi { remainder += 2 * .pi }
+        if abs(remainder) < 0.12 {
+            node.zRotation = 0
+            node.keepControlsUpright()
+        }
+        softHaptic.impactOccurred()
+        notifyCanvasChanged()
     }
 
     private func toggleLayer(of sticker: StickerNode) {
