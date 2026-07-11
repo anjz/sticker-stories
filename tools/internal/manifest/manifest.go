@@ -1,4 +1,4 @@
-// Package manifest defines the sticker-pack manifest schema (v1) and its
+// Package manifest defines the sticker-pack manifest schema (v2) and its
 // validation rules. It is the Go half of the contract documented in
 // docs/pack-format.md; the Swift decoder in StickerStoriesKit is the other
 // half. Any schema change must update docs/pack-format.md, this package, and
@@ -15,38 +15,45 @@ import (
 )
 
 // SupportedSchemaVersion is the only schema version this validator accepts.
-const SupportedSchemaVersion = 1
+const SupportedSchemaVersion = 2
 
 // Manifest is the root of a pack's manifest.json.
 type Manifest struct {
-	SchemaVersion int       `json:"schemaVersion"`
-	ID            string    `json:"id"`
-	Version       int       `json:"version"`
-	DisplayName   string    `json:"displayName"`
-	Theme         string    `json:"theme"`
-	Background    string    `json:"background"`
-	Foreground    string    `json:"foreground"`
-	Stickers      []Sticker `json:"stickers"`
-	Stories       []Story   `json:"stories"`
+	SchemaVersion int               `json:"schemaVersion"`
+	ID            string            `json:"id"`
+	Version       int               `json:"version"`
+	Languages     []string          `json:"languages"`
+	DisplayName   map[string]string `json:"displayName"`
+	Theme         string            `json:"theme"`
+	Background    string            `json:"background"`
+	Foreground    string            `json:"foreground"`
+	Stickers      []Sticker         `json:"stickers"`
+	Stories       []Story           `json:"stories"`
 }
 
 // Sticker is one draggable sticker in the pack.
 type Sticker struct {
-	ID    string `json:"id"`
-	Name  string `json:"name"`
-	Image string `json:"image"`
+	ID    string            `json:"id"`
+	Name  map[string]string `json:"name"`
+	Image string            `json:"image"`
 }
 
-// Story is one pregenerated story with its narration audio.
+// Story is one pregenerated story; its text and narration exist once per
+// declared pack language.
 type Story struct {
-	ID               string   `json:"id"`
-	Title            string   `json:"title"`
-	Text             string   `json:"text"`
-	Audio            string   `json:"audio"`
-	RequiredStickers []string `json:"requiredStickers"`
-	OptionalStickers []string `json:"optionalStickers"`
-	Weight           *float64 `json:"weight"` // nil ⇒ 1.0
-	Tags             []string `json:"tags"`
+	ID               string                       `json:"id"`
+	RequiredStickers []string                     `json:"requiredStickers"`
+	OptionalStickers []string                     `json:"optionalStickers"`
+	Weight           *float64                     `json:"weight"` // nil ⇒ 1.0
+	Tags             []string                     `json:"tags"`
+	Localizations    map[string]StoryLocalization `json:"localizations"`
+}
+
+// StoryLocalization is one language's rendition of a story.
+type StoryLocalization struct {
+	Title string `json:"title"`
+	Text  string `json:"text"`
+	Audio string `json:"audio"`
 }
 
 // EffectiveWeight returns the story's selection weight, defaulting to 1.0.
@@ -60,7 +67,10 @@ func (s Story) EffectiveWeight() float64 {
 // IsFallback reports whether the story is playable with any canvas contents.
 func (s Story) IsFallback() bool { return len(s.RequiredStickers) == 0 }
 
-var idPattern = regexp.MustCompile(`^[a-z0-9]+(-[a-z0-9]+)*$`)
+var (
+	idPattern   = regexp.MustCompile(`^[a-z0-9]+(-[a-z0-9]+)*$`)
+	langPattern = regexp.MustCompile(`^[a-z]{2,3}(-[A-Z]{2})?$`)
+)
 
 // Load reads and decodes <dir>/manifest.json. It does not validate; call
 // Manifest.Validate afterwards.
@@ -90,18 +100,48 @@ func (m *Manifest) Validate(dir string) []error {
 		fail("schemaVersion %d is not supported (want %d)", m.SchemaVersion, SupportedSchemaVersion)
 	}
 
-	// Rule 6 (scalars).
+	// Rule 8 (scalars).
 	if !idPattern.MatchString(m.ID) {
 		fail("pack id %q must match %s", m.ID, idPattern)
 	}
 	if m.Version < 1 {
 		fail("version must be >= 1, got %d", m.Version)
 	}
-	if strings.TrimSpace(m.DisplayName) == "" {
-		fail("displayName must not be empty")
+
+	// Rule 3: declared languages.
+	if len(m.Languages) == 0 {
+		fail("languages must not be empty")
+	}
+	declared := make(map[string]bool, len(m.Languages))
+	for i, lang := range m.Languages {
+		if !langPattern.MatchString(lang) {
+			fail("languages[%d]: %q is not a well-formed tag (want xx or xx-YY)", i, lang)
+		}
+		if declared[lang] {
+			fail("languages[%d]: duplicate language %q", i, lang)
+		}
+		declared[lang] = true
 	}
 
-	// Rule 3: referenced files exist inside the pack.
+	// Rule 4: exact language coverage for a localized string map.
+	checkCoverage := func(field string, values map[string]string) {
+		for _, lang := range m.Languages {
+			value, ok := values[lang]
+			if !ok {
+				fail("%s: missing %q localization", field, lang)
+			} else if strings.TrimSpace(value) == "" {
+				fail("%s: %q localization must not be empty", field, lang)
+			}
+		}
+		for lang := range values {
+			if !declared[lang] {
+				fail("%s: localization %q is not in declared languages", field, lang)
+			}
+		}
+	}
+	checkCoverage("displayName", m.DisplayName)
+
+	// Rule 5: referenced files exist inside the pack.
 	checkFile := func(field, rel string) {
 		if rel == "" {
 			fail("%s must not be empty", field)
@@ -131,13 +171,11 @@ func (m *Manifest) Validate(dir string) []error {
 			fail("stickers[%d]: duplicate sticker id %q", i, st.ID)
 		}
 		stickerIDs[st.ID] = true
-		if strings.TrimSpace(st.Name) == "" {
-			fail("sticker %q: name must not be empty", st.ID)
-		}
+		checkCoverage(fmt.Sprintf("sticker %q name", st.ID), st.Name)
 		checkFile(fmt.Sprintf("sticker %q image", st.ID), st.Image)
 	}
 
-	// Rules 2, 4, 5, 6 over stories.
+	// Rules 2, 4, 6, 7, 8 over stories.
 	storyIDs := make(map[string]bool, len(m.Stories))
 	fallbacks := 0
 	for i, st := range m.Stories {
@@ -149,16 +187,32 @@ func (m *Manifest) Validate(dir string) []error {
 			fail("%s: duplicate story id", name)
 		}
 		storyIDs[st.ID] = true
-		if strings.TrimSpace(st.Title) == "" {
-			fail("%s: title must not be empty", name)
-		}
-		if strings.TrimSpace(st.Text) == "" {
-			fail("%s: text must not be empty (stories must carry their text)", name)
-		}
-		checkFile(name+" audio", st.Audio)
 		if st.EffectiveWeight() <= 0 {
 			fail("%s: weight must be > 0, got %v", name, st.EffectiveWeight())
 		}
+
+		// Rule 4: one localization block per declared language, no extras.
+		for _, lang := range m.Languages {
+			loc, ok := st.Localizations[lang]
+			if !ok {
+				fail("%s: missing %q localization", name, lang)
+				continue
+			}
+			locName := fmt.Sprintf("%s %s", name, lang)
+			if strings.TrimSpace(loc.Title) == "" {
+				fail("%s: title must not be empty", locName)
+			}
+			if strings.TrimSpace(loc.Text) == "" {
+				fail("%s: text must not be empty (stories must carry their text)", locName)
+			}
+			checkFile(locName+" audio", loc.Audio)
+		}
+		for lang := range st.Localizations {
+			if !declared[lang] {
+				fail("%s: localization %q is not in declared languages", name, lang)
+			}
+		}
+
 		required := make(map[string]bool, len(st.RequiredStickers))
 		for _, id := range st.RequiredStickers {
 			if !stickerIDs[id] {

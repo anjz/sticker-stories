@@ -17,20 +17,26 @@ public struct Story: Equatable, Sendable, Identifiable {
         self.audioPath = audioPath
     }
 
-    public init(_ definition: StoryDefinition) {
+    /// Resolves a story definition into the given language (falling back
+    /// through the pack's declared language order).
+    public init(_ definition: StoryDefinition, language: String, fallbackOrder: [String]) {
+        let localization = definition.localization(for: language, fallbackOrder: fallbackOrder)
         self.init(
-            id: definition.id, title: definition.title,
-            text: definition.text, audioPath: definition.audio)
+            id: definition.id,
+            title: localization?.title ?? definition.id,
+            text: localization?.text ?? "",
+            audioPath: localization?.audio)
     }
 }
 
 /// The story-sourcing seam (see docs/architecture.md, "Future: runtime
-/// generation"). Input is a canvas snapshot + pack; output is a story.
+/// generation"). Input is a canvas snapshot + pack + resolved language;
+/// output is a story in that language.
 /// v1: `BundledStoryProvider` scores the pack's pregenerated stories.
 /// Future: a `GeneratedStoryProvider` produces one at runtime. Neither the
 /// canvas nor playback code may depend on which one is in use.
 public protocol StoryProvider: Sendable {
-    func story(for canvas: CanvasState, in pack: LoadedPack) async throws -> Story
+    func story(for canvas: CanvasState, in pack: LoadedPack, language: String) async throws -> Story
 }
 
 public enum StoryProviderError: Error, Equatable {

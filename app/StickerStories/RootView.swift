@@ -32,7 +32,8 @@ struct RootView: View {
                     onPlay: {
                         playback.play(
                             canvas: canvasState ?? CanvasState(packID: pack.id),
-                            pack: pack)
+                            pack: pack,
+                            language: LanguageResolver().resolve(from: pack.manifest.languages))
                     },
                     onStop: { playback.stop() })
 

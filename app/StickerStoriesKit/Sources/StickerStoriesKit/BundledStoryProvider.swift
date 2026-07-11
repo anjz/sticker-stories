@@ -35,7 +35,7 @@ public struct BundledStoryProvider: StoryProvider {
         self.random = random
     }
 
-    public func story(for canvas: CanvasState, in pack: LoadedPack) async throws -> Story {
+    public func story(for canvas: CanvasState, in pack: LoadedPack, language: String) async throws -> Story {
         let placed = canvas.stickerIDs
         let recentIDs = recents.recentStoryIDs(forPackID: pack.id)
 
@@ -72,6 +72,6 @@ public struct BundledStoryProvider: StoryProvider {
         }
 
         recents.recordPlayed(storyID: chosen.id, packID: pack.id)
-        return Story(chosen)
+        return Story(chosen, language: language, fallbackOrder: pack.manifest.languages)
     }
 }

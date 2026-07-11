@@ -90,10 +90,11 @@ struct GrownUpsView: View {
             let stickers = pack.manifest.stickers.prefix(3).compactMap {
                 UIImage(contentsOfFile: pack.url(forAssetPath: $0.image).path)
             }
+            let language = LanguageResolver().resolve(from: pack.manifest.languages)
             result.append(
                 PackCard(
                     id: pack.id,
-                    title: pack.manifest.displayName,
+                    title: pack.manifest.displayName(for: language),
                     subtitle: "\(pack.manifest.stickers.count) stickers · \(pack.manifest.stories.count) stories",
                     artwork: background.map { .pack(background: $0, stickers: stickers) }
                         ?? .mystery(symbol: "photo"),

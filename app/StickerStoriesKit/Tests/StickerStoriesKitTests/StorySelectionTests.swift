@@ -21,10 +21,12 @@ final class MemoryRecents: RecentStoriesStore, @unchecked Sendable {
 
 private func makePack(stories: [StoryDefinition]) -> LoadedPack {
     let stickers = ["mushroom", "fox", "rabbit", "tree", "owl"].map {
-        StickerDefinition(id: $0, name: $0.capitalized, image: "stickers/\($0).png")
+        StickerDefinition(id: $0, name: localized($0.capitalized, $0.capitalized), image: "stickers/\($0).png")
     }
     let manifest = PackManifest(
-        schemaVersion: 1, id: "forest", version: 1, displayName: "Forest",
+        schemaVersion: 2, id: "forest", version: 1,
+        languages: ["en-US", "es-ES"],
+        displayName: localized("Forest", "Bosque"),
         theme: "forest", background: "art/b.png", foreground: "art/f.png",
         stickers: stickers, stories: stories)
     return LoadedPack(manifest: manifest, baseURL: URL(fileURLWithPath: "/tmp/forest"), source: .bundled)
@@ -34,8 +36,13 @@ private func story(
     _ id: String, required: [String] = [], optional: [String] = [], weight: Double = 1.0
 ) -> StoryDefinition {
     StoryDefinition(
-        id: id, title: id, text: "Text of \(id).", audio: "audio/\(id).m4a",
-        requiredStickers: required, optionalStickers: optional, weight: weight)
+        id: id, requiredStickers: required, optionalStickers: optional, weight: weight,
+        localizations: [
+            "en-US": StoryLocalization(
+                title: "Title of \(id)", text: "Text of \(id).", audio: "audio/en-US/\(id).m4a"),
+            "es-ES": StoryLocalization(
+                title: "Título de \(id)", text: "Texto de \(id).", audio: "audio/es-ES/\(id).m4a"),
+        ])
 }
 
 private func canvas(_ stickerIDs: [String]) -> CanvasState {
@@ -60,7 +67,8 @@ private func deterministicProvider(recents: RecentStoriesStore = MemoryRecents()
             story("fallback"),
         ])
         // Only fox on canvas: neither required set is satisfied → fallback.
-        let chosen = try await deterministicProvider().story(for: canvas(["fox"]), in: pack)
+        let chosen = try await deterministicProvider().story(
+            for: canvas(["fox"]), in: pack, language: "en-US")
         #expect(chosen.id == "fallback")
     }
 
@@ -69,7 +77,8 @@ private func deterministicProvider(recents: RecentStoriesStore = MemoryRecents()
             story("fallback"),
             story("fox-story", required: ["fox"]),
         ])
-        let chosen = try await deterministicProvider().story(for: canvas(["fox"]), in: pack)
+        let chosen = try await deterministicProvider().story(
+            for: canvas(["fox"]), in: pack, language: "en-US")
         #expect(chosen.id == "fox-story")
     }
 
@@ -79,7 +88,7 @@ private func deterministicProvider(recents: RecentStoriesStore = MemoryRecents()
             story("fox-friends", required: ["fox"], optional: ["rabbit", "tree"]),
         ])
         let chosen = try await deterministicProvider()
-            .story(for: canvas(["fox", "rabbit", "tree"]), in: pack)
+            .story(for: canvas(["fox", "rabbit", "tree"]), in: pack, language: "en-US")
         #expect(chosen.id == "fox-friends")
     }
 
@@ -88,7 +97,8 @@ private func deterministicProvider(recents: RecentStoriesStore = MemoryRecents()
             story("light", required: ["fox"], weight: 1.0),
             story("heavy", required: ["fox"], weight: 3.0),
         ])
-        let chosen = try await deterministicProvider().story(for: canvas(["fox"]), in: pack)
+        let chosen = try await deterministicProvider().story(
+            for: canvas(["fox"]), in: pack, language: "en-US")
         #expect(chosen.id == "heavy")
     }
 
@@ -101,10 +111,10 @@ private func deterministicProvider(recents: RecentStoriesStore = MemoryRecents()
         ])
         // Equal scores: deterministic pick chooses "a" (stable sort keeps
         // manifest order), which then carries the recency penalty…
-        let first = try await provider.story(for: canvas(["fox"]), in: pack)
+        let first = try await provider.story(for: canvas(["fox"]), in: pack, language: "en-US")
         #expect(first.id == "a")
         // …so the next play must choose "b".
-        let second = try await provider.story(for: canvas(["fox"]), in: pack)
+        let second = try await provider.story(for: canvas(["fox"]), in: pack, language: "en-US")
         #expect(second.id == "b")
     }
 
@@ -114,7 +124,8 @@ private func deterministicProvider(recents: RecentStoriesStore = MemoryRecents()
             story("fallback-1"),
             story("fallback-2"),
         ])
-        let chosen = try await deterministicProvider().story(for: canvas([]), in: pack)
+        let chosen = try await deterministicProvider().story(
+            for: canvas([]), in: pack, language: "en-US")
         #expect(chosen.id.hasPrefix("fallback"))
     }
 
@@ -123,7 +134,8 @@ private func deterministicProvider(recents: RecentStoriesStore = MemoryRecents()
         // provider still guards).
         let pack = makePack(stories: [story("needs-owl", required: ["owl"])])
         await #expect(throws: StoryProviderError.noPlayableStory) {
-            _ = try await deterministicProvider().story(for: canvas(["fox"]), in: pack)
+            _ = try await deterministicProvider().story(
+                for: canvas(["fox"]), in: pack, language: "en-US")
         }
     }
 
@@ -138,15 +150,30 @@ private func deterministicProvider(recents: RecentStoriesStore = MemoryRecents()
             story("fallback"),
         ])
         for _ in 0..<10 {
-            let chosen = try await provider.story(for: canvas(["fox"]), in: pack)
+            let chosen = try await provider.story(
+                for: canvas(["fox"]), in: pack, language: "en-US")
             #expect(chosen.id != "needs-owl")
         }
     }
 
-    @Test func storyCarriesTextAndAudio() async throws {
+    @Test func storyCarriesLanguageResolvedContent() async throws {
         let pack = makePack(stories: [story("fallback")])
-        let chosen = try await deterministicProvider().story(for: canvas([]), in: pack)
-        #expect(chosen.text == "Text of fallback.")
-        #expect(chosen.audioPath == "audio/fallback.m4a")
+
+        let english = try await deterministicProvider().story(
+            for: canvas([]), in: pack, language: "en-US")
+        #expect(english.title == "Title of fallback")
+        #expect(english.text == "Text of fallback.")
+        #expect(english.audioPath == "audio/en-US/fallback.m4a")
+
+        let spanish = try await deterministicProvider().story(
+            for: canvas([]), in: pack, language: "es-ES")
+        #expect(spanish.title == "Título de fallback")
+        #expect(spanish.text == "Texto de fallback.")
+        #expect(spanish.audioPath == "audio/es-ES/fallback.m4a")
+
+        // An unsupported language falls back to the first declared one.
+        let japanese = try await deterministicProvider().story(
+            for: canvas([]), in: pack, language: "ja-JP")
+        #expect(japanese.audioPath == "audio/en-US/fallback.m4a")
     }
 }

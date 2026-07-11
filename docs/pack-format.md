@@ -5,6 +5,10 @@ contract between the content pipeline (`tools/`, Go) and the app (Swift). Both
 sides validate independently: the Go `packager` refuses to assemble an invalid
 pack, and the Swift `PackLoader` refuses to load one.
 
+Packs are **multilingual**: every user-facing string and every narration file
+exists once per supported language. A pack declares its languages; the app
+picks the best match for the device (see "Language resolution" below).
+
 ## Directory layout
 
 ```
@@ -16,33 +20,51 @@ pack, and the Swift `PackLoader` refuses to load one.
   stickers/
     <stickerID>.png       # sticker art, alpha background, white border baked in
   audio/
-    <storyID>.m4a         # pre-rendered narration, AAC
+    <lang>/<storyID>.m4a  # pre-rendered narration, AAC, one folder per language
 ```
 
-## manifest.json — schema v1
+The `audio/<lang>/…` layout is a convention, not a rule — audio paths are
+whatever the manifest declares, but keep the convention so packs stay
+navigable.
+
+## manifest.json — schema v2
 
 ```json
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "forest",
-  "version": 1,
-  "displayName": "Forest Friends",
+  "version": 2,
+  "languages": ["en-US", "es-ES"],
+  "displayName": { "en-US": "Forest Friends", "es-ES": "Amigos del Bosque" },
   "theme": "forest",
   "background": "art/background.png",
   "foreground": "art/foreground.png",
   "stickers": [
-    { "id": "mushroom", "name": "Mushroom", "image": "stickers/mushroom.png" }
+    {
+      "id": "mushroom",
+      "name": { "en-US": "Mushroom", "es-ES": "Seta" },
+      "image": "stickers/mushroom.png"
+    }
   ],
   "stories": [
     {
-      "id": "story-001",
-      "title": "The Shy Mushroom",
-      "text": "Once upon a time…",
-      "audio": "audio/story-001.m4a",
+      "id": "shy-mushroom",
       "requiredStickers": ["mushroom"],
       "optionalStickers": ["fox", "tree"],
       "weight": 1.0,
-      "tags": ["gentle"]
+      "tags": ["gentle"],
+      "localizations": {
+        "en-US": {
+          "title": "The Shy Mushroom",
+          "text": "Once upon a time…",
+          "audio": "audio/en-US/shy-mushroom.m4a"
+        },
+        "es-ES": {
+          "title": "La seta tímida",
+          "text": "Érase una vez…",
+          "audio": "audio/es-ES/shy-mushroom.m4a"
+        }
+      }
     }
   ]
 }
@@ -52,43 +74,77 @@ pack, and the Swift `PackLoader` refuses to load one.
 
 | Field | Type | Rules |
 |---|---|---|
-| `schemaVersion` | int | Must be a version the reader supports (currently `1`). Readers must reject unknown versions. |
+| `schemaVersion` | int | Must be a version the reader supports (currently `2`). Readers must reject unknown versions. |
 | `id` | string | Pack identifier: lowercase `a-z0-9-`, unique across the catalogue. Also the IAP product suffix (`com.anj.stickerstories.pack.<id>`). |
 | `version` | int | Content revision of the pack, ≥1. Bump on any asset/story change. |
-| `displayName` | string | Human-readable name shown to parents. |
+| `languages` | [string] | BCP-47 tags (`xx` or `xx-YY`, e.g. `en-US`), non-empty, no duplicates. **The first entry is the pack's fallback language.** |
+| `displayName` | {lang: string} | Human-readable name per language, shown to parents. |
 | `theme` | string | Free-form theme tag; future prompt context for generated stories. |
 | `background` / `foreground` | string | Pack-relative paths; files must exist. |
 | `stickers[].id` | string | Lowercase `a-z0-9-`, unique within the pack. |
-| `stickers[].name` | string | Display/accessibility name. |
+| `stickers[].name` | {lang: string} | Display/accessibility name per language. |
 | `stickers[].image` | string | Pack-relative path; must exist. |
 | `stories[].id` | string | Unique within the pack. |
-| `stories[].title` | string | Short title (parent-facing / debugging; not read to the child). |
-| `stories[].text` | string | Full story text. **Required** — it is the portable representation for future TTS/LLM narrators. |
-| `stories[].audio` | string | Pack-relative path to pre-rendered narration; must exist. |
 | `stories[].requiredStickers` | [string] | Sticker IDs that must all be on the canvas for the story to be a candidate. Empty ⇒ fallback story. Every ID must be declared in `stickers`. |
-| `stories[].optionalStickers` | [string] | Sticker IDs that raise the match score when present. Every ID must be declared in `stickers`. No overlap with `requiredStickers`. |
+| `stories[].optionalStickers` | [string] | Sticker IDs that raise the match score when present. Declared in `stickers`; no overlap with `requiredStickers`. |
 | `stories[].weight` | number | Base selection weight, > 0. Default 1.0. |
 | `stories[].tags` | [string] | Free-form variety tags (e.g. `gentle`, `funny`). |
+| `stories[].localizations` | {lang: object} | One block per language (see below). |
+| `…localizations[].title` | string | Short story title in that language (parent-facing; not read to the child). |
+| `…localizations[].text` | string | Full story text in that language. **Required** — the portable representation for future TTS/LLM narrators. |
+| `…localizations[].audio` | string | Pack-relative path to that language's pre-rendered narration; must exist. |
 
 ### Validation rules (enforced by BOTH the Go packager and the Swift decoder)
 
-1. `schemaVersion` supported.
+1. `schemaVersion` supported (currently 2).
 2. `id`s well-formed; sticker IDs unique; story IDs unique.
-3. Every referenced file (`background`, `foreground`, sticker images, story
-   audio) exists inside the pack directory. No path may escape the pack
+3. `languages` non-empty, well-formed BCP-47 (`^[a-z]{2,3}(-[A-Z]{2})?$`), no
+   duplicates.
+4. **Language coverage is exact**: every localized map (`displayName`, each
+   `stickers[].name`, each `stories[].localizations`) contains a value for
+   every declared language and none for undeclared ones. Partial translations
+   are a validation error, not a runtime fallback.
+5. Every referenced file (`background`, `foreground`, sticker images, every
+   localization's audio) exists inside the pack. No path may escape the pack
    (no `..`, no absolute paths).
-4. Every sticker ID referenced by a story is declared in `stickers`;
-   `requiredStickers` and `optionalStickers` are disjoint.
-5. **At least one fallback story** (`requiredStickers` empty) — play must never
-   fail regardless of canvas contents.
-6. `weight > 0`, `version ≥ 1`, non-empty `displayName`, `text`, `title`.
+6. Story sticker references are declared; `requiredStickers` and
+   `optionalStickers` are disjoint.
+7. **At least one fallback story** (`requiredStickers` empty) — play must
+   never fail regardless of canvas contents.
+8. `weight > 0`, `version ≥ 1`; every `displayName`/`name`/`title`/`text`
+   value non-empty.
+
+## Language resolution (app behaviour)
+
+`LanguageResolver` in StickerStoriesKit matches the device's preferred
+languages (`Locale.preferredLanguages`) against the pack's `languages`:
+
+1. exact tag match, case-insensitive (`es-ES` device → `es-ES` pack);
+2. else primary-subtag match (`es-MX` device → `es-ES` pack);
+3. else the pack's **first declared language**.
+
+The resolved language selects `displayName`, sticker names, and each story's
+`localizations` block (title, text, audio) — one language per pack per launch.
+App UI strings localize independently via the String Catalog; both follow the
+same device preference.
 
 ## Versioning rules
 
 - `schemaVersion` changes only for **structural** changes to the manifest.
-  Additive optional fields do not bump it; renames/removals/semantic changes do.
+  Additive optional fields do not bump it; renames/removals/semantic changes
+  do. v1 → v2 (2026-07): localization restructure — `languages` added;
+  `displayName`, `stickers[].name` became per-language maps; story
+  `title`/`text`/`audio` moved into `localizations`. v1 packs are not
+  supported (none shipped).
 - Any schema change must update this document, the Go validator
   (`tools/internal/manifest`), and the Swift decoder in the **same commit**.
 - `version` (pack content revision) is bumped whenever any asset or story in a
   published pack changes; the app treats a higher version of an installed pack
   as a replacement.
+
+## Future: per-language delivery (parked)
+
+Packs currently ship with all languages included. If pack size ever makes
+that impractical, keep **one download URL per pack** and add a `lang=` query
+parameter (e.g. `…/forest.pack?lang=es-ES`) so the server can serve a
+language subset — no per-language URL bookkeeping in the manifest.

@@ -8,43 +8,59 @@ import (
 	"testing"
 )
 
+func text(en, es string) map[string]string {
+	return map[string]string{"en-US": en, "es-ES": es}
+}
+
 // validManifest returns a minimal manifest that passes every rule, with its
 // referenced files materialised under dir.
 func validManifest(t *testing.T, dir string) *Manifest {
 	t.Helper()
 	w := 2.0
 	m := &Manifest{
-		SchemaVersion: 1,
+		SchemaVersion: 2,
 		ID:            "forest",
 		Version:       1,
-		DisplayName:   "Forest Friends",
+		Languages:     []string{"en-US", "es-ES"},
+		DisplayName:   text("Forest Friends", "Amigos del Bosque"),
 		Theme:         "forest",
 		Background:    "art/background.png",
 		Foreground:    "art/foreground.png",
 		Stickers: []Sticker{
-			{ID: "mushroom", Name: "Mushroom", Image: "stickers/mushroom.png"},
-			{ID: "fox", Name: "Fox", Image: "stickers/fox.png"},
+			{ID: "mushroom", Name: text("Mushroom", "Seta"), Image: "stickers/mushroom.png"},
+			{ID: "fox", Name: text("Fox", "Zorro"), Image: "stickers/fox.png"},
 		},
 		Stories: []Story{
 			{
-				ID: "story-001", Title: "The Shy Mushroom", Text: "Once upon a time…",
-				Audio:            "audio/story-001.m4a",
+				ID:               "story-001",
 				RequiredStickers: []string{"mushroom"},
 				OptionalStickers: []string{"fox"},
 				Weight:           &w,
 				Tags:             []string{"gentle"},
+				Localizations: map[string]StoryLocalization{
+					"en-US": {Title: "The Shy Mushroom", Text: "Once upon a time…", Audio: "audio/en-US/story-001.m4a"},
+					"es-ES": {Title: "La seta tímida", Text: "Érase una vez…", Audio: "audio/es-ES/story-001.m4a"},
+				},
 			},
 			{
-				ID: "story-002", Title: "A Forest Day", Text: "One sunny morning…",
-				Audio: "audio/story-002.m4a",
+				ID: "story-002",
+				Localizations: map[string]StoryLocalization{
+					"en-US": {Title: "A Forest Day", Text: "One sunny morning…", Audio: "audio/en-US/story-002.m4a"},
+					"es-ES": {Title: "Un día en el bosque", Text: "Una mañana de sol…", Audio: "audio/es-ES/story-002.m4a"},
+				},
 			},
 		},
 	}
-	for _, rel := range []string{
+	assets := []string{
 		m.Background, m.Foreground,
 		"stickers/mushroom.png", "stickers/fox.png",
-		"audio/story-001.m4a", "audio/story-002.m4a",
-	} {
+	}
+	for _, st := range m.Stories {
+		for _, loc := range st.Localizations {
+			assets = append(assets, loc.Audio)
+		}
+	}
+	for _, rel := range assets {
 		p := filepath.Join(dir, filepath.FromSlash(rel))
 		if err := os.MkdirAll(filepath.Dir(p), 0o755); err != nil {
 			t.Fatal(err)
@@ -87,6 +103,9 @@ func TestLoadRoundTrip(t *testing.T) {
 	if loaded.Stories[1].EffectiveWeight() != 1.0 {
 		t.Errorf("default weight should be 1.0, got %v", loaded.Stories[1].EffectiveWeight())
 	}
+	if loaded.Stories[0].Localizations["es-ES"].Title != "La seta tímida" {
+		t.Errorf("Spanish localization lost: %+v", loaded.Stories[0].Localizations)
+	}
 }
 
 func TestLoadRejectsBadJSON(t *testing.T) {
@@ -105,18 +124,41 @@ func TestValidationFailures(t *testing.T) {
 		mutate  func(m *Manifest)
 		wantSub string // substring expected in one of the errors
 	}{
-		{"unsupported schema version", func(m *Manifest) { m.SchemaVersion = 99 }, "schemaVersion"},
+		{"unsupported schema version", func(m *Manifest) { m.SchemaVersion = 1 }, "schemaVersion"},
 		{"bad pack id", func(m *Manifest) { m.ID = "Forest Pack!" }, "pack id"},
 		{"zero version", func(m *Manifest) { m.Version = 0 }, "version"},
-		{"empty display name", func(m *Manifest) { m.DisplayName = " " }, "displayName"},
+		{"no languages", func(m *Manifest) { m.Languages = nil }, "languages must not be empty"},
+		{"malformed language", func(m *Manifest) { m.Languages[0] = "english" }, "well-formed"},
+		{"duplicate language", func(m *Manifest) { m.Languages = []string{"en-US", "en-US"} }, "duplicate language"},
+		{"display name missing language", func(m *Manifest) { delete(m.DisplayName, "es-ES") }, "missing \"es-ES\""},
+		{"display name empty value", func(m *Manifest) { m.DisplayName["es-ES"] = " " }, "must not be empty"},
+		{"display name undeclared language", func(m *Manifest) { m.DisplayName["fr-FR"] = "Amis" }, "not in declared languages"},
+		{"sticker name missing language", func(m *Manifest) { delete(m.Stickers[0].Name, "es-ES") }, "missing \"es-ES\""},
 		{"missing background file", func(m *Manifest) { m.Background = "art/nope.png" }, "not found"},
 		{"absolute path", func(m *Manifest) { m.Foreground = "/etc/passwd" }, "pack-relative"},
 		{"path escape", func(m *Manifest) { m.Foreground = "../../evil.png" }, "escape"},
 		{"duplicate sticker id", func(m *Manifest) { m.Stickers[1].ID = "mushroom" }, "duplicate sticker"},
 		{"bad sticker id", func(m *Manifest) { m.Stickers[0].ID = "Mushroom" }, "must match"},
 		{"duplicate story id", func(m *Manifest) { m.Stories[1].ID = "story-001" }, "duplicate story"},
-		{"empty story text", func(m *Manifest) { m.Stories[0].Text = "" }, "text"},
-		{"empty story title", func(m *Manifest) { m.Stories[0].Title = "" }, "title"},
+		{"story missing localization", func(m *Manifest) { delete(m.Stories[0].Localizations, "es-ES") }, "missing \"es-ES\""},
+		{"story undeclared localization", func(m *Manifest) {
+			m.Stories[0].Localizations["fr-FR"] = StoryLocalization{Title: "T", Text: "T.", Audio: "audio/en-US/story-001.m4a"}
+		}, "not in declared languages"},
+		{"empty story text", func(m *Manifest) {
+			loc := m.Stories[0].Localizations["en-US"]
+			loc.Text = ""
+			m.Stories[0].Localizations["en-US"] = loc
+		}, "text"},
+		{"empty story title", func(m *Manifest) {
+			loc := m.Stories[0].Localizations["en-US"]
+			loc.Title = ""
+			m.Stories[0].Localizations["en-US"] = loc
+		}, "title"},
+		{"missing audio file", func(m *Manifest) {
+			loc := m.Stories[0].Localizations["es-ES"]
+			loc.Audio = "audio/es-ES/nope.m4a"
+			m.Stories[0].Localizations["es-ES"] = loc
+		}, "not found"},
 		{"undeclared required sticker", func(m *Manifest) { m.Stories[0].RequiredStickers = []string{"dragon"} }, "undeclared"},
 		{"undeclared optional sticker", func(m *Manifest) { m.Stories[0].OptionalStickers = []string{"dragon"} }, "undeclared"},
 		{"required/optional overlap", func(m *Manifest) { m.Stories[0].OptionalStickers = []string{"mushroom"} }, "both"},
