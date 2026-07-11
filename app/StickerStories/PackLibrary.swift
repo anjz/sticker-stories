@@ -28,7 +28,7 @@ final class PackLibrary {
                 failures.append("\(directory.lastPathComponent): \(error)")
             }
         }
-        packs = found.sorted { $0.manifest.displayName < $1.manifest.displayName }
+        packs = found.sorted { $0.id < $1.id }
         loadFailures = failures
     }
 

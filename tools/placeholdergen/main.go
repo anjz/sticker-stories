@@ -54,10 +54,23 @@ func main() {
 			log.Fatal("audio rendering needs macOS (`say`/`afconvert`); rerun with -audio=false")
 		}
 		for _, story := range m.Stories {
-			renderNarration(filepath.Join(*packDir, story.Audio), story.Text)
+			for _, lang := range m.Languages {
+				loc, ok := story.Localizations[lang]
+				if !ok {
+					log.Fatalf("story %q has no %q localization; fix the manifest first", story.ID, lang)
+				}
+				renderNarration(filepath.Join(*packDir, loc.Audio), loc.Text, lang)
+			}
 		}
 	}
 	log.Printf("placeholder assets written to %s", *packDir)
+}
+
+// narrationVoices maps a pack language to the `say` voice used for its
+// placeholder narration. Extend when packs add languages.
+var narrationVoices = map[string]string{
+	"en-US": "Samantha",
+	"es-ES": "Flo (Spanish (Spain))",
 }
 
 func writePNG(path string, img image.Image) {
@@ -75,15 +88,20 @@ func writePNG(path string, img image.Image) {
 	log.Printf("  wrote %s", path)
 }
 
-// renderNarration renders text to an AAC .m4a via `say` (AIFF) + `afconvert`.
-func renderNarration(path, text string) {
+// renderNarration renders text to an AAC .m4a via `say` (AIFF) + `afconvert`,
+// using the language's configured voice.
+func renderNarration(path, text, lang string) {
+	voice, ok := narrationVoices[lang]
+	if !ok {
+		log.Fatalf("no placeholder voice configured for %q; add it to narrationVoices", lang)
+	}
 	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
 		log.Fatal(err)
 	}
 	tmp := path + ".tmp.aiff"
 	defer os.Remove(tmp)
-	if out, err := exec.Command("say", "-r", "170", "-o", tmp, text).CombinedOutput(); err != nil {
-		log.Fatalf("say failed for %s: %v\n%s", path, err, out)
+	if out, err := exec.Command("say", "-v", voice, "-r", "170", "-o", tmp, text).CombinedOutput(); err != nil {
+		log.Fatalf("say failed for %s (voice %q — is it installed?): %v\n%s", path, voice, err, out)
 	}
 	if out, err := exec.Command("afconvert", "-f", "m4af", "-d", "aac", "-b", "64000", tmp, path).CombinedOutput(); err != nil {
 		log.Fatalf("afconvert failed for %s: %v\n%s", path, err, out)

@@ -27,12 +27,12 @@ final class PlaybackController {
 
     var isBusy: Bool { phase != .idle }
 
-    func play(canvas: CanvasState, pack: LoadedPack) {
+    func play(canvas: CanvasState, pack: LoadedPack, language: String) {
         stop()
         playTask = Task {
             phase = .choosing
             do {
-                let story = try await storyProvider.story(for: canvas, in: pack)
+                let story = try await storyProvider.story(for: canvas, in: pack, language: language)
                 phase = .playing(story)
                 try await narrator.narrate(story, from: pack)
                 phase = .finished
