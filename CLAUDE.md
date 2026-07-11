@@ -19,6 +19,11 @@ packs are non-consumable IAPs (~1.99); one "Forest" pack ships bundled and free.
 - **Pack = versioned bundle** (manifest.json + art + audio). The manifest schema in
   `docs/pack-format.md` is the contract between `tools/` (Go) and the app (Swift);
   both validate it independently.
+- **Multilingual from day one** (en-US, es-ES): app strings via
+  `Localizable.xcstrings`; pack content (names, story text, narration audio) is
+  per-language in the manifest with exact coverage validation; device language
+  resolved by `LanguageResolver` with the pack's first language as fallback.
+  New user-facing text must be added to the String Catalog with all languages.
 - Entitlements: transaction IDs stored locally keyed by pack ID; validated against
   StoreKit 2 on every launch; revoked packs' assets deleted. See `docs/commerce.md`.
 - IAP product IDs: `com.anj.stickerstories.pack.<packID>`, future all-access
