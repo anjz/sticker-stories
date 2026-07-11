@@ -72,6 +72,28 @@ AVFoundation. This is our own code, not a third-party dependency.
    Support. Both go through `PackLoader(directory:)` — the bundled pack gets no
    special treatment, which keeps the purchased-pack path exercised from day one.
 
+## Localization
+
+Multilingual from day one — currently **en-US** and **es-ES**:
+
+- **App UI**: `Localizable.xcstrings` (source `en`, translation `es`). iOS
+  resolves the UI language from device settings / the per-app language
+  setting; SwiftUI `Text`/`Label` literals localize automatically, and
+  programmatic strings go through `String(localized:)`.
+- **Pack content**: every pack declares `languages` (first = fallback) and
+  carries per-language display names, sticker names, and story
+  title/text/audio — see `docs/pack-format.md`. `LanguageResolver` (Kit)
+  matches `Locale.preferredLanguages` against the pack's languages
+  (exact → primary subtag → pack fallback); the resolved tag flows through
+  `StoryProvider.story(for:in:language:)` so the chosen `Story` already
+  carries the right text and narration file. The `Narrator` seam is
+  untouched — it plays whatever `Story` it is given.
+- Both mechanisms follow the same device preference, so UI language and
+  narration language agree whenever the pack supports the device language.
+- Delivery (future): packs ship all languages today; if size ever forces a
+  split, keep one download URL per pack + `lang=` query param
+  (docs/pack-format.md, "Future: per-language delivery").
+
 ## Future: runtime generation (parked — design for it, don't build it)
 
 v1 is fully pregenerated, but the app may later shift to runtime story

@@ -95,7 +95,8 @@ struct GrownUpsView: View {
                 PackCard(
                     id: pack.id,
                     title: pack.manifest.displayName(for: language),
-                    subtitle: "\(pack.manifest.stickers.count) stickers · \(pack.manifest.stories.count) stories",
+                    subtitle: String(
+                        localized: "\(pack.manifest.stickers.count) stickers · \(pack.manifest.stories.count) stories"),
                     artwork: background.map { .pack(background: $0, stickers: stickers) }
                         ?? .mystery(symbol: "photo"),
                     availability: pack.source == .bundled ? .included : .owned))
@@ -266,7 +267,7 @@ private struct PackCardView: View {
         }
     }
 
-    private func badge(_ text: String, symbol: String) -> some View {
+    private func badge(_ text: LocalizedStringKey, symbol: String) -> some View {
         Label(text, systemImage: symbol)
             .font(.system(size: 17, weight: .bold, design: .rounded))
             .foregroundStyle(Color(red: 0.2, green: 0.55, blue: 0.3))

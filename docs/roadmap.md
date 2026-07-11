@@ -26,6 +26,19 @@
 - [x] PrivacyInfo.xcprivacy; compliance checklist satisfied
 - [x] Runs and feels right on iPad **and** iPhone simulators
 
+## Iteration 1.5 — shipped after initial review
+
+- [x] Fix: background-layer stickers selectable again (hit-testing through
+      the foreground art plane)
+- [x] Larger selection controls + sticker rotation handle (snap-to-upright)
+- [x] Parental gate switched to single-digit addition (see docs/compliance.md
+      for the strength trade-off note)
+- [x] Grown-Ups area redesigned as a canvas-style pack card gallery
+- [x] Localization: en-US + es-ES end to end — manifest schema v2
+      (per-language pack content + narration, exact coverage validation),
+      LanguageResolver device matching, String Catalog for app UI, Spanish
+      Forest pack content and `say` narration, es_ES StoreKit product copy
+
 ## Iteration 2 — proposed
 
 - [ ] Second pack ("Meadow") as a purchasable IAP end-to-end in the StoreKit
@@ -49,6 +62,11 @@
 - [ ] Mac delivery follow-through: v1 opts out of "Designed for iPad on Mac"
       (docs/compliance.md); revisit once iPad experience is polished
 - [ ] Orientation: revisit landscape-only (portrait canvas layout?)
-- [ ] Localisation strategy (manifest `displayName`/stories per locale)
+- [ ] Parent-facing language override in Grown-Ups (device language is the
+      only selector today)
+- [ ] Localized App Store metadata (+ per-locale CFBundleDisplayName if the
+      name ever differs)
+- [ ] More languages; per-language pack delivery via base URL + `lang=` param
+      if pack sizes demand it (docs/pack-format.md)
 - [ ] Future: runtime story generation + on-device TTS behind the existing
       `StoryProvider`/`Narrator` seams (docs/architecture.md) — parked

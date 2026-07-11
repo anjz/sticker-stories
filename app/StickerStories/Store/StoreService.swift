@@ -32,7 +32,7 @@ final class StoreService {
             switch try await product.purchase() {
             case .success(let verification):
                 guard case .verified(let transaction) = verification else {
-                    lastMessage = "Purchase could not be verified."
+                    lastMessage = String(localized: "Purchase could not be verified.")
                     return
                 }
                 entitlements.recordEntitlement(for: transaction)
@@ -40,16 +40,16 @@ final class StoreService {
                 // install here once packs are delivered separately.
                 await transaction.finish()
                 ownedProductIDs.insert(transaction.productID)
-                lastMessage = "Purchase complete."
+                lastMessage = String(localized: "Purchase complete.")
             case .userCancelled:
                 break
             case .pending:
-                lastMessage = "Waiting for approval (Ask to Buy)."
+                lastMessage = String(localized: "Waiting for approval (Ask to Buy).")
             @unknown default:
                 break
             }
         } catch {
-            lastMessage = "Purchase failed. Please try again."
+            lastMessage = String(localized: "Purchase failed. Please try again.")
         }
     }
 
@@ -61,6 +61,6 @@ final class StoreService {
         try? await AppStore.sync()
         await entitlements.validateOnLaunch()
         await refresh()
-        lastMessage = "Purchases restored."
+        lastMessage = String(localized: "Purchases restored.")
     }
 }
