@@ -18,6 +18,7 @@ struct RootView: View {
     @State private var screen: Screen = .menu
     @State private var library = PackLibrary()
     @State private var entitlements = EntitlementCoordinator()
+    @State private var settings = AppSettings()
     @State private var grownUps: GrownUpsAccess?
 
     var body: some View {
@@ -29,7 +30,7 @@ struct RootView: View {
             case .menu:
                 MainMenuView(
                     packs: library.packs,
-                    preferredLanguages: Locale.preferredLanguages,
+                    preferredLanguages: settings.preferredLanguages,
                     onSelectPack: { pack in
                         withAnimation(.spring(duration: 0.45)) { screen = .story(pack) }
                     },
@@ -38,7 +39,7 @@ struct RootView: View {
             case .story(let pack):
                 StoryScreen(
                     pack: pack,
-                    preferredLanguages: Locale.preferredLanguages,
+                    preferredLanguages: settings.preferredLanguages,
                     onLeave: {
                         withAnimation(.spring(duration: 0.45)) { screen = .menu }
                     })
@@ -47,6 +48,8 @@ struct RootView: View {
         }
         .persistentSystemOverlays(.hidden)
         .statusBarHidden(true)
+        // The parent language override retargets every catalog lookup live.
+        .environment(\.locale, settings.uiLocale ?? Locale.autoupdatingCurrent)
         .task {
             // Entitlement enforcement runs before pack discovery on every
             // launch (docs/commerce.md).
@@ -55,17 +58,22 @@ struct RootView: View {
             library.discoverPacks()
         }
         .sheet(item: $grownUps) { access in
-            switch access {
-            case .gate:
-                ParentalGateView(
-                    onSuccess: { grownUps = .area },
-                    onCancel: { grownUps = nil })
-                .presentationDetents([.medium, .large])
-            case .area:
-                GrownUpsView(
-                    store: StoreService(entitlements: entitlements),
-                    packs: library.packs)
+            Group {
+                switch access {
+                case .gate:
+                    ParentalGateView(
+                        onSuccess: { grownUps = .area },
+                        onCancel: { grownUps = nil })
+                    .presentationDetents([.medium, .large])
+                case .area:
+                    GrownUpsView(
+                        store: StoreService(entitlements: entitlements),
+                        packs: library.packs,
+                        settings: settings)
+                }
             }
+            // Sheets are separate presentation trees; re-apply the override.
+            .environment(\.locale, settings.uiLocale ?? Locale.autoupdatingCurrent)
         }
     }
 }

@@ -72,14 +72,35 @@ AVFoundation. This is our own code, not a third-party dependency.
    Support. Both go through `PackLoader(directory:)` — the bundled pack gets no
    special treatment, which keeps the purchased-pack path exercised from day one.
 
+## Navigation
+
+Three surfaces, one door out of the child experience:
+
+- **Main menu** (`MainMenuView`) — the launch screen: one big card per
+  available pack (horizontally paged) + a final "More stories" card.
+- **Story screen** (`StoryScreen`) — the canvas + playback for one pack, with
+  a back button guarded by a child-friendly confirmation (the canvas starts
+  fresh on re-entry — restoring it is a roadmap item). No grown-ups access
+  from here.
+- **Grown-Ups area** — reachable only via More stories → parental gate.
+  Contains the store and, behind a gear button, parent settings
+  (`AppSettings`: language override; persisted in UserDefaults).
+
+Routing is a simple two-case screen enum in `RootView` — no NavigationStack.
+
 ## Localization
 
 Multilingual from day one — currently **en-US** and **es-ES**:
 
 - **App UI**: `Localizable.xcstrings` (source `en`, translation `es`). iOS
   resolves the UI language from device settings / the per-app language
-  setting; SwiftUI `Text`/`Label` literals localize automatically, and
-  programmatic strings go through `String(localized:)`.
+  setting; SwiftUI `Text`/`Label` literals localize automatically. A parent
+  can also **override the language in-app** (Grown-Ups → gear → Language):
+  `AppSettings.languageOverride` feeds both `LanguageResolver` (narration)
+  and an `\.environment(\.locale)` override (UI text, applied at the root and
+  re-applied inside each sheet), switching live without relaunch. Keep
+  user-facing strings as catalog keys rendered by `Text` — avoid
+  `String(localized:)`, which ignores the environment locale.
 - **Pack content**: every pack declares `languages` (first = fallback) and
   carries per-language display names, sticker names, and story
   title/text/audio — see `docs/pack-format.md`. `LanguageResolver` (Kit)

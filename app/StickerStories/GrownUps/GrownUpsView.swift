@@ -13,7 +13,9 @@ import UIKit
 struct GrownUpsView: View {
     let store: StoreService
     let packs: [LoadedPack]
+    let settings: AppSettings
     @Environment(\.dismiss) private var dismiss
+    @State private var isShowingSettings = false
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -53,7 +55,7 @@ struct GrownUpsView: View {
                     restoreButton
 
                     if let message = store.lastMessage {
-                        Text(message)
+                        Text(message)  // LocalizedStringKey → follows the environment locale
                             .font(.system(size: 16, weight: .semibold, design: .rounded))
                             .foregroundStyle(.white)
                             .padding(.horizontal, 16)
@@ -75,7 +77,29 @@ struct GrownUpsView: View {
             closeButton
                 .padding(18)
         }
+        .overlay(alignment: .topLeading) {
+            settingsButton
+                .padding(18)
+        }
+        .sheet(isPresented: $isShowingSettings) {
+            SettingsView(settings: settings)
+                // Sheets are separate presentation trees; re-apply the override.
+                .environment(\.locale, settings.uiLocale ?? Locale.autoupdatingCurrent)
+        }
         .task { await store.refresh() }
+    }
+
+    private var settingsButton: some View {
+        Button { isShowingSettings = true } label: {
+            Image(systemName: "gearshape.fill")
+                .font(.system(size: 19, weight: .heavy))
+                .foregroundStyle(Color(red: 0.25, green: 0.35, blue: 0.4))
+                .padding(14)
+                .background(Circle().fill(.white.opacity(0.92)))
+                .shadow(color: .black.opacity(0.15), radius: 4, y: 2)
+        }
+        .buttonStyle(SquishyButtonStyle())
+        .accessibilityLabel("Settings")
     }
 
     // MARK: Cards
@@ -90,13 +114,15 @@ struct GrownUpsView: View {
             let stickers = pack.manifest.stickers.prefix(3).compactMap {
                 UIImage(contentsOfFile: pack.url(forAssetPath: $0.image).path)
             }
-            let language = LanguageResolver().resolve(from: pack.manifest.languages)
+            let language = LanguageResolver(preferredLanguages: settings.preferredLanguages)
+                .resolve(from: pack.manifest.languages)
             result.append(
                 PackCard(
                     id: pack.id,
                     title: pack.manifest.displayName(for: language),
-                    subtitle: String(
-                        localized: "\(pack.manifest.stickers.count) stickers · \(pack.manifest.stories.count) stories"),
+                    subtitle: .counts(
+                        stickers: pack.manifest.stickers.count,
+                        stories: pack.manifest.stories.count),
                     artwork: background.map { .pack(background: $0, stickers: stickers) }
                         ?? .mystery(symbol: "photo"),
                     availability: pack.source == .bundled ? .included : .owned))
@@ -109,7 +135,7 @@ struct GrownUpsView: View {
                 result.append(
                     PackCard(
                         id: product.id, title: product.displayName,
-                        subtitle: product.description,
+                        subtitle: .text(product.description),
                         artwork: .mystery(symbol: "sparkles"),
                         availability: owned ? .owned : .purchasable(product)))
             } else if let packID = StoreConfiguration.catalog.packID(fromProductID: product.id),
@@ -117,7 +143,7 @@ struct GrownUpsView: View {
                 result.append(
                     PackCard(
                         id: product.id, title: product.displayName,
-                        subtitle: product.description,
+                        subtitle: .text(product.description),
                         artwork: .mystery(symbol: "gift.fill"),
                         availability: owned ? .owned : .purchasable(product)))
             }
@@ -168,10 +194,16 @@ private struct PackCard: Identifiable {
         case owned
         case purchasable(Product)
     }
+    enum Subtitle {
+        /// Localized via the catalog ("%lld stickers · %lld stories").
+        case counts(stickers: Int, stories: Int)
+        /// Verbatim text already localized elsewhere (StoreKit product copy).
+        case text(String)
+    }
 
     let id: String
     let title: String
-    let subtitle: String
+    let subtitle: Subtitle
     let artwork: Artwork
     let availability: Availability
 }
@@ -193,7 +225,7 @@ private struct PackCardView: View {
                 Text(card.title)
                     .font(.system(size: 23, weight: .heavy, design: .rounded))
                     .foregroundStyle(Color(red: 0.2, green: 0.3, blue: 0.25))
-                Text(card.subtitle)
+                subtitleText
                     .font(.system(size: 15, weight: .medium, design: .rounded))
                     .foregroundStyle(.secondary)
                     .lineLimit(2)
@@ -207,6 +239,15 @@ private struct PackCardView: View {
         .frame(width: cardWidth)
         .clipShape(RoundedRectangle(cornerRadius: 26))
         .shadow(color: .black.opacity(0.18), radius: 10, y: 6)
+    }
+
+    private var subtitleText: Text {
+        switch card.subtitle {
+        case .counts(let stickers, let stories):
+            Text("\(stickers) stickers · \(stories) stories")
+        case .text(let value):
+            Text(verbatim: value)
+        }
     }
 
     private var artwork: some View {
