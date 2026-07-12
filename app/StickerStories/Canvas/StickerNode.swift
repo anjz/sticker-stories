@@ -11,12 +11,14 @@ final class StickerNode: SKSpriteNode {
         static let prefix = "sticker-control-"
         static let delete = "sticker-control-delete"
         static let layer = "sticker-control-layer"
-        static let rotate = "sticker-control-rotate"
     }
 
     let instanceID = UUID()
     let stickerID: String
     var canvasLayer: CanvasLayer = .foreground
+    /// The sticker's resting scale, set by two-finger pinching. Lift/settle
+    /// animations are relative to this so pinched size survives dragging.
+    var baseScale: CGFloat = 1
 
     private let shadow: SKSpriteNode
     private var selectionOverlay: SKNode?
@@ -73,9 +75,6 @@ final class StickerNode: SKSpriteNode {
             Self.makeControlButton(
                 named: ControlName.delete, symbol: "xmark",
                 fill: .systemRed, at: CGPoint(x: rect.maxX, y: rect.maxY)),
-            Self.makeControlButton(
-                named: ControlName.rotate, symbol: "arrow.clockwise",
-                fill: .systemGreen, at: CGPoint(x: rect.maxX, y: rect.minY)),
         ]
         for button in controlButtons {
             overlay.addChild(button)
