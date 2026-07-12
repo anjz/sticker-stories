@@ -1,19 +1,22 @@
 import StickerStoriesKit
 import SwiftUI
 
-/// App shell. Hosts the SpriteKit canvas full-screen; SwiftUI overlays (play
-/// button, playback HUD, Grown-Ups corner) layer on top.
+/// App shell and navigation: the main menu (pack selection) and the story
+/// screen, plus the gate→Grown-Ups sheet, which only the menu's More stories
+/// card can open.
 struct RootView: View {
     private enum GrownUpsAccess: Identifiable {
         case gate, area
         var id: Self { self }
     }
 
+    private enum Screen: Equatable {
+        case menu
+        case story(LoadedPack)
+    }
+
+    @State private var screen: Screen = .menu
     @State private var library = PackLibrary()
-    @State private var canvasState: CanvasState?
-    @State private var playback = PlaybackController(
-        storyProvider: BundledStoryProvider(recents: UserDefaultsRecentStories()),
-        narrator: AudioFileNarrator())
     @State private var entitlements = EntitlementCoordinator()
     @State private var grownUps: GrownUpsAccess?
 
@@ -21,23 +24,25 @@ struct RootView: View {
         ZStack {
             Color(red: 0.49, green: 0.78, blue: 0.91)
                 .ignoresSafeArea()
-            if let pack = library.packs.first {
-                CanvasView(pack: pack) { state in
-                    canvasState = state
-                }
-                .id(pack.id)
 
-                PlaybackOverlay(
-                    phase: playback.phase,
-                    onPlay: {
-                        playback.play(
-                            canvas: canvasState ?? CanvasState(packID: pack.id),
-                            pack: pack,
-                            language: LanguageResolver().resolve(from: pack.manifest.languages))
+            switch screen {
+            case .menu:
+                MainMenuView(
+                    packs: library.packs,
+                    preferredLanguages: Locale.preferredLanguages,
+                    onSelectPack: { pack in
+                        withAnimation(.spring(duration: 0.45)) { screen = .story(pack) }
                     },
-                    onStop: { playback.stop() })
-
-                grownUpsButton
+                    onMoreStories: { grownUps = .gate })
+                .transition(.opacity.combined(with: .scale(scale: 1.08)))
+            case .story(let pack):
+                StoryScreen(
+                    pack: pack,
+                    preferredLanguages: Locale.preferredLanguages,
+                    onLeave: {
+                        withAnimation(.spring(duration: 0.45)) { screen = .menu }
+                    })
+                .transition(.opacity.combined(with: .scale(scale: 0.92)))
             }
         }
         .persistentSystemOverlays(.hidden)
@@ -60,31 +65,6 @@ struct RootView: View {
                 GrownUpsView(
                     store: StoreService(entitlements: entitlements),
                     packs: library.packs)
-            }
-        }
-    }
-
-    /// Small, quiet corner button — the only door out of the child experience,
-    /// and it opens onto the parental gate.
-    private var grownUpsButton: some View {
-        VStack {
-            Spacer()
-            HStack {
-                Button {
-                    playback.stop()
-                    grownUps = .gate
-                } label: {
-                    Image(systemName: "figure.and.child.holdinghands")
-                        .font(.system(size: 17, weight: .semibold))
-                        .foregroundStyle(.white.opacity(0.85))
-                        .padding(12)
-                        .background(Circle().fill(.black.opacity(0.25)))
-                }
-                .buttonStyle(SquishyButtonStyle())
-                .accessibilityLabel("Grown-ups area")
-                .padding(.leading, 20)
-                .padding(.bottom, 20)
-                Spacer()
             }
         }
     }
