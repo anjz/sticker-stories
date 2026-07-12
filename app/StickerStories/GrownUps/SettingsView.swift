@@ -15,7 +15,7 @@ struct SettingsView: View {
     ]
 
     var body: some View {
-        ZStack(alignment: .topTrailing) {
+        ZStack {
             LinearGradient(
                 colors: [
                     Color(red: 0.49, green: 0.78, blue: 0.91),
@@ -25,40 +25,51 @@ struct SettingsView: View {
             )
             .ignoresSafeArea()
 
-            ScrollView {
-                VStack(alignment: .leading, spacing: 22) {
+            // Fixed header row: title and close button share it, so they can
+            // never overlap.
+            VStack(spacing: 0) {
+                HStack {
                     Text("Settings")
-                        .font(.system(size: 34, weight: .heavy, design: .rounded))
+                        .font(.system(size: 30, weight: .heavy, design: .rounded))
                         .foregroundStyle(.white)
                         .shadow(color: .black.opacity(0.15), radius: 2, y: 2)
-                        .padding(.top, 10)
-
-                    Text("Language")
-                        .font(.system(size: 21, weight: .bold, design: .rounded))
-                        .foregroundStyle(.white.opacity(0.95))
-
-                    VStack(spacing: 12) {
-                        ForEach(Array(choices.enumerated()), id: \.offset) { _, choice in
-                            languageRow(override: choice.override, label: choice.label)
-                        }
-                    }
-                    .frame(maxWidth: 460)
+                    Spacer()
+                    closeButton
                 }
-                .padding(26)
-            }
+                .padding(.horizontal, 18)
+                .padding(.top, 14)
 
-            Button { dismiss() } label: {
-                Image(systemName: "xmark")
-                    .font(.system(size: 19, weight: .heavy))
-                    .foregroundStyle(Color(red: 0.25, green: 0.35, blue: 0.4))
-                    .padding(14)
-                    .background(Circle().fill(.white.opacity(0.92)))
-                    .shadow(color: .black.opacity(0.15), radius: 4, y: 2)
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 22) {
+                        Text("Language")
+                            .font(.system(size: 21, weight: .bold, design: .rounded))
+                            .foregroundStyle(.white.opacity(0.95))
+
+                        VStack(spacing: 12) {
+                            ForEach(Array(choices.enumerated()), id: \.offset) { _, choice in
+                                languageRow(override: choice.override, label: choice.label)
+                            }
+                        }
+                        .frame(maxWidth: 460)
+                    }
+                    .padding(.horizontal, 26)
+                    .padding(.top, 16)
+                }
             }
-            .buttonStyle(SquishyButtonStyle())
-            .accessibilityLabel("Close")
-            .padding(18)
         }
+    }
+
+    private var closeButton: some View {
+        Button { dismiss() } label: {
+            Image(systemName: "xmark")
+                .font(.system(size: 19, weight: .heavy))
+                .foregroundStyle(Color(red: 0.25, green: 0.35, blue: 0.4))
+                .padding(14)
+                .background(Circle().fill(.white.opacity(0.92)))
+                .shadow(color: .black.opacity(0.15), radius: 4, y: 2)
+        }
+        .buttonStyle(SquishyButtonStyle())
+        .accessibilityLabel("Close")
     }
 
     private func languageRow(override: String?, label: Text) -> some View {
