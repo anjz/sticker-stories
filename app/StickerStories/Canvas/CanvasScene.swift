@@ -53,7 +53,7 @@ final class CanvasScene: SKScene {
     }
     private var activeTransform: TransformInfo?
 
-    private static let stickerScaleRange: ClosedRange<CGFloat> = 0.5...2.5
+    private static let stickerScaleRange: ClosedRange<CGFloat> = 0.5...2.0
 
     private let softHaptic = UIImpactFeedbackGenerator(style: .light)
     private let firmHaptic = UIImpactFeedbackGenerator(style: .medium)
