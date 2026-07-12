@@ -30,8 +30,10 @@ pass review, it is a product constraint.
   ⚠️ Revisit before App Store submission — the target age band (≤5) mostly
   cannot read the instruction or add, but early readers can; if review flags
   5.1.4, harden to multiplication or a hold-three-fingers pattern.
-- Gates: the Grown-Ups area (purchases, restore, future links). Nothing else in
-  the app leads out of the child experience.
+- Gates: the Grown-Ups area (purchases, restore, parent settings, future
+  links), reached only via the main menu's "More stories" card. Nothing else
+  in the app leads out of the child experience; the story screen has no
+  grown-ups access at all.
 - Review expectation: gate must not be defeatable by random tapping and must be
   presented every time (no "remember me").
 

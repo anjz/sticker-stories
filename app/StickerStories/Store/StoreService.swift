@@ -2,6 +2,7 @@ import Foundation
 import Observation
 import StickerStoriesKit
 import StoreKit
+import SwiftUI
 
 /// Purchase flow for the Grown-Ups area. Only reachable behind the parental
 /// gate — never from any child-facing surface (docs/compliance.md).
@@ -11,7 +12,9 @@ final class StoreService {
     private(set) var products: [Product] = []
     private(set) var ownedProductIDs: Set<String> = []
     private(set) var isWorking = false
-    private(set) var lastMessage: String?
+    /// A catalog key, not a resolved string, so the UI localizes it through
+    /// the environment locale (which the parent language override can change).
+    private(set) var lastMessage: LocalizedStringKey?
 
     private let entitlements: EntitlementCoordinator
 
@@ -32,7 +35,7 @@ final class StoreService {
             switch try await product.purchase() {
             case .success(let verification):
                 guard case .verified(let transaction) = verification else {
-                    lastMessage = String(localized: "Purchase could not be verified.")
+                    lastMessage = "Purchase could not be verified."
                     return
                 }
                 entitlements.recordEntitlement(for: transaction)
@@ -40,16 +43,16 @@ final class StoreService {
                 // install here once packs are delivered separately.
                 await transaction.finish()
                 ownedProductIDs.insert(transaction.productID)
-                lastMessage = String(localized: "Purchase complete.")
+                lastMessage = "Purchase complete."
             case .userCancelled:
                 break
             case .pending:
-                lastMessage = String(localized: "Waiting for approval (Ask to Buy).")
+                lastMessage = "Waiting for approval (Ask to Buy)."
             @unknown default:
                 break
             }
         } catch {
-            lastMessage = String(localized: "Purchase failed. Please try again.")
+            lastMessage = "Purchase failed. Please try again."
         }
     }
 
@@ -61,6 +64,6 @@ final class StoreService {
         try? await AppStore.sync()
         await entitlements.validateOnLaunch()
         await refresh()
-        lastMessage = String(localized: "Purchases restored.")
+        lastMessage = "Purchases restored."
     }
 }

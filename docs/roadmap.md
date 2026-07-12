@@ -39,6 +39,9 @@
       LanguageResolver device matching, String Catalog for app UI, Spanish
       Forest pack content and `say` narration, es_ES StoreKit product copy
 
+- [x] Main menu (pack cards + gated "More stories"), story back-confirmation
+      flow, parent settings (gear in Grown-Ups) with in-app language override
+
 ## Iteration 2 — proposed
 
 - [ ] Second pack ("Meadow") as a purchasable IAP end-to-end in the StoreKit
@@ -62,8 +65,8 @@
 - [ ] Mac delivery follow-through: v1 opts out of "Designed for iPad on Mac"
       (docs/compliance.md); revisit once iPad experience is polished
 - [ ] Orientation: revisit landscape-only (portrait canvas layout?)
-- [ ] Parent-facing language override in Grown-Ups (device language is the
-      only selector today)
+- [ ] Restore canvas per pack on story re-entry (CanvasState is Codable for
+      this; currently the canvas deliberately starts fresh)
 - [ ] Localized App Store metadata (+ per-locale CFBundleDisplayName if the
       name ever differs)
 - [ ] More languages; per-language pack delivery via base URL + `lang=` param

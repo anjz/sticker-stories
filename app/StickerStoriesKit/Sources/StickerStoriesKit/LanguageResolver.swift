@@ -33,7 +33,7 @@ public struct LanguageResolver: Sendable {
         return available.first ?? "en-US"
     }
 
-    static func primarySubtag(_ tag: String) -> String {
+    public static func primarySubtag(_ tag: String) -> String {
         tag.split(separator: "-").first.map { $0.lowercased() } ?? tag.lowercased()
     }
 }
