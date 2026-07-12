@@ -26,6 +26,7 @@ final class CanvasScene: SKScene {
     private var nextZOrder: CGFloat = 1
 
     private weak var selectedSticker: StickerNode?
+    private var selectionBubble: SelectionBubbleNode?
 
     private struct DragInfo {
         let node: StickerNode
@@ -99,6 +100,7 @@ final class CanvasScene: SKScene {
                 node.position = CGPoint(x: node.position.x * sx, y: node.position.y * sy)
             }
         }
+        refreshSelectionBubble()
     }
 
     private func loadPackContent() {
@@ -210,6 +212,9 @@ final class CanvasScene: SKScene {
 
             if let (control, sticker) = controlHit(in: hits) {
                 handleControlTap(control, on: sticker)
+            } else if hits.contains(where: { self.ancestor(of: $0, as: SelectionBubbleNode.self) != nil }) {
+                // Tap on the bubble's chrome (not a button): ignore, so a
+                // near-miss doesn't deselect or drop a sticker behind it.
             } else if let trayItem = hits.lazy.compactMap({ self.ancestor(of: $0, as: TrayItemNode.self) }).first {
                 spawnSticker(from: trayItem, touch: touch, at: location)
             } else if let sticker = topSticker(in: hits) {
@@ -296,8 +301,9 @@ final class CanvasScene: SKScene {
     private func controlHit(in hits: [SKNode]) -> (name: String, sticker: StickerNode)? {
         for node in hits {
             if let name = node.name,
-                name.hasPrefix(StickerNode.ControlName.prefix),
-                let sticker = ancestor(of: node, as: StickerNode.self) {
+                name.hasPrefix(SelectionBubbleNode.ControlName.prefix),
+                let bubble = ancestor(of: node, as: SelectionBubbleNode.self),
+                let sticker = bubble.target {
                 return (name, sticker)
             }
         }
@@ -413,16 +419,71 @@ final class CanvasScene: SKScene {
     private func select(_ node: StickerNode?) {
         guard selectedSticker !== node else { return }
         selectedSticker?.setSelected(false)
+        selectionBubble?.removeFromParent()
+        selectionBubble = nil
         selectedSticker = node
-        node?.setSelected(true)
+        if let node {
+            node.setSelected(true)
+            showSelectionBubble(for: node, animated: true)
+        }
+    }
+
+    private func showSelectionBubble(for node: StickerNode, animated: Bool) {
+        let bubble = SelectionBubbleNode(target: node)
+        bubble.zPosition = 900  // above both sticker layers, below the tray
+        bubble.position = bubblePosition(around: node.calculateAccumulatedFrame())
+        addChild(bubble)
+        if animated { bubble.popIn() }
+        selectionBubble = bubble
+    }
+
+    /// Rebuilds the bubble (fresh layer glyph, fresh position) for the
+    /// currently selected sticker.
+    private func refreshSelectionBubble() {
+        guard let selectedSticker else { return }
+        selectionBubble?.removeFromParent()
+        selectionBubble = nil
+        showSelectionBubble(for: selectedSticker, animated: false)
+    }
+
+    /// Picks a spot for the fixed-size bubble near the sticker: above, below,
+    /// right, then left — the first that fits inside the canvas and clear of
+    /// the tray. Falls back to a clamped position above the sticker.
+    private func bubblePosition(around frame: CGRect) -> CGPoint {
+        let bubble = SelectionBubbleNode.size
+        let gap: CGFloat = 12
+        let usable = CGRect(x: 8, y: 8, width: size.width - 16, height: size.height - 16)
+        let candidates = [
+            CGPoint(x: frame.midX, y: frame.maxY + gap + bubble.height / 2),  // above
+            CGPoint(x: frame.midX, y: frame.minY - gap - bubble.height / 2),  // below
+            CGPoint(x: frame.maxX + gap + bubble.width / 2, y: frame.midY),  // right
+            CGPoint(x: frame.minX - gap - bubble.width / 2, y: frame.midY),  // left
+        ]
+        func rect(at center: CGPoint) -> CGRect {
+            CGRect(
+                x: center.x - bubble.width / 2, y: center.y - bubble.height / 2,
+                width: bubble.width, height: bubble.height)
+        }
+        for candidate in candidates {
+            let candidateRect = rect(at: candidate)
+            if usable.contains(candidateRect),
+                !candidateRect.intersects(trayRect.insetBy(dx: -8, dy: -8)) {
+                return candidate
+            }
+        }
+        var fallback = candidates[0]
+        fallback.x = min(max(fallback.x, usable.minX + bubble.width / 2), usable.maxX - bubble.width / 2)
+        fallback.y = min(fallback.y, trayRect.minY - gap - bubble.height / 2)
+        fallback.y = min(max(fallback.y, usable.minY + bubble.height / 2), usable.maxY - bubble.height / 2)
+        return fallback
     }
 
     private func handleControlTap(_ control: String, on sticker: StickerNode) {
         switch control {
-        case StickerNode.ControlName.delete:
+        case SelectionBubbleNode.ControlName.delete:
             select(nil)
             removeSticker(sticker, haptic: true)
-        case StickerNode.ControlName.layer:
+        case SelectionBubbleNode.ControlName.layer:
             toggleLayer(of: sticker)
         default:
             break
@@ -486,7 +547,6 @@ final class CanvasScene: SKScene {
         if remainder < -.pi { remainder += 2 * .pi }
         if abs(remainder) < 0.12 { node.zRotation = 0 }
         if abs(node.baseScale - 1) < 0.08 { node.baseScale = 1 }
-        node.keepControlsUpright()
 
         // If the other finger is still down, hand the sticker back to a drag.
         let remaining = touch === transform.touchA ? transform.touchB : transform.touchA
@@ -526,7 +586,7 @@ final class CanvasScene: SKScene {
         // Both layer nodes sit at the scene origin, so position carries over.
         sticker.move(toParent: targetLayer)
         sticker.zPosition = nextZ()
-        sticker.refreshSelectionOverlay()
+        refreshSelectionBubble()  // fresh layer glyph
         // A quick dip-and-return sells the "went behind / came forward" change.
         sticker.run(.sequence([
             .scale(to: sticker.baseScale * 0.9, duration: 0.1),
