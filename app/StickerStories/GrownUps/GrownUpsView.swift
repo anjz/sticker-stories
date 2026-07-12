@@ -18,7 +18,7 @@ struct GrownUpsView: View {
     @State private var isShowingSettings = false
 
     var body: some View {
-        ZStack(alignment: .topTrailing) {
+        ZStack {
             LinearGradient(
                 colors: [
                     Color(red: 0.49, green: 0.78, blue: 0.91),
@@ -28,58 +28,63 @@ struct GrownUpsView: View {
             )
             .ignoresSafeArea()
 
-            ScrollView {
-                VStack(alignment: .leading, spacing: 22) {
+            // Fixed header row keeps the buttons in their own space — they
+            // can never sit on top of the titles below.
+            VStack(spacing: 0) {
+                HStack {
+                    settingsButton
+                    Spacer()
                     Text("Grown-Ups")
-                        .font(.system(size: 38, weight: .heavy, design: .rounded))
+                        .font(.system(size: 30, weight: .heavy, design: .rounded))
                         .foregroundStyle(.white)
                         .shadow(color: .black.opacity(0.15), radius: 2, y: 2)
-                        .padding(.top, 10)
+                    Spacer()
+                    closeButton
+                }
+                .padding(.horizontal, 18)
+                .padding(.top, 14)
 
-                    Text("Sticker packs")
-                        .font(.system(size: 22, weight: .bold, design: .rounded))
-                        .foregroundStyle(.white.opacity(0.95))
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 22) {
+                        Text("Sticker packs")
+                            .font(.system(size: 22, weight: .bold, design: .rounded))
+                            .foregroundStyle(.white.opacity(0.95))
 
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(alignment: .top, spacing: 18) {
-                            ForEach(cards) { card in
-                                PackCardView(card: card, isWorking: store.isWorking) { product in
-                                    Task { await store.purchase(product) }
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(alignment: .top, spacing: 18) {
+                                ForEach(cards) { card in
+                                    PackCardView(card: card, isWorking: store.isWorking) { product in
+                                        Task { await store.purchase(product) }
+                                    }
                                 }
                             }
-                        }
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 4)
-                    }
-
-                    restoreButton
-
-                    if let message = store.lastMessage {
-                        Text(message)  // LocalizedStringKey → follows the environment locale
-                            .font(.system(size: 16, weight: .semibold, design: .rounded))
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 16)
                             .padding(.vertical, 10)
-                            .background(Capsule().fill(.black.opacity(0.25)))
+                            .padding(.horizontal, 4)
+                        }
+
+                        restoreButton
+
+                        if let message = store.lastMessage {
+                            Text(message)  // LocalizedStringKey → follows the environment locale
+                                .font(.system(size: 16, weight: .semibold, design: .rounded))
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 10)
+                                .background(Capsule().fill(.black.opacity(0.25)))
+                        }
+
+                        Text(
+                            "Purchases never leave this screen — the rest of the app is for your child. "
+                                + "The Forest Friends pack is included for free."
+                        )
+                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                        .foregroundStyle(.white.opacity(0.85))
+                        .padding(.bottom, 20)
                     }
-
-                    Text(
-                        "Purchases never leave this screen — the rest of the app is for your child. "
-                            + "The Forest Friends pack is included for free."
-                    )
-                    .font(.system(size: 14, weight: .medium, design: .rounded))
-                    .foregroundStyle(.white.opacity(0.85))
-                    .padding(.bottom, 20)
+                    .padding(.horizontal, 26)
+                    .padding(.top, 16)
                 }
-                .padding(26)
             }
-
-            closeButton
-                .padding(18)
-        }
-        .overlay(alignment: .topLeading) {
-            settingsButton
-                .padding(18)
         }
         .sheet(isPresented: $isShowingSettings) {
             SettingsView(settings: settings)
