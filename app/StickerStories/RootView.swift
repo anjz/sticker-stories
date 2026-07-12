@@ -64,7 +64,8 @@ struct RootView: View {
                     ParentalGateView(
                         onSuccess: { grownUps = .area },
                         onCancel: { grownUps = nil })
-                    .presentationDetents([.medium, .large])
+                    // Full-size from the start — no drag-to-resize needed.
+                    .presentationDetents([.large])
                 case .area:
                     GrownUpsView(
                         store: StoreService(entitlements: entitlements),

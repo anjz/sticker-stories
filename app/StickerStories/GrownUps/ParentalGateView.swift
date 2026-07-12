@@ -16,26 +16,33 @@ struct ParentalGateView: View {
     private var answer: String { String(left + right) }
 
     var body: some View {
-        VStack(spacing: 24) {
-            Text("For grown-ups")
-                .font(.title2.weight(.semibold))
-            Text("To continue, solve:")
-                .foregroundStyle(.secondary)
+        // Two columns so the whole gate fits a landscape sheet without
+        // scrolling or resizing, even on iPhone.
+        HStack(spacing: 44) {
+            VStack(alignment: .leading, spacing: 16) {
+                Text("For grown-ups")
+                    .font(.title.weight(.bold))
+                Text("To continue, solve:")
+                    .font(.title3)
+                    .foregroundStyle(.secondary)
 
-            Text("\(left) + \(right) = \(entry.isEmpty ? "?" : entry)")
-                .font(.system(size: 40, weight: .bold, design: .rounded))
-                .monospacedDigit()
-                .foregroundStyle(wrongAttempt ? .red : .primary)
-                .animation(.default, value: wrongAttempt)
+                Text("\(left) + \(right) = \(entry.isEmpty ? "?" : entry)")
+                    .font(.system(size: 44, weight: .bold, design: .rounded))
+                    .monospacedDigit()
+                    .foregroundStyle(wrongAttempt ? .red : .primary)
+                    .animation(.default, value: wrongAttempt)
+
+                Spacer(minLength: 0)
+
+                Button("Not now", action: onCancel)
+                    .font(.body.weight(.medium))
+            }
+            .frame(maxHeight: 300)
 
             digitPad
-
-            Button("Not now", action: onCancel)
-                .font(.body.weight(.medium))
-                .padding(.top, 4)
         }
-        .padding(32)
-        .frame(maxWidth: 420)
+        .padding(30)
+        .frame(maxWidth: 640)
     }
 
     private var digitPad: some View {
