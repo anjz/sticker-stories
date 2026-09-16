@@ -327,6 +327,97 @@ var stickerDrawers = map[string]func(*canvas){
 		c.circle(215, 280, 48, shell)
 		c.circle(215, 280, 22, shellL)
 	},
+	"squirrel": func(c *canvas) {
+		c.ellipse(350, 195, 95, 140, orange)
+		c.triangle(165, 190, 205, 190, 178, 150, orange)
+		c.triangle(215, 185, 255, 185, 235, 145, orange)
+		c.circle(220, 290, 120, orange)
+		c.ellipse(210, 335, 60, 42, cream)
+		c.circle(190, 275, 11, dark)
+		c.circle(240, 275, 11, dark)
+		c.circle(212, 305, 8, dark)
+	},
+	"deer": func(c *canvas) {
+		c.triangle(190, 175, 165, 70, 215, 165, brown)
+		c.triangle(322, 175, 347, 70, 297, 165, brown)
+		c.ellipse(256, 300, 130, 150, tan_)
+		c.ellipse(256, 350, 68, 55, cream)
+		c.circle(212, 255, 13, dark)
+		c.circle(300, 255, 13, dark)
+		c.circle(256, 300, 9, dark)
+	},
+	"bird": func(c *canvas) {
+		c.circle(246, 280, 125, blue)
+		c.ellipse(200, 310, 55, 70, blueLt)
+		c.ellipse(300, 335, 58, 40, orange)
+		c.triangle(355, 250, 405, 262, 357, 282, yellow)
+		c.circle(300, 222, 13, dark)
+	},
+	"frog": func(c *canvas) {
+		c.ellipse(256, 320, 140, 95, green1)
+		c.circle(200, 235, 42, green2)
+		c.circle(312, 235, 42, green2)
+		c.circle(200, 230, 16, dark)
+		c.circle(312, 230, 16, dark)
+		c.rect(206, 355, 100, 10, dark)
+	},
+	"bee": func(c *canvas) {
+		c.ellipse(160, 250, 78, 58, blueLt)
+		c.ellipse(352, 250, 78, 58, blueLt)
+		c.ellipse(256, 300, 130, 100, yellow)
+		c.rect(136, 260, 240, 30, dark)
+		c.rect(136, 320, 240, 30, dark)
+		c.circle(226, 275, 12, dark)
+		c.circle(286, 275, 12, dark)
+	},
+	"ladybug": func(c *canvas) {
+		c.circle(256, 300, 130, red)
+		c.rect(250, 175, 12, 125, dark)
+		c.circle(200, 260, 18, dark)
+		c.circle(310, 260, 18, dark)
+		c.circle(210, 340, 16, dark)
+		c.circle(300, 340, 16, dark)
+		c.circle(256, 190, 60, dark)
+	},
+	"acorn": func(c *canvas) {
+		c.ellipse(256, 230, 105, 70, brown)
+		c.rect(246, 160, 20, 45, brownL)
+		c.ellipse(256, 340, 90, 110, tan_)
+	},
+	"raccoon": func(c *canvas) {
+		c.ellipse(350, 250, 70, 120, grey)
+		c.rect(310, 200, 70, 24, dark)
+		c.rect(310, 260, 70, 24, dark)
+		c.rect(310, 320, 70, 24, dark)
+		c.circle(210, 290, 120, grey)
+		c.ellipse(210, 340, 55, 40, cream)
+		c.ellipse(178, 275, 32, 20, dark)
+		c.ellipse(248, 275, 32, 20, dark)
+		c.circle(178, 275, 8, white)
+		c.circle(248, 275, 8, white)
+	},
+	"mouse": func(c *canvas) {
+		c.circle(190, 195, 45, grey)
+		c.circle(300, 195, 45, grey)
+		c.circle(190, 195, 24, pink)
+		c.circle(300, 195, 24, pink)
+		c.circle(256, 300, 115, grey)
+		c.circle(256, 320, 12, pink)
+		c.circle(220, 280, 10, dark)
+		c.circle(292, 280, 10, dark)
+	},
+	"pinecone": func(c *canvas) {
+		c.ellipse(256, 290, 95, 145, brown)
+		c.circle(220, 190, 28, tan_)
+		c.circle(292, 190, 28, tan_)
+		c.circle(256, 226, 30, tan_)
+		c.circle(220, 262, 30, tan_)
+		c.circle(292, 262, 30, tan_)
+		c.circle(256, 298, 32, tan_)
+		c.circle(220, 334, 30, tan_)
+		c.circle(292, 334, 30, tan_)
+		c.circle(256, 370, 28, tan_)
+	},
 }
 
 func drawSticker(id string) image.Image {
