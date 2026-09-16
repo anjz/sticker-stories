@@ -2,24 +2,22 @@ import SpriteKit
 import StickerStoriesKit
 import SwiftUI
 
-/// SwiftUI host for the SpriteKit canvas. Creates the scene once per pack and
-/// reports canvas snapshots upward.
+/// SwiftUI host for the SpriteKit canvas. The scene is owned by the caller
+/// (so it can also drive undo/redo/clear); this view just presents it and
+/// reports canvas snapshots and history state upward.
 struct CanvasView: View {
+    let scene: CanvasScene
     let onCanvasChange: (CanvasState) -> Void
-
-    @State private var scene: CanvasScene
-
-    init(pack: LoadedPack, onCanvasChange: @escaping (CanvasState) -> Void) {
-        self.onCanvasChange = onCanvasChange
-        _scene = State(initialValue: CanvasScene(pack: pack))
-    }
+    let onHistoryChange: (_ canUndo: Bool, _ canRedo: Bool, _ canClear: Bool) -> Void
 
     var body: some View {
         SpriteView(scene: scene, options: [.ignoresSiblingOrder])
             .ignoresSafeArea()
             .onAppear {
                 scene.onCanvasChange = onCanvasChange
+                scene.onHistoryChange = onHistoryChange
                 onCanvasChange(scene.snapshot())
+                onHistoryChange(scene.canUndo, scene.canRedo, scene.canClear)
             }
     }
 }

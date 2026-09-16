@@ -41,6 +41,9 @@
 
 - [x] Main menu (pack cards + gated "More stories"), story back-confirmation
       flow, parent settings (gear in Grown-Ups) with in-app language override
+- [x] Canvas persists per pack across leaving the story screen and closing
+      the app (`CanvasStateStore`, file-backed); undo/redo (snapshot stack)
+      and a confirmed, non-undoable Clear, as small secondary controls
 
 ## Iteration 2 — proposed
 
@@ -69,8 +72,6 @@
       says all-orientation support "will soon be required" — the explicit
       ~ipad orientation key gives fullscreen landscape on iPadOS 26.5 today,
       but this may need a real portrait layout eventually
-- [ ] Restore canvas per pack on story re-entry (CanvasState is Codable for
-      this; currently the canvas deliberately starts fresh)
 - [ ] Localized App Store metadata (+ per-locale CFBundleDisplayName if the
       name ever differs)
 - [ ] More languages; per-language pack delivery via base URL + `lang=` param

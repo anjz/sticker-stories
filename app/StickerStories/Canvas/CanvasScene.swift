@@ -12,14 +12,28 @@ import UIKit
 final class CanvasScene: SKScene {
     /// Fired after every mutation (add, move, delete, layer change).
     var onCanvasChange: ((CanvasState) -> Void)?
+    /// Fired whenever undo/redo/clear availability changes: (canUndo, canRedo, canClear).
+    var onHistoryChange: ((Bool, Bool, Bool) -> Void)?
 
     private let pack: LoadedPack
+    private let stateStore: any CanvasStateStore
 
     private let backgroundArt = SKSpriteNode()
     private let backgroundStickers = SKNode()
     private let foregroundArt = SKSpriteNode()
     private let foregroundStickers = SKNode()
     private let tray = SKNode()
+    /// Scrollable row of tray items; `position.x` is the scroll offset
+    /// (0 = start, negative = scrolled left to reveal later items).
+    private let trayContent = SKNode()
+    /// Clips `trayContent` to the visible pill so off-screen items don't render.
+    private let trayClip = SKCropNode()
+    private let trayMask = SKShapeNode()
+    private var maxTrayScrollOffset: CGFloat = 0
+    /// Keeps the tray clear of the SwiftUI back button (top-leading) and the
+    /// undo/redo/clear cluster (top-trailing) in StoryScreen.swift.
+    private static let trayLeadingClearance: CGFloat = 100
+    private static let trayTrailingClearance: CGFloat = 180
 
     private var stickerTextures: [String: SKTexture] = [:]
     private var trayRect: CGRect = .zero
@@ -34,9 +48,35 @@ final class CanvasScene: SKScene {
         let startLocation: CGPoint
         let startedFromTray: Bool
         let priorZ: CGFloat
+        /// Canvas state before this gesture began — the undo step it commits.
+        let beforeSnapshot: CanvasState
         var moved = false
     }
     private var drags: [UITouch: DragInfo] = [:]
+
+    /// A touch that landed on a tray item but hasn't moved far enough yet to
+    /// commit to either picking the sticker up or scrolling the tray.
+    private struct PendingTrayTouch {
+        let item: TrayItemNode
+        let startLocation: CGPoint
+    }
+    private var pendingTrayTouches: [UITouch: PendingTrayTouch] = [:]
+
+    private struct TrayScrollInfo {
+        let startLocation: CGPoint
+        let startOffset: CGFloat
+    }
+    private var trayScrolls: [UITouch: TrayScrollInfo] = [:]
+    /// Same "has this become a real gesture yet" radius used for drags below.
+    private static let moveThresholdSquared: CGFloat = 64
+
+    private var undoStack: [CanvasState] = []
+    private var redoStack: [CanvasState] = []
+    private static let maxHistoryDepth = 50
+
+    var canUndo: Bool { !undoStack.isEmpty }
+    var canRedo: Bool { !redoStack.isEmpty }
+    var canClear: Bool { !allStickerNodes().isEmpty }
 
     /// A two-finger session on one sticker: pinch scales, twist rotates, and
     /// the midpoint moves it. Finger one holds the sticker; finger two may
@@ -51,6 +91,8 @@ final class CanvasScene: SKScene {
         let initialRotation: CGFloat
         let initialNodePosition: CGPoint
         let initialMidpoint: CGPoint
+        /// Canvas state before this gesture began — the undo step it commits.
+        let beforeSnapshot: CanvasState
     }
     private var activeTransform: TransformInfo?
 
@@ -61,8 +103,9 @@ final class CanvasScene: SKScene {
 
     // MARK: Setup
 
-    init(pack: LoadedPack) {
+    init(pack: LoadedPack, stateStore: any CanvasStateStore) {
         self.pack = pack
+        self.stateStore = stateStore
         super.init(size: CGSize(width: 1024, height: 768))
         scaleMode = .resizeFill
         backgroundColor = UIColor(red: 0.49, green: 0.78, blue: 0.91, alpha: 1)
@@ -73,7 +116,8 @@ final class CanvasScene: SKScene {
 
     override func didMove(to view: SKView) {
         view.isMultipleTouchEnabled = true
-        if backgroundArt.parent == nil {
+        let isFirstLoad = backgroundArt.parent == nil
+        if isFirstLoad {
             backgroundArt.zPosition = 0
             backgroundStickers.zPosition = 100
             foregroundArt.zPosition = 200
@@ -87,6 +131,23 @@ final class CanvasScene: SKScene {
             loadPackContent()
         }
         layoutScene()
+        if isFirstLoad {
+            restorePersistedState()
+            runTrayScrollHint()
+        }
+    }
+
+    /// Loads any canvas saved for this pack from a prior visit. Runs once,
+    /// after layout so `size` is settled for denormalizing positions.
+    private func restorePersistedState() {
+        if let restored = stateStore.load(packID: pack.id), !restored.stickers.isEmpty {
+            apply(restored)
+        }
+        // Fire unconditionally so observers get the right initial state
+        // whether or not `CanvasView.onAppear` has wired its closures yet —
+        // it does its own manual sync call either way.
+        onCanvasChange?(snapshot())
+        reportHistory()
     }
 
     override func didChangeSize(_ oldSize: CGSize) {
@@ -138,54 +199,127 @@ final class CanvasScene: SKScene {
 
     private func buildTray() {
         tray.removeAllChildren()
+
         let bar = SKShapeNode()
         bar.name = "tray-bar"
         tray.addChild(bar)
+
+        trayContent.removeAllChildren()
         for sticker in pack.manifest.stickers {
             guard let texture = stickerTextures[sticker.id] else { continue }
-            let item = TrayItemNode(stickerID: sticker.id, texture: texture)
-            tray.addChild(item)
+            trayContent.addChild(TrayItemNode(stickerID: sticker.id, texture: texture))
         }
+        trayClip.maskNode = trayMask
+        trayClip.addChild(trayContent)
+        tray.addChild(trayClip)
     }
 
     private func layoutTray() {
         guard let bar = tray.childNode(withName: "tray-bar") as? SKShapeNode else { return }
-        let items = tray.children.compactMap { $0 as? TrayItemNode }
+        let items = trayContent.children.compactMap { $0 as? TrayItemNode }
         guard !items.isEmpty else { return }
 
         let barHeight: CGFloat = min(96, max(64, size.height * 0.15))
         let itemSize = barHeight * 0.72
         let spacing = itemSize * 0.35
         let sidePadding = spacing * 1.6
-        let naturalWidth =
-            CGFloat(items.count) * itemSize + CGFloat(items.count - 1) * spacing + 2 * sidePadding
-        let barWidth = min(naturalWidth, size.width - 24)
-        // Squeeze items if the natural width doesn't fit (small iPhones).
-        let fit = min(1, (barWidth - 2 * sidePadding + spacing) / (CGFloat(items.count) * (itemSize + spacing)))
-        let finalItem = itemSize * fit
-        let finalSpacing = spacing * fit
+        let rowWidth = CGFloat(items.count) * itemSize + CGFloat(items.count - 1) * spacing
+        let naturalWidth = rowWidth + 2 * sidePadding
+
+        let availableWidth = size.width - Self.trayLeadingClearance - Self.trayTrailingClearance
+        let barWidth = min(naturalWidth, max(availableWidth, itemSize + 2 * sidePadding))
+        let barCenterX = Self.trayLeadingClearance + availableWidth / 2
 
         let topInset = view?.safeAreaInsets.top ?? 0
         let barCenterY = size.height - topInset - 10 - barHeight / 2
         trayRect = CGRect(
-            x: size.width / 2 - barWidth / 2, y: barCenterY - barHeight / 2,
+            x: barCenterX - barWidth / 2, y: barCenterY - barHeight / 2,
             width: barWidth, height: barHeight)
 
-        bar.path = CGPath(
+        let barPath = CGPath(
             roundedRect: CGRect(x: -barWidth / 2, y: -barHeight / 2, width: barWidth, height: barHeight),
             cornerWidth: barHeight / 2, cornerHeight: barHeight / 2, transform: nil)
+        bar.path = barPath
         bar.fillColor = UIColor.white.withAlphaComponent(0.55)
         bar.strokeColor = UIColor.white.withAlphaComponent(0.9)
         bar.lineWidth = 2
-        bar.position = CGPoint(x: size.width / 2, y: barCenterY)
+        bar.position = CGPoint(x: barCenterX, y: barCenterY)
 
-        let rowWidth = CGFloat(items.count) * finalItem + CGFloat(items.count - 1) * finalSpacing
-        var x = size.width / 2 - rowWidth / 2 + finalItem / 2
+        trayMask.path = barPath
+        trayMask.fillColor = .white
+        trayMask.strokeColor = .clear
+        trayMask.position = CGPoint(x: barCenterX, y: barCenterY)
+
+        maxTrayScrollOffset = max(0, naturalWidth - barWidth)
+
+        let x0: CGFloat
+        if maxTrayScrollOffset == 0 {
+            // Everything fits — center the row, same look as before scrolling existed.
+            x0 = barCenterX - rowWidth / 2 + itemSize / 2
+        } else {
+            // Flush against the viewport's left edge; scrolling reveals the rest.
+            x0 = barCenterX - barWidth / 2 + sidePadding + itemSize / 2
+        }
+        var x = x0
         for item in items {
-            item.size = squareFit(texture: item.texture, side: finalItem)
+            item.size = squareFit(texture: item.texture, side: itemSize)
             item.position = CGPoint(x: x, y: barCenterY)
             item.zPosition = 1
-            x += finalItem + finalSpacing
+            x += itemSize + spacing
+        }
+
+        // Preserve scroll position across re-layout (e.g. rotation), clamped
+        // to whatever range is still valid.
+        trayContent.position.x = min(0, max(-maxTrayScrollOffset, trayContent.position.x))
+
+        updateTrayEdgeEffects()
+    }
+
+    /// One-shot "you can scroll" hint, played shortly after the tray appears
+    /// when its content overflows: the shelf slides about one sticker's width
+    /// and eases back, demonstrating the gesture itself — motion reads better
+    /// than a chevron for pre-readers. Cancelled the moment a finger lands on
+    /// the tray (touchesBegan), leaving the shelf wherever it was.
+    private func runTrayScrollHint() {
+        guard maxTrayScrollOffset > 0 else { return }
+        let distance = min(maxTrayScrollOffset, trayRect.height * 0.85)
+        let out = SKAction.moveTo(x: -distance, duration: 0.5)
+        out.timingMode = .easeInEaseOut
+        let back = SKAction.moveTo(x: 0, duration: 0.6)
+        back.timingMode = .easeInEaseOut
+        let slide = SKAction.sequence([.wait(forDuration: 0.8), out, .wait(forDuration: 0.2), back])
+        // The edge fade tracks the shelf position, so refresh it every frame
+        // for the hint's full 2.1s.
+        let refreshEdges = SKAction.customAction(withDuration: 2.1) { [weak self] _, _ in
+            self?.updateTrayEdgeEffects()
+        }
+        trayContent.run(.group([slide, refreshEdges]), withKey: Self.trayHintActionKey)
+    }
+
+    private static let trayHintActionKey = "tray-scroll-hint"
+
+    /// Dissolves tray items out as they approach the pill's ends — alpha and
+    /// a slight shrink, eased with smoothstep — instead of letting the crop
+    /// chop them off. The half-faded sticker peeking from an edge doubles as
+    /// the "there's more to scroll" hint, and it vanishes exactly when there
+    /// isn't. Items are full-size whenever everything fits.
+    private func updateTrayEdgeEffects() {
+        let items = trayContent.children.compactMap { $0 as? TrayItemNode }
+        guard maxTrayScrollOffset > 0 else {
+            for item in items {
+                item.alpha = 1
+                item.setScale(1)
+            }
+            return
+        }
+        let fadeZone = trayRect.height * 0.72  // ≈ one item width
+        for item in items {
+            let sceneX = item.position.x + trayContent.position.x
+            let edgeDistance = min(sceneX - trayRect.minX, trayRect.maxX - sceneX)
+            let t = min(max(edgeDistance / fadeZone, 0), 1)
+            let eased = t * t * (3 - 2 * t)
+            item.alpha = eased
+            item.setScale(0.7 + 0.3 * eased)
         }
     }
 
@@ -216,20 +350,32 @@ final class CanvasScene: SKScene {
                 // Tap on the bubble's chrome (not a button): ignore, so a
                 // near-miss doesn't deselect or drop a sticker behind it.
             } else if let trayItem = hits.lazy.compactMap({ self.ancestor(of: $0, as: TrayItemNode.self) }).first {
-                spawnSticker(from: trayItem, touch: touch, at: location)
+                // A finger on the tray takes over from the scroll hint.
+                trayContent.removeAction(forKey: Self.trayHintActionKey)
+                // Defer: a horizontal move scrolls the tray, a vertical move
+                // picks the sticker up, and no move at all is a tap-to-place.
+                pendingTrayTouches[touch] = PendingTrayTouch(item: trayItem, startLocation: location)
             } else if let sticker = topSticker(in: hits) {
                 if activeTransform == nil,
                     let held = drags.first(where: { $0.value.node === sticker }) {
                     // Second finger on an already-held sticker → transform it.
-                    beginTransform(of: sticker, touchA: held.key, touchB: touch)
+                    // Inherit the drag's beforeSnapshot so the whole
+                    // drag-then-pinch session commits as one undo step.
+                    beginTransform(
+                        of: sticker, touchA: held.key, touchB: touch,
+                        beforeSnapshot: held.value.beforeSnapshot)
                 } else {
-                    beginDrag(of: sticker, touch: touch, at: location, fromTray: false)
+                    beginDrag(
+                        of: sticker, touch: touch, at: location, fromTray: false,
+                        beforeSnapshot: snapshot())
                     select(sticker)
                 }
             } else if activeTransform == nil, drags.count == 1, let held = drags.first {
                 // Second finger on empty space while one sticker is held →
                 // transform that sticker (forgiving for small hands).
-                beginTransform(of: held.value.node, touchA: held.key, touchB: touch)
+                beginTransform(
+                    of: held.value.node, touchA: held.key, touchB: touch,
+                    beforeSnapshot: held.value.beforeSnapshot)
             } else {
                 select(nil)
             }
@@ -253,6 +399,14 @@ final class CanvasScene: SKScene {
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            if let pending = pendingTrayTouches[touch] {
+                resolvePendingTrayTouch(pending, touch: touch)
+            } else if trayScrolls[touch] != nil {
+                updateTrayScroll(for: touch)
+            }
+        }
+
         if let transform = activeTransform,
             touches.contains(transform.touchA) || touches.contains(transform.touchB) {
             updateTransform(transform)
@@ -277,6 +431,15 @@ final class CanvasScene: SKScene {
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
+            if let pending = pendingTrayTouches.removeValue(forKey: touch) {
+                // Never crossed the move threshold — a tap: place directly,
+                // reusing the existing tap-to-place path unchanged (start
+                // and current location match, so it "hops" onto the canvas).
+                spawnSticker(from: pending.item, touch: touch, at: touch.location(in: self))
+                endDrag(for: touch, cancelled: false)
+                continue
+            }
+            trayScrolls.removeValue(forKey: touch)
             if endTransform(for: touch, cancelled: false) { continue }
             endDrag(for: touch, cancelled: false)
         }
@@ -284,9 +447,36 @@ final class CanvasScene: SKScene {
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
+            pendingTrayTouches.removeValue(forKey: touch)
+            trayScrolls.removeValue(forKey: touch)
             if endTransform(for: touch, cancelled: true) { continue }
             endDrag(for: touch, cancelled: true)
         }
+    }
+
+    /// Resolves a touch that started on a tray item once it's moved enough to
+    /// mean something: whichever axis moved further wins — mostly-horizontal
+    /// scrolls the tray, mostly-vertical-or-tied picks the sticker up (ties
+    /// favor picking up, since that's the pre-existing, more common gesture).
+    private func resolvePendingTrayTouch(_ pending: PendingTrayTouch, touch: UITouch) {
+        let location = touch.location(in: self)
+        let dx = location.x - pending.startLocation.x
+        let dy = location.y - pending.startLocation.y
+        guard dx * dx + dy * dy > Self.moveThresholdSquared else { return }
+        pendingTrayTouches.removeValue(forKey: touch)
+        if abs(dx) > abs(dy) {
+            trayScrolls[touch] = TrayScrollInfo(startLocation: pending.startLocation, startOffset: trayContent.position.x)
+            updateTrayScroll(for: touch)
+        } else {
+            spawnSticker(from: pending.item, touch: touch, at: location)
+        }
+    }
+
+    private func updateTrayScroll(for touch: UITouch) {
+        guard let info = trayScrolls[touch] else { return }
+        let dx = touch.location(in: self).x - info.startLocation.x
+        trayContent.position.x = min(0, max(-maxTrayScrollOffset, info.startOffset + dx))
+        updateTrayEdgeEffects()
     }
 
     private func ancestor<T: SKNode>(of node: SKNode, as type: T.Type) -> T? {
@@ -314,6 +504,9 @@ final class CanvasScene: SKScene {
 
     private func spawnSticker(from trayItem: TrayItemNode, touch: UITouch, at location: CGPoint) {
         guard let texture = stickerTextures[trayItem.stickerID] else { return }
+        // Captured before the node exists, so undoing a placement removes it
+        // entirely rather than reverting to "no sticker at this spot".
+        let before = snapshot()
         let node = StickerNode(
             stickerID: trayItem.stickerID, texture: texture,
             size: squareFit(texture: texture, side: stickerBaseSize))
@@ -323,14 +516,17 @@ final class CanvasScene: SKScene {
         node.run(.scale(to: 1.12, duration: 0.12))
         trayItem.pulse()
         softHaptic.impactOccurred()
-        beginDrag(of: node, touch: touch, at: location, fromTray: true)
+        beginDrag(of: node, touch: touch, at: location, fromTray: true, beforeSnapshot: before)
     }
 
-    private func beginDrag(of node: StickerNode, touch: UITouch, at location: CGPoint, fromTray: Bool) {
+    private func beginDrag(
+        of node: StickerNode, touch: UITouch, at location: CGPoint, fromTray: Bool,
+        beforeSnapshot: CanvasState
+    ) {
         let offset = CGPoint(x: node.position.x - location.x, y: node.position.y - location.y)
         drags[touch] = DragInfo(
             node: node, grabOffset: offset, startLocation: location,
-            startedFromTray: fromTray, priorZ: node.zPosition)
+            startedFromTray: fromTray, priorZ: node.zPosition, beforeSnapshot: beforeSnapshot)
         node.zPosition = 10000  // float above everything while held
         node.setLifted(true)
         if !fromTray {
@@ -380,10 +576,10 @@ final class CanvasScene: SKScene {
                     ]),
                 ]))
                 firmHaptic.impactOccurred()
-                notifyCanvasChanged()
+                notifyCanvasChanged(before: info.beforeSnapshot)
             } else {
                 // Dropped on the tray: put the sticker away.
-                removeSticker(node, haptic: !cancelled)
+                removeSticker(node, haptic: !cancelled, before: info.beforeSnapshot)
             }
             return
         }
@@ -398,7 +594,7 @@ final class CanvasScene: SKScene {
             .scale(to: node.baseScale, duration: 0.07),
         ]))
         if !cancelled { firmHaptic.impactOccurred() }
-        notifyCanvasChanged()
+        notifyCanvasChanged(before: info.beforeSnapshot)
     }
 
     /// Nudges a sticker back inside the visible canvas if dropped half off-screen.
@@ -481,8 +677,9 @@ final class CanvasScene: SKScene {
     private func handleControlTap(_ control: String, on sticker: StickerNode) {
         switch control {
         case SelectionBubbleNode.ControlName.delete:
+            let before = snapshot()
             select(nil)
-            removeSticker(sticker, haptic: true)
+            removeSticker(sticker, haptic: true, before: before)
         case SelectionBubbleNode.ControlName.layer:
             toggleLayer(of: sticker)
         default:
@@ -492,7 +689,9 @@ final class CanvasScene: SKScene {
 
     // MARK: Two-finger transform (pinch to scale, twist to rotate)
 
-    private func beginTransform(of node: StickerNode, touchA: UITouch, touchB: UITouch) {
+    private func beginTransform(
+        of node: StickerNode, touchA: UITouch, touchB: UITouch, beforeSnapshot: CanvasState
+    ) {
         drags.removeValue(forKey: touchA)
         drags.removeValue(forKey: touchB)
         if node.isSelected { select(nil) }  // hide controls while transforming
@@ -506,7 +705,8 @@ final class CanvasScene: SKScene {
             initialScale: node.baseScale,
             initialRotation: node.zRotation,
             initialNodePosition: node.position,
-            initialMidpoint: CGPoint(x: (a.x + b.x) / 2, y: (a.y + b.y) / 2))
+            initialMidpoint: CGPoint(x: (a.x + b.x) / 2, y: (a.y + b.y) / 2),
+            beforeSnapshot: beforeSnapshot)
         node.zPosition = 10000
         node.setLifted(true)
         softHaptic.impactOccurred()
@@ -557,7 +757,8 @@ final class CanvasScene: SKScene {
                     x: node.position.x - remaining.location(in: self).x,
                     y: node.position.y - remaining.location(in: self).y),
                 startLocation: remaining.location(in: self),
-                startedFromTray: false, priorZ: node.zPosition, moved: true)
+                startedFromTray: false, priorZ: node.zPosition,
+                beforeSnapshot: transform.beforeSnapshot, moved: true)
             node.run(.scale(to: node.baseScale * 1.12, duration: 0.1))
             return true
         }
@@ -570,11 +771,12 @@ final class CanvasScene: SKScene {
             .scale(to: node.baseScale, duration: 0.09),
         ]))
         if !cancelled { firmHaptic.impactOccurred() }
-        notifyCanvasChanged()
+        notifyCanvasChanged(before: transform.beforeSnapshot)
         return true
     }
 
     private func toggleLayer(of sticker: StickerNode) {
+        let before = snapshot()
         let targetLayer: SKNode
         if sticker.canvasLayer == .foreground {
             sticker.canvasLayer = .background
@@ -593,17 +795,17 @@ final class CanvasScene: SKScene {
             .scale(to: sticker.baseScale, duration: 0.12),
         ]))
         softHaptic.impactOccurred()
-        notifyCanvasChanged()
+        notifyCanvasChanged(before: before)
     }
 
-    private func removeSticker(_ node: StickerNode, haptic: Bool) {
+    private func removeSticker(_ node: StickerNode, haptic: Bool, before: CanvasState) {
         if selectedSticker === node { select(nil) }
         node.run(.sequence([
             .group([.scale(to: 0.01, duration: 0.16), .fadeOut(withDuration: 0.16)]),
             .removeFromParent(),
         ]))
         if haptic { firmHaptic.impactOccurred() }
-        notifyCanvasChanged()
+        notifyCanvasChanged(before: before)
     }
 
     // MARK: Canvas state
@@ -633,15 +835,91 @@ final class CanvasScene: SKScene {
         return CanvasState(packID: pack.id, stickers: placed)
     }
 
-    private func notifyCanvasChanged() {
+    private func notifyCanvasChanged(before: CanvasState) {
         // Removal animations complete in ~0.16s; snapshot after they settle.
         run(.sequence([
             .wait(forDuration: 0.2),
             .run { [weak self] in
                 guard let self else { return }
-                self.onCanvasChange?(self.snapshot())
+                self.commitChange(before: before)
             },
         ]))
+    }
+
+    // MARK: History (undo/redo) & persistence
+
+    /// Compares the settled canvas against the gesture's starting point; a
+    /// tray item picked up and dropped straight back nets no change, so it's
+    /// skipped entirely rather than logging a no-op undo step.
+    private func commitChange(before: CanvasState) {
+        let after = snapshot()
+        guard after != before else { return }
+        undoStack.append(before)
+        if undoStack.count > Self.maxHistoryDepth { undoStack.removeFirst() }
+        redoStack.removeAll()
+        stateStore.save(after)
+        onCanvasChange?(after)
+        reportHistory()
+    }
+
+    /// Rebuilds the sticker layers from a snapshot — shared by restore-on-load,
+    /// undo, and redo. No landing animation; the change should read as instant.
+    private func apply(_ state: CanvasState) {
+        select(nil)
+        backgroundStickers.removeAllChildren()
+        foregroundStickers.removeAllChildren()
+        for placed in state.stickers {
+            guard let texture = stickerTextures[placed.stickerID] else { continue }
+            let node = StickerNode(
+                stickerID: placed.stickerID, texture: texture,
+                size: squareFit(texture: texture, side: stickerBaseSize))
+            node.position = CGPoint(x: placed.position.x * size.width, y: placed.position.y * size.height)
+            node.baseScale = CGFloat(placed.scale)
+            node.setScale(node.baseScale)
+            node.zRotation = CGFloat(placed.rotation)
+            node.zPosition = CGFloat(placed.zOrder)
+            node.canvasLayer = placed.layer
+            let parent = placed.layer == .foreground ? foregroundStickers : backgroundStickers
+            parent.addChild(node)
+        }
+        nextZOrder = CGFloat((state.stickers.map(\.zOrder).max() ?? 0) + 1)
+    }
+
+    func undo() {
+        guard let previous = undoStack.popLast() else { return }
+        redoStack.append(snapshot())
+        apply(previous)
+        stateStore.save(previous)
+        onCanvasChange?(previous)
+        reportHistory()
+    }
+
+    func redo() {
+        guard let next = redoStack.popLast() else { return }
+        undoStack.append(snapshot())
+        apply(next)
+        stateStore.save(next)
+        onCanvasChange?(next)
+        reportHistory()
+    }
+
+    /// Wipes every sticker and the undo/redo history — a deliberate,
+    /// non-undoable reset (the confirmation dialog is the only safety net).
+    func clearCanvas() {
+        guard !allStickerNodes().isEmpty else { return }
+        select(nil)
+        backgroundStickers.removeAllChildren()
+        foregroundStickers.removeAllChildren()
+        undoStack.removeAll()
+        redoStack.removeAll()
+        let empty = CanvasState(packID: pack.id)
+        stateStore.save(empty)
+        onCanvasChange?(empty)
+        reportHistory()
+    }
+
+    private func reportHistory() {
+        onHistoryChange?(canUndo, canRedo, canClear)
     }
 }
 
@@ -658,7 +936,9 @@ final class TrayItemNode: SKSpriteNode {
     required init?(coder: NSCoder) { fatalError("not used") }
 
     func pulse() {
-        run(.sequence([.scale(to: 0.85, duration: 0.08), .scale(to: 1.0, duration: 0.12)]))
+        // Relative to the resting scale — edge-faded items pulse at their size.
+        let resting = xScale
+        run(.sequence([.scale(to: resting * 0.85, duration: 0.08), .scale(to: resting, duration: 0.12)]))
     }
 }
 

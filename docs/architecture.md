@@ -79,8 +79,13 @@ Three surfaces, one door out of the child experience:
 - **Main menu** (`MainMenuView`) — the launch screen: one big card per
   available pack (horizontally paged) + a final "More stories" card.
 - **Story screen** (`StoryScreen`) — the canvas + playback for one pack, with
-  a back button guarded by a child-friendly confirmation (the canvas starts
-  fresh on re-entry — restoring it is a roadmap item). No grown-ups access
+  a back button guarded by a child-friendly confirmation, plus small
+  undo/redo/clear controls. The canvas persists per pack (one JSON file
+  under Application Support per `CanvasStateStore`, loaded when the scene
+  first appears) — not required to survive uninstall. Undo/redo is an
+  in-memory stack of `CanvasState` snapshots, reset each time the story
+  screen is (re)entered; Clear is a deliberate, non-undoable reset (behind
+  its own confirmation) that also empties that stack. No grown-ups access
   from here.
 - **Grown-Ups area** — reachable only via More stories → parental gate.
   Contains the store and, behind a gear button, parent settings

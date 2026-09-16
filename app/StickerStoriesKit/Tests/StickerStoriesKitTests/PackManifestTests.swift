@@ -208,7 +208,7 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         }
         let pack = try PackLoader().loadPack(at: forestDir, source: .bundled)
         #expect(pack.manifest.languages == ["en-US", "es-ES"])
-        #expect(pack.manifest.stickers.count == 9)
+        #expect(pack.manifest.stickers.count == 19)
         #expect(pack.manifest.stories.count == 10)
         #expect(pack.manifest.stories.filter(\.isFallback).count == 3)
     }

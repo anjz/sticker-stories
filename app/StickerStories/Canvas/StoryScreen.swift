@@ -1,26 +1,44 @@
 import StickerStoriesKit
 import SwiftUI
 
-/// One open story: the full-screen canvas with the playback overlay and a
-/// back button. There is deliberately no grown-ups access here — the only
-/// door out of the child experience is the main menu's More stories card.
-/// Leaving asks for confirmation because the canvas starts fresh next time.
+/// One open story: the full-screen canvas with the playback overlay, a back
+/// button, and undo/redo/clear. There is deliberately no grown-ups access
+/// here — the only door out of the child experience is the main menu's More
+/// stories card. Leaving still asks for confirmation (it's easy to bump by
+/// accident); the canvas itself is preserved either way.
 struct StoryScreen: View {
     let pack: LoadedPack
     let preferredLanguages: [String]
     let onLeave: () -> Void
 
+    @State private var scene: CanvasScene
     @State private var canvasState: CanvasState?
     @State private var playback = PlaybackController(
         storyProvider: BundledStoryProvider(recents: UserDefaultsRecentStories()),
         narrator: AudioFileNarrator())
     @State private var isConfirmingLeave = false
+    @State private var canUndo = false
+    @State private var canRedo = false
+    @State private var canClear = false
+    @State private var isConfirmingClear = false
+
+    init(pack: LoadedPack, preferredLanguages: [String], onLeave: @escaping () -> Void) {
+        self.pack = pack
+        self.preferredLanguages = preferredLanguages
+        self.onLeave = onLeave
+        _scene = State(initialValue: CanvasScene(pack: pack, stateStore: FileCanvasStateStore()))
+    }
 
     var body: some View {
         ZStack {
-            CanvasView(pack: pack) { state in
-                canvasState = state
-            }
+            CanvasView(
+                scene: scene,
+                onCanvasChange: { state in canvasState = state },
+                onHistoryChange: { undo, redo, clear in
+                    canUndo = undo
+                    canRedo = redo
+                    canClear = clear
+                })
             .id(pack.id)
 
             PlaybackOverlay(
@@ -35,9 +53,13 @@ struct StoryScreen: View {
                 onStop: { playback.stop() })
 
             backButton
+            historyControls
 
             if isConfirmingLeave {
                 leaveConfirmation
+            }
+            if isConfirmingClear {
+                clearConfirmation
             }
         }
     }
@@ -62,6 +84,45 @@ struct StoryScreen: View {
             }
             Spacer()
         }
+    }
+
+    /// Undo / redo / clear, top-trailing — small and secondary next to the
+    /// play button, each disabled when it wouldn't do anything.
+    private var historyControls: some View {
+        VStack {
+            HStack {
+                Spacer()
+                HStack(spacing: 10) {
+                    historyButton(symbol: "arrow.uturn.backward", label: "Undo", enabled: canUndo) {
+                        scene.undo()
+                    }
+                    historyButton(symbol: "arrow.uturn.forward", label: "Redo", enabled: canRedo) {
+                        scene.redo()
+                    }
+                    historyButton(symbol: "trash", label: "Clear canvas", enabled: canClear) {
+                        isConfirmingClear = true
+                    }
+                }
+                .padding(.trailing, 20)
+                .padding(.top, 14)
+            }
+            Spacer()
+        }
+    }
+
+    private func historyButton(
+        symbol: String, label: LocalizedStringKey, enabled: Bool, action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            Image(systemName: symbol)
+                .font(.system(size: 15, weight: .heavy))
+                .foregroundStyle(.white.opacity(enabled ? 0.9 : 0.35))
+                .padding(10)
+                .background(Circle().fill(.black.opacity(enabled ? 0.25 : 0.12)))
+        }
+        .buttonStyle(SquishyButtonStyle())
+        .accessibilityLabel(label)
+        .disabled(!enabled)
     }
 
     /// Child-friendly confirmation: a house to go back to the menu, an X to
@@ -90,6 +151,44 @@ struct StoryScreen: View {
                     ) {
                         playback.stop()
                         onLeave()
+                    }
+                }
+            }
+            .padding(38)
+            .background(
+                RoundedRectangle(cornerRadius: 34)
+                    .fill(.white)
+                    .shadow(color: .black.opacity(0.25), radius: 14, y: 8))
+        }
+        .transition(.opacity.combined(with: .scale(scale: 0.9)))
+    }
+
+    /// Clear is final — there's no undoing it, so this confirmation is the
+    /// only safety net. An X cancels; the trash confirms and wipes the canvas.
+    private var clearConfirmation: some View {
+        ZStack {
+            Color.black.opacity(0.35)
+                .ignoresSafeArea()
+                .onTapGesture { isConfirmingClear = false }
+
+            VStack(spacing: 24) {
+                Text("Clear the canvas?")
+                    .font(.system(size: 30, weight: .heavy, design: .rounded))
+                    .foregroundStyle(Color(red: 0.2, green: 0.3, blue: 0.25))
+
+                HStack(spacing: 34) {
+                    confirmationButton(
+                        symbol: "xmark", label: "Cancel",
+                        fill: Color(red: 0.36, green: 0.6, blue: 0.9)
+                    ) {
+                        isConfirmingClear = false
+                    }
+                    confirmationButton(
+                        symbol: "trash.fill", label: "Clear",
+                        fill: Color(red: 0.86, green: 0.3, blue: 0.3)
+                    ) {
+                        isConfirmingClear = false
+                        scene.clearCanvas()
                     }
                 }
             }
