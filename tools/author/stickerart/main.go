@@ -202,12 +202,14 @@ type renderOpts struct {
 }
 
 type renderer struct {
-	c   *ctxt
-	oa  *openai.Client
-	o   renderOpts
-	ctx context.Context
-	mu  sync.Mutex
-	fps map[string]string // output path → fingerprint (out/render.json)
+	c     *ctxt
+	oa    *openai.Client
+	o     renderOpts
+	ctx   context.Context
+	mu    sync.Mutex
+	fps   map[string]string // output path → fingerprint (out/render.json)
+	spent openai.Usage      // this run's tokens
+	calls int
 	// dry-run tally
 	planned []string
 	tokens  int
@@ -274,6 +276,15 @@ func (r *renderer) done(path, fp string) {
 	os.WriteFile(r.out("render.json"), append(data, '\n'), 0o644)
 }
 
+// charge records a call's usage and returns a short cost label.
+func (r *renderer) charge(u openai.Usage) string {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	r.spent.Add(u)
+	r.calls++
+	return fmt.Sprintf("$%.3f", u.Cost(openai.DefaultPrices))
+}
+
 func (r *renderer) say(format string, args ...any) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
@@ -300,12 +311,19 @@ func (r *renderer) run() error {
 				return err
 			}
 			r.done(sheetPath, sheetFP)
-			r.say("✓ stylesheet (%d tokens) — open %s and check the look before rendering the cast", img.Usage.TotalTokens, sheetPath)
+			r.say("✓ stylesheet (%s) — open %s and check the look before rendering the cast", r.charge(img.Usage), sheetPath)
 		}
 	}
 	sheet, _ := os.ReadFile(sheetPath)
 	if sheet == nil && !r.o.dry {
 		return errors.New("no style sheet yet; render it first (it is the reference for everything else)")
+	}
+	if sheet != nil {
+		// A reference only has to convey style; sending it at half size
+		// halves its input tokens on every call that uses it.
+		if small, err := downscale(sheet, 768); err == nil {
+			sheet = small
+		}
 	}
 
 	// 2. Stickers, in parallel.
@@ -351,9 +369,11 @@ func (r *renderer) run() error {
 		return nil
 	}
 	if len(failures) > 0 {
+		r.summary()
 		return fmt.Errorf("%d failure(s) (rerun to retry just those):\n  %s", len(failures), strings.Join(failures, "\n  "))
 	}
-	fmt.Printf("\nDone. Review %s, then: stickerart install -pack %s\n", filepath.Join(r.c.artDir, "out"), r.c.packDir)
+	r.summary()
+	fmt.Printf("Review %s, then: stickerart install -pack %s\n", filepath.Join(r.c.artDir, "out"), r.c.packDir)
 	return nil
 }
 
@@ -398,103 +418,86 @@ func (r *renderer) sticker(s stickerSpec, sheet []byte, sheetFP string) error {
 		return err
 	}
 	r.done(final, fp)
-	r.say("✓ %s (%d tokens, %.0fs)", s.ID, img.Usage.TotalTokens, time.Since(started).Seconds())
+	r.say("✓ %s (%s, %.0fs)", s.ID, r.charge(img.Usage), time.Since(started).Seconds())
 	return nil
 }
 
-// scene renders the background, extends it to the wide rendition around
-// the untouched centre, and does the same for the transparent foreground.
+// scene renders the two planes directly at the wide 2:1 size and cuts the
+// 4:3 base from the centre of each, so base and wide match pixel for pixel
+// and each plane costs one call.
 func (r *renderer) scene(sheet []byte, sheetFP string) error {
 	cfg := r.c.cfg
-	size := fmt.Sprintf("%dx%d", baseW, baseH)
 	wide := fmt.Sprintf("%dx%d", wideW, baseH)
-	extend := "Extend the attached scene seamlessly into the transparent side bands, continuing the same style, lighting, horizon and ground line; do not change the existing centre."
+	composition := fmt.Sprintf("The image is a wide %d:%d panorama; the central 4:3 area is the main view and must be a complete, balanced composition on its own, with the side thirds continuing the scene naturally. %s", wideW, baseH, sceneSafeArea)
 
-	type plane struct {
-		name, prompt, bg string
-		refs             [][]byte
-	}
-	bgFP := hashOf(toolVersion, "background", sheetFP, cfg.Style, cfg.Scene.Background, r.o.quality)
+	bgFP := hashOf(toolVersion, "background", sheetFP, cfg.Style, cfg.Scene.Background, r.o.quality, "2")
 	bgBase, bgWide := r.out("art", "background.png"), r.out("art", "background-wide.png")
 	if r.upToDate(bgWide, bgFP) && r.upToDate(bgBase, bgFP) {
 		r.say("· background up to date")
 	} else if r.o.dry {
-		r.planned = append(r.planned, "background ("+size+")", "background-wide ("+wide+", outpaint)")
+		r.planned = append(r.planned, "background-wide ("+wide+"; base cut from its centre)")
 	} else {
 		r.say("▶ background")
-		prompt := fmt.Sprintf("%s\n\nUsing the attached style sheet as the exact style reference, paint the scene background: %s No characters, no animals, no text. %s", cfg.Style, cfg.Scene.Background, sceneSafeArea)
-		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: size, Quality: r.o.quality, Background: "opaque", References: [][]byte{sheet}})
+		prompt := fmt.Sprintf("%s\n\nUsing the attached style sheet as the exact style reference, paint the scene background: %s No characters, no animals, no text. %s", cfg.Style, cfg.Scene.Background, composition)
+		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: wide, Quality: r.o.quality, Background: "opaque", References: [][]byte{sheet}})
 		if err != nil {
 			return fmt.Errorf("background: %w", err)
 		}
-		if err := r.extend(img.PNG, bgBase, bgWide, extend, "opaque", wide, false); err != nil {
-			return fmt.Errorf("background-wide: %w", err)
+		if err := r.splitWide(img.PNG, bgBase, bgWide, false); err != nil {
+			return fmt.Errorf("background: %w", err)
 		}
 		r.done(bgBase, bgFP)
 		r.done(bgWide, bgFP)
-		r.say("✓ background + wide")
+		r.say("✓ background + wide (%s)", r.charge(img.Usage))
 	}
 
-	fgFP := hashOf(toolVersion, "foreground", bgFP, cfg.Scene.Foreground, r.o.quality)
+	fgFP := hashOf(toolVersion, "foreground", bgFP, cfg.Scene.Foreground, r.o.quality, "2")
 	fgBase, fgWide := r.out("art", "foreground.png"), r.out("art", "foreground-wide.png")
 	if r.upToDate(fgWide, fgFP) && r.upToDate(fgBase, fgFP) {
 		r.say("· foreground up to date")
 		return nil
 	}
 	if r.o.dry {
-		r.planned = append(r.planned, "foreground ("+size+", transparent)", "foreground-wide ("+wide+", outpaint)")
+		r.planned = append(r.planned, "foreground-wide ("+wide+", transparent; base cut from its centre)")
 		return nil
 	}
-	bg, err := os.ReadFile(bgBase)
+	bg, err := os.ReadFile(bgWide)
 	if err != nil {
 		return errors.New("foreground needs the background first")
 	}
+	if small, err := downscale(bg, 1536); err == nil {
+		bg = small
+	}
 	r.say("▶ foreground")
-	prompt := fmt.Sprintf("%s\n\nThe attached image is the finished background of a scene. Paint only the foreground plane that sits in front of it, matching its style, lighting and perspective exactly: %s Everything that is not a foreground element must be fully transparent. No characters, no animals, no text.", cfg.Style, cfg.Scene.Foreground)
-	img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: size, Quality: r.o.quality, Background: "transparent", References: [][]byte{bg, sheet}})
+	prompt := fmt.Sprintf("%s\n\nThe first attached image is the finished background of a scene at the same framing as the output. Paint only the foreground plane that sits in front of it, matching its style, lighting and perspective exactly: %s Everything that is not a foreground element must be fully transparent. No characters, no animals, no text. %s", cfg.Style, cfg.Scene.Foreground, composition)
+	img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: wide, Quality: r.o.quality, Background: "transparent", References: [][]byte{bg, sheet}})
 	if err != nil {
 		return fmt.Errorf("foreground: %w", err)
 	}
-	if err := r.extend(img.PNG, fgBase, fgWide, extend+" Keep everything outside the foreground elements fully transparent.", "transparent", wide, true); err != nil {
-		return fmt.Errorf("foreground-wide: %w", err)
+	if err := r.splitWide(img.PNG, fgBase, fgWide, true); err != nil {
+		return fmt.Errorf("foreground: %w", err)
 	}
 	r.done(fgBase, fgFP)
 	r.done(fgWide, fgFP)
-	r.say("✓ foreground + wide")
+	r.say("✓ foreground + wide (%s)", r.charge(img.Usage))
 	return nil
 }
 
-// extend outpaints a base plane to the wide width with the centre masked
-// off, then writes the wide file and a base re-cut from its centre so the
-// two match pixel for pixel.
-func (r *renderer) extend(basePNG []byte, basePath, widePath, prompt, background, wideSize string, keepAlpha bool) error {
-	base, err := stickerimg.Decode(basePNG)
+// splitWide writes the wide rendition and the base cut from its centre.
+func (r *renderer) splitWide(widePNG []byte, basePath, widePath string, keepAlpha bool) error {
+	img, err := stickerimg.Decode(widePNG)
 	if err != nil {
 		return err
 	}
-	canvas, mask, err := stickerimg.WideCanvas(base, wideW)
-	if err != nil {
-		return err
-	}
-	canvasPNG, _ := stickerimg.Encode(canvas)
-	maskPNG, _ := stickerimg.Encode(mask)
-	img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: wideSize, Quality: r.o.quality, Background: background, References: [][]byte{canvasPNG}, Mask: maskPNG, Fidelity: "high"})
-	if err != nil {
-		return err
-	}
-	wideImg, err := stickerimg.Decode(img.PNG)
-	if err != nil {
-		return err
-	}
-	if wideImg.Bounds().Dx() != wideW || wideImg.Bounds().Dy() != baseH {
-		return fmt.Errorf("wide rendition came back %v, want %dx%d", wideImg.Bounds().Size(), wideW, baseH)
+	if img.Bounds().Dx() != wideW || img.Bounds().Dy() != baseH {
+		return fmt.Errorf("wide rendition came back %v, want %dx%d", img.Bounds().Size(), wideW, baseH)
 	}
 	var wideOut, baseOut []byte
 	if keepAlpha {
-		wideOut, _ = stickerimg.Encode(wideImg)
-		baseOut, _ = stickerimg.Encode(stickerimg.Centre(wideImg, baseW))
+		wideOut, _ = stickerimg.Encode(img)
+		baseOut, _ = stickerimg.Encode(stickerimg.Centre(img, baseW))
 	} else {
-		flat := stickerimg.Flatten(wideImg, color.White)
+		flat := stickerimg.Flatten(img, color.White)
 		wideOut, _ = stickerimg.Encode(flat)
 		baseOut, _ = stickerimg.Encode(stickerimg.Centre(flat, baseW))
 	}
@@ -502,6 +505,15 @@ func (r *renderer) extend(basePNG []byte, basePath, widePath, prompt, background
 		return err
 	}
 	return os.WriteFile(basePath, baseOut, 0o644)
+}
+
+func (r *renderer) summary() {
+	if r.calls == 0 {
+		fmt.Println("\nNo API calls made.")
+		return
+	}
+	fmt.Printf("\nThis run: %d API calls, %d image-in + %d text-in + %d output tokens ≈ $%.2f (list prices, standard tier)\n",
+		r.calls, r.spent.InputDetails.ImageTokens, r.spent.InputDetails.TextTokens, r.spent.OutputTokens, r.spent.Cost(openai.DefaultPrices))
 }
 
 // ---------- install ----------
@@ -575,6 +587,27 @@ func runInstall(args []string) error {
 	}
 	fmt.Printf("✓ installed %d stickers and %d scene planes into %s (version %d); manifest validates\n", installed, scene, c.packDir, c.pack.Version)
 	return nil
+}
+
+// downscale returns the PNG resized so its longer edge is maxEdge px.
+func downscale(pngData []byte, maxEdge int) ([]byte, error) {
+	img, err := stickerimg.Decode(pngData)
+	if err != nil {
+		return nil, err
+	}
+	b := img.Bounds()
+	w, h := b.Dx(), b.Dy()
+	if w <= maxEdge && h <= maxEdge {
+		return pngData, nil
+	}
+	if w >= h {
+		h = h * maxEdge / w
+		w = maxEdge
+	} else {
+		w = w * maxEdge / h
+		h = maxEdge
+	}
+	return stickerimg.Encode(stickerimg.Resize(img, w, h))
 }
 
 func copyFile(src, dst string) error {

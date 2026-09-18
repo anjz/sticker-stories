@@ -39,11 +39,17 @@ go run ./packager validate ../packs/forest
    transparent background, four at a time. Each result is trimmed to its
    alpha, given the baked-in white border, padded and resized to
    `stickerSize`; the raw API output is kept as `<id>.raw.png`.
-3. **Background** at 2048×1536 with the safe-area rule in the prompt, then
-   the **wide** 3072×1536 rendition by outpainting the side bands with the
-   centre masked off, and the base re-cut from that centre so both match
-   pixel for pixel. The **foreground** plane is painted over the finished
-   background with a transparent background, then widened the same way.
+3. **Scene planes**, one call each, painted directly at the wide 3072×1536
+   size with the prompt asking for a complete composition in the central
+   4:3 area; the base 2048×1536 rendition is cut from that centre, so the
+   two match pixel for pixel with no seam. The **foreground** is painted
+   over the finished background (sent downscaled as a reference) with a
+   transparent background.
+
+Every call's reported token usage is priced at list rates and printed per
+image and as a run total, so the real spend is visible. References are
+sent downscaled: they only have to convey style, and input image tokens
+scale with size.
 
 Everything lands in `out/` (gitignored), keyed by a fingerprint of the
 prompts, quality and models, so rerunning only regenerates what changed.
