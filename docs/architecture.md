@@ -65,8 +65,13 @@ AVFoundation. This is our own code, not a third-party dependency.
    drift hints that there is more. Vertical overflow — a view wider than the
    art, i.e. every full-screen landscape case, iPhone especially — is
    centre-cropped and never panned, so pack art keeps nothing important in
-   its top and bottom bands (`docs/pack-format.md`, "Art safe area"). No
-   windowing-mode detection is needed: the rule is purely geometric. The tray is a HUD: a plain scene child that follows the camera
+   its top and bottom bands. Packs designed for iPad can ship a **wide
+   rendition** (`backgroundWide`/`foregroundWide`, same height, base art
+   centred) that the scene draws instead; the base frame stays the sticker
+   coordinate system and the extra width becomes pannable scenery, so a
+   tall iPhone crops a few percent rather than a fifth of the art
+   (`docs/pack-format.md`, "Art safe area"). No windowing-mode detection is
+   needed: the rule is purely geometric. The tray is a HUD: a plain scene child that follows the camera
    every frame (not a camera child — SpriteKit draws camera descendants
    below world content once the camera is off-centre), laid out to always
    fit fully between the back button and the undo/redo/clear cluster,
