@@ -9,6 +9,7 @@ import StickerStoriesKit
 @Observable
 final class AppSettings {
     private static let languageOverrideKey = "settings.languageOverride"
+    private static let calmModeKey = "settings.calmMode"
 
     /// BCP-47 tag ("en-US", "es-ES") or nil to follow the device language.
     var languageOverride: String? {
@@ -21,8 +22,15 @@ final class AppSettings {
         }
     }
 
+    /// Softer, slower sticker effects during stories (the Reduce Motion
+    /// policy plus a global intensity damping) — see docs/effects.md.
+    var calmMode: Bool {
+        didSet { UserDefaults.standard.set(calmMode, forKey: Self.calmModeKey) }
+    }
+
     init() {
         languageOverride = UserDefaults.standard.string(forKey: Self.languageOverrideKey)
+        calmMode = UserDefaults.standard.bool(forKey: Self.calmModeKey)
     }
 
     /// What `LanguageResolver` should match pack languages against: the
