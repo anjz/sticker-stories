@@ -1,5 +1,9 @@
 # tts (stub)
 
+> Superseded in spirit by step 2 of `tools/author/stories/README.md`, which
+> will render narration *and* align effect cues from `story.json`. Kept until
+> that tool exists.
+
 Development-time pipeline that batch-renders story narration audio.
 Not built yet — see `docs/roadmap.md` (iteration 2).
 

@@ -148,19 +148,19 @@ because each narration has its own timing.
   for magic — `blink` is dropped under Reduce Motion.
 - Every language needs its own file; only the `at` values should differ.
 
-### Future: inline cues in story text (not implemented)
+### Inline cues in story text (authoring format)
 
-The plan for `tools/story-gen` + `tools/tts` is to write markers inline in
-the story text and let the TTS word timestamps resolve them into the sidecar
-above, so authors think in words, not seconds. Reserved shape, for planning
-only — the app never parses text:
+Stories are authored with cues inline in the text
+(`tools/author/stories/FORMAT.md`), so authors think in words, not seconds:
 
 ```
-The fox gave an enormous {fox:wobble×3}{fox:sparkle} sneeze.
+The fox gave an enormous {fox:wobble x3} {fox:sparkle} sneeze.
 ```
 
-The resolver would emit `at` from the timestamp of the following word and
-carry the word as `cue`.
+A cue fires on the word that follows it. Step 2 of the authoring pipeline
+(not built yet) will resolve each cue's `at` from the narration's word
+timestamps and carry the word as `cue`, emitting the sidecar above. The
+app never parses text.
 
 ## Accessibility and calm mode
 
