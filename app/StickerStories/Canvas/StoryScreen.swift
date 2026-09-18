@@ -30,6 +30,27 @@ struct StoryScreen: View {
         self.calmMode = calmMode
         self.onLeave = onLeave
         _scene = State(initialValue: CanvasScene(pack: pack, stateStore: FileCanvasStateStore()))
+        #if DEBUG
+        if Self.isAutoplay {
+            // Deterministic pick (highest-scoring story) so a seeded canvas
+            // always plays the same story.
+            _playback = State(initialValue: PlaybackController(
+                storyProvider: BundledStoryProvider(recents: UserDefaultsRecentStories(), random: { $0.lowerBound }),
+                narrator: AudioFileNarrator()))
+        }
+        #endif
+    }
+
+    #if DEBUG
+    private static var isAutoplay: Bool { ProcessInfo.processInfo.arguments.contains("-autoplay") }
+    #endif
+
+    private func play() {
+        playback.play(
+            canvas: canvasState ?? CanvasState(packID: pack.id),
+            pack: pack,
+            language: LanguageResolver(preferredLanguages: preferredLanguages)
+                .resolve(from: pack.manifest.languages))
     }
 
     var body: some View {
@@ -46,13 +67,7 @@ struct StoryScreen: View {
 
             PlaybackOverlay(
                 phase: playback.phase,
-                onPlay: {
-                    playback.play(
-                        canvas: canvasState ?? CanvasState(packID: pack.id),
-                        pack: pack,
-                        language: LanguageResolver(preferredLanguages: preferredLanguages)
-                            .resolve(from: pack.manifest.languages))
-                },
+                onPlay: play,
                 onStop: { playback.stop() })
 
             backButton
@@ -84,6 +99,13 @@ struct StoryScreen: View {
             scene.setEffectPolicy(effectPolicy)
         }
         .onChange(of: calmMode) { scene.setEffectPolicy(effectPolicy) }
+        #if DEBUG
+        .task {
+            guard Self.isAutoplay else { return }
+            try? await Task.sleep(for: .seconds(1.5))
+            play()
+        }
+        #endif
     }
 
     private var effectPolicy: EffectPolicy {

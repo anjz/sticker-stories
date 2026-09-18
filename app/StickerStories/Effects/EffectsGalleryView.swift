@@ -76,14 +76,25 @@ struct EffectsGalleryView: View {
                     }
                 }
 
-                Button("Stop all") { scene.stopAll() }
-                    .buttonStyle(.borderedProminent)
+                HStack {
+                    Button("Play all") { scene.playAll(intensity: intensity) }
+                        .buttonStyle(.bordered)
+                    Button("Stop all") { scene.stopAll() }
+                        .buttonStyle(.borderedProminent)
+                }
             }
             .padding(18)
             .frame(width: 330)
             .background(Color(white: 0.96))
         }
         .statusBarHidden(true)
+        .onAppear {
+            // `-effectsGalleryDemo` launch argument: cycle through everything
+            // unattended (simulator screenshots, quick eyeballing).
+            if ProcessInfo.processInfo.arguments.contains("-effectsGalleryDemo") {
+                scene.playAll(intensity: 1.0, repeating: true)
+            }
+        }
     }
 
     private func color(for category: EffectName.Category) -> Color {
@@ -114,6 +125,9 @@ final class EffectsGalleryScene: SKScene {
     private let emitters = EmitterCoordinator()
     private let clock = PlaybackClock { nil }
     private var pendingStickerID: String
+    /// A `playAll` requested before the scene was presented (SwiftUI's
+    /// `onAppear` fires before `didMove(to:)`).
+    private var pendingPlayAll: (intensity: Double, repeating: Bool)?
 
     init(pack: LoadedPack, stickerID: String) {
         self.pack = pack
@@ -137,6 +151,10 @@ final class EffectsGalleryScene: SKScene {
         addChild(layer)
         layoutBackground()
         show(stickerID: pendingStickerID)
+        if let pending = pendingPlayAll {
+            pendingPlayAll = nil
+            playAll(intensity: pending.intensity, repeating: pending.repeating)
+        }
     }
 
     override func didChangeSize(_ oldSize: CGSize) {
@@ -155,7 +173,7 @@ final class EffectsGalleryScene: SKScene {
     func show(stickerID: String) {
         pendingStickerID = stickerID
         guard background.parent != nil else { return }
-        stopAll()
+        stopEffects()
         sticker?.removeFromParent()
         guard let definition = pack.sticker(withID: stickerID),
             let image = UIImage(contentsOfFile: pack.url(forAssetPath: definition.image).path)
@@ -180,9 +198,34 @@ final class EffectsGalleryScene: SKScene {
     }
 
     func stopAll() {
+        removeAction(forKey: "play-all")
+        stopEffects()
+    }
+
+    private func stopEffects() {
         runner.stopAll()
         emitters.clearAll()
         if let sticker { applier.restoreAll([sticker.instanceID: sticker]) }
+    }
+
+    /// Plays every effect in library order, one every 1.6 s.
+    func playAll(intensity: Double, repeating: Bool = false) {
+        guard sticker != nil else {
+            pendingPlayAll = (intensity, repeating)
+            return
+        }
+        stopAll()
+        var steps: [SKAction] = []
+        for effect in EffectName.allCases {
+            steps.append(.run { [weak self] in
+                var options = EffectOptions(intensity: intensity)
+                if effect == .tint { options.color = RGBA(hex: "#FF6B8A") }
+                self?.play(effect, options: options)
+            })
+            steps.append(.wait(forDuration: 1.6))
+        }
+        let sequence = SKAction.sequence(steps)
+        run(repeating ? .repeatForever(sequence) : sequence, withKey: "play-all")
     }
 
     override func update(_ currentTime: TimeInterval) {
