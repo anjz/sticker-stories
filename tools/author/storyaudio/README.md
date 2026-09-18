@@ -33,11 +33,14 @@ go run ./packager validate ../packs/forest
    level (`-music-db`, −14 dB), and is ducked a little more while the
    narrator speaks.
 5. Normalises the narration to a consistent level, limits peaks, and encodes
-   AAC with macOS `afconvert` to `<id>/audio/<lang>.m4a` next to
+   AAC (64 kbps mono, `-bitrate`) with macOS `afconvert` to `<id>/audio/<lang>.m4a` next to
    `<lang>.effects.json` and a `<lang>.render.json` fingerprint.
 
 A story is skipped when its text, voice, model, hints and mix settings are
-unchanged since the last render (`-force` overrides). `-only id,…` and
+unchanged since the last render (`-force` overrides). The synthesised
+narration itself is cached in `_cache/tts/` keyed by text, voice, model and
+sample rate, so changing levels, music, sound hints or bitrate only re-mixes
+and costs nothing; only a text or voice change calls the API again. `-only id,…` and
 `-lang` narrow a run. Renditions are rendered `-parallel` at a time
 (default 5); each shared asset (a mood's music, a sound effect) is still
 generated exactly once. A failed rendition does not stop the others; the
