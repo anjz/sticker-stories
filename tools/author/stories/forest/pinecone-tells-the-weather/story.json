@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "pinecone-tells-the-weather",
+  "pack": "forest",
+  "featured": [
+    "pinecone",
+    "frog",
+    "bee"
+  ],
+  "supporting": [
+    "flower"
+  ],
+  "tags": [
+    "weather",
+    "curiosity"
+  ],
+  "premise": "Pinecone closes her scales before rain and opens them for sun; Frog hopes for rain and Bee hopes for sun; Pinecone is right both times, and each friend gets their turn.",
+  "inspiration": "Folk weather lore (pinecones really do close in damp air), turned into a fair share: nobody's wish loses; the day has room for both.",
+  "lesson": "Different friends want different weather, and the day has room for both.",
+  "languages": {
+    "en-US": {
+      "title": "Pinecone Tells the Weather",
+      "text": "{flower:sway loop 0.4} {bee:float loop 0.4} Pinecone knows the weather before it comes. Nobody knows how. Frog {frog:hop} hopped up one morning. Rain today? she asked, hopeful. Bee {bee:float 0.7} buzzed up. Sun today? she asked, hopeful. Pinecone thought. Then, slowly, {pinecone:pulse} she closed her scales. Click, click, click. Rain, said Frog, and did a happy hop. Bee's wings drooped. And sure enough, plip, plop, {frog:hop x3} pitter-patter! Rain! Frog splashed and sang. Bee waited under a leaf, humming a small patient hum. Then Pinecone stirred. Slowly, {pinecone:pulse x3 0.8} she opened her scales. Crick, crick, crick. Sun, said Bee. Frog's chin dropped. And sure enough, the clouds rolled off and the sun {flower:glow} came pouring down. Bee {bee:hop x2} zoomed from flower to flower. Frog sat in a warm puddle, which is nearly as good. Rain and sun, said Pinecone. Both today. And she was right, as always. Even about the rainbow."
+    },
+    "es-ES": {
+      "title": "Piña dice el tiempo",
+      "text": "{flower:sway loop 0.4} {bee:float loop 0.4} Piña sabe qué tiempo va a hacer antes de que llegue. Rana {frog:hop} llegó saltando una mañana. ¿Hoy llueve?, preguntó, ilusionada. Abeja {bee:float 0.7} llegó zumbando. ¿Hoy hay sol?, preguntó, ilusionada. Piña pensó. Y despacio, {pinecone:pulse} cerró sus escamas. Clic, clic, clic. Lluvia, dijo Rana, y dio un salto de alegría. Y en efecto, plic, ploc, {frog:hop x3} ¡tipi-tapa! ¡Lluvia! Rana chapoteó y cantó. Abeja esperó bajo una hoja, con un zumbido pequeño y paciente. Entonces Piña se movió. Despacio, {pinecone:pulse x3 0.8} abrió sus escamas. Cric, cric, cric. Sol, dijo Abeja. Y en efecto, las nubes se fueron y el sol {flower:glow} bajó a chorros. Abeja {bee:hop x2} voló de flor en flor. Rana se sentó en un charco calentito, que es casi igual de bueno. Lluvia y sol, dijo Piña. Hoy los dos. Y tenía razón, como siempre. Hasta con el arcoíris."
+    }
+  },
+  "sound": [
+    {
+      "cue": "Click",
+      "note": "three small dry clicks closing"
+    },
+    {
+      "cue": "Crick",
+      "note": "three small dry clicks opening"
+    }
+  ]
+}

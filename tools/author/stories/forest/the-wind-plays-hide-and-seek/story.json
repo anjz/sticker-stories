@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "the-wind-plays-hide-and-seek",
+  "pack": "forest",
+  "featured": [],
+  "supporting": [
+    "tree",
+    "flower",
+    "butterfly",
+    "bird"
+  ],
+  "tags": [
+    "weather",
+    "funny",
+    "fallback"
+  ],
+  "premise": "The wind plays hide-and-seek with the whole forest and nobody can catch it, until everyone stops and listens.",
+  "inspiration": "The North Wind and the Sun (Aesop), turned: the wind is a playmate rather than a rival, and stillness, not chasing, is what finds it.",
+  "lesson": "Some things you find by being still.",
+  "languages": {
+    "en-US": {
+      "title": "The Wind Plays Hide-and-Seek",
+      "text": "{tree:sway loop 0.4} {flower:sway loop 0.4} {butterfly:float loop} Whoosh! Who was that? The wind, of course. The wind loves hide-and-seek, and today the whole forest is playing. Ready or not! The wind {tree:sway x2 0.8} shakes the tall trees, rustle, rustle. Where is it? Gone! It {flower:wobble x2} tickles the flowers, and they nod, that way, no, that way! Where is it? Gone again! It rolls a leaf along the path, flip, flop, flip. Everyone runs after the leaf. Nobody catches the wind. Nobody ever does. So the forest tries something new. Everybody stops. Everybody holds very still. Everybody listens. Shhh. And there, {butterfly:float 0.6} soft on your cheek, is a whisper of a breeze. Found you, says the forest. Found you, says the wind. Your turn to hide."
+    },
+    "es-ES": {
+      "title": "El viento juega al escondite",
+      "text": "{tree:sway loop 0.4} {flower:sway loop 0.4} {butterfly:float loop} ¡Fiuuu! ¿Quién ha sido? El viento, claro. Al viento le encanta el escondite, y hoy juega el bosque entero. ¡Que voy! El viento {tree:sway x2 0.8} sacude los árboles altos, susurra que susurra. ¿Dónde está? ¡Se ha ido! Hace {flower:wobble x2} cosquillas a las flores, y ellas dicen que sí, por allí, no, ¡por allá! ¿Dónde está? ¡Otra vez se ha ido! Empuja una hoja por el camino, flip, flop, flip. Todos corren detrás de la hoja. Nadie pilla al viento. Nadie lo pilla nunca. Entonces el bosque prueba otra cosa. Todos se paran. Todos se quedan quietos, muy quietos. Todos escuchan. Chisss. Y ahí, {butterfly:float 0.6} suave en tu mejilla, hay un soplo de brisa. Te encontré, dice el bosque. Me encontraste, dice el viento. Ahora te toca esconderte a ti."
+    }
+  },
+  "sound": [
+    {
+      "cue": "Whoosh",
+      "note": "a playful gust"
+    },
+    {
+      "cue": "flip",
+      "note": "a dry leaf flipping along the ground"
+    }
+  ]
+}
