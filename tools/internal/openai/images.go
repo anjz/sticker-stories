@@ -71,6 +71,36 @@ type Usage struct {
 	InputTokens  int `json:"input_tokens"`
 	OutputTokens int `json:"output_tokens"`
 	TotalTokens  int `json:"total_tokens"`
+	InputDetails struct {
+		ImageTokens int `json:"image_tokens"`
+		TextTokens  int `json:"text_tokens"`
+	} `json:"input_tokens_details"`
+}
+
+// Prices are USD per 1M tokens for the gpt-image-2.5 models (pricing page,
+// September 2026); update when the price list changes.
+type Prices struct{ TextIn, ImageIn, Out float64 }
+
+// DefaultPrices is the standard (non-batch) tier.
+var DefaultPrices = Prices{TextIn: 5, ImageIn: 8, Out: 30}
+
+// Cost estimates the USD cost of a call. When the input split is not
+// reported, all input is priced as image tokens (the higher rate).
+func (u Usage) Cost(p Prices) float64 {
+	img, txt := u.InputDetails.ImageTokens, u.InputDetails.TextTokens
+	if img+txt == 0 {
+		img = u.InputTokens
+	}
+	return (float64(txt)*p.TextIn + float64(img)*p.ImageIn + float64(u.OutputTokens)*p.Out) / 1e6
+}
+
+// Add sums usage.
+func (u *Usage) Add(o Usage) {
+	u.InputTokens += o.InputTokens
+	u.OutputTokens += o.OutputTokens
+	u.TotalTokens += o.TotalTokens
+	u.InputDetails.ImageTokens += o.InputDetails.ImageTokens
+	u.InputDetails.TextTokens += o.InputDetails.TextTokens
 }
 
 // Image is one produced image.
