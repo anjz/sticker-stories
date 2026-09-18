@@ -62,9 +62,12 @@ AVFoundation. This is our own code, not a third-party dependency.
    resizable windows, Split View, portrait). Whatever overflows the view can
    be panned with one finger on empty space (also during playback); the
    camera is clamped to the world and a one-shot drift hints that there is
-   more. The tray is a child of the camera: fixed to the view, laid out to
-   always fit fully between the back button and the undo/redo/clear cluster,
+   more. The tray is a HUD: a plain scene child that follows the camera
+   every frame (not a camera child — SpriteKit draws camera descendants
+   below world content once the camera is off-centre), laid out to always
+   fit fully between the back button and the undo/redo/clear cluster,
    shrinking its items in very narrow windows rather than overlapping them.
+   Touches on the pill between stickers scroll the tray, never the world.
 
 4. **Story selection** (`BundledStoryProvider`): a story is a candidate when its
    `requiredStickers` are all on the canvas. Score = optional-sticker matches

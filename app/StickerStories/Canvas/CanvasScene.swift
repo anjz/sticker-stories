@@ -49,7 +49,7 @@ final class CanvasScene: SKScene {
 
     private var stickerTextures: [String: SKTexture] = [:]
     /// The tray pill in view coordinates (the tray node is laid out in view
-    /// space and parented to the camera).
+    /// space and follows the camera).
     private var trayRectInView: CGRect = .zero
     /// The tray pill in world coordinates, for sticker drop/hover tests.
     private var trayRect: CGRect { trayRectInView.offsetBy(dx: viewOrigin.x, dy: viewOrigin.y) }
@@ -177,7 +177,11 @@ final class CanvasScene: SKScene {
             addChild(foregroundStickers)
             addChild(cameraNode)
             camera = cameraNode
-            cameraNode.addChild(tray)  // HUD: fixed to the view, not the world
+            // The tray is a HUD: a scene child (so its z-order and hit-testing
+            // are the plain, reliable kind) that follows the camera every
+            // frame rather than a camera child — SpriteKit draws camera
+            // descendants below world content once the camera is off-centre.
+            addChild(tray)
             loadPackContent()
         }
         layoutScene()
@@ -188,6 +192,16 @@ final class CanvasScene: SKScene {
             runTrayScrollHint()
             runPanHintIfNeeded()
         }
+    }
+
+    /// Runs after actions (the pan hint moves the camera with an action) and
+    /// before rendering, so the HUD never lags the camera by a frame.
+    override func didFinishUpdate() {
+        syncHUDToCamera()
+    }
+
+    private func syncHUDToCamera() {
+        tray.position = viewOrigin
     }
 
     /// Loads any canvas saved for this pack from a prior visit. Runs once,
@@ -249,9 +263,9 @@ final class CanvasScene: SKScene {
             art.size = CGSize(width: textureSize.width * fill, height: textureSize.height * fill)
             art.position = center
         }
-        // The tray is laid out in view coordinates; parented to the camera
-        // (whose origin is the view centre) this offset makes that so.
-        tray.position = CGPoint(x: -size.width / 2, y: -size.height / 2)
+        // The tray is laid out in view coordinates and pinned to the view's
+        // bottom-left corner in world space (kept in step with the camera).
+        syncHUDToCamera()
         layoutTray()
     }
 
@@ -284,6 +298,7 @@ final class CanvasScene: SKScene {
             position.y = min(max(position.y, size.height / 2), worldSize.height - size.height / 2)
         }
         cameraNode.position = position
+        syncHUDToCamera()
     }
 
     /// One-shot "there's more" hint when the world overflows the view: the
@@ -374,8 +389,12 @@ final class CanvasScene: SKScene {
             roundedRect: CGRect(x: -barWidth / 2, y: -barHeight / 2, width: barWidth, height: barHeight),
             cornerWidth: barHeight / 2, cornerHeight: barHeight / 2, transform: nil)
         bar.path = barPath
-        bar.fillColor = UIColor.white.withAlphaComponent(0.55)
-        bar.strokeColor = UIColor.white.withAlphaComponent(0.9)
+        // Mostly opaque: a glassier pill let white clouds behind it read as if
+        // they were in front of it.
+        bar.fillColor = UIColor.white.withAlphaComponent(0.86)
+        // A faint dark edge (not white) so the pill keeps its shape over the
+        // art's white clouds.
+        bar.strokeColor = UIColor(red: 0.2, green: 0.3, blue: 0.25, alpha: 0.22)
         bar.lineWidth = 2
         bar.position = CGPoint(x: barCenterX, y: barCenterY)
 
@@ -496,6 +515,11 @@ final class CanvasScene: SKScene {
                 // Defer: a horizontal move scrolls the tray, a vertical move
                 // picks the sticker up, and no move at all is a tap-to-place.
                 pendingTrayTouches[touch] = PendingTrayTouch(item: trayItem, startLocation: location)
+            } else if hits.contains(where: { $0 === self.tray || $0.inParentHierarchy(self.tray) }) {
+                // On the pill but between stickers: scroll the tray, never
+                // the world behind it.
+                trayContent.removeAction(forKey: Self.trayHintActionKey)
+                trayScrolls[touch] = TrayScrollInfo(startLocation: location, startOffset: trayContent.position.x)
             } else if let sticker = topSticker(in: hits) {
                 if activeTransform == nil,
                     let held = drags.first(where: { $0.value.node === sticker }) {
