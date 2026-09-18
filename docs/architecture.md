@@ -120,6 +120,38 @@ Multilingual from day one — currently **en-US** and **es-ES**:
   split, keep one download URL per pack + `lang=` query param
   (docs/pack-format.md, "Future: per-language delivery").
 
+## Sticker effects (play mode)
+
+While a story plays, individual stickers do small things — a wobble, a
+sparkle, a glow — driven by per-language trigger files that ship with the
+pack. Authoring reference: `docs/effects.md`; catalogue for tooling:
+`docs/effects/effects.json`; design-to-code mapping:
+`docs/effects-implementation-plan.md`.
+
+- **Effects exist only in play mode.** `StoryScreen` calls
+  `CanvasScene.beginPlayMode` when `PlaybackController.phase` becomes
+  `.playing` and `endPlayMode` when it leaves it. The scene locks editing,
+  builds a runner + applier + emitter coordinator for that story, and tears
+  them all down at the end, restoring every touched sticker verbatim. A child
+  who never presses play never sees any of it.
+- **Kit (`Effects/`)**: the closed library of 15 `EffectDefinition`s, the
+  pure `EffectEvaluator` (`(active effects, t) → EffectDelta` per sticker
+  instance), `StickerEffectsRunner` (fires triggers, repeat/loop/hold, stop
+  ease-back, seek rebuild), `EffectPolicy` (Reduce Motion / calm mode),
+  `EffectTransformMath` (content anchors → SpriteKit pivots) and
+  `EffectTriggerFile` (lenient sidecar decoding). All unit-tested on macOS.
+- **App (`Effects/`)**: `PlaybackClock` interpolates `Narrator.playbackTime`
+  between resyncs; `EffectApplier` writes deltas onto `StickerNode`s
+  (capturing each sticker's base placement on first touch — `snapshot()`
+  reads that base, so a mid-effect save never captures a wobble);
+  `GlowMaskCache` + `EmitterCoordinator` render glow and particles;
+  `emitters.json` holds the emitter tuning; `EffectsGalleryView` (DEBUG) is
+  the tuning bench.
+- **Seams kept honest**: `Narrator` gained one read-only property
+  (`playbackTime`) — a synthesised narrator reports elapsed speech time and
+  everything above it is unchanged. `StoryProvider` is untouched except that
+  a story with an unusable sidecar is excluded from selection.
+
 ## Future: runtime generation (parked — design for it, don't build it)
 
 v1 is fully pregenerated, but the app may later shift to runtime story

@@ -45,6 +45,21 @@
       the app (`CanvasStateStore`, file-backed); undo/redo (snapshot stack)
       and a confirmed, non-undoable Clear, as small secondary controls
 
+## Iteration 1.6 — sticker effects
+
+- [x] Sticker effects engine: closed library of 15 effects (motion, opacity/
+      colour, particles) as deltas on the child's placement, pure evaluator
+      + runner in the Kit with tests, play-mode-only pipeline in the scene
+      with a hard restore on playback end (`docs/effects.md`)
+- [x] Manifest: optional per-language `effects` sidecar; strict packager
+      validation, lenient app decoding; Forest ships three sample stories
+      with triggers
+- [x] Calm mode (parent setting) + live Reduce Motion policy; flash cap
+- [x] DEBUG effects gallery for tuning against real art
+- [ ] Real emitter textures + tuning pass once real sticker art lands
+- [ ] `story-gen`/`tts`: resolve inline text cues into sidecar `at` times
+      from TTS word timestamps (`docs/effects.md`, "Future: inline cues")
+
 ## Iteration 2 — proposed
 
 - [ ] Second pack ("Meadow") as a purchasable IAP end-to-end in the StoreKit
@@ -61,7 +76,9 @@
 
 - [ ] All-access unlock (`…allaccess`) + upsell placement in Grown-Ups area
 - [ ] Real TTS pipeline hardening (voice selection, per-story pacing)
-- [ ] Story-beat animations (stickers react while their story plays)
+- [ ] Per-sticker character animation (a sibling system to the effects
+      layer, sharing its clock — see `docs/effects.md`, "Deliberately not in
+      the library")
 - [ ] Pack delivery decision: On-Demand Resources vs own CDN (revisit when
       pack count or sizes make bundling impractical; note ODR is
       Apple-hosted → still no server of ours)
