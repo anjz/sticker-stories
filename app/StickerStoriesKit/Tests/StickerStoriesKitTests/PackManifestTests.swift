@@ -53,6 +53,7 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
     let fm = FileManager.default
     var assets = [manifest.background, manifest.foreground]
     assets += manifest.stickers.map(\.image)
+    assets += [manifest.backgroundWide, manifest.foregroundWide].compactMap { $0 }
     assets += manifest.stories.flatMap { $0.localizations.values.map(\.audio) }
     assets += manifest.stories.flatMap { $0.localizations.values.compactMap(\.effects) }
     for relative in assets {
@@ -107,6 +108,17 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         #expect(manifest.validationIssues(packDirectory: dir).isEmpty)
     }
 
+    @Test func wideArtPairIsAccepted() throws {
+        var manifest = makeValidManifest()
+        manifest.backgroundWide = "art/background-wide.png"
+        manifest.foregroundWide = "art/foreground-wide.png"
+        let dir = try materialize(manifest)
+        #expect(manifest.validationIssues(packDirectory: dir).isEmpty)
+        let decoded = try JSONDecoder().decode(PackManifest.self, from: JSONEncoder().encode(manifest))
+        #expect(decoded.backgroundWide == "art/background-wide.png")
+        #expect(makeValidManifest().backgroundWide == nil)
+    }
+
     @Test func effectsSidecarMustExistWhenDeclared() throws {
         var manifest = makeValidManifest()
         manifest.stories[0].localizations["en-US"]?.effects = "audio/en-US/story-001.effects.json"
@@ -143,6 +155,8 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         InvalidCase("not in declared languages") { $0.displayName["fr-FR"] = "Amis" },
         InvalidCase("missing \"es-ES\"") { $0.stickers[0].name.removeValue(forKey: "es-ES") },
         InvalidCase("not found") { $0.background = "art/nope.png" },
+        InvalidCase("declared together") { $0.backgroundWide = "art/background.png" },
+        InvalidCase("backgroundWide") { $0.backgroundWide = "art/nope-wide.png"; $0.foregroundWide = "art/foreground.png" },
         InvalidCase("escape") { $0.foreground = "../../evil.png" },
         InvalidCase("escape") { $0.foreground = "/etc/passwd" },
         InvalidCase("duplicate sticker") { $0.stickers[1].id = "mushroom" },

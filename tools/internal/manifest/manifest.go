@@ -29,8 +29,12 @@ type Manifest struct {
 	Theme         string            `json:"theme"`
 	Background    string            `json:"background"`
 	Foreground    string            `json:"foreground"`
-	Stickers      []Sticker         `json:"stickers"`
-	Stories       []Story           `json:"stories"`
+	// Optional wider renditions for wide windows (iPhone): same pixel height
+	// as the base art, base art centred inside; declared together or not at all.
+	BackgroundWide string    `json:"backgroundWide,omitempty"`
+	ForegroundWide string    `json:"foregroundWide,omitempty"`
+	Stickers       []Sticker `json:"stickers"`
+	Stories        []Story   `json:"stories"`
 }
 
 // Sticker is one draggable sticker in the pack.
@@ -165,6 +169,16 @@ func (m *Manifest) Validate(dir string) []error {
 	}
 	checkFile("background", m.Background)
 	checkFile("foreground", m.Foreground)
+	// Rule 10: wide art comes as a pair.
+	if m.BackgroundWide != "" {
+		checkFile("backgroundWide", m.BackgroundWide)
+	}
+	if m.ForegroundWide != "" {
+		checkFile("foregroundWide", m.ForegroundWide)
+	}
+	if (m.BackgroundWide == "") != (m.ForegroundWide == "") {
+		fail("backgroundWide and foregroundWide must be declared together")
+	}
 
 	// Rule 2: sticker IDs well-formed and unique.
 	stickerIDs := make(map[string]bool, len(m.Stickers))
