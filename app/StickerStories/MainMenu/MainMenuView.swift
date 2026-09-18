@@ -14,7 +14,9 @@ struct MainMenuView: View {
 
     var body: some View {
         GeometryReader { geo in
-            let cardHeight = geo.size.height * 0.58
+            // Portrait iPad is tall and narrow: cap the height against the
+            // width so cards stay card-shaped in every orientation.
+            let cardHeight = min(geo.size.height * 0.58, geo.size.width * 0.66)
             let cardWidth = min(geo.size.width * 0.42, cardHeight * 1.1)
 
             VStack(spacing: 0) {
@@ -71,9 +73,13 @@ private struct PackMenuCard: View {
         ZStack(alignment: .bottom) {
             if let background = UIImage(
                 contentsOfFile: pack.url(forAssetPath: pack.manifest.background).path) {
-                Image(uiImage: background)
-                    .resizable()
-                    .scaledToFill()
+                // Overlay on a clear base so the fill-scaled image cannot
+                // inflate the card's layout size (it would in portrait).
+                Color.clear.overlay {
+                    Image(uiImage: background)
+                        .resizable()
+                        .scaledToFill()
+                }
             } else {
                 Color(red: 0.55, green: 0.8, blue: 0.5)
             }
