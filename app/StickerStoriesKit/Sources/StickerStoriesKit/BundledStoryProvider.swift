@@ -59,7 +59,11 @@ public struct BundledStoryProvider: StoryProvider {
         guard !scored.isEmpty else { throw StoryProviderError.noPlayableStory }
 
         scored.sort { $0.score > $1.score }
-        let pool = Array(scored.prefix(Self.topPool))
+        // A story whose effects sidecar is unusable is excluded rather than
+        // played broken (docs/effects.md) — unless nothing else is left, in
+        // which case it plays with no effects; play must never fail.
+        var pool = Array(scored.lazy.filter { Self.hasUsableEffects($0.story, language: language, in: pack) }.prefix(Self.topPool))
+        if pool.isEmpty { pool = Array(scored.prefix(Self.topPool)) }
         let total = pool.reduce(0) { $0 + $1.score }
         var pick = random(0...max(total, .ulpOfOne))
         var chosen = pool[pool.count - 1].story
@@ -73,5 +77,12 @@ public struct BundledStoryProvider: StoryProvider {
 
         recents.recordPlayed(storyID: chosen.id, packID: pack.id)
         return Story(chosen, language: language, fallbackOrder: pack.manifest.languages)
+    }
+
+    private static func hasUsableEffects(_ story: StoryDefinition, language: String, in pack: LoadedPack) -> Bool {
+        guard let path = story.localization(for: language, fallbackOrder: pack.manifest.languages)?.effects else {
+            return true
+        }
+        return (try? EffectTriggerFile.load(from: pack.url(forAssetPath: path))) != nil
     }
 }
