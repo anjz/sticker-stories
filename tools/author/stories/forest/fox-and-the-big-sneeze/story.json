@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "id": "fox-and-the-big-sneeze",
+  "pack": "forest",
+  "featured": [
+    "fox",
+    "flower",
+    "bee"
+  ],
+  "supporting": [
+    "butterfly"
+  ],
+  "tags": [
+    "funny",
+    "seasons"
+  ],
+  "premise": "Flower's pollen tickles Fox's nose; each sneeze blows something along, a leaf, Bee's hat of pollen, and finally a seed to a bare patch where a new flower grows.",
+  "inspiration": "Cumulative big-sneeze folk tales, turned: the sneeze does no harm and does some good, planting next year's flower.",
+  "lesson": "Even a silly accident can plant something good.",
+  "languages": {
+    "en-US": {
+      "title": "Fox and the Big Sneeze",
+      "text": "{flower:sway loop 0.4} {butterfly:float loop 0.4} Flower was full of pollen. Bee {bee:float 0.6} loved it. She rolled in it till she wore a little yellow hat. Fox came to say hello. He leaned in close. He sniffed. {fox:wobble} Ah. He sniffed again. {fox:wobble x2} Ah... ah... AH-CHOO! {fox:shake 0.9} Whoosh! A leaf flew off the path. Bee's little hat blew right off her head. Flower {flower:wobble x2} rocked on her stem. Sorry! said Fox. But his nose still tickled. Ah... ah... AH-CHOO! {fox:shake 0.9} Whoosh! One small seed lifted off Flower and sailed through the air, and landed, tick, {flower:puff} in a bare brown patch by the stone. Bless you, said Bee, putting her hat back on. Fox rubbed his nose. Nobody thought about the seed again. Until spring. When by the stone, {flower:fade-in 1.5s} {flower:sparkle} a brand-new flower opened, yellow and dusty and tickly. Fox came to say hello. He leaned in. He sniffed. Ah..."
+    },
+    "es-ES": {
+      "title": "Zorro y el gran estornudo",
+      "text": "{flower:sway loop 0.4} {butterfly:float loop 0.4} Flor estaba llena de polen. A Abeja {bee:float 0.6} le encantaba. Se revolcó hasta llevar un gorrito amarillo. Zorro vino a saludar. Se acercó mucho. Olió. {fox:wobble} Ah. Olió otra vez. {fox:wobble x2} Ah... ah... ¡AH-CHÍS! {fox:shake 0.9} ¡Fiuuu! Una hoja salió volando del camino. El gorrito de Abeja salió volando de su cabeza. Flor {flower:wobble x2} se balanceó en su tallo. ¡Perdón!, dijo Zorro. Pero la nariz todavía le picaba. Ah... ah... ¡AH-CHÍS! {fox:shake 0.9} ¡Fiuuu! Una semilla pequeñita se soltó de Flor y navegó por el aire, y aterrizó, tic, {flower:puff} en un trocito de tierra pelada junto a la piedra. Salud, dijo Abeja, poniéndose el gorrito. Zorro se frotó la nariz. Nadie volvió a pensar en la semilla. Hasta la primavera. Cuando junto a la piedra {flower:fade-in 1.5s} {flower:sparkle} se abrió una flor nueva, amarilla, polvorienta y cosquillosa. Zorro vino a saludar. Se acercó. Olió. Ah..."
+    }
+  },
+  "sound": [
+    {
+      "cue": "AH-CHOO",
+      "note": "a big comic sneeze with a whoosh"
+    }
+  ]
+}
