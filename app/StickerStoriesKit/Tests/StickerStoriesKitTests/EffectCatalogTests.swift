@@ -17,6 +17,7 @@ struct EffectCatalogTests {
             let oneWay: Bool
             let hold: Bool
             let defaultColor: String?
+            let requiresColor: Bool
             let reduceMotion: String
         }
         let catalogSchema: Int
@@ -48,6 +49,7 @@ struct EffectCatalogTests {
             #expect(entry.hold == name.supportsHold, Comment(rawValue: entry.name))
             #expect(entry.defaultColor == definition.defaultColor?.hexString, Comment(rawValue: entry.name))
             #expect(entry.parameters.contains("color") == name.readsColor, Comment(rawValue: entry.name))
+            #expect(entry.requiresColor == name.requiresColor, Comment(rawValue: entry.name))
             #expect(entry.parameters.contains("hold") == name.supportsHold, Comment(rawValue: entry.name))
             #expect(entry.parameters.contains("repeat") == !name.isOneWay, Comment(rawValue: entry.name))
             #expect(entry.parameters.contains("duration") && entry.parameters.contains("intensity"), Comment(rawValue: entry.name))
