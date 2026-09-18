@@ -62,6 +62,19 @@ struct StoryScreen: View {
                 clearConfirmation
             }
         }
+        .onChange(of: playback.phase) { _, phase in
+            // Effects exist only while a story plays; everything else is a
+            // hard reset back to the child's arrangement.
+            if case .playing(let story) = phase {
+                scene.beginPlayMode(
+                    story: story,
+                    clock: PlaybackClock { [playback] in playback.playbackTime },
+                    policy: .standard)
+            } else {
+                scene.endPlayMode()
+                scene.setPlayLocked(playback.isBusy)
+            }
+        }
     }
 
     private var backButton: some View {
@@ -92,14 +105,16 @@ struct StoryScreen: View {
         VStack {
             HStack {
                 Spacer()
+                // Editing is locked while a story plays.
+                let editable = !playback.isBusy
                 HStack(spacing: 10) {
-                    historyButton(symbol: "arrow.uturn.backward", label: "Undo", enabled: canUndo) {
+                    historyButton(symbol: "arrow.uturn.backward", label: "Undo", enabled: canUndo && editable) {
                         scene.undo()
                     }
-                    historyButton(symbol: "arrow.uturn.forward", label: "Redo", enabled: canRedo) {
+                    historyButton(symbol: "arrow.uturn.forward", label: "Redo", enabled: canRedo && editable) {
                         scene.redo()
                     }
-                    historyButton(symbol: "trash", label: "Clear canvas", enabled: canClear) {
+                    historyButton(symbol: "trash", label: "Clear canvas", enabled: canClear && editable) {
                         isConfirmingClear = true
                     }
                 }

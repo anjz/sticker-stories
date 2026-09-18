@@ -18,6 +18,12 @@ public enum NarrationState: Equatable, Sendable {
 public protocol Narrator: AnyObject {
     var state: NarrationState { get }
 
+    /// Seconds into the current narration, or `nil` when nothing is playing.
+    /// This is the clock sticker effects run on, so it must track what the
+    /// child hears: the audio player's position for pre-rendered audio,
+    /// elapsed speech time for a synthesised narrator.
+    var playbackTime: TimeInterval? { get }
+
     /// Narrates the story, returning when narration finishes or is cancelled.
     func narrate(_ story: Story, from pack: LoadedPack) async throws
 

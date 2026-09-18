@@ -8,6 +8,12 @@ import StickerStoriesKit
 final class AudioFileNarrator: NSObject, Narrator {
     private(set) var state: NarrationState = .idle
 
+    /// The audio player's position — the clock sticker effects follow.
+    var playbackTime: TimeInterval? {
+        guard case .playing = state, let player else { return nil }
+        return player.currentTime
+    }
+
     private var player: AVAudioPlayer?
     private var finish: CheckedContinuation<Void, any Error>?
 

@@ -27,6 +27,9 @@ final class PlaybackController {
 
     var isBusy: Bool { phase != .idle }
 
+    /// Seconds into the narration, for the effects clock; `nil` when not playing.
+    var playbackTime: TimeInterval? { narrator.playbackTime }
+
     func play(canvas: CanvasState, pack: LoadedPack, language: String) {
         stop()
         playTask = Task {

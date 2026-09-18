@@ -1,3 +1,4 @@
+import os
 import SpriteKit
 import StickerStoriesKit
 import UIKit
@@ -101,6 +102,17 @@ final class CanvasScene: SKScene {
     private let softHaptic = UIImpactFeedbackGenerator(style: .light)
     private let firmHaptic = UIImpactFeedbackGenerator(style: .medium)
 
+    /// Play mode: touches are ignored and the effects pipeline (created at
+    /// play start, discarded at play end — P6) owns the sticker transforms.
+    private(set) var isPlayLocked = false
+    private struct PlaySession {
+        let runner: StickerEffectsRunner
+        let applier: EffectApplier
+        let clock: PlaybackClock
+    }
+    private var playSession: PlaySession?
+    private static let effectsLog = Logger(subsystem: "com.anj.stickerstories", category: "effects")
+
     // MARK: Setup
 
     init(pack: LoadedPack, stateStore: any CanvasStateStore) {
@@ -159,6 +171,11 @@ final class CanvasScene: SKScene {
             let sy = size.height / oldSize.height
             for node in allStickerNodes() {
                 node.position = CGPoint(x: node.position.x * sx, y: node.position.y * sy)
+                if var base = node.effectBase {
+                    base.x *= sx
+                    base.y *= sy
+                    node.effectBase = base
+                }
             }
         }
         refreshSelectionBubble()
@@ -335,6 +352,7 @@ final class CanvasScene: SKScene {
     // MARK: Touches
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isPlayLocked else { return }
         for touch in touches {
             let location = touch.location(in: self)
             // `atPoint` would return only the topmost node — and the
@@ -399,6 +417,7 @@ final class CanvasScene: SKScene {
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isPlayLocked else { return }
         for touch in touches {
             if let pending = pendingTrayTouches[touch] {
                 resolvePendingTrayTouch(pending, touch: touch)
@@ -430,6 +449,7 @@ final class CanvasScene: SKScene {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isPlayLocked else { return }
         for touch in touches {
             if let pending = pendingTrayTouches.removeValue(forKey: touch) {
                 // Never crossed the move threshold — a tap: place directly,
@@ -446,6 +466,7 @@ final class CanvasScene: SKScene {
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard !isPlayLocked else { return }
         for touch in touches {
             pendingTrayTouches.removeValue(forKey: touch)
             trayScrolls.removeValue(forKey: touch)
@@ -819,17 +840,19 @@ final class CanvasScene: SKScene {
         var placed: [PlacedSticker] = []
         for (layerNode, layer) in [(backgroundStickers, CanvasLayer.background), (foregroundStickers, .foreground)] {
             for case let node as StickerNode in layerNode.children {
+                // `placement` is the child's base even mid-effect (play mode).
+                let placement = node.placement
                 placed.append(
                     PlacedSticker(
                         id: node.instanceID,
                         stickerID: node.stickerID,
                         position: NormalizedPoint(
-                            x: node.position.x / max(size.width, 1),
-                            y: node.position.y / max(size.height, 1)),
+                            x: placement.x / max(size.width, 1),
+                            y: placement.y / max(size.height, 1)),
                         layer: layer,
                         zOrder: Int(node.zPosition),
-                        scale: node.baseScale,
-                        rotation: Double(node.zRotation)))
+                        scale: placement.scale,
+                        rotation: placement.rotation))
             }
         }
         return CanvasState(packID: pack.id, stickers: placed)
@@ -844,6 +867,84 @@ final class CanvasScene: SKScene {
                 self.commitChange(before: before)
             },
         ]))
+    }
+
+    // MARK: Play mode (sticker effects)
+
+    /// Locks or unlocks editing. Locking ends any gesture in flight as
+    /// cancelled and hides the selection bubble, so nothing from edit mode
+    /// can fight the effects.
+    func setPlayLocked(_ locked: Bool) {
+        guard locked != isPlayLocked else { return }
+        if locked {
+            if let transform = activeTransform {
+                _ = endTransform(for: transform.touchA, cancelled: true)
+            }
+            for touch in Array(drags.keys) { endDrag(for: touch, cancelled: true) }
+            pendingTrayTouches.removeAll()
+            trayScrolls.removeAll()
+            select(nil)
+        }
+        isPlayLocked = locked
+    }
+
+    /// Starts the effects pipeline for one story. Effects only exist between
+    /// this call and `endPlayMode()`; leaving play mode is a hard reset.
+    func beginPlayMode(story: Story, clock: PlaybackClock, policy: EffectPolicy) {
+        endPlayMode()
+        setPlayLocked(true)
+        let nodes = allStickerNodes()
+        let targets = Dictionary(grouping: nodes, by: \.stickerID).mapValues { $0.map(\.instanceID) }
+        let runner = StickerEffectsRunner(
+            triggers: loadTriggers(for: story), targets: targets, policy: policy)
+        let applier = EffectApplier()
+        applier.normalize(nodes)
+        playSession = PlaySession(runner: runner, applier: applier, clock: clock)
+    }
+
+    /// Restores the child's exact arrangement (P4) and tears the pipeline down.
+    func endPlayMode() {
+        if let session = playSession {
+            session.runner.stopAll()
+            session.applier.restoreAll(stickerNodesByID())
+            playSession = nil
+        }
+        setPlayLocked(false)
+    }
+
+    /// Reduce Motion / calm mode can change mid-story; applies to effects
+    /// that start from now on.
+    func setEffectPolicy(_ policy: EffectPolicy) {
+        playSession?.runner.policy = policy
+    }
+
+    /// The runner, for the debug gallery and tests; `nil` outside play mode.
+    var effects: (any StickerEffects)? { playSession?.runner }
+
+    override func update(_ currentTime: TimeInterval) {
+        guard let session = playSession else { return }
+        let deltas = session.runner.tick(session.clock.now())
+        session.applier.apply(deltas, to: stickerNodesByID())
+    }
+
+    private func stickerNodesByID() -> [UUID: StickerNode] {
+        Dictionary(uniqueKeysWithValues: allStickerNodes().map { ($0.instanceID, $0) })
+    }
+
+    /// Decodes the story's trigger sidecar. Problems are logged, never
+    /// surfaced: a story with a broken sidecar plays with no effects.
+    private func loadTriggers(for story: Story) -> [EffectTrigger] {
+        guard let path = story.effectsPath else { return [] }
+        do {
+            let file = try EffectTriggerFile.load(from: pack.url(forAssetPath: path))
+            for warning in file.warnings {
+                Self.effectsLog.notice("\(story.id, privacy: .public): \(warning, privacy: .public)")
+            }
+            return file.triggers
+        } catch {
+            Self.effectsLog.error("\(story.id, privacy: .public): effects file unusable: \(String(describing: error), privacy: .public)")
+            return []
+        }
     }
 
     // MARK: History (undo/redo) & persistence
