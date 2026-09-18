@@ -19,9 +19,9 @@ import UIKit
 /// finger on empty space, camera clamped to the world. Vertical overflow
 /// (a view wider than the art: every full-screen landscape case) is simply
 /// centre-cropped, never panned. Packs can ship a wide rendition of the
-/// art; the scene draws whichever rendition's aspect is closest to the
-/// window (`ArtVariant`), so landscape-ish windows crop a little and pan
-/// not at all, tall phones get the wide art, and portrait pans the least
+/// art; the scene draws the rendition that lets a landscape window avoid
+/// panning with the least crop (`ArtVariant`): iPads keep the base art,
+/// tall phones get the wide art, and portrait pans the least
 /// (docs/pack-format.md, "Art safe area"). The tray is a HUD that follows
 /// the camera and always fits between the SwiftUI buttons.
 final class CanvasScene: SKScene {
@@ -279,8 +279,8 @@ final class CanvasScene: SKScene {
     // MARK: Layout
 
     private func layoutScene() {
-        // Draw the rendition whose aspect is closest to the window (ArtVariant),
-        // so the vertical crop and any sideways panning both stay minimal.
+        // Draw the rendition that lets a landscape window avoid panning with
+        // the least crop, or pans least otherwise (ArtVariant).
         let viewAspect = size.height > 0 ? Double(size.width / size.height) : 1
         let baseAspect = baseArtPixelSize.height > 0 ? Double(baseArtPixelSize.width / baseArtPixelSize.height) : 1
         let wideAspect = wideArtTextures.map { Double($0.background.size().width / max($0.background.size().height, 1)) }

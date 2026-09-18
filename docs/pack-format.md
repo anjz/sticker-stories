@@ -45,15 +45,20 @@ never letterboxes:
   heavy crop on tall iPhones: paint the same scene wider (2:1 is a good
   target: on an iPhone that leaves ~4 % cropped per edge instead of ~20 %)
   with the base composition centred, and export the centre as the base art.
-  The app draws whichever rendition's aspect is **closest to the window**,
-  then covers the window with it: landscape-ish windows crop a little and
-  never pan, tall phones use the wide art, portrait and narrow windows use
-  the base art and pan sideways the least. Stickers always use the base
+  The app picks the rendition to draw so that **a landscape window never
+  pans**: among renditions no wider than the window it takes the one that
+  crops least, as long as the crop stays within 30 % of the height; only a
+  window narrower than every rendition (portrait, Split View) pans, using
+  the rendition that pans least. In practice: iPads keep the base art
+  (≤ 7 % cropped), 19.5:9 phones use the wide art (~8 % cropped), 16:9
+  phones use the base art (25 % cropped). Stickers always use the base
   frame, so the same arrangement appears on every device (positions in the
   wide margins fall outside 0…1 and that is fine).
 - Keep skies, ground lines and anything the child needs inside the central
-  ~90 % of the art's height. A sticker placed in a top/bottom band while in
-  portrait is hidden in landscape until they rotate back.
+  **~70 %** of the art's height: that is what survives the largest crop the
+  app will make before it switches to a wider rendition. A sticker placed
+  in a top/bottom band while in portrait is hidden in landscape until they
+  rotate back.
 
 ## manifest.json — schema v2
 
@@ -112,7 +117,7 @@ never letterboxes:
 | `displayName` | {lang: string} | Human-readable name per language, shown to parents. |
 | `theme` | string | Free-form theme tag; future prompt context for generated stories. |
 | `background` / `foreground` | string | Pack-relative paths; files must exist. Their frame is the sticker coordinate system ("Art safe area" below). |
-| `backgroundWide` / `foregroundWide` | string | **Optional, together or not at all.** Wider renditions (e.g. 2:1) with the **same pixel height** as the base art and the base art **centred** inside. The app draws whichever rendition's aspect is closest to the window (tall phones get the wide one; iPads keep the base one). Files must exist. |
+| `backgroundWide` / `foregroundWide` | string | **Optional, together or not at all.** Wider renditions (e.g. 2:1) with the **same pixel height** as the base art and the base art **centred** inside. The app draws whichever rendition lets a landscape window avoid panning with the least crop (tall phones get the wide one; iPads keep the base one). Files must exist. |
 | `stickers[].id` | string | Lowercase `a-z0-9-`, unique within the pack. |
 | `stickers[].name` | {lang: string} | Display/accessibility name per language. |
 | `stickers[].image` | string | Pack-relative path; must exist. |
