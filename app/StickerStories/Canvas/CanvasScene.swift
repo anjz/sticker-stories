@@ -18,9 +18,10 @@ import UIKit
 /// overflow (portrait, Split View, narrow windows) can be panned with one
 /// finger on empty space, camera clamped to the world. Vertical overflow
 /// (a view wider than the art: every full-screen landscape case) is simply
-/// centre-cropped, never panned — pack art keeps nothing important in its
-/// top and bottom bands, and packs can ship a wide rendition of the art so
-/// tall phones crop little and gain scenery to pan across instead
+/// centre-cropped, never panned. Packs can ship a wide rendition of the
+/// art; the scene draws whichever rendition's aspect is closest to the
+/// window (`ArtVariant`), so landscape-ish windows crop a little and pan
+/// not at all, tall phones get the wide art, and portrait pans the least
 /// (docs/pack-format.md, "Art safe area"). The tray is a HUD that follows
 /// the camera and always fits between the SwiftUI buttons.
 final class CanvasScene: SKScene {
@@ -47,6 +48,8 @@ final class CanvasScene: SKScene {
     private var worldExtent: CGRect = .zero
     /// Pixel size of the base art; wide art shares its height.
     private var baseArtPixelSize: CGSize = .zero
+    private var baseArtTextures: (background: SKTexture?, foreground: SKTexture?) = (nil, nil)
+    private var wideArtTextures: (background: SKTexture, foreground: SKTexture?)?
     /// Scrollable row of tray items; `position.x` is the scroll offset
     /// (0 = start, negative = scrolled left to reveal later items).
     private let trayContent = SKNode()
@@ -252,18 +255,16 @@ final class CanvasScene: SKScene {
     }
 
     private func loadPackContent() {
-        // Wide art (same height, base composition centred) is shown whenever
-        // the pack ships it; the base art still defines the coordinate frame.
-        let base = texture(forAssetPath: pack.manifest.background)
-        baseArtPixelSize = base?.size() ?? .zero
+        // Both renditions are kept; `layoutScene` draws whichever aspect is
+        // closest to the window. The base art always defines the frame.
+        baseArtTextures = (texture(forAssetPath: pack.manifest.background), texture(forAssetPath: pack.manifest.foreground))
+        baseArtPixelSize = baseArtTextures.background?.size() ?? .zero
         if let wideBackground = pack.manifest.backgroundWide, let wideForeground = pack.manifest.foregroundWide,
             let wideTexture = texture(forAssetPath: wideBackground) {
-            backgroundArt.texture = wideTexture
-            foregroundArt.texture = texture(forAssetPath: wideForeground)
-        } else {
-            backgroundArt.texture = base
-            foregroundArt.texture = texture(forAssetPath: pack.manifest.foreground)
+            wideArtTextures = (wideTexture, texture(forAssetPath: wideForeground))
         }
+        backgroundArt.texture = baseArtTextures.background
+        foregroundArt.texture = baseArtTextures.foreground
         for sticker in pack.manifest.stickers {
             stickerTextures[sticker.id] = texture(forAssetPath: sticker.image)
         }
@@ -278,6 +279,19 @@ final class CanvasScene: SKScene {
     // MARK: Layout
 
     private func layoutScene() {
+        // Draw the rendition whose aspect is closest to the window (ArtVariant),
+        // so the vertical crop and any sideways panning both stay minimal.
+        let viewAspect = size.height > 0 ? Double(size.width / size.height) : 1
+        let baseAspect = baseArtPixelSize.height > 0 ? Double(baseArtPixelSize.width / baseArtPixelSize.height) : 1
+        let wideAspect = wideArtTextures.map { Double($0.background.size().width / max($0.background.size().height, 1)) }
+        if let wide = wideArtTextures,
+            ArtVariant.select(viewAspect: viewAspect, baseAspect: baseAspect, wideAspect: wideAspect) == .wide {
+            backgroundArt.texture = wide.background
+            foregroundArt.texture = wide.foreground
+        } else {
+            backgroundArt.texture = baseArtTextures.background
+            foregroundArt.texture = baseArtTextures.foreground
+        }
         // Scale so the *drawn* art covers the view; the base frame is that
         // scale applied to the base art, centred on the drawn art.
         let drawnPixelSize = backgroundArt.texture?.size() ?? baseArtPixelSize

@@ -67,11 +67,13 @@ AVFoundation. This is our own code, not a third-party dependency.
    centre-cropped and never panned, so pack art keeps nothing important in
    its top and bottom bands. Packs designed for iPad can ship a **wide
    rendition** (`backgroundWide`/`foregroundWide`, same height, base art
-   centred) that the scene draws instead; the base frame stays the sticker
-   coordinate system and the extra width becomes pannable scenery, so a
-   tall iPhone crops a few percent rather than a fifth of the art
-   (`docs/pack-format.md`, "Art safe area"). No windowing-mode detection is
-   needed: the rule is purely geometric. The tray is a HUD: a plain scene child that follows the camera
+   centred); the scene draws whichever rendition's aspect is closest to the
+   window (`ArtVariant.select`, unit-tested), so landscape-ish windows crop
+   a little and never pan, a tall iPhone gets the wide art with a few
+   percent cropped, and portrait pans the least. The base frame stays the
+   sticker coordinate system either way (`docs/pack-format.md`, "Art safe
+   area"). No windowing-mode detection is needed: the rule is purely
+   geometric. The tray is a HUD: a plain scene child that follows the camera
    every frame (not a camera child — SpriteKit draws camera descendants
    below world content once the camera is off-centre), laid out to always
    fit fully between the back button and the undo/redo/clear cluster,
