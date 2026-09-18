@@ -28,6 +28,23 @@ The `audio/<lang>/…` layout is a convention, not a rule — audio paths are
 whatever the manifest declares, but keep the convention so packs stay
 navigable.
 
+### Art safe area
+
+`background` and `foreground` share one aspect ratio (Forest: 4:3,
+2048×1536) and define the canvas "world". The app scales the art to cover
+the window and never letterboxes:
+
+- **Wider windows than the art** (every full-screen landscape case) are
+  **centre-cropped top and bottom**, never panned. On an iPad in landscape
+  about 3–4 % is cut from each edge; on a tall iPhone roughly **20 % from the
+  top and 20 % from the bottom**. Keep skies, ground lines and anything
+  the child needs to see inside the central ~60 % of the art's height.
+- **Narrower windows than the art** (portrait, Split View) show the full
+  height and let the child pan sideways over the rest.
+- Stickers are placed in art coordinates, so the child's arrangement is the
+  same everywhere; a sticker placed in a top/bottom band in portrait is
+  hidden in landscape until they rotate back.
+
 ## manifest.json — schema v2
 
 ```json

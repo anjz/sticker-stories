@@ -14,10 +14,13 @@ import UIKit
 /// World and camera: the pack art defines a fixed-aspect **world**, scaled
 /// so it always covers the view (`worldSize`). Sticker positions live in
 /// world points and are saved normalized to the art, so a fox on the hill
-/// stays on the hill in every orientation and window size. Whatever part of
-/// the world overflows the view can be panned with one finger on empty
-/// space; the camera is clamped to the world. The tray is a child of the
-/// camera, so it stays put and always fits between the SwiftUI buttons.
+/// stays on the hill in every orientation and window size. Horizontal
+/// overflow (portrait, Split View, narrow windows) can be panned with one
+/// finger on empty space, camera clamped to the world. Vertical overflow
+/// (a view wider than the art: every full-screen landscape case) is simply
+/// centre-cropped, never panned — pack art keeps nothing important in its
+/// top and bottom bands (docs/pack-format.md). The tray is a HUD that
+/// follows the camera and always fits between the SwiftUI buttons.
 final class CanvasScene: SKScene {
     /// Fired after every mutation (add, move, delete, layer change).
     var onCanvasChange: ((CanvasState) -> Void)?
@@ -59,8 +62,9 @@ final class CanvasScene: SKScene {
     }
     /// The part of the world currently on screen.
     private var visibleRect: CGRect { CGRect(origin: viewOrigin, size: size) }
+    /// Only horizontal overflow is pannable; vertical overflow is cropped.
     private var worldOverflows: Bool {
-        worldSize.width > size.width + 0.5 || worldSize.height > size.height + 0.5
+        worldSize.width > size.width + 0.5
     }
     private var nextZOrder: CGFloat = 1
 
@@ -292,24 +296,20 @@ final class CanvasScene: SKScene {
         } else {
             position.x = min(max(position.x, size.width / 2), worldSize.width - size.width / 2)
         }
-        if worldSize.height <= size.height {
-            position.y = worldSize.height / 2
-        } else {
-            position.y = min(max(position.y, size.height / 2), worldSize.height - size.height / 2)
-        }
+        // Vertical overflow is centre-cropped, never panned.
+        position.y = worldSize.height / 2
         cameraNode.position = position
         syncHUDToCamera()
     }
 
-    /// One-shot "there's more" hint when the world overflows the view: the
-    /// camera drifts a little toward the hidden part and eases back, the
-    /// same idea as the tray's scroll hint. Cancelled by any touch.
+    /// One-shot "there's more" hint when the world overflows the view
+    /// sideways: the camera drifts a little toward the hidden part and eases
+    /// back, the same idea as the tray's scroll hint. Cancelled by any touch.
     private func runPanHintIfNeeded() {
         guard worldOverflows else { return }
-        let dx = worldSize.width > size.width ? min(worldSize.width - size.width, size.width * 0.12) : 0
-        let dy = worldSize.height > size.height ? min(worldSize.height - size.height, size.height * 0.12) : 0
+        let dx = min(worldSize.width - size.width, size.width * 0.12)
         let start = cameraNode.position
-        let out = SKAction.move(to: CGPoint(x: start.x + dx / 2, y: start.y + dy / 2), duration: 0.5)
+        let out = SKAction.move(to: CGPoint(x: start.x + dx / 2, y: start.y), duration: 0.5)
         out.timingMode = .easeInEaseOut
         let back = SKAction.move(to: start, duration: 0.6)
         back.timingMode = .easeInEaseOut
@@ -325,10 +325,9 @@ final class CanvasScene: SKScene {
     private func updatePan(for touch: UITouch) {
         guard let info = pans[touch], let view else { return }
         let location = touch.location(in: view)
-        // UIKit view coordinates have y down; the camera's world y is up.
         cameraNode.position = CGPoint(
             x: info.startCamera.x - (location.x - info.startViewLocation.x),
-            y: info.startCamera.y + (location.y - info.startViewLocation.y))
+            y: info.startCamera.y)
         clampCamera()
     }
 
@@ -770,13 +769,14 @@ final class CanvasScene: SKScene {
     }
 
     /// Nudges a sticker back inside the world if dropped half off its edge,
-    /// and keeps it out from under the tray. Anywhere on the art is fine,
-    /// including parts currently panned out of view.
+    /// and keeps it out from under the tray. Anywhere along the art is fine,
+    /// including parts currently panned out of view; vertically it stays in
+    /// the visible band, since that is never panned.
     private func keepOnCanvas(_ node: StickerNode) {
         let margin = stickerBaseSize * 0.35
         node.position = CGPoint(
             x: min(max(node.position.x, margin), worldSize.width - margin),
-            y: min(max(node.position.y, margin), trayRect.minY - margin * 0.6))
+            y: min(max(node.position.y, max(margin, visibleRect.minY + margin)), trayRect.minY - margin * 0.6))
     }
 
     private func nextZ() -> CGFloat {

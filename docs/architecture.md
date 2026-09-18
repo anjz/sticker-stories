@@ -59,10 +59,14 @@ AVFoundation. This is our own code, not a third-party dependency.
 3a. **World + camera.** The art defines a fixed-aspect world scaled to cover
    the view; sticker positions and sizes are world-relative, so the child's
    arrangement is identical in every orientation and window size (iPadOS 26
-   resizable windows, Split View, portrait). Whatever overflows the view can
-   be panned with one finger on empty space (also during playback); the
-   camera is clamped to the world and a one-shot drift hints that there is
-   more. The tray is a HUD: a plain scene child that follows the camera
+   resizable windows, Split View, portrait). Horizontal overflow (portrait,
+   Split View, narrow windows) can be panned with one finger on empty space
+   (also during playback); the camera is clamped to the world and a one-shot
+   drift hints that there is more. Vertical overflow — a view wider than the
+   art, i.e. every full-screen landscape case, iPhone especially — is
+   centre-cropped and never panned, so pack art keeps nothing important in
+   its top and bottom bands (`docs/pack-format.md`, "Art safe area"). No
+   windowing-mode detection is needed: the rule is purely geometric. The tray is a HUD: a plain scene child that follows the camera
    every frame (not a camera child — SpriteKit draws camera descendants
    below world content once the camera is off-centre), laid out to always
    fit fully between the back button and the undo/redo/clear cluster,
