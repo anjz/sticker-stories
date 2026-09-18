@@ -51,6 +51,14 @@ struct EmitterSpec: Decodable {
         }
     }
 
+    /// The shape of `emitters.json`: the three emitters (plus a `_comment`
+    /// that is not decoded).
+    private struct File: Decodable {
+        var sparkles: EmitterSpec
+        var smoke: EmitterSpec
+        var hearts: EmitterSpec
+    }
+
     /// All emitters from the bundled data file, keyed by name.
     static let bundled: [String: EmitterSpec] = {
         guard let url = Bundle.main.url(forResource: "emitters", withExtension: "json"),
@@ -60,20 +68,11 @@ struct EmitterSpec: Decodable {
             return [:]
         }
         do {
-            var specs = try JSONDecoder().decode([String: EmitterSpec].self, from: data)
-            specs["_comment"] = nil
-            return specs
+            let file = try JSONDecoder().decode(File.self, from: data)
+            return ["sparkles": file.sparkles, "smoke": file.smoke, "hearts": file.hearts]
         } catch {
             assertionFailure("emitters.json undecodable: \(error)")
             return [:]
         }
     }()
-}
-
-extension EmitterSpec {
-    /// `_comment` is a string, not a spec; tolerate it when decoding the map.
-    private enum CodingKeys: String, CodingKey {
-        case texture, blend, birthRate, lifetime, speed, emissionAngle, gravity, positionSpread
-        case scale, alpha, rotationSpeed, defaultColor, maxParticles, inFront
-    }
 }
