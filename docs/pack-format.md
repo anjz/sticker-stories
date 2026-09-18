@@ -17,6 +17,8 @@ picks the best match for the device (see "Language resolution" below).
   art/
     background.png        # full-canvas back plane (sky, hills…)
     foreground.png        # full-canvas front plane (trees, mushrooms…), alpha where see-through
+    background-wide.png   # optional: wider rendition for wide windows (iPhone), same height
+    foreground-wide.png   # optional: its front plane; declared together with the above
   stickers/
     <stickerID>.png       # sticker art, alpha background, white border baked in
   audio/
@@ -30,20 +32,26 @@ navigable.
 
 ### Art safe area
 
-`background` and `foreground` share one aspect ratio (Forest: 4:3,
-2048×1536) and define the canvas "world". The app scales the art to cover
-the window and never letterboxes:
+`background` and `foreground` share one aspect ratio, designed for iPad
+(Forest placeholder: 4:3, 2048×1536); their frame is the coordinate system
+stickers are saved in. The app scales the art to cover the window and
+never letterboxes:
 
-- **Wider windows than the art** (every full-screen landscape case) are
-  **centre-cropped top and bottom**, never panned. On an iPad in landscape
-  about 3–4 % is cut from each edge; on a tall iPhone roughly **20 % from the
-  top and 20 % from the bottom**. Keep skies, ground lines and anything
-  the child needs to see inside the central ~60 % of the art's height.
-- **Narrower windows than the art** (portrait, Split View) show the full
+- **Windows wider than the art** are **centre-cropped top and bottom**,
+  never panned. On an iPad in landscape that is a few percent per edge.
+- **Windows narrower than the art** (portrait, Split View) show the full
   height and let the child pan sideways over the rest.
-- Stickers are placed in art coordinates, so the child's arrangement is the
-  same everywhere; a sticker placed in a top/bottom band in portrait is
-  hidden in landscape until they rotate back.
+- **Wide art** (`backgroundWide` / `foregroundWide`) is how a pack avoids a
+  heavy crop on tall iPhones: paint the same scene wider (2:1 is a good
+  target: on an iPhone that leaves ~4 % cropped per edge instead of ~20 %)
+  with the base composition centred, and export the centre as the base art.
+  The app always shows the wide art when present; on an iPad the extra width
+  becomes something to pan to. Stickers still use the base frame, so the
+  same arrangement appears on every device (positions in the wide margins
+  fall outside 0…1 and that is fine).
+- Keep skies, ground lines and anything the child needs inside the central
+  ~90 % of the art's height. A sticker placed in a top/bottom band while in
+  portrait is hidden in landscape until they rotate back.
 
 ## manifest.json — schema v2
 
@@ -57,6 +65,8 @@ the window and never letterboxes:
   "theme": "forest",
   "background": "art/background.png",
   "foreground": "art/foreground.png",
+  "backgroundWide": "art/background-wide.png",
+  "foregroundWide": "art/foreground-wide.png",
   "stickers": [
     {
       "id": "mushroom",
@@ -99,7 +109,8 @@ the window and never letterboxes:
 | `languages` | [string] | BCP-47 tags (`xx` or `xx-YY`, e.g. `en-US`), non-empty, no duplicates. **The first entry is the pack's fallback language.** |
 | `displayName` | {lang: string} | Human-readable name per language, shown to parents. |
 | `theme` | string | Free-form theme tag; future prompt context for generated stories. |
-| `background` / `foreground` | string | Pack-relative paths; files must exist. |
+| `background` / `foreground` | string | Pack-relative paths; files must exist. Their frame is the sticker coordinate system ("Art safe area" below). |
+| `backgroundWide` / `foregroundWide` | string | **Optional, together or not at all.** Wider renditions (e.g. 2:1) with the **same pixel height** as the base art and the base art **centred** inside. Shown whenever present; the extra width is real scenery the child can pan to on wide windows. Files must exist. |
 | `stickers[].id` | string | Lowercase `a-z0-9-`, unique within the pack. |
 | `stickers[].name` | {lang: string} | Display/accessibility name per language. |
 | `stickers[].image` | string | Pack-relative path; must exist. |
@@ -138,6 +149,9 @@ the window and never letterboxes:
    unknown keys, out-of-range numbers and undeclared stickers are errors);
    the app decodes it **leniently** (skip / clamp / log) so a pack authored
    against a newer library still plays with fewer effects.
+10. `backgroundWide` and `foregroundWide` are declared together or not at
+    all, and exist when declared. Their pixel dimensions are the pack
+    author's responsibility (same height as the base art, base centred).
 
 ## Language resolution (app behaviour)
 
@@ -161,7 +175,8 @@ same device preference.
   `displayName`, `stickers[].name` became per-language maps; story
   `title`/`text`/`audio` moved into `localizations`. v1 packs are not
   supported (none shipped). 2026-09: optional `localizations[].effects`
-  added (additive, no bump).
+  and optional `backgroundWide` / `foregroundWide` added (additive, no
+  bump).
 - Any schema change must update this document, the Go validator
   (`tools/internal/manifest`), and the Swift decoder in the **same commit**.
 - `version` (pack content revision) is bumped whenever any asset or story in a

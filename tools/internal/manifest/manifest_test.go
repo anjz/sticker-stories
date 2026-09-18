@@ -135,6 +135,11 @@ func TestValidationFailures(t *testing.T) {
 		{"display name undeclared language", func(m *Manifest) { m.DisplayName["fr-FR"] = "Amis" }, "not in declared languages"},
 		{"sticker name missing language", func(m *Manifest) { delete(m.Stickers[0].Name, "es-ES") }, "missing \"es-ES\""},
 		{"missing background file", func(m *Manifest) { m.Background = "art/nope.png" }, "not found"},
+		{"wide art alone", func(m *Manifest) { m.BackgroundWide = "art/background.png" }, "declared together"},
+		{"missing wide file", func(m *Manifest) {
+			m.BackgroundWide = "art/nope-wide.png"
+			m.ForegroundWide = "art/foreground.png"
+		}, "backgroundWide"},
 		{"absolute path", func(m *Manifest) { m.Foreground = "/etc/passwd" }, "pack-relative"},
 		{"path escape", func(m *Manifest) { m.Foreground = "../../evil.png" }, "escape"},
 		{"duplicate sticker id", func(m *Manifest) { m.Stickers[1].ID = "mushroom" }, "duplicate sticker"},

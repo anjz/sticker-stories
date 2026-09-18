@@ -22,13 +22,19 @@ public struct PackManifest: Codable, Equatable, Sendable {
     public var theme: String
     public var background: String
     public var foreground: String
+    /// Optional wider renditions of the art for wide windows (iPhone): same
+    /// pixel height as the base art, with the base art centred inside. The
+    /// base art's frame stays the sticker coordinate system. Both or neither.
+    public var backgroundWide: String?
+    public var foregroundWide: String?
     public var stickers: [StickerDefinition]
     public var stories: [StoryDefinition]
 
     public init(
         schemaVersion: Int, id: String, version: Int, languages: [String],
         displayName: [String: String], theme: String, background: String,
-        foreground: String, stickers: [StickerDefinition], stories: [StoryDefinition]
+        foreground: String, backgroundWide: String? = nil, foregroundWide: String? = nil,
+        stickers: [StickerDefinition], stories: [StoryDefinition]
     ) {
         self.schemaVersion = schemaVersion
         self.id = id
@@ -38,6 +44,8 @@ public struct PackManifest: Codable, Equatable, Sendable {
         self.theme = theme
         self.background = background
         self.foreground = foreground
+        self.backgroundWide = backgroundWide
+        self.foregroundWide = foregroundWide
         self.stickers = stickers
         self.stories = stories
     }
@@ -214,6 +222,12 @@ extension PackManifest {
         }
         checkFile("background", background)
         checkFile("foreground", foreground)
+        // Rule 10: wide art comes as a pair.
+        if let backgroundWide { checkFile("backgroundWide", backgroundWide) }
+        if let foregroundWide { checkFile("foregroundWide", foregroundWide) }
+        if (backgroundWide == nil) != (foregroundWide == nil) {
+            issues.append("backgroundWide and foregroundWide must be declared together")
+        }
 
         // Rule 2: sticker IDs well-formed and unique.
         var stickerIDs = Set<String>()
