@@ -9,12 +9,16 @@ public struct Story: Equatable, Sendable, Identifiable {
     public let text: String
     /// Pack-relative path to pre-rendered narration audio, if the story has one.
     public let audioPath: String?
+    /// Pack-relative path to this language's sticker-effect triggers
+    /// (`docs/effects.md`), if the story has any.
+    public let effectsPath: String?
 
-    public init(id: String, title: String, text: String, audioPath: String?) {
+    public init(id: String, title: String, text: String, audioPath: String?, effectsPath: String? = nil) {
         self.id = id
         self.title = title
         self.text = text
         self.audioPath = audioPath
+        self.effectsPath = effectsPath
     }
 
     /// Resolves a story definition into the given language (falling back
@@ -25,7 +29,8 @@ public struct Story: Equatable, Sendable, Identifiable {
             id: definition.id,
             title: localization?.title ?? definition.id,
             text: localization?.text ?? "",
-            audioPath: localization?.audio)
+            audioPath: localization?.audio,
+            effectsPath: localization?.effects)
     }
 }
 

@@ -54,6 +54,7 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
     var assets = [manifest.background, manifest.foreground]
     assets += manifest.stickers.map(\.image)
     assets += manifest.stories.flatMap { $0.localizations.values.map(\.audio) }
+    assets += manifest.stories.flatMap { $0.localizations.values.compactMap(\.effects) }
     for relative in assets {
         let url = dir.appendingPathComponent(relative)
         try fm.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
@@ -104,6 +105,20 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         let manifest = makeValidManifest()
         let dir = try materialize(manifest)
         #expect(manifest.validationIssues(packDirectory: dir).isEmpty)
+    }
+
+    @Test func effectsSidecarMustExistWhenDeclared() throws {
+        var manifest = makeValidManifest()
+        manifest.stories[0].localizations["en-US"]?.effects = "audio/en-US/story-001.effects.json"
+        let dir = try materialize(manifest)
+        #expect(manifest.validationIssues(packDirectory: dir).isEmpty)
+        let story = Story(manifest.stories[0], language: "en-US", fallbackOrder: manifest.languages)
+        #expect(story.effectsPath == "audio/en-US/story-001.effects.json")
+        #expect(Story(manifest.stories[0], language: "es-ES", fallbackOrder: manifest.languages).effectsPath == nil)
+
+        try FileManager.default.removeItem(at: dir.appendingPathComponent("audio/en-US/story-001.effects.json"))
+        let issues = manifest.validationIssues(packDirectory: dir)
+        #expect(issues.count == 1 && issues[0].contains("effects"))
     }
 
     struct InvalidCase: Sendable, CustomStringConvertible {

@@ -1,0 +1,216 @@
+// Package effects validates a story's sticker-effect trigger sidecar
+// (docs/effects.md, "Trigger file"). It is the authoring-time, strict half
+// of the contract: the app decodes the same file leniently (skip/clamp/log),
+// so anything this package rejects would merely be ignored on device — but
+// silently broken content is exactly what validation exists to catch.
+//
+// The effect library itself is closed (15 names). docs/effects/effects.json
+// is the shared catalogue; a test checks the names here match it.
+package effects
+
+import (
+	"encoding/json"
+	"fmt"
+	"math"
+	"os"
+	"regexp"
+	"sort"
+)
+
+// SupportedSchema is the only trigger-file schema this validator accepts.
+const SupportedSchema = 1
+
+// Names lists every effect, in library order.
+var Names = []string{
+	"pulse", "wobble", "shake", "hop", "spin", "float", "sway",
+	"fade-in", "fade-out", "blink", "glow", "tint",
+	"sparkle", "puff", "hearts",
+}
+
+var (
+	oneWay        = set("fade-in", "fade-out")
+	supportsHold  = set("fade-in", "fade-out", "glow", "tint")
+	readsColor    = set("glow", "tint", "sparkle")
+	requiresColor = set("tint")
+	known         = set(Names...)
+	knownKeys     = set("at", "cue", "sticker", "effect", "repeat", "duration", "intensity", "color", "hold")
+	colorPattern  = regexp.MustCompile(`^#[0-9A-Fa-f]{6}$`)
+)
+
+const (
+	MaxRepeat   = 50
+	MinDuration = 0.05
+	MaxDuration = 30.0
+)
+
+func set(items ...string) map[string]bool {
+	m := make(map[string]bool, len(items))
+	for _, s := range items {
+		m[s] = true
+	}
+	return m
+}
+
+// ValidateFile reads and strictly validates a trigger sidecar. declared
+// maps sticker IDs the pack defines. Every problem found is returned.
+func ValidateFile(path string, declared map[string]bool) []error {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return []error{fmt.Errorf("reading effects file: %w", err)}
+	}
+	return Validate(data, declared)
+}
+
+// Validate strictly validates the raw JSON of a trigger sidecar.
+func Validate(data []byte, declared map[string]bool) []error {
+	var errs []error
+	fail := func(format string, args ...any) {
+		errs = append(errs, fmt.Errorf(format, args...))
+	}
+
+	var root map[string]json.RawMessage
+	if err := json.Unmarshal(data, &root); err != nil {
+		return []error{fmt.Errorf("effects file is not a JSON object: %w", err)}
+	}
+
+	rawSchema, ok := root["schema"]
+	if !ok {
+		fail("schema is required (want %d)", SupportedSchema)
+	} else {
+		var schema int
+		if err := json.Unmarshal(rawSchema, &schema); err != nil || schema != SupportedSchema {
+			fail("schema must be %d", SupportedSchema)
+		}
+	}
+	for key := range root {
+		if key != "schema" && key != "triggers" {
+			fail("unknown top-level key %q", key)
+		}
+	}
+
+	rawTriggers, ok := root["triggers"]
+	if !ok {
+		fail("triggers is required")
+		return errs
+	}
+	var triggers []json.RawMessage
+	if err := json.Unmarshal(rawTriggers, &triggers); err != nil {
+		fail("triggers must be an array")
+		return errs
+	}
+
+	for i, raw := range triggers {
+		label := fmt.Sprintf("triggers[%d]", i)
+		var fields map[string]json.RawMessage
+		if err := json.Unmarshal(raw, &fields); err != nil {
+			fail("%s: must be an object", label)
+			continue
+		}
+		validateTrigger(label, fields, declared, fail)
+	}
+	return errs
+}
+
+func validateTrigger(label string, fields map[string]json.RawMessage, declared map[string]bool, fail func(string, ...any)) {
+	keys := make([]string, 0, len(fields))
+	for k := range fields {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+	for _, k := range keys {
+		if !knownKeys[k] {
+			fail("%s: unknown key %q", label, k)
+		}
+	}
+
+	effect := requireString(label, "effect", fields, fail)
+	if effect != "" && !known[effect] {
+		fail("%s: unknown effect %q", label, effect)
+		effect = ""
+	}
+	sticker := requireString(label, "sticker", fields, fail)
+	if sticker != "" && declared != nil && !declared[sticker] {
+		fail("%s: sticker %q is not declared in the manifest", label, sticker)
+	}
+	if raw, ok := fields["at"]; !ok {
+		fail("%s: at is required", label)
+	} else if at, ok := number(raw); !ok || at < 0 {
+		fail("%s: at must be a number >= 0", label)
+	}
+	if raw, ok := fields["cue"]; ok {
+		var s string
+		if err := json.Unmarshal(raw, &s); err != nil {
+			fail("%s: cue must be a string", label)
+		}
+	}
+
+	if raw, ok := fields["repeat"]; ok {
+		var s string
+		if err := json.Unmarshal(raw, &s); err == nil {
+			if s != "loop" {
+				fail("%s: repeat must be an integer or \"loop\"", label)
+			}
+		} else if n, ok := number(raw); !ok || n != math.Trunc(n) || n < 1 || n > MaxRepeat {
+			fail("%s: repeat must be an integer in 1..%d or \"loop\"", label, MaxRepeat)
+		}
+		if oneWay[effect] {
+			fail("%s: repeat is ignored by one-way effect %q; remove it", label, effect)
+		}
+	}
+	if raw, ok := fields["duration"]; ok {
+		if d, ok := number(raw); !ok || d < MinDuration || d > MaxDuration {
+			fail("%s: duration must be a number in %g..%g", label, MinDuration, MaxDuration)
+		}
+	}
+	if raw, ok := fields["intensity"]; ok {
+		if v, ok := number(raw); !ok || v < 0 || v > 1 {
+			fail("%s: intensity must be a number in 0..1", label)
+		}
+	}
+	hasColor := false
+	if raw, ok := fields["color"]; ok {
+		var s string
+		if err := json.Unmarshal(raw, &s); err != nil || !colorPattern.MatchString(s) {
+			fail("%s: color must be \"#RRGGBB\"", label)
+		} else {
+			hasColor = true
+		}
+		if effect != "" && !readsColor[effect] {
+			fail("%s: color is ignored by %q; remove it", label, effect)
+		}
+	}
+	if effect != "" && requiresColor[effect] && !hasColor {
+		fail("%s: %q requires a color", label, effect)
+	}
+	if raw, ok := fields["hold"]; ok {
+		var b bool
+		if err := json.Unmarshal(raw, &b); err != nil {
+			fail("%s: hold must be true or false", label)
+		}
+		if effect != "" && !supportsHold[effect] {
+			fail("%s: hold is ignored by %q; remove it", label, effect)
+		}
+	}
+}
+
+func requireString(label, key string, fields map[string]json.RawMessage, fail func(string, ...any)) string {
+	raw, ok := fields[key]
+	if !ok {
+		fail("%s: %s is required", label, key)
+		return ""
+	}
+	var s string
+	if err := json.Unmarshal(raw, &s); err != nil || s == "" {
+		fail("%s: %s must be a non-empty string", label, key)
+		return ""
+	}
+	return s
+}
+
+func number(raw json.RawMessage) (float64, bool) {
+	var f float64
+	if err := json.Unmarshal(raw, &f); err != nil {
+		return 0, false
+	}
+	return f, true
+}
