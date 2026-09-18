@@ -19,8 +19,10 @@ import UIKit
 /// finger on empty space, camera clamped to the world. Vertical overflow
 /// (a view wider than the art: every full-screen landscape case) is simply
 /// centre-cropped, never panned — pack art keeps nothing important in its
-/// top and bottom bands (docs/pack-format.md). The tray is a HUD that
-/// follows the camera and always fits between the SwiftUI buttons.
+/// top and bottom bands, and packs can ship a wide rendition of the art so
+/// tall phones crop little and gain scenery to pan across instead
+/// (docs/pack-format.md, "Art safe area"). The tray is a HUD that follows
+/// the camera and always fits between the SwiftUI buttons.
 final class CanvasScene: SKScene {
     /// Fired after every mutation (add, move, delete, layer change).
     var onCanvasChange: ((CanvasState) -> Void)?
@@ -36,8 +38,15 @@ final class CanvasScene: SKScene {
     private let foregroundStickers = SKNode()
     private let tray = SKNode()
     private let cameraNode = SKCameraNode()
-    /// The art scaled to cover the view; the coordinate space stickers live in.
+    /// The *base* art scaled to cover the view: the coordinate space stickers
+    /// live in (origin at its bottom-left) and the reference for sizes.
     private var worldSize: CGSize = .zero
+    /// The drawn art's frame in world coordinates. Equal to `worldSize` at
+    /// the origin unless the pack ships wide art, which extends it sideways
+    /// (negative x on the left). The camera and drops are clamped to this.
+    private var worldExtent: CGRect = .zero
+    /// Pixel size of the base art; wide art shares its height.
+    private var baseArtPixelSize: CGSize = .zero
     /// Scrollable row of tray items; `position.x` is the scroll offset
     /// (0 = start, negative = scrolled left to reveal later items).
     private let trayContent = SKNode()
@@ -64,7 +73,7 @@ final class CanvasScene: SKScene {
     private var visibleRect: CGRect { CGRect(origin: viewOrigin, size: size) }
     /// Only horizontal overflow is pannable; vertical overflow is cropped.
     private var worldOverflows: Bool {
-        worldSize.width > size.width + 0.5
+        worldExtent.width > size.width + 0.5
     }
     private var nextZOrder: CGFloat = 1
 
@@ -190,7 +199,7 @@ final class CanvasScene: SKScene {
         }
         layoutScene()
         if isFirstLoad {
-            cameraNode.position = CGPoint(x: worldSize.width / 2, y: worldSize.height / 2)
+            cameraNode.position = CGPoint(x: worldExtent.midX, y: worldExtent.midY)
             clampCamera()
             restorePersistedState()
             runTrayScrollHint()
@@ -243,8 +252,18 @@ final class CanvasScene: SKScene {
     }
 
     private func loadPackContent() {
-        backgroundArt.texture = texture(forAssetPath: pack.manifest.background)
-        foregroundArt.texture = texture(forAssetPath: pack.manifest.foreground)
+        // Wide art (same height, base composition centred) is shown whenever
+        // the pack ships it; the base art still defines the coordinate frame.
+        let base = texture(forAssetPath: pack.manifest.background)
+        baseArtPixelSize = base?.size() ?? .zero
+        if let wideBackground = pack.manifest.backgroundWide, let wideForeground = pack.manifest.foregroundWide,
+            let wideTexture = texture(forAssetPath: wideBackground) {
+            backgroundArt.texture = wideTexture
+            foregroundArt.texture = texture(forAssetPath: wideForeground)
+        } else {
+            backgroundArt.texture = base
+            foregroundArt.texture = texture(forAssetPath: pack.manifest.foreground)
+        }
         for sticker in pack.manifest.stickers {
             stickerTextures[sticker.id] = texture(forAssetPath: sticker.image)
         }
@@ -259,12 +278,21 @@ final class CanvasScene: SKScene {
     // MARK: Layout
 
     private func layoutScene() {
-        worldSize = Self.worldSize(covering: size, artSize: backgroundArt.texture?.size())
-        let center = CGPoint(x: worldSize.width / 2, y: worldSize.height / 2)
+        // Scale so the *drawn* art covers the view; the base frame is that
+        // scale applied to the base art, centred on the drawn art.
+        let drawnPixelSize = backgroundArt.texture?.size() ?? baseArtPixelSize
+        let drawn = Self.worldSize(covering: size, artSize: drawnPixelSize)
+        let scale = drawnPixelSize.height > 0 ? drawn.height / drawnPixelSize.height : 1
+        let basePixel = baseArtPixelSize.width > 0 ? baseArtPixelSize : drawnPixelSize
+        worldSize = CGSize(width: basePixel.width * scale, height: basePixel.height * scale)
+        if worldSize == .zero { worldSize = size }
+        worldExtent = CGRect(
+            x: (worldSize.width - drawn.width) / 2, y: (worldSize.height - drawn.height) / 2,
+            width: drawn.width, height: drawn.height)
+        let center = CGPoint(x: worldExtent.midX, y: worldExtent.midY)
         for art in [backgroundArt, foregroundArt] {
             guard let textureSize = art.texture?.size(), textureSize.width > 0 else { continue }
-            let fill = max(worldSize.width / textureSize.width, worldSize.height / textureSize.height)
-            art.size = CGSize(width: textureSize.width * fill, height: textureSize.height * fill)
+            art.size = CGSize(width: textureSize.width * scale, height: textureSize.height * scale)
             art.position = center
         }
         // The tray is laid out in view coordinates and pinned to the view's
@@ -291,13 +319,13 @@ final class CanvasScene: SKScene {
 
     private func clampCamera() {
         var position = cameraNode.position
-        if worldSize.width <= size.width {
-            position.x = worldSize.width / 2
+        if worldExtent.width <= size.width {
+            position.x = worldExtent.midX
         } else {
-            position.x = min(max(position.x, size.width / 2), worldSize.width - size.width / 2)
+            position.x = min(max(position.x, worldExtent.minX + size.width / 2), worldExtent.maxX - size.width / 2)
         }
         // Vertical overflow is centre-cropped, never panned.
-        position.y = worldSize.height / 2
+        position.y = worldExtent.midY
         cameraNode.position = position
         syncHUDToCamera()
     }
@@ -307,7 +335,7 @@ final class CanvasScene: SKScene {
     /// back, the same idea as the tray's scroll hint. Cancelled by any touch.
     private func runPanHintIfNeeded() {
         guard worldOverflows else { return }
-        let dx = min(worldSize.width - size.width, size.width * 0.12)
+        let dx = min(worldExtent.width - size.width, size.width * 0.12)
         let start = cameraNode.position
         let out = SKAction.move(to: CGPoint(x: start.x + dx / 2, y: start.y), duration: 0.5)
         out.timingMode = .easeInEaseOut
@@ -775,8 +803,8 @@ final class CanvasScene: SKScene {
     private func keepOnCanvas(_ node: StickerNode) {
         let margin = stickerBaseSize * 0.35
         node.position = CGPoint(
-            x: min(max(node.position.x, margin), worldSize.width - margin),
-            y: min(max(node.position.y, max(margin, visibleRect.minY + margin)), trayRect.minY - margin * 0.6))
+            x: min(max(node.position.x, worldExtent.minX + margin), worldExtent.maxX - margin),
+            y: min(max(node.position.y, max(worldExtent.minY + margin, visibleRect.minY + margin)), trayRect.minY - margin * 0.6))
     }
 
     private func nextZ() -> CGFloat {
