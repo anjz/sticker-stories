@@ -15,6 +15,9 @@ final class StickerNode: SKSpriteNode {
     var baseScale: CGFloat = 1
 
     private let shadow: SKSpriteNode
+    /// Additive bloom behind the sprite for the `glow` effect; created on
+    /// first use from the pack's cached blurred mask.
+    private var glowNode: SKSpriteNode?
 
     private(set) var isSelected = false
 
@@ -59,7 +62,7 @@ final class StickerNode: SKSpriteNode {
             x: position.x, y: position.y, rotation: zRotation, scale: baseScale, alpha: alpha)
     }
 
-    func applyEffect(_ composed: ComposedPlacement) {
+    func applyEffect(_ composed: ComposedPlacement, glowMask: () -> GlowMaskCache.Mask?) {
         position = CGPoint(x: composed.x, y: composed.y)
         zRotation = CGFloat(composed.rotation)
         setScale(CGFloat(composed.scale))
@@ -70,6 +73,29 @@ final class StickerNode: SKSpriteNode {
         } else {
             colorBlendFactor = 0
         }
+        setGlow(composed.glow, color: composed.glowColor, mask: glowMask)
+    }
+
+    private func setGlow(_ amount: Double, color glowColor: RGBA?, mask: () -> GlowMaskCache.Mask?) {
+        guard amount > 0 else {
+            glowNode?.isHidden = true
+            return
+        }
+        if glowNode == nil {
+            guard let mask = mask() else { return }
+            let glow = SKSpriteNode(texture: mask.texture)
+            glow.size = CGSize(
+                width: size.width * mask.sizeMultiplier * 1.05,
+                height: size.height * mask.sizeMultiplier * 1.05)
+            glow.zPosition = -0.5  // behind the sprite, in front of the shadow
+            glow.blendMode = .add
+            glow.colorBlendFactor = 1
+            addChild(glow)
+            glowNode = glow
+        }
+        glowNode?.color = UIColor(glowColor ?? .white)
+        glowNode?.alpha = CGFloat(amount)
+        glowNode?.isHidden = false
     }
 
     /// Puts the node back exactly where the child left it (P4).
@@ -81,6 +107,7 @@ final class StickerNode: SKSpriteNode {
         alpha = CGFloat(base.alpha)
         color = .clear
         colorBlendFactor = 0
+        glowNode?.isHidden = true
         effectBase = nil
     }
 }

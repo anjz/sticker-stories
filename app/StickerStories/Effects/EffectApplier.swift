@@ -12,6 +12,13 @@ import StickerStoriesKit
 @MainActor
 final class EffectApplier {
     private var owned: Set<UUID> = []
+    private let glowMask: (StickerNode) -> GlowMaskCache.Mask?
+
+    /// - Parameter glowMask: supplies the sticker's cached bloom texture
+    ///   the first time a `glow` touches it.
+    init(glowMask: @escaping (StickerNode) -> GlowMaskCache.Mask?) {
+        self.glowMask = glowMask
+    }
 
     /// Settles every sticker before effects start: in-flight landing
     /// animations are removed and the node put at the values they converge
@@ -36,7 +43,7 @@ final class EffectApplier {
             let composed = EffectTransformMath.compose(
                 node.effectBase!, with: delta,
                 unscaledWidth: node.size.width, unscaledHeight: node.size.height)
-            node.applyEffect(composed)
+            node.applyEffect(composed) { glowMask(node) }
         }
     }
 

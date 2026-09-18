@@ -1,0 +1,51 @@
+{
+  "_comment": "Tuning data for the three particle emitters behind sparkle / puff / hearts (docs/effects.md). Content cannot ship emitters or set these values; only intensity, duration and color reach them. Conventions are SpriteKit's: angles in degrees counterclockwise with 0 = right (90 = up); gravity is points/s² with y up; scale is relative to the sticker's rendered size at the reference height.",
+  "sparkles": {
+    "texture": "star",
+    "blend": "add",
+    "birthRate": 22,
+    "lifetime": { "value": 0.9, "variance": 0.3 },
+    "speed": { "value": 45, "variance": 25 },
+    "emissionAngle": { "value": 90, "range": 140 },
+    "gravity": [0, -30],
+    "positionSpread": [0.35, 0.15],
+    "scale": { "start": 0.45, "end": 0.0, "variance": 0.15 },
+    "alpha": { "start": 0.0, "peak": 1.0, "end": 0.0, "peakAt": 0.15 },
+    "rotationSpeed": 1.5,
+    "defaultColor": "#FFD166",
+    "maxParticles": 50,
+    "inFront": true
+  },
+  "smoke": {
+    "texture": "dot",
+    "blend": "alpha",
+    "birthRate": 18,
+    "lifetime": { "value": 0.8, "variance": 0.2 },
+    "speed": { "value": 35, "variance": 15 },
+    "emissionAngle": { "value": 90, "range": 150 },
+    "gravity": [0, 12],
+    "positionSpread": [0.4, 0.05],
+    "scale": { "start": 0.5, "end": 1.1, "variance": 0.2 },
+    "alpha": { "start": 0.0, "peak": 0.55, "end": 0.0, "peakAt": 0.2 },
+    "rotationSpeed": 0.4,
+    "defaultColor": "#F2EEE6",
+    "maxParticles": 40,
+    "inFront": false
+  },
+  "hearts": {
+    "texture": "heart",
+    "blend": "alpha",
+    "birthRate": 5,
+    "lifetime": { "value": 1.4, "variance": 0.3 },
+    "speed": { "value": 40, "variance": 15 },
+    "emissionAngle": { "value": 90, "range": 60 },
+    "gravity": [0, 10],
+    "positionSpread": [0.5, 0.1],
+    "scale": { "start": 0.35, "end": 0.5, "variance": 0.1 },
+    "alpha": { "start": 0.0, "peak": 1.0, "end": 0.0, "peakAt": 0.15 },
+    "rotationSpeed": 0.3,
+    "defaultColor": "#FF6B8A",
+    "maxParticles": 20,
+    "inFront": true
+  }
+}
