@@ -177,3 +177,53 @@ private func deterministicProvider(recents: RecentStoriesStore = MemoryRecents()
         #expect(japanese.audioPath == "audio/en-US/fallback.m4a")
     }
 }
+
+@Suite struct EffectsSidecarSelectionTests {
+    private func packWithSidecars(_ contents: [String: String?], includeFallback: Bool = true) throws -> LoadedPack {
+        let dir = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("pack-\(UUID().uuidString)")
+        try FileManager.default.createDirectory(at: dir.appendingPathComponent("audio/en-US"), withIntermediateDirectories: true)
+        var stories: [StoryDefinition] = []
+        for (id, sidecar) in contents {
+            var localizations: [String: StoryLocalization] = [:]
+            for lang in ["en-US", "es-ES"] {
+                localizations[lang] = StoryLocalization(
+                    title: id, text: "Text of \(id).", audio: "audio/\(lang)/\(id).m4a",
+                    effects: sidecar == nil ? nil : "audio/\(lang)/\(id).effects.json")
+            }
+            if let sidecar {
+                try Data(sidecar.utf8).write(to: dir.appendingPathComponent("audio/en-US/\(id).effects.json"))
+            }
+            stories.append(StoryDefinition(id: id, requiredStickers: ["fox"], localizations: localizations))
+        }
+        if includeFallback { stories.append(story("fallback")) }
+        let manifest = PackManifest(
+            schemaVersion: 2, id: "forest", version: 1, languages: ["en-US", "es-ES"],
+            displayName: localized("Forest", "Bosque"), theme: "forest",
+            background: "art/b.png", foreground: "art/f.png",
+            stickers: [StickerDefinition(id: "fox", name: localized("Fox", "Zorro"), image: "stickers/fox.png")],
+            stories: stories)
+        return LoadedPack(manifest: manifest, baseURL: dir, source: .bundled)
+    }
+
+    @Test func storyWithMalformedSidecarIsExcluded() async throws {
+        let pack = try packWithSidecars(["broken": "{ not json", "fine": "{\"schema\": 1, \"triggers\": []}"])
+        // Both score identically (fox required); with the deterministic pick
+        // the first in pool order wins — the broken one must never be it.
+        for _ in 0..<5 {
+            let chosen = try await deterministicProvider().story(for: canvas(["fox"]), in: pack, language: "en-US")
+            #expect(chosen.id != "broken")
+        }
+    }
+
+    @Test func brokenSidecarLosesToAValidFallback() async throws {
+        let pack = try packWithSidecars(["broken": "{ not json"])
+        let chosen = try await deterministicProvider().story(for: canvas(["fox"]), in: pack, language: "en-US")
+        #expect(chosen.id == "fallback")
+    }
+
+    @Test func playStillWorksWhenEverySidecarIsBroken() async throws {
+        let pack = try packWithSidecars(["broken": "{ not json"], includeFallback: false)
+        let chosen = try await deterministicProvider().story(for: canvas(["fox"]), in: pack, language: "en-US")
+        #expect(chosen.id == "broken")  // played without effects rather than failing
+    }
+}
