@@ -43,8 +43,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	writePNG(filepath.Join(*packDir, m.Background), drawBackground())
-	writePNG(filepath.Join(*packDir, m.Foreground), drawForeground())
+	writePNG(filepath.Join(*packDir, m.Background), drawBackground(sceneW))
+	writePNG(filepath.Join(*packDir, m.Foreground), drawForeground(sceneW))
+	if m.BackgroundWide != "" {
+		// Wide rendition for wide windows: same height, base scene centred,
+		// extra scenery in the margins (docs/pack-format.md, "Art safe area").
+		writePNG(filepath.Join(*packDir, m.BackgroundWide), drawBackground(sceneWideW))
+		writePNG(filepath.Join(*packDir, m.ForegroundWide), drawForeground(sceneWideW))
+	}
 	for _, st := range m.Stickers {
 		writePNG(filepath.Join(*packDir, st.Image), drawSticker(st.ID))
 	}
@@ -446,12 +452,19 @@ func genericBlob(id string) func(*canvas) {
 	}
 }
 
-// ---- scenery (2048×1536) ------------------------------------------------------
+// ---- scenery (2048×1536, wide 3072×1536) ------------------------------------
 
 const sceneW, sceneH = 2048, 1536
 
-func drawBackground() image.Image {
-	img := newImage(sceneW, sceneH)
+// sceneWideW is the 2:1 rendition: the base scene sits centred in it.
+const sceneWideW = 3072
+
+// drawBackground renders the sky, sun, clouds and hills at width w. The
+// base composition is centred; a wider canvas just gets more sky, hills
+// and an extra cloud per side.
+func drawBackground(w int) image.Image {
+	img := newImage(w, sceneH)
+	off := float64(w-sceneW) / 2
 	// Sky gradient.
 	top := color.RGBA{126, 200, 232, 255}
 	bottom := color.RGBA{234, 246, 255, 255}
@@ -463,47 +476,55 @@ func drawBackground() image.Image {
 			uint8(float64(top.B) + t*float64(int(bottom.B)-int(top.B))),
 			255,
 		}
-		for x := 0; x < sceneW; x++ {
+		for x := 0; x < w; x++ {
 			img.SetRGBA(x, y, row)
 		}
 	}
-	c := &canvas{img: img, scale: 1, cx: sceneW / 2, cy: sceneH / 2}
+	c := &canvas{img: img, scale: 1, cx: float64(w) / 2, cy: sceneH / 2}
 	// Sun.
-	c.circle(1720, 260, 150, color.RGBA{255, 233, 168, 255})
-	c.circle(1720, 260, 105, color.RGBA{255, 246, 208, 255})
-	// Clouds.
-	for _, cl := range [][3]float64{{380, 300, 1}, {980, 190, 0.8}, {1450, 420, 0.7}} {
-		x, y, s := cl[0], cl[1], cl[2]
+	c.circle(off+1720, 260, 150, color.RGBA{255, 233, 168, 255})
+	c.circle(off+1720, 260, 105, color.RGBA{255, 246, 208, 255})
+	// Clouds (plus one per margin on the wide rendition).
+	clouds := [][3]float64{{380, 300, 1}, {980, 190, 0.8}, {1450, 420, 0.7}}
+	if off > 0 {
+		clouds = append(clouds, [3]float64{-off / 2, 360, 0.75}, [3]float64{sceneW + off/2, 240, 0.85})
+	}
+	for _, cl := range clouds {
+		x, y, s := off+cl[0], cl[1], cl[2]
 		c.ellipse(x, y, 150*s, 60*s, white)
 		c.ellipse(x-95*s, y+18*s, 100*s, 45*s, white)
 		c.ellipse(x+105*s, y+22*s, 110*s, 48*s, white)
 	}
-	// Hills, back to front.
-	c.ellipse(500, 1500, 1350, 600, color.RGBA{168, 216, 160, 255})
-	c.ellipse(1650, 1580, 1400, 640, color.RGBA{143, 204, 138, 255})
-	c.ellipse(1024, 1780, 1650, 700, color.RGBA{122, 191, 116, 255})
+	// Hills, back to front; the outer two are stretched to span any width.
+	c.ellipse(off+500, 1500, 1350+off, 600, color.RGBA{168, 216, 160, 255})
+	c.ellipse(off+1650, 1580, 1400+off, 640, color.RGBA{143, 204, 138, 255})
+	c.ellipse(off+1024, 1780, 1650+off, 700, color.RGBA{122, 191, 116, 255})
 	return img
 }
 
-func drawForeground() image.Image {
-	img := newImage(sceneW, sceneH) // transparent
-	c := &canvas{img: img, scale: 1, cx: sceneW / 2, cy: sceneH / 2}
+// drawForeground renders the grass band, the big tree and the bush at
+// width w. The tree and bush hug the canvas edges whatever the width, so the
+// wide rendition's margins get them and the base composition stays clear.
+func drawForeground(w int) image.Image {
+	img := newImage(w, sceneH) // transparent
+	c := &canvas{img: img, scale: 1, cx: float64(w) / 2, cy: sceneH / 2}
+	fw := float64(w)
 	grass := color.RGBA{95, 175, 90, 255}
 	grassDk := color.RGBA{82, 156, 78, 255}
 	// Grass band along the bottom with a scalloped top edge.
-	c.rect(0, 1400, sceneW, 136, grass)
-	for x := 0.0; x < sceneW; x += 128 {
+	c.rect(0, 1400, fw, 136, grass)
+	for x := 0.0; x < fw; x += 128 {
 		c.ellipse(x+64, 1408, 78, 26, grass)
 	}
-	c.rect(0, 1472, sceneW, 64, grassDk)
+	c.rect(0, 1472, fw, 64, grassDk)
 	// Big tree on the left edge.
 	c.rect(120, 880, 110, 560, brown)
 	c.circle(175, 780, 210, green1)
 	c.circle(40, 900, 150, green2)
 	c.circle(330, 890, 160, green2)
 	// Bush on the right edge.
-	c.circle(1980, 1370, 150, green2)
-	c.circle(1850, 1400, 120, green1)
-	c.circle(2060, 1430, 130, green1)
+	c.circle(fw-68, 1370, 150, green2)
+	c.circle(fw-198, 1400, 120, green1)
+	c.circle(fw+12, 1430, 130, green1)
 	return img
 }
