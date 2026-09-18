@@ -84,11 +84,13 @@
       Apple-hosted → still no server of ours)
 - [ ] Mac delivery follow-through: v1 opts out of "Designed for iPad on Mac"
       (docs/compliance.md); revisit once iPad experience is polished
-- [ ] Orientation: revisit landscape-only (portrait canvas layout?). Watch
-      iPadOS windowing policy: UIRequiresFullScreen is deprecated and Apple
-      says all-orientation support "will soon be required" — the explicit
-      ~ipad orientation key gives fullscreen landscape on iPadOS 26.5 today,
-      but this may need a real portrait layout eventually
+- [x] Orientation (2026-09): migrated off `UIRequiresFullScreen` per Apple
+      TN3192 — iPad supports all orientations and resizable windows with a
+      preferred minimum scene size; iPhone stays landscape-only. The canvas
+      adapts (normalized sticker positions, fill-cropped art). A dedicated
+      portrait composition (taller art, tray placement) is still open
+- [ ] Portrait-specific canvas composition for iPad (art crop is heavy in
+      portrait today)
 - [ ] Localized App Store metadata (+ per-locale CFBundleDisplayName if the
       name ever differs)
 - [ ] More languages; per-language pack delivery via base URL + `lang=` param
