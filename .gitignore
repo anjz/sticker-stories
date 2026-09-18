@@ -16,3 +16,11 @@ tools/bin/
 
 # Scratch
 *.tmp
+
+# Secrets
+.env
+tools/.env
+
+# Story authoring step 2: rendered audio lives in the pack; caches are regenerable
+tools/author/stories/*/_cache/
+tools/author/stories/*/*/audio/

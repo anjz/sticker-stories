@@ -62,7 +62,8 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
 - `tools/` — Go module (dev-time only): `packager` (validation), `placeholdergen`
   (temporary placeholder assets), `author/` (story authoring: the
   `/author-stories` skill's brief + format in `author/stories/`, `storycheck`
-  validator; audio/pack export is step 2, not built), `tts` (stub).
+  validator, `storyaudio` = step 2: ElevenLabs narration + cue alignment +
+  mix + install into the pack; needs `ELEVENLABS_API_KEY` in `tools/.env`).
 - `docs/` — deep documentation; reference it, don't duplicate it here.
 
 ## Working rules

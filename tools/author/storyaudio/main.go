@@ -1,0 +1,1015 @@
+// Command storyaudio is step 2 of story authoring (tools/author/stories/
+// README.md): it renders each authored story.json into narration audio with
+// ElevenLabs, aligns the inline effect cues to the spoken words, mixes in
+// the story's sound-effect hints and a calm background track, encodes AAC
+// .m4a, and can install the results into a pack's manifest.
+//
+// Usage:
+//
+//	storyaudio render  -pack ../packs/forest [-only id,…] [-lang en-US] [-dry-run] [-force]
+//	                   [-voice en-US=<id>,es-ES=<id>] [-model eleven_v3] [-rate 44100]
+//	                   [-no-sfx] [-no-music] [-music-prompt "…"] [-sfx-db -12] [-music-db -14]
+//	                   [-lead 3] [-intro-db -6] [-parallel 5]
+//	storyaudio voices  -pack ../packs/forest            # list candidate voices per language
+//	storyaudio install -pack ../packs/forest [-prune] [-bump]
+//
+// The API key is read from ELEVENLABS_API_KEY, loaded from tools/.env or the
+// repository's .env if present. Nothing here ships with the app.
+package main
+
+import (
+	"context"
+	"crypto/sha256"
+	"encoding/hex"
+	"encoding/json"
+	"errors"
+	"flag"
+	"fmt"
+	"os"
+	"path/filepath"
+	"sort"
+	"strings"
+	"sync"
+	"time"
+
+	"stickerstories/tools/internal/audio"
+	"stickerstories/tools/internal/dotenv"
+	"stickerstories/tools/internal/elevenlabs"
+	"stickerstories/tools/internal/manifest"
+	"stickerstories/tools/internal/render"
+	"stickerstories/tools/internal/story"
+)
+
+const (
+	toolVersion  = "1"
+	defaultModel = "eleven_v3"
+	fallbackTTS  = "eleven_multilingual_v2"
+	tailOut      = 2.0 // seconds of music after the narrator ends
+	introRamp    = 1.0 // seconds over which the intro settles to the bed level
+	voiceRMSdB   = -20.0
+	sfxSeconds   = 2.0
+	maxSFX       = 3
+	musicSeconds = 60
+)
+
+// musicConfig is <stories>/music.json: one Eleven Music prompt per mood tag
+// plus a default. A story uses the first of its tags that has a prompt.
+// The file is written with these defaults on first use so it can be edited.
+type musicConfig struct {
+	Default string            `json:"default"`
+	Moods   map[string]string `json:"moods"`
+}
+
+const musicStyle = "instrumental, for a children's picture book read aloud, simple, no vocals, no drums, seamless loop"
+
+var defaultMusicConfig = musicConfig{
+	Default: "Gentle, calm, warm lullaby: soft piano and light strings, slow, " + musicStyle,
+	Moods: map[string]string{
+		"bedtime":   "Very slow, hushed lullaby: music box and soft piano, sleepy and tender, very quiet, " + musicStyle,
+		"funny":     "Light, playful, bouncy tune: pizzicato strings, marimba and a cheeky clarinet, gentle and smiling, " + musicStyle,
+		"adventure": "Curious, gently marching tune: light woodwinds, plucked strings and a soft glockenspiel, hopeful, " + musicStyle,
+		"weather":   "Airy, flowing piece: harp, soft flute and pattering piano like light rain and breeze, calm, " + musicStyle,
+		"music":     "Sweet folk melody: acoustic guitar, ukulele and a humming flute, warm and singable, " + musicStyle,
+		"counting":  "Simple, steady, nursery-rhyme tune: xylophone and soft piano, cheerful and even, " + musicStyle,
+		"curiosity": "Wondering, twinkling piece: celesta, soft harp and warm strings, bright and gentle, " + musicStyle,
+		"kindness":  "Warm, tender melody: soft piano and cello, hopeful and kind, " + musicStyle,
+		"seasons":   "Pastoral tune: acoustic guitar, flute and light strings, breezy and content, " + musicStyle,
+		"gentle":    "Gentle, calm, warm lullaby: soft piano and light strings, slow, " + musicStyle,
+	},
+}
+
+func main() {
+	if len(os.Args) < 2 {
+		usage()
+	}
+	dotenv.LoadFirst(".env", filepath.Join("..", ".env"))
+	var err error
+	switch os.Args[1] {
+	case "render":
+		err = runRender(os.Args[2:])
+	case "voices":
+		err = runVoices(os.Args[2:])
+	case "install":
+		err = runInstall(os.Args[2:])
+	default:
+		usage()
+	}
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "✗ %v\n", err)
+		os.Exit(1)
+	}
+}
+
+func usage() {
+	fmt.Fprintln(os.Stderr, "usage: storyaudio render|voices|install -pack <pack-dir> [flags]  (see -h on each)")
+	os.Exit(2)
+}
+
+// ---------- shared setup ----------
+
+type ctxt struct {
+	pack       *manifest.Manifest
+	packDir    string
+	storiesDir string
+	stories    []*story.Story
+	declared   map[string]bool
+}
+
+func load(packDir, storiesDir string) (*ctxt, error) {
+	if packDir == "" {
+		return nil, errors.New("-pack is required")
+	}
+	m, err := manifest.Load(packDir)
+	if err != nil {
+		return nil, err
+	}
+	if storiesDir == "" {
+		storiesDir = filepath.Join("author", "stories", m.ID)
+	}
+	stories, errs := story.LoadDir(storiesDir)
+	if len(errs) > 0 {
+		return nil, fmt.Errorf("loading stories: %v", errs)
+	}
+	c := &ctxt{pack: m, packDir: packDir, storiesDir: storiesDir, stories: stories, declared: map[string]bool{}}
+	for _, s := range m.Stickers {
+		c.declared[s.ID] = true
+	}
+	return c, nil
+}
+
+func client() (*elevenlabs.Client, error) {
+	key := os.Getenv("ELEVENLABS_API_KEY")
+	if key == "" {
+		return nil, errors.New("ELEVENLABS_API_KEY is not set (put it in tools/.env)")
+	}
+	c := elevenlabs.New(key)
+	if os.Getenv("STORYAUDIO_DEBUG") != "" {
+		c.Log = func(s string) { fmt.Fprintln(os.Stderr, "  ·", s) }
+	}
+	return c, nil
+}
+
+func primary(lang string) string {
+	l, _, _ := strings.Cut(lang, "-")
+	return strings.ToLower(l)
+}
+
+// ---------- voices ----------
+
+type voiceChoice struct {
+	VoiceID string `json:"voiceId"`
+	Name    string `json:"name"`
+	Gender  string `json:"gender,omitempty"`
+	Source  string `json:"source"` // "flag" | "library"
+}
+
+// voiceSet is <stories>/voices.json: the voices used per language. Stories
+// are shared out across a language's voices in a fixed order (sorted ids,
+// round robin) so the same story always has the same voice and the split is
+// even; with two voices that is half male, half female.
+type voiceSet map[string][]voiceChoice
+
+func voicesPath(c *ctxt) string { return filepath.Join(c.storiesDir, "voices.json") }
+
+func loadVoices(c *ctxt) voiceSet {
+	out := voiceSet{}
+	data, err := os.ReadFile(voicesPath(c))
+	if err != nil {
+		return out
+	}
+	if json.Unmarshal(data, &out) == nil {
+		return out
+	}
+	// Older single-voice shape: {lang: {voiceId,…}}.
+	var old map[string]voiceChoice
+	if json.Unmarshal(data, &old) == nil {
+		for lang, v := range old {
+			out[lang] = []voiceChoice{v}
+		}
+	}
+	return out
+}
+
+func saveVoices(c *ctxt, v voiceSet) error {
+	data, _ := json.MarshalIndent(v, "", "  ")
+	return os.WriteFile(voicesPath(c), append(data, '\n'), 0o644)
+}
+
+func candidates(ctx context.Context, el *elevenlabs.Client, lang string) ([]elevenlabs.SharedVoice, error) {
+	q := elevenlabs.SharedVoicesQuery{Language: primary(lang), Locale: lang, UseCases: []string{"narrative_story"}, Sort: "usage_character_count_1y", PageSize: 30}
+	vs, err := el.SharedVoices(ctx, q)
+	if err != nil {
+		return nil, err
+	}
+	if len(vs) == 0 { // locale may be too narrow; widen to the language
+		q.Locale = ""
+		if vs, err = el.SharedVoices(ctx, q); err != nil {
+			return nil, err
+		}
+	}
+	return vs, nil
+}
+
+// pickByGender returns the most-used voice of each gender, in the order
+// male, female (falling back to the top voices when a gender is missing).
+func pickByGender(vs []elevenlabs.SharedVoice) []elevenlabs.SharedVoice {
+	var out []elevenlabs.SharedVoice
+	for _, want := range []string{"male", "female"} {
+		for _, v := range vs {
+			if strings.EqualFold(v.Gender, want) {
+				out = append(out, v)
+				break
+			}
+		}
+	}
+	for _, v := range vs {
+		if len(out) >= 2 {
+			break
+		}
+		dup := false
+		for _, o := range out {
+			dup = dup || o.VoiceID == v.VoiceID
+		}
+		if !dup {
+			out = append(out, v)
+		}
+	}
+	return out
+}
+
+// resolveVoices returns the voices per pack language, honouring -voice
+// (lang=id+id,… or bare ids), then voices.json, then the most-used male and
+// female storytelling voices in the public library.
+func resolveVoices(ctx context.Context, el *elevenlabs.Client, c *ctxt, flagValue string, dry bool) (voiceSet, error) {
+	chosen := loadVoices(c)
+	if flagValue != "" {
+		parse := func(ids string) []voiceChoice {
+			var out []voiceChoice
+			for _, id := range strings.Split(ids, "+") {
+				if id = strings.TrimSpace(id); id != "" {
+					out = append(out, voiceChoice{VoiceID: id, Name: id, Source: "flag"})
+				}
+			}
+			return out
+		}
+		for _, part := range strings.Split(flagValue, ",") {
+			lang, ids, ok := strings.Cut(strings.TrimSpace(part), "=")
+			if !ok { // bare ids apply to every language
+				for _, l := range c.pack.Languages {
+					chosen[l] = parse(lang)
+				}
+				continue
+			}
+			chosen[lang] = parse(ids)
+		}
+	}
+	for _, lang := range c.pack.Languages {
+		// Pinned by flag: use as given. From the library: make sure both
+		// genders are present (tops up a voices.json from an older run).
+		pinned := false
+		have := map[string]bool{}
+		for _, v := range chosen[lang] {
+			pinned = pinned || v.Source == "flag"
+			have[strings.ToLower(v.Gender)] = true
+		}
+		if pinned || (have["male"] && have["female"]) {
+			continue
+		}
+		if dry {
+			for _, g := range []string{"male", "female"} {
+				if !have[g] && len(chosen[lang]) < 2 {
+					chosen[lang] = append(chosen[lang], voiceChoice{VoiceID: "(auto)", Name: "(library voice, " + g + " if the other is not)", Gender: g, Source: "library"})
+				}
+			}
+			continue
+		}
+		vs, err := candidates(ctx, el, lang)
+		if err != nil {
+			return nil, fmt.Errorf("finding voices for %s: %w", lang, err)
+		}
+		if len(vs) == 0 {
+			return nil, fmt.Errorf("no storytelling voice found for %s; pass -voice %s=<id>+<id>", lang, lang)
+		}
+		for _, pick := range pickByGender(vs) {
+			if have[strings.ToLower(pick.Gender)] {
+				continue
+			}
+			already := false
+			for i := range chosen[lang] { // an older run may hold it without a gender
+				if chosen[lang][i].VoiceID == pick.VoiceID {
+					chosen[lang][i].Gender = pick.Gender
+					have[strings.ToLower(pick.Gender)] = true
+					already = true
+				}
+			}
+			if already {
+				continue
+			}
+			id, err := el.AddSharedVoice(ctx, pick.PublicOwnerID, pick.VoiceID, fmt.Sprintf("Sticker Stories %s – %s", lang, pick.Name))
+			if err != nil {
+				// Already in the library is the common failure; use the ID as is.
+				if !elevenlabs.IsClientError(err) {
+					return nil, fmt.Errorf("adding voice %s: %w", pick.Name, err)
+				}
+				id = pick.VoiceID
+			}
+			chosen[lang] = append(chosen[lang], voiceChoice{VoiceID: id, Name: pick.Name, Gender: pick.Gender, Source: "library"})
+			fmt.Printf("voice %s: %s (%s, %s, %s) — %d chars used last year\n", lang, pick.Name, pick.Gender, pick.Age, pick.Accent, pick.UsageChars1Y)
+		}
+	}
+	if !dry {
+		if err := saveVoices(c, chosen); err != nil {
+			return nil, err
+		}
+	}
+	return chosen, nil
+}
+
+// voiceFor assigns a story one of a language's voices: stories sorted by id,
+// round robin, so the split is even and stable across runs and languages.
+func (r *renderer) voiceFor(s *story.Story, lang string) voiceChoice {
+	vs := r.voices[lang]
+	idx := 0
+	for i, st := range r.c.stories { // LoadDir sorts by id
+		if st.ID == s.ID {
+			idx = i
+			break
+		}
+	}
+	return vs[idx%len(vs)]
+}
+
+func runVoices(args []string) error {
+	fs := flag.NewFlagSet("voices", flag.ExitOnError)
+	packDir := fs.String("pack", "", "pack directory")
+	storiesDir := fs.String("stories", "", "stories directory (default author/stories/<packID>)")
+	fs.Parse(args)
+	c, err := load(*packDir, *storiesDir)
+	if err != nil {
+		return err
+	}
+	el, err := client()
+	if err != nil {
+		return err
+	}
+	ctx := context.Background()
+	current := loadVoices(c)
+	for _, lang := range c.pack.Languages {
+		fmt.Printf("\n%s", lang)
+		for _, v := range current[lang] {
+			fmt.Printf("  [current: %s %s %s]", v.Name, v.Gender, v.VoiceID)
+		}
+		fmt.Println()
+		vs, err := candidates(ctx, el, lang)
+		if err != nil {
+			return err
+		}
+		for i, v := range vs {
+			if i >= 10 {
+				break
+			}
+			fmt.Printf("  %-22s %s  %s/%s/%s  used %dM chars\n", v.Name, v.VoiceID, v.Gender, v.Age, v.Accent, v.UsageChars1Y/1_000_000)
+		}
+	}
+	fmt.Println("\nPin with: storyaudio render -voice en-US=<id>+<id>,es-ES=<id>+<id> …  (one id per language, or several joined with + to share stories out)")
+	return nil
+}
+
+// ---------- render ----------
+
+type renderOpts struct {
+	model, rate    string
+	sampleRate     int
+	noSFX, noMusic bool
+	musicPrompt    string
+	sfxDB, musicDB float64
+	lead, introDB  float64
+	parallel       int
+	force, dry     bool
+	only           map[string]bool
+	lang           string
+	bitrate        int
+}
+
+type renderRecord struct {
+	Fingerprint string   `json:"fingerprint"`
+	VoiceID     string   `json:"voiceId"`
+	Voice       string   `json:"voice"`
+	Model       string   `json:"model"`
+	SampleRate  int      `json:"sampleRate"`
+	Duration    float64  `json:"duration"`
+	Sounds      []string `json:"sounds,omitempty"`
+	Music       string   `json:"music,omitempty"`
+	Missing     []string `json:"missingSoundCues,omitempty"`
+	RenderedAt  string   `json:"renderedAt"`
+}
+
+func runRender(args []string) error {
+	fs := flag.NewFlagSet("render", flag.ExitOnError)
+	packDir := fs.String("pack", "", "pack directory")
+	storiesDir := fs.String("stories", "", "stories directory (default author/stories/<packID>)")
+	only := fs.String("only", "", "comma-separated story ids to render")
+	lang := fs.String("lang", "", "render only this language")
+	voice := fs.String("voice", "", "lang=id pairs (en-US=…,es-ES=…), several ids per language joined with +; bare ids apply to every language; saved to voices.json")
+	model := fs.String("model", defaultModel, "TTS model (falls back to "+fallbackTTS+" if timestamps are unavailable)")
+	rate := fs.Int("rate", 44100, "PCM sample rate requested from ElevenLabs (44100 needs Pro+; falls back to 24000)")
+	noSFX := fs.Bool("no-sfx", false, "skip sound-effect hints")
+	noMusic := fs.Bool("no-music", false, "skip background music")
+	musicPrompt := fs.String("music-prompt", "", "one Eleven Music prompt for every story, overriding <stories>/music.json")
+	sfxDB := fs.Float64("sfx-db", -12, "sound effect level relative to narration, dB")
+	musicDB := fs.Float64("music-db", -14, "music level under the narration, dB relative to the narrator")
+	lead := fs.Float64("lead", 3, "seconds of music alone before the narrator starts")
+	introDB := fs.Float64("intro-db", -6, "music level during the lead-in, dB relative to the narrator (ramps down to -music-db over the last second)")
+	bitrate := fs.Int("bitrate", 96000, "AAC bitrate")
+	parallel := fs.Int("parallel", 5, "renditions rendered concurrently")
+	force := fs.Bool("force", false, "re-render even if nothing changed")
+	dry := fs.Bool("dry-run", false, "print what would be rendered and the character count; no API calls that cost")
+	fs.Parse(args)
+
+	c, err := load(*packDir, *storiesDir)
+	if err != nil {
+		return err
+	}
+	o := renderOpts{model: *model, sampleRate: *rate, noSFX: *noSFX, noMusic: *noMusic, musicPrompt: *musicPrompt,
+		sfxDB: *sfxDB, musicDB: *musicDB, lead: *lead, introDB: *introDB, parallel: *parallel, force: *force, dry: *dry, lang: *lang, bitrate: *bitrate}
+	if *only != "" {
+		o.only = map[string]bool{}
+		for _, id := range strings.Split(*only, ",") {
+			o.only[strings.TrimSpace(id)] = true
+		}
+	}
+	var el *elevenlabs.Client
+	if !o.dry {
+		if el, err = client(); err != nil {
+			return err
+		}
+	} else {
+		el = elevenlabs.New(os.Getenv("ELEVENLABS_API_KEY"))
+	}
+	ctx := context.Background()
+	voices, err := resolveVoices(ctx, el, c, *voice, o.dry)
+	if err != nil {
+		return err
+	}
+	r := &renderer{c: c, el: el, o: o, voices: voices, ctx: ctx}
+	return r.run()
+}
+
+type renderer struct {
+	c      *ctxt
+	el     *elevenlabs.Client
+	o      renderOpts
+	voices voiceSet
+	ctx    context.Context
+	music  map[string]*audio.Clip // by prompt
+	moods  musicConfig
+	mu     sync.Mutex // guards music, o.sampleRate, stdout
+	locks  sync.Map   // cache key → *sync.Mutex, so one worker generates each asset
+	// dry-run tallies
+	chars      map[string]int
+	sfxToMake  map[string]bool
+	musicToGen map[string]bool // by mood
+}
+
+func (r *renderer) cacheDir(kind string) string {
+	d := filepath.Join(r.c.storiesDir, "_cache", kind)
+	os.MkdirAll(d, 0o755)
+	return d
+}
+
+func hashOf(parts ...string) string {
+	h := sha256.Sum256([]byte(strings.Join(parts, "\x00")))
+	return hex.EncodeToString(h[:])[:16]
+}
+
+func (r *renderer) run() error {
+	r.chars = map[string]int{}
+	r.sfxToMake = map[string]bool{}
+	r.musicToGen = map[string]bool{}
+	r.music = map[string]*audio.Clip{}
+	if !r.o.noMusic {
+		var err error
+		if r.moods, err = r.loadMusicConfig(); err != nil {
+			return err
+		}
+	}
+	type job struct {
+		s    *story.Story
+		lang string
+	}
+	var jobs []job
+	for _, s := range r.c.stories {
+		if r.o.only != nil && !r.o.only[s.ID] {
+			continue
+		}
+		for _, lang := range r.c.pack.Languages {
+			if r.o.lang != "" && r.o.lang != lang {
+				continue
+			}
+			jobs = append(jobs, job{s, lang})
+		}
+	}
+	workers := r.o.parallel
+	if workers < 1 || r.o.dry {
+		workers = 1
+	}
+	var (
+		wg            sync.WaitGroup
+		todo, skipped int
+		failures      []string
+		queue         = make(chan job)
+	)
+	for w := 0; w < workers; w++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for j := range queue {
+				var log strings.Builder
+				started := time.Now()
+				done, err := r.renderOne(j.s, j.lang, &log)
+				r.mu.Lock()
+				switch {
+				case err != nil:
+					failures = append(failures, fmt.Sprintf("%s (%s): %v", j.s.ID, j.lang, err))
+					fmt.Printf("✗ %s (%s): %v\n", j.s.ID, j.lang, err)
+				case done:
+					todo++
+					fmt.Printf("✓ %s (%s) %s in %.0fs\n", j.s.ID, j.lang, strings.TrimSpace(log.String()), time.Since(started).Seconds())
+				default:
+					skipped++
+					if !r.o.dry {
+						fmt.Printf("· %s (%s) up to date\n", j.s.ID, j.lang)
+					}
+				}
+				if r.o.dry {
+					fmt.Print(log.String())
+				}
+				r.mu.Unlock()
+			}
+		}()
+	}
+	for _, j := range jobs {
+		queue <- j
+	}
+	close(queue)
+	wg.Wait()
+	if len(failures) > 0 {
+		return fmt.Errorf("%d rendition(s) failed (rerun to retry just those):\n  %s", len(failures), strings.Join(failures, "\n  "))
+	}
+	if r.o.dry {
+		total := 0
+		fmt.Printf("\nDry run: %d renditions to render, %d up to date.\n", todo, skipped)
+		for _, lang := range r.c.pack.Languages {
+			fmt.Printf("  %s: %d characters of narration\n", lang, r.chars[lang])
+			total += r.chars[lang]
+		}
+		fmt.Printf("  total %d characters; %d sound effects to generate; %d music tracks to compose (%s)\n", total, len(r.sfxToMake), len(r.musicToGen), strings.Join(keys(r.musicToGen), ", "))
+		return nil
+	}
+	fmt.Printf("\nRendered %d, up to date %d. Next: storyaudio install -pack %s\n", todo, skipped, r.c.packDir)
+	return nil
+}
+
+func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) (bool, error) {
+	loc, ok := s.Languages[lang]
+	if !ok {
+		return false, fmt.Errorf("missing language")
+	}
+	cues, plain, errs := story.ParseCues(loc.Text)
+	if len(errs) > 0 {
+		return false, fmt.Errorf("cues: %v", errs)
+	}
+	voice := r.voiceFor(s, lang)
+	outDir := filepath.Join(s.Dir, "audio")
+	m4a := filepath.Join(outDir, lang+".m4a")
+	fxPath := filepath.Join(outDir, lang+".effects.json")
+	recPath := filepath.Join(outDir, lang+".render.json")
+
+	var notes []string
+	if !r.o.noSFX {
+		for _, h := range s.Sound {
+			notes = append(notes, h.Cue+"|"+h.Note)
+		}
+	}
+	musicPrompt, mood := "", ""
+	if !r.o.noMusic {
+		musicPrompt, mood = r.musicPromptFor(s)
+	}
+	musicKey := hashOf(musicPrompt, fmt.Sprint(musicSeconds))
+	fp := hashOf(toolVersion, plain, loc.Text, voice.VoiceID, r.o.model, fmt.Sprint(r.o.sampleRate),
+		strings.Join(notes, ";"), musicKey, fmt.Sprint(r.o.sfxDB, r.o.musicDB, r.o.lead, r.o.introDB, r.o.bitrate))
+
+	if !r.o.force {
+		if data, err := os.ReadFile(recPath); err == nil {
+			var rec renderRecord
+			if json.Unmarshal(data, &rec) == nil && rec.Fingerprint == fp && exists(m4a) && exists(fxPath) {
+				return false, nil
+			}
+		}
+	}
+	if r.o.dry {
+		r.chars[lang] += len([]rune(plain))
+		for _, h := range s.Sound {
+			if !r.o.noSFX && !exists(r.sfxCachePath(h.Note, r.o.sampleRate)) {
+				r.sfxToMake[h.Note] = true
+			}
+		}
+		if !r.o.noMusic && !exists(r.musicCachePath(musicPrompt, r.o.sampleRate)) {
+			r.musicToGen[mood] = true
+		}
+		fmt.Fprintf(log, "would render %s (%s): %d chars, %d cues, %d sound hints, voice %s, music %s\n", s.ID, lang, len([]rune(plain)), len(cues), len(s.Sound), voice.Name, mood)
+		return true, nil
+	}
+
+	r.mu.Lock()
+	fmt.Printf("▶ %s (%s, %s, music %s)\n", s.ID, lang, voice.Name, orNone(mood))
+	r.mu.Unlock()
+	speech, model, rate, err := r.speak(plain, lang, voice.VoiceID, log)
+	if err != nil {
+		return false, err
+	}
+	tl, err := render.NewTimeline(plain, speech.Alignment)
+	if err != nil {
+		return false, err
+	}
+	voiceClip := audio.FromPCM16(speech.Audio, rate)
+	voiceClip.NormalizeRMS(voiceRMSdB, 0.9)
+
+	// Triggers: shift by the lead-in, except scenery loops pinned at 0.
+	triggers := render.Triggers(cues, tl)
+	for i := range triggers {
+		if triggers[i].At > 0 {
+			triggers[i].At = roundCs(triggers[i].At + r.leadIn())
+		}
+	}
+	sidecar, err := render.EncodeSidecar(triggers, r.c.declared)
+	if err != nil {
+		return false, err
+	}
+
+	mix := audio.Silence(rate, r.leadIn()+voiceClip.Duration()+tailOut)
+	mix.MixAt(voiceClip, r.leadIn(), 1)
+
+	rec := renderRecord{Fingerprint: fp, Music: mood, VoiceID: voice.VoiceID, Voice: voice.Name, Model: model, SampleRate: rate, RenderedAt: time.Now().Format(time.RFC3339)}
+
+	if !r.o.noSFX && len(s.Sound) > 0 {
+		placed, missing := render.PlaceSounds(s.Sound, tl)
+		rec.Missing = missing
+		if len(placed) > maxSFX {
+			placed = placed[:maxSFX]
+		}
+		for _, p := range placed {
+			clip, err := r.soundEffect(p.Hint.Note, rate)
+			if err != nil {
+				return false, fmt.Errorf("sound %q: %w", p.Hint.Cue, err)
+			}
+			at := p.At + r.leadIn() - 0.05
+			if at < 0 {
+				at = 0
+			}
+			mix.MixAt(clip, at, 1)
+			rec.Sounds = append(rec.Sounds, fmt.Sprintf("%.2fs %s", at, p.Hint.Cue))
+		}
+	}
+	if !r.o.noMusic {
+		music, err := r.musicLoop(musicPrompt, mood, rate, log)
+		if err != nil {
+			return false, fmt.Errorf("music (%s): %w", mood, err)
+		}
+		bed := music.LoopTo(mix.Duration(), 1.0)
+		bed.NormalizeRMS(voiceRMSdB+r.o.musicDB, 0.6).Fade(1.0, tailOut)
+		// Intro: louder while the music plays alone, settling to the bed
+		// level over the last second before the narrator starts.
+		bed.Ramp(audio.DB(r.o.introDB-r.o.musicDB), 1, r.leadIn()-introRamp, r.leadIn())
+		// Duck under the narrator: the control signal is the voice on its own timeline.
+		control := audio.Silence(rate, mix.Duration())
+		control.MixAt(voiceClip, r.leadIn(), 1)
+		bed.Duck(control, 0.02, 0.6, 0.05, 0.6)
+		mix.MixAt(bed, 0, 1)
+	}
+	mix.Limit(0.95)
+
+	if err := os.MkdirAll(outDir, 0o755); err != nil {
+		return false, err
+	}
+	wav := filepath.Join(outDir, lang+".wav")
+	if err := mix.WriteWAV(wav); err != nil {
+		return false, err
+	}
+	if err := audio.EncodeM4A(wav, m4a, r.o.bitrate); err != nil {
+		return false, err
+	}
+	os.Remove(wav)
+	if err := writeAtomic(fxPath, sidecar); err != nil {
+		return false, err
+	}
+	rec.Duration = roundCs(mix.Duration())
+	data, _ := json.MarshalIndent(rec, "", "  ")
+	if err := writeAtomic(recPath, append(data, '\n')); err != nil {
+		return false, err
+	}
+	fmt.Fprintf(log, "%.1fs, %d triggers, %d sounds, %s", rec.Duration, len(triggers), len(rec.Sounds), model)
+	if len(rec.Missing) > 0 {
+		fmt.Fprintf(log, " [sound cue word not in text: %s]", strings.Join(rec.Missing, ", "))
+	}
+	return true, nil
+}
+
+// leadIn is the music-only intro; without music the narrator starts almost at once.
+func (r *renderer) leadIn() float64 {
+	if r.o.noMusic {
+		return 0.3
+	}
+	return r.o.lead
+}
+
+func (r *renderer) rate() int {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	return r.o.sampleRate
+}
+
+func pcmFormat(rate int) string { return fmt.Sprintf("pcm_%d", rate) }
+
+// speak synthesises with timestamps, falling back to a lower sample rate
+// (tier limit, remembered for the rest of the run) and to the v2 model (no
+// alignment) when needed. Returns the audio, the model used and the rate.
+func (r *renderer) speak(plain, lang, voiceID string, log *strings.Builder) (*elevenlabs.Speech, string, int, error) {
+	rate := r.rate()
+	req := elevenlabs.SpeechRequest{VoiceID: voiceID, Text: plain, ModelID: r.o.model, LanguageCode: primary(lang), OutputFormat: pcmFormat(rate)}
+	sp, err := r.el.SpeechWithTimestamps(r.ctx, req)
+	if err != nil && elevenlabs.IsClientError(err) && rate == 44100 {
+		fmt.Fprintf(log, "[44.1 kHz PCM refused: %s; using 24 kHz] ", shorten(err))
+		r.mu.Lock()
+		r.o.sampleRate = 24000
+		r.mu.Unlock()
+		rate = 24000
+		req.OutputFormat = pcmFormat(rate)
+		sp, err = r.el.SpeechWithTimestamps(r.ctx, req)
+	}
+	model := r.o.model
+	if (err != nil && elevenlabs.IsClientError(err) || err == nil && sp.Alignment == nil) && r.o.model != fallbackTTS {
+		reason := "no alignment"
+		if err != nil {
+			reason = shorten(err)
+		}
+		fmt.Fprintf(log, "[%s: %s; retried with %s] ", r.o.model, reason, fallbackTTS)
+		req.ModelID = fallbackTTS
+		model = fallbackTTS
+		sp, err = r.el.SpeechWithTimestamps(r.ctx, req)
+	}
+	if err != nil {
+		return nil, "", 0, err
+	}
+	if sp.Alignment == nil {
+		return nil, "", 0, errors.New("no alignment returned")
+	}
+	return sp, model, rate, nil
+}
+
+// cached returns the cache file at path, generating it once even when
+// several workers ask for the same asset at the same time.
+func (r *renderer) cached(path string, generate func() ([]byte, error)) ([]byte, error) {
+	m, _ := r.locks.LoadOrStore(path, &sync.Mutex{})
+	mu := m.(*sync.Mutex)
+	mu.Lock()
+	defer mu.Unlock()
+	if data, err := os.ReadFile(path); err == nil {
+		return data, nil
+	}
+	data, err := generate()
+	if err != nil {
+		return nil, err
+	}
+	return data, writeAtomic(path, data)
+}
+
+func (r *renderer) sfxCachePath(note string, rate int) string {
+	return filepath.Join(r.cacheDir("sfx"), hashOf(note, fmt.Sprint(sfxSeconds), fmt.Sprint(rate))+".pcm")
+}
+
+func (r *renderer) soundEffect(note string, rate int) (*audio.Clip, error) {
+	data, err := r.cached(r.sfxCachePath(note, rate), func() ([]byte, error) {
+		prompt := note + " (single short sound effect, gentle, for a children's story, no music)"
+		return r.el.SoundEffect(r.ctx, prompt, sfxSeconds, 0.4, pcmFormat(rate))
+	})
+	if err != nil {
+		return nil, err
+	}
+	clip := audio.FromPCM16(data, rate)
+	clip.TrimSilence(0.01, 0.05).Fade(0.02, 0.4).NormalizeRMS(voiceRMSdB+r.o.sfxDB, 0.7)
+	return clip, nil
+}
+
+func (r *renderer) musicConfigPath() string { return filepath.Join(r.c.storiesDir, "music.json") }
+
+// loadMusicConfig reads music.json, writing the defaults first if absent.
+func (r *renderer) loadMusicConfig() (musicConfig, error) {
+	data, err := os.ReadFile(r.musicConfigPath())
+	if os.IsNotExist(err) {
+		data, _ = json.MarshalIndent(defaultMusicConfig, "", "  ")
+		if !r.o.dry {
+			if err := os.WriteFile(r.musicConfigPath(), append(data, '\n'), 0o644); err != nil {
+				return musicConfig{}, err
+			}
+			fmt.Printf("wrote %s with default prompts per mood; edit to taste\n", r.musicConfigPath())
+		}
+		return defaultMusicConfig, nil
+	}
+	if err != nil {
+		return musicConfig{}, err
+	}
+	var mc musicConfig
+	if err := json.Unmarshal(data, &mc); err != nil {
+		return musicConfig{}, fmt.Errorf("%s: %w", r.musicConfigPath(), err)
+	}
+	if mc.Default == "" {
+		mc.Default = defaultMusicConfig.Default
+	}
+	return mc, nil
+}
+
+// musicPromptFor picks the prompt for a story: -music-prompt if given, else
+// the first of the story's tags that music.json knows, else the default.
+func (r *renderer) musicPromptFor(s *story.Story) (prompt, mood string) {
+	if r.o.musicPrompt != "" {
+		return r.o.musicPrompt, "custom"
+	}
+	for _, t := range s.Tags {
+		if p, ok := r.moods.Moods[t]; ok && p != "" {
+			return p, t
+		}
+	}
+	return r.moods.Default, "default"
+}
+
+func (r *renderer) musicCachePath(prompt string, rate int) string {
+	return filepath.Join(r.cacheDir("music"), hashOf(prompt, fmt.Sprint(musicSeconds), fmt.Sprint(rate))+".pcm")
+}
+
+func (r *renderer) musicLoop(prompt, mood string, rate int, log *strings.Builder) (*audio.Clip, error) {
+	key := fmt.Sprintf("%s@%d", prompt, rate)
+	r.mu.Lock()
+	clip, ok := r.music[key]
+	r.mu.Unlock()
+	if ok {
+		return clip, nil
+	}
+	data, err := r.cached(r.musicCachePath(prompt, rate), func() ([]byte, error) {
+		fmt.Fprintf(log, "[composed %s music] ", mood)
+		return r.el.Music(r.ctx, prompt, musicSeconds*1000, "", pcmFormat(rate))
+	})
+	if err != nil {
+		return nil, err
+	}
+	clip = audio.FromPCM16(data, rate).TrimSilence(0.005, 0.1)
+	r.mu.Lock()
+	r.music[key] = clip
+	r.mu.Unlock()
+	return clip, nil
+}
+
+// ---------- install ----------
+
+func runInstall(args []string) error {
+	fs := flag.NewFlagSet("install", flag.ExitOnError)
+	packDir := fs.String("pack", "", "pack directory")
+	storiesDir := fs.String("stories", "", "stories directory (default author/stories/<packID>)")
+	prune := fs.Bool("prune", false, "remove manifest stories that are not in the authored set")
+	bump := fs.Bool("bump", false, "increment the pack's content version")
+	fs.Parse(args)
+	c, err := load(*packDir, *storiesDir)
+	if err != nil {
+		return err
+	}
+	authored := map[string]bool{}
+	installed := 0
+	for _, s := range c.stories {
+		entry := manifest.Story{ID: s.ID, RequiredStickers: nonNil(s.Featured), OptionalStickers: nonNil(s.Supporting), Tags: nonNil(s.Tags), Localizations: map[string]manifest.StoryLocalization{}}
+		w := 1.0
+		entry.Weight = &w
+		complete := true
+		for _, lang := range c.pack.Languages {
+			src := filepath.Join(s.Dir, "audio", lang+".m4a")
+			fx := filepath.Join(s.Dir, "audio", lang+".effects.json")
+			if !exists(src) || !exists(fx) {
+				complete = false
+				break
+			}
+			_, plain, _ := story.ParseCues(s.Languages[lang].Text)
+			rel := filepath.ToSlash(filepath.Join("audio", lang, s.ID+".m4a"))
+			relFx := filepath.ToSlash(filepath.Join("audio", lang, s.ID+".effects.json"))
+			if err := copyFile(src, filepath.Join(c.packDir, rel)); err != nil {
+				return err
+			}
+			if err := copyFile(fx, filepath.Join(c.packDir, relFx)); err != nil {
+				return err
+			}
+			entry.Localizations[lang] = manifest.StoryLocalization{Title: s.Languages[lang].Title, Text: plain, Audio: rel, Effects: relFx}
+		}
+		if !complete {
+			fmt.Printf("skip %s: not rendered in every language\n", s.ID)
+			continue
+		}
+		authored[s.ID] = true
+		replaced := false
+		for i := range c.pack.Stories {
+			if c.pack.Stories[i].ID == s.ID {
+				c.pack.Stories[i] = entry
+				replaced = true
+			}
+		}
+		if !replaced {
+			c.pack.Stories = append(c.pack.Stories, entry)
+		}
+		installed++
+	}
+	if *prune {
+		kept := c.pack.Stories[:0]
+		for _, st := range c.pack.Stories {
+			if authored[st.ID] {
+				kept = append(kept, st)
+			} else {
+				fmt.Printf("prune %s\n", st.ID)
+			}
+		}
+		c.pack.Stories = kept
+	}
+	sort.SliceStable(c.pack.Stories, func(i, j int) bool { return c.pack.Stories[i].ID < c.pack.Stories[j].ID })
+	if *bump {
+		c.pack.Version++
+	}
+	if errs := c.pack.Validate(c.packDir); len(errs) > 0 {
+		for _, e := range errs {
+			fmt.Printf("  ✗ %v\n", e)
+		}
+		return errors.New("manifest would not validate; manifest.json left unchanged (audio files were copied)")
+	}
+	data, err := json.MarshalIndent(c.pack, "", "  ")
+	if err != nil {
+		return err
+	}
+	if err := os.WriteFile(filepath.Join(c.packDir, "manifest.json"), append(data, '\n'), 0o644); err != nil {
+		return err
+	}
+	fmt.Printf("✓ installed %d stories into %s (manifest now has %d, version %d) and it validates\n", installed, c.packDir, len(c.pack.Stories), c.pack.Version)
+	return nil
+}
+
+// ---------- helpers ----------
+
+// writeAtomic writes via a temp file and rename so a cancelled run never
+// leaves a truncated file that a later run would trust.
+func writeAtomic(path string, data []byte) error {
+	tmp := path + ".tmp"
+	if err := os.WriteFile(tmp, data, 0o644); err != nil {
+		return err
+	}
+	return os.Rename(tmp, path)
+}
+
+func exists(p string) bool { _, err := os.Stat(p); return err == nil }
+
+func nonNil(s []string) []string {
+	if s == nil {
+		return []string{}
+	}
+	return s
+}
+
+func copyFile(src, dst string) error {
+	data, err := os.ReadFile(src)
+	if err != nil {
+		return err
+	}
+	if err := os.MkdirAll(filepath.Dir(dst), 0o755); err != nil {
+		return err
+	}
+	return os.WriteFile(dst, data, 0o644)
+}
+
+func keys(m map[string]bool) []string {
+	out := make([]string, 0, len(m))
+	for k := range m {
+		out = append(out, k)
+	}
+	sort.Strings(out)
+	return out
+}
+
+func orNone(s string) string {
+	if s == "" {
+		return "none"
+	}
+	return s
+}
+
+func roundCs(v float64) float64 { return float64(int(v*100+0.5)) / 100 }
+
+func shorten(err error) string {
+	s := err.Error()
+	if len(s) > 120 {
+		s = s[:120] + "…"
+	}
+	return s
+}

@@ -44,13 +44,19 @@ cd tools && go run ./author/storycheck -pack ../packs/forest
 It reports format problems, invalid cues, forbidden words, word counts, and a
 sticker coverage table, and exits non-zero on errors.
 
-## Step 2 — produce audio and pack content (not built yet)
+## Step 2 — produce audio and pack content (`storyaudio`)
 
-A second tool will take each `story.json`, strip the cues to get the
-narration text, render it with ElevenLabs (narration plus the sound effects
-hinted in the story), align the cues to word timestamps, and emit the
-manifest story entry, the `.m4a` per language and the `.effects.json`
-sidecar per language (`docs/pack-format.md`, `docs/effects.md`). Its output
-lands next to the story (`<storyID>/audio/…`) and is then copied into the
-pack by the packager. Nothing in step 1 depends on how step 2 is built; the
-contract between them is `FORMAT.md`.
+```
+cd tools && go run ./author/storyaudio render -pack ../packs/forest
+cd tools && go run ./author/storyaudio install -pack ../packs/forest -prune -bump
+```
+
+`storyaudio` (`tools/author/storyaudio/README.md`) takes each `story.json`,
+strips the cues to get the narration text, renders it with ElevenLabs
+(narration with character timestamps, the sound effects hinted in the story,
+and a calm background loop), aligns the cues to the spoken words, and emits
+the `.m4a` per language plus the `.effects.json` sidecar per language
+(`docs/pack-format.md`, `docs/effects.md`) into `<storyID>/audio/`. `install`
+copies them into the pack and merges the manifest story entries. Nothing in
+step 1 depends on how step 2 is built; the contract between them is
+`FORMAT.md`.
