@@ -10,6 +10,14 @@ import UIKit
 ///   background art (0) < background stickers (100) < foreground art (200)
 ///   < foreground stickers (300) < tray (1000); a dragged sticker is lifted
 ///   to its layer's z + 10000 so it floats above everything while held.
+///
+/// World and camera: the pack art defines a fixed-aspect **world**, scaled
+/// so it always covers the view (`worldSize`). Sticker positions live in
+/// world points and are saved normalized to the art, so a fox on the hill
+/// stays on the hill in every orientation and window size. Whatever part of
+/// the world overflows the view can be panned with one finger on empty
+/// space; the camera is clamped to the world. The tray is a child of the
+/// camera, so it stays put and always fits between the SwiftUI buttons.
 final class CanvasScene: SKScene {
     /// Fired after every mutation (add, move, delete, layer change).
     var onCanvasChange: ((CanvasState) -> Void)?
@@ -24,6 +32,9 @@ final class CanvasScene: SKScene {
     private let foregroundArt = SKSpriteNode()
     private let foregroundStickers = SKNode()
     private let tray = SKNode()
+    private let cameraNode = SKCameraNode()
+    /// The art scaled to cover the view; the coordinate space stickers live in.
+    private var worldSize: CGSize = .zero
     /// Scrollable row of tray items; `position.x` is the scroll offset
     /// (0 = start, negative = scrolled left to reveal later items).
     private let trayContent = SKNode()
@@ -37,7 +48,20 @@ final class CanvasScene: SKScene {
     private static let trayTrailingClearance: CGFloat = 180
 
     private var stickerTextures: [String: SKTexture] = [:]
-    private var trayRect: CGRect = .zero
+    /// The tray pill in view coordinates (the tray node is laid out in view
+    /// space and parented to the camera).
+    private var trayRectInView: CGRect = .zero
+    /// The tray pill in world coordinates, for sticker drop/hover tests.
+    private var trayRect: CGRect { trayRectInView.offsetBy(dx: viewOrigin.x, dy: viewOrigin.y) }
+    /// World coordinate of the view's bottom-left corner.
+    private var viewOrigin: CGPoint {
+        CGPoint(x: cameraNode.position.x - size.width / 2, y: cameraNode.position.y - size.height / 2)
+    }
+    /// The part of the world currently on screen.
+    private var visibleRect: CGRect { CGRect(origin: viewOrigin, size: size) }
+    private var worldOverflows: Bool {
+        worldSize.width > size.width + 0.5 || worldSize.height > size.height + 0.5
+    }
     private var nextZOrder: CGFloat = 1
 
     private weak var selectedSticker: StickerNode?
@@ -68,6 +92,16 @@ final class CanvasScene: SKScene {
         let startOffset: CGFloat
     }
     private var trayScrolls: [UITouch: TrayScrollInfo] = [:]
+
+    /// One finger on empty space pans the camera over the world (only when
+    /// the world overflows the view). Tracked in view coordinates because
+    /// scene coordinates shift under the finger as the camera moves.
+    private struct PanInfo {
+        let startViewLocation: CGPoint
+        let startCamera: CGPoint
+    }
+    private var pans: [UITouch: PanInfo] = [:]
+    private static let panHintActionKey = "pan-hint"
     /// Same "has this become a real gesture yet" radius used for drags below.
     private static let moveThresholdSquared: CGFloat = 64
 
@@ -141,13 +175,18 @@ final class CanvasScene: SKScene {
             addChild(backgroundStickers)
             addChild(foregroundArt)
             addChild(foregroundStickers)
-            addChild(tray)
+            addChild(cameraNode)
+            camera = cameraNode
+            cameraNode.addChild(tray)  // HUD: fixed to the view, not the world
             loadPackContent()
         }
         layoutScene()
         if isFirstLoad {
+            cameraNode.position = CGPoint(x: worldSize.width / 2, y: worldSize.height / 2)
+            clampCamera()
             restorePersistedState()
             runTrayScrollHint()
+            runPanHintIfNeeded()
         }
     }
 
@@ -166,21 +205,23 @@ final class CanvasScene: SKScene {
 
     override func didChangeSize(_ oldSize: CGSize) {
         guard oldSize != size, backgroundArt.parent != nil else { return }
+        let oldWorld = worldSize
+        let overflowedBefore = worldOverflows
+        let cameraFraction = CGPoint(
+            x: oldWorld.width > 0 ? cameraNode.position.x / oldWorld.width : 0.5,
+            y: oldWorld.height > 0 ? cameraNode.position.y / oldWorld.height : 0.5)
         layoutScene()
-        // Keep placed stickers at the same relative spot.
-        if oldSize.width > 0, oldSize.height > 0 {
-            let sx = size.width / oldSize.width
-            let sy = size.height / oldSize.height
-            for node in allStickerNodes() {
-                node.position = CGPoint(x: node.position.x * sx, y: node.position.y * sy)
-                if var base = node.effectBase {
-                    base.x *= sx
-                    base.y *= sy
-                    node.effectBase = base
-                }
-            }
+        // The world keeps its aspect, so one uniform factor keeps every
+        // sticker on the same spot of the art at the same relative size.
+        if oldWorld.height > 0 {
+            let ratio = worldSize.height / oldWorld.height
+            for node in allStickerNodes() { node.rescale(by: ratio) }
         }
+        cameraNode.position = CGPoint(
+            x: cameraFraction.x * worldSize.width, y: cameraFraction.y * worldSize.height)
+        clampCamera()
         refreshSelectionBubble()
+        if !overflowedBefore { runPanHintIfNeeded() }
     }
 
     private func loadPackContent() {
@@ -200,18 +241,80 @@ final class CanvasScene: SKScene {
     // MARK: Layout
 
     private func layoutScene() {
-        let center = CGPoint(x: size.width / 2, y: size.height / 2)
+        worldSize = Self.worldSize(covering: size, artSize: backgroundArt.texture?.size())
+        let center = CGPoint(x: worldSize.width / 2, y: worldSize.height / 2)
         for art in [backgroundArt, foregroundArt] {
             guard let textureSize = art.texture?.size(), textureSize.width > 0 else { continue }
-            let fill = max(size.width / textureSize.width, size.height / textureSize.height)
+            let fill = max(worldSize.width / textureSize.width, worldSize.height / textureSize.height)
             art.size = CGSize(width: textureSize.width * fill, height: textureSize.height * fill)
             art.position = center
         }
+        // The tray is laid out in view coordinates; parented to the camera
+        // (whose origin is the view centre) this offset makes that so.
+        tray.position = CGPoint(x: -size.width / 2, y: -size.height / 2)
         layoutTray()
     }
 
+    /// The art scaled to cover the view: the smaller the view's aspect gap
+    /// to the art, the less overflows. Without art, the world is the view.
+    static func worldSize(covering view: CGSize, artSize: CGSize?) -> CGSize {
+        guard let art = artSize, art.width > 0, art.height > 0 else { return view }
+        let fill = max(view.width / art.width, view.height / art.height)
+        return CGSize(width: art.width * fill, height: art.height * fill)
+    }
+
+    /// Sticker size is relative to the world, not the view, so a sticker
+    /// covers the same amount of art whatever the window shape.
     private var stickerBaseSize: CGFloat {
-        min(150, max(64, size.height * 0.17))
+        worldSize.height * 0.16
+    }
+
+    // MARK: Camera
+
+    private func clampCamera() {
+        var position = cameraNode.position
+        if worldSize.width <= size.width {
+            position.x = worldSize.width / 2
+        } else {
+            position.x = min(max(position.x, size.width / 2), worldSize.width - size.width / 2)
+        }
+        if worldSize.height <= size.height {
+            position.y = worldSize.height / 2
+        } else {
+            position.y = min(max(position.y, size.height / 2), worldSize.height - size.height / 2)
+        }
+        cameraNode.position = position
+    }
+
+    /// One-shot "there's more" hint when the world overflows the view: the
+    /// camera drifts a little toward the hidden part and eases back, the
+    /// same idea as the tray's scroll hint. Cancelled by any touch.
+    private func runPanHintIfNeeded() {
+        guard worldOverflows else { return }
+        let dx = worldSize.width > size.width ? min(worldSize.width - size.width, size.width * 0.12) : 0
+        let dy = worldSize.height > size.height ? min(worldSize.height - size.height, size.height * 0.12) : 0
+        let start = cameraNode.position
+        let out = SKAction.move(to: CGPoint(x: start.x + dx / 2, y: start.y + dy / 2), duration: 0.5)
+        out.timingMode = .easeInEaseOut
+        let back = SKAction.move(to: start, duration: 0.6)
+        back.timingMode = .easeInEaseOut
+        cameraNode.run(.sequence([.wait(forDuration: 1.0), out, .wait(forDuration: 0.2), back]), withKey: Self.panHintActionKey)
+    }
+
+    private func beginPan(_ touch: UITouch) {
+        guard worldOverflows, let view else { return }
+        cameraNode.removeAction(forKey: Self.panHintActionKey)
+        pans[touch] = PanInfo(startViewLocation: touch.location(in: view), startCamera: cameraNode.position)
+    }
+
+    private func updatePan(for touch: UITouch) {
+        guard let info = pans[touch], let view else { return }
+        let location = touch.location(in: view)
+        // UIKit view coordinates have y down; the camera's world y is up.
+        cameraNode.position = CGPoint(
+            x: info.startCamera.x - (location.x - info.startViewLocation.x),
+            y: info.startCamera.y + (location.y - info.startViewLocation.y))
+        clampCamera()
     }
 
     // MARK: Tray
@@ -239,19 +342,31 @@ final class CanvasScene: SKScene {
         guard !items.isEmpty else { return }
 
         let barHeight: CGFloat = min(96, max(64, size.height * 0.15))
-        let itemSize = barHeight * 0.72
-        let spacing = itemSize * 0.35
-        let sidePadding = spacing * 1.6
+        var itemSize = barHeight * 0.72
+        var spacing = itemSize * 0.35
+        var sidePadding = spacing * 1.6
+
+        // The tray must always be fully visible with the buttons clear on
+        // both sides; it scrolls, so in a narrow window it simply shows
+        // fewer stickers — and shrinks them if even 1.5 wouldn't fit.
+        let insets = view?.safeAreaInsets ?? .zero
+        let leading = Self.trayLeadingClearance + insets.left
+        let trailing = Self.trayTrailingClearance + insets.right
+        let availableWidth = max(size.width - leading - trailing, 40)
+        let minimumWidth = itemSize * 1.5 + 2 * sidePadding
+        if availableWidth < minimumWidth {
+            let shrink = availableWidth / minimumWidth
+            itemSize *= shrink
+            spacing *= shrink
+            sidePadding *= shrink
+        }
         let rowWidth = CGFloat(items.count) * itemSize + CGFloat(items.count - 1) * spacing
         let naturalWidth = rowWidth + 2 * sidePadding
+        let barWidth = min(naturalWidth, availableWidth)
+        let barCenterX = leading + availableWidth / 2
 
-        let availableWidth = size.width - Self.trayLeadingClearance - Self.trayTrailingClearance
-        let barWidth = min(naturalWidth, max(availableWidth, itemSize + 2 * sidePadding))
-        let barCenterX = Self.trayLeadingClearance + availableWidth / 2
-
-        let topInset = view?.safeAreaInsets.top ?? 0
-        let barCenterY = size.height - topInset - 10 - barHeight / 2
-        trayRect = CGRect(
+        let barCenterY = size.height - insets.top - 10 - barHeight / 2
+        trayRectInView = CGRect(
             x: barCenterX - barWidth / 2, y: barCenterY - barHeight / 2,
             width: barWidth, height: barHeight)
 
@@ -301,7 +416,7 @@ final class CanvasScene: SKScene {
     /// the tray (touchesBegan), leaving the shelf wherever it was.
     private func runTrayScrollHint() {
         guard maxTrayScrollOffset > 0 else { return }
-        let distance = min(maxTrayScrollOffset, trayRect.height * 0.85)
+        let distance = min(maxTrayScrollOffset, trayRectInView.height * 0.85)
         let out = SKAction.moveTo(x: -distance, duration: 0.5)
         out.timingMode = .easeInEaseOut
         let back = SKAction.moveTo(x: 0, duration: 0.6)
@@ -331,10 +446,10 @@ final class CanvasScene: SKScene {
             }
             return
         }
-        let fadeZone = trayRect.height * 0.72  // ≈ one item width
+        let fadeZone = trayRectInView.height * 0.72  // ≈ one item width
         for item in items {
             let sceneX = item.position.x + trayContent.position.x
-            let edgeDistance = min(sceneX - trayRect.minX, trayRect.maxX - sceneX)
+            let edgeDistance = min(sceneX - trayRectInView.minX, trayRectInView.maxX - sceneX)
             let t = min(max(edgeDistance / fadeZone, 0), 1)
             let eased = t * t * (3 - 2 * t)
             item.alpha = eased
@@ -354,7 +469,13 @@ final class CanvasScene: SKScene {
     // MARK: Touches
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !isPlayLocked else { return }
+        cameraNode.removeAction(forKey: Self.panHintActionKey)
+        guard !isPlayLocked else {
+            // Editing is locked while a story plays, but looking around is
+            // fine: any touch pans.
+            for touch in touches { beginPan(touch) }
+            return
+        }
         for touch in touches {
             let location = touch.location(in: self)
             // `atPoint` would return only the topmost node — and the
@@ -398,6 +519,7 @@ final class CanvasScene: SKScene {
                     beforeSnapshot: held.value.beforeSnapshot)
             } else {
                 select(nil)
+                beginPan(touch)
             }
         }
     }
@@ -419,6 +541,7 @@ final class CanvasScene: SKScene {
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches where pans[touch] != nil { updatePan(for: touch) }
         guard !isPlayLocked else { return }
         for touch in touches {
             if let pending = pendingTrayTouches[touch] {
@@ -451,6 +574,7 @@ final class CanvasScene: SKScene {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches { pans.removeValue(forKey: touch) }
         guard !isPlayLocked else { return }
         for touch in touches {
             if let pending = pendingTrayTouches.removeValue(forKey: touch) {
@@ -468,6 +592,7 @@ final class CanvasScene: SKScene {
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches { pans.removeValue(forKey: touch) }
         guard !isPlayLocked else { return }
         for touch in touches {
             pendingTrayTouches.removeValue(forKey: touch)
@@ -588,7 +713,7 @@ final class CanvasScene: SKScene {
                 node.alpha = 1
                 node.zPosition = nextZ()
                 let drop = CGPoint(
-                    x: min(max(node.position.x, stickerBaseSize), size.width - stickerBaseSize),
+                    x: min(max(node.position.x, visibleRect.minX + stickerBaseSize), visibleRect.maxX - stickerBaseSize),
                     y: trayRect.minY - stickerBaseSize * 0.9)
                 node.run(.group([
                     .move(to: drop, duration: 0.22),
@@ -620,11 +745,13 @@ final class CanvasScene: SKScene {
         notifyCanvasChanged(before: info.beforeSnapshot)
     }
 
-    /// Nudges a sticker back inside the visible canvas if dropped half off-screen.
+    /// Nudges a sticker back inside the world if dropped half off its edge,
+    /// and keeps it out from under the tray. Anywhere on the art is fine,
+    /// including parts currently panned out of view.
     private func keepOnCanvas(_ node: StickerNode) {
         let margin = stickerBaseSize * 0.35
         node.position = CGPoint(
-            x: min(max(node.position.x, margin), size.width - margin),
+            x: min(max(node.position.x, margin), worldSize.width - margin),
             y: min(max(node.position.y, margin), trayRect.minY - margin * 0.6))
     }
 
@@ -671,7 +798,7 @@ final class CanvasScene: SKScene {
     private func bubblePosition(around frame: CGRect) -> CGPoint {
         let bubble = SelectionBubbleNode.size
         let gap: CGFloat = 12
-        let usable = CGRect(x: 8, y: 8, width: size.width - 16, height: size.height - 16)
+        let usable = visibleRect.insetBy(dx: 8, dy: 8)
         let candidates = [
             CGPoint(x: frame.midX, y: frame.maxY + gap + bubble.height / 2),  // above
             CGPoint(x: frame.midX, y: frame.minY - gap - bubble.height / 2),  // below
@@ -849,8 +976,8 @@ final class CanvasScene: SKScene {
                         id: node.instanceID,
                         stickerID: node.stickerID,
                         position: NormalizedPoint(
-                            x: placement.x / max(size.width, 1),
-                            y: placement.y / max(size.height, 1)),
+                            x: placement.x / max(worldSize.width, 1),
+                            y: placement.y / max(worldSize.height, 1)),
                         layer: layer,
                         zOrder: Int(node.zPosition),
                         scale: placement.scale,
@@ -885,6 +1012,7 @@ final class CanvasScene: SKScene {
             for touch in Array(drags.keys) { endDrag(for: touch, cancelled: true) }
             pendingTrayTouches.removeAll()
             trayScrolls.removeAll()
+            pans.removeAll()
             select(nil)
         }
         isPlayLocked = locked
@@ -988,7 +1116,7 @@ final class CanvasScene: SKScene {
             let node = StickerNode(
                 stickerID: placed.stickerID, texture: texture,
                 size: squareFit(texture: texture, side: stickerBaseSize))
-            node.position = CGPoint(x: placed.position.x * size.width, y: placed.position.y * size.height)
+            node.position = CGPoint(x: placed.position.x * worldSize.width, y: placed.position.y * worldSize.height)
             node.baseScale = CGFloat(placed.scale)
             node.setScale(node.baseScale)
             node.zRotation = CGFloat(placed.rotation)

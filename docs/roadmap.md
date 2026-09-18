@@ -89,8 +89,10 @@
       preferred minimum scene size; iPhone stays landscape-only. The canvas
       adapts (normalized sticker positions, fill-cropped art). A dedicated
       portrait composition (taller art, tray placement) is still open
-- [ ] Portrait-specific canvas composition for iPad (art crop is heavy in
-      portrait today)
+- [x] World + camera canvas (2026-09): art-relative sticker positions, fill
+      the window and pan the overflow with one finger, tray always fully
+      visible — the arrangement is identical in every orientation and
+      window size
 - [ ] Localized App Store metadata (+ per-locale CFBundleDisplayName if the
       name ever differs)
 - [ ] More languages; per-language pack delivery via base URL + `lang=` param

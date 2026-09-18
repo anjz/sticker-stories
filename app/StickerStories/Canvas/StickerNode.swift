@@ -53,6 +53,22 @@ final class StickerNode: SKSpriteNode {
         shadow.alpha = lifted ? 0.30 : 0.22
     }
 
+    /// The world rescaled uniformly (window shape changed): keep the same
+    /// spot on the art at the same relative size.
+    func rescale(by ratio: CGFloat) {
+        position = CGPoint(x: position.x * ratio, y: position.y * ratio)
+        size = CGSize(width: size.width * ratio, height: size.height * ratio)
+        shadow.size = size
+        if let glowNode {
+            glowNode.size = CGSize(width: glowNode.size.width * ratio, height: glowNode.size.height * ratio)
+        }
+        if var base = effectBase {
+            base.x *= Double(ratio)
+            base.y *= Double(ratio)
+            effectBase = base
+        }
+    }
+
     // MARK: Effects (play mode only)
 
     /// The placement effects are deltas on: the saved base while an effect
