@@ -211,9 +211,10 @@ final class CanvasScene: SKScene {
     }
 
     /// Runs after actions (the pan hint moves the camera with an action) and
-    /// before rendering, so the HUD never lags the camera by a frame.
+    /// before rendering: keeps the camera on the art whatever moved it and
+    /// keeps the HUD from lagging the camera by a frame.
     override func didFinishUpdate() {
-        syncHUDToCamera()
+        clampCamera()
     }
 
     private func syncHUDToCamera() {
@@ -235,6 +236,9 @@ final class CanvasScene: SKScene {
 
     override func didChangeSize(_ oldSize: CGSize) {
         guard oldSize != size, backgroundArt.parent != nil else { return }
+        // A running hint would move the camera back to coordinates that no
+        // longer mean anything (an iPhone launches portrait, then rotates).
+        cameraNode.removeAction(forKey: Self.panHintActionKey)
         let oldWorld = worldSize
         let overflowedBefore = worldOverflows
         let cameraFraction = CGPoint(
@@ -355,7 +359,9 @@ final class CanvasScene: SKScene {
         out.timingMode = .easeInEaseOut
         let back = SKAction.move(to: start, duration: 0.6)
         back.timingMode = .easeInEaseOut
-        cameraNode.run(.sequence([.wait(forDuration: 1.0), out, .wait(forDuration: 0.2), back]), withKey: Self.panHintActionKey)
+        cameraNode.run(
+            .sequence([.wait(forDuration: 1.0), out, .wait(forDuration: 0.2), back, .run { [weak self] in self?.clampCamera() }]),
+            withKey: Self.panHintActionKey)
     }
 
     private func beginPan(_ touch: UITouch) {
