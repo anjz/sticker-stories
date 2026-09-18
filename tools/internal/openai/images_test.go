@@ -28,6 +28,8 @@ func TestEditMultipartAndRetry(t *testing.T) {
 		}
 		if n := len(r.MultipartForm.File["image[]"]); n != 2 {
 			t.Errorf("want 2 reference images, got %d", n)
+		} else if ct := r.MultipartForm.File["image[]"][0].Header.Get("Content-Type"); ct != "image/png" {
+			t.Errorf("reference content type = %q, want image/png", ct)
 		}
 		if len(r.MultipartForm.File["mask"]) != 1 {
 			t.Errorf("mask missing")

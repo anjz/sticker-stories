@@ -11,6 +11,7 @@ import (
 	"io"
 	"mime/multipart"
 	"net/http"
+	"net/textproto"
 	"strings"
 	"time"
 )
@@ -112,21 +113,31 @@ func (c *Client) Edit(ctx context.Context, r ImageRequest) (*Image, error) {
 	field("background", r.Background)
 	field("input_fidelity", r.Fidelity)
 	for i, img := range r.References {
-		part, err := w.CreateFormFile("image[]", fmt.Sprintf("ref%d.png", i))
-		if err != nil {
+		if err := pngPart(w, "image[]", fmt.Sprintf("ref%d.png", i), img); err != nil {
 			return nil, err
 		}
-		part.Write(img)
 	}
 	if r.Mask != nil {
-		part, err := w.CreateFormFile("mask", "mask.png")
-		if err != nil {
+		if err := pngPart(w, "mask", "mask.png", r.Mask); err != nil {
 			return nil, err
 		}
-		part.Write(r.Mask)
 	}
 	w.Close()
 	return c.do(ctx, "/images/edits", w.FormDataContentType(), bytes.NewReader(buf.Bytes()))
+}
+
+// pngPart adds a file part with an explicit image/png content type; the
+// API rejects the application/octet-stream that CreateFormFile would send.
+func pngPart(w *multipart.Writer, field, filename string, data []byte) error {
+	h := make(textproto.MIMEHeader)
+	h.Set("Content-Disposition", fmt.Sprintf(`form-data; name="%s"; filename="%s"`, field, filename))
+	h.Set("Content-Type", "image/png")
+	part, err := w.CreatePart(h)
+	if err != nil {
+		return err
+	}
+	_, err = part.Write(data)
+	return err
 }
 
 func (c *Client) do(ctx context.Context, path, contentType string, body *bytes.Reader) (*Image, error) {
