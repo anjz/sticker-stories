@@ -1,9 +1,9 @@
 # Sticker effects — implementation plan (Phase 0)
 
-Status: **awaiting review** before Phase 1 starts. The design spec this plan
-implements lives in the conversation that produced it; the authoring-facing
-reference will be `docs/effects.md` (written in Phase 1 alongside the engine
-and kept in sync from then on).
+Status: **implemented** (all three phases, 2026-09-18), as planned below
+with one addition: the story provider excludes stories whose sidecar fails
+to decode (§3.6) and falls back to playing them without effects when nothing
+else is left. The authoring-facing reference is `docs/effects.md`.
 
 This document answers one question: how does the spec's target design map
 onto the code that already exists, and where does it have to deviate?

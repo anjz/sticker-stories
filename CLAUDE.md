@@ -51,6 +51,11 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
 - `app/StickerStoriesKit/` — local SwiftPM package: manifest models, `CanvasState`,
   story selection, entitlement logic + all unit tests (platform-independent code
   lives here; also builds on macOS so `swift test` needs no simulator).
+- `app/StickerStories/Effects/` + `app/StickerStoriesKit/.../Effects/` — sticker
+  effects (play-mode visual polish). Authoring reference `docs/effects.md`;
+  machine-readable catalogue `docs/effects/effects.json` (pinned to code by
+  tests — edit together). The 15-effect library is closed; see the doc before
+  adding anything.
 - `packs/<id>/` — pack source content; must always pass `packager validate`.
 - `tools/` — Go module (dev-time only): `packager` (validation), `placeholdergen`
   (temporary placeholder assets), `story-gen` + `tts` (stubs for future pipeline).
@@ -68,5 +73,6 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
 - Preserve the `StoryProvider` / `Narrator` seams and the Codable canvas-state
   model — story sourcing and narration must remain swappable (see
   `docs/architecture.md`, "Future: runtime generation").
-- Run tests after changes to story selection, manifest, or entitlement code.
+- Run tests after changes to story selection, manifest, entitlement, or
+  effects code.
 - Separate commits per logical change.
