@@ -24,8 +24,10 @@ public struct PlacedSticker: Codable, Equatable, Sendable, Identifiable {
     public var id: UUID
     /// The sticker type, referencing `StickerDefinition.id` in the manifest.
     public var stickerID: String
-    /// Position of the sticker's centre in normalized canvas space
-    /// (0...1 on both axes, origin at bottom-left, SpriteKit-style).
+    /// Position of the sticker's centre normalized to the pack's background
+    /// art (0...1 on both axes, origin at bottom-left, SpriteKit-style) — not
+    /// to the screen, so the arrangement is the same in every orientation
+    /// and window size.
     public var position: NormalizedPoint
     public var layer: CanvasLayer
     /// Stacking order within the layer; higher is closer to the viewer.

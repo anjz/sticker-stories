@@ -51,9 +51,20 @@ AVFoundation. This is our own code, not a third-party dependency.
    background plane (behind the pack's foreground art, e.g. behind the trees).
 
 3. **`CanvasState` is a first-class Codable model** — sticker instances with
-   `stickerID`, normalized position (0–1 in canvas space), layer, z-order,
-   scale, rotation. It is produced by the scene on demand and consumed by story
-   selection. It never references SpriteKit types and serialises to JSON.
+   `stickerID`, normalized position (0–1 **of the pack's background art**, not
+   of the screen), layer, z-order, scale, rotation. It is produced by the
+   scene on demand and consumed by story selection. It never references
+   SpriteKit types and serialises to JSON.
+
+3a. **World + camera.** The art defines a fixed-aspect world scaled to cover
+   the view; sticker positions and sizes are world-relative, so the child's
+   arrangement is identical in every orientation and window size (iPadOS 26
+   resizable windows, Split View, portrait). Whatever overflows the view can
+   be panned with one finger on empty space (also during playback); the
+   camera is clamped to the world and a one-shot drift hints that there is
+   more. The tray is a child of the camera: fixed to the view, laid out to
+   always fit fully between the back button and the undo/redo/clear cluster,
+   shrinking its items in very narrow windows rather than overlapping them.
 
 4. **Story selection** (`BundledStoryProvider`): a story is a candidate when its
    `requiredStickers` are all on the canvas. Score = optional-sticker matches
