@@ -2,7 +2,10 @@
   "schemaVersion": 2,
   "id": "forest",
   "version": 6,
-  "languages": ["en-US", "es-ES"],
+  "languages": [
+    "en-US",
+    "es-ES"
+  ],
   "displayName": {
     "en-US": "Forest Friends",
     "es-ES": "Amigos del Bosque"
@@ -13,159 +16,358 @@
   "backgroundWide": "art/background-wide.png",
   "foregroundWide": "art/foreground-wide.png",
   "stickers": [
-    { "id": "mushroom", "name": { "en-US": "Mushroom", "es-ES": "Seta" }, "image": "stickers/mushroom.png" },
-    { "id": "fox", "name": { "en-US": "Fox", "es-ES": "Zorro" }, "image": "stickers/fox.png" },
-    { "id": "rabbit", "name": { "en-US": "Rabbit", "es-ES": "Conejo" }, "image": "stickers/rabbit.png" },
-    { "id": "tree", "name": { "en-US": "Tree", "es-ES": "Árbol" }, "image": "stickers/tree.png" },
-    { "id": "flower", "name": { "en-US": "Flower", "es-ES": "Flor" }, "image": "stickers/flower.png" },
-    { "id": "butterfly", "name": { "en-US": "Butterfly", "es-ES": "Mariposa" }, "image": "stickers/butterfly.png" },
-    { "id": "hedgehog", "name": { "en-US": "Hedgehog", "es-ES": "Erizo" }, "image": "stickers/hedgehog.png" },
-    { "id": "owl", "name": { "en-US": "Owl", "es-ES": "Búho" }, "image": "stickers/owl.png" },
-    { "id": "snail", "name": { "en-US": "Snail", "es-ES": "Caracol" }, "image": "stickers/snail.png" },
-    { "id": "squirrel", "name": { "en-US": "Squirrel", "es-ES": "Ardilla" }, "image": "stickers/squirrel.png" },
-    { "id": "deer", "name": { "en-US": "Deer", "es-ES": "Ciervo" }, "image": "stickers/deer.png" },
-    { "id": "bird", "name": { "en-US": "Bird", "es-ES": "Pájaro" }, "image": "stickers/bird.png" },
-    { "id": "frog", "name": { "en-US": "Frog", "es-ES": "Rana" }, "image": "stickers/frog.png" },
-    { "id": "bee", "name": { "en-US": "Bee", "es-ES": "Abeja" }, "image": "stickers/bee.png" },
-    { "id": "ladybug", "name": { "en-US": "Ladybug", "es-ES": "Mariquita" }, "image": "stickers/ladybug.png" },
-    { "id": "acorn", "name": { "en-US": "Acorn", "es-ES": "Bellota" }, "image": "stickers/acorn.png" },
-    { "id": "raccoon", "name": { "en-US": "Raccoon", "es-ES": "Mapache" }, "image": "stickers/raccoon.png" },
-    { "id": "mouse", "name": { "en-US": "Mouse", "es-ES": "Ratón" }, "image": "stickers/mouse.png" },
-    { "id": "pinecone", "name": { "en-US": "Pinecone", "es-ES": "Piña de pino" }, "image": "stickers/pinecone.png" }
+    {
+      "id": "mushroom",
+      "name": {
+        "en-US": "Mushroom",
+        "es-ES": "Seta"
+      },
+      "image": "stickers/mushroom.png"
+    },
+    {
+      "id": "fox",
+      "name": {
+        "en-US": "Fox",
+        "es-ES": "Zorro"
+      },
+      "image": "stickers/fox.png"
+    },
+    {
+      "id": "rabbit",
+      "name": {
+        "en-US": "Rabbit",
+        "es-ES": "Conejo"
+      },
+      "image": "stickers/rabbit.png"
+    },
+    {
+      "id": "tree",
+      "name": {
+        "en-US": "Tree",
+        "es-ES": "Árbol"
+      },
+      "image": "stickers/tree.png"
+    },
+    {
+      "id": "flower",
+      "name": {
+        "en-US": "Flower",
+        "es-ES": "Flor"
+      },
+      "image": "stickers/flower.png"
+    },
+    {
+      "id": "butterfly",
+      "name": {
+        "en-US": "Butterfly",
+        "es-ES": "Mariposa"
+      },
+      "image": "stickers/butterfly.png"
+    },
+    {
+      "id": "hedgehog",
+      "name": {
+        "en-US": "Hedgehog",
+        "es-ES": "Erizo"
+      },
+      "image": "stickers/hedgehog.png"
+    },
+    {
+      "id": "owl",
+      "name": {
+        "en-US": "Owl",
+        "es-ES": "Búho"
+      },
+      "image": "stickers/owl.png"
+    },
+    {
+      "id": "snail",
+      "name": {
+        "en-US": "Snail",
+        "es-ES": "Caracol"
+      },
+      "image": "stickers/snail.png"
+    },
+    {
+      "id": "squirrel",
+      "name": {
+        "en-US": "Squirrel",
+        "es-ES": "Ardilla"
+      },
+      "image": "stickers/squirrel.png"
+    },
+    {
+      "id": "deer",
+      "name": {
+        "en-US": "Deer",
+        "es-ES": "Ciervo"
+      },
+      "image": "stickers/deer.png"
+    },
+    {
+      "id": "bird",
+      "name": {
+        "en-US": "Bird",
+        "es-ES": "Pájaro"
+      },
+      "image": "stickers/bird.png"
+    },
+    {
+      "id": "frog",
+      "name": {
+        "en-US": "Frog",
+        "es-ES": "Rana"
+      },
+      "image": "stickers/frog.png"
+    },
+    {
+      "id": "bee",
+      "name": {
+        "en-US": "Bee",
+        "es-ES": "Abeja"
+      },
+      "image": "stickers/bee.png"
+    },
+    {
+      "id": "ladybug",
+      "name": {
+        "en-US": "Ladybug",
+        "es-ES": "Mariquita"
+      },
+      "image": "stickers/ladybug.png"
+    },
+    {
+      "id": "acorn",
+      "name": {
+        "en-US": "Acorn",
+        "es-ES": "Bellota"
+      },
+      "image": "stickers/acorn.png"
+    },
+    {
+      "id": "raccoon",
+      "name": {
+        "en-US": "Raccoon",
+        "es-ES": "Mapache"
+      },
+      "image": "stickers/raccoon.png"
+    },
+    {
+      "id": "mouse",
+      "name": {
+        "en-US": "Mouse",
+        "es-ES": "Ratón"
+      },
+      "image": "stickers/mouse.png"
+    },
+    {
+      "id": "pinecone",
+      "name": {
+        "en-US": "Pinecone",
+        "es-ES": "Piña de pino"
+      },
+      "image": "stickers/pinecone.png"
+    }
   ],
   "stories": [
     {
-      "id": "forest-day",
-      "requiredStickers": [],
+      "id": "acorn-loses-her-cap",
+      "requiredStickers": [
+        "acorn",
+        "squirrel",
+        "raccoon",
+        "bird"
+      ],
       "optionalStickers": [],
-      "weight": 1.0,
-      "tags": ["gentle", "morning"],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "kindness"
+      ],
       "localizations": {
         "en-US": {
-          "title": "A Day in the Forest",
-          "text": "Good morning, forest! The sun stretched its warm yellow arms over the hills, and everything began to wake up. The leaves whispered hello to the wind. The grass wiggled its toes in the warm light. Somewhere, tiny feet went pitter-patter down a secret path. It was going to be a wonderful day in the forest, full of games and surprises. And the best part? It was only just beginning.",
-          "audio": "audio/en-US/forest-day.m4a",
-          "effects": "audio/en-US/forest-day.effects.json"
+          "title": "Acorn Loses Her Cap",
+          "text": "Acorn had a little brown cap. It fitted her exactly. Then, whoosh, the wind took it. Oh! said Acorn. Squirrel came running. Try this! She put a pink petal on Acorn's head. It slid off. Too slippy, said Acorn kindly. Raccoon came with a leaf, It covered Acorn's eyes. Too big, said Acorn, from underneath. Bird flew high. Then, on the very top branch, he saw a little brown something, Got it! Down he swooped, and dropped it, and it landed, plop, exactly on Acorn's head. Ahh, said Acorn. That's me again. She looked at the petal. She looked at the leaf. Can I keep those too? she asked. So she did. A petal blanket. A leaf umbrella. And a cap that fitted her exactly.",
+          "audio": "audio/en-US/acorn-loses-her-cap.m4a",
+          "effects": "audio/en-US/acorn-loses-her-cap.effects.json"
         },
         "es-ES": {
-          "title": "Un día en el bosque",
-          "text": "¡Buenos días, bosque! El sol estiró sus cálidos brazos amarillos sobre las colinas y todo empezó a despertarse. Las hojas susurraban hola al viento. La hierba movía los dedos de los pies bajo la luz templada. En algún lugar, unos piececitos hacían tip-tap por un sendero secreto. Iba a ser un día maravilloso en el bosque, lleno de juegos y sorpresas. ¿Y lo mejor de todo? Que acababa de empezar.",
-          "audio": "audio/es-ES/forest-day.m4a",
-          "effects": "audio/es-ES/forest-day.effects.json"
+          "title": "Bellota pierde su gorrito",
+          "text": "Bellota tenía un gorrito marrón. Le quedaba justo. Y de pronto, fiuuu, el viento se lo llevó. ¡Ay!, dijo Bellota. Ardilla llegó corriendo. ¡Prueba esto! Le puso un pétalo rosa en la cabeza. Resbaló. Demasiado liso, dijo Bellota con cariño. Mapache llegó con una hoja Le tapó los ojos. Demasiado grande, dijo Bellota desde debajo. Pájaro voló alto. Y allí, en la rama más alta, vio una cosita marrón ¡Ya lo tengo! Bajó planeando, lo soltó, y aterrizó, plof, justo en la cabeza de Bellota. Ahh, dijo Bellota. Ya vuelvo a ser yo. Miró el pétalo. Miró la hoja. ¿Me puedo quedar esto también?, preguntó. Y se lo quedó. Una manta de pétalo. Un paraguas de hoja. Y un gorrito que le quedaba justo.",
+          "audio": "audio/es-ES/acorn-loses-her-cap.m4a",
+          "effects": "audio/es-ES/acorn-loses-her-cap.effects.json"
         }
       }
     },
     {
-      "id": "quiet-evening",
-      "requiredStickers": [],
-      "optionalStickers": [],
-      "weight": 1.0,
-      "tags": ["gentle", "bedtime"],
+      "id": "acorn-wants-to-be-tall",
+      "requiredStickers": [
+        "acorn",
+        "tree",
+        "squirrel"
+      ],
+      "optionalStickers": [
+        "bird"
+      ],
+      "weight": 1,
+      "tags": [
+        "patience",
+        "seasons",
+        "gentle"
+      ],
       "localizations": {
         "en-US": {
-          "title": "The Quiet Evening",
-          "text": "When the sky turned orange and pink, the forest grew quiet and soft. The hills tucked themselves under a blanket of golden light. One by one, the little forest friends yawned very big yawns. The wind sang a slow, sleepy song through the branches. Shhh, said the leaves. Shhh, said the grass. And the whole forest closed its eyes, dreaming sweet dreams until morning.",
-          "audio": "audio/en-US/quiet-evening.m4a",
-          "effects": "audio/en-US/quiet-evening.effects.json"
+          "title": "Acorn Wants to Be Tall",
+          "text": "Acorn was the smallest thing in the forest. She looked up at Tree. Up, and up, and up. I want to be tall, said Acorn. Right now! Tree rustled. Being tall takes a while, he said. Acorn did not want a while. Then Squirrel came bouncing by, saw a shiny acorn and, quick as a wink, buried her in the soft brown earth. Oh no, thought Acorn. Now I am smaller than ever! It was dark and warm and very quiet. So Acorn waited. Rain came, tap, tap. Snow came, hush. Then one morning something tickled. Something stretched. Something went pop! A tiny green shoot poked into the sun. Look at me, said Acorn. Tree looked all the way down, and smiled. That, he said, is exactly how I started.",
+          "audio": "audio/en-US/acorn-wants-to-be-tall.m4a",
+          "effects": "audio/en-US/acorn-wants-to-be-tall.effects.json"
         },
         "es-ES": {
-          "title": "La tarde tranquila",
-          "text": "Cuando el cielo se volvió naranja y rosa, el bosque se quedó callado y suave. Las colinas se arroparon con una manta de luz dorada. Uno a uno, los amiguitos del bosque bostezaron con bostezos enormes. El viento cantó una canción lenta y soñolienta entre las ramas. Shhh, dijeron las hojas. Shhh, dijo la hierba. Y el bosque entero cerró los ojos, soñando dulces sueños hasta la mañana.",
-          "audio": "audio/es-ES/quiet-evening.m4a",
-          "effects": "audio/es-ES/quiet-evening.effects.json"
+          "title": "Bellota quiere ser alta",
+          "text": "Bellota era la cosa más pequeña del bosque. Miró a Árbol. Arriba, y arriba, y más arriba. Quiero ser alta, dijo Bellota. ¡Ahora mismo! Árbol susurró con las hojas. Ser alto lleva su tiempo, dijo. Bellota no quería esperar su tiempo. Entonces llegó Ardilla dando brincos, vio una bellota brillante y, en un pispás, la enterró en la tierra blanda y marrón. Ay, no, pensó Bellota. ¡Ahora soy más pequeña que nunca! Estaba oscuro, calentito y muy tranquilo. Así que Bellota esperó. Vino la lluvia, tap, tap. Vino la nieve, chisss. Y una mañana, algo hizo cosquillas. Algo se estiró. Algo hizo ¡pop! Un brote verde chiquitín asomó al sol. Miradme, dijo Bellota. Árbol miró hacia abajo, muy abajo, y sonrió. Así, dijo, empecé yo también.",
+          "audio": "audio/es-ES/acorn-wants-to-be-tall.m4a",
+          "effects": "audio/es-ES/acorn-wants-to-be-tall.effects.json"
         }
       }
     },
     {
-      "id": "hide-and-seek",
-      "requiredStickers": [],
-      "optionalStickers": [],
-      "weight": 0.8,
-      "tags": ["funny", "play"],
+      "id": "bee-and-the-sleepy-flower",
+      "requiredStickers": [
+        "bee",
+        "flower",
+        "butterfly"
+      ],
+      "optionalStickers": [
+        "ladybug"
+      ],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "morning",
+        "kindness"
+      ],
       "localizations": {
         "en-US": {
-          "title": "Forest Hide and Seek",
-          "text": "One, two, three... ready or not, here I come! The forest loved playing hide and seek. The wind hid behind the hills. The sunbeams hid behind the clouds, giggling so much they peeked out again straight away. Even the little stream tried to hide, but its splashing gave it away every time. Found you, laughed the forest. And everyone agreed: the best hiding place is always right next to a friend.",
-          "audio": "audio/en-US/hide-and-seek.m4a",
-          "effects": "audio/en-US/hide-and-seek.effects.json"
+          "title": "Bee and the Sleepy Flower",
+          "text": "A cloudy morning. Every flower in the meadow was awake but one. Flower kept her petals folded tight, tight, tight. Wake up, said Butterfly, and fanned her with two big wings. Whiff, whiff. Flower did not move. Wake up, said Bee, and tickled a petal with her fuzzy feet. Flower twitched, and folded tighter. Hmm, said Bee. Then Bee did something different. She landed softly on Flower's head, and hummed. Just hummed. Mmmm-mmm. Low and warm, like a blanket. Mmmm-mmm. Butterfly landed too, and kept very still. Mmmm-mmm. And slowly, slowly, one petal lifted. Then another. Then all of them, wide open, yellow as the sun that wasn't out. Good morning, said Flower. What a lovely song. It's just a hum, said Bee. Best kind, said Flower.",
+          "audio": "audio/en-US/bee-and-the-sleepy-flower.m4a",
+          "effects": "audio/en-US/bee-and-the-sleepy-flower.effects.json"
         },
         "es-ES": {
-          "title": "El escondite del bosque",
-          "text": "Una, dos, tres... ¡listos o no, allá voy! Al bosque le encantaba jugar al escondite. El viento se escondió detrás de las colinas. Los rayos de sol se escondieron detrás de las nubes, pero se reían tanto que enseguida volvieron a asomarse. Hasta el arroyito intentó esconderse, pero su chapoteo lo delataba siempre. Te encontré, rio el bosque. Y todos estuvieron de acuerdo: el mejor escondite es siempre al lado de un amigo.",
-          "audio": "audio/es-ES/hide-and-seek.m4a",
-          "effects": "audio/es-ES/hide-and-seek.effects.json"
+          "title": "Abeja y la flor dormilona",
+          "text": "Una mañana de nubes. Todas las flores del prado estaban despiertas menos una. Flor tenía los pétalos cerrados, bien, bien cerrados. Despierta, dijo Mariposa, y la abanicó con sus dos alas grandes. Fu, fu. Flor no se movió. Despierta, dijo Abeja, y le hizo cosquillas en un pétalo con las patitas. Flor se estremeció y se cerró aún más. Mmm, dijo Abeja. Entonces Abeja hizo algo distinto. Se posó suavemente en la cabeza de Flor y zumbó. Solo zumbó. Mmmm-mmm. Bajito y calentito, como una manta. Mmmm-mmm. Mariposa se posó también y se quedó muy quieta. Mmmm-mmm. Y despacio, despacio, un pétalo se levantó. Luego otro. Luego todos, abiertos del todo, amarillos como el sol que no había salido. Buenos días, dijo Flor. Qué canción tan bonita. Solo es un zumbido, dijo Abeja. De los mejores, dijo Flor.",
+          "audio": "audio/es-ES/bee-and-the-sleepy-flower.m4a",
+          "effects": "audio/es-ES/bee-and-the-sleepy-flower.effects.json"
         }
       }
     },
     {
-      "id": "shy-mushroom",
-      "requiredStickers": ["mushroom"],
-      "optionalStickers": ["tree", "snail"],
-      "weight": 1.0,
-      "tags": ["gentle"],
+      "id": "bees-dance",
+      "requiredStickers": [
+        "bee",
+        "mouse",
+        "rabbit"
+      ],
+      "optionalStickers": [
+        "flower"
+      ],
+      "weight": 1,
+      "tags": [
+        "music",
+        "curiosity"
+      ],
       "localizations": {
         "en-US": {
-          "title": "The Shy Mushroom",
-          "text": "Under a leafy corner of the forest lived a small red mushroom with white spots. It was very, very shy. When anyone walked past, it pulled its cap down low like a hat. One rainy day, drip drop, drip drop, the rain drummed on its cap and made the loveliest sound. Everyone came to listen! The little mushroom stood up tall and proud. Being small, it learned, doesn't mean being quiet.",
-          "audio": "audio/en-US/shy-mushroom.m4a",
-          "effects": "audio/en-US/shy-mushroom.effects.json"
+          "title": "Bee's Dance",
+          "text": "Bee came home buzzing. She had found flowers. Lots of flowers! Where? asked Mouse. Bee danced. Wiggle, wiggle, turn. Wiggle, wiggle, turn. Mouse tilted his head. Rabbit came over. What's she doing? Bee danced again. Wiggle, wiggle, turn. So Mouse tried it. Wiggle, wiggle, turn. He wiggled a little to the left. Rabbit tried it. Wiggle, wiggle, turn. He wiggled a little further. Bee danced. Mouse wiggled. Rabbit wiggled. Wiggle, wiggle, turn! Past the log. Wiggle, wiggle, turn! Under the ferns. Wiggle, wiggle, turn! And there, all at once, was the meadow, full to the edges with flowers. Oh, said Mouse. That's what you were saying. Bee bounced. Now you do it, she said. So they did. Wiggle, wiggle, turn. They had never been so happy to be told where to go.",
+          "audio": "audio/en-US/bees-dance.m4a",
+          "effects": "audio/en-US/bees-dance.effects.json"
         },
         "es-ES": {
-          "title": "La seta tímida",
-          "text": "En un rincón frondoso del bosque vivía una setita roja con lunares blancos. Era muy, muy tímida. Cuando alguien pasaba cerca, se bajaba el sombrero hasta los ojos. Un día de lluvia, plic ploc, plic ploc, la lluvia tamborileó sobre su sombrero e hizo el sonido más bonito del mundo. ¡Todos vinieron a escuchar! La setita se puso derecha y orgullosa. Ser pequeño, aprendió, no significa ser callado.",
-          "audio": "audio/es-ES/shy-mushroom.m4a",
-          "effects": "audio/es-ES/shy-mushroom.effects.json"
+          "title": "El baile de Abeja",
+          "text": "Abeja volvió a casa zumbando. Había encontrado flores. ¡Muchas flores! ¿Dónde?, preguntó Ratón. Abeja bailó. Meneo, meneo, vuelta. Meneo, meneo, vuelta. Ratón ladeó la cabeza. Conejo se acercó. ¿Qué hace? Abeja bailó otra vez. Meneo, meneo, vuelta. Ratón lo probó. Meneo, meneo, vuelta. Se meneó un poquito hacia la izquierda. Conejo lo probó. Meneo, meneo, vuelta. Se meneó un poco más allá. Abeja bailaba. Ratón se meneaba. Conejo se meneaba. ¡Meneo, meneo, vuelta! Pasado el tronco. ¡Meneo, meneo, vuelta! Bajo los helechos. ¡Meneo, meneo, vuelta! Y allí, de pronto, estaba el prado, lleno de flores hasta el borde. Ah, dijo Ratón. Eso era lo que decías. Abeja dio un bote. Ahora vosotros, dijo. Y lo hicieron. Meneo, meneo, vuelta. Nunca habían estado tan contentos de que les dijeran adónde ir.",
+          "audio": "audio/es-ES/bees-dance.m4a",
+          "effects": "audio/es-ES/bees-dance.effects.json"
         }
       }
     },
     {
-      "id": "fox-and-rabbit",
-      "requiredStickers": ["fox", "rabbit"],
-      "optionalStickers": ["flower", "tree"],
-      "weight": 1.2,
-      "tags": ["funny", "friendship"],
+      "id": "bird-and-owl-share-the-sky",
+      "requiredStickers": [
+        "bird",
+        "tree",
+        "owl"
+      ],
+      "optionalStickers": [
+        "flower"
+      ],
+      "weight": 1,
+      "tags": [
+        "music",
+        "morning",
+        "kindness"
+      ],
       "localizations": {
         "en-US": {
-          "title": "Fox and Rabbit's Big Race",
-          "text": "Ready, steady, go! Fox and Rabbit raced across the meadow. Fox was fast like a whoosh of wind. Rabbit was bouncy like a spring. Halfway there, Fox tripped over his own fluffy tail and rolled, tumble tumble tumble, into a pile of leaves. Rabbit hopped back to help him up. They crossed the finish line together, holding paws. Who won? Both of them, of course. That's how best friends race.",
-          "audio": "audio/en-US/fox-and-rabbit.m4a",
-          "effects": "audio/en-US/fox-and-rabbit.effects.json"
+          "title": "Bird and Owl Share the Sky",
+          "text": "Every morning, Bird sits on the top branch of Tree and sings the sun up. Tweet-tweet-tweedle-oo! Every morning, Owl sits on the bottom branch of Tree and tries to go to sleep. Hoo, groaned Owl. Not so loud. But the sun needs me, said Bird, and sang louder. Owl put a wing over his eyes. Bird sang. Owl groaned. Tree rustled, and rustled, and finally said: You know, the sky is big. Bird stopped. Owl peeped out. You take the morning, said Tree. Hoo, said Owl slowly. And you take the evening. Bird tipped his head. So that day, Bird sang the sun up, tweet-tweet, and then hushed. And Owl sang the sun down, hoo-hoo, soft and low. And in between? Tree hummed. Mmm. Which is what trees have been doing all along.",
+          "audio": "audio/en-US/bird-and-owl-share-the-sky.m4a",
+          "effects": "audio/en-US/bird-and-owl-share-the-sky.effects.json"
         },
         "es-ES": {
-          "title": "La gran carrera de Zorro y Conejo",
-          "text": "Preparados, listos, ¡ya! Zorro y Conejo echaron una carrera por el prado. Zorro era rápido como un soplo de viento. Conejo saltaba como un muelle. A mitad de camino, Zorro tropezó con su propia cola esponjosa y rodó, pumba pumba pumba, hasta un montón de hojas. Conejo volvió dando saltos para ayudarle a levantarse. Cruzaron la meta juntos, de la mano. ¿Quién ganó? Los dos, claro. Así corren los mejores amigos.",
-          "audio": "audio/es-ES/fox-and-rabbit.m4a",
-          "effects": "audio/es-ES/fox-and-rabbit.effects.json"
+          "title": "Pájaro y Búho comparten el cielo",
+          "text": "Cada mañana, Pájaro se sube a la rama más alta de Árbol y canta para que salga el sol. ¡Pío-pío-pirulí-pí! Y Búho, en la rama más baja, intenta dormirse. Uuuh, gruñó Búho. No tan fuerte. Pero el sol me necesita, dijo Pájaro, y cantó más fuerte. Búho se tapó los ojos con un ala. Árbol susurró, y susurró, y por fin dijo: El cielo es muy grande, ¿sabéis? Pájaro se calló. Búho asomó un ojo. Tú te quedas con la mañana, dijo Árbol. Uuuh, dijo Búho despacio. Y tú con la tarde. Pájaro ladeó la cabeza. Así que ese día Pájaro cantó para que saliera el sol, pío-pío, y luego calló. Y Búho cantó para que se fuera, uuuh-uuuh, bajito y suave. ¿Y en medio? Árbol tarareó. Mmm. Que es lo que los árboles llevan haciendo desde siempre.",
+          "audio": "audio/es-ES/bird-and-owl-share-the-sky.m4a",
+          "effects": "audio/es-ES/bird-and-owl-share-the-sky.effects.json"
         }
       }
     },
     {
-      "id": "tallest-tree",
-      "requiredStickers": ["tree"],
-      "optionalStickers": ["owl", "butterfly"],
-      "weight": 1.0,
-      "tags": ["gentle"],
+      "id": "birds-nest-helpers",
+      "requiredStickers": [
+        "bird",
+        "mouse",
+        "hedgehog"
+      ],
+      "optionalStickers": [
+        "squirrel",
+        "tree"
+      ],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "counting"
+      ],
       "localizations": {
         "en-US": {
-          "title": "The Tallest Tree",
-          "text": "The tallest tree in the forest could tickle the clouds with its highest leaves. Hello up there! the little plants called from below. The tall tree loved to help. It gave shade when the sun was too hot. It caught raindrops when the rain was too splashy. And when the wind blew, it waved its branches like a big green flag. Every forest, you see, needs a gentle giant.",
-          "audio": "audio/en-US/tallest-tree.m4a",
-          "effects": "audio/en-US/tallest-tree.effects.json"
+          "title": "Bird's Nest Helpers",
+          "text": "Bird was building a nest. One twig. Two twigs. Three. Mouse came by with his arms full. Fluff! said Mouse. For the inside. Thank you, said Bird, and tucked it in. Hedgehog came by with leaves stuck all over his prickles. Leaves! said Hedgehog. For the sides. Thank you, said Bird, and wove them round. Mouse came back with more fluff. Hedgehog came back with more leaves. Bird looked at the nest. It was not small any more. It was enormous. It was, said Bird, the biggest nest in the forest. Everyone went quiet. Then Bird laughed. Well, he said. Come in, then! Mouse hopped in. Hedgehog rolled in. Bird settled on top. Snug, warm, three friends in one nest, listening to the wind in the leaves. There was still room. Just in case.",
+          "audio": "audio/en-US/birds-nest-helpers.m4a",
+          "effects": "audio/en-US/birds-nest-helpers.effects.json"
         },
         "es-ES": {
-          "title": "El árbol más alto",
-          "text": "El árbol más alto del bosque podía hacer cosquillas a las nubes con sus hojas más altas. ¡Hola ahí arriba!, gritaban las plantitas desde abajo. Al árbol alto le encantaba ayudar. Daba sombra cuando el sol calentaba demasiado. Atrapaba las gotas cuando la lluvia salpicaba demasiado. Y cuando soplaba el viento, saludaba con sus ramas como una gran bandera verde. Porque todo bosque, ya se sabe, necesita un gigante bueno.",
-          "audio": "audio/es-ES/tallest-tree.m4a",
-          "effects": "audio/es-ES/tallest-tree.effects.json"
+          "title": "Los ayudantes del nido",
+          "text": "Pájaro estaba haciendo un nido. Una ramita. Dos ramitas. Tres. Iba a ser pequeño, redondo y perfecto. Ratón llegó con los brazos llenos. ¡Pelusa!, dijo Ratón. Para dentro. Gracias, dijo Pájaro, y la metió. Erizo llegó con hojas pinchadas por todos los pinchos. ¡Hojas!, dijo Erizo. Para los lados. Gracias, dijo Pájaro, y las entrelazó. Ratón volvió con más pelusa. Erizo volvió con más hojas. Ardilla dejó un poco de musgo. Pájaro miró el nido. Ya no era pequeño. Era grande. Era enorme. Es, dijo Pájaro, el nido más grande del bosque. Todos se quedaron callados. Y Pájaro se rio. Bueno, dijo. ¡Pues entrad! Ratón entró de un salto. Erizo entró rodando. Pájaro se acomodó encima. Calentitos, apretaditos, tres amigos en un nido, escuchando el viento en las hojas. Todavía quedaba sitio. Por si acaso.",
+          "audio": "audio/es-ES/birds-nest-helpers.m4a",
+          "effects": "audio/es-ES/birds-nest-helpers.effects.json"
         }
       }
     },
     {
       "id": "butterfly-ball",
-      "requiredStickers": ["butterfly", "flower"],
-      "optionalStickers": ["snail", "rabbit"],
-      "weight": 1.0,
-      "tags": ["play", "dance"],
+      "requiredStickers": [
+        "butterfly",
+        "flower"
+      ],
+      "optionalStickers": [
+        "snail",
+        "rabbit"
+      ],
+      "weight": 1,
+      "tags": [
+        "play",
+        "dance"
+      ],
       "localizations": {
         "en-US": {
           "title": "The Butterfly Ball",
@@ -182,32 +384,493 @@
       }
     },
     {
-      "id": "owl-lullaby",
-      "requiredStickers": ["owl"],
-      "optionalStickers": ["tree", "mushroom"],
-      "weight": 1.0,
-      "tags": ["bedtime", "gentle"],
+      "id": "butterfly-cannot-choose",
+      "requiredStickers": [
+        "butterfly",
+        "flower",
+        "bee",
+        "ladybug"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "curiosity"
+      ],
       "localizations": {
         "en-US": {
-          "title": "Owl's Lullaby",
-          "text": "When the moon climbed up the sky, the owl opened her big round eyes. Whoo-hoo, she sang softly. Time to sleep, little forest. Her lullaby floated down from the branches like a warm blanket. The mushrooms nodded their caps. The flowers folded their petals. Even the busy stream slowed down to listen. Whoo-hoo, whoo-hoo. Goodnight, forest. Goodnight, friends. Goodnight, everyone, everywhere.",
-          "audio": "audio/en-US/owl-lullaby.m4a",
-          "effects": "audio/en-US/owl-lullaby.effects.json"
+          "title": "Butterfly Cannot Choose",
+          "text": "The meadow was full of flowers. Pink ones, blue ones, yellow ones with freckles. Butterfly floated over them all. Which one? Which one? The pink one is pretty. But the blue one is bluer. But the yellow one has freckles! Butterfly flittered left. Flittered right. Went round in a circle. Up went the sun. Across went the sun. Butterfly was still deciding. Bee landed on the yellow one. Slurp. Delicious. Ladybug sat on the blue one. Lovely and cool. Butterfly? said Bee. Butterfly was making a list. Just try one, said Bee. Any one. So Butterfly landed. On the first flower they came to. Big and pink and warm from the whole day of sun. Oh, said Butterfly. Oh, it's perfect. Which one? asked Ladybug. This one, said Butterfly. And they never even looked at the others.",
+          "audio": "audio/en-US/butterfly-cannot-choose.m4a",
+          "effects": "audio/en-US/butterfly-cannot-choose.effects.json"
         },
         "es-ES": {
-          "title": "La nana del búho",
-          "text": "Cuando la luna trepó por el cielo, el búho abrió sus grandes ojos redondos. Uuu-uuu, cantó bajito. A dormir, bosquecito. Su nana bajó flotando desde las ramas como una manta calentita. Las setas asintieron con sus sombreros. Las flores plegaron sus pétalos. Hasta el arroyo, siempre tan ocupado, fue más despacio para escuchar. Uuu-uuu, uuu-uuu. Buenas noches, bosque. Buenas noches, amigos. Buenas noches a todos, en todas partes.",
-          "audio": "audio/es-ES/owl-lullaby.m4a",
-          "effects": "audio/es-ES/owl-lullaby.effects.json"
+          "title": "Mariposa no sabe elegir",
+          "text": "El prado estaba lleno de flores. Rosas, azules, amarillas con pecas. Mariposa flotaba por encima de todas. ¿Cuál? ¿Cuál? La rosa es bonita. Pero la azul es más azul. ¡Pero la amarilla tiene pecas! Mariposa revoloteó a la izquierda. A la derecha. Dio una vuelta entera. El sol subió. El sol cruzó el cielo. Mariposa seguía decidiendo. Abeja se posó en la amarilla. Ñam. Riquísima. Mariquita se sentó en la azul. Fresquita y suave. ¿Mariposa?, dijo Abeja. Mariposa estaba haciendo una lista. Prueba una, dijo Abeja. Cualquiera. Y Mariposa se posó. En la primera flor que encontró. Grande, rosa y calentita de todo un día de sol. Oh, dijo Mariposa. Oh, es perfecta. ¿Cuál?, preguntó Mariquita. Esta, dijo Mariposa. Y ya no miró ninguna otra.",
+          "audio": "audio/es-ES/butterfly-cannot-choose.m4a",
+          "effects": "audio/es-ES/butterfly-cannot-choose.effects.json"
+        }
+      }
+    },
+    {
+      "id": "butterflys-first-morning",
+      "requiredStickers": [
+        "butterfly",
+        "mushroom",
+        "ladybug"
+      ],
+      "optionalStickers": [
+        "flower"
+      ],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "morning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Butterfly's First Morning",
+          "text": "Something was happening on the twig. Crick. Crack. A little door opened, and out came Butterfly. Brand new. Wet and crumpled, wings folded up like a tiny paper bag. Hello? said Butterfly, wobbling. Hello! said Ladybug, hurrying over. Oh, you're new! What do I do? asked Butterfly. My wings feel funny. Mushroom's cap was warm in the sun. Sit here, she said softly. Butterfly climbed onto Mushroom's cap and spread their crumpled wings. Just wait, said Mushroom. The sun did the rest. Slowly the wings uncurled. Slowly they dried. Slowly, colours came, orange, and gold, and a spot of blue. Ladybug could not sit still. Are they ready? Nearly, said Mushroom. Ladybug counted. Three. Two. One. Butterfly flapped. Up they went, a wobble, a dip, and then, flying! Look at me! said Butterfly. We're looking, said Mushroom. We're looking.",
+          "audio": "audio/en-US/butterflys-first-morning.m4a",
+          "effects": "audio/en-US/butterflys-first-morning.effects.json"
+        },
+        "es-ES": {
+          "title": "La primera mañana de Mariposa",
+          "text": "Algo pasaba en la ramita. Cric. Crac. Se abrió una puertecita, y salió Mariposa. Recién nacida. Mojada y arrugada, con las alas plegadas como una bolsita de papel. ¿Hola?, dijo Mariposa, tambaleándose. ¡Hola!, dijo Mariquita, corriendo hacia ella. ¡Ay, eres nueva! ¿Qué hago?, preguntó Mariposa. Las alas me sienten raras. Seta estaba cerca, con el sombrero calentito al sol de la mañana. Siéntate aquí, dijo bajito. Mariposa subió al sombrero de Seta y estiró sus alas arrugadas. Espera, dijo Seta. El sol hizo el resto. Despacio, las alas se desplegaron. Despacio, se secaron. Despacio, llegaron los colores, naranja, y dorado, y una mota azul. Mariquita no podía estarse quieta. ¿Ya están? Casi, dijo Seta. Mariquita contó. Tres. Dos. Uno. Mariposa aleteó. Subió, un tambaleo, un bajón, y luego, ¡volando! ¡Miradme!, dijo Mariposa. Te miramos, dijo Seta. Te miramos.",
+          "audio": "audio/es-ES/butterflys-first-morning.m4a",
+          "effects": "audio/es-ES/butterflys-first-morning.effects.json"
+        }
+      }
+    },
+    {
+      "id": "deer-and-the-far-away-flower",
+      "requiredStickers": [
+        "deer",
+        "flower",
+        "butterfly",
+        "bee"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "kindness"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Deer and the Far-Away Flower",
+          "text": "Deer was the tallest animal in the forest. His legs were long. His neck was long. His head was so far up it was nearly in the clouds. Down in the grass lived Flower, small and pink and sweet-smelling. Every morning Deer walked past and thought, I would love to smell that flower. But his hooves were big and Flower was small, and Deer was careful. He sighed. Butterfly saw. Bee saw. Butterfly landed on Flower and brushed their wings on her petals. Bee rolled in her middle until she was dusty gold. Then up, up, up they flew, right to Deer's nose. Deer sniffed. Oh! He smelled honey and sunshine and pink. Thank you, said Deer, and he closed his eyes. Down in the grass, Flower stood a little taller. She had been up to the clouds today.",
+          "audio": "audio/en-US/deer-and-the-far-away-flower.m4a",
+          "effects": "audio/en-US/deer-and-the-far-away-flower.effects.json"
+        },
+        "es-ES": {
+          "title": "Ciervo y la flor lejana",
+          "text": "Ciervo era el animal más alto del bosque. Sus patas eran largas. Su cuello era largo. Su cabeza estaba tan arriba que casi tocaba las nubes. Abajo, entre la hierba, vivía Flor, pequeña, rosa y muy perfumada. Cada mañana Ciervo pasaba por allí y pensaba: me encantaría oler esa flor. Pero sus pezuñas eran grandes y Flor era pequeña, y Ciervo era cuidadoso. Suspiró. Mariposa lo vio. Abeja lo vio. Mariposa se posó en Flor y rozó sus pétalos con las alas. Abeja se revolcó en su centro hasta quedar dorada de polvo. Y arriba, arriba, arriba volaron, hasta la nariz de Ciervo. Ciervo olió. ¡Oh! Olía a miel, a sol y a rosa. Gracias, dijo Ciervo, y cerró los ojos. Abajo, entre la hierba, Flor se puso un poquito más alta. Hoy había subido hasta las nubes.",
+          "audio": "audio/es-ES/deer-and-the-far-away-flower.m4a",
+          "effects": "audio/es-ES/deer-and-the-far-away-flower.effects.json"
+        }
+      }
+    },
+    {
+      "id": "deer-and-the-quiet-game",
+      "requiredStickers": [
+        "deer",
+        "fox",
+        "rabbit",
+        "frog"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Deer and the Quiet Game",
+          "text": "Let's play the quiet game, said Deer. Whoever makes the first sound is out. Ready? Shhh. Fox sat. Rabbit sat. Frog sat. Deer stood, still as a tree. One. Two. Three. Fox's whiskers twitched. His nose twitched. His tummy went hee. Hee hee hee! Out, said Rabbit. Shhh! Four. Five. Six. Rabbit's ears went up. Rabbit's foot went thump. Oops. Out, said Fox, and giggled again. Seven. Eight. Frog held her breath. She held it and held it and, ribbit. Out! Now only Deer was left. Deer, still as a tree. Nine. Ten. Eleven. Deer was the champion. Then a fluffy seed floated down and landed, ever so lightly, on the end of Deer's nose. Deer's nose went wiggle. Ah... ah... AH-CHOO! Everybody fell over laughing. Out! they shouted. Deer laughed loudest of all.",
+          "audio": "audio/en-US/deer-and-the-quiet-game.m4a",
+          "effects": "audio/en-US/deer-and-the-quiet-game.effects.json"
+        },
+        "es-ES": {
+          "title": "Ciervo y el juego del silencio",
+          "text": "Juguemos al silencio, dijo Ciervo. El primero que haga un ruido, pierde. ¿Listos? Chisss. Zorro se sentó. Conejo se sentó. Rana se sentó. Ciervo se quedó de pie, quieto como un árbol. Uno. Dos. Tres. A Zorro le temblaron los bigotes. La tripa le hizo ji. ¡Ji, ji, ji! Fuera, dijo Conejo. ¡Chisss! Cuatro. Cinco. Seis. La pata de Conejo hizo pum. Uy. Fuera, dijo Zorro, y se rio otra vez. Siete. Ocho. Rana aguantó la respiración. Aguantó y aguantó y, croac. ¡Fuera! Ya solo quedaba Ciervo. Ciervo, quieto como un árbol. Nueve. Diez. Once. Ciervo era el campeón. Entonces una semilla con pelusa se posó, suave, en la nariz de Ciervo. La nariz le hizo cosquillas. Ah... ah... ¡AH-CHÍS! Todos se cayeron de risa. ¡Fuera!, gritaron. Ciervo fue el que más se rio.",
+          "audio": "audio/es-ES/deer-and-the-quiet-game.m4a",
+          "effects": "audio/es-ES/deer-and-the-quiet-game.effects.json"
+        }
+      }
+    },
+    {
+      "id": "deer-gives-a-ride",
+      "requiredStickers": [
+        "deer",
+        "ladybug",
+        "snail",
+        "pinecone"
+      ],
+      "optionalStickers": [
+        "mouse"
+      ],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "adventure"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Deer Gives a Ride",
+          "text": "Past the stream was the sunny meadow. Ladybug wanted to see it. Snail wanted to see it. Pinecone wanted to see it. But Ladybug's wings were tiny, and Snail was slow, and Pinecone could only roll downhill. Too far, they sighed. Deer heard. He came over, tall as a tree, He knelt down. All aboard, said Deer. Ladybug climbed on. Snail slid on. Mouse gave Pinecone a push and up she rolled. Hold tight. Deer stood up, slow, slow, slow. Then Deer walked. Not a bump. Not a wobble. Smooth as a cloud. Over the stream. Through the ferns. Into the sun. The meadow! they cried. Deer knelt again, and down they climbed, and sat in the warm grass. Thank you, said Snail. Any time, said Deer. Company is nice up there.",
+          "audio": "audio/en-US/deer-gives-a-ride.m4a",
+          "effects": "audio/en-US/deer-gives-a-ride.effects.json"
+        },
+        "es-ES": {
+          "title": "Ciervo lleva a sus amigos",
+          "text": "Lejos, pasado el arroyo, estaba el prado soleado. Mariquita quería verlo. Caracol quería verlo. Piña quería verlo. Pero las alas de Mariquita eran diminutas, Caracol era lento y Piña solo sabía rodar cuesta abajo. Demasiado lejos, suspiraron. Ciervo los oyó. Se acercó, alto como un árbol, Se arrodilló. Todos a bordo, dijo Ciervo. Mariquita subió. Caracol se deslizó arriba. Ratón empujó a Piña y arriba rodó. Agarraos fuerte. Ciervo se levantó, despacio, despacio, despacio. Y Ciervo caminó. Ni un bote. Ni un tambaleo. Suave como una nube. Sobre el arroyo. Entre los helechos. Hasta el sol. ¡El prado!, gritaron. Ciervo se arrodilló otra vez, bajaron y se sentaron en la hierba caliente. Gracias, dijo Caracol. Cuando queráis, dijo Ciervo. Se está bien acompañado ahí arriba.",
+          "audio": "audio/es-ES/deer-gives-a-ride.m4a",
+          "effects": "audio/es-ES/deer-gives-a-ride.effects.json"
+        }
+      }
+    },
+    {
+      "id": "flower-leans-over",
+      "requiredStickers": [
+        "flower",
+        "mushroom",
+        "snail"
+      ],
+      "optionalStickers": [
+        "butterfly"
+      ],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Flower Leans Over",
+          "text": "Flower grew, and grew, and grew. She was the tallest in the whole patch. Look at me! she said, and turned her big yellow face up to the sun. Ahh. Down below, in her shadow, sat Mushroom. Mushroom said nothing. Mushroom was shy. Snail came sliding past. He looked at Flower, up in the sun. He looked at Mushroom, down in the shade. Hmm, said Snail. Flower? Flower looked down. Oh, she said. Oh dear. She hadn't seen. So Flower did something flowers don't often do. She leaned. Just a little. Then a little more. And a stripe of sunshine slid across the moss and landed, warm as a hand, on Mushroom's cap. Mushroom went pink. Thank you, she whispered. Flower stayed leaning all afternoon. It was a funny way to stand. But the sun felt better shared. Much better.",
+          "audio": "audio/en-US/flower-leans-over.m4a",
+          "effects": "audio/en-US/flower-leans-over.effects.json"
+        },
+        "es-ES": {
+          "title": "Flor se inclina",
+          "text": "Flor creció, y creció, y creció. Era la más alta de todo el rincón. ¡Miradme!, dijo, y levantó su gran cara amarilla hacia el sol. Ahh. Abajo, en su sombra, estaba Seta. Seta no dijo nada. Seta era tímida. Caracol pasó deslizándose. Miró a Flor, arriba, al sol. Miró a Seta, abajo, a la sombra. Mmm, dijo Caracol. ¿Flor? Flor miró hacia abajo. Oh, dijo. Ay, no. No se había dado cuenta. Entonces Flor hizo algo que las flores no suelen hacer. Se inclinó. Solo un poco. Luego un poco más. Y una franja de sol resbaló por el musgo y se posó, cálida como una mano, en el sombrero de Seta. Seta se puso colorada. Gracias, susurró. Flor se quedó inclinada toda la tarde. Era una manera rara de estar. Pero el sol sabía mejor compartido. Mucho mejor.",
+          "audio": "audio/es-ES/flower-leans-over.m4a",
+          "effects": "audio/es-ES/flower-leans-over.effects.json"
+        }
+      }
+    },
+    {
+      "id": "flower-wants-to-fly",
+      "requiredStickers": [
+        "flower",
+        "butterfly",
+        "bird"
+      ],
+      "optionalStickers": [
+        "bee"
+      ],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "kindness",
+        "seasons"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Flower Wants to Fly",
+          "text": "Flower stood in the meadow with her roots in the ground. Above her, Butterfly looped and Bird swooped. I wish I could fly, sighed Flower. What's it like up there? Butterfly came down. Up there, said Butterfly, the wind tickles your tummy. Bird came down. Up there, said Bird, the forest looks like a green blanket. Lovely, said Flower. But her roots stayed put. Summer went by. Flower's petals turned soft and fluffy and white, like a little cloud on a stem. And one morning, a breeze came. Whoosh. Oh! Flower's seeds lifted off, one, two, a hundred, each with its own tiny parachute, up, up, over the meadow. Butterfly and Bird flew beside them. Look at me! called Flower, from everywhere at once. I'm flying! And next spring, she was growing everywhere too.",
+          "audio": "audio/en-US/flower-wants-to-fly.m4a",
+          "effects": "audio/en-US/flower-wants-to-fly.effects.json"
+        },
+        "es-ES": {
+          "title": "Flor quiere volar",
+          "text": "Flor estaba en el prado con las raíces en la tierra. Por encima, Mariposa hacía piruetas y Pájaro planeaba. Ojalá pudiera volar, suspiró Flor. ¿Cómo es ahí arriba? Mariposa bajó. Ahí arriba, dijo Mariposa, el viento te hace cosquillas en la tripa. Pájaro bajó. Ahí arriba, dijo Pájaro, el bosque parece una manta verde. Qué bonito, dijo Flor. Pero sus raíces seguían quietas. Pasó el verano. Los pétalos de Flor se volvieron suaves, esponjosos y blancos, como una nubecita en un tallo. Y una mañana, llegó una brisa. Fiuuu. ¡Oh! Las semillas de Flor se elevaron, una, dos, cien, cada una con su paracaídas chiquitín, arriba, arriba, sobre el prado. Mariposa y Pájaro volaron a su lado. ¡Miradme!, gritó Flor, desde todas partes a la vez. ¡Estoy volando! Y en primavera, también crecía por todas partes.",
+          "audio": "audio/es-ES/flower-wants-to-fly.m4a",
+          "effects": "audio/es-ES/flower-wants-to-fly.effects.json"
+        }
+      }
+    },
+    {
+      "id": "forest-day",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "morning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "A Day in the Forest",
+          "text": "Good morning, forest! The sun stretched its warm yellow arms over the hills, and everything began to wake up. The leaves whispered hello to the wind. The grass wiggled its toes in the warm light. Somewhere, tiny feet went pitter-patter down a secret path. It was going to be a wonderful day in the forest, full of games and surprises. And the best part? It was only just beginning.",
+          "audio": "audio/en-US/forest-day.m4a",
+          "effects": "audio/en-US/forest-day.effects.json"
+        },
+        "es-ES": {
+          "title": "Un día en el bosque",
+          "text": "¡Buenos días, bosque! El sol estiró sus cálidos brazos amarillos sobre las colinas y todo empezó a despertarse. Las hojas susurraban hola al viento. La hierba movía los dedos de los pies bajo la luz templada. En algún lugar, unos piececitos hacían tip-tap por un sendero secreto. Iba a ser un día maravilloso en el bosque, lleno de juegos y sorpresas. ¿Y lo mejor de todo? Que acababa de empezar.",
+          "audio": "audio/es-ES/forest-day.m4a",
+          "effects": "audio/es-ES/forest-day.effects.json"
+        }
+      }
+    },
+    {
+      "id": "fox-and-rabbit",
+      "requiredStickers": [
+        "fox",
+        "rabbit"
+      ],
+      "optionalStickers": [
+        "flower",
+        "tree"
+      ],
+      "weight": 1.2,
+      "tags": [
+        "funny",
+        "friendship"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Fox and Rabbit's Big Race",
+          "text": "Ready, steady, go! Fox and Rabbit raced across the meadow. Fox was fast like a whoosh of wind. Rabbit was bouncy like a spring. Halfway there, Fox tripped over his own fluffy tail and rolled, tumble tumble tumble, into a pile of leaves. Rabbit hopped back to help him up. They crossed the finish line together, holding paws. Who won? Both of them, of course. That's how best friends race.",
+          "audio": "audio/en-US/fox-and-rabbit.m4a",
+          "effects": "audio/en-US/fox-and-rabbit.effects.json"
+        },
+        "es-ES": {
+          "title": "La gran carrera de Zorro y Conejo",
+          "text": "Preparados, listos, ¡ya! Zorro y Conejo echaron una carrera por el prado. Zorro era rápido como un soplo de viento. Conejo saltaba como un muelle. A mitad de camino, Zorro tropezó con su propia cola esponjosa y rodó, pumba pumba pumba, hasta un montón de hojas. Conejo volvió dando saltos para ayudarle a levantarse. Cruzaron la meta juntos, de la mano. ¿Quién ganó? Los dos, claro. Así corren los mejores amigos.",
+          "audio": "audio/es-ES/fox-and-rabbit.m4a",
+          "effects": "audio/es-ES/fox-and-rabbit.effects.json"
+        }
+      }
+    },
+    {
+      "id": "fox-and-the-big-sneeze",
+      "requiredStickers": [
+        "fox",
+        "flower",
+        "bee"
+      ],
+      "optionalStickers": [
+        "butterfly"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "seasons"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Fox and the Big Sneeze",
+          "text": "Flower was full of pollen. Bee loved it. She rolled in it till she wore a little yellow hat. Fox came to say hello. He leaned in close. He sniffed. Ah. He sniffed again. Ah... ah... AH-CHOO! Whoosh! A leaf flew off the path. Bee's little hat blew right off her head. Flower rocked on her stem. Sorry! said Fox. But his nose still tickled. Ah... ah... AH-CHOO! Whoosh! One small seed lifted off Flower and sailed through the air, and landed, tick, in a bare brown patch by the stone. Bless you, said Bee, putting her hat back on. Fox rubbed his nose. Nobody thought about the seed again. Until spring. When by the stone, a brand-new flower opened, yellow and dusty and tickly. Fox came to say hello. He leaned in. He sniffed. Ah...",
+          "audio": "audio/en-US/fox-and-the-big-sneeze.m4a",
+          "effects": "audio/en-US/fox-and-the-big-sneeze.effects.json"
+        },
+        "es-ES": {
+          "title": "Zorro y el gran estornudo",
+          "text": "Flor estaba llena de polen. A Abeja le encantaba. Se revolcó hasta llevar un gorrito amarillo. Zorro vino a saludar. Se acercó mucho. Olió. Ah. Olió otra vez. Ah... ah... ¡AH-CHÍS! ¡Fiuuu! Una hoja salió volando del camino. El gorrito de Abeja salió volando de su cabeza. Flor se balanceó en su tallo. ¡Perdón!, dijo Zorro. Pero la nariz todavía le picaba. Ah... ah... ¡AH-CHÍS! ¡Fiuuu! Una semilla pequeñita se soltó de Flor y navegó por el aire, y aterrizó, tic, en un trocito de tierra pelada junto a la piedra. Salud, dijo Abeja, poniéndose el gorrito. Zorro se frotó la nariz. Nadie volvió a pensar en la semilla. Hasta la primavera. Cuando junto a la piedra se abrió una flor nueva, amarilla, polvorienta y cosquillosa. Zorro vino a saludar. Se acercó. Olió. Ah...",
+          "audio": "audio/es-ES/fox-and-the-big-sneeze.m4a",
+          "effects": "audio/es-ES/fox-and-the-big-sneeze.effects.json"
+        }
+      }
+    },
+    {
+      "id": "fox-chases-his-tail",
+      "requiredStickers": [
+        "fox",
+        "butterfly",
+        "hedgehog"
+      ],
+      "optionalStickers": [
+        "flower"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Fox Chases His Tail",
+          "text": "Fox was sitting in the sun when he saw it. Something fluffy. Something orange. Right behind him! He spun round. It moved! Hey, said Fox. Come here, fluffy thing! And off he went, round and round and round. The fluffy thing stayed just behind him. Always just behind! Hedgehog looked up from his nap. Butterfly drifted down to see. The forest went round and round. Then Butterfly landed, soft as a wish, right on the fluffy thing. And it stopped. Fox stopped. He looked over his shoulder. The fluffy thing was attached to him. Fox, said Hedgehog kindly, that's your tail. Fox looked at his tail. His tail looked at Fox. Then Fox flopped down in the grass, laughing and dizzy. It followed me the whole time, he said. They always do, said Hedgehog.",
+          "audio": "audio/en-US/fox-chases-his-tail.m4a",
+          "effects": "audio/en-US/fox-chases-his-tail.effects.json"
+        },
+        "es-ES": {
+          "title": "Zorro persigue su cola",
+          "text": "Zorro estaba sentado al sol cuando lo vio. Algo esponjoso. Algo naranja. ¡Justo detrás de él! Se dio la vuelta. ¡Se movió! Eh, dijo Zorro. ¡Ven aquí, cosa esponjosa! Y allá que fue, vuelta y vuelta y vuelta. La cosa esponjosa se quedaba justo detrás. ¡Siempre justo detrás! Erizo levantó la cabeza de su siesta. Mariposa bajó flotando a ver. El bosque daba vueltas. Entonces Mariposa se posó, suave como un deseo, justo sobre la cosa esponjosa. Y se paró. Zorro se paró. La cosa esponjosa estaba pegada a él. Zorro, dijo Erizo con cariño, eso es tu cola. Zorro miró su cola. Su cola miró a Zorro. Entonces Zorro se dejó caer en la hierba, riendo y mareado. Me ha seguido todo el rato, dijo. Siempre lo hacen, dijo Erizo.",
+          "audio": "audio/es-ES/fox-chases-his-tail.m4a",
+          "effects": "audio/es-ES/fox-chases-his-tail.effects.json"
+        }
+      }
+    },
+    {
+      "id": "fox-learns-to-tiptoe",
+      "requiredStickers": [
+        "fox",
+        "deer",
+        "mouse"
+      ],
+      "optionalStickers": [
+        "flower"
+      ],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Fox Learns to Tiptoe",
+          "text": "It was nap time in the forest. Shh. Everybody was dozing except Fox. Fox came bounding down the path. Thump! Thump! Thump! Flowers jiggled. Mouse popped up from his leaf. Fox, said Mouse. Oh! said Fox. Sorry! Deer opened one eye. Watch, said Deer. He lifted one hoof, slow as honey, and set it down. Not a sound. Fox lifted one paw, slow as honey, and set it down. Thump. Hmm. Mouse crept over. Whisper-paws, said Mouse. Like this. He spread his toes and tip-tip-tipped across a leaf. Fox spread his toes. He lifted his tail. He held his breath. Tip. Tip. Tip. Nothing. Not even a rustle. Fox looked back at his own quiet paws. Well, he whispered. Look at me. And he tiptoed all the way home, just to feel it again.",
+          "audio": "audio/en-US/fox-learns-to-tiptoe.m4a",
+          "effects": "audio/en-US/fox-learns-to-tiptoe.effects.json"
+        },
+        "es-ES": {
+          "title": "Zorro aprende a andar de puntillas",
+          "text": "Era la hora de la siesta en el bosque. Chist. Todos dormitaban. Todos menos Zorro. Zorro llegó a brincos por el camino. ¡Pum! ¡Pum! ¡Pum! Las flores temblaron. Ratón asomó de su hoja. Zorro, dijo Ratón. ¡Uy!, dijo Zorro. ¡Perdón! Intentó andar suave. Pum, pum. Ciervo abrió un ojo. Mira, dijo Ciervo. Levantó una pezuña, lento como la miel, y la posó. Ni un ruido. Zorro levantó una pata, lento como la miel, y la posó. Pum. Mmm. Ratón se acercó. Patitas de susurro, dijo Ratón. Así. Abrió los deditos y tip-tip-tip cruzó una hoja. Zorro abrió los dedos. Levantó la cola. Aguantó la respiración. Tip. Tip. Tip. Nada. Ni un crujido. Zorro miró sus propias patas silenciosas. Vaya, susurró. Mírame. Y se fue de puntillas hasta su casa, solo por sentirlo otra vez.",
+          "audio": "audio/es-ES/fox-learns-to-tiptoe.m4a",
+          "effects": "audio/es-ES/fox-learns-to-tiptoe.effects.json"
+        }
+      }
+    },
+    {
+      "id": "frogs-rain-song",
+      "requiredStickers": [
+        "frog",
+        "bird",
+        "flower"
+      ],
+      "optionalStickers": [
+        "tree"
+      ],
+      "weight": 1,
+      "tags": [
+        "music",
+        "weather",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Frog's Rain Song",
+          "text": "The ground was dry. The flower was droopy. I need rain, she sighed. Leave it to me, said Frog, and she puffed up her cheeks and sang. Ribbit! Ribbit! Ribbit-ribbit! Bird put his wings over his ears. Oh dear, said Bird. Let me help. He sang a run of sweet high notes, tweedle-tweedle-tee, and told Frog to try that. Frog tried. Ribbit. Bird tried again, lower. Frog tried. Ribbit. Higher? RIBBIT. The sky went grey. Frog went on singing her own song, croaky and proud, ribbit, ribbit, ribbit! And then, plip. Plop. Pitter-patter-pitter-patter! Rain! The flower lifted her head and drank. Bird looked at the sky, and looked at Frog. Well, he said. Maybe the rain likes ribbit. Frog just smiled. Ribbit.",
+          "audio": "audio/en-US/frogs-rain-song.m4a",
+          "effects": "audio/en-US/frogs-rain-song.effects.json"
+        },
+        "es-ES": {
+          "title": "La canción de lluvia de Rana",
+          "text": "El suelo estaba seco. La flor estaba mustia. Necesito lluvia, suspiró. Déjamelo a mí, dijo Rana, hinchó los mofletes y cantó. ¡Croac! ¡Croac! ¡Croac-croac! Pájaro se tapó los oídos con las alas. Ay, dijo Pájaro. Deja que te ayude. Cantó unas notas dulces y agudas, pío-pirulí-pí, y le dijo a Rana que probara. Rana probó. Croac. Pájaro probó otra vez, más grave. Rana probó. Croac. ¿Más agudo? CROAC. El cielo se puso gris. Rana siguió con su canción, ronca y orgullosa, ¡croac, croac, croac! Y entonces, plic. Ploc. ¡Tipi-tapa, tipi-tapa! ¡Lluvia! La flor levantó la cabeza y bebió. Pájaro miró al cielo, y miró a Rana. Bueno, dijo. A lo mejor a la lluvia le gusta el croac. Rana solo sonrió. Croac.",
+          "audio": "audio/es-ES/frogs-rain-song.m4a",
+          "effects": "audio/es-ES/frogs-rain-song.effects.json"
+        }
+      }
+    },
+    {
+      "id": "good-night-forest",
+      "requiredStickers": [],
+      "optionalStickers": [
+        "tree",
+        "flower",
+        "butterfly",
+        "owl"
+      ],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "gentle",
+        "fallback"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Good Night, Forest",
+          "text": "The sun is tired. It slides down behind the hill, slow, slow, and the sky turns peach, then pink, then purple. Good night, sun. The flowers fold their petals one by one, like little hands closing. Good night, flowers. The butterflies tuck themselves under a leaf. Good night, butterflies. The tall trees rock in the last of the breeze. Creak. Creak. Hush. Good night, trees. Now who will watch over the forest? Look up. The moon climbs over the hill, round and white, and pours silver on every path. I've got this, says the moon. Sleep, says the moon. Far away, one soft voice says whoo. And the forest breathes in, and breathes out, and sleeps. Good night, forest. Good night.",
+          "audio": "audio/en-US/good-night-forest.m4a",
+          "effects": "audio/en-US/good-night-forest.effects.json"
+        },
+        "es-ES": {
+          "title": "Buenas noches, bosque",
+          "text": "El sol está cansado. Se desliza detrás de la colina, despacio, despacio, y el cielo se pone naranja, luego rosa, luego morado. Buenas noches, sol. Las flores cierran los pétalos uno a uno, como manitas que se recogen. Buenas noches, flores. Las mariposas se esconden bajo una hoja. Buenas noches, mariposas. Los árboles altos se mecen con la última brisa. Cric. Crac. Silencio. Buenas noches, árboles. ¿Y ahora quién cuida del bosque? Mira arriba. La luna sube por la colina, redonda y blanca, y derrama plata por todos los caminos. Yo me quedo, dice la luna. Dormid, dice la luna. A lo lejos, una voz suave dice uuuh. Y el bosque respira hondo, suelta el aire y se duerme. Buenas noches, bosque. Buenas noches.",
+          "audio": "audio/es-ES/good-night-forest.m4a",
+          "effects": "audio/es-ES/good-night-forest.effects.json"
+        }
+      }
+    },
+    {
+      "id": "hedgehog-and-the-leaf-coat",
+      "requiredStickers": [
+        "hedgehog",
+        "squirrel",
+        "mouse"
+      ],
+      "optionalStickers": [
+        "tree"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "kindness",
+        "seasons"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Hedgehog's Leaf Coat",
+          "text": "Autumn! Leaves were falling, red and gold and brown. Today is the leaf parade, said Squirrel, and everybody wears one leaf. Hedgehog wanted to look grand. One leaf? He wanted all of them. So he rolled, and rolled, and rolled through the biggest pile. Crunch. He stood up. He was not a hedgehog any more. He was a ball of leaves with a nose. I can't see, said the ball. Oh dear! Mouse came running. Squirrel came running. Hold still, they said. Pluck! Pluck! Pluck! Out came Hedgehog, pink and blinking. Then Mouse picked one red leaf and set it on Hedgehog's head. Squirrel took a gold one. Mouse took a brown one. And off they went, three friends, three leaves, the grandest parade in the forest.",
+          "audio": "audio/en-US/hedgehog-and-the-leaf-coat.m4a",
+          "effects": "audio/en-US/hedgehog-and-the-leaf-coat.effects.json"
+        },
+        "es-ES": {
+          "title": "El abrigo de hojas de Erizo",
+          "text": "¡Otoño! Caían las hojas, rojas, doradas y marrones. Hoy es el desfile de las hojas, dijo Ardilla, y cada uno lleva una hoja. Erizo quería estar elegante. ¿Una hoja? Él las quería todas. Así que rodó, y rodó, y rodó por el montón más grande. Cruch. Se levantó. Ya no era un erizo. Era una bola de hojas con nariz. No veo nada, dijo la bola. ¡Ay, ay! Ratón vino corriendo. Ardilla vino corriendo. Quieto, dijeron. ¡Plac! ¡Plac! ¡Plac! Y salió Erizo, rosadito y parpadeando. Entonces Ratón cogió una hoja roja y se la puso a Erizo en la cabeza. Ardilla cogió una dorada. Ratón, una marrón. Y allá se fueron, tres amigos, tres hojas, el desfile más elegante del bosque.",
+          "audio": "audio/es-ES/hedgehog-and-the-leaf-coat.m4a",
+          "effects": "audio/es-ES/hedgehog-and-the-leaf-coat.effects.json"
+        }
+      }
+    },
+    {
+      "id": "hedgehog-counts-to-sleep",
+      "requiredStickers": [
+        "hedgehog",
+        "owl",
+        "snail",
+        "mushroom"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "counting"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Hedgehog Counts to Sleep",
+          "text": "It was late and Hedgehog could not sleep. He rolled this way. He rolled that way. Hmph. Owl looked down from his branch. Count the stars, said Owl. So Hedgehog looked up. One. Two. Three. Four... there were far too many. Hmph. Snail slid by. Count my steps, said Snail. So Hedgehog counted. One... two... they were so slow that Hedgehog got fidgety in between. Hmph. Count your breaths, said Mushroom softly from the moss. In, one. Out, two. Hedgehog tried. In, one. Out, two. In, three. That was better. Hedgehog curled up in a ball. And there, right in front of his nose, were his own prickles. Oh, he thought. He counted one. Two. Three. Four. Fi... Zzz. Owl smiled. Snail smiled. Mushroom glowed like a night-light. Good night, Hedgehog. Six.",
+          "audio": "audio/en-US/hedgehog-counts-to-sleep.m4a",
+          "effects": "audio/en-US/hedgehog-counts-to-sleep.effects.json"
+        },
+        "es-ES": {
+          "title": "Erizo cuenta para dormir",
+          "text": "Era tarde y Erizo no podía dormir. Se dio la vuelta para un lado. Se dio la vuelta para el otro. Uf. Búho lo miró desde su rama. Cuenta las estrellas, dijo Búho. Erizo miró hacia arriba. Una. Dos. Tres. Cuatro... había demasiadas. Uf. Caracol pasó deslizándose. Cuenta mis pasos, dijo Caracol. Erizo contó. Uno... dos... eran tan lentos que a Erizo le entraba el hormigueo entre uno y otro. Uf. Cuenta tus respiraciones, dijo Seta bajito desde el musgo. Dentro, uno. Fuera, dos. Erizo probó. Dentro, uno. Fuera, dos. Dentro, tres. Eso iba mejor. Erizo se hizo una bola. Y allí, justo delante de su nariz, estaban sus propios pinchos. Anda, pensó. Contó uno. Dos. Tres. Cuatro. Cin... Zzz. Búho sonrió. Caracol sonrió. Seta brilló como una lamparita. Buenas noches, Erizo. Seis.",
+          "audio": "audio/es-ES/hedgehog-counts-to-sleep.m4a",
+          "effects": "audio/es-ES/hedgehog-counts-to-sleep.effects.json"
         }
       }
     },
     {
       "id": "hedgehog-parade",
-      "requiredStickers": ["hedgehog"],
-      "optionalStickers": ["mushroom", "snail", "fox"],
-      "weight": 1.0,
-      "tags": ["funny", "autumn"],
+      "requiredStickers": [
+        "hedgehog"
+      ],
+      "optionalStickers": [
+        "mushroom",
+        "snail",
+        "fox"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "autumn"
+      ],
       "localizations": {
         "en-US": {
           "title": "The Hedgehog's Leaf Parade",
@@ -224,11 +887,729 @@
       }
     },
     {
+      "id": "hedgehog-wants-a-hug",
+      "requiredStickers": [
+        "hedgehog",
+        "rabbit",
+        "raccoon"
+      ],
+      "optionalStickers": [
+        "flower"
+      ],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Hedgehog Wants a Hug",
+          "text": "Hedgehog was feeling a bit small today. I would like a hug, he said. Rabbit bounced over with his arms wide. Then he stopped. Hedgehog's prickles stuck out every which way. Ouch-ish, said Rabbit, not even touching. Hmm. Raccoon arrived with a big leaf. Leaf hug! They wrapped Hedgehog in the leaf. Crinkle. The prickles poked straight through. Hmm. Tail hug! said Rabbit, and turned around and waggled his fluffy tail at Hedgehog's nose. Hedgehog sneezed. Hmm. Then Raccoon knelt down, very slowly, and leaned in, very carefully, and touched their nose to Hedgehog's nose. Boop. Hedgehog went still. Rabbit leaned in too. Boop. Three noses, all together, right in the middle of the prickles. Oh, said Hedgehog, in a small round voice. That's the one. That's the one.",
+          "audio": "audio/en-US/hedgehog-wants-a-hug.m4a",
+          "effects": "audio/en-US/hedgehog-wants-a-hug.effects.json"
+        },
+        "es-ES": {
+          "title": "Erizo quiere un abrazo",
+          "text": "Erizo se sentía un poco pequeño hoy. Me gustaría un abrazo, dijo. Conejo llegó a saltos con los brazos abiertos. Y se paró. Los pinchos de Erizo salían para todos lados. Ay, casi, dijo Conejo, sin tocarlo siquiera. Mmm. Mapache llegó con una hoja grande. ¡Abrazo de hoja! Envolvieron a Erizo en la hoja. Cris, cras. Los pinchos la atravesaron. Mmm. ¡Abrazo de cola!, dijo Conejo, se dio la vuelta y le meneó la cola esponjosa en la nariz. Erizo estornudó. Mmm. Entonces Mapache se agachó, muy despacio, se acercó, con mucho cuidado, y pegó su nariz a la nariz de Erizo. Bup. Erizo se quedó quieto. Conejo se acercó también. Bup. Tres narices, todas juntas, en medio de los pinchos. Oh, dijo Erizo, con una voz pequeña y redonda. Ese es. Ese es el abrazo.",
+          "audio": "audio/es-ES/hedgehog-wants-a-hug.m4a",
+          "effects": "audio/es-ES/hedgehog-wants-a-hug.effects.json"
+        }
+      }
+    },
+    {
+      "id": "hide-and-seek",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 0.8,
+      "tags": [
+        "funny",
+        "play"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Forest Hide and Seek",
+          "text": "One, two, three... ready or not, here I come! The forest loved playing hide and seek. The wind hid behind the hills. The sunbeams hid behind the clouds, giggling so much they peeked out again straight away. Even the little stream tried to hide, but its splashing gave it away every time. Found you, laughed the forest. And everyone agreed: the best hiding place is always right next to a friend.",
+          "audio": "audio/en-US/hide-and-seek.m4a",
+          "effects": "audio/en-US/hide-and-seek.effects.json"
+        },
+        "es-ES": {
+          "title": "El escondite del bosque",
+          "text": "Una, dos, tres... ¡listos o no, allá voy! Al bosque le encantaba jugar al escondite. El viento se escondió detrás de las colinas. Los rayos de sol se escondieron detrás de las nubes, pero se reían tanto que enseguida volvieron a asomarse. Hasta el arroyito intentó esconderse, pero su chapoteo lo delataba siempre. Te encontré, rio el bosque. Y todos estuvieron de acuerdo: el mejor escondite es siempre al lado de un amigo.",
+          "audio": "audio/es-ES/hide-and-seek.m4a",
+          "effects": "audio/es-ES/hide-and-seek.effects.json"
+        }
+      }
+    },
+    {
+      "id": "ladybug-counts-her-spots",
+      "requiredStickers": [
+        "ladybug",
+        "mouse",
+        "snail"
+      ],
+      "optionalStickers": [
+        "flower"
+      ],
+      "weight": 1,
+      "tags": [
+        "counting",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Ladybug Counts Her Spots",
+          "text": "How many spots do I have? asked Ladybug. She turned round to look at her own back. She turned the other way. She could not see. Easy, said Mouse. One-two-three-four-five-six-seven-eight-nine! Nine spots. Nine? said Ladybug. That seems a lot. Let me try, said Snail. One. Pause. Two. Pause. Three. Slowly, slowly. Four. Five. Six. Six spots, said Snail. Six? Nine? Ladybug wiggled. Which is it? Together, said Mouse. Not too fast, said Snail. So they counted together, one finger, one spot. One. Two. Three. Four. Five. Six. Seven. And... wait. Number eight was round and shiny and, Mouse poked it, wet! A dewdrop! said Mouse. Sitting on her back pretending to be a spot! Seven spots and one dewdrop, said Snail. Ladybug laughed so hard the dewdrop rolled off. Plip. Seven, she said. That's just right.",
+          "audio": "audio/en-US/ladybug-counts-her-spots.m4a",
+          "effects": "audio/en-US/ladybug-counts-her-spots.effects.json"
+        },
+        "es-ES": {
+          "title": "Mariquita cuenta sus puntos",
+          "text": "¿Cuántos puntos tengo?, preguntó Mariquita. Se dio la vuelta para mirarse la espalda. Se dio la vuelta hacia el otro lado. No los veía. Fácil, dijo Ratón. ¡Uno-dos-tres-cuatro-cinco-seis-siete-ocho-nueve! Nueve puntos. ¿Nueve?, dijo Mariquita. Parecen muchos. Déjame a mí, dijo Caracol. Uno. Pausa. Dos. Pausa. Tres. Despacio, despacio. Cuatro. Cinco. Seis. Seis puntos, dijo Caracol. ¿Seis? ¿Nueve? Mariquita se meneó. ¿Cuál es? Juntos, dijo Ratón. Sin correr, dijo Caracol. Así que contaron juntos, un dedo, un punto. Uno. Dos. Tres. Cuatro. Cinco. Seis. Siete. Y... un momento. El número ocho era redondo y brillante y, Ratón lo tocó, ¡mojado! ¡Una gota de rocío!, dijo Ratón. ¡Sentada en su espalda haciendo de punto! Siete puntos y una gota, dijo Caracol. Mariquita se rio tanto que la gota resbaló. Plic. Siete, dijo. Justo los que hacen falta.",
+          "audio": "audio/es-ES/ladybug-counts-her-spots.m4a",
+          "effects": "audio/es-ES/ladybug-counts-her-spots.effects.json"
+        }
+      }
+    },
+    {
+      "id": "ladybugs-leaf-boat",
+      "requiredStickers": [
+        "ladybug",
+        "frog",
+        "snail"
+      ],
+      "optionalStickers": [
+        "flower"
+      ],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "weather"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Ladybug's Leaf Boat",
+          "text": "The rain had stopped and left a puddle as wide as a sea. Ladybug stood at the edge. We're going across, she said. They found a big curly leaf and pushed it in. All aboard! Ladybug hopped on at the front. Captain. Frog hopped on at the back Paddle. And Snail slid on in the middle, heavy and calm. Anchor. Push off! Frog paddled. Swish, swish. The leaf bobbed along. Halfway across, a breeze came. Whoosh! The leaf tipped. Ladybug held on. Anchor! she cried. Snail stuck himself down tight, and the leaf went flat and still. On they went. Swish, swish. Bump. Land! Ladybug jumped off. Frog jumped off. Snail slid off last. The other side looked just like the first. But it felt very far away. And that was the best part.",
+          "audio": "audio/en-US/ladybugs-leaf-boat.m4a",
+          "effects": "audio/en-US/ladybugs-leaf-boat.effects.json"
+        },
+        "es-ES": {
+          "title": "El barco de hoja de Mariquita",
+          "text": "La lluvia había parado y había dejado un charco ancho como un mar. Mariquita se plantó en la orilla. Vamos a cruzar, dijo. Buscaron una hoja grande y rizada y la empujaron al agua. ¡Todos a bordo! Mariquita saltó a la proa. Capitana. Rana saltó a la popa y metió sus patazas en el agua. Remo. Y Caracol se deslizó al medio, pesado y tranquilo. Ancla. ¡Zarpamos! Rana remó. Chas, chas. La hoja avanzó a botes. A mitad del charco, vino una brisa. ¡Fiuuu! La hoja se inclinó. Mariquita se agarró. ¡Ancla!, gritó. Caracol se pegó bien fuerte, y la hoja quedó plana y quieta. Siguieron. Chas, chas. Pum. ¡Tierra! Mariquita saltó fuera. Rana saltó fuera. Caracol bajó el último, como hacen las anclas. La otra orilla era igual que la primera. Pero parecía lejísimos. Y eso era lo mejor.",
+          "audio": "audio/es-ES/ladybugs-leaf-boat.m4a",
+          "effects": "audio/es-ES/ladybugs-leaf-boat.effects.json"
+        }
+      }
+    },
+    {
+      "id": "mouse-and-the-big-echo",
+      "requiredStickers": [
+        "mouse",
+        "deer",
+        "rabbit"
+      ],
+      "optionalStickers": [
+        "tree"
+      ],
+      "weight": 1,
+      "tags": [
+        "courage",
+        "curiosity",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Mouse and the Big Echo",
+          "text": "At the edge of the meadow stood a hollow tree with a big dark doorway. Mouse stood in front of it. He was very small. The doorway was very big. Hello? said Mouse, in his tiny voice. HELLO, said the tree, in a great big voice. Mouse jumped. Then he giggled. Deer came trotting. Rabbit came bouncing. There's a giant in there, whispered Mouse. Deer put his head into the doorway. Is anyone home? he asked, low and rumbly. Nothing. Rabbit tried. Hello-hello? Nothing at all. Mouse scratched his ear. Then he stepped up and squeaked as loud as he could: I'M MOUSE! I'M MOUSE, boomed the tree. Deer blinked. Rabbit blinked. It only answers you, said Rabbit. So Mouse did it again. I'M MOUSE! And the biggest voice in the forest said, I'M MOUSE, right back.",
+          "audio": "audio/en-US/mouse-and-the-big-echo.m4a",
+          "effects": "audio/en-US/mouse-and-the-big-echo.effects.json"
+        },
+        "es-ES": {
+          "title": "Ratón y el gran eco",
+          "text": "Al borde del prado había un árbol hueco con una puerta grande y oscura. Ratón se plantó delante. Él era muy pequeño. La puerta era muy grande. ¿Hola?, dijo Ratón con su vocecita. HOLA, dijo el árbol con un vozarrón. Ratón dio un brinco. Y luego se rio. Ciervo llegó al trote. Conejo llegó a saltos. Ahí dentro hay un gigante, susurró Ratón. Ciervo metió la cabeza por la puerta. ¿Hay alguien?, preguntó, grave y hondo. Nada. Conejo probó. ¿Hola, hola? Nada de nada. Ratón se rascó una oreja. Entonces dio un paso y chilló con todas sus fuerzas: ¡SOY RATÓN! SOY RATÓN, retumbó el árbol. Ciervo parpadeó. Conejo parpadeó. Solo te contesta a ti, dijo Conejo. Así que Ratón lo hizo otra vez. ¡SOY RATÓN! Y la voz más grande del bosque contestó: SOY RATÓN.",
+          "audio": "audio/es-ES/mouse-and-the-big-echo.m4a",
+          "effects": "audio/es-ES/mouse-and-the-big-echo.effects.json"
+        }
+      }
+    },
+    {
+      "id": "mouse-climbs-the-tree",
+      "requiredStickers": [
+        "mouse",
+        "tree",
+        "acorn"
+      ],
+      "optionalStickers": [
+        "squirrel"
+      ],
+      "weight": 1,
+      "tags": [
+        "courage",
+        "adventure"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Mouse Climbs the Tree",
+          "text": "Mouse looked up at Tree. What's it like at the top? he asked. Come and see, said Tree. But Mouse put one paw on the bark, and then another, and up he went. First branch. Phew. Something was sitting there already. Hello, said Acorn. Going up? Going up, said Mouse. So Acorn came too, tucked under his arm. Second branch. Rest. Third branch. Rest. Squirrel zipped past. Fourth branch. Mouse's legs were tired. You can stop here, said Tree. Mouse looked up. One more. Fifth branch. One more. Sixth. And then there were no more branches. Just sky. Mouse sat on the very top of Tree with Acorn beside him, and the sun went down orange and gold. Oh, said Mouse. Oh, said Acorn. Told you, said Tree.",
+          "audio": "audio/en-US/mouse-climbs-the-tree.m4a",
+          "effects": "audio/en-US/mouse-climbs-the-tree.effects.json"
+        },
+        "es-ES": {
+          "title": "Ratón trepa al árbol",
+          "text": "Ratón miró a Árbol. ¿Cómo es ahí arriba?, preguntó. Ven a verlo, dijo Árbol. Pero Ratón puso una pata en la corteza, y luego otra, y arriba que fue. Primera rama. Uf. Allí ya había alguien. Hola, dijo Bellota. ¿Vas arriba? Voy arriba, dijo Ratón. Pues Bellota fue también, bajo su brazo. Segunda rama. Descanso. Tercera rama. Descanso. Ardilla pasó zumbando. Cuarta rama. Ratón tenía las patas cansadas. Puedes quedarte aquí, dijo Árbol. Ratón miró hacia arriba. Una más. Quinta rama. Una más. Sexta. Y ya no había más ramas. Solo cielo. Ratón se sentó en la punta de Árbol con Bellota a su lado, y el sol se puso naranja y dorado. Oh, dijo Ratón. Oh, dijo Bellota. Te lo dije, dijo Árbol.",
+          "audio": "audio/es-ES/mouse-climbs-the-tree.m4a",
+          "effects": "audio/es-ES/mouse-climbs-the-tree.effects.json"
+        }
+      }
+    },
+    {
+      "id": "mushroom-glows",
+      "requiredStickers": [
+        "mushroom",
+        "owl",
+        "raccoon"
+      ],
+      "optionalStickers": [
+        "frog"
+      ],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "curiosity"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Mushroom Glows",
+          "text": "Night came to the forest, soft and dark and cosy. Owl and Raccoon woke up. But down in the moss, something was different. A little light. Green and gentle. Raccoon crept closer. Owl swooped down. It was Mushroom. Mushroom? said Owl. You're glowing! Mushroom wobbled. Oh, she said. Sorry. I can't help it. It happens when it's dark. The light got dimmer. Don't, said Raccoon. Please don't. Look, said Owl. Because of you I can see the path. Because of you, said Raccoon, I can see my own paws. Because of you, said Frog, the pond has a little green moon in it. Mushroom went quiet. Then, slowly, she glowed brighter than ever. Oh, she said. I'm a night-light. The best one, said Owl. And they sat in her light till morning.",
+          "audio": "audio/en-US/mushroom-glows.m4a",
+          "effects": "audio/en-US/mushroom-glows.effects.json"
+        },
+        "es-ES": {
+          "title": "Seta brilla",
+          "text": "Llegó la noche al bosque, suave, oscura y acogedora. Búho y Mapache se despertaron. Pero abajo, en el musgo, algo era distinto. Una lucecita. Verde y suave. Mapache se acercó despacio. Búho bajó planeando. Era Seta. ¿Seta?, dijo Búho. ¡Estás brillando! Seta se tambaleó. Ay, dijo. Perdón. No lo puedo evitar. Me pasa cuando está oscuro. La luz bajó. No, dijo Mapache. Por favor, no. Mira, dijo Búho. Gracias a ti veo el camino. Gracias a ti, dijo Mapache, me veo las manos. Gracias a ti, dijo Rana, el estanque tiene una lunita verde dentro. Seta se quedó callada. Y luego, despacio, brilló más que nunca. Anda, dijo. Soy una lamparita. La mejor, dijo Búho. Y se quedaron con ella, en su luz, hasta la mañana.",
+          "audio": "audio/es-ES/mushroom-glows.m4a",
+          "effects": "audio/es-ES/mushroom-glows.effects.json"
+        }
+      }
+    },
+    {
+      "id": "mushrooms-umbrella",
+      "requiredStickers": [
+        "mushroom",
+        "ladybug",
+        "bee",
+        "butterfly"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "weather",
+        "kindness"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Mushroom's Umbrella",
+          "text": "Plip. Plop. Here comes the rain. Mushroom stood in the moss with her round red cap and did not mind at all. Rain is nice on a cap. But then along came Ladybug, shaking her wings. Everything's wet! Under here, said Mushroom, and Ladybug tucked in beneath her cap. Cosy. Then along came Bee, buzzing a damp buzz. Room for me? Mushroom stretched her cap a little wider. Room for you. Then along came Butterfly, with wings that were far too big. Oh, said Butterfly. I'll never fit. Mushroom took a deep breath and stretched, and stretched, and stretched. Squeeze in! And they did. Pitter-patter, pitter-patter, on top. Warm and dry, underneath. Four friends under one cap, listening to the rain. Then the sun came out. Mushroom shook off the drops. Same time next rain? she asked. Yes, please.",
+          "audio": "audio/en-US/mushrooms-umbrella.m4a",
+          "effects": "audio/en-US/mushrooms-umbrella.effects.json"
+        },
+        "es-ES": {
+          "title": "El paraguas de Seta",
+          "text": "Plic. Ploc. Aquí llega la lluvia. Seta estaba en el musgo con su sombrero rojo y redondo, y no le importaba nada. La lluvia sienta bien en un sombrero. Pero entonces llegó Mariquita, sacudiéndose las alas. ¡Está todo mojado! Aquí debajo, dijo Seta, y Mariquita se metió bajo su sombrero. Qué calentito. Luego llegó Abeja, con un zumbido mojado. ¿Hay sitio para mí? Seta estiró un poco el sombrero. Hay sitio. Luego llegó Mariposa, con unas alas demasiado grandes. Ay, dijo Mariposa. Yo no quepo. Seta respiró hondo y estiró, y estiró, y estiró. ¡Apretaos! Y se apretaron. Tipi-tapa, tipi-tapa, por arriba. Calentitos y secos, por abajo. Cuatro amigos bajo un sombrero, escuchando la lluvia. Después salió el sol. Seta se sacudió las gotas. ¿La próxima lluvia, lo mismo?, preguntó. Sí, por favor.",
+          "audio": "audio/es-ES/mushrooms-umbrella.m4a",
+          "effects": "audio/es-ES/mushrooms-umbrella.effects.json"
+        }
+      }
+    },
+    {
+      "id": "owl-loses-his-hoot",
+      "requiredStickers": [
+        "owl",
+        "mouse",
+        "deer"
+      ],
+      "optionalStickers": [
+        "tree"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "kindness",
+        "bedtime"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Owl Loses His Hoot",
+          "text": "Every evening, Owl says good night to the forest with one big HOOO. But this evening Owl opened his beak, and out came squeak. Squeak? He tried again. Squeak! Where had his hoot gone? Mouse peeped out from the roots. That's my sound, said Mouse. Deer came walking by, tall and quiet. Try starting low, said Deer, and he made a deep sound in his chest. Hmmmm. Owl tried. Hmmmm... squeak. Then Mouse had an idea. What if we all do it together? So Deer went hmmmm, and Mouse went eek, and Owl went, HOOO-eek-mmm! The forest went quiet. Then the forest went, ooh, that's a new one. Owl laughed so hard that his hoot popped right back. HOOO! Thank you, said Owl. Same time tomorrow? Squeak, said Mouse. Which meant yes.",
+          "audio": "audio/en-US/owl-loses-his-hoot.m4a",
+          "effects": "audio/en-US/owl-loses-his-hoot.effects.json"
+        },
+        "es-ES": {
+          "title": "Búho pierde su uuuh",
+          "text": "Cada tarde, Búho da las buenas noches al bosque con un gran UUUH. Pero esta tarde Búho abrió el pico, y salió un iiik. ¿Iiik? Probó otra vez. ¡Iiik! ¿Dónde estaba su uuuh? Ratón asomó entre las raíces. Ese es mi sonido, dijo Ratón. Ciervo pasó por allí, alto y silencioso. Empieza por lo grave, dijo Ciervo, e hizo un sonido hondo en el pecho. Mmmmm. Búho probó. Mmmmm... iiik. Entonces Ratón tuvo una idea. ¿Y si lo hacemos todos juntos? Así que Ciervo hizo mmmmm, y Ratón hizo iik, y Búho hizo ¡UUUH-iik-mmm! El bosque se quedó callado. Luego el bosque dijo: ooh, ese es nuevo. Búho se rio tanto que el uuuh le volvió de repente. ¡UUUH! Gracias, dijo Búho. ¿Mañana a la misma hora? Iiik, dijo Ratón. Que quería decir que sí.",
+          "audio": "audio/es-ES/owl-loses-his-hoot.m4a",
+          "effects": "audio/es-ES/owl-loses-his-hoot.effects.json"
+        }
+      }
+    },
+    {
+      "id": "owl-lullaby",
+      "requiredStickers": [
+        "owl"
+      ],
+      "optionalStickers": [
+        "tree",
+        "mushroom"
+      ],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Owl's Lullaby",
+          "text": "When the moon climbed up the sky, the owl opened her big round eyes. Whoo-hoo, she sang softly. Time to sleep, little forest. Her lullaby floated down from the branches like a warm blanket. The mushrooms nodded their caps. The flowers folded their petals. Even the busy stream slowed down to listen. Whoo-hoo, whoo-hoo. Goodnight, forest. Goodnight, friends. Goodnight, everyone, everywhere.",
+          "audio": "audio/en-US/owl-lullaby.m4a",
+          "effects": "audio/en-US/owl-lullaby.effects.json"
+        },
+        "es-ES": {
+          "title": "La nana del búho",
+          "text": "Cuando la luna trepó por el cielo, el búho abrió sus grandes ojos redondos. Uuu-uuu, cantó bajito. A dormir, bosquecito. Su nana bajó flotando desde las ramas como una manta calentita. Las setas asintieron con sus sombreros. Las flores plegaron sus pétalos. Hasta el arroyo, siempre tan ocupado, fue más despacio para escuchar. Uuu-uuu, uuu-uuu. Buenas noches, bosque. Buenas noches, amigos. Buenas noches a todos, en todas partes.",
+          "audio": "audio/es-ES/owl-lullaby.m4a",
+          "effects": "audio/es-ES/owl-lullaby.effects.json"
+        }
+      }
+    },
+    {
+      "id": "owl-tries-the-daytime",
+      "requiredStickers": [
+        "owl",
+        "bee",
+        "squirrel",
+        "rabbit"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Owl Tries the Daytime",
+          "text": "Every morning, just as the sun came up, Owl went to sleep. Today, said Owl, I am staying awake. The sun rose. Owl squinted. Bright! Bee zoomed past. Buzzy! Squirrel bounced past. Busy! Rabbit hopped past. Bouncy! Owl swayed on his branch. Day was a lot. Bee stopped. Come and see this, she said, and showed Owl a flower opening its face to the sun. Ohh, said Owl. Squirrel stopped. Come and see this, she said, and showed Owl the light dancing in green leaves. Ohh, said Owl. Rabbit stopped. Come and see this, he said, and showed Owl a warm patch of grass, just Owl-sized. Owl sat down in it. Ohh, said Owl. Then, yawn. The three friends tiptoed away. Day is lovely, said Owl, eyes closed. Wake me for the night.",
+          "audio": "audio/en-US/owl-tries-the-daytime.m4a",
+          "effects": "audio/en-US/owl-tries-the-daytime.effects.json"
+        },
+        "es-ES": {
+          "title": "Búho prueba el día",
+          "text": "Cada mañana, justo cuando salía el sol, Búho se dormía. Hoy, dijo Búho, me quedo despierto. Salió el sol. Búho entrecerró los ojos. ¡Qué brillante! Abeja pasó zumbando. ¡Qué ruido! Ardilla pasó a brincos. ¡Qué prisa! Conejo pasó a saltos. ¡Qué botes! Búho se balanceó en su rama. Abeja se paró. Ven a ver esto, dijo, y le enseñó una flor abriendo la cara al sol. Ohh, dijo Búho. Ardilla se paró. Ven a ver esto, dijo, y le enseñó la luz bailando entre las hojas verdes. Ohh, dijo Búho. Conejo se paró. Ven a ver esto, dijo, y le enseñó un trozo de hierba calentito, de su tamaño. Búho se sentó allí. Ohh, dijo Búho. Y luego, bostezo. Los tres amigos se fueron de puntillas. El día es precioso, dijo Búho con los ojos cerrados. Despertadme para la noche.",
+          "audio": "audio/es-ES/owl-tries-the-daytime.m4a",
+          "effects": "audio/es-ES/owl-tries-the-daytime.effects.json"
+        }
+      }
+    },
+    {
+      "id": "owls-slowest-story",
+      "requiredStickers": [
+        "owl",
+        "mouse",
+        "hedgehog",
+        "frog"
+      ],
+      "optionalStickers": [
+        "tree"
+      ],
+      "weight": 1,
+      "tags": [
+        "bedtime"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Owl's Slowest Story",
+          "text": "Night in the forest. Mouse yawned. Hedgehog yawned. Frog yawned, which is very wide. Story, please, they said. Owl fluffed his feathers. Once upon a time, he said, there was a little mouse. Mouse sat up. Who walked through the forest, step, step, step. And met a hedgehog. Hedgehog smiled. Who was rolling home, roll, roll, roll. And they met a frog. Frog hopped. Who was hopping to the pond. Hop. Hop. And the moon came out. And it was very... bright. And very... quiet. And the mouse... yawned. Mouse yawned. And the hedgehog... curled up. Hedgehog curled up. And the frog... Owl looked down. Frog was already snoring. Owl smiled. And then, said Owl, very slowly, very softly... hoo. Hoo. Hoooo. And that was the end. Or maybe just the beginning of a dream.",
+          "audio": "audio/en-US/owls-slowest-story.m4a",
+          "effects": "audio/en-US/owls-slowest-story.effects.json"
+        },
+        "es-ES": {
+          "title": "El cuento más lento de Búho",
+          "text": "Noche en el bosque. Ratón bostezó. Erizo bostezó. Rana bostezó, que es un bostezo muy grande. Un cuento, por favor, dijeron. Búho ahuecó las plumas. Érase una vez, dijo, un ratón pequeñito. Ratón se sentó. Que caminaba por el bosque, tip, tip, tip. Y se encontró con un erizo. Erizo sonrió. Que iba rodando a casa, rueda, rueda, rueda. Y se encontraron con una rana. Rana saltó. Que iba saltando al estanque. Salto. Salto. Y salió la luna. Y estaba muy... brillante. Y muy... callada. Y el ratón... bostezó. Ratón bostezó. Y el erizo... se hizo una bola. Erizo se hizo una bola. Y la rana... Búho miró hacia abajo. Rana ya roncaba. Búho sonrió. Y entonces, dijo Búho, muy despacio, muy bajito... uuuh. Uuuh. Uuuuuh. Y colorín colorado. O a lo mejor era el principio de un sueño.",
+          "audio": "audio/es-ES/owls-slowest-story.m4a",
+          "effects": "audio/es-ES/owls-slowest-story.effects.json"
+        }
+      }
+    },
+    {
+      "id": "pinecone-rolls-away",
+      "requiredStickers": [
+        "pinecone",
+        "squirrel",
+        "hedgehog"
+      ],
+      "optionalStickers": [
+        "tree",
+        "mouse"
+      ],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Pinecone Rolls Away",
+          "text": "High on a branch sat Pinecone, brown and bumpy and very comfortable. Then the wind puffed. Pinecone wobbled. Pinecone dropped. Pinecone rolled! Bump, bump, bump, down the hill she went. Wheee! Catch her, cried Squirrel, bounding after. I'm coming, puffed Hedgehog, rolling too, because that is how hedgehogs run downhill. Bump, bump, bump. Faster, faster! Pinecone bounced over a root, boing, skipped past a mushroom, whizzed round a stone, and, plop, stopped. Squirrel skidded up. Hedgehog bumped in behind. Are you all right? they panted. Pinecone looked around. She was in a soft patch of moss, with the sun on her face and a little stream singing next door. I'm perfect, said Pinecone. I always wanted to live here. I just didn't know it yet.",
+          "audio": "audio/en-US/pinecone-rolls-away.m4a",
+          "effects": "audio/en-US/pinecone-rolls-away.effects.json"
+        },
+        "es-ES": {
+          "title": "Piña rueda cuesta abajo",
+          "text": "En lo alto de una rama estaba Piña, marrón, rugosa y muy cómoda. Entonces el viento sopló. Piña se tambaleó. Piña cayó. ¡Piña rodó! Pum, pum, pum, colina abajo. ¡Yupiii! ¡A por ella!, gritó Ardilla, saltando detrás. Ya voy, resopló Erizo, rodando también, porque así corren los erizos cuesta abajo. Pum, pum, pum. ¡Más rápido, más rápido! Piña botó sobre una raíz, boing, pasó junto a una seta, giró alrededor de una piedra y, plof, se paró. Ardilla llegó derrapando. Erizo llegó rodando detrás. ¿Estás bien?, jadearon. Piña miró a su alrededor. Estaba en un lecho de musgo blandito, con el sol en la cara y un arroyo cantando al lado. Estoy perfecta, dijo Piña. Siempre quise vivir aquí. Solo que aún no lo sabía.",
+          "audio": "audio/es-ES/pinecone-rolls-away.m4a",
+          "effects": "audio/es-ES/pinecone-rolls-away.effects.json"
+        }
+      }
+    },
+    {
+      "id": "pinecone-tells-the-weather",
+      "requiredStickers": [
+        "pinecone",
+        "frog",
+        "bee"
+      ],
+      "optionalStickers": [
+        "flower"
+      ],
+      "weight": 1,
+      "tags": [
+        "weather",
+        "curiosity"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Pinecone Tells the Weather",
+          "text": "Pinecone knows the weather before it comes. Nobody knows how. Frog hopped up one morning. Rain today? she asked, hopeful. Bee buzzed up. Sun today? she asked, hopeful. Pinecone thought. Then, slowly, she closed her scales. Click, click, click. Rain, said Frog, and did a happy hop. Bee's wings drooped. And sure enough, plip, plop, pitter-patter! Rain! Frog splashed and sang. Bee waited under a leaf, humming a small patient hum. Then Pinecone stirred. Slowly, she opened her scales. Crick, crick, crick. Sun, said Bee. Frog's chin dropped. And sure enough, the clouds rolled off and the sun came pouring down. Bee zoomed from flower to flower. Frog sat in a warm puddle, which is nearly as good. Rain and sun, said Pinecone. Both today. And she was right, as always. Even about the rainbow.",
+          "audio": "audio/en-US/pinecone-tells-the-weather.m4a",
+          "effects": "audio/en-US/pinecone-tells-the-weather.effects.json"
+        },
+        "es-ES": {
+          "title": "Piña dice el tiempo",
+          "text": "Piña sabe qué tiempo va a hacer antes de que llegue. Rana llegó saltando una mañana. ¿Hoy llueve?, preguntó, ilusionada. Abeja llegó zumbando. ¿Hoy hay sol?, preguntó, ilusionada. Piña pensó. Y despacio, cerró sus escamas. Clic, clic, clic. Lluvia, dijo Rana, y dio un salto de alegría. Y en efecto, plic, ploc, ¡tipi-tapa! ¡Lluvia! Rana chapoteó y cantó. Abeja esperó bajo una hoja, con un zumbido pequeño y paciente. Entonces Piña se movió. Despacio, abrió sus escamas. Cric, cric, cric. Sol, dijo Abeja. Y en efecto, las nubes se fueron y el sol bajó a chorros. Abeja voló de flor en flor. Rana se sentó en un charco calentito, que es casi igual de bueno. Lluvia y sol, dijo Piña. Hoy los dos. Y tenía razón, como siempre. Hasta con el arcoíris.",
+          "audio": "audio/es-ES/pinecone-tells-the-weather.m4a",
+          "effects": "audio/es-ES/pinecone-tells-the-weather.effects.json"
+        }
+      }
+    },
+    {
+      "id": "pinecones-secret",
+      "requiredStickers": [
+        "pinecone",
+        "squirrel",
+        "bird"
+      ],
+      "optionalStickers": [
+        "mouse",
+        "tree"
+      ],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "seasons"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Pinecone's Secret",
+          "text": "Drizzle, drizzle. Pinecone sat under the tree with all her scales closed tight. Squirrel bounced up. What's in there? A secret, said Pinecone. Bird landed next to her. Is it a nut? Pinecone shook her head. Is it a beetle? said Squirrel. Is it a very small song? said Bird. Pinecone just smiled, tight as a fist. Everybody waited. Drizzle, drizzle, drizzle. Then, stop. The sun came out, warm and yellow. And Pinecone went... crick. Crick. Crick, crick, crick! One by one, her scales opened, like a hundred tiny doors. And out of every door floated a seed with a little papery wing, spinning, spinning, off across the forest. Oh! said Squirrel. Oh! said Bird. That's the secret, said Pinecone. Next spring, go and see where they landed.",
+          "audio": "audio/en-US/pinecones-secret.m4a",
+          "effects": "audio/en-US/pinecones-secret.effects.json"
+        },
+        "es-ES": {
+          "title": "El secreto de Piña",
+          "text": "Chispea, chispea. Piña estaba bajo el árbol con todas sus escamas bien cerradas. Ardilla llegó a brincos. ¿Qué hay ahí dentro? Un secreto, dijo Piña. Pájaro se posó a su lado. ¿Es una nuez? Piña dijo que no. ¿Es un escarabajo?, dijo Ardilla. ¿Es una canción muy pequeña?, dijo Pájaro. Piña solo sonreía, cerrada como un puño. Todos esperaron. Chispea, chispea, chispea. Y de pronto, paró. Salió el sol, cálido y amarillo. Y Piña hizo... cric. Cric. ¡Cric, cric, cric! Una a una, sus escamas se abrieron, como cien puertecitas. Y de cada puerta salió flotando una semilla con un ala de papel, girando, girando, por todo el bosque. ¡Oh!, dijo Ardilla. ¡Oh!, dijo Pájaro. Ese es el secreto, dijo Piña. En primavera, id a ver dónde han caído.",
+          "audio": "audio/es-ES/pinecones-secret.m4a",
+          "effects": "audio/es-ES/pinecones-secret.effects.json"
+        }
+      }
+    },
+    {
+      "id": "quiet-evening",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "bedtime"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Quiet Evening",
+          "text": "When the sky turned orange and pink, the forest grew quiet and soft. The hills tucked themselves under a blanket of golden light. One by one, the little forest friends yawned very big yawns. The wind sang a slow, sleepy song through the branches. Shhh, said the leaves. Shhh, said the grass. And the whole forest closed its eyes, dreaming sweet dreams until morning.",
+          "audio": "audio/en-US/quiet-evening.m4a",
+          "effects": "audio/en-US/quiet-evening.effects.json"
+        },
+        "es-ES": {
+          "title": "La tarde tranquila",
+          "text": "Cuando el cielo se volvió naranja y rosa, el bosque se quedó callado y suave. Las colinas se arroparon con una manta de luz dorada. Uno a uno, los amiguitos del bosque bostezaron con bostezos enormes. El viento cantó una canción lenta y soñolienta entre las ramas. Shhh, dijeron las hojas. Shhh, dijo la hierba. Y el bosque entero cerró los ojos, soñando dulces sueños hasta la mañana.",
+          "audio": "audio/es-ES/quiet-evening.m4a",
+          "effects": "audio/es-ES/quiet-evening.effects.json"
+        }
+      }
+    },
+    {
+      "id": "rabbit-loses-his-bounce",
+      "requiredStickers": [
+        "rabbit",
+        "frog",
+        "bee"
+      ],
+      "optionalStickers": [
+        "flower"
+      ],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Rabbit Loses His Bounce",
+          "text": "One morning Rabbit woke up and his bounce was gone. He tried a hop. Flop. Rabbit sat down in the grass, ears flat, and stayed there. Frog came bounding over. Watch me, Rabbit! Hop, hop, hop! Now you! Rabbit tried. Flop. Frog stopped bounding. Bee zoomed in. Bzzz! Up you get! Bzzz-bzzz! Rabbit's ears did not move. Bee stopped zooming. Then they both sat down. One on each side of Rabbit. Nobody said anything. The sun was warm. Bee hummed, very softly, the way bees do. Mmmm. Frog hummed too, the way frogs do. Grrmm. The three of them sat, and hummed, and watched a cloud go by. After a while, one of Rabbit's ears went up. Then the other. Then, all by itself, boing. Oh, said Rabbit. There it is. Thanks for waiting.",
+          "audio": "audio/en-US/rabbit-loses-his-bounce.m4a",
+          "effects": "audio/en-US/rabbit-loses-his-bounce.effects.json"
+        },
+        "es-ES": {
+          "title": "Conejo pierde su salto",
+          "text": "Una mañana Conejo se despertó y su salto no estaba. Probó a saltar. Plof. Conejo se sentó en la hierba, con las orejas caídas, y allí se quedó. Rana llegó a brincos. ¡Mírame, Conejo! ¡Salto, salto, salto! ¡Ahora tú! Conejo probó. Plof. Rana dejó de brincar. Abeja llegó zumbando. ¡Bzzz! ¡Arriba! ¡Bzzz-bzzz! Las orejas de Conejo no se movieron. Abeja dejó de zumbar. Y las dos se sentaron. Una a cada lado de Conejo. Nadie dijo nada. El sol calentaba. Abeja tarareó, muy bajito, como hacen las abejas. Mmmm. Rana tarareó también, como hacen las ranas. Grrmm. Los tres se quedaron sentados, tarareando, mirando pasar una nube. Al cabo de un rato, una oreja de Conejo se levantó. Luego la otra. Y luego, ella sola, boing. Anda, dijo Conejo. Ahí está. Gracias por esperar.",
+          "audio": "audio/es-ES/rabbit-loses-his-bounce.m4a",
+          "effects": "audio/es-ES/rabbit-loses-his-bounce.effects.json"
+        }
+      }
+    },
+    {
+      "id": "rabbit-walks-with-snail",
+      "requiredStickers": [
+        "rabbit",
+        "snail",
+        "flower"
+      ],
+      "optionalStickers": [
+        "tree"
+      ],
+      "weight": 1,
+      "tags": [
+        "patience",
+        "gentle",
+        "curiosity"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Rabbit Walks with Snail",
+          "text": "Rabbit and Snail were going to the meadow. Rabbit hopped ahead. Rabbit hopped back. Come on, Snail! Snail slid. Slide. Slide. Rabbit hopped ahead. Rabbit hopped back. Are you nearly...? Not nearly, said Snail. Rabbit sighed. Then he walked. Slowly. Next to Snail. Step. Slide. Step. Slide. And that is when Rabbit saw it. A dewdrop on a blade of grass, holding a tiny upside-down forest. Oh, said Rabbit. Step. Slide. A caterpillar, green as a pea, doing a stretch. Oh! Step. Slide. And right beside the path, a flower opening. Slowly. One petal. Two. Three. Rabbit sat down to watch the whole thing. Snail waited beside him. Have you seen this? whispered Rabbit. Every day, said Snail. Then they went on to the meadow. Step. Slide. Step. Slide. No hurry at all.",
+          "audio": "audio/en-US/rabbit-walks-with-snail.m4a",
+          "effects": "audio/en-US/rabbit-walks-with-snail.effects.json"
+        },
+        "es-ES": {
+          "title": "Conejo pasea con Caracol",
+          "text": "Conejo y Caracol iban al prado. Conejo saltó por delante. Conejo saltó de vuelta. ¡Venga, Caracol! Caracol se deslizó. Ris. Ras. Conejo saltó por delante. Conejo saltó de vuelta. ¿Ya casi...? Casi no, dijo Caracol. Conejo suspiró. Luego caminó. Despacio. Al lado de Caracol. Paso. Ras. Paso. Ras. Y entonces Conejo lo vio. Una gota de rocío en una brizna de hierba, con un bosque chiquitito al revés dentro. Oh, dijo Conejo. Paso. Ras. Una oruga, verde como un guisante, desperezándose. ¡Oh! Paso. Ras. Y justo junto al camino, una flor abriéndose. Despacio. Un pétalo. Dos. Tres. Conejo se sentó a verlo entero. Caracol esperó a su lado. ¿Has visto esto?, susurró Conejo. Todos los días, dijo Caracol. Luego siguieron hasta el prado. Paso. Ras. Paso. Ras. Sin ninguna prisa.",
+          "audio": "audio/es-ES/rabbit-walks-with-snail.m4a",
+          "effects": "audio/es-ES/rabbit-walks-with-snail.effects.json"
+        }
+      }
+    },
+    {
+      "id": "raccoon-washes-the-moon",
+      "requiredStickers": [
+        "raccoon",
+        "frog",
+        "snail"
+      ],
+      "optionalStickers": [
+        "flower"
+      ],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "bedtime",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Raccoon Washes the Moon",
+          "text": "Raccoon washes everything. Berries, pebbles, their own paws. Splish, splash, clean! One night they came to the pond and saw, floating in the water, a big round moon. Ooh, said Raccoon. It's got a smudge. And they dipped their paws in and scrubbed. Splish! The moon wobbled. It's ticklish, said Frog, hopping over. Let me hold it still. She sat on a lily pad and put out both feet. Splash! The moon broke into a hundred silver pieces. Oops, said Frog. Snail arrived, slowly. Wait, said Snail. Just wait. So they waited. Ripple. Ripple. Still. And the moon came back together, round and bright and clean. There, said Raccoon. Look at that shine. Frog looked up. The real moon was smiling down at the pond. Oh, said Frog. There's two! And that was the best joke of the night.",
+          "audio": "audio/en-US/raccoon-washes-the-moon.m4a",
+          "effects": "audio/en-US/raccoon-washes-the-moon.effects.json"
+        },
+        "es-ES": {
+          "title": "Mapache lava la luna",
+          "text": "Mapache lo lava todo. Bayas, piedrecitas, sus propias manos. ¡Chip, chap, limpio! Una noche llegó al estanque y vio, flotando en el agua, una luna grande y redonda. Ooh, dijo Mapache. Tiene una manchita. Y metió las manos y frotó. ¡Chip! La luna tembló. Tiene cosquillas, dijo Rana, llegando de un salto. Yo la sujeto. Se sentó en un nenúfar y estiró las dos patas. ¡Chap! La luna se rompió en cien pedacitos de plata. Uy, dijo Rana. Llegó Caracol, despacio. Esperad, dijo Caracol. Solo esperad. Y esperaron. Onda. Onda. Quieta. Y la luna volvió a juntarse, redonda y brillante, más limpia que nunca. Ahí está, dijo Mapache. Mirad cómo brilla. Rana miró hacia arriba. La luna de verdad sonreía sobre el estanque. Anda, dijo Rana. ¡Hay dos! Y ese fue el mejor chiste de la noche.",
+          "audio": "audio/es-ES/raccoon-washes-the-moon.m4a",
+          "effects": "audio/es-ES/raccoon-washes-the-moon.effects.json"
+        }
+      }
+    },
+    {
+      "id": "raccoons-clever-paws",
+      "requiredStickers": [
+        "raccoon",
+        "snail",
+        "hedgehog"
+      ],
+      "optionalStickers": [
+        "mushroom"
+      ],
+      "weight": 1,
+      "tags": [
+        "kindness"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Raccoon's Clever Paws",
+          "text": "Raccoon has the cleverest paws in the forest. Snail came sliding up with a leaf stuck to his shell. It won't come off, said Snail. Raccoon looked. Raccoon pinched. Raccoon wiggled. Pop! Off came the leaf. Ahh, said Snail. Much lighter. Hedgehog came trotting up with a burr stuck deep in his prickles. Ouch-ish, said Hedgehog. Raccoon looked. Raccoon parted the prickles, so gently, one by one. Raccoon wiggled. Pop! Out came the burr. Ahh, said Hedgehog. Much better. Then the wind blew, and a wet leaf flew up and slapped itself right on Raccoon's nose. Mmf! said Raccoon. They couldn't see their own nose. Hold still, said Snail. He slid up Raccoon's arm, slow, slow, slow, and, with one damp wobble, pushed the leaf off. Ahh, said Raccoon. Clever, said Hedgehog. Very clever.",
+          "audio": "audio/en-US/raccoons-clever-paws.m4a",
+          "effects": "audio/en-US/raccoons-clever-paws.effects.json"
+        },
+        "es-ES": {
+          "title": "Las manos listas de Mapache",
+          "text": "Mapache tiene las manos más listas del bosque. Caracol llegó deslizándose con una hoja pegada al caparazón. No se suelta, dijo Caracol. Mapache miró. Mapache pellizcó. Mapache meneó. ¡Pop! Fuera la hoja. Ahh, dijo Caracol. Qué ligero. Erizo llegó trotando con un abrojo enganchado entre los pinchos. Ay, casi, dijo Erizo. Mapache miró. Apartó los pinchos con mucho cuidado, uno a uno. Mapache meneó. ¡Pop! Fuera el abrojo. Ahh, dijo Erizo. Mucho mejor. Entonces sopló el viento, y una hoja mojada voló y se le pegó a Mapache en la nariz. ¡Mmf!, dijo Mapache. No se veía su propia nariz. Quieto, dijo Caracol. Subió por el brazo de Mapache, despacio, despacio, despacio, y, con un meneo húmedo, empujó la hoja fuera. Ahh, dijo Mapache. Qué listo, dijo Erizo. Muy listo.",
+          "audio": "audio/es-ES/raccoons-clever-paws.m4a",
+          "effects": "audio/es-ES/raccoons-clever-paws.effects.json"
+        }
+      }
+    },
+    {
+      "id": "raccoons-shiny-treasure",
+      "requiredStickers": [
+        "raccoon",
+        "ladybug",
+        "bird"
+      ],
+      "optionalStickers": [
+        "flower"
+      ],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "kindness"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Raccoon's Shiny Treasure",
+          "text": "Early morning. Raccoon stopped in the grass. Ooh. On a blade of grass sat a dewdrop, round as a pearl, and inside it, a tiny sun was shining. Treasure! Raccoon reached out two careful paws. Got it! The dewdrop wobbled, and slid, and plip, was gone. Ladybug watched from a leaf. Try a leaf, she said. Raccoon scooped a dewdrop onto a leaf, and tipped it, and the sun inside went out. It's just water now, said Raccoon, sadly. Bird landed beside them. The shine isn't in the drop, said Bird. Look up. Raccoon looked up. The sun was climbing over the trees, and every dewdrop in the meadow, lit up at once. Oh, breathed Raccoon. That's a lot of treasure. All of it yours, said Bird. And all of it everyone's.",
+          "audio": "audio/en-US/raccoons-shiny-treasure.m4a",
+          "effects": "audio/en-US/raccoons-shiny-treasure.effects.json"
+        },
+        "es-ES": {
+          "title": "El tesoro brillante de Mapache",
+          "text": "Era temprano. Mapache se paró entre la hierba. Ooh. En una brizna de hierba había una gota de rocío, redonda como una perla, y dentro brillaba un sol chiquitito. ¡Un tesoro! Mapache estiró las dos manos con cuidado. ¡Ya es mía! La gota tembló, resbaló y, plic, se fue. Mariquita miraba desde una hoja. Prueba con una hoja, dijo. Mapache recogió una gota en una hoja, la inclinó, y el sol de dentro se apagó. Ahora es solo agua, dijo Mapache, triste. Pájaro se posó a su lado. El brillo no está en la gota, dijo Pájaro. Mira arriba. Mapache miró. El sol subía por encima de los árboles, y todas las gotas del prado, se encendieron a la vez. Oh, suspiró Mapache. Eso es muchísimo tesoro. Todo tuyo, dijo Pájaro. Y de todos.",
+          "audio": "audio/es-ES/raccoons-shiny-treasure.m4a",
+          "effects": "audio/es-ES/raccoons-shiny-treasure.effects.json"
+        }
+      }
+    },
+    {
+      "id": "rain-in-three-sizes",
+      "requiredStickers": [],
+      "optionalStickers": [
+        "tree",
+        "flower",
+        "mushroom",
+        "frog"
+      ],
+      "weight": 1,
+      "tags": [
+        "weather",
+        "bedtime",
+        "counting",
+        "fallback"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Rain in Three Sizes",
+          "text": "A grey cloud drifts over the forest, slow and soft as a pillow. Here comes the rain. First, the tiny rain. Pit. Pat. Pit. So small it tickles. The flowers say, oh! Then, the medium rain. Pitter-patter, pitter-patter. The leaves go tip-tap, tip-tap, like a hundred little drums. Then, the big rain! Splish! Splash! Splosh! Puddles pop up everywhere, plip plop, plip plop, and the whole forest drinks and drinks. Glug. Ahh. Tiny, medium, big. Tiny, medium, big. And then, just like that, the cloud has no more rain to give. Drip. Drop. Done. The forest smells green. Every leaf is shiny. Every root is full. Somewhere a puddle holds a little piece of sky. Tiny, medium, big. Sleep tight, forest.",
+          "audio": "audio/en-US/rain-in-three-sizes.m4a",
+          "effects": "audio/en-US/rain-in-three-sizes.effects.json"
+        },
+        "es-ES": {
+          "title": "Lluvia de tres tamaños",
+          "text": "Una nube gris pasa sobre el bosque, lenta y blandita como una almohada. Aquí llega la lluvia. Primero, la lluvia pequeñita. Tip. Tap. Tip. Tan pequeña que hace cosquillas. Las flores dicen: ¡oh! Luego, la lluvia mediana. Tipi-tapa, tipi-tapa. Las hojas hacen tic-tac, tic-tac, como cien tamborcitos. ¡Y luego, la lluvia grande! ¡Chof! ¡Chaf! ¡Chuf! Salen charcos por todas partes, plic ploc, plic ploc, y el bosque entero bebe y bebe. Glu, glu. Ahh. Pequeña, mediana, grande. Pequeña, mediana, grande. Y de pronto, la nube ya no tiene más lluvia que dar. Plic. Ploc. Se acabó. El bosque huele a verde. Cada hoja brilla. Cada raíz está llena. En algún charco cabe un trocito de cielo. Pequeña, mediana, grande. Que duermas bien, bosque.",
+          "audio": "audio/es-ES/rain-in-three-sizes.m4a",
+          "effects": "audio/es-ES/rain-in-three-sizes.effects.json"
+        }
+      }
+    },
+    {
+      "id": "shy-mushroom",
+      "requiredStickers": [
+        "mushroom"
+      ],
+      "optionalStickers": [
+        "tree",
+        "snail"
+      ],
+      "weight": 1,
+      "tags": [
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Shy Mushroom",
+          "text": "Under a leafy corner of the forest lived a small red mushroom with white spots. It was very, very shy. When anyone walked past, it pulled its cap down low like a hat. One rainy day, drip drop, drip drop, the rain drummed on its cap and made the loveliest sound. Everyone came to listen! The little mushroom stood up tall and proud. Being small, it learned, doesn't mean being quiet.",
+          "audio": "audio/en-US/shy-mushroom.m4a",
+          "effects": "audio/en-US/shy-mushroom.effects.json"
+        },
+        "es-ES": {
+          "title": "La seta tímida",
+          "text": "En un rincón frondoso del bosque vivía una setita roja con lunares blancos. Era muy, muy tímida. Cuando alguien pasaba cerca, se bajaba el sombrero hasta los ojos. Un día de lluvia, plic ploc, plic ploc, la lluvia tamborileó sobre su sombrero e hizo el sonido más bonito del mundo. ¡Todos vinieron a escuchar! La setita se puso derecha y orgullosa. Ser pequeño, aprendió, no significa ser callado.",
+          "audio": "audio/es-ES/shy-mushroom.m4a",
+          "effects": "audio/es-ES/shy-mushroom.effects.json"
+        }
+      }
+    },
+    {
+      "id": "snails-grand-expedition",
+      "requiredStickers": [
+        "snail",
+        "ladybug",
+        "mushroom"
+      ],
+      "optionalStickers": [
+        "flower"
+      ],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "patience",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Snail's Grand Expedition",
+          "text": "On the far side of the old log lived Mushroom, small and white and quiet. Snail looked at the log. It was very big. Today, said Snail, I am going on a grand expedition. And off he went. Slide. Slide. Slide. Ladybug zipped over. Nearly there? she asked. Not yet, said Snail. Slide. Slide. Ladybug flew to the top of the log and back. Nearly there? Not yet. Slide. Slide. Slide. The sun moved across the sky. Ladybug looped the loop and came back. Now? Now, said Snail. And there was Mushroom, pink in the sunset, exactly where she had always been. You came, said Mushroom. I said I would, said Snail. Ladybug sat down beside them, and the three of them watched the sun go home. Slowly. The best way.",
+          "audio": "audio/en-US/snails-grand-expedition.m4a",
+          "effects": "audio/en-US/snails-grand-expedition.effects.json"
+        },
+        "es-ES": {
+          "title": "La gran expedición de Caracol",
+          "text": "Al otro lado del tronco viejo vivía Seta, pequeña, blanca y callada. Caracol miró el tronco. Era muy grande. Hoy, dijo Caracol, me voy de gran expedición. Y allá se fue. Ris. Ras. Ris. Mariquita llegó volando. ¿Ya casi? preguntó. Todavía no, dijo Caracol. Ris. Ras. Mariquita voló hasta lo alto del tronco y volvió. ¿Ya casi? Todavía no. Ris. Ras. Ris. El sol cruzó el cielo despacio. Mariquita hizo una pirueta en el aire y volvió otra vez. ¿Y ahora? Ahora, dijo Caracol. Y allí estaba Seta, rosada con la luz del atardecer, justo donde había estado siempre. Has venido, dijo Seta. Dije que vendría, dijo Caracol. Mariquita se sentó a su lado, y los tres vieron cómo el sol se iba a casa. Despacito. Que es la mejor manera.",
+          "audio": "audio/es-ES/snails-grand-expedition.m4a",
+          "effects": "audio/es-ES/snails-grand-expedition.effects.json"
+        }
+      }
+    },
+    {
       "id": "snails-journey",
-      "requiredStickers": ["snail"],
-      "optionalStickers": ["flower", "butterfly"],
-      "weight": 1.0,
-      "tags": ["adventure", "gentle"],
+      "requiredStickers": [
+        "snail"
+      ],
+      "optionalStickers": [
+        "flower",
+        "butterfly"
+      ],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "gentle"
+      ],
       "localizations": {
         "en-US": {
           "title": "The Snail's Great Journey",
@@ -241,6 +1622,335 @@
           "text": "El caracol decidió visitar la flor grande al otro lado del prado. Era un camino muy largo para un caracol tan pequeño. Slis, slis, slis. Pasó junto a una piedrecita grande como una montaña. Slis, slis, slis. Saludó a un escarabajo muy simpático. Cuando por fin llegó, la flor se inclinó hasta el suelo y le dijo: eres el explorador más valiente que he conocido jamás. El caracol sonrió durante todo el camino de vuelta.",
           "audio": "audio/es-ES/snails-journey.m4a",
           "effects": "audio/es-ES/snails-journey.effects.json"
+        }
+      }
+    },
+    {
+      "id": "snails-silver-trail",
+      "requiredStickers": [
+        "snail",
+        "raccoon",
+        "ladybug"
+      ],
+      "optionalStickers": [
+        "mushroom"
+      ],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "curiosity"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Snail's Silver Trail",
+          "text": "Look! said Raccoon. On the moss, in the morning light, was a thin silver line. It shimmered. Treasure, whispered Raccoon. Ladybug landed beside them. A trail! Let's follow it! So they did. Over the leaf. Round the stone. Under the ferns, Raccoon sniffing, Ladybug flying ahead. Past Mushroom, who nodded hello. The silver line got shinier and shinier and then, right at the end of it... Snail. Sitting in a sunny spot, eating a leaf. Hello, said Snail. You found me. Raccoon blinked. Where's the treasure? Snail, she said, did you make that? I always do, said Snail. So that whoever wants me can find me. Raccoon sat down in the sun beside him. Found you, said Raccoon. That'll do.",
+          "audio": "audio/en-US/snails-silver-trail.m4a",
+          "effects": "audio/en-US/snails-silver-trail.effects.json"
+        },
+        "es-ES": {
+          "title": "El rastro de plata de Caracol",
+          "text": "¡Mirad!, dijo Mapache. Sobre el musgo, con la luz de la mañana, había una línea fina de plata. Brillaba. Un tesoro, susurró Mapache. Mariquita se posó a su lado. ¡Un rastro! ¡Vamos a seguirlo! Y lo siguieron. Por la hoja. Alrededor de la piedra. Bajo los helechos, Mapache olfateando, Mariquita volando delante. Junto a Seta, que saludó con la cabeza. La línea de plata brillaba más y más y al final, justo al final... Caracol. Sentado al sol, comiéndose una hoja. Hola, dijo Caracol. Me habéis encontrado. Mapache parpadeó. ¿Dónde está el tesoro? Caracol, dijo, ¿eso lo has hecho tú? Siempre lo hago, dijo Caracol. Para que quien me busque me encuentre. Mapache se sentó al sol a su lado. Te encontré, dijo Mapache. Con eso me basta.",
+          "audio": "audio/es-ES/snails-silver-trail.m4a",
+          "effects": "audio/es-ES/snails-silver-trail.effects.json"
+        }
+      }
+    },
+    {
+      "id": "squirrel-forgets-where",
+      "requiredStickers": [
+        "squirrel",
+        "acorn",
+        "raccoon"
+      ],
+      "optionalStickers": [
+        "tree"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "kindness"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Squirrel Forgets Where",
+          "text": "Squirrel had a plan. She would hide Acorn somewhere very safe, and come back for her later. Somewhere secret, she said. Somewhere nobody would guess. There! Then Squirrel went off to be busy. Later, she came back. And Squirrel scratched her head. Where did I put her? Raccoon wandered by. Lost something? My acorn, said Squirrel. Somewhere secret. Raccoon sniffed the air. Sniff, sniff. This way! They dug under the big root. Pebbles. They dug by the mossy stone. A beetle. They dug beside the fern. Nothing. Then, from under a little pile of leaves, came a sound. Hee hee. Squirrel's ears went up. Hee hee hee! You're tickling me! They lifted the leaves and there was Acorn, giggling. Found you, said Raccoon. Next time, said Squirrel, I'll hide you somewhere I can hear you.",
+          "audio": "audio/en-US/squirrel-forgets-where.m4a",
+          "effects": "audio/en-US/squirrel-forgets-where.effects.json"
+        },
+        "es-ES": {
+          "title": "Ardilla no recuerda dónde",
+          "text": "Ardilla tenía un plan. Escondería a Bellota en un sitio muy seguro y volvería a por ella más tarde. Un sitio secreto, dijo. Un sitio que nadie adivine. ¡Ahí! Y Ardilla se fue a sus cosas. Más tarde, volvió. Y Ardilla se rascó la cabeza. ¿Dónde la puse? Mapache pasaba por allí. ¿Has perdido algo? Mi bellota, dijo Ardilla. En un sitio secreto. Mapache olfateó el aire. Snif, snif. ¡Por aquí! Cavaron bajo la raíz grande. Piedrecitas. Cavaron junto a la piedra con musgo. Un escarabajo. Cavaron al lado del helecho. Nada. Entonces, de bajo un montoncito de hojas, salió un sonido. Ji, ji. A Ardilla se le levantaron las orejas. ¡Ji, ji, ji! ¡Me hacéis cosquillas! Apartaron las hojas y allí estaba Bellota, riéndose. Te encontramos, dijo Mapache. La próxima vez, dijo Ardilla, te escondo donde pueda oírte.",
+          "audio": "audio/es-ES/squirrel-forgets-where.m4a",
+          "effects": "audio/es-ES/squirrel-forgets-where.effects.json"
+        }
+      }
+    },
+    {
+      "id": "tallest-tree",
+      "requiredStickers": [
+        "tree"
+      ],
+      "optionalStickers": [
+        "owl",
+        "butterfly"
+      ],
+      "weight": 1,
+      "tags": [
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Tallest Tree",
+          "text": "The tallest tree in the forest could tickle the clouds with its highest leaves. Hello up there! the little plants called from below. The tall tree loved to help. It gave shade when the sun was too hot. It caught raindrops when the rain was too splashy. And when the wind blew, it waved its branches like a big green flag. Every forest, you see, needs a gentle giant.",
+          "audio": "audio/en-US/tallest-tree.m4a",
+          "effects": "audio/en-US/tallest-tree.effects.json"
+        },
+        "es-ES": {
+          "title": "El árbol más alto",
+          "text": "El árbol más alto del bosque podía hacer cosquillas a las nubes con sus hojas más altas. ¡Hola ahí arriba!, gritaban las plantitas desde abajo. Al árbol alto le encantaba ayudar. Daba sombra cuando el sol calentaba demasiado. Atrapaba las gotas cuando la lluvia salpicaba demasiado. Y cuando soplaba el viento, saludaba con sus ramas como una gran bandera verde. Porque todo bosque, ya se sabe, necesita un gigante bueno.",
+          "audio": "audio/es-ES/tallest-tree.m4a",
+          "effects": "audio/es-ES/tallest-tree.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-forest-wakes-up",
+      "requiredStickers": [],
+      "optionalStickers": [
+        "tree",
+        "flower",
+        "bird",
+        "butterfly"
+      ],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "morning",
+        "fallback"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Forest Wakes Up",
+          "text": "Shh. The forest is still asleep. Listen. Drip. One drop of dew slides off a leaf. Drip, drop. Two drops. Drip, drop, plip. Three! The ground goes hmm, and the moss goes hmm, and a fern uncurls, slow as a yawn. Tweet! A small voice tries out the morning. Tweet, tweet! A second voice answers. The wind sits up and rustles the tall trees, rustle, rustle, hello, hello. Now the sun puts one finger over the hill. It touches the grass, it touches the flowers, it touches the very top of the tallest tree. Every leaf goes gold. Can you hear it? The whole forest is humming. Good morning, forest. Good morning, you.",
+          "audio": "audio/en-US/the-forest-wakes-up.m4a",
+          "effects": "audio/en-US/the-forest-wakes-up.effects.json"
+        },
+        "es-ES": {
+          "title": "El bosque se despierta",
+          "text": "Chist. El bosque todavía duerme. Escucha. Plic. Una gota de rocío resbala por una hoja. Plic, ploc. Dos gotas. Plic, ploc, plin. ¡Tres! El suelo dice mmm, y el musgo dice mmm, y un helecho se estira despacio, como un bostezo. ¡Pío! Una voz pequeña prueba la mañana. ¡Pío, pío! Otra voz le contesta. El viento se despereza y mece los árboles altos, susurra que susurra, hola, hola. Ahora el sol asoma un dedo por la colina. Toca la hierba, toca las flores, toca la punta más alta del árbol más alto. Cada hoja se vuelve de oro. ¿Lo oyes? El bosque entero está tarareando. Buenos días, bosque. Buenos días a ti.",
+          "audio": "audio/es-ES/the-forest-wakes-up.m4a",
+          "effects": "audio/es-ES/the-forest-wakes-up.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-great-jump-contest",
+      "requiredStickers": [
+        "frog",
+        "rabbit",
+        "fox"
+      ],
+      "optionalStickers": [
+        "tree"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "adventure"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Great Jump Contest",
+          "text": "Jump contest! said Rabbit. Whoever jumps best wins. Best how? asked Frog. You'll see, said Rabbit, and he jumped. Up, up, up! Higher than the fern. Higher than the log. He came down, boing. Highest, said Rabbit. Fox grinned. He crouched. He wiggled. He jumped. Far, far, far! Over the fern, over the log, all the way to the path. Farthest, said Fox. Frog looked at the fern. Frog looked at the log. Then Frog turned round, took a run-up, and jumped. Up? A bit. Far? A bit. Then, SPLASH! Right into the pond. Water went everywhere. Rabbit got wet ears. Fox got wet whiskers. Frog bobbed up, grinning. Best landing, said Frog. Rabbit and Fox looked at each other. Then they looked at the pond. Then, SPLASH! SPLASH! Three best landings, said Frog. Everybody wins.",
+          "audio": "audio/en-US/the-great-jump-contest.m4a",
+          "effects": "audio/en-US/the-great-jump-contest.effects.json"
+        },
+        "es-ES": {
+          "title": "El gran concurso de saltos",
+          "text": "¡Concurso de saltos!, dijo Conejo. Gana quien salte mejor. ¿Mejor cómo?, preguntó Rana. Ya lo verás, dijo Conejo, y saltó. ¡Arriba, arriba, arriba! Más alto que el helecho. Más alto que el tronco. Y bajó, boing. El más alto, dijo Conejo. Zorro sonrió. Se agachó. Se meneó. Saltó. ¡Lejos, lejos, lejos! Por encima del helecho, por encima del tronco, hasta el camino. El más largo, dijo Zorro. Rana miró el helecho. Rana miró el tronco. Entonces se dio la vuelta, cogió carrerilla y saltó. ¿Alto? Un poco. ¿Lejos? Un poco. Y luego, ¡CHOF! Directa al estanque. Salió agua por todas partes. Conejo se mojó las orejas. Zorro se mojó los bigotes. Rana asomó, sonriendo. El mejor aterrizaje, dijo Rana. Conejo y Zorro se miraron. Luego miraron el estanque. Y entonces, ¡CHOF! ¡CHOF! Tres mejores aterrizajes, dijo Rana. Ganan todos.",
+          "audio": "audio/es-ES/the-great-jump-contest.m4a",
+          "effects": "audio/es-ES/the-great-jump-contest.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-snoring-hiding-place",
+      "requiredStickers": [
+        "rabbit",
+        "hedgehog",
+        "fox",
+        "mouse"
+      ],
+      "optionalStickers": [
+        "tree"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "bedtime"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Snoring Hiding Place",
+          "text": "Hide-and-seek! Fox was counting. One, two, three... Rabbit hopped behind a fern. Mouse slipped under a leaf. And Hedgehog trotted off to the best hiding place he knew. Ten! Ready or not! Fox found Rabbit first. Fox found Mouse next. Then, Hedgehog. Behind the log? No. Under the roots? No. In the leaves? Only leaves. Fox scratched his head. They looked and looked. The sun got low and warm and sleepy. Then... a sound. Small and rumbly. Hrrr... phew. Hrrr... phew. Rabbit's ears went up. What's that? They followed it. Into a hollow full of soft dry moss. And there was Hedgehog, curled up, snoring. Found you, whispered Fox. Hedgehog didn't wake up. He lay down. Rabbit lay down. Mouse lay down. Hrrr... phew. Best hiding place ever.",
+          "audio": "audio/en-US/the-snoring-hiding-place.m4a",
+          "effects": "audio/en-US/the-snoring-hiding-place.effects.json"
+        },
+        "es-ES": {
+          "title": "El escondite que ronca",
+          "text": "¡Al escondite! Zorro contaba. Uno, dos, tres... Conejo saltó detrás de un helecho. Ratón se metió bajo una hoja. Y Erizo se fue trotando al mejor escondite que conocía. ¡Diez! ¡Que voy! Zorro encontró primero a Conejo. Luego encontró a Ratón. Luego, Erizo. ¿Detrás del tronco? No. ¿Bajo las raíces? No. ¿Entre las hojas? Solo hojas. Zorro se rascó la cabeza. Buscaron y buscaron. El sol bajó, cálido y soñoliento. Y entonces... un sonido. Pequeño y ronco. Jrrr... fiu. Jrrr... fiu. A Conejo se le levantaron las orejas. ¿Qué es eso? Lo siguieron. Hasta un hueco lleno de musgo seco y blandito. Y allí estaba Erizo, hecho una bola, roncando. Te encontré, susurró Zorro. Erizo no se despertó. Se tumbó. Conejo se tumbó. Ratón se tumbó. Jrrr... fiu. El mejor escondite del mundo.",
+          "audio": "audio/es-ES/the-snoring-hiding-place.m4a",
+          "effects": "audio/es-ES/the-snoring-hiding-place.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-ticklish-tree",
+      "requiredStickers": [
+        "tree",
+        "squirrel",
+        "raccoon"
+      ],
+      "optionalStickers": [
+        "mouse"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Ticklish Tree",
+          "text": "Here is a secret about Tree. He is ticklish. Squirrel found out first. She scampered up his trunk and Tree went hee. Squirrel stopped. Tree? Nothing, said Tree. Go on. She scampered a bit higher. Hee hee! Raccoon heard and came to see. Let me try, said Raccoon, and climbed very, very slowly, with their soft careful paws. Hee. Hee hee. HEE HEE HEE! Tree shook all over. Stop, stop! laughed Tree. Squirrel and Raccoon held on tight. Mouse peeped out from the roots. What's so funny? Everything! gasped Tree, and he laughed so hard that his leaves, red and gold and brown, came showering down. Whee! They landed in piles. Squirrel jumped in one. Raccoon jumped in another. Tree took a deep, wobbly breath. Phew, he said. Same time tomorrow? Squirrel was already climbing. Hee.",
+          "audio": "audio/en-US/the-ticklish-tree.m4a",
+          "effects": "audio/en-US/the-ticklish-tree.effects.json"
+        },
+        "es-ES": {
+          "title": "El árbol con cosquillas",
+          "text": "Aquí va un secreto sobre Árbol. Tiene cosquillas. Ardilla lo descubrió primero. Trepó por su tronco y Árbol hizo ji. Ardilla se paró. ¿Árbol? Nada, dijo Árbol. Sigue. Trepó un poco más. ¡Ji, ji! Mapache lo oyó y vino a ver. Déjame a mí, dijo Mapache, y trepó muy, muy despacio, con sus manos suaves y cuidadosas. Ji. Ji, ji. ¡JI, JI, JI! Árbol temblaba entero. ¡Parad, parad!, se reía Árbol. Ardilla y Mapache se agarraron fuerte. Ratón asomó entre las raíces. ¿De qué os reís? ¡De todo!, jadeó Árbol, y se rio tanto que sus hojas, rojas, doradas y marrones, cayeron como una lluvia. ¡Yupi! Se juntaron en montones. Ardilla saltó a uno. Mapache saltó a otro. Árbol respiró hondo, todavía temblando. Uf, dijo. ¿Mañana otra vez? Ardilla ya estaba trepando. Ji.",
+          "audio": "audio/es-ES/the-ticklish-tree.m4a",
+          "effects": "audio/es-ES/the-ticklish-tree.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-tiny-picnic",
+      "requiredStickers": [
+        "bee",
+        "ladybug",
+        "pinecone",
+        "acorn"
+      ],
+      "optionalStickers": [
+        "mouse",
+        "squirrel"
+      ],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "counting"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Tiny Picnic",
+          "text": "Picnic! said Bee. Everybody bring something. But everybody was small, so everybody brought something small. Bee brought one drop of honey. That's one. Ladybug brought one crumb of bread, That's two. Acorn rolled up with one sunflower seed. That's three. And Pinecone? Pinecone lay down flat on the moss. I'm the table, she said. That's four! Hmm, said Ladybug. It's not very much. Bee dipped the crumb in the honey. Ladybug balanced the seed on top. Acorn found a petal and filled it with dew. Oh, said Acorn. Look. It was a feast. A tiny, shining, perfect feast. They ate every bit, and when they were done, they lay back on the table and looked at the sky. Same time tomorrow? said Bee. Everybody bring something small.",
+          "audio": "audio/en-US/the-tiny-picnic.m4a",
+          "effects": "audio/en-US/the-tiny-picnic.effects.json"
+        },
+        "es-ES": {
+          "title": "El pícnic chiquitín",
+          "text": "¡Pícnic!, dijo Abeja. Que cada uno traiga algo. Pero todos eran pequeños, así que todos trajeron algo pequeño. Abeja trajo una gota de miel. Va una. Mariquita trajo una miga de pan, Van dos. Bellota llegó rodando con una pipa de girasol. Van tres. ¿Y Piña? Piña se tumbó en el musgo. Yo soy la mesa, dijo. ¡Van cuatro! Mmm, dijo Mariquita. No es mucho. Abeja mojó la miga en la miel. Mariquita puso la pipa encima. Bellota encontró un pétalo y lo llenó de rocío. Oh, dijo Bellota. Mirad. Era un banquete. Un banquete chiquitín, brillante y perfecto. Se lo comieron todo, y al terminar se tumbaron en la mesa a mirar el cielo. ¿Mañana otra vez?, dijo Abeja. Que cada uno traiga algo pequeño.",
+          "audio": "audio/es-ES/the-tiny-picnic.m4a",
+          "effects": "audio/es-ES/the-tiny-picnic.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-whispered-secret",
+      "requiredStickers": [
+        "mouse",
+        "bird",
+        "deer",
+        "owl"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "kindness"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Whispered Secret",
+          "text": "Mouse had a plan. He scurried up to Bird. Psst. Picnic at noon, he whispered. Pass it on! Bird flew to Deer. Psst. Picnic... at... noon? said Bird. Picnic at the moon? said Deer. He walked over to Owl. Psst. Picnic under the moon, said Deer. Owl opened one eye. Under the moon, he said. I'll bring the stars. So noon came, and Mouse sat alone by the picnic spot with a crumb. The sun went down. The moon came up. And along came Owl, with the stars behind him. Along came Deer, with a leaf of berries. Along came Bird, with a song. Mouse looked at them. Under the moon? he said. I said at noon! Everybody looked up. The moon was round and silver. Yours was good, said Owl. But ours is better.",
+          "audio": "audio/en-US/the-whispered-secret.m4a",
+          "effects": "audio/en-US/the-whispered-secret.effects.json"
+        },
+        "es-ES": {
+          "title": "El secreto susurrado",
+          "text": "Ratón tenía un plan. Corrió hasta Pájaro. Pst. Pícnic a mediodía, susurró. ¡Pásalo! Pájaro voló hasta Ciervo. Pst. Pícnic... a... ¿mediodía?, dijo Pájaro. ¿Pícnic con la luna?, dijo Ciervo. Fue hasta Búho. Pst. Pícnic bajo la luna, dijo Ciervo. Búho abrió un ojo. Bajo la luna, dijo. Yo traigo las estrellas. Llegó el mediodía, y Ratón se sentó solo en el sitio del pícnic con una miga. Se puso el sol. Salió la luna. Y llegó Búho, con las estrellas detrás. Llegó Ciervo, con una hoja llena de bayas. Llegó Pájaro, con una canción. Ratón los miró. ¿Bajo la luna?, dijo. ¡Yo dije a mediodía! Todos miraron arriba. La luna estaba redonda y plateada. El tuyo era bueno, dijo Búho. Pero el nuestro es mejor. Y lo era.",
+          "audio": "audio/es-ES/the-whispered-secret.m4a",
+          "effects": "audio/es-ES/the-whispered-secret.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-wind-plays-hide-and-seek",
+      "requiredStickers": [],
+      "optionalStickers": [
+        "tree",
+        "flower",
+        "butterfly",
+        "bird"
+      ],
+      "weight": 1,
+      "tags": [
+        "weather",
+        "funny",
+        "fallback"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Wind Plays Hide-and-Seek",
+          "text": "Whoosh! Who was that? The wind, of course. The wind loves hide-and-seek, and today the whole forest is playing. Ready or not! The wind shakes the tall trees, rustle, rustle. Where is it? Gone! It tickles the flowers, and they nod, that way, no, that way! Where is it? Gone again! It rolls a leaf along the path, flip, flop, flip. Everyone runs after the leaf. Nobody catches the wind. Nobody ever does. So the forest tries something new. Everybody stops. Everybody holds very still. Everybody listens. Shhh. And there, soft on your cheek, is a whisper of a breeze. Found you, says the forest. Found you, says the wind. Your turn to hide.",
+          "audio": "audio/en-US/the-wind-plays-hide-and-seek.m4a",
+          "effects": "audio/en-US/the-wind-plays-hide-and-seek.effects.json"
+        },
+        "es-ES": {
+          "title": "El viento juega al escondite",
+          "text": "¡Fiuuu! ¿Quién ha sido? El viento, claro. Al viento le encanta el escondite, y hoy juega el bosque entero. ¡Que voy! El viento sacude los árboles altos, susurra que susurra. ¿Dónde está? ¡Se ha ido! Hace cosquillas a las flores, y ellas dicen que sí, por allí, no, ¡por allá! ¿Dónde está? ¡Otra vez se ha ido! Empuja una hoja por el camino, flip, flop, flip. Todos corren detrás de la hoja. Nadie pilla al viento. Nadie lo pilla nunca. Entonces el bosque prueba otra cosa. Todos se paran. Todos se quedan quietos, muy quietos. Todos escuchan. Chisss. Y ahí, suave en tu mejilla, hay un soplo de brisa. Te encontré, dice el bosque. Me encontraste, dice el viento. Ahora te toca esconderte a ti.",
+          "audio": "audio/es-ES/the-wind-plays-hide-and-seek.m4a",
+          "effects": "audio/es-ES/the-wind-plays-hide-and-seek.effects.json"
+        }
+      }
+    },
+    {
+      "id": "tree-finds-room-for-everyone",
+      "requiredStickers": [
+        "tree",
+        "owl",
+        "squirrel",
+        "bird"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "bedtime",
+        "weather"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Tree Finds Room for Everyone",
+          "text": "Whoosh went the wind, and the night got wobbly. Tree stood in the middle of the forest, big and old and steady. Room up here? called Owl, landing on the top branch. Always, said Tree. Room for me? asked Bird, hopping onto a middle branch and tucking his head under his wing. Of course, said Tree. Then Squirrel came scrambling up the trunk. It's windy and I can't find my nest! Tree thought for a moment. Then he creaked, and a little door opened in his side. A hollow! Dry, soft, just Squirrel-sized. Squirrel curled up inside. Whoosh went the wind. Tree held on. Owl above, Bird between, Squirrel within. Squeeze, said Tree, and they squeezed. Hoo, said Owl, sleepy. Tweet, said Bird, sleepy. Zzz, said Squirrel already. And Tree stood in the dark, rocking his whole family, until morning.",
+          "audio": "audio/en-US/tree-finds-room-for-everyone.m4a",
+          "effects": "audio/en-US/tree-finds-room-for-everyone.effects.json"
+        },
+        "es-ES": {
+          "title": "Árbol hace sitio para todos",
+          "text": "Fiuuu, sopló el viento, y la noche se puso movida. Árbol estaba en medio del bosque, grande y firme. ¿Hay sitio aquí arriba?, preguntó Búho, posándose en la rama más alta. Siempre, dijo Árbol. ¿Y para mí?, preguntó Pájaro, saltando a una rama del medio y metiendo la cabeza bajo el ala. Claro, dijo Árbol. Entonces llegó Ardilla trepando por el tronco. ¡Hace viento y no encuentro mi nido! Árbol pensó un momento. Luego crujió, y se abrió una puertecita en su costado. ¡Un hueco! Seco, blandito, de su tamaño justo. Ardilla se acurrucó dentro. Fiuuu, sopló el viento. Árbol aguantó. Búho arriba, Pájaro en medio, Ardilla dentro. Apretaos, dijo Árbol, y se apretaron. Uuuh, dijo Búho, con sueño. Pío, dijo Pájaro, con sueño. Zzz, dijo Ardilla. Y Árbol se quedó meciendo a toda su familia, hasta la mañana.",
+          "audio": "audio/es-ES/tree-finds-room-for-everyone.m4a",
+          "effects": "audio/es-ES/tree-finds-room-for-everyone.effects.json"
         }
       }
     }
