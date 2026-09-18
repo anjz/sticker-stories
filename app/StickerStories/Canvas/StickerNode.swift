@@ -18,6 +18,11 @@ final class StickerNode: SKSpriteNode {
 
     private(set) var isSelected = false
 
+    /// The child's placement while an effect owns this node's transform
+    /// (`EffectApplier`); `nil` in edit mode. Snapshots read this so a
+    /// mid-effect save never captures a wobble.
+    var effectBase: StickerPlacement?
+
     init(stickerID: String, texture: SKTexture, size: CGSize) {
         self.stickerID = stickerID
         shadow = SKSpriteNode(texture: texture)
@@ -43,5 +48,45 @@ final class StickerNode: SKSpriteNode {
     func setLifted(_ lifted: Bool) {
         shadow.position = lifted ? CGPoint(x: 0, y: -12) : CGPoint(x: 0, y: -5)
         shadow.alpha = lifted ? 0.30 : 0.22
+    }
+
+    // MARK: Effects (play mode only)
+
+    /// The placement effects are deltas on: the saved base while an effect
+    /// runs, otherwise the live node values.
+    var placement: StickerPlacement {
+        effectBase ?? StickerPlacement(
+            x: position.x, y: position.y, rotation: zRotation, scale: baseScale, alpha: alpha)
+    }
+
+    func applyEffect(_ composed: ComposedPlacement) {
+        position = CGPoint(x: composed.x, y: composed.y)
+        zRotation = CGFloat(composed.rotation)
+        setScale(CGFloat(composed.scale))
+        alpha = CGFloat(composed.alpha)
+        if composed.tintAmount > 0, let tint = composed.tintColor {
+            color = UIColor(tint)
+            colorBlendFactor = CGFloat(composed.tintAmount)
+        } else {
+            colorBlendFactor = 0
+        }
+    }
+
+    /// Puts the node back exactly where the child left it (P4).
+    func restoreFromEffects() {
+        guard let base = effectBase else { return }
+        position = CGPoint(x: base.x, y: base.y)
+        zRotation = CGFloat(base.rotation)
+        setScale(CGFloat(base.scale))
+        alpha = CGFloat(base.alpha)
+        color = .clear
+        colorBlendFactor = 0
+        effectBase = nil
+    }
+}
+
+extension UIColor {
+    convenience init(_ rgba: RGBA) {
+        self.init(red: rgba.red, green: rgba.green, blue: rgba.blue, alpha: rgba.alpha)
     }
 }
