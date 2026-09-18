@@ -9,6 +9,8 @@ import SwiftUI
 struct StoryScreen: View {
     let pack: LoadedPack
     let preferredLanguages: [String]
+    /// Parent setting: softer effects (docs/effects.md, "calm mode").
+    let calmMode: Bool
     let onLeave: () -> Void
 
     @State private var scene: CanvasScene
@@ -22,9 +24,10 @@ struct StoryScreen: View {
     @State private var canClear = false
     @State private var isConfirmingClear = false
 
-    init(pack: LoadedPack, preferredLanguages: [String], onLeave: @escaping () -> Void) {
+    init(pack: LoadedPack, preferredLanguages: [String], calmMode: Bool, onLeave: @escaping () -> Void) {
         self.pack = pack
         self.preferredLanguages = preferredLanguages
+        self.calmMode = calmMode
         self.onLeave = onLeave
         _scene = State(initialValue: CanvasScene(pack: pack, stateStore: FileCanvasStateStore()))
     }
@@ -69,12 +72,22 @@ struct StoryScreen: View {
                 scene.beginPlayMode(
                     story: story,
                     clock: PlaybackClock { [playback] in playback.playbackTime },
-                    policy: .standard)
+                    policy: effectPolicy)
             } else {
                 scene.endPlayMode()
                 scene.setPlayLocked(playback.isBusy)
             }
         }
+        // Reduce Motion can be toggled mid-story (Control Centre); effects
+        // that start from then on follow it.
+        .onReceive(NotificationCenter.default.publisher(for: UIAccessibility.reduceMotionStatusDidChangeNotification)) { _ in
+            scene.setEffectPolicy(effectPolicy)
+        }
+        .onChange(of: calmMode) { scene.setEffectPolicy(effectPolicy) }
+    }
+
+    private var effectPolicy: EffectPolicy {
+        EffectPolicy(reduceMotion: UIAccessibility.isReduceMotionEnabled, calmMode: calmMode)
     }
 
     private var backButton: some View {

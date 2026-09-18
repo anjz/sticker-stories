@@ -87,7 +87,7 @@ struct GrownUpsView: View {
             }
         }
         .sheet(isPresented: $isShowingSettings) {
-            SettingsView(settings: settings)
+            SettingsView(settings: settings, galleryPack: packs.first)
                 // Sheets are separate presentation trees; re-apply the override.
                 .environment(\.locale, settings.uiLocale ?? Locale.autoupdatingCurrent)
         }

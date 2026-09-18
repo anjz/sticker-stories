@@ -1,11 +1,15 @@
+import StickerStoriesKit
 import SwiftUI
 
 /// Parent settings, reached via the gear in the Grown-Ups area (so always
-/// behind the parental gate). Currently one setting: the app + narration
-/// language.
+/// behind the parental gate): the app + narration language and calm mode.
+/// Debug builds also expose the effects gallery here.
 struct SettingsView: View {
     @Bindable var settings: AppSettings
+    /// A pack whose stickers the debug effects gallery can use.
+    var galleryPack: LoadedPack? = nil
     @Environment(\.dismiss) private var dismiss
+    @State private var isShowingGallery = false
 
     /// nil = follow the device language.
     private let choices: [(override: String?, label: Text)] = [
@@ -51,6 +55,45 @@ struct SettingsView: View {
                             }
                         }
                         .frame(maxWidth: 460)
+
+                        Text("Stories")
+                            .font(.system(size: 21, weight: .bold, design: .rounded))
+                            .foregroundStyle(.white.opacity(0.95))
+                            .padding(.top, 8)
+
+                        calmModeRow
+                            .frame(maxWidth: 460)
+
+                        #if DEBUG
+                        if let galleryPack {
+                            Text("Developer")
+                                .font(.system(size: 21, weight: .bold, design: .rounded))
+                                .foregroundStyle(.white.opacity(0.95))
+                                .padding(.top, 8)
+                            Button { isShowingGallery = true } label: {
+                                HStack {
+                                    Text("Effects gallery")
+                                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                                        .foregroundStyle(Color(red: 0.2, green: 0.3, blue: 0.25))
+                                    Spacer()
+                                    Image(systemName: "sparkles")
+                                        .font(.system(size: 22, weight: .bold))
+                                        .foregroundStyle(Color(red: 0.2, green: 0.55, blue: 0.3))
+                                }
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .fill(.white.opacity(0.85))
+                                        .shadow(color: .black.opacity(0.12), radius: 6, y: 3))
+                            }
+                            .buttonStyle(SquishyButtonStyle())
+                            .frame(maxWidth: 460)
+                            .fullScreenCover(isPresented: $isShowingGallery) {
+                                EffectsGalleryView(pack: galleryPack)
+                            }
+                        }
+                        #endif
                     }
                     .padding(.horizontal, 26)
                     .padding(.top, 16)
@@ -70,6 +113,38 @@ struct SettingsView: View {
         }
         .buttonStyle(SquishyButtonStyle())
         .accessibilityLabel("Close")
+    }
+
+    private var calmModeRow: some View {
+        Button {
+            settings.calmMode.toggle()
+        } label: {
+            HStack(spacing: 16) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Calm mode")
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .foregroundStyle(Color(red: 0.2, green: 0.3, blue: 0.25))
+                    Text("Softer, slower sticker effects while stories play. Also follows the system Reduce Motion setting.")
+                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                        .foregroundStyle(Color(red: 0.2, green: 0.3, blue: 0.25).opacity(0.7))
+                        .multilineTextAlignment(.leading)
+                }
+                Spacer()
+                Image(systemName: settings.calmMode ? "checkmark.circle.fill" : "circle")
+                    .font(.system(size: 24, weight: .bold))
+                    .foregroundStyle(
+                        settings.calmMode
+                            ? Color(red: 0.2, green: 0.55, blue: 0.3)
+                            : Color(red: 0.2, green: 0.3, blue: 0.25).opacity(0.25))
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 16)
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(.white.opacity(settings.calmMode ? 1 : 0.85))
+                    .shadow(color: .black.opacity(0.12), radius: 6, y: 3))
+        }
+        .buttonStyle(SquishyButtonStyle())
     }
 
     private func languageRow(override: String?, label: Text) -> some View {

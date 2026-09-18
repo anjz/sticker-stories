@@ -40,6 +40,7 @@ struct RootView: View {
                 StoryScreen(
                     pack: pack,
                     preferredLanguages: settings.preferredLanguages,
+                    calmMode: settings.calmMode,
                     onLeave: {
                         withAnimation(.spring(duration: 0.45)) { screen = .menu }
                     })
