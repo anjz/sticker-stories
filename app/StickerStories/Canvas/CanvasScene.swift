@@ -108,9 +108,11 @@ final class CanvasScene: SKScene {
     private struct PlaySession {
         let runner: StickerEffectsRunner
         let applier: EffectApplier
+        let emitters: EmitterCoordinator
         let clock: PlaybackClock
     }
     private var playSession: PlaySession?
+    private let glowMasks = GlowMaskCache()
     private static let effectsLog = Logger(subsystem: "com.anj.stickerstories", category: "effects")
 
     // MARK: Setup
@@ -897,15 +899,16 @@ final class CanvasScene: SKScene {
         let targets = Dictionary(grouping: nodes, by: \.stickerID).mapValues { $0.map(\.instanceID) }
         let runner = StickerEffectsRunner(
             triggers: loadTriggers(for: story), targets: targets, policy: policy)
-        let applier = EffectApplier()
+        let applier = EffectApplier { [weak self] node in self?.glowMask(for: node) }
         applier.normalize(nodes)
-        playSession = PlaySession(runner: runner, applier: applier, clock: clock)
+        playSession = PlaySession(runner: runner, applier: applier, emitters: EmitterCoordinator(), clock: clock)
     }
 
     /// Restores the child's exact arrangement (P4) and tears the pipeline down.
     func endPlayMode() {
         if let session = playSession {
             session.runner.stopAll()
+            session.emitters.clearAll()
             session.applier.restoreAll(stickerNodesByID())
             playSession = nil
         }
@@ -923,8 +926,19 @@ final class CanvasScene: SKScene {
 
     override func update(_ currentTime: TimeInterval) {
         guard let session = playSession else { return }
-        let deltas = session.runner.tick(session.clock.now())
-        session.applier.apply(deltas, to: stickerNodesByID())
+        let time = session.clock.now()
+        let nodes = stickerNodesByID()
+        let deltas = session.runner.tick(time)
+        session.applier.apply(deltas, to: nodes)
+        session.emitters.reconcile(session.runner.active, at: time, nodes: nodes)
+    }
+
+    /// The sticker's blurred bloom mask, built once per sticker per pack.
+    private func glowMask(for node: StickerNode) -> GlowMaskCache.Mask? {
+        glowMasks.mask(for: node.stickerID) {
+            guard let sticker = pack.sticker(withID: node.stickerID) else { return nil }
+            return UIImage(contentsOfFile: pack.url(forAssetPath: sticker.image).path)
+        }
     }
 
     private func stickerNodesByID() -> [UUID: StickerNode] {
