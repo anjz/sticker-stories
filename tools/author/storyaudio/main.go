@@ -420,10 +420,10 @@ func runRender(args []string) error {
 	musicDB := fs.Float64("music-db", -14, "music level under the narration, dB relative to the narrator")
 	lead := fs.Float64("lead", 3, "seconds of music alone before the narrator starts")
 	introDB := fs.Float64("intro-db", -6, "music level during the lead-in, dB relative to the narrator (ramps down to -music-db over the last second)")
-	bitrate := fs.Int("bitrate", 96000, "AAC bitrate")
+	bitrate := fs.Int("bitrate", 64000, "AAC bitrate (64 kbps mono is transparent for narration)")
 	parallel := fs.Int("parallel", 5, "renditions rendered concurrently")
 	force := fs.Bool("force", false, "re-render even if nothing changed")
-	dry := fs.Bool("dry-run", false, "print what would be rendered and the character count; no API calls that cost")
+	dry := fs.Bool("dry-run", false, "print what would be rendered and the characters that would be synthesised (cached narration excluded); no API calls that cost")
 	fs.Parse(args)
 
 	c, err := load(*packDir, *storiesDir)
@@ -608,7 +608,9 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 		}
 	}
 	if r.o.dry {
-		r.chars[lang] += len([]rune(plain))
+		if _, _, cached := r.loadSpeech(plain, lang, voice.VoiceID, r.o.sampleRate); !cached {
+			r.chars[lang] += len([]rune(plain))
+		}
 		for _, h := range s.Sound {
 			if !r.o.noSFX && !exists(r.sfxCachePath(h.Note, r.o.sampleRate)) {
 				r.sfxToMake[h.Note] = true
@@ -736,6 +738,11 @@ func pcmFormat(rate int) string { return fmt.Sprintf("pcm_%d", rate) }
 // alignment) when needed. Returns the audio, the model used and the rate.
 func (r *renderer) speak(plain, lang, voiceID string, log *strings.Builder) (*elevenlabs.Speech, string, int, error) {
 	rate := r.rate()
+	// The synthesis is the expensive part; cache it so mix changes
+	// (levels, music, bitrate) never cost another API call.
+	if sp, model, ok := r.loadSpeech(plain, lang, voiceID, rate); ok {
+		return sp, model, rate, nil
+	}
 	req := elevenlabs.SpeechRequest{VoiceID: voiceID, Text: plain, ModelID: r.o.model, LanguageCode: primary(lang), OutputFormat: pcmFormat(rate)}
 	sp, err := r.el.SpeechWithTimestamps(r.ctx, req)
 	if err != nil && elevenlabs.IsClientError(err) && rate == 44100 {
@@ -764,7 +771,42 @@ func (r *renderer) speak(plain, lang, voiceID string, log *strings.Builder) (*el
 	if sp.Alignment == nil {
 		return nil, "", 0, errors.New("no alignment returned")
 	}
+	r.saveSpeech(plain, lang, voiceID, rate, model, sp)
 	return sp, model, rate, nil
+}
+
+type speechCache struct {
+	Model     string                `json:"model"`
+	Alignment *elevenlabs.Alignment `json:"alignment"`
+}
+
+func (r *renderer) speechCachePath(plain, lang, voiceID string, rate int) string {
+	return filepath.Join(r.cacheDir("tts"), hashOf(plain, lang, voiceID, r.o.model, fmt.Sprint(rate)))
+}
+
+func (r *renderer) loadSpeech(plain, lang, voiceID string, rate int) (*elevenlabs.Speech, string, bool) {
+	base := r.speechCachePath(plain, lang, voiceID, rate)
+	meta, err := os.ReadFile(base + ".json")
+	if err != nil {
+		return nil, "", false
+	}
+	audio, err := os.ReadFile(base + ".pcm")
+	if err != nil {
+		return nil, "", false
+	}
+	var sc speechCache
+	if json.Unmarshal(meta, &sc) != nil || sc.Alignment == nil {
+		return nil, "", false
+	}
+	return &elevenlabs.Speech{Audio: audio, Alignment: sc.Alignment}, sc.Model, true
+}
+
+func (r *renderer) saveSpeech(plain, lang, voiceID string, rate int, model string, sp *elevenlabs.Speech) {
+	base := r.speechCachePath(plain, lang, voiceID, rate)
+	meta, _ := json.Marshal(speechCache{Model: model, Alignment: sp.Alignment})
+	if writeAtomic(base+".pcm", sp.Audio) == nil {
+		writeAtomic(base+".json", meta)
+	}
 }
 
 // cached returns the cache file at path, generating it once even when
