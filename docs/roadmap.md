@@ -57,16 +57,19 @@
 - [x] Calm mode (parent setting) + live Reduce Motion policy; flash cap
 - [x] DEBUG effects gallery for tuning against real art
 - [ ] Real emitter textures + tuning pass once real sticker art lands
-- [ ] `story-gen`/`tts`: resolve inline text cues into sidecar `at` times
-      from TTS word timestamps (`docs/effects.md`, "Future: inline cues")
+- [x] Story authoring step 1 (2026-09): `/author-stories` skill + brief +
+      intermediate format with inline cues (`tools/author/stories/`),
+      `storycheck` validator (format, cues, safety words, coverage)
+- [ ] Story authoring step 2: ElevenLabs narration + SFX from `story.json`,
+      cue → `at` alignment from word timestamps, manifest/sidecar export
 
 ## Iteration 2 — proposed
 
 - [ ] Second pack ("Meadow") as a purchasable IAP end-to-end in the StoreKit
       testing environment: purchase → install → load; refund → assets removed
 - [ ] Pack picker UI (child-safe) for switching between entitled packs
-- [ ] `story-gen` v1: Claude API authoring pipeline producing manifest-ready
-      story JSON from pack theme + sticker list
+- [ ] Forest: author the real 50-story set with `/author-stories` once the
+      real art exists
 - [ ] `tts` v1: ElevenLabs batch rendering + loudness normalisation, replacing
       `say` placeholder audio
 - [ ] App test target + StoreKitTest integration tests (purchase/refund flows)

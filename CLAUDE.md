@@ -60,7 +60,9 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
   adding anything.
 - `packs/<id>/` — pack source content; must always pass `packager validate`.
 - `tools/` — Go module (dev-time only): `packager` (validation), `placeholdergen`
-  (temporary placeholder assets), `story-gen` + `tts` (stubs for future pipeline).
+  (temporary placeholder assets), `author/` (story authoring: the
+  `/author-stories` skill's brief + format in `author/stories/`, `storycheck`
+  validator; audio/pack export is step 2, not built), `tts` (stub).
 - `docs/` — deep documentation; reference it, don't duplicate it here.
 
 ## Working rules
