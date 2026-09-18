@@ -20,7 +20,8 @@ picks the best match for the device (see "Language resolution" below).
   stickers/
     <stickerID>.png       # sticker art, alpha background, white border baked in
   audio/
-    <lang>/<storyID>.m4a  # pre-rendered narration, AAC, one folder per language
+    <lang>/<storyID>.m4a           # pre-rendered narration, AAC, one folder per language
+    <lang>/<storyID>.effects.json  # optional sticker-effect triggers for that narration
 ```
 
 The `audio/<lang>/…` layout is a convention, not a rule — audio paths are
@@ -57,7 +58,8 @@ navigable.
         "en-US": {
           "title": "The Shy Mushroom",
           "text": "Once upon a time…",
-          "audio": "audio/en-US/shy-mushroom.m4a"
+          "audio": "audio/en-US/shy-mushroom.m4a",
+          "effects": "audio/en-US/shy-mushroom.effects.json"
         },
         "es-ES": {
           "title": "La seta tímida",
@@ -93,6 +95,7 @@ navigable.
 | `…localizations[].title` | string | Short story title in that language (parent-facing; not read to the child). |
 | `…localizations[].text` | string | Full story text in that language. **Required** — the portable representation for future TTS/LLM narrators. |
 | `…localizations[].audio` | string | Pack-relative path to that language's pre-rendered narration; must exist. |
+| `…localizations[].effects` | string | **Optional.** Pack-relative path to that language's sticker-effect trigger sidecar (`docs/effects.md`); must exist and pass strict validation. Omit for no effects. |
 
 ### Validation rules (enforced by BOTH the Go packager and the Swift decoder)
 
@@ -105,14 +108,19 @@ navigable.
    every declared language and none for undeclared ones. Partial translations
    are a validation error, not a runtime fallback.
 5. Every referenced file (`background`, `foreground`, sticker images, every
-   localization's audio) exists inside the pack. No path may escape the pack
-   (no `..`, no absolute paths).
+   localization's audio and effects sidecar) exists inside the pack. No path
+   may escape the pack (no `..`, no absolute paths).
 6. Story sticker references are declared; `requiredStickers` and
    `optionalStickers` are disjoint.
 7. **At least one fallback story** (`requiredStickers` empty) — play must
    never fail regardless of canvas contents.
 8. `weight > 0`, `version ≥ 1`; every `displayName`/`name`/`title`/`text`
    value non-empty.
+9. Every declared effects sidecar is valid per `docs/effects.md` ("Trigger
+   file"): the packager validates it **strictly** (unknown effect names,
+   unknown keys, out-of-range numbers and undeclared stickers are errors);
+   the app decodes it **leniently** (skip / clamp / log) so a pack authored
+   against a newer library still plays with fewer effects.
 
 ## Language resolution (app behaviour)
 
@@ -135,7 +143,8 @@ same device preference.
   do. v1 → v2 (2026-07): localization restructure — `languages` added;
   `displayName`, `stickers[].name` became per-language maps; story
   `title`/`text`/`audio` moved into `localizations`. v1 packs are not
-  supported (none shipped).
+  supported (none shipped). 2026-09: optional `localizations[].effects`
+  added (additive, no bump).
 - Any schema change must update this document, the Go validator
   (`tools/internal/manifest`), and the Swift decoder in the **same commit**.
 - `version` (pack content revision) is bumped whenever any asset or story in a

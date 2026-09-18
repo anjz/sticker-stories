@@ -77,16 +77,20 @@ public struct StickerDefinition: Codable, Equatable, Sendable, Identifiable {
 }
 
 /// One language's rendition of a story: its title, full text (the portable
-/// representation any future narrator needs), and pre-rendered narration.
+/// representation any future narrator needs), pre-rendered narration, and
+/// optionally that narration's sticker-effect triggers (`docs/effects.md`).
 public struct StoryLocalization: Codable, Equatable, Sendable {
     public var title: String
     public var text: String
     public var audio: String
+    /// Pack-relative path to the effects sidecar; `nil` = no effects.
+    public var effects: String?
 
-    public init(title: String, text: String, audio: String) {
+    public init(title: String, text: String, audio: String, effects: String? = nil) {
         self.title = title
         self.text = text
         self.audio = audio
+        self.effects = effects
     }
 }
 
@@ -253,6 +257,9 @@ extension PackManifest {
                     issues.append("\(locName): text must not be empty (stories must carry their text)")
                 }
                 checkFile("\(locName) audio", localization.audio)
+                if let effects = localization.effects {
+                    checkFile("\(locName) effects", effects)
+                }
             }
             for language in story.localizations.keys where !declared.contains(language) {
                 issues.append("\(name): localization \"\(language)\" is not in declared languages")

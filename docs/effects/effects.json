@@ -1,0 +1,43 @@
+{
+  "catalogSchema": 1,
+  "triggerSchema": 1,
+  "notes": [
+    "Machine-readable catalogue of the sticker effect library. Human reference: docs/effects.md.",
+    "A Kit test asserts this file matches the compiled library (EffectDefinition.library); edit both together.",
+    "Story tooling should read this file to learn which effects exist, what they mean, and which parameters each accepts."
+  ],
+  "parameters": {
+    "effect":    { "type": "string",  "required": true,  "description": "One of the effect names below." },
+    "sticker":   { "type": "string",  "required": true,  "description": "Sticker ID from the pack manifest. Every placed instance of it is affected; if none is placed the trigger silently does not fire." },
+    "at":        { "type": "number",  "required": true,  "description": "Seconds into this language's narration at which the effect starts." },
+    "cue":       { "type": "string",  "required": false, "description": "Authoring label only (e.g. the word it lines up with). Never interpreted by the app." },
+    "repeat":    { "type": "integer|\"loop\"", "required": false, "default": 1, "range": [1, 50], "description": "Cycles to run; \"loop\" runs until playback ends. Ignored by one-way effects." },
+    "duration":  { "type": "number",  "required": false, "default": "per effect", "range": [0.05, 30], "description": "Seconds for ONE cycle. Total run time is duration × repeat." },
+    "intensity": { "type": "number",  "required": false, "default": 0.6, "range": [0, 1], "description": "Amplitude, never speed. 0 is visually identical to no effect." },
+    "color":     { "type": "string",  "required": false, "format": "#RRGGBB", "description": "Read by glow, tint and sparkle only. Required by tint." },
+    "hold":      { "type": "boolean", "required": false, "default": false, "description": "Keep the end state until playback ends. Meaningful for fade-in, fade-out, glow, tint only." }
+  },
+  "reduceMotionValues": {
+    "full": "runs unchanged",
+    "damped-0.3": "intensity capped at 0.3",
+    "damped-0.4": "intensity capped at 0.4",
+    "dropped": "does not run"
+  },
+  "effects": [
+    { "name": "pulse",    "category": "motion", "summary": "One gentle size beat. The universal \"look at this one\".", "use": "Draw attention to the sticker being talked about.", "animates": ["scale"], "defaultDuration": 0.5, "anchor": [0.5, 0.5], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "reduceMotion": "damped-0.3" },
+    { "name": "wobble",   "category": "motion", "summary": "Tilts side to side around its base. The default \"this thing is reacting\".", "use": "Reactions: surprise, laughter, a sneeze, being bumped.", "animates": ["rotation"], "defaultDuration": 0.6, "anchor": [0.5, 1.0], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "reduceMotion": "damped-0.3" },
+    { "name": "shake",    "category": "motion", "summary": "Fast, small horizontal tremble. Fear, cold, excitement.", "use": "Shivering, nervousness, giggling, an engine.", "animates": ["offsetX"], "defaultDuration": 0.5, "anchor": [0.5, 0.5], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "reduceMotion": "dropped" },
+    { "name": "hop",      "category": "motion", "summary": "One small arc up and back down. The most charming one in the list.", "use": "Joy, a jump, saying hello, a heartbeat of excitement. repeat 2–3 for bouncing.", "animates": ["offsetY"], "defaultDuration": 0.6, "anchor": [0.5, 1.0], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "reduceMotion": "dropped" },
+    { "name": "spin",     "category": "motion", "summary": "One full clockwise rotation about the centre.", "use": "Twirling, dizziness, a pirouette, a tumble. Intensity does not change the turn (only 0 disables it).", "animates": ["rotation"], "defaultDuration": 0.9, "anchor": [0.5, 0.5], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "reduceMotion": "dropped" },
+    { "name": "float",    "category": "motion", "summary": "Very slow vertical bob. Built for loop.", "use": "Anything airborne or afloat: butterflies, bees, birds, clouds, boats. Use repeat \"loop\".", "animates": ["offsetY"], "defaultDuration": 3.0, "anchor": [0.5, 0.5], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "reduceMotion": "dropped" },
+    { "name": "sway",     "category": "motion", "summary": "Very slow tilt around the base. Trees, flowers, grass. Built for loop.", "use": "Wind through plants; gentle idle life for scenery. Use repeat \"loop\".", "animates": ["rotation"], "defaultDuration": 3.5, "anchor": [0.5, 1.0], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "reduceMotion": "dropped" },
+    { "name": "fade-in",  "category": "opacity-and-color", "summary": "Appears from nothing. One-way.", "use": "Arrivals, waking up, being noticed. Pair with puff for a magical entrance.", "animates": ["opacity"], "defaultDuration": 0.6, "anchor": [0.5, 0.5], "parameters": ["duration", "intensity", "hold"], "oneWay": true, "hold": true, "defaultColor": null, "reduceMotion": "full" },
+    { "name": "fade-out", "category": "opacity-and-color", "summary": "Fades away. One-way.", "use": "Leaving, hiding, falling asleep. hold true keeps the sticker gone until the story ends; otherwise it fades back in.", "animates": ["opacity"], "defaultDuration": 0.6, "anchor": [0.5, 0.5], "parameters": ["duration", "intensity", "hold"], "oneWay": true, "hold": true, "defaultColor": null, "reduceMotion": "full" },
+    { "name": "blink",    "category": "opacity-and-color", "summary": "Vanishes and returns, hard-edged, twice per cycle. Magical, unstable, teleporting.", "use": "Magic, flickering lights, a firefly. Rate-limited to 3 flashes per second.", "animates": ["opacity"], "defaultDuration": 0.3, "anchor": [0.5, 0.5], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "reduceMotion": "dropped" },
+    { "name": "glow",     "category": "opacity-and-color", "summary": "A soft bloom rises around the sticker and falls away. Reads as magic.", "use": "Magic, warmth, a wish, the sun coming out. hold true keeps the bloom on.", "animates": ["glow"], "defaultDuration": 1.0, "anchor": [0.5, 0.5], "parameters": ["repeat", "duration", "intensity", "color", "hold"], "oneWay": false, "hold": true, "defaultColor": "#FFF3C4", "reduceMotion": "full" },
+    { "name": "tint",     "category": "opacity-and-color", "summary": "A colour washes over the sticker and drains away. White + short duration = a flash.", "use": "Blushing (pink), cold (blue), angry (red), a camera flash (white, duration 0.2). color is required.", "animates": ["tint"], "defaultDuration": 0.8, "anchor": [0.5, 0.5], "parameters": ["repeat", "duration", "intensity", "color", "hold"], "oneWay": false, "hold": true, "defaultColor": null, "reduceMotion": "full" },
+    { "name": "sparkle",  "category": "particle", "summary": "A small shower of twinkles above the sticker. The generic magic/delight beat.", "use": "Delight, magic, treasure, a good idea.", "animates": ["particles"], "defaultDuration": 1.0, "anchor": [0.5, 0.35], "parameters": ["repeat", "duration", "intensity", "color"], "oneWay": false, "hold": false, "defaultColor": "#FFD166", "reduceMotion": "damped-0.4" },
+    { "name": "puff",     "category": "particle", "summary": "A small puff of smoke at the sticker's feet. Disappearing, landing, arriving.", "use": "Landing after a jump, appearing/disappearing, a cloud of dust.", "animates": ["particles"], "defaultDuration": 0.6, "anchor": [0.5, 0.9], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "reduceMotion": "damped-0.4" },
+    { "name": "hearts",   "category": "particle", "summary": "A few hearts drift up. Affection, a hug, a friend.", "use": "Friendship, love, a hug, kindness.", "animates": ["particles"], "defaultDuration": 1.2, "anchor": [0.5, 0.2], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "reduceMotion": "damped-0.4" }
+  ]
+}

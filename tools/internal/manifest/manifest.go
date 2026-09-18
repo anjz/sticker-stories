@@ -12,6 +12,8 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+
+	"stickerstories/tools/internal/effects"
 )
 
 // SupportedSchemaVersion is the only schema version this validator accepts.
@@ -49,11 +51,14 @@ type Story struct {
 	Localizations    map[string]StoryLocalization `json:"localizations"`
 }
 
-// StoryLocalization is one language's rendition of a story.
+// StoryLocalization is one language's rendition of a story. Effects is the
+// optional path to that narration's sticker-effect trigger sidecar
+// (docs/effects.md).
 type StoryLocalization struct {
-	Title string `json:"title"`
-	Text  string `json:"text"`
-	Audio string `json:"audio"`
+	Title   string `json:"title"`
+	Text    string `json:"text"`
+	Audio   string `json:"audio"`
+	Effects string `json:"effects,omitempty"`
 }
 
 // EffectiveWeight returns the story's selection weight, defaulting to 1.0.
@@ -206,6 +211,15 @@ func (m *Manifest) Validate(dir string) []error {
 				fail("%s: text must not be empty (stories must carry their text)", locName)
 			}
 			checkFile(locName+" audio", loc.Audio)
+			if loc.Effects != "" {
+				before := len(errs)
+				checkFile(locName+" effects", loc.Effects)
+				if len(errs) == before {
+					for _, err := range effects.ValidateFile(filepath.Join(dir, filepath.FromSlash(loc.Effects)), stickerIDs) {
+						fail("%s effects: %v", locName, err)
+					}
+				}
+			}
 		}
 		for lang := range st.Localizations {
 			if !declared[lang] {

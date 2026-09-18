@@ -191,3 +191,42 @@ func TestValidationFailures(t *testing.T) {
 		})
 	}
 }
+
+func TestEffectsSidecarIsValidatedStrictly(t *testing.T) {
+	dir := t.TempDir()
+	m := validManifest(t, dir)
+	loc := m.Stories[0].Localizations["en-US"]
+	loc.Effects = "audio/en-US/story-001.effects.json"
+	m.Stories[0].Localizations["en-US"] = loc
+	sidecar := filepath.Join(dir, "audio", "en-US", "story-001.effects.json")
+
+	// Missing file → rule 5.
+	errs := m.Validate(dir)
+	if len(errs) != 1 || !strings.Contains(errs[0].Error(), "effects") {
+		t.Fatalf("expected one missing-file error, got %v", errs)
+	}
+
+	// Valid sidecar → passes.
+	good := `{"schema": 1, "triggers": [{"at": 1.5, "sticker": "fox", "effect": "hop", "repeat": 2}]}`
+	if err := os.WriteFile(sidecar, []byte(good), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if errs := m.Validate(dir); len(errs) != 0 {
+		t.Fatalf("expected no errors, got %v", errs)
+	}
+
+	// Undeclared sticker and unknown effect → strict errors attributed to the localization.
+	bad := `{"schema": 1, "triggers": [{"at": 1.5, "sticker": "dragon", "effect": "explode"}]}`
+	if err := os.WriteFile(sidecar, []byte(bad), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	errs = m.Validate(dir)
+	if len(errs) != 2 {
+		t.Fatalf("expected two sidecar errors, got %v", errs)
+	}
+	for _, e := range errs {
+		if !strings.Contains(e.Error(), `stories[0] ("story-001") en-US effects:`) {
+			t.Errorf("error not attributed to the localization: %v", e)
+		}
+	}
+}
