@@ -26,6 +26,61 @@ struct RootView: View {
             Color(red: 0.49, green: 0.78, blue: 0.91)
                 .ignoresSafeArea()
 
+            #if DEBUG
+            // `-effectsGallery` / `-effectsGalleryDemo` launch arguments open
+            // the debug gallery instead of the app (no touch injection on
+            // the simulator).
+            if ProcessInfo.processInfo.arguments.contains(where: { $0.hasPrefix("-effectsGallery") }) {
+                if let pack = library.packs.first { EffectsGalleryView(pack: pack) }
+            } else {
+                content
+            }
+            #else
+            content
+            #endif
+        }
+        .persistentSystemOverlays(.hidden)
+        .statusBarHidden(true)
+        // The parent language override retargets every catalog lookup live.
+        .environment(\.locale, settings.uiLocale ?? Locale.autoupdatingCurrent)
+        .task {
+            // Entitlement enforcement runs before pack discovery on every
+            // launch (docs/commerce.md).
+            await entitlements.validateOnLaunch()
+            entitlements.startObservingTransactions()
+            library.discoverPacks()
+            #if DEBUG
+            // `-autoplay`: open the first pack and press play (simulator
+            // verification of the playback pipeline without touch injection).
+            if ProcessInfo.processInfo.arguments.contains("-autoplay"), let pack = library.packs.first {
+                screen = .story(pack)
+            }
+            #endif
+        }
+        .sheet(item: $grownUps) { access in
+            Group {
+                switch access {
+                case .gate:
+                    ParentalGateView(
+                        onSuccess: { grownUps = .area },
+                        onCancel: { grownUps = nil })
+                    // Full-size from the start — no drag-to-resize needed.
+                    .presentationDetents([.large])
+                case .area:
+                    GrownUpsView(
+                        store: StoreService(entitlements: entitlements),
+                        packs: library.packs,
+                        settings: settings)
+                }
+            }
+            // Sheets are separate presentation trees; re-apply the override.
+            .environment(\.locale, settings.uiLocale ?? Locale.autoupdatingCurrent)
+        }
+    }
+
+    @ViewBuilder
+    private var content: some View {
+        Group {
             switch screen {
             case .menu:
                 MainMenuView(
@@ -46,36 +101,6 @@ struct RootView: View {
                     })
                 .transition(.opacity.combined(with: .scale(scale: 0.92)))
             }
-        }
-        .persistentSystemOverlays(.hidden)
-        .statusBarHidden(true)
-        // The parent language override retargets every catalog lookup live.
-        .environment(\.locale, settings.uiLocale ?? Locale.autoupdatingCurrent)
-        .task {
-            // Entitlement enforcement runs before pack discovery on every
-            // launch (docs/commerce.md).
-            await entitlements.validateOnLaunch()
-            entitlements.startObservingTransactions()
-            library.discoverPacks()
-        }
-        .sheet(item: $grownUps) { access in
-            Group {
-                switch access {
-                case .gate:
-                    ParentalGateView(
-                        onSuccess: { grownUps = .area },
-                        onCancel: { grownUps = nil })
-                    // Full-size from the start — no drag-to-resize needed.
-                    .presentationDetents([.large])
-                case .area:
-                    GrownUpsView(
-                        store: StoreService(entitlements: entitlements),
-                        packs: library.packs,
-                        settings: settings)
-                }
-            }
-            // Sheets are separate presentation trees; re-apply the override.
-            .environment(\.locale, settings.uiLocale ?? Locale.autoupdatingCurrent)
         }
     }
 }
