@@ -1,0 +1,136 @@
+# Authoring brief
+
+Read this before writing a single story. It is the standard every story is
+held to, and the validator (`storycheck`) enforces the parts that can be
+checked mechanically.
+
+## What these stories are
+
+Sticker Stories is an app for children aged four and up. A child drags
+stickers onto a scene and presses play; the app picks a story that matches
+what they placed and narrates it while the stickers react with small
+effects (a wobble, a hop, sparkles). Stories are:
+
+- **30–60 seconds** of narration (80–140 words per language);
+- **bilingual from day one** (currently en-US and es-ES), each language
+  written natively;
+- **self-contained**: no series, no cliffhangers, no "next time";
+- **played many times**: the same child will hear a story dozens of times,
+  so it must reward repetition (rhythm, a callback, a line the child will
+  say along) and never grate.
+
+## Quality bar
+
+Write at the level of the best read-aloud picture books, not app filler.
+Every story must have:
+
+1. **A real shape.** Setup → a small, concrete problem or wish → an attempt
+   → a surprise or turn → a warm resolution. In 100 words. If nothing turns,
+   it is not a story yet.
+2. **One idea, held all the way through.** A story about the shy mushroom
+   is about shyness from the first line to the last.
+3. **Depth borrowed from the classics, transformed.** Draw on public-domain
+   structures and motifs — Aesop and La Fontaine, Grimm and Perrault's
+   gentlest tales, Kipling's *Just So* "how the X got its Y", Andersen's
+   kindness stories, folk-tale patterns (three tries, the smallest helps
+   the biggest, the boast undone) — and *turn* them: a different ending, a
+   different lesson, a twist a four-year-old can feel. Name the source in
+   `inspiration`. Never retell; never use a character or line that belongs
+   to someone (no Pooh, no Peter Rabbit, no Disney).
+4. **A lesson that is never said.** Kindness, courage, patience, curiosity,
+   sharing, being small and still mattering — shown by what happens, not
+   stated. No "and so she learned that…". Put the lesson in the `lesson`
+   field for reviewers and keep it out of the text.
+5. **Read-aloud craft.** Short sentences. Present-tense action or simple
+   past. Concrete nouns and verbs. Rhythm and repetition (three of
+   something; a refrain). Sound words that a narrator can perform (*drip
+   drop*, *rustle rustle*, *whoo-hoo*). A question to the listener now and
+   then. An ending line that lands — quiet, funny or warm — and would work
+   as the last line a parent reads at bedtime.
+6. **Warmth and humour.** Gentle, physical, kind humour (a tumble into
+   leaves, a hedgehog covered in leaves, a snail's grand expedition).
+   Never mockery.
+7. **Variety across the set.** Mix moods (`gentle`, `funny`, `bedtime`,
+   `adventure`, `curiosity`, `kindness`, `seasons`, `weather`, `music`,
+   `counting`…), times of day, weather, and story shapes. No two stories
+   with the same premise. Every sticker gets to be the hero somewhere, not
+   only a sidekick.
+
+## Safety — absolute rules
+
+Kids Category. The app is used unsupervised by four-year-olds. If in doubt,
+cut it.
+
+- **Nothing scary.** No predators hunting, no being chased, no getting
+  lost without an immediate friendly resolution, no darkness as threat, no
+  storms as danger, no monsters, ghosts, witches, wolves at the door.
+- **No harm.** No death, injury, illness, blood, weapons, fighting,
+  violence, cruelty, or characters being left out or laughed at without a
+  mend inside the story.
+- **No fear as a device.** Surprise, yes; fright, never. A "surprise" is a
+  friend appearing, not a jump scare.
+- **No romance, no bodies, no bathroom humour.**
+- **No brands, products, screens, money, religion, politics, holidays
+  tied to one faith.**
+- **No insults**, even mild (*stupid*, *dumb*, *ugly*, *fat*, *shut up*).
+- **Inclusive by default.** Animals are *he*, *she* or *they* in a
+  balanced mix; no gendered roles; nobody is "the pretty one".
+- **Emotionally safe endings.** Every story ends with everyone safe, warm,
+  included, and calm enough for a bedtime listener.
+
+The validator rejects a list of forbidden words in both languages. Passing
+it is necessary, not sufficient: the rules above are the standard.
+
+## Using the sticker pack
+
+- Read the manifest: sticker IDs and their names in each language are the
+  cast. Use each sticker as what it is (a snail is slow, a bee buzzes, a
+  tree stands still and shelters) and give each one a personality that
+  stays consistent across the pack.
+- A story is centred on **3–4 featured stickers** (the app plays it only
+  when all of them are on the canvas) and may use up to 4 **supporting**
+  ones (present or not; the story must read fine without them — never
+  make a beat depend on a supporting sticker).
+- Write **at least 3 fallback stories** with no featured stickers: they
+  are about the place itself (the forest waking up, the evening, the wind)
+  and must work with an empty canvas.
+- Do not mention stickers that are neither featured nor supporting.
+- Only refer to what a sticker *is*; never to its position on the screen.
+
+## Using effects
+
+The app has 15 effects (`docs/effects/effects.json`; human reference in
+`docs/effects.md`): `pulse`, `wobble`, `shake`, `hop`, `spin`, `float`,
+`sway`, `fade-in`, `fade-out`, `blink`, `glow`, `tint`, `sparkle`, `puff`,
+`hearts`. Cue grammar is in `FORMAT.md`.
+
+- **Effects illustrate the words.** Put a cue on the beat it belongs to:
+  `hop` on *jump*, `wobble` on *sneeze*, `sparkle` on *magic*, `spin` on
+  *tumble*, `tint #…` on *blushed*, `fade-out hold` on *flew away*,
+  `hearts` on a hug.
+- **Scenery loops at the start** give the canvas life for the whole story:
+  `{tree:sway loop 0.4}`, `{butterfly:float loop}`. Keep loops at low
+  intensity (≤ 0.5).
+- **At least one cue per language, typically two to eight.** More than
+  one sticker can react at once; cues in a row fire together.
+- **Never rely on an effect.** The sticker may not be on the canvas and
+  the story must still make sense.
+- **Restraint.** Prefer defaults. `blink` sparingly (it is dropped under
+  Reduce Motion). Never more than three flashes in a second.
+- Cue only featured and supporting stickers.
+
+## Both languages
+
+- Write each language as a native author would: idiom, rhythm, sound
+  words (*whoosh* / *fiu*, *pitter-patter* / *tip-tap*), names of things.
+  Not a translation.
+- Spanish is Castilian (es-ES), *vosotros* where a plural "you" appears,
+  child-friendly vocabulary.
+- Same beats, same cues, same lesson. Titles may differ in wording.
+
+## Process discipline
+
+- Plan the roster first; write in batches of five; validate after every
+  batch; fix before continuing.
+- Reread each story aloud in your head as a parent at bedtime. If you
+  would skip a line, cut it.
