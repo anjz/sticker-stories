@@ -53,12 +53,21 @@ final class StickerNode: SKSpriteNode {
         shadow.alpha = lifted ? 0.30 : 0.22
     }
 
+    /// `size` includes this node's own scale; children inherit that scale,
+    /// so anything sized to match the sprite must use the unscaled size or
+    /// a pinched sticker's shadow grows by the scale twice.
+    private var unscaledSize: CGSize {
+        CGSize(
+            width: xScale != 0 ? size.width / xScale : size.width,
+            height: yScale != 0 ? size.height / yScale : size.height)
+    }
+
     /// The world rescaled uniformly (window shape changed): keep the same
     /// spot on the art at the same relative size.
     func rescale(by ratio: CGFloat) {
         position = CGPoint(x: position.x * ratio, y: position.y * ratio)
         size = CGSize(width: size.width * ratio, height: size.height * ratio)
-        shadow.size = size
+        shadow.size = unscaledSize
         if let glowNode {
             glowNode.size = CGSize(width: glowNode.size.width * ratio, height: glowNode.size.height * ratio)
         }
@@ -100,9 +109,10 @@ final class StickerNode: SKSpriteNode {
         if glowNode == nil {
             guard let mask = mask() else { return }
             let glow = SKSpriteNode(texture: mask.texture)
+            let base = unscaledSize
             glow.size = CGSize(
-                width: size.width * mask.sizeMultiplier * 1.05,
-                height: size.height * mask.sizeMultiplier * 1.05)
+                width: base.width * mask.sizeMultiplier * 1.05,
+                height: base.height * mask.sizeMultiplier * 1.05)
             glow.zPosition = -0.5  // behind the sprite, in front of the shadow
             glow.blendMode = .add
             glow.colorBlendFactor = 1
