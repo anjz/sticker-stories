@@ -337,14 +337,19 @@ final class CanvasScene: SKScene {
 
     /// Shadow strength and geometry, as fractions of the world height so the
     /// look is the same on every device.
-    static let foregroundShadowAlpha: CGFloat = 0.40
-    private static let foregroundShadowDrop: CGFloat = 0.008
-    private static let foregroundShadowBlurFraction: CGFloat = 0.005
+    static let foregroundShadowAlpha: CGFloat = 0.55
+    /// Light from the top-left: the shadow falls down and to the right, so
+    /// it shows along the trunks' edges as well as under the leaves.
+    private static let foregroundShadowDrop: CGFloat = 0.014
+    private static let foregroundShadowShift: CGFloat = 0.007
+    private static let foregroundShadowBlurFraction: CGFloat = 0.004
 
     private func layoutForegroundShadow(center: CGPoint) {
         foregroundShadow.texture = foregroundArt.texture
         foregroundShadow.size = foregroundArt.size
-        foregroundShadow.position = CGPoint(x: center.x, y: center.y - worldSize.height * Self.foregroundShadowDrop)
+        foregroundShadow.position = CGPoint(
+            x: center.x + worldSize.height * Self.foregroundShadowShift,
+            y: center.y - worldSize.height * Self.foregroundShadowDrop)
         let radius = max(2, worldSize.height * Self.foregroundShadowBlurFraction)
         if let blur = CIFilter(name: "CIGaussianBlur") {
             blur.setValue(radius, forKey: kCIInputRadiusKey)
