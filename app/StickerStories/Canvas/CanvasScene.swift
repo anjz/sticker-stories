@@ -1,4 +1,5 @@
 import os
+import CoreImage
 import SpriteKit
 import StickerStoriesKit
 import UIKit
@@ -35,6 +36,12 @@ final class CanvasScene: SKScene {
 
     private let backgroundArt = SKSpriteNode()
     private let backgroundStickers = SKNode()
+    /// The foreground plane's soft shadow, cast onto the background art and
+    /// the background stickers: a blurred black copy of the foreground art,
+    /// offset a little downwards. The one visible hint that the canvas is
+    /// two sheets, not one picture.
+    private let foregroundShadow = SKSpriteNode()
+    private let foregroundShadowBlur = SKEffectNode()
     private let foregroundArt = SKSpriteNode()
     private let foregroundStickers = SKNode()
     private let tray = SKNode()
@@ -184,11 +191,19 @@ final class CanvasScene: SKScene {
         if isFirstLoad {
             backgroundArt.zPosition = 0
             backgroundStickers.zPosition = 100
+            foregroundShadowBlur.zPosition = 150
             foregroundArt.zPosition = 200
             foregroundStickers.zPosition = 300
             tray.zPosition = 1000
+            foregroundShadow.color = .black
+            foregroundShadow.colorBlendFactor = 1
+            foregroundShadow.alpha = Self.foregroundShadowAlpha
+            foregroundShadowBlur.shouldRasterize = true  // blurred once per layout, not per frame
+            foregroundShadowBlur.shouldEnableEffects = true
+            foregroundShadowBlur.addChild(foregroundShadow)
             addChild(backgroundArt)
             addChild(backgroundStickers)
+            addChild(foregroundShadowBlur)
             addChild(foregroundArt)
             addChild(foregroundStickers)
             addChild(cameraNode)
@@ -313,10 +328,29 @@ final class CanvasScene: SKScene {
             art.size = CGSize(width: textureSize.width * scale, height: textureSize.height * scale)
             art.position = center
         }
+        layoutForegroundShadow(center: center)
         // The tray is laid out in view coordinates and pinned to the view's
         // bottom-left corner in world space (kept in step with the camera).
         syncHUDToCamera()
         layoutTray()
+    }
+
+    /// Shadow strength and geometry, as fractions of the world height so the
+    /// look is the same on every device.
+    static let foregroundShadowAlpha: CGFloat = 0.28
+    private static let foregroundShadowDrop: CGFloat = 0.012
+    private static let foregroundShadowBlurFraction: CGFloat = 0.008
+
+    private func layoutForegroundShadow(center: CGPoint) {
+        foregroundShadow.texture = foregroundArt.texture
+        foregroundShadow.size = foregroundArt.size
+        foregroundShadow.position = CGPoint(x: center.x, y: center.y - worldSize.height * Self.foregroundShadowDrop)
+        let radius = max(2, worldSize.height * Self.foregroundShadowBlurFraction)
+        if let blur = CIFilter(name: "CIGaussianBlur") {
+            blur.setValue(radius, forKey: kCIInputRadiusKey)
+            foregroundShadowBlur.filter = blur
+        }
+        foregroundShadowBlur.isHidden = foregroundArt.texture == nil
     }
 
     /// The art scaled to cover the view: the smaller the view's aspect gap
