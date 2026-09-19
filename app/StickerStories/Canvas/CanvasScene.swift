@@ -337,9 +337,9 @@ final class CanvasScene: SKScene {
 
     /// Shadow strength and geometry, as fractions of the world height so the
     /// look is the same on every device.
-    static let foregroundShadowAlpha: CGFloat = 0.28
-    private static let foregroundShadowDrop: CGFloat = 0.012
-    private static let foregroundShadowBlurFraction: CGFloat = 0.008
+    static let foregroundShadowAlpha: CGFloat = 0.40
+    private static let foregroundShadowDrop: CGFloat = 0.008
+    private static let foregroundShadowBlurFraction: CGFloat = 0.005
 
     private func layoutForegroundShadow(center: CGPoint) {
         foregroundShadow.texture = foregroundArt.texture
