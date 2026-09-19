@@ -343,7 +343,7 @@ final class CanvasScene: SKScene {
     static let foregroundShadowAlpha: CGFloat = 0.9
     private static let foregroundShadowDrop: CGFloat = 0.0
     private static let foregroundShadowShift: CGFloat = 0.0
-    private static let foregroundShadowBlurFraction: CGFloat = 0.02
+    private static let foregroundShadowBlurFraction: CGFloat = 0.011
 
     private func layoutForegroundShadow(center: CGPoint) {
         foregroundShadow.texture = foregroundArt.texture
