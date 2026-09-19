@@ -511,6 +511,10 @@ final class CanvasScene: SKScene {
         }
         var x = x0
         for (item, itemSize) in zip(items, itemSizes) {
+            // `size` is read and written through the node's current scale,
+            // and the edge fade leaves off-screen items at 0.7 — assign
+            // with the scale reset or those items come back 1/0.7 too big.
+            item.setScale(1)
             item.size = itemSize
             item.position = CGPoint(x: x + itemSize.width / 2, y: barCenterY)
             item.zPosition = 1
