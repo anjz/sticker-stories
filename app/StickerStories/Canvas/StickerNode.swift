@@ -9,12 +9,7 @@ import UIKit
 final class StickerNode: SKSpriteNode {
     let instanceID = UUID()
     let stickerID: String
-    /// Which sticker plane the node is on. The shadow is the depth cue: a
-    /// foreground sticker throws a bigger, softer, further-offset shadow
-    /// (it sits closer to the child); a background one a tight faint one.
-    var canvasLayer: CanvasLayer = .foreground {
-        didSet { if canvasLayer != oldValue { applyDepth(animated: true) } }
-    }
+    var canvasLayer: CanvasLayer = .foreground
     /// The sticker's resting scale, set by two-finger pinching. Lift/settle
     /// animations are relative to this so pinched size survives dragging.
     var baseScale: CGFloat = 1
@@ -25,23 +20,6 @@ final class StickerNode: SKSpriteNode {
     private var glowNode: SKSpriteNode?
 
     private(set) var isSelected = false
-    private var isLifted = false
-
-    /// Shadow styling per layer (offset in points, alpha, size multiplier).
-    private struct DepthStyle {
-        var offset: CGFloat
-        var alpha: CGFloat
-        var spread: CGFloat
-    }
-
-    private var depthStyle: DepthStyle {
-        switch (canvasLayer, isLifted) {
-        case (.foreground, false): return DepthStyle(offset: -7, alpha: 0.26, spread: 1.06)
-        case (.foreground, true): return DepthStyle(offset: -14, alpha: 0.32, spread: 1.10)
-        case (.background, false): return DepthStyle(offset: -3, alpha: 0.14, spread: 1.0)
-        case (.background, true): return DepthStyle(offset: -8, alpha: 0.20, spread: 1.03)
-        }
-    }
 
     /// The child's placement while an effect owns this node's transform
     /// (`EffectApplier`); `nil` in edit mode. Snapshots read this so a
@@ -56,35 +34,10 @@ final class StickerNode: SKSpriteNode {
         shadow.size = size
         shadow.color = .black
         shadow.colorBlendFactor = 1.0
+        shadow.alpha = 0.22
+        shadow.position = CGPoint(x: 0, y: -5)
         shadow.zPosition = -1
         addChild(shadow)
-        applyDepth(animated: false)
-    }
-
-    /// The shadow's size for the current style: the sprite's unscaled size
-    /// (children inherit the node's scale) times the style's spread.
-    private var shadowSize: CGSize {
-        let base = unscaledSize
-        return CGSize(width: base.width * depthStyle.spread, height: base.height * depthStyle.spread)
-    }
-
-    /// Applies the layer's shadow style.
-    private func applyDepth(animated: Bool) {
-        let style = depthStyle
-        let target = CGPoint(x: 0, y: style.offset)
-        let size = shadowSize
-        shadow.removeAllActions()
-        guard animated else {
-            shadow.position = target
-            shadow.alpha = style.alpha
-            shadow.size = size
-            return
-        }
-        shadow.run(.group([
-            .move(to: target, duration: 0.18),
-            .fadeAlpha(to: style.alpha, duration: 0.18),
-            .resize(toWidth: size.width, height: size.height, duration: 0.18),
-        ]))
     }
 
     @available(*, unavailable)
@@ -94,12 +47,10 @@ final class StickerNode: SKSpriteNode {
         isSelected = selected
     }
 
-    /// A larger, further-offset shadow while the sticker is lifted, on top
-    /// of the layer's own depth style.
+    /// A slightly larger, further-offset shadow while the sticker is lifted.
     func setLifted(_ lifted: Bool) {
-        guard lifted != isLifted else { return }
-        isLifted = lifted
-        applyDepth(animated: true)
+        shadow.position = lifted ? CGPoint(x: 0, y: -12) : CGPoint(x: 0, y: -5)
+        shadow.alpha = lifted ? 0.30 : 0.22
     }
 
     /// `size` includes this node's own scale; children inherit that scale,
@@ -116,7 +67,7 @@ final class StickerNode: SKSpriteNode {
     func rescale(by ratio: CGFloat) {
         position = CGPoint(x: position.x * ratio, y: position.y * ratio)
         size = CGSize(width: size.width * ratio, height: size.height * ratio)
-        shadow.size = shadowSize
+        shadow.size = unscaledSize
         if let glowNode {
             glowNode.size = CGSize(width: glowNode.size.width * ratio, height: glowNode.size.height * ratio)
         }
