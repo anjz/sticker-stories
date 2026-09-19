@@ -431,7 +431,12 @@ final class CanvasScene: SKScene {
         trayContent.removeAllChildren()
         for sticker in pack.manifest.stickers {
             guard let texture = stickerTextures[sticker.id] else { continue }
-            trayContent.addChild(TrayItemNode(stickerID: sticker.id, texture: texture))
+            // Sticker art comes on a square canvas with transparent margins
+            // that vary per sticker, so a wide sticker would render short
+            // if the whole texture were sized. Crop to the opaque art so
+            // the tray sizes what's actually visible.
+            let trayTexture = SKTexture(rect: Self.opaqueBounds(of: texture), in: texture)
+            trayContent.addChild(TrayItemNode(stickerID: sticker.id, texture: trayTexture))
         }
         trayClip.maskNode = trayMask
         trayClip.addChild(trayContent)
@@ -565,6 +570,34 @@ final class CanvasScene: SKScene {
             item.alpha = eased
             item.setScale(0.7 + 0.3 * eased)
         }
+    }
+
+    /// The texture's non-transparent bounding box as a unit rect (origin
+    /// bottom-left, like SpriteKit texture coordinates), measured on a
+    /// coarse downsample so it costs nothing at load. Falls back to the
+    /// whole texture when it can't be read or is fully transparent.
+    private static func opaqueBounds(of texture: SKTexture) -> CGRect {
+        let full = CGRect(x: 0, y: 0, width: 1, height: 1)
+        let samples = 128
+        var alpha = [UInt8](repeating: 0, count: samples * samples)
+        guard let context = CGContext(
+            data: &alpha, width: samples, height: samples, bitsPerComponent: 8, bytesPerRow: samples,
+            space: CGColorSpaceCreateDeviceGray(), bitmapInfo: CGImageAlphaInfo.alphaOnly.rawValue)
+        else { return full }
+        context.draw(texture.cgImage(), in: CGRect(x: 0, y: 0, width: samples, height: samples))
+        var minX = samples, minY = samples, maxX = -1, maxY = -1
+        for y in 0..<samples {
+            for x in 0..<samples where alpha[y * samples + x] > 16 {
+                minX = min(minX, x); maxX = max(maxX, x)
+                minY = min(minY, y); maxY = max(maxY, y)
+            }
+        }
+        guard maxX >= 0 else { return full }
+        // One sample of slack on each side so soft edges aren't clipped.
+        let x0 = max(minX - 1, 0), y0 = max(minY - 1, 0)
+        let x1 = min(maxX + 2, samples), y1 = min(maxY + 2, samples)
+        let n = CGFloat(samples)
+        return CGRect(x: CGFloat(x0) / n, y: CGFloat(y0) / n, width: CGFloat(x1 - x0) / n, height: CGFloat(y1 - y0) / n)
     }
 
     /// Scales the texture to a fixed height, keeping its aspect ratio.
