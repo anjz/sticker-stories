@@ -52,7 +52,9 @@ struct RootView: View {
             #if DEBUG
             // `-autoplay`: open the first pack and press play (simulator
             // verification of the playback pipeline without touch injection).
-            if ProcessInfo.processInfo.arguments.contains("-autoplay"), let pack = library.packs.first {
+            // `-openPack`: only open it, silently (visual checks of the canvas).
+            let args = ProcessInfo.processInfo.arguments
+            if args.contains("-autoplay") || args.contains("-openPack"), let pack = library.packs.first {
                 screen = .story(pack)
             }
             #endif
