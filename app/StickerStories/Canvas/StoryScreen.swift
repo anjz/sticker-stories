@@ -18,7 +18,6 @@ struct StoryScreen: View {
     @State private var playback = PlaybackController(
         storyProvider: BundledStoryProvider(recents: UserDefaultsRecentStories()),
         narrator: AudioFileNarrator())
-    @State private var isConfirmingLeave = false
     @State private var canUndo = false
     @State private var canRedo = false
     @State private var canClear = false
@@ -73,9 +72,6 @@ struct StoryScreen: View {
             backButton
             historyControls
 
-            if isConfirmingLeave {
-                leaveConfirmation
-            }
             if isConfirmingClear {
                 clearConfirmation
             }
@@ -115,14 +111,17 @@ struct StoryScreen: View {
     private var backButton: some View {
         VStack {
             HStack {
+                // No confirmation: the canvas is saved, so coming back
+                // costs nothing and a stray tap is harmless.
                 Button {
-                    isConfirmingLeave = true
+                    playback.stop()
+                    onLeave()
                 } label: {
                     Image(systemName: "chevron.backward")
                         .font(.system(size: 20, weight: .heavy))
-                        .foregroundStyle(.white.opacity(0.9))
+                        .foregroundStyle(.white)
                         .padding(13)
-                        .background(Circle().fill(.black.opacity(0.25)))
+                        .background(Self.hudButtonBackground(enabled: true))
                 }
                 .buttonStyle(SquishyButtonStyle())
                 .accessibilityLabel("Back")
@@ -166,51 +165,22 @@ struct StoryScreen: View {
         Button(action: action) {
             Image(systemName: symbol)
                 .font(.system(size: 15, weight: .heavy))
-                .foregroundStyle(.white.opacity(enabled ? 0.9 : 0.35))
+                .foregroundStyle(.white.opacity(enabled ? 1 : 0.65))
                 .padding(10)
-                .background(Circle().fill(.black.opacity(enabled ? 0.25 : 0.12)))
+                .background(Self.hudButtonBackground(enabled: enabled))
         }
         .buttonStyle(SquishyButtonStyle())
         .accessibilityLabel(label)
         .disabled(!enabled)
     }
 
-    /// Child-friendly confirmation: a house to go back to the menu, an X to
-    /// keep playing. Tapping the dimmed background also stays.
-    private var leaveConfirmation: some View {
-        ZStack {
-            Color.black.opacity(0.35)
-                .ignoresSafeArea()
-                .onTapGesture { isConfirmingLeave = false }
-
-            VStack(spacing: 24) {
-                Text("Leave the story?")
-                    .font(.system(size: 30, weight: .heavy, design: .rounded))
-                    .foregroundStyle(Color(red: 0.2, green: 0.3, blue: 0.25))
-
-                HStack(spacing: 34) {
-                    confirmationButton(
-                        symbol: "xmark", label: "Stay",
-                        fill: Color(red: 0.36, green: 0.6, blue: 0.9)
-                    ) {
-                        isConfirmingLeave = false
-                    }
-                    confirmationButton(
-                        symbol: "house.fill", label: "Leave",
-                        fill: Color(red: 1.0, green: 0.72, blue: 0.15)
-                    ) {
-                        playback.stop()
-                        onLeave()
-                    }
-                }
-            }
-            .padding(38)
-            .background(
-                RoundedRectangle(cornerRadius: 34)
-                    .fill(.white)
-                    .shadow(color: .black.opacity(0.25), radius: 14, y: 8))
-        }
-        .transition(.opacity.combined(with: .scale(scale: 0.9)))
+    /// The round HUD buttons over the art: a solid dark disc with a thin
+    /// light rim and a drop shadow so they read on any part of the scene.
+    private static func hudButtonBackground(enabled: Bool) -> some View {
+        Circle()
+            .fill(.black.opacity(enabled ? 0.6 : 0.42))
+            .overlay(Circle().strokeBorder(.white.opacity(enabled ? 0.6 : 0.35), lineWidth: 1.5))
+            .shadow(color: .black.opacity(enabled ? 0.3 : 0.1), radius: 4, y: 2)
     }
 
     /// Clear is final — there's no undoing it, so this confirmation is the
