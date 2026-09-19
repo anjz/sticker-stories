@@ -337,12 +337,13 @@ final class CanvasScene: SKScene {
 
     /// Shadow strength and geometry, as fractions of the world height so the
     /// look is the same on every device.
-    static let foregroundShadowAlpha: CGFloat = 0.55
-    /// Light from the top-left: the shadow falls down and to the right, so
-    /// it shows along the trunks' edges as well as under the leaves.
-    private static let foregroundShadowDrop: CGFloat = 0.014
-    private static let foregroundShadowShift: CGFloat = 0.007
-    private static let foregroundShadowBlurFraction: CGFloat = 0.004
+    /// An ambient halo rather than a directional shadow: no offset, a wide
+    /// blur so the darkness spreads past every edge of the foreground art,
+    /// and enough opacity to survive the blur.
+    static let foregroundShadowAlpha: CGFloat = 0.9
+    private static let foregroundShadowDrop: CGFloat = 0.0
+    private static let foregroundShadowShift: CGFloat = 0.0
+    private static let foregroundShadowBlurFraction: CGFloat = 0.02
 
     private func layoutForegroundShadow(center: CGPoint) {
         foregroundShadow.texture = foregroundArt.texture
