@@ -444,7 +444,7 @@ final class CanvasScene: SKScene {
         guard !items.isEmpty else { return }
 
         let barHeight: CGFloat = min(96, max(64, size.height * 0.15))
-        var itemSize = barHeight * 0.72
+        var itemSize = barHeight * 0.78
         var spacing = itemSize * 0.35
         var sidePadding = spacing * 1.6
 
@@ -462,7 +462,11 @@ final class CanvasScene: SKScene {
             spacing *= shrink
             sidePadding *= shrink
         }
-        let rowWidth = CGFloat(items.count) * itemSize + CGFloat(items.count - 1) * spacing
+        // Every item gets the same height so the shelf reads as one row; wide
+        // stickers (a snail, a butterfly) take the width they need rather
+        // than shrinking to fit a square.
+        let itemSizes = items.map { heightFit(texture: $0.texture, height: itemSize) }
+        let rowWidth = itemSizes.reduce(0) { $0 + $1.width } + CGFloat(items.count - 1) * spacing
         let naturalWidth = rowWidth + 2 * sidePadding
         let barWidth = min(naturalWidth, availableWidth)
         let barCenterX = leading + availableWidth / 2
@@ -495,17 +499,17 @@ final class CanvasScene: SKScene {
         let x0: CGFloat
         if maxTrayScrollOffset == 0 {
             // Everything fits — center the row, same look as before scrolling existed.
-            x0 = barCenterX - rowWidth / 2 + itemSize / 2
+            x0 = barCenterX - rowWidth / 2
         } else {
             // Flush against the viewport's left edge; scrolling reveals the rest.
-            x0 = barCenterX - barWidth / 2 + sidePadding + itemSize / 2
+            x0 = barCenterX - barWidth / 2 + sidePadding
         }
         var x = x0
-        for item in items {
-            item.size = squareFit(texture: item.texture, side: itemSize)
-            item.position = CGPoint(x: x, y: barCenterY)
+        for (item, itemSize) in zip(items, itemSizes) {
+            item.size = itemSize
+            item.position = CGPoint(x: x + itemSize.width / 2, y: barCenterY)
             item.zPosition = 1
-            x += itemSize + spacing
+            x += itemSize.width + spacing
         }
 
         // Preserve scroll position across re-layout (e.g. rotation), clamped
@@ -561,6 +565,15 @@ final class CanvasScene: SKScene {
             item.alpha = eased
             item.setScale(0.7 + 0.3 * eased)
         }
+    }
+
+    /// Scales the texture to a fixed height, keeping its aspect ratio.
+    private func heightFit(texture: SKTexture?, height: CGFloat) -> CGSize {
+        guard let texture, texture.size().width > 0, texture.size().height > 0 else {
+            return CGSize(width: height, height: height)
+        }
+        let ts = texture.size()
+        return CGSize(width: ts.width * height / ts.height, height: height)
     }
 
     private func squareFit(texture: SKTexture?, side: CGFloat) -> CGSize {
