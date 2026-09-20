@@ -47,7 +47,8 @@
 
 ## Iteration 1.6 — sticker effects
 
-- [x] Sticker effects engine: closed library of 15 effects (motion, opacity/
+- [x] Sticker effects engine: closed library of 15 effects (12 since
+      2026-09: `sway`, `blink`, `puff` removed) (motion, opacity/
       colour, particles) as deltas on the child's placement, pure evaluator
       + runner in the Kit with tests, play-mode-only pipeline in the scene
       with a hard restore on playback end (`docs/effects.md`)

@@ -4,7 +4,7 @@
 // so anything this package rejects would merely be ignored on device — but
 // silently broken content is exactly what validation exists to catch.
 //
-// The effect library itself is closed (15 names). docs/effects/effects.json
+// The effect library itself is closed (12 names). docs/effects/effects.json
 // is the shared catalogue; a test checks the names here match it.
 package effects
 
@@ -22,9 +22,9 @@ const SupportedSchema = 1
 
 // Names lists every effect, in library order.
 var Names = []string{
-	"pulse", "wobble", "shake", "hop", "spin", "float", "sway",
-	"fade-in", "fade-out", "blink", "glow", "tint",
-	"sparkle", "puff", "hearts",
+	"pulse", "wobble", "shake", "hop", "spin", "float",
+	"fade-in", "fade-out", "glow", "tint",
+	"sparkle", "hearts",
 }
 
 var (

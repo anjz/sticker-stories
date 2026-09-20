@@ -13,7 +13,7 @@ struct EffectTriggerTests {
             { "schema": 1, "triggers": [
               { "at": 3.2, "cue": "sneeze", "sticker": "fox", "effect": "wobble", "repeat": 3 },
               { "at": 3.2, "sticker": "fox", "effect": "sparkle", "intensity": 0.8 },
-              { "at": 0, "cue": "start", "sticker": "tree", "effect": "sway", "repeat": "loop" },
+              { "at": 0, "cue": "start", "sticker": "butterfly", "effect": "float", "repeat": "loop" },
               { "at": 41.5, "sticker": "bird", "effect": "fade-out", "hold": true },
               { "at": 5, "sticker": "owl", "effect": "tint", "color": "#FF0000", "duration": 0.2 }
             ] }
@@ -21,8 +21,8 @@ struct EffectTriggerTests {
         #expect(f.warnings.isEmpty)
         #expect(f.triggers.count == 5)
         #expect(f.triggers.map(\.at) == [0, 3.2, 3.2, 5, 41.5])  // sorted by time
-        let sway = f.triggers[0]
-        #expect(sway.effect == .sway && sway.options.repeatCount == .loop && sway.cue == "start")
+        let float = f.triggers[0]
+        #expect(float.effect == .float && float.options.repeatCount == .loop && float.cue == "start")
         let wobble = f.triggers[1]
         #expect(wobble.options.repeatCount == .times(3) && wobble.cue == "sneeze")
         #expect(f.triggers[2].options.intensity == 0.8)

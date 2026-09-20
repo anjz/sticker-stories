@@ -26,13 +26,13 @@ public struct EffectPolicy: Equatable, Sendable {
         guard isCalm else { return options }
         var result = options
         switch name {
-        case .shake, .hop, .spin, .float, .sway, .blink:
+        case .shake, .hop, .spin, .float:
             return nil
         case .pulse, .wobble:
             result.intensity = min(result.intensity, 0.3)
         case .fadeIn, .fadeOut, .glow, .tint:
             break  // carry story meaning; run at full
-        case .sparkle, .puff, .hearts:
+        case .sparkle, .hearts:
             result.intensity = min(result.intensity, 0.4)
         }
         if calmMode { result.intensity *= calmIntensityMultiplier }

@@ -159,7 +159,7 @@ pack. Authoring reference: `docs/effects.md`; catalogue for tooling:
   builds a runner + applier + emitter coordinator for that story, and tears
   them all down at the end, restoring every touched sticker verbatim. A child
   who never presses play never sees any of it.
-- **Kit (`Effects/`)**: the closed library of 15 `EffectDefinition`s, the
+- **Kit (`Effects/`)**: the closed library of 12 `EffectDefinition`s, the
   pure `EffectEvaluator` (`(active effects, t) → EffectDelta` per sticker
   instance), `StickerEffectsRunner` (fires triggers, repeat/loop/hold, stop
   ease-back, seek rebuild), `EffectPolicy` (Reduce Motion / calm mode),

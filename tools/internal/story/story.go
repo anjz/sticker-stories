@@ -180,7 +180,7 @@ var (
 // word that follows it; trailing cues fire on the last word.
 func ParseCues(text string) (cues []Cue, plain string, errs []error) {
 	var parsed []Cue
-	// Cues contain spaces ({tree:sway loop 0.4}), so lift them out before
+	// Cues contain spaces ({butterfly:float loop 0.4}), so lift them out before
 	// tokenising, leaving a marker where each one stood.
 	marked := cuePattern.ReplaceAllStringFunc(text, func(m string) string {
 		inner := strings.TrimSuffix(strings.TrimPrefix(m, "{"), "}")

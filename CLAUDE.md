@@ -56,7 +56,7 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
 - `app/StickerStories/Effects/` + `app/StickerStoriesKit/.../Effects/` — sticker
   effects (play-mode visual polish). Authoring reference `docs/effects.md`;
   machine-readable catalogue `docs/effects/effects.json` (pinned to code by
-  tests — edit together). The 15-effect library is closed; see the doc before
+  tests — edit together). The 12-effect library is closed; see the doc before
   adding anything.
 - `packs/<id>/` — pack source content; must always pass `packager validate`.
 - `tools/` — Go module (dev-time only): `packager` (validation), `placeholdergen`

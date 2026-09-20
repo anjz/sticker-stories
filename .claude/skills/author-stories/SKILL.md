@@ -22,7 +22,7 @@ Read, in this order, before writing anything:
 2. `packs/<packID>/manifest.json` — the pack's `languages`, and every
    sticker's `id` and per-language `name`. These are the cast and the only
    IDs you may use.
-3. `docs/effects/effects.json` — the 15 effects, what each means and which
+3. `docs/effects/effects.json` — the 12 effects, what each means and which
    parameters it accepts.
 4. `tools/author/stories/<packID>/` — existing `plan.md` and stories, if
    any. Never duplicate an existing id or premise; continue the roster.

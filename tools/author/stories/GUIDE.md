@@ -99,24 +99,25 @@ it is necessary, not sufficient: the rules above are the standard.
 
 ## Using effects
 
-The app has 15 effects (`docs/effects/effects.json`; human reference in
-`docs/effects.md`): `pulse`, `wobble`, `shake`, `hop`, `spin`, `float`,
-`sway`, `fade-in`, `fade-out`, `blink`, `glow`, `tint`, `sparkle`, `puff`,
-`hearts`. Cue grammar is in `FORMAT.md`.
+The app has 12 sticker effects (`docs/effects/effects.json`; human
+reference in `docs/effects.md`): `pulse`, `wobble`, `shake`, `hop`, `spin`,
+`float`, `fade-in`, `fade-out`, `glow`, `tint`, `sparkle`, `hearts`. Cue
+grammar is in `FORMAT.md`.
 
 - **Effects illustrate the words.** Put a cue on the beat it belongs to:
   `hop` on *jump*, `wobble` on *sneeze*, `sparkle` on *magic*, `spin` on
   *tumble*, `tint #…` on *blushed*, `fade-out hold` on *flew away*,
   `hearts` on a hug.
-- **Scenery loops at the start** give the canvas life for the whole story:
-  `{tree:sway loop 0.4}`, `{butterfly:float loop}`. Keep loops at low
-  intensity (≤ 0.5).
+- **A float loop at the start** on anything airborne gives the canvas life
+  for the whole story: `{butterfly:float loop}`, `{bee:float loop 0.4}`.
+  Keep loops at low intensity (≤ 0.5). Trees and flowers do not move on
+  their own; give them a `wobble` or `pulse` on a beat instead.
 - **At least one cue per language, typically two to eight.** More than
   one sticker can react at once; cues in a row fire together.
 - **Never rely on an effect.** The sticker may not be on the canvas and
   the story must still make sense.
-- **Restraint.** Prefer defaults. `blink` sparingly (it is dropped under
-  Reduce Motion). Never more than three flashes in a second.
+- **Restraint.** Prefer defaults. Never more than three flashes (white
+  `tint`) in a second.
 - Cue only featured and supporting stickers.
 
 ## Both languages

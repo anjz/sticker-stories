@@ -103,15 +103,6 @@ public struct EffectDefinition: Sendable {
             return d
         },
 
-        EffectDefinition(
-            name: .sway, defaultDuration: 3.5, anchor: .bottomCenter, defaultColor: nil,
-            summary: "Very slow tilt around the base. Trees, flowers, grass. Built for loop."
-        ) { phase, i, _ in
-            var d = EffectDelta()
-            d.rotationAdd = 3 * i * sin(2 * .pi * phase)
-            return d
-        },
-
         // MARK: Opacity and colour
 
         EffectDefinition(
@@ -129,18 +120,6 @@ public struct EffectDefinition: Sendable {
         ) { phase, i, _ in
             var d = EffectDelta()
             d.opacityMul = 1 - i * Easing.in(phase)
-            return d
-        },
-
-        EffectDefinition(
-            name: .blink, defaultDuration: 0.3, anchor: .center, defaultColor: nil,
-            summary: "Vanishes and returns, hard-edged, twice per cycle. Magical, unstable, teleporting."
-        ) { phase, i, _ in
-            var d = EffectDelta()
-            // 1 → 0 → 1 → 0 → 1: off during the second and fourth quarters.
-            let quarter = Int(min(phase * 4, 3.999))
-            let off = quarter == 1 || quarter == 3
-            d.opacityMul = off && phase < 1 ? 1 - i : 1
             return d
         },
 
@@ -168,11 +147,6 @@ public struct EffectDefinition: Sendable {
             name: .sparkle, defaultDuration: 1.0, anchor: EffectAnchor(x: 0.5, y: 0.35),
             defaultColor: RGBA(hex: "#FFD166"),
             summary: "A small shower of twinkles above the sticker. The generic magic/delight beat."
-        ) { _, _, _ in EffectDelta() },
-
-        EffectDefinition(
-            name: .puff, defaultDuration: 0.6, anchor: EffectAnchor(x: 0.5, y: 0.9), defaultColor: nil,
-            summary: "A small puff of smoke at the sticker's feet. Disappearing, landing, arriving."
         ) { _, _, _ in EffectDelta() },
 
         EffectDefinition(

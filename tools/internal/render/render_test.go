@@ -20,7 +20,7 @@ func fakeAlignment(plain string) *elevenlabs.Alignment {
 }
 
 func TestTriggersAndSounds(t *testing.T) {
-	text := "{tree:sway loop 0.4} Fox {fox:hop x2} jumped. Whoosh! Then {fox:tint #FFB3C6 hold} blushed, ¡ay! {fox:fade-out hold}"
+	text := "{tree:float loop 0.4} Fox {fox:hop x2} jumped. Whoosh! Then {fox:tint #FFB3C6 hold} blushed, ¡ay! {fox:fade-out hold}"
 	cues, plain, errs := story.ParseCues(text)
 	if len(errs) > 0 {
 		t.Fatal(errs)

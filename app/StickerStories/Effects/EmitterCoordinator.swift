@@ -1,8 +1,8 @@
 import SpriteKit
 import StickerStoriesKit
 
-/// The one stateful piece of the effects system: the SpriteKit emitters
-/// behind `sparkle`, `puff` and `hearts`. Reconciled every frame against
+/// The one stateful piece of the sticker effects system: the SpriteKit
+/// emitters behind `sparkle` and `hearts`. Reconciled every frame against
 /// the runner's active effects — emitters are created for new particle
 /// effects, ramped in/out, frozen while the clock is paused, dropped when
 /// their effect is gone, and kept within the device budget.

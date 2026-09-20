@@ -26,7 +26,7 @@ test. Tooling should read that file rather than parse this one.
    skipped with a log line; a pack authored against a future library plays
    with fewer effects.
 
-## The library (15 effects, closed)
+## The library (12 effects, closed)
 
 `i` is the trigger's `intensity` (default 0.6). At `intensity: 0` every effect
 is visually identical to no effect. Anchors and easing are fixed per effect —
@@ -41,16 +41,14 @@ they are what make a wobble a wobble — and are not authorable.
 | `shake` | Fast, small horizontal tremble (±4 %·i of its width, ~12 per second). | Shivering, nerves, giggling, an engine. | 0.5 s | dropped |
 | `hop` | One arc up (½·i of its height) and back down. | Joy, a jump, hello. `repeat: 2–3` for bouncing. | 0.6 s | dropped |
 | `spin` | One full clockwise turn about the centre. Intensity does not change it (0 disables). | Twirling, dizziness, a tumble. | 0.9 s | dropped |
-| `float` | Very slow vertical bob (±6 %·i of height), seamless when looped. | Anything airborne or afloat. Use `"repeat": "loop"`. | 3.0 s | dropped |
-| `sway` | Very slow tilt (±3°·i) around its base, seamless when looped. | Wind through trees, flowers, grass. Use `"repeat": "loop"`. | 3.5 s | dropped |
+| `float` | Very slow vertical bob (±6 %·i of height), seamless when looped. | Anything airborne or afloat. Use `"repeat": "loop"`. The only scenery loop: trees and flowers stay still. | 3.0 s | dropped |
 
 ### Opacity and colour
 
 | Effect | What it looks like | Good for | Default cycle | Reduce Motion |
 |---|---|---|---|---|
-| `fade-in` | Appears from nothing. **One-way.** | Arrivals, waking up. Pair with `puff`. | 0.6 s | full |
+| `fade-in` | Appears from nothing. **One-way.** | Arrivals, waking up. Pair with `sparkle`. | 0.6 s | full |
 | `fade-out` | Fades away. **One-way.** | Leaving, hiding, falling asleep. `hold: true` keeps it gone. | 0.6 s | full |
-| `blink` | Vanishes and returns, hard-edged, twice per cycle (off-opacity is `1 − i`). | Magic, flicker, a firefly. Capped at 3 flashes/second. | 0.3 s | dropped |
 | `glow` | A soft bloom rises around the sticker and falls away. `color` default `#FFF3C4`. | Magic, warmth, a wish, the sun. `hold: true` keeps the bloom on. | 1.0 s | full |
 | `tint` | A colour washes over the sticker and drains away. `color` **required**. | Blushing (pink), cold (blue), cross (red). White + `duration: 0.2` is a flash. | 0.8 s | full |
 
@@ -59,7 +57,6 @@ they are what make a wobble a wobble — and are not authorable.
 | Effect | What it looks like | Good for | Default cycle | Reduce Motion |
 |---|---|---|---|---|
 | `sparkle` | A shower of twinkles above the sticker. `color` default warm gold `#FFD166`. | Delight, magic, treasure, a good idea. | 1.0 s | runs at ≤0.4 |
-| `puff` | A puff of smoke at its feet, behind the sticker. | Landing, appearing, disappearing, dust. | 0.6 s | runs at ≤0.4 |
 | `hearts` | A few hearts drift up. | Friendship, a hug, kindness. | 1.2 s | runs at ≤0.4 |
 
 Particles already born live out their lifetime after the effect ends; that
@@ -67,6 +64,10 @@ is intended. Particle size follows the sticker's rendered size, so sparkles
 on a tiny flower are tiny.
 
 ### Deliberately not in the library
+
+Removed in 2026-09 and not to be reused (older content that names them is
+skipped): `sway` (a slow tilt of trees and flowers — it read as the scenery
+wobbling), `blink` (hard-edged flashing) and `puff` (smoke at the feet).
 
 Recorded so nobody re-adds them by accident: entrances/exits beyond fade,
 squash and stretch, keyframe authoring, scene-level effects (tint, dim,
@@ -79,7 +80,7 @@ system that will share the clock but not this vocabulary.
 
 | Key | Required | Default | Meaning |
 |---|---|---|---|
-| `effect` | yes | | One of the 15 names above. |
+| `effect` | yes | | One of the 12 names above. |
 | `sticker` | yes | | Sticker ID from the manifest. Every placed instance is affected. |
 | `at` | yes | | Seconds into **this language's** narration when the effect starts. |
 | `cue` | no | | Free label for authoring traceability (the word it lines up with). The app ignores it. |
@@ -115,7 +116,7 @@ because each narration has its own timing.
 {
   "schema": 1,
   "triggers": [
-    { "at": 0.0,  "cue": "start",   "sticker": "tree",     "effect": "sway",     "repeat": "loop" },
+    { "at": 0.0,  "cue": "start",   "sticker": "bird",     "effect": "float",    "repeat": "loop" },
     { "at": 3.2,  "cue": "sneeze",  "sticker": "fox",      "effect": "wobble",   "repeat": 3 },
     { "at": 3.2,  "cue": "sneeze",  "sticker": "fox",      "effect": "sparkle",  "intensity": 0.8 },
     { "at": 12.5, "cue": "blush",   "sticker": "mushroom", "effect": "tint",     "color": "#FFB3C6" },
@@ -139,13 +140,14 @@ because each narration has its own timing.
 - Lead with meaning, not decoration: one effect per story beat, on the
   sticker the sentence is about. `pulse` when a character is introduced,
   `wobble` when something happens to it, `hop` for joy, `sparkle` for magic.
-- Scenery loops (`sway` on trees, `float` on butterflies) at `at: 0` give the
-  canvas quiet life for the whole story; keep intensity low (≤0.5).
+- A `float` loop on anything airborne (butterflies, bees, birds) at `at: 0`
+  gives the canvas quiet life for the whole story; keep intensity low
+  (≤0.5). Trees and flowers do not move on their own.
 - Prefer default intensities and durations. `duration` is for pacing an
   effect to the narration (a slow `pulse` on "sloooowly"), not for extremes.
 - Never rely on an effect: the sticker may not be on the canvas.
-- Never flash more than three times a second, and prefer `glow` to `blink`
-  for magic — `blink` is dropped under Reduce Motion.
+- Never flash more than three times a second (a white `tint` is a flash);
+  prefer `glow` or `sparkle` for magic.
 - Every language needs its own file; only the `at` values should differ.
 
 ### Inline cues in story text (authoring format)
@@ -165,12 +167,12 @@ app never parses text.
 ## Accessibility and calm mode
 
 - **Reduce Motion** (system setting) is observed live: `shake`, `hop`,
-  `spin`, `float`, `sway` and `blink` do not run; `pulse` and `wobble` run at
+  `spin` and `float` do not run; `pulse` and `wobble` run at
   intensity ≤0.3; particles at ≤0.4; fades, `glow` and `tint` run in full
   because they carry story meaning.
 - **Calm mode** (Grown-Ups → Settings) applies the same policy plus a global
   intensity multiplier of 0.6, for children who are easily overstimulated.
-- Flashes (`blink`, white `tint`) are capped at 3 per second regardless of
+- Flashes (white `tint`) are capped at 3 per second regardless of
   settings.
 
 ## How it runs (for app work)
@@ -182,7 +184,7 @@ that fires triggers and handles repeat/loop/hold/stop, and the trigger
 decoder — all unit-tested on macOS. The app target applies deltas to
 `StickerNode`s every frame from the narrator's playback time
 (`Narrator.playbackTime`, interpolated between resyncs), renders glow from a
-cached blurred mask, and drives three particle emitters (`sparkles`,
-`smoke`, `hearts`) defined in `app/StickerStories/Effects/emitters.json`.
+cached blurred mask, and drives two particle emitters (`sparkles`,
+`hearts`) defined in `app/StickerStories/Effects/emitters.json`.
 The DEBUG-only gallery (Settings → Effects gallery in debug builds) plays
 every effect on a real sticker at three intensities for tuning.

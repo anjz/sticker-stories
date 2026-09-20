@@ -30,11 +30,11 @@ it.
   "languages": {
     "en-US": {
       "title": "The Race That Tied",
-      "text": "{tree:sway loop 0.4} {flower:sway loop 0.5} {butterfly:float loop} Ready, steady, {fox:hop} {rabbit:hop} go! Fox and Rabbit raced across the meadow to the big pink flower. Fox was fast, like a {fox:shake 0.8} whoosh of wind. Rabbit was bouncy, like a {rabbit:hop x3} spring. Halfway there, Fox {fox:wobble x2} tripped over his own fluffy tail and {fox:spin} rolled, tumble tumble tumble, into a crunchy pile of {fox:puff} leaves. Rabbit stopped. She looked at the flower. She looked at Fox. Then she {rabbit:hop x2} hopped all the way back and pulled him up by the paw. They crossed the finish line {fox:hearts} {rabbit:hearts} together, and the flower {flower:pulse} nodded her big pink head. Who won? Both of them, said the flower. That is how best {fox:pulse} {rabbit:pulse} friends race."
+      "text": "{butterfly:float loop} Ready, steady, {fox:hop} {rabbit:hop} go! Fox and Rabbit raced across the meadow to the big pink flower. Fox was fast, like a {fox:shake 0.8} whoosh of wind. Rabbit was bouncy, like a {rabbit:hop x3} spring. Halfway there, Fox {fox:wobble x2} tripped over his own fluffy tail and {fox:spin} rolled, tumble tumble tumble, into a crunchy pile of leaves. Rabbit stopped. She looked at the flower. She looked at Fox. Then she {rabbit:hop x2} hopped all the way back and pulled him up by the paw. They crossed the finish line {fox:hearts} {rabbit:hearts} together, and the flower {flower:pulse} nodded her big pink head. Who won? Both of them, said the flower. That is how best {fox:pulse} {rabbit:pulse} friends race."
     },
     "es-ES": {
       "title": "La carrera empatada",
-      "text": "{tree:sway loop 0.4} {flower:sway loop 0.5} {butterfly:float loop} Preparados, listos, {fox:hop} {rabbit:hop} ¡ya! Zorro y Coneja echaron una carrera por el prado hasta la gran flor rosa. Zorro era rápido, como un {fox:shake 0.8} soplo de viento. Coneja era saltarina, como un {rabbit:hop x3} muelle. A mitad de camino, Zorro {fox:wobble x2} tropezó con su propia cola esponjosa y {fox:spin} rodó, pumba pumba pumba, hasta un montón de hojas {fox:puff} crujientes. Coneja se paró. Miró la flor. Miró a Zorro. Y entonces {rabbit:hop x2} volvió dando saltos hasta él y lo levantó de la pata. Cruzaron la meta {fox:hearts} {rabbit:hearts} juntos, y la flor {flower:pulse} asintió con su gran cabeza rosa. ¿Quién ganó? Los dos, dijo la flor. Así corren los mejores {fox:pulse} {rabbit:pulse} amigos."
+      "text": "{butterfly:float loop} Preparados, listos, {fox:hop} {rabbit:hop} ¡ya! Zorro y Coneja echaron una carrera por el prado hasta la gran flor rosa. Zorro era rápido, como un {fox:shake 0.8} soplo de viento. Coneja era saltarina, como un {rabbit:hop x3} muelle. A mitad de camino, Zorro {fox:wobble x2} tropezó con su propia cola esponjosa y {fox:spin} rodó, pumba pumba pumba, hasta un montón de hojas crujientes. Coneja se paró. Miró la flor. Miró a Zorro. Y entonces {rabbit:hop x2} volvió dando saltos hasta él y lo levantó de la pata. Cruzaron la meta {fox:hearts} {rabbit:hearts} juntos, y la flor {flower:pulse} asintió con su gran cabeza rosa. ¿Quién ganó? Los dos, dijo la flor. Así corren los mejores {fox:pulse} {rabbit:pulse} amigos."
     }
   },
   "sound": [
@@ -82,14 +82,14 @@ A cue is `{sticker:effect}` with optional parameters separated by spaces:
 
 ```
 {fox:wobble x3}          repeat 3 cycles
-{tree:sway loop 0.4}     loop until the story ends, intensity 0.4
+{bee:float loop 0.4}     loop until the story ends, intensity 0.4
 {owl:tint #9AD0FF 1.2s}  colour and one-cycle duration in seconds
 {bird:fade-out hold}     keep the end state
 {fox:sparkle 0.9}        a bare number is intensity (0–1)
 ```
 
 - `sticker` is an ID from the manifest and must be in `featured` or
-  `supporting`. `effect` is one of the 15 names in `docs/effects/effects.json`;
+  `supporting`. `effect` is one of the 12 names in `docs/effects/effects.json`;
   which parameters each accepts is listed there (`repeat` is ignored by
   `fade-in`/`fade-out`, `color` only for `glow`/`tint`/`sparkle` and required by
   `tint`, `hold` only for the four that support it).
@@ -98,8 +98,8 @@ A cue is `{sticker:effect}` with optional parameters separated by spaces:
   (use this for scenery loops); a cue after the last word fires on the last
   word.
 - Every story has at least one cue per language. Two to eight is typical;
-  scenery loops (`sway` on trees and flowers, `float` on butterflies and
-  bees) at the start plus a cue on each story beat is the usual shape.
+  a `float` loop on butterflies, bees or birds at the start plus a cue on
+  each story beat is the usual shape.
 - The same beats carry the same cues in every language.
 
 ## The roster (`plan.md`)
