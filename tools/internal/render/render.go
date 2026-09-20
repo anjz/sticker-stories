@@ -134,11 +134,12 @@ func normalizeWord(s string) string {
 	return strings.ToLower(strings.TrimFunc(s, func(r rune) bool { return !unicode.IsLetter(r) && !unicode.IsNumber(r) }))
 }
 
-// Trigger is one entry of the effects sidecar.
+// Trigger is one entry of the effects sidecar: a sticker trigger, or a
+// canvas trigger (no sticker; intensity and duration only).
 type Trigger struct {
 	At        float64 `json:"at"`
 	Cue       string  `json:"cue,omitempty"`
-	Sticker   string  `json:"sticker"`
+	Sticker   string  `json:"sticker,omitempty"`
 	Effect    string  `json:"effect"`
 	Repeat    any     `json:"repeat,omitempty"` // int or "loop"
 	Duration  float64 `json:"duration,omitempty"`
@@ -154,7 +155,8 @@ type Sidecar struct {
 }
 
 // Triggers converts parsed cues to sidecar triggers on the timeline. Cues
-// firing at the story start (word 0) are pinned to 0.0.
+// firing at the story start (word 0) are pinned to 0.0. A canvas cue
+// becomes a trigger with no sticker and none of the sticker-only keys.
 func Triggers(cues []story.Cue, tl *Timeline) []Trigger {
 	out := make([]Trigger, 0, len(cues))
 	for _, c := range cues {
@@ -163,14 +165,17 @@ func Triggers(cues []story.Cue, tl *Timeline) []Trigger {
 			at = 0
 		}
 		at = round(at)
-		t := Trigger{At: at, Sticker: c.Sticker, Effect: c.Effect, Duration: c.Duration, Color: c.Color, Hold: c.Hold}
+		t := Trigger{At: at, Sticker: c.Sticker, Effect: c.Effect, Duration: c.Duration}
+		if !c.Canvas {
+			t.Color, t.Hold = c.Color, c.Hold
+			if c.Loop {
+				t.Repeat = "loop"
+			} else if c.Repeat > 1 {
+				t.Repeat = c.Repeat
+			}
+		}
 		if c.WordIndex < len(tl.Words) {
 			t.Cue = normalizeWord(tl.Words[c.WordIndex].Text)
-		}
-		if c.Loop {
-			t.Repeat = "loop"
-		} else if c.Repeat > 1 {
-			t.Repeat = c.Repeat
 		}
 		switch {
 		case c.Intensity > 0:

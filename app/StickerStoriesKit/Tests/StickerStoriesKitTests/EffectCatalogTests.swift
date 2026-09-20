@@ -12,6 +12,7 @@ struct EffectCatalogTests {
             let category: String
             let summary: String
             let defaultDuration: Double
+            let durationRange: [Double]
             let anchor: [Double]
             let parameters: [String]
             let oneWay: Bool
@@ -57,6 +58,7 @@ struct EffectCatalogTests {
             #expect(entry.category == name.category.rawValue, Comment(rawValue: entry.name))
             #expect(entry.summary == definition.summary, Comment(rawValue: entry.name))
             #expect(entry.defaultDuration == definition.defaultDuration, Comment(rawValue: entry.name))
+            #expect(entry.durationRange == [EffectOptions.durationRange.lowerBound, EffectOptions.durationRange.upperBound], Comment(rawValue: entry.name))
             #expect(entry.anchor == [definition.anchor.x, definition.anchor.y], Comment(rawValue: entry.name))
             #expect(entry.oneWay == name.isOneWay, Comment(rawValue: entry.name))
             #expect(entry.hold == name.supportsHold, Comment(rawValue: entry.name))

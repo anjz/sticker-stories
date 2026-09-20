@@ -16,10 +16,13 @@ func testCatalog(t *testing.T) *Catalog {
 	if len(c.Effects) != 12 {
 		t.Fatalf("catalogue has %d effects, want 12", len(c.Effects))
 	}
+	if len(c.Canvas) != 5 {
+		t.Fatalf("catalogue has %d canvas effects, want 5", len(c.Canvas))
+	}
 	return c
 }
 
-var forest = Manifest{ID: "forest", Languages: []string{"en-US", "es-ES"}, Stickers: []string{"fox", "rabbit", "tree", "flower", "owl"}}
+var forest = Manifest{ID: "forest", Languages: []string{"en-US", "es-ES"}, Stickers: []string{"fox", "rabbit", "tree", "flower", "owl"}, Setting: "outdoors"}
 
 func words(n int, seed string) string {
 	parts := make([]string, n)
@@ -71,10 +74,26 @@ func TestParseCues(t *testing.T) {
 }
 
 func TestParseCueErrors(t *testing.T) {
-	for _, bad := range []string{"{fox}", "{fox:hop x0}", "{fox:hop loop x2}", "{fox:tint #12}", "{fox:hop 2}", "{fox:hop 99s}", "{fox:hop"} {
+	for _, bad := range []string{"{fox}", "{fox:hop x0}", "{fox:hop loop x2}", "{fox:tint #12}", "{fox:hop 2}", "{fox:hop 999s}", "{fox:hop", "{canvas}"} {
 		if _, _, errs := ParseCues(bad + " word"); len(errs) == 0 {
 			t.Errorf("%q should not parse", bad)
 		}
+	}
+}
+
+func TestParseCanvasCues(t *testing.T) {
+	cues, plain, errs := ParseCues("Plip, plop. {canvas:rain 0.7 14s} Here comes the rain. {canvas:sunshine} The end.")
+	if len(errs) != 0 {
+		t.Fatal(errs)
+	}
+	if plain != "Plip, plop. Here comes the rain. The end." {
+		t.Errorf("plain = %q", plain)
+	}
+	if len(cues) != 2 || !cues[0].Canvas || cues[0].Sticker != "" || cues[0].Effect != "rain" || cues[0].Intensity != 0.7 || cues[0].Duration != 14 || cues[0].WordIndex != 2 {
+		t.Errorf("rain cue parsed wrong: %+v", cues)
+	}
+	if !cues[1].Canvas || cues[1].Effect != "sunshine" || cues[1].WordIndex != 6 {
+		t.Errorf("sunshine cue parsed wrong: %+v", cues[1])
 	}
 }
 
@@ -120,7 +139,14 @@ func TestValidationFailures(t *testing.T) {
 		{"tint without colour", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {fox:tint}"; s.Languages["en-US"] = l }, "requires a colour"},
 		{"hold on hop", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {fox:hop hold}"; s.Languages["en-US"] = l }, "does not support hold"},
 		{"repeat on fade", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {fox:fade-out x2}"; s.Languages["en-US"] = l }, "ignores repeat"},
+		{"cycle too long", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {fox:hop 99s}"; s.Languages["en-US"] = l }, "cycle of 0.05–30 s"},
 		{"forbidden word", func(s *Story) { l := s.Languages["en-US"]; l.Text += " It was scary."; s.Languages["en-US"] = l }, "forbidden"},
+		{"canvas effect on a sticker", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {fox:rain}"; s.Languages["en-US"] = l }, "is a canvas effect; write {canvas:rain"},
+		{"sticker effect on the canvas", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:hop}"; s.Languages["en-US"] = l }, "is a sticker effect"},
+		{"unknown canvas effect", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:snow}"; s.Languages["en-US"] = l }, "unknown canvas effect"},
+		{"canvas effect for the wrong setting", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:dimlight}"; s.Languages["en-US"] = l }, `suits indoors packs; this pack's setting is "outdoors"`},
+		{"canvas cue with sticker params", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain loop}"; s.Languages["en-US"] = l }, "only an intensity and a duration"},
+		{"canvas cue too short", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain 0.5s}"; s.Languages["en-US"] = l }, "stays on for 1–120 s"},
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
@@ -134,6 +160,40 @@ func TestValidationFailures(t *testing.T) {
 			}
 			t.Fatalf("no error contained %q; errors: %v", tc.want, is.Errors)
 		})
+	}
+}
+
+func TestCanvasCuesFollowTheSetting(t *testing.T) {
+	cat := testCatalog(t)
+	s := goodStory()
+	for _, lang := range []string{"en-US", "es-ES"} {
+		l := s.Languages[lang]
+		l.Text += " {canvas:rain 0.7 14s} {canvas:rainbow}"
+		s.Languages[lang] = l
+	}
+	if is := Validate(s, forest, cat); len(is.Errors) != 0 || len(is.Warnings) != 0 {
+		t.Fatalf("outdoors pack should accept rain and a rainbow: %v %v", is.Errors, is.Warnings)
+	}
+	none := forest
+	none.Setting = ""
+	is := Validate(s, none, cat)
+	if len(is.Errors) != 4 || !strings.Contains(is.Errors[0], `this pack's setting is "none"`) {
+		t.Errorf("a pack without a setting allows no canvas effects: %v", is.Errors)
+	}
+	// Too many, and only canvas cues, are warnings.
+	l := s.Languages["en-US"]
+	l.Text = "{canvas:fog} {canvas:rain} {canvas:sunshine} " + words(90, "word")
+	s.Languages["en-US"] = l
+	warnings := strings.Join(Validate(s, forest, cat).Warnings, "\n")
+	for _, want := range []string{"at most 2 per story", "only canvas cues"} {
+		if !strings.Contains(warnings, want) {
+			t.Errorf("expected a warning containing %q; got %v", want, warnings)
+		}
+	}
+	named := forest
+	named.Stickers = append(named.Stickers, "canvas")
+	if is := Validate(goodStory(), named, cat); len(is.Errors) == 0 || !strings.Contains(is.Errors[0], "reserved") {
+		t.Errorf("a sticker called canvas must be rejected: %v", is.Errors)
 	}
 }
 
@@ -164,9 +224,18 @@ func TestCoverage(t *testing.T) {
 	c := goodStory()
 	c.ID = "the-forest"
 	c.Featured = nil
+	l := c.Languages["en-US"]
+	l.Text += " {canvas:rain}"
+	c.Languages["en-US"] = l
 	cov := Cover([]*Story{a, b, c}, forest, 50)
 	if cov.Fallbacks != 1 || cov.Featured["fox"] != 2 || cov.Used["flower"] != 3 {
 		t.Errorf("counts wrong: %+v", cov)
+	}
+	if cov.EffectUse["hop"] != 3 || cov.EffectUse["hearts"] != 3 || cov.EffectUse["canvas:rain"] != 1 || cov.CanvasStories != 1 {
+		t.Errorf("effect usage wrong: %+v", cov.EffectUse)
+	}
+	if got := Cover([]*Story{c, c}, forest, 0); !strings.Contains(strings.Join(got.Warnings, "\n"), "occasional weather") {
+		t.Errorf("expected a canvas-share warning: %v", got.Warnings)
 	}
 	joined := strings.Join(cov.Errors, "\n")
 	if !strings.Contains(joined, `"owl" is never featured`) {

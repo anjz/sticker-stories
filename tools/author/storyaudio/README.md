@@ -21,8 +21,11 @@ go run ./packager validate ../packs/forest
    it to the text-to-speech **with timestamps** endpoint (`eleven_v3` by
    default; falls back to `eleven_multilingual_v2` if timestamps are refused).
 2. Maps each cue's word to the returned character timings and writes the
-   sticker-effect sidecar (`docs/effects.md`), strictly validated. Scenery
-   loops stay at `0.0`; everything else is shifted by the music lead-in.
+   effects sidecar (`docs/effects.md`) — sticker triggers and canvas
+   triggers (`{canvas:rain …}` cues become entries with no `sticker`) in
+   one list — strictly validated against the pack's stickers and its
+   `setting`. Cues on the first word stay at `0.0`; everything else is
+   shifted by the music lead-in.
 3. Turns each `sound` hint into a short clip via the sound-generation
    endpoint (cached by prompt in `_cache/sfx/`), placed on the hinted word,
    at most three per story, about 12 dB under the narrator.

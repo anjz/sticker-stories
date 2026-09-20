@@ -9,7 +9,9 @@ checked mechanically.
 Sticker Stories is an app for children aged four and up. A child drags
 stickers onto a scene and presses play; the app picks a story that matches
 what they placed and narrates it while the stickers react with small
-effects (a wobble, a hop, sparkles). Stories are:
+effects (a wobble, a hop, sparkles) and, now and then, the weather or the
+light changes over the whole scene (rain, fog, sunshine, a rainbow, the
+lights going low). Stories are:
 
 - **30–60 seconds** of narration (80–140 words per language);
 - **bilingual from day one** (currently en-US and es-ES), each language
@@ -97,12 +99,27 @@ it is necessary, not sufficient: the rules above are the standard.
 - Do not mention stickers that are neither featured nor supporting.
 - Only refer to what a sticker *is*; never to its position on the screen.
 
-## Using effects
+## Using sticker effects
 
-The app has 12 sticker effects (`docs/effects/effects.json`; human
-reference in `docs/effects.md`): `pulse`, `wobble`, `shake`, `hop`, `spin`,
-`float`, `fade-in`, `fade-out`, `glow`, `tint`, `sparkle`, `hearts`. Cue
-grammar is in `FORMAT.md`.
+The app has exactly 12 sticker effects (`docs/effects/effects.json`,
+`effects`; human reference in `docs/effects.md`) — read the catalogue, not
+this list, for what each means and accepts:
+
+| Effect | Cue it on |
+|---|---|
+| `pulse` | the sticker being introduced or talked about ("look at this one") |
+| `wobble` | a reaction: surprise, a laugh, a sneeze, being bumped |
+| `shake` | shivering, nerves, giggling, buzzing |
+| `hop` | joy, a jump, hello; `x2`–`x3` for bouncing |
+| `spin` | a twirl, dizziness, a tumble |
+| `float` | anything airborne or afloat; `loop` at the start for quiet life |
+| `fade-in` / `fade-out` | arriving / leaving, waking / falling asleep; `hold` to stay gone |
+| `glow` | magic, warmth, a wish, the sun on something |
+| `tint #RRGGBB` | blushing (pink), cold (blue), cross (red); colour required |
+| `sparkle` | delight, magic, treasure, a good idea |
+| `hearts` | friendship, a hug, kindness |
+
+Cue grammar is in `FORMAT.md`.
 
 - **Effects illustrate the words.** Put a cue on the beat it belongs to:
   `hop` on *jump*, `wobble` on *sneeze*, `sparkle` on *magic*, `spin` on
@@ -114,11 +131,49 @@ grammar is in `FORMAT.md`.
   their own; give them a `wobble` or `pulse` on a beat instead.
 - **At least one cue per language, typically two to eight.** More than
   one sticker can react at once; cues in a row fire together.
+- **Use the whole library across the set, not the same three names.**
+  `storycheck` prints how many stories use each effect; if `hop`, `pulse`
+  and `wobble` carry everything while `glow`, `tint`, `spin`, `fade-in` sit
+  unused, look for the beats that want them. Never force one in.
 - **Never rely on an effect.** The sticker may not be on the canvas and
   the story must still make sense.
-- **Restraint.** Prefer defaults. Never more than three flashes (white
-  `tint`) in a second.
+- **Restraint.** Prefer defaults. One effect per beat, on the sticker the
+  sentence is about. Never more than three flashes (white `tint`) in a
+  second.
 - Cue only featured and supporting stickers.
+
+## Using canvas effects
+
+Canvas effects change the whole scene — the weather or the light — rather
+than one sticker (`docs/effects/effects.json`, `canvasEffects`). Which ones
+a pack may use is decided by its **`setting`** in `manifest.json`:
+
+| Setting | Canvas effects available | Cue it on |
+|---|---|---|
+| `outdoors` | `fog` (early morning, hush, something hidden), `rain` (pitter-patter, puddles, sheltering), `sunshine` (the sun comes out, a warm afternoon), `rainbow` (the wonder after rain, a wish come true) | the sentence where the weather changes |
+| `indoors` | `dimlight` (bedtime, a lamp turned low, a whispered secret; never darkness as a threat) | the sentence where the light changes |
+| `none` | nothing — the pack's stories use sticker effects only | — |
+
+Grammar: `{canvas:rain}`, `{canvas:rain 0.8 14s}` (intensity, then how long
+it stays). See `FORMAT.md`, "Canvas cues".
+
+- **Occasional, never routine.** A canvas effect is a big moment; a pack
+  where every story rains is a pack where rain means nothing. Most stories
+  have none. Use one — at most two — only in a story whose weather or
+  light genuinely changes, in well under half of the set (the validator
+  warns past 40 %), and vary which: not every outdoors story that uses one
+  should use rain.
+- **The story leads, the effect follows.** Write the rain into the words
+  (*plip, plop; pitter-patter*) and cue `{canvas:rain}` a beat before them:
+  it takes a moment to build up (fog longest). Let the duration cover the
+  beats it belongs to and no more; it clears on its own.
+- **Classic shapes** that earn one: rain → sunshine → rainbow as a story
+  resolves; fog that lifts as something is found; sunshine as the forest
+  wakes; dimlight as the story settles to sleep.
+- **Stickers still react.** A canvas effect is never a substitute for the
+  cast doing something; a story with only canvas cues is a warning.
+- **Never rely on it.** The story must read fine if the weather never
+  came (calm mode damps it; an older app skips it).
 
 ## Both languages
 

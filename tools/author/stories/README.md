@@ -7,13 +7,14 @@ output of step 1 and the material both steps rely on.
 tools/author/
   stories/
     README.md          this file: the process
-    GUIDE.md           the authoring brief: audience, quality bar, safety, effects
+    GUIDE.md           the authoring brief: audience, quality bar, safety, sticker + canvas effects
     FORMAT.md          the intermediate story format (story.json) and the cue grammar
     <packID>/
       plan.md          the roster: which stickers each of the 50 stories centres on
       <storyID>/
         story.json     one story, every language, with inline effect cues
-  storycheck/          Go validator: format, cues, safety words, sticker coverage
+  storycheck/          Go validator: format, cues (against the catalogue and the pack setting),
+                       safety words, sticker coverage, effect usage
 ```
 
 ## Step 1 — write the stories (Claude skill)
@@ -24,14 +25,16 @@ tools/author/
 
 The `author-stories` skill (`.claude/skills/author-stories/SKILL.md`) reads the
 pack's manifest (sticker IDs and names — the graphic side of the pack must
-already exist), the effects catalogue (`docs/effects/effects.json`), `GUIDE.md`
-and `FORMAT.md`, then:
+already exist — and its `setting`, which decides the canvas effects the
+stories may use), the effects catalogue (`docs/effects/effects.json`),
+`GUIDE.md` and `FORMAT.md`, then:
 
 1. builds a roster (`plan.md`) of 50 stories, each centred on 3–4 stickers,
    covering every sticker in the pack several times plus a few
    "whole-forest" stories that need no particular sticker;
 2. writes the stories in small batches — bilingual (every pack language),
-   80–140 words per language, with at least one effect cue each — into
+   80–140 words per language, with at least one effect cue each and the
+   occasional canvas effect where the weather or light calls for it — into
    `<packID>/<storyID>/story.json`;
 3. validates after every batch with `storycheck` and fixes what it flags.
 
@@ -41,8 +44,9 @@ Run the validator yourself any time:
 cd tools && go run ./author/storycheck -pack ../packs/forest
 ```
 
-It reports format problems, invalid cues, forbidden words, word counts, and a
-sticker coverage table, and exits non-zero on errors.
+It reports format problems, invalid cues (including canvas effects that do
+not suit the pack's setting), forbidden words, word counts, a sticker
+coverage table and an effect-usage table, and exits non-zero on errors.
 
 ## Step 2 — produce audio and pack content (`storyaudio`)
 
@@ -54,9 +58,10 @@ cd tools && go run ./author/storyaudio install -pack ../packs/forest -prune -bum
 `storyaudio` (`tools/author/storyaudio/README.md`) takes each `story.json`,
 strips the cues to get the narration text, renders it with ElevenLabs
 (narration with character timestamps, the sound effects hinted in the story,
-and a calm background loop), aligns the cues to the spoken words, and emits
-the `.m4a` per language plus the `.effects.json` sidecar per language
-(`docs/pack-format.md`, `docs/effects.md`) into `<storyID>/audio/`. `install`
+and a calm background loop), aligns the cues — sticker and canvas — to the
+spoken words, and emits the `.m4a` per language plus the `.effects.json`
+sidecar per language (`docs/pack-format.md`, `docs/effects.md`) into
+`<storyID>/audio/`. `install`
 copies them into the pack and merges the manifest story entries. Nothing in
 step 1 depends on how step 2 is built; the contract between them is
 `FORMAT.md`.

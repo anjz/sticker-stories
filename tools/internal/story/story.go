@@ -1,7 +1,8 @@
 // Package story defines the intermediate story format authored by the
 // author-stories skill (tools/author/stories/FORMAT.md) and validates it:
-// structure, inline effect cues against the effects catalogue, word budgets,
-// forbidden words, and sticker coverage across a pack's set of stories.
+// structure, inline effect cues (sticker and canvas) against the effects
+// catalogue and the pack's setting, word budgets, forbidden words, and
+// sticker coverage across a pack's set of stories.
 package story
 
 import (
@@ -34,6 +35,10 @@ const (
 	MinFeaturedPer = 5 // each sticker should be featured at least this often (warning)
 	MinFallbacks   = 3
 	DefaultCount   = 50
+	MaxCanvasCues  = 2 // canvas effects per story and language before a warning
+	// Share of a pack's stories that may use canvas effects before a warning:
+	// they are occasional weather, not the default.
+	MaxCanvasShare = 0.4
 )
 
 // Story is one authored story with every language.
@@ -66,9 +71,15 @@ type SoundHint struct {
 	Note string `json:"note"`
 }
 
-// Cue is one parsed inline effect cue.
+// CanvasTarget is the reserved cue target for canvas effects:
+// {canvas:rain 0.7 12s}. A pack must not name a sticker "canvas".
+const CanvasTarget = "canvas"
+
+// Cue is one parsed inline effect cue. A canvas cue (Canvas true) has no
+// sticker and takes only an intensity and a duration.
 type Cue struct {
-	Sticker   string
+	Sticker   string // "" for a canvas cue
+	Canvas    bool
 	Effect    string
 	Repeat    int // 0 = default (1)
 	Loop      bool
@@ -82,17 +93,28 @@ type Cue struct {
 
 // Effect is one entry of docs/effects/effects.json, the parts validation needs.
 type Effect struct {
-	Name          string   `json:"name"`
-	Category      string   `json:"category"`
-	Parameters    []string `json:"parameters"`
-	OneWay        bool     `json:"oneWay"`
-	Hold          bool     `json:"hold"`
-	RequiresColor bool     `json:"requiresColor"`
+	Name          string    `json:"name"`
+	Category      string    `json:"category"`
+	Parameters    []string  `json:"parameters"`
+	OneWay        bool      `json:"oneWay"`
+	Hold          bool      `json:"hold"`
+	RequiresColor bool      `json:"requiresColor"`
+	DurationRange []float64 `json:"durationRange"`
 }
 
-// Catalog is the effects library as tooling sees it.
+// CanvasEffect is one entry of the catalogue's canvasEffects list.
+type CanvasEffect struct {
+	Name          string    `json:"name"`
+	Settings      []string  `json:"settings"`
+	Parameters    []string  `json:"parameters"`
+	DurationRange []float64 `json:"durationRange"`
+}
+
+// Catalog is the effects library as tooling sees it: sticker effects and
+// canvas effects, both closed lists.
 type Catalog struct {
 	Effects map[string]Effect
+	Canvas  map[string]CanvasEffect
 }
 
 // LoadCatalog reads docs/effects/effects.json.
@@ -102,19 +124,34 @@ func LoadCatalog(path string) (*Catalog, error) {
 		return nil, fmt.Errorf("reading effects catalogue: %w", err)
 	}
 	var file struct {
-		Effects []Effect `json:"effects"`
+		Effects       []Effect       `json:"effects"`
+		CanvasEffects []CanvasEffect `json:"canvasEffects"`
 	}
 	if err := json.Unmarshal(data, &file); err != nil {
 		return nil, fmt.Errorf("decoding effects catalogue: %w", err)
 	}
-	c := &Catalog{Effects: make(map[string]Effect, len(file.Effects))}
+	c := &Catalog{Effects: make(map[string]Effect, len(file.Effects)), Canvas: make(map[string]CanvasEffect, len(file.CanvasEffects))}
 	for _, e := range file.Effects {
 		c.Effects[e.Name] = e
+	}
+	for _, e := range file.CanvasEffects {
+		c.Canvas[e.Name] = e
 	}
 	if len(c.Effects) == 0 {
 		return nil, fmt.Errorf("effects catalogue %s lists no effects", path)
 	}
 	return c, nil
+}
+
+// SuitsSetting reports whether the canvas effect may be used in a pack
+// with the given setting.
+func (e CanvasEffect) SuitsSetting(setting string) bool {
+	for _, s := range e.Settings {
+		if s == setting {
+			return true
+		}
+	}
+	return false
 }
 
 func (e Effect) accepts(param string) bool {
@@ -124,6 +161,10 @@ func (e Effect) accepts(param string) bool {
 		}
 	}
 	return false
+}
+
+func inRange(v float64, r []float64) bool {
+	return len(r) != 2 || (v >= r[0] && v <= r[1])
 }
 
 // Load reads one story.json.
@@ -177,7 +218,9 @@ var (
 // ParseCues extracts the cues from a text and returns the plain narration
 // (cues removed, whitespace normalised). Syntax problems are returned as
 // errors; the cue is still dropped from the plain text. A cue fires on the
-// word that follows it; trailing cues fire on the last word.
+// word that follows it; trailing cues fire on the last word. Parsing is
+// syntactic only — which parameters an effect accepts, and whether a canvas
+// effect suits the pack, is Validate's job.
 func ParseCues(text string) (cues []Cue, plain string, errs []error) {
 	var parsed []Cue
 	// Cues contain spaces ({butterfly:float loop 0.4}), so lift them out before
@@ -230,9 +273,14 @@ func parseCue(inner string) (Cue, error) {
 	head, params, _ := strings.Cut(strings.TrimSpace(inner), " ")
 	sticker, effect, ok := strings.Cut(head, ":")
 	if !ok || sticker == "" || effect == "" {
-		return c, fmt.Errorf("want {sticker:effect …}")
+		return c, fmt.Errorf("want {sticker:effect …} or {canvas:effect …}")
 	}
-	c.Sticker, c.Effect = sticker, effect
+	c.Effect = effect
+	if sticker == CanvasTarget {
+		c.Canvas = true
+	} else {
+		c.Sticker = sticker
+	}
 	for _, p := range strings.Fields(params) {
 		switch {
 		case p == "loop":
@@ -251,9 +299,11 @@ func parseCue(inner string) (Cue, error) {
 			}
 			c.Repeat = n
 		case strings.HasSuffix(p, "s"):
+			// The per-effect range (0.05–30 s for a sticker effect's cycle,
+			// 1–120 s for a canvas effect) is checked by Validate.
 			d, err := strconv.ParseFloat(strings.TrimSuffix(p, "s"), 64)
-			if err != nil || d < 0.05 || d > 30 {
-				return c, fmt.Errorf("duration %q must be 0.05s…30s", p)
+			if err != nil || d < 0.05 || d > 120 {
+				return c, fmt.Errorf("duration %q must be 0.05s…120s", p)
 			}
 			c.Duration = d
 		default:
@@ -337,6 +387,15 @@ type Manifest struct {
 	ID        string
 	Languages []string
 	Stickers  []string
+	Setting   string // outdoors | indoors | none ("" reads as none)
+}
+
+// EffectiveSetting returns the pack's setting, defaulting to "none".
+func (m Manifest) EffectiveSetting() string {
+	if m.Setting == "" {
+		return "none"
+	}
+	return m.Setting
 }
 
 // Issues collects errors (must fix) and warnings (should look) per story.
@@ -370,6 +429,9 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 	declared := make(map[string]bool, len(m.Stickers))
 	for _, st := range m.Stickers {
 		declared[st] = true
+	}
+	if declared[CanvasTarget] {
+		is.errorf("the pack has a sticker called %q, which is the reserved canvas-effect target; rename it", CanvasTarget)
 	}
 	inStory := make(map[string]bool)
 	checkStickers := func(field string, ids []string, max int) {
@@ -444,14 +506,25 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 			is.errorf("%s: no effect cues (at least one required)", lang)
 		}
 		var shape []string
+		canvasCues := 0
 		for _, c := range cues {
+			if c.Canvas {
+				canvasCues++
+				shape = append(shape, CanvasTarget+":"+c.Effect)
+				validateCanvasCue(&is, lang, c, m, cat)
+				continue
+			}
 			shape = append(shape, c.Sticker+":"+c.Effect)
 			if !inStory[c.Sticker] {
 				is.errorf("%s: cue %s targets %q, which is neither featured nor supporting", lang, c.Raw, c.Sticker)
 			}
 			e, known := cat.Effects[c.Effect]
 			if !known {
-				is.errorf("%s: cue %s: unknown effect %q", lang, c.Raw, c.Effect)
+				if _, isCanvas := cat.Canvas[c.Effect]; isCanvas {
+					is.errorf("%s: cue %s: %s is a canvas effect; write {%s:%s …}", lang, c.Raw, c.Effect, CanvasTarget, c.Effect)
+				} else {
+					is.errorf("%s: cue %s: unknown effect %q", lang, c.Raw, c.Effect)
+				}
 				continue
 			}
 			if (c.Repeat > 0 || c.Loop) && !e.accepts("repeat") {
@@ -466,6 +539,15 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 			if e.RequiresColor && c.Color == "" {
 				is.errorf("%s: cue %s: %s requires a colour (#RRGGBB)", lang, c.Raw, c.Effect)
 			}
+			if c.Duration > 0 && !inRange(c.Duration, e.DurationRange) {
+				is.errorf("%s: cue %s: %s takes a cycle of %g–%g s", lang, c.Raw, c.Effect, e.DurationRange[0], e.DurationRange[1])
+			}
+		}
+		if canvasCues > MaxCanvasCues {
+			is.warnf("%s: %d canvas cues; canvas effects are occasional — at most %d per story", lang, canvasCues, MaxCanvasCues)
+		}
+		if canvasCues > 0 && canvasCues == len(cues) {
+			is.warnf("%s: only canvas cues — the stickers should react too", lang)
 		}
 		cueShapes = append(cueShapes, shape)
 		cueLangs = append(cueLangs, lang)
@@ -493,6 +575,29 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 	return is
 }
 
+// validateCanvasCue checks a {canvas:…} cue: a known canvas effect that
+// suits the pack's setting, with only an intensity and a duration.
+func validateCanvasCue(is *Issues, lang string, c Cue, m Manifest, cat *Catalog) {
+	e, known := cat.Canvas[c.Effect]
+	if !known {
+		if _, isSticker := cat.Effects[c.Effect]; isSticker {
+			is.errorf("%s: cue %s: %s is a sticker effect, not a canvas effect", lang, c.Raw, c.Effect)
+		} else {
+			is.errorf("%s: cue %s: unknown canvas effect %q", lang, c.Raw, c.Effect)
+		}
+		return
+	}
+	if setting := m.EffectiveSetting(); !e.SuitsSetting(setting) {
+		is.errorf("%s: cue %s: %s suits %s packs; this pack's setting is %q", lang, c.Raw, c.Effect, strings.Join(e.Settings, "/"), setting)
+	}
+	if c.Repeat > 0 || c.Loop || c.Hold || c.Color != "" {
+		is.errorf("%s: cue %s: a canvas effect takes only an intensity and a duration (Ns)", lang, c.Raw)
+	}
+	if c.Duration > 0 && !inRange(c.Duration, e.DurationRange) {
+		is.errorf("%s: cue %s: %s stays on for %g–%g s", lang, c.Raw, c.Effect, e.DurationRange[0], e.DurationRange[1])
+	}
+}
+
 func sortedCopy(in []string) []string {
 	out := append([]string(nil), in...)
 	sort.Strings(out)
@@ -505,14 +610,19 @@ type Coverage struct {
 	Fallbacks int
 	Featured  map[string]int // sticker → stories featuring it
 	Used      map[string]int // sticker → stories featuring or supporting it
-	Duplicate []string       // ids sharing a featured set with another story
-	Errors    []string
-	Warnings  []string
+	// EffectUse counts the stories whose first language cues each effect
+	// (sticker effects by name, canvas effects as "canvas:<name>").
+	EffectUse map[string]int
+	// CanvasStories counts the stories that use any canvas effect.
+	CanvasStories int
+	Duplicate     []string // ids sharing a featured set with another story
+	Errors        []string
+	Warnings      []string
 }
 
 // Cover computes coverage and set-level issues.
 func Cover(stories []*Story, m Manifest, expected int) Coverage {
-	c := Coverage{Stories: len(stories), Featured: map[string]int{}, Used: map[string]int{}}
+	c := Coverage{Stories: len(stories), Featured: map[string]int{}, Used: map[string]int{}, EffectUse: map[string]int{}}
 	for _, st := range m.Stickers {
 		c.Featured[st] = 0
 		c.Used[st] = 0
@@ -527,6 +637,25 @@ func Cover(stories []*Story, m Manifest, expected int) Coverage {
 		ids[s.ID] = true
 		if len(s.Featured) == 0 {
 			c.Fallbacks++
+		}
+		if len(m.Languages) > 0 {
+			cues, _, _ := ParseCues(s.Languages[m.Languages[0]].Text)
+			seen := map[string]bool{}
+			usesCanvas := false
+			for _, cue := range cues {
+				key := cue.Effect
+				if cue.Canvas {
+					key = CanvasTarget + ":" + cue.Effect
+					usesCanvas = true
+				}
+				if !seen[key] {
+					seen[key] = true
+					c.EffectUse[key]++
+				}
+			}
+			if usesCanvas {
+				c.CanvasStories++
+			}
 		}
 		for _, st := range s.Featured {
 			c.Featured[st]++
@@ -567,6 +696,9 @@ func Cover(stories []*Story, m Manifest, expected int) Coverage {
 	}
 	if c.Fallbacks < MinFallbacks {
 		c.Warnings = append(c.Warnings, fmt.Sprintf("%d fallback stories (no featured stickers); want ≥ %d", c.Fallbacks, MinFallbacks))
+	}
+	if len(stories) > 0 && float64(c.CanvasStories) > MaxCanvasShare*float64(len(stories)) {
+		c.Warnings = append(c.Warnings, fmt.Sprintf("canvas effects in %d of %d stories; they are occasional weather — keep them under %.0f%%", c.CanvasStories, len(stories), MaxCanvasShare*100))
 	}
 	if expected > 0 && len(stories) != expected {
 		c.Warnings = append(c.Warnings, fmt.Sprintf("%d stories; the set should have %d", len(stories), expected))

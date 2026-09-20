@@ -2,8 +2,8 @@
 
 One folder per story, `tools/author/stories/<packID>/<storyID>/story.json`.
 This is the authoring format: human-readable, bilingual, with effect cues
-inline in the text. Step 2 turns it into pack content; the app never reads
-it.
+(sticker effects and canvas effects) inline in the text. Step 2 turns it
+into pack content; the app never reads it.
 
 ```json
 {
@@ -89,10 +89,11 @@ A cue is `{sticker:effect}` with optional parameters separated by spaces:
 ```
 
 - `sticker` is an ID from the manifest and must be in `featured` or
-  `supporting`. `effect` is one of the 12 names in `docs/effects/effects.json`;
-  which parameters each accepts is listed there (`repeat` is ignored by
-  `fade-in`/`fade-out`, `color` only for `glow`/`tint`/`sparkle` and required by
-  `tint`, `hold` only for the four that support it).
+  `supporting`. `effect` is one of the 12 names in `docs/effects/effects.json`
+  (`effects`); which parameters each accepts is listed there (`repeat` is
+  ignored by `fade-in`/`fade-out`, `color` only for `glow`/`tint`/`sparkle`
+  and required by `tint`, `hold` only for the four that support it, a
+  cycle `Ns` of 0.05–30 s).
 - A cue fires on the **word that follows it**. Several cues in a row fire
   together on that word. Cues before the first word fire at the story's start
   (use this for scenery loops); a cue after the last word fires on the last
@@ -101,6 +102,32 @@ A cue is `{sticker:effect}` with optional parameters separated by spaces:
   a `float` loop on butterflies, bees or birds at the start plus a cue on
   each story beat is the usual shape.
 - The same beats carry the same cues in every language.
+
+### Canvas cues
+
+Weather and light over the whole scene use the reserved target `canvas`
+(a pack must not name a sticker `canvas`):
+
+```
+{canvas:rain}             default intensity and duration
+{canvas:rain 0.8 14s}     intensity 0.8, stays on for 14 s (1–120 s)
+{canvas:fog 0.4}          thin mist
+{canvas:sunshine} {canvas:rainbow 10s}
+```
+
+- `effect` is one of the names in `docs/effects/effects.json` under
+  `canvasEffects`: `fog`, `rain`, `sunshine`, `rainbow` (outdoors packs) and
+  `dimlight` (indoors packs). The pack's `setting` in its manifest decides
+  which are allowed; a `none` pack allows no canvas cues. Only an intensity
+  and a duration (`Ns`) may follow — no `xN`, `loop`, `hold` or colour.
+- A canvas cue fires on the word that follows it like any other, and the
+  effect takes a moment to build up (fog ~2.5 s, rain ~1 s), so put it a
+  beat before the words it illustrates. The duration is how long it stays,
+  ramps included; it ends on its own.
+- Canvas effects are **occasional**: at most one or two per story, only
+  when the story's weather or light genuinely changes, and in well under
+  half of a pack's stories. The validator warns past two per story and past
+  40 % of the set.
 
 ## The roster (`plan.md`)
 
@@ -113,4 +140,8 @@ rules the validator enforces on the finished set:
   at least 5 (warning);
 - at least 3 fallback stories (empty `featured`);
 - no two stories with the same `featured` set *and* the same premise idea;
+- canvas effects in well under half of the stories (warning past 40 %);
 - 50 stories per pack.
+
+`storycheck` also prints how many stories use each effect, so the set can
+be balanced across the whole library rather than leaning on three names.
