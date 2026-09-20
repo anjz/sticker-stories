@@ -59,6 +59,38 @@ func TestTriggersAndSounds(t *testing.T) {
 	}
 }
 
+func TestCanvasCuesBecomeStickerlessTriggers(t *testing.T) {
+	text := "{canvas:fog 0.5} Plip, plop. {canvas:rain 0.7 14s} Here comes the {fox:hop} rain."
+	cues, plain, errs := story.ParseCues(text)
+	if len(errs) > 0 {
+		t.Fatal(errs)
+	}
+	tl, err := NewTimeline(plain, fakeAlignment(plain))
+	if err != nil {
+		t.Fatal(err)
+	}
+	tr := Triggers(cues, tl)
+	if len(tr) != 3 {
+		t.Fatalf("want 3 triggers, got %d", len(tr))
+	}
+	if tr[0].At != 0 || tr[0].Effect != "fog" || tr[0].Sticker != "" || tr[0].Intensity != 0.5 {
+		t.Errorf("fog wrong: %+v", tr[0])
+	}
+	if tr[1].Effect != "rain" || tr[1].Sticker != "" || tr[1].Duration != 14 || tr[1].Cue != "here" || tr[1].Repeat != nil {
+		t.Errorf("rain wrong: %+v", tr[1])
+	}
+	data, err := EncodeSidecar(tr, map[string]bool{"fox": true}, "outdoors")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.Contains(string(data), `"sticker": ""`) {
+		t.Errorf("canvas triggers must not carry a sticker key: %s", data)
+	}
+	if _, err := EncodeSidecar(tr, map[string]bool{"fox": true}, "indoors"); err == nil {
+		t.Errorf("rain and fog must be rejected for an indoors pack")
+	}
+}
+
 func TestTimelineScalesWhenAlignmentDiffers(t *testing.T) {
 	plain := "one two three"
 	al := fakeAlignment("one  two  three  ") // longer normalised text

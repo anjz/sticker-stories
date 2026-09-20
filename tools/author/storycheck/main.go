@@ -1,7 +1,8 @@
 // Command storycheck validates a pack's authored stories
 // (tools/author/stories/<packID>/<storyID>/story.json — see FORMAT.md):
-// structure, inline effect cues against docs/effects/effects.json, word
-// budgets, forbidden words, and sticker coverage across the set.
+// structure, inline effect cues (sticker and canvas) against
+// docs/effects/effects.json and the pack's setting, word budgets, forbidden
+// words, and sticker coverage and effect usage across the set.
 //
 // Usage:
 //
@@ -16,6 +17,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strings"
 
 	"stickerstories/tools/internal/manifest"
 	"stickerstories/tools/internal/story"
@@ -38,7 +40,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "✗ %v\n", err)
 		os.Exit(1)
 	}
-	pack := story.Manifest{ID: m.ID, Languages: m.Languages}
+	pack := story.Manifest{ID: m.ID, Languages: m.Languages, Setting: m.EffectiveSetting()}
 	for _, st := range m.Stickers {
 		pack.Stickers = append(pack.Stickers, st.ID)
 	}
@@ -81,7 +83,7 @@ func main() {
 	}
 
 	cov := story.Cover(stories, pack, *count)
-	fmt.Printf("\nCoverage for pack %q: %d stories (%d fallback)\n", m.ID, cov.Stories, cov.Fallbacks)
+	fmt.Printf("\nCoverage for pack %q (%s): %d stories (%d fallback)\n", m.ID, pack.EffectiveSetting(), cov.Stories, cov.Fallbacks)
 	ids := append([]string(nil), pack.Stickers...)
 	sort.Slice(ids, func(i, j int) bool {
 		if cov.Featured[ids[i]] != cov.Featured[ids[j]] {
@@ -99,6 +101,7 @@ func main() {
 	for _, id := range ids {
 		fmt.Printf("  %-*s  %8d  %4d\n", width, id, cov.Featured[id], cov.Used[id])
 	}
+	printEffectUse(cat, cov)
 	for _, e := range cov.Errors {
 		fmt.Printf("  error: %s\n", e)
 		failed = true
@@ -115,4 +118,31 @@ func main() {
 	} else {
 		fmt.Println("\n✓ no errors (see warnings above)")
 	}
+}
+
+// printEffectUse shows how many stories use each effect, alphabetically,
+// so an author can see which effects the set leans on and which it never
+// touches; canvas effects are listed last with the share of stories.
+func printEffectUse(cat *story.Catalog, cov story.Coverage) {
+	names := make([]string, 0, len(cat.Effects))
+	for name := range cat.Effects {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+	canvas := make([]string, 0, len(cat.Canvas))
+	for name := range cat.Canvas {
+		canvas = append(canvas, name)
+	}
+	sort.Strings(canvas)
+	fmt.Println("  effects used (stories):")
+	var line []string
+	for _, name := range names {
+		line = append(line, fmt.Sprintf("%s %d", name, cov.EffectUse[name]))
+	}
+	fmt.Printf("    %s\n", strings.Join(line, ", "))
+	line = line[:0]
+	for _, name := range canvas {
+		line = append(line, fmt.Sprintf("%s %d", name, cov.EffectUse[story.CanvasTarget+":"+name]))
+	}
+	fmt.Printf("    canvas (%d of %d stories): %s\n", cov.CanvasStories, cov.Stories, strings.Join(line, ", "))
 }
