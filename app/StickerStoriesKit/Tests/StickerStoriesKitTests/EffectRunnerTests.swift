@@ -29,7 +29,7 @@ struct EffectRunnerTests {
     // Criterion 3: loop restores on stopAll.
     @Test func loopRestoresOnStopAll() {
         let r = runner()
-        r.play(.sway, on: tree, options: EffectOptions(repeatCount: .loop))
+        r.play(.float, on: tree, options: EffectOptions(repeatCount: .loop))
         #expect(!r.tick(100)[tree]!.isIdentity())
         r.stopAll()
         #expect(r.active.isEmpty)
@@ -49,7 +49,7 @@ struct EffectRunnerTests {
     // Criterion 6: seeking backwards rebuilds the same state as playing forward.
     @Test func seekingBackwardsMatchesPlayingForward() {
         let triggers = [
-            EffectTrigger(at: 0, stickerID: "tree", effect: .sway, options: EffectOptions(repeatCount: .loop)),
+            EffectTrigger(at: 0, stickerID: "tree", effect: .float, options: EffectOptions(repeatCount: .loop)),
             EffectTrigger(at: 1.0, stickerID: "fox", effect: .hop),
             EffectTrigger(at: 2.0, stickerID: "fox", effect: .glow, options: EffectOptions(hold: true)),
         ]
@@ -135,22 +135,21 @@ struct EffectRunnerTests {
     @Test func flashesAreCappedAtThreePerSecond() {
         var logs: [String] = []
         let r = runner(log: { logs.append($0) })
-        for _ in 0..<5 { r.play(.blink, on: fox) }
+        let flash = EffectOptions(duration: 0.2, color: .white)
+        for _ in 0..<5 { r.play(.tint, on: fox, options: flash) }
         #expect(r.active.count == 3)
-        r.play(.tint, on: fox, options: EffectOptions(color: .white))  // a white flash counts too
-        #expect(r.active.count == 3)
-        r.play(.tint, on: fox, options: EffectOptions(color: RGBA(hex: "#FF0000")))  // a red wash does not
+        r.play(.tint, on: fox, options: EffectOptions(color: RGBA(hex: "#FF0000")))  // a red wash is not a flash
         #expect(r.active.count == 4)
-        #expect(logs.count == 3)
+        #expect(logs.count == 2)
         r.tick(1.5)
-        r.play(.blink, on: fox)
-        #expect(r.active.contains { $0.name == .blink && $0.startTime == 1.5 })
+        r.play(.tint, on: fox, options: flash)
+        #expect(r.active.contains { $0.options.color == .white && $0.startTime == 1.5 })
     }
 
     @Test func policyDropsAndDampsUnderReduceMotion() {
         let calm = EffectPolicy(reduceMotion: true)
         #expect(calm.adjusted(.shake, EffectOptions()) == nil)
-        #expect(calm.adjusted(.blink, EffectOptions()) == nil)
+        #expect(calm.adjusted(.float, EffectOptions()) == nil)
         #expect(calm.adjusted(.pulse, EffectOptions(intensity: 0.9))?.intensity == 0.3)
         #expect(calm.adjusted(.pulse, EffectOptions(intensity: 0.2))?.intensity == 0.2)
         #expect(calm.adjusted(.fadeOut, EffectOptions(intensity: 0.9))?.intensity == 0.9)

@@ -54,7 +54,7 @@ func TestValidFileHasNoErrors(t *testing.T) {
 	data := []byte(`{ "schema": 1, "triggers": [
 	  { "at": 3.2, "cue": "sneeze", "sticker": "fox", "effect": "wobble", "repeat": 3 },
 	  { "at": 3.2, "sticker": "fox", "effect": "sparkle", "intensity": 0.8, "color": "#FFD166" },
-	  { "at": 0, "sticker": "tree", "effect": "sway", "repeat": "loop" },
+	  { "at": 0, "sticker": "tree", "effect": "float", "repeat": "loop" },
 	  { "at": 41.5, "sticker": "fox", "effect": "fade-out", "hold": true },
 	  { "at": 5, "sticker": "fox", "effect": "tint", "color": "#FF0000", "duration": 0.2 }
 	] }`)

@@ -3,7 +3,8 @@ import UIKit
 
 /// Particle textures drawn once with CoreGraphics. Placeholder-art era:
 /// swap for PNGs when real art lands, keeping the same names
-/// (`star`, `dot`, `heart`) so `emitters.json` does not change.
+/// (`star`, `dot`, `heart`) so `emitters.json` does not change. `dot` is
+/// kept as the generic soft particle even though no emitter uses it today.
 enum EffectTextures {
     private static var cache: [String: SKTexture] = [:]
 
@@ -26,7 +27,7 @@ enum EffectTextures {
         return texture
     }
 
-    /// A soft radial dot — smoke, glows, generic sparks.
+    /// A soft radial dot — glows, generic sparks.
     private static func drawDot(in rect: CGRect, _ cg: CGContext) {
         let colors = [UIColor.white.cgColor, UIColor.white.withAlphaComponent(0.6).cgColor, UIColor.white.withAlphaComponent(0).cgColor] as CFArray
         guard let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colors, locations: [0, 0.45, 1]) else { return }

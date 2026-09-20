@@ -20,7 +20,7 @@ public protocol StickerEffects: AnyObject {
 /// `tick(_:)` and never reads a clock, so it lives in the Kit and is tested
 /// there. The app ticks it from the scene's update loop with the audio time.
 public final class StickerEffectsRunner: StickerEffects {
-    /// Most flashes (blink, white tint) allowed to start in any one second.
+    /// Most flashes (white tints) allowed to start in any one second.
     public static let maxFlashesPerSecond = 3
 
     public private(set) var currentTime: TimeInterval = 0
@@ -145,7 +145,9 @@ public final class StickerEffectsRunner: StickerEffects {
         return effect.handle
     }
 
+    /// A white tint is a flash (hard on the eyes); nothing else in the
+    /// library is hard-edged any more.
     private func isFlash(_ name: EffectName, _ options: EffectOptions) -> Bool {
-        name.isFlashing || (name == .tint && options.color?.isWhite == true)
+        name == .tint && options.color?.isWhite == true
     }
 }

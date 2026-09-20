@@ -13,8 +13,8 @@ func testCatalog(t *testing.T) *Catalog {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(c.Effects) != 15 {
-		t.Fatalf("catalogue has %d effects, want 15", len(c.Effects))
+	if len(c.Effects) != 12 {
+		t.Fatalf("catalogue has %d effects, want 12", len(c.Effects))
 	}
 	return c
 }
@@ -35,14 +35,14 @@ func goodStory() *Story {
 		Featured: []string{"fox", "rabbit", "tree"}, Supporting: []string{"flower"},
 		Tags: []string{"friendship", "funny"}, Premise: "A race that ties.", Inspiration: "Aesop, turned.", Lesson: "Finish together.",
 		Languages: map[string]Localization{
-			"en-US": {Title: "The Race", Text: "{tree:sway loop 0.4} Ready, steady, {fox:hop} {rabbit:hop} go! " + words(90, "hop") + " {fox:hearts} friends."},
-			"es-ES": {Title: "La carrera", Text: "{tree:sway loop 0.4} Preparados, listos, {fox:hop} {rabbit:hop} ya! " + words(95, "salta") + " {fox:hearts} amigos."},
+			"en-US": {Title: "The Race", Text: "{flower:float loop 0.4} Ready, steady, {fox:hop} {rabbit:hop} go! " + words(90, "hop") + " {fox:hearts} friends."},
+			"es-ES": {Title: "La carrera", Text: "{flower:float loop 0.4} Preparados, listos, {fox:hop} {rabbit:hop} ya! " + words(95, "salta") + " {fox:hearts} amigos."},
 		},
 	}
 }
 
 func TestParseCues(t *testing.T) {
-	cues, plain, errs := ParseCues("{tree:sway loop 0.4} Ready, {fox:hop x3} {rabbit:tint #ff0000 1.2s} go! The end {owl:fade-out hold}")
+	cues, plain, errs := ParseCues("{flower:float loop 0.4} Ready, {fox:hop x3} {rabbit:tint #ff0000 1.2s} go! The end {owl:fade-out hold}")
 	if len(errs) != 0 {
 		t.Fatalf("unexpected errors: %v", errs)
 	}
@@ -52,9 +52,9 @@ func TestParseCues(t *testing.T) {
 	if len(cues) != 4 {
 		t.Fatalf("got %d cues", len(cues))
 	}
-	sway := cues[0]
-	if sway.Sticker != "tree" || sway.Effect != "sway" || !sway.Loop || sway.Intensity != 0.4 || sway.WordIndex != 0 {
-		t.Errorf("sway cue parsed wrong: %+v", sway)
+	float := cues[0]
+	if float.Sticker != "flower" || float.Effect != "float" || !float.Loop || float.Intensity != 0.4 || float.WordIndex != 0 {
+		t.Errorf("float cue parsed wrong: %+v", float)
 	}
 	if cues[1].Repeat != 3 || cues[1].WordIndex != 1 || cues[2].WordIndex != 1 {
 		t.Errorf("go! cues should fire on word 1: %+v %+v", cues[1], cues[2])

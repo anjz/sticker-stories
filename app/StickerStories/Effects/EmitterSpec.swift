@@ -45,17 +45,15 @@ struct EmitterSpec: Decodable {
     static func name(for effect: EffectName) -> String? {
         switch effect {
         case .sparkle: "sparkles"
-        case .puff: "smoke"
         case .hearts: "hearts"
         default: nil
         }
     }
 
-    /// The shape of `emitters.json`: the three emitters (plus a `_comment`
+    /// The shape of `emitters.json`: the two emitters (plus a `_comment`
     /// that is not decoded).
     private struct File: Decodable {
         var sparkles: EmitterSpec
-        var smoke: EmitterSpec
         var hearts: EmitterSpec
     }
 
@@ -69,7 +67,7 @@ struct EmitterSpec: Decodable {
         }
         do {
             let file = try JSONDecoder().decode(File.self, from: data)
-            return ["sparkles": file.sparkles, "smoke": file.smoke, "hearts": file.hearts]
+            return ["sparkles": file.sparkles, "hearts": file.hearts]
         } catch {
             assertionFailure("emitters.json undecodable: \(error)")
             return [:]

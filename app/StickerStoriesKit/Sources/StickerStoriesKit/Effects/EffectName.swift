@@ -1,28 +1,28 @@
 import Foundation
 
-/// The closed library of sticker effects — see `docs/effects.md`.
+/// The closed library of sticker effects — see `docs/effects.md`. Canvas
+/// effects (weather and light over the whole scene) are a separate, equally
+/// closed list: `CanvasEffectName`.
 ///
-/// Exactly fifteen. Adding one later is easy (unknown names are skipped by
+/// Exactly twelve. Adding one later is easy (unknown names are skipped by
 /// older builds, so it is not a breaking change); removing one from shipped
 /// content is not, so do not add casually and never repurpose a name.
+/// `sway`, `blink` and `puff` were removed in 2026-09 — do not reuse them.
 public enum EffectName: String, CaseIterable, Codable, Sendable, Hashable {
-    // Motion (7)
+    // Motion (6)
     case pulse
     case wobble
     case shake
     case hop
     case spin
     case float
-    case sway
-    // Opacity and colour (5)
+    // Opacity and colour (4)
     case fadeIn = "fade-in"
     case fadeOut = "fade-out"
-    case blink
     case glow
     case tint
-    // Particles (3)
+    // Particles (2)
     case sparkle
-    case puff
     case hearts
 
     public enum Category: String, Sendable, Codable {
@@ -33,9 +33,9 @@ public enum EffectName: String, CaseIterable, Codable, Sendable, Hashable {
 
     public var category: Category {
         switch self {
-        case .pulse, .wobble, .shake, .hop, .spin, .float, .sway: .motion
-        case .fadeIn, .fadeOut, .blink, .glow, .tint: .opacityAndColor
-        case .sparkle, .puff, .hearts: .particle
+        case .pulse, .wobble, .shake, .hop, .spin, .float: .motion
+        case .fadeIn, .fadeOut, .glow, .tint: .opacityAndColor
+        case .sparkle, .hearts: .particle
         }
     }
 
@@ -57,8 +57,4 @@ public enum EffectName: String, CaseIterable, Codable, Sendable, Hashable {
 
     /// `tint` has no sensible default colour; a trigger without one is skipped.
     public var requiresColor: Bool { self == .tint }
-
-    /// Effects that flash (hard-edged opacity changes) and are therefore
-    /// rate-limited regardless of accessibility settings.
-    public var isFlashing: Bool { self == .blink }
 }

@@ -148,14 +148,6 @@ struct EffectEvaluatorTests {
         #expect(EffectEvaluator.delta(of: e, at: 1).isIdentity())
     }
 
-    // Blink is hard-edged: only 1 or 1−i, and back to 1 at the cycle end.
-    @Test func blinkIsHardEdged() {
-        let e = effect(.blink, options: EffectOptions(intensity: 1))
-        let values = Set(samples(over: 0.3, count: 60).map { EffectEvaluator.delta(of: e, at: $0).opacityMul })
-        #expect(values == [0, 1])
-        #expect(EffectEvaluator.delta(of: e, at: 0.3).opacityMul == 1)
-    }
-
     @Test func shakeUsesTimeBasedTremblePeriod() {
         let slow = effect(.shake, options: EffectOptions(duration: 1.0, intensity: 1))
         let fast = effect(.shake, options: EffectOptions(duration: 0.5, intensity: 1))
