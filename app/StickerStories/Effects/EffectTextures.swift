@@ -4,7 +4,8 @@ import UIKit
 /// Particle and canvas-effect textures drawn once with CoreGraphics.
 /// Placeholder-art era: swap for PNGs when real art lands, keeping the same
 /// names (`star`, `dot`, `heart` for the emitters in `emitters.json`;
-/// `drop`, `fog`, `ray`, `rainbow`, `vignette` for `CanvasEffectLayer`).
+/// `drop`, `fog`, `ray`, `skyglow`, `rainbow`, `vignette` for
+/// `CanvasEffectLayer`).
 /// `dot` is kept as the generic soft particle even though no emitter uses
 /// it today.
 enum EffectTextures {
@@ -17,6 +18,7 @@ enum EffectTextures {
         case "drop": texture = procedural(width: 6, height: 28, drop)
         case "fog": texture = procedural(width: 256, height: 128, fogBlob)
         case "ray": texture = procedural(width: 64, height: 256, ray)
+        case "skyglow": texture = procedural(width: 4, height: 256, skyGlow)
         case "vignette": texture = procedural(width: 256, height: 256, vignette)
         case "rainbow": texture = drawn(size: CGSize(width: 1024, height: 512), scale: 1) { rect, cg in drawRainbow(in: rect, cg) }
         default:
@@ -91,6 +93,11 @@ enum EffectTextures {
     /// A light ray: a soft band across, fading along its length (top = source).
     private static func ray(_ u: Double, _ v: Double) -> Double {
         bell(u) * pow(1 - v, 1.5)
+    }
+
+    /// Light along the whole top edge, fading downward.
+    private static func skyGlow(_ u: Double, _ v: Double) -> Double {
+        pow(1 - v, 2.5)
     }
 
     /// Opaque at the edges, thinner in the middle: a dimmed room.

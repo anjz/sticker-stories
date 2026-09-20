@@ -137,7 +137,7 @@ or fantastical places) gets no canvas effects at all.
 |---|---|---|---|---|---|---|
 | `fog` | outdoors | Soft mist drifting slowly across the whole scene. | Early morning, a mystery, hush, something hidden then found. Builds slowly — cue it a beat early. | 12 s | 2.5 / 2.5 s | full |
 | `rain` | outdoors | Rain falls over everything; the light cools a little. | Rain in the story: pitter-patter, puddles, sheltering. `intensity` is drizzle to downpour. | 10 s | 1.2 / 1.5 s | runs at ≤0.4 |
-| `sunshine` | outdoors | Warm light rays from the top corner, gently swaying. | The sun comes out, a warm afternoon, waking up, a happy ending after rain. | 8 s | 1.5 / 1.5 s | full |
+| `sunshine` | outdoors | Warm light across the top of the scene, soft shafts drifting down. | The sun comes out, a warm afternoon, waking up, a happy ending after rain. | 8 s | 1.5 / 1.5 s | full |
 | `rainbow` | outdoors | A soft rainbow arcs across the sky behind the scenery. | The reward after rain, a wish come true, a wonder everyone looks up at. One per story at most. | 8 s | 2 / 2 s | full |
 | `dimlight` | indoors | The lights go low: the scene darkens toward its edges. | Bedtime, a lamp switched low, a cosy evening, a whispered secret. Never darkness as a threat. | 8 s | 1.5 / 1.5 s | full |
 
@@ -255,7 +255,7 @@ frame from the narrator's playback time (`Narrator.playbackTime`,
 interpolated between resyncs), renders glow from a cached blurred mask,
 drives two particle emitters (`sparkles`, `hearts`) defined in
 `app/StickerStories/Effects/emitters.json`, and renders canvas effects in
-`CanvasEffectLayer` (a rain emitter, drifting fog sprites, sun rays, a
+`CanvasEffectLayer` (a rain emitter, drifting fog sprites, a sky glow with light shafts, a
 rainbow arc and a vignette, all procedurally textured, sized to the pack's
 art frame — the tuning numbers live in that file). The DEBUG-only gallery
 (Settings → Effects gallery in debug builds) plays every sticker effect on

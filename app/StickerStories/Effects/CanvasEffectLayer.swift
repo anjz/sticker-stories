@@ -36,16 +36,19 @@ final class CanvasEffectLayer: SKNode {
     private let rain = SKEmitterNode()
     private let rainWash = SKSpriteNode()
 
-    // Sunshine: a warm wash plus rays fanning from the top-left corner.
-    private struct Ray {
+    // Sunshine: a warm wash, a glow along the whole top edge and a few broad
+    // shafts hanging from it — the art's own sun can be in any corner.
+    private struct Shaft {
         let node: SKSpriteNode
+        let x: CGFloat  // fraction of the world width, along the top edge
         let angle: CGFloat  // radians, clockwise from straight down
         let width: CGFloat  // fraction of the world height
         let period: Double
         let phase: Double
     }
     private let sunWash = SKSpriteNode()
-    private var rays: [Ray] = []
+    private let skyGlow = SKSpriteNode()
+    private var shafts: [Shaft] = []
 
     private let rainbow = SKSpriteNode()
     private let dim = SKSpriteNode()
@@ -125,19 +128,28 @@ final class CanvasEffectLayer: SKNode {
         sunWash.zPosition = Self.overlayZ
         sunWash.alpha = 0
         addChild(sunWash)
-        let layout: [(CGFloat, CGFloat, Double, Double)] = [
-            (16, 0.09, 9.0, 0.0), (30, 0.17, 11.0, 1.3), (44, 0.11, 8.0, 2.9), (57, 0.20, 12.5, 4.1), (70, 0.10, 10.0, 0.7),
+        skyGlow.texture = EffectTextures.texture(named: "skyglow")
+        skyGlow.anchorPoint = CGPoint(x: 0.5, y: 1)  // hangs from the top edge
+        skyGlow.color = UIColor(red: 1.0, green: 0.8, blue: 0.4, alpha: 1)
+        skyGlow.colorBlendFactor = 1
+        skyGlow.blendMode = .add
+        skyGlow.zPosition = Self.overlayZ + 1
+        skyGlow.alpha = 0
+        addChild(skyGlow)
+        let layout: [(CGFloat, CGFloat, CGFloat, Double, Double)] = [
+            (0.10, 9, 0.16, 9.0, 0.0), (0.30, -5, 0.24, 11.0, 1.3), (0.50, 3, 0.18, 8.0, 2.9),
+            (0.70, -8, 0.26, 12.5, 4.1), (0.90, 6, 0.16, 10.0, 0.7),
         ]
-        for (degrees, width, period, phase) in layout {
+        for (x, degrees, width, period, phase) in layout {
             let node = SKSpriteNode(texture: EffectTextures.texture(named: "ray"))
-            node.anchorPoint = CGPoint(x: 0.5, y: 1)  // hangs from the sun
-            node.color = UIColor(red: 1.0, green: 0.88, blue: 0.55, alpha: 1)
+            node.anchorPoint = CGPoint(x: 0.5, y: 1)
+            node.color = UIColor(red: 1.0, green: 0.9, blue: 0.6, alpha: 1)
             node.colorBlendFactor = 1
             node.blendMode = .add
             node.zPosition = Self.overlayZ + 1
             node.alpha = 0
             addChild(node)
-            rays.append(Ray(node: node, angle: degrees * .pi / 180, width: width, period: period, phase: phase))
+            shafts.append(Shaft(node: node, x: x, angle: degrees * .pi / 180, width: width, period: period, phase: phase))
         }
     }
 
@@ -171,16 +183,20 @@ final class CanvasEffectLayer: SKNode {
 
         sunWash.size = rainWash.size
         sunWash.position = center
-        let sun = CGPoint(x: world.minX + w * 0.1, y: world.maxY + h * 0.03)
-        for ray in rays {
-            ray.node.position = sun
-            ray.node.size = CGSize(width: h * ray.width, height: h * 1.7)
+        skyGlow.size = CGSize(width: w * 1.04, height: h * 0.6)
+        skyGlow.position = CGPoint(x: world.midX, y: world.maxY + h * 0.01)
+        for shaft in shafts {
+            shaft.node.position = CGPoint(x: world.minX + w * shaft.x, y: world.maxY + h * 0.02)
+            shaft.node.size = CGSize(width: h * shaft.width, height: h * 1.15)
         }
 
-        // A wide arc whose centre sits below the scene, so only the top of
-        // it shows — high in the sky, clearing the horizon at the edges.
-        rainbow.size = CGSize(width: w * 1.7, height: w * 0.85)
-        rainbow.position = CGPoint(x: world.midX, y: world.minY - h * 0.25)
+        // A wide arc sized by the height (so it sits at the same height on
+        // the wide phone art) whose centre is below the scene: only the
+        // top of it shows, peaking just under the top edge.
+        let radius = h * 1.1
+        let textureHeight = radius / 0.98  // the texture's outer edge is 98 % of its height
+        rainbow.size = CGSize(width: textureHeight * 2, height: textureHeight)
+        rainbow.position = CGPoint(x: world.midX, y: world.minY - h * 0.17)
 
         dim.size = CGSize(width: w * 1.04, height: h * 1.04)
         dim.position = center
@@ -213,10 +229,11 @@ final class CanvasEffectLayer: SKNode {
 
         let sunStrength = strengths[.sunshine] ?? 0
         sunWash.alpha = sunStrength * 0.12
-        for ray in rays {
-            let sway = sin(2 * .pi * time / ray.period + ray.phase)
-            ray.node.zRotation = -(ray.angle + 1.5 * .pi / 180 * sway)  // clockwise from straight down
-            ray.node.alpha = sunStrength * (0.5 + 0.1 * sway)
+        skyGlow.alpha = sunStrength * (0.24 + 0.04 * sin(2 * .pi * time / 7))
+        for shaft in shafts {
+            let sway = sin(2 * .pi * time / shaft.period + shaft.phase)
+            shaft.node.zRotation = -(shaft.angle + 1.5 * .pi / 180 * sway)  // clockwise from straight down
+            shaft.node.alpha = sunStrength * (0.3 + 0.08 * sway)
         }
 
         rainbow.alpha = (strengths[.rainbow] ?? 0) * 0.72
