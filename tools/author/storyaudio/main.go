@@ -644,7 +644,7 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 			triggers[i].At = roundCs(triggers[i].At + r.leadIn())
 		}
 	}
-	sidecar, err := render.EncodeSidecar(triggers, r.c.declared)
+	sidecar, err := render.EncodeSidecar(triggers, r.c.declared, r.c.pack.EffectiveSetting())
 	if err != nil {
 		return false, err
 	}

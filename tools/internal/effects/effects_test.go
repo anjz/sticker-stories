@@ -58,7 +58,7 @@ func TestValidFileHasNoErrors(t *testing.T) {
 	  { "at": 41.5, "sticker": "fox", "effect": "fade-out", "hold": true },
 	  { "at": 5, "sticker": "fox", "effect": "tint", "color": "#FF0000", "duration": 0.2 }
 	] }`)
-	if errs := Validate(data, set("fox", "tree")); len(errs) != 0 {
+	if errs := Validate(data, set("fox", "tree"), "outdoors"); len(errs) != 0 {
 		t.Fatalf("unexpected errors: %v", errs)
 	}
 }
@@ -93,7 +93,7 @@ func TestValidationFailures(t *testing.T) {
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			errs := Validate([]byte(tc.json), set("fox", "tree"))
+			errs := Validate([]byte(tc.json), set("fox", "tree"), "outdoors")
 			if len(errs) == 0 {
 				t.Fatalf("expected an error containing %q, got none", tc.want)
 			}

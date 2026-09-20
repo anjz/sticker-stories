@@ -185,14 +185,15 @@ func Triggers(cues []story.Cue, tl *Timeline) []Trigger {
 	return out
 }
 
-// EncodeSidecar serialises and strictly validates a sidecar.
-func EncodeSidecar(triggers []Trigger, declared map[string]bool) ([]byte, error) {
+// EncodeSidecar serialises and strictly validates a sidecar for a pack
+// with the given declared stickers and setting.
+func EncodeSidecar(triggers []Trigger, declared map[string]bool, setting string) ([]byte, error) {
 	data, err := json.MarshalIndent(Sidecar{Schema: effects.SupportedSchema, Triggers: triggers}, "", "  ")
 	if err != nil {
 		return nil, err
 	}
 	data = append(data, '\n')
-	if errs := effects.Validate(data, declared); len(errs) > 0 {
+	if errs := effects.Validate(data, declared, setting); len(errs) > 0 {
 		return nil, fmt.Errorf("sidecar invalid: %v", errs)
 	}
 	return data, nil

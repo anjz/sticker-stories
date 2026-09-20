@@ -46,7 +46,7 @@ func TestTriggersAndSounds(t *testing.T) {
 	if tr[3].Cue != "ay" || tr[3].At <= tr[2].At {
 		t.Errorf("trailing cue should fire on last word: %+v", tr[3])
 	}
-	data, err := EncodeSidecar(tr, map[string]bool{"tree": true, "fox": true})
+	data, err := EncodeSidecar(tr, map[string]bool{"tree": true, "fox": true}, "outdoors")
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -52,17 +52,18 @@ func set(items ...string) map[string]bool {
 }
 
 // ValidateFile reads and strictly validates a trigger sidecar. declared
-// maps sticker IDs the pack defines. Every problem found is returned.
-func ValidateFile(path string, declared map[string]bool) []error {
+// maps sticker IDs the pack defines; setting is the pack's setting
+// (docs/pack-format.md). Every problem found is returned.
+func ValidateFile(path string, declared map[string]bool, setting string) []error {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return []error{fmt.Errorf("reading effects file: %w", err)}
 	}
-	return Validate(data, declared)
+	return Validate(data, declared, setting)
 }
 
 // Validate strictly validates the raw JSON of a trigger sidecar.
-func Validate(data []byte, declared map[string]bool) []error {
+func Validate(data []byte, declared map[string]bool, setting string) []error {
 	var errs []error
 	fail := func(format string, args ...any) {
 		errs = append(errs, fmt.Errorf(format, args...))

@@ -24,6 +24,7 @@ func validManifest(t *testing.T, dir string) *Manifest {
 		Languages:     []string{"en-US", "es-ES"},
 		DisplayName:   text("Forest Friends", "Amigos del Bosque"),
 		Theme:         "forest",
+		Setting:       "outdoors",
 		Background:    "art/background.png",
 		Foreground:    "art/foreground.png",
 		Stickers: []Sticker{
@@ -106,6 +107,12 @@ func TestLoadRoundTrip(t *testing.T) {
 	if loaded.Stories[0].Localizations["es-ES"].Title != "La seta tímida" {
 		t.Errorf("Spanish localization lost: %+v", loaded.Stories[0].Localizations)
 	}
+	if loaded.Setting != "outdoors" || loaded.EffectiveSetting() != "outdoors" {
+		t.Errorf("setting lost: %q", loaded.Setting)
+	}
+	if (&Manifest{}).EffectiveSetting() != "none" {
+		t.Errorf("absent setting should read as none")
+	}
 }
 
 func TestLoadRejectsBadJSON(t *testing.T) {
@@ -127,6 +134,7 @@ func TestValidationFailures(t *testing.T) {
 		{"unsupported schema version", func(m *Manifest) { m.SchemaVersion = 1 }, "schemaVersion"},
 		{"bad pack id", func(m *Manifest) { m.ID = "Forest Pack!" }, "pack id"},
 		{"zero version", func(m *Manifest) { m.Version = 0 }, "version"},
+		{"unknown setting", func(m *Manifest) { m.Setting = "underwater" }, "setting"},
 		{"no languages", func(m *Manifest) { m.Languages = nil }, "languages must not be empty"},
 		{"malformed language", func(m *Manifest) { m.Languages[0] = "english" }, "well-formed"},
 		{"duplicate language", func(m *Manifest) { m.Languages = []string{"en-US", "en-US"} }, "duplicate language"},
