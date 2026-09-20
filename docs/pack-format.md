@@ -23,7 +23,7 @@ picks the best match for the device (see "Language resolution" below).
     <stickerID>.png       # sticker art, alpha background, white border baked in
   audio/
     <lang>/<storyID>.m4a           # pre-rendered narration, AAC, one folder per language
-    <lang>/<storyID>.effects.json  # optional sticker-effect triggers for that narration
+    <lang>/<storyID>.effects.json  # optional effect triggers (sticker + canvas) for that narration
 ```
 
 The `audio/<lang>/…` layout is a convention, not a rule — audio paths are
@@ -132,7 +132,7 @@ never letterboxes:
 | `…localizations[].title` | string | Short story title in that language (parent-facing; not read to the child). |
 | `…localizations[].text` | string | Full story text in that language. **Required** — the portable representation for future TTS/LLM narrators. |
 | `…localizations[].audio` | string | Pack-relative path to that language's pre-rendered narration; must exist. |
-| `…localizations[].effects` | string | **Optional.** Pack-relative path to that language's sticker-effect trigger sidecar (`docs/effects.md`); must exist and pass strict validation. Omit for no effects. |
+| `…localizations[].effects` | string | **Optional.** Pack-relative path to that language's effect trigger sidecar — sticker and canvas effects (`docs/effects.md`); must exist and pass strict validation. Omit for no effects. |
 
 ### Validation rules (enforced by BOTH the Go packager and the Swift decoder)
 
