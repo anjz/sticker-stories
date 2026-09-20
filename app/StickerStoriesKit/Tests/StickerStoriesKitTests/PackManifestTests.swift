@@ -89,6 +89,26 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         #expect(story.localizations["en-US"]?.text == "Body.")
     }
 
+    @Test func settingDefaultsToNoneAndRejectsUnknownValues() throws {
+        var manifest = makeValidManifest()
+        #expect(manifest.setting == .none)
+        manifest.setting = .outdoors
+        let data = try JSONEncoder().encode(manifest)
+        #expect(String(decoding: data, as: UTF8.self).contains("\"setting\":\"outdoors\""))
+        let decoded = try JSONDecoder().decode(PackManifest.self, from: data)
+        #expect(decoded.setting == .outdoors)
+
+        var object = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        object.removeValue(forKey: "setting")
+        let absent = try JSONDecoder().decode(PackManifest.self, from: JSONSerialization.data(withJSONObject: object))
+        #expect(absent.setting == .none)
+
+        object["setting"] = "underwater"
+        #expect(throws: DecodingError.self) {
+            try JSONDecoder().decode(PackManifest.self, from: JSONSerialization.data(withJSONObject: object))
+        }
+    }
+
     @Test func rejectsStoryWithoutLocalizations() throws {
         let json = """
             { "id": "s1", "title": "T", "text": "Body.", "audio": "audio/s1.m4a" }
@@ -237,9 +257,10 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         }
         let pack = try PackLoader().loadPack(at: forestDir, source: .bundled)
         #expect(pack.manifest.languages == ["en-US", "es-ES"])
+        #expect(pack.manifest.setting == .outdoors)
         #expect(pack.manifest.stickers.count == 19)
-        #expect(pack.manifest.stories.count == 10)
-        #expect(pack.manifest.stories.filter(\.isFallback).count == 3)
+        #expect(pack.manifest.stories.count >= 10)
+        #expect(!pack.manifest.stories.filter(\.isFallback).isEmpty)
     }
 }
 

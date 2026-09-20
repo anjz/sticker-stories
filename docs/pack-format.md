@@ -70,6 +70,7 @@ never letterboxes:
   "languages": ["en-US", "es-ES"],
   "displayName": { "en-US": "Forest Friends", "es-ES": "Amigos del Bosque" },
   "theme": "forest",
+  "setting": "outdoors",
   "background": "art/background.png",
   "foreground": "art/foreground.png",
   "backgroundWide": "art/background-wide.png",
@@ -116,6 +117,7 @@ never letterboxes:
 | `languages` | [string] | BCP-47 tags (`xx` or `xx-YY`, e.g. `en-US`), non-empty, no duplicates. **The first entry is the pack's fallback language.** |
 | `displayName` | {lang: string} | Human-readable name per language, shown to parents. |
 | `theme` | string | Free-form theme tag; future prompt context for generated stories. |
+| `setting` | string | **Optional**, default `none`. Where the scene takes place: `outdoors`, `indoors` or `none`. Decides which canvas effects (`docs/effects.md`, "Canvas effects") the pack's stories may use — `outdoors` unlocks fog, rain, sunshine and rainbow; `indoors` unlocks dimlight; `none` allows no canvas effects. Story tooling reads it when authoring. |
 | `background` / `foreground` | string | Pack-relative paths; files must exist. Their frame is the sticker coordinate system ("Art safe area" below). |
 | `backgroundWide` / `foregroundWide` | string | **Optional, together or not at all.** Wider renditions (e.g. 2:1) with the **same pixel height** as the base art and the base art **centred** inside. The app draws whichever rendition lets a landscape window avoid panning with the least crop (tall phones get the wide one; iPads keep the base one). Files must exist. |
 | `stickers[].id` | string | Lowercase `a-z0-9-`, unique within the pack. |
@@ -150,12 +152,14 @@ never letterboxes:
 7. **At least one fallback story** (`requiredStickers` empty) — play must
    never fail regardless of canvas contents.
 8. `weight > 0`, `version ≥ 1`; every `displayName`/`name`/`title`/`text`
-   value non-empty.
+   value non-empty; `setting`, when present, is one of `outdoors`,
+   `indoors`, `none`.
 9. Every declared effects sidecar is valid per `docs/effects.md` ("Trigger
    file"): the packager validates it **strictly** (unknown effect names,
-   unknown keys, out-of-range numbers and undeclared stickers are errors);
-   the app decodes it **leniently** (skip / clamp / log) so a pack authored
-   against a newer library still plays with fewer effects.
+   unknown keys, out-of-range numbers, undeclared stickers and canvas
+   effects that do not suit the pack's `setting` are errors); the app
+   decodes it **leniently** (skip / clamp / log) so a pack authored against
+   a newer library still plays with fewer effects.
 10. `backgroundWide` and `foregroundWide` are declared together or not at
     all, and exist when declared. Their pixel dimensions are the pack
     author's responsibility (same height as the base art, base centred).
@@ -183,6 +187,7 @@ same device preference.
   `title`/`text`/`audio` moved into `localizations`. v1 packs are not
   supported (none shipped). 2026-09: optional `localizations[].effects`
   and optional `backgroundWide` / `foregroundWide` added (additive, no
+  bump); optional `setting` added (additive, defaults to `none`, no
   bump).
 - Any schema change must update this document, the Go validator
   (`tools/internal/manifest`), and the Swift decoder in the **same commit**.

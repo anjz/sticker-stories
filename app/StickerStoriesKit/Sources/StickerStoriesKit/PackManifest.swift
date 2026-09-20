@@ -1,5 +1,15 @@
 import Foundation
 
+/// Where a pack's scene takes place. Decides which canvas effects (weather
+/// and light over the whole scene, `docs/effects.md`) suit its stories:
+/// `outdoors` packs can rain, `indoors` packs can dim the lights, `none`
+/// (the default — abstract or fantastical places) gets no canvas effects.
+public enum PackSetting: String, Codable, Sendable, CaseIterable {
+    case outdoors
+    case indoors
+    case none
+}
+
 /// Decoded `manifest.json` of a sticker pack.
 ///
 /// This is the Swift half of the schema contract in `docs/pack-format.md`;
@@ -20,6 +30,8 @@ public struct PackManifest: Codable, Equatable, Sendable {
     public var languages: [String]
     public var displayName: [String: String]
     public var theme: String
+    /// Optional in the file (absent ⇒ `.none`); always written back.
+    public var setting: PackSetting
     public var background: String
     public var foreground: String
     /// Optional wider renditions of the art for wide windows (iPhone): same
@@ -32,8 +44,9 @@ public struct PackManifest: Codable, Equatable, Sendable {
 
     public init(
         schemaVersion: Int, id: String, version: Int, languages: [String],
-        displayName: [String: String], theme: String, background: String,
-        foreground: String, backgroundWide: String? = nil, foregroundWide: String? = nil,
+        displayName: [String: String], theme: String, setting: PackSetting = .none,
+        background: String, foreground: String,
+        backgroundWide: String? = nil, foregroundWide: String? = nil,
         stickers: [StickerDefinition], stories: [StoryDefinition]
     ) {
         self.schemaVersion = schemaVersion
@@ -42,12 +55,44 @@ public struct PackManifest: Codable, Equatable, Sendable {
         self.languages = languages
         self.displayName = displayName
         self.theme = theme
+        self.setting = setting
         self.background = background
         self.foreground = foreground
         self.backgroundWide = backgroundWide
         self.foregroundWide = foregroundWide
         self.stickers = stickers
         self.stories = stories
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case schemaVersion, id, version, languages, displayName, theme, setting
+        case background, foreground, backgroundWide, foregroundWide, stickers, stories
+    }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        schemaVersion = try c.decode(Int.self, forKey: .schemaVersion)
+        id = try c.decode(String.self, forKey: .id)
+        version = try c.decode(Int.self, forKey: .version)
+        languages = try c.decode([String].self, forKey: .languages)
+        displayName = try c.decode([String: String].self, forKey: .displayName)
+        theme = try c.decode(String.self, forKey: .theme)
+        if let raw = try c.decodeIfPresent(String.self, forKey: .setting) {
+            guard let value = PackSetting(rawValue: raw) else {
+                throw DecodingError.dataCorruptedError(
+                    forKey: .setting, in: c,
+                    debugDescription: "setting must be one of \(PackSetting.allCases.map(\.rawValue)), got \"\(raw)\"")
+            }
+            setting = value
+        } else {
+            setting = .none
+        }
+        background = try c.decode(String.self, forKey: .background)
+        foreground = try c.decode(String.self, forKey: .foreground)
+        backgroundWide = try c.decodeIfPresent(String.self, forKey: .backgroundWide)
+        foregroundWide = try c.decodeIfPresent(String.self, forKey: .foregroundWide)
+        stickers = try c.decode([StickerDefinition].self, forKey: .stickers)
+        stories = try c.decode([StoryDefinition].self, forKey: .stories)
     }
 
     /// The pack's name in the given language, falling back through the

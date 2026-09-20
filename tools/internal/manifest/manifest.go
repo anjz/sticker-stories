@@ -11,6 +11,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"strings"
 
 	"stickerstories/tools/internal/effects"
@@ -18,6 +19,11 @@ import (
 
 // SupportedSchemaVersion is the only schema version this validator accepts.
 const SupportedSchemaVersion = 2
+
+// Settings lists the values a pack's "setting" may take: where its scene
+// takes place, which decides the canvas effects its stories may use
+// (docs/effects.md). Absent ⇒ "none".
+var Settings = []string{"outdoors", "indoors", "none"}
 
 // Manifest is the root of a pack's manifest.json.
 type Manifest struct {
@@ -27,6 +33,7 @@ type Manifest struct {
 	Languages     []string          `json:"languages"`
 	DisplayName   map[string]string `json:"displayName"`
 	Theme         string            `json:"theme"`
+	Setting       string            `json:"setting,omitempty"` // one of Settings; "" ⇒ "none"
 	Background    string            `json:"background"`
 	Foreground    string            `json:"foreground"`
 	// Optional wider renditions for wide windows (iPhone): same pixel height
@@ -63,6 +70,14 @@ type StoryLocalization struct {
 	Text    string `json:"text"`
 	Audio   string `json:"audio"`
 	Effects string `json:"effects,omitempty"`
+}
+
+// EffectiveSetting returns the pack's setting, defaulting to "none".
+func (m *Manifest) EffectiveSetting() string {
+	if m.Setting == "" {
+		return "none"
+	}
+	return m.Setting
 }
 
 // EffectiveWeight returns the story's selection weight, defaulting to 1.0.
@@ -115,6 +130,9 @@ func (m *Manifest) Validate(dir string) []error {
 	}
 	if m.Version < 1 {
 		fail("version must be >= 1, got %d", m.Version)
+	}
+	if m.Setting != "" && !slices.Contains(Settings, m.Setting) {
+		fail("setting %q must be one of %s", m.Setting, strings.Join(Settings, ", "))
 	}
 
 	// Rule 3: declared languages.
@@ -229,7 +247,7 @@ func (m *Manifest) Validate(dir string) []error {
 				before := len(errs)
 				checkFile(locName+" effects", loc.Effects)
 				if len(errs) == before {
-					for _, err := range effects.ValidateFile(filepath.Join(dir, filepath.FromSlash(loc.Effects)), stickerIDs) {
+					for _, err := range effects.ValidateFile(filepath.Join(dir, filepath.FromSlash(loc.Effects)), stickerIDs, m.EffectiveSetting()) {
 						fail("%s effects: %v", locName, err)
 					}
 				}

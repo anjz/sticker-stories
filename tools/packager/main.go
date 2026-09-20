@@ -44,6 +44,6 @@ func main() {
 			fallbacks++
 		}
 	}
-	fmt.Printf("✓ pack %q v%d: %d stickers, %d stories (%d fallback(s))\n",
-		m.ID, m.Version, len(m.Stickers), len(m.Stories), fallbacks)
+	fmt.Printf("✓ pack %q v%d (%s): %d stickers, %d stories (%d fallback(s))\n",
+		m.ID, m.Version, m.EffectiveSetting(), len(m.Stickers), len(m.Stories), fallbacks)
 }
