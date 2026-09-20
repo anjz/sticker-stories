@@ -59,7 +59,7 @@ public struct CanvasEffectDefinition: Sendable {
             summary: "Rain falls over everything; the light cools a little."),
         CanvasEffectDefinition(
             name: .sunshine, defaultDuration: 8, rampIn: 1.5, rampOut: 1.5,
-            summary: "Warm light rays from the top corner, gently swaying."),
+            summary: "Warm light across the top of the scene, soft shafts drifting down."),
         CanvasEffectDefinition(
             name: .rainbow, defaultDuration: 8, rampIn: 2.0, rampOut: 2.0,
             summary: "A soft rainbow arcs across the sky behind the scenery."),
