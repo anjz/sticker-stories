@@ -51,6 +51,27 @@ struct EffectTriggerTests {
         #expect(f.warnings.count == 9)
     }
 
+    @Test func decodesCanvasTriggersFromTheSameList() throws {
+        let f = try file("""
+            { "schema": 1, "triggers": [
+              { "at": 4.5, "cue": "rain", "effect": "rain", "intensity": 0.8, "duration": 20 },
+              { "at": 1.0, "sticker": "fox", "effect": "hop" },
+              { "at": 2.0, "effect": "fog" },
+              { "at": 3.0, "effect": "dimlight", "sticker": "fox", "repeat": 2, "hold": true, "color": "#FFFFFF" },
+              { "at": 9.0, "effect": "rainbow", "duration": 500, "intensity": 2 },
+              { "effect": "sunshine" }
+            ] }
+            """)
+        #expect(f.triggers.count == 1 && f.triggers[0].effect == .hop)
+        #expect(f.canvasTriggers.map(\.effect) == [.fog, .dimlight, .rain, .rainbow])  // sorted by time
+        let rain = f.canvasTriggers[2]
+        #expect(rain.at == 4.5 && rain.cue == "rain" && rain.options == CanvasEffectOptions(intensity: 0.8, duration: 20))
+        #expect(f.canvasTriggers[0].options == CanvasEffectOptions())
+        #expect(f.canvasTriggers[3].options == CanvasEffectOptions(intensity: 1, duration: 120))  // clamped
+        // Four ignored sticker keys on dimlight, two clamps on rainbow, one missing `at`.
+        #expect(f.warnings.count == 7)
+    }
+
     @Test func malformedJSONAndWrongShapesThrow() {
         #expect(throws: EffectTriggerFile.DecodingError.self) { try file("{ not json") }
         #expect(throws: EffectTriggerFile.DecodingError.self) { try file("[]") }

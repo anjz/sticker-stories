@@ -38,4 +38,20 @@ public struct EffectPolicy: Equatable, Sendable {
         if calmMode { result.intensity *= calmIntensityMultiplier }
         return result
     }
+
+    /// The canvas-effect options to actually run with, or `nil` to drop the
+    /// effect. Rain is the only fast-moving one; the rest are slow washes
+    /// of light that carry story meaning and run in full.
+    public func adjusted(_ name: CanvasEffectName, _ options: CanvasEffectOptions) -> CanvasEffectOptions? {
+        guard isCalm else { return options }
+        var result = options
+        switch name {
+        case .rain:
+            result.intensity = min(result.intensity, 0.4)
+        case .fog, .sunshine, .rainbow, .dimlight:
+            break
+        }
+        if calmMode { result.intensity *= calmIntensityMultiplier }
+        return result
+    }
 }

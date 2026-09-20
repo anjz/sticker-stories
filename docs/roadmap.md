@@ -64,6 +64,21 @@
 - [ ] Story authoring step 2: ElevenLabs narration + SFX from `story.json`,
       cue → `at` alignment from word timestamps, manifest/sidecar export
 
+## Iteration 1.7 — effects revision (2026-09-20)
+
+- [x] Sticker library simplified to 12 (`sway`, `blink`, `puff` removed);
+      Forest content stripped of them
+- [x] Pack `setting` (`outdoors` / `indoors` / `none`, Forest = outdoors)
+- [x] Canvas effects: `fog`, `rain`, `sunshine`, `rainbow` (outdoors) and
+      `dimlight` (indoors), `intensity` + `duration`, same sidecar, gated by
+      the setting; Kit evaluator/runner with tests, `CanvasEffectLayer` in
+      the scene, gallery coverage
+- [x] Authoring pipeline knows both: `{canvas:rain}` cues, storycheck
+      setting checks + effect-usage table, storyaudio emits canvas triggers,
+      skill brief updated (occasional, setting-aware)
+- [ ] Forest: re-author stories with the new library (canvas effects where
+      the weather calls for them)
+
 ## Iteration 2 — proposed
 
 - [ ] Second pack ("Meadow") as a purchasable IAP end-to-end in the StoreKit
