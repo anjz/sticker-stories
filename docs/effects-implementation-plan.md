@@ -5,6 +5,16 @@ with one addition: the story provider excludes stories whose sidecar fails
 to decode (§3.6) and falls back to playing them without effects when nothing
 else is left. The authoring-facing reference is `docs/effects.md`.
 
+Revision 2026-09-20 (not reflected in the plan below, which is kept as
+written): the sticker library shrank to 12 (`sway`, `blink`, `puff`
+removed), and **canvas effects** arrived as a sibling system — a closed
+list of five scene-wide weather/light effects (`CanvasEffectName`), a pure
+envelope evaluator and runner (`CanvasEffectsRunner`, same tick/seek
+contract as the sticker runner), triggers in the same sidecar list with no
+`sticker`, gated by the new pack `setting`, rendered by
+`app/StickerStories/Effects/CanvasEffectLayer.swift`. The gallery covers
+both.
+
 This document answers one question: how does the spec's target design map
 onto the code that already exists, and where does it have to deviate?
 

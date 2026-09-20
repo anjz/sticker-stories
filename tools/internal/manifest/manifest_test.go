@@ -242,4 +242,18 @@ func TestEffectsSidecarIsValidatedStrictly(t *testing.T) {
 			t.Errorf("error not attributed to the localization: %v", e)
 		}
 	}
+
+	// Canvas triggers must suit the pack's setting (outdoors here).
+	canvas := `{"schema": 1, "triggers": [{"at": 2, "effect": "rain", "duration": 15}, {"at": 9, "effect": "dimlight"}]}`
+	if err := os.WriteFile(sidecar, []byte(canvas), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	errs = m.Validate(dir)
+	if len(errs) != 1 || !strings.Contains(errs[0].Error(), "dimlight") {
+		t.Fatalf("expected one setting error about dimlight, got %v", errs)
+	}
+	m.Setting = ""
+	if errs := m.Validate(dir); len(errs) != 2 {
+		t.Fatalf("a pack without a setting allows no canvas effects; got %v", errs)
+	}
 }

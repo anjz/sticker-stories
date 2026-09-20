@@ -1,11 +1,12 @@
-// Package effects validates a story's sticker-effect trigger sidecar
+// Package effects validates a story's effect trigger sidecar
 // (docs/effects.md, "Trigger file"). It is the authoring-time, strict half
 // of the contract: the app decodes the same file leniently (skip/clamp/log),
 // so anything this package rejects would merely be ignored on device — but
 // silently broken content is exactly what validation exists to catch.
 //
-// The effect library itself is closed (12 names). docs/effects/effects.json
-// is the shared catalogue; a test checks the names here match it.
+// The libraries are closed: 12 sticker effects (Names) and 5 canvas effects
+// (CanvasNames), each suited to a pack setting. docs/effects/effects.json is
+// the shared catalogue; a test checks the names here match it.
 package effects
 
 import (
@@ -15,6 +16,7 @@ import (
 	"os"
 	"regexp"
 	"sort"
+	"strings"
 )
 
 // SupportedSchema is the only trigger-file schema this validator accepts.
@@ -27,21 +29,52 @@ var Names = []string{
 	"sparkle", "hearts",
 }
 
+// CanvasNames lists every canvas effect (weather and light over the whole
+// scene), in library order.
+var CanvasNames = []string{"fog", "rain", "sunshine", "rainbow", "dimlight"}
+
+// CanvasSettings maps each canvas effect to the pack settings it suits
+// (docs/pack-format.md, "setting"). A pack whose setting is "none" gets no
+// canvas effects.
+var CanvasSettings = map[string][]string{
+	"fog":      {"outdoors"},
+	"rain":     {"outdoors"},
+	"sunshine": {"outdoors"},
+	"rainbow":  {"outdoors"},
+	"dimlight": {"indoors"},
+}
+
 var (
-	oneWay        = set("fade-in", "fade-out")
-	supportsHold  = set("fade-in", "fade-out", "glow", "tint")
-	readsColor    = set("glow", "tint", "sparkle")
-	requiresColor = set("tint")
-	known         = set(Names...)
-	knownKeys     = set("at", "cue", "sticker", "effect", "repeat", "duration", "intensity", "color", "hold")
-	colorPattern  = regexp.MustCompile(`^#[0-9A-Fa-f]{6}$`)
+	oneWay          = set("fade-in", "fade-out")
+	supportsHold    = set("fade-in", "fade-out", "glow", "tint")
+	readsColor      = set("glow", "tint", "sparkle")
+	requiresColor   = set("tint")
+	known           = set(Names...)
+	knownCanvas     = set(CanvasNames...)
+	knownKeys       = set("at", "cue", "sticker", "effect", "repeat", "duration", "intensity", "color", "hold")
+	knownCanvasKeys = set("at", "cue", "effect", "intensity", "duration")
+	colorPattern    = regexp.MustCompile(`^#[0-9A-Fa-f]{6}$`)
 )
 
 const (
 	MaxRepeat   = 50
 	MinDuration = 0.05
 	MaxDuration = 30.0
+	// Canvas effects stay on for whole beats or whole stories.
+	CanvasMinDuration = 1.0
+	CanvasMaxDuration = 120.0
 )
+
+// SuitsSetting reports whether a canvas effect may be used in a pack with
+// the given setting.
+func SuitsSetting(canvasEffect, setting string) bool {
+	for _, s := range CanvasSettings[canvasEffect] {
+		if s == setting {
+			return true
+		}
+	}
+	return false
+}
 
 func set(items ...string) map[string]bool {
 	m := make(map[string]bool, len(items))
@@ -62,7 +95,9 @@ func ValidateFile(path string, declared map[string]bool, setting string) []error
 	return Validate(data, declared, setting)
 }
 
-// Validate strictly validates the raw JSON of a trigger sidecar.
+// Validate strictly validates the raw JSON of a trigger sidecar. declared
+// maps the pack's sticker IDs (nil skips that check); setting is the pack's
+// setting, which every canvas trigger must suit.
 func Validate(data []byte, declared map[string]bool, setting string) []error {
 	var errs []error
 	fail := func(format string, args ...any) {
@@ -107,18 +142,30 @@ func Validate(data []byte, declared map[string]bool, setting string) []error {
 			fail("%s: must be an object", label)
 			continue
 		}
+		// One list, two kinds: the effect name says which.
+		if raw, ok := fields["effect"]; ok {
+			var name string
+			if json.Unmarshal(raw, &name) == nil && knownCanvas[name] {
+				validateCanvasTrigger(label, name, fields, setting, fail)
+				continue
+			}
+		}
 		validateTrigger(label, fields, declared, fail)
 	}
 	return errs
 }
 
-func validateTrigger(label string, fields map[string]json.RawMessage, declared map[string]bool, fail func(string, ...any)) {
+func sortedKeys(fields map[string]json.RawMessage) []string {
 	keys := make([]string, 0, len(fields))
 	for k := range fields {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)
-	for _, k := range keys {
+	return keys
+}
+
+func validateTrigger(label string, fields map[string]json.RawMessage, declared map[string]bool, fail func(string, ...any)) {
+	for _, k := range sortedKeys(fields) {
 		if !knownKeys[k] {
 			fail("%s: unknown key %q", label, k)
 		}
@@ -190,6 +237,45 @@ func validateTrigger(label string, fields map[string]json.RawMessage, declared m
 		}
 		if effect != "" && !supportsHold[effect] {
 			fail("%s: hold is ignored by %q; remove it", label, effect)
+		}
+	}
+}
+
+// validateCanvasTrigger checks a trigger whose effect is a canvas effect:
+// no sticker, only intensity and duration, and an effect that suits the
+// pack's setting.
+func validateCanvasTrigger(label, effect string, fields map[string]json.RawMessage, setting string, fail func(string, ...any)) {
+	for _, k := range sortedKeys(fields) {
+		if !knownCanvasKeys[k] {
+			if knownKeys[k] {
+				fail("%s: %s is not used by canvas effect %q; remove it", label, k, effect)
+			} else {
+				fail("%s: unknown key %q", label, k)
+			}
+		}
+	}
+	if !SuitsSetting(effect, setting) {
+		fail("%s: canvas effect %q suits %s packs; this pack's setting is %q", label, effect, strings.Join(CanvasSettings[effect], "/"), setting)
+	}
+	if raw, ok := fields["at"]; !ok {
+		fail("%s: at is required", label)
+	} else if at, ok := number(raw); !ok || at < 0 {
+		fail("%s: at must be a number >= 0", label)
+	}
+	if raw, ok := fields["cue"]; ok {
+		var s string
+		if err := json.Unmarshal(raw, &s); err != nil {
+			fail("%s: cue must be a string", label)
+		}
+	}
+	if raw, ok := fields["duration"]; ok {
+		if d, ok := number(raw); !ok || d < CanvasMinDuration || d > CanvasMaxDuration {
+			fail("%s: duration must be a number in %g..%g for a canvas effect", label, CanvasMinDuration, CanvasMaxDuration)
+		}
+	}
+	if raw, ok := fields["intensity"]; ok {
+		if v, ok := number(raw); !ok || v < 0 || v > 1 {
+			fail("%s: intensity must be a number in 0..1", label)
 		}
 	}
 }

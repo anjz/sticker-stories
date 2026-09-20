@@ -145,33 +145,40 @@ Multilingual from day one — currently **en-US** and **es-ES**:
   split, keep one download URL per pack + `lang=` query param
   (docs/pack-format.md, "Future: per-language delivery").
 
-## Sticker effects (play mode)
+## Effects (play mode)
 
 While a story plays, individual stickers do small things — a wobble, a
-sparkle, a glow — driven by per-language trigger files that ship with the
-pack. Authoring reference: `docs/effects.md`; catalogue for tooling:
-`docs/effects/effects.json`; design-to-code mapping:
-`docs/effects-implementation-plan.md`.
+sparkle, a glow — and now and then the whole scene changes: rain, fog,
+sunshine, a rainbow, the lights going low. Both are driven by per-language
+trigger files that ship with the pack. Authoring reference:
+`docs/effects.md`; catalogue for tooling: `docs/effects/effects.json`;
+design-to-code mapping: `docs/effects-implementation-plan.md`.
 
 - **Effects exist only in play mode.** `StoryScreen` calls
   `CanvasScene.beginPlayMode` when `PlaybackController.phase` becomes
   `.playing` and `endPlayMode` when it leaves it. The scene locks editing,
-  builds a runner + applier + emitter coordinator for that story, and tears
-  them all down at the end, restoring every touched sticker verbatim. A child
-  who never presses play never sees any of it.
+  builds the runners + applier + emitter coordinator for that story, and
+  tears them all down at the end, restoring every touched sticker verbatim
+  and clearing the weather. A child who never presses play never sees any
+  of it.
 - **Kit (`Effects/`)**: the closed library of 12 `EffectDefinition`s, the
   pure `EffectEvaluator` (`(active effects, t) → EffectDelta` per sticker
   instance), `StickerEffectsRunner` (fires triggers, repeat/loop/hold, stop
   ease-back, seek rebuild), `EffectPolicy` (Reduce Motion / calm mode),
   `EffectTransformMath` (content anchors → SpriteKit pivots) and
-  `EffectTriggerFile` (lenient sidecar decoding). All unit-tested on macOS.
+  `EffectTriggerFile` (lenient sidecar decoding). Beside them the closed
+  list of 5 `CanvasEffectDefinition`s, `CanvasEffectEvaluator` (an
+  envelope: ramp in, hold, ramp out → strength per effect kind) and
+  `CanvasEffectsRunner` (same tick/seek contract; drops triggers that do not
+  suit the pack's `setting`). All unit-tested on macOS.
 - **App (`Effects/`)**: `PlaybackClock` interpolates `Narrator.playbackTime`
   between resyncs; `EffectApplier` writes deltas onto `StickerNode`s
   (capturing each sticker's base placement on first touch — `snapshot()`
   reads that base, so a mid-effect save never captures a wobble);
   `GlowMaskCache` + `EmitterCoordinator` render glow and particles;
-  `emitters.json` holds the emitter tuning; `EffectsGalleryView` (DEBUG) is
-  the tuning bench.
+  `emitters.json` holds the emitter tuning; `CanvasEffectLayer` renders the
+  canvas effects over the art frame (its own tuning numbers live in the
+  file); `EffectsGalleryView` (DEBUG) is the tuning bench for both.
 - **Seams kept honest**: `Narrator` gained one read-only property
   (`playbackTime`) — a synthesised narrator reports elapsed speech time and
   everything above it is unchanged. `StoryProvider` is untouched except that

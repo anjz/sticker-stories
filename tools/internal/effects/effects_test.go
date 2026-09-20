@@ -21,6 +21,12 @@ func TestNamesMatchCatalog(t *testing.T) {
 			Hold       bool     `json:"hold"`
 			Parameters []string `json:"parameters"`
 		} `json:"effects"`
+		CanvasEffects []struct {
+			Name          string    `json:"name"`
+			Settings      []string  `json:"settings"`
+			Parameters    []string  `json:"parameters"`
+			DurationRange []float64 `json:"durationRange"`
+		} `json:"canvasEffects"`
 	}
 	if err := json.Unmarshal(data, &catalog); err != nil {
 		t.Fatalf("decoding catalogue: %v", err)
@@ -47,6 +53,67 @@ func TestNamesMatchCatalog(t *testing.T) {
 		if reads != readsColor[e.Name] {
 			t.Errorf("%s: color parameter disagrees with the catalogue", e.Name)
 		}
+	}
+	if len(catalog.CanvasEffects) != len(CanvasNames) {
+		t.Fatalf("catalogue has %d canvas effects, validator knows %d", len(catalog.CanvasEffects), len(CanvasNames))
+	}
+	for i, e := range catalog.CanvasEffects {
+		if e.Name != CanvasNames[i] {
+			t.Errorf("canvasEffects[%d]: catalogue %q, validator %q", i, e.Name, CanvasNames[i])
+		}
+		if strings.Join(e.Settings, ",") != strings.Join(CanvasSettings[e.Name], ",") {
+			t.Errorf("%s: settings disagree with the catalogue: %v vs %v", e.Name, e.Settings, CanvasSettings[e.Name])
+		}
+		if strings.Join(e.Parameters, ",") != "intensity,duration" {
+			t.Errorf("%s: canvas effects take intensity and duration only, catalogue says %v", e.Name, e.Parameters)
+		}
+		if len(e.DurationRange) != 2 || e.DurationRange[0] != CanvasMinDuration || e.DurationRange[1] != CanvasMaxDuration {
+			t.Errorf("%s: duration range disagrees with the catalogue: %v", e.Name, e.DurationRange)
+		}
+	}
+}
+
+func TestCanvasTriggersAreValidated(t *testing.T) {
+	good := []byte(`{ "schema": 1, "triggers": [
+	  { "at": 4.5, "cue": "rain", "effect": "rain", "intensity": 0.8, "duration": 20 },
+	  { "at": 0, "effect": "fog" },
+	  { "at": 30, "effect": "rainbow", "duration": 1 },
+	  { "at": 1, "sticker": "fox", "effect": "hop" }
+	] }`)
+	if errs := Validate(good, set("fox"), "outdoors"); len(errs) != 0 {
+		t.Fatalf("unexpected errors: %v", errs)
+	}
+	if errs := Validate([]byte(`{"schema": 1, "triggers": [{"at": 0, "effect": "dimlight"}]}`), nil, "indoors"); len(errs) != 0 {
+		t.Fatalf("dimlight should suit an indoors pack: %v", errs)
+	}
+	cases := []struct {
+		name, json, setting, want string
+	}{
+		{"wrong setting", `{"schema": 1, "triggers": [{"at": 0, "effect": "rain"}]}`, "indoors", `suits outdoors packs; this pack's setting is "indoors"`},
+		{"no setting", `{"schema": 1, "triggers": [{"at": 0, "effect": "dimlight"}]}`, "none", `suits indoors packs`},
+		{"sticker on canvas", `{"schema": 1, "triggers": [{"at": 0, "effect": "fog", "sticker": "fox"}]}`, "outdoors", "sticker is not used by canvas effect"},
+		{"repeat on canvas", `{"schema": 1, "triggers": [{"at": 0, "effect": "fog", "repeat": "loop"}]}`, "outdoors", "repeat is not used"},
+		{"hold on canvas", `{"schema": 1, "triggers": [{"at": 0, "effect": "sunshine", "hold": true}]}`, "outdoors", "hold is not used"},
+		{"color on canvas", `{"schema": 1, "triggers": [{"at": 0, "effect": "rainbow", "color": "#FF0000"}]}`, "outdoors", "color is not used"},
+		{"unknown key", `{"schema": 1, "triggers": [{"at": 0, "effect": "rainbow", "wind": 3}]}`, "outdoors", `unknown key "wind"`},
+		{"missing at", `{"schema": 1, "triggers": [{"effect": "rain"}]}`, "outdoors", "at is required"},
+		{"duration too short", `{"schema": 1, "triggers": [{"at": 0, "effect": "rain", "duration": 0.5}]}`, "outdoors", "duration must be a number in 1..120"},
+		{"duration too long", `{"schema": 1, "triggers": [{"at": 0, "effect": "rain", "duration": 500}]}`, "outdoors", "duration must be"},
+		{"intensity out of range", `{"schema": 1, "triggers": [{"at": 0, "effect": "rain", "intensity": 3}]}`, "outdoors", "intensity must be"},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			errs := Validate([]byte(tc.json), set("fox"), tc.setting)
+			if len(errs) == 0 {
+				t.Fatalf("expected an error containing %q, got none", tc.want)
+			}
+			for _, e := range errs {
+				if strings.Contains(e.Error(), tc.want) {
+					return
+				}
+			}
+			t.Fatalf("no error contained %q; got %v", tc.want, errs)
+		})
 	}
 }
 

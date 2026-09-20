@@ -20,9 +20,22 @@ struct EffectCatalogTests {
             let requiresColor: Bool
             let reduceMotion: String
         }
+        struct CanvasEntry: Decodable {
+            let name: String
+            let settings: [String]
+            let summary: String
+            let defaultDuration: Double
+            let durationRange: [Double]
+            let rampIn: Double
+            let rampOut: Double
+            let parameters: [String]
+            let reduceMotion: String
+        }
         let catalogSchema: Int
         let triggerSchema: Int
+        let settings: [String]
         let effects: [Entry]
+        let canvasEffects: [CanvasEntry]
     }
 
     private func loadCatalog() throws -> Catalog {
@@ -55,15 +68,36 @@ struct EffectCatalogTests {
             #expect(entry.parameters.contains("duration") && entry.parameters.contains("intensity"), Comment(rawValue: entry.name))
 
             let reduced = EffectPolicy(reduceMotion: true).adjusted(name, EffectOptions(intensity: 1))
-            let expected: String
-            switch reduced?.intensity {
-            case nil: expected = "dropped"
-            case 1: expected = "full"
-            case 0.3: expected = "damped-0.3"
-            case 0.4: expected = "damped-0.4"
-            default: expected = "unknown"
-            }
-            #expect(entry.reduceMotion == expected, Comment(rawValue: entry.name))
+            #expect(entry.reduceMotion == reduceMotionLabel(reduced?.intensity), Comment(rawValue: entry.name))
+        }
+    }
+
+    @Test func canvasCatalogMatchesCompiledLibrary() throws {
+        let catalog = try loadCatalog()
+        #expect(catalog.settings == PackSetting.allCases.map(\.rawValue))
+        #expect(catalog.canvasEffects.map(\.name) == CanvasEffectName.allCases.map(\.rawValue))
+
+        for entry in catalog.canvasEffects {
+            let name = try #require(CanvasEffectName(rawValue: entry.name))
+            let definition = CanvasEffectDefinition.definition(for: name)
+            #expect(Set(entry.settings) == Set(name.settings.map(\.rawValue)), Comment(rawValue: entry.name))
+            #expect(entry.summary == definition.summary, Comment(rawValue: entry.name))
+            #expect(entry.defaultDuration == definition.defaultDuration, Comment(rawValue: entry.name))
+            #expect(entry.rampIn == definition.rampIn && entry.rampOut == definition.rampOut, Comment(rawValue: entry.name))
+            #expect(entry.durationRange == [CanvasEffectOptions.durationRange.lowerBound, CanvasEffectOptions.durationRange.upperBound], Comment(rawValue: entry.name))
+            #expect(entry.parameters == ["intensity", "duration"], Comment(rawValue: entry.name))
+            let reduced = EffectPolicy(reduceMotion: true).adjusted(name, CanvasEffectOptions(intensity: 1))
+            #expect(entry.reduceMotion == reduceMotionLabel(reduced?.intensity), Comment(rawValue: entry.name))
+        }
+    }
+
+    private func reduceMotionLabel(_ intensity: Double?) -> String {
+        switch intensity {
+        case nil: "dropped"
+        case 1: "full"
+        case 0.3: "damped-0.3"
+        case 0.4: "damped-0.4"
+        default: "unknown"
         }
     }
 }

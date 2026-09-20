@@ -1,11 +1,13 @@
 {
-  "catalogSchema": 1,
+  "catalogSchema": 2,
   "triggerSchema": 1,
   "notes": [
-    "Machine-readable catalogue of the sticker effect library (12 effects, closed). Human reference: docs/effects.md.",
-    "A Kit test asserts this file matches the compiled library (EffectDefinition.library); edit both together.",
-    "Story tooling should read this file to learn which effects exist, what they mean, and which parameters each accepts."
+    "Machine-readable catalogue of the effect library. Human reference: docs/effects.md.",
+    "Two closed lists: `effects` (12 sticker effects, each on one sticker) and `canvasEffects` (5 canvas effects: weather and light over the whole scene).",
+    "A Kit test asserts this file matches the compiled library (EffectDefinition.library, CanvasEffectDefinition.library); edit both together.",
+    "Story tooling should read this file to learn which effects exist, what they mean, which parameters each accepts, and which canvas effects suit a pack's setting."
   ],
+  "settings": ["outdoors", "indoors", "none"],
   "parameters": {
     "effect":    { "type": "string",  "required": true,  "description": "One of the effect names below." },
     "sticker":   { "type": "string",  "required": true,  "description": "Sticker ID from the pack manifest. Every placed instance of it is affected; if none is placed the trigger silently does not fire." },
@@ -16,6 +18,13 @@
     "intensity": { "type": "number",  "required": false, "default": 0.6, "range": [0, 1], "description": "Amplitude, never speed. 0 is visually identical to no effect." },
     "color":     { "type": "string",  "required": false, "format": "#RRGGBB", "description": "Read by glow, tint and sparkle only. Required by tint." },
     "hold":      { "type": "boolean", "required": false, "default": false, "description": "Keep the end state until playback ends. Meaningful for fade-in, fade-out, glow, tint only." }
+  },
+  "canvasParameters": {
+    "effect":    { "type": "string",  "required": true,  "description": "One of the canvas effect names below. A canvas trigger has no sticker." },
+    "at":        { "type": "number",  "required": true,  "description": "Seconds into this language's narration at which the effect starts building up." },
+    "cue":       { "type": "string",  "required": false, "description": "Authoring label only. Never interpreted by the app." },
+    "intensity": { "type": "number",  "required": false, "default": 0.6, "range": [0, 1], "description": "How strong: denser fog, heavier rain, darker dimlight. 0 is visually identical to no effect." },
+    "duration":  { "type": "number",  "required": false, "default": "per effect", "range": [1, 120], "description": "Seconds the effect stays on, ramps included. There is no repeat, colour or hold." }
   },
   "reduceMotionValues": {
     "full": "runs unchanged",
@@ -36,5 +45,12 @@
     { "name": "tint",     "category": "opacity-and-color", "summary": "A colour washes over the sticker and drains away. White + short duration = a flash.", "use": "Blushing (pink), cold (blue), angry (red), a camera flash (white, duration 0.2). color is required.", "animates": ["tint"], "defaultDuration": 0.8, "anchor": [0.5, 0.5], "parameters": ["repeat", "duration", "intensity", "color", "hold"], "oneWay": false, "hold": true, "defaultColor": null, "requiresColor": true, "reduceMotion": "full" },
     { "name": "sparkle",  "category": "particle", "summary": "A small shower of twinkles above the sticker. The generic magic/delight beat.", "use": "Delight, magic, treasure, a good idea.", "animates": ["particles"], "defaultDuration": 1.0, "anchor": [0.5, 0.35], "parameters": ["repeat", "duration", "intensity", "color"], "oneWay": false, "hold": false, "defaultColor": "#FFD166", "requiresColor": false, "reduceMotion": "damped-0.4" },
     { "name": "hearts",   "category": "particle", "summary": "A few hearts drift up. Affection, a hug, a friend.", "use": "Friendship, love, a hug, kindness.", "animates": ["particles"], "defaultDuration": 1.2, "anchor": [0.5, 0.2], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "requiresColor": false, "reduceMotion": "damped-0.4" }
+  ],
+  "canvasEffects": [
+    { "name": "fog",      "settings": ["outdoors"], "summary": "Soft mist drifts slowly across the whole scene.", "use": "Early morning, a mystery, something hidden then found, quiet and hush. Builds up slowly, so cue it a beat early.", "defaultDuration": 12, "durationRange": [1, 120], "rampIn": 2.5, "rampOut": 2.5, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
+    { "name": "rain",     "settings": ["outdoors"], "summary": "Rain falls over everything; the light cools a little.", "use": "Rain in the story: pitter-patter, puddles, sheltering under a cap. Intensity is drizzle to downpour.", "defaultDuration": 10, "durationRange": [1, 120], "rampIn": 1.2, "rampOut": 1.5, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" },
+    { "name": "sunshine", "settings": ["outdoors"], "summary": "Warm light rays from the top corner, gently swaying.", "use": "The sun comes out, a warm afternoon, waking up, a happy ending after rain.", "defaultDuration": 8, "durationRange": [1, 120], "rampIn": 1.5, "rampOut": 1.5, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
+    { "name": "rainbow",  "settings": ["outdoors"], "summary": "A soft rainbow arcs across the sky behind the scenery.", "use": "The reward after rain, a wish come true, a wonder everyone looks up at. One per story at most.", "defaultDuration": 8, "durationRange": [1, 120], "rampIn": 2.0, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
+    { "name": "dimlight", "settings": ["indoors"], "summary": "The lights go low: the scene darkens toward its edges.", "use": "Bedtime, a lamp switched low, a cosy evening, a whispered secret. Never darkness as a threat.", "defaultDuration": 8, "durationRange": [1, 120], "rampIn": 1.5, "rampOut": 1.5, "parameters": ["intensity", "duration"], "reduceMotion": "full" }
   ]
 }
