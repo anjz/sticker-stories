@@ -3,15 +3,17 @@ import SpriteKit
 import StickerStoriesKit
 import SwiftUI
 
-/// Developer-only: plays every effect on a real sticker at three intensities
-/// so the library's numbers can be tuned against real art. Reached from
-/// Settings in debug builds; never compiled into release.
+/// Developer-only: plays every sticker effect on a real sticker at three
+/// intensities, and every canvas effect over the pack's art, so the
+/// library's numbers can be tuned against real art. Reached from Settings
+/// in debug builds; never compiled into release.
 struct EffectsGalleryView: View {
     let pack: LoadedPack
     @Environment(\.dismiss) private var dismiss
     @State private var scene: EffectsGalleryScene
     @State private var intensity = 0.6
     @State private var loop = false
+    @State private var canvasDuration = 6.0
     @State private var stickerID: String
 
     init(pack: LoadedPack) {
@@ -64,12 +66,32 @@ struct EffectsGalleryView: View {
                                 if effect == .tint { options.color = RGBA(hex: "#FF6B8A") }
                                 scene.play(effect, options: options)
                             } label: {
-                                Text(verbatim: effect.rawValue)
-                                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 10)
-                                    .background(RoundedRectangle(cornerRadius: 12).fill(color(for: effect.category)))
-                                    .foregroundStyle(.white)
+                                effectLabel(effect.rawValue, color(for: effect.category))
+                            }
+                            .buttonStyle(SquishyButtonStyle())
+                        }
+                    }
+
+                    HStack {
+                        Text("Canvas")
+                            .font(.system(size: 15, weight: .heavy, design: .rounded))
+                        Spacer()
+                        Picker("Duration", selection: $canvasDuration) {
+                            Text(verbatim: "3 s").tag(3.0)
+                            Text(verbatim: "6 s").tag(6.0)
+                            Text(verbatim: "20 s").tag(20.0)
+                        }
+                        .pickerStyle(.segmented)
+                        .frame(width: 170)
+                    }
+                    .padding(.top, 12)
+
+                    LazyVGrid(columns: columns, spacing: 10) {
+                        ForEach(CanvasEffectName.allCases, id: \.self) { effect in
+                            Button {
+                                scene.play(effect, options: CanvasEffectOptions(intensity: intensity, duration: canvasDuration))
+                            } label: {
+                                effectLabel(effect.rawValue, canvasColor)
                             }
                             .buttonStyle(SquishyButtonStyle())
                         }
@@ -97,6 +119,15 @@ struct EffectsGalleryView: View {
         }
     }
 
+    private func effectLabel(_ name: String, _ color: Color) -> some View {
+        Text(verbatim: name)
+            .font(.system(size: 15, weight: .bold, design: .rounded))
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 10)
+            .background(RoundedRectangle(cornerRadius: 12).fill(color))
+            .foregroundStyle(.white)
+    }
+
     private func color(for category: EffectName.Category) -> Color {
         switch category {
         case .motion: Color(red: 0.36, green: 0.6, blue: 0.9)
@@ -104,18 +135,22 @@ struct EffectsGalleryView: View {
         case .particle: Color(red: 0.2, green: 0.55, blue: 0.3)
         }
     }
+
+    private var canvasColor: Color { Color(red: 0.5, green: 0.38, blue: 0.75) }
 }
 
 /// A tiny stand-in for the canvas: one sticker on the pack's background,
-/// driven by the same applier, emitters and glow cache the real scene uses,
-/// on a synthetic clock.
+/// driven by the same applier, emitters, glow cache and canvas effect layer
+/// the real scene uses, on a synthetic clock.
 final class EffectsGalleryScene: SKScene {
     private let pack: LoadedPack
     private let background = SKSpriteNode()
     private let layer = SKNode()
+    private let canvasEffects = CanvasEffectLayer()
     private var sticker: StickerNode?
     private let glowMasks = GlowMaskCache()
     private let runner = StickerEffectsRunner()
+    private let canvasRunner = CanvasEffectsRunner()
     private lazy var applier = EffectApplier { [weak self] node in
         guard let self, let definition = pack.sticker(withID: node.stickerID) else { return nil }
         return glowMasks.mask(for: node.stickerID) {
@@ -146,9 +181,10 @@ final class EffectsGalleryScene: SKScene {
             background.texture = SKTexture(image: image)
         }
         background.zPosition = 0
-        layer.zPosition = 100
+        layer.zPosition = 100  // the rainbow (50) sits behind the sticker, the rest (500) in front
         addChild(background)
         addChild(layer)
+        addChild(canvasEffects)
         layoutBackground()
         show(stickerID: pendingStickerID)
         if let pending = pendingPlayAll {
@@ -164,6 +200,7 @@ final class EffectsGalleryScene: SKScene {
     }
 
     private func layoutBackground() {
+        canvasEffects.layout(world: CGRect(origin: .zero, size: size))
         guard let textureSize = background.texture?.size(), textureSize.width > 0 else { return }
         let fill = max(size.width / textureSize.width, size.height / textureSize.height)
         background.size = CGSize(width: textureSize.width * fill, height: textureSize.height * fill)
@@ -197,6 +234,12 @@ final class EffectsGalleryScene: SKScene {
         runner.play(effect, on: sticker.instanceID, options: options)
     }
 
+    /// Canvas effects ignore the pack's setting here: the gallery is for
+    /// looking at all of them over whatever art the pack has.
+    func play(_ effect: CanvasEffectName, options: CanvasEffectOptions) {
+        canvasRunner.play(effect, options: options)
+    }
+
     func stopAll() {
         removeAction(forKey: "play-all")
         stopEffects()
@@ -204,11 +247,14 @@ final class EffectsGalleryScene: SKScene {
 
     private func stopEffects() {
         runner.stopAll()
+        canvasRunner.stopAll()
         emitters.clearAll()
+        canvasEffects.clearAll()
         if let sticker { applier.restoreAll([sticker.instanceID: sticker]) }
     }
 
-    /// Plays every effect in library order, one every 1.6 s.
+    /// Plays every sticker effect in library order, one every 1.6 s, then
+    /// every canvas effect for 4 s each.
     func playAll(intensity: Double, repeating: Bool = false) {
         guard sticker != nil else {
             pendingPlayAll = (intensity, repeating)
@@ -224,6 +270,12 @@ final class EffectsGalleryScene: SKScene {
             })
             steps.append(.wait(forDuration: 1.6))
         }
+        for effect in CanvasEffectName.allCases {
+            steps.append(.run { [weak self] in
+                self?.play(effect, options: CanvasEffectOptions(intensity: intensity, duration: 4))
+            })
+            steps.append(.wait(forDuration: 4.5))
+        }
         let sequence = SKAction.sequence(steps)
         run(repeating ? .repeatForever(sequence) : sequence, withKey: "play-all")
     }
@@ -234,6 +286,7 @@ final class EffectsGalleryScene: SKScene {
         let time = clock.now()
         applier.apply(runner.tick(time), to: nodes)
         emitters.reconcile(runner.active, at: time, nodes: nodes)
+        canvasEffects.apply(canvasRunner.tick(time), at: time)
     }
 }
 #endif

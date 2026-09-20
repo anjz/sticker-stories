@@ -8,9 +8,11 @@ import UIKit
 /// sticker out of the tray and onto the canvas is one continuous gesture.
 ///
 /// Node stack (accumulated zPosition, back to front):
-///   background art (0) < background stickers (100) < foreground art (200)
-///   < foreground stickers (300) < tray (1000); a dragged sticker is lifted
-///   to its layer's z + 10000 so it floats above everything while held.
+///   background art (0) < rainbow (50) < background stickers (100)
+///   < foreground art (200) < foreground stickers (300) < canvas effects
+///   (500: rain, fog, sunshine, dimlight) < tray (1000); a dragged sticker
+///   is lifted to its layer's z + 10000 so it floats above everything while
+///   held.
 ///
 /// World and camera: the pack art defines a fixed-aspect **world**, scaled
 /// so it always covers the view (`worldSize`). Sticker positions live in
@@ -44,6 +46,9 @@ final class CanvasScene: SKScene {
     private let foregroundShadowBlur = SKEffectNode()
     private let foregroundArt = SKSpriteNode()
     private let foregroundStickers = SKNode()
+    /// Weather and light over the scene during play (`CanvasEffectLayer`);
+    /// a permanent child whose children carry the z-positions above.
+    private let canvasEffects = CanvasEffectLayer()
     private let tray = SKNode()
     private let cameraNode = SKCameraNode()
     /// The *base* art scaled to cover the view: the coordinate space stickers
@@ -164,6 +169,7 @@ final class CanvasScene: SKScene {
     private(set) var isPlayLocked = false
     private struct PlaySession {
         let runner: StickerEffectsRunner
+        let canvasRunner: CanvasEffectsRunner
         let applier: EffectApplier
         let emitters: EmitterCoordinator
         let clock: PlaybackClock
@@ -206,6 +212,7 @@ final class CanvasScene: SKScene {
             addChild(foregroundShadowBlur)
             addChild(foregroundArt)
             addChild(foregroundStickers)
+            addChild(canvasEffects)
             addChild(cameraNode)
             camera = cameraNode
             // The tray is a HUD: a scene child (so its z-order and hit-testing
@@ -329,6 +336,7 @@ final class CanvasScene: SKScene {
             art.position = center
         }
         layoutForegroundShadow(center: center)
+        canvasEffects.layout(world: worldExtent)
         // The tray is laid out in view coordinates and pinned to the view's
         // bottom-left corner in world space (kept in step with the camera).
         syncHUDToCamera()
@@ -1187,18 +1195,23 @@ final class CanvasScene: SKScene {
         setPlayLocked(true)
         let nodes = allStickerNodes()
         let targets = Dictionary(grouping: nodes, by: \.stickerID).mapValues { $0.map(\.instanceID) }
-        let runner = StickerEffectsRunner(
-            triggers: loadTriggers(for: story), targets: targets, policy: policy)
+        let triggers = loadTriggers(for: story)
+        let runner = StickerEffectsRunner(triggers: triggers.sticker, targets: targets, policy: policy)
+        let canvasRunner = CanvasEffectsRunner(
+            triggers: triggers.canvas, setting: pack.manifest.setting, policy: policy)
         let applier = EffectApplier { [weak self] node in self?.glowMask(for: node) }
         applier.normalize(nodes)
-        playSession = PlaySession(runner: runner, applier: applier, emitters: EmitterCoordinator(), clock: clock)
+        playSession = PlaySession(
+            runner: runner, canvasRunner: canvasRunner, applier: applier, emitters: EmitterCoordinator(), clock: clock)
     }
 
     /// Restores the child's exact arrangement (P4) and tears the pipeline down.
     func endPlayMode() {
         if let session = playSession {
             session.runner.stopAll()
+            session.canvasRunner.stopAll()
             session.emitters.clearAll()
+            canvasEffects.clearAll()
             session.applier.restoreAll(stickerNodesByID())
             playSession = nil
         }
@@ -1209,6 +1222,7 @@ final class CanvasScene: SKScene {
     /// that start from now on.
     func setEffectPolicy(_ policy: EffectPolicy) {
         playSession?.runner.policy = policy
+        playSession?.canvasRunner.policy = policy
     }
 
     /// The runner, for the debug gallery and tests; `nil` outside play mode.
@@ -1221,6 +1235,7 @@ final class CanvasScene: SKScene {
         let deltas = session.runner.tick(time)
         session.applier.apply(deltas, to: nodes)
         session.emitters.reconcile(session.runner.active, at: time, nodes: nodes)
+        canvasEffects.apply(session.canvasRunner.tick(time), at: time)
     }
 
     /// The sticker's blurred bloom mask, built once per sticker per pack.
@@ -1237,17 +1252,17 @@ final class CanvasScene: SKScene {
 
     /// Decodes the story's trigger sidecar. Problems are logged, never
     /// surfaced: a story with a broken sidecar plays with no effects.
-    private func loadTriggers(for story: Story) -> [EffectTrigger] {
-        guard let path = story.effectsPath else { return [] }
+    private func loadTriggers(for story: Story) -> (sticker: [EffectTrigger], canvas: [CanvasEffectTrigger]) {
+        guard let path = story.effectsPath else { return ([], []) }
         do {
             let file = try EffectTriggerFile.load(from: pack.url(forAssetPath: path))
             for warning in file.warnings {
                 Self.effectsLog.notice("\(story.id, privacy: .public): \(warning, privacy: .public)")
             }
-            return file.triggers
+            return (file.triggers, file.canvasTriggers)
         } catch {
             Self.effectsLog.error("\(story.id, privacy: .public): effects file unusable: \(String(describing: error), privacy: .public)")
-            return []
+            return ([], [])
         }
     }
 
