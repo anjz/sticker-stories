@@ -58,9 +58,10 @@ final class CanvasEffectLayer: SKNode {
     private let nightDim = SKSpriteNode()
     private let moonGlow = SKSpriteNode()
     private let moon = SKSpriteNode()
-    /// Where the moon sits, as fractions of the art frame: high and to the
-    /// right, clear of the centre where the stickers usually go.
-    private static let moonPlace = CGPoint(x: 0.78, y: 0.80)
+    /// Where the moon sits, as fractions of the art frame: top centre, the
+    /// part of a scene least likely to hold stickers or scenery, and clear
+    /// of the corner buttons (the tray is faded out while a story plays).
+    private static let moonPlace = CGPoint(x: 0.5, y: 0.82)
 
     override init() {
         super.init()
