@@ -1,3 +1,4 @@
+import ImageIO
 import SpriteKit
 import StickerStoriesKit
 import UIKit
@@ -14,9 +15,10 @@ struct PackTextures {
 }
 
 enum PackTextureLoader {
-    /// Decodes every image of the pack concurrently off the main thread,
-    /// wraps them as textures and preloads those, so the scene's first frame
-    /// has nothing left to do but draw.
+    /// Reads every image of the pack concurrently off the main thread, wraps
+    /// them as textures and preloads those (SpriteKit decodes and uploads on
+    /// its own queue), so the scene's first frame has nothing left to do but
+    /// draw.
     @MainActor
     static func load(_ pack: LoadedPack) async -> PackTextures {
         var paths: [String: String] = [
@@ -31,12 +33,12 @@ enum PackTextureLoader {
             paths["sticker:" + sticker.id] = sticker.image
         }
 
-        let images = await withTaskGroup(of: (String, UIImage?).self) { group in
+        let images = await withTaskGroup(of: (String, CGImage?).self) { group in
             for (key, path) in paths {
                 let url = pack.url(forAssetPath: path)
-                group.addTask { (key, await decode(url)) }
+                group.addTask { (key, decode(url)) }
             }
-            var decoded: [String: UIImage] = [:]
+            var decoded: [String: CGImage] = [:]
             for await (key, image) in group {
                 if let image { decoded[key] = image }
             }
@@ -44,16 +46,16 @@ enum PackTextureLoader {
         }
 
         var textures = PackTextures(
-            background: images["background"].map(SKTexture.init(image:)),
-            foreground: images["foreground"].map(SKTexture.init(image:)),
+            background: images["background"].map(SKTexture.init(cgImage:)),
+            foreground: images["foreground"].map(SKTexture.init(cgImage:)),
             wide: nil,
             stickers: [:])
         if let wideBackground = images["background-wide"] {
-            textures.wide = (SKTexture(image: wideBackground), images["foreground-wide"].map(SKTexture.init(image:)))
+            textures.wide = (SKTexture(cgImage: wideBackground), images["foreground-wide"].map(SKTexture.init(cgImage:)))
         }
         for sticker in pack.manifest.stickers {
             if let image = images["sticker:" + sticker.id] {
-                textures.stickers[sticker.id] = SKTexture(image: image)
+                textures.stickers[sticker.id] = SKTexture(cgImage: image)
             }
         }
 
@@ -67,9 +69,11 @@ enum PackTextureLoader {
         return textures
     }
 
-    /// Reads and fully decodes one image on a background thread.
-    private nonisolated static func decode(_ url: URL) async -> UIImage? {
-        guard let image = UIImage(contentsOfFile: url.path) else { return nil }
-        return await image.byPreparingForDisplay() ?? image
+    /// Decodes one image into a plain bitmap on a background thread with
+    /// ImageIO (no UIKit decompressor involved).
+    private nonisolated static func decode(_ url: URL) -> CGImage? {
+        guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else { return nil }
+        let options: [CFString: Any] = [kCGImageSourceShouldCacheImmediately: true]
+        return CGImageSourceCreateImageAtIndex(source, 0, options as CFDictionary)
     }
 }
