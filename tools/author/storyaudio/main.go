@@ -28,6 +28,7 @@ import (
 	"math"
 	"os"
 	"path/filepath"
+	"slices"
 	"sort"
 	"strings"
 	"sync"
@@ -271,6 +272,9 @@ func resolveVoices(ctx context.Context, el *elevenlabs.Client, c *ctxt, flagValu
 				}
 				continue
 			}
+			if !slices.Contains(c.pack.Languages, lang) {
+				return nil, fmt.Errorf("-voice: %q is not one of the pack's languages (%s)", lang, strings.Join(c.pack.Languages, ", "))
+			}
 			chosen[lang] = parse(ids)
 		}
 	}
@@ -449,6 +453,9 @@ func runRender(args []string) error {
 	}
 	if _, ok := stabilityPresets[*stability]; !ok {
 		return fmt.Errorf("-stability must be creative, natural or robust")
+	}
+	if *lang != "" && !slices.Contains(c.pack.Languages, *lang) {
+		return fmt.Errorf("-lang %q is not one of the pack's languages (%s)", *lang, strings.Join(c.pack.Languages, ", "))
 	}
 	o := renderOpts{model: *model, sampleRate: *rate, noSFX: *noSFX, noMusic: *noMusic, musicPrompt: *musicPrompt,
 		sfxDB: *sfxDB, ambienceDB: *ambienceDB, musicDB: *musicDB, lead: *lead, introDB: *introDB, stability: *stability,
