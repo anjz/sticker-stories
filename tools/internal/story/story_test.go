@@ -410,3 +410,22 @@ func TestLoadDir(t *testing.T) {
 		t.Fatalf("stories %v errs %v", stories, errs)
 	}
 }
+
+// An ellipsis is one rune of three bytes; a solo sound after "ah…" is
+// between sentences, not mid-sentence.
+func TestSoloAfterEllipsisIsBetweenSentences(t *testing.T) {
+	cat := testCatalog(t)
+	s := goodStory()
+	s.Sounds = map[string]SoundSpec{"sneeze": {Prompt: "a gentle comic sneeze", Seconds: 1.5}}
+	for _, lang := range []string{"en-US", "es-ES"} {
+		l := s.Languages[lang]
+		l.Text = "His nose tickled, and it tickled, and everyone waited to see what would happen… ah… {sfx:sneeze solo} " + l.Text
+		s.Languages[lang] = l
+	}
+	is := Validate(s, forest, cat)
+	for _, w := range is.Warnings {
+		if strings.Contains(w, "mid-sentence") {
+			t.Fatalf("solo after an ellipsis flagged as mid-sentence: %v", is.Warnings)
+		}
+	}
+}
