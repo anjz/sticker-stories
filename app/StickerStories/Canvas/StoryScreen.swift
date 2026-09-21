@@ -9,8 +9,8 @@ import SwiftUI
 ///
 /// The pack's textures are decoded off the main thread first
 /// (`PackTextureLoader`); until they are ready the screen shows a sky-to-
-/// meadow gradient and a spinner, and the canvas is mounted only once — at
-/// its final size — so opening a pack neither stalls nor re-lays out.
+/// meadow gradient with bouncing dots, and the canvas is mounted only once
+/// — at its final size — so opening a pack neither stalls nor re-lays out.
 struct StoryScreen: View {
     let pack: LoadedPack
     let preferredLanguages: [String]
@@ -28,9 +28,15 @@ struct StoryScreen: View {
     @State private var canRedo = false
     @State private var canClear = false
     @State private var isConfirmingClear = false
-    /// The spinner only shows if loading takes noticeably long; a fast
-    /// device goes straight from the sky colour to the canvas.
-    @State private var showsSpinner = false
+    /// The loading screen is a deliberate beat, not a stall: it stays for
+    /// at least this long, enough for the dots to bounce once, even though
+    /// the textures usually load faster.
+    private static let minimumLoadingTime: Duration = .milliseconds(800)
+    /// Flipped as the load starts rather than initialised true: content that
+    /// is only present in this screen's very first render never showed
+    /// (SwiftUI dropped the branch as the screen was inserted), while a
+    /// state change right after reliably brings it in.
+    @State private var showsLoader = false
 
     init(pack: LoadedPack, preferredLanguages: [String], calmMode: Bool, onLeave: @escaping () -> Void) {
         self.pack = pack
@@ -80,7 +86,7 @@ struct StoryScreen: View {
                         phase: playback.phase,
                         onPlay: play,
                         onStop: { playback.stop() })
-                } else if showsSpinner {
+                } else if showsLoader {
                     BouncingDots()
                         .accessibilityLabel("Loading")
                         .transition(.opacity)
@@ -109,16 +115,16 @@ struct StoryScreen: View {
         // first instead of opening Notification Centre or Control Centre.
         .defersSystemGestures(on: .top)
         .task(id: pack.id) {
-            let spinner = Task {
-                try? await Task.sleep(for: .milliseconds(300))
-                guard !Task.isCancelled else { return }
-                withAnimation(.easeIn(duration: 0.2)) { showsSpinner = true }
-            }
+            withAnimation(.easeIn(duration: 0.2)) { showsLoader = true }
+            let start = ContinuousClock.now
             let textures = await PackTextureLoader.load(pack)
-            spinner.cancel()
+            let elapsed = ContinuousClock.now - start
+            if elapsed < Self.minimumLoadingTime {
+                try? await Task.sleep(for: Self.minimumLoadingTime - elapsed)
+            }
             guard !Task.isCancelled else { return }
             withAnimation(.easeOut(duration: 0.3)) {
-                showsSpinner = false
+                showsLoader = false
                 scene = CanvasScene(pack: pack, textures: textures, stateStore: FileCanvasStateStore())
             }
             #if DEBUG
