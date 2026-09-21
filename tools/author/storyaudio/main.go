@@ -9,7 +9,7 @@
 //	storyaudio render  -pack ../packs/forest [-only id,…] [-lang en-US] [-dry-run] [-force] [-retake]
 //	                   [-voice en-US=<id>,es-ES=<id>] [-model eleven_v3] [-rate 44100]
 //	                   [-no-sfx] [-no-music] [-music-prompt "…"] [-sfx-db -12] [-music-db -14]
-//	                   [-lead 3] [-intro-db -6] [-parallel 5]
+//	                   [-lead 3] [-intro-db -6] [-parallel 10]
 //	storyaudio voices  -pack ../packs/forest            # list candidate voices per language
 //	storyaudio install -pack ../packs/forest [-prune] [-bump]
 //
@@ -441,7 +441,7 @@ func runRender(args []string) error {
 	lead := fs.Float64("lead", 3, "seconds of music alone before the narrator starts")
 	introDB := fs.Float64("intro-db", -6, "music level during the lead-in, dB relative to the narrator (ramps down to -music-db over the last second)")
 	bitrate := fs.Int("bitrate", 64000, "AAC bitrate (64 kbps mono is transparent for narration)")
-	parallel := fs.Int("parallel", 5, "renditions rendered concurrently")
+	parallel := fs.Int("parallel", 10, "renditions rendered concurrently")
 	force := fs.Bool("force", false, "re-render (re-mix) even if nothing changed; cached narration is reused")
 	retake := fs.Bool("retake", false, "synthesise the narration again even when a cached take exists — v3 varies between runs, so this is how you ask for another performance (implies -force)")
 	dry := fs.Bool("dry-run", false, "print what would be rendered and the characters that would be synthesised (cached narration excluded); no API calls that cost")
