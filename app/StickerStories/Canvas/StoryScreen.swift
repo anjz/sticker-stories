@@ -53,29 +53,37 @@ struct StoryScreen: View {
     }
 
     var body: some View {
-        ZStack {
-            CanvasView(
-                scene: scene,
-                onCanvasChange: { state in canvasState = state },
-                onHistoryChange: { undo, redo, clear in
-                    canUndo = undo
-                    canRedo = redo
-                    canClear = clear
-                })
-            .id(pack.id)
+        GeometryReader { geometry in
+            ZStack {
+                CanvasView(
+                    scene: scene,
+                    onCanvasChange: { state in canvasState = state },
+                    onHistoryChange: { undo, redo, clear in
+                        canUndo = undo
+                        canRedo = redo
+                        canClear = clear
+                    })
+                .id(pack.id)
 
-            PlaybackOverlay(
-                phase: playback.phase,
-                onPlay: play,
-                onStop: { playback.stop() })
+                PlaybackOverlay(
+                    phase: playback.phase,
+                    onPlay: play,
+                    onStop: { playback.stop() })
 
-            backButton
-            historyControls
+                let topPadding = Self.hudTopPadding(safeAreaTop: geometry.safeAreaInsets.top)
+                backButton(topPadding: topPadding)
+                historyControls(topPadding: topPadding)
 
-            if isConfirmingClear {
-                clearConfirmation
+                if isConfirmingClear {
+                    clearConfirmation
+                }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        // A swipe down from the top edge — easy to do by accident while
+        // dragging a sticker out of the tray — shows the system's grabber
+        // first instead of opening Notification Centre or Control Centre.
+        .defersSystemGestures(on: .top)
         .onChange(of: playback.phase) { _, phase in
             // Effects exist only while a story plays; everything else is a
             // hard reset back to the child's arrangement.
@@ -108,7 +116,15 @@ struct StoryScreen: View {
         EffectPolicy(reduceMotion: UIAccessibility.isReduceMotionEnabled, calmMode: calmMode)
     }
 
-    private var backButton: some View {
+    /// Top padding for the corner buttons: the same row as the sticker tray
+    /// (`CanvasScene.layoutTray`), which hangs below the larger of the safe
+    /// area inset and a minimum, so the HUD keeps off the physical top edge
+    /// on iPhones in landscape.
+    private static func hudTopPadding(safeAreaTop: CGFloat) -> CGFloat {
+        max(0, CanvasScene.hudMinimumTopInset - safeAreaTop) + CanvasScene.hudTopClearance
+    }
+
+    private func backButton(topPadding: CGFloat) -> some View {
         VStack {
             HStack {
                 // No confirmation: the canvas is saved, so coming back
@@ -126,7 +142,7 @@ struct StoryScreen: View {
                 .buttonStyle(SquishyButtonStyle())
                 .accessibilityLabel("Back")
                 .padding(.leading, 20)
-                .padding(.top, 14)
+                .padding(.top, topPadding)
                 Spacer()
             }
             Spacer()
@@ -135,7 +151,7 @@ struct StoryScreen: View {
 
     /// Undo / redo / clear, top-trailing — small and secondary next to the
     /// play button, each disabled when it wouldn't do anything.
-    private var historyControls: some View {
+    private func historyControls(topPadding: CGFloat) -> some View {
         VStack {
             HStack {
                 Spacer()
@@ -153,7 +169,7 @@ struct StoryScreen: View {
                     }
                 }
                 .padding(.trailing, 20)
-                .padding(.top, 14)
+                .padding(.top, topPadding)
             }
             Spacer()
         }
