@@ -743,6 +743,8 @@ final class CanvasScene: SKScene {
             if !info.moved, info.startLocation.distanceSquared(to: location) > 64 {
                 info.moved = true
                 if info.node.isSelected { select(nil) }  // hide controls while dragging
+                // A tap only settles back; a real move is the sticker lifting off.
+                if !info.startedFromTray { UISounds.shared.play(.stickerUp) }
             }
             if info.moved { updateTrayHover(for: info.node) }
             drags[touch] = info
@@ -854,7 +856,9 @@ final class CanvasScene: SKScene {
             startedFromTray: fromTray, priorZ: node.zPosition, beforeSnapshot: beforeSnapshot)
         node.zPosition = 10000  // float above everything while held
         node.setLifted(true)
-        if !fromTray {
+        if fromTray {
+            UISounds.shared.play(.stickerUp)  // the sticker leaves the tray
+        } else {
             node.run(.scale(to: node.baseScale * 1.12, duration: 0.1))
         }
     }
@@ -901,6 +905,7 @@ final class CanvasScene: SKScene {
                     ]),
                 ]))
                 firmHaptic.impactOccurred()
+                UISounds.shared.play(.stickerPlace)
                 notifyCanvasChanged(before: info.beforeSnapshot)
             } else {
                 // Dropped on the tray: put the sticker away.
@@ -918,7 +923,10 @@ final class CanvasScene: SKScene {
             .scale(to: node.baseScale * 1.05, duration: 0.09),
             .scale(to: node.baseScale, duration: 0.07),
         ]))
-        if !cancelled { firmHaptic.impactOccurred() }
+        if !cancelled {
+            firmHaptic.impactOccurred()
+            UISounds.shared.play(.stickerPlace)
+        }
         notifyCanvasChanged(before: info.beforeSnapshot)
     }
 
@@ -1020,9 +1028,13 @@ final class CanvasScene: SKScene {
     private func beginTransform(
         of node: StickerNode, touchA: UITouch, touchB: UITouch, beforeSnapshot: CanvasState
     ) {
+        // A drag that had already moved has played the lift; a resting finger
+        // or a fresh pinch has not.
+        let alreadyLifted = (drags[touchA]?.moved ?? false) || (drags[touchB]?.moved ?? false)
         drags.removeValue(forKey: touchA)
         drags.removeValue(forKey: touchB)
         if node.isSelected { select(nil) }  // hide controls while transforming
+        if !alreadyLifted { UISounds.shared.play(.stickerUp) }
 
         let a = touchA.location(in: self)
         let b = touchB.location(in: self)
@@ -1098,7 +1110,10 @@ final class CanvasScene: SKScene {
             .scale(to: node.baseScale * 0.95, duration: 0.08),
             .scale(to: node.baseScale, duration: 0.09),
         ]))
-        if !cancelled { firmHaptic.impactOccurred() }
+        if !cancelled {
+            firmHaptic.impactOccurred()
+            UISounds.shared.play(.stickerPlace)
+        }
         notifyCanvasChanged(before: transform.beforeSnapshot)
         return true
     }
