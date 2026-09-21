@@ -734,6 +734,7 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		}
 		cues, plain := nar.Cues, nar.Plain()
 		validateTags(&is, lang, nar)
+		validateSegments(&is, lang, nar)
 		n := len(strings.Fields(plain))
 		switch {
 		case n < MinWords || n > MaxWords:
@@ -873,6 +874,26 @@ func validateSoundCue(is *Issues, lang string, c Cue, s *Story, nar Narration) {
 		}
 		if spec.EffectiveSeconds() > 4 {
 			is.warnf("%s: cue %s pauses the story for %g s — long for a four-year-old", lang, c.Raw, spec.EffectiveSeconds())
+		}
+	}
+}
+
+// MinSegmentWords is the shortest stretch of narration a solo sound should
+// leave on either side: v3 reads each stretch on its own, and its tone
+// settles over a sentence or two.
+const MinSegmentWords = 12
+
+// validateSegments warns when solo sounds chop the narration into stretches
+// too short for the voice to settle.
+func validateSegments(is *Issues, lang string, nar Narration) {
+	segs := nar.Segments()
+	if len(segs) < 2 {
+		return
+	}
+	for _, seg := range segs {
+		if n := seg.To - seg.From; n < MinSegmentWords {
+			is.warnf("%s: a solo sound leaves a stretch of only %d words (want ≥ %d) — the narrator reads each stretch on its own and its tone may shift", lang, n, MinSegmentWords)
+			return
 		}
 	}
 }

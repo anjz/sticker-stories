@@ -218,7 +218,7 @@ func TestSoundCuesAndTagsAreValidated(t *testing.T) {
 	s.Sounds = map[string]SoundSpec{"rain": {Prompt: "gentle rain on leaves", Seconds: 2}, "birds": {Prompt: "dawn chorus", Seconds: 12, Loop: true}}
 	for _, lang := range []string{"en-US", "es-ES"} {
 		l := s.Languages[lang]
-		l.Text = "[softly] It rained. {sfx:rain solo} {sfx:birds} " + l.Text
+		l.Text = "[softly] It rained all morning, and the whole forest listened to it, drip by drip by drip. {sfx:rain solo} {sfx:birds} " + l.Text
 		s.Languages[lang] = l
 	}
 	if is := Validate(s, forest, cat); len(is.Errors) != 0 || len(is.Warnings) != 0 {
@@ -240,6 +240,11 @@ func TestSoundCuesAndTagsAreValidated(t *testing.T) {
 			l.Text = "It rained {sfx:rain solo} hard. " + l.Text
 			s.Languages["en-US"] = l
 		}, "mid-sentence", true},
+		{"solo leaves a short stretch", func(s *Story) {
+			l := s.Languages["en-US"]
+			l.Text = "It rained. {sfx:rain solo} " + l.Text
+			s.Languages["en-US"] = l
+		}, "stretch of only", true},
 		{"too many tags", func(s *Story) {
 			l := s.Languages["en-US"]
 			l.Text = "[excited] [curious] [happily] [laughs] [gasps] [sighs] [whispers] " + l.Text
