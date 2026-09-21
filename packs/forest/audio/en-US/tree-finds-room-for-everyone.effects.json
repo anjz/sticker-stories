@@ -2,32 +2,44 @@
   "schema": 1,
   "triggers": [
     {
-      "at": 13.37,
-      "cue": "landing",
-      "sticker": "owl",
-      "effect": "float",
-      "intensity": 0.4
+      "at": 8.76,
+      "cue": "was",
+      "sticker": "tree",
+      "effect": "wobble",
+      "repeat": 3
     },
     {
-      "at": 18.97,
-      "cue": "hopping",
+      "at": 15.06,
+      "cue": "arrived",
+      "sticker": "owl",
+      "effect": "fade-in"
+    },
+    {
+      "at": 24.9,
+      "cue": "came",
       "sticker": "bird",
+      "effect": "hop"
+    },
+    {
+      "at": 31.7,
+      "cue": "came",
+      "sticker": "squirrel",
       "effect": "hop",
       "repeat": 2
     },
     {
-      "at": 25.79,
-      "cue": "scrambling",
+      "at": 43.53,
+      "cue": "snug",
       "sticker": "squirrel",
-      "effect": "hop",
-      "repeat": 3
+      "effect": "fade-out",
+      "duration": 1.5
     },
     {
-      "at": 61.53,
-      "cue": "stood",
+      "at": 46.35,
+      "cue": "tree",
       "sticker": "tree",
-      "effect": "glow",
-      "hold": true
+      "effect": "wobble",
+      "repeat": 2
     }
   ]
 }
