@@ -53,6 +53,11 @@ const (
 	// app crops the top and bottom on wide screens and lays the sticker tray
 	// and the play controls over those bands.
 	sceneSafeArea = "Composition: the screen crops the top and bottom of this picture and covers them with controls, so keep the horizon, the ground line and everything that matters — focal points, main features, anything a child would point at — inside the central 70% of the height. Still fill the top and bottom bands naturally (sky, canopy, leaves, grass); just keep them quiet and secondary, with nothing the picture needs there. Balance, not emptiness."
+	// Outdoors packs get this too (docs/pack-format.md, "Art safe area"):
+	// the app draws the weather and the light as canvas effects over the
+	// scene — sunshine, rain, fog, a rainbow, night with a moon and stars —
+	// so the art itself must stay neutral or the moon would show twice.
+	sceneNeutralSky = "Weather and light: plain daytime with soft, even light and a clear or lightly clouded sky. Do NOT paint a sun, a moon, stars, sun rays, a rainbow, rain, mist or fog anywhere in the picture — the app adds those over the scene as effects."
 )
 
 // artConfig is art.json.
@@ -187,7 +192,7 @@ func runInit(args []string) error {
 		Style:       "Describe the pack's look here: medium, line, palette, level of detail, how faces look. Every prompt inherits it.",
 		StyleSheet:  "Describe a style sheet image: three or four of the characters side by side plus a small scenery swatch, on a plain white background.",
 		StickerSize: 1024, Border: 0.025, Margin: 0.03,
-		Scene: sceneSpec{Background: "The scene behind the stickers, no characters.", Foreground: "Only the elements that sit in front of the stickers (e.g. the nearest trees and grass), everything else transparent."},
+		Scene: sceneSpec{Background: "The scene behind the stickers, no characters. Outdoors: plain daylight, no sun or moon — the app's canvas effects draw the weather and the night.", Foreground: "Only the elements that sit in front of the stickers (e.g. the nearest trees and grass), everything else transparent."},
 		Notes: map[string]string{"stickers": "One prompt per sticker: what it is, pose, expression, facing direction. Keep every character facing the same way."},
 	}
 	for _, s := range c.pack.Stickers {
@@ -490,6 +495,10 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 	wide := fmt.Sprintf("%dx%d", wideW, baseH)
 	framing := "Compose it as a complete picture: framing elements such as the nearest trees at the left and right edges of THIS image, an open middle for the stickers. " + sceneSafeArea
 	extend := "Extend the attached scene seamlessly into the transparent side bands, continuing the same style, lighting, horizon and ground line, adding more of the same scenery beyond the current edges. Do not change the existing centre."
+	if r.c.pack.EffectiveSetting() == "outdoors" {
+		framing += " " + sceneNeutralSky
+		extend += " " + sceneNeutralSky
+	}
 
 	bgFP := hashOf(toolVersion, "background", sheetFP, cfg.Style, cfg.Scene.Background, r.o.quality, "4")
 	bgBase, bgWide := r.out("art", "background.png"), r.out("art", "background-wide.png")

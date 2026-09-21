@@ -61,6 +61,13 @@ never letterboxes:
   Paint the bands, but keep them quiet — nothing the picture needs. A
   sticker placed in a top/bottom band while in portrait is hidden in
   landscape until they rotate back.
+- **Outdoors packs paint no weather and no sky lights.** The canvas effects
+  (`docs/effects.md`) draw sunshine, rain, fog, a rainbow and night with a
+  moon and stars over the scene, so the art itself stays plain daylight:
+  soft even light, a clear or lightly clouded sky, **never a sun, a moon,
+  stars, sun rays, a rainbow, rain or mist** — a painted moon would show
+  twice the moment `night` plays. `stickerart` adds this directive to the
+  scene prompts of every outdoors pack.
 
 ## manifest.json — schema v2
 

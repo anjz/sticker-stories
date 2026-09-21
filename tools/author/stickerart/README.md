@@ -63,8 +63,12 @@ go run ./packager validate ../packs/forest
    bottom bands on wide screens and lays the sticker tray and the play
    controls over them, so the horizon and everything that matters go in
    the central 70 % of the height, while the bands are still painted —
-   quiet, not empty. Your `scene.*` prompts describe the place; the tool
-   adds the framing.
+   quiet, not empty. For an **outdoors** pack both prompts (and the
+   outpainting of the wide bands) also carry the neutral-sky directive:
+   plain daylight, no sun, moon, stars, rays, rainbow, rain or mist — the
+   app draws all of those as canvas effects, and a painted moon would show
+   twice when `night` plays. Your `scene.*` prompts describe the place; the
+   tool adds the framing.
 
 Every call's reported token usage is priced at list rates and printed per
 image and as a run total, so the real spend is visible. References are
