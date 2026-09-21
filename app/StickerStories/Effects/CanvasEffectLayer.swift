@@ -5,15 +5,17 @@ import StickerStoriesKit
 /// the pack's art frame. Driven every frame by the strengths the
 /// `CanvasEffectsRunner` reports: nothing here keeps time of its own, so a
 /// seek or a pause looks right for free. Add it to the scene at z 0; its
-/// children carry the real z-positions (the rainbow sits in the sky behind
-/// the foreground art, everything else over the whole canvas).
+/// children carry the real z-positions (the rainbow, the moon and the stars
+/// sit in the sky behind the foreground art, everything else over the whole
+/// canvas).
 ///
 /// The numbers in this file are the tuning surface — content only ever
 /// reaches `strength` (intensity × envelope).
 @MainActor
 final class CanvasEffectLayer: SKNode {
-    /// Over the background art, under the background stickers.
-    static let rainbowZ: CGFloat = 50
+    /// In the sky: over the background art, under the background stickers
+    /// and the foreground art (the rainbow, the moon, the stars).
+    static let skyZ: CGFloat = 50
     /// Over both art planes and every sticker; under the tray (1000).
     static let overlayZ: CGFloat = 500
 
@@ -37,7 +39,8 @@ final class CanvasEffectLayer: SKNode {
     private let rainWash = SKSpriteNode()
 
     // Sunshine: a warm wash, a glow along the whole top edge and a few broad
-    // shafts hanging from it — the art's own sun can be in any corner.
+    // shafts hanging from it — the art paints no sun of its own
+    // (docs/pack-format.md), so the light comes from the whole sky.
     private struct Shaft {
         let node: SKSpriteNode
         let x: CGFloat  // fraction of the world width, along the top edge
@@ -53,10 +56,13 @@ final class CanvasEffectLayer: SKNode {
     private let rainbow = SKSpriteNode()
     private let dim = SKSpriteNode()
 
-    // Night: the dimlight vignette in a deeper blue, a darker wash down
-    // from the top edge so the sky goes first, a few small stars twinkling
-    // on their own slow phases, and a moon with a soft halo, drawn over the
-    // dim so it reads as a light.
+    // Night: the dimlight vignette in a deeper blue and a darker wash down
+    // from the top edge so the sky goes first, both over everything like
+    // the other overlays; a few small stars twinkling on their own slow
+    // phases and the moon's disc in the sky behind the foreground art, so
+    // the trees stand in front of them; and the moon's halo above the
+    // washes — additive light that keeps the disc bright under the darkness
+    // and spills a little onto whatever is in front of the moon.
     private let nightDim = SKSpriteNode()
     private let nightSky = SKSpriteNode()
     private struct Star {
@@ -88,7 +94,7 @@ final class CanvasEffectLayer: SKNode {
         buildSunshine()
         rainbow.texture = EffectTextures.texture(named: "rainbow")
         rainbow.anchorPoint = CGPoint(x: 0.5, y: 0)
-        rainbow.zPosition = Self.rainbowZ
+        rainbow.zPosition = Self.skyZ
         rainbow.alpha = 0
         addChild(rainbow)
         dim.texture = EffectTextures.texture(named: "vignette")
@@ -122,7 +128,7 @@ final class CanvasEffectLayer: SKNode {
             node.color = UIColor(red: 1.0, green: 0.98, blue: 0.9, alpha: 1)
             node.colorBlendFactor = 1
             node.blendMode = .add
-            node.zPosition = Self.overlayZ + 4
+            node.zPosition = Self.skyZ
             node.alpha = 0
             addChild(node)
             stars.append(Star(node: node, place: CGPoint(x: x, y: y), size: size, period: period, phase: phase))
@@ -137,7 +143,7 @@ final class CanvasEffectLayer: SKNode {
         moon.texture = EffectTextures.texture(named: "moon")
         moon.color = UIColor(red: 1.0, green: 0.97, blue: 0.86, alpha: 1)
         moon.colorBlendFactor = 1
-        moon.zPosition = Self.overlayZ + 5
+        moon.zPosition = Self.skyZ
         moon.alpha = 0
         addChild(moon)
     }
@@ -275,7 +281,7 @@ final class CanvasEffectLayer: SKNode {
         nightSky.position = CGPoint(x: world.midX, y: world.maxY + h * 0.01)
         for star in stars {
             star.node.position = CGPoint(x: world.minX + w * star.place.x, y: world.minY + h * star.place.y)
-            star.node.size = CGSize(width: h * star.size, height: h * star.size)
+            star.node.size = CGSize(width: h * star.size * 1.3, height: h * star.size * 1.3)
         }
         let moonAt = CGPoint(x: world.minX + w * Self.moonPlace.x, y: world.minY + h * Self.moonPlace.y)
         moon.size = CGSize(width: h * 0.13, height: h * 0.13)
@@ -325,8 +331,9 @@ final class CanvasEffectLayer: SKNode {
         nightDim.alpha = nightStrength * 0.66
         nightSky.alpha = nightStrength * 0.55
         for star in stars {
-            let twinkle = 0.55 + 0.45 * sin(2 * .pi * time / star.period + star.phase)
-            star.node.alpha = nightStrength * twinkle
+            // Brighter than they look: the washes above darken them again.
+            let twinkle = 0.7 + 0.3 * sin(2 * .pi * time / star.period + star.phase)
+            star.node.alpha = min(1, nightStrength * 1.4 * twinkle)
         }
         moon.alpha = nightStrength
         moonGlow.alpha = nightStrength * (0.55 + 0.06 * sin(2 * .pi * time / 6))
