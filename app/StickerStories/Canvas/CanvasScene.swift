@@ -34,6 +34,7 @@ final class CanvasScene: SKScene {
     var onHistoryChange: ((Bool, Bool, Bool) -> Void)?
 
     private let pack: LoadedPack
+    private let textures: PackTextures
     private let stateStore: any CanvasStateStore
 
     private let backgroundArt = SKSpriteNode()
@@ -189,12 +190,19 @@ final class CanvasScene: SKScene {
 
     // MARK: Setup
 
-    init(pack: LoadedPack, stateStore: any CanvasStateStore) {
+    /// What the scene paints behind the art; `StoryScreen` shows it while
+    /// the pack's textures load so the canvas fades in over the same blue.
+    static let skyColor = UIColor(red: 0.49, green: 0.78, blue: 0.91, alpha: 1)
+
+    /// `textures` come decoded and preloaded (`PackTextureLoader`) so that
+    /// presenting the scene costs nothing on the main thread.
+    init(pack: LoadedPack, textures: PackTextures, stateStore: any CanvasStateStore) {
         self.pack = pack
+        self.textures = textures
         self.stateStore = stateStore
         super.init(size: CGSize(width: 1024, height: 768))
         scaleMode = .resizeFill
-        backgroundColor = UIColor(red: 0.49, green: 0.78, blue: 0.91, alpha: 1)
+        backgroundColor = Self.skyColor
     }
 
     @available(*, unavailable)
@@ -292,23 +300,13 @@ final class CanvasScene: SKScene {
     private func loadPackContent() {
         // Both renditions are kept; `layoutScene` draws whichever aspect is
         // closest to the window. The base art always defines the frame.
-        baseArtTextures = (texture(forAssetPath: pack.manifest.background), texture(forAssetPath: pack.manifest.foreground))
+        baseArtTextures = (textures.background, textures.foreground)
         baseArtPixelSize = baseArtTextures.background?.size() ?? .zero
-        if let wideBackground = pack.manifest.backgroundWide, let wideForeground = pack.manifest.foregroundWide,
-            let wideTexture = texture(forAssetPath: wideBackground) {
-            wideArtTextures = (wideTexture, texture(forAssetPath: wideForeground))
-        }
+        wideArtTextures = textures.wide
         backgroundArt.texture = baseArtTextures.background
         foregroundArt.texture = baseArtTextures.foreground
-        for sticker in pack.manifest.stickers {
-            stickerTextures[sticker.id] = texture(forAssetPath: sticker.image)
-        }
+        stickerTextures = textures.stickers
         buildTray()
-    }
-
-    private func texture(forAssetPath path: String) -> SKTexture? {
-        guard let image = UIImage(contentsOfFile: pack.url(forAssetPath: path).path) else { return nil }
-        return SKTexture(image: image)
     }
 
     // MARK: Layout
