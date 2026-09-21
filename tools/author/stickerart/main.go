@@ -41,15 +41,18 @@ import (
 )
 
 const (
-	toolVersion   = "1"
-	genModel      = "gpt-image-2.5-flare"
-	editModel     = "gpt-image-2.5-sunburst"
-	baseW, baseH  = 2048, 1536
-	wideW         = 3072
-	sheetSize     = "1536x1024"
-	stickerGenPx  = 1024
-	defaultQual   = "high"
-	sceneSafeArea = "Keep the horizon, the ground line and every important element inside the central 70% of the height; the top and bottom bands are only sky and plain ground that can be cropped."
+	toolVersion  = "1"
+	genModel     = "gpt-image-2.5-flare"
+	editModel    = "gpt-image-2.5-sunburst"
+	baseW, baseH = 2048, 1536
+	wideW        = 3072
+	sheetSize    = "1536x1024"
+	stickerGenPx = 1024
+	defaultQual  = "high"
+	// Both scene planes get this (docs/pack-format.md, "Art safe area"): the
+	// app crops the top and bottom on wide screens and lays the sticker tray
+	// and the play controls over those bands.
+	sceneSafeArea = "Composition: the screen crops the top and bottom of this picture and covers them with controls, so keep the horizon, the ground line and everything that matters — focal points, main features, anything a child would point at — inside the central 70% of the height. Still fill the top and bottom bands naturally (sky, canopy, leaves, grass); just keep them quiet and secondary, with nothing the picture needs there. Balance, not emptiness."
 )
 
 // artConfig is art.json.
@@ -433,7 +436,7 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 	framing := "Compose it as a complete picture: framing elements such as the nearest trees at the left and right edges of THIS image, an open middle for the stickers. " + sceneSafeArea
 	extend := "Extend the attached scene seamlessly into the transparent side bands, continuing the same style, lighting, horizon and ground line, adding more of the same scenery beyond the current edges. Do not change the existing centre."
 
-	bgFP := hashOf(toolVersion, "background", sheetFP, cfg.Style, cfg.Scene.Background, r.o.quality, "3")
+	bgFP := hashOf(toolVersion, "background", sheetFP, cfg.Style, cfg.Scene.Background, r.o.quality, "4")
 	bgBase, bgWide := r.out("art", "background.png"), r.out("art", "background-wide.png")
 	if r.upToDate(bgWide, bgFP) && r.upToDate(bgBase, bgFP) {
 		r.say("· background up to date")
@@ -455,7 +458,7 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 		r.say("✓ background (%s) + wide", cost)
 	}
 
-	fgFP := hashOf(toolVersion, "foreground", bgFP, cfg.Scene.Foreground, r.o.quality, "3")
+	fgFP := hashOf(toolVersion, "foreground", bgFP, cfg.Scene.Foreground, r.o.quality, "4")
 	fgBase, fgWide := r.out("art", "foreground.png"), r.out("art", "foreground-wide.png")
 	if r.upToDate(fgWide, fgFP) && r.upToDate(fgBase, fgFP) {
 		r.say("· foreground up to date")
@@ -473,7 +476,7 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 		bg = small
 	}
 	r.say("▶ foreground")
-	prompt := fmt.Sprintf("%s\n\nThe first attached image is the finished background of a scene at the same framing as the output. Paint only the foreground plane that sits in front of it, matching its style, lighting and perspective exactly: %s Everything that is not a foreground element must be fully transparent. No characters, no animals, no text.", cfg.Style, cfg.Scene.Foreground)
+	prompt := fmt.Sprintf("%s\n\nThe first attached image is the finished background of a scene at the same framing as the output. Paint only the foreground plane that sits in front of it, matching its style, lighting and perspective exactly: %s Everything that is not a foreground element must be fully transparent. No characters, no animals, no text. %s The nearest trunks and plants may run through the top and bottom bands, but keep their interesting parts (foliage, flowers, anything eye-catching) in the central 70%%.", cfg.Style, cfg.Scene.Foreground, sceneSafeArea)
 	img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: size, Quality: r.o.quality, Background: "transparent", References: [][]byte{bg, sheet}})
 	if err != nil {
 		return fmt.Errorf("foreground: %w", err)
