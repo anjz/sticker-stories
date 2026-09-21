@@ -1198,7 +1198,14 @@ final class CanvasScene: SKScene {
             select(nil)
         }
         isPlayLocked = locked
-        tray.run(.fadeAlpha(to: locked ? 0 : 1, duration: locked ? 0.35 : 0.45), withKey: Self.trayFadeActionKey)
+        // The items sit inside an SKCropNode, which does not pass its
+        // parent's alpha on to what it clips (they would snap in and out
+        // while the pill fades), so the pill and the clipped content are
+        // faded individually rather than the tray as a whole.
+        let fade = SKAction.fadeAlpha(to: locked ? 0 : 1, duration: locked ? 0.35 : 0.45)
+        for node in [tray.childNode(withName: "tray-bar"), trayContent].compactMap({ $0 }) {
+            node.run(fade, withKey: Self.trayFadeActionKey)
+        }
     }
 
     /// Starts the effects pipeline for one story. Effects only exist between
