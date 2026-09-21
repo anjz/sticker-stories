@@ -6,7 +6,7 @@
 //
 // Usage:
 //
-//	storyaudio render  -pack ../packs/forest [-only id,…] [-lang en-US] [-dry-run] [-force]
+//	storyaudio render  -pack ../packs/forest [-only id,…] [-lang en-US] [-dry-run] [-force] [-retake]
 //	                   [-voice en-US=<id>,es-ES=<id>] [-model eleven_v3] [-rate 44100]
 //	                   [-no-sfx] [-no-music] [-music-prompt "…"] [-sfx-db -12] [-music-db -14]
 //	                   [-lead 3] [-intro-db -6] [-parallel 5]
@@ -399,6 +399,7 @@ type renderOpts struct {
 	stability      string
 	parallel       int
 	force, dry     bool
+	retake         bool
 	only           map[string]bool
 	lang           string
 	bitrate        int
@@ -437,7 +438,8 @@ func runRender(args []string) error {
 	introDB := fs.Float64("intro-db", -6, "music level during the lead-in, dB relative to the narrator (ramps down to -music-db over the last second)")
 	bitrate := fs.Int("bitrate", 64000, "AAC bitrate (64 kbps mono is transparent for narration)")
 	parallel := fs.Int("parallel", 5, "renditions rendered concurrently")
-	force := fs.Bool("force", false, "re-render even if nothing changed")
+	force := fs.Bool("force", false, "re-render (re-mix) even if nothing changed; cached narration is reused")
+	retake := fs.Bool("retake", false, "synthesise the narration again even when a cached take exists — v3 varies between runs, so this is how you ask for another performance (implies -force)")
 	dry := fs.Bool("dry-run", false, "print what would be rendered and the characters that would be synthesised (cached narration excluded); no API calls that cost")
 	fs.Parse(args)
 
@@ -450,7 +452,7 @@ func runRender(args []string) error {
 	}
 	o := renderOpts{model: *model, sampleRate: *rate, noSFX: *noSFX, noMusic: *noMusic, musicPrompt: *musicPrompt,
 		sfxDB: *sfxDB, ambienceDB: *ambienceDB, musicDB: *musicDB, lead: *lead, introDB: *introDB, stability: *stability,
-		parallel: *parallel, force: *force, dry: *dry, lang: *lang, bitrate: *bitrate}
+		parallel: *parallel, force: *force || *retake, retake: *retake, dry: *dry, lang: *lang, bitrate: *bitrate}
 	if *only != "" {
 		o.only = map[string]bool{}
 		for _, id := range strings.Split(*only, ",") {
@@ -882,8 +884,10 @@ func (r *renderer) speak(text, previous, next, lang, voiceID string, log *string
 	// (levels, music, bitrate) never cost another API call. The cache key
 	// includes the neighbouring text, which shapes the delivery.
 	key := text + "\x00" + previous + "\x00" + next
-	if sp, model, ok := r.loadSpeech(key, lang, voiceID, rate); ok {
-		return sp, model, rate, nil
+	if !r.o.retake {
+		if sp, model, ok := r.loadSpeech(key, lang, voiceID, rate); ok {
+			return sp, model, rate, nil
+		}
 	}
 	stability := stabilityPresets[r.o.stability]
 	req := elevenlabs.SpeechRequest{
@@ -963,8 +967,10 @@ type speechCache struct {
 	Alignment *elevenlabs.Alignment `json:"alignment"`
 }
 
+// speechCachePath keys a take by everything that shapes it: the text and
+// its neighbours, the voice, the model, the stability preset and the rate.
 func (r *renderer) speechCachePath(plain, lang, voiceID string, rate int) string {
-	return filepath.Join(r.cacheDir("tts"), hashOf(plain, lang, voiceID, r.o.model, fmt.Sprint(rate)))
+	return filepath.Join(r.cacheDir("tts"), hashOf(plain, lang, voiceID, r.o.model, r.o.stability, fmt.Sprint(rate)))
 }
 
 func (r *renderer) loadSpeech(plain, lang, voiceID string, rate int) (*elevenlabs.Speech, string, bool) {

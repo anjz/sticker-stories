@@ -53,11 +53,15 @@ go run ./packager validate ../packs/forest
    `<lang>.effects.json` and a `<lang>.render.json` fingerprint.
 
 A story is skipped when its text, voice, model, stability, sounds and mix
-settings are unchanged since the last render (`-force` overrides). The
-synthesised narration itself is cached in `_cache/tts/` per segment, keyed
-by its text (tags included), its neighbours, voice, model and sample rate,
-so changing levels, music, sounds or bitrate only re-mixes and costs
-nothing; only a text, tag or voice change calls the API again. `-only id,…` and
+settings are unchanged since the last render (`-force` re-mixes anyway).
+The synthesised narration itself is cached in `_cache/tts/` per segment,
+keyed by its text (tags included), its neighbours, voice, model, stability
+and sample rate, so changing levels, music, sounds or bitrate only re-mixes
+and costs nothing; a text, tag, voice or stability change calls the API
+again for the segments it touches. v3 performs a little differently every
+time: `-retake` (with `-only …`) throws the cached take away and asks for
+another performance of just those stories — the way to shop for the best
+read of a story you are not happy with. `-only id,…` and
 `-lang` narrow a run. Renditions are rendered `-parallel` at a time
 (default 5); each shared asset (a mood's music, a sound effect) is still
 generated exactly once. A failed rendition does not stop the others; the
