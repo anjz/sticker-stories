@@ -130,7 +130,9 @@ Sound effects use the reserved target `sfx` (a pack must not name a sticker
   sound's `seconds` (plus a breath), the sound plays alone, then reading
   resumes. Put it **between sentences** (after a full stop; the validator
   warns otherwise), give it 1–3 s, and use at most two per story — a
-  four-year-old's attention does not survive a long silence.
+  four-year-old's attention does not survive a long silence. The voice
+  reads each stretch between solo sounds on its own, so leave at least a
+  sentence or two (12+ words) on either side or its tone may shift.
 - A sound with `"loop": true` is an **ambience bed**: from its cue it plays
   low under the narration for its `seconds`, faded in and out, ducked under
   the voice. Rain, wind, a stream, night crickets. One per story at most;

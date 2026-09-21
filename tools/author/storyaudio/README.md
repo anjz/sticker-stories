@@ -21,9 +21,10 @@ go run ./packager validate ../packs/forest
    the Eleven v3 **audio tags** (`[whispers]`, `[giggles]`, …) and the
    **solo sound cues**. The narration is read in segments — one per stretch
    between solo sounds — each sent to the text-to-speech **with
-   timestamps** endpoint with its tags kept in and its neighbours passed
-   as `previous_text` / `next_text` so the delivery carries across the
-   gap. Model `eleven_v3` at `-stability natural` (creative | natural |
+   timestamps** endpoint with its tags kept in (v3 does not yet accept
+   `previous_text` / `next_text`, so each stretch is read on its own —
+   keep them a sentence or two long; the validator warns below 12 words).
+   Model `eleven_v3` at `-stability natural` (creative | natural |
    robust — v3's three settings; natural follows tags without reading them
    aloud); if timestamps are refused it falls back to
    `eleven_multilingual_v2` with the tags stripped (v2 would say them).

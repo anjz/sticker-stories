@@ -892,9 +892,14 @@ func (r *renderer) speak(text, previous, next, lang, voiceID string, log *string
 	stability := stabilityPresets[r.o.stability]
 	req := elevenlabs.SpeechRequest{
 		VoiceID: voiceID, Text: text, ModelID: r.o.model, LanguageCode: primary(lang), OutputFormat: pcmFormat(rate),
-		Settings: &elevenlabs.VoiceSettings{Stability: &stability}, PreviousText: previous, NextText: next}
+		Settings: &elevenlabs.VoiceSettings{Stability: &stability}}
+	if r.o.model != defaultModel {
+		// v3 does not take previous_text / next_text yet ("not yet
+		// supported with the 'eleven_v3' model"); v2 does.
+		req.PreviousText, req.NextText = previous, next
+	}
 	sp, err := r.el.SpeechWithTimestamps(r.ctx, req)
-	if err != nil && elevenlabs.IsClientError(err) && rate == 44100 {
+	if err != nil && isRateRefusal(err) && rate == 44100 {
 		fmt.Fprintf(log, "[44.1 kHz PCM refused: %s; using 24 kHz] ", shorten(err))
 		r.mu.Lock()
 		r.o.sampleRate = 24000
@@ -930,6 +935,18 @@ func (r *renderer) speak(text, previous, next, lang, voiceID string, log *string
 	}
 	r.saveSpeech(key, lang, voiceID, rate, model, sp)
 	return sp, model, rate, nil
+}
+
+// isRateRefusal reports whether a client error is about the requested
+// output format (44.1 kHz PCM needs a higher tier), as opposed to any
+// other 400 — which must not silently downgrade the whole run.
+func isRateRefusal(err error) bool {
+	e, ok := err.(*elevenlabs.APIError)
+	if !ok || e.Status < 400 || e.Status >= 500 {
+		return false
+	}
+	body := strings.ToLower(e.Body)
+	return strings.Contains(body, "output_format") || strings.Contains(body, "44100") || strings.Contains(body, "sample rate")
 }
 
 // realign maps an alignment made for stripped (the text without audio
