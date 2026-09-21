@@ -84,8 +84,14 @@ struct StoryScreen: View {
 
                     PlaybackOverlay(
                         phase: playback.phase,
-                        onPlay: play,
-                        onStop: { playback.stop() })
+                        onPlay: {
+                            UISounds.shared.play(.playClick)
+                            play()
+                        },
+                        onStop: {
+                            UISounds.shared.play(.playClick)
+                            playback.stop()
+                        })
                 } else if showsLoader {
                     BouncingDots()
                         .accessibilityLabel("Loading")
