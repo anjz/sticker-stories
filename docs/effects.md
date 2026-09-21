@@ -121,7 +121,8 @@ clock but not this vocabulary.
 ## Canvas effects (6, closed)
 
 Weather and light over the **whole scene**: they draw over the art and the
-stickers (the rainbow sits behind the foreground art, in the sky) and never
+stickers (the rainbow, the moon and the stars sit behind the foreground
+art, in the sky; the darkness of `night` is over everything) and never
 move a sticker. Where a sticker effect is a cycle, a canvas effect is one
 **envelope**: it builds up over its ramp-in, stays at full strength, and
 clears over its ramp-out — then it is gone. There is no repeat, no colour,
@@ -130,7 +131,10 @@ drizzle or downpour) and **`duration`** (how long it stays, ramps
 included).
 
 Each canvas effect suits a pack **`setting`** (`docs/pack-format.md`:
-`outdoors`, `indoors` or `none`). A rain trigger in an indoors pack is an
+`outdoors`, `indoors` or `none`). Because these effects *are* the weather
+and the sky lights, an outdoors pack's art paints none of its own — no sun,
+moon, stars, rays, rainbow, rain or mist (`docs/pack-format.md`, "Art safe
+area"). A rain trigger in an indoors pack is an
 error for the packager and is skipped by the app; a `none` pack (abstract
 or fantastical places) gets no canvas effects at all.
 

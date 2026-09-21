@@ -8,7 +8,7 @@ import UIKit
 /// sticker out of the tray and onto the canvas is one continuous gesture.
 ///
 /// Node stack (accumulated zPosition, back to front):
-///   background art (0) < rainbow (50) < background stickers (100)
+///   background art (0) < rainbow, moon, stars (50) < background stickers (100)
 ///   < foreground art (200) < foreground stickers (300) < canvas effects
 ///   (500: rain, fog, sunshine, night, dimlight) < tray (1000); a dragged sticker
 ///   is lifted to its layer's z + 10000 so it floats above everything while
