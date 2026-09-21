@@ -8,9 +8,9 @@ import SwiftUI
 /// accident); the canvas itself is preserved either way.
 ///
 /// The pack's textures are decoded off the main thread first
-/// (`PackTextureLoader`); until they are ready the screen shows the scene's
-/// sky colour and a spinner, and the canvas is mounted only once — at its
-/// final size — so opening a pack neither stalls nor re-lays out.
+/// (`PackTextureLoader`); until they are ready the screen shows a sky-to-
+/// meadow gradient and a spinner, and the canvas is mounted only once — at
+/// its final size — so opening a pack neither stalls nor re-lays out.
 struct StoryScreen: View {
     let pack: LoadedPack
     let preferredLanguages: [String]
@@ -89,9 +89,15 @@ struct StoryScreen: View {
                 }
 
                 let topPadding = Self.hudTopPadding(safeAreaTop: geometry.safeAreaInsets.top)
-                backButton(topPadding: topPadding)
                 if scene != nil {
+                    backButton(topPadding: topPadding)
+                    // Editing is locked while a story plays: the controls fade
+                    // out and back in on the same timing as the sticker tray
+                    // (`CanvasScene.setPlayLocked`).
                     historyControls(topPadding: topPadding)
+                        .opacity(playback.isBusy ? 0 : 1)
+                        .allowsHitTesting(!playback.isBusy)
+                        .animation(.easeInOut(duration: playback.isBusy ? 0.35 : 0.45), value: playback.isBusy)
                 }
 
                 if isConfirmingClear {
@@ -146,10 +152,19 @@ struct StoryScreen: View {
         .onChange(of: calmMode) { scene?.setEffectPolicy(effectPolicy) }
     }
 
-    /// The scene's own sky colour, full-screen, so the canvas fades in over
-    /// the same blue it paints behind the art.
+    /// What shows while the pack loads and what the canvas fades in over: a
+    /// soft sky above a soft meadow, so the art's own sky and ground take
+    /// over from something that already looks like them.
     private var loadingBackdrop: some View {
-        Color(uiColor: CanvasScene.skyColor).ignoresSafeArea()
+        LinearGradient(
+            stops: [
+                .init(color: Color(red: 0.60, green: 0.85, blue: 0.97), location: 0),
+                .init(color: Color(uiColor: CanvasScene.skyColor), location: 0.45),
+                .init(color: Color(red: 0.62, green: 0.84, blue: 0.66), location: 0.8),
+                .init(color: Color(red: 0.78, green: 0.88, blue: 0.52), location: 1),
+            ],
+            startPoint: .top, endPoint: .bottom)
+        .ignoresSafeArea()
     }
 
     private var effectPolicy: EffectPolicy {
