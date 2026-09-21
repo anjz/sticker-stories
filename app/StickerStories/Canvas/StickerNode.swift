@@ -7,10 +7,11 @@ import UIKit
 /// `SelectionBubbleNode` next to the selected sticker instead, so controls
 /// never scale or rotate with the sticker.
 ///
-/// The shadow is what sells the sticker as a real object lying on the art:
+/// The shadow is what sells the sticker as a real object stuck to the art:
 /// two copies of a pre-blurred silhouette (`StickerShadowCache`) — a
-/// tight, darker contact shadow hugging the edge and a softer, wider cast
-/// shadow further down-right — lit from the top-left of the *screen*, so
+/// tight, darker contact shadow hugging the edge and a fainter cast shadow
+/// a little down-right, both kept small because a sticker lies flat on the
+/// paper — lit from the top-left of the *screen*, so
 /// the offsets are counter-rotated as the sticker turns and kept in world
 /// points as it scales. Lifting a sticker peels it up: the contact shadow
 /// nearly vanishes and the cast shadow drops away.
@@ -28,8 +29,8 @@ final class StickerNode: SKSpriteNode {
         var alpha: CGFloat
         var scale: CGFloat
     }
-    private static let restingContact = ShadowPose(offset: CGPoint(x: 1.5, y: -2.5), alpha: 0.30, scale: 1.0)
-    private static let restingCast = ShadowPose(offset: CGPoint(x: 5, y: -9), alpha: 0.16, scale: 1.05)
+    private static let restingContact = ShadowPose(offset: CGPoint(x: 1, y: -2), alpha: 0.30, scale: 1.0)
+    private static let restingCast = ShadowPose(offset: CGPoint(x: 3, y: -5), alpha: 0.12, scale: 1.02)
     private static let liftedContact = ShadowPose(offset: CGPoint(x: 3, y: -5), alpha: 0.10, scale: 1.0)
     private static let liftedCast = ShadowPose(offset: CGPoint(x: 12, y: -22), alpha: 0.24, scale: 1.1)
 
