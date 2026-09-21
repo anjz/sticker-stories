@@ -64,7 +64,7 @@ time: `-retake` (with `-only …`) throws the cached take away and asks for
 another performance of just those stories — the way to shop for the best
 read of a story you are not happy with. `-only id,…` and
 `-lang` narrow a run. Renditions are rendered `-parallel` at a time
-(default 5); each shared asset (a mood's music, a sound effect) is still
+(default 10); each shared asset (a mood's music, a sound effect) is still
 generated exactly once. A failed rendition does not stop the others; the
 run ends with the list, and rerunning retries only those.
 
