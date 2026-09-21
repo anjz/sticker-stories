@@ -1,3 +1,4 @@
+import ImageIO
 import StickerStoriesKit
 import SwiftUI
 import UIKit
@@ -62,17 +63,27 @@ struct MainMenuView: View {
 
 /// One selectable pack: its background art fills the card, a few stickers
 /// spill over it, and the localized name sits in a banner at the bottom.
+/// The art is shown from small thumbnails decoded off the main thread — the
+/// full-size pack images are decoded only when the pack is opened.
 private struct PackMenuCard: View {
     let pack: LoadedPack
     let preferredLanguages: [String]
+
+    @State private var background: UIImage?
+    @State private var stickers: [UIImage] = []
+
+    /// Longest side of the background thumbnail: a card is at most ~0.42 of
+    /// the screen width, well under this at 2× or 3×.
+    private static let backgroundPixels = 1200
+    /// The spilled stickers are 76 pt tall.
+    private static let stickerPixels = 256
 
     var body: some View {
         let language = LanguageResolver(preferredLanguages: preferredLanguages)
             .resolve(from: pack.manifest.languages)
 
         ZStack(alignment: .bottom) {
-            if let background = UIImage(
-                contentsOfFile: pack.url(forAssetPath: pack.manifest.background).path) {
+            if let background {
                 // Overlay on a clear base so the fill-scaled image cannot
                 // inflate the card's layout size (it would in portrait).
                 Color.clear.overlay {
@@ -100,13 +111,21 @@ private struct PackMenuCard: View {
         .clipShape(RoundedRectangle(cornerRadius: 30))
         .overlay(RoundedRectangle(cornerRadius: 30).strokeBorder(.white.opacity(0.9), lineWidth: 4))
         .shadow(color: .black.opacity(0.22), radius: 12, y: 8)
+        .task(id: pack.id) {
+            let backgroundURL = pack.url(forAssetPath: pack.manifest.background)
+            let stickerURLs = pack.manifest.stickers.prefix(3).map { pack.url(forAssetPath: $0.image) }
+            let backgroundPixels = Self.backgroundPixels, stickerPixels = Self.stickerPixels
+            let (backgroundThumbnail, stickerThumbnails) = await Task.detached(priority: .userInitiated) {
+                (Thumbnail.load(backgroundURL, maxPixelSize: backgroundPixels),
+                 stickerURLs.compactMap { Thumbnail.load($0, maxPixelSize: stickerPixels) })
+            }.value
+            background = backgroundThumbnail
+            stickers = stickerThumbnails
+        }
     }
 
     private var stickerSpill: some View {
         HStack(spacing: 8) {
-            let stickers = pack.manifest.stickers.prefix(3).compactMap {
-                UIImage(contentsOfFile: pack.url(forAssetPath: $0.image).path)
-            }
             ForEach(Array(stickers.enumerated()), id: \.offset) { index, image in
                 Image(uiImage: image)
                     .resizable()
@@ -116,6 +135,23 @@ private struct PackMenuCard: View {
                     .shadow(color: .black.opacity(0.25), radius: 3, y: 2)
             }
         }
+    }
+}
+
+/// Downsampled decoding with ImageIO: the file is read once and scaled on
+/// the way in, so a 2048×1536 background never becomes a 12 MB bitmap just
+/// to fill a card.
+private nonisolated enum Thumbnail {
+    static func load(_ url: URL, maxPixelSize: Int) -> UIImage? {
+        guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else { return nil }
+        let options: [CFString: Any] = [
+            kCGImageSourceCreateThumbnailFromImageAlways: true,
+            kCGImageSourceCreateThumbnailWithTransform: true,
+            kCGImageSourceShouldCacheImmediately: true,
+            kCGImageSourceThumbnailMaxPixelSize: maxPixelSize,
+        ]
+        guard let image = CGImageSourceCreateThumbnailAtIndex(source, 0, options as CFDictionary) else { return nil }
+        return UIImage(cgImage: image)
     }
 }
 
