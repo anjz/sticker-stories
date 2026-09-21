@@ -49,10 +49,10 @@ struct PlaybackOverlay: View {
         .transition(.scale.combined(with: .opacity))
     }
 
-    /// Bottom-left, out of the way of the art. The title sits in a frame
+    /// Bottom-right, in the play button's corner. The title sits in a frame
     /// that animates to zero width when the pill goes compact, so the
-    /// capsule shrinks around the waveform and the stop button rather than
-    /// the title popping out.
+    /// capsule shrinks towards the right around the waveform and the stop
+    /// button rather than the title popping out.
     private func playingHUD(for story: Story) -> some View {
         VStack {
             Spacer()
@@ -66,7 +66,7 @@ struct PlaybackOverlay: View {
                     .foregroundStyle(.white)
                     .lineLimit(1)
                     .padding(.leading, 12)
-                    .frame(width: isCompact ? 0 : nil, alignment: .leading)  // nil hugs the title
+                    .frame(width: isCompact ? 0 : nil, alignment: .trailing)  // nil hugs the title
                     .clipped()
                     .opacity(isCompact ? 0 : 1)
                     .accessibilityHidden(isCompact)
@@ -88,10 +88,10 @@ struct PlaybackOverlay: View {
             // translucent capsule rasterises as a hard-edged box on some
             // devices.
             .background(Capsule().fill(.black.opacity(0.55).shadow(.drop(color: .black.opacity(0.2), radius: 8, y: 4))))
-            .padding(.leading, 20)
+            .padding(.trailing, 20)
             .padding(.bottom, 20)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: .trailing)
         .transition(.move(edge: .bottom).combined(with: .opacity))
         .task(id: story.id) {
             isCompact = false
