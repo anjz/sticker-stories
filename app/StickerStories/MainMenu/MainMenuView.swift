@@ -17,8 +17,8 @@ struct MainMenuView: View {
         GeometryReader { geo in
             // Portrait iPad is tall and narrow: cap the height against the
             // width so cards stay card-shaped in every orientation.
-            let cardHeight = min(geo.size.height * 0.58, geo.size.width * 0.66)
-            let cardWidth = min(geo.size.width * 0.42, cardHeight * 1.1)
+            let cardHeight = min(geo.size.height * 0.66, geo.size.width * 0.66)
+            let cardWidth = min(geo.size.width * 0.48, cardHeight * 1.1)
 
             VStack(spacing: 0) {
                 Text(verbatim: "Sticker Stories")
@@ -53,6 +53,8 @@ struct MainMenuView: View {
                     .padding(.vertical, 20)
                 }
                 .scrollTargetBehavior(.viewAligned)
+                // The cards' shadows fall outside the scroll view's bounds.
+                .scrollClipDisabled()
 
                 Spacer()
             }
@@ -110,7 +112,7 @@ private struct PackMenuCard: View {
         }
         .clipShape(RoundedRectangle(cornerRadius: 30))
         .overlay(RoundedRectangle(cornerRadius: 30).strokeBorder(.white.opacity(0.9), lineWidth: 4))
-        .shadow(color: .black.opacity(0.22), radius: 12, y: 8)
+        .shadow(color: .black.opacity(0.2), radius: 6, y: 4)
         .task(id: pack.id) {
             let backgroundURL = pack.url(forAssetPath: pack.manifest.background)
             let stickerURLs = pack.manifest.stickers.prefix(3).map { pack.url(forAssetPath: $0.image) }
@@ -182,6 +184,6 @@ private struct MoreStoriesCard: View {
         }
         .clipShape(RoundedRectangle(cornerRadius: 30))
         .overlay(RoundedRectangle(cornerRadius: 30).strokeBorder(.white.opacity(0.9), lineWidth: 4))
-        .shadow(color: .black.opacity(0.22), radius: 12, y: 8)
+        .shadow(color: .black.opacity(0.2), radius: 6, y: 4)
     }
 }
