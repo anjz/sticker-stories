@@ -13,7 +13,10 @@ effects (a wobble, a hop, sparkles) and, now and then, the weather or the
 light changes over the whole scene (rain, fog, sunshine, a rainbow, the
 lights going low). Stories are:
 
-- **30–60 seconds** of narration (80–140 words per language);
+- **30–60 seconds** of narration (80–140 words per language), read by an
+  Eleven v3 voice that takes stage directions and plays real sound
+  effects — you write those in too (see "Voice performance" and "Sound
+  effects");
 - **bilingual from day one** (currently en-US and es-ES), each language
   written natively;
 - **self-contained**: no series, no cliffhangers, no "next time";
@@ -54,9 +57,31 @@ Every story must have:
    Never mockery.
 7. **Variety across the set.** Mix moods (`gentle`, `funny`, `bedtime`,
    `adventure`, `curiosity`, `kindness`, `seasons`, `weather`, `music`,
-   `counting`…), times of day, weather, and story shapes. No two stories
-   with the same premise. Every sticker gets to be the hero somewhere, not
-   only a sidekick.
+   `counting`, `learning`…), times of day, weather, and story shapes. No
+   two stories with the same premise. Every sticker gets to be the hero
+   somewhere, not only a sidekick.
+
+## Learning (about four stories in ten)
+
+Roughly 40 % of a pack's stories carry **one small, true thing about how
+the pack's world works**, shown in passing. In a forest: bees carry pollen
+from flower to flower and that is how fruit begins; owls see at night and
+sleep by day; a snail carries its house and leaves a silver trail; leaves
+turn colour and fall in autumn; mushrooms grow after rain; a squirrel
+buries acorns and forgets some, and those become trees; birds build nests
+from twigs; a hedgehog rolls into a ball; rain fills puddles and the sun
+dries them. Aim for the wonder a four-year-old feels at a real fact.
+
+- **One fact per story, concrete and observable**, something the child
+  could notice outside. No numbers, no big words, no "did you know".
+- **The story stays a story.** The fact is what a character does or finds
+  out on the way to the turn, never a lesson read out; if the plot would
+  survive deleting the fact, it is bolted on.
+- **True.** Gentle simplification is fine; a cute falsehood is not.
+- Put the fact in the `learning` field so reviewers and the roster can see
+  it, add the `learning` tag, and keep the other six stories in ten free of
+  it — a set that teaches in every story stops feeling like stories.
+  `storycheck` warns outside 30–50 %.
 
 ## Safety — absolute rules
 
@@ -174,6 +199,59 @@ it stays). See `FORMAT.md`, "Canvas cues".
   cast doing something; a story with only canvas cues is a warning.
 - **Never rely on it.** The story must read fine if the weather never
   came (calm mode damps it; an older app skips it).
+
+## Voice performance
+
+The narrator is an Eleven v3 voice: it acts what you write, and it takes
+stage directions in square brackets (FORMAT.md, "Audio tags"). Use them the
+way a good reader marks up a picture book:
+
+- **Punctuation first.** An ellipsis (…) is a held breath, a dash (—) a
+  snag, a short sentence a quick step, ONE WORD IN CAPITALS a shout. This
+  is the most reliable control there is — write the rhythm into the text
+  before reaching for a tag.
+- **A tag where the feeling changes**, right before the words it colours:
+  `[whispers]` for a secret or a sleeping friend, `[excited]` when the game
+  starts, `[curious]` for a peek, `[softly]` as the story settles,
+  `[slowly]` / `[drawn out]` for a snail or a *sloooow* word, `[happily]`
+  for the ending. Reactions are sounds the narrator makes: `[giggles]`,
+  `[gasps]`, `[sighs]`, `[laughs]`, `[yawns]` (bedtime, experimental).
+- **Few and true.** Two to five per story is plenty, six is the limit, one
+  direction per spot (never `[excited] [whispers]`), and only where the
+  words already carry the feeling. Over-tagged text is what makes the
+  model read a tag aloud instead of performing it.
+- **The same beats, not the same tags.** Each language gets the tags its
+  own phrasing wants.
+- The narration is read in one go unless a solo sound splits it (below), so
+  the voice stays consistent; the tool keeps a natural stability and
+  handles the rest.
+
+## Sound effects
+
+Real sounds are generated from your descriptions and mixed into the
+narration (FORMAT.md, "Sound cues"). Three ways to use them:
+
+- **Instead of the word — `{sfx:id solo}`.** The narrator stops, the sound
+  plays, the narrator goes on. *The rain was loud on the leaves.
+  {sfx:rain solo} Everyone squeezed under the mushroom.* — the rain itself
+  says "tap, tap". Use it when a real sound tells it better than the word:
+  rain, a splash, a knock, a sneeze, a rustle of leaves, a distant owl.
+  Between sentences, 1–3 s, at most two per story.
+- **Under the word — `{sfx:id}`.** The narrator says *whoosh* and a whoosh
+  plays. For the sound words a child loves to say along with (and will):
+  keep those in the text and let the sound double them.
+- **Ambience — a sound with `"loop": true`.** Rain, wind, a stream, night
+  crickets: a soft bed under the whole scene from its cue, at most one per
+  story. Pairs naturally with a canvas effect (rain with `{canvas:rain}`).
+
+Keep the balance: **not every sound word becomes a sound effect** — the
+rhythm of *pitter-patter, pitter-patter* read aloud is part of the craft,
+and a story that stops every other line for a sound is a story that stops.
+Two or three sounds is typical, six the limit. Write prompts as a sound
+designer would brief a foley artist: concrete, one sound, its character
+("a small animal tumbling into a crunchy pile of dry leaves, soft rustle
+and crackle"); the tool adds "gentle, for a children's story, no music,
+no voices". Never a scary sound: no roars, growls, thunder claps, bangs.
 
 ## Both languages
 

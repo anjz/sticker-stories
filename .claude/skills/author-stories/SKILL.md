@@ -1,16 +1,19 @@
 ---
 name: author-stories
-description: Author a complete, validated set of bilingual kids' stories (50 per pack, sticker and canvas effect cues inline, setting-aware) for a Sticker Stories sticker pack into tools/author/stories/<pack>/. Use when asked to write, create, generate or extend stories for a sticker pack, or to run/fix the story roster or storycheck.
+description: Author a complete, validated set of bilingual kids' stories (50 per pack; sticker, canvas and sound cues plus Eleven v3 audio tags inline; setting-aware; about 40 % carry a small piece of learning) for a Sticker Stories sticker pack into tools/author/stories/<pack>/. Use when asked to write, create, generate or extend stories for a sticker pack, or to run/fix the story roster or storycheck.
 ---
 
 # Author stories for a sticker pack
 
 You are the pack's author. The bar is the best read-aloud picture books:
 original stories with the depth of the classics, safe for unsupervised
-four-year-olds, bilingual, and cued with the app's effects — the stickers
-reacting on their beats, and now and then the weather or light of the
-whole scene. Follow `tools/author/stories/GUIDE.md` to the letter and
-`FORMAT.md` for the file format. Professional results, not filler.
+four-year-olds, bilingual, and written for a narrator who performs — the
+stickers react on their beats, now and then the weather or light of the
+whole scene changes, real sound effects play (sometimes instead of a sound
+word), and the Eleven v3 voice takes your stage directions. About four
+stories in ten quietly teach one true thing about the pack's world. Follow
+`tools/author/stories/GUIDE.md` to the letter and `FORMAT.md` for the file
+format. Professional results, not filler.
 
 Arguments: `<packID> [count=50] [notes…]`. Default pack: the one named; if
 none is given, ask.
@@ -36,8 +39,9 @@ Read, in this order, before writing anything:
 
 Before writing any story, produce `tools/author/stories/<packID>/plan.md`: a
 table with one row per story — `id`, `featured` (3–4 stickers, or none for a
-fallback), `supporting`, `tags`, one-line `premise`, `inspiration`, and
-`canvas` (the canvas effect the story will use, or `—` for most rows).
+fallback), `supporting`, `tags`, one-line `premise`, `inspiration`,
+`learning` (the one fact the story shows, or `—`), and `canvas` (the canvas
+effect the story will use, or `—` for most rows).
 
 Constraints (the validator checks them on the finished set):
 
@@ -51,6 +55,10 @@ Constraints (the validator checks them on the finished set):
   in four or five, never more than 40 %), only where the premise has weather
   or light in it, spread across the effects the pack's setting allows —
   none at all when the setting is `none`;
+- **about 40 % of the rows carry a `learning` fact** (GUIDE "Learning"):
+  one concrete, true, observable thing about how the pack's world works,
+  each fact used once, spread across the cast; the other rows stay pure
+  story;
 - ids are descriptive kebab-case, unique.
 
 Check the roster: `cd tools && go run ./author/storycheck -pack ../packs/<packID> -plan`.
@@ -77,8 +85,22 @@ exactly per `FORMAT.md`:
   pack's setting allows, cued a beat before the words it illustrates, with
   the weather or light written into the words themselves so the story reads
   fine without it;
+- **the narrator's performance** (GUIDE "Voice performance"): rhythm in the
+  punctuation first (… — CAPITALS, short sentences), then two to five audio
+  tags from the allowed list in FORMAT "Audio tags", each right before the
+  words it colours, where the feeling genuinely changes — never stacked,
+  never more than six;
+- **sound effects** (GUIDE "Sound effects", FORMAT "Sound cues"): two or
+  three per story in a `sounds` table, cued inline — `{sfx:id solo}`
+  between sentences where a real sound tells it better than the sound word
+  (rain, a splash, a knock), `{sfx:id}` under a sound word the child will
+  say along with, one `"loop": true` ambience at most; keep some sound
+  words spoken for read-aloud rhythm; never a scary sound;
+- for the roster's learning rows, the fact shown by what a character does
+  or finds, stated in the `learning` field and tagged `learning`, never
+  read out as a lesson;
 - `premise`, `inspiration` (public-domain source and how it is turned),
-  `lesson`, `tags`; optional `sound` hints for step 2.
+  `lesson`, `tags`.
 
 After each batch run:
 
@@ -88,17 +110,19 @@ cd tools && go run ./author/storycheck -pack ../packs/<packID>
 
 Fix every error and read every warning before the next batch. Word counts,
 forbidden words, invalid cues (including a canvas effect the pack's setting
-does not allow) and coverage are mechanical; the safety and quality rules in
-the GUIDE are yours to hold. Watch the "effects used" table it prints: a
-library-wide spread with canvas effects in a clear minority is the target.
+does not allow, an unknown sound id, a tag outside the allowed list) and
+coverage are mechanical; the safety and quality rules in the GUIDE are
+yours to hold. Watch the tables it prints: effects spread across the whole
+library with canvas effects in a clear minority, audio tags and sounds in
+most stories but never crowding one, and learning at about 40 %.
 
 ## 4. Finish
 
 When the count is reached: run `storycheck` once more, make sure it exits
 clean with full coverage, and report to the user: how many stories, the
-coverage table, the effects-used table (sticker and canvas), the mood mix,
-and anything you chose not to write and why. Do not build step 2 (audio);
-it is a separate tool.
+coverage table, the effects-used, audio-tag and sound tables, the learning
+share, the mood mix, and anything you chose not to write and why. Do not
+build step 2 (audio); it is a separate tool.
 
 ## Never
 
@@ -109,6 +133,10 @@ it is a separate tool.
   supporting. Never rely on an effect — sticker or canvas — for the story
   to make sense.
 - Never use an effect name that is not in `docs/effects/effects.json`, a
-  canvas effect the pack's setting does not allow, or a canvas effect as
-  routine decoration.
+  canvas effect the pack's setting does not allow, a canvas effect as
+  routine decoration, or an audio tag outside FORMAT's allowed list.
+- Never state the learning fact as a lesson, invent a fact, or put one in
+  more than about half the stories.
+- Never a scary sound effect, a solo sound mid-sentence, or a story that
+  stops for sounds more than twice.
 - Never pad to hit a word count; cut a weaker story and write a better one.

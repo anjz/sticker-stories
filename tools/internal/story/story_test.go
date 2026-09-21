@@ -1,6 +1,7 @@
 package story
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -97,6 +98,54 @@ func TestParseCanvasCues(t *testing.T) {
 	}
 }
 
+func TestParseTagsSoundsAndSegments(t *testing.T) {
+	text := "[softly] Night came. {sfx:owl solo} [whispers] Who is there? {fox:hop} It was Fox. [giggles] [pause] The end. [sighs]"
+	nar, errs := Parse(text)
+	if len(errs) != 0 {
+		t.Fatal(errs)
+	}
+	if nar.Plain() != "Night came. Who is there? It was Fox. The end." {
+		t.Errorf("plain = %q", nar.Plain())
+	}
+	if len(nar.Words) != 10 || WordCount(text) != 10 {
+		t.Errorf("tags and cues must not count as words: %d", len(nar.Words))
+	}
+	names := []string{}
+	for _, tg := range nar.Tags {
+		names = append(names, fmt.Sprintf("%s@%d", tg.Name, tg.WordIndex))
+	}
+	if strings.Join(names, " ") != "softly@0 whispers@2 giggles@8 pause@8 sighs@10" {
+		t.Errorf("tags placed wrong: %v", names)
+	}
+	if len(nar.Cues) != 2 || !nar.Cues[0].Sound || !nar.Cues[0].Solo || nar.Cues[0].Effect != "owl" || nar.Cues[0].WordIndex != 2 || nar.Cues[1].Sticker != "fox" {
+		t.Errorf("cues parsed wrong: %+v", nar.Cues)
+	}
+	segs := nar.Segments()
+	if len(segs) != 2 || segs[0] != (Segment{0, 2, -1}) || segs[1] != (Segment{2, 10, 0}) {
+		t.Errorf("segments wrong: %+v", segs)
+	}
+	spoken, starts := nar.Spoken(2, 10)
+	if spoken != "[whispers] Who is there? It was Fox. [giggles] [pause] The end. [sighs]" {
+		t.Errorf("spoken = %q", spoken)
+	}
+	if len(starts) != 8 || spoken[starts[0]:starts[0]+3] != "Who" || spoken[starts[6]:starts[6]+3] != "The" {
+		t.Errorf("word starts wrong: %v", starts)
+	}
+	first, _ := nar.Spoken(0, 2)
+	if first != "[softly] Night came." {
+		t.Errorf("first segment = %q", first)
+	}
+	if got := StripTags(spoken); got != "Who is there? It was Fox. … The end." {
+		t.Errorf("StripTags = %q", got)
+	}
+	if _, errs := Parse("[shouts angrily] Hello [there"); len(errs) != 2 {
+		t.Errorf("unknown tag and stray bracket should both error: %v", errs)
+	}
+	if _, _, errs := ParseCues("{fox:hop solo} word"); len(errs) == 0 {
+		t.Errorf("solo on a sticker cue should not parse")
+	}
+}
+
 func TestForbiddenWords(t *testing.T) {
 	if got := ForbiddenWords("en-US", "The fox was not scared, just Shy. Nobody died."); strings.Join(got, ",") != "died" {
 		t.Errorf("en: got %v", got)
@@ -160,6 +209,97 @@ func TestValidationFailures(t *testing.T) {
 			}
 			t.Fatalf("no error contained %q; errors: %v", tc.want, is.Errors)
 		})
+	}
+}
+
+func TestSoundCuesAndTagsAreValidated(t *testing.T) {
+	cat := testCatalog(t)
+	s := goodStory()
+	s.Sounds = map[string]SoundSpec{"rain": {Prompt: "gentle rain on leaves", Seconds: 2}, "birds": {Prompt: "dawn chorus", Seconds: 12, Loop: true}}
+	for _, lang := range []string{"en-US", "es-ES"} {
+		l := s.Languages[lang]
+		l.Text = "[softly] It rained. {sfx:rain solo} {sfx:birds} " + l.Text
+		s.Languages[lang] = l
+	}
+	if is := Validate(s, forest, cat); len(is.Errors) != 0 || len(is.Warnings) != 0 {
+		t.Fatalf("expected clean, got errors %v warnings %v", is.Errors, is.Warnings)
+	}
+	cases := []struct {
+		name   string
+		mutate func(s *Story)
+		want   string
+		warn   bool
+	}{
+		{"unknown sound", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {sfx:thunder}"; s.Languages["en-US"] = l }, `no sound "thunder"`, false},
+		{"sound with params", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {sfx:rain x2}"; s.Languages["en-US"] = l }, "takes only solo", false},
+		{"solo loop", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {sfx:birds solo}"; s.Languages["en-US"] = l }, "cannot play solo", false},
+		{"bad seconds", func(s *Story) { s.Sounds["rain"] = SoundSpec{Prompt: "rain", Seconds: 40} }, "range is 0.5–30", false},
+		{"no prompt", func(s *Story) { s.Sounds["rain"] = SoundSpec{} }, "needs a prompt", false},
+		{"solo mid-sentence", func(s *Story) {
+			l := s.Languages["en-US"]
+			l.Text = "It rained {sfx:rain solo} hard. " + l.Text
+			s.Languages["en-US"] = l
+		}, "mid-sentence", true},
+		{"too many tags", func(s *Story) {
+			l := s.Languages["en-US"]
+			l.Text = "[excited] [curious] [happily] [laughs] [gasps] [sighs] [whispers] " + l.Text
+			s.Languages["en-US"] = l
+		}, "audio tags", true},
+		{"stacked tags", func(s *Story) {
+			l := s.Languages["en-US"]
+			l.Text = "[excited] [whispers] " + l.Text
+			s.Languages["en-US"] = l
+		}, "stacked", true},
+		{"only sound cues", func(s *Story) {
+			l := s.Languages["en-US"]
+			l.Text = "It rained. {sfx:rain solo} " + words(90, "word")
+			s.Languages["en-US"] = l
+		}, "no sticker effect cues", false},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			s := goodStory()
+			s.Sounds = map[string]SoundSpec{"rain": {Prompt: "gentle rain on leaves", Seconds: 2}, "birds": {Prompt: "dawn chorus", Seconds: 12, Loop: true}}
+			tc.mutate(s)
+			is := Validate(s, forest, cat)
+			list := is.Errors
+			if tc.warn {
+				list = is.Warnings
+			}
+			for _, e := range list {
+				if strings.Contains(e, tc.want) {
+					return
+				}
+			}
+			t.Fatalf("nothing contained %q; errors %v warnings %v", tc.want, is.Errors, is.Warnings)
+		})
+	}
+}
+
+func TestLearningShareIsReported(t *testing.T) {
+	var set []*Story
+	for i := 0; i < 10; i++ {
+		s := goodStory()
+		s.ID = fmt.Sprintf("story-%d", i)
+		if i < 4 {
+			s.Learning = "Bees carry pollen from flower to flower."
+		}
+		set = append(set, s)
+	}
+	cov := Cover(set, forest, 0)
+	if cov.LearningStories != 4 {
+		t.Errorf("learning count wrong: %d", cov.LearningStories)
+	}
+	if strings.Contains(strings.Join(cov.Warnings, "\n"), "piece of learning") {
+		t.Errorf("40%% is within range: %v", cov.Warnings)
+	}
+	set[0].Learning = ""
+	if strings.Contains(strings.Join(Cover(set, forest, 0).Warnings, "\n"), "piece of learning") {
+		t.Errorf("30%% is still within range")
+	}
+	set[1].Learning = ""
+	if !strings.Contains(strings.Join(Cover(set, forest, 0).Warnings, "\n"), "piece of learning") {
+		t.Errorf("20%% should warn")
 	}
 }
 

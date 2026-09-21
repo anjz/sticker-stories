@@ -1,8 +1,9 @@
 // Package story defines the intermediate story format authored by the
 // author-stories skill (tools/author/stories/FORMAT.md) and validates it:
-// structure, inline effect cues (sticker and canvas) against the effects
-// catalogue and the pack's setting, word budgets, forbidden words, and
-// sticker coverage across a pack's set of stories.
+// structure, inline effect cues (sticker, canvas and sound) against the
+// effects catalogue and the pack's setting, Eleven v3 audio tags against
+// the allowed list, word budgets, forbidden words, and coverage (stickers,
+// effects, learning) across a pack's set of stories.
 package story
 
 import (
@@ -39,21 +40,42 @@ const (
 	// Share of a pack's stories that may use canvas effects before a warning:
 	// they are occasional weather, not the default.
 	MaxCanvasShare = 0.4
+	// Audio tags per story and language before a warning: a few well-placed
+	// ones read as performance, many read as a tic (and v3 may say them).
+	MaxAudioTags = 6
+	// Sound effects (inline cues plus legacy hints) per story and language.
+	MaxSounds = 6
+	// Sound effect length the API accepts, seconds.
+	MinSoundSeconds = 0.5
+	MaxSoundSeconds = 30.0
+	// Share of a pack's stories that should carry a small piece of learning.
+	MinLearningShare = 0.3
+	MaxLearningShare = 0.5
 )
 
 // Story is one authored story with every language.
 type Story struct {
-	Schema      int                     `json:"schema"`
-	ID          string                  `json:"id"`
-	Pack        string                  `json:"pack"`
-	Featured    []string                `json:"featured"`
-	Supporting  []string                `json:"supporting"`
-	Tags        []string                `json:"tags"`
-	Premise     string                  `json:"premise"`
-	Inspiration string                  `json:"inspiration"`
-	Lesson      string                  `json:"lesson"`
-	Languages   map[string]Localization `json:"languages"`
-	Sound       []SoundHint             `json:"sound,omitempty"`
+	Schema      int      `json:"schema"`
+	ID          string   `json:"id"`
+	Pack        string   `json:"pack"`
+	Featured    []string `json:"featured"`
+	Supporting  []string `json:"supporting"`
+	Tags        []string `json:"tags"`
+	Premise     string   `json:"premise"`
+	Inspiration string   `json:"inspiration"`
+	Lesson      string   `json:"lesson"`
+	// Learning is the one small, true thing about the pack's world the
+	// story shows in passing (how bees carry pollen, why owls hunt at
+	// night); empty for a story that is just a story. About four in ten
+	// stories carry one (GUIDE.md, "Learning").
+	Learning  string                  `json:"learning,omitempty"`
+	Languages map[string]Localization `json:"languages"`
+	// Sounds are the story's sound effects, cued in the text as {sfx:id}
+	// (played under the next word) or {sfx:id solo} (the narration pauses
+	// and the sound plays instead of a word).
+	Sounds map[string]SoundSpec `json:"sounds,omitempty"`
+	// Sound is the older hint form: a sound played on a spoken word.
+	Sound []SoundHint `json:"sound,omitempty"`
 
 	// Dir is where the story was loaded from (not part of the JSON).
 	Dir string `json:"-"`
@@ -65,21 +87,107 @@ type Localization struct {
 	Text  string `json:"text"`
 }
 
-// SoundHint is an optional suggestion for step 2 (audio).
+// SoundSpec describes one sound effect for the sound-generation model.
+type SoundSpec struct {
+	// Prompt describes the sound in plain words ("gentle rain tapping on
+	// big leaves"). The renderer adds the house style.
+	Prompt string `json:"prompt"`
+	// Seconds is the sound's length (0.5–30); 0 means 2 seconds. A solo
+	// sound pauses the narration for exactly this long.
+	Seconds float64 `json:"seconds,omitempty"`
+	// Loop makes an ambience bed: generated seamless and played low under
+	// the narration from its cue for Seconds (or to the end of the story).
+	Loop bool `json:"loop,omitempty"`
+}
+
+// EffectiveSeconds returns the sound length, defaulting to 2 s.
+func (s SoundSpec) EffectiveSeconds() float64 {
+	if s.Seconds <= 0 {
+		return 2
+	}
+	return s.Seconds
+}
+
+// SoundHint is the older hint form: a sound effect played on a spoken word
+// (cue is a word in the text, note describes the sound).
 type SoundHint struct {
 	Cue  string `json:"cue"`
 	Note string `json:"note"`
 }
 
-// CanvasTarget is the reserved cue target for canvas effects:
-// {canvas:rain 0.7 12s}. A pack must not name a sticker "canvas".
-const CanvasTarget = "canvas"
+// AudioTag is one Eleven v3 audio tag the narration may carry inline, in
+// square brackets ([whispers], [giggles], [pause]). The list is curated for
+// children's narration and for what the model performs reliably; the
+// validator rejects anything else. Experimental tags are documented by
+// ElevenLabs as less consistent — use them sparingly.
+type AudioTag struct {
+	Name         string
+	Kind         string // delivery | emotion | reaction
+	Note         string
+	Experimental bool
+}
 
-// Cue is one parsed inline effect cue. A canvas cue (Canvas true) has no
-// sticker and takes only an intensity and a duration.
+// AudioTags lists every allowed audio tag.
+var AudioTags = []AudioTag{
+	{"pause", "delivery", "a beat of silence; also written as an ellipsis (…) in the text", false},
+	{"whispers", "delivery", "a secret, a sleeping friend, a hush", false},
+	{"softly", "delivery", "tender, close, bedtime", false},
+	{"slowly", "delivery", "a snail, a sleepy voice, suspense", false},
+	{"drawn out", "delivery", "stretches the next word (sloooowly)", false},
+	{"rushed", "delivery", "hurry, excitement tumbling over itself", false},
+	{"excited", "emotion", "big news, a game, a discovery", false},
+	{"curious", "emotion", "a question, a peek, a wondering", false},
+	{"happily", "emotion", "the warm ending, a reunion", false},
+	{"surprised", "emotion", "a friend appears, a sneeze, a splash", false},
+	{"sad", "emotion", "a small sorrow that the story mends", false},
+	{"laughs", "reaction", "a good laugh", false},
+	{"giggles", "reaction", "a small, playful laugh", false},
+	{"gasps", "reaction", "a surprise, a wonder", false},
+	{"sighs", "reaction", "relief, tiredness, contentment", false},
+	{"exhales", "reaction", "a slow breath out, calm", false},
+	{"yawns", "reaction", "bedtime", true},
+	{"sings", "reaction", "a line sung rather than said", true},
+}
+
+var audioTagByName = func() map[string]AudioTag {
+	m := make(map[string]AudioTag, len(AudioTags))
+	for _, t := range AudioTags {
+		m[t.Name] = t
+	}
+	return m
+}()
+
+// LookupAudioTag returns the allowed tag with this name, if any.
+func LookupAudioTag(name string) (AudioTag, bool) {
+	t, ok := audioTagByName[strings.ToLower(strings.TrimSpace(name))]
+	return t, ok
+}
+
+// PlacedTag is an audio tag in a text and the spoken word it precedes.
+type PlacedTag struct {
+	Name      string
+	WordIndex int // the word the tag colours; len(Words) for a trailing tag
+	Raw       string
+}
+
+// CanvasTarget is the reserved cue target for canvas effects:
+// {canvas:rain 0.7 12s}. SoundTarget is the reserved target for sound
+// effects: {sfx:rain-taps} or {sfx:rain-taps solo}. A pack must not name a
+// sticker after either.
+const (
+	CanvasTarget = "canvas"
+	SoundTarget  = "sfx"
+)
+
+// Cue is one parsed inline cue. A canvas cue (Canvas true) has no sticker
+// and takes only an intensity and a duration. A sound cue (Sound true)
+// names an entry of the story's sounds table in Effect and may be Solo:
+// the narration pauses for the sound instead of speaking over it.
 type Cue struct {
-	Sticker   string // "" for a canvas cue
+	Sticker   string // "" for a canvas or sound cue
 	Canvas    bool
+	Sound     bool
+	Solo      bool
 	Effect    string
 	Repeat    int // 0 = default (1)
 	Loop      bool
@@ -212,19 +320,111 @@ func LoadDir(dir string) ([]*Story, []error) {
 var (
 	idPattern    = regexp.MustCompile(`^[a-z0-9]+(-[a-z0-9]+)*$`)
 	cuePattern   = regexp.MustCompile(`\{([^{}]*)\}`)
+	tagPattern   = regexp.MustCompile(`\[([A-Za-z][A-Za-z ]{0,24})\]`)
 	colorPattern = regexp.MustCompile(`^#[0-9A-Fa-f]{6}$`)
 )
 
-// ParseCues extracts the cues from a text and returns the plain narration
-// (cues removed, whitespace normalised). Syntax problems are returned as
-// errors; the cue is still dropped from the plain text. A cue fires on the
-// word that follows it; trailing cues fire on the last word. Parsing is
-// syntactic only — which parameters an effect accepts, and whether a canvas
-// effect suits the pack, is Validate's job.
-func ParseCues(text string) (cues []Cue, plain string, errs []error) {
-	var parsed []Cue
-	// Cues contain spaces ({butterfly:float loop 0.4}), so lift them out before
-	// tokenising, leaving a marker where each one stood.
+// Narration is a language's text taken apart: the words the narrator
+// speaks, the cues that fire on them, and the audio tags that colour them.
+// Everything the tools need downstream comes from here, so the text is
+// tokenised exactly once.
+type Narration struct {
+	// Words are the spoken words in order (punctuation attached).
+	Words []string
+	// Cues fire on Words[WordIndex] (the last word when trailing).
+	Cues []Cue
+	// Tags colour Words[WordIndex]; a trailing tag has WordIndex len(Words).
+	Tags []PlacedTag
+}
+
+// Plain is the narration as prose: the words only, single-spaced. This is
+// what word counts, forbidden-word checks and the pack manifest see.
+func (n Narration) Plain() string { return strings.Join(n.Words, " ") }
+
+// Segment is a run of words the narrator reads in one go. A solo sound
+// cue splits the narration: Solo is the index into Cues of the solo cue
+// that plays before this segment (-1 for the first).
+type Segment struct {
+	From, To int // word range [From, To)
+	Solo     int
+}
+
+// Segments splits the narration at solo sound cues. A solo cue before the
+// first word (or two in a row) still yields a segment, possibly empty.
+func (n Narration) Segments() []Segment {
+	var out []Segment
+	from, solo := 0, -1
+	for i, c := range n.Cues {
+		if !c.Sound || !c.Solo {
+			continue
+		}
+		out = append(out, Segment{From: from, To: c.WordIndex, Solo: solo})
+		from, solo = c.WordIndex, i
+	}
+	return append(out, Segment{From: from, To: len(n.Words), Solo: solo})
+}
+
+// Spoken renders a word range as the narrator reads it — the words with
+// their audio tags in place, cues gone — and returns the byte offset of
+// each word in that text, so timings from the synthesiser map back to
+// word indices exactly.
+func (n Narration) Spoken(from, to int) (text string, wordStarts []int) {
+	var b strings.Builder
+	tagIndex := 0
+	for tagIndex < len(n.Tags) && n.Tags[tagIndex].WordIndex < from {
+		tagIndex++
+	}
+	emit := func(s string) {
+		if b.Len() > 0 {
+			b.WriteByte(' ')
+		}
+		b.WriteString(s)
+	}
+	for i := from; i < to; i++ {
+		for tagIndex < len(n.Tags) && n.Tags[tagIndex].WordIndex == i {
+			emit(n.Tags[tagIndex].Raw)
+			tagIndex++
+		}
+		if b.Len() > 0 {
+			b.WriteByte(' ')
+		}
+		wordStarts = append(wordStarts, b.Len())
+		b.WriteString(n.Words[i])
+	}
+	// Trailing tags belong to the last segment only.
+	if to == len(n.Words) {
+		for tagIndex < len(n.Tags) && n.Tags[tagIndex].WordIndex == to {
+			emit(n.Tags[tagIndex].Raw)
+			tagIndex++
+		}
+	}
+	return b.String(), wordStarts
+}
+
+// StripTags removes audio tags from a text (for models that would read
+// them aloud), turning [pause] into an ellipsis.
+func StripTags(text string) string {
+	out := tagPattern.ReplaceAllStringFunc(text, func(m string) string {
+		if strings.EqualFold(strings.Trim(m, "[]"), "pause") {
+			return "…"
+		}
+		return ""
+	})
+	return strings.Join(strings.Fields(out), " ")
+}
+
+// Parse takes a language's text apart (see Narration). Syntax problems
+// and unknown audio tags are returned as errors; the offending cue or tag
+// is dropped so the rest still parses. Parsing is syntactic only — which
+// parameters an effect accepts, whether a canvas effect suits the pack and
+// whether a sound exists is Validate's job.
+func Parse(text string) (Narration, []error) {
+	var n Narration
+	var errs []error
+	var cues []Cue
+	var tags []PlacedTag
+	// Cues and tags contain spaces ({butterfly:float loop 0.4}, [drawn out]),
+	// so lift them out before tokenising, leaving a marker where each stood.
 	marked := cuePattern.ReplaceAllStringFunc(text, func(m string) string {
 		inner := strings.TrimSuffix(strings.TrimPrefix(m, "{"), "}")
 		cue, err := parseCue(inner)
@@ -233,53 +433,86 @@ func ParseCues(text string) (cues []Cue, plain string, errs []error) {
 			return " "
 		}
 		cue.Raw = m
-		parsed = append(parsed, cue)
-		return fmt.Sprintf(" \x00%d\x00 ", len(parsed)-1)
+		cues = append(cues, cue)
+		return fmt.Sprintf(" \x00%d\x00 ", len(cues)-1)
 	})
 	if strings.ContainsAny(marked, "{}") {
 		errs = append(errs, fmt.Errorf("unbalanced braces in %q", text))
 		marked = strings.NewReplacer("{", "", "}", "").Replace(marked)
 	}
-	var words []string
-	var pending []int
+	marked = tagPattern.ReplaceAllStringFunc(marked, func(m string) string {
+		name := strings.ToLower(strings.Join(strings.Fields(strings.Trim(m, "[]")), " "))
+		if _, ok := LookupAudioTag(name); !ok {
+			errs = append(errs, fmt.Errorf("audio tag %q is not one the narration may use", m))
+			return " "
+		}
+		tags = append(tags, PlacedTag{Name: name, Raw: "[" + name + "]"})
+		return fmt.Sprintf(" \x01%d\x01 ", len(tags)-1)
+	})
+	if strings.ContainsAny(marked, "[]") {
+		errs = append(errs, fmt.Errorf("stray square bracket in %q (audio tags are [name])", text))
+		marked = strings.NewReplacer("[", "", "]", "").Replace(marked)
+	}
+	var pendingCues, pendingTags []int
 	for _, tok := range strings.Fields(marked) {
-		if strings.HasPrefix(tok, "\x00") && strings.HasSuffix(tok, "\x00") {
-			idx, err := strconv.Atoi(strings.Trim(tok, "\x00"))
-			if err == nil {
-				pending = append(pending, idx)
+		switch {
+		case strings.HasPrefix(tok, "\x00") && strings.HasSuffix(tok, "\x00"):
+			if idx, err := strconv.Atoi(strings.Trim(tok, "\x00")); err == nil {
+				pendingCues = append(pendingCues, idx)
+			}
+			continue
+		case strings.HasPrefix(tok, "\x01") && strings.HasSuffix(tok, "\x01"):
+			if idx, err := strconv.Atoi(strings.Trim(tok, "\x01")); err == nil {
+				pendingTags = append(pendingTags, idx)
 			}
 			continue
 		}
-		words = append(words, tok)
-		for _, idx := range pending {
-			parsed[idx].WordIndex = len(words) - 1
-			cues = append(cues, parsed[idx])
+		n.Words = append(n.Words, tok)
+		here := len(n.Words) - 1
+		for _, idx := range pendingCues {
+			cues[idx].WordIndex = here
+			n.Cues = append(n.Cues, cues[idx])
 		}
-		pending = nil
+		for _, idx := range pendingTags {
+			tags[idx].WordIndex = here
+			n.Tags = append(n.Tags, tags[idx])
+		}
+		pendingCues, pendingTags = nil, nil
 	}
-	last := len(words) - 1
-	if last < 0 {
-		last = 0
+	last := max(len(n.Words)-1, 0)
+	for _, idx := range pendingCues {
+		cues[idx].WordIndex = last
+		n.Cues = append(n.Cues, cues[idx])
 	}
-	for _, idx := range pending {
-		parsed[idx].WordIndex = last
-		cues = append(cues, parsed[idx])
+	for _, idx := range pendingTags {
+		tags[idx].WordIndex = len(n.Words)
+		n.Tags = append(n.Tags, tags[idx])
 	}
-	return cues, strings.Join(words, " "), errs
+	return n, errs
+}
+
+// ParseCues extracts the cues from a text and returns the plain narration
+// (cues and audio tags removed, whitespace normalised). See Parse.
+func ParseCues(text string) (cues []Cue, plain string, errs []error) {
+	n, errs := Parse(text)
+	return n.Cues, n.Plain(), errs
 }
 
 func parseCue(inner string) (Cue, error) {
 	var c Cue
 	head, params, _ := strings.Cut(strings.TrimSpace(inner), " ")
-	sticker, effect, ok := strings.Cut(head, ":")
-	if !ok || sticker == "" || effect == "" {
-		return c, fmt.Errorf("want {sticker:effect …} or {canvas:effect …}")
+	target, effect, ok := strings.Cut(head, ":")
+	if !ok || target == "" || effect == "" {
+		return c, fmt.Errorf("want {sticker:effect …}, {canvas:effect …} or {sfx:sound …}")
 	}
 	c.Effect = effect
-	if sticker == CanvasTarget {
+	switch target {
+	case CanvasTarget:
 		c.Canvas = true
-	} else {
-		c.Sticker = sticker
+	case SoundTarget:
+		c.Sound = true
+	default:
+		c.Sticker = target
 	}
 	for _, p := range strings.Fields(params) {
 		switch {
@@ -287,6 +520,8 @@ func parseCue(inner string) (Cue, error) {
 			c.Loop = true
 		case p == "hold":
 			c.Hold = true
+		case p == "solo":
+			c.Solo = true
 		case strings.HasPrefix(p, "#"):
 			if !colorPattern.MatchString(p) {
 				return c, fmt.Errorf("colour %q must be #RRGGBB", p)
@@ -309,7 +544,7 @@ func parseCue(inner string) (Cue, error) {
 		default:
 			v, err := strconv.ParseFloat(p, 64)
 			if err != nil || v < 0 || v > 1 {
-				return c, fmt.Errorf("unknown parameter %q (want xN, loop, hold, #RRGGBB, Ns or an intensity 0–1)", p)
+				return c, fmt.Errorf("unknown parameter %q (want xN, loop, hold, solo, #RRGGBB, Ns or an intensity 0–1)", p)
 			}
 			if v == 0 {
 				c.Intensity = -1
@@ -320,6 +555,9 @@ func parseCue(inner string) (Cue, error) {
 	}
 	if c.Loop && c.Repeat > 0 {
 		return c, fmt.Errorf("loop and xN are exclusive")
+	}
+	if c.Solo && !c.Sound {
+		return c, fmt.Errorf("solo is for sound cues only")
 	}
 	return c, nil
 }
@@ -471,6 +709,11 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		is.warnf("lesson is empty (for reviewers; never in the text)")
 	}
 
+	if declared[SoundTarget] {
+		is.errorf("the pack has a sticker called %q, which is the reserved sound-effect target; rename it", SoundTarget)
+	}
+	validateSounds(&is, s)
+
 	// Languages: exactly the pack's.
 	var cueShapes [][]string
 	var cueLangs []string
@@ -485,10 +728,12 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		} else if n := len(strings.Fields(loc.Title)); n > MaxTitleWords {
 			is.warnf("%s: title has %d words (max %d)", lang, n, MaxTitleWords)
 		}
-		cues, plain, cueErrs := ParseCues(loc.Text)
-		for _, e := range cueErrs {
+		nar, parseErrs := Parse(loc.Text)
+		for _, e := range parseErrs {
 			is.errorf("%s: %v", lang, e)
 		}
+		cues, plain := nar.Cues, nar.Plain()
+		validateTags(&is, lang, nar)
 		n := len(strings.Fields(plain))
 		switch {
 		case n < MinWords || n > MaxWords:
@@ -506,8 +751,14 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 			is.errorf("%s: no effect cues (at least one required)", lang)
 		}
 		var shape []string
-		canvasCues := 0
+		canvasCues, sounds := 0, len(s.Sound)
 		for _, c := range cues {
+			if c.Sound {
+				sounds++
+				shape = append(shape, SoundTarget+":"+c.Effect)
+				validateSoundCue(&is, lang, c, s, nar)
+				continue
+			}
 			if c.Canvas {
 				canvasCues++
 				shape = append(shape, CanvasTarget+":"+c.Effect)
@@ -549,6 +800,12 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		if canvasCues > 0 && canvasCues == len(cues) {
 			is.warnf("%s: only canvas cues — the stickers should react too", lang)
 		}
+		if sounds > MaxSounds {
+			is.warnf("%s: %d sound effects; keep them to %d so they stay special", lang, sounds, MaxSounds)
+		}
+		if stickerCues := len(cues) - canvasCues - (sounds - len(s.Sound)); stickerCues == 0 {
+			is.errorf("%s: no sticker effect cues (at least one required)", lang)
+		}
 		cueShapes = append(cueShapes, shape)
 		cueLangs = append(cueLangs, lang)
 	}
@@ -573,6 +830,70 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		}
 	}
 	return is
+}
+
+// validateSounds checks the story's sounds table.
+func validateSounds(is *Issues, s *Story) {
+	for id, spec := range s.Sounds {
+		if !idPattern.MatchString(id) {
+			is.errorf("sounds: id %q must be lowercase kebab-case", id)
+		}
+		if strings.TrimSpace(spec.Prompt) == "" {
+			is.errorf("sounds: %q needs a prompt describing the sound", id)
+		}
+		if spec.Seconds != 0 && (spec.Seconds < MinSoundSeconds || spec.Seconds > MaxSoundSeconds) {
+			is.errorf("sounds: %q lasts %g s; the range is %g–%g", id, spec.Seconds, MinSoundSeconds, MaxSoundSeconds)
+		}
+		if spec.Loop && spec.Seconds != 0 && spec.Seconds < 5 {
+			is.warnf("sounds: %q loops but lasts only %g s — a bed usually runs 10 s or more", id, spec.Seconds)
+		}
+	}
+}
+
+// validateSoundCue checks an {sfx:…} cue against the sounds table and its
+// place in the text: a solo sound pauses the narration, so it belongs
+// between sentences.
+func validateSoundCue(is *Issues, lang string, c Cue, s *Story, nar Narration) {
+	spec, ok := s.Sounds[c.Effect]
+	if !ok {
+		is.errorf("%s: cue %s: no sound %q in the story's sounds table", lang, c.Raw, c.Effect)
+		return
+	}
+	if c.Repeat > 0 || c.Loop || c.Hold || c.Color != "" || c.Duration > 0 || c.Intensity != 0 {
+		is.errorf("%s: cue %s: a sound cue takes only solo", lang, c.Raw)
+	}
+	if c.Solo {
+		if spec.Loop {
+			is.errorf("%s: cue %s: a looping ambience cannot play solo", lang, c.Raw)
+		}
+		if c.WordIndex > 0 && c.WordIndex < len(nar.Words) {
+			if prev := nar.Words[c.WordIndex-1]; !strings.ContainsAny(prev[len(prev)-1:], ".!?…") {
+				is.warnf("%s: cue %s pauses the narration mid-sentence (after %q); put solo sounds between sentences", lang, c.Raw, prev)
+			}
+		}
+		if spec.EffectiveSeconds() > 4 {
+			is.warnf("%s: cue %s pauses the story for %g s — long for a four-year-old", lang, c.Raw, spec.EffectiveSeconds())
+		}
+	}
+}
+
+// validateTags checks a language's audio tags: few, and never stacked.
+func validateTags(is *Issues, lang string, nar Narration) {
+	if len(nar.Tags) > MaxAudioTags {
+		is.warnf("%s: %d audio tags; a few well-placed ones read as performance, more read as a tic (max %d)", lang, len(nar.Tags), MaxAudioTags)
+	}
+	experimental := 0
+	for i, t := range nar.Tags {
+		if tag, _ := LookupAudioTag(t.Name); tag.Experimental {
+			experimental++
+		}
+		if i > 0 && nar.Tags[i-1].WordIndex == t.WordIndex && t.Name != "pause" && nar.Tags[i-1].Name != "pause" {
+			is.warnf("%s: tags %s and %s stacked on one word; one direction at a time", lang, nar.Tags[i-1].Raw, t.Raw)
+		}
+	}
+	if experimental > 1 {
+		is.warnf("%s: %d experimental audio tags ([yawns], [sings]); they are less reliable, use at most one", lang, experimental)
+	}
 }
 
 // validateCanvasCue checks a {canvas:…} cue: a known canvas effect that
@@ -615,14 +936,22 @@ type Coverage struct {
 	EffectUse map[string]int
 	// CanvasStories counts the stories that use any canvas effect.
 	CanvasStories int
-	Duplicate     []string // ids sharing a featured set with another story
-	Errors        []string
-	Warnings      []string
+	// LearningStories counts the stories that carry a piece of learning.
+	LearningStories int
+	// SoundStories / SoloStories count stories with sound effects, and with
+	// solo sounds (the narration pausing for a sound); TagUse counts the
+	// stories whose first language uses each audio tag.
+	SoundStories int
+	SoloStories  int
+	TagUse       map[string]int
+	Duplicate    []string // ids sharing a featured set with another story
+	Errors       []string
+	Warnings     []string
 }
 
 // Cover computes coverage and set-level issues.
 func Cover(stories []*Story, m Manifest, expected int) Coverage {
-	c := Coverage{Stories: len(stories), Featured: map[string]int{}, Used: map[string]int{}, EffectUse: map[string]int{}}
+	c := Coverage{Stories: len(stories), Featured: map[string]int{}, Used: map[string]int{}, EffectUse: map[string]int{}, TagUse: map[string]int{}}
 	for _, st := range m.Stickers {
 		c.Featured[st] = 0
 		c.Used[st] = 0
@@ -638,13 +967,21 @@ func Cover(stories []*Story, m Manifest, expected int) Coverage {
 		if len(s.Featured) == 0 {
 			c.Fallbacks++
 		}
+		if strings.TrimSpace(s.Learning) != "" {
+			c.LearningStories++
+		}
 		if len(m.Languages) > 0 {
-			cues, _, _ := ParseCues(s.Languages[m.Languages[0]].Text)
+			nar, _ := Parse(s.Languages[m.Languages[0]].Text)
 			seen := map[string]bool{}
-			usesCanvas := false
-			for _, cue := range cues {
+			usesCanvas, usesSound, usesSolo := false, len(s.Sound) > 0, false
+			for _, cue := range nar.Cues {
 				key := cue.Effect
-				if cue.Canvas {
+				switch {
+				case cue.Sound:
+					usesSound = true
+					usesSolo = usesSolo || cue.Solo
+					continue
+				case cue.Canvas:
 					key = CanvasTarget + ":" + cue.Effect
 					usesCanvas = true
 				}
@@ -655,6 +992,19 @@ func Cover(stories []*Story, m Manifest, expected int) Coverage {
 			}
 			if usesCanvas {
 				c.CanvasStories++
+			}
+			if usesSound {
+				c.SoundStories++
+			}
+			if usesSolo {
+				c.SoloStories++
+			}
+			seenTags := map[string]bool{}
+			for _, t := range nar.Tags {
+				if !seenTags[t.Name] {
+					seenTags[t.Name] = true
+					c.TagUse[t.Name]++
+				}
 			}
 		}
 		for _, st := range s.Featured {
@@ -699,6 +1049,12 @@ func Cover(stories []*Story, m Manifest, expected int) Coverage {
 	}
 	if len(stories) > 0 && float64(c.CanvasStories) > MaxCanvasShare*float64(len(stories)) {
 		c.Warnings = append(c.Warnings, fmt.Sprintf("canvas effects in %d of %d stories; they are occasional weather — keep them under %.0f%%", c.CanvasStories, len(stories), MaxCanvasShare*100))
+	}
+	if n := len(stories); n >= 10 {
+		share := float64(c.LearningStories) / float64(n)
+		if share < MinLearningShare || share > MaxLearningShare {
+			c.Warnings = append(c.Warnings, fmt.Sprintf("%d of %d stories carry a piece of learning (%.0f%%); aim for about 40%% (%.0f–%.0f%%)", c.LearningStories, n, share*100, MinLearningShare*100, MaxLearningShare*100))
+		}
 	}
 	if expected > 0 && len(stories) != expected {
 		c.Warnings = append(c.Warnings, fmt.Sprintf("%d stories; the set should have %d", len(stories), expected))

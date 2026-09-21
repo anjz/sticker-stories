@@ -7,8 +7,10 @@ output of step 1 and the material both steps rely on.
 tools/author/
   stories/
     README.md          this file: the process
-    GUIDE.md           the authoring brief: audience, quality bar, safety, sticker + canvas effects
-    FORMAT.md          the intermediate story format (story.json) and the cue grammar
+    GUIDE.md           the authoring brief: audience, quality bar, safety, learning,
+                       effects, voice performance, sound effects
+    FORMAT.md          the intermediate story format (story.json), the cue grammar,
+                       the allowed audio tags
     <packID>/
       plan.md          the roster: which stickers each of the 50 stories centres on
       <storyID>/
@@ -33,8 +35,10 @@ stories may use), the effects catalogue (`docs/effects/effects.json`),
    covering every sticker in the pack several times plus a few
    "whole-forest" stories that need no particular sticker;
 2. writes the stories in small batches — bilingual (every pack language),
-   80–140 words per language, with at least one effect cue each and the
-   occasional canvas effect where the weather or light calls for it — into
+   80–140 words per language, with effect cues, a few Eleven v3 audio tags
+   for the narrator, sound effects (some in place of sound words), the
+   occasional canvas effect where the weather or light calls for it, and a
+   small true fact in about four stories in ten — into
    `<packID>/<storyID>/story.json`;
 3. validates after every batch with `storycheck` and fixes what it flags.
 
@@ -45,8 +49,10 @@ cd tools && go run ./author/storycheck -pack ../packs/forest
 ```
 
 It reports format problems, invalid cues (including canvas effects that do
-not suit the pack's setting), forbidden words, word counts, a sticker
-coverage table and an effect-usage table, and exits non-zero on errors.
+not suit the pack's setting, unknown sounds, tags outside the allowed
+list), forbidden words, word counts, a sticker coverage table, effect /
+audio-tag / sound usage and the learning share, and exits non-zero on
+errors.
 
 ## Step 2 — produce audio and pack content (`storyaudio`)
 
@@ -56,12 +62,14 @@ cd tools && go run ./author/storyaudio install -pack ../packs/forest -prune -bum
 ```
 
 `storyaudio` (`tools/author/storyaudio/README.md`) takes each `story.json`,
-strips the cues to get the narration text, renders it with ElevenLabs
-(narration with character timestamps, the sound effects hinted in the story,
-and a calm background loop), aligns the cues — sticker and canvas — to the
-spoken words, and emits the `.m4a` per language plus the `.effects.json`
-sidecar per language (`docs/pack-format.md`, `docs/effects.md`) into
-`<storyID>/audio/`. `install`
+takes the text apart (words, cues, audio tags, solo sounds), renders it
+with ElevenLabs (Eleven v3 narration with character timestamps and the
+tags performed, the story's sound effects — under words, in gaps the
+narrator leaves for them, or as ambience — and a calm background loop),
+aligns the cues — sticker and canvas — to the spoken words, and emits the
+`.m4a` per language plus the `.effects.json` sidecar per language
+(`docs/pack-format.md`, `docs/effects.md`) into `<storyID>/audio/`.
+`install`
 copies them into the pack and merges the manifest story entries. Nothing in
 step 1 depends on how step 2 is built; the contract between them is
 `FORMAT.md`.
