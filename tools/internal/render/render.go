@@ -1,12 +1,15 @@
 // Package render turns an authored story (tools/author/stories, FORMAT.md)
 // plus ElevenLabs character timings into the pack's per-language artefacts:
-// the sticker-effect trigger sidecar (docs/effects.md) and the placement of
-// sound-effect hints on the narration timeline.
+// the effect trigger sidecar (docs/effects.md) and the placement of sound
+// effects on the narration timeline. A narration may be synthesised in
+// several segments (the narrator pauses for a solo sound); each segment's
+// timeline is built on its own and the pieces are assembled on one clock.
 package render
 
 import (
 	"encoding/json"
 	"fmt"
+	"math"
 	"strings"
 	"unicode"
 
@@ -44,8 +47,8 @@ func Words(plain string) []Word {
 	return out
 }
 
-// Timeline maps plain-text word indices to narration seconds using the
-// character alignment ElevenLabs returns for exactly that text.
+// Timeline maps spoken-word indices to narration seconds using the
+// character alignment ElevenLabs returns for exactly the text it was sent.
 type Timeline struct {
 	Words  []Word
 	starts []float64 // per word, seconds
@@ -53,15 +56,26 @@ type Timeline struct {
 	Length float64 // last character end
 }
 
-// NewTimeline builds word timings. The alignment's characters must be the
-// runes of plain in order; if they diverge (the API normalises text), the
-// alignment is walked by rune index and lengths are reconciled
-// proportionally, which keeps cues close enough for a 0.5 s effect.
-func NewTimeline(plain string, al *elevenlabs.Alignment) (*Timeline, error) {
+// NewTimeline builds word timings for one synthesised text. wordStarts are
+// the byte offsets of the spoken words within text (story.Narration.Spoken
+// gives both; audio tags in the text are not words). The alignment's
+// characters should be the runes of text in order; if they diverge (the
+// API normalises text), the alignment is walked by rune index and lengths
+// are reconciled proportionally, which keeps cues close enough for a 0.5 s
+// effect.
+func NewTimeline(text string, wordStarts []int, al *elevenlabs.Alignment) (*Timeline, error) {
 	if al == nil || len(al.Starts) == 0 {
 		return nil, fmt.Errorf("no alignment returned")
 	}
-	words := Words(plain)
+	words := make([]Word, 0, len(wordStarts))
+	for _, start := range wordStarts {
+		end := start
+		for end < len(text) && !unicode.IsSpace(rune(text[end])) {
+			end++
+		}
+		words = append(words, Word{text[start:end], start, end})
+	}
+	plain := text
 	tl := &Timeline{Words: words, starts: make([]float64, len(words)), ends: make([]float64, len(words))}
 	runes := []rune(plain)
 	n := len(al.Starts)
@@ -96,6 +110,43 @@ func NewTimeline(plain string, al *elevenlabs.Alignment) (*Timeline, error) {
 	}
 	tl.Length = al.Ends[n-1]
 	return tl, nil
+}
+
+// NewPlainTimeline builds word timings for a plain text with no tags,
+// tokenised on whitespace (the legacy single-request path and tests).
+func NewPlainTimeline(plain string, al *elevenlabs.Alignment) (*Timeline, error) {
+	var starts []int
+	for _, w := range Words(plain) {
+		starts = append(starts, w.Start)
+	}
+	return NewTimeline(plain, starts, al)
+}
+
+// Shifted returns the timeline moved later by seconds (a segment placed
+// after a lead-in or a solo sound).
+func (t *Timeline) Shifted(seconds float64) *Timeline {
+	out := &Timeline{Words: t.Words, starts: make([]float64, len(t.starts)), ends: make([]float64, len(t.ends)), Length: t.Length + seconds}
+	for i := range t.starts {
+		out.starts[i] = t.starts[i] + seconds
+		out.ends[i] = t.ends[i] + seconds
+	}
+	return out
+}
+
+// Assemble concatenates segment timelines that are already on one clock
+// (Shifted to their offsets) into the narration's timeline.
+func Assemble(parts ...*Timeline) *Timeline {
+	out := &Timeline{}
+	for _, p := range parts {
+		if p == nil {
+			continue
+		}
+		out.Words = append(out.Words, p.Words...)
+		out.starts = append(out.starts, p.starts...)
+		out.ends = append(out.ends, p.ends...)
+		out.Length = math.Max(out.Length, p.Length)
+	}
+	return out
 }
 
 // At returns the start time of word i (clamped).
@@ -156,10 +207,15 @@ type Sidecar struct {
 
 // Triggers converts parsed cues to sidecar triggers on the timeline. Cues
 // firing at the story start (word 0) are pinned to 0.0. A canvas cue
-// becomes a trigger with no sticker and none of the sticker-only keys.
+// becomes a trigger with no sticker and none of the sticker-only keys;
+// sound cues are not triggers (they are mixed into the audio) and are
+// skipped.
 func Triggers(cues []story.Cue, tl *Timeline) []Trigger {
 	out := make([]Trigger, 0, len(cues))
 	for _, c := range cues {
+		if c.Sound {
+			continue
+		}
 		at := tl.At(c.WordIndex)
 		if c.WordIndex == 0 {
 			at = 0

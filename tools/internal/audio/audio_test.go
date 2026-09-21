@@ -86,3 +86,17 @@ func TestRamp(t *testing.T) {
 		t.Errorf("midpoint %f, want ~0.3", mid)
 	}
 }
+
+func TestCut(t *testing.T) {
+	c := Silence(100, 3)
+	for i := range c.Samples {
+		c.Samples[i] = 0.5
+	}
+	c.Cut(1, 0.1)
+	if len(c.Samples) != 100 || c.Samples[50] != 0.5 || c.Samples[99] != 0 {
+		t.Errorf("cut to 1 s with a fade: len %d, mid %v, last %v", len(c.Samples), c.Samples[50], c.Samples[99])
+	}
+	if got := len(Silence(100, 0.5).Cut(1, 0.1).Samples); got != 50 {
+		t.Errorf("a shorter clip should be left alone, got %d", got)
+	}
+}

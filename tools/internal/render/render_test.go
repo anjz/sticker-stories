@@ -25,7 +25,7 @@ func TestTriggersAndSounds(t *testing.T) {
 	if len(errs) > 0 {
 		t.Fatal(errs)
 	}
-	tl, err := NewTimeline(plain, fakeAlignment(plain))
+	tl, err := NewPlainTimeline(plain, fakeAlignment(plain))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -65,7 +65,7 @@ func TestCanvasCuesBecomeStickerlessTriggers(t *testing.T) {
 	if len(errs) > 0 {
 		t.Fatal(errs)
 	}
-	tl, err := NewTimeline(plain, fakeAlignment(plain))
+	tl, err := NewPlainTimeline(plain, fakeAlignment(plain))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -91,10 +91,57 @@ func TestCanvasCuesBecomeStickerlessTriggers(t *testing.T) {
 	}
 }
 
+func TestSegmentsWithTagsAssembleOnOneClock(t *testing.T) {
+	text := "[softly] Night came. {sfx:owl solo} [whispers] Who is {fox:hop} there? {sfx:owl} The end."
+	nar, errs := story.Parse(text)
+	if len(errs) > 0 {
+		t.Fatal(errs)
+	}
+	segs := nar.Segments()
+	if len(segs) != 2 {
+		t.Fatalf("want 2 segments, got %+v", segs)
+	}
+	var parts []*Timeline
+	offset := 0.0
+	for _, seg := range segs {
+		if seg.Solo >= 0 {
+			offset += 2.5 // the solo sound and its breaths
+		}
+		spoken, starts := nar.Spoken(seg.From, seg.To)
+		tl, err := NewTimeline(spoken, starts, fakeAlignment(spoken))
+		if err != nil {
+			t.Fatal(err)
+		}
+		// A tag's characters are in the alignment but are not words.
+		if len(tl.Words) != seg.To-seg.From {
+			t.Errorf("segment %+v: %d words from %q", seg, len(tl.Words), spoken)
+		}
+		parts = append(parts, tl.Shifted(offset))
+		offset += tl.Length
+	}
+	tl := Assemble(parts...)
+	if len(tl.Words) != len(nar.Words) || tl.Words[2].Text != "Who" {
+		t.Fatalf("assembled words wrong: %+v", tl.Words)
+	}
+	// "Who" is preceded by "[whispers] " (11 runes at 0.1 s each) in a
+	// segment that starts after the first segment (2.0 s) and the solo (2.5 s).
+	if got := tl.At(2); got < 4.5+1.0 || got > 4.5+1.2 {
+		t.Errorf("Who at %.2f, want ≈5.6", got)
+	}
+	// Sound cues are not sidecar triggers.
+	tr := Triggers(nar.Cues, tl)
+	if len(tr) != 1 || tr[0].Effect != "hop" || tr[0].Sticker != "fox" {
+		t.Errorf("triggers: %+v", tr)
+	}
+	if tr[0].At <= tl.At(2) {
+		t.Errorf("hop should fire after Who: %+v", tr[0])
+	}
+}
+
 func TestTimelineScalesWhenAlignmentDiffers(t *testing.T) {
 	plain := "one two three"
 	al := fakeAlignment("one  two  three  ") // longer normalised text
-	tl, err := NewTimeline(plain, al)
+	tl, err := NewPlainTimeline(plain, al)
 	if err != nil {
 		t.Fatal(err)
 	}
