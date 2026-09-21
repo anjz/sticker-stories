@@ -122,6 +122,7 @@ struct StoryScreen: View {
         .defersSystemGestures(on: .top)
         .task(id: pack.id) {
             withAnimation(.easeIn(duration: 0.2)) { showsLoader = true }
+            UISounds.shared.prepare()  // ready before the first tap or drag
             let start = ContinuousClock.now
             let textures = await PackTextureLoader.load(pack)
             let elapsed = ContinuousClock.now - start
