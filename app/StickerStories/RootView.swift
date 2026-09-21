@@ -101,7 +101,9 @@ struct RootView: View {
                     onLeave: {
                         withAnimation(.spring(duration: 0.45)) { screen = .menu }
                     })
-                .transition(.opacity.combined(with: .scale(scale: 0.92)))
+                // A plain crossfade: a scale-in would show the root's
+                // background around the loading screen for the whole spring.
+                .transition(.opacity)
             }
         }
     }
