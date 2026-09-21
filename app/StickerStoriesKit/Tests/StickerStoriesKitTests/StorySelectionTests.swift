@@ -60,16 +60,64 @@ private func deterministicProvider(recents: RecentStoriesStore = MemoryRecents()
 }
 
 @Suite struct StorySelectionTests {
-    @Test func requiredSubsetGatesCandidacy() async throws {
+    @Test func atMostOneRequiredStickerMayBeMissing() async throws {
         let pack = makePack(stories: [
-            story("needs-fox-and-rabbit", required: ["fox", "rabbit"]),
+            story("needs-fox-rabbit-owl", required: ["fox", "rabbit", "owl"]),
             story("needs-owl", required: ["owl"]),
             story("fallback"),
         ])
-        // Only fox on canvas: neither required set is satisfied → fallback.
+        // Only fox on canvas: the trio is missing two and the owl story has
+        // none of its stickers → fallback.
         let chosen = try await deterministicProvider().story(
             for: canvas(["fox"]), in: pack, language: "en-US")
         #expect(chosen.id == "fallback")
+        // Fox and rabbit: the trio is missing only the owl → a candidate,
+        // and about the canvas, so it beats the fallback.
+        let partial = try await deterministicProvider().story(
+            for: canvas(["fox", "rabbit"]), in: pack, language: "en-US")
+        #expect(partial.id == "needs-fox-rabbit-owl")
+    }
+
+    @Test func fullMatchBeatsAStoryMissingASticker() async throws {
+        let pack = makePack(stories: [
+            story("missing-tree", required: ["fox", "rabbit", "tree"], optional: ["owl"]),
+            story("all-here", required: ["fox", "rabbit", "owl"]),
+        ])
+        let chosen = try await deterministicProvider().story(
+            for: canvas(["fox", "rabbit", "owl"]), in: pack, language: "en-US")
+        #expect(chosen.id == "all-here")
+    }
+
+    @Test func recentStoriesAreLeftOutWhileThereIsAChoice() async throws {
+        let recents = MemoryRecents()
+        let provider = deterministicProvider(recents: recents)
+        let pack = makePack(stories: (1...6).map { story("fox-\($0)", required: ["fox"]) })
+        var heard: [String] = []
+        for _ in 0..<6 {
+            heard.append(try await provider.story(for: canvas(["fox"]), in: pack, language: "en-US").id)
+        }
+        // Six equal candidates, six plays: every one of them, none twice.
+        #expect(Set(heard).count == 6)
+        // The next round starts again from the one played longest ago.
+        let seventh = try await provider.story(for: canvas(["fox"]), in: pack, language: "en-US").id
+        #expect(seventh == heard[0])
+    }
+
+    @Test func bestMatchComesFirstAndTheWholeSetComesRound() async throws {
+        let recents = MemoryRecents()
+        let provider = deterministicProvider(recents: recents)
+        let pack = makePack(stories: [
+            story("fallback"),
+            story("about-fox", required: ["fox"]),
+            story("fox-and-owl", required: ["fox", "owl"]),
+        ])
+        // Fresh canvas: the story about what is placed comes first.
+        let first = try await provider.story(for: canvas(["fox"]), in: pack, language: "en-US").id
+        #expect(first == "about-fox")
+        // Then the rest before anything repeats.
+        let second = try await provider.story(for: canvas(["fox"]), in: pack, language: "en-US").id
+        let third = try await provider.story(for: canvas(["fox"]), in: pack, language: "en-US").id
+        #expect(Set([first, second, third]).count == 3)
     }
 
     @Test func specificStoryBeatsFallback() async throws {

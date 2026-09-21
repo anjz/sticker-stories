@@ -80,11 +80,17 @@ AVFoundation. This is our own code, not a third-party dependency.
    shrinking its items in very narrow windows rather than overlapping them.
    Touches on the pill between stickers scroll the tray, never the world.
 
-4. **Story selection** (`BundledStoryProvider`): a story is a candidate when its
-   `requiredStickers` are all on the canvas. Score = optional-sticker matches
-   + manifest weight − recently-played penalty. Weighted-random pick among the
-   top candidates (injectable RNG for deterministic tests). Stories with no
-   required stickers are always candidates, so play never fails.
+4. **Story selection** (`BundledStoryProvider`): a story is a candidate when at
+   most one of its `requiredStickers` is missing from the canvas (and at least
+   one is present) — stories read fine without any one sticker, and requiring
+   all of them left most of a pack unreachable from an ordinary canvas. Score
+   = present required + optional-sticker matches × manifest weight, well
+   under a full match when one is missing. Candidates are ranked stalest
+   first (never played, then longest ago; the app remembers a whole round),
+   score second, and the pick is a weighted random among the top few
+   (injectable RNG for deterministic tests): the best match is likely first
+   on a fresh canvas and every candidate is heard before any repeats. Stories
+   with no required stickers are always candidates, so play never fails.
 
 5. **Entitlement enforcement happens at launch** (see `docs/commerce.md`):
    stored pack→transaction records are reconciled against StoreKit 2's current

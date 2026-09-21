@@ -126,7 +126,7 @@ never letterboxes:
 | `stickers[].name` | {lang: string} | Display/accessibility name per language. |
 | `stickers[].image` | string | Pack-relative path; must exist. |
 | `stories[].id` | string | Unique within the pack. |
-| `stories[].requiredStickers` | [string] | Sticker IDs that must all be on the canvas for the story to be a candidate. Empty ⇒ fallback story. Every ID must be declared in `stickers`. |
+| `stories[].requiredStickers` | [string] | The stickers the story is about: it is a candidate when at most one of them is missing from the canvas (and at least one is present), and preferred when all are. Empty ⇒ fallback story. Every ID must be declared in `stickers`. |
 | `stories[].optionalStickers` | [string] | Sticker IDs that raise the match score when present. Declared in `stickers`; no overlap with `requiredStickers`. |
 | `stories[].weight` | number | Base selection weight, > 0. Default 1.0. |
 | `stories[].tags` | [string] | Free-form variety tags (e.g. `gentle`, `funny`). |
