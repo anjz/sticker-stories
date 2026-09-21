@@ -184,6 +184,7 @@ final class CanvasScene: SKScene {
     }
     private var playSession: PlaySession?
     private let glowMasks = GlowMaskCache()
+    private let shadows = StickerShadowCache()
     private static let effectsLog = Logger(subsystem: "com.anj.stickerstories", category: "effects")
 
     // MARK: Setup
@@ -834,7 +835,8 @@ final class CanvasScene: SKScene {
         let before = snapshot()
         let node = StickerNode(
             stickerID: trayItem.stickerID, texture: texture,
-            size: squareFit(texture: texture, side: stickerBaseSize))
+            size: squareFit(texture: texture, side: stickerBaseSize),
+            shadow: shadow(for: trayItem.stickerID))
         node.position = location
         node.setScale(0.3)
         foregroundStickers.addChild(node)
@@ -1257,6 +1259,14 @@ final class CanvasScene: SKScene {
         }
     }
 
+    /// The sticker's blurred drop shadow, built once per sticker per pack.
+    private func shadow(for stickerID: String) -> StickerShadowCache.Shadow? {
+        shadows.shadow(for: stickerID) {
+            guard let sticker = pack.sticker(withID: stickerID) else { return nil }
+            return UIImage(contentsOfFile: pack.url(forAssetPath: sticker.image).path)
+        }
+    }
+
     private func stickerNodesByID() -> [UUID: StickerNode] {
         Dictionary(uniqueKeysWithValues: allStickerNodes().map { ($0.instanceID, $0) })
     }
@@ -1303,7 +1313,8 @@ final class CanvasScene: SKScene {
             guard let texture = stickerTextures[placed.stickerID] else { continue }
             let node = StickerNode(
                 stickerID: placed.stickerID, texture: texture,
-                size: squareFit(texture: texture, side: stickerBaseSize))
+                size: squareFit(texture: texture, side: stickerBaseSize),
+                shadow: shadow(for: placed.stickerID))
             node.position = CGPoint(x: placed.position.x * worldSize.width, y: placed.position.y * worldSize.height)
             node.baseScale = CGFloat(placed.scale)
             node.setScale(node.baseScale)

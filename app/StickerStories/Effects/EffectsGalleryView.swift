@@ -149,6 +149,7 @@ final class EffectsGalleryScene: SKScene {
     private let canvasEffects = CanvasEffectLayer()
     private var sticker: StickerNode?
     private let glowMasks = GlowMaskCache()
+    private let shadows = StickerShadowCache()
     private let runner = StickerEffectsRunner()
     private let canvasRunner = CanvasEffectsRunner()
     private lazy var applier = EffectApplier { [weak self] node in
@@ -220,7 +221,8 @@ final class EffectsGalleryScene: SKScene {
         let scale = side / max(texture.size().width, texture.size().height)
         let node = StickerNode(
             stickerID: stickerID, texture: texture,
-            size: CGSize(width: texture.size().width * scale, height: texture.size().height * scale))
+            size: CGSize(width: texture.size().width * scale, height: texture.size().height * scale),
+            shadow: shadows.shadow(for: stickerID) { image })
         node.position = CGPoint(x: size.width / 2, y: size.height / 2)
         node.baseScale = 1.2
         node.setScale(1.2)
