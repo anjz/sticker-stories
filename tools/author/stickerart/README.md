@@ -29,6 +29,15 @@ go run ./packager validate ../packs/forest
   except its elements).
 - `stickerSize` (1024), `border` (white outline as a fraction of the size,
   0.025) and `margin` (0.03).
+- `finish` (optional): the printed-sticker material the post-processing
+  bakes in so every pack's stickers feel like the same real vinyl: a
+  paper-white die-cut border whose outer rim shades like the cut edge
+  (`rimShade` 0.22, `rimWidth` 0.4 of the border), a soft diagonal gloss
+  from the upper left (`gloss` 0.11, `glossWidth` 0.16) and a top-lit
+  gradient (`lighting` 0.035). The art inside is untouched apart from the
+  gloss. All zeros gives a flat white border. The drop shadow is not
+  baked in — the app draws it (`StickerNode`), so it can lift with the
+  sticker.
 
 ## What `render` does
 
@@ -37,8 +46,13 @@ go run ./packager validate ../packs/forest
    reference, and a new sheet re-renders everything.
 2. **Stickers** with the edits model, the style sheet as reference, and a
    transparent background, four at a time. Each result is trimmed to its
-   alpha, given the baked-in white border, padded and resized to
+   alpha, cleaned (near-opaque alpha made solid, the model's edge tint
+   removed), given the baked-in border and finish, padded and resized to
    `stickerSize`; the raw API output is kept as `<id>.raw.png`.
+   Generation and finishing are fingerprinted separately: a prompt change
+   regenerates a sticker, while a `border`, `margin` or `finish` change
+   (or a tool update to the finishing) only re-finishes the kept raw — no
+   API call, no cost. `-dry-run` says which.
 3. **Scene planes**, one call each, painted directly at the wide 3072×1536
    size with the prompt asking for a complete composition in the central
    4:3 area; the base 2048×1536 rendition is cut from that centre, so the

@@ -57,14 +57,24 @@ const (
 
 // artConfig is art.json.
 type artConfig struct {
-	Style       string            `json:"style"`
-	StyleSheet  string            `json:"styleSheet"`
-	StickerSize int               `json:"stickerSize"`
-	Border      float64           `json:"border"`
-	Margin      float64           `json:"margin"`
-	Stickers    []stickerSpec     `json:"stickers"`
-	Scene       sceneSpec         `json:"scene"`
-	Notes       map[string]string `json:"notes,omitempty"`
+	Style       string  `json:"style"`
+	StyleSheet  string  `json:"styleSheet"`
+	StickerSize int     `json:"stickerSize"`
+	Border      float64 `json:"border"`
+	Margin      float64 `json:"margin"`
+	// Finish is the printed-sticker material (stickerimg.Finish); absent
+	// means stickerimg.DefaultFinish, a glossy die-cut vinyl sticker.
+	Finish   *stickerimg.Finish `json:"finish,omitempty"`
+	Stickers []stickerSpec      `json:"stickers"`
+	Scene    sceneSpec          `json:"scene"`
+	Notes    map[string]string  `json:"notes,omitempty"`
+}
+
+func (c artConfig) finish() stickerimg.Finish {
+	if c.Finish != nil {
+		return *c.Finish
+	}
+	return stickerimg.DefaultFinish
 }
 
 type stickerSpec struct {
@@ -380,13 +390,42 @@ func (r *renderer) run() error {
 	return nil
 }
 
+// finishVersion changes whenever stickerimg's finishing (border, finish,
+// clean-up) changes, so kept raws are re-finished without a new generation.
+const finishVersion = "2"
+
+// sticker generates a sticker's art (the costly call, kept as <id>.raw.png)
+// and finishes it into the pack's sticker (<id>.png). The two have their
+// own fingerprints: a prompt change regenerates, a border or finish change
+// only re-finishes the kept raw.
 func (r *renderer) sticker(s stickerSpec, sheet []byte, sheetFP string) error {
 	cfg := r.c.cfg
-	fp := hashOf(toolVersion, "sticker", sheetFP, cfg.Style, s.Prompt, r.o.quality, editModel, fmt.Sprint(cfg.StickerSize, cfg.Border, cfg.Margin))
+	genFP := hashOf(toolVersion, "sticker", sheetFP, cfg.Style, s.Prompt, r.o.quality, editModel)
+	finishFP := hashOf(genFP, finishVersion, fmt.Sprint(cfg.StickerSize, cfg.Border, cfg.Margin), fmt.Sprint(cfg.finish()))
 	raw := r.out("stickers", s.ID+".raw.png")
 	final := r.out("stickers", s.ID+".png")
-	if r.upToDate(final, fp) {
+	if r.upToDate(final, finishFP) {
 		r.say("· %s up to date", s.ID)
+		return nil
+	}
+	// Raws rendered before generation and finishing were fingerprinted
+	// separately carry the old combined fingerprint on the final; adopt
+	// them when it matches today's prompts rather than paying again.
+	legacyFP := hashOf(toolVersion, "sticker", sheetFP, cfg.Style, s.Prompt, r.o.quality, editModel, fmt.Sprint(cfg.StickerSize, cfg.Border, cfg.Margin))
+	if exists(raw) && r.fps[raw] == "" && r.fps[final] == legacyFP && !r.o.force {
+		r.done(raw, genFP)
+	}
+	if r.upToDate(raw, genFP) {
+		if r.o.dry {
+			r.mu.Lock()
+			r.planned = append(r.planned, fmt.Sprintf("sticker %s (re-finish the kept raw, no API call)", s.ID))
+			r.mu.Unlock()
+			return nil
+		}
+		if err := r.finish(s.ID, raw, final, finishFP); err != nil {
+			return err
+		}
+		r.say("✓ %s re-finished from the kept raw", s.ID)
 		return nil
 	}
 	if r.o.dry {
@@ -405,23 +444,39 @@ func (r *renderer) sticker(s stickerSpec, sheet []byte, sheetFP string) error {
 	if err := os.WriteFile(raw, img.PNG, 0o644); err != nil {
 		return err
 	}
-	src, err := stickerimg.Decode(img.PNG)
-	if err != nil {
+	r.done(raw, genFP)
+	if err := r.finish(s.ID, raw, final, finishFP); err != nil {
 		return err
 	}
-	out, err := stickerimg.Sticker(src, stickerimg.StickerOptions{Size: cfg.StickerSize, Border: cfg.Border, Margin: cfg.Margin, Threshold: 8})
-	if err != nil {
-		return err
-	}
-	data, err := stickerimg.Encode(out)
-	if err != nil {
-		return err
-	}
-	if err := os.WriteFile(final, data, 0o644); err != nil {
-		return err
-	}
-	r.done(final, fp)
 	r.say("✓ %s (%s, %.0fs)", s.ID, r.charge(img.Usage), time.Since(started).Seconds())
+	return nil
+}
+
+// finish turns a kept raw generation into the pack's sticker: trimmed,
+// cleaned, bordered and given the printed finish (stickerimg).
+func (r *renderer) finish(id, raw, final, finishFP string) error {
+	cfg := r.c.cfg
+	data, err := os.ReadFile(raw)
+	if err != nil {
+		return err
+	}
+	src, err := stickerimg.Decode(data)
+	if err != nil {
+		return fmt.Errorf("%s: %w", id, err)
+	}
+	finish := cfg.finish()
+	out, err := stickerimg.Sticker(src, stickerimg.StickerOptions{Size: cfg.StickerSize, Border: cfg.Border, Margin: cfg.Margin, Threshold: 8, Finish: &finish})
+	if err != nil {
+		return fmt.Errorf("%s: %w", id, err)
+	}
+	png, err := stickerimg.Encode(out)
+	if err != nil {
+		return err
+	}
+	if err := os.WriteFile(final, png, 0o644); err != nil {
+		return err
+	}
+	r.done(final, finishFP)
 	return nil
 }
 
