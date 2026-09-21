@@ -59,7 +59,7 @@ reads it.
 | `schema` | `1`. |
 | `id` | Lowercase `a-z0-9-`, unique in the pack, **equal to the folder name**. Descriptive, not numbered. |
 | `pack` | The pack's `id`. |
-| `featured` | 0–4 sticker IDs the story is *about*: it only plays when all of them are on the canvas (`requiredStickers`). 3–4 for most stories; **empty** for a "whole-forest" fallback story that works with any canvas. |
+| `featured` | 0–4 sticker IDs the story is *about* (`requiredStickers`): the app prefers the story when all are on the canvas and may play it with one missing. 3–4 for most stories; **empty** for a "whole-forest" fallback story that works with any canvas. |
 | `supporting` | 0–4 sticker IDs that make the story richer when present (`optionalStickers`). Disjoint from `featured`. |
 | `tags` | 1–5 lowercase kebab-case mood/theme tags (`gentle`, `funny`, `bedtime`, `adventure`, `kindness`, `curiosity`, `seasons`, …). |
 | `premise` | One sentence, for the roster and for reviewers. |

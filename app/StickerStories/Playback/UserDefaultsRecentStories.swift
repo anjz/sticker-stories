@@ -5,7 +5,9 @@ import StickerStoriesKit
 /// Compliance note: app-internal state only, no personal data — covered by
 /// the CA92.1 declaration in PrivacyInfo.xcprivacy.
 struct UserDefaultsRecentStories: RecentStoriesStore {
-    private static let maxStored = 10
+    /// Enough to remember a whole round of a pack (50 stories) so selection
+    /// can play every candidate before repeating one.
+    private static let maxStored = 100
 
     func recentStoryIDs(forPackID packID: String) -> [String] {
         UserDefaults.standard.stringArray(forKey: Self.key(packID)) ?? []

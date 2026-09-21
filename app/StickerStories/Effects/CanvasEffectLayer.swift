@@ -53,15 +53,33 @@ final class CanvasEffectLayer: SKNode {
     private let rainbow = SKSpriteNode()
     private let dim = SKSpriteNode()
 
-    // Night: the dimlight vignette in a deeper blue, and a moon with a soft
-    // halo high in the sky, drawn over the dim so it reads as a light.
+    // Night: the dimlight vignette in a deeper blue, a darker wash down
+    // from the top edge so the sky goes first, a few small stars twinkling
+    // on their own slow phases, and a moon with a soft halo, drawn over the
+    // dim so it reads as a light.
     private let nightDim = SKSpriteNode()
+    private let nightSky = SKSpriteNode()
+    private struct Star {
+        let node: SKSpriteNode
+        let place: CGPoint  // fractions of the world
+        let size: CGFloat  // fraction of the world height
+        let period: Double
+        let phase: Double
+    }
+    private var stars: [Star] = []
     private let moonGlow = SKSpriteNode()
     private let moon = SKSpriteNode()
     /// Where the moon sits, as fractions of the art frame: top centre, the
     /// part of a scene least likely to hold stickers or scenery, and clear
     /// of the corner buttons (the tray is faded out while a story plays).
     private static let moonPlace = CGPoint(x: 0.5, y: 0.82)
+    /// A sparse sky: twelve stars in the upper half, none near the moon.
+    private static let starLayout: [(CGFloat, CGFloat, CGFloat, Double, Double)] = [
+        (0.06, 0.92, 0.012, 2.6, 0.0), (0.17, 0.84, 0.009, 3.1, 1.2), (0.11, 0.70, 0.011, 2.2, 2.4),
+        (0.25, 0.95, 0.010, 3.5, 0.7), (0.30, 0.72, 0.013, 2.8, 3.3), (0.36, 0.62, 0.008, 2.4, 1.9),
+        (0.64, 0.64, 0.010, 3.2, 0.4), (0.70, 0.91, 0.012, 2.5, 2.8), (0.78, 0.78, 0.009, 3.4, 1.5),
+        (0.86, 0.95, 0.011, 2.3, 3.9), (0.92, 0.70, 0.013, 2.9, 0.9), (0.95, 0.85, 0.008, 3.0, 2.1),
+    ]
 
     override init() {
         super.init()
@@ -92,6 +110,23 @@ final class CanvasEffectLayer: SKNode {
         nightDim.zPosition = Self.overlayZ + 3
         nightDim.alpha = 0
         addChild(nightDim)
+        nightSky.texture = EffectTextures.texture(named: "skyglow")
+        nightSky.anchorPoint = CGPoint(x: 0.5, y: 1)  // hangs from the top edge
+        nightSky.color = UIColor(red: 0.02, green: 0.03, blue: 0.12, alpha: 1)
+        nightSky.colorBlendFactor = 1
+        nightSky.zPosition = Self.overlayZ + 3
+        nightSky.alpha = 0
+        addChild(nightSky)
+        for (x, y, size, period, phase) in Self.starLayout {
+            let node = SKSpriteNode(texture: EffectTextures.texture(named: "dot"))
+            node.color = UIColor(red: 1.0, green: 0.98, blue: 0.9, alpha: 1)
+            node.colorBlendFactor = 1
+            node.blendMode = .add
+            node.zPosition = Self.overlayZ + 4
+            node.alpha = 0
+            addChild(node)
+            stars.append(Star(node: node, place: CGPoint(x: x, y: y), size: size, period: period, phase: phase))
+        }
         moonGlow.texture = EffectTextures.texture(named: "moonglow")
         moonGlow.color = UIColor(red: 1.0, green: 0.95, blue: 0.75, alpha: 1)
         moonGlow.colorBlendFactor = 1
@@ -236,6 +271,12 @@ final class CanvasEffectLayer: SKNode {
 
         nightDim.size = dim.size
         nightDim.position = center
+        nightSky.size = CGSize(width: w * 1.04, height: h * 0.7)
+        nightSky.position = CGPoint(x: world.midX, y: world.maxY + h * 0.01)
+        for star in stars {
+            star.node.position = CGPoint(x: world.minX + w * star.place.x, y: world.minY + h * star.place.y)
+            star.node.size = CGSize(width: h * star.size, height: h * star.size)
+        }
         let moonAt = CGPoint(x: world.minX + w * Self.moonPlace.x, y: world.minY + h * Self.moonPlace.y)
         moon.size = CGSize(width: h * 0.13, height: h * 0.13)
         moon.position = moonAt
@@ -282,6 +323,11 @@ final class CanvasEffectLayer: SKNode {
 
         let nightStrength = strengths[.night] ?? 0
         nightDim.alpha = nightStrength * 0.66
+        nightSky.alpha = nightStrength * 0.55
+        for star in stars {
+            let twinkle = 0.55 + 0.45 * sin(2 * .pi * time / star.period + star.phase)
+            star.node.alpha = nightStrength * twinkle
+        }
         moon.alpha = nightStrength
         moonGlow.alpha = nightStrength * (0.55 + 0.06 * sin(2 * .pi * time / 6))
     }

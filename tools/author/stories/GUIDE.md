@@ -114,10 +114,10 @@ it is necessary, not sufficient: the rules above are the standard.
   cast. Use each sticker as what it is (a snail is slow, a bee buzzes, a
   tree stands still and shelters) and give each one a personality that
   stays consistent across the pack.
-- A story is centred on **3–4 featured stickers** (the app plays it only
-  when all of them are on the canvas) and may use up to 4 **supporting**
-  ones (present or not; the story must read fine without them — never
-  make a beat depend on a supporting sticker).
+- A story is centred on **3–4 featured stickers** (the app prefers it when
+  all of them are on the canvas and may still play it with one missing) and
+  may use up to 4 **supporting** ones (present or not; the story must read
+  fine without them — never make a beat depend on a supporting sticker).
 - Write **at least 3 fallback stories** with no featured stickers: they
   are about the place itself (the forest waking up, the evening, the wind)
   and must work with an empty canvas.
