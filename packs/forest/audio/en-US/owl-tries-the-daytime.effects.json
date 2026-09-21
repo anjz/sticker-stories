@@ -2,64 +2,66 @@
   "schema": 1,
   "triggers": [
     {
-      "at": 8.52,
-      "cue": "i",
+      "at": 0,
+      "cue": "owl",
+      "sticker": "bee",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.4
+    },
+    {
+      "at": 3.3,
+      "cue": "had",
       "sticker": "owl",
       "effect": "pulse"
     },
     {
-      "at": 15.62,
-      "cue": "zoomed",
-      "sticker": "bee",
-      "effect": "float",
-      "intensity": 0.7
+      "at": 15.3,
+      "cue": "oh",
+      "sticker": "owl",
+      "effect": "tint",
+      "duration": 1.5,
+      "color": "#FFF3B0"
     },
     {
-      "at": 19.05,
-      "cue": "bounced",
+      "at": 24.8,
+      "cue": "showed",
+      "sticker": "bee",
+      "effect": "hop"
+    },
+    {
+      "at": 26.18,
+      "cue": "yellow",
+      "sticker": "flower",
+      "effect": "glow"
+    },
+    {
+      "at": 32.26,
+      "cue": "showed",
       "sticker": "squirrel",
       "effect": "hop",
-      "repeat": 3
+      "repeat": 2
     },
     {
-      "at": 22.48,
-      "cue": "hopped",
+      "at": 34.74,
+      "cue": "showed",
       "sticker": "rabbit",
-      "effect": "hop",
-      "repeat": 2
+      "effect": "hop"
     },
     {
-      "at": 26.31,
-      "cue": "swayed",
+      "at": 38.74,
+      "cue": "looked",
       "sticker": "owl",
-      "effect": "wobble",
-      "repeat": 2
+      "effect": "wobble"
     },
     {
-      "at": 59.64,
-      "cue": "sat",
+      "at": 47.84,
+      "cue": "he",
       "sticker": "owl",
       "effect": "fade-out",
-      "duration": 1.5,
+      "duration": 3,
+      "intensity": 0.5,
       "hold": true
-    },
-    {
-      "at": 67.05,
-      "cue": "tiptoed",
-      "sticker": "bee",
-      "effect": "hearts"
-    },
-    {
-      "at": 67.05,
-      "cue": "tiptoed",
-      "sticker": "squirrel",
-      "effect": "hearts"
-    },
-    {
-      "at": 67.05,
-      "cue": "tiptoed",
-      "sticker": "rabbit",
-      "effect": "hearts"
     }
   ]
 }

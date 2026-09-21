@@ -2,29 +2,43 @@
   "schema": 1,
   "triggers": [
     {
-      "at": 6.81,
-      "cue": "tweet-tweet-tweedle-oo",
+      "at": 0,
+      "cue": "every",
       "sticker": "bird",
-      "effect": "hop",
-      "repeat": 3
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
     },
     {
-      "at": 14.36,
-      "cue": "hoo",
-      "sticker": "owl",
-      "effect": "wobble"
-    },
-    {
-      "at": 50.49,
+      "at": 6.44,
       "cue": "sang",
       "sticker": "bird",
       "effect": "hop",
       "repeat": 2
     },
     {
-      "at": 54.5,
-      "cue": "sang",
+      "at": 19.36,
+      "cue": "was",
       "sticker": "owl",
+      "effect": "wobble"
+    },
+    {
+      "at": 28.56,
+      "cue": "was",
+      "sticker": "tree",
+      "effect": "pulse"
+    },
+    {
+      "at": 51.96,
+      "cue": "so",
+      "sticker": "tree",
+      "effect": "wobble",
+      "intensity": 0.4
+    },
+    {
+      "at": 54.11,
+      "cue": "even",
+      "sticker": "flower",
       "effect": "pulse"
     }
   ]

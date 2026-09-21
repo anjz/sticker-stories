@@ -2,24 +2,42 @@
   "schema": 1,
   "triggers": [
     {
-      "at": 29.6,
-      "cue": "tweet",
+      "at": 0,
+      "cue": "early",
+      "effect": "fog",
+      "duration": 16,
+      "intensity": 0.7
+    },
+    {
+      "at": 28.36,
+      "cue": "a",
       "sticker": "bird",
-      "effect": "hop",
-      "repeat": 2
+      "effect": "pulse"
     },
     {
-      "at": 50.07,
-      "cue": "it",
+      "at": 33.08,
+      "cue": "wings",
+      "sticker": "butterfly",
+      "effect": "fade-in"
+    },
+    {
+      "at": 37.34,
+      "cue": "petals",
       "sticker": "flower",
-      "effect": "glow"
+      "effect": "wobble"
     },
     {
-      "at": 52.96,
-      "cue": "top",
+      "at": 42.65,
+      "cue": "it",
+      "effect": "sunshine",
+      "duration": 12,
+      "intensity": 0.8
+    },
+    {
+      "at": 49.32,
+      "cue": "up",
       "sticker": "tree",
-      "effect": "glow",
-      "hold": true
+      "effect": "glow"
     }
   ]
 }

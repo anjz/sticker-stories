@@ -2,58 +2,49 @@
   "schema": 1,
   "triggers": [
     {
-      "at": 10.16,
-      "cue": "hopped",
+      "at": 4.5,
+      "cue": "counted",
       "sticker": "rabbit",
+      "effect": "pulse"
+    },
+    {
+      "at": 9.88,
+      "cue": "dashed",
+      "sticker": "fox",
       "effect": "hop",
-      "repeat": 3
-    },
-    {
-      "at": 20.73,
-      "cue": "found",
-      "sticker": "fox",
-      "effect": "hop"
-    },
-    {
-      "at": 36.18,
-      "cue": "scratched",
-      "sticker": "fox",
-      "effect": "wobble",
       "repeat": 2
     },
     {
-      "at": 65.21,
-      "cue": "curled",
+      "at": 11.66,
+      "cue": "mouse",
+      "sticker": "tree",
+      "effect": "pulse"
+    },
+    {
+      "at": 12,
+      "cue": "slipped",
+      "sticker": "mouse",
+      "effect": "fade-out",
+      "duration": 1.5
+    },
+    {
+      "at": 14.06,
+      "cue": "looked",
       "sticker": "hedgehog",
       "effect": "pulse"
     },
     {
-      "at": 66.31,
-      "cue": "snoring",
+      "at": 48.33,
+      "cue": "found",
       "sticker": "hedgehog",
-      "effect": "shake",
-      "intensity": 0.3
+      "effect": "wobble",
+      "intensity": 0.4
     },
     {
-      "at": 72.9,
-      "cue": "lay",
-      "sticker": "fox",
-      "effect": "fade-out",
-      "hold": true
-    },
-    {
-      "at": 74.64,
-      "cue": "lay",
+      "at": 60.98,
+      "cue": "and",
       "sticker": "rabbit",
-      "effect": "fade-out",
-      "hold": true
-    },
-    {
-      "at": 76.52,
-      "cue": "lay",
-      "sticker": "mouse",
-      "effect": "fade-out",
-      "hold": true
+      "effect": "hearts"
     }
   ]
 }
