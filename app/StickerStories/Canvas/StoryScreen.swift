@@ -6,6 +6,11 @@ import SwiftUI
 /// here — the only door out of the child experience is the main menu's More
 /// stories card. Leaving still asks for confirmation (it's easy to bump by
 /// accident); the canvas itself is preserved either way.
+///
+/// The pack's textures are decoded off the main thread first
+/// (`PackTextureLoader`); until they are ready the screen shows the scene's
+/// sky colour and a spinner, and the canvas is mounted only once — at its
+/// final size — so opening a pack neither stalls nor re-lays out.
 struct StoryScreen: View {
     let pack: LoadedPack
     let preferredLanguages: [String]
@@ -13,7 +18,8 @@ struct StoryScreen: View {
     let calmMode: Bool
     let onLeave: () -> Void
 
-    @State private var scene: CanvasScene
+    /// `nil` until the pack's textures are loaded.
+    @State private var scene: CanvasScene?
     @State private var canvasState: CanvasState?
     @State private var playback = PlaybackController(
         storyProvider: BundledStoryProvider(recents: UserDefaultsRecentStories()),
@@ -22,13 +28,15 @@ struct StoryScreen: View {
     @State private var canRedo = false
     @State private var canClear = false
     @State private var isConfirmingClear = false
+    /// The spinner only shows if loading takes noticeably long; a fast
+    /// device goes straight from the sky colour to the canvas.
+    @State private var showsSpinner = false
 
     init(pack: LoadedPack, preferredLanguages: [String], calmMode: Bool, onLeave: @escaping () -> Void) {
         self.pack = pack
         self.preferredLanguages = preferredLanguages
         self.calmMode = calmMode
         self.onLeave = onLeave
-        _scene = State(initialValue: CanvasScene(pack: pack, stateStore: FileCanvasStateStore()))
         #if DEBUG
         if Self.isAutoplay {
             // Deterministic pick (highest-scoring story) so a seeded canvas
@@ -55,24 +63,36 @@ struct StoryScreen: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                CanvasView(
-                    scene: scene,
-                    onCanvasChange: { state in canvasState = state },
-                    onHistoryChange: { undo, redo, clear in
-                        canUndo = undo
-                        canRedo = redo
-                        canClear = clear
-                    })
-                .id(pack.id)
+                loadingBackdrop
+                if let scene {
+                    CanvasView(
+                        scene: scene,
+                        onCanvasChange: { state in canvasState = state },
+                        onHistoryChange: { undo, redo, clear in
+                            canUndo = undo
+                            canRedo = redo
+                            canClear = clear
+                        })
+                    .id(pack.id)
+                    .transition(.opacity)
 
-                PlaybackOverlay(
-                    phase: playback.phase,
-                    onPlay: play,
-                    onStop: { playback.stop() })
+                    PlaybackOverlay(
+                        phase: playback.phase,
+                        onPlay: play,
+                        onStop: { playback.stop() })
+                } else if showsSpinner {
+                    ProgressView()
+                        .tint(.white)
+                        .scaleEffect(1.5)
+                        .accessibilityLabel("Loading")
+                        .transition(.opacity)
+                }
 
                 let topPadding = Self.hudTopPadding(safeAreaTop: geometry.safeAreaInsets.top)
                 backButton(topPadding: topPadding)
-                historyControls(topPadding: topPadding)
+                if scene != nil {
+                    historyControls(topPadding: topPadding)
+                }
 
                 if isConfirmingClear {
                     clearConfirmation
@@ -84,7 +104,28 @@ struct StoryScreen: View {
         // dragging a sticker out of the tray — shows the system's grabber
         // first instead of opening Notification Centre or Control Centre.
         .defersSystemGestures(on: .top)
+        .task(id: pack.id) {
+            let spinner = Task {
+                try? await Task.sleep(for: .milliseconds(300))
+                guard !Task.isCancelled else { return }
+                withAnimation(.easeIn(duration: 0.2)) { showsSpinner = true }
+            }
+            let textures = await PackTextureLoader.load(pack)
+            spinner.cancel()
+            guard !Task.isCancelled else { return }
+            withAnimation(.easeOut(duration: 0.3)) {
+                showsSpinner = false
+                scene = CanvasScene(pack: pack, textures: textures, stateStore: FileCanvasStateStore())
+            }
+            #if DEBUG
+            if Self.isAutoplay {
+                try? await Task.sleep(for: .seconds(1.5))
+                play()
+            }
+            #endif
+        }
         .onChange(of: playback.phase) { _, phase in
+            guard let scene else { return }
             // Effects exist only while a story plays; everything else is a
             // hard reset back to the child's arrangement.
             if case .playing(let story) = phase {
@@ -100,16 +141,15 @@ struct StoryScreen: View {
         // Reduce Motion can be toggled mid-story (Control Centre); effects
         // that start from then on follow it.
         .onReceive(NotificationCenter.default.publisher(for: UIAccessibility.reduceMotionStatusDidChangeNotification)) { _ in
-            scene.setEffectPolicy(effectPolicy)
+            scene?.setEffectPolicy(effectPolicy)
         }
-        .onChange(of: calmMode) { scene.setEffectPolicy(effectPolicy) }
-        #if DEBUG
-        .task {
-            guard Self.isAutoplay else { return }
-            try? await Task.sleep(for: .seconds(1.5))
-            play()
-        }
-        #endif
+        .onChange(of: calmMode) { scene?.setEffectPolicy(effectPolicy) }
+    }
+
+    /// The scene's own sky colour, full-screen, so the canvas fades in over
+    /// the same blue it paints behind the art.
+    private var loadingBackdrop: some View {
+        Color(uiColor: CanvasScene.skyColor).ignoresSafeArea()
     }
 
     private var effectPolicy: EffectPolicy {
@@ -159,10 +199,10 @@ struct StoryScreen: View {
                 let editable = !playback.isBusy
                 HStack(spacing: 10) {
                     historyButton(symbol: "arrow.uturn.backward", label: "Undo", enabled: canUndo && editable) {
-                        scene.undo()
+                        scene?.undo()
                     }
                     historyButton(symbol: "arrow.uturn.forward", label: "Redo", enabled: canRedo && editable) {
-                        scene.redo()
+                        scene?.redo()
                     }
                     historyButton(symbol: "trash", label: "Clear canvas", enabled: canClear && editable) {
                         isConfirmingClear = true
@@ -224,7 +264,7 @@ struct StoryScreen: View {
                         fill: Color(red: 0.86, green: 0.3, blue: 0.3)
                     ) {
                         isConfirmingClear = false
-                        scene.clearCanvas()
+                        scene?.clearCanvas()
                     }
                 }
             }
