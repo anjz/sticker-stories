@@ -38,13 +38,13 @@ final class UISounds {
         prepared = true
         let bank = bank
         queue.async {
-            // Interface sounds mix with whatever else is playing and respect
-            // the silent switch; the narrator switches to `.playback` for a
-            // story.
+            // The whole app is media: every sound ignores the silent switch,
+            // as the narration does. Interface sounds obeying it while the
+            // story plays regardless left a muted phone with a talking app
+            // and silent stickers. The narrator sets the same category with
+            // its spoken-audio mode for a story.
             let session = AVAudioSession.sharedInstance()
-            if session.category == .soloAmbient {
-                try? session.setCategory(.ambient)
-            }
+            try? session.setCategory(.playback)
             try? session.setActive(true)
             for sound in Sound.allCases {
                 guard let url = Bundle.main.url(forResource: sound.rawValue, withExtension: "caf"),
