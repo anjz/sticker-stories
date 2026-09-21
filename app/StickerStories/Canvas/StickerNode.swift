@@ -2,10 +2,18 @@ import SpriteKit
 import StickerStoriesKit
 import UIKit
 
-/// A sticker instance on the canvas: the sprite and its soft drop shadow.
+/// A sticker instance on the canvas: the sprite and its drop shadow.
 /// Selection UI is not drawn here — the scene shows a fixed-size
 /// `SelectionBubbleNode` next to the selected sticker instead, so controls
 /// never scale or rotate with the sticker.
+///
+/// The shadow is what sells the sticker as a real object lying on the art:
+/// two copies of a pre-blurred silhouette (`StickerShadowCache`) — a
+/// tight, darker contact shadow hugging the edge and a softer, wider cast
+/// shadow further down-right — lit from the top-left of the *screen*, so
+/// the offsets are counter-rotated as the sticker turns and kept in world
+/// points as it scales. Lifting a sticker peels it up: the contact shadow
+/// nearly vanishes and the cast shadow drops away.
 final class StickerNode: SKSpriteNode {
     let instanceID = UUID()
     let stickerID: String
@@ -14,7 +22,23 @@ final class StickerNode: SKSpriteNode {
     /// animations are relative to this so pinched size survives dragging.
     var baseScale: CGFloat = 1
 
-    private let shadow: SKSpriteNode
+    /// One shadow layer's look, in world points and screen space (y up).
+    private struct ShadowPose {
+        var offset: CGPoint
+        var alpha: CGFloat
+        var scale: CGFloat
+    }
+    private static let restingContact = ShadowPose(offset: CGPoint(x: 1.5, y: -2.5), alpha: 0.30, scale: 1.0)
+    private static let restingCast = ShadowPose(offset: CGPoint(x: 5, y: -9), alpha: 0.16, scale: 1.05)
+    private static let liftedContact = ShadowPose(offset: CGPoint(x: 3, y: -5), alpha: 0.10, scale: 1.0)
+    private static let liftedCast = ShadowPose(offset: CGPoint(x: 12, y: -22), alpha: 0.24, scale: 1.1)
+
+    private let contactShadow: SKSpriteNode
+    private let castShadow: SKSpriteNode
+    /// Blur padding of the shadow texture relative to the sprite (1 = none).
+    private let shadowSizeMultiplier: CGFloat
+    private var contactPose = StickerNode.restingContact
+    private var castPose = StickerNode.restingCast
     /// Additive bloom behind the sprite for the `glow` effect; created on
     /// first use from the pack's cached blurred mask.
     private var glowNode: SKSpriteNode?
@@ -26,18 +50,24 @@ final class StickerNode: SKSpriteNode {
     /// mid-effect save never captures a wobble.
     var effectBase: StickerPlacement?
 
-    init(stickerID: String, texture: SKTexture, size: CGSize) {
+    /// - Parameter shadow: the pack's blurred silhouette for this sticker;
+    ///   without one the sprite's own texture stands in (hard-edged).
+    init(stickerID: String, texture: SKTexture, size: CGSize, shadow: StickerShadowCache.Shadow? = nil) {
         self.stickerID = stickerID
-        shadow = SKSpriteNode(texture: texture)
+        let shadowTexture = shadow?.texture ?? texture
+        shadowSizeMultiplier = shadow?.sizeMultiplier ?? 1
+        contactShadow = SKSpriteNode(texture: shadowTexture)
+        castShadow = SKSpriteNode(texture: shadowTexture)
         super.init(texture: texture, color: .clear, size: size)
 
-        shadow.size = size
-        shadow.color = .black
-        shadow.colorBlendFactor = 1.0
-        shadow.alpha = 0.22
-        shadow.position = CGPoint(x: 0, y: -5)
-        shadow.zPosition = -1
-        addChild(shadow)
+        for (layer, z) in [(contactShadow, -1.0), (castShadow, -1.1)] {
+            layer.color = .black
+            layer.colorBlendFactor = 1.0
+            layer.zPosition = z
+            addChild(layer)
+        }
+        layoutShadows()
+        applyShadowPoses(animated: false)
     }
 
     @available(*, unavailable)
@@ -47,10 +77,58 @@ final class StickerNode: SKSpriteNode {
         isSelected = selected
     }
 
-    /// A slightly larger, further-offset shadow while the sticker is lifted.
+    /// Peels the sticker up: the contact shadow fades, the cast shadow drops
+    /// further away and softens.
     func setLifted(_ lifted: Bool) {
-        shadow.position = lifted ? CGPoint(x: 0, y: -12) : CGPoint(x: 0, y: -5)
-        shadow.alpha = lifted ? 0.30 : 0.22
+        contactPose = lifted ? Self.liftedContact : Self.restingContact
+        castPose = lifted ? Self.liftedCast : Self.restingCast
+        applyShadowPoses(animated: true)
+    }
+
+    // The light comes from the top-left of the screen whatever the sticker
+    // does, so the offsets are re-expressed in the node's own space every
+    // time it turns or scales (effects drive both per frame).
+    override var zRotation: CGFloat {
+        didSet { applyShadowPoses(animated: false) }
+    }
+    override var xScale: CGFloat {
+        didSet { applyShadowPoses(animated: false) }
+    }
+    override var yScale: CGFloat {
+        didSet { applyShadowPoses(animated: false) }
+    }
+
+    /// Places each shadow layer for its pose: the world offset rotated into
+    /// local space and divided by the scale so the gap under the sticker
+    /// stays the same size on screen.
+    private func applyShadowPoses(animated: Bool) {
+        let c = cos(-zRotation), s = sin(-zRotation)
+        let scaleX = xScale != 0 ? abs(xScale) : 1
+        let scaleY = yScale != 0 ? abs(yScale) : 1
+        for (layer, pose) in [(contactShadow, contactPose), (castShadow, castPose)] {
+            let local = CGPoint(
+                x: (pose.offset.x * c - pose.offset.y * s) / scaleX,
+                y: (pose.offset.x * s + pose.offset.y * c) / scaleY)
+            if animated {
+                layer.removeAllActions()
+                layer.run(.group([
+                    .move(to: local, duration: 0.12),
+                    .fadeAlpha(to: pose.alpha, duration: 0.12),
+                    .scale(to: pose.scale, duration: 0.12),
+                ]))
+            } else if !layer.hasActions() {
+                layer.position = local
+                layer.alpha = pose.alpha
+                layer.setScale(pose.scale)
+            }
+        }
+    }
+
+    private func layoutShadows() {
+        let base = unscaledSize
+        let size = CGSize(width: base.width * shadowSizeMultiplier, height: base.height * shadowSizeMultiplier)
+        contactShadow.size = size
+        castShadow.size = size
     }
 
     /// `size` includes this node's own scale; children inherit that scale,
@@ -67,7 +145,7 @@ final class StickerNode: SKSpriteNode {
     func rescale(by ratio: CGFloat) {
         position = CGPoint(x: position.x * ratio, y: position.y * ratio)
         size = CGSize(width: size.width * ratio, height: size.height * ratio)
-        shadow.size = unscaledSize
+        layoutShadows()
         if let glowNode {
             glowNode.size = CGSize(width: glowNode.size.width * ratio, height: glowNode.size.height * ratio)
         }
@@ -113,7 +191,7 @@ final class StickerNode: SKSpriteNode {
             glow.size = CGSize(
                 width: base.width * mask.sizeMultiplier * 1.05,
                 height: base.height * mask.sizeMultiplier * 1.05)
-            glow.zPosition = -0.5  // behind the sprite, in front of the shadow
+            glow.zPosition = -0.5  // behind the sprite, in front of the shadows
             glow.blendMode = .add
             glow.colorBlendFactor = 1
             addChild(glow)
