@@ -16,6 +16,7 @@ import (
 	"strconv"
 	"strings"
 	"unicode"
+	"unicode/utf8"
 )
 
 // SupportedSchema is the only story.json schema this package accepts.
@@ -868,7 +869,7 @@ func validateSoundCue(is *Issues, lang string, c Cue, s *Story, nar Narration) {
 			is.errorf("%s: cue %s: a looping ambience cannot play solo", lang, c.Raw)
 		}
 		if c.WordIndex > 0 && c.WordIndex < len(nar.Words) {
-			if prev := nar.Words[c.WordIndex-1]; !strings.ContainsAny(prev[len(prev)-1:], ".!?…") {
+			if prev := nar.Words[c.WordIndex-1]; !strings.ContainsRune(".!?…", lastRune(prev)) {
 				is.warnf("%s: cue %s pauses the narration mid-sentence (after %q); put solo sounds between sentences", lang, c.Raw, prev)
 			}
 		}
@@ -876,6 +877,12 @@ func validateSoundCue(is *Issues, lang string, c Cue, s *Story, nar Narration) {
 			is.warnf("%s: cue %s pauses the story for %g s — long for a four-year-old", lang, c.Raw, spec.EffectiveSeconds())
 		}
 	}
+}
+
+// lastRune returns the final rune of s (an ellipsis is one rune, three bytes).
+func lastRune(s string) rune {
+	r, _ := utf8.DecodeLastRuneInString(s)
+	return r
 }
 
 // MinSegmentWords is the shortest stretch of narration a solo sound should
