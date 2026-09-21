@@ -56,9 +56,11 @@ never letterboxes:
   wide margins fall outside 0…1 and that is fine).
 - Keep skies, ground lines and anything the child needs inside the central
   **~70 %** of the art's height: that is what survives the largest crop the
-  app will make before it switches to a wider rendition. A sticker placed
-  in a top/bottom band while in portrait is hidden in landscape until they
-  rotate back.
+  app will make before it switches to a wider rendition, and the sticker
+  tray (top) and the play controls (bottom) sit over those bands anyway.
+  Paint the bands, but keep them quiet — nothing the picture needs. A
+  sticker placed in a top/bottom band while in portrait is hidden in
+  landscape until they rotate back.
 
 ## manifest.json — schema v2
 
