@@ -6,7 +6,8 @@ closed libraries:
 - **Sticker effects** — one placed sticker does something: a sparkle, a
   wobble, a glow, a fade. Twelve of them.
 - **Canvas effects** — the weather or the light changes over the whole
-  scene: fog, rain, sunshine, a rainbow, the lights going low. Five of them,
+  scene: fog, rain, sunshine, a rainbow, night falling, the lights going low.
+  Six of them,
   each suited to a pack `setting` (see "Canvas effects").
 
 This is the reference for **authoring** them (story tooling, hand-written
@@ -117,7 +118,7 @@ clock but not this vocabulary.
   rotation and offsets add, glow/tint take the max, colours and the pivot go
   to the later-started effect. Two glows never stack into a blowout.
 
-## Canvas effects (5, closed)
+## Canvas effects (6, closed)
 
 Weather and light over the **whole scene**: they draw over the art and the
 stickers (the rainbow sits behind the foreground art, in the sky) and never
@@ -139,6 +140,7 @@ or fantastical places) gets no canvas effects at all.
 | `rain` | outdoors | Rain falls over everything; the light cools a little. | Rain in the story: pitter-patter, puddles, sheltering. `intensity` is drizzle to downpour. | 10 s | 1.2 / 1.5 s | runs at ≤0.4 |
 | `sunshine` | outdoors | Warm light across the top of the scene, soft shafts drifting down. | The sun comes out, a warm afternoon, waking up, a happy ending after rain. | 8 s | 1.5 / 1.5 s | full |
 | `rainbow` | outdoors | A soft rainbow arcs across the sky behind the scenery. | The reward after rain, a wish come true, a wonder everyone looks up at. One per story at most. | 8 s | 2 / 2 s | full |
+| `night` | outdoors | Night falls: the scene darkens and a moon glows in the sky. | Evening and bedtime outdoors, the moon coming up, stars, a story that settles to sleep. Never darkness as a threat. Builds slowly — cue it a beat early. | 10 s | 2 / 2 s | full |
 | `dimlight` | indoors | The lights go low: the scene darkens toward its edges. | Bedtime, a lamp switched low, a cosy evening, a whispered secret. Never darkness as a threat. | 8 s | 1.5 / 1.5 s | full |
 
 - Ramps never eat more than a third of the duration each, so a 3 s effect
@@ -153,7 +155,7 @@ or fantastical places) gets no canvas effects at all.
 
 | Key | Required | Default | Meaning |
 |---|---|---|---|
-| `effect` | yes | | One of the 5 names above. A canvas trigger has **no `sticker`**. |
+| `effect` | yes | | One of the 6 names above. A canvas trigger has **no `sticker`**. |
 | `at` | yes | | Seconds into this language's narration when the effect starts building up. |
 | `cue` | no | | Free authoring label; the app ignores it. |
 | `intensity` | no | `0.6` | 0–1. How strong. 0 is visually identical to no effect. |
@@ -259,7 +261,7 @@ interpolated between resyncs), renders glow from a cached blurred mask,
 drives two particle emitters (`sparkles`, `hearts`) defined in
 `app/StickerStories/Effects/emitters.json`, and renders canvas effects in
 `CanvasEffectLayer` (a rain emitter, drifting fog sprites, a sky glow with light shafts, a
-rainbow arc and a vignette, all procedurally textured, sized to the pack's
+rainbow arc, a vignette and a moon with a halo, all procedurally textured, sized to the pack's
 art frame — the tuning numbers live in that file). The DEBUG-only gallery
 (Settings → Effects gallery in debug builds) plays every sticker effect on
 a real sticker at three intensities and every canvas effect over the pack's

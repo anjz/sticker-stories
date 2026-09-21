@@ -4,8 +4,8 @@ import UIKit
 /// Particle and canvas-effect textures drawn once with CoreGraphics.
 /// Placeholder-art era: swap for PNGs when real art lands, keeping the same
 /// names (`star`, `dot`, `heart` for the emitters in `emitters.json`;
-/// `drop`, `fog`, `ray`, `skyglow`, `rainbow`, `vignette` for
-/// `CanvasEffectLayer`).
+/// `drop`, `fog`, `ray`, `skyglow`, `rainbow`, `vignette`, `moon`, `moonglow`
+/// for `CanvasEffectLayer`).
 /// `dot` is kept as the generic soft particle even though no emitter uses
 /// it today.
 enum EffectTextures {
@@ -20,6 +20,8 @@ enum EffectTextures {
         case "ray": texture = procedural(width: 64, height: 256, ray)
         case "skyglow": texture = procedural(width: 4, height: 256, skyGlow)
         case "vignette": texture = procedural(width: 256, height: 256, vignette)
+        case "moon": texture = procedural(width: 128, height: 128, moon)
+        case "moonglow": texture = procedural(width: 256, height: 256, moonGlow)
         case "rainbow": texture = drawn(size: CGSize(width: 1024, height: 512), scale: 1) { rect, cg in drawRainbow(in: rect, cg) }
         default:
             texture = drawn(size: CGSize(width: 32, height: 32), scale: 3) { rect, cg in
@@ -105,6 +107,26 @@ enum EffectTextures {
         let dx = (u - 0.5) * 2, dy = (v - 0.5) * 2
         let d = min(1, (dx * dx + dy * dy).squareRoot() / 1.2)
         return 0.5 + 0.5 * d * d
+    }
+
+    /// A full moon: a solid disc with a soft edge.
+    private static func moon(_ u: Double, _ v: Double) -> Double {
+        let dx = (u - 0.5) * 2, dy = (v - 0.5) * 2
+        let d = (dx * dx + dy * dy).squareRoot()
+        return 1 - smoothstep(0.88, 0.96, d)
+    }
+
+    /// The moon's halo: brightest at the centre, gone at the edge, on a
+    /// steep curve so it reads as glow rather than a bright square.
+    private static func moonGlow(_ u: Double, _ v: Double) -> Double {
+        let dx = (u - 0.5) * 2, dy = (v - 0.5) * 2
+        let d = min(1, (dx * dx + dy * dy).squareRoot())
+        return pow(1 - d, 2.6)
+    }
+
+    private static func smoothstep(_ a: Double, _ b: Double, _ x: Double) -> Double {
+        let t = min(1, max(0, (x - a) / (b - a)))
+        return t * t * (3 - 2 * t)
     }
 
     /// Seven soft bands, an upper semicircle whose centre is the bottom

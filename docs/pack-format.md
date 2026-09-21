@@ -119,7 +119,7 @@ never letterboxes:
 | `languages` | [string] | BCP-47 tags (`xx` or `xx-YY`, e.g. `en-US`), non-empty, no duplicates. **The first entry is the pack's fallback language.** |
 | `displayName` | {lang: string} | Human-readable name per language, shown to parents. |
 | `theme` | string | Free-form theme tag; future prompt context for generated stories. |
-| `setting` | string | **Optional**, default `none`. Where the scene takes place: `outdoors`, `indoors` or `none`. Decides which canvas effects (`docs/effects.md`, "Canvas effects") the pack's stories may use — `outdoors` unlocks fog, rain, sunshine and rainbow; `indoors` unlocks dimlight; `none` allows no canvas effects. Story tooling reads it when authoring. |
+| `setting` | string | **Optional**, default `none`. Where the scene takes place: `outdoors`, `indoors` or `none`. Decides which canvas effects (`docs/effects.md`, "Canvas effects") the pack's stories may use — `outdoors` unlocks fog, rain, sunshine, rainbow and night; `indoors` unlocks dimlight; `none` allows no canvas effects. Story tooling reads it when authoring. |
 | `background` / `foreground` | string | Pack-relative paths; files must exist. Their frame is the sticker coordinate system ("Art safe area" below). |
 | `backgroundWide` / `foregroundWide` | string | **Optional, together or not at all.** Wider renditions (e.g. 2:1) with the **same pixel height** as the base art and the base art **centred** inside. The app draws whichever rendition lets a landscape window avoid panning with the least crop (tall phones get the wide one; iPads keep the base one). Files must exist. |
 | `stickers[].id` | string | Lowercase `a-z0-9-`, unique within the pack. |

@@ -3,7 +3,7 @@
   "triggerSchema": 1,
   "notes": [
     "Machine-readable catalogue of the effect library. Human reference: docs/effects.md.",
-    "Two closed lists: `effects` (12 sticker effects, each on one sticker) and `canvasEffects` (5 canvas effects: weather and light over the whole scene).",
+    "Two closed lists: `effects` (12 sticker effects, each on one sticker) and `canvasEffects` (6 canvas effects: weather and light over the whole scene).",
     "A Kit test asserts this file matches the compiled library (EffectDefinition.library, CanvasEffectDefinition.library); edit both together.",
     "Story tooling should read this file to learn which effects exist, what they mean, which parameters each accepts, and which canvas effects suit a pack's setting."
   ],
@@ -23,7 +23,7 @@
     "effect":    { "type": "string",  "required": true,  "description": "One of the canvas effect names below. A canvas trigger has no sticker." },
     "at":        { "type": "number",  "required": true,  "description": "Seconds into this language's narration at which the effect starts building up." },
     "cue":       { "type": "string",  "required": false, "description": "Authoring label only. Never interpreted by the app." },
-    "intensity": { "type": "number",  "required": false, "default": 0.6, "range": [0, 1], "description": "How strong: denser fog, heavier rain, darker dimlight. 0 is visually identical to no effect." },
+    "intensity": { "type": "number",  "required": false, "default": 0.6, "range": [0, 1], "description": "How strong: denser fog, heavier rain, darker dimlight or night. 0 is visually identical to no effect." },
     "duration":  { "type": "number",  "required": false, "default": "per effect", "range": [1, 120], "description": "Seconds the effect stays on, ramps included. There is no repeat, colour or hold." }
   },
   "reduceMotionValues": {
@@ -51,6 +51,7 @@
     { "name": "rain",     "settings": ["outdoors"], "summary": "Rain falls over everything; the light cools a little.", "use": "Rain in the story: pitter-patter, puddles, sheltering under a cap. Intensity is drizzle to downpour.", "defaultDuration": 10, "durationRange": [1, 120], "rampIn": 1.2, "rampOut": 1.5, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" },
     { "name": "sunshine", "settings": ["outdoors"], "summary": "Warm light across the top of the scene, soft shafts drifting down.", "use": "The sun comes out, a warm afternoon, waking up, a happy ending after rain.", "defaultDuration": 8, "durationRange": [1, 120], "rampIn": 1.5, "rampOut": 1.5, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
     { "name": "rainbow",  "settings": ["outdoors"], "summary": "A soft rainbow arcs across the sky behind the scenery.", "use": "The reward after rain, a wish come true, a wonder everyone looks up at. One per story at most.", "defaultDuration": 8, "durationRange": [1, 120], "rampIn": 2.0, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
+    { "name": "night",    "settings": ["outdoors"], "summary": "Night falls: the scene darkens and a moon glows in the sky.", "use": "Evening and bedtime outdoors, the moon coming up, stars, a story that settles to sleep. Never darkness as a threat. Builds slowly, so cue it a beat early.", "defaultDuration": 10, "durationRange": [1, 120], "rampIn": 2.0, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
     { "name": "dimlight", "settings": ["indoors"], "summary": "The lights go low: the scene darkens toward its edges.", "use": "Bedtime, a lamp switched low, a cosy evening, a whispered secret. Never darkness as a threat.", "defaultDuration": 8, "durationRange": [1, 120], "rampIn": 1.5, "rampOut": 1.5, "parameters": ["intensity", "duration"], "reduceMotion": "full" }
   ]
 }

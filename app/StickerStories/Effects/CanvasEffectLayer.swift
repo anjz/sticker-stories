@@ -53,6 +53,15 @@ final class CanvasEffectLayer: SKNode {
     private let rainbow = SKSpriteNode()
     private let dim = SKSpriteNode()
 
+    // Night: the dimlight vignette in a deeper blue, and a moon with a soft
+    // halo high in the sky, drawn over the dim so it reads as a light.
+    private let nightDim = SKSpriteNode()
+    private let moonGlow = SKSpriteNode()
+    private let moon = SKSpriteNode()
+    /// Where the moon sits, as fractions of the art frame: high and to the
+    /// right, clear of the centre where the stickers usually go.
+    private static let moonPlace = CGPoint(x: 0.78, y: 0.80)
+
     override init() {
         super.init()
         buildFog()
@@ -69,10 +78,33 @@ final class CanvasEffectLayer: SKNode {
         dim.zPosition = Self.overlayZ + 3
         dim.alpha = 0
         addChild(dim)
+        buildNight()
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError("not used") }
+
+    private func buildNight() {
+        nightDim.texture = EffectTextures.texture(named: "vignette")
+        nightDim.color = UIColor(red: 0.03, green: 0.05, blue: 0.17, alpha: 1)
+        nightDim.colorBlendFactor = 1
+        nightDim.zPosition = Self.overlayZ + 3
+        nightDim.alpha = 0
+        addChild(nightDim)
+        moonGlow.texture = EffectTextures.texture(named: "moonglow")
+        moonGlow.color = UIColor(red: 1.0, green: 0.95, blue: 0.75, alpha: 1)
+        moonGlow.colorBlendFactor = 1
+        moonGlow.blendMode = .add
+        moonGlow.zPosition = Self.overlayZ + 4
+        moonGlow.alpha = 0
+        addChild(moonGlow)
+        moon.texture = EffectTextures.texture(named: "moon")
+        moon.color = UIColor(red: 1.0, green: 0.97, blue: 0.86, alpha: 1)
+        moon.colorBlendFactor = 1
+        moon.zPosition = Self.overlayZ + 5
+        moon.alpha = 0
+        addChild(moon)
+    }
 
     private static let fogColor = UIColor(red: 0.9, green: 0.93, blue: 0.95, alpha: 1)
 
@@ -200,6 +232,14 @@ final class CanvasEffectLayer: SKNode {
 
         dim.size = CGSize(width: w * 1.04, height: h * 1.04)
         dim.position = center
+
+        nightDim.size = dim.size
+        nightDim.position = center
+        let moonAt = CGPoint(x: world.minX + w * Self.moonPlace.x, y: world.minY + h * Self.moonPlace.y)
+        moon.size = CGSize(width: h * 0.13, height: h * 0.13)
+        moon.position = moonAt
+        moonGlow.size = CGSize(width: h * 0.55, height: h * 0.55)
+        moonGlow.position = moonAt
     }
 
     // MARK: Per-frame
@@ -238,6 +278,11 @@ final class CanvasEffectLayer: SKNode {
 
         rainbow.alpha = (strengths[.rainbow] ?? 0) * 0.72
         dim.alpha = (strengths[.dimlight] ?? 0) * 0.66
+
+        let nightStrength = strengths[.night] ?? 0
+        nightDim.alpha = nightStrength * 0.66
+        moon.alpha = nightStrength
+        moonGlow.alpha = nightStrength * (0.55 + 0.06 * sin(2 * .pi * time / 6))
     }
 
     /// Everything off at once (playback cancelled); live raindrops are

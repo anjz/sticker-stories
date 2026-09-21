@@ -2,7 +2,7 @@ import Foundation
 
 /// The closed list of canvas effects: weather and light over the whole
 /// scene rather than on one sticker (`docs/effects.md`, "Canvas effects").
-/// Exactly five. Each suits a pack `setting` — rain has no place in a
+/// Exactly six. Each suits a pack `setting` — rain has no place in a
 /// bedroom — and a trigger whose effect does not suit the pack is skipped.
 public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable {
     // Outdoors
@@ -10,13 +10,14 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
     case rain
     case sunshine
     case rainbow
+    case night
     // Indoors
     case dimlight
 
     /// The pack settings (`PackManifest.setting`) this effect suits.
     public var settings: Set<PackSetting> {
         switch self {
-        case .fog, .rain, .sunshine, .rainbow: [.outdoors]
+        case .fog, .rain, .sunshine, .rainbow, .night: [.outdoors]
         case .dimlight: [.indoors]
         }
     }
@@ -64,6 +65,9 @@ public struct CanvasEffectDefinition: Sendable {
             name: .rainbow, defaultDuration: 8, rampIn: 2.0, rampOut: 2.0,
             summary: "A soft rainbow arcs across the sky behind the scenery."),
         CanvasEffectDefinition(
+            name: .night, defaultDuration: 10, rampIn: 2.0, rampOut: 2.0,
+            summary: "Night falls: the scene darkens and a moon glows in the sky."),
+        CanvasEffectDefinition(
             name: .dimlight, defaultDuration: 8, rampIn: 1.5, rampOut: 1.5,
             summary: "The lights go low: the scene darkens toward its edges."),
     ]
@@ -76,7 +80,7 @@ public struct CanvasEffectOptions: Equatable, Sendable, Hashable {
     /// range is wider than a sticker effect's cycle.
     public static let durationRange: ClosedRange<TimeInterval> = 1...120
 
-    /// 0...1. How strong: denser fog, heavier rain, darker dimlight.
+    /// 0...1. How strong: denser fog, heavier rain, darker dimlight or night.
     public var intensity: Double = CanvasEffectOptions.defaultIntensity
     /// Seconds the effect stays on, ramps included; `nil` = the effect's default.
     public var duration: TimeInterval? = nil

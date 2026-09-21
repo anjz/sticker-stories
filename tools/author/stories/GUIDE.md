@@ -10,8 +10,8 @@ Sticker Stories is an app for children aged four and up. A child drags
 stickers onto a scene and presses play; the app picks a story that matches
 what they placed and narrates it while the stickers react with small
 effects (a wobble, a hop, sparkles) and, now and then, the weather or the
-light changes over the whole scene (rain, fog, sunshine, a rainbow, the
-lights going low). Stories are:
+light changes over the whole scene (rain, fog, sunshine, a rainbow, night
+falling, the lights going low). Stories are:
 
 - **30–60 seconds** of narration (80–140 words per language), read by an
   Eleven v3 voice that takes stage directions and plays real sound
@@ -175,7 +175,7 @@ a pack may use is decided by its **`setting`** in `manifest.json`:
 
 | Setting | Canvas effects available | Cue it on |
 |---|---|---|
-| `outdoors` | `fog` (early morning, hush, something hidden), `rain` (pitter-patter, puddles, sheltering), `sunshine` (the sun comes out, a warm afternoon), `rainbow` (the wonder after rain, a wish come true) | the sentence where the weather changes |
+| `outdoors` | `fog` (early morning, hush, something hidden), `rain` (pitter-patter, puddles, sheltering), `sunshine` (the sun comes out, a warm afternoon), `rainbow` (the wonder after rain, a wish come true), `night` (evening, the moon coming up, settling to sleep; never darkness as a threat) | the sentence where the weather or the light changes |
 | `indoors` | `dimlight` (bedtime, a lamp turned low, a whispered secret; never darkness as a threat) | the sentence where the light changes |
 | `none` | nothing — the pack's stories use sticker effects only | — |
 
@@ -194,7 +194,7 @@ it stays). See `FORMAT.md`, "Canvas cues".
   beats it belongs to and no more; it clears on its own.
 - **Classic shapes** that earn one: rain → sunshine → rainbow as a story
   resolves; fog that lifts as something is found; sunshine as the forest
-  wakes; dimlight as the story settles to sleep.
+  wakes; night or dimlight as the story settles to sleep.
 - **Stickers still react.** A canvas effect is never a substitute for the
   cast doing something; a story with only canvas cues is a warning.
 - **Never rely on it.** The story must read fine if the weather never
