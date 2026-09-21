@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "acorn-wants-to-be-tall",
+  "pack": "forest",
+  "featured": ["acorn", "tree", "squirrel"],
+  "supporting": ["bird"],
+  "tags": ["patience", "seasons", "gentle"],
+  "premise": "Acorn wants to be tall right now; Squirrel tucks her into the ground, Tree tells her tall takes a while, and one spring morning a green shoot pokes up into the light.",
+  "inspiration": "Kipling's Just So how-things-came-to-be, turned: the tallest tree in the forest began as the smallest thing, buried and waiting.",
+  "lesson": "Big things begin small and take their time.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Acorn Wants to Be Tall",
+      "text": "{bird:float loop 0.3} Acorn was the smallest thing in the forest. [sad] I want to be tall, she said. Tall like Tree! Tree {tree:pulse} looked down from very, very high. Tall takes a while, little one, he said. But Acorn wanted tall NOW. She stood on tiptoe. {acorn:hop} Nothing. She stretched her cap. {acorn:wobble} Nothing. Then Squirrel came by. {squirrel:hop x2} I know a trick, said Squirrel, and she dug a small, soft hole. {sfx:dig solo} In went {acorn:fade-out hold} Acorn. [whispers] It is cosy down here, said Acorn. Now what? Now, said Tree, you wait. So Acorn waited. Rain came. Snow came. Acorn slept. [gasps] And one spring morning… {sfx:pop} pop! {acorn:fade-in 1.5s} A tiny green shoot poked up into the light. Bird {bird:hop} sang hello. Tree {tree:glow} smiled all the way down to his roots. [happily] That is how tall begins. Very small, and very patient."
+    },
+    "es-ES": {
+      "title": "Bellota quiere ser alta",
+      "text": "{bird:float loop 0.3} Bellota era la cosa más pequeña del bosque. [sad] Quiero ser alta, decía. ¡Alta como Árbol! Árbol {tree:pulse} la miró desde muy, muy arriba. Ser alto lleva su tiempo, pequeña, dijo. Pero Bellota quería ser alta YA. Se puso de puntillas. {acorn:hop} Nada. Estiró el sombrerito. {acorn:wobble} Nada. Entonces pasó Ardilla. {squirrel:hop x2} Yo sé un truco, dijo, y cavó un hoyito blando en la tierra. {sfx:dig solo} Y dentro se metió {acorn:fade-out hold} Bellota. [whispers] Aquí abajo se está calentito, dijo. ¿Y ahora qué? Ahora, dijo Árbol, a esperar. Y Bellota esperó. Llegó la lluvia. Llegó la nieve. Bellota se durmió. [gasps] Y una mañana de primavera… {sfx:pop} ¡pop! {acorn:fade-in 1.5s} Un brotecito verde asomó a la luz. Pájaro {bird:hop} le cantó hola. Árbol {tree:glow} sonrió hasta las raíces. [happily] Así empieza lo alto. Muy pequeño, y con mucha paciencia."
+    }
+  },
+  "sounds": {
+    "dig": { "prompt": "small paws scratching and patting soft earth, a quick little dig", "seconds": 1.8 },
+    "pop": { "prompt": "a tiny soft pop, like a seed sprouting, light and playful", "seconds": 0.8 }
+  }
+}

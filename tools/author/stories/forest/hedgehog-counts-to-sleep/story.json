@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "hedgehog-counts-to-sleep",
+  "pack": "forest",
+  "featured": ["hedgehog", "owl", "snail", "mushroom"],
+  "supporting": [],
+  "tags": ["bedtime", "counting"],
+  "premise": "Hedgehog cannot sleep; Owl says count stars, Snail says count slow steps, Mushroom says count breaths; Hedgehog counts his own prickles and is snoring by six.",
+  "inspiration": "Counting-sheep lullaby pattern, turned: three friends offer three ways to count, and the one that works is the one he carries with him.",
+  "lesson": "The way to sleep that works is your own.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Hedgehog Counts to Sleep",
+      "text": "{sfx:crickets} [softly] Hedgehog {hedgehog:wobble} could not sleep. This way. That way. Too awake. Owl {owl:pulse} looked down from his branch. Count the stars, he said. Hedgehog looked up. One, two, three, four — [surprised] oh! There were far too many stars. Snail {snail:pulse} slid by. Count my steps, he said. [slowly] One… two… Hedgehog waited for three. And waited. Snail was still on two. Mushroom {mushroom:pulse 0.4} spoke up, very quietly. Count your breaths. In… out… one. In… out… two. But Hedgehog kept forgetting which number he was on. [sighs] Then he had his own idea. He curled up, {hedgehog:spin 0.8} round as a ball, and counted his prickles. One prickle. Two prickles. Three… four… [yawns] five… {hedgehog:fade-out 3s 0.5 hold} six… {sfx:snore} Snore. [whispers] Owl smiled. Snail smiled, slowly. And the whole forest counted very quietly to bed."
+    },
+    "es-ES": {
+      "title": "Erizo cuenta para dormir",
+      "text": "{sfx:crickets} [softly] Erizo {hedgehog:wobble} no podía dormir. Para un lado. Para el otro. Demasiado despierto. Búho {owl:pulse} lo miró desde su rama. Cuenta estrellas, dijo. Erizo miró arriba. Una, dos, tres, cuatro… [surprised] ¡uy! Había demasiadas estrellas. Caracol {snail:pulse} pasó deslizándose. Cuenta mis pasos, dijo. [slowly] Uno… dos… Erizo esperó al tres. Y esperó. Caracol seguía en el dos. Seta {mushroom:pulse 0.4} habló, muy bajito. Cuenta tus respiraciones. Dentro… fuera… una. Dentro… fuera… dos. Pero a Erizo se le olvidaba por qué número iba. [sighs] Entonces tuvo su propia idea. Se hizo un ovillo, {hedgehog:spin 0.8} redondo como una bola, y contó sus púas. Una púa. Dos púas. Tres… cuatro… [yawns] cinco… {hedgehog:fade-out 3s 0.5 hold} seis… {sfx:snore} Rrrr. [whispers] Búho sonrió. Caracol sonrió, despacio. Y el bosque entero se fue a dormir contando bajito."
+    }
+  },
+  "sounds": {
+    "crickets": { "prompt": "soft sleepy night crickets and a faint breeze, calm and even", "seconds": 26, "loop": true },
+    "snore": { "prompt": "one tiny gentle snore from a very small animal, cute and soft", "seconds": 1.5 }
+  }
+}

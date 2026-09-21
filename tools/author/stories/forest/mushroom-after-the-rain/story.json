@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "id": "mushroom-after-the-rain",
+  "pack": "forest",
+  "featured": ["mushroom", "snail", "frog"],
+  "supporting": ["tree"],
+  "tags": ["morning", "curiosity", "learning", "weather"],
+  "premise": "After a night of rain Snail crosses the misty moss and finds a little new mushroom where there was none yesterday; Frog says rain does that; the little one is shy, and Mushroom says hello like a big sister.",
+  "inspiration": "Thumbelina's small-thing-found motif (Andersen), turned: the new one is welcomed at once.",
+  "lesson": "New arrivals only need a hello.",
+  "learning": "Mushrooms pop up after rain.",
+  "languages": {
+    "en-US": {
+      "title": "Mushroom After the Rain",
+      "text": "{canvas:fog 0.5 16s} {sfx:drips} [whispers] It had rained all night. Now a soft grey mist hung between the trees. {tree:pulse} Snail {snail:pulse} slid out across the moss, and stopped. [curious] Something was different. Yesterday, here, there was only moss. Today there was… a bump. A small, round, white bump with a cap. Frog {frog:hop} splashed over. It was not here yesterday, said Snail. That is what rain does, said Frog. After a good rain, the little ones pop up. [surprised] The bump wobbled. {mushroom:wobble 0.4} It was shy. Mushroom {mushroom:pulse} — the big one — leaned closer. Hello, little one, she said. I popped up after a rain too, once. The little bump stood a bit taller. {mushroom:glow} The mist began to lift. [softly] Welcome to the forest, said Snail. You will like it. It rains here quite a lot. [happily] And by lunchtime the little mushroom was already giving a beetle some shade."
+    },
+    "es-ES": {
+      "title": "Seta después de la lluvia",
+      "text": "{canvas:fog 0.5 16s} {sfx:drips} [whispers] Había llovido toda la noche. Ahora una niebla gris y suave flotaba entre los árboles. {tree:pulse} Caracol {snail:pulse} salió deslizándose por el musgo, y se paró. [curious] Algo era distinto. Ayer, aquí, solo había musgo. Hoy había… un bultito. Un bultito blanco y redondo con sombrero. Rana {frog:hop} llegó de un salto. Ayer no estaba, dijo Caracol. Eso lo hace la lluvia, dijo Rana. Después de una buena lluvia, los pequeñitos asoman. [surprised] El bultito tembló. {mushroom:wobble 0.4} Era tímido. Seta {mushroom:pulse} — la grande — se acercó. Hola, pequeñín, dijo. Yo también asomé después de una lluvia, hace tiempo. El bultito se puso un poquito más derecho. {mushroom:glow} La niebla empezó a levantarse. [softly] Bienvenido al bosque, dijo Caracol. Te va a gustar. Aquí llueve bastante. [happily] Y a la hora de comer, la setita ya le daba sombra a un escarabajo."
+    }
+  },
+  "sounds": {
+    "drips": { "prompt": "the quiet after rain in a misty forest, water dripping slowly from leaves, no birds yet", "seconds": 20, "loop": true }
+  }
+}

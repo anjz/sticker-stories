@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "the-forest-band",
+  "pack": "forest",
+  "featured": ["pinecone", "frog", "bird", "bee"],
+  "supporting": ["tree"],
+  "tags": ["music", "funny"],
+  "premise": "Pinecone rattles, Frog croaks, Bird trills and Bee hums, all at once and all too loud; taking turns, one on top of the other, they find the forest's first song.",
+  "inspiration": "The Bremen Town Musicians (Grimm), turned: nobody is chased off; the band learns to listen and take turns.",
+  "lesson": "Music happens when everyone waits for their turn.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "The Forest Band",
+      "text": "{bird:float loop 0.3} {bee:float loop 0.3} [excited] A band! said Frog. {frog:hop} Pinecone {pinecone:pulse} could rattle. {sfx:rattle} Shaka-shaka! Bird {bird:pulse} could trill. Tweedle-ee! Bee {bee:pulse} could hum. {sfx:hum} Hmmmm. And Frog could CROAK. Ready? One, two, three — {pinecone:shake x3} {frog:wobble x3} {bird:wobble x3} {bee:wobble x3} SHAKA-TWEEDLE-HMMM-CROAK! [surprised] The tree {tree:wobble x2} dropped a leaf in surprise. Oh dear, said Bird. That was a noise, not music. They tried again, louder. Worse. [curious] Then Pinecone said, What if we do not all go at once? So Pinecone went first. Shaka… shaka… Then Bee came in underneath. Hmmmm… Then Bird, on top. Tweedle-ee… And Frog waited, and — CROAK — right at the end, like a full stop. [sings] Shaka-hmm-tweedle… CROAK! They played it again. And again. The tree tapped a root. [happily] It was the forest's first song, and everybody in it had a turn."
+    },
+    "es-ES": {
+      "title": "La banda del bosque",
+      "text": "{bird:float loop 0.3} {bee:float loop 0.3} [excited] ¡Una banda!, dijo Rana. {frog:hop} Piña {pinecone:pulse} sabía sonar. {sfx:rattle} ¡Chaca-chaca! Pájaro {bird:pulse} sabía trinar. ¡Tiruliru! Abeja {bee:pulse} sabía zumbar. {sfx:hum} Mmmmm. Y Rana sabía CROAR. ¿Listos? Uno, dos, tres — {pinecone:shake x3} {frog:wobble x3} {bird:wobble x3} {bee:wobble x3} ¡CHACA-TIRULI-MMM-CROAC! [surprised] Al árbol {tree:wobble x2} se le cayó una hoja de la sorpresa. Ay, dijo Pájaro. Eso era ruido, no música. Lo intentaron otra vez, más fuerte. Peor. [curious] Entonces Piña dijo: ¿Y si no vamos todos a la vez? Y Piña empezó. Chaca… chaca… Luego entró Abeja, por debajo. Mmmmm… Luego Pájaro, por arriba. Tiruliru… Y Rana esperó, y — CROAC — justo al final, como un punto. [sings] Chaca-mmm-tiruli… ¡CROAC! Lo tocaron otra vez. Y otra. El árbol marcaba el ritmo con una raíz. [happily] Fue la primera canción del bosque, y todos tuvieron su turno."
+    }
+  },
+  "sounds": {
+    "rattle": { "prompt": "a dry pinecone shaken like a small rattle, two quick shakes", "seconds": 1.2 },
+    "hum": { "prompt": "a bee humming one steady warm note, close", "seconds": 1.5 }
+  }
+}

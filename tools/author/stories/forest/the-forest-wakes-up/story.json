@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "id": "the-forest-wakes-up",
+  "pack": "forest",
+  "featured": [],
+  "supporting": ["bird", "flower", "butterfly", "tree"],
+  "tags": ["morning", "gentle", "learning", "weather"],
+  "premise": "The forest wakes one sound at a time inside a white morning mist, and the sun lifts the mist away like a blanket.",
+  "inspiration": "Cumulative roll-call folk pattern (The House That Jack Built), turned into a dawn of sounds: a drip, a chirp, wings, petals, and then the light.",
+  "lesson": "Everything you cannot see is still there; wait for the light.",
+  "learning": "Fog is a cloud resting on the ground; the sun lifts it away.",
+  "languages": {
+    "en-US": {
+      "title": "The Forest Wakes Up",
+      "text": "{canvas:fog 0.7 16s} [softly] Early, early in the morning, a cloud comes down to sleep on the forest floor. Everything is white and quiet. [whispers] Shhh… Can you see the tree? Only the tops. Can you see the flower? Only a little pink. {sfx:morning} Then, in the mist, one drop of dew lets go. {sfx:drip solo} Plip. That is the first sound. {bird:pulse} A small voice tries a note. {sfx:chirp} Chirp! That is the second. {butterfly:fade-in} Wings unfold. Flutter, flutter. Three. {flower:wobble} Petals stretch. Four. And then… the sun. {canvas:sunshine 0.8 12s} It reaches down, warm and yellow, and lifts the cloud gently, gently, like a blanket. {tree:glow} Up it goes, back into the sky. [happily] Good morning, forest! Everyone is here. Everyone was here all along."
+    },
+    "es-ES": {
+      "title": "El bosque se despierta",
+      "text": "{canvas:fog 0.7 16s} [softly] Muy, muy temprano, una nube baja a dormir sobre el suelo del bosque. Todo está blanco y en silencio. [whispers] Chsss… ¿Veis el árbol? Solo la copa. ¿Veis la flor? Solo un poquito de rosa. {sfx:morning} Entonces, en la niebla, una gota de rocío se suelta. {sfx:drip solo} Plic. Ese es el primer sonido. {bird:pulse} Una vocecita prueba una nota. {sfx:chirp} ¡Pío! Ese es el segundo. {butterfly:fade-in} Unas alas se despliegan. Flap, flap. Tres. {flower:wobble} Los pétalos se estiran. Cuatro. Y entonces… el sol. {canvas:sunshine 0.8 12s} Baja, cálido y amarillo, y levanta la nube despacito, despacito, como una manta. {tree:glow} Arriba, arriba, de vuelta al cielo. [happily] ¡Buenos días, bosque! Todos están aquí. Todos estuvieron aquí desde el principio."
+    }
+  },
+  "sounds": {
+    "morning": { "prompt": "a hushed forest at dawn, faint distant birdsong and a very light breeze through leaves", "seconds": 24, "loop": true },
+    "drip": { "prompt": "a single dewdrop falling from a leaf onto a still puddle, one soft plip", "seconds": 1.5 },
+    "chirp": { "prompt": "one small songbird chirping twice, close and bright", "seconds": 1.5 }
+  }
+}

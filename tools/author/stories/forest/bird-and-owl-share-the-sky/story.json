@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "bird-and-owl-share-the-sky",
+  "pack": "forest",
+  "featured": ["bird", "tree", "owl"],
+  "supporting": ["flower"],
+  "tags": ["music", "morning", "kindness", "learning"],
+  "premise": "Bird sings the sun up just as Owl wants to sleep; instead of arguing they split the sky: Bird sings sunrise, Owl sings sunset, and Tree hums in between.",
+  "inspiration": "The Owl and the Nightingale (medieval debate poem), turned: nobody wins the argument; they turn it into a duet with a tree keeping time.",
+  "lesson": "There is room in the day for everyone's song.",
+  "learning": "Birds sing loudest at sunrise.",
+  "languages": {
+    "en-US": {
+      "title": "Bird and Owl Share the Sky",
+      "text": "{bird:float loop 0.3} Every morning, just as the sky went pink, Bird {bird:hop x2} sang. [excited] Tweet-tweet-TWEET! Wake up, the sun is coming! {sfx:dawn} He always sang loudest at sunrise, when the whole world needs waking. And every morning, just as the sky went pink, Owl {owl:wobble} was trying to go to sleep. [yawns] Please, Bird, he said. It is my bedtime. But it is my singing time, said Bird. Tree {tree:pulse} was very old and had heard every argument. Hmm, said Tree. The sky is big. Why not share it? So they did. Bird got the morning. Tweet-tweet-tweet, the sun is up! Owl got the evening. {sfx:hoot} Hoo-hoo, the moon is up! And in between, all day long, Tree hummed a little tune in the wind, {tree:wobble 0.4} so the sky was never quiet. {flower:pulse} Even the flower hummed along. [softly] Morning song, evening song. [happily] And a tree in the middle, humming."
+    },
+    "es-ES": {
+      "title": "Pájaro y Búho comparten el cielo",
+      "text": "{bird:float loop 0.3} Cada mañana, justo cuando el cielo se ponía rosa, Pájaro {bird:hop x2} cantaba. [excited] ¡Pío-pío-PÍO! ¡Arriba, que llega el sol! {sfx:dawn} Al amanecer cantaba más fuerte que nunca: el mundo entero tenía que despertarse. Y cada mañana, justo cuando el cielo se ponía rosa, Búho {owl:wobble} intentaba dormirse. [yawns] Por favor, Pájaro. Es mi hora de dormir. Pero es mi hora de cantar, decía Pájaro. Árbol {tree:pulse} era muy viejo y lo había oído todo. Mmm, dijo Árbol. El cielo es grande. ¿Por qué no lo compartís? Y eso hicieron. Pájaro se quedó con la mañana. ¡Pío-pío-pío, ya salió el sol! Búho se quedó con la tarde. {sfx:hoot} Uh-uh, ya salió la luna. Y en medio, todo el día, Árbol tarareaba con el viento, {tree:wobble 0.4} para que el cielo nunca callara. {flower:pulse} Hasta la flor tarareaba. [softly] Canción de la mañana, canción de la tarde. [happily] Y un árbol en medio, tarareando."
+    }
+  },
+  "sounds": {
+    "dawn": { "prompt": "a bright dawn chorus of small songbirds in a forest, lively and cheerful, fading gently", "seconds": 3 },
+    "hoot": { "prompt": "two soft owl hoots at dusk, calm and far away", "seconds": 2 }
+  }
+}

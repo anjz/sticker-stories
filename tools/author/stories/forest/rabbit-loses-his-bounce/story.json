@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "rabbit-loses-his-bounce",
+  "pack": "forest",
+  "featured": ["rabbit", "frog", "bee"],
+  "supporting": ["flower"],
+  "tags": ["kindness", "gentle"],
+  "premise": "Rabbit wakes up flat and bounceless; Frog tries jumping for him and Bee tries buzzing him up; in the end they just sit with him and hum, and his hop comes back on its own.",
+  "inspiration": "Andersen's kindness tales, turned: slow days are allowed, nobody is fixed by force, and friends who simply stay are the cure.",
+  "lesson": "Sometimes the kindest help is to sit beside someone and wait.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Rabbit Loses His Bounce",
+      "text": "{bee:float loop 0.3} One morning Rabbit {rabbit:pulse} woke up and did not hop. He just… sat. [sad] I have lost my bounce, he said. My legs feel like two wet socks. Frog {frog:hop x3} arrived at a bounce. Boing, boing, boing! Rabbit watched. Bee {bee:wobble} arrived at a buzz. I will buzz you up! Bzzz! {rabbit:shake 0.3} Rabbit's ears tickled. Still no bounce. Frog jumped higher. Bee buzzed louder. [softly] Nothing. So Frog stopped jumping. Bee stopped buzzing. And they sat down next to him and did nothing. The flower {flower:pulse 0.4} nodded in the breeze. Bee hummed, very quietly. {sfx:hum} Hmmmm. Frog hummed too. They sat long enough for a cloud to go past. And then, one of Rabbit's back feet went… {sfx:boing} boing. {rabbit:hop} Just a small one. [excited] There it is! said Frog. {rabbit:hop x3} Boing, boing, BOING! [happily] It came back on its own, said Rabbit. We only waited, said Bee. That is all it wanted."
+    },
+    "es-ES": {
+      "title": "Conejo pierde el bote",
+      "text": "{bee:float loop 0.3} Una mañana Conejo {rabbit:pulse} se despertó y no saltó. Solo… se quedó sentado. [sad] He perdido el bote, dijo. Las patas me pesan como dos calcetines mojados. Rana {frog:hop x3} llegó botando. ¡Boing, boing, boing! Conejo miró. Abeja {bee:wobble} llegó zumbando. ¡Yo te animo! ¡Bzzz! {rabbit:shake 0.3} A Conejo le picaron las orejas. Pero nada de botes. Rana saltó más alto. Abeja zumbó más fuerte. [softly] Nada. Así que Rana dejó de saltar. Abeja dejó de zumbar. Y se sentaron a su lado y no hicieron nada. La flor {flower:pulse 0.4} se mecía con la brisa. Abeja tarareó, muy bajito. {sfx:hum} Mmmmm. Rana también. Estuvieron sentados lo que tarda una nube en pasar. Y entonces, una de las patas de atrás de Conejo hizo… {sfx:boing} boing. {rabbit:hop} Uno pequeñito. [excited] ¡Ahí está!, dijo Rana. {rabbit:hop x3} ¡Boing, boing, BOING! [happily] Ha vuelto solo, dijo Conejo. Solo hemos esperado, dijo Abeja. Es lo único que quería."
+    }
+  },
+  "sounds": {
+    "hum": { "prompt": "a bee humming softly and evenly, warm, low and calm, very close", "seconds": 12, "loop": true },
+    "boing": { "prompt": "one small springy boing, quiet and hopeful", "seconds": 0.8 }
+  }
+}

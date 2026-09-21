@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "owls-slowest-story",
+  "pack": "forest",
+  "featured": ["owl", "mouse", "hedgehog", "frog"],
+  "supporting": ["tree"],
+  "tags": ["bedtime"],
+  "premise": "Owl tells the three sleepiest friends a story that gets slower and slower, word by word, until it is only hoo… hoo… and everyone is asleep.",
+  "inspiration": "The story that never ends (folk endless-tale pattern), turned into a lullaby that winds down instead of looping.",
+  "lesson": "The best bedtime story is the one nobody hears the end of.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Owl's Slowest Story",
+      "text": "{sfx:crickets} [softly] It was late, and three small friends could not sleep. Mouse {mouse:wobble} wriggled. Hedgehog {hedgehog:wobble} fidgeted. Frog {frog:hop} hopped in her sleep, which is not really sleep. Tell us a story, Owl, they said. A slow one. Owl {owl:pulse} looked down from the tree. {tree:pulse} Very well. The slowest story I know. [slowly] Once upon a time… there was a tortoise… who was going… to the pond. Mouse yawned. He went… past a stone. Hedgehog {hedgehog:fade-out 3s 0.5 hold} curled up. He went… past a leaf. [drawn out] Sloooowly. Frog {frog:fade-out 3s 0.5 hold} blinked. Once. Twice. He went… past… another… leaf. [whispers] Mouse {mouse:fade-out 3s 0.5 hold} put his head on his paws. And the snail… said… [yawns] hoo… hoo… Owl looked down, and every eye was closed. {owl:glow 0.4} So he never did say what the tortoise said. Which is fine. He tells it again tomorrow. Hoo… hoo… {sfx:hoot} hoo…"
+    },
+    "es-ES": {
+      "title": "El cuento más lento de Búho",
+      "text": "{sfx:crickets} [softly] Era tarde, y tres amigos pequeños no podían dormir. Ratón {mouse:wobble} se removía. Erizo {hedgehog:wobble} no paraba quieto. Rana {frog:hop} saltaba dormida, que no es dormir de verdad. Cuéntanos un cuento, Búho, dijeron. Uno lento. Búho {owl:pulse} los miró desde el árbol. {tree:pulse} Muy bien. El cuento más lento que sé. [slowly] Había una vez… una tortuga… que iba… al estanque. Ratón bostezó. Pasó… junto a una piedra. Erizo {hedgehog:fade-out 3s 0.5 hold} se hizo un ovillo. Pasó… junto a una hoja. [drawn out] Despaaaacio. Rana {frog:fade-out 3s 0.5 hold} parpadeó. Una vez. Dos. Pasó… junto a… otra… hoja. [whispers] Ratón {mouse:fade-out 3s 0.5 hold} apoyó la cabeza en las patas. Y la tortuga… dijo… [yawns] uh… uh… Búho miró abajo, y todos los ojos estaban cerrados. {owl:glow 0.4} Así que nunca contó qué dijo la tortuga. No pasa nada. Mañana lo cuenta otra vez. Uh… uh… {sfx:hoot} uh…"
+    }
+  },
+  "sounds": {
+    "crickets": { "prompt": "very soft night crickets under a big tree, slow and sleepy", "seconds": 26, "loop": true },
+    "hoot": { "prompt": "a single very soft, sleepy owl hoot, low and far away", "seconds": 1.5 }
+  }
+}
