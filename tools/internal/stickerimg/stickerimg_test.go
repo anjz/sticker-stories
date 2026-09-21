@@ -33,17 +33,83 @@ func TestSticker(t *testing.T) {
 	if d := box.Min.Y - (256 - box.Max.Y); d < -2 || d > 2 {
 		t.Errorf("not centred vertically: %v", box)
 	}
-	// outline: pixel just inside the top edge of the box is white
-	c := out.RGBAAt(128, box.Min.Y+2)
-	if c.R < 240 || c.G < 240 || c.B < 240 {
+	// outline: the border is paper-white a little way in from the edge…
+	c := out.RGBAAt(128, box.Min.Y+7)
+	if c.R < 235 || c.G < 235 || c.B < 230 {
 		t.Errorf("expected white border at top, got %v", c)
+	}
+	// …and shaded darker right at the cut edge (the vinyl rim).
+	if edge := out.RGBAAt(128, box.Min.Y+1); edge.R >= c.R-8 {
+		t.Errorf("rim should be darker than the border: edge %v inner %v", edge, c)
 	}
 	// centre still red
 	if c := out.RGBAAt(128, 128); c.R < 150 || c.G > 90 {
 		t.Errorf("centre should be red, got %v", c)
 	}
+	// top-lit: the red is a touch brighter near the top than near the bottom
+	if top, bottom := out.RGBAAt(128, box.Min.Y+30), out.RGBAAt(128, box.Max.Y-30); top.R <= bottom.R {
+		t.Errorf("expected the top to be lit brighter: top %v bottom %v", top, bottom)
+	}
+	// alpha untouched by the finish
+	if out.RGBAAt(128, 128).A != 255 || out.RGBAAt(2, 2).A != 0 {
+		t.Errorf("finish must not change alpha")
+	}
+	// a zero finish is flat white
+	flat, err := Sticker(src, StickerOptions{Size: 256, Border: 0.04, Margin: 0.05, Finish: &Finish{}})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if e, in := flat.RGBAAt(128, Bounds(flat, 0).Min.Y+1), flat.RGBAAt(128, Bounds(flat, 0).Min.Y+7); e.R != in.R {
+		t.Errorf("flat finish should not shade the rim: %v %v", e, in)
+	}
 	if _, err := Sticker(image.NewRGBA(image.Rect(0, 0, 10, 10)), StickerOptions{Size: 64}); err == nil {
 		t.Errorf("fully transparent should error")
+	}
+}
+
+func TestCleanSolidifiesAndDefringes(t *testing.T) {
+	img := image.NewRGBA(image.Rect(0, 0, 8, 8))
+	for y := 0; y < 8; y++ {
+		for x := 0; x < 8; x++ {
+			switch {
+			case x >= 2 && x < 6:
+				img.SetRGBA(x, y, color.RGBA{200, 50, 50, 250}) // nearly opaque red
+			case x == 1 || x == 6:
+				img.SetRGBA(x, y, color.RGBA{60, 80, 120, 120}) // bluish fringe from the model
+			case x == 0 || x == 7:
+				img.SetRGBA(x, y, color.RGBA{3, 3, 3, 5}) // noise
+			}
+		}
+	}
+	out := Clean(img, 8)
+	if c := out.RGBAAt(3, 3); c.A != 255 || c.R < 203 {
+		t.Errorf("near-opaque should become solid, got %v", c)
+	}
+	if c := out.RGBAAt(1, 3); c.A != 120 || c.B > c.R {
+		t.Errorf("fringe should take the red neighbour's colour, got %v", c)
+	}
+	if c := out.RGBAAt(0, 3); c != (color.RGBA{}) {
+		t.Errorf("noise should be cleared, got %v", c)
+	}
+}
+
+func TestOutlineWritesValidPremultipliedPixels(t *testing.T) {
+	src := image.NewRGBA(image.Rect(0, 0, 4, 4))
+	src.SetRGBA(1, 1, color.RGBA{100, 0, 0, 200}) // premultiplied, not fully opaque
+	out := Outline(src, 1, color.RGBA{255, 255, 255, 255})
+	if c := out.RGBAAt(1, 2); c.A != 200 || c.R != 200 || c.G != 200 {
+		t.Errorf("border pixel should be white premultiplied by its alpha, got %v", c)
+	}
+	if _, err := Encode(out); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestEdgeDistance(t *testing.T) {
+	img := blob(20, 20, image.Rect(5, 5, 15, 15))
+	d := edgeDistance(img)
+	if d[5*20+5] != 1 || d[10*20+10] < 4.9 || d[10*20+10] > 6.1 || d[2*20+2] != 0 {
+		t.Errorf("distances wrong: corner %v centre %v outside %v", d[5*20+5], d[10*20+10], d[2*20+2])
 	}
 }
 
@@ -73,5 +139,16 @@ func TestResizeKeepsAlphaEdges(t *testing.T) {
 	}
 	if c := out.RGBAAt(1, 5); c.R != 200 {
 		t.Errorf("colour bled: %v", c)
+	}
+	// The edge pixel straddling opaque and transparent stays valid
+	// premultiplied colour: no channel above alpha, and proportional.
+	for x := 0; x < 10; x++ {
+		c := out.RGBAAt(x, 5)
+		if c.R > c.A || c.G > c.A || c.B > c.A {
+			t.Fatalf("invalid premultiplied pixel at %d: %v", x, c)
+		}
+		if c.A > 0 && c.A < 255 && (c.R < c.A*3/4-2) {
+			t.Errorf("edge pixel lost its colour: %v", c)
+		}
 	}
 }
