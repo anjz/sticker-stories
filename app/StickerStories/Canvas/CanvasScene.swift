@@ -73,6 +73,13 @@ final class CanvasScene: SKScene {
     /// undo/redo/clear cluster (top-trailing) in StoryScreen.swift.
     private static let trayLeadingClearance: CGFloat = 100
     private static let trayTrailingClearance: CGFloat = 180
+    /// The tray hangs `hudTopClearance` below the top safe-area inset, or
+    /// below `hudMinimumTopInset` when the inset is smaller (iPhone in
+    /// landscape has none): a sticker grabbed near the physical edge would
+    /// otherwise pull Notification Centre down instead. StoryScreen's HUD
+    /// buttons use the same two numbers so the row stays aligned.
+    static let hudMinimumTopInset: CGFloat = 24
+    static let hudTopClearance: CGFloat = 14
 
     private var stickerTextures: [String: SKTexture] = [:]
     /// The tray pill in view coordinates (the tray node is laid out in view
@@ -130,6 +137,7 @@ final class CanvasScene: SKScene {
     }
     private var pans: [UITouch: PanInfo] = [:]
     private static let panHintActionKey = "pan-hint"
+    private static let trayFadeActionKey = "tray-fade"
     /// Same "has this become a real gesture yet" radius used for drags below.
     private static let moveThresholdSquared: CGFloat = 64
 
@@ -484,7 +492,7 @@ final class CanvasScene: SKScene {
         let barWidth = min(naturalWidth, availableWidth)
         let barCenterX = leading + availableWidth / 2
 
-        let barCenterY = size.height - insets.top - 10 - barHeight / 2
+        let barCenterY = size.height - max(insets.top, Self.hudMinimumTopInset) - Self.hudTopClearance - barHeight / 2
         trayRectInView = CGRect(
             x: barCenterX - barWidth / 2, y: barCenterY - barHeight / 2,
             width: barWidth, height: barHeight)
@@ -1172,7 +1180,9 @@ final class CanvasScene: SKScene {
 
     /// Locks or unlocks editing. Locking ends any gesture in flight as
     /// cancelled and hides the selection bubble, so nothing from edit mode
-    /// can fight the effects.
+    /// can fight the effects. The tray fades out while locked — nothing can
+    /// be placed during a story — and back in when the story ends or is
+    /// stopped.
     func setPlayLocked(_ locked: Bool) {
         guard locked != isPlayLocked else { return }
         if locked {
@@ -1186,6 +1196,7 @@ final class CanvasScene: SKScene {
             select(nil)
         }
         isPlayLocked = locked
+        tray.run(.fadeAlpha(to: locked ? 0 : 1, duration: locked ? 0.35 : 0.45), withKey: Self.trayFadeActionKey)
     }
 
     /// Starts the effects pipeline for one story. Effects only exist between
