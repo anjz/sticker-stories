@@ -127,7 +127,11 @@ type VoiceSettings struct {
 	UseSpeakerBoost *bool    `json:"use_speaker_boost,omitempty"`
 }
 
-// SpeechRequest is the input to SpeechWithTimestamps.
+// SpeechRequest is the input to SpeechWithTimestamps. Text may carry
+// Eleven v3 audio tags in square brackets ([whispers], [giggles]); the
+// returned alignment covers every character sent, tags included.
+// PreviousText / NextText give the model the surrounding narration when a
+// story is synthesised in several pieces, so prosody carries across them.
 type SpeechRequest struct {
 	VoiceID      string
 	Text         string
@@ -136,7 +140,16 @@ type SpeechRequest struct {
 	OutputFormat string // e.g. pcm_44100
 	Settings     *VoiceSettings
 	Seed         *int
+	PreviousText string
+	NextText     string
 }
+
+// Stability presets for Eleven v3, which accepts exactly these three.
+const (
+	StabilityCreative = 0.0
+	StabilityNatural  = 0.5
+	StabilityRobust   = 1.0
+)
 
 // Speech is synthesised audio plus its alignment.
 type Speech struct {
@@ -158,6 +171,12 @@ func (c *Client) SpeechWithTimestamps(ctx context.Context, r SpeechRequest) (*Sp
 	}
 	if r.Seed != nil {
 		body["seed"] = *r.Seed
+	}
+	if r.PreviousText != "" {
+		body["previous_text"] = r.PreviousText
+	}
+	if r.NextText != "" {
+		body["next_text"] = r.NextText
 	}
 	q := url.Values{}
 	if r.OutputFormat != "" {
@@ -186,18 +205,37 @@ func (c *Client) SpeechWithTimestamps(ctx context.Context, r SpeechRequest) (*Sp
 	return &Speech{Audio: audio, Alignment: al}, nil
 }
 
-// SoundEffect generates a short sound from a text prompt.
-func (c *Client) SoundEffect(ctx context.Context, prompt string, seconds float64, influence float64, outputFormat string) ([]byte, error) {
-	body := map[string]any{"text": prompt}
-	if seconds > 0 {
-		body["duration_seconds"] = seconds
+// SoundModel is the sound-generation model (the only one the endpoint
+// accepts; the one that can loop).
+const SoundModel = "eleven_text_to_sound_v2"
+
+// SoundRequest is the input to SoundEffect.
+type SoundRequest struct {
+	Prompt string
+	// Seconds is the length, 0.5–30; 0 lets the model decide.
+	Seconds float64
+	// Influence (0–1, default 0.3) is how literally the prompt is followed.
+	Influence float64
+	// Loop asks for a seamless ambience that can repeat without a join.
+	Loop         bool
+	OutputFormat string
+}
+
+// SoundEffect generates a sound from a text prompt.
+func (c *Client) SoundEffect(ctx context.Context, r SoundRequest) ([]byte, error) {
+	body := map[string]any{"text": r.Prompt, "model_id": SoundModel}
+	if r.Seconds > 0 {
+		body["duration_seconds"] = r.Seconds
 	}
-	if influence > 0 {
-		body["prompt_influence"] = influence
+	if r.Influence > 0 {
+		body["prompt_influence"] = r.Influence
+	}
+	if r.Loop {
+		body["loop"] = true
 	}
 	q := url.Values{}
-	if outputFormat != "" {
-		q.Set("output_format", outputFormat)
+	if r.OutputFormat != "" {
+		q.Set("output_format", r.OutputFormat)
 	}
 	return c.do(ctx, http.MethodPost, "/v1/sound-generation", q, body, "audio/*")
 }

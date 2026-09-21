@@ -123,6 +123,17 @@ func (c *Clip) TrimSilence(threshold float32, keep float64) *Clip {
 	return c
 }
 
+// Cut shortens the clip to at most seconds, fading the last fade seconds
+// so the cut is not a click. A shorter clip is left alone.
+func (c *Clip) Cut(seconds, fade float64) *Clip {
+	n := int(seconds * float64(c.Rate))
+	if n <= 0 || n >= len(c.Samples) {
+		return c
+	}
+	c.Samples = c.Samples[:n]
+	return c.Fade(0, fade)
+}
+
 // Fade applies linear fade-in and fade-out of the given lengths.
 func (c *Clip) Fade(in, out float64) *Clip {
 	ni := min(len(c.Samples), int(in*float64(c.Rate)))

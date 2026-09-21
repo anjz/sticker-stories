@@ -17,18 +17,31 @@ go run ./packager validate ../packs/forest
 
 ## What `render` does, per story and language
 
-1. Strips the inline cues (`FORMAT.md`) to get the narration text and sends
-   it to the text-to-speech **with timestamps** endpoint (`eleven_v3` by
-   default; falls back to `eleven_multilingual_v2` if timestamps are refused).
-2. Maps each cue's word to the returned character timings and writes the
-   effects sidecar (`docs/effects.md`) — sticker triggers and canvas
+1. Takes the text apart (`FORMAT.md`): the spoken words, the effect cues,
+   the Eleven v3 **audio tags** (`[whispers]`, `[giggles]`, …) and the
+   **solo sound cues**. The narration is read in segments — one per stretch
+   between solo sounds — each sent to the text-to-speech **with
+   timestamps** endpoint with its tags kept in and its neighbours passed
+   as `previous_text` / `next_text` so the delivery carries across the
+   gap. Model `eleven_v3` at `-stability natural` (creative | natural |
+   robust — v3's three settings; natural follows tags without reading them
+   aloud); if timestamps are refused it falls back to
+   `eleven_multilingual_v2` with the tags stripped (v2 would say them).
+2. Maps each cue's word to the returned character timings — tags are
+   characters the model times too, so cues land on the words — and writes
+   the effects sidecar (`docs/effects.md`) — sticker triggers and canvas
    triggers (`{canvas:rain …}` cues become entries with no `sticker`) in
    one list — strictly validated against the pack's stickers and its
    `setting`. Cues on the first word stay at `0.0`; everything else is
-   shifted by the music lead-in.
-3. Turns each `sound` hint into a short clip via the sound-generation
-   endpoint (cached by prompt in `_cache/sfx/`), placed on the hinted word,
-   at most three per story, about 12 dB under the narrator.
+   shifted by the music lead-in. Sound cues are not triggers.
+3. Generates the story's `sounds` with the sound-generation model
+   (`eleven_text_to_sound_v2`, cached by prompt/length in `_cache/sfx/`)
+   and mixes them: `{sfx:id}` under its word, `{sfx:id solo}` in the gap
+   the narrator left for it (the sound's `seconds` plus a breath either
+   side), a `"loop": true` sound as a seamless ambience bed from its cue,
+   faded and ducked under the voice at `-ambience-db` (−18). One-shots sit
+   at `-sfx-db` (−12). Older `sound` hints still play on their word. At
+   most six sounds per story.
 4. Picks the story's mood music (see Music), loops it to the story length
    and fades it. The music
    plays alone for 3 s (`-lead`) at the intro level (`-intro-db`, −6 dB
@@ -39,11 +52,12 @@ go run ./packager validate ../packs/forest
    AAC (64 kbps mono, `-bitrate`) with macOS `afconvert` to `<id>/audio/<lang>.m4a` next to
    `<lang>.effects.json` and a `<lang>.render.json` fingerprint.
 
-A story is skipped when its text, voice, model, hints and mix settings are
-unchanged since the last render (`-force` overrides). The synthesised
-narration itself is cached in `_cache/tts/` keyed by text, voice, model and
-sample rate, so changing levels, music, sound hints or bitrate only re-mixes
-and costs nothing; only a text or voice change calls the API again. `-only id,…` and
+A story is skipped when its text, voice, model, stability, sounds and mix
+settings are unchanged since the last render (`-force` overrides). The
+synthesised narration itself is cached in `_cache/tts/` per segment, keyed
+by its text (tags included), its neighbours, voice, model and sample rate,
+so changing levels, music, sounds or bitrate only re-mixes and costs
+nothing; only a text, tag or voice change calls the API again. `-only id,…` and
 `-lang` narrow a run. Renditions are rendered `-parallel` at a time
 (default 5); each shared asset (a mood's music, a sound effect) is still
 generated exactly once. A failed rendition does not stop the others; the
@@ -76,9 +90,11 @@ bouncy. Each distinct prompt is composed once (60 s) and cached in
 
 ## Mix controls
 
-`-sfx-db` (default −12), `-music-db` (default −14), `-intro-db` (default −6),
-`-lead` (default 3 s), `-no-sfx`, `-no-music`, `-bitrate 96000`, `-rate 44100` (44.1 kHz PCM needs a
-Pro plan; the tool drops to 24 kHz automatically if refused).
+`-sfx-db` (default −12), `-ambience-db` (default −18), `-music-db`
+(default −14), `-intro-db` (default −6), `-lead` (default 3 s),
+`-stability natural`, `-no-sfx`, `-no-music`, `-bitrate 96000`,
+`-rate 44100` (44.1 kHz PCM needs a Pro plan; the tool drops to 24 kHz
+automatically if refused).
 
 ## Install
 
