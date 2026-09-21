@@ -226,9 +226,12 @@ Plip, plop — {canvas:rain 0.7 14s} here comes the rain.
 ```
 
 A cue fires on the word that follows it; `canvas:` is the reserved target
-for canvas effects. Step 2 of the authoring pipeline (`storyaudio`)
-resolves each cue's `at` from the narration's word timestamps and carries
-the word as `cue`, emitting the sidecar above. The app never parses text.
+for canvas effects and `sfx:` for sound effects (which are mixed into the
+audio, never triggers). The text may also carry Eleven v3 audio tags
+(`[whispers]`) for the narrator. Step 2 of the authoring pipeline
+(`storyaudio`) resolves each cue's `at` from the narration's word
+timestamps and carries the word as `cue`, emitting the sidecar above. The
+app never parses text.
 
 ## Accessibility and calm mode
 

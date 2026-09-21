@@ -1,9 +1,11 @@
 # Story format (intermediate, schema 1)
 
 One folder per story, `tools/author/stories/<packID>/<storyID>/story.json`.
-This is the authoring format: human-readable, bilingual, with effect cues
-(sticker effects and canvas effects) inline in the text. Step 2 turns it
-into pack content; the app never reads it.
+This is the authoring format: human-readable, bilingual, with everything
+that happens around the words inline in the text — effect cues (sticker,
+canvas, sound) in curly braces and the narrator's delivery (Eleven v3 audio
+tags) in square brackets. Step 2 turns it into pack content; the app never
+reads it.
 
 ```json
 {
@@ -27,24 +29,24 @@ into pack content; the app never reads it.
   "premise": "Fox and Rabbit race to the big flower; Fox tumbles into the leaves, Rabbit turns back, and the flower declares a tie.",
   "inspiration": "The Tortoise and the Hare (Aesop), turned around: nobody wins by leaving a friend behind, and the finish line is a flower who has been watching all along.",
   "lesson": "Friends finish together.",
+  "learning": "",
   "languages": {
     "en-US": {
       "title": "The Race That Tied",
-      "text": "{butterfly:float loop} Ready, steady, {fox:hop} {rabbit:hop} go! Fox and Rabbit raced across the meadow to the big pink flower. Fox was fast, like a {fox:shake 0.8} whoosh of wind. Rabbit was bouncy, like a {rabbit:hop x3} spring. Halfway there, Fox {fox:wobble x2} tripped over his own fluffy tail and {fox:spin} rolled, tumble tumble tumble, into a crunchy pile of leaves. Rabbit stopped. She looked at the flower. She looked at Fox. Then she {rabbit:hop x2} hopped all the way back and pulled him up by the paw. They crossed the finish line {fox:hearts} {rabbit:hearts} together, and the flower {flower:pulse} nodded her big pink head. Who won? Both of them, said the flower. That is how best {fox:pulse} {rabbit:pulse} friends race."
+      "text": "[excited] {butterfly:float loop} Ready, steady, {fox:hop} {rabbit:hop} go! Fox and Rabbit raced across the meadow to the big pink flower. Fox was fast, like a {fox:shake 0.8} whoosh of wind. Rabbit was bouncy, like a {rabbit:hop x3} spring. Halfway there, Fox {fox:wobble x2} tripped over his own fluffy tail and {fox:spin} rolled, tumble tumble tumble, into a crunchy pile of leaves. {sfx:leaves solo} Rabbit stopped. She looked at the flower. She looked at Fox. Then she {rabbit:hop x2} hopped all the way back and pulled him up by the paw. They crossed the finish line {fox:hearts} {rabbit:hearts} together, and the flower {flower:pulse} nodded her big pink head. Who won? Both of them, said the flower. That is how best {fox:pulse} {rabbit:pulse} friends race."
     },
     "es-ES": {
       "title": "La carrera empatada",
-      "text": "{butterfly:float loop} Preparados, listos, {fox:hop} {rabbit:hop} ¡ya! Zorro y Coneja echaron una carrera por el prado hasta la gran flor rosa. Zorro era rápido, como un {fox:shake 0.8} soplo de viento. Coneja era saltarina, como un {rabbit:hop x3} muelle. A mitad de camino, Zorro {fox:wobble x2} tropezó con su propia cola esponjosa y {fox:spin} rodó, pumba pumba pumba, hasta un montón de hojas crujientes. Coneja se paró. Miró la flor. Miró a Zorro. Y entonces {rabbit:hop x2} volvió dando saltos hasta él y lo levantó de la pata. Cruzaron la meta {fox:hearts} {rabbit:hearts} juntos, y la flor {flower:pulse} asintió con su gran cabeza rosa. ¿Quién ganó? Los dos, dijo la flor. Así corren los mejores {fox:pulse} {rabbit:pulse} amigos."
+      "text": "{butterfly:float loop} Preparados, listos, {fox:hop} {rabbit:hop} ¡ya! Zorro y Coneja echaron una carrera por el prado hasta la gran flor rosa. Zorro era rápido, como un {fox:shake 0.8} soplo de viento. Coneja era saltarina, como un {rabbit:hop x3} muelle. A mitad de camino, Zorro {fox:wobble x2} tropezó con su propia cola esponjosa y {fox:spin} rodó, pumba pumba pumba, hasta un montón de hojas crujientes. {sfx:leaves solo} Coneja se paró. Miró la flor. Miró a Zorro. Y entonces {rabbit:hop x2} volvió dando saltos hasta él y lo levantó de la pata. Cruzaron la meta {fox:hearts} {rabbit:hearts} juntos, y la flor {flower:pulse} asintió con su gran cabeza rosa. ¿Quién ganó? Los dos, dijo la flor. Así corren los mejores {fox:pulse} {rabbit:pulse} amigos."
     }
+  },
+  "sounds": {
+    "leaves": { "prompt": "a small animal tumbling into a crunchy pile of dry leaves, soft rustle and crackle", "seconds": 1.8 }
   },
   "sound": [
     {
       "cue": "whoosh",
       "note": "a soft, comic wind whoosh"
-    },
-    {
-      "cue": "tumble",
-      "note": "three gentle bumps on tumble tumble tumble"
     }
   ]
 }
@@ -63,8 +65,10 @@ into pack content; the app never reads it.
 | `premise` | One sentence, for the roster and for reviewers. |
 | `inspiration` | What classic structure or motif the story draws on and how it is transformed. Public-domain sources only; never a retelling. |
 | `lesson` | One line, for reviewers. The story must never state it. |
+| `learning` | Optional. The one small, true thing about the pack's world the story shows in passing ("Bees carry pollen from flower to flower"), for reviewers and the roster. About four stories in ten carry one (GUIDE "Learning"); the rest leave it empty or out. |
 | `languages` | One entry per pack language, **all of them**. Each has `title` (≤ 6 words, parent-facing) and `text`. Each language is written natively, not translated word for word; the same beats carry the same cues. |
-| `sound` | Optional hints for step 2: `cue` is a word in the text, `note` describes a sound effect. Never required. |
+| `sounds` | Optional. The story's sound effects, by id: `prompt` describes the sound in plain words (concrete, "gentle rain tapping on big leaves"), `seconds` its length (0.5–30, default 2), `loop` true for an ambience bed. Cued in the text with `{sfx:id}` — see "Sound cues". |
+| `sound` | The older hint form, still accepted: `cue` is a word in the text, `note` describes a sound played on it. Prefer `sounds` + `{sfx:…}`. |
 
 ## Text and length
 
@@ -73,8 +77,14 @@ into pack content; the app never reads it.
   same story); the validator rejects outside 65–160.
 - Plain text: no Markdown, no stage directions, no emoji. Sound words
   (pitter-patter, whoosh, plic ploc) are welcome — they are what the cues
-  and the sound effects hang on.
-- Cues are not read aloud: step 2 strips them.
+  and the sound effects hang on — but a real sound can also stand in for
+  them (see "Sound cues").
+- Punctuation is performance with Eleven v3: an ellipsis (…) is a beat of
+  silence, a dash (—) a shorter one, ONE WORD IN CAPITALS is said louder,
+  and short sentences read briskly. Use them; they are the most reliable
+  pacing tools the model has (it does not support `<break>` tags).
+- Cues and audio tags are not read aloud: step 2 strips the cues and hands
+  the tags to the model as directions. Neither counts as a word.
 
 ## Cue grammar
 
@@ -102,6 +112,75 @@ A cue is `{sticker:effect}` with optional parameters separated by spaces:
   a `float` loop on butterflies, bees or birds at the start plus a cue on
   each story beat is the usual shape.
 - The same beats carry the same cues in every language.
+
+### Sound cues
+
+Sound effects use the reserved target `sfx` (a pack must not name a sticker
+`sfx`) and refer to the story's `sounds` table:
+
+```
+{sfx:splash}              the sound plays under the next word
+{sfx:splash solo}         the narration pauses; the sound plays instead
+{sfx:rain-bed}            a sound with "loop": true starts an ambience bed
+```
+
+- `{sfx:id}` **under a word**: the narrator keeps reading and the sound
+  colours the word it fires on — a whoosh as *whoosh* is said.
+- `{sfx:id solo}` **instead of words**: the narrator stops for exactly the
+  sound's `seconds` (plus a breath), the sound plays alone, then reading
+  resumes. Put it **between sentences** (after a full stop; the validator
+  warns otherwise), give it 1–3 s, and use at most two per story — a
+  four-year-old's attention does not survive a long silence.
+- A sound with `"loop": true` is an **ambience bed**: from its cue it plays
+  low under the narration for its `seconds`, faded in and out, ducked under
+  the voice. Rain, wind, a stream, night crickets. One per story at most;
+  it cannot play solo.
+- The same sound id may be cued in several places. Every language should
+  cue the same sounds on the same beats; the `sounds` table is shared.
+- At most six sound effects per language (inline cues plus hints).
+
+### Audio tags (the narrator's delivery)
+
+Eleven v3 takes stage directions in square brackets, inline, right before
+the words they colour. They are never read aloud and never count as words:
+
+```
+[whispers] Shhh, said Owl. Everyone is asleep.
+[excited] Ready, steady, GO!
+Snail took one step… [slowly] and then another.
+[giggles] That tickles!
+```
+
+The allowed list (anything else is an error):
+
+| Tag | Kind | Use |
+|---|---|---|
+| `[pause]` | delivery | a beat of silence (an ellipsis does the same) |
+| `[whispers]` | delivery | a secret, a sleeping friend, a hush |
+| `[softly]` | delivery | tender, close, bedtime |
+| `[slowly]` | delivery | a snail, a sleepy voice, suspense |
+| `[drawn out]` | delivery | stretches the next word (*sloooowly*) |
+| `[rushed]` | delivery | hurry, excitement tumbling over itself |
+| `[excited]` | emotion | big news, a game, a discovery |
+| `[curious]` | emotion | a question, a peek, a wondering |
+| `[happily]` | emotion | the warm ending, a reunion |
+| `[surprised]` | emotion | a friend appears, a sneeze, a splash |
+| `[sad]` | emotion | a small sorrow the story mends |
+| `[laughs]` `[giggles]` | reaction | a good laugh; a small playful one |
+| `[gasps]` | reaction | a surprise, a wonder |
+| `[sighs]` `[exhales]` | reaction | relief, tiredness, calm |
+| `[yawns]` `[sings]` | reaction, *experimental* | bedtime; a line sung — at most one per story |
+
+- A tag colours what follows it until the delivery naturally changes; a
+  reaction (`[giggles]`, `[gasps]`) is a sound the narrator makes at that
+  point.
+- **At most six per language**, one direction per spot (never
+  `[excited] [whispers]`), and only where the words already carry the
+  feeling — a tag on flat text reads as a tic, and an over-tagged script is
+  what makes the model *say* a tag instead of performing it.
+- Tags may differ between languages; the beats should still match.
+- Step 2 keeps the tags for v3 and strips them if it ever has to fall back
+  to the v2 model (which would read them aloud).
 
 ### Canvas cues
 
@@ -141,7 +220,10 @@ rules the validator enforces on the finished set:
 - at least 3 fallback stories (empty `featured`);
 - no two stories with the same `featured` set *and* the same premise idea;
 - canvas effects in well under half of the stories (warning past 40 %);
+- about four stories in ten carry a `learning` fact (warning outside
+  30–50 %);
 - 50 stories per pack.
 
-`storycheck` also prints how many stories use each effect, so the set can
-be balanced across the whole library rather than leaning on three names.
+`storycheck` also prints how many stories use each effect, each audio tag,
+sound effects (and solo sounds) and learning, so the set can be balanced
+across the whole library rather than leaning on three names.

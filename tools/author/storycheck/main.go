@@ -145,4 +145,16 @@ func printEffectUse(cat *story.Catalog, cov story.Coverage) {
 		line = append(line, fmt.Sprintf("%s %d", name, cov.EffectUse[story.CanvasTarget+":"+name]))
 	}
 	fmt.Printf("    canvas (%d of %d stories): %s\n", cov.CanvasStories, cov.Stories, strings.Join(line, ", "))
+	line = line[:0]
+	for _, t := range story.AudioTags {
+		if n := cov.TagUse[t.Name]; n > 0 {
+			line = append(line, fmt.Sprintf("[%s] %d", t.Name, n))
+		}
+	}
+	if len(line) == 0 {
+		line = append(line, "none")
+	}
+	fmt.Printf("    audio tags (stories): %s\n", strings.Join(line, ", "))
+	fmt.Printf("    sound effects: %d of %d stories (%d with a solo sound)\n", cov.SoundStories, cov.Stories, cov.SoloStories)
+	fmt.Printf("  learning: %d of %d stories carry a small fact\n", cov.LearningStories, cov.Stories)
 }
