@@ -645,21 +645,18 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 	// narrator, so the text before and after it are synthesised apart and
 	// the sound sits in the gap.
 	segments := nar.Segments()
-	type piece struct {
-		text   string
-		starts []int
-	}
 	pieces := make([]piece, len(segments))
 	for i, seg := range segments {
 		pieces[i].text, pieces[i].starts = nar.Spoken(seg.From, seg.To)
 	}
 
 	if r.o.dry {
-		for _, p := range pieces {
+		for i, p := range pieces {
 			if p.text == "" {
 				continue
 			}
-			if _, _, cached := r.loadSpeech(p.text, lang, voice.VoiceID, r.o.sampleRate); !cached {
+			// The same key speak() uses: a take is shaped by its neighbours.
+			if _, _, cached := r.loadSpeech(speechKey(pieces, i), lang, voice.VoiceID, r.o.sampleRate); !cached {
 				r.chars[lang] += len([]rune(p.text))
 			}
 		}
@@ -711,13 +708,7 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 		if pieces[i].text == "" {
 			continue
 		}
-		prev, next := "", ""
-		if i > 0 {
-			prev = pieces[i-1].text
-		}
-		if i+1 < len(pieces) {
-			next = pieces[i+1].text
-		}
+		prev, next := neighbours(pieces, i)
 		speech, usedModel, usedRate, err := r.speak(pieces[i].text, prev, next, lang, voice.VoiceID, log)
 		if err != nil {
 			return false, err
@@ -882,6 +873,36 @@ func (r *renderer) rate() int {
 
 func pcmFormat(rate int) string { return fmt.Sprintf("pcm_%d", rate) }
 
+// piece is one stretch of narration read in one go (between solo sounds):
+// the spoken text and the byte offset of each word in it.
+type piece struct {
+	text   string
+	starts []int
+}
+
+// speechCacheKey is what a cached take is looked up by: the segment's text
+// and the neighbouring text that shapes its delivery.
+func speechCacheKey(text, previous, next string) string {
+	return text + "\x00" + previous + "\x00" + next
+}
+
+// speechKey is speechCacheKey for pieces[i] of a narration.
+func speechKey(pieces []piece, i int) string {
+	prev, next := neighbours(pieces, i)
+	return speechCacheKey(pieces[i].text, prev, next)
+}
+
+// neighbours returns the spoken text before and after pieces[i] ("" at the ends).
+func neighbours(pieces []piece, i int) (prev, next string) {
+	if i > 0 {
+		prev = pieces[i-1].text
+	}
+	if i+1 < len(pieces) {
+		next = pieces[i+1].text
+	}
+	return prev, next
+}
+
 // speak synthesises with timestamps, falling back to a lower sample rate
 // (tier limit, remembered for the rest of the run) and to the v2 model (no
 // alignment) when needed. Returns the audio, the model used and the rate.
@@ -890,7 +911,7 @@ func (r *renderer) speak(text, previous, next, lang, voiceID string, log *string
 	// The synthesis is the expensive part; cache it so mix changes
 	// (levels, music, bitrate) never cost another API call. The cache key
 	// includes the neighbouring text, which shapes the delivery.
-	key := text + "\x00" + previous + "\x00" + next
+	key := speechCacheKey(text, previous, next)
 	if !r.o.retake {
 		if sp, model, ok := r.loadSpeech(key, lang, voiceID, rate); ok {
 			return sp, model, rate, nil
