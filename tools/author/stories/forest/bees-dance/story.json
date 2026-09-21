@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "id": "bees-dance",
+  "pack": "forest",
+  "featured": ["bee", "mouse", "rabbit"],
+  "supporting": ["flower"],
+  "tags": ["music", "curiosity", "learning"],
+  "premise": "Bee dances a wiggle to tell where the flowers are; Mouse and Rabbit copy the dance without understanding it and wiggle themselves all the way to the meadow.",
+  "inspiration": "Kipling's Just So wonder at a real thing (the bee's waggle dance), turned: copying a friend is how you learn where the good things are.",
+  "lesson": "Join in first; understanding comes on the way.",
+  "learning": "A bee dances a wiggle to tell the other bees where the flowers are.",
+  "languages": {
+    "en-US": {
+      "title": "Bee's Dance",
+      "text": "{bee:float loop 0.4} Bee {bee:pulse} came home from the meadow buzzing with news. But she did not say it. She DANCED it. {bee:wobble x3} {sfx:buzz} Wiggle-waggle, wiggle-waggle, round in a circle. [curious] What is she doing? whispered Mouse. {mouse:pulse} I think it is a dance, said Rabbit. {rabbit:pulse} So Mouse wiggled. {mouse:wobble x2} Rabbit waggled. {rabbit:wobble x2} Wiggle-waggle. They had no idea what it meant. But it was fun. Bee turned round. [surprised] You understood! she said. And off she flew. Mouse and Rabbit wiggled after her. Waggle, waggle, hop, hop, through the long grass, over the log, and there — [gasps] a whole meadow of flowers, {flower:glow} yellow and pink and sweet. That is what the dance says, said Bee. Flowers, this way! [giggles] We danced all the way to lunch, giggled Mouse. [happily] And every time Bee came home wiggling after that, two friends wiggled along behind, just to see where it went."
+    },
+    "es-ES": {
+      "title": "El baile de Abeja",
+      "text": "{bee:float loop 0.4} Abeja {bee:pulse} volvió del prado zumbando de noticias. Pero no las dijo. Las BAILÓ. {bee:wobble x3} {sfx:buzz} Meneo-meneo, meneo-meneo, vuelta en círculo. [curious] ¿Qué hace?, susurró Ratón. {mouse:pulse} Creo que es un baile, dijo Conejo. {rabbit:pulse} Y Ratón se meneó. {mouse:wobble x2} Conejo se meneó. {rabbit:wobble x2} Meneo-meneo. No tenían ni idea de lo que significaba. Pero era divertido. Abeja se giró. [surprised] ¡Lo habéis entendido!, dijo. Y salió volando. Ratón y Conejo se fueron meneando detrás. Meneo, meneo, hop, hop, por la hierba alta, por encima del tronco, y allí — [gasps] un prado entero de flores, {flower:glow} amarillas y rosas y dulces. Eso es lo que dice el baile, dijo Abeja. ¡Flores, por aquí! [giggles] Hemos bailado hasta la hora de comer, rio Ratón. [happily] Y desde entonces, cada vez que Abeja volvía meneándose, dos amigos se meneaban detrás de ella, para ver adónde llevaba."
+    }
+  },
+  "sounds": {
+    "buzz": { "prompt": "a bee buzzing in a wiggly rhythm, quick pulses like a tiny dance, close and cheerful", "seconds": 2 }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "id": "owl-tries-the-daytime",
+  "pack": "forest",
+  "featured": ["owl", "bee", "squirrel", "rabbit"],
+  "supporting": ["flower"],
+  "tags": ["curiosity", "funny", "learning"],
+  "premise": "Owl stays awake to find out what daytime is like; it is bright and busy and noisy; Bee, Squirrel and Rabbit each show him one lovely day thing before he falls asleep smiling.",
+  "inspiration": "Andersen curiosity tales and folk owl-and-sun motifs, turned: the night bird is not mocked for the daytime; his friends make it worth seeing.",
+  "lesson": "Everyone has their own time, and it is fine to visit someone else's.",
+  "learning": "Owls sleep in the day and are awake at night.",
+  "languages": {
+    "en-US": {
+      "title": "Owl Tries the Daytime",
+      "text": "{bee:float loop 0.4} Owl {owl:pulse} had never seen the daytime. He was always asleep for it. [curious] What is it like? he wondered. So one morning, when the sun came up, he kept his eyes open. Wide. {owl:tint #FFF3B0 1.5s} [surprised] Oh! It was BRIGHT. And busy. And loud. {sfx:day} Bees buzzing, squirrels scurrying. Owl blinked. Bee {bee:hop} showed him the flower, {flower:glow} yellow as the sun. Owl had only ever seen grey flowers, in the moonlight. Squirrel {squirrel:hop x2} showed him a warm stone. Rabbit {rabbit:hop} showed him his own shadow, short and round. Owl {owl:wobble} looked at all of it. Lovely, he said. [yawns] Then his eyes went slowly… slowly… closed. {owl:fade-out 3s 0.5 hold} He was asleep on the branch, with a smile on his beak. [softly] Let him sleep, said Bee. The daytime is ours. [happily] The night is his. And that evening, when Owl woke up, he told the moon all about it."
+    },
+    "es-ES": {
+      "title": "Búho prueba el día",
+      "text": "{bee:float loop 0.4} Búho {owl:pulse} nunca había visto el día. Siempre estaba dormido. [curious] ¿Cómo será?, se preguntaba. Así que una mañana, cuando salió el sol, no cerró los ojos. Los abrió bien. {owl:tint #FFF3B0 1.5s} [surprised] ¡Oh! Era muy BRILLANTE. Y lleno de ruido. {sfx:day} Abejas zumbando, ardillas correteando, conejos por todas partes. Búho parpadeó. Abeja {bee:hop} le enseñó la flor, {flower:glow} amarilla como el sol. Búho solo había visto flores grises, a la luz de la luna. Ardilla {squirrel:hop x2} le enseñó una piedra calentita. Conejo {rabbit:hop} le enseñó su propia sombra, corta y redonda. Búho {owl:wobble} lo miró todo. Precioso, dijo. [yawns] Y los ojos se le fueron cerrando… despacio… despacio. {owl:fade-out 3s 0.5 hold} Se quedó dormido en la rama, con una sonrisa en el pico. [softly] Dejadle dormir, dijo Abeja. El día es nuestro. [happily] La noche es suya. Y esa tarde, cuando Búho se despertó, se lo contó todo a la luna."
+    }
+  },
+  "sounds": {
+    "day": { "prompt": "a bright busy forest at midday, bees buzzing, small birds, leaves moving in a breeze", "seconds": 18, "loop": true }
+  }
+}

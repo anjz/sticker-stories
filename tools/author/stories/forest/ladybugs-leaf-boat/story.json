@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "ladybugs-leaf-boat",
+  "pack": "forest",
+  "featured": ["ladybug", "frog", "snail"],
+  "supporting": ["flower"],
+  "tags": ["adventure", "weather"],
+  "premise": "After the rain a puddle is as wide as a sea; Ladybug captains a leaf boat across it, Frog paddles with her big feet, and Snail is the anchor when the wind blows.",
+  "inspiration": "Nonsense voyage poems (Lear's The Owl and the Pussy-cat), turned into a puddle crossing where the slow one holds the boat steady.",
+  "lesson": "Staying still can be the bravest job on the boat.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Ladybug's Leaf Boat",
+      "text": "{ladybug:float loop 0.3} After the rain, the puddle by the flower {flower:pulse} was as wide as a sea. [excited] A sea! said Ladybug. {ladybug:hop} We need a boat! She found a leaf and pushed it in. {sfx:water} It floated. All aboard! Ladybug {ladybug:pulse} was the captain. Frog {frog:hop} paddled, with her big feet. Splish, {sfx:paddle} splash. And Snail? Snail {snail:pulse} sat in the middle and did nothing, very well. Past a stick. Past a bubble. [rushed] Then — whoosh! — the wind. The leaf tipped. {ladybug:wobble x2} {frog:shake} Splish-splash-splish-splash! The leaf spun round. [surprised] Hold on! said the captain. And that is when Snail did his job. He held on to the leaf with all of himself, heavy and calm, {snail:tint #B0E0FF 1.5s} like an anchor. The wind gave up. And they floated, steady, to the other side. [happily] Three cheers for the anchor! said the captain. Snail smiled. Nobody had ever cheered him for staying still."
+    },
+    "es-ES": {
+      "title": "El barco de hoja de Mariquita",
+      "text": "{ladybug:float loop 0.3} Después de la lluvia, el charco junto a la flor {flower:pulse} era tan ancho como un mar. [excited] ¡Un mar!, dijo Mariquita. {ladybug:hop} ¡Necesitamos un barco! Encontró una hoja y la empujó al agua. {sfx:water} Flotaba. ¡Todos a bordo! Mariquita {ladybug:pulse} era la capitana. Rana {frog:hop} remaba, con sus patazas. Chip, {sfx:paddle} chap. ¿Y Caracol? Caracol {snail:pulse} se sentó en medio y no hizo nada, pero muy bien. Pasaron un palito. Pasaron una burbuja. [rushed] Y entonces — ¡fiuuu! — el viento. La hoja se ladeó. {ladybug:wobble x2} {frog:shake} ¡Chip-chap-chip-chap! La hoja empezó a dar vueltas. [surprised] ¡Agarraos!, dijo la capitana. Y entonces Caracol hizo su trabajo. Se pegó a la hoja con todo su cuerpo, pesado y tranquilo, {snail:tint #B0E0FF 1.5s} como un ancla. El viento se rindió. Y flotaron, despacito, hasta la otra orilla. [happily] ¡Tres hurras por el ancla!, dijo la capitana. Caracol sonrió. Nadie le había aplaudido nunca por quedarse quieto."
+    }
+  },
+  "sounds": {
+    "water": { "prompt": "a leaf settling onto still puddle water, a soft wet plop and tiny lapping", "seconds": 1.5 },
+    "paddle": { "prompt": "small webbed feet paddling in a puddle, quick playful splishes", "seconds": 1.5 }
+  }
+}

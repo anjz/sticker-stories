@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "fox-chases-his-tail",
+  "pack": "forest",
+  "featured": ["fox", "butterfly", "hedgehog"],
+  "supporting": ["flower"],
+  "tags": ["funny", "learning"],
+  "premise": "Fox spots something fluffy behind him and chases it round and round; Butterfly lands on it and it stops; Hedgehog explains it is his tail, and dizzy Fox curls it over his nose for a warm nap.",
+  "inspiration": "Aesop's fox-and-tail motifs and the folk dog-chases-tail joke, turned: the silly chase ends in a laugh Fox shares and a cosy nap.",
+  "lesson": "What follows you is often part of you, and it can keep you warm.",
+  "learning": "A fox curls his bushy tail over his nose to keep warm when he sleeps.",
+  "languages": {
+    "en-US": {
+      "title": "Fox Chases His Tail",
+      "text": "{butterfly:float loop 0.4} Fox {fox:pulse} was sitting in the sun when something moved behind him. Something orange and fluffy. [surprised] He turned round. It moved too! He turned faster. {fox:spin} {sfx:whoosh} [rushed] Round and round and round went Fox, {fox:spin x3} and round and round went the fluffy thing, always just behind him. The flower {flower:wobble} watched him go by. And by. And by. Then Butterfly {butterfly:fade-in} floated down and landed on the fluffy thing. It stopped. Fox stopped. {fox:wobble x2} Wobble… wobble… flump. {sfx:flop solo} Hedgehog {hedgehog:hop} came over, laughing. [laughs] Fox, he said. That is your TAIL. It has been following you all your life. Fox looked at his tail. Oh, said Fox. His head was spinny. So he lay down, {fox:tint #FFD9B0 2s} curled his big fluffy tail right over his nose, [softly] and went to sleep, warm as toast. And the tail? It stayed exactly where it was."
+    },
+    "es-ES": {
+      "title": "Zorro persigue su cola",
+      "text": "{butterfly:float loop 0.4} Zorro {fox:pulse} estaba sentado al sol cuando algo se movió detrás de él. Algo naranja y esponjoso. [surprised] Se dio la vuelta. ¡Se movió también! Se dio la vuelta más rápido. {fox:spin} {sfx:whoosh} [rushed] Vueltas y vueltas y vueltas daba Zorro, {fox:spin x3} y vueltas y vueltas daba la cosa esponjosa, siempre justo detrás de él. La flor {flower:wobble} lo vio pasar. Y pasar. Y pasar. Entonces Mariposa {butterfly:fade-in} bajó flotando y se posó sobre la cosa esponjosa. La cosa se paró. Zorro se paró. {fox:wobble x2} Tambaleo… tambaleo… plof. {sfx:flop solo} Erizo {hedgehog:hop} se acercó, riéndose mucho. [laughs] Zorro, dijo. Eso es tu COLA. Te sigue desde que naciste. Zorro se miró la cola. Oh, dijo. Tenía la cabeza mareada. Así que se tumbó, {fox:tint #FFD9B0 2s} se enroscó la gran cola esponjosa sobre la nariz [softly] y se durmió, calentito. ¿Y la cola? Se quedó exactamente donde estaba."
+    }
+  },
+  "sounds": {
+    "whoosh": { "prompt": "a quick swirling whoosh of something spinning round and round, comic and airy", "seconds": 1.5 },
+    "flop": { "prompt": "a dizzy animal flopping softly down into grass, a gentle thump and rustle", "seconds": 1.5 }
+  }
+}

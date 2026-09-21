@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "good-night-forest",
+  "pack": "forest",
+  "featured": [],
+  "supporting": ["tree", "owl", "flower", "mushroom"],
+  "tags": ["bedtime", "gentle"],
+  "premise": "The forest goes to sleep one thing at a time and the moon climbs up to take the night shift so nobody sleeps alone.",
+  "inspiration": "Goodnight litany (folk lullabies that name each thing in turn); the moon as a kind night-watch so the dark is safe.",
+  "lesson": "Nobody sleeps alone.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Good Night, Forest",
+      "text": "[softly] The sun slides down behind the hill. Shhh. The forest is going to sleep. First the flower {flower:fade-out 2s} folds her petals, one, two, three, and tucks her head down. Good night, flower. Then the tree {tree:wobble 0.3} lets his branches hang loose and low. Good night, tree. The mushroom {mushroom:pulse 0.3} pulls her cap down over her ears. Good night, mushroom. {sfx:crickets} The crickets begin their tiny song. Cree, cree, cree. And the owl? [curious] The owl is not sleepy at all. He opens his round eyes, {owl:glow} climbs to the highest branch, and says hello to the moon. {sfx:hoot solo} And the moon climbs up beside him, big and silver, to keep watch. {owl:pulse} [whispers] Nobody in the forest sleeps alone. Not the flower, not the tree, not the mushroom. [yawns] Not you. Good night."
+    },
+    "es-ES": {
+      "title": "Buenas noches, bosque",
+      "text": "[softly] El sol se esconde despacio detrás de la colina. Chsss. El bosque se va a dormir. Primero la flor {flower:fade-out 2s} dobla sus pétalos, uno, dos y tres, y agacha la cabeza. Buenas noches, flor. Luego el árbol {tree:wobble 0.3} deja las ramas sueltas y bajitas. Buenas noches, árbol. La seta {mushroom:pulse 0.3} se cala el sombrero hasta las orejas. Buenas noches, seta. {sfx:crickets} Los grillos empiezan su cancioncita. Cri, cri, cri. ¿Y el búho? [curious] El búho no tiene nada de sueño. Abre sus ojos redondos, {owl:glow} sube a la rama más alta y saluda a la luna. {sfx:hoot solo} Y la luna sube a su lado, grande y plateada, para vigilar. {owl:pulse} [whispers] Nadie en el bosque duerme solo. Ni la flor, ni el árbol, ni la seta. [yawns] Ni tú. Buenas noches."
+    }
+  },
+  "sounds": {
+    "crickets": { "prompt": "soft night crickets chirping in a calm meadow, distant and even", "seconds": 20, "loop": true },
+    "hoot": { "prompt": "a single friendly owl hoot, soft and low, from a nearby tree", "seconds": 1.8 }
+  }
+}

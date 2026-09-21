@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "deer-and-the-far-away-flower",
+  "pack": "forest",
+  "featured": ["deer", "flower", "butterfly", "bee"],
+  "supporting": [],
+  "tags": ["gentle", "kindness"],
+  "premise": "Deer is so tall and so careful of his hooves that he cannot bend down to smell Flower; Butterfly and Bee roll in her petals and carry her scent up to his nose.",
+  "inspiration": "The Fox and the Grapes (Aesop), turned: instead of deciding the flower is not worth it, the tall one is helped by the small ones, and the flower is glad to be shared.",
+  "lesson": "Small friends can bring you what you cannot reach.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Deer and the Far-Away Flower",
+      "text": "{butterfly:float loop 0.4} {bee:float loop 0.3} Deer {deer:pulse} was the tallest one in the meadow. And the most careful: he stepped so gently he never bent a blade of grass. Down by his hooves grew Flower, {flower:pulse} small and pink. Every morning she opened, and every morning Deer said, [sad] I wish I could smell you. But if I bend down, my big hooves might squash you. Butterfly {butterfly:wobble} heard. Bee {bee:wobble} heard. [curious] Leave it to us, they said. Butterfly landed on Flower and rolled in her petals until their wings smelled of pink. Bee rolled too, until she was pink all over. Then, up they went. {butterfly:hop} {bee:hop} Up, up, past Deer's knees, past his chest, to his big soft nose. {sfx:wings} Flutter. Hum. [softly] Deer breathed in. {sfx:sniff solo} {deer:glow} Oh, Flower, he said. You smell like the whole morning. {flower:hearts} [happily] And from then on, every day, two tiny friends carried the morning up to him."
+    },
+    "es-ES": {
+      "title": "Ciervo y la flor lejana",
+      "text": "{butterfly:float loop 0.4} {bee:float loop 0.3} Ciervo {deer:pulse} era el más alto del prado. Y el más cuidadoso: pisaba tan suave que nunca doblaba ni una brizna de hierba. Junto a sus pezuñas crecía Flor, {flower:pulse} pequeña y rosa. Cada mañana ella se abría, y cada mañana Ciervo decía: [sad] Ojalá pudiera olerte. Pero si me agacho, mis pezuñas tan grandes podrían aplastarte. Mariposa {butterfly:wobble} lo oyó. Abeja {bee:wobble} lo oyó. [curious] Déjanoslo a nosotras, dijeron. Mariposa se posó en Flor y se revolcó en sus pétalos hasta que sus alas olieron a rosa. Abeja también, hasta quedar rosa de arriba abajo. Y luego, arriba. {butterfly:hop} {bee:hop} Arriba, arriba, por las rodillas de Ciervo, por su pecho, hasta su gran nariz blandita. {sfx:wings} Flap. Mmmm. [softly] Ciervo respiró hondo. {sfx:sniff solo} {deer:glow} Oh, Flor, dijo. Hueles a la mañana entera. {flower:hearts} [happily] Y desde entonces, cada día, dos amigas diminutas le subían la mañana hasta la nariz."
+    }
+  },
+  "sounds": {
+    "wings": { "prompt": "a butterfly's soft wing flutter and a bee's gentle hum rising together, light and close", "seconds": 1.5 },
+    "sniff": { "prompt": "a big gentle animal breathing in slowly through its nose, one long soft sniff", "seconds": 1.8 }
+  }
+}

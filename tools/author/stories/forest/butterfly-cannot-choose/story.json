@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "butterfly-cannot-choose",
+  "pack": "forest",
+  "featured": ["butterfly", "flower", "bee", "ladybug"],
+  "supporting": [],
+  "tags": ["funny", "curiosity", "learning"],
+  "premise": "Butterfly cannot decide which flower to land on and flutters all morning; Bee says just try one; Butterfly lands on Flower, unrolls a long curly straw, and the first sip is perfect.",
+  "inspiration": "Buridan's donkey between two haystacks (folk paradox), turned gentle: no one goes hungry, and trying beats choosing.",
+  "lesson": "Trying one is better than choosing forever.",
+  "learning": "Butterflies drink flower nectar through a long curly straw.",
+  "languages": {
+    "en-US": {
+      "title": "Butterfly Cannot Choose",
+      "text": "{butterfly:float loop 0.5} {bee:float loop 0.3} Butterfly {butterfly:pulse} was hungry. The meadow was full of flowers. [curious] Which one? The yellow one? Or the pink one? Or the white one? Butterfly {butterfly:wobble x2} fluttered to the yellow one — no, the pink — no, wait — the white! {sfx:flutter} Flutter flutter flutter. Round and round, all morning. [rushed] Bee {bee:hop} buzzed past again. Butterfly, you have been choosing since breakfast. Ladybug {ladybug:hop} nodded. It is nearly lunch. But which one is BEST? said Butterfly. Bee laughed. Just try one. So Butterfly closed both eyes, spun, {butterfly:spin} and landed. On Flower. {flower:pulse} Butterfly unrolled a long, curly straw from under their chin — it had been there all along — and dipped it into the middle. {sfx:sip solo} [gasps] Sweet! said Butterfly. [happily] Was it the best flower? Nobody knows. It was the first one Butterfly tried. And that was enough."
+    },
+    "es-ES": {
+      "title": "Mariposa no sabe elegir",
+      "text": "{butterfly:float loop 0.5} {bee:float loop 0.3} Mariposa {butterfly:pulse} tenía hambre. El prado estaba lleno de flores. [curious] ¿Cuál? ¿La amarilla? ¿O la rosa? ¿O la blanca? Mariposa {butterfly:wobble x2} voló hacia la amarilla — no, la rosa — no, espera — ¡la blanca! {sfx:flutter} Flap, flap, flap. Vueltas y vueltas, toda la mañana. [rushed] Abeja {bee:hop} pasó zumbando otra vez. Mariposa, llevas eligiendo desde el desayuno. Mariquita {ladybug:hop} asintió. Ya casi es la hora de comer. ¿Pero cuál es la MEJOR?, dijo Mariposa. Abeja se rio. Prueba una. Así que Mariposa cerró los ojos, giró {butterfly:spin} y aterrizó. Sobre Flor. {flower:pulse} Mariposa desenrolló una pajita larga y rizada que llevaba bajo la barbilla — siempre había estado ahí — y la metió hasta el fondo. {sfx:sip solo} [gasps] ¡Dulce!, dijo Mariposa. [happily] ¿Era la mejor flor del prado? Nadie lo sabe. Era la primera que Mariposa probó. Y con eso bastó."
+    }
+  },
+  "sounds": {
+    "flutter": { "prompt": "quick butterfly wings fluttering back and forth, light papery flaps", "seconds": 1.5 },
+    "sip": { "prompt": "a tiny comic sip through a straw, short and sweet, then a satisfied little pop", "seconds": 1.5 }
+  }
+}

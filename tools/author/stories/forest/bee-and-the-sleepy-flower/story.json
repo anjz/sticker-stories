@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "bee-and-the-sleepy-flower",
+  "pack": "forest",
+  "featured": ["bee", "flower", "butterfly"],
+  "supporting": ["ladybug"],
+  "tags": ["morning", "gentle", "kindness", "learning"],
+  "premise": "Flower will not open one grey morning; fanning, tickling and pulling fail; Bee hums beside her until the sun comes and the petals open on their own.",
+  "inspiration": "The North Wind and the Sun (Aesop): what force cannot open, warmth does; here the warmth is a friend's patient hum and then the real sun.",
+  "lesson": "Some things open only when they are ready; stay close and wait.",
+  "learning": "Some flowers close their petals at night and open again in the sun.",
+  "languages": {
+    "en-US": {
+      "title": "Bee and the Sleepy Flower",
+      "text": "{bee:float loop 0.4} {butterfly:float loop 0.3} The morning was grey, and Flower {flower:pulse} was still closed up tight, petals folded like a little fist. [curious] Wake up, Flower! said Bee. It is morning! Flower did not move. Butterfly {butterfly:wobble} fanned her with both wings. {sfx:fan} Whoosh, whoosh. Nothing. Ladybug {ladybug:hop} tickled her stem. Nothing. Bee tried pulling a petal, very gently. Flower held on tighter. [softly] Then Bee stopped pulling. She sat down on a leaf beside her, and hummed. {sfx:hum} Hmmmm. A slow, warm, sunny hum. Butterfly landed too. And while they waited, the grey went thin… and thinner… {canvas:sunshine 0.8 14s} and the sun came through. It touched Flower's top petal. [gasps] One petal opened. Then two. Then all of them, {flower:glow} wide and yellow and awake. Good morning, said Flower. I always sleep until the sun comes. [happily] Bee laughed, and hummed a little louder."
+    },
+    "es-ES": {
+      "title": "Abeja y la flor dormilona",
+      "text": "{bee:float loop 0.4} {butterfly:float loop 0.3} La mañana estaba gris, y Flor {flower:pulse} seguía cerrada, con los pétalos apretados como un puñito. [curious] ¡Despierta, Flor!, dijo Abeja. ¡Ya es de día! Flor no se movió. Mariposa {butterfly:wobble} la abanicó con las dos alas. {sfx:fan} Fiu, fiu. Nada. Mariquita {ladybug:hop} le hizo cosquillas en el tallo. Nada. Abeja tiró de un pétalo, con mucho cuidado. Flor se cerró más fuerte. [softly] Entonces Abeja dejó de tirar. Se sentó en una hoja, a su lado, y se puso a zumbar. {sfx:hum} Mmmmm. Un zumbido lento, cálido, de sol. Y mientras esperaban, el gris se fue haciendo fino… y más fino… {canvas:sunshine 0.8 14s} y el sol se abrió paso. Tocó el pétalo de arriba. [gasps] Se abrió un pétalo. Luego dos. Luego todos, {flower:glow} amarillos, abiertos y despiertos. Buenos días, dijo Flor. Yo siempre duermo hasta que sale el sol. [happily] Abeja se rio, y zumbó un poquito más fuerte."
+    }
+  },
+  "sounds": {
+    "fan": { "prompt": "two soft flaps of butterfly wings fanning the air, a light whoosh whoosh", "seconds": 1.5 },
+    "hum": { "prompt": "a single bee humming softly and steadily, warm and low, close by", "seconds": 12, "loop": true }
+  }
+}

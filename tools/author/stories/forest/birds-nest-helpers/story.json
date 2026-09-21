@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "id": "birds-nest-helpers",
+  "pack": "forest",
+  "featured": ["bird", "mouse", "hedgehog"],
+  "supporting": ["squirrel", "tree"],
+  "tags": ["kindness", "counting", "learning"],
+  "premise": "Bird builds a nest twig by twig; Mouse brings moss, Hedgehog brings fluff, Squirrel a feather, until it is far too big for one bird, so everyone fits in for a visit.",
+  "inspiration": "The Little Red Hen (folk), turned: everyone helps without being asked, so everyone shares the result.",
+  "lesson": "Help given freely makes room for everyone.",
+  "learning": "Birds build nests from twigs, moss and soft fluff.",
+  "languages": {
+    "en-US": {
+      "title": "Bird's Nest Helpers",
+      "text": "{bird:float loop 0.3} Bird {bird:pulse} was building a nest in the tree. {tree:pulse} [excited] One twig. Two twigs. Three! {sfx:twig} He wove them round. Then off for more. Mouse {mouse:hop} looked at the nest. It looks scratchy, he said. So he fetched moss and tucked it inside. Hedgehog {hedgehog:wobble} looked at the nest. It looks cold, he said. So he brought thistle fluff and pushed it in with his nose. Squirrel {squirrel:hop x2} brought a feather. Bird came back with a twig. [surprised] He stopped. The nest was moss and fluff and feather and — big. Much too big for one bird. [curious] Then he put the twig on top, hopped in, and said, There is room. Mouse climbed in. Hedgehog climbed in. Squirrel squeezed in. {bird:hearts} [laughs] The nest creaked, but it held. Four heads looked out of the very best nest in the forest. Nobody had asked anybody. [happily] Everyone had just… helped."
+    },
+    "es-ES": {
+      "title": "Los ayudantes del nido",
+      "text": "{bird:float loop 0.3} Pájaro {bird:pulse} estaba haciendo un nido en el árbol. {tree:pulse} [excited] Una ramita. Dos ramitas. ¡Tres! {sfx:twig} Las trenzó en redondo. Y se fue a por más. Ratón {mouse:hop} miró el nido. Parece que pincha, dijo. Y trajo musgo y lo metió dentro. Erizo {hedgehog:wobble} miró el nido. Parece frío, dijo. Y trajo pelusa de cardo y la empujó con la nariz. Ardilla {squirrel:hop x2} trajo una pluma. Pájaro volvió con una ramita. [surprised] Y se paró. El nido era musgo y pelusa y pluma y… grande. Demasiado grande para un pájaro solo. [curious] Puso la ramita encima, saltó dentro y dijo: hay sitio. Ratón se subió. Erizo se subió. Ardilla se apretujó. {bird:hearts} [laughs] El nido crujió, pero aguantó. Cuatro cabezas asomaron por el borde del mejor nido del bosque. Nadie le había pedido nada a nadie. [happily] Todos habían… ayudado, sin más."
+    }
+  },
+  "sounds": {
+    "twig": { "prompt": "small twigs being picked up and woven together, light snaps and scratches", "seconds": 1.5 }
+  }
+}

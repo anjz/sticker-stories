@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "the-great-jump-contest",
+  "pack": "forest",
+  "featured": ["frog", "rabbit", "fox"],
+  "supporting": ["tree"],
+  "tags": ["funny", "adventure"],
+  "premise": "Rabbit jumps highest, Fox jumps farthest, and Frog jumps sideways into the pond with a splash; the contest becomes about the best landing, and everybody jumps in.",
+  "inspiration": "The Frog Who Wished to Be as Big as the Ox (La Fontaine), turned: Frog does not try to be bigger; she wins by being exactly a frog, and the others join her.",
+  "lesson": "The fun matters more than the prize.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "The Great Jump Contest",
+      "text": "[excited] It was the day of the Great Jump Contest. Rabbit {rabbit:pulse} jumped first. He crouched, he wiggled, he — {rabbit:hop 1 1.2s} BOING! — went so high he tapped a branch of the tree. {tree:wobble} Highest jump! Fox {fox:pulse} jumped next. He ran, he leapt, {fox:hop 1 1.5s} {sfx:whoosh} whoosh, and landed way, way over there. Farthest jump! Then it was Frog's turn. {frog:pulse} Frog did not go high. Frog did not go far. Frog went… {frog:hop} sideways. Straight into the pond. {sfx:splash solo} [surprised] Everybody stared at the ripples. Then Frog's head popped up, grinning. [laughs] Best LANDING! she said. Rabbit looked at Fox. Fox looked at Rabbit. That was not a prize. But it sounded like the most fun. So — one, two, three — {rabbit:hop} {fox:hop} SPLASH! SPLASH! Three heads popped up in the pond, dripping and laughing. [happily] Who won? Nobody remembers. But everybody remembers the pond."
+    },
+    "es-ES": {
+      "title": "El gran concurso de saltos",
+      "text": "[excited] Era el día del Gran Concurso de Saltos. Conejo {rabbit:pulse} saltó primero. Se agachó, meneó la cola y — {rabbit:hop 1 1.2s} ¡BOING! — subió tan alto que tocó una rama del árbol. {tree:wobble} ¡El salto más alto! Zorro {fox:pulse} saltó después. Cogió carrerilla, se lanzó, {fox:hop 1 1.5s} {sfx:whoosh} fiuuu, y aterrizó allá, allá lejos. ¡El salto más largo! Luego le tocó a Rana. {frog:pulse} Rana no fue alta. Rana no fue lejos. Rana fue… {frog:hop} de lado. Derecha al estanque. {sfx:splash solo} [surprised] Todos miraron las ondas. Entonces asomó la cabeza de Rana, sonriendo. [laughs] ¡El mejor ATERRIZAJE!, dijo. Conejo miró a Zorro. Zorro miró a Conejo. Eso no era un premio. Pero parecía lo más divertido. Así que — uno, dos, tres — {rabbit:hop} {fox:hop} ¡CHOF! ¡CHOF! Tres cabezas asomaron en el estanque, chorreando y riéndose. [happily] ¿Quién ganó? Nadie se acuerda. Pero todos se acuerdan del estanque."
+    }
+  },
+  "sounds": {
+    "whoosh": { "prompt": "a quick comic whoosh of something leaping through the air, light and swift", "seconds": 1.2 },
+    "splash": { "prompt": "a small animal landing in a pond with one big happy splash, then ripples", "seconds": 2 }
+  }
+}

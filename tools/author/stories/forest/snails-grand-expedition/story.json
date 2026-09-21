@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "snails-grand-expedition",
+  "pack": "forest",
+  "featured": ["snail", "ladybug", "mushroom"],
+  "supporting": ["flower"],
+  "tags": ["adventure", "patience", "gentle"],
+  "premise": "Snail sets out for Mushroom beyond the old log; Ladybug flies ahead and back three times asking if he is nearly there; Snail arrives at sunset and Mushroom has kept a dry spot.",
+  "inspiration": "The Tortoise and the Hare (Aesop), turned: nobody races and nobody naps; the slow journey is the adventure and the fast friend arrives at the same moment.",
+  "lesson": "Going slowly still gets you there, and the going is the adventure.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Snail's Grand Expedition",
+      "text": "{ladybug:float loop 0.4} Snail {snail:pulse} was going on an expedition. A grand one. All the way to Mushroom, beyond the old log. [slowly] He packed his house — it was already on his back — and set off. Sliiide. Sliiide. Ladybug {ladybug:hop} zipped ahead. {sfx:wings} Bzzz! Are you nearly there? Not yet, said Snail. [slowly] Sliiide. Past the flower, {flower:pulse} who waved. Ladybug zipped back. Are you nearly there now? Not yet. Sliiide. Over the log, which took all afternoon. Ladybug zipped back again. [excited] Nearly there? Snail looked up. The sky was going orange. {sfx:evening} The crickets were tuning up. And there, just ahead, was Mushroom, {mushroom:glow} keeping a dry spot under her cap. [happily] Now, said Snail. Now I am nearly there. And he was. Ladybug had flown the whole way three times. Snail had gone once. But they arrived at exactly the same moment."
+    },
+    "es-ES": {
+      "title": "La gran expedición de Caracol",
+      "text": "{ladybug:float loop 0.4} Caracol {snail:pulse} se iba de expedición. Una expedición grande. Hasta Seta, más allá del tronco viejo. [slowly] Preparó su casa — ya la llevaba puesta — y salió. Desliiiza. Desliiiza. Mariquita {ladybug:hop} salió volando por delante. {sfx:wings} ¡Bzzz! ¿Ya casi estás? Todavía no, dijo Caracol. [slowly] Desliiiza. Pasó junto a la flor, {flower:pulse} que lo saludó. Mariquita volvió volando. ¿Y ahora ya casi estás? Todavía no. Desliiiza. Por encima del tronco, que le llevó toda la tarde. Mariquita volvió otra vez. [excited] ¿Ya casi? Caracol miró arriba. El cielo se estaba poniendo naranja. {sfx:evening} Los grillos afinaban. Y allí, justo delante, estaba Seta, {mushroom:glow} guardándole un sitio seco bajo su sombrero. [happily] Ahora, dijo Caracol. Ahora ya casi estoy. Y así era. Mariquita había hecho el camino tres veces. Caracol, una. Pero llegaron exactamente en el mismo momento."
+    }
+  },
+  "sounds": {
+    "wings": { "prompt": "a tiny beetle's wings whirring as it zips past, a short light buzz", "seconds": 1.2 },
+    "evening": { "prompt": "early evening in a meadow, first soft crickets and a faint breeze", "seconds": 14, "loop": true }
+  }
+}
