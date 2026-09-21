@@ -1208,6 +1208,7 @@ func runInstall(args []string) error {
 		}
 		installed++
 	}
+	var pruned []manifest.Story
 	if *prune {
 		kept := c.pack.Stories[:0]
 		for _, st := range c.pack.Stories {
@@ -1215,6 +1216,7 @@ func runInstall(args []string) error {
 				kept = append(kept, st)
 			} else {
 				fmt.Printf("prune %s\n", st.ID)
+				pruned = append(pruned, st)
 			}
 		}
 		c.pack.Stories = kept
@@ -1235,6 +1237,20 @@ func runInstall(args []string) error {
 	}
 	if err := os.WriteFile(filepath.Join(c.packDir, "manifest.json"), append(data, '\n'), 0o644); err != nil {
 		return err
+	}
+	// The manifest no longer references the pruned stories, so their audio
+	// and sidecars would only ship as dead weight in the bundle.
+	for _, st := range pruned {
+		for _, loc := range st.Localizations {
+			for _, rel := range []string{loc.Audio, loc.Effects} {
+				if rel == "" {
+					continue
+				}
+				if err := os.Remove(filepath.Join(c.packDir, filepath.FromSlash(rel))); err != nil && !os.IsNotExist(err) {
+					return fmt.Errorf("removing pruned %s: %w", rel, err)
+				}
+			}
+		}
 	}
 	fmt.Printf("✓ installed %d stories into %s (manifest now has %d, version %d) and it validates\n", installed, c.packDir, len(c.pack.Stories), c.pack.Version)
 	return nil

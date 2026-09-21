@@ -105,8 +105,8 @@ automatically if refused).
 
 `install` copies each fully rendered story into `packs/<id>/audio/<lang>/`,
 merges story entries into `manifest.json` (replacing entries with the same
-id, `-prune` drops the rest, `-bump` increments the content version), and
-validates the manifest. Rendered audio in the story folders is gitignored;
+id, `-prune` drops the rest and deletes their audio and sidecars from the
+pack, `-bump` increments the content version), and validates the manifest. Rendered audio in the story folders is gitignored;
 the pack copy is the one that is committed.
 
 ## Notes
