@@ -7,20 +7,72 @@ import (
 	"math"
 )
 
-// SplitGrid cuts a generated sprite sheet into cols×rows equal cells, read
-// left to right then top to bottom.
+// splitSlack is how far from the nominal grid line SplitGrid may move a
+// cut, as a fraction of the cell size, to find the emptiest line.
+const splitSlack = 0.15
+
+// SplitGrid cuts a generated sprite sheet into cols×rows cells, read left
+// to right then top to bottom. The generator lays its grid out only
+// roughly, so each cut goes where the sheet is emptiest near the nominal
+// grid line (within splitSlack of the cell size) rather than exactly on
+// it: a character whose feet sit a little past the line is kept whole.
 func SplitGrid(sheet *image.RGBA, cols, rows int) []*image.RGBA {
 	b := sheet.Bounds()
-	cw, ch := b.Dx()/cols, b.Dy()/rows
+	xs := gridCuts(sheet, cols, true)
+	ys := gridCuts(sheet, rows, false)
 	cells := make([]*image.RGBA, 0, cols*rows)
 	for r := 0; r < rows; r++ {
 		for c := 0; c < cols; c++ {
-			cell := image.NewRGBA(image.Rect(0, 0, cw, ch))
-			draw.Draw(cell, cell.Bounds(), sheet, image.Pt(b.Min.X+c*cw, b.Min.Y+r*ch), draw.Src)
+			src := image.Rect(b.Min.X+xs[c], b.Min.Y+ys[r], b.Min.X+xs[c+1], b.Min.Y+ys[r+1])
+			cell := image.NewRGBA(image.Rect(0, 0, src.Dx(), src.Dy()))
+			draw.Draw(cell, cell.Bounds(), sheet, src.Min, draw.Src)
 			cells = append(cells, cell)
 		}
 	}
 	return cells
+}
+
+// gridCuts returns n+1 cut positions along one axis (0 and the full
+// extent included): each internal cut is the line with the fewest opaque
+// pixels within splitSlack of its nominal position, ties going to the
+// nearest.
+func gridCuts(sheet *image.RGBA, n int, vertical bool) []int {
+	b := sheet.Bounds()
+	extent, across := b.Dy(), b.Dx()
+	if vertical {
+		extent, across = b.Dx(), b.Dy()
+	}
+	cuts := []int{0}
+	cell := extent / n
+	slack := int(float64(cell) * splitSlack)
+	for k := 1; k < n; k++ {
+		nominal := k * cell
+		best, bestCount := nominal, -1
+		for pos := nominal - slack; pos <= nominal+slack; pos++ {
+			count := 0
+			for i := 0; i < across; i++ {
+				x, y := pos, i
+				if !vertical {
+					x, y = i, pos
+				}
+				if sheet.Pix[sheet.PixOffset(b.Min.X+x, b.Min.Y+y)+3] > 8 {
+					count++
+				}
+			}
+			if bestCount < 0 || count < bestCount || (count == bestCount && abs(pos-nominal) < abs(best-nominal)) {
+				best, bestCount = pos, count
+			}
+		}
+		cuts = append(cuts, best)
+	}
+	return append(cuts, extent)
+}
+
+func abs(v int) int {
+	if v < 0 {
+		return -v
+	}
+	return v
 }
 
 // AnimOptions controls Animation. Border, Margin, StickerSize and Finish
@@ -38,11 +90,12 @@ type AnimOptions struct {
 	// are downscaled uniformly to fit. 0 = no cap.
 	MaxSheet int
 	// Normalize rescales each frame so its base (the widest row in the
-	// bottom part of the art: a lily pad, the feet on the ground) is the
-	// same width as the first frame's, hiding the generator's small
-	// scale drift between cells. A frame whose base measures more than
-	// MaxDrift away from the first (fraction; 0 = 0.25) is left alone,
-	// since that means the measurement caught something else.
+	// bottom part of the art) is the same width as the first frame's,
+	// hiding the generator's small scale drift between cells. Only for a
+	// base object that keeps its shape and is the widest thing down there
+	// in every pose (a lily pad, a perch): feet, a curling body or spread
+	// wings make the measure jump. A frame whose base measures more than
+	// MaxDrift away from the first (fraction; 0 = 0.25) is left alone.
 	Normalize bool
 	MaxDrift  float64
 	// Rest is the sticker's own raw art (no border) and RestFrames the
@@ -69,10 +122,16 @@ type AnimSheet struct {
 	Scales []float64
 }
 
-// edgeCrumbFraction is how small a blob on a cell's edge must be, as a
-// fraction of the cell's opaque pixels, to count as a neighbour's stray
-// sliver (StripEdgeCrumbs): a fly is a few percent, a sliver far less.
-const edgeCrumbFraction = 0.02
+// A blob on a cell's edge is a neighbour's stray sliver (StripEdgeCrumbs)
+// when it is small — under edgeCrumbFraction of the cell's opaque pixels
+// (a fly is a few percent, a sliver far less) — or thin: reaching in from
+// that edge less than edgeCrumbDepth of the cell's size (a character that
+// really touches an edge reaches far into its cell; a pair of feet cut
+// off by the grid line does not).
+const (
+	edgeCrumbFraction = 0.02
+	edgeCrumbDepth    = 0.12
+)
 
 // registered is one frame trimmed to its art with its anchor: the centre
 // of its base row and the bottom of the art.
@@ -109,7 +168,7 @@ func Animation(cells []*image.RGBA, o AnimOptions) (*AnimSheet, error) {
 	widths := make([]float64, len(cells))
 	for i, cell := range cells {
 		cleaned := Clean(cell, o.Threshold)
-		StripEdgeCrumbs(cleaned, o.Threshold, edgeCrumbFraction)
+		StripEdgeCrumbs(cleaned, o.Threshold, edgeCrumbFraction, edgeCrumbDepth)
 		box := Bounds(cleaned, o.Threshold)
 		if box.Empty() {
 			return nil, fmt.Errorf("frame %d is fully transparent", i+1)
@@ -230,7 +289,9 @@ func layout(frames []registered, scales []float64, o AnimOptions, toSticker, glo
 
 // baseRow finds the art's base: the widest row of alpha in the bottom 45 %
 // of the image (a lily pad, a body on its feet). Returns the row's centre
-// x and its width.
+// x and its width. The very bottom rows are not used: a pad's underside
+// or a set of paws is drawn a little differently in every cell, while
+// the widest row of the base is stable.
 func baseRow(art *image.RGBA, threshold uint8) (cx, width int) {
 	b := art.Bounds()
 	from := b.Min.Y + int(float64(b.Dy())*0.55)
@@ -256,12 +317,14 @@ func baseRow(art *image.RGBA, threshold uint8) (cx, width int) {
 	return bestC - b.Min.X, bestW
 }
 
-// StripEdgeCrumbs clears small connected blobs of alpha that touch the
-// image edge: when a sheet is cut into cells, a neighbour's art that
-// strayed over the grid line shows up as a sliver on the boundary. A blob
-// is small when it holds less than maxFraction of the image's opaque
-// pixels, so a character that fills its cell to the edge is kept.
-func StripEdgeCrumbs(img *image.RGBA, threshold uint8, maxFraction float64) {
+// StripEdgeCrumbs clears connected blobs of alpha that touch the image
+// edge and are either small (less than maxFraction of the image's opaque
+// pixels) or thin (reaching in from an edge they touch less than maxDepth
+// of the image's size): when a sheet is cut into cells, a neighbour's art
+// that strayed over the grid line shows up as a sliver on the boundary,
+// while a character that fills its cell to the edge reaches deep into it
+// and is kept.
+func StripEdgeCrumbs(img *image.RGBA, threshold uint8, maxFraction, maxDepth float64) {
 	b := img.Bounds()
 	w, h := b.Dx(), b.Dy()
 	opaque := func(x, y int) bool { return img.Pix[img.PixOffset(x+b.Min.X, y+b.Min.Y)+3] > threshold }
@@ -283,6 +346,7 @@ func StripEdgeCrumbs(img *image.RGBA, threshold uint8, maxFraction float64) {
 			stack, blob = append(stack[:0], y*w+x), blob[:0]
 			seen[y*w+x] = true
 			touches := false
+			minX, minY, maxX, maxY := w, h, -1, -1
 			for len(stack) > 0 {
 				i := stack[len(stack)-1]
 				stack = stack[:len(stack)-1]
@@ -291,6 +355,7 @@ func StripEdgeCrumbs(img *image.RGBA, threshold uint8, maxFraction float64) {
 				if px == 0 || py == 0 || px == w-1 || py == h-1 {
 					touches = true
 				}
+				minX, minY, maxX, maxY = min(minX, px), min(minY, py), max(maxX, px), max(maxY, py)
 				for _, d := range [4][2]int{{1, 0}, {-1, 0}, {0, 1}, {0, -1}} {
 					nx, ny := px+d[0], py+d[1]
 					if nx < 0 || ny < 0 || nx >= w || ny >= h || seen[ny*w+nx] || !opaque(nx, ny) {
@@ -300,7 +365,25 @@ func StripEdgeCrumbs(img *image.RGBA, threshold uint8, maxFraction float64) {
 					stack = append(stack, ny*w+nx)
 				}
 			}
-			if touches && float64(len(blob)) < maxFraction*float64(total) {
+			if !touches {
+				continue
+			}
+			small := float64(len(blob)) < maxFraction*float64(total)
+			// Thin: on every edge it touches, it reaches in less than maxDepth.
+			thin := true
+			if minY == 0 && float64(maxY+1) >= maxDepth*float64(h) {
+				thin = false
+			}
+			if maxY == h-1 && float64(h-minY) >= maxDepth*float64(h) {
+				thin = false
+			}
+			if minX == 0 && float64(maxX+1) >= maxDepth*float64(w) {
+				thin = false
+			}
+			if maxX == w-1 && float64(w-minX) >= maxDepth*float64(w) {
+				thin = false
+			}
+			if small || thin {
 				for _, i := range blob {
 					o := img.PixOffset(i%w+b.Min.X, i/w+b.Min.Y)
 					img.Pix[o], img.Pix[o+1], img.Pix[o+2], img.Pix[o+3] = 0, 0, 0, 0
