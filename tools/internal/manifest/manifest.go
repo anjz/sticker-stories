@@ -50,6 +50,9 @@ type Sticker struct {
 	ID    string            `json:"id"`
 	Name  map[string]string `json:"name"`
 	Image string            `json:"image"`
+	// Animations are pack-relative paths to live-animation sidecars
+	// (StickerAnimation); absent means a still sticker.
+	Animations []string `json:"animations,omitempty"`
 }
 
 // Story is one pregenerated story; its text and narration exist once per
@@ -222,6 +225,28 @@ func (m *Manifest) Validate(dir string) []error {
 		stickerIDs[st.ID] = true
 		checkCoverage(fmt.Sprintf("sticker %q name", st.ID), st.Name)
 		checkImage(fmt.Sprintf("sticker %q image", st.ID), st.Image)
+		// Rule 12: live-animation sidecars exist and are valid.
+		for j, rel := range st.Animations {
+			field := fmt.Sprintf("sticker %q animations[%d]", st.ID, j)
+			checkFile(field, rel)
+			if rel == "" || filepath.IsAbs(rel) || pathEscapes(rel) {
+				continue
+			}
+			if path.Ext(rel) != ".json" {
+				fail("%s: %q must be a .json file", field, rel)
+				continue
+			}
+			anim, err := LoadStickerAnimation(filepath.Join(dir, filepath.FromSlash(rel)))
+			if err != nil {
+				if !os.IsNotExist(err) {
+					fail("%s: %v", field, err)
+				}
+				continue
+			}
+			for _, e := range anim.Validate(dir, st.ID) {
+				fail("%s: %v", field, e)
+			}
+		}
 	}
 
 	// Rules 2, 4, 6, 7, 8 over stories.

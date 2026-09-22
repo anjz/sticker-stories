@@ -102,6 +102,8 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         object.removeValue(forKey: "setting")
         let absent = try JSONDecoder().decode(PackManifest.self, from: JSONSerialization.data(withJSONObject: object))
         #expect(absent.setting == .none)
+        // A sticker without `animations` is a still sticker.
+        #expect(absent.stickers.allSatisfy { $0.animations.isEmpty })
 
         object["setting"] = "underwater"
         #expect(throws: DecodingError.self) {
@@ -177,6 +179,8 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         InvalidCase("not found") { $0.background = "art/nope.png" },
         InvalidCase(".png or .webp") { $0.background = "art/background.jpg" },
         InvalidCase(".png or .webp") { $0.stickers[0].image = "stickers/mushroom.heic" },
+        InvalidCase("not found") { $0.stickers[1].animations = ["anims/fox.yawn.json"] },
+        InvalidCase(".json") { $0.stickers[1].animations = ["stickers/fox.png"] },
         InvalidCase("declared together") { $0.backgroundWide = "art/background.png" },
         InvalidCase("backgroundWide") { $0.backgroundWide = "art/nope-wide.png"; $0.foregroundWide = "art/foreground.png" },
         InvalidCase("escape") { $0.foreground = "../../evil.png" },

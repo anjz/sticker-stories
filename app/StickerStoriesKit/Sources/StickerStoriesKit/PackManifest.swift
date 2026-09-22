@@ -117,11 +117,23 @@ public struct StickerDefinition: Codable, Equatable, Sendable, Identifiable {
     public var id: String
     public var name: [String: String]
     public var image: String
+    /// Pack-relative paths to live-animation sidecars (`docs/pack-format.md`,
+    /// "Live animations"); empty for a still sticker.
+    public var animations: [String]
 
-    public init(id: String, name: [String: String], image: String) {
+    public init(id: String, name: [String: String], image: String, animations: [String] = []) {
         self.id = id
         self.name = name
         self.image = image
+        self.animations = animations
+    }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(String.self, forKey: .id)
+        name = try c.decode([String: String].self, forKey: .name)
+        image = try c.decode(String.self, forKey: .image)
+        animations = try c.decodeIfPresent([String].self, forKey: .animations) ?? []
     }
 
     public func name(for language: String, fallbackOrder: [String]) -> String {
@@ -295,6 +307,16 @@ extension PackManifest {
             }
             checkCoverage("sticker \"\(sticker.id)\" name", sticker.name)
             checkImage("sticker \"\(sticker.id)\" image", sticker.image)
+            // Rule 12: live-animation sidecars exist (the packager validates
+            // their content strictly; the app reads them leniently).
+            for (index, path) in sticker.animations.enumerated() {
+                let field = "sticker \"\(sticker.id)\" animations[\(index)]"
+                checkFile(field, path)
+                if path.isEmpty || path.hasPrefix("/") || path.split(separator: "/").contains("..") { continue }
+                if (path as NSString).pathExtension.lowercased() != "json" {
+                    issues.append("\(field): \"\(path)\" must be a .json file")
+                }
+            }
         }
 
         // Rules 2, 4, 6, 7, 8 over stories.
