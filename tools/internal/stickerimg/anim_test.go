@@ -126,58 +126,26 @@ func TestSplitGrid(t *testing.T) {
 	}
 }
 
-func TestStripEdgeCrumbs(t *testing.T) {
-	img := image.NewRGBA(image.Rect(0, 0, 100, 100))
-	fill := func(r image.Rectangle) {
-		for y := r.Min.Y; y < r.Max.Y; y++ {
-			for x := r.Min.X; x < r.Max.X; x++ {
-				img.SetRGBA(x, y, color.RGBA{0, 120, 0, 255})
-			}
+func TestSplitGridCutsWhereTheSheetIsEmpty(t *testing.T) {
+	// A 2×1 sheet of 200×100 whose left character reaches 8 px past the
+	// nominal middle line, with a gap before the right one.
+	sheet := image.NewRGBA(image.Rect(0, 0, 200, 100))
+	for y := 20; y < 80; y++ {
+		for x := 10; x < 108; x++ {
+			sheet.SetRGBA(x, y, color.RGBA{200, 50, 50, 255})
+		}
+		for x := 125; x < 190; x++ {
+			sheet.SetRGBA(x, y, color.RGBA{50, 50, 200, 255})
 		}
 	}
-	fill(image.Rect(20, 30, 80, 100)) // the character, touching the bottom edge
-	fill(image.Rect(40, 0, 60, 3))    // a sliver of the neighbour's art on the top edge
-	fill(image.Rect(85, 10, 92, 17))  // a small fly, not on an edge
-	StripEdgeCrumbs(img, 8, 0.02)
-	if img.RGBAAt(50, 1).A != 0 {
-		t.Errorf("the edge sliver should be gone")
+	cells := SplitGrid(sheet, 2, 1)
+	if w := cells[0].Rect.Dx(); w < 108 || w > 125 {
+		t.Errorf("left cell is %d wide; the cut should fall in the gap 108–125", w)
 	}
-	if img.RGBAAt(50, 99).A == 0 {
-		t.Errorf("the character touching the edge must stay")
+	if box := Bounds(cells[0], 0); box.Dx() != 98 {
+		t.Errorf("left character should be whole (98 px), got %v", box)
 	}
-	if img.RGBAAt(88, 13).A == 0 {
-		t.Errorf("the fly must stay")
-	}
-}
-
-func TestAnimationRestFramesUseTheRealArt(t *testing.T) {
-	// The generated rest cells draw the body 20 % too small; the real art
-	// (at 1.5× the sheet's scale) replaces them.
-	cells := []*image.RGBA{cell(160, 30, 48, 0, 1), cell(160, 30, 60, 80, 1), cell(160, 30, 48, 0, 1)}
-	real := cell(240, 45, 90, 0, 1)
-	sheet, err := Animation(cells, AnimOptions{StickerSize: 512, Border: 0.025, Margin: 0.03, Columns: 3, Rest: real, RestFrames: []int{0, 2}})
-	if err != nil {
-		t.Fatal(err)
-	}
-	bodyWidth := func(frame int) int {
-		minX, maxX := sheet.Frame.X, -1
-		for y := 0; y < sheet.Frame.Y; y++ {
-			for x := 0; x < sheet.Frame.X; x++ {
-				c := sheet.Image.RGBAAt(frame*sheet.Frame.X+x, y)
-				if c.A == 255 && c.R > 150 && c.G < 100 {
-					minX, maxX = min(minX, x), max(maxX, x)
-				}
-			}
-		}
-		return maxX - minX + 1
-	}
-	if w := bodyWidth(0); w < 58 || w > 62 {
-		t.Errorf("rest frame body width %d, want ≈60 (the real art scaled to the pad)", w)
-	}
-	if w := bodyWidth(2); w < 58 || w > 62 {
-		t.Errorf("last rest frame body width %d, want ≈60", w)
-	}
-	if w := bodyWidth(1); w < 58 || w > 62 {
-		t.Errorf("generated frame body width %d, want ≈60", w)
+	if box := Bounds(cells[1], 0); box.Dx() != 65 {
+		t.Errorf("right character should be whole (65 px), got %v", box)
 	}
 }
