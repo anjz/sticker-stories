@@ -1,13 +1,13 @@
 // Command stickeranim produces frame animations ("live" stickers) for a
 // pack's stickers with the OpenAI Images API and installs them into the
-// pack. Prototype: the app's developer gallery plays them; stories do not
-// trigger them yet and the manifest does not know about them.
+// pack (docs/pack-format.md, "Live animations"). The app's developer
+// gallery plays them; stories do not trigger them yet.
 //
 // Usage:
 //
 //	stickeranim render  -pack ../packs/forest [-only frog|backflip-fly] [-quality high]
 //	                    [-dry-run] [-force]
-//	stickeranim install -pack ../packs/forest
+//	stickeranim install -pack ../packs/forest [-bump]
 //
 // anim.json (tools/author/art/<packID>/anim.json) describes each animation
 // as one or more sprite sheets — a grid of frames the edits model draws in
@@ -34,9 +34,12 @@ import (
 	"image"
 	"image/color"
 	"image/draw"
+	"math"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
+	"sync"
 	"time"
 
 	"stickerstories/tools/internal/dotenv"
@@ -49,7 +52,7 @@ const (
 	toolVersion = "1"
 	// assembleVersion changes whenever the registration or finishing of
 	// kept raw sheets changes, so they are re-assembled without new calls.
-	assembleVersion = "4"
+	assembleVersion = "9"
 	editModel       = "gpt-image-2.5-sunburst"
 	defaultQual     = "high"
 	defaultHold     = 1.0 / 12
@@ -102,13 +105,24 @@ type animSpec struct {
 	// they take the sticker's real art, so the animation starts and ends
 	// on exactly the sticker (needs the raw from stickerart).
 	RestFrames []int `json:"restFrames,omitempty"`
+	// Normalize (default false) rescales frames so the base keeps its
+	// width: only for a base object that is the widest thing at the
+	// bottom in every pose (a lily pad, a perch); feet, a curling body or
+	// spread wings make the measure jump and the frame pop in size.
+	Normalize bool `json:"normalize,omitempty"`
 }
+
+func (a animSpec) normalize() bool { return a.Normalize }
 
 type sheetSpec struct {
 	Columns int      `json:"columns"`
 	Rows    int      `json:"rows"`
 	Size    string   `json:"size"` // e.g. 3072x1536
 	Frames  []string `json:"frames"`
+	// Hint is extra guidance for this sheet only (a size or framing
+	// correction after a bad result); it changes only this sheet's
+	// fingerprint.
+	Hint string `json:"hint,omitempty"`
 }
 
 func (a animSpec) frameCount() int {
@@ -121,38 +135,13 @@ func (a animSpec) frameCount() int {
 
 func (a animSpec) key() string { return a.Sticker + "." + a.ID }
 
-// animOutput is the JSON the app reads next to the sheet PNG.
-type animOutput struct {
-	ID      string `json:"id"`
-	Sticker string `json:"sticker"`
-	Sheet   string `json:"sheet"` // pack-relative
-	Frame   struct {
-		Width  int `json:"width"`
-		Height int `json:"height"`
-	} `json:"frame"`
-	Columns int `json:"columns"`
-	Count   int `json:"count"`
-	// Rest is the first frame's bordered content within a frame and
-	// StickerBox the same content within the sticker image, both as
-	// fractions of their image with a top-left origin: the app scales
-	// and offsets the frames so Rest lands exactly on StickerBox.
-	Rest       unitBox   `json:"rest"`
-	StickerBox unitBox   `json:"stickerBox"`
-	Hold       []float64 `json:"hold"`
-}
-
-type unitBox struct {
-	X, Y, Width, Height float64
-}
-
-func (b unitBox) MarshalJSON() ([]byte, error) {
-	return []byte(fmt.Sprintf(`{"x":%.5f,"y":%.5f,"width":%.5f,"height":%.5f}`, b.X, b.Y, b.Width, b.Height)), nil
-}
-
-func unit(r image.Rectangle, in image.Point) unitBox {
-	return unitBox{
-		X: float64(r.Min.X) / float64(in.X), Y: float64(r.Min.Y) / float64(in.Y),
-		Width: float64(r.Dx()) / float64(in.X), Height: float64(r.Dy()) / float64(in.Y),
+// unit rounds a pixel box to fractions of its image (5 decimals is well
+// under a pixel at any size that matters).
+func unit(r image.Rectangle, in image.Point) manifest.UnitBox {
+	round := func(v float64) float64 { return math.Round(v*1e5) / 1e5 }
+	return manifest.UnitBox{
+		X: round(float64(r.Min.X) / float64(in.X)), Y: round(float64(r.Min.Y) / float64(in.Y)),
+		Width: round(float64(r.Dx()) / float64(in.X)), Height: round(float64(r.Dy()) / float64(in.Y)),
 	}
 }
 
@@ -291,6 +280,7 @@ type renderOpts struct {
 	quality, fidelity string
 	only              map[string]bool
 	force, dry        bool
+	parallel          int
 }
 
 type renderer struct {
@@ -298,10 +288,26 @@ type renderer struct {
 	oa      *openai.Client
 	o       renderOpts
 	ctx     context.Context
+	mu      sync.Mutex
 	fps     map[string]string // output path → fingerprint (out/anims/render.json)
 	spent   openai.Usage
 	calls   int
 	planned []string
+}
+
+func (r *renderer) say(format string, args ...any) {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	fmt.Printf(format+"\n", args...)
+}
+
+// charge records a call's usage and returns a short cost label.
+func (r *renderer) charge(u openai.Usage) string {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	r.spent.Add(u)
+	r.calls++
+	return fmt.Sprintf("$%.3f", u.Cost(openai.DefaultPrices))
 }
 
 func (r *renderer) out(parts ...string) string {
@@ -335,12 +341,13 @@ func runRender(args []string) error {
 	fidelity := fs.String("fidelity", "", "input_fidelity for the reference (high | low) on models that take it; gpt-image-2.5 does not")
 	force := fs.Bool("force", false, "re-render even if nothing changed")
 	dry := fs.Bool("dry-run", false, "list what would be generated; no API calls")
+	parallel := fs.Int("parallel", 3, "animations rendered concurrently (each one's sheets stay sequential)")
 	fs.Parse(args)
 	c, err := load(*packDir, *artDir)
 	if err != nil {
 		return err
 	}
-	o := renderOpts{quality: *quality, fidelity: *fidelity, force: *force, dry: *dry}
+	o := renderOpts{quality: *quality, fidelity: *fidelity, force: *force, dry: *dry, parallel: *parallel}
 	if *only != "" {
 		o.only = map[string]bool{}
 		for _, id := range strings.Split(*only, ",") {
@@ -357,16 +364,37 @@ func runRender(args []string) error {
 	if data, err := os.ReadFile(r.out("render.json")); err == nil {
 		json.Unmarshal(data, &r.fps)
 	}
-	var failures []string
+	var (
+		failures []string
+		wg       sync.WaitGroup
+		queue    = make(chan animSpec)
+	)
+	workers := o.parallel
+	if workers < 1 || o.dry {
+		workers = 1
+	}
+	for w := 0; w < workers; w++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for a := range queue {
+				if err := r.animation(a); err != nil {
+					r.mu.Lock()
+					failures = append(failures, a.key()+": "+err.Error())
+					r.mu.Unlock()
+					r.say("✗ %s: %v", a.key(), err)
+				}
+			}
+		}()
+	}
 	for _, a := range c.cfg.Animations {
 		if o.only != nil && !o.only[a.ID] && !o.only[a.Sticker] {
 			continue
 		}
-		if err := r.animation(a); err != nil {
-			failures = append(failures, a.key()+": "+err.Error())
-			fmt.Printf("✗ %s: %v\n", a.key(), err)
-		}
+		queue <- a
 	}
+	close(queue)
+	wg.Wait()
 	if o.dry {
 		fmt.Printf("\nDry run: %d step(s) at quality %s:\n  %s\n", len(r.planned), o.quality, strings.Join(r.planned, "\n  "))
 		return nil
@@ -383,10 +411,14 @@ func runRender(args []string) error {
 }
 
 func (r *renderer) upToDate(path, fp string) bool {
+	r.mu.Lock()
+	defer r.mu.Unlock()
 	return !r.o.force && exists(path) && r.fps[path] == fp
 }
 
 func (r *renderer) done(path, fp string) {
+	r.mu.Lock()
+	defer r.mu.Unlock()
 	r.fps[path] = fp
 	data, _ := json.MarshalIndent(r.fps, "", "  ")
 	os.WriteFile(r.out("render.json"), append(data, '\n'), 0o644)
@@ -404,7 +436,7 @@ func (r *renderer) reference(stickerID string) ([]byte, string, error) {
 	path := raw
 	if !exists(raw) {
 		path = r.c.stickerImage(stickerID)
-		fmt.Printf("  (no raw for %s; using the finished sticker as the reference — its border may leak into the frames)\n", stickerID)
+		r.say("  (no raw for %s; using the finished sticker as the reference — its border may leak into the frames)", stickerID)
 	}
 	data, err := os.ReadFile(path)
 	if err != nil {
@@ -433,7 +465,10 @@ func (r *renderer) animation(a animSpec) error {
 		changed = false
 	)
 	for i, sh := range a.Sheets {
-		prompt := sheetPrompt(art.Style, r.c.stickerPrompt(a.Sticker), a, sh, first, total, prev != nil)
+		// Every sheet after the first carries on from the previous one, so
+		// the prompt (and the fingerprint) is the same with or without the
+		// reference loaded (dry runs load none).
+		prompt := sheetPrompt(art.Style, r.c.stickerPrompt(a.Sticker), a, sh, first, total, i > 0)
 		// The previous sheet is a reference for this one, but it is not in
 		// the fingerprint: redoing sheet 1 must not throw away a good sheet 2
 		// (-force redoes everything).
@@ -441,12 +476,12 @@ func (r *renderer) animation(a animSpec) error {
 		raw := r.out(fmt.Sprintf("%s.sheet%d.raw.png", a.key(), i+1))
 		switch {
 		case r.upToDate(raw, genFP):
-			fmt.Printf("· %s sheet %d up to date\n", a.key(), i+1)
+			r.say("· %s sheet %d up to date", a.key(), i+1)
 		case r.o.dry:
 			r.planned = append(r.planned, fmt.Sprintf("%s sheet %d (%s, %d frames, transparent)", a.key(), i+1, sh.Size, len(sh.Frames)))
 			fmt.Printf("--- %s sheet %d prompt ---\n%s\n\n", a.key(), i+1, prompt)
 		default:
-			fmt.Printf("▶ %s sheet %d (frames %d–%d)\n", a.key(), i+1, first, first+len(sh.Frames)-1)
+			r.say("▶ %s sheet %d (frames %d–%d)", a.key(), i+1, first, first+len(sh.Frames)-1)
 			started := time.Now()
 			refs := [][]byte{ref}
 			if prev != nil {
@@ -460,9 +495,7 @@ func (r *renderer) animation(a animSpec) error {
 				return err
 			}
 			r.done(raw, genFP)
-			r.spent.Add(img.Usage)
-			r.calls++
-			fmt.Printf("✓ %s sheet %d ($%.3f, %.0fs)\n", a.key(), i+1, img.Usage.Cost(openai.DefaultPrices), time.Since(started).Seconds())
+			r.say("✓ %s sheet %d (%s, %.0fs)", a.key(), i+1, r.charge(img.Usage), time.Since(started).Seconds())
 			changed = true
 		}
 		raws = append(raws, raw)
@@ -486,10 +519,10 @@ func (r *renderer) animation(a animSpec) error {
 			hold[i] = defaultHold
 		}
 	}
-	asmFP := hashOf(append([]string{assembleVersion, hashFile(stickerPath), hashFile(r.rawPath(a.Sticker)), fmt.Sprint(r.c.cfg.Columns, r.c.cfg.MaxSheet, art.StickerSize, art.Border, art.Margin, art.finish(), hold, a.RestFrames)}, genFPs...)...)
+	asmFP := hashOf(append([]string{assembleVersion, hashFile(stickerPath), hashFile(r.rawPath(a.Sticker)), fmt.Sprint(r.c.cfg.Columns, r.c.cfg.MaxSheet, art.StickerSize, art.Border, art.Margin, art.finish(), hold, a.RestFrames, a.normalize())}, genFPs...)...)
 	sheetPath, jsonPath := r.out(a.key()+".png"), r.out(a.key()+".json")
 	if !changed && r.upToDate(sheetPath, asmFP) && r.upToDate(jsonPath, asmFP) {
-		fmt.Printf("· %s assembled sheet up to date\n", a.key())
+		r.say("· %s assembled sheet up to date", a.key())
 		return nil
 	}
 	if r.o.dry {
@@ -519,6 +552,9 @@ func sheetPrompt(style, sticker string, a animSpec, sh sheetSpec, first, total i
 		fmt.Fprintf(&b, "%d. %s\n", first+i, strings.TrimSpace(f))
 	}
 	fmt.Fprintf(&b, "\nRules: draw every frame at exactly the same scale, with %s the same size and in the same place in every cell — centred horizontally and resting on the bottom part of the cell — so that only the character moves relative to it. Keep each frame well inside its own cell with clear empty space around it: nothing touches or crosses a cell boundary, and the frames are spaced evenly. No grid lines, no cell borders, no boxes, no numbers, no labels, no text, no ground shadow, no background — a fully transparent background everywhere except the drawing itself.", a.Base)
+	if h := strings.TrimSpace(sh.Hint); h != "" {
+		fmt.Fprintf(&b, " %s", h)
+	}
 	return b.String()
 }
 
@@ -542,8 +578,9 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 	finish := art.finish()
 	opts := stickerimg.AnimOptions{
 		StickerSize: art.StickerSize, Border: art.Border, Margin: art.Margin, Threshold: 8, Finish: &finish,
-		Columns: r.c.cfg.Columns, MaxSheet: r.c.cfg.MaxSheet, Normalize: true,
+		Columns: r.c.cfg.Columns, MaxSheet: r.c.cfg.MaxSheet, Normalize: a.normalize(),
 	}
+
 	if len(a.RestFrames) > 0 {
 		if data, err := os.ReadFile(r.rawPath(a.Sticker)); err == nil {
 			if opts.Rest, err = stickerimg.Decode(data); err != nil {
@@ -553,7 +590,7 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 				opts.RestFrames = append(opts.RestFrames, f-1)
 			}
 		} else {
-			fmt.Printf("  (no raw for %s; rest frames keep the generated art)\n", a.Sticker)
+			r.say("  (no raw for %s; rest frames keep the generated art)", a.Sticker)
 		}
 	}
 	sheet, err := stickerimg.Animation(cells, opts)
@@ -568,7 +605,7 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 	if err != nil {
 		return err
 	}
-	out := animOutput{ID: a.ID, Sticker: a.Sticker, Sheet: "anims/" + a.key() + ".webp", Columns: sheet.Columns, Count: sheet.Count, Hold: hold}
+	out := manifest.StickerAnimation{ID: a.ID, Sticker: a.Sticker, Sheet: "anims/" + a.key() + ".webp", Columns: sheet.Columns, Count: sheet.Count, Hold: hold}
 	out.Frame.Width, out.Frame.Height = sheet.Frame.X, sheet.Frame.Y
 	out.Rest = unit(sheet.Rest, sheet.Frame)
 	out.StickerBox = unit(stickerimg.Bounds(sticker, 0), sticker.Bounds().Size())
@@ -591,7 +628,7 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 	for i, s := range sheet.Scales {
 		scales[i] = fmt.Sprintf("%.2f", s)
 	}
-	fmt.Printf("✓ %s: %d frames of %dx%d in a %dx%d sheet (frame scales %s)\n", a.key(), sheet.Count, sheet.Frame.X, sheet.Frame.Y, sheet.Image.Bounds().Dx(), sheet.Image.Bounds().Dy(), strings.Join(scales, " "))
+	r.say("✓ %s: %d frames of %dx%d in a %dx%d sheet (frame scales %s)", a.key(), sheet.Count, sheet.Frame.X, sheet.Frame.Y, sheet.Image.Bounds().Dx(), sheet.Image.Bounds().Dy(), strings.Join(scales, " "))
 	return nil
 }
 
@@ -636,14 +673,22 @@ func downscale(data []byte, maxEdge int) ([]byte, error) {
 
 // ---------- install ----------
 
+// runInstall encodes each assembled sheet into the pack as WebP, copies
+// its sidecar next to it and declares it in the sticker's manifest entry
+// (docs/pack-format.md, "Live animations"), validating before writing.
 func runInstall(args []string) error {
 	fs := flag.NewFlagSet("install", flag.ExitOnError)
 	packDir := fs.String("pack", "", "pack directory")
 	artDir := fs.String("art", "", "art directory (default author/art/<packID>)")
+	bump := fs.Bool("bump", false, "increment the pack's content version")
 	fs.Parse(args)
 	c, err := load(*packDir, *artDir)
 	if err != nil {
 		return err
+	}
+	byID := map[string]int{}
+	for i, s := range c.pack.Stickers {
+		byID[s.ID] = i
 	}
 	outDir := filepath.Join(c.artDir, "out", "anims")
 	cache := map[string]string{}
@@ -667,12 +712,33 @@ func runInstall(args []string) error {
 		if err := copyFile(src+".json", dst+".json"); err != nil {
 			return err
 		}
+		rel := "anims/" + a.key() + ".json"
+		st := &c.pack.Stickers[byID[a.Sticker]]
+		if !slices.Contains(st.Animations, rel) {
+			st.Animations = append(st.Animations, rel)
+		}
 		installed++
 	}
 	if data, err := json.MarshalIndent(cache, "", "  "); err == nil {
 		os.WriteFile(filepath.Join(outDir, "render.json"), append(data, '\n'), 0o644)
 	}
-	fmt.Printf("✓ installed %d animation(s) into %s/anims (the manifest is untouched: the developer gallery finds them by file)\n", installed, c.packDir)
+	if *bump {
+		c.pack.Version++
+	}
+	if errs := c.pack.Validate(c.packDir); len(errs) > 0 {
+		for _, e := range errs {
+			fmt.Printf("  ✗ %v\n", e)
+		}
+		return errors.New("manifest would not validate; manifest.json left unchanged (files were copied)")
+	}
+	data, err := json.MarshalIndent(c.pack, "", "  ")
+	if err != nil {
+		return err
+	}
+	if err := os.WriteFile(filepath.Join(c.packDir, "manifest.json"), append(data, '\n'), 0o644); err != nil {
+		return err
+	}
+	fmt.Printf("✓ installed %d animation(s) into %s/anims and declared them in the manifest (version %d); manifest validates\n", installed, c.packDir, c.pack.Version)
 	return nil
 }
 
