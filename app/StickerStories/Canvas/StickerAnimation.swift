@@ -7,11 +7,12 @@ import UIKit
 /// moment: a sprite sheet the tooling drew from the sticker's own art
 /// (`tools/author/stickeranim`), every frame registered on the part that
 /// stays still, bordered and finished like the sticker, plus the mapping
-/// that lays its rest frame exactly over the placed sticker.
+/// that lays its rest frame exactly over the placed sticker. The sidecar
+/// contract is `docs/pack-format.md`, "Live animations"; the manifest
+/// declares each sticker's sidecars and this reads them leniently (a
+/// sidecar that does not decode is skipped).
 ///
-/// Prototype: animations are found by file in the pack's `anims/` folder
-/// (`<sticker>.<id>.json` next to its sheet), not through the manifest, and
-/// only the developer gallery plays them. Stories cannot trigger them yet.
+/// Only the developer gallery plays them; stories cannot trigger them yet.
 struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// A box as fractions of its image, top-left origin.
     struct UnitBox: Decodable, Sendable {
@@ -42,22 +43,22 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     var key: String { "\(sticker).\(id)" }
     var rows: Int { (count + columns - 1) / columns }
 
-    /// Every animation in the pack's `anims/` folder, by file.
+    /// Every animation the pack's manifest declares, in manifest order.
     static func available(in pack: LoadedPack) -> [StickerAnimation] {
-        let directory = pack.baseURL.appendingPathComponent("anims")
-        guard let files = try? FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)
-        else { return [] }
         let decoder = JSONDecoder()
-        return files
-            .filter { $0.pathExtension == "json" }
-            .compactMap { url -> StickerAnimation? in
-                guard let data = try? Data(contentsOf: url),
+        return pack.manifest.stickers.flatMap { sticker in
+            sticker.animations.compactMap { path -> StickerAnimation? in
+                guard let data = try? Data(contentsOf: pack.url(forAssetPath: path)),
                     let animation = try? decoder.decode(StickerAnimation.self, from: data),
-                    animation.count > 0, animation.columns > 0, animation.hold.count == animation.count
-                else { return nil }
+                    animation.sticker == sticker.id, animation.count > 0, animation.columns > 0,
+                    animation.hold.count == animation.count
+                else {
+                    print("StickerAnimation: skipping \(path) (undecodable or not \(sticker.id)'s)")
+                    return nil
+                }
                 return animation
             }
-            .sorted { $0.key < $1.key }
+        }
     }
 
     /// One `SKTexture` per frame, cut from the sheet.

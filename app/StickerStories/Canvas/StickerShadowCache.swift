@@ -49,6 +49,12 @@ final class StickerShadowCache {
         return texture
     }
 
+    /// Drops the shadow sheets (a sheet is a large texture; the gallery
+    /// lets go of them when it moves to another sticker).
+    func forgetShadowSheets() {
+        sheets.removeAll()
+    }
+
     private func build(from image: UIImage) -> Shadow? {
         guard let input = CIImage(image: image) else { return nil }
         let extent = input.extent
