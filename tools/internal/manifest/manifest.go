@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path"
 	"path/filepath"
 	"regexp"
 	"slices"
@@ -185,14 +186,25 @@ func (m *Manifest) Validate(dir string) []error {
 			fail("%s: %q is a directory, not a file", field, rel)
 		}
 	}
-	checkFile("background", m.Background)
-	checkFile("foreground", m.Foreground)
+	// Rule 11: image files are PNG or WebP (what the app decodes natively);
+	// checked once the path itself is acceptable (rule 5).
+	checkImage := func(field, rel string) {
+		checkFile(field, rel)
+		if rel == "" || filepath.IsAbs(rel) || pathEscapes(rel) {
+			return
+		}
+		if ext := strings.ToLower(path.Ext(rel)); ext != ".png" && ext != ".webp" {
+			fail("%s: %q must be a .png or .webp file", field, rel)
+		}
+	}
+	checkImage("background", m.Background)
+	checkImage("foreground", m.Foreground)
 	// Rule 10: wide art comes as a pair.
 	if m.BackgroundWide != "" {
-		checkFile("backgroundWide", m.BackgroundWide)
+		checkImage("backgroundWide", m.BackgroundWide)
 	}
 	if m.ForegroundWide != "" {
-		checkFile("foregroundWide", m.ForegroundWide)
+		checkImage("foregroundWide", m.ForegroundWide)
 	}
 	if (m.BackgroundWide == "") != (m.ForegroundWide == "") {
 		fail("backgroundWide and foregroundWide must be declared together")
@@ -209,7 +221,7 @@ func (m *Manifest) Validate(dir string) []error {
 		}
 		stickerIDs[st.ID] = true
 		checkCoverage(fmt.Sprintf("sticker %q name", st.ID), st.Name)
-		checkFile(fmt.Sprintf("sticker %q image", st.ID), st.Image)
+		checkImage(fmt.Sprintf("sticker %q image", st.ID), st.Image)
 	}
 
 	// Rules 2, 4, 6, 7, 8 over stories.
