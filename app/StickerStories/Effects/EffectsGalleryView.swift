@@ -194,7 +194,9 @@ final class EffectsGalleryScene: SKScene {
     /// A `playAll` requested before the scene was presented (SwiftUI's
     /// `onAppear` fires before `didMove(to:)`).
     private var pendingPlayAll: (intensity: Double, repeating: Bool)?
-    /// Sprite sheets of live animations, loaded on first play.
+    /// Sprite sheets of the sticker on show, loaded on first play and let
+    /// go of when the gallery moves to another sticker (each is a large
+    /// texture; ten animated stickers must not pile up).
     private var sheets: [String: SKTexture] = [:]
     /// A `playLive` requested before its sticker was on show.
     private var pendingLive: (animation: StickerAnimation, repeating: Bool)?
@@ -246,6 +248,8 @@ final class EffectsGalleryScene: SKScene {
         pendingStickerID = stickerID
         guard background.parent != nil else { return }
         stopEffects()
+        sheets.removeAll()
+        shadows.forgetShadowSheets()
         sticker?.removeFromParent()
         guard let definition = pack.sticker(withID: stickerID),
             let image = UIImage(contentsOfFile: pack.url(forAssetPath: definition.image).path)
