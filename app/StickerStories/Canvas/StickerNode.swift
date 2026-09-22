@@ -36,8 +36,14 @@ final class StickerNode: SKSpriteNode {
 
     private let contactShadow: SKSpriteNode
     private let castShadow: SKSpriteNode
-    /// Blur padding of the shadow texture relative to the sprite (1 = none).
+    /// The still art's shadow, and its blur padding relative to the sprite
+    /// (1 = none).
+    private let shadowTexture: SKTexture
     private let shadowSizeMultiplier: CGFloat
+    /// While a live animation plays (`playLive`), the shadows are sized to
+    /// its frames and centred on its sprite instead of on this one.
+    private var liveShadowSize: CGSize?
+    private var liveShadowAnchor: CGPoint = .zero
     private var contactPose = StickerNode.restingContact
     private var castPose = StickerNode.restingCast
     /// Additive bloom behind the sprite for the `glow` effect; created on
@@ -51,11 +57,15 @@ final class StickerNode: SKSpriteNode {
     /// mid-effect save never captures a wobble.
     var effectBase: StickerPlacement?
 
+    /// The sprite's own texture while a live animation stands in for it
+    /// (`playLive`, `StickerAnimation.swift`); `nil` otherwise.
+    var liveStillTexture: SKTexture?
+
     /// - Parameter shadow: the pack's blurred silhouette for this sticker;
     ///   without one the sprite's own texture stands in (hard-edged).
     init(stickerID: String, texture: SKTexture, size: CGSize, shadow: StickerShadowCache.Shadow? = nil) {
         self.stickerID = stickerID
-        let shadowTexture = shadow?.texture ?? texture
+        shadowTexture = shadow?.texture ?? texture
         shadowSizeMultiplier = shadow?.sizeMultiplier ?? 1
         contactShadow = SKSpriteNode(texture: shadowTexture)
         castShadow = SKSpriteNode(texture: shadowTexture)
@@ -108,8 +118,8 @@ final class StickerNode: SKSpriteNode {
         let scaleY = yScale != 0 ? abs(yScale) : 1
         for (layer, pose) in [(contactShadow, contactPose), (castShadow, castPose)] {
             let local = CGPoint(
-                x: (pose.offset.x * c - pose.offset.y * s) / scaleX,
-                y: (pose.offset.x * s + pose.offset.y * c) / scaleY)
+                x: liveShadowAnchor.x + (pose.offset.x * c - pose.offset.y * s) / scaleX,
+                y: liveShadowAnchor.y + (pose.offset.x * s + pose.offset.y * c) / scaleY)
             if animated {
                 layer.removeAllActions()
                 layer.run(.group([
@@ -127,15 +137,41 @@ final class StickerNode: SKSpriteNode {
 
     private func layoutShadows() {
         let base = unscaledSize
-        let size = CGSize(width: base.width * shadowSizeMultiplier, height: base.height * shadowSizeMultiplier)
+        let size = liveShadowSize
+            ?? CGSize(width: base.width * shadowSizeMultiplier, height: base.height * shadowSizeMultiplier)
         contactShadow.size = size
         castShadow.size = size
+    }
+
+    /// Hands the shadows to a live animation: sized to its frames and
+    /// centred on its sprite (`anchor`, in this node's unscaled space);
+    /// `setLiveShadow(_:)` then swaps the silhouette per frame.
+    func beginLiveShadow(size: CGSize, anchor: CGPoint) {
+        liveShadowSize = size
+        liveShadowAnchor = anchor
+        layoutShadows()
+        applyShadowPoses(animated: false)
+    }
+
+    func setLiveShadow(_ texture: SKTexture) {
+        contactShadow.texture = texture
+        castShadow.texture = texture
+    }
+
+    /// The still art's own shadow again.
+    func endLiveShadow() {
+        liveShadowSize = nil
+        liveShadowAnchor = .zero
+        contactShadow.texture = shadowTexture
+        castShadow.texture = shadowTexture
+        layoutShadows()
+        applyShadowPoses(animated: false)
     }
 
     /// `size` includes this node's own scale; children inherit that scale,
     /// so anything sized to match the sprite must use the unscaled size or
     /// a pinched sticker's shadow grows by the scale twice.
-    private var unscaledSize: CGSize {
+    var unscaledSize: CGSize {
         CGSize(
             width: xScale != 0 ? size.width / xScale : size.width,
             height: yScale != 0 ? size.height / yScale : size.height)

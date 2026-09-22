@@ -15,12 +15,15 @@ struct EffectsGalleryView: View {
     @State private var loop = false
     @State private var canvasDuration = 6.0
     @State private var stickerID: String
+    /// Live animations found in the pack (`StickerAnimation`), by sticker.
+    private let animations: [StickerAnimation]
 
     init(pack: LoadedPack) {
         self.pack = pack
         let first = pack.manifest.stickers.first?.id ?? ""
         _stickerID = State(initialValue: first)
         _scene = State(initialValue: EffectsGalleryScene(pack: pack, stickerID: first))
+        animations = StickerAnimation.available(in: pack)
     }
 
     private let columns = [GridItem(.adaptive(minimum: 120), spacing: 10)]
@@ -72,6 +75,27 @@ struct EffectsGalleryView: View {
                         }
                     }
 
+                    Text("Live")
+                        .font(.system(size: 15, weight: .heavy, design: .rounded))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 12)
+                    let live = animations.filter { $0.sticker == stickerID }
+                    if live.isEmpty {
+                        Text("No live animations for this sticker")
+                            .font(.system(size: 13, design: .rounded))
+                            .foregroundStyle(.secondary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    } else {
+                        LazyVGrid(columns: columns, spacing: 10) {
+                            ForEach(live) { animation in
+                                Button { scene.playLive(animation) } label: {
+                                    effectLabel(animation.id, liveColor)
+                                }
+                                .buttonStyle(SquishyButtonStyle())
+                            }
+                        }
+                    }
+
                     HStack {
                         Text("Canvas")
                             .font(.system(size: 15, weight: .heavy, design: .rounded))
@@ -116,6 +140,11 @@ struct EffectsGalleryView: View {
             if ProcessInfo.processInfo.arguments.contains("-effectsGalleryDemo") {
                 scene.playAll(intensity: 1.0, repeating: true)
             }
+            // `-liveDemo`: loop the first live animation on its sticker.
+            if ProcessInfo.processInfo.arguments.contains("-liveDemo"), let animation = animations.first {
+                stickerID = animation.sticker
+                scene.playLive(animation, repeating: true)
+            }
         }
     }
 
@@ -137,6 +166,7 @@ struct EffectsGalleryView: View {
     }
 
     private var canvasColor: Color { Color(red: 0.5, green: 0.38, blue: 0.75) }
+    private var liveColor: Color { Color(red: 0.85, green: 0.35, blue: 0.45) }
 }
 
 /// A tiny stand-in for the canvas: one sticker on the pack's background,
@@ -164,6 +194,10 @@ final class EffectsGalleryScene: SKScene {
     /// A `playAll` requested before the scene was presented (SwiftUI's
     /// `onAppear` fires before `didMove(to:)`).
     private var pendingPlayAll: (intensity: Double, repeating: Bool)?
+    /// Sprite sheets of live animations, loaded on first play.
+    private var sheets: [String: SKTexture] = [:]
+    /// A `playLive` requested before its sticker was on show.
+    private var pendingLive: (animation: StickerAnimation, repeating: Bool)?
 
     init(pack: LoadedPack, stickerID: String) {
         self.pack = pack
@@ -229,6 +263,35 @@ final class EffectsGalleryScene: SKScene {
         node.zRotation = 0.15  // a little tilt so pivots are visibly right
         layer.addChild(node)
         sticker = node
+        if let pending = pendingLive, pending.animation.sticker == stickerID {
+            pendingLive = nil
+            playLive(pending.animation, repeating: pending.repeating)
+        }
+    }
+
+    /// Plays a live animation on the sticker on show; waits for it if the
+    /// gallery is still switching to that sticker.
+    func playLive(_ animation: StickerAnimation, repeating: Bool = false) {
+        guard let sticker, sticker.stickerID == animation.sticker else {
+            pendingLive = (animation, repeating)
+            return
+        }
+        let sheet: SKTexture
+        var image: UIImage?
+        if let cached = sheets[animation.key] {
+            sheet = cached
+        } else {
+            guard let loaded = UIImage(contentsOfFile: pack.url(forAssetPath: animation.sheet).path) else { return }
+            image = loaded
+            sheet = SKTexture(image: loaded)
+            sheets[animation.key] = sheet
+        }
+        let shadowSheet = shadows.shadowSheet(for: animation) {
+            image ?? UIImage(contentsOfFile: pack.url(forAssetPath: animation.sheet).path)
+        }
+        sticker.playLive(animation, sheet: sheet, shadowSheet: shadowSheet) { [weak self] in
+            if repeating { self?.playLive(animation, repeating: true) }
+        }
     }
 
     func play(_ effect: EffectName, options: EffectOptions) {
@@ -244,10 +307,12 @@ final class EffectsGalleryScene: SKScene {
 
     func stopAll() {
         removeAction(forKey: "play-all")
+        pendingLive = nil
         stopEffects()
     }
 
     private func stopEffects() {
+        sticker?.stopLive()
         runner.stopAll()
         canvasRunner.stopAll()
         emitters.clearAll()
