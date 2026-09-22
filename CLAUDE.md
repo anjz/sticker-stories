@@ -67,7 +67,9 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
   `/author-stories` skill's brief + format in `author/stories/`, `storycheck`
   validator, `storyaudio` = step 2: ElevenLabs narration + cue alignment +
   mix + install into the pack; `stickerart` = sticker and scene art from
-  the OpenAI Images API, prompts in `author/art/<pack>/art.json`). API keys
+  the OpenAI Images API, prompts in `author/art/<pack>/art.json`;
+  `stickeranim` = live-sticker sprite sheets, a prototype only the debug
+  effects gallery plays, spec in `author/art/<pack>/anim.json`). API keys
   live in `tools/.env` (`ELEVENLABS_API_KEY`, `OPENAI_API_KEY`).
 - `docs/` — deep documentation; reference it, don't duplicate it here.
 

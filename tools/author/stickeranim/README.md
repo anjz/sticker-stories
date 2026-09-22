@@ -1,0 +1,101 @@
+# stickeranim — live stickers (frame animations) with the OpenAI Images API
+
+**Prototype.** Produces a frame animation for a sticker — the frog doing a
+backflip and catching a fly — as a sprite sheet the app plays over the
+placed sticker. Only the developer effects gallery plays them
+(Settings → Developer → Effects gallery → *Live*); stories cannot trigger
+them and the manifest does not know about them. Dev-time only; the API key
+is `OPENAI_API_KEY` in `tools/.env`.
+
+```sh
+cd tools
+go run ./author/stickeranim render  -pack ../packs/forest -dry-run   # prints the prompts
+go run ./author/stickeranim render  -pack ../packs/forest [-only frog]
+go run ./author/stickeranim install -pack ../packs/forest
+```
+
+## anim.json (`tools/author/art/<packID>/anim.json`)
+
+Reads `art.json` next to it for the pack style, the sticker's prompt and
+the sticker settings (border, margin, finish), so the frames come out as
+the same printed vinyl as the sticker.
+
+- `columns` (4) and `maxSheet` (4096 px): the assembled sheet's layout and
+  size cap (frames are downscaled uniformly to fit).
+- `animations[]`: `id`, `sticker`, a one-line `description` of the whole
+  animation, `base` — what stays still while the character moves ("the
+  lily pad", "the ground under its feet") — and:
+  - `sheets[]`: one API call each. `columns` × `rows` cells of equal size
+    at `size` (`3072x1536` with a 4×2 grid gives 768 px cells), and one
+    `frames[]` text per cell: the pose at that moment. Keep a sheet to
+    about eight frames; the model keeps the order and the character but
+    loses precision beyond that. Say what must *not* be in a frame yet
+    (frame 8 first came back with the fly and the tongue because the
+    description mentioned them).
+  - `hold[]`: seconds per frame across all sheets (default 1/12 s each).
+    The first and last frames are the crossfade with the still sticker.
+  - `restFrames[]`: 1-based frames that show the sticker's own pose. They
+    take the sticker's real raw art (from `stickerart`'s `out/`), scaled
+    onto the generated cell's base, so the animation starts and ends on
+    exactly the sticker instead of a redrawing of it.
+
+## What `render` does
+
+1. **Sheets.** Each sheet is one `images/edits` call: the sticker's raw
+   art as the reference (downscaled), the previous sheet as a second
+   reference so the next one carries on from it, transparent background.
+   The prompt lists the frames and the rules (same scale, the base in the
+   same place, nothing crossing a cell boundary, no grid lines or numbers).
+   About $0.07 per sheet at `high`.
+2. **Registration.** Each cell is cleaned (`stickerimg.Clean`), stray
+   slivers of a neighbour's art on the cell edge are dropped, and the
+   frame is anchored on its *base row*: the widest row of alpha in the
+   bottom 45 % of the art (the lily pad). Every frame is placed so that
+   row's centre and the art's bottom coincide, and scaled so the base is
+   the same width as in the first frame (within 25 %; the generator drifts
+   by a few percent between cells). `<id>.onion.png` overlays every frame
+   so the registration can be checked by eye — the pad should be one
+   crisp outline.
+3. **Finish.** Each frame gets the pack's white border and vinyl finish at
+   the frames' scale, offline, so playing them costs nothing extra. The
+   drop shadow is not baked: the app blurs the whole sheet once into a
+   half-resolution shadow sheet and swaps the sticker's shadow per frame.
+4. **Output** in `out/anims/`: `<sticker>.<id>.png` (the lossless sheet,
+   frames left to right then top to bottom) and `<sticker>.<id>.json`:
+
+   | Key | Meaning |
+   |---|---|
+   | `sheet` | pack-relative path of the sheet as installed (`.webp`) |
+   | `frame` | one frame's size in px |
+   | `columns`, `count` | layout |
+   | `rest` | the first frame's bordered art within a frame, as fractions (top-left origin) |
+   | `stickerBox` | the same art within the sticker image, as fractions |
+   | `hold` | seconds per frame |
+
+   The app scales and offsets the frames so `rest` lands on `stickerBox`
+   over the placed sticker (`StickerAnimation.swift`).
+
+Everything is fingerprinted like `stickerart`: a prompt change regenerates
+that sheet only (sheets are independent, so fixing sheet 1 keeps a good
+sheet 2; `-force` redoes all), a timing, finish or `restFrames` change only
+re-assembles the kept raws.
+
+## Install
+
+Encodes the sheet into `packs/<id>/anims/<sticker>.<id>.webp` (lossy
+WebP at quality 90 with lossless alpha, like every pack image —
+`docs/pack-format.md`, "Image formats"; the frog's 6.6 MB PNG becomes
+0.9 MB) and copies its JSON next to it. The manifest is untouched; the
+gallery finds animations by file.
+
+## Known limits (prototype)
+
+- Frames come from 768 px cells, about the resolution of the 768 px
+  sticker itself.
+- One 16-frame sheet is ~2848×3232 px: ≈37 MB as a texture (plus a
+  quarter of that for its shadow sheet) whatever the file size, since an
+  image decodes to RGBA before the GPU can draw it. Fine for one or two
+  stickers; a pack full of them would want smaller frames or on-demand
+  loading.
+- The still sticker's own drawing and the generator's redrawing of it
+  differ slightly, which is why `restFrames` exist.

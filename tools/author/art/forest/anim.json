@@ -1,0 +1,50 @@
+{
+  "columns": 4,
+  "maxSheet": 4096,
+  "notes": {
+    "sheets": "Each sheet is one API call drawing a grid of frames; the previous sheet is passed back as a reference so the next one continues it. 8 frames per 3072x1536 sheet gives 768 px cells.",
+    "hold": "Seconds per frame, one entry per frame across all sheets (the first and last frames are the crossfade with the still sticker)."
+  },
+  "animations": [
+    {
+      "id": "backflip-fly",
+      "sticker": "frog",
+      "description": "the frog does a backflip off its lily pad, lands, then flicks out its tongue to catch a passing fly.",
+      "base": "the lily pad",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Sitting on the lily pad exactly as in the reference: same pose, same happy grin, looking slightly left.",
+            "Crouched low on the pad, body squashed down and wide, legs bent and coiled, eyes looking up, about to spring.",
+            "Launching straight up off the pad: body stretched tall and thin, arms flung up, legs fully extended, toes just leaving the pad.",
+            "In the air above the pad, leaning back, the start of a backflip: tilted backwards about 45 degrees, arms out, legs tucking in.",
+            "High above the pad at the top of the flip, fully upside down: belly to the sky, legs tucked, the happy face upside down.",
+            "Coming round: tilted forward past three quarters of the turn, head coming up, falling back toward the pad.",
+            "Upright again just above the pad, legs reaching down for it, arms out for balance, mouth open in a delighted grin.",
+            "Landed on the pad in a deep squash: body low and wide, arms out to the sides, feet spread, big proud smile, mouth closed. No fly and no tongue in this frame."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Sitting upright on the pad again, recovered, eyes turned up to the right where a small round fly with two tiny wings hovers in the top right.",
+            "Mouth opening wide, eyes locked on the fly, which has drifted a little closer.",
+            "A long pink tongue shooting out of the wide-open mouth up toward the fly, halfway there.",
+            "The tongue at full stretch, its rounded tip touching the fly.",
+            "The tongue snapping back toward the mouth with the fly stuck on its tip.",
+            "Mouth closed tight, cheeks puffed out full and round, eyes wide with surprise.",
+            "A satisfied gulp: eyes closed in a happy smile, cheeks back to normal, looking content.",
+            "Sitting on the lily pad exactly as in frame 1: same pose, same happy grin, looking slightly left, no fly anywhere."
+          ]
+        }
+      ],
+      "hold": [0.30, 0.22, 0.07, 0.07, 0.10, 0.07, 0.08, 0.16, 0.45, 0.25, 0.06, 0.12, 0.06, 0.40, 0.40, 0.30],
+      "restFrames": [1, 16]
+    }
+  ]
+}
