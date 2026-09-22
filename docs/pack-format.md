@@ -21,7 +21,9 @@ picks the best match for the device (see "Language resolution" below).
     foreground-wide.webp  # optional: its front plane; declared together with the above
   stickers/
     <stickerID>.webp      # sticker art, alpha background, white border baked in
-  anims/                  # prototype: live-sticker sprite sheets (tools/author/stickeranim), not in the manifest
+  anims/
+    <stickerID>.<animID>.webp  # live animation: sprite sheet ("Live animations" below)
+    <stickerID>.<animID>.json  # its sidecar, declared in stickers[].animations
   audio/
     <lang>/<storyID>.m4a           # pre-rendered narration, AAC, one folder per language
     <lang>/<storyID>.effects.json  # optional effect triggers (sticker + canvas) for that narration
@@ -112,6 +114,12 @@ never letterboxes:
       "id": "mushroom",
       "name": { "en-US": "Mushroom", "es-ES": "Seta" },
       "image": "stickers/mushroom.webp"
+    },
+    {
+      "id": "frog",
+      "name": { "en-US": "Frog", "es-ES": "Rana" },
+      "image": "stickers/frog.webp",
+      "animations": ["anims/frog.backflip-fly.json"]
     }
   ],
   "stories": [
@@ -155,6 +163,7 @@ never letterboxes:
 | `stickers[].id` | string | Lowercase `a-z0-9-`, unique within the pack. |
 | `stickers[].name` | {lang: string} | Display/accessibility name per language. |
 | `stickers[].image` | string | Pack-relative path to a PNG or WebP file; must exist. |
+| `stickers[].animations` | [string] | **Optional**, default none. Pack-relative paths to live-animation sidecars (`.json`, "Live animations" below); each must exist and validate. |
 | `stories[].id` | string | Unique within the pack. |
 | `stories[].requiredStickers` | [string] | The stickers the story is about: it is a candidate when at most one of them is missing from the canvas (and at least one is present), and preferred when all are. Empty ⇒ fallback story. Every ID must be declared in `stickers`. |
 | `stories[].optionalStickers` | [string] | Sticker IDs that raise the match score when present. Declared in `stickers`; no overlap with `requiredStickers`. |
@@ -197,6 +206,48 @@ never letterboxes:
     author's responsibility (same height as the base art, base centred).
 11. Every image path (`background`, `foreground`, the wide planes, every
     `stickers[].image`) ends in `.png` or `.webp` ("Image formats").
+12. Every `stickers[].animations` entry is a `.json` file inside the pack.
+    The packager validates the sidecar **strictly** (unknown keys, a
+    `sticker` other than the declaring one, a missing or non-image sheet,
+    a `hold` list that does not match `count`, holds outside 0.02–5 s,
+    boxes outside the unit square are errors); the app checks the file
+    exists and reads it **leniently** (an undecodable sidecar is skipped
+    with a log, never fatal).
+
+## Live animations
+
+A sticker can carry animations: short frame sequences that make it come
+alive for a moment — the frog backflips and catches a fly, the owl blinks
+and turns its head. **Every pack ships ten animated stickers** (the
+authoring target, like the story count; not a validation rule), chosen
+among the characters and given small, unhurried motions: a yawn, a
+blink, a nibble, a peek. Nothing fast and nothing that travels — a
+sticker stays where the child put it, and gentle movement is what reads
+well at a few frames per second on a die-cut sticker.
+
+Each animation is a sprite sheet plus a sidecar, made by
+`tools/author/stickeranim` and declared in `stickers[].animations`:
+
+| Key | Meaning |
+|---|---|
+| `id`, `sticker` | the animation's id and the sticker it belongs to (must match the declaring sticker) |
+| `sheet` | pack-relative path of the sheet (PNG or WebP): `columns` frames per row, `count` frames read left to right then top to bottom, each `frame.width` × `frame.height` px |
+| `rest` | the first frame's bordered art within a frame, as fractions of the frame (top-left origin) |
+| `stickerBox` | the same art within the sticker image, as fractions of the image |
+| `hold` | seconds each frame shows, one entry per frame (0.02–5) |
+
+The frames are registered on the part that stays still (a lily pad, the
+feet, a branch), carry the same border and finish as the sticker, and the
+first and last frames are the sticker's own art, so the app can crossfade
+from the still sticker into the frames and back. The app scales and
+offsets the frames so `rest` lands exactly on `stickerBox` over the
+placed sticker, and derives the frames' drop shadow from the sheet.
+
+Status: the developer effects gallery plays animations; stories do not
+trigger them yet (`docs/effects.md` reserves character animation as a
+separate system from the effects library). A sheet decodes to
+width × height × 4 bytes of texture whatever its file size — keep that in
+mind before adding frames.
 
 ## Language resolution (app behaviour)
 
