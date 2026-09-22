@@ -27,8 +27,8 @@ go run ./packager validate ../packs/forest
 - `scene.background` / `scene.foreground`: the plane behind the stickers
   and the plane in front of them (foreground is transparent everywhere
   except its elements).
-- `stickerSize` (1024), `border` (white outline as a fraction of the size,
-  0.025) and `margin` (0.03).
+- `stickerSize` (768 — `docs/pack-format.md`, "Image formats"), `border`
+  (white outline as a fraction of the size, 0.025) and `margin` (0.03).
 - `finish` (optional): the printed-sticker material the post-processing
   bakes in so every pack's stickers feel like the same real vinyl: a
   paper-white die-cut border whose outer rim shades like the cut edge
@@ -75,14 +75,23 @@ image and as a run total, so the real spend is visible. References are
 sent downscaled: they only have to convey style, and input image tokens
 scale with size.
 
-Everything lands in `out/` (gitignored), keyed by a fingerprint of the
-prompts, quality and models, so rerunning only regenerates what changed.
+Everything lands in `out/` (gitignored) as lossless PNG, keyed by a
+fingerprint of the prompts, quality and models, so rerunning only
+regenerates what changed. `out/` is the source of truth for the art; the
+pack gets an encoded copy at install.
 `-only fox,tree`, `-only stylesheet`, `-only scene` narrow a run;
 `-quality medium` is cheaper while iterating on prompts.
 
 ## Install
 
-Copies `out/stickers/<id>.png` to `packs/<id>/stickers/` and the four
-scene planes to `packs/<id>/art/`, updates the manifest's sticker entries
-(adding new ids with their names) and art paths, and validates before
-writing. Commit the pack afterwards; the PNGs are small enough for plain Git.
+Encodes `out/stickers/<id>.png` into `packs/<id>/stickers/<id>.webp` and
+the four scene planes into `packs/<id>/art/*.webp` — lossy WebP at
+quality 90 with a lossless alpha channel, the pack's image format
+(`docs/pack-format.md`, "Image formats"; ~85 % smaller than the PNGs, no
+visible difference) — updates the manifest's sticker entries (adding new
+ids with their names) and art paths, validates before writing, and
+removes the files the new ones replace. Encodes are cached in
+`out/render.json` by source hash, so an unchanged image is not redone
+(a full pack takes about a minute and a half; the encoder is
+`github.com/gen2brain/webp`, libwebp in pure Go, the tools' one
+dependency). Commit the pack afterwards.
