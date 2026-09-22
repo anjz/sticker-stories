@@ -1,8 +1,9 @@
 // Package stickerimg post-processes generated art into what the pack format
 // expects: stickers trimmed to their alpha, given a baked-in die-cut border
 // with a printed-vinyl finish, padded and resized to a fixed square;
-// backgrounds placed on a wider canvas with a mask for outpainting.
-// Standard library only.
+// backgrounds placed on a wider canvas with a mask for outpainting; and
+// everything encoded as the WebP the pack ships (webp.go, the package's
+// one dependency).
 package stickerimg
 
 import (
@@ -13,11 +14,19 @@ import (
 	"image/draw"
 	"image/png"
 	"math"
+
+	"github.com/gen2brain/webp"
 )
 
-// Decode reads a PNG into RGBA.
+// Decode reads a PNG or a WebP into RGBA.
 func Decode(data []byte) (*image.RGBA, error) {
-	img, err := png.Decode(bytes.NewReader(data))
+	var img image.Image
+	var err error
+	if isWebP(data) {
+		img, err = webp.Decode(bytes.NewReader(data))
+	} else {
+		img, err = png.Decode(bytes.NewReader(data))
+	}
 	if err != nil {
 		return nil, err
 	}
@@ -26,7 +35,8 @@ func Decode(data []byte) (*image.RGBA, error) {
 	return rgba, nil
 }
 
-// Encode writes an image as PNG.
+// Encode writes an image as PNG (lossless: kept raws and intermediates;
+// pack assets go through EncodeWebP).
 func Encode(img image.Image) ([]byte, error) {
 	var buf bytes.Buffer
 	if err := png.Encode(&buf, img); err != nil {
