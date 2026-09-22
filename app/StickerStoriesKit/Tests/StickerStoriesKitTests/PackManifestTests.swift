@@ -175,6 +175,8 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         InvalidCase("not in declared languages") { $0.displayName["fr-FR"] = "Amis" },
         InvalidCase("missing \"es-ES\"") { $0.stickers[0].name.removeValue(forKey: "es-ES") },
         InvalidCase("not found") { $0.background = "art/nope.png" },
+        InvalidCase(".png or .webp") { $0.background = "art/background.jpg" },
+        InvalidCase(".png or .webp") { $0.stickers[0].image = "stickers/mushroom.heic" },
         InvalidCase("declared together") { $0.backgroundWide = "art/background.png" },
         InvalidCase("backgroundWide") { $0.backgroundWide = "art/nope-wide.png"; $0.foregroundWide = "art/foreground.png" },
         InvalidCase("escape") { $0.foreground = "../../evil.png" },

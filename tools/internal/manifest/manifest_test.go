@@ -143,6 +143,8 @@ func TestValidationFailures(t *testing.T) {
 		{"display name undeclared language", func(m *Manifest) { m.DisplayName["fr-FR"] = "Amis" }, "not in declared languages"},
 		{"sticker name missing language", func(m *Manifest) { delete(m.Stickers[0].Name, "es-ES") }, "missing \"es-ES\""},
 		{"missing background file", func(m *Manifest) { m.Background = "art/nope.png" }, "not found"},
+		{"background not png or webp", func(m *Manifest) { m.Background = "art/background.jpg" }, ".png or .webp"},
+		{"sticker image not png or webp", func(m *Manifest) { m.Stickers[0].Image = "stickers/mushroom.heic" }, ".png or .webp"},
 		{"wide art alone", func(m *Manifest) { m.BackgroundWide = "art/background.png" }, "declared together"},
 		{"missing wide file", func(m *Manifest) {
 			m.BackgroundWide = "art/nope-wide.png"

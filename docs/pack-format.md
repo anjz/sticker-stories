@@ -15,12 +15,13 @@ picks the best match for the device (see "Language resolution" below).
 <packID>/
   manifest.json
   art/
-    background.png        # full-canvas back plane (sky, hills…)
-    foreground.png        # full-canvas front plane (trees, mushrooms…), alpha where see-through
-    background-wide.png   # optional: wider rendition for wide windows (iPhone), same height
-    foreground-wide.png   # optional: its front plane; declared together with the above
+    background.webp       # full-canvas back plane (sky, hills…)
+    foreground.webp       # full-canvas front plane (trees, mushrooms…), alpha where see-through
+    background-wide.webp  # optional: wider rendition for wide windows (iPhone), same height
+    foreground-wide.webp  # optional: its front plane; declared together with the above
   stickers/
-    <stickerID>.png       # sticker art, alpha background, white border baked in
+    <stickerID>.webp      # sticker art, alpha background, white border baked in
+  anims/                  # prototype: live-sticker sprite sheets (tools/author/stickeranim), not in the manifest
   audio/
     <lang>/<storyID>.m4a           # pre-rendered narration, AAC, one folder per language
     <lang>/<storyID>.effects.json  # optional effect triggers (sticker + canvas) for that narration
@@ -29,6 +30,28 @@ picks the best match for the device (see "Language resolution" below).
 The `audio/<lang>/…` layout is a convention, not a rule — audio paths are
 whatever the manifest declares, but keep the convention so packs stay
 navigable.
+
+### Image formats
+
+Every image is a **PNG or a WebP** (rule 11) — the two formats the app
+decodes natively through ImageIO, so nothing else may appear in a pack.
+Ship **WebP, lossy at quality 90 with a lossless alpha channel**: on
+painted art the colour error is below what the eye picks up while files
+come out ~85 % smaller than PNG, and the lossless alpha keeps a sticker's
+die-cut edge pixel-exact. `stickerart install` and `stickeranim install`
+produce exactly that from the lossless PNGs kept in their `out/`; PNG
+remains valid for placeholders and hand-made packs. Measured on Forest:
+42 MB of PNG → 6 MB of WebP.
+
+Sizes: stickers are **768×768** — a sticker is drawn at 16 % of the world
+height and pinches to at most 2×, so even a 13" iPad shows one at ~660 px
+and 1024 was oversampled. Scene planes stay at their full size
+(2048×1536 base, 3072×1536 wide): they are scaled *up* to cover a 13"
+iPad's screen, so there is nothing to give away there.
+
+Note that a smaller file is not a smaller texture: whatever the format,
+an image decodes to width × height × 4 bytes of RGBA before the GPU can
+draw it. Formats decide download size; pixel counts decide memory.
 
 ### Art safe area
 
@@ -80,15 +103,15 @@ never letterboxes:
   "displayName": { "en-US": "Forest Friends", "es-ES": "Amigos del Bosque" },
   "theme": "forest",
   "setting": "outdoors",
-  "background": "art/background.png",
-  "foreground": "art/foreground.png",
-  "backgroundWide": "art/background-wide.png",
-  "foregroundWide": "art/foreground-wide.png",
+  "background": "art/background.webp",
+  "foreground": "art/foreground.webp",
+  "backgroundWide": "art/background-wide.webp",
+  "foregroundWide": "art/foreground-wide.webp",
   "stickers": [
     {
       "id": "mushroom",
       "name": { "en-US": "Mushroom", "es-ES": "Seta" },
-      "image": "stickers/mushroom.png"
+      "image": "stickers/mushroom.webp"
     }
   ],
   "stories": [
@@ -127,11 +150,11 @@ never letterboxes:
 | `displayName` | {lang: string} | Human-readable name per language, shown to parents. |
 | `theme` | string | Free-form theme tag; future prompt context for generated stories. |
 | `setting` | string | **Optional**, default `none`. Where the scene takes place: `outdoors`, `indoors` or `none`. Decides which canvas effects (`docs/effects.md`, "Canvas effects") the pack's stories may use — `outdoors` unlocks fog, rain, sunshine, rainbow and night; `indoors` unlocks dimlight; `none` allows no canvas effects. Story tooling reads it when authoring. |
-| `background` / `foreground` | string | Pack-relative paths; files must exist. Their frame is the sticker coordinate system ("Art safe area" below). |
+| `background` / `foreground` | string | Pack-relative paths to PNG or WebP files that must exist ("Image formats" above). Their frame is the sticker coordinate system ("Art safe area" below). |
 | `backgroundWide` / `foregroundWide` | string | **Optional, together or not at all.** Wider renditions (e.g. 2:1) with the **same pixel height** as the base art and the base art **centred** inside. The app draws whichever rendition lets a landscape window avoid panning with the least crop (tall phones get the wide one; iPads keep the base one). Files must exist. |
 | `stickers[].id` | string | Lowercase `a-z0-9-`, unique within the pack. |
 | `stickers[].name` | {lang: string} | Display/accessibility name per language. |
-| `stickers[].image` | string | Pack-relative path; must exist. |
+| `stickers[].image` | string | Pack-relative path to a PNG or WebP file; must exist. |
 | `stories[].id` | string | Unique within the pack. |
 | `stories[].requiredStickers` | [string] | The stickers the story is about: it is a candidate when at most one of them is missing from the canvas (and at least one is present), and preferred when all are. Empty ⇒ fallback story. Every ID must be declared in `stickers`. |
 | `stories[].optionalStickers` | [string] | Sticker IDs that raise the match score when present. Declared in `stickers`; no overlap with `requiredStickers`. |
@@ -172,6 +195,8 @@ never letterboxes:
 10. `backgroundWide` and `foregroundWide` are declared together or not at
     all, and exist when declared. Their pixel dimensions are the pack
     author's responsibility (same height as the base art, base centred).
+11. Every image path (`background`, `foreground`, the wide planes, every
+    `stickers[].image`) ends in `.png` or `.webp` ("Image formats").
 
 ## Language resolution (app behaviour)
 

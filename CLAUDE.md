@@ -20,7 +20,9 @@ packs are non-consumable IAPs (~1.99); one "Forest" pack ships bundled and free.
   links only behind the parental gate. See `docs/compliance.md`.
 - **Pack = versioned bundle** (manifest.json + art + audio). The manifest schema in
   `docs/pack-format.md` is the contract between `tools/` (Go) and the app (Swift);
-  both validate it independently.
+  both validate it independently. Pack images are **WebP** (lossy q90, lossless
+  alpha; stickers 768 px) — the tools keep lossless PNGs in `out/` and encode at
+  install (`docs/pack-format.md`, "Image formats").
 - **Multilingual from day one** (en-US, es-ES): app strings via
   `Localizable.xcstrings`; pack content (names, story text, narration audio) is
   per-language in the manifest with exact coverage validation; device language

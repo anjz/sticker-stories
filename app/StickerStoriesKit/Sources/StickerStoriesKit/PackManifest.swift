@@ -265,11 +265,21 @@ extension PackManifest {
                 issues.append("\(field): \"\(path)\" is a directory, not a file")
             }
         }
-        checkFile("background", background)
-        checkFile("foreground", foreground)
+        // Rule 11: image files are PNG or WebP (what ImageIO decodes natively);
+        // checked once the path itself is acceptable (rule 5).
+        func checkImage(_ field: String, _ path: String) {
+            checkFile(field, path)
+            if path.isEmpty || path.hasPrefix("/") || path.split(separator: "/").contains("..") { return }
+            let ext = (path as NSString).pathExtension.lowercased()
+            if ext != "png", ext != "webp" {
+                issues.append("\(field): \"\(path)\" must be a .png or .webp file")
+            }
+        }
+        checkImage("background", background)
+        checkImage("foreground", foreground)
         // Rule 10: wide art comes as a pair.
-        if let backgroundWide { checkFile("backgroundWide", backgroundWide) }
-        if let foregroundWide { checkFile("foregroundWide", foregroundWide) }
+        if let backgroundWide { checkImage("backgroundWide", backgroundWide) }
+        if let foregroundWide { checkImage("foregroundWide", foregroundWide) }
         if (backgroundWide == nil) != (foregroundWide == nil) {
             issues.append("backgroundWide and foregroundWide must be declared together")
         }
@@ -284,7 +294,7 @@ extension PackManifest {
                 issues.append("duplicate sticker id \"\(sticker.id)\"")
             }
             checkCoverage("sticker \"\(sticker.id)\" name", sticker.name)
-            checkFile("sticker \"\(sticker.id)\" image", sticker.image)
+            checkImage("sticker \"\(sticker.id)\" image", sticker.image)
         }
 
         // Rules 2, 4, 6, 7, 8 over stories.
