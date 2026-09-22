@@ -3,7 +3,9 @@
   "maxSheet": 4096,
   "notes": {
     "sheets": "Each sheet is one API call drawing a grid of frames; the previous sheet is passed back as a reference so the next one continues it. 8 frames per 3072x1536 sheet gives 768 px cells.",
-    "hold": "Seconds per frame, one entry per frame across all sheets (the first and last frames are the crossfade with the still sticker)."
+    "hold": "Seconds per frame, one entry per frame across all sheets (the first and last frames are the crossfade with the still sticker).",
+    "motion": "Gentle by design: nothing fast, nothing that travels. A sticker stays where the child put it; a blink, a yawn, a nibble, a peek read best at a few frames per second.",
+    "normalize": "Opt in (normalize: true) only for a base object that is the widest thing at the bottom in every pose — a lily pad, a perch. Feet, a curling body or spread wings make the measure jump."
   },
   "animations": [
     {
@@ -11,6 +13,7 @@
       "sticker": "frog",
       "description": "the frog does a backflip off its lily pad, lands, then flicks out its tongue to catch a passing fly.",
       "base": "the lily pad",
+      "normalize": true,
       "sheets": [
         {
           "columns": 4,
@@ -43,8 +46,570 @@
           ]
         }
       ],
-      "hold": [0.30, 0.22, 0.07, 0.07, 0.10, 0.07, 0.08, 0.16, 0.45, 0.25, 0.06, 0.12, 0.06, 0.40, 0.40, 0.30],
-      "restFrames": [1, 16]
+      "hold": [
+        0.3,
+        0.22,
+        0.07,
+        0.07,
+        0.1,
+        0.07,
+        0.08,
+        0.16,
+        0.45,
+        0.25,
+        0.06,
+        0.12,
+        0.06,
+        0.4,
+        0.4,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        16
+      ]
+    },
+    {
+      "id": "sleepy-blink",
+      "sticker": "owl",
+      "description": "the owl blinks, turns its head to look around, fluffs its feathers, yawns and settles back to sleep.",
+      "base": "the short branch it perches on",
+      "normalize": true,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Perched on the branch exactly as in the reference: calm, eyes half closed, wings folded.",
+            "Eyes fully closed in a slow blink, feathers soft, wings folded.",
+            "Eyes open wide, suddenly awake and curious.",
+            "Head turning to its right, eyes looking that way, body still.",
+            "Head turned further, almost looking over its shoulder, curious, body still.",
+            "Head coming back to the front, eyes wide.",
+            "Head tilted a little to one side, curious.",
+            "Head straight again, one eye closed in a slow wink."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Both eyes open, feathers starting to fluff up, chest puffed.",
+            "Feathers fluffed out fully, a round ball of an owl, content.",
+            "Feathers settling back down, beak opening a little as a yawn begins.",
+            "Beak open wide in a big sleepy yawn, eyes squeezed shut.",
+            "Beak closing, eyes still shut.",
+            "Eyes half open, drowsy, head sinking down into the shoulders.",
+            "Eyes nearly closed, calm and sleepy, head low.",
+            "Perched on the branch exactly as in frame 1: calm, eyes half closed, wings folded."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.15,
+        0.25,
+        0.15,
+        0.4,
+        0.15,
+        0.35,
+        0.35,
+        0.2,
+        0.4,
+        0.2,
+        0.45,
+        0.2,
+        0.3,
+        0.35,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        16
+      ]
+    },
+    {
+      "id": "tap-tap",
+      "sticker": "woodpecker",
+      "description": "the woodpecker taps the trunk a few times, listens, shakes off the dust and chirps.",
+      "base": "the piece of tree trunk",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Clinging to the trunk exactly as in the reference, beak pointed at the wood.",
+            "Head drawn back a little from the wood, getting ready to tap.",
+            "Beak touching the bark: a tap, with a tiny puff of wood dust.",
+            "Head drawn back again.",
+            "Beak on the bark: a tap, two small wood chips flying off.",
+            "Head drawn back once more.",
+            "Beak on the bark: a tap, one small wood chip flying off.",
+            "Head up and turned to look out at the viewer, proud, a tiny wood chip resting on its red cap."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Head tilted with one eye close to the bark, listening to the trunk.",
+            "Eyes wide: it heard something inside the wood, a small surprised look.",
+            "One gentle tap with the beak, a single wood chip.",
+            "Head drawn back, looking at the spot, delighted.",
+            "Wings lifting slightly and fluffing, shaking off the dust, a few specks in the air.",
+            "Feathers settled, wings folded, head turned to the viewer with a happy chirp, beak slightly open.",
+            "Beak closed, cheerful, head turning back to face the wood.",
+            "Clinging to the trunk exactly as in frame 1, beak pointed at the wood."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.15,
+        0.12,
+        0.15,
+        0.12,
+        0.15,
+        0.12,
+        0.45,
+        0.4,
+        0.3,
+        0.12,
+        0.35,
+        0.25,
+        0.4,
+        0.25,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        16
+      ]
+    },
+    {
+      "id": "wings",
+      "sticker": "ladybug",
+      "description": "the ladybug lifts its red wing cases, spreads the thin wings underneath, flutters them, folds everything away and takes a proud little bow.",
+      "base": "the green leaf",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Standing on the leaf exactly as in the reference.",
+            "Looking up, antennae lifting.",
+            "The red wing cases beginning to lift and part down the middle.",
+            "Wing cases open halfway, the thin translucent flying wings peeking out beneath.",
+            "Wing cases fully open, the translucent wings unfolded and spread wide, delighted.",
+            "The translucent wings fluttering, drawn with a soft blur, body lifting a tiny bit on its legs.",
+            "Wings fluttering, body settled back down on the leaf.",
+            "Wings spread wide and still, chin up, showing off."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "The translucent wings folding back under the cases.",
+            "Wing cases closing halfway.",
+            "Wing cases closed, a little shake to settle them.",
+            "Looking at the viewer with a proud grin.",
+            "Bowing its head a little, a shy bow.",
+            "Head up, antennae wiggling, happy.",
+            "Settling, calm smile.",
+            "Standing on the leaf exactly as in frame 1."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.25,
+        0.2,
+        0.2,
+        0.35,
+        0.15,
+        0.15,
+        0.35,
+        0.2,
+        0.2,
+        0.25,
+        0.4,
+        0.3,
+        0.3,
+        0.25,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        16
+      ]
+    },
+    {
+      "id": "curl-up",
+      "sticker": "hedgehog",
+      "description": "the hedgehog yawns, curls up into a spiny ball for a nap, then peeks out and uncurls.",
+      "base": "its feet on the ground",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Standing on all fours exactly as in the reference.",
+            "Yawning: mouth opening, eyes squeezing shut, feet planted.",
+            "A big yawn, mouth wide open, eyes shut tight, feet planted.",
+            "Yawn ending, mouth closing, drowsy eyes.",
+            "Head tucking down toward its belly, spines starting to round over its back, feet still on the same spot.",
+            "Curling up: nose almost touching its feet, body rounding into a ball, only the eyes still showing.",
+            "Curled into a round spiny ball, nose and eyes hidden, sitting on the spot where it stood.",
+            "The spiny ball, a small snore bubble growing at its hidden nose."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "The spiny ball, the snore bubble bigger.",
+            "The spiny ball, still and calm, the bubble gone.",
+            "One eye peeking out of the ball, the spines parting a little.",
+            "Nose and both eyes peeking out, blinking sleepily.",
+            "Uncurling: head coming out, body still rounded.",
+            "Almost standing, stretching its front legs forward, spines settling.",
+            "Standing on all fours, giving a little shake, spines fluffed.",
+            "Standing on all fours exactly as in frame 1."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.25,
+        0.4,
+        0.25,
+        0.25,
+        0.25,
+        0.4,
+        0.45,
+        0.45,
+        0.4,
+        0.35,
+        0.35,
+        0.3,
+        0.3,
+        0.3,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        16
+      ]
+    },
+    {
+      "id": "nibble",
+      "sticker": "squirrel",
+      "description": "the squirrel nibbles its hazelnut, checks nobody is watching, hides it behind its back, then hugs it happily.",
+      "base": "its feet and the bottom of its tail on the ground",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Sitting holding the hazelnut with both paws exactly as in the reference, tail curled over its back.",
+            "Bringing the hazelnut up to its mouth, eyes on it, tail still.",
+            "Nibbling the hazelnut, mouth on the nut, cheeks puffed a little.",
+            "Nibbling, head tilted the other way, cheeks puffed.",
+            "Chewing with cheeks full and round, holding the nut, eyes closed happily.",
+            "Chewing, eyes open, glancing to its left as if someone might want the nut.",
+            "Glancing to its right, cheeks still full, holding the nut close to its chest.",
+            "Hugging the nut to its chest with both paws, a shy grin."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Hiding the nut behind its back with one paw, looking innocent.",
+            "Looking straight at the viewer, innocent, nothing in its front paws.",
+            "Peeking sideways at the nut behind its back, a sneaky little smile.",
+            "Bringing the nut back out in front, relieved.",
+            "Holding the nut up with both paws, proud.",
+            "Hugging the nut to its chest, eyes closed in a happy smile.",
+            "Holding the nut with both paws, cheerful, the tip of its tail curled a little tighter.",
+            "Sitting holding the hazelnut with both paws exactly as in frame 1."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.25,
+        0.2,
+        0.2,
+        0.4,
+        0.35,
+        0.35,
+        0.3,
+        0.35,
+        0.45,
+        0.35,
+        0.3,
+        0.35,
+        0.4,
+        0.3,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        16
+      ]
+    },
+    {
+      "id": "listen",
+      "sticker": "rabbit",
+      "description": "the rabbit's ears perk up as it listens, it looks left and right, then nibbles a little clover leaf.",
+      "base": "its feet on the ground",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Sitting up exactly as in the reference, paws empty.",
+            "One ear turning sideways, listening, paws empty.",
+            "Both ears straight up and alert, eyes wide, paws empty.",
+            "Nose twitching, whiskers spread, ears up, paws empty.",
+            "Head tilted to its left, ears leaning that way, curious, paws empty.",
+            "Head tilted to its right, ears leaning that way, paws empty.",
+            "Head straight, one ear flopped down and the other up, puzzled, paws empty.",
+            "Both ears flopped down, relaxed, a little smile, paws empty."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Ears back up, a small three-leaf clover now held in its front paws, looking at it.",
+            "Nibbling the clover, cheeks moving.",
+            "Nibbling the clover, eyes closed happily, cheeks full.",
+            "The clover gone, chewing, one ear tilted.",
+            "Licking its lips, content, paws empty.",
+            "Ears relaxing halfway, a happy sleepy smile.",
+            "Ears up again, bright eyes, a small wiggle: the round tail raised a little.",
+            "Sitting up exactly as in frame 1, paws empty."
+          ],
+          "hint": "Size: the rabbit is tall with its ears up, so draw it at exactly the same size as in the previous sheet, with the whole rabbit — ear tips to feet — inside the middle three quarters of its cell's height, leaving clear empty space above the ears and below the feet."
+        }
+      ],
+      "hold": [
+        0.3,
+        0.3,
+        0.3,
+        0.25,
+        0.35,
+        0.35,
+        0.35,
+        0.35,
+        0.25,
+        0.3,
+        0.35,
+        0.3,
+        0.3,
+        0.35,
+        0.3,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        16
+      ]
+    },
+    {
+      "id": "peekaboo",
+      "sticker": "raccoon",
+      "description": "the raccoon rubs its paws, hides its eyes behind them, peeks, then flings them open for a big boo and giggles.",
+      "base": "its feet on the ground",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Standing upright with paws held up in front exactly as in the reference.",
+            "Rubbing its paws together like washing them, looking down at them.",
+            "Rubbing paws, looking at the viewer with a cheeky grin.",
+            "Paws lifting up toward its face.",
+            "Paws covering both eyes, a small smile: hiding.",
+            "Paws over the eyes, the smile widening, one ear twitching.",
+            "Paws parting a little, one eye peeking through the gap.",
+            "Paws snapped shut over the eyes again."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Paws flung open wide beside its face, eyes wide, a big delighted grin: boo!",
+            "Paws open, laughing with eyes squeezed shut.",
+            "Paws coming down to its chest, giggling.",
+            "Covering its mouth with both paws, shoulders up, giggling.",
+            "Paws down at its chest, looking to its left cheekily.",
+            "Looking to its right, paws held up in front.",
+            "Paws held up, a happy sigh, calm cheeky face.",
+            "Standing upright with paws held up in front exactly as in frame 1."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.3,
+        0.35,
+        0.2,
+        0.45,
+        0.35,
+        0.4,
+        0.25,
+        0.45,
+        0.35,
+        0.3,
+        0.4,
+        0.3,
+        0.3,
+        0.3,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        16
+      ]
+    },
+    {
+      "id": "yawn",
+      "sticker": "bear",
+      "description": "the bear cub yawns and stretches its arms up, rubs its eyes, pats its tummy and nods off again.",
+      "base": "its bottom and feet on the ground",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Sitting exactly as in the reference, sleepy and content, arms resting on its belly.",
+            "Eyes closing in a slow blink.",
+            "Mouth beginning to open in a yawn, eyes shut.",
+            "A big wide yawn, mouth open, eyes squeezed shut, arms starting to lift.",
+            "Yawning wide with both arms stretched straight up above its head.",
+            "Arms still stretched up, mouth closing, eyes shut, ears back.",
+            "Arms coming down, rubbing one eye with a paw.",
+            "Rubbing both eyes with both paws."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Paws down, eyes blinking open, a little dazed.",
+            "Eyes open, looking at the viewer with a soft smile.",
+            "Scratching its round tummy with one paw, content.",
+            "Patting its tummy with both paws, happy.",
+            "Arms resting on its belly, eyes half closing again.",
+            "Head nodding down a little, eyes closed, drifting off.",
+            "Head coming back up, eyes half open, a sleepy smile.",
+            "Sitting exactly as in frame 1, arms resting on its belly."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.25,
+        0.2,
+        0.3,
+        0.5,
+        0.3,
+        0.3,
+        0.35,
+        0.3,
+        0.35,
+        0.35,
+        0.35,
+        0.35,
+        0.4,
+        0.3,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        16
+      ]
+    },
+    {
+      "id": "peek",
+      "sticker": "snail",
+      "description": "the snail pulls its head and eye stalks into its shell, waits, then slowly peeks out and looks around.",
+      "base": "its body along the ground and its shell",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Sliding along exactly as in the reference, eye stalks up.",
+            "Eye stalks bending back, a little worried.",
+            "Eye stalks shrinking shorter, eyes closing.",
+            "Eye stalks almost gone, head pulling back toward the shell opening.",
+            "Head tucked into the shell opening, only a little of the body left outside, the foot still along the ground.",
+            "Fully tucked in: just the shell sitting on its foot, no eyes showing.",
+            "The shell on its foot, still.",
+            "The shell on its foot, one tiny eye stalk peeking out of the opening."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 2,
+          "size": "3072x1536",
+          "frames": [
+            "Two tiny eye stalks peeking out of the opening, looking around.",
+            "Head coming out of the shell, eye stalks half their length.",
+            "Head fully out, eye stalks stretching tall, eyes wide.",
+            "Eye stalks tall, both eyes looking to its left.",
+            "Both eyes looking to its right.",
+            "Both eyes on the viewer, a big relieved smile.",
+            "Eye stalks relaxing to their usual height, content.",
+            "Sliding along exactly as in frame 1, eye stalks up."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.3,
+        0.3,
+        0.3,
+        0.35,
+        0.45,
+        0.45,
+        0.45,
+        0.4,
+        0.35,
+        0.35,
+        0.35,
+        0.35,
+        0.4,
+        0.3,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        16
+      ]
     }
   ]
 }
