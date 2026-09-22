@@ -3,6 +3,8 @@ package stickerimg
 import (
 	"image"
 	"image/color"
+	"os"
+	"path/filepath"
 	"testing"
 )
 
@@ -150,5 +152,73 @@ func TestResizeKeepsAlphaEdges(t *testing.T) {
 		if c.A > 0 && c.A < 255 && (c.R < c.A*3/4-2) {
 			t.Errorf("edge pixel lost its colour: %v", c)
 		}
+	}
+}
+
+func TestWebPRoundTrip(t *testing.T) {
+	src := blob(64, 64, image.Rect(8, 8, 56, 40))
+	src.SetRGBA(60, 60, color.RGBA{0, 0, 0, 0})
+	data, err := EncodeWebP(src)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !isWebP(data) {
+		t.Fatalf("not a WebP: %q", data[:12])
+	}
+	back, err := Decode(data)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if back.Bounds() != src.Bounds() {
+		t.Fatalf("bounds %v", back.Bounds())
+	}
+	// Alpha is lossless; colour is close.
+	for _, p := range []image.Point{{8, 8}, {30, 20}, {55, 39}, {60, 60}, {2, 2}} {
+		a, b := src.RGBAAt(p.X, p.Y), back.RGBAAt(p.X, p.Y)
+		if a.A != b.A {
+			t.Errorf("alpha at %v: %d vs %d", p, a.A, b.A)
+		}
+		if a.A == 255 && (absDiff(a.R, b.R) > 12 || absDiff(a.G, b.G) > 12 || absDiff(a.B, b.B) > 12) {
+			t.Errorf("colour at %v: %v vs %v", p, a, b)
+		}
+	}
+	// PNG still decodes through the same door.
+	pngData, _ := Encode(src)
+	if _, err := Decode(pngData); err != nil {
+		t.Errorf("png: %v", err)
+	}
+}
+
+func absDiff(a, b uint8) int {
+	if a > b {
+		return int(a - b)
+	}
+	return int(b - a)
+}
+
+func TestInstallWebPCaches(t *testing.T) {
+	dir := t.TempDir()
+	src, dst := filepath.Join(dir, "a.png"), filepath.Join(dir, "pack", "a.webp")
+	data, _ := Encode(blob(32, 32, image.Rect(4, 4, 28, 28)))
+	os.WriteFile(src, data, 0o644)
+	cache := map[string]string{}
+	if did, err := InstallWebP(src, dst, cache); err != nil || !did {
+		t.Fatalf("first install: did %v err %v", did, err)
+	}
+	out, err := os.ReadFile(dst)
+	if err != nil || !isWebP(out) {
+		t.Fatalf("no WebP written: %v", err)
+	}
+	if did, _ := InstallWebP(src, dst, cache); did {
+		t.Errorf("unchanged source should be cached")
+	}
+	os.Remove(dst)
+	if did, _ := InstallWebP(src, dst, cache); !did {
+		t.Errorf("a missing pack file is re-encoded even when cached")
+	}
+	data2, _ := Encode(blob(32, 32, image.Rect(2, 2, 30, 30)))
+	os.WriteFile(src, data2, 0o644)
+	if did, _ := InstallWebP(src, dst, cache); !did {
+		t.Errorf("a changed source is re-encoded")
 	}
 }
