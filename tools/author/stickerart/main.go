@@ -13,7 +13,9 @@
 // style sheet first, then every sticker as an edit that uses the style
 // sheet as reference with a transparent background, then the background,
 // its 2:1 wide extension (outpainted around the untouched centre), and the
-// foreground plane. Outputs land in <art>/out/ and are cached by fingerprint.
+// foreground plane. Outputs land in <art>/out/ as lossless PNG and are
+// cached by fingerprint; install encodes them into the pack's WebP
+// (docs/pack-format.md, "Image formats").
 //
 // The API key is OPENAI_API_KEY from tools/.env. Dev-time only.
 package main
@@ -48,7 +50,10 @@ const (
 	wideW        = 3072
 	sheetSize    = "1536x1024"
 	stickerGenPx = 1024
-	defaultQual  = "high"
+	// The finished sticker's size: a sticker is drawn at 16 % of the world
+	// height and pinches to 2×, so even a 13" iPad shows at most ~660 px.
+	defaultStickerPx = 768
+	defaultQual      = "high"
 	// Both scene planes get this (docs/pack-format.md, "Art safe area"): the
 	// app crops the top and bottom on wide screens and lays the sticker tray
 	// and the play controls over those bands.
@@ -149,7 +154,7 @@ func load(packDir, artDir string, needConfig bool) (*ctxt, error) {
 			return nil, fmt.Errorf("art.json: %w", err)
 		}
 		if c.cfg.StickerSize == 0 {
-			c.cfg.StickerSize = 1024
+			c.cfg.StickerSize = defaultStickerPx
 		}
 		if c.cfg.Border == 0 {
 			c.cfg.Border = 0.025
@@ -191,7 +196,7 @@ func runInit(args []string) error {
 	cfg := artConfig{
 		Style:       "Describe the pack's look here: medium, line, palette, level of detail, how faces look. Every prompt inherits it.",
 		StyleSheet:  "Describe a style sheet image: three or four of the characters side by side plus a small scenery swatch, on a plain white background.",
-		StickerSize: 1024, Border: 0.025, Margin: 0.03,
+		StickerSize: defaultStickerPx, Border: 0.025, Margin: 0.03,
 		Scene: sceneSpec{Background: "The scene behind the stickers, no characters. Outdoors: plain daylight, no sun or moon — the app's canvas effects draw the weather and the night.", Foreground: "Only the elements that sit in front of the stickers (e.g. the nearest trees and grass), everything else transparent."},
 		Notes: map[string]string{"stickers": "One prompt per sticker: what it is, pose, expression, facing direction. Keep every character facing the same way."},
 	}
@@ -612,6 +617,10 @@ func (r *renderer) summary() {
 
 // ---------- install ----------
 
+// runInstall encodes the reviewed PNGs in out/ into the pack as WebP
+// (cached in out/render.json by source hash, so an unchanged image is not
+// re-encoded), points the manifest at them and drops the files they
+// replace.
 func runInstall(args []string) error {
 	fs := flag.NewFlagSet("install", flag.ExitOnError)
 	packDir := fs.String("pack", "", "pack directory")
@@ -623,7 +632,12 @@ func runInstall(args []string) error {
 		return err
 	}
 	outDir := filepath.Join(c.artDir, "out")
-	installed := 0
+	cache := map[string]string{}
+	if data, err := os.ReadFile(filepath.Join(outDir, "render.json")); err == nil {
+		json.Unmarshal(data, &cache)
+	}
+	encoded, installed := 0, 0
+	var replaced []string
 	byID := map[string]int{}
 	for i, s := range c.pack.Stickers {
 		byID[s.ID] = i
@@ -634,11 +648,18 @@ func runInstall(args []string) error {
 			fmt.Printf("skip %s: not rendered\n", s.ID)
 			continue
 		}
-		rel := "stickers/" + s.ID + ".png"
-		if err := copyFile(src, filepath.Join(c.packDir, rel)); err != nil {
+		rel := "stickers/" + s.ID + ".webp"
+		did, err := stickerimg.InstallWebP(src, filepath.Join(c.packDir, rel), cache)
+		if err != nil {
 			return err
 		}
+		if did {
+			encoded++
+		}
 		if i, ok := byID[s.ID]; ok {
+			if old := c.pack.Stickers[i].Image; old != rel {
+				replaced = append(replaced, old)
+			}
 			c.pack.Stickers[i].Image = rel
 			if len(s.Name) > 0 {
 				c.pack.Stickers[i].Name = s.Name
@@ -648,19 +669,30 @@ func runInstall(args []string) error {
 		}
 		installed++
 	}
-	planes := map[string]*string{"background.png": &c.pack.Background, "foreground.png": &c.pack.Foreground, "background-wide.png": &c.pack.BackgroundWide, "foreground-wide.png": &c.pack.ForegroundWide}
-	names := []string{"background.png", "foreground.png", "background-wide.png", "foreground-wide.png"}
+	planes := map[string]*string{"background": &c.pack.Background, "foreground": &c.pack.Foreground, "background-wide": &c.pack.BackgroundWide, "foreground-wide": &c.pack.ForegroundWide}
+	names := []string{"background", "foreground", "background-wide", "foreground-wide"}
 	scene := 0
 	for _, n := range names {
-		src := filepath.Join(outDir, "art", n)
+		src := filepath.Join(outDir, "art", n+".png")
 		if !exists(src) {
 			continue
 		}
-		if err := copyFile(src, filepath.Join(c.packDir, "art", n)); err != nil {
+		rel := "art/" + n + ".webp"
+		did, err := stickerimg.InstallWebP(src, filepath.Join(c.packDir, rel), cache)
+		if err != nil {
 			return err
 		}
-		*planes[n] = "art/" + n
+		if did {
+			encoded++
+		}
+		if old := *planes[n]; old != "" && old != rel {
+			replaced = append(replaced, old)
+		}
+		*planes[n] = rel
 		scene++
+	}
+	if data, err := json.MarshalIndent(cache, "", "  "); err == nil {
+		os.WriteFile(filepath.Join(outDir, "render.json"), append(data, '\n'), 0o644)
 	}
 	sort.SliceStable(c.pack.Stickers, func(i, j int) bool { return c.pack.Stickers[i].ID < c.pack.Stickers[j].ID })
 	if *bump {
@@ -679,20 +711,28 @@ func runInstall(args []string) error {
 	if err := os.WriteFile(filepath.Join(c.packDir, "manifest.json"), append(data, '\n'), 0o644); err != nil {
 		return err
 	}
-	fmt.Printf("✓ installed %d stickers and %d scene planes into %s (version %d); manifest validates\n", installed, scene, c.packDir, c.pack.Version)
+	// Files the manifest no longer references (the PNGs a pack shipped
+	// before it went WebP) would still be bundled; drop them.
+	for _, rel := range replaced {
+		if err := os.Remove(filepath.Join(c.packDir, rel)); err == nil {
+			fmt.Printf("  removed %s (replaced)\n", rel)
+		}
+	}
+	fmt.Printf("✓ installed %d stickers and %d scene planes into %s (version %d; %d encoded to WebP, the rest unchanged); manifest validates\n", installed, scene, c.packDir, c.pack.Version, encoded)
 	return nil
 }
 
-// downscale returns the PNG resized so its longer edge is maxEdge px.
-func downscale(pngData []byte, maxEdge int) ([]byte, error) {
-	img, err := stickerimg.Decode(pngData)
+// downscale returns the image (PNG or WebP) as a PNG resized so its
+// longer edge is at most maxEdge px — what the API is sent as a reference.
+func downscale(data []byte, maxEdge int) ([]byte, error) {
+	img, err := stickerimg.Decode(data)
 	if err != nil {
 		return nil, err
 	}
 	b := img.Bounds()
 	w, h := b.Dx(), b.Dy()
 	if w <= maxEdge && h <= maxEdge {
-		return pngData, nil
+		return stickerimg.Encode(img)
 	}
 	if w >= h {
 		h = h * maxEdge / w
@@ -702,15 +742,4 @@ func downscale(pngData []byte, maxEdge int) ([]byte, error) {
 		h = maxEdge
 	}
 	return stickerimg.Encode(stickerimg.Resize(img, w, h))
-}
-
-func copyFile(src, dst string) error {
-	data, err := os.ReadFile(src)
-	if err != nil {
-		return err
-	}
-	if err := os.MkdirAll(filepath.Dir(dst), 0o755); err != nil {
-		return err
-	}
-	return os.WriteFile(dst, data, 0o644)
 }
