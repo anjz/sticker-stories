@@ -90,7 +90,9 @@ final class CanvasEffectLayer: SKNode {
     ]
 
     /// The effects drawn by their own types, one file each in `Canvas/`.
-    private let painters: [CanvasEffectName: any CanvasEffectPainter] = [:]
+    private let painters: [CanvasEffectName: any CanvasEffectPainter] = [
+        .snow: SnowPainter(),
+    ]
 
     override init() {
         super.init()
@@ -352,8 +354,10 @@ final class CanvasEffectLayer: SKNode {
         for (name, painter) in painters {
             let strength = strengths[name] ?? 0
             // An effect at rest costs nothing: hidden, and not updated.
-            painter.node.isHidden = strength <= 0
-            if strength > 0 { painter.apply(strength: strength, at: time) }
+            let off = strength <= 0
+            if off && !painter.node.isHidden { painter.didTurnOff() }
+            painter.node.isHidden = off
+            if !off { painter.apply(strength: strength, at: time) }
         }
     }
 
@@ -382,4 +386,11 @@ protocol CanvasEffectPainter: AnyObject {
     /// Renders the effect at `strength` (0 < strength ≤ 1, intensity ×
     /// envelope) at timeline time `time`. Not called while the effect is off.
     func apply(strength: Double, at time: TimeInterval)
+    /// The effect has cleared (or was stopped): the next `apply` is a new
+    /// start. Optional.
+    func didTurnOff()
+}
+
+extension CanvasEffectPainter {
+    func didTurnOff() {}
 }

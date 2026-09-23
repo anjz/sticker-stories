@@ -147,6 +147,7 @@ or fantastical places) gets no canvas effects at all.
 | `sunshine` | outdoors | Warm light across the top of the scene, soft shafts drifting down. | The sun comes out, a warm afternoon, waking up, a happy ending after rain. | 8 s | 1.5 / 1.5 s | full |
 | `rainbow` | outdoors | A soft rainbow arcs across the sky behind the scenery. | The reward after rain, a wish come true, a wonder everyone looks up at. One per story at most. | 8 s | 2 / 2 s | full |
 | `night` | outdoors | Night falls: the scene darkens and a moon glows in the sky. | Evening and bedtime outdoors, the moon coming up, stars, a story that settles to sleep. Never darkness as a threat. Builds slowly — cue it a beat early. | 10 s | 2 / 2 s | full |
+| `snow` | outdoors | Soft snowflakes drift down at different sizes and speeds; the light turns a little cooler and brighter. | Winter, a snow day, the first flakes, a quiet hush. `intensity` is a few flakes to a thick flurry. | 12 s | 2 / 2.5 s | runs at ≤0.4 |
 | `dimlight` | indoors | The lights go low: the scene darkens toward its edges. | Bedtime, a lamp switched low, a cosy evening, a whispered secret. Never darkness as a threat. | 8 s | 1.5 / 1.5 s | full |
 
 - Ramps never eat more than a third of the duration each, so a 3 s effect
@@ -245,9 +246,10 @@ app never parses text.
 
 - **Reduce Motion** (system setting) is observed live: `shake`, `hop`,
   `spin` and `float` do not run; `pulse` and `wobble` run at
-  intensity ≤0.3; particles and `rain` at ≤0.4; fades, `glow`, `tint` and
-  the other canvas effects (slow washes of light) run in full because they
-  carry story meaning.
+  intensity ≤0.3; particles and the canvas effects that fall or drift
+  (`rain`, `snow` and the others marked in the canvas table) at ≤0.4;
+  fades, `glow`, `tint` and the other canvas effects (slow washes of light)
+  run in full because they carry story meaning.
 - **Calm mode** (Grown-Ups → Settings) applies the same policy plus a global
   intensity multiplier of 0.6, for children who are easily overstimulated.
 - Flashes (white `tint`) are capped at 3 per second regardless of
