@@ -35,30 +35,31 @@ var Names = []string{
 var CanvasNames = []string{
 	"fog", "rain", "sunshine", "rainbow", "night", "snow", "sunset",
 	"clouds", "wind", "fireflies", "leaves", "dimlight", "windowlight",
-	"firelight", "rainywindow", "confetti", "bubbles",
+	"firelight", "rainywindow", "confetti", "bubbles", "shootingstars",
 }
 
 // CanvasSettings maps each canvas effect to the pack settings it suits
 // (docs/pack-format.md, "setting"). A pack whose setting is "none" gets no
 // canvas effects.
 var CanvasSettings = map[string][]string{
-	"fog":         {"outdoors"},
-	"rain":        {"outdoors"},
-	"sunshine":    {"outdoors"},
-	"rainbow":     {"outdoors"},
-	"night":       {"outdoors"},
-	"snow":        {"outdoors"},
-	"sunset":      {"outdoors"},
-	"clouds":      {"outdoors"},
-	"wind":        {"outdoors"},
-	"fireflies":   {"outdoors"},
-	"leaves":      {"outdoors"},
-	"dimlight":    {"indoors"},
-	"windowlight": {"indoors"},
-	"firelight":   {"indoors"},
-	"rainywindow": {"indoors"},
-	"confetti":    {"outdoors", "indoors", "space"},
-	"bubbles":     {"outdoors", "indoors", "space", "underwater"},
+	"fog":           {"outdoors"},
+	"rain":          {"outdoors"},
+	"sunshine":      {"outdoors"},
+	"rainbow":       {"outdoors"},
+	"night":         {"outdoors"},
+	"snow":          {"outdoors"},
+	"sunset":        {"outdoors"},
+	"clouds":        {"outdoors"},
+	"wind":          {"outdoors"},
+	"fireflies":     {"outdoors"},
+	"leaves":        {"outdoors"},
+	"dimlight":      {"indoors"},
+	"windowlight":   {"indoors"},
+	"firelight":     {"indoors"},
+	"rainywindow":   {"indoors"},
+	"confetti":      {"outdoors", "indoors", "space"},
+	"bubbles":       {"outdoors", "indoors", "space", "underwater"},
+	"shootingstars": {"space"},
 }
 
 var (
