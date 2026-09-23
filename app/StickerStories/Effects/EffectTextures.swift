@@ -27,6 +27,7 @@ enum EffectTextures {
         case "cloud": texture = shaded(width: 320, height: 160, cloud)
         case "wisp": texture = procedural(width: 256, height: 16, wisp)
         case "trickle": texture = procedural(width: 24, height: 72, trickle)
+        case "bubble": texture = procedural(width: 96, height: 96, bubble)
         case "confetti": texture = procedural(width: 16, height: 28) { u, v in
             // A paper rectangle with a slightly softened edge.
             (1 - smoothstep(0.8, 1, abs(u - 0.5) * 2)) * (1 - smoothstep(0.86, 1, abs(v - 0.5) * 2))
@@ -158,6 +159,18 @@ enum EffectTextures {
         let bead = (0.45 + 0.55 * smoothstep(0.5, 0.9, d)) * (1 - smoothstep(0.9, 1, d))
         let trail = bell(u * 2.4 - 0.7) * 0.4 * smoothstep(0.05, 0.8, v) * (v < 0.84 ? 1 : 0)
         return max(bead, trail)
+    }
+
+    /// A bubble: a thin bright rim, a faint body and a soft highlight up
+    /// and to the left.
+    private static func bubble(_ u: Double, _ v: Double) -> Double {
+        let dx = (u - 0.5) * 2, dy = (v - 0.5) * 2
+        let d = (dx * dx + dy * dy).squareRoot()
+        let body = 0.1 * (1 - smoothstep(0.9, 0.97, d))
+        let rim = smoothstep(0.74, 0.9, d) * (1 - smoothstep(0.92, 0.98, d)) * 0.85
+        let hx = u - 0.33, hy = v - 0.3
+        let highlight = 0.9 * (1 - smoothstep(0.02, 0.13, (hx * hx + hy * hy).squareRoot()))
+        return max(body, rim, highlight)
     }
 
     /// Opaque at the edges, thinner in the middle: a dimmed room.
