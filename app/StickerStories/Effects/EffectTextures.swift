@@ -25,6 +25,7 @@ enum EffectTextures {
         case "moonglow": texture = procedural(width: 256, height: 256, moonGlow)
         case "band": texture = procedural(width: 4, height: 256, band)
         case "cloud": texture = shaded(width: 320, height: 160, cloud)
+        case "wisp": texture = procedural(width: 256, height: 16, wisp)
         case "rainbow": texture = drawn(size: CGSize(width: 1024, height: 512), scale: 1) { rect, cg in drawRainbow(in: rect, cg) }
         default:
             texture = drawn(size: CGSize(width: 32, height: 32), scale: 3) { rect, cg in
@@ -135,6 +136,12 @@ enum EffectTextures {
         var alpha = smoothstep(0.25, 0.75, field)
         alpha *= 1 - smoothstep(0.68, 0.8, v)  // the flat underside
         return (1 - 0.1 * smoothstep(0.4, 0.8, v), alpha)
+    }
+
+    /// A long, thin streak of air: fullest a little behind its middle,
+    /// tapering to nothing at both ends.
+    private static func wisp(_ u: Double, _ v: Double) -> Double {
+        bell(v) * pow(sin(.pi * u), 1.6) * (0.55 + 0.45 * u)
     }
 
     /// Opaque at the edges, thinner in the middle: a dimmed room.
