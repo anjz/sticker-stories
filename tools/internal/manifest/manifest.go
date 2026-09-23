@@ -33,10 +33,13 @@ type Manifest struct {
 	Version       int               `json:"version"`
 	Languages     []string          `json:"languages"`
 	DisplayName   map[string]string `json:"displayName"`
-	Theme         string            `json:"theme"`
-	Setting       string            `json:"setting,omitempty"` // one of Settings; "" ⇒ "none"
-	Background    string            `json:"background"`
-	Foreground    string            `json:"foreground"`
+	// Optional one-line description per language for the store; when
+	// present it must cover every declared language, like displayName.
+	Description map[string]string `json:"description,omitempty"`
+	Theme       string            `json:"theme"`
+	Setting     string            `json:"setting,omitempty"` // one of Settings; "" ⇒ "none"
+	Background  string            `json:"background"`
+	Foreground  string            `json:"foreground"`
 	// Optional wider renditions for wide windows (iPhone): same pixel height
 	// as the base art, base art centred inside; declared together or not at all.
 	BackgroundWide string    `json:"backgroundWide,omitempty"`
@@ -171,6 +174,9 @@ func (m *Manifest) Validate(dir string) []error {
 		}
 	}
 	checkCoverage("displayName", m.DisplayName)
+	if m.Description != nil {
+		checkCoverage("description", m.Description)
+	}
 
 	// Rule 5: referenced files exist inside the pack.
 	checkFile := func(field, rel string) {

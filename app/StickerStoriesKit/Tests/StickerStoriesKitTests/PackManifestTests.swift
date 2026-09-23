@@ -147,6 +147,17 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         #expect(makeValidManifest().backgroundWide == nil)
     }
 
+    @Test func descriptionIsOptionalAndLocalized() throws {
+        #expect(makeValidManifest().description(for: "en-US") == nil)
+        var manifest = makeValidManifest()
+        manifest.description = localized("Woodland friends.", "Amigos del bosque.")
+        let dir = try materialize(manifest)
+        #expect(manifest.validationIssues(packDirectory: dir).isEmpty)
+        let decoded = try JSONDecoder().decode(PackManifest.self, from: JSONEncoder().encode(manifest))
+        #expect(decoded.description(for: "es-ES") == "Amigos del bosque.")
+        #expect(decoded.description(for: "fr-FR") == "Woodland friends.")  // falls back to the first language
+    }
+
     @Test func effectsSidecarMustExistWhenDeclared() throws {
         var manifest = makeValidManifest()
         manifest.stories[0].localizations["en-US"]?.effects = "audio/en-US/story-001.effects.json"
@@ -181,6 +192,7 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         InvalidCase("missing \"es-ES\"") { $0.displayName.removeValue(forKey: "es-ES") },
         InvalidCase("must not be empty") { $0.displayName["es-ES"] = " " },
         InvalidCase("not in declared languages") { $0.displayName["fr-FR"] = "Amis" },
+        InvalidCase("description: missing \"es-ES\"") { $0.description = ["en-US": "Woodland friends."] },
         InvalidCase("missing \"es-ES\"") { $0.stickers[0].name.removeValue(forKey: "es-ES") },
         InvalidCase("not found") { $0.background = "art/nope.png" },
         InvalidCase(".png or .webp") { $0.background = "art/background.jpg" },

@@ -33,6 +33,9 @@ public struct PackManifest: Codable, Equatable, Sendable {
     public var version: Int
     public var languages: [String]
     public var displayName: [String: String]
+    /// Optional one-line description per language, shown to parents in the
+    /// store under the pack's name.
+    public var description: [String: String]?
     public var theme: String
     /// Optional in the file (absent ⇒ `.none`); always written back.
     public var setting: PackSetting
@@ -48,7 +51,8 @@ public struct PackManifest: Codable, Equatable, Sendable {
 
     public init(
         schemaVersion: Int, id: String, version: Int, languages: [String],
-        displayName: [String: String], theme: String, setting: PackSetting = .none,
+        displayName: [String: String], description: [String: String]? = nil,
+        theme: String, setting: PackSetting = .none,
         background: String, foreground: String,
         backgroundWide: String? = nil, foregroundWide: String? = nil,
         stickers: [StickerDefinition], stories: [StoryDefinition]
@@ -58,6 +62,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
         self.version = version
         self.languages = languages
         self.displayName = displayName
+        self.description = description
         self.theme = theme
         self.setting = setting
         self.background = background
@@ -69,7 +74,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case schemaVersion, id, version, languages, displayName, theme, setting
+        case schemaVersion, id, version, languages, displayName, description, theme, setting
         case background, foreground, backgroundWide, foregroundWide, stickers, stories
     }
 
@@ -80,6 +85,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
         version = try c.decode(Int.self, forKey: .version)
         languages = try c.decode([String].self, forKey: .languages)
         displayName = try c.decode([String: String].self, forKey: .displayName)
+        description = try c.decodeIfPresent([String: String].self, forKey: .description)
         theme = try c.decode(String.self, forKey: .theme)
         if let raw = try c.decodeIfPresent(String.self, forKey: .setting) {
             guard let value = PackSetting(rawValue: raw) else {
@@ -104,6 +110,12 @@ public struct PackManifest: Codable, Equatable, Sendable {
     /// fallbacks only matter for not-yet-validated data).
     public func displayName(for language: String) -> String {
         Self.localizedValue(displayName, language: language, fallbackOrder: languages) ?? id
+    }
+
+    /// The pack's description in the given language, or nil when the pack
+    /// has none.
+    public func description(for language: String) -> String? {
+        description.flatMap { Self.localizedValue($0, language: language, fallbackOrder: languages) }
     }
 
     static func localizedValue(
@@ -260,6 +272,7 @@ extension PackManifest {
             }
         }
         checkCoverage("displayName", displayName)
+        if let description { checkCoverage("description", description) }
 
         // Rule 5: referenced files exist inside the pack.
         func checkFile(_ field: String, _ path: String) {

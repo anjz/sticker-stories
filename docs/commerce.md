@@ -87,7 +87,9 @@ description instead.
 - **Display name: at most 30 characters.** For a pack product it is the
   pack's name, so a manifest `displayName` must fit too
   (`docs/pack-format.md`).
-- **Description: at most 45 characters.** One short sentence.
+- **Description: at most 45 characters.** One short sentence. A pack's
+  manifest `description` (what the store shows once the pack is on the
+  device, and for the bundled pack) should say the same thing.
 - Keep `app/StickerStories.storekit` (the StoreKit test configuration) in
   step with App Store Connect: the store shows StoreKit's name, description
   and price verbatim, so the test copy is the copy parents see in testing.
