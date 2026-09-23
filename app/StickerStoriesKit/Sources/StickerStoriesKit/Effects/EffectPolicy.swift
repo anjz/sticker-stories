@@ -52,7 +52,7 @@ public struct EffectPolicy: Equatable, Sendable {
         case .warp:
             return nil
         case .fog, .sunshine, .rainbow, .night, .sunset, .clouds, .dimlight, .windowlight, .firelight,
-            .nebula:
+            .nebula, .planetrise:
             break
         }
         if calmMode { result.intensity *= calmIntensityMultiplier }
