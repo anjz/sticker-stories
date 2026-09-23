@@ -95,8 +95,11 @@ type artConfig struct {
 	// means stickerimg.DefaultFinish, a glossy die-cut vinyl sticker.
 	Finish   *stickerimg.Finish `json:"finish,omitempty"`
 	Stickers []stickerSpec      `json:"stickers"`
-	Scene    sceneSpec          `json:"scene"`
-	Notes    map[string]string  `json:"notes,omitempty"`
+	// Expressions are the face variants every sticker with a face gets
+	// (the sticker itself is the "normal" one).
+	Expressions []expressionSpec  `json:"expressions,omitempty"`
+	Scene       sceneSpec         `json:"scene"`
+	Notes       map[string]string `json:"notes,omitempty"`
 }
 
 func (c artConfig) finish() stickerimg.Finish {
@@ -110,6 +113,19 @@ type stickerSpec struct {
 	ID     string            `json:"id"`
 	Name   map[string]string `json:"name"`
 	Prompt string            `json:"prompt"`
+	// Face is where the face is on the raw art; a sticker without one has
+	// no expression variants.
+	Face *stickerimg.FaceBox `json:"face,omitempty"`
+	// FaceNote says what the face is drawn on when that is not obvious
+	// ("the round brown speckled seed centre"), so an expression keeps it.
+	FaceNote string `json:"faceNote,omitempty"`
+}
+
+// expressionSpec is one face variant: an id stories cue ({bear:face happy})
+// and how the face should look.
+type expressionSpec struct {
+	ID     string `json:"id"`
+	Prompt string `json:"prompt"`
 }
 
 type sceneSpec struct {
@@ -400,6 +416,40 @@ func (r *renderer) run() error {
 	close(queue)
 	wg.Wait()
 
+	// 2b. Expression variants: the face repainted, everything else the
+	// sticker's own pixels (after the stickers, whose raws they edit).
+	type faceJob struct {
+		s stickerSpec
+		e expressionSpec
+	}
+	faces := make(chan faceJob)
+	for w := 0; w < workers; w++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for j := range faces {
+				if err := r.face(j.s, j.e); err != nil {
+					r.mu.Lock()
+					failures = append(failures, j.s.ID+"."+j.e.ID+": "+err.Error())
+					r.mu.Unlock()
+					r.say("✗ %s.%s: %v", j.s.ID, j.e.ID, err)
+				}
+			}
+		}()
+	}
+	for _, s := range cfg.Stickers {
+		if s.Face == nil || !(r.want(s.ID) || r.want("faces")) {
+			continue
+		}
+		for _, e := range cfg.Expressions {
+			if r.o.only == nil || r.want(s.ID) || r.want("faces") || r.want(s.ID+"."+e.ID) {
+				faces <- faceJob{s, e}
+			}
+		}
+	}
+	close(faces)
+	wg.Wait()
+
 	// 3. Scene planes.
 	if r.want("scene") || r.o.only == nil {
 		if err := r.scene(sheet, sheetFP); err != nil {
@@ -507,6 +557,88 @@ func (r *renderer) finish(id, raw, final, finishFP string) error {
 	}
 	r.done(final, finishFP)
 	return nil
+}
+
+// faceVersion changes whenever the face mask or composite changes.
+const faceVersion = "1"
+
+// face makes one expression variant of a sticker: the kept raw is sent with
+// a mask over the face and the expression's prompt (kept as
+// <id>.<expr>.gen.png), only the face of the result is laid over the raw —
+// same outline, same everything else — as <id>.<expr>.raw.png, and that is
+// finished exactly like the sticker into <id>.<expr>.png. The variant can
+// then replace the sticker's texture in place.
+func (r *renderer) face(s stickerSpec, e expressionSpec) error {
+	cfg := r.c.cfg
+	key := s.ID + "." + e.ID
+	raw := r.out("stickers", s.ID+".raw.png")
+	if !exists(raw) {
+		return errors.New("no raw art yet; render the sticker first")
+	}
+	genFP := hashOf(toolVersion, "face", faceVersion, r.fps[raw], cfg.Style, e.Prompt, fmt.Sprint(*s.Face), s.FaceNote, r.o.quality, editModel)
+	finishFP := hashOf(genFP, finishVersion, fmt.Sprint(cfg.StickerSize, cfg.Border, cfg.Margin), fmt.Sprint(cfg.finish()))
+	gen := r.out("stickers", key+".gen.png")
+	comp := r.out("stickers", key+".raw.png")
+	final := r.out("stickers", key+".png")
+	if r.upToDate(final, finishFP) {
+		r.say("· %s up to date", key)
+		return nil
+	}
+	rawData, err := os.ReadFile(raw)
+	if err != nil {
+		return err
+	}
+	base, err := stickerimg.Decode(rawData)
+	if err != nil {
+		return err
+	}
+	if !r.upToDate(gen, genFP) {
+		if r.o.dry {
+			r.mu.Lock()
+			r.planned = append(r.planned, fmt.Sprintf("expression %s (%dx%d, face masked)", key, stickerGenPx, stickerGenPx))
+			r.mu.Unlock()
+			return nil
+		}
+		r.say("▶ %s", key)
+		started := time.Now()
+		b := base.Bounds()
+		maskPNG, err := stickerimg.Encode(stickerimg.FaceMask(b.Dx(), b.Dy(), *s.Face))
+		if err != nil {
+			return err
+		}
+		note := ""
+		if s.FaceNote != "" {
+			note = " " + s.FaceNote
+		}
+		prompt := fmt.Sprintf("%s\n\nThis is a finished sticker character: %s%s Repaint ONLY its face, inside the masked area, to show this expression: %s The surface the face is drawn on keeps exactly its colour and texture as in the image. Keep the character recognisably the same: the same head shape, fur or skin, colours, outline weight and art style, the eyes in the same places and the same size family, the cheeks, the nose or beak. If it has a beak, keep the beak's shape (it may open a little) and show the feeling through the eyes and brows. Nothing outside the face changes. Friendly and gentle, never scary. Fully transparent background.", cfg.Style, s.Prompt, note, e.Prompt)
+		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: fmt.Sprintf("%dx%d", b.Dx(), b.Dy()), Quality: r.o.quality, Background: "transparent", References: [][]byte{rawData}, Mask: maskPNG})
+		if err != nil {
+			return err
+		}
+		if err := os.WriteFile(gen, img.PNG, 0o644); err != nil {
+			return err
+		}
+		r.done(gen, genFP)
+		r.say("✓ %s (%s, %.0fs)", key, r.charge(img.Usage), time.Since(started).Seconds())
+	} else if r.o.dry {
+		return nil
+	}
+	genData, err := os.ReadFile(gen)
+	if err != nil {
+		return err
+	}
+	edited, err := stickerimg.Decode(genData)
+	if err != nil {
+		return err
+	}
+	png, err := stickerimg.Encode(stickerimg.Face(base, edited, *s.Face))
+	if err != nil {
+		return err
+	}
+	if err := os.WriteFile(comp, png, 0o644); err != nil {
+		return err
+	}
+	return r.finish(key, comp, final, finishFP)
 }
 
 // scene renders each plane as a complete 4:3 picture first (that is what
@@ -675,16 +807,39 @@ func runInstall(args []string) error {
 		if did {
 			encoded++
 		}
+		// Expression variants, installed next to the sticker.
+		var expressions map[string]string
+		if s.Face != nil {
+			for _, e := range c.cfg.Expressions {
+				esrc := filepath.Join(outDir, "stickers", s.ID+"."+e.ID+".png")
+				if !exists(esrc) {
+					continue
+				}
+				erel := "stickers/" + s.ID + "." + e.ID + ".webp"
+				did, err := stickerimg.InstallWebP(esrc, filepath.Join(c.packDir, erel), cache)
+				if err != nil {
+					return err
+				}
+				if did {
+					encoded++
+				}
+				if expressions == nil {
+					expressions = map[string]string{}
+				}
+				expressions[e.ID] = erel
+			}
+		}
 		if i, ok := byID[s.ID]; ok {
 			if old := c.pack.Stickers[i].Image; old != rel {
 				replaced = append(replaced, old)
 			}
 			c.pack.Stickers[i].Image = rel
+			c.pack.Stickers[i].Expressions = expressions
 			if len(s.Name) > 0 {
 				c.pack.Stickers[i].Name = s.Name
 			}
 		} else {
-			c.pack.Stickers = append(c.pack.Stickers, manifest.Sticker{ID: s.ID, Name: s.Name, Image: rel})
+			c.pack.Stickers = append(c.pack.Stickers, manifest.Sticker{ID: s.ID, Name: s.Name, Image: rel, Expressions: expressions})
 		}
 		installed++
 	}
