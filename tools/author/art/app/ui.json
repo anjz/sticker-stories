@@ -1,0 +1,24 @@
+{
+  "notes": {
+    "what": "The app's own art (not a pack's): the main screen's background, the Sticker Stories title and every pack's cover. uiart render makes `candidates` alternatives of each in out/<asset>/ with a choices.png to compare; uiart pick <asset> <n> installs one.",
+    "style": "Prepended to every prompt so the pieces belong together; keep it close to the packs' style so the menu and the packs feel like one app.",
+    "background": "Sits behind the title (top) and a row of big pack cards (middle), and is cropped to any screen shape: iPad 4:3 in either orientation, phones up to about 2.2:1. Keep it calm and low in detail so the cards stand out.",
+    "cover": "One per pack, drawn from the pack's own style sheet and scene. Shown square-ish in the main menu and wider in the store, so keep what matters in the middle. The app writes the pack's name, so no text in the art."
+  },
+  "style": "Children's picture-book illustration for ages 4 and up: soft digital gouache with a gentle hand-painted texture, clean rounded shapes, thick-and-thin dark-brown outlines, warm friendly palette (mossy greens, honey yellows, soft browns, sky blue, a touch of berry pink), calm and cheerful, no scary elements, no watermarks.",
+  "candidates": 4,
+  "background": {
+    "size": "3072x1536",
+    "prompt": "The backdrop of a children's story app's home screen: a soft, dreamy sky in gentle blues with a few big fluffy clouds, rolling pastel hills along the very bottom with tiny flowers, and a few scattered little stars, sparkles and paper-cut shapes in the upper corners. Very calm and low in detail in the middle band, where a row of large picture cards will sit, and a clear open area across the top centre for the app's title. Everything important is spread evenly so the picture still works when its left and right edges are cropped away."
+  },
+  "title": {
+    "size": "1536x1024",
+    "text": "Sticker Stories",
+    "prompt": "The logo lettering of a children's story app: chunky, rounded, friendly hand-painted letters in warm colours, as if cut from glossy paper stickers with a thin white die-cut border around the words and a soft drop shadow, with a few small playful decorations tucked around it — a tiny star, a leaf, a little sparkle, a curl of ribbon. Readable at a glance, on one or two lines, centred."
+  },
+  "cover": {
+    "size": "1024x1024",
+    "prompt": "A joyful, inviting cover picture: the pack's characters gathered together in the middle of their scene, happy and in a lively little moment, framed by the scenery. The group fills the centre square; the outer edges are calm scenery so the picture can be cropped to a wider or taller tile without losing anyone.",
+    "packs": {}
+  }
+}
