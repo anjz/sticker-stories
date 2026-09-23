@@ -9,9 +9,10 @@ checked mechanically.
 Sticker Stories is an app for children aged four and up. A child drags
 stickers onto a scene and presses play; the app picks a story that matches
 what they placed and narrates it while the stickers react with small
-effects (a wobble, a hop, sparkles), some stickers come alive for a moment
-in their own animation (the bear cub yawns, the frog backflips) and, now and
-then, the weather or the light changes over the whole scene (rain, fog, sunshine, a rainbow, night
+effects (a wobble, a hop, sparkles), their faces change with the story
+(a smile, a sad face, eyes closed in sleep, a surprised "o"), some stickers
+come alive for a moment in their own animation (the bear cub yawns, the frog
+backflips) and, whenever the words bring it, the weather or the light changes over the whole scene (rain, fog, sunshine, a rainbow, night
 falling, the lights going low). Stories are:
 
 - **30–60 seconds** of narration (80–140 words per language), read by an
@@ -164,8 +165,12 @@ Cue grammar is in `FORMAT.md`.
   for the whole story: `{butterfly:float loop}`, `{bee:float loop 0.4}`.
   Keep loops at low intensity (≤ 0.5). Trees and flowers do not move on
   their own; give them a `wobble` or `pulse` on a beat instead.
-- **At least one cue per language, typically two to eight.** More than
-  one sticker can react at once; cues in a row fire together.
+- **Keep the stage alive.** The child is watching the stickers the whole
+  time: give most sentences a beat — a reaction, a face change, everyone at
+  once — about one cue for every 8–12 spoken words, so something moves every
+  few seconds (`storycheck` warns past 12 words per cue). More than one
+  sticker can react at once; cues in a row fire together. Alive is not
+  busy: one beat per moment, on the stickers the sentence is about.
 - **Use the whole library across the set, not the same three names.**
   `storycheck` prints how many stories use each effect; if `hop`, `pulse`
   and `wobble` carry everything while `glow`, `tint`, `spin`, `fade-in` sit
@@ -175,7 +180,50 @@ Cue grammar is in `FORMAT.md`.
 - **Restraint.** Prefer defaults. One effect per beat, on the sticker the
   sentence is about. Never more than three flashes (white `tint`) in a
   second.
-- Cue only featured and supporting stickers.
+- Cue only featured and supporting stickers — or everyone, with `all`
+  (below).
+
+## Faces
+
+Stickers with a face have **expression variants** in the pack (the
+manifest's `stickers[].expressions`; `storycheck -plan` lists them): in
+Forest every sticker has `happy`, `sad`, `sleeping` and `surprised`, and
+its own picture is `normal`. `{bear:face happy}` changes the bear's face
+from that word on.
+
+- **A face has no duration.** It stays until the next face cue for that
+  sticker (or for `all`), so put it back when the feeling passes:
+  `{mouse:face sad}` … `{mouse:face happy}` … The story's end resets
+  every face to `normal` on its own; no need to tidy up at the last word.
+- **Faces follow the feelings the words name.** Smiling, laughing, a
+  happy ending → `happy`; a small sorrow, missing someone, a worry →
+  `sad`, and never for long; falling asleep, a nap, bedtime → `sleeping`
+  (and back to `normal` or `happy` on waking); a gasp, a surprise, a
+  discovery → `surprised`. Cue the face on the word that shows it (*she
+  {ladybug:face surprised} gasped*).
+- **Use them in almost every story.** A face is the cheapest way to make
+  a sticker feel alive and it never distracts; most stories want two to
+  five face changes. `storycheck` warns when a story has none.
+- **With the other effects.** A face and an effect can fire together
+  (`{fox:face happy} {fox:hop}`). A face change during a live animation is
+  fine — it shows when the frames end — but a sleeping face does not fit a
+  sticker about to do a backflip.
+- Only faces the sticker has; `normal` always works.
+
+## Everyone at once: `all`
+
+`all` is a target for every sticker on the canvas, whatever the child
+placed: `{all:hop}`, `{all:hearts}`, `{all:face sleeping}`. Use it when the
+words are about everyone — *and everyone {all:face happy} {all:wobble}
+laughed*, *and the whole forest {all:face sleeping} fell asleep*, *they
+{all:hop x2} cheered*. It is what makes the fallback stories (no featured
+stickers) come alive with whatever is on the canvas.
+
+- Only when the sentence really means everyone: it reaches stickers the
+  story never names.
+- Not for live animations (each is one sticker's move): name the sticker.
+- A later face cue for one sticker overrides an earlier `{all:face …}` for
+  that sticker, and vice versa.
 
 ## Live stickers
 

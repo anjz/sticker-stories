@@ -1,6 +1,6 @@
 ---
 name: author-stories
-description: Author a complete, validated set of bilingual kids' stories (50 per pack; sticker, canvas and sound cues plus Eleven v3 audio tags inline; setting-aware; about 40 % carry a small piece of learning) for a Sticker Stories sticker pack into tools/author/stories/<pack>/. Use when asked to write, create, generate or extend stories for a sticker pack, or to run/fix the story roster or storycheck.
+description: Author a complete, validated set of bilingual kids' stories (50 per pack; sticker, canvas and sound cues, face changes and everyone-at-once cues plus Eleven v3 audio tags inline; setting-aware; about 40 % carry a small piece of learning) for a Sticker Stories sticker pack into tools/author/stories/<pack>/. Use when asked to write, create, generate or extend stories for a sticker pack, or to run/fix the story roster or storycheck.
 ---
 
 # Author stories for a sticker pack
@@ -36,6 +36,10 @@ Read, in this order, before writing anything:
    `cd tools && go run ./author/storycheck -pack ../packs/<packID> -plan`,
    which prints them all. Each is one fixed action (a yawn, a backflip, a
    peekaboo); stories choose only when it happens.
+   Note which stickers declare `expressions` (face variants: `happy`,
+   `sad`, `sleeping`, `surprised`… plus their own `normal` face) — the
+   `-plan` run lists them too. Faces are the cheapest way to make the
+   stage feel alive; plan to use them in almost every story.
    **Look at every sticker's image** (`packs/<packID>/stickers/<id>.webp`;
    convert to PNG with `sips -s format png` to view it) and write down what
    the art actually shows: colours, anything countable (spots, petals,
@@ -103,6 +107,15 @@ exactly per `FORMAT.md`:
   (`glow`, `tint`, `spin`, `fade-in`, `shake`) when a beat wants them, so
   the set uses the whole library rather than `hop`/`pulse`/`wobble` alone —
   but never force one in;
+- **a living stage** (GUIDE "Keep the stage alive", "Faces", "Everyone at
+  once"): a beat on most sentences — about one cue on the stickers per
+  8–12 spoken words (storycheck warns past 12). Face cues
+  (`{bear:face happy}`) wherever a feeling changes, two to five per story
+  and put back when the feeling passes (they have no duration; the end
+  resets them); `{all:…}` — `{all:face sleeping}`, `{all:hop}`,
+  `{all:hearts}` — when the words are about everyone ("everyone laughed",
+  "the whole forest fell asleep"), which is what brings the fallback
+  stories to life; one beat per moment, never a pile-up;
 - a live cue (`{bear:live}` — see FORMAT "Live cues", GUIDE "Live
   stickers") in the stories the roster marked for one: on the words that
   tell exactly what that animation shows, with the next sentence or so
@@ -151,7 +164,8 @@ forbidden words, invalid cues (including a canvas effect the pack's setting
 does not allow, an unknown sound id, a tag outside the allowed list) and
 coverage are mechanical; the safety and quality rules in the GUIDE are
 yours to hold. Watch the tables it prints: effects spread across the whole
-library, every weather mention cued, every live sticker alive
+library, every weather mention cued, faces changing in almost every
+story, every live sticker alive
 in several stories, audio tags and sounds in most stories but never
 crowding one, and learning at about 40 %.
 
@@ -159,7 +173,7 @@ crowding one, and learning at about 40 %.
 
 When the count is reached: run `storycheck` once more, make sure it exits
 clean with full coverage, and report to the user: how many stories, the
-coverage table, the effects-used, live-sticker, audio-tag and sound
+coverage table, the effects-used, faces, live-sticker, audio-tag and sound
 tables, the learning share, the mood mix, and anything you chose not to write and why. Do not
 build step 2 (audio); it is a separate tool.
 
@@ -174,6 +188,10 @@ build step 2 (audio); it is a separate tool.
 - Never give a sticker a count, colour or feature its art contradicts —
   a ladybug counting seven spots when the sticker shows five is a mistake
   every child will catch.
+- Never give a sticker a face it doesn't have, a face the words contradict
+  (sleeping while it talks), or a sad face that the story doesn't mend.
+- Never use `{all:…}` for a live animation or on words that aren't about
+  everyone.
 - Never cue a live animation on words it contradicts, on a sticker without
   one, or twice on the same sticker in a story.
 - Never use an effect name that is not in `docs/effects/effects.json`, a
