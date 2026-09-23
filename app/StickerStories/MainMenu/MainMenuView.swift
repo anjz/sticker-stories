@@ -23,11 +23,8 @@ struct MainMenuView: View {
             let cardWidth = min(geo.size.width * 0.48, cardHeight * 1.1)
 
             VStack(spacing: 0) {
-                Text(verbatim: "Sticker Stories")
-                    .font(.system(size: min(52, geo.size.height * 0.09), weight: .heavy, design: .rounded))
-                    .foregroundStyle(.white)
-                    .shadow(color: .black.opacity(0.18), radius: 3, y: 3)
-                    .padding(.top, geo.size.height * 0.06)
+                title(height: min(geo.size.height * 0.19, geo.size.width * 0.2))
+                    .padding(.top, geo.size.height * 0.03)
 
                 Spacer()
 
@@ -61,6 +58,7 @@ struct MainMenuView: View {
                 Spacer()
             }
             .frame(maxWidth: .infinity)
+            .background { MenuBackground() }
             .overlay(alignment: .topTrailing) {
                 // In the corner, measured from the screen's edge: a landscape
                 // iPhone's safe area is ~60 pt wide on each side (for the
@@ -72,6 +70,26 @@ struct MainMenuView: View {
                     .padding(.trailing, inset > 0 ? 0 : 22)
                     .offset(x: max(0, inset - Self.gearEdgeInset))
             }
+        }
+    }
+
+    /// The title art (`MenuArt`), or the lettering in the app font until it
+    /// has decoded or if it is missing.
+    @ViewBuilder
+    private func title(height: CGFloat) -> some View {
+        if let title = MenuArt.shared.title {
+            Image(uiImage: title)
+                .resizable()
+                .scaledToFit()
+                .frame(height: height)
+                .shadow(color: .black.opacity(0.12), radius: 4, y: 3)
+                .accessibilityLabel(Text(verbatim: "Sticker Stories"))
+        } else {
+            Text(verbatim: "Sticker Stories")
+                .font(.system(size: min(52, height * 0.45), weight: .heavy, design: .rounded))
+                .foregroundStyle(.white)
+                .shadow(color: .black.opacity(0.18), radius: 3, y: 3)
+                .frame(height: height)
         }
     }
 
@@ -96,8 +114,9 @@ struct MainMenuView: View {
     }
 }
 
-/// One selectable pack: its background art fills the card, a few stickers
-/// spill over it, and the localized name sits in a banner at the bottom.
+/// One selectable pack: its cover art (`manifest.cover`) fills the card —
+/// or, for a pack without one, its background with a few stickers spilling
+/// over it — and the localized name sits in a banner at the bottom.
 /// The art is shown from small thumbnails decoded off the main thread — the
 /// full-size pack images are decoded only when the pack is opened.
 private struct PackMenuCard: View {
@@ -130,8 +149,10 @@ private struct PackMenuCard: View {
                 Color(red: 0.55, green: 0.8, blue: 0.5)
             }
 
-            stickerSpill
-                .padding(.bottom, 66)
+            if pack.manifest.cover == nil {
+                stickerSpill
+                    .padding(.bottom, 66)
+            }
 
             Text(pack.manifest.displayName(for: language))
                 .font(.system(size: 24, weight: .heavy, design: .rounded))
@@ -147,8 +168,9 @@ private struct PackMenuCard: View {
         .overlay(RoundedRectangle(cornerRadius: 30).strokeBorder(.white.opacity(0.9), lineWidth: 4))
         .shadow(color: .black.opacity(0.2), radius: 6, y: 4)
         .task(id: pack.id) {
-            let backgroundURL = pack.url(forAssetPath: pack.manifest.background)
-            let stickerURLs = pack.manifest.stickers.prefix(3).map { pack.url(forAssetPath: $0.image) }
+            let backgroundURL = pack.url(forAssetPath: pack.manifest.cover ?? pack.manifest.background)
+            let stickerURLs = pack.manifest.cover != nil
+                ? [] : pack.manifest.stickers.prefix(3).map { pack.url(forAssetPath: $0.image) }
             let backgroundPixels = Self.backgroundPixels, stickerPixels = Self.stickerPixels
             let (backgroundThumbnail, stickerThumbnails) = await Task.detached(priority: .userInitiated) {
                 (Thumbnail.load(backgroundURL, maxPixelSize: backgroundPixels),
@@ -170,23 +192,6 @@ private struct PackMenuCard: View {
                     .shadow(color: .black.opacity(0.25), radius: 3, y: 2)
             }
         }
-    }
-}
-
-/// Downsampled decoding with ImageIO: the file is read once and scaled on
-/// the way in, so a 2048×1536 background never becomes a 12 MB bitmap just
-/// to fill a card.
-private nonisolated enum Thumbnail {
-    static func load(_ url: URL, maxPixelSize: Int) -> UIImage? {
-        guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else { return nil }
-        let options: [CFString: Any] = [
-            kCGImageSourceCreateThumbnailFromImageAlways: true,
-            kCGImageSourceCreateThumbnailWithTransform: true,
-            kCGImageSourceShouldCacheImmediately: true,
-            kCGImageSourceThumbnailMaxPixelSize: maxPixelSize,
-        ]
-        guard let image = CGImageSourceCreateThumbnailAtIndex(source, 0, options as CFDictionary) else { return nil }
-        return UIImage(cgImage: image)
     }
 }
 

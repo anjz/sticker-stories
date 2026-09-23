@@ -172,13 +172,16 @@ struct StoreScreen: View {
     private var cards: [PackCard] {
         var result: [PackCard] = []
 
-        // Packs available on this device — showcase their real artwork.
+        // Packs available on this device — showcase their real artwork: the
+        // cover if the pack has one, else its background with a few stickers.
         for pack in packs {
             let background = UIImage(
-                contentsOfFile: pack.url(forAssetPath: pack.manifest.background).path)
-            let stickers = pack.manifest.stickers.prefix(3).compactMap {
-                UIImage(contentsOfFile: pack.url(forAssetPath: $0.image).path)
-            }
+                contentsOfFile: pack.url(forAssetPath: pack.manifest.cover ?? pack.manifest.background).path)
+            let stickers = pack.manifest.cover != nil
+                ? []
+                : pack.manifest.stickers.prefix(3).compactMap {
+                    UIImage(contentsOfFile: pack.url(forAssetPath: $0.image).path)
+                }
             let language = LanguageResolver(preferredLanguages: settings.preferredLanguages)
                 .resolve(from: pack.manifest.languages)
             result.append(
