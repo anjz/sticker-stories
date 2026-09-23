@@ -120,12 +120,12 @@ Three surfaces, one door out of the child experience:
   its own confirmation) that also empties that stack. No grown-ups access
   from here.
 - **Store** (`StoreScreen`) — a full-screen section reached only via the
-  menu's More stories card → parental gate: the "All Sticker Story Packs" bundle as
-  a banner, the packs as a horizontal row of tiles (two always on screen),
-  restore purchases.
+  menu's More stories card → parental gate: the "All Sticker Story Packs"
+  bundle as a banner, then the packs as horizontally scrolling tiles (two
+  columns always on screen, two rows on a big screen).
 - **Parent settings** (`SettingsView`) — a sheet reached only via the gear in
   the menu's top right corner → parental gate (`AppSettings`: language
-  override, calm mode; persisted in UserDefaults).
+  override, calm mode; persisted in UserDefaults), plus Restore purchases.
 
 Routing is a simple three-case screen enum in `RootView` (menu, story,
 store) — no NavigationStack; the gate and settings are a sheet.
