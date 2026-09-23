@@ -26,6 +26,7 @@ enum EffectTextures {
         case "band": texture = procedural(width: 4, height: 256, band)
         case "cloud": texture = shaded(width: 320, height: 160, cloud)
         case "wisp": texture = procedural(width: 256, height: 16, wisp)
+        case "trickle": texture = procedural(width: 24, height: 72, trickle)
         case "rainbow": texture = drawn(size: CGSize(width: 1024, height: 512), scale: 1) { rect, cg in drawRainbow(in: rect, cg) }
         case "leaf": texture = drawn(size: CGSize(width: 44, height: 64), scale: 2) { rect, cg in drawLeaf(in: rect, cg) }
         default:
@@ -143,6 +144,16 @@ enum EffectTextures {
     /// tapering to nothing at both ends.
     private static func wisp(_ u: Double, _ v: Double) -> Double {
         bell(v) * pow(sin(.pi * u), 1.6) * (0.55 + 0.45 * u)
+    }
+
+    /// A raindrop running down a window: a round bead at the bottom with a
+    /// bright rim, and a thin wet trail fading out above it.
+    private static func trickle(_ u: Double, _ v: Double) -> Double {
+        let dx = (u - 0.5) * 2, dy = (v - 0.84) * 6
+        let d = (dx * dx + dy * dy).squareRoot()
+        let bead = (0.45 + 0.55 * smoothstep(0.5, 0.9, d)) * (1 - smoothstep(0.9, 1, d))
+        let trail = bell(u * 2.4 - 0.7) * 0.4 * smoothstep(0.05, 0.8, v) * (v < 0.84 ? 1 : 0)
+        return max(bead, trail)
     }
 
     /// Opaque at the edges, thinner in the middle: a dimmed room.

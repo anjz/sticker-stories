@@ -21,13 +21,14 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
     case dimlight
     case windowlight
     case firelight
+    case rainywindow
 
     /// The pack settings (`PackManifest.setting`) this effect suits.
     public var settings: Set<PackSetting> {
         switch self {
         case .fog, .rain, .sunshine, .rainbow, .night, .snow, .sunset, .clouds, .wind, .fireflies,
             .leaves: [.outdoors]
-        case .dimlight, .windowlight, .firelight: [.indoors]
+        case .dimlight, .windowlight, .firelight, .rainywindow: [.indoors]
         }
     }
 
@@ -103,6 +104,9 @@ public struct CanvasEffectDefinition: Sendable {
         CanvasEffectDefinition(
             name: .firelight, defaultDuration: 10, rampIn: 2.0, rampOut: 2.0,
             summary: "A warm glow from below flickers slowly and gently while the room around it dims."),
+        CanvasEffectDefinition(
+            name: .rainywindow, defaultDuration: 12, rampIn: 2.0, rampOut: 2.0,
+            summary: "The room turns cool and grey while raindrops trickle down, as if seen through glass."),
     ]
 }
 
