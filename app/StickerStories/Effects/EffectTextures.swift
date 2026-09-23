@@ -39,8 +39,6 @@ enum EffectTextures {
         }
         case "rainbow": texture = drawn(size: CGSize(width: 1024, height: 512), scale: 1) { rect, cg in drawRainbow(in: rect, cg) }
         case "leaf": texture = drawn(size: CGSize(width: 44, height: 64), scale: 2) { rect, cg in drawLeaf(in: rect, cg) }
-        case "planet": texture = drawn(size: CGSize(width: 512, height: 512), scale: 1) { rect, cg in drawPlanet(in: rect, cg) }
-        case "rim": texture = procedural(width: 256, height: 256, rim)
         default:
             texture = drawn(size: CGSize(width: 32, height: 32), scale: 3) { rect, cg in
                 switch name {
@@ -194,15 +192,6 @@ enum EffectTextures {
         return bell(0.5 + (v - 0.5) / width) * pow(u, 1.8)
     }
 
-    /// A planet's atmosphere: a glowing ring hugging the disc's edge (the
-    /// disc fills 80 % of the texture) and fading outward.
-    private static func rim(_ u: Double, _ v: Double) -> Double {
-        let dx = (u - 0.5) * 2, dy = (v - 0.5) * 2
-        let d = (dx * dx + dy * dy).squareRoot()
-        let x = (d - 0.8) / (d < 0.8 ? 0.05 : 0.14)
-        return exp(-x * x) * (1 - smoothstep(0.9, 1, d))  // nothing left at the texture's edge
-    }
-
     /// A comet's tail: brightest and narrowest at the head (right end),
     /// widening and fading away behind it.
     private static func cometTail(_ u: Double, _ v: Double) -> Double {
@@ -337,54 +326,6 @@ enum EffectTextures {
         cg.setLineCap(.round)
         cg.addPath(rib.cgPath)
         cg.strokePath()
-    }
-
-    /// A friendly gas giant in colour: soft blue and teal bands, lit from
-    /// the upper left and falling into shade toward the lower right. The
-    /// disc fills 80 % of the texture, like `rim`'s ring.
-    private static func drawPlanet(in rect: CGRect, _ cg: CGContext) {
-        let radius = rect.width * 0.4
-        let center = CGPoint(x: rect.midX, y: rect.midY)
-        let disc = CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2)
-        cg.saveGState()
-        cg.addEllipse(in: disc)
-        cg.clip()
-        cg.setFillColor(UIColor(red: 0.36, green: 0.62, blue: 0.86, alpha: 1).cgColor)
-        cg.fill(disc)
-        let bands: [(CGFloat, CGFloat, UIColor)] = [
-            (0.14, 0.08, UIColor(red: 0.5, green: 0.78, blue: 0.9, alpha: 1)),
-            (0.3, 0.12, UIColor(red: 0.28, green: 0.52, blue: 0.8, alpha: 1)),
-            (0.47, 0.07, UIColor(red: 0.55, green: 0.85, blue: 0.84, alpha: 1)),
-            (0.6, 0.13, UIColor(red: 0.32, green: 0.66, blue: 0.78, alpha: 1)),
-            (0.8, 0.09, UIColor(red: 0.48, green: 0.72, blue: 0.94, alpha: 1)),
-        ]
-        for (at, thickness, color) in bands {
-            // A band bowed a little, as if wrapped round the sphere.
-            let y = disc.minY + disc.height * at
-            let path = UIBezierPath()
-            path.move(to: CGPoint(x: disc.minX, y: y))
-            path.addQuadCurve(to: CGPoint(x: disc.maxX, y: y), controlPoint: CGPoint(x: center.x, y: y + radius * 0.12))
-            path.addLine(to: CGPoint(x: disc.maxX, y: y + disc.height * thickness))
-            path.addQuadCurve(
-                to: CGPoint(x: disc.minX, y: y + disc.height * thickness),
-                controlPoint: CGPoint(x: center.x, y: y + disc.height * thickness + radius * 0.12))
-            path.close()
-            cg.setFillColor(color.cgColor)
-            cg.addPath(path.cgPath)
-            cg.fillPath()
-        }
-        // Light from the upper left, shade toward the lower right.
-        let light = [UIColor.white.withAlphaComponent(0.35).cgColor, UIColor.white.withAlphaComponent(0).cgColor] as CFArray
-        if let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: light, locations: [0, 1]) {
-            let from = CGPoint(x: center.x - radius * 0.45, y: center.y - radius * 0.45)
-            cg.drawRadialGradient(gradient, startCenter: from, startRadius: 0, endCenter: from, endRadius: radius * 1.1, options: [])
-        }
-        let shade = [UIColor(red: 0.04, green: 0.06, blue: 0.2, alpha: 0).cgColor, UIColor(red: 0.04, green: 0.06, blue: 0.2, alpha: 0.7).cgColor] as CFArray
-        if let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: shade, locations: [0.45, 1]) {
-            let from = CGPoint(x: center.x - radius * 0.3, y: center.y - radius * 0.3)
-            cg.drawRadialGradient(gradient, startCenter: from, startRadius: 0, endCenter: from, endRadius: radius * 1.7, options: [])
-        }
-        cg.restoreGState()
     }
 
     private static func drawHeart(in rect: CGRect, _ cg: CGContext) {

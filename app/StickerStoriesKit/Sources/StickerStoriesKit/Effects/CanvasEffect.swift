@@ -30,7 +30,6 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
     case shootingstars
     case nebula
     case warp
-    case planetrise
     case comet
     // Underwater
     case sunrays
@@ -39,7 +38,6 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
     case glowplankton
     case current
     case sandcloud
-    case seasnow
 
     /// The pack settings (`PackManifest.setting`) this effect suits.
     public var settings: Set<PackSetting> {
@@ -49,8 +47,8 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
         case .dimlight, .windowlight, .firelight, .rainywindow: [.indoors]
         case .confetti: [.outdoors, .indoors, .space]
         case .bubbles: [.outdoors, .indoors, .space, .underwater]
-        case .shootingstars, .nebula, .warp, .planetrise, .comet: [.space]
-        case .sunrays, .ripples, .deepwater, .glowplankton, .current, .sandcloud, .seasnow: [.underwater]
+        case .shootingstars, .nebula, .warp, .comet: [.space]
+        case .sunrays, .ripples, .deepwater, .glowplankton, .current, .sandcloud: [.underwater]
         }
     }
 
@@ -101,7 +99,7 @@ public struct CanvasEffectDefinition: Sendable {
             summary: "Night falls: the scene darkens and a moon glows in the sky."),
         CanvasEffectDefinition(
             name: .snow, defaultDuration: 12, rampIn: 2.0, rampOut: 2.5,
-            summary: "Soft snowflakes drift down over everything; the light turns cool and bright."),
+            summary: "Soft snowflakes drift down over everything; the top of the sky turns white and the light cool and bright."),
         CanvasEffectDefinition(
             name: .sunset, defaultDuration: 10, rampIn: 2.5, rampOut: 2.5,
             summary: "A warm orange-pink glow spreads from the horizon while the sky above deepens."),
@@ -145,9 +143,6 @@ public struct CanvasEffectDefinition: Sendable {
             name: .warp, defaultDuration: 4, rampIn: 0.6, rampOut: 1.0,
             summary: "Stars stretch into streaks rushing out from the centre: zooming through space."),
         CanvasEffectDefinition(
-            name: .planetrise, defaultDuration: 12, rampIn: 3.0, rampOut: 3.0,
-            summary: "A big glowing planet rises slowly from behind the scenery, lighting the scene from below."),
-        CanvasEffectDefinition(
             name: .comet, defaultDuration: 12, rampIn: 1.5, rampOut: 2.0,
             summary: "A comet with a long glowing tail glides slowly across the sky."),
         CanvasEffectDefinition(
@@ -168,9 +163,6 @@ public struct CanvasEffectDefinition: Sendable {
         CanvasEffectDefinition(
             name: .sandcloud, defaultDuration: 6, rampIn: 1.5, rampOut: 2.5,
             summary: "A cloud of sand swirls up from the sea floor and slowly settles."),
-        CanvasEffectDefinition(
-            name: .seasnow, defaultDuration: 14, rampIn: 2.5, rampOut: 2.5,
-            summary: "Soft pale specks drift slowly down through the water."),
     ]
 }
 

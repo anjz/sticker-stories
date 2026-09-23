@@ -87,7 +87,8 @@ squash and stretch, keyframe authoring, scene shake and parallax,
 background-layer targeting, z-order and flip changes, blur, saturation,
 brightness, shimmer, halo, composite presets, pack-custom emitters. Weather
 and light over the scene are the canvas effects below — that list is closed
-too. Considered for it and turned down (2026-09): `nightlight` (stars
+too. Removed in 2026-09 and not to be reused: `planetrise` and `seasnow`.
+Considered for it and turned down (2026-09): `nightlight` (stars
 turning on a bedroom wall), `aurora` in space, thunder and lightning
 (flashes are a light-sensitivity risk and storms frighten small children),
 a "zero gravity" effect that floats every sticker (canvas effects never move
@@ -153,7 +154,7 @@ or fantastical places) gets no canvas effects at all.
 | `sunshine` | outdoors | Warm light across the top of the scene, soft shafts drifting down. | The sun comes out, a warm afternoon, waking up, a happy ending after rain. | 8 s | 1.5 / 1.5 s | full |
 | `rainbow` | outdoors | A soft rainbow arcs across the sky behind the scenery. | The reward after rain, a wish come true, a wonder everyone looks up at. One per story at most. | 8 s | 2 / 2 s | full |
 | `night` | outdoors | Night falls: the scene darkens and a moon glows in the sky. | Evening and bedtime outdoors, the moon coming up, stars, a story that settles to sleep. Never darkness as a threat. Builds slowly — cue it a beat early. | 10 s | 2 / 2 s | full |
-| `snow` | outdoors | Soft snowflakes drift down at different sizes and speeds; the light turns a little cooler and brighter. | Winter, a snow day, the first flakes, a quiet hush. `intensity` is a few flakes to a thick flurry. | 12 s | 2 / 2.5 s | runs at ≤0.4 |
+| `snow` | outdoors | Soft snowflakes drift down at different sizes and speeds; the top of the sky turns white (behind the scenery) and the light a little cooler and brighter. | Winter, a snow day, the first flakes, a quiet hush. `intensity` is a few flakes to a thick flurry. | 12 s | 2 / 2.5 s | runs at ≤0.4 |
 | `sunset` | outdoors | A warm orange-pink glow spreads from the horizon while the top of the sky deepens to violet. | The end of the day, going home, a calm golden moment. Followed by `night` it makes a gentle bedtime. Builds slowly — cue it a beat early. | 10 s | 2.5 / 2.5 s | full |
 | `clouds` | outdoors | Big soft clouds drift slowly across the sky behind the scenery; the light dims a little. | A cloudy day, "a cloud shaped like…", the grey before rain, the sun going in. | 12 s | 2.5 / 2.5 s | full |
 | `wind` | outdoors | Pale wisps of air sweep across the scene from left to right, with a few specks tumbling along. | A windy day, a kite, something blown away, a whoosh. `intensity` is a breeze to a gust. | 8 s | 1 / 1.5 s | runs at ≤0.4 |
@@ -168,7 +169,6 @@ or fantastical places) gets no canvas effects at all.
 | `shootingstars` | space | Now and then a shooting star streaks across the sky behind the scenery. | Making a wish, wonder, "look!". `intensity` is a single one now and then to a meteor shower. | 10 s | 1 / 1.5 s | runs at ≤0.4 |
 | `nebula` | space | Soft purple, pink and teal clouds of light swell and drift across the sky behind the scenery. | A magical place, wonder, drifting far from home, a dreamy moment. Builds slowly — cue it a beat early. | 12 s | 3 / 3 s | full |
 | `warp` | space | Stars stretch into streaks rushing out from the centre, in the sky behind the stickers and the scenery. | Blast-off, zooming to a new planet, "whoosh!". Short — a few seconds is plenty. | 4 s | 0.6 / 1 s | does not run |
-| `planetrise` | space | A big banded planet with a glowing rim rises slowly from behind the scenery, lighting the scene from below. | Arriving somewhere, a new day in space, "look at that planet!". Builds slowly — cue it a beat early. | 12 s | 3 / 3 s | full |
 | `comet` | space | A comet with a long glowing tail glides slowly across the sky behind the scenery. | A visitor, following something, a slow moment of wonder. Calmer than `shootingstars`. | 12 s | 1.5 / 2 s | full |
 | `sunrays` | underwater | Shafts of sunlight slant down through the water from the surface and sway slowly. | A bright, happy day under the sea, swimming up towards the light, the sun coming out above. | 10 s | 2 / 2 s | full |
 | `ripples` | underwater | A net of rippling light plays over the whole scene, brightest near the sea floor. | Shallow water, a sunny lagoon, calm and playful. Layers nicely with `sunrays`. | 12 s | 2 / 2 s | full |
@@ -176,7 +176,6 @@ or fantastical places) gets no canvas effects at all.
 | `glowplankton` | underwater | Tiny blue-green lights twinkle and drift slowly through the water. | A little magic in the dark sea, a night swim. Lovely layered over `deepwater`. | 12 s | 2 / 2 s | runs at ≤0.4 |
 | `current` | underwater | A gentle current sweeps specks, wisps and bits of green across the scene from left to right. | Swimming along, being carried away, a whoosh under the sea. `intensity` is a drift to a strong current. | 8 s | 1.2 / 1.5 s | runs at ≤0.4 |
 | `sandcloud` | underwater | A cloud of sand swirls up from the sea floor and slowly settles again. | Something stirs, hide and seek, a big fish swishing past, digging in the sand. | 6 s | 1.5 / 2.5 s | runs at ≤0.4 |
-| `seasnow` | underwater | Soft pale specks drift slowly down through the water, with a faint haze. | Quiet, hush, drifting, the deep and still sea. Builds slowly — cue it a beat early. | 14 s | 2.5 / 2.5 s | full |
 
 - Ramps never eat more than a third of the duration each, so a 3 s effect
   still spends a second at full strength.
