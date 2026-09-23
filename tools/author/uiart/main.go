@@ -1,9 +1,10 @@
 // Command uiart makes the app's own art — the main screen's background,
-// the "Sticker Stories" title and each sticker pack's cover — as a few
-// alternatives to choose from, then installs the chosen one.
+// the "Sticker Stories" title, the store tile and each sticker pack's
+// cover — as a few alternatives to choose from, then installs the chosen
+// one.
 //
-//	uiart render [-only background,title,cover,cover:forest] [-count 4]
-//	uiart pick background 3 | title 2 | cover:forest 1
+//	uiart render [-only background,title,store,cover,cover:forest] [-count 4]
+//	uiart pick background 3 | title 2 | store 4 | cover:forest 1
 //
 // Prompts live in author/art/app/ui.json; candidates land in
 // author/art/app/out/<asset>/<n>.png with a choices.png contact sheet per
@@ -43,6 +44,10 @@ const (
 	appArtDir = "../app/StickerStories/Art"
 	// Longest edge of a reference image sent to the API.
 	referencePx = 1536
+	// How many of the packs' finished stickers the store tile is drawn
+	// from, spread across the packs, and their longest edge.
+	storeStickers  = 8
+	storeStickerPx = 512
 )
 
 // uiConfig is ui.json.
@@ -54,6 +59,8 @@ type uiConfig struct {
 	Background assetSpec `json:"background"`
 	Title      titleSpec `json:"title"`
 	Cover      coverSpec `json:"cover"`
+	// Store is the main menu tile that opens the store (More stories).
+	Store assetSpec `json:"store"`
 }
 
 type assetSpec struct {
@@ -94,7 +101,7 @@ func main() {
 }
 
 func usage() {
-	fmt.Fprintln(os.Stderr, "usage: uiart render [flags] | uiart pick <background|title|cover:<pack>> <n>  (see -h)")
+	fmt.Fprintln(os.Stderr, "usage: uiart render [flags] | uiart pick <background|title|store|cover:<pack>> <n>  (see -h)")
 	os.Exit(2)
 }
 
@@ -131,7 +138,7 @@ func runRender(args []string) error {
 	fs := flag.NewFlagSet("render", flag.ExitOnError)
 	artDir := fs.String("art", filepath.Join("author", "art", "app"), "art directory holding ui.json")
 	packsDir := fs.String("packs", filepath.Join("..", "packs"), "folder of packs (for covers)")
-	only := fs.String("only", "", "comma-separated: background, title, cover (every pack), cover:<pack>")
+	only := fs.String("only", "", "comma-separated: background, title, store, cover (every pack), cover:<pack>")
 	count := fs.Int("count", 0, "candidates per asset (default: ui.json's candidates, or 4)")
 	more := fs.Int("more", 0, "add this many candidates beyond those already there")
 	fresh := fs.Bool("fresh", false, "archive the existing candidates and start a new set")
@@ -177,6 +184,18 @@ func runRender(args []string) error {
 	packs, err := listPacks(*packsDir)
 	if err != nil {
 		return err
+	}
+	if want("store") && cfg.Store.Prompt != "" {
+		refs, err := storeReferences(packs)
+		if err != nil {
+			return fmt.Errorf("store: %w", err)
+		}
+		jobs = append(jobs, job{
+			key: "store", dir: filepath.Join(out, "store"), size: cfg.Store.Size, references: refs,
+			prompt: style + "\n\nThe attached images are stickers from this app's sticker packs: use these characters and this exact painted style.\n\n" +
+				strings.TrimSpace(cfg.Store.Prompt) +
+				"\n\nNo text, no letters, no logo anywhere in the picture — the app writes the tile's label. No frame or border around the picture.",
+		})
 	}
 	for _, p := range packs {
 		key := "cover:" + p.m.ID
@@ -389,6 +408,48 @@ func coverJob(cfg *uiConfig, style string, p pack, out string) (job, error) {
 	return job{key: "cover:" + p.m.ID, dir: filepath.Join(out, "cover-"+p.m.ID), prompt: prompt, size: cfg.Cover.Size, references: refs}, nil
 }
 
+// storeReferences picks up to storeStickers of the packs' finished
+// stickers (from stickerart's out/), taking them in turn from each pack so
+// every pack is represented.
+func storeReferences(packs []pack) ([][]byte, error) {
+	var perPack [][]string
+	for _, p := range packs {
+		var paths []string
+		for _, st := range p.m.Stickers {
+			path := filepath.Join("author", "art", p.m.ID, "out", "stickers", st.ID+".png")
+			if _, err := os.Stat(path); err == nil {
+				paths = append(paths, path)
+			}
+		}
+		perPack = append(perPack, paths)
+	}
+	var refs [][]byte
+	for i := 0; len(refs) < storeStickers; i++ {
+		took := false
+		for _, paths := range perPack {
+			if i < len(paths) && len(refs) < storeStickers {
+				data, err := os.ReadFile(paths[i])
+				if err != nil {
+					return nil, err
+				}
+				small, err := downscale(data, storeStickerPx)
+				if err != nil {
+					return nil, fmt.Errorf("%s: %w", paths[i], err)
+				}
+				refs = append(refs, small)
+				took = true
+			}
+		}
+		if !took {
+			break
+		}
+	}
+	if len(refs) == 0 {
+		return nil, errors.New("no finished stickers in author/art/<pack>/out/stickers to draw from")
+	}
+	return refs, nil
+}
+
 // candidates lists the candidate numbers already in dir, ascending.
 func candidates(dir string) []int {
 	entries, _ := os.ReadDir(dir)
@@ -490,7 +551,7 @@ func runPick(args []string) error {
 	packsDir := fs.String("packs", filepath.Join("..", "packs"), "folder of packs (for covers)")
 	fs.Parse(args)
 	if fs.NArg() != 2 {
-		return errors.New("usage: uiart pick <background|title|cover:<pack>> <n>")
+		return errors.New("usage: uiart pick <background|title|store|cover:<pack>> <n>")
 	}
 	key := fs.Arg(0)
 	n, err := strconv.Atoi(fs.Arg(1))
@@ -514,6 +575,8 @@ func runPick(args []string) error {
 	switch {
 	case key == "background":
 		return install(img, filepath.Join(appArtDir, "menu-background.webp"))
+	case key == "store":
+		return install(img, filepath.Join(appArtDir, "menu-store.webp"))
 	case key == "title":
 		// Trim the transparent surround so the app can size the title by
 		// its lettering.
@@ -555,7 +618,7 @@ func runPick(args []string) error {
 		fmt.Printf("✓ %s: cover set in the manifest (version %d); manifest validates\n", id, m.Version)
 		return nil
 	}
-	return fmt.Errorf("unknown asset %q (background, title or cover:<pack>)", key)
+	return fmt.Errorf("unknown asset %q (background, title, store or cover:<pack>)", key)
 }
 
 // install writes img as WebP (lossy q90, lossless alpha) at dst.

@@ -4,7 +4,8 @@ import SwiftUI
 import UIKit
 
 /// The app's own art (made with `tools/author/uiart`): the main screen's
-/// background and the "Sticker Stories" title, bundled in `Art/`. Decoded
+/// background, the "Sticker Stories" title and the store tile's art,
+/// bundled in `Art/`. Decoded
 /// once, off the main thread and downsampled to the screen, and shared by
 /// every screen that shows it — the menu and the pack loading screen — so
 /// the loading screen has it ready the moment it appears.
@@ -15,6 +16,8 @@ final class MenuArt {
 
     private(set) var background: UIImage?
     private(set) var title: UIImage?
+    /// The More stories tile's art; nil keeps the tile's plain look.
+    private(set) var store: UIImage?
     private var started = false
 
     /// Longest side of the decoded background: a 13" iPad is 2752 px wide;
@@ -22,6 +25,8 @@ final class MenuArt {
     private static let backgroundPixels = 2400
     /// The title is drawn at most ~40 % of the screen width.
     private static let titlePixels = 1200
+    /// The store tile is a menu card: ~0.48 of the screen width at most.
+    private static let storePixels = 1024
 
     /// Starts decoding; safe to call from every screen's `task`.
     func load() {
@@ -30,14 +35,18 @@ final class MenuArt {
         Task {
             let backgroundURL = Bundle.main.url(forResource: "menu-background", withExtension: "webp")
             let titleURL = Bundle.main.url(forResource: "menu-title", withExtension: "webp")
+            let storeURL = Bundle.main.url(forResource: "menu-store", withExtension: "webp")
             let backgroundPixels = Self.backgroundPixels, titlePixels = Self.titlePixels
-            let (background, title) = await Task.detached(priority: .userInitiated) {
+            let storePixels = Self.storePixels
+            let (background, title, store) = await Task.detached(priority: .userInitiated) {
                 (backgroundURL.flatMap { Thumbnail.load($0, maxPixelSize: backgroundPixels) },
-                 titleURL.flatMap { Thumbnail.load($0, maxPixelSize: titlePixels) })
+                 titleURL.flatMap { Thumbnail.load($0, maxPixelSize: titlePixels) },
+                 storeURL.flatMap { Thumbnail.load($0, maxPixelSize: storePixels) })
             }.value
             withAnimation(.easeOut(duration: 0.25)) {
                 self.background = background
                 self.title = title
+                self.store = store
             }
         }
     }
