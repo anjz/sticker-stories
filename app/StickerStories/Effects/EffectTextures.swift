@@ -27,6 +27,7 @@ enum EffectTextures {
         case "cloud": texture = shaded(width: 320, height: 160, cloud)
         case "wisp": texture = procedural(width: 256, height: 16, wisp)
         case "rainbow": texture = drawn(size: CGSize(width: 1024, height: 512), scale: 1) { rect, cg in drawRainbow(in: rect, cg) }
+        case "leaf": texture = drawn(size: CGSize(width: 44, height: 64), scale: 2) { rect, cg in drawLeaf(in: rect, cg) }
         default:
             texture = drawn(size: CGSize(width: 32, height: 32), scale: 3) { rect, cg in
                 switch name {
@@ -235,6 +236,28 @@ enum EffectTextures {
         if let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colors, locations: [0, 1]) {
             cg.drawRadialGradient(gradient, startCenter: center, startRadius: 0, endCenter: center, endRadius: rect.width * 0.3, options: [])
         }
+    }
+
+    /// A pointed leaf with a short stem and a darker midrib, white so each
+    /// falling leaf can be tinted its own autumn colour.
+    private static func drawLeaf(in rect: CGRect, _ cg: CGContext) {
+        let w = rect.width, h = rect.height
+        let blade = UIBezierPath()
+        blade.move(to: CGPoint(x: w / 2, y: h * 0.04))
+        blade.addCurve(to: CGPoint(x: w / 2, y: h * 0.86), controlPoint1: CGPoint(x: w * 1.02, y: h * 0.28), controlPoint2: CGPoint(x: w * 0.9, y: h * 0.7))
+        blade.addCurve(to: CGPoint(x: w / 2, y: h * 0.04), controlPoint1: CGPoint(x: w * 0.1, y: h * 0.7), controlPoint2: CGPoint(x: -w * 0.02, y: h * 0.28))
+        blade.close()
+        cg.setFillColor(UIColor.white.cgColor)
+        cg.addPath(blade.cgPath)
+        cg.fillPath()
+        let rib = UIBezierPath()
+        rib.move(to: CGPoint(x: w / 2, y: h * 0.12))
+        rib.addLine(to: CGPoint(x: w / 2, y: h * 0.98))
+        cg.setStrokeColor(UIColor(white: 0.62, alpha: 1).cgColor)
+        cg.setLineWidth(w * 0.06)
+        cg.setLineCap(.round)
+        cg.addPath(rib.cgPath)
+        cg.strokePath()
     }
 
     private static func drawHeart(in rect: CGRect, _ cg: CGContext) {
