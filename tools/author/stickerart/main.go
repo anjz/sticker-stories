@@ -131,6 +131,18 @@ type expressionSpec struct {
 type sceneSpec struct {
 	Background string `json:"background"`
 	Foreground string `json:"foreground"`
+	// Edits are painted into the finished background afterwards, in order:
+	// a feature added to the scene (a pond) without repainting the rest.
+	Edits []sceneEdit `json:"edits,omitempty"`
+}
+
+// sceneEdit is one thing painted into the background: what, and where on
+// the WIDE background (fractions, top-left origin; the base rendition is
+// its centre two thirds). Only that area changes, blended in with a soft
+// edge; the base is re-cut from the edited wide, so the two still match.
+type sceneEdit struct {
+	Prompt string             `json:"prompt"`
+	Area   stickerimg.FaceBox `json:"area"`
 }
 
 func main() {
@@ -438,7 +450,7 @@ func (r *renderer) run() error {
 		}()
 	}
 	for _, s := range cfg.Stickers {
-		if s.Face == nil || !(r.want(s.ID) || r.want("faces")) {
+		if s.Face == nil {
 			continue
 		}
 		for _, e := range cfg.Expressions {
@@ -559,8 +571,16 @@ func (r *renderer) finish(id, raw, final, finishFP string) error {
 	return nil
 }
 
-// faceVersion changes whenever the face mask or composite changes.
-const faceVersion = "1"
+// faceVersion changes whenever the face composite changes; the kept
+// generations are re-composited at no cost.
+const faceVersion = "3"
+
+// faceGenVersion changes whenever the face mask or the edit prompt's
+// fixed wording changes: new generations for every variant.
+const faceGenVersion = "1"
+
+// faceSeamWarn is the FaceSeam above which a variant is flagged for a look.
+const faceSeamWarn = 0.12
 
 // face makes one expression variant of a sticker: the kept raw is sent with
 // a mask over the face and the expression's prompt (kept as
@@ -575,8 +595,10 @@ func (r *renderer) face(s stickerSpec, e expressionSpec) error {
 	if !exists(raw) {
 		return errors.New("no raw art yet; render the sticker first")
 	}
-	genFP := hashOf(toolVersion, "face", faceVersion, r.fps[raw], cfg.Style, e.Prompt, fmt.Sprint(*s.Face), s.FaceNote, r.o.quality, editModel)
-	finishFP := hashOf(genFP, finishVersion, fmt.Sprint(cfg.StickerSize, cfg.Border, cfg.Margin), fmt.Sprint(cfg.finish()))
+	genFP := hashOf(toolVersion, "face", faceGenVersion, r.fps[raw], cfg.Style, e.Prompt, fmt.Sprint(*s.Face), s.FaceNote, r.o.quality, editModel)
+	// The composite has its own version: a change there re-composites the
+	// kept generation at no cost.
+	finishFP := hashOf(genFP, faceVersion, finishVersion, fmt.Sprint(cfg.StickerSize, cfg.Border, cfg.Margin), fmt.Sprint(cfg.finish()))
 	gen := r.out("stickers", key+".gen.png")
 	comp := r.out("stickers", key+".raw.png")
 	final := r.out("stickers", key+".png")
@@ -602,7 +624,7 @@ func (r *renderer) face(s stickerSpec, e expressionSpec) error {
 		r.say("▶ %s", key)
 		started := time.Now()
 		b := base.Bounds()
-		maskPNG, err := stickerimg.Encode(stickerimg.FaceMask(b.Dx(), b.Dy(), *s.Face))
+		maskPNG, err := stickerimg.Encode(stickerimg.FaceMask(base, *s.Face))
 		if err != nil {
 			return err
 		}
@@ -610,7 +632,7 @@ func (r *renderer) face(s stickerSpec, e expressionSpec) error {
 		if s.FaceNote != "" {
 			note = " " + s.FaceNote
 		}
-		prompt := fmt.Sprintf("%s\n\nThis is a finished sticker character: %s%s Repaint ONLY its face, inside the masked area, to show this expression: %s The surface the face is drawn on keeps exactly its colour and texture as in the image. Keep the character recognisably the same: the same head shape, fur or skin, colours, outline weight and art style, the eyes in the same places and the same size family, the cheeks, the nose or beak. If it has a beak, keep the beak's shape (it may open a little) and show the feeling through the eyes and brows. Nothing outside the face changes. Friendly and gentle, never scary. Fully transparent background.", cfg.Style, s.Prompt, note, e.Prompt)
+		prompt := fmt.Sprintf("%s\n\nThis is a finished sticker character: %s%s Repaint ONLY its face, inside the masked area, to show this expression: %s The surface the face is drawn on keeps exactly its colour and texture as in the image. The head does not turn, grow or move: its outline, the ears and the fur around the face stay exactly where they are, and the new eyes, brows, nose and mouth sit where the old ones were. Keep the character recognisably the same: the same head shape, fur or skin, colours, outline weight and art style, the eyes in the same places and the same size family, the cheeks, the nose or beak. If it has a beak, keep the beak's shape (it may open a little) and show the feeling through the eyes and brows. Nothing outside the face changes. Friendly and gentle, never scary. Fully transparent background.", cfg.Style, s.Prompt, note, e.Prompt)
 		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: fmt.Sprintf("%dx%d", b.Dx(), b.Dy()), Quality: r.o.quality, Background: "transparent", References: [][]byte{rawData}, Mask: maskPNG})
 		if err != nil {
 			return err
@@ -630,6 +652,9 @@ func (r *renderer) face(s stickerSpec, e expressionSpec) error {
 	edited, err := stickerimg.Decode(genData)
 	if err != nil {
 		return err
+	}
+	if seam := stickerimg.FaceSeam(base, edited, *s.Face); seam > faceSeamWarn {
+		r.say("! %s: the new face differs a lot at its rim (%.2f) — check %s for the old face showing through", key, seam, final)
 	}
 	png, err := stickerimg.Encode(stickerimg.Face(base, edited, *s.Face))
 	if err != nil {
@@ -658,7 +683,9 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 
 	bgFP := hashOf(toolVersion, "background", sheetFP, cfg.Style, cfg.Scene.Background, r.o.quality, "4")
 	bgBase, bgWide := r.out("art", "background.png"), r.out("art", "background-wide.png")
-	if r.upToDate(bgWide, bgFP) && r.upToDate(bgBase, bgFP) {
+	// An edited background is still this background: its unedited original
+	// carries the fingerprint (sceneEdits).
+	if (r.upToDate(bgWide, bgFP) && r.upToDate(bgBase, bgFP)) || (r.upToDate(r.out("art", "background-wide.orig.png"), bgFP) && exists(bgWide) && exists(bgBase)) {
 		r.say("· background up to date")
 	} else if r.o.dry {
 		r.planned = append(r.planned, "background ("+size+")", "background-wide ("+wide+", outpaint around the masked centre)")
@@ -676,6 +703,10 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 		r.done(bgBase, bgFP)
 		r.done(bgWide, bgFP)
 		r.say("✓ background (%s) + wide", cost)
+	}
+
+	if err := r.sceneEdits(bgFP, bgBase, bgWide); err != nil {
+		return err
 	}
 
 	fgFP := hashOf(toolVersion, "foreground", bgFP, cfg.Scene.Foreground, r.o.quality, "4")
@@ -710,6 +741,99 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 	r.say("✓ foreground (%s) + wide", cost)
 	return nil
 }
+
+// sceneEdits paints the scene's edits into the background. The generated
+// wide background is kept as background-wide.orig.png the first time, and
+// the edits always start from it, so changing or removing an edit never
+// stacks on an earlier one.
+func (r *renderer) sceneEdits(bgFP, bgBase, bgWide string) error {
+	edits := r.c.cfg.Scene.Edits
+	orig := r.out("art", "background-wide.orig.png")
+	if len(edits) == 0 {
+		if exists(orig) && r.fps[bgWide] != bgFP && r.fps[orig] == bgFP {
+			// Edits removed: back to the generated background.
+			data, err := os.ReadFile(orig)
+			if err != nil {
+				return err
+			}
+			if err := r.splitWide(data, bgBase, bgWide, false); err != nil {
+				return err
+			}
+			r.done(bgBase, bgFP)
+			r.done(bgWide, bgFP)
+		}
+		return nil
+	}
+	editFP := hashOf(bgFP, "edits", sceneEditVersion, fmt.Sprint(edits), r.o.quality, editModel)
+	if r.upToDate(bgWide, editFP) && r.upToDate(bgBase, editFP) {
+		r.say("· background edits up to date")
+		return nil
+	}
+	if !r.upToDate(orig, bgFP) {
+		if r.fps[bgWide] != bgFP {
+			return errors.New("background edits: no unedited background to start from; render the background again (-force)")
+		}
+		data, err := os.ReadFile(bgWide)
+		if err != nil {
+			return err
+		}
+		if err := os.WriteFile(orig, data, 0o644); err != nil {
+			return err
+		}
+		r.done(orig, bgFP)
+	}
+	if r.o.dry {
+		for _, e := range edits {
+			r.planned = append(r.planned, "background edit: "+e.Prompt)
+		}
+		return nil
+	}
+	data, err := os.ReadFile(orig)
+	if err != nil {
+		return err
+	}
+	img, err := stickerimg.Decode(data)
+	if err != nil {
+		return err
+	}
+	for i, e := range edits {
+		r.say("▶ background edit %d", i+1)
+		canvas, err := stickerimg.Encode(img)
+		if err != nil {
+			return err
+		}
+		mask, err := stickerimg.Encode(stickerimg.FaceMask(img, e.Area))
+		if err != nil {
+			return err
+		}
+		prompt := fmt.Sprintf("%s\n\nThis is the finished background of a children's picture-book scene. Paint ONLY inside the masked area: %s Match the existing style, brushwork, palette, lighting and perspective exactly so it looks painted with the rest, and blend it naturally into the ground around it. Change nothing outside the masked area. No characters, no animals, no text.", r.c.cfg.Style, e.Prompt)
+		b := img.Bounds()
+		out, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: fmt.Sprintf("%dx%d", b.Dx(), b.Dy()), Quality: r.o.quality, Background: "opaque", References: [][]byte{canvas}, Mask: mask})
+		if err != nil {
+			return fmt.Errorf("background edit %d: %w", i+1, err)
+		}
+		edited, err := stickerimg.Decode(out.PNG)
+		if err != nil {
+			return err
+		}
+		img = stickerimg.Face(img, edited, e.Area)
+		r.say("✓ background edit %d (%s)", i+1, r.charge(out.Usage))
+	}
+	wide, err := stickerimg.Encode(img)
+	if err != nil {
+		return err
+	}
+	if err := r.splitWide(wide, bgBase, bgWide, false); err != nil {
+		return err
+	}
+	r.done(bgBase, editFP)
+	r.done(bgWide, editFP)
+	return nil
+}
+
+// sceneEditVersion changes whenever the edit prompt's fixed wording or the
+// blending changes.
+const sceneEditVersion = "1"
 
 // extend outpaints a base plane to the wide width with the centre masked
 // off (the API paints the transparent parts of the mask), then writes the
