@@ -23,7 +23,9 @@ struct MainMenuView: View {
             let cardWidth = min(geo.size.width * 0.48, cardHeight * 1.1)
 
             VStack(spacing: 0) {
-                title(height: min(geo.size.height * 0.19, geo.size.width * 0.2))
+                // Whichever limit the title's shape meets first: a wide,
+                // one-line title fills the width, a taller one the height.
+                title(maxWidth: geo.size.width * 0.6, maxHeight: min(geo.size.height * 0.19, geo.size.width * 0.2))
                     .padding(.top, geo.size.height * 0.03)
 
                 Spacer()
@@ -76,20 +78,20 @@ struct MainMenuView: View {
     /// The title art (`MenuArt`), or the lettering in the app font until it
     /// has decoded or if it is missing.
     @ViewBuilder
-    private func title(height: CGFloat) -> some View {
+    private func title(maxWidth: CGFloat, maxHeight: CGFloat) -> some View {
         if let title = MenuArt.shared.title {
             Image(uiImage: title)
                 .resizable()
                 .scaledToFit()
-                .frame(height: height)
+                .frame(maxWidth: maxWidth, maxHeight: maxHeight)
                 .shadow(color: .black.opacity(0.12), radius: 4, y: 3)
                 .accessibilityLabel(Text(verbatim: "Sticker Stories"))
         } else {
             Text(verbatim: "Sticker Stories")
-                .font(.system(size: min(52, height * 0.45), weight: .heavy, design: .rounded))
+                .font(.system(size: min(52, maxHeight * 0.45), weight: .heavy, design: .rounded))
                 .foregroundStyle(.white)
                 .shadow(color: .black.opacity(0.18), radius: 3, y: 3)
-                .frame(height: height)
+                .frame(height: maxHeight)
         }
     }
 
