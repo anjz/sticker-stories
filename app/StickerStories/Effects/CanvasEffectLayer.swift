@@ -113,6 +113,7 @@ final class CanvasEffectLayer: SKNode {
         .glowplankton: GlowplanktonPainter(),
         .current: CurrentPainter(),
         .sandcloud: SandcloudPainter(),
+        .seasnow: SeasnowPainter(),
     ]
 
     override init() {

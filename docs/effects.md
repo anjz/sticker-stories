@@ -170,6 +170,7 @@ or fantastical places) gets no canvas effects at all.
 | `glowplankton` | underwater | Tiny blue-green lights twinkle and drift slowly through the water. | A little magic in the dark sea, a night swim. Lovely layered over `deepwater`. | 12 s | 2 / 2 s | runs at ≤0.4 |
 | `current` | underwater | A gentle current sweeps specks, wisps and bits of green across the scene from left to right. | Swimming along, being carried away, a whoosh under the sea. `intensity` is a drift to a strong current. | 8 s | 1.2 / 1.5 s | runs at ≤0.4 |
 | `sandcloud` | underwater | A cloud of sand swirls up from the sea floor and slowly settles again. | Something stirs, hide and seek, a big fish swishing past, digging in the sand. | 6 s | 1.5 / 2.5 s | runs at ≤0.4 |
+| `seasnow` | underwater | Soft pale specks drift slowly down through the water, with a faint haze. | Quiet, hush, drifting, the deep and still sea. Builds slowly — cue it a beat early. | 14 s | 2.5 / 2.5 s | full |
 
 - Ramps never eat more than a third of the duration each, so a 3 s effect
   still spends a second at full strength.
