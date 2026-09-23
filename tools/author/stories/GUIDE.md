@@ -124,6 +124,15 @@ it is necessary, not sufficient: the rules above are the standard.
   and must work with an empty canvas.
 - Do not mention stickers that are neither featured nor supporting.
 - Only refer to what a sticker *is*; never to its position on the screen.
+- **Match the art.** The child is looking at the sticker while the
+  narrator talks about it, so anything the text says it looks like — how
+  many spots, petals, stripes or legs, its colours, what it holds, what it
+  sits on — must be what the image shows, counted from the picture
+  (`packs/<pack>/stickers/<id>.webp`), not from what the real animal
+  usually has. Forest's ladybug has five spots, its flower eight yellow
+  petals, its deer is a spotted fawn with no antlers and its tree an oak.
+  Record these in the roster's cast table and write from it; when a premise
+  needs a feature the sticker lacks, change the premise.
 
 ## Using sticker effects
 
@@ -303,7 +312,7 @@ no voices". Never a scary sound: no roars, growls, thunder claps, bangs.
 ## Process discipline
 
 - Plan the roster first (including which stories bring which live
-  stickers alive); write in batches of five; validate after every batch;
+  stickers alive, and a cast table of what each sticker's art shows); write in batches of five; validate after every batch;
   fix before continuing.
 - Reread each story aloud in your head as a parent at bedtime. If you
   would skip a line, cut it.
