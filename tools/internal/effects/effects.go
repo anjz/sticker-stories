@@ -37,7 +37,7 @@ var CanvasNames = []string{
 	"clouds", "wind", "fireflies", "leaves", "dimlight", "windowlight",
 	"firelight", "rainywindow", "confetti", "bubbles", "shootingstars",
 	"nebula", "warp", "planetrise", "comet", "sunrays", "ripples",
-	"deepwater", "glowplankton", "current", "sandcloud",
+	"deepwater", "glowplankton", "current", "sandcloud", "seasnow",
 }
 
 // CanvasSettings maps each canvas effect to the pack settings it suits
@@ -72,6 +72,7 @@ var CanvasSettings = map[string][]string{
 	"glowplankton":  {"underwater"},
 	"current":       {"underwater"},
 	"sandcloud":     {"underwater"},
+	"seasnow":       {"underwater"},
 }
 
 var (

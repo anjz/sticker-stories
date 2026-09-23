@@ -39,6 +39,7 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
     case glowplankton
     case current
     case sandcloud
+    case seasnow
 
     /// The pack settings (`PackManifest.setting`) this effect suits.
     public var settings: Set<PackSetting> {
@@ -49,7 +50,7 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
         case .confetti: [.outdoors, .indoors, .space]
         case .bubbles: [.outdoors, .indoors, .space, .underwater]
         case .shootingstars, .nebula, .warp, .planetrise, .comet: [.space]
-        case .sunrays, .ripples, .deepwater, .glowplankton, .current, .sandcloud: [.underwater]
+        case .sunrays, .ripples, .deepwater, .glowplankton, .current, .sandcloud, .seasnow: [.underwater]
         }
     }
 
@@ -167,6 +168,9 @@ public struct CanvasEffectDefinition: Sendable {
         CanvasEffectDefinition(
             name: .sandcloud, defaultDuration: 6, rampIn: 1.5, rampOut: 2.5,
             summary: "A cloud of sand swirls up from the sea floor and slowly settles."),
+        CanvasEffectDefinition(
+            name: .seasnow, defaultDuration: 14, rampIn: 2.5, rampOut: 2.5,
+            summary: "Soft pale specks drift slowly down through the water."),
     ]
 }
 
