@@ -80,10 +80,10 @@ func TestCanvasTriggersAreValidated(t *testing.T) {
 	  { "at": 30, "effect": "rainbow", "duration": 1 },
 	  { "at": 1, "sticker": "fox", "effect": "hop" }
 	] }`)
-	if errs := Validate(good, set("fox"), "outdoors"); len(errs) != 0 {
+	if errs := Validate(good, set("fox"), nil, "outdoors"); len(errs) != 0 {
 		t.Fatalf("unexpected errors: %v", errs)
 	}
-	if errs := Validate([]byte(`{"schema": 1, "triggers": [{"at": 0, "effect": "dimlight"}]}`), nil, "indoors"); len(errs) != 0 {
+	if errs := Validate([]byte(`{"schema": 1, "triggers": [{"at": 0, "effect": "dimlight"}]}`), nil, nil, "indoors"); len(errs) != 0 {
 		t.Fatalf("dimlight should suit an indoors pack: %v", errs)
 	}
 	cases := []struct {
@@ -103,7 +103,7 @@ func TestCanvasTriggersAreValidated(t *testing.T) {
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			errs := Validate([]byte(tc.json), set("fox"), tc.setting)
+			errs := Validate([]byte(tc.json), set("fox"), nil, tc.setting)
 			if len(errs) == 0 {
 				t.Fatalf("expected an error containing %q, got none", tc.want)
 			}
@@ -125,7 +125,7 @@ func TestValidFileHasNoErrors(t *testing.T) {
 	  { "at": 41.5, "sticker": "fox", "effect": "fade-out", "hold": true },
 	  { "at": 5, "sticker": "fox", "effect": "tint", "color": "#FF0000", "duration": 0.2 }
 	] }`)
-	if errs := Validate(data, set("fox", "tree"), "outdoors"); len(errs) != 0 {
+	if errs := Validate(data, set("fox", "tree"), nil, "outdoors"); len(errs) != 0 {
 		t.Fatalf("unexpected errors: %v", errs)
 	}
 }
@@ -160,10 +160,36 @@ func TestValidationFailures(t *testing.T) {
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			errs := Validate([]byte(tc.json), set("fox", "tree"), "outdoors")
+			errs := Validate([]byte(tc.json), set("fox", "tree"), nil, "outdoors")
 			if len(errs) == 0 {
 				t.Fatalf("expected an error containing %q, got none", tc.want)
 			}
+			for _, e := range errs {
+				if strings.Contains(e.Error(), tc.want) {
+					return
+				}
+			}
+			t.Fatalf("no error contained %q; got %v", tc.want, errs)
+		})
+	}
+}
+
+func TestLiveTriggers(t *testing.T) {
+	anims := Animations{"fox": {"yawn"}}
+	good := []byte(`{"schema": 1, "triggers": [{"at": 1.5, "cue": "yawned", "sticker": "fox", "animation": "yawn"}]}`)
+	if errs := Validate(good, set("fox"), anims, "outdoors"); len(errs) != 0 {
+		t.Fatalf("valid live trigger rejected: %v", errs)
+	}
+	cases := []struct{ name, json, want string }{
+		{"unknown animation", `{"schema": 1, "triggers": [{"at": 0, "sticker": "fox", "animation": "dance"}]}`, "no live animation"},
+		{"no sticker", `{"schema": 1, "triggers": [{"at": 0, "animation": "yawn"}]}`, "sticker is required"},
+		{"undeclared sticker", `{"schema": 1, "triggers": [{"at": 0, "sticker": "owl", "animation": "yawn"}]}`, "not declared"},
+		{"effect keys", `{"schema": 1, "triggers": [{"at": 0, "sticker": "fox", "animation": "yawn", "effect": "hop"}]}`, "not used by a live animation"},
+		{"no at", `{"schema": 1, "triggers": [{"sticker": "fox", "animation": "yawn"}]}`, "at is required"},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			errs := Validate([]byte(tc.json), set("fox"), anims, "outdoors")
 			for _, e := range errs {
 				if strings.Contains(e.Error(), tc.want) {
 					return

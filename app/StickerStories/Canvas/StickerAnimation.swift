@@ -12,7 +12,8 @@ import UIKit
 /// declares each sticker's sidecars and this reads them leniently (a
 /// sidecar that does not decode is skipped).
 ///
-/// Only the developer gallery plays them; stories cannot trigger them yet.
+/// Stories play them from their effects sidecar (`LiveAnimationTrigger`,
+/// preloaded by `LiveAnimationLoader`); the developer gallery plays any.
 struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// A box as fractions of its image, top-left origin.
     struct UnitBox: Decodable, Sendable {
@@ -41,6 +42,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     var hold: [Double]
 
     var key: String { "\(sticker).\(id)" }
+    var liveKey: LiveAnimationKey { LiveAnimationKey(stickerID: sticker, animationID: id) }
     var rows: Int { (count + columns - 1) / columns }
 
     /// Every animation the pack's manifest declares, in manifest order.
@@ -70,6 +72,53 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
             let rect = CGRect(x: CGFloat(column) * width, y: 1 - CGFloat(row + 1) * height, width: width, height: height)
             return SKTexture(rect: rect, in: sheet)
         }
+    }
+}
+
+/// A live animation ready to play: its sheet and shadow sheet as textures.
+struct LoadedLiveAnimation {
+    let animation: StickerAnimation
+    let sheet: SKTexture
+    let shadowSheet: SKTexture?
+}
+
+/// Loads the live animations a story is about to play. A sheet is a large
+/// texture (width × height × 4 bytes, ~35 MB for 16 frames), so a story
+/// loads only the ones its triggers name for stickers on the canvas, off
+/// the main thread while the music lead-in plays, and lets go of them when
+/// the story ends.
+enum LiveAnimationLoader {
+    @MainActor
+    static func load(
+        _ keys: Set<LiveAnimationKey>, from available: [StickerAnimation], pack: LoadedPack
+    ) async -> [LiveAnimationKey: LoadedLiveAnimation] {
+        let wanted = available.filter { keys.contains($0.liveKey) }
+        let decoded = await withTaskGroup(of: (StickerAnimation, CGImage?, CGImage?).self) { group in
+            for animation in wanted {
+                let url = pack.url(forAssetPath: animation.sheet)
+                group.addTask {
+                    guard let sheet = PackTextureLoader.decode(url) else { return (animation, nil, nil) }
+                    return (animation, sheet, StickerShadowCache.shadowSheetImage(for: animation, sheet: sheet))
+                }
+            }
+            var results: [(StickerAnimation, CGImage?, CGImage?)] = []
+            for await result in group { results.append(result) }
+            return results
+        }
+        var loaded: [LiveAnimationKey: LoadedLiveAnimation] = [:]
+        for (animation, sheet, shadow) in decoded {
+            guard let sheet else {
+                print("LiveAnimationLoader: could not decode \(animation.sheet)")
+                continue
+            }
+            loaded[animation.liveKey] = LoadedLiveAnimation(
+                animation: animation, sheet: SKTexture(cgImage: sheet), shadowSheet: shadow.map(SKTexture.init(cgImage:)))
+        }
+        let textures = loaded.values.flatMap { [$0.sheet] + ($0.shadowSheet.map { [$0] } ?? []) }
+        await withCheckedContinuation { continuation in
+            SKTexture.preload(textures) { continuation.resume() }
+        }
+        return loaded
     }
 }
 

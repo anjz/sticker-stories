@@ -29,7 +29,10 @@ func TestTriggersAndSounds(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	tr := Triggers(cues, tl)
+	tr, err := Triggers(cues, tl, story.Manifest{})
+	if err != nil {
+		t.Fatal(err)
+	}
 	if len(tr) != 4 {
 		t.Fatalf("want 4 triggers, got %d", len(tr))
 	}
@@ -46,7 +49,7 @@ func TestTriggersAndSounds(t *testing.T) {
 	if tr[3].Cue != "ay" || tr[3].At <= tr[2].At {
 		t.Errorf("trailing cue should fire on last word: %+v", tr[3])
 	}
-	data, err := EncodeSidecar(tr, map[string]bool{"tree": true, "fox": true}, "outdoors")
+	data, err := EncodeSidecar(tr, map[string]bool{"tree": true, "fox": true}, nil, "outdoors")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -69,7 +72,10 @@ func TestCanvasCuesBecomeStickerlessTriggers(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	tr := Triggers(cues, tl)
+	tr, err := Triggers(cues, tl, story.Manifest{})
+	if err != nil {
+		t.Fatal(err)
+	}
 	if len(tr) != 3 {
 		t.Fatalf("want 3 triggers, got %d", len(tr))
 	}
@@ -79,15 +85,50 @@ func TestCanvasCuesBecomeStickerlessTriggers(t *testing.T) {
 	if tr[1].Effect != "rain" || tr[1].Sticker != "" || tr[1].Duration != 14 || tr[1].Cue != "here" || tr[1].Repeat != nil {
 		t.Errorf("rain wrong: %+v", tr[1])
 	}
-	data, err := EncodeSidecar(tr, map[string]bool{"fox": true}, "outdoors")
+	data, err := EncodeSidecar(tr, map[string]bool{"fox": true}, nil, "outdoors")
 	if err != nil {
 		t.Fatal(err)
 	}
 	if strings.Contains(string(data), `"sticker": ""`) {
 		t.Errorf("canvas triggers must not carry a sticker key: %s", data)
 	}
-	if _, err := EncodeSidecar(tr, map[string]bool{"fox": true}, "indoors"); err == nil {
+	if _, err := EncodeSidecar(tr, map[string]bool{"fox": true}, nil, "indoors"); err == nil {
 		t.Errorf("rain and fog must be rejected for an indoors pack")
+	}
+}
+
+func TestLiveCuesNameTheirAnimation(t *testing.T) {
+	text := "{owl:float loop 0.3} Bear {bear:live} yawned. Owl {owl:live blink} blinked."
+	cues, plain, errs := story.ParseCues(text)
+	if len(errs) > 0 {
+		t.Fatal(errs)
+	}
+	tl, err := NewPlainTimeline(plain, fakeAlignment(plain))
+	if err != nil {
+		t.Fatal(err)
+	}
+	pack := story.Manifest{Animations: map[string][]story.Animation{
+		"bear": {{ID: "yawn"}},
+		"owl":  {{ID: "blink"}, {ID: "hoot"}},
+	}}
+	tr, err := Triggers(cues, tl, pack)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(tr) != 3 || tr[1].Animation != "yawn" || tr[1].Effect != "" || tr[1].Cue != "yawned" || tr[2].Animation != "blink" {
+		t.Fatalf("live triggers wrong: %+v", tr)
+	}
+	anims := map[string][]string{"bear": {"yawn"}, "owl": {"blink", "hoot"}}
+	data, err := EncodeSidecar(tr, map[string]bool{"bear": true, "owl": true}, anims, "outdoors")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.Contains(string(data), `"effect": ""`) || !strings.Contains(string(data), `"animation": "yawn"`) {
+		t.Errorf("live trigger encoding: %s", data)
+	}
+	// An ambiguous or unknown animation is an error, not a silent pick.
+	if _, err := Triggers([]story.Cue{{Sticker: "owl", Effect: "live", Raw: "{owl:live}"}}, tl, pack); err == nil {
+		t.Errorf("owl has two animations; {owl:live} must name one")
 	}
 }
 
@@ -129,7 +170,10 @@ func TestSegmentsWithTagsAssembleOnOneClock(t *testing.T) {
 		t.Errorf("Who at %.2f, want ≈5.6", got)
 	}
 	// Sound cues are not sidecar triggers.
-	tr := Triggers(nar.Cues, tl)
+	tr, err := Triggers(nar.Cues, tl, story.Manifest{})
+	if err != nil {
+		t.Fatal(err)
+	}
 	if len(tr) != 1 || tr[0].Effect != "hop" || tr[0].Sticker != "fox" {
 		t.Errorf("triggers: %+v", tr)
 	}

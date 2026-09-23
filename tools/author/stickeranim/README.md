@@ -26,7 +26,9 @@ the same printed vinyl as the sticker.
 - `columns` (4) and `maxSheet` (4096 px): the assembled sheet's layout and
   size cap (frames are downscaled uniformly to fit).
 - `animations[]`: `id`, `sticker`, a one-line `description` of the whole
-  animation, `base` — what stays still while the character moves ("the
+  animation (it also goes into the pack sidecar, where story authors read
+  what the animation shows; add `story` with a plain version when the
+  description carries drawing instructions), `base` — what stays still while the character moves ("the
   lily pad", "the ground under its feet") — and:
   - `sheets[]`: one API call each. `columns` × `rows` cells of equal size
     at `size` (`3072x1536` with a 4×2 grid gives 768 px cells), and one

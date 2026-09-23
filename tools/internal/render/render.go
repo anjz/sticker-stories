@@ -191,8 +191,9 @@ type Trigger struct {
 	At        float64 `json:"at"`
 	Cue       string  `json:"cue,omitempty"`
 	Sticker   string  `json:"sticker,omitempty"`
-	Effect    string  `json:"effect"`
-	Repeat    any     `json:"repeat,omitempty"` // int or "loop"
+	Effect    string  `json:"effect,omitempty"`
+	Animation string  `json:"animation,omitempty"` // a live animation: no effect
+	Repeat    any     `json:"repeat,omitempty"`    // int or "loop"
 	Duration  float64 `json:"duration,omitempty"`
 	Intensity float64 `json:"intensity,omitempty"`
 	Color     string  `json:"color,omitempty"`
@@ -207,10 +208,11 @@ type Sidecar struct {
 
 // Triggers converts parsed cues to sidecar triggers on the timeline. Cues
 // firing at the story start (word 0) are pinned to 0.0. A canvas cue
-// becomes a trigger with no sticker and none of the sticker-only keys;
-// sound cues are not triggers (they are mixed into the audio) and are
-// skipped.
-func Triggers(cues []story.Cue, tl *Timeline) []Trigger {
+// becomes a trigger with no sticker and none of the sticker-only keys; a
+// live cue a trigger naming the animation (resolved against the pack, so
+// {bear:live} names the bear's only one) and no effect; sound cues are not
+// triggers (they are mixed into the audio) and are skipped.
+func Triggers(cues []story.Cue, tl *Timeline, pack story.Manifest) ([]Trigger, error) {
 	out := make([]Trigger, 0, len(cues))
 	for _, c := range cues {
 		if c.Sound {
@@ -221,6 +223,18 @@ func Triggers(cues []story.Cue, tl *Timeline) []Trigger {
 			at = 0
 		}
 		at = round(at)
+		if c.Effect == story.LiveEffect && !c.Canvas {
+			anim, err := pack.ResolveAnimation(c.Sticker, c.Animation)
+			if err != nil {
+				return nil, fmt.Errorf("cue %s: %w", c.Raw, err)
+			}
+			t := Trigger{At: at, Sticker: c.Sticker, Animation: anim.ID}
+			if c.WordIndex < len(tl.Words) {
+				t.Cue = normalizeWord(tl.Words[c.WordIndex].Text)
+			}
+			out = append(out, t)
+			continue
+		}
 		t := Trigger{At: at, Sticker: c.Sticker, Effect: c.Effect, Duration: c.Duration}
 		if !c.Canvas {
 			t.Color, t.Hold = c.Color, c.Hold
@@ -243,18 +257,41 @@ func Triggers(cues []story.Cue, tl *Timeline) []Trigger {
 		}
 		out = append(out, t)
 	}
+	return out, nil
+}
+
+// LiveOverlaps reports sticker effects that start on a sticker while one
+// of its live animations is still playing: the frames carry the whole
+// moment, and a hop or a wobble on top of them fights it.
+func LiveOverlaps(triggers []Trigger, pack story.Manifest) []string {
+	var out []string
+	for _, live := range triggers {
+		if live.Animation == "" {
+			continue
+		}
+		anim, err := pack.ResolveAnimation(live.Sticker, live.Animation)
+		if err != nil {
+			continue
+		}
+		end := live.At + anim.Seconds
+		for _, t := range triggers {
+			if t.Sticker == live.Sticker && t.Effect != "" && t.Repeat != "loop" && t.At > live.At && t.At < end {
+				out = append(out, fmt.Sprintf("%s %s at %.1fs lands inside %s's %s (%.1f–%.1fs)", t.Sticker, t.Effect, t.At, live.Sticker, live.Animation, live.At, end))
+			}
+		}
+	}
 	return out
 }
 
 // EncodeSidecar serialises and strictly validates a sidecar for a pack
-// with the given declared stickers and setting.
-func EncodeSidecar(triggers []Trigger, declared map[string]bool, setting string) ([]byte, error) {
+// with the given declared stickers, their live animations and setting.
+func EncodeSidecar(triggers []Trigger, declared map[string]bool, animations effects.Animations, setting string) ([]byte, error) {
 	data, err := json.MarshalIndent(Sidecar{Schema: effects.SupportedSchema, Triggers: triggers}, "", "  ")
 	if err != nil {
 		return nil, err
 	}
 	data = append(data, '\n')
-	if errs := effects.Validate(data, declared, setting); len(errs) > 0 {
+	if errs := effects.Validate(data, declared, animations, setting); len(errs) > 0 {
 		return nil, fmt.Errorf("sidecar invalid: %v", errs)
 	}
 	return data, nil

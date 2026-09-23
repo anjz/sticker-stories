@@ -12,7 +12,7 @@ import (
 // and returns the sidecar's pack-relative path.
 func validAnimation(t *testing.T, dir string, mutate func(a *StickerAnimation)) string {
 	t.Helper()
-	a := StickerAnimation{ID: "yawn", Sticker: "fox", Sheet: "anims/fox.yawn.webp", Columns: 4, Count: 8,
+	a := StickerAnimation{ID: "yawn", Sticker: "fox", Description: "the fox yawns and stretches.", Sheet: "anims/fox.yawn.webp", Columns: 4, Count: 8,
 		Rest: UnitBox{X: 0.03, Y: 0.2, Width: 0.9, Height: 0.75}, StickerBox: UnitBox{X: 0.03, Y: 0.04, Width: 0.94, Height: 0.92},
 		Hold: []float64{0.3, 0.2, 0.1, 0.1, 0.1, 0.2, 0.2, 0.3}}
 	a.Frame.Width, a.Frame.Height = 712, 808
@@ -46,6 +46,7 @@ func TestAnimationsValidate(t *testing.T) {
 		{"hold too short", func(a *StickerAnimation) { a.Hold[2] = 0.001 }, "outside"},
 		{"no frames", func(a *StickerAnimation) { a.Count = 0; a.Hold = nil }, "count must be"},
 		{"box outside", func(a *StickerAnimation) { a.Rest.Width = 1.5 }, "unit square"},
+		{"no description", func(a *StickerAnimation) { a.Description = " " }, "description"},
 		{"empty frame", func(a *StickerAnimation) { a.Frame.Height = 0 }, "frame size"},
 	}
 	for _, tc := range cases {

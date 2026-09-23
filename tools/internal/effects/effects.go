@@ -84,6 +84,7 @@ var (
 	knownCanvas     = set(CanvasNames...)
 	knownKeys       = set("at", "cue", "sticker", "effect", "repeat", "duration", "intensity", "color", "hold")
 	knownCanvasKeys = set("at", "cue", "effect", "intensity", "duration")
+	knownLiveKeys   = set("at", "cue", "sticker", "animation")
 	colorPattern    = regexp.MustCompile(`^#[0-9A-Fa-f]{6}$`)
 )
 
@@ -115,21 +116,36 @@ func set(items ...string) map[string]bool {
 	return m
 }
 
+// Animations maps each sticker ID to the IDs of the live animations it
+// declares (docs/pack-format.md, "Live animations").
+type Animations map[string][]string
+
+func (a Animations) has(sticker, id string) bool {
+	for _, x := range a[sticker] {
+		if x == id {
+			return true
+		}
+	}
+	return false
+}
+
 // ValidateFile reads and strictly validates a trigger sidecar. declared
-// maps sticker IDs the pack defines; setting is the pack's setting
-// (docs/pack-format.md). Every problem found is returned.
-func ValidateFile(path string, declared map[string]bool, setting string) []error {
+// maps sticker IDs the pack defines, animations their live animations;
+// setting is the pack's setting (docs/pack-format.md). Every problem found
+// is returned.
+func ValidateFile(path string, declared map[string]bool, animations Animations, setting string) []error {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return []error{fmt.Errorf("reading effects file: %w", err)}
 	}
-	return Validate(data, declared, setting)
+	return Validate(data, declared, animations, setting)
 }
 
 // Validate strictly validates the raw JSON of a trigger sidecar. declared
-// maps the pack's sticker IDs (nil skips that check); setting is the pack's
-// setting, which every canvas trigger must suit.
-func Validate(data []byte, declared map[string]bool, setting string) []error {
+// maps the pack's sticker IDs (nil skips that check) and animations the
+// live animations each declares (nil skips that check); setting is the
+// pack's setting, which every canvas trigger must suit.
+func Validate(data []byte, declared map[string]bool, animations Animations, setting string) []error {
 	var errs []error
 	fail := func(format string, args ...any) {
 		errs = append(errs, fmt.Errorf(format, args...))
@@ -173,7 +189,12 @@ func Validate(data []byte, declared map[string]bool, setting string) []error {
 			fail("%s: must be an object", label)
 			continue
 		}
-		// One list, two kinds: the effect name says which.
+		// One list, three kinds: a live animation names an animation and
+		// no effect; otherwise the effect name says which.
+		if _, ok := fields["animation"]; ok {
+			validateLiveTrigger(label, fields, declared, animations, fail)
+			continue
+		}
 		if raw, ok := fields["effect"]; ok {
 			var name string
 			if json.Unmarshal(raw, &name) == nil && knownCanvas[name] {
@@ -307,6 +328,36 @@ func validateCanvasTrigger(label, effect string, fields map[string]json.RawMessa
 	if raw, ok := fields["intensity"]; ok {
 		if v, ok := number(raw); !ok || v < 0 || v > 1 {
 			fail("%s: intensity must be a number in 0..1", label)
+		}
+	}
+}
+
+// validateLiveTrigger checks a trigger that plays one of a sticker's live
+// animations: a sticker, the animation's id, at and an optional cue.
+func validateLiveTrigger(label string, fields map[string]json.RawMessage, declared map[string]bool, animations Animations, fail func(string, ...any)) {
+	for _, k := range sortedKeys(fields) {
+		if !knownLiveKeys[k] {
+			fail("%s: %s is not used by a live animation; remove it", label, k)
+		}
+	}
+	sticker := requireString(label, "sticker", fields, fail)
+	if sticker != "" && declared != nil && !declared[sticker] {
+		fail("%s: sticker %q is not declared in the manifest", label, sticker)
+		sticker = ""
+	}
+	animation := requireString(label, "animation", fields, fail)
+	if sticker != "" && animation != "" && animations != nil && !animations.has(sticker, animation) {
+		fail("%s: sticker %q has no live animation %q", label, sticker, animation)
+	}
+	if raw, ok := fields["at"]; !ok {
+		fail("%s: at is required", label)
+	} else if at, ok := number(raw); !ok || at < 0 {
+		fail("%s: at must be a number >= 0", label)
+	}
+	if raw, ok := fields["cue"]; ok {
+		var s string
+		if err := json.Unmarshal(raw, &s); err != nil {
+			fail("%s: cue must be a string", label)
 		}
 	}
 }

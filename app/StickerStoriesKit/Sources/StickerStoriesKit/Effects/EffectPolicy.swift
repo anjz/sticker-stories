@@ -21,6 +21,11 @@ public struct EffectPolicy: Equatable, Sendable {
 
     public var isCalm: Bool { reduceMotion || calmMode }
 
+    /// Live animations (a sticker's own frames) are whole-body motion — a
+    /// backflip, a curl-up — so like `hop` and `spin` they do not play
+    /// under Reduce Motion or calm mode; the sticker stays still.
+    public var allowsLiveAnimations: Bool { !isCalm }
+
     /// The options to actually run with, or `nil` to drop the effect.
     public func adjusted(_ name: EffectName, _ options: EffectOptions) -> EffectOptions? {
         guard isCalm else { return options }
