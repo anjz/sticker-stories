@@ -62,12 +62,22 @@ struct MainMenuView: View {
             }
             .frame(maxWidth: .infinity)
             .overlay(alignment: .topTrailing) {
+                // In the corner, measured from the screen's edge: a landscape
+                // iPhone's safe area is ~60 pt wide on each side (for the
+                // Dynamic Island), which left the gear stranded far from the
+                // edge. Up here it is still well clear of the rounded corner.
+                let inset = geo.safeAreaInsets.trailing
                 settingsButton
                     .padding(.top, 18)
-                    .padding(.trailing, 22)
+                    .padding(.trailing, inset > 0 ? 0 : 22)
+                    .offset(x: max(0, inset - Self.gearEdgeInset))
             }
         }
     }
+
+    /// How far the gear sits from the screen's right edge where the safe
+    /// area would push it further in.
+    private static let gearEdgeInset: CGFloat = 40
 
     /// Quiet on purpose: a small plain button in the corner, like the rest
     /// of the app's chrome, so it doesn't call to a child the way the pack

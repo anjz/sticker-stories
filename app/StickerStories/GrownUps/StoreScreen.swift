@@ -8,7 +8,7 @@ import UIKit
 /// commerce-related lives here; no child-facing surface may link out of the
 /// app or offer purchases (docs/compliance.md).
 ///
-/// A header row (back, title, restore), the "All Sticker Story Packs" bundle as a
+/// A header row (back, title), the "All Sticker Story Packs" bundle as a
 /// banner, then the packs as big tiles scrolling horizontally, sized so two
 /// columns are always fully on screen with the next one peeking in — in two
 /// rows on a big screen, so four tiles show at once. Styled like the rest
@@ -121,8 +121,9 @@ struct StoreScreen: View {
 
     // MARK: Header
 
-    /// Back on the left, the title centred, restore on the right — each in
-    /// its own space, so the title can never sit under a button.
+    /// Back on the left, the title centred — each in its own space, so the
+    /// title can never sit under the button. Restoring purchases lives in
+    /// Settings.
     private var header: some View {
         ZStack {
             Text("More stories")
@@ -131,11 +132,10 @@ struct StoreScreen: View {
                 .shadow(color: .black.opacity(0.15), radius: 2, y: 2)
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
-                .padding(.horizontal, 190)
+                .padding(.horizontal, 70)
             HStack {
                 backButton
                 Spacer()
-                restoreButton
             }
         }
     }
@@ -152,22 +152,6 @@ struct StoreScreen: View {
         }
         .buttonStyle(SquishyButtonStyle())
         .accessibilityLabel("Back")
-    }
-
-    private var restoreButton: some View {
-        Button {
-            Task { await store.restorePurchases() }
-        } label: {
-            Label("Restore purchases", systemImage: "arrow.clockwise")
-                .font(.system(size: 15, weight: .bold, design: .rounded))
-                .foregroundStyle(Color(red: 0.15, green: 0.4, blue: 0.2))
-                .padding(.horizontal, 16)
-                .padding(.vertical, 11)
-                .background(Capsule().fill(.white.opacity(0.92)))
-                .shadow(color: .black.opacity(0.15), radius: 4, y: 2)
-        }
-        .buttonStyle(SquishyButtonStyle())
-        .disabled(store.isWorking)
     }
 
     // MARK: Content

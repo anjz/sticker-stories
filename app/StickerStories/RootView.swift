@@ -73,8 +73,9 @@ struct RootView: View {
             }
             // `-openGate`: show the parental gate (visual checks of it).
             if args.contains("-openGate") { grownUps = .gate(to: .store) }
-            // `-openStore`: straight into the store, skipping the gate.
+            // `-openStore` / `-openSettings`: straight there, skipping the gate.
             if args.contains("-openStore") { screen = .store }
+            if args.contains("-openSettings") { grownUps = .settings }
             #endif
         }
         .sheet(item: $grownUps) { access in
@@ -95,7 +96,9 @@ struct RootView: View {
                     // Full-size from the start — no drag-to-resize needed.
                     .presentationDetents([.large])
                 case .settings:
-                    SettingsView(settings: settings, galleryPack: library.packs.first)
+                    SettingsView(
+                        settings: settings, store: StoreService(entitlements: entitlements),
+                        galleryPack: library.packs.first)
                 }
             }
             // Sheets are separate presentation trees; re-apply the override.

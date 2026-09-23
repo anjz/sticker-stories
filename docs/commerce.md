@@ -53,7 +53,8 @@ purchase/refund/all-access without StoreKit.
 2. `product.purchase()` → verify result → record transaction ID keyed by pack ID
    → `transaction.finish()` **after** assets are in place.
 3. Restore = re-running the launch reconciliation (`currentEntitlements` covers
-   it); a "Restore purchases" button simply triggers it with `AppStore.sync()`.
+   it); the "Restore purchases" row in Settings simply triggers it with
+   `AppStore.sync()`.
 4. **Ask to Buy** (deferred transactions) arrive via `Transaction.updates` — the
    listener handles them with no special UI.
 
