@@ -19,13 +19,13 @@ struct MainMenuView: View {
         GeometryReader { geo in
             // Portrait iPad is tall and narrow: cap the height against the
             // width so cards stay card-shaped in every orientation.
-            let cardHeight = min(geo.size.height * 0.66, geo.size.width * 0.66)
+            let cardHeight = min(geo.size.height * 0.62, geo.size.width * 0.66)
             let cardWidth = min(geo.size.width * 0.48, cardHeight * 1.1)
 
             VStack(spacing: 0) {
                 // Whichever limit the title's shape meets first: a wide,
                 // one-line title fills the width, a taller one the height.
-                title(maxWidth: geo.size.width * 0.6, maxHeight: min(geo.size.height * 0.19, geo.size.width * 0.2))
+                title(maxWidth: geo.size.width * 0.6, maxHeight: min(geo.size.height * 0.24, geo.size.width * 0.2))
                     .padding(.top, geo.size.height * 0.03)
 
                 Spacer()
