@@ -15,7 +15,7 @@ pass review, it is a product constraint.
       the parental gate. Story playback, canvas, pack loading: 100% local.
 - [x] **No ads.** Ever.
 - [x] **No external links** outside the parental gate.
-- [x] **Purchases only behind the parental gate** (guideline 5.1.4: parental
+- [x] **Purchases only behind the parental gate** (guideline 1.3: parental
       permission or gate before commerce or link-out).
 - [x] **Privacy manifest** (`PrivacyInfo.xcprivacy`): no tracking, empty
       collection list; declares UserDefaults required-reason API (CA92.1 —
