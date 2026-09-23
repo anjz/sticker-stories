@@ -4,9 +4,10 @@
 // so anything this package rejects would merely be ignored on device — but
 // silently broken content is exactly what validation exists to catch.
 //
-// The libraries are closed: 12 sticker effects (Names) and 5 canvas effects
-// (CanvasNames), each suited to a pack setting. docs/effects/effects.json is
-// the shared catalogue; a test checks the names here match it.
+// The libraries are closed: 12 sticker effects (Names) and the canvas
+// effects (CanvasNames), each suited to one or more pack settings.
+// docs/effects/effects.json is the shared catalogue; a test checks the names
+// here match it.
 package effects
 
 import (

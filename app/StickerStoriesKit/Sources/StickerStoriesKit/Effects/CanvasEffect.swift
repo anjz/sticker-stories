@@ -2,7 +2,7 @@ import Foundation
 
 /// The closed list of canvas effects: weather and light over the whole
 /// scene rather than on one sticker (`docs/effects.md`, "Canvas effects").
-/// Exactly six. Each suits a pack `setting` — rain has no place in a
+/// Each suits one or more pack `setting`s — rain has no place in a
 /// bedroom — and a trigger whose effect does not suit the pack is skipped.
 public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable {
     // Outdoors

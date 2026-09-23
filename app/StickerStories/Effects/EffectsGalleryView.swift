@@ -137,8 +137,15 @@ struct EffectsGalleryView: View {
         .onAppear {
             // `-effectsGalleryDemo` launch argument: cycle through everything
             // unattended (simulator screenshots, quick eyeballing).
-            if ProcessInfo.processInfo.arguments.contains("-effectsGalleryDemo") {
+            let arguments = ProcessInfo.processInfo.arguments
+            if arguments.contains("-effectsGalleryDemo") {
                 scene.playAll(intensity: 1.0, repeating: true)
+            }
+            // `-canvasDemo snow,confetti`: loop just those canvas effects at
+            // full strength, 12 s each (screenshots of one effect).
+            if let index = arguments.firstIndex(of: "-canvasDemo"), index + 1 < arguments.count {
+                let effects = arguments[index + 1].split(separator: ",").compactMap { CanvasEffectName(rawValue: String($0)) }
+                scene.playCanvas(effects)
             }
             // `-liveDemo`: loop the first live animation on its sticker.
             if ProcessInfo.processInfo.arguments.contains("-liveDemo"), let animation = animations.first {
@@ -349,6 +356,20 @@ final class EffectsGalleryScene: SKScene {
         }
         let sequence = SKAction.sequence(steps)
         run(repeating ? .repeatForever(sequence) : sequence, withKey: "play-all")
+    }
+
+    /// Loops the given canvas effects at full strength, 12 s each.
+    func playCanvas(_ effects: [CanvasEffectName]) {
+        guard !effects.isEmpty else { return }
+        stopAll()
+        var steps: [SKAction] = []
+        for effect in effects {
+            steps.append(.run { [weak self] in
+                self?.play(effect, options: CanvasEffectOptions(intensity: 1, duration: 12))
+            })
+            steps.append(.wait(forDuration: 12.5))
+        }
+        run(.repeatForever(.sequence(steps)), withKey: "play-all")
     }
 
     override func update(_ currentTime: TimeInterval) {
