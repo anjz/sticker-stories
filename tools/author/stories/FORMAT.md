@@ -239,7 +239,9 @@ Weather and light over the whole scene use the reserved target `canvas`
 
 ## The roster (`plan.md`)
 
-A table with one row per story: `id`, `featured`, `supporting`, `tags`,
+A cast table first — each sticker's pronoun, personality, live move and
+what its art actually shows (colours and counted features, checked against
+the sticker image) — then a table with one row per story: `id`, `featured`, `supporting`, `tags`,
 `premise`, `inspiration`, `learning`, `canvas` and `live` (the stickers the
 story brings alive, or `—`). Written before any story, checked with
 `storycheck -plan`, and updated if stories change while writing. Coverage

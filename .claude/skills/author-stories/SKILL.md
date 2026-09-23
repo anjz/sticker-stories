@@ -36,6 +36,14 @@ Read, in this order, before writing anything:
    `cd tools && go run ./author/storycheck -pack ../packs/<packID> -plan`,
    which prints them all. Each is one fixed action (a yawn, a backflip, a
    peekaboo); stories choose only when it happens.
+   **Look at every sticker's image** (`packs/<packID>/stickers/<id>.webp`;
+   convert to PNG with `sips -s format png` to view it) and write down what
+   the art actually shows: colours, anything countable (spots, petals,
+   stripes, legs, wings), what it holds or sits on, and what it lacks
+   (a fawn with no antlers, an oak rather than an apple tree). **Count from
+   the picture, never from what the real animal or plant usually has** —
+   the child is looking at the sticker while the narrator speaks. Put this
+   in the roster's cast table.
 3. `docs/effects/effects.json` — the exact library: the 12 sticker effects
    (`effects`) and the canvas effects (`canvasEffects`), what each means,
    which parameters each accepts, and which `settings` each canvas effect
@@ -103,6 +111,11 @@ exactly per `FORMAT.md`:
   pack's setting allows, cued a beat before the words it illustrates, with
   the weather or light written into the words themselves so the story reads
   fine without it;
+- every number, colour or visible feature the text gives a sticker (her
+  five spots, the eight yellow petals, his stripy tail) matches the art as
+  recorded in the cast table; if a premise needs a feature the sticker
+  doesn't show (antlers on the fawn, blossom on the oak), change the
+  premise, not the fact;
 - **the narrator's performance** (GUIDE "Voice performance"): rhythm in the
   punctuation first (… — CAPITALS, short sentences), then two to five audio
   tags from the allowed list in FORMAT "Audio tags", each right before the
@@ -151,6 +164,9 @@ build step 2 (audio); it is a separate tool.
 - Never state the moral. Never mention a sticker that is not featured or
   supporting. Never rely on an effect — sticker or canvas — for the story
   to make sense.
+- Never give a sticker a count, colour or feature its art contradicts —
+  a ladybug counting seven spots when the sticker shows five is a mistake
+  every child will catch.
 - Never cue a live animation on words it contradicts, on a sticker without
   one, or twice on the same sticker in a story.
 - Never use an effect name that is not in `docs/effects/effects.json`, a
