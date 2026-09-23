@@ -166,6 +166,7 @@ never letterboxes:
 | `version` | int | Content revision of the pack, ≥1. Bump on any asset/story change. |
 | `languages` | [string] | BCP-47 tags (`xx` or `xx-YY`, e.g. `en-US`), non-empty, no duplicates. **The first entry is the pack's fallback language.** |
 | `displayName` | {lang: string} | Human-readable name per language, shown to parents. Keep it within **30 characters** in every language (guidance, not validated): a purchasable pack's name is also its in-app purchase display name in App Store Connect, which caps it there (`docs/commerce.md`, "Product copy"). |
+| `description` | {lang: string} | **Optional.** One line per language describing the pack, shown to parents under its name in the store. When present it must cover every declared language (rule 4). Keep it within **45 characters** (guidance, not validated) — for a purchasable pack it should match the in-app purchase description, which App Store Connect caps there. Never counts or promises ("25 stickers", "more coming"). |
 | `theme` | string | Free-form theme tag; future prompt context for generated stories. |
 | `setting` | string | **Optional**, default `none`. Where the scene takes place: `outdoors`, `indoors`, `space`, `underwater` or `none`. Decides which canvas effects (`docs/effects.md`, "Canvas effects") the pack's stories may use: each effect lists the settings it suits, and `none` allows no canvas effects. Story tooling reads it when authoring. |
 | `background` / `foreground` | string | Pack-relative paths to PNG or WebP files that must exist ("Image formats" above). Their frame is the sticker coordinate system ("Art safe area" below). |
@@ -191,8 +192,9 @@ never letterboxes:
 2. `id`s well-formed; sticker IDs unique; story IDs unique.
 3. `languages` non-empty, well-formed BCP-47 (`^[a-z]{2,3}(-[A-Z]{2})?$`), no
    duplicates.
-4. **Language coverage is exact**: every localized map (`displayName`, each
-   `stickers[].name`, each `stories[].localizations`) contains a value for
+4. **Language coverage is exact**: every localized map (`displayName`,
+   `description` when present, each `stickers[].name`, each
+   `stories[].localizations`) contains a value for
    every declared language and none for undeclared ones. Partial translations
    are a validation error, not a runtime fallback.
 5. Every referenced file (`background`, `foreground`, sticker images, every
@@ -284,7 +286,7 @@ same device preference.
   and optional `backgroundWide` / `foregroundWide` added (additive, no
   bump); optional `setting` added (additive, defaults to `none`, no
   bump); `setting` values `space` and `underwater` added (no pack has
-  shipped, so no bump).
+  shipped, so no bump); optional `description` added (additive, no bump).
 - Any schema change must update this document, the Go validator
   (`tools/internal/manifest`), and the Swift decoder in the **same commit**.
 - `version` (pack content revision) is bumped whenever any asset or story in a

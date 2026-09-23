@@ -81,6 +81,26 @@ func TestValidManifestPasses(t *testing.T) {
 	}
 }
 
+func TestDescriptionIsOptionalButComplete(t *testing.T) {
+	dir := t.TempDir()
+	m := validManifest(t, dir)
+	m.Description = text("Woodland friends.", "Amigos del bosque.")
+	if errs := m.Validate(dir); len(errs) != 0 {
+		t.Fatalf("a description in every language should pass, got %v", errs)
+	}
+	data, err := json.Marshal(m)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(data), `"description":{`) {
+		t.Errorf("description lost on write: %s", data)
+	}
+	m.Description = nil
+	if data, _ := json.Marshal(m); strings.Contains(string(data), "description") {
+		t.Errorf("an absent description must not be written: %s", data)
+	}
+}
+
 func TestLoadRoundTrip(t *testing.T) {
 	dir := t.TempDir()
 	m := validManifest(t, dir)
@@ -141,6 +161,7 @@ func TestValidationFailures(t *testing.T) {
 		{"display name missing language", func(m *Manifest) { delete(m.DisplayName, "es-ES") }, "missing \"es-ES\""},
 		{"display name empty value", func(m *Manifest) { m.DisplayName["es-ES"] = " " }, "must not be empty"},
 		{"display name undeclared language", func(m *Manifest) { m.DisplayName["fr-FR"] = "Amis" }, "not in declared languages"},
+		{"description missing language", func(m *Manifest) { m.Description = map[string]string{"en-US": "Woodland friends."} }, "description: missing \"es-ES\""},
 		{"sticker name missing language", func(m *Manifest) { delete(m.Stickers[0].Name, "es-ES") }, "missing \"es-ES\""},
 		{"missing background file", func(m *Manifest) { m.Background = "art/nope.png" }, "not found"},
 		{"background not png or webp", func(m *Manifest) { m.Background = "art/background.jpg" }, ".png or .webp"},

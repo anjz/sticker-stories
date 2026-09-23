@@ -201,7 +201,7 @@ struct StoreScreen: View {
                 PackCard(
                     id: pack.id,
                     title: pack.manifest.displayName(for: language),
-                    subtitle: nil,
+                    subtitle: pack.manifest.description(for: language),
                     artwork: background.map { .pack(background: $0, stickers: stickers) }
                         ?? .mystery(symbol: "photo"),
                     availability: pack.source == .bundled ? .included : .owned))
@@ -337,8 +337,9 @@ private struct PackCard: Identifiable {
     }
     let id: String
     let title: String
-    /// StoreKit's description for a pack on sale (already localized); packs
-    /// on the device have none.
+    /// One line under the name: the manifest's description for a pack on
+    /// the device, StoreKit's (already localized) for a pack on sale; nil
+    /// when the pack has none.
     let subtitle: String?
     let artwork: Artwork
     let availability: Availability
