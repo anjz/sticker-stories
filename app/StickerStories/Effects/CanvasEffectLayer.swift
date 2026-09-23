@@ -93,6 +93,7 @@ final class CanvasEffectLayer: SKNode {
     private let painters: [CanvasEffectName: any CanvasEffectPainter] = [
         .snow: SnowPainter(),
         .sunset: SunsetPainter(),
+        .clouds: CloudsPainter(),
     ]
 
     override init() {

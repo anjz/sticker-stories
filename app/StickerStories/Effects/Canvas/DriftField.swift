@@ -34,7 +34,8 @@ final class DriftField {
         /// Up-and-down wander, for fields that hover rather than travel.
         var wander: Double = 0
         var wanderPeriod: ClosedRange<Double> = 4...8
-        /// Radians per second, random sign.
+        /// Radians per second, random sign; spinning sprites also start at
+        /// a random angle.
         var spin: ClosedRange<Double> = 0...0
         /// Paper turning over: the sprite's width follows a cosine with a
         /// period in this range (nil: no flutter).
@@ -45,9 +46,10 @@ final class DriftField {
         var twinkle: Double = 0
         var twinklePeriod: ClosedRange<Double> = 2...4
         /// Where the sprites live, as fractions of the world (x, y, width,
-        /// height; y up). They wrap around its edges plus `margin`.
+        /// height; y up). They wrap around its edges plus `margin` (world
+        /// heights, per axis: wide sprites need room to leave sideways).
         var region = CGRect(x: 0, y: 0, width: 1, height: 1)
-        var margin: Double = 0.08
+        var margin = CGVector(dx: 0.08, dy: 0.08)
         /// Start beyond the edge the field travels in from when the effect
         /// begins, rather than all over the scene.
         var enters = true
@@ -109,10 +111,10 @@ final class DriftField {
         let w = world.width, h = world.height
         let margin = style.margin
         // The wrapped region in world units, margins included.
-        let spanX = (style.region.width + 2 * margin * h / w) * w
-        let spanY = (style.region.height + 2 * margin) * h
-        let minX = world.minX + (style.region.minX * w) - margin * h
-        let minY = world.minY + (style.region.minY * h) - margin * h
+        let spanX = style.region.width * w + 2 * margin.dx * h
+        let spanY = (style.region.height + 2 * margin.dy) * h
+        let minX = world.minX + style.region.minX * w - margin.dx * h
+        let minY = world.minY + (style.region.minY - margin.dy) * h
         let travelsX = abs(style.velocity.dx) > abs(style.velocity.dy)
         let enters = style.enters && (style.velocity.dx != 0 || style.velocity.dy != 0)
         let visible = strength * Double(sprites.count)
@@ -146,7 +148,8 @@ final class DriftField {
             x += style.sway * h * sin(2 * .pi * elapsed / sprite.swayPeriod + sprite.phase)
             y += style.wander * h * sin(2 * .pi * elapsed / sprite.wanderPeriod + sprite.phase * 1.7)
             sprite.node.position = CGPoint(x: minX + x, y: minY + y)
-            sprite.node.zRotation = sprite.phase + sprite.spin * elapsed
+            // Only spinning sprites start at a random angle; clouds stay level.
+            sprite.node.zRotation = sprite.spin == 0 ? 0 : sprite.phase + sprite.spin * elapsed
             if sprite.flutterPeriod > 0 {
                 sprite.node.xScale = max(0.15, abs(cos(2 * .pi * elapsed / sprite.flutterPeriod + sprite.phase)))
             }
