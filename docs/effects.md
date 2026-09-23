@@ -87,8 +87,13 @@ squash and stretch, keyframe authoring, scene shake and parallax,
 background-layer targeting, z-order and flip changes, blur, saturation,
 brightness, shimmer, halo, composite presets, pack-custom emitters. Weather
 and light over the scene are the canvas effects below — that list is closed
-too. Character animation is a later, separate system that will share the
-clock but not this vocabulary.
+too. Considered for it and turned down (2026-09): `nightlight` (stars
+turning on a bedroom wall), `aurora` in space, thunder and lightning
+(flashes are a light-sensitivity risk and storms frighten small children),
+a "zero gravity" effect that floats every sticker (canvas effects never move
+stickers; `float` does that per sticker), and effects that belong to one
+pack only. Character animation is a later, separate system that will share
+the clock but not this vocabulary.
 
 ## Sticker effect parameters (the whole surface)
 

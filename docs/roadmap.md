@@ -79,6 +79,22 @@
 - [ ] Forest: re-author stories with the new library (canvas effects where
       the weather calls for them)
 
+## Iteration 1.8 — more canvas effects (2026-09-23)
+
+- [x] Pack `setting` gains `space` and `underwater`; art rules and
+      `stickerart` directives for both
+- [x] 23 new canvas effects: outdoors `snow`, `sunset`, `clouds`, `wind`,
+      `fireflies`, `leaves`; indoors `windowlight`, `firelight`,
+      `rainywindow`; `confetti` (outdoors, indoors, space) and `bubbles`
+      (every setting but none); space `shootingstars`, `nebula`, `warp`,
+      `planetrise`, `comet`; underwater `sunrays`, `ripples`, `deepwater`,
+      `glowplankton`, `current`, `sandcloud`, `seasnow`
+- [x] `CanvasEffectPainter` seam (one file per effect in `Effects/Canvas/`)
+      and `DriftField` for particle-style effects; gallery
+      `-canvasDemo` / `-galleryBackdrop` for simulator screenshots
+- [ ] Tune the new effects over real indoors, space and underwater art
+      once those packs exist
+
 ## Iteration 2 — proposed
 
 - [ ] Second pack ("Meadow") as a purchasable IAP end-to-end in the StoreKit

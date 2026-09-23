@@ -57,7 +57,8 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
   lives here; also builds on macOS so `swift test` needs no simulator).
 - `app/StickerStories/Effects/` + `app/StickerStoriesKit/.../Effects/` — play-mode
   effects: 12 sticker effects + the canvas effects (scene-wide weather/light,
-  gated by the pack `setting`). Authoring reference `docs/effects.md`;
+  gated by the pack `setting`; one painter per effect in
+  `Effects/Canvas/`). Authoring reference `docs/effects.md`;
   machine-readable catalogue `docs/effects/effects.json` (pinned to code by
   tests — edit together). Both libraries are closed; see the doc before
   adding anything.
