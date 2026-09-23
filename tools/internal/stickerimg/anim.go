@@ -100,10 +100,19 @@ type AnimOptions struct {
 	MaxDrift  float64
 	// Rest is the sticker's own raw art (no border) and RestFrames the
 	// indices of the cells that show the rest pose: those frames take the
-	// real art, scaled onto the generated cell's base, so an animation
-	// starts and ends on exactly the sticker instead of a redrawing of it.
+	// real art, so an animation starts and ends on exactly the sticker
+	// instead of a redrawing of it.
 	Rest       *image.RGBA
 	RestFrames []int
+	// SheetSizes is how many cells came from each generated sheet, in
+	// order (nil: one sheet). The generator draws each sheet at its own
+	// scale — sheets of one animation came out 10 % apart — while the
+	// cells within a sheet agree to a percent or two. So every sheet that
+	// holds a rest frame is scaled as a whole to match the first one, by
+	// comparing their rest-pose cells' areas (the same pose, so the area
+	// is a fair measure, unlike one row of pixels), and the rest art is
+	// scaled the same way: the whole animation lives at one size.
+	SheetSizes []int
 }
 
 // AnimSheet is an assembled animation: every frame registered on its base,
@@ -163,9 +172,10 @@ func Animation(cells []*image.RGBA, o AnimOptions) (*AnimSheet, error) {
 		finish = *o.Finish
 	}
 
-	// Trim every cell and measure its base.
+	// Trim every cell and measure its base and its area.
 	frames := make([]registered, len(cells))
 	widths := make([]float64, len(cells))
+	areas := make([]float64, len(cells))
 	for i, cell := range cells {
 		cleaned := Clean(cell, o.Threshold)
 		StripEdgeCrumbs(cleaned, o.Threshold, edgeCrumbFraction, edgeCrumbDepth)
@@ -178,7 +188,11 @@ func Animation(cells []*image.RGBA, o AnimOptions) (*AnimSheet, error) {
 		cx, w := baseRow(art, o.Threshold)
 		frames[i] = registered{art: art, anchor: image.Pt(cx, art.Rect.Dy())}
 		widths[i] = float64(w)
+		areas[i] = float64(opaqueCount(art, o.Threshold))
 	}
+
+	// One scale per sheet, against the first sheet's rest-pose cell.
+	scales := sheetScales(len(cells), o.SheetSizes, o.RestFrames, areas, o.MaxDrift)
 	if o.Rest != nil && len(o.RestFrames) > 0 {
 		rest := Clean(o.Rest, o.Threshold)
 		box := Bounds(rest, o.Threshold)
@@ -188,25 +202,31 @@ func Animation(cells []*image.RGBA, o AnimOptions) (*AnimSheet, error) {
 		art := image.NewRGBA(image.Rect(0, 0, box.Dx(), box.Dy()))
 		draw.Draw(art, art.Bounds(), rest, box.Min, draw.Src)
 		cx, w := baseRow(art, o.Threshold)
+		// The real art at the size of the first rest-pose cell, by area;
+		// every rest frame is then the very same image at the same size.
+		first := o.RestFrames[0]
+		if first < 0 || first >= len(frames) {
+			return nil, fmt.Errorf("rest frame %d is out of range", first+1)
+		}
+		s := math.Sqrt(areas[first] / float64(opaqueCount(art, o.Threshold)))
+		scaled := Resize(art, int(math.Round(float64(art.Rect.Dx())*s)), int(math.Round(float64(art.Rect.Dy())*s)))
 		for _, i := range o.RestFrames {
 			if i < 0 || i >= len(frames) {
 				return nil, fmt.Errorf("rest frame %d is out of range", i+1)
 			}
-			// The real art at the generated cell's scale: same base width.
-			s := widths[i] / float64(w)
-			scaled := Resize(art, int(math.Round(float64(art.Rect.Dx())*s)), int(math.Round(float64(art.Rect.Dy())*s)))
 			frames[i] = registered{art: scaled, anchor: image.Pt(int(math.Round(float64(cx)*s)), scaled.Rect.Dy())}
+			widths[i] = float64(w) * s
+			scales[i] = 1 // already at the first sheet's size
 		}
 	}
 
-	// Normalise the drift in scale between cells against the first frame.
-	scales := make([]float64, len(cells))
-	for i := range scales {
-		scales[i] = 1
-		if o.Normalize && i > 0 && widths[0] > 0 {
-			s := widths[0] / widths[i]
+	// Optionally, also even out the drift between single cells against the
+	// first frame, by base width (see Normalize).
+	if o.Normalize && widths[0] > 0 {
+		for i := 1; i < len(scales); i++ {
+			s := widths[0] / (widths[i] * scales[i])
 			if math.Abs(s-1) <= o.MaxDrift {
-				scales[i] = s
+				scales[i] *= s
 			}
 		}
 	}
@@ -285,6 +305,60 @@ func layout(frames []registered, scales []float64, o AnimOptions, toSticker, glo
 	}
 	pad := 2 * (o.Border + o.Margin) * float64(o.StickerSize) / toSticker * global
 	return int(math.Ceil(right-left+pad)) + 1, int(math.Ceil(bottom-top+pad)) + 1
+}
+
+// sheetScales gives every cell its sheet's scale: 1 for the first sheet
+// with a rest frame, and for each other sheet with one, the factor that
+// brings its rest-pose cell to the same area (square-rooted into a linear
+// scale). A sheet without a rest frame takes the scale of the sheet before
+// it (the generator carries on from the previous sheet); a factor further
+// than maxDrift from 1 means the cells don't show the same pose, and is
+// ignored.
+func sheetScales(n int, sizes []int, restFrames []int, areas []float64, maxDrift float64) []float64 {
+	scales := make([]float64, n)
+	for i := range scales {
+		scales[i] = 1
+	}
+	if len(sizes) == 0 {
+		sizes = []int{n}
+	}
+	isRest := map[int]bool{}
+	for _, i := range restFrames {
+		isRest[i] = true
+	}
+	reference := -1.0 // the first rest-pose cell's area
+	current := 1.0
+	start := 0
+	for _, size := range sizes {
+		end := min(start+size, n)
+		for i := start; i < end; i++ {
+			if !isRest[i] || areas[i] <= 0 {
+				continue
+			}
+			if reference < 0 {
+				reference = areas[i]
+			} else if s := math.Sqrt(reference / areas[i]); math.Abs(s-1) <= maxDrift {
+				current = s
+			}
+			break
+		}
+		for i := start; i < end; i++ {
+			scales[i] = current
+		}
+		start = end
+	}
+	return scales
+}
+
+// opaqueCount is the number of pixels with alpha above threshold.
+func opaqueCount(art *image.RGBA, threshold uint8) int {
+	n := 0
+	for i := 3; i < len(art.Pix); i += 4 {
+		if art.Pix[i] > threshold {
+			n++
+		}
+	}
+	return n
 }
 
 // baseRow finds the art's base: the widest row of alpha in the bottom 45 %

@@ -41,9 +41,12 @@ the same printed vinyl as the sticker.
   - `hold[]`: seconds per frame across all sheets (default 1/12 s each).
     The first and last frames are the crossfade with the still sticker.
   - `restFrames[]`: 1-based frames that show the sticker's own pose. They
-    take the sticker's real raw art (from `stickerart`'s `out/`), scaled
-    onto the generated cell's base, so the animation starts and ends on
-    exactly the sticker instead of a redrawing of it.
+    take the sticker's real raw art (from `stickerart`'s `out/`), so the
+    animation starts and ends on exactly the sticker instead of a
+    redrawing of it. They are also what keeps the whole animation at one
+    size (see Registration): **give every sheet a rest-pose frame** — the
+    usual shape is sheet 1 starting "exactly as in the reference" and the
+    last sheet ending "exactly as frame 1".
   - `normalize` (default false): rescale every frame so its base keeps
     the first frame's width. Only for a base object that is the widest
     thing at the bottom in every pose — the frog's lily pad, the owl's
@@ -66,10 +69,17 @@ the same printed vinyl as the sticker.
    edge are dropped, and the frame is anchored on its *base row*: the
    widest row of alpha in the bottom 45 % of the art (a lily pad, a body
    on its feet). Every frame is placed so that row's centre and the
-   art's bottom coincide; with `normalize` it is also scaled so the base
-   keeps its width. `<id>.onion.png` overlays every frame so the
-   registration can be checked by eye — the base should be one crisp
-   outline.
+   art's bottom coincide. **Sheet scale:** the model draws each sheet at
+   its own scale (Forest's sheets came out up to 10 % apart, while cells
+   within one sheet agree to a percent or two), so every sheet is scaled
+   as a whole to match the first one, comparing their rest-pose cells by
+   area (the same pose, so the area is a fair measure); the sticker's art
+   for the rest frames is sized to the first rest-pose cell the same way.
+   A sheet without a rest frame keeps the previous sheet's scale. The log
+   prints the per-frame scales. With `normalize` each frame is also
+   scaled so the base keeps its width. `<id>.onion.png` overlays every
+   frame so the registration can be checked by eye — the base should be
+   one crisp outline.
 3. **Finish.** Each frame gets the pack's white border and vinyl finish at
    the frames' scale, offline, so playing them costs nothing extra. The
    drop shadow is not baked: the app blurs the whole sheet once into a
