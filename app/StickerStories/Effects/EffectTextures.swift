@@ -28,6 +28,7 @@ enum EffectTextures {
         case "wisp": texture = procedural(width: 256, height: 16, wisp)
         case "trickle": texture = procedural(width: 24, height: 72, trickle)
         case "bubble": texture = procedural(width: 96, height: 96, bubble)
+        case "streak": texture = procedural(width: 256, height: 12, streak)
         case "confetti": texture = procedural(width: 16, height: 28) { u, v in
             // A paper rectangle with a slightly softened edge.
             (1 - smoothstep(0.8, 1, abs(u - 0.5) * 2)) * (1 - smoothstep(0.86, 1, abs(v - 0.5) * 2))
@@ -171,6 +172,13 @@ enum EffectTextures {
         let hx = u - 0.33, hy = v - 0.3
         let highlight = 0.9 * (1 - smoothstep(0.02, 0.13, (hx * hx + hy * hy).squareRoot()))
         return max(body, rim, highlight)
+    }
+
+    /// A streak of light with its bright head at the right end and its tail
+    /// thinning out to the left.
+    private static func streak(_ u: Double, _ v: Double) -> Double {
+        let width = 0.25 + 0.75 * u  // the tail narrows as it fades
+        return bell(0.5 + (v - 0.5) / width) * pow(u, 1.8)
     }
 
     /// Opaque at the edges, thinner in the middle: a dimmed room.
