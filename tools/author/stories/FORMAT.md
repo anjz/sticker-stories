@@ -3,7 +3,7 @@
 One folder per story, `tools/author/stories/<packID>/<storyID>/story.json`.
 This is the authoring format: human-readable, bilingual, with everything
 that happens around the words inline in the text — effect cues (sticker,
-canvas, sound) in curly braces and the narrator's delivery (Eleven v3 audio
+live animation, canvas, sound) in curly braces and the narrator's delivery (Eleven v3 audio
 tags) in square brackets. Step 2 turns it into pack content; the app never
 reads it.
 
@@ -96,6 +96,7 @@ A cue is `{sticker:effect}` with optional parameters separated by spaces:
 {owl:tint #9AD0FF 1.2s}  colour and one-cycle duration in seconds
 {bird:fade-out hold}     keep the end state
 {fox:sparkle 0.9}        a bare number is intensity (0–1)
+{bear:live}              the bear's live animation (see "Live cues")
 ```
 
 - `sticker` is an ID from the manifest and must be in `featured` or
@@ -184,6 +185,26 @@ The allowed list (anything else is an error):
 - Step 2 keeps the tags for v3 and strips them if it ever has to fall back
   to the v2 model (which would read them aloud).
 
+### Live cues
+
+A sticker that carries a live animation (`storycheck` lists them with what
+each shows and how long it plays; the pack's `anims/*.json` sidecars hold
+the same `description`) is brought alive with the reserved effect `live`:
+
+```
+Bear gave a {bear:live} great big yawn.     the bear's animation
+{owl:live sleepy-blink}                     name one when a sticker has several
+```
+
+- The sticker must be featured or supporting and must have a live
+  animation; `{sticker:live}` takes no parameters other than an
+  animation id (and needs one only if the sticker has several).
+- It fires on the word that follows, like any cue, and plays for the
+  animation's length (3–6 s): cue it on the words that tell exactly that
+  action, and cue nothing else on that sticker until it ends.
+- At most two per story and language, each sticker once (warnings). The
+  same beats carry the same live cues in every language.
+
 ### Canvas cues
 
 Weather and light over the whole scene use the reserved target `canvas`
@@ -219,7 +240,8 @@ Weather and light over the whole scene use the reserved target `canvas`
 ## The roster (`plan.md`)
 
 A table with one row per story: `id`, `featured`, `supporting`, `tags`,
-`premise`, `inspiration`. Written before any story, checked with
+`premise`, `inspiration`, `learning`, `canvas` and `live` (the stickers the
+story brings alive, or `—`). Written before any story, checked with
 `storycheck -plan`, and updated if stories change while writing. Coverage
 rules the validator enforces on the finished set:
 
@@ -230,8 +252,10 @@ rules the validator enforces on the finished set:
 - canvas effects in well under half of the stories (warning past 40 %);
 - about four stories in ten carry a `learning` fact (warning outside
   30–50 %);
+- every sticker with a live animation, once featured enough, is brought
+  alive in at least one story (warning; aim for three or more);
 - 50 stories per pack.
 
 `storycheck` also prints how many stories use each effect, each audio tag,
-sound effects (and solo sounds) and learning, so the set can be balanced
+sound effects (and solo sounds), learning and each live sticker, so the set can be balanced
 across the whole library rather than leaning on three names.
