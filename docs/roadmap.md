@@ -87,8 +87,9 @@
       `fireflies`, `leaves`; indoors `windowlight`, `firelight`,
       `rainywindow`; `confetti` (outdoors, indoors, space) and `bubbles`
       (every setting but none); space `shootingstars`, `nebula`, `warp`,
-      `planetrise`, `comet`; underwater `sunrays`, `ripples`, `deepwater`,
-      `glowplankton`, `current`, `sandcloud`, `seasnow`
+      `comet`; underwater `sunrays`, `ripples`, `deepwater`,
+      `glowplankton`, `current`, `sandcloud` (`planetrise` and `seasnow`
+      were built and later removed)
 - [x] `CanvasEffectPainter` seam (one file per effect in `Effects/Canvas/`)
       and `DriftField` for particle-style effects; gallery
       `-canvasDemo` / `-galleryBackdrop` for simulator screenshots

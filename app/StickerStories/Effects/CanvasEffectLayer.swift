@@ -105,7 +105,6 @@ final class CanvasEffectLayer: SKNode {
         .shootingstars: ShootingStarsPainter(),
         .nebula: NebulaPainter(),
         .warp: WarpPainter(),
-        .planetrise: PlanetrisePainter(),
         .comet: CometPainter(),
         .sunrays: SunraysPainter(),
         .ripples: RipplesPainter(),
@@ -113,7 +112,6 @@ final class CanvasEffectLayer: SKNode {
         .glowplankton: GlowplanktonPainter(),
         .current: CurrentPainter(),
         .sandcloud: SandcloudPainter(),
-        .seasnow: SeasnowPainter(),
     ]
 
     override init() {
