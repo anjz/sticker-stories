@@ -116,6 +116,7 @@ struct SettingsView: View {
                     }
                     .padding(.horizontal, 26)
                     .padding(.top, 16)
+                    .padding(.bottom, 40)  // room after the last row
                 }
             }
         }

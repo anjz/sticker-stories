@@ -34,6 +34,13 @@ struct RootView: View {
     @State private var entitlements = EntitlementCoordinator()
     @State private var settings = AppSettings()
     @State private var grownUps: GrownUpsAccess?
+    /// Set while Settings is the sheet on show, so its dismissal counts as
+    /// leaving a grown-ups section (the gate's own dismissal does not).
+    @State private var leftSettings = false
+    /// When a parent last left a grown-ups section (the store or Settings);
+    /// in memory only. Coming back within `gateGrace` skips the gate.
+    @State private var lastGrownUpsExit: Date?
+    private static let gateGrace: TimeInterval = 60
 
     var body: some View {
         ZStack {
@@ -78,7 +85,11 @@ struct RootView: View {
             if args.contains("-openSettings") { grownUps = .settings }
             #endif
         }
-        .sheet(item: $grownUps) { access in
+        .sheet(item: $grownUps, onDismiss: {
+            // Settings closed (by its button or a swipe down): a parent was here.
+            if leftSettings { lastGrownUpsExit = .now }
+            leftSettings = false
+        }) { access in
             Group {
                 switch access {
                 case .gate(let destination):
@@ -99,10 +110,31 @@ struct RootView: View {
                     SettingsView(
                         settings: settings, store: StoreService(entitlements: entitlements),
                         galleryPack: library.packs.first)
+                    .onAppear { leftSettings = true }
+                    // Page-sized on iPad: the default form sheet is too short
+                    // for every section, cutting the last row off.
+                    .presentationSizing(.page)
                 }
             }
             // Sheets are separate presentation trees; re-apply the override.
             .environment(\.locale, settings.uiLocale ?? Locale.autoupdatingCurrent)
+        }
+    }
+
+    /// Opens a grown-ups section: straight in if a parent left one less than
+    /// a minute ago (no second challenge for a quick back-and-forth), else
+    /// through the parental gate.
+    private func openGrownUps(_ destination: Destination) {
+        let recent = lastGrownUpsExit.map { Date.now.timeIntervalSince($0) < Self.gateGrace } ?? false
+        guard recent else {
+            grownUps = .gate(to: destination)
+            return
+        }
+        switch destination {
+        case .settings:
+            grownUps = .settings
+        case .store:
+            withAnimation(.spring(duration: 0.45)) { screen = .store }
         }
     }
 
@@ -117,8 +149,8 @@ struct RootView: View {
                     onSelectPack: { pack in
                         withAnimation(.spring(duration: 0.45)) { screen = .story(pack) }
                     },
-                    onMoreStories: { grownUps = .gate(to: .store) },
-                    onSettings: { grownUps = .gate(to: .settings) })
+                    onMoreStories: { openGrownUps(.store) },
+                    onSettings: { openGrownUps(.settings) })
                 .transition(.opacity.combined(with: .scale(scale: 1.08)))
             case .story(let pack):
                 StoryScreen(
@@ -137,6 +169,7 @@ struct RootView: View {
                     packs: library.packs,
                     settings: settings,
                     onClose: {
+                        lastGrownUpsExit = .now
                         withAnimation(.spring(duration: 0.45)) { screen = .menu }
                     })
                 .transition(.move(edge: .trailing).combined(with: .opacity))

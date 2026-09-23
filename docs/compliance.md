@@ -43,8 +43,12 @@ pass review, it is a product constraint.
   corner. Both open the gate
   first. Nothing else in the app leads out of the child experience; the
   story screen has no grown-ups access at all.
-- Review expectation: gate must not be defeatable by random tapping and must be
-  presented every time (no "remember me").
+- Review expectation: gate must not be defeatable by random tapping.
+- **A one-minute grace**: a parent who leaves the store or Settings and opens
+  either again within 60 seconds goes straight in, so moving between the two
+  doesn't mean solving the gate twice. The time of the last exit is kept in
+  memory only (never on disk); after a minute, or after the app restarts,
+  the gate is back. There is no longer-lived "remember me".
 
 ## App Store setup notes (for App Store Connect, later)
 

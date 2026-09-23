@@ -1,9 +1,10 @@
 import SwiftUI
 
-/// Guideline 1.3 (Kids Category) parental gate, presented every time (no
-/// persistence) and not passable by random tapping. Gates everything
-/// commerce-related; nothing else in the app leads out of the child
-/// experience. Challenge strength is a deliberate product decision — see
+/// Guideline 1.3 (Kids Category) parental gate, not passable by random
+/// tapping and never remembered on disk; the only shortcut is RootView's
+/// one-minute grace after a parent leaves a grown-ups section. Gates
+/// everything commerce-related and the parent settings; nothing else in the
+/// app leads out of the child experience. Challenge strength is a deliberate product decision — see
 /// docs/compliance.md before changing it.
 ///
 /// The challenge is three digits spelled out as words ("seven · two ·
