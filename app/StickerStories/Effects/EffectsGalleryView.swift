@@ -228,6 +228,18 @@ final class EffectsGalleryScene: SKScene {
             background.texture = SKTexture(image: image)
         }
         background.zPosition = 0
+        // `-galleryBackdrop 0B1030`: a plain colour instead of the pack's
+        // art, to judge space and underwater effects without a pack of that
+        // kind.
+        let arguments = ProcessInfo.processInfo.arguments
+        if let index = arguments.firstIndex(of: "-galleryBackdrop"), index + 1 < arguments.count,
+            let hex = Int(arguments[index + 1], radix: 16)
+        {
+            background.isHidden = true
+            backgroundColor = UIColor(
+                red: CGFloat((hex >> 16) & 0xFF) / 255, green: CGFloat((hex >> 8) & 0xFF) / 255,
+                blue: CGFloat(hex & 0xFF) / 255, alpha: 1)
+        }
         layer.zPosition = 100  // the rainbow (50) sits behind the sticker, the rest (500) in front
         addChild(background)
         addChild(layer)

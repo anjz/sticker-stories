@@ -48,7 +48,8 @@ public struct EffectPolicy: Equatable, Sendable {
         switch name {
         case .rain, .snow, .wind, .fireflies, .leaves, .rainywindow, .confetti, .bubbles, .shootingstars:
             result.intensity = min(result.intensity, 0.4)
-        case .fog, .sunshine, .rainbow, .night, .sunset, .clouds, .dimlight, .windowlight, .firelight:
+        case .fog, .sunshine, .rainbow, .night, .sunset, .clouds, .dimlight, .windowlight, .firelight,
+            .nebula:
             break
         }
         if calmMode { result.intensity *= calmIntensityMultiplier }
