@@ -24,7 +24,9 @@ final class StoreService {
 
     func refresh() async {
         let ids = StoreConfiguration.purchasableProductIDs + [StoreConfiguration.catalog.allAccessProductID]
-        products = (try? await Product.products(for: ids)) ?? []
+        // StoreKit returns products in no particular order; keep the catalogue's.
+        let loaded = (try? await Product.products(for: ids)) ?? []
+        products = loaded.sorted { (ids.firstIndex(of: $0.id) ?? .max) < (ids.firstIndex(of: $1.id) ?? .max) }
         ownedProductIDs = await StoreKitTransactionProvider().currentEntitledProductIDs()
     }
 
