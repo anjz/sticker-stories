@@ -183,6 +183,7 @@ final class CanvasScene: SKScene {
         let emitters: EmitterCoordinator
         let clock: PlaybackClock
         let live: LiveAnimationSchedule
+        let faces: ExpressionTimeline
     }
     private var playSession: PlaySession?
     /// Every live animation the pack declares (`StickerAnimation`), read
@@ -192,6 +193,10 @@ final class CanvasScene: SKScene {
     /// go of when it ends; a trigger whose sheet is not in yet is skipped.
     private var liveLoaded: [LiveAnimationKey: LoadedLiveAnimation] = [:]
     private var liveLoad: Task<Void, Never>?
+    /// The current story's face variants by sticker and expression, loaded
+    /// when play starts; until one is in, that sticker keeps its face.
+    private var faceTextures: [String: [String: SKTexture]] = [:]
+    private var faceLoad: Task<Void, Never>?
     private let glowMasks = GlowMaskCache()
     private let shadows = StickerShadowCache()
     private static let effectsLog = Logger(subsystem: "com.anj.stickerstories", category: "effects")
@@ -1240,6 +1245,15 @@ final class CanvasScene: SKScene {
         let runner = StickerEffectsRunner(triggers: triggers.sticker, targets: targets, policy: policy)
         let live = LiveAnimationSchedule(triggers: triggers.live, policy: policy)
         let placed = Set(nodes.map(\.stickerID))
+        let faces = ExpressionTimeline(triggers: triggers.faces)
+        let wantedFaces = faces.expressionsUsed(by: placed)
+        if !wantedFaces.isEmpty {
+            faceLoad = Task { [weak self, pack] in
+                let loaded = await ExpressionLoader.load(wantedFaces, pack: pack)
+                guard !Task.isCancelled else { return }
+                self?.faceTextures = loaded
+            }
+        }
         let wanted = live.animations.filter { placed.contains($0.stickerID) }
         if policy.allowsLiveAnimations, !wanted.isEmpty {
             liveLoad = Task { [weak self, pack, liveAnimations] in
@@ -1254,7 +1268,7 @@ final class CanvasScene: SKScene {
         applier.normalize(nodes)
         playSession = PlaySession(
             runner: runner, canvasRunner: canvasRunner, applier: applier, emitters: EmitterCoordinator(), clock: clock,
-            live: live)
+            live: live, faces: faces)
     }
 
     /// Restores the child's exact arrangement (P4) and tears the pipeline down.
@@ -1262,8 +1276,16 @@ final class CanvasScene: SKScene {
         liveLoad?.cancel()
         liveLoad = nil
         liveLoaded.removeAll()
+        faceLoad?.cancel()
+        faceLoad = nil
+        faceTextures.removeAll()
         if let session = playSession {
-            for node in allStickerNodes() { node.stopLive() }
+            for node in allStickerNodes() {
+                node.stopLive()
+                if node.face != ExpressionTrigger.normal, let normal = stickerTextures[node.stickerID] {
+                    node.showFace(ExpressionTrigger.normal, texture: normal, fade: 0)
+                }
+            }
             session.runner.stopAll()
             session.canvasRunner.stopAll()
             session.emitters.clearAll()
@@ -1295,6 +1317,25 @@ final class CanvasScene: SKScene {
         canvasEffects.apply(session.canvasRunner.tick(time), at: time)
         for trigger in session.live.due(at: time) {
             playLive(trigger)
+        }
+        applyFaces(session.faces, at: time)
+    }
+
+    /// Puts on every sticker the face the story has it showing now. A face
+    /// whose variant has not loaded yet, or that this sticker does not have
+    /// (an `all` change can ask for one), leaves the current face on and is
+    /// tried again next frame.
+    private func applyFaces(_ faces: ExpressionTimeline, at time: TimeInterval) {
+        guard !faces.triggers.isEmpty else { return }
+        let nodes = allStickerNodes()
+        let wanted = faces.expressions(at: time, for: Set(nodes.map(\.stickerID)))
+        for node in nodes {
+            guard let expression = wanted[node.stickerID], expression != node.face else { continue }
+            let texture = expression == ExpressionTrigger.normal
+                ? stickerTextures[node.stickerID] : faceTextures[node.stickerID]?[expression]
+            if let texture {
+                node.showFace(expression, texture: texture)
+            }
         }
     }
 
@@ -1334,18 +1375,19 @@ final class CanvasScene: SKScene {
     /// Decodes the story's trigger sidecar. Problems are logged, never
     /// surfaced: a story with a broken sidecar plays with no effects.
     private func loadTriggers(for story: Story) -> (
-        sticker: [EffectTrigger], canvas: [CanvasEffectTrigger], live: [LiveAnimationTrigger]
+        sticker: [EffectTrigger], canvas: [CanvasEffectTrigger], live: [LiveAnimationTrigger],
+        faces: [ExpressionTrigger]
     ) {
-        guard let path = story.effectsPath else { return ([], [], []) }
+        guard let path = story.effectsPath else { return ([], [], [], []) }
         do {
             let file = try EffectTriggerFile.load(from: pack.url(forAssetPath: path))
             for warning in file.warnings {
                 Self.effectsLog.notice("\(story.id, privacy: .public): \(warning, privacy: .public)")
             }
-            return (file.triggers, file.canvasTriggers, file.liveTriggers)
+            return (file.triggers, file.canvasTriggers, file.liveTriggers, file.expressionTriggers)
         } catch {
             Self.effectsLog.error("\(story.id, privacy: .public): effects file unusable: \(String(describing: error), privacy: .public)")
-            return ([], [], [])
+            return ([], [], [], [])
         }
     }
 

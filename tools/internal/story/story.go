@@ -40,6 +40,9 @@ const (
 	MinFallbacks   = 3
 	DefaultCount   = 50
 	MaxCanvasCues  = 3 // canvas effects per story and language before a warning
+	// Spoken words per cue on the stickers (effects, live animations, faces)
+	// before a warning: past this the stage sits still for long stretches.
+	MaxWordsPerCue = 12
 	// Audio tags per story and language before a warning: a few well-placed
 	// ones read as performance, many read as a tic (and v3 may say them).
 	MaxAudioTags = 6
@@ -186,6 +189,19 @@ const (
 // separate system) and takes no other parameters.
 const LiveEffect = "live"
 
+// AllTarget is the reserved cue target for every sticker on the canvas:
+// {all:hop}, {all:face sleeping}. A pack must not name a sticker this.
+const AllTarget = "all"
+
+// FaceEffect is the reserved cue effect that changes a sticker's face to
+// one of its expression variants: {bear:face happy}, {all:face sleeping},
+// {bear:face normal}. A face has no duration: it stays until the next
+// face cue for that sticker (or all), and the story's end resets it.
+const FaceEffect = "face"
+
+// Normal is the sticker's own face.
+const Normal = "normal"
+
 // MaxLiveCues is how many live animations one story may play per language
 // before a warning: they are the characters' big moments.
 const MaxLiveCues = 2
@@ -195,20 +211,21 @@ const MaxLiveCues = 2
 // names an entry of the story's sounds table in Effect and may be Solo:
 // the narration pauses for the sound instead of speaking over it.
 type Cue struct {
-	Sticker   string // "" for a canvas or sound cue
-	Canvas    bool
-	Animation string // a live cue's animation id; "" = the sticker's only one
-	Sound     bool
-	Solo      bool
-	Effect    string
-	Repeat    int // 0 = default (1)
-	Loop      bool
-	Hold      bool
-	Color     string  // "#RRGGBB" or ""
-	Duration  float64 // seconds, 0 = default
-	Intensity float64 // 0 = default; -1 = explicitly zero
-	WordIndex int     // index of the word the cue fires on (0-based; last word if trailing)
-	Raw       string
+	Sticker    string // "" for a canvas or sound cue
+	Canvas     bool
+	Animation  string // a live cue's animation id; "" = the sticker's only one
+	Expression string // a face cue's expression
+	Sound      bool
+	Solo       bool
+	Effect     string
+	Repeat     int // 0 = default (1)
+	Loop       bool
+	Hold       bool
+	Color      string  // "#RRGGBB" or ""
+	Duration   float64 // seconds, 0 = default
+	Intensity  float64 // 0 = default; -1 = explicitly zero
+	WordIndex  int     // index of the word the cue fires on (0-based; last word if trailing)
+	Raw        string
 }
 
 // Effect is one entry of docs/effects/effects.json, the parts validation needs.
@@ -537,6 +554,11 @@ func parseCue(inner string) (Cue, error) {
 			c.Hold = true
 		case p == "solo":
 			c.Solo = true
+		case c.Effect == FaceEffect && c.Sticker != "" && idPattern.MatchString(p) && !numericParam.MatchString(p):
+			if c.Expression != "" {
+				return c, fmt.Errorf("a face cue names one expression")
+			}
+			c.Expression = p
 		case c.Effect == LiveEffect && c.Sticker != "" && idPattern.MatchString(p) && !numericParam.MatchString(p):
 			// A live cue's only parameter is an animation id ("wings",
 			// "tap-tap"); anything else on it is an error in Validate.
@@ -650,6 +672,27 @@ type Manifest struct {
 	Setting   string // outdoors | indoors | space | underwater | none ("" reads as none)
 	// Animations are each sticker's live animations, in manifest order.
 	Animations map[string][]Animation
+	// Expressions are each sticker's face variants (besides normal).
+	Expressions map[string][]string
+}
+
+// HasExpression reports whether a face cue on target may show expression:
+// normal always; for all, if any sticker has it.
+func (m Manifest) HasExpression(target, expression string) bool {
+	if expression == Normal {
+		return true
+	}
+	for id, list := range m.Expressions {
+		if target != AllTarget && id != target {
+			continue
+		}
+		for _, e := range list {
+			if e == expression {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 // Animation is one live animation a sticker carries, as story authors
@@ -663,9 +706,13 @@ type Animation struct {
 // PackManifest reads what story validation needs from a loaded pack
 // manifest, live animations included (dir is the pack root).
 func PackManifest(m *manifest.Manifest, dir string) (Manifest, error) {
-	pack := Manifest{ID: m.ID, Languages: m.Languages, Setting: m.EffectiveSetting(), Animations: map[string][]Animation{}}
+	pack := Manifest{ID: m.ID, Languages: m.Languages, Setting: m.EffectiveSetting(), Animations: map[string][]Animation{}, Expressions: map[string][]string{}}
 	for _, st := range m.Stickers {
 		pack.Stickers = append(pack.Stickers, st.ID)
+		for name := range st.Expressions {
+			pack.Expressions[st.ID] = append(pack.Expressions[st.ID], name)
+		}
+		sort.Strings(pack.Expressions[st.ID])
 	}
 	anims, err := m.LoadAnimations(dir)
 	if err != nil {
@@ -745,6 +792,9 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 	}
 	if declared[CanvasTarget] {
 		is.errorf("the pack has a sticker called %q, which is the reserved canvas-effect target; rename it", CanvasTarget)
+	}
+	if declared[AllTarget] {
+		is.errorf("the pack has a sticker called %q, which is the reserved every-sticker target; rename it", AllTarget)
 	}
 	inStory := make(map[string]bool)
 	checkStickers := func(field string, ids []string, max int) {
@@ -827,7 +877,7 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 			is.errorf("%s: no effect cues (at least one required)", lang)
 		}
 		var shape []string
-		canvasCues, sounds, liveCues := 0, len(s.Sound), 0
+		canvasCues, sounds, liveCues, faceCues := 0, len(s.Sound), 0, 0
 		liveOn := map[string]bool{}
 		for _, c := range cues {
 			if c.Sound {
@@ -842,8 +892,21 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 				validateCanvasCue(&is, lang, c, m, cat)
 				continue
 			}
+			if c.Effect == FaceEffect {
+				faceCues++
+				shape = append(shape, c.Sticker+":face:"+c.Expression)
+				if c.Sticker != AllTarget && !inStory[c.Sticker] {
+					is.errorf("%s: cue %s targets %q, which is neither featured nor supporting", lang, c.Raw, c.Sticker)
+				}
+				validateFaceCue(&is, lang, c, m)
+				continue
+			}
 			shape = append(shape, c.Sticker+":"+c.Effect)
-			if !inStory[c.Sticker] {
+			if c.Sticker == AllTarget && c.Effect == LiveEffect {
+				is.errorf("%s: cue %s: live animations play on one sticker at a time; name it", lang, c.Raw)
+				continue
+			}
+			if c.Sticker != AllTarget && !inStory[c.Sticker] {
 				is.errorf("%s: cue %s targets %q, which is neither featured nor supporting", lang, c.Raw, c.Sticker)
 			}
 			if c.Effect == LiveEffect {
@@ -879,6 +942,12 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 			if c.Duration > 0 && !inRange(c.Duration, e.DurationRange) {
 				is.errorf("%s: cue %s: %s takes a cycle of %g–%g s", lang, c.Raw, c.Effect, e.DurationRange[0], e.DurationRange[1])
 			}
+		}
+		if stage := len(cues) - canvasCues - (sounds - len(s.Sound)); stage > 0 && n > MaxWordsPerCue*stage {
+			is.warnf("%s: %d cues on the stickers for %d words — the stage sits still too long; give most sentences a beat (a reaction, a face, everyone at once), about one cue per %d words", lang, stage, n, MaxWordsPerCue)
+		}
+		if faceCues == 0 && len(m.Expressions) > 0 {
+			is.warnf("%s: no face changes — cue {sticker:face happy|sad|sleeping|surprised|normal} (or {%s:face …}) where the feelings change", lang, AllTarget)
 		}
 		if liveCues > MaxLiveCues {
 			is.warnf("%s: %d live animations; they are the characters' big moments — at most %d per story", lang, liveCues, MaxLiveCues)
@@ -1059,6 +1128,25 @@ func validateCanvasMentions(is *Issues, lang string, nar Narration, m Manifest, 
 	}
 }
 
+// validateFaceCue checks a {sticker:face expression} cue: an expression
+// the sticker has (for all, one some sticker has; normal always), and
+// nothing else set.
+func validateFaceCue(is *Issues, lang string, c Cue, m Manifest) {
+	switch {
+	case c.Expression == "":
+		is.errorf("%s: cue %s: name the expression ({%s:%s happy}, or normal to go back)", lang, c.Raw, c.Sticker, FaceEffect)
+	case !m.HasExpression(c.Sticker, c.Expression):
+		if c.Sticker == AllTarget {
+			is.errorf("%s: cue %s: no sticker has the expression %q", lang, c.Raw, c.Expression)
+		} else {
+			is.errorf("%s: cue %s: sticker %q has no expression %q (it has %s)", lang, c.Raw, c.Sticker, c.Expression, strings.Join(append([]string{Normal}, m.Expressions[c.Sticker]...), ", "))
+		}
+	}
+	if c.Repeat > 0 || c.Loop || c.Hold || c.Color != "" || c.Duration > 0 || c.Intensity != 0 {
+		is.errorf("%s: cue %s: a face change takes no parameters (it lasts until the next one)", lang, c.Raw)
+	}
+}
+
 // validateLiveCue checks a {sticker:live} cue: the sticker has the live
 // animation it asks for, and nothing else is set.
 func validateLiveCue(is *Issues, lang string, c Cue, m Manifest) {
@@ -1114,6 +1202,12 @@ type Coverage struct {
 	// one of its live animations; LiveStories the stories that play any.
 	LiveUse     map[string]int
 	LiveStories int
+	// FaceUse counts the stories whose first language shows each
+	// expression; FaceStories those with any face cue, AllStories those
+	// with any cue on every sticker ({all:…}).
+	FaceUse     map[string]int
+	FaceStories int
+	AllStories  int
 	// LearningStories counts the stories that carry a piece of learning.
 	LearningStories int
 	// SoundStories / SoloStories count stories with sound effects, and with
@@ -1129,7 +1223,7 @@ type Coverage struct {
 
 // Cover computes coverage and set-level issues.
 func Cover(stories []*Story, m Manifest, expected int) Coverage {
-	c := Coverage{Stories: len(stories), Featured: map[string]int{}, Used: map[string]int{}, EffectUse: map[string]int{}, TagUse: map[string]int{}, LiveUse: map[string]int{}}
+	c := Coverage{Stories: len(stories), Featured: map[string]int{}, Used: map[string]int{}, EffectUse: map[string]int{}, TagUse: map[string]int{}, LiveUse: map[string]int{}, FaceUse: map[string]int{}}
 	for _, st := range m.Stickers {
 		c.Featured[st] = 0
 		c.Used[st] = 0
@@ -1151,10 +1245,18 @@ func Cover(stories []*Story, m Manifest, expected int) Coverage {
 		if len(m.Languages) > 0 {
 			nar, _ := Parse(s.Languages[m.Languages[0]].Text)
 			seen := map[string]bool{}
-			usesCanvas, usesSound, usesSolo, usesLive := false, len(s.Sound) > 0, false, false
+			usesCanvas, usesSound, usesSolo, usesLive, usesFace, usesAll := false, len(s.Sound) > 0, false, false, false, false
 			for _, cue := range nar.Cues {
 				key := cue.Effect
+				usesAll = usesAll || cue.Sticker == AllTarget
 				switch {
+				case cue.Effect == FaceEffect && !cue.Canvas && !cue.Sound:
+					usesFace = true
+					if !seen["face:"+cue.Expression] {
+						seen["face:"+cue.Expression] = true
+						c.FaceUse[cue.Expression]++
+					}
+					continue
 				case cue.Effect == LiveEffect && !cue.Canvas && !cue.Sound:
 					usesLive = true
 					if !seen["live:"+cue.Sticker] {
@@ -1180,6 +1282,12 @@ func Cover(stories []*Story, m Manifest, expected int) Coverage {
 			}
 			if usesLive {
 				c.LiveStories++
+			}
+			if usesFace {
+				c.FaceStories++
+			}
+			if usesAll {
+				c.AllStories++
 			}
 			if usesSound {
 				c.SoundStories++

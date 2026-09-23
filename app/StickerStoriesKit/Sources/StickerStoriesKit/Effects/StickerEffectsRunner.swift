@@ -83,7 +83,9 @@ public final class StickerEffectsRunner: StickerEffects {
     private func fireDueTriggers() {
         for (index, trigger) in triggers.enumerated() where !firedTriggers.contains(index) && trigger.at <= currentTime {
             firedTriggers.insert(index)
-            for instance in targets[trigger.stickerID] ?? [] {
+            let instances = trigger.stickerID == EffectTrigger.allStickers
+                ? targets.keys.sorted().flatMap { targets[$0] ?? [] } : targets[trigger.stickerID] ?? []
+            for instance in instances {
                 start(trigger.effect, on: instance, options: trigger.options, at: trigger.at)
             }
         }

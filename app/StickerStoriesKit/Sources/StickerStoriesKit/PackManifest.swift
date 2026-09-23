@@ -142,12 +142,21 @@ public struct StickerDefinition: Codable, Equatable, Sendable, Identifiable {
     /// Pack-relative paths to live-animation sidecars (`docs/pack-format.md`,
     /// "Live animations"); empty for a still sticker.
     public var animations: [String]
+    /// Face variants by expression id ("happy", "sleeping"…): pack-relative
+    /// images with exactly the sticker's size and outline, swapped in place
+    /// by expression triggers (`docs/pack-format.md`, "Expressions"). The
+    /// sticker's own image is the "normal" face.
+    public var expressions: [String: String]
 
-    public init(id: String, name: [String: String], image: String, animations: [String] = []) {
+    public init(
+        id: String, name: [String: String], image: String, animations: [String] = [],
+        expressions: [String: String] = [:]
+    ) {
         self.id = id
         self.name = name
         self.image = image
         self.animations = animations
+        self.expressions = expressions
     }
 
     public init(from decoder: Decoder) throws {
@@ -156,6 +165,7 @@ public struct StickerDefinition: Codable, Equatable, Sendable, Identifiable {
         name = try c.decode([String: String].self, forKey: .name)
         image = try c.decode(String.self, forKey: .image)
         animations = try c.decodeIfPresent([String].self, forKey: .animations) ?? []
+        expressions = try c.decodeIfPresent([String: String].self, forKey: .expressions) ?? [:]
     }
 
     public func name(for language: String, fallbackOrder: [String]) -> String {
@@ -329,6 +339,9 @@ extension PackManifest {
             if !stickerIDs.insert(sticker.id).inserted {
                 issues.append("duplicate sticker id \"\(sticker.id)\"")
             }
+            if sticker.id == EffectTrigger.allStickers {
+                issues.append("sticker id \"\(sticker.id)\" is reserved (effect triggers use it for every sticker)")
+            }
             checkCoverage("sticker \"\(sticker.id)\" name", sticker.name)
             checkImage("sticker \"\(sticker.id)\" image", sticker.image)
             // Rule 12: live-animation sidecars exist (the packager validates
@@ -340,6 +353,15 @@ extension PackManifest {
                 if (path as NSString).pathExtension.lowercased() != "json" {
                     issues.append("\(field): \"\(path)\" must be a .json file")
                 }
+            }
+            // Rule 13: expression variants are images; "normal" is the
+            // sticker's own image and cannot be a variant.
+            for (expression, path) in sticker.expressions.sorted(by: { $0.key < $1.key }) {
+                let field = "sticker \"\(sticker.id)\" expressions.\(expression)"
+                if expression == ExpressionTrigger.normal || !Self.isWellFormedID(expression) {
+                    issues.append("\(field): expression id must be lowercase a-z0-9 and not \"normal\"")
+                }
+                checkImage(field, path)
             }
         }
 

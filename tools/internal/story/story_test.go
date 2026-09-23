@@ -33,14 +33,27 @@ func words(n int, seed string) string {
 	return strings.Join(parts, " ")
 }
 
+// beats is n filler words with a sticker reaction every ten, the cue
+// density a real story has.
+func beats(n int, seed string) string {
+	parts := make([]string, 0, n+n/10)
+	for i := 0; i < n; i++ {
+		if i > 0 && i%10 == 0 {
+			parts = append(parts, "{fox:wobble}")
+		}
+		parts = append(parts, seed)
+	}
+	return strings.Join(parts, " ")
+}
+
 func goodStory() *Story {
 	return &Story{
 		Schema: 1, ID: "the-race", Pack: "forest",
 		Featured: []string{"fox", "rabbit", "tree"}, Supporting: []string{"flower"},
 		Tags: []string{"friendship", "funny"}, Premise: "A race that ties.", Inspiration: "Aesop, turned.", Lesson: "Finish together.",
 		Languages: map[string]Localization{
-			"en-US": {Title: "The Race", Text: "{flower:float loop 0.4} Ready, steady, {fox:hop} {rabbit:hop} go! " + words(90, "hop") + " {fox:hearts} friends."},
-			"es-ES": {Title: "La carrera", Text: "{flower:float loop 0.4} Preparados, listos, {fox:hop} {rabbit:hop} ya! " + words(95, "salta") + " {fox:hearts} amigos."},
+			"en-US": {Title: "The Race", Text: "{flower:float loop 0.4} Ready, steady, {fox:hop} {rabbit:hop} go! " + beats(90, "hop") + " {fox:hearts} friends."},
+			"es-ES": {Title: "La carrera", Text: "{flower:float loop 0.4} Preparados, listos, {fox:hop} {rabbit:hop} ya! " + beats(90, "salta") + " {fox:hearts} amigos."},
 		},
 	}
 }
@@ -513,5 +526,50 @@ func TestWeatherWordsWantTheirCanvasEffect(t *testing.T) {
 	plain.Languages["en-US"] = l
 	if w := strings.Join(Validate(plain, indoors, cat).Warnings, "\n"); strings.Contains(w, "mentions") {
 		t.Errorf("indoors packs have no snow effect: %v", w)
+	}
+}
+
+func TestFaceAndAllCues(t *testing.T) {
+	cat := testCatalog(t)
+	pack := forest
+	pack.Expressions = map[string][]string{"fox": {"happy", "sleeping"}, "rabbit": {"happy"}}
+	withText := func(en, es string) *Story {
+		s := goodStory()
+		l := s.Languages["en-US"]
+		l.Text += en
+		s.Languages["en-US"] = l
+		l = s.Languages["es-ES"]
+		l.Text += es
+		s.Languages["es-ES"] = l
+		return s
+	}
+	ok := " {fox:face happy} Smile. {all:face sleeping} {all:hop} Sleep. {fox:face normal} Wake."
+	if is := Validate(withText(ok, ok), pack, cat); len(is.Errors) != 0 || len(is.Warnings) != 0 {
+		t.Fatalf("face and all cues are fine: %v %v", is.Errors, is.Warnings)
+	}
+	for _, tc := range []struct{ cue, want string }{
+		{" {rabbit:face sleeping} x.", `has no expression "sleeping"`},
+		{" {all:face angry} x.", `no sticker has the expression "angry"`},
+		{" {fox:face} x.", "name the expression"},
+		{" {fox:face happy 2s} x.", "takes no parameters"},
+		{" {owl:face happy} x.", "neither featured nor supporting"},
+		{" {all:live} x.", "one sticker at a time"},
+	} {
+		is := Validate(withText(tc.cue, tc.cue), pack, cat)
+		if !strings.Contains(strings.Join(is.Errors, "\n"), tc.want) {
+			t.Errorf("%s: want an error containing %q, got %v", tc.cue, tc.want, is.Errors)
+		}
+	}
+	if w := strings.Join(Validate(goodStory(), pack, cat).Warnings, "\n"); !strings.Contains(w, "no face changes") {
+		t.Errorf("a story without face cues should warn when the pack has faces: %v", w)
+	}
+	named := pack
+	named.Stickers = append(named.Stickers, "all")
+	if is := Validate(goodStory(), named, cat); !strings.Contains(strings.Join(is.Errors, "\n"), "reserved every-sticker") {
+		t.Errorf("a sticker called all must be rejected: %v", is.Errors)
+	}
+	c := Cover([]*Story{withText(ok, ok)}, pack, 0)
+	if c.FaceStories != 1 || c.AllStories != 1 || c.FaceUse["happy"] != 1 || c.FaceUse["normal"] != 1 {
+		t.Errorf("face coverage wrong: %+v %d %d", c.FaceUse, c.FaceStories, c.AllStories)
 	}
 }

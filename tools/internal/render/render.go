@@ -188,16 +188,17 @@ func normalizeWord(s string) string {
 // Trigger is one entry of the effects sidecar: a sticker trigger, or a
 // canvas trigger (no sticker; intensity and duration only).
 type Trigger struct {
-	At        float64 `json:"at"`
-	Cue       string  `json:"cue,omitempty"`
-	Sticker   string  `json:"sticker,omitempty"`
-	Effect    string  `json:"effect,omitempty"`
-	Animation string  `json:"animation,omitempty"` // a live animation: no effect
-	Repeat    any     `json:"repeat,omitempty"`    // int or "loop"
-	Duration  float64 `json:"duration,omitempty"`
-	Intensity float64 `json:"intensity,omitempty"`
-	Color     string  `json:"color,omitempty"`
-	Hold      bool    `json:"hold,omitempty"`
+	At         float64 `json:"at"`
+	Cue        string  `json:"cue,omitempty"`
+	Sticker    string  `json:"sticker,omitempty"`
+	Effect     string  `json:"effect,omitempty"`
+	Animation  string  `json:"animation,omitempty"`  // a live animation: no effect
+	Expression string  `json:"expression,omitempty"` // a face change: no effect
+	Repeat     any     `json:"repeat,omitempty"`     // int or "loop"
+	Duration   float64 `json:"duration,omitempty"`
+	Intensity  float64 `json:"intensity,omitempty"`
+	Color      string  `json:"color,omitempty"`
+	Hold       bool    `json:"hold,omitempty"`
 }
 
 // Sidecar is the effects trigger file.
@@ -223,6 +224,14 @@ func Triggers(cues []story.Cue, tl *Timeline, pack story.Manifest) ([]Trigger, e
 			at = 0
 		}
 		at = round(at)
+		if c.Effect == story.FaceEffect && !c.Canvas {
+			t := Trigger{At: at, Sticker: c.Sticker, Expression: c.Expression}
+			if c.WordIndex < len(tl.Words) {
+				t.Cue = normalizeWord(tl.Words[c.WordIndex].Text)
+			}
+			out = append(out, t)
+			continue
+		}
 		if c.Effect == story.LiveEffect && !c.Canvas {
 			anim, err := pack.ResolveAnimation(c.Sticker, c.Animation)
 			if err != nil {
@@ -275,7 +284,7 @@ func LiveOverlaps(triggers []Trigger, pack story.Manifest) []string {
 		}
 		end := live.At + anim.Seconds
 		for _, t := range triggers {
-			if t.Sticker == live.Sticker && t.Effect != "" && t.Repeat != "loop" && t.At > live.At && t.At < end {
+			if (t.Sticker == live.Sticker || t.Sticker == story.AllTarget) && t.Effect != "" && t.Repeat != "loop" && t.At > live.At && t.At < end {
 				out = append(out, fmt.Sprintf("%s %s at %.1fs lands inside %s's %s (%.1f–%.1fs)", t.Sticker, t.Effect, t.At, live.Sticker, live.Animation, live.At, end))
 			}
 		}
@@ -285,13 +294,13 @@ func LiveOverlaps(triggers []Trigger, pack story.Manifest) []string {
 
 // EncodeSidecar serialises and strictly validates a sidecar for a pack
 // with the given declared stickers, their live animations and setting.
-func EncodeSidecar(triggers []Trigger, declared map[string]bool, animations effects.Animations, setting string) ([]byte, error) {
+func EncodeSidecar(triggers []Trigger, declared map[string]bool, animations effects.Animations, expressions effects.Expressions, setting string) ([]byte, error) {
 	data, err := json.MarshalIndent(Sidecar{Schema: effects.SupportedSchema, Triggers: triggers}, "", "  ")
 	if err != nil {
 		return nil, err
 	}
 	data = append(data, '\n')
-	if errs := effects.Validate(data, declared, animations, setting); len(errs) > 0 {
+	if errs := effects.Validate(data, declared, animations, expressions, setting); len(errs) > 0 {
 		return nil, fmt.Errorf("sidecar invalid: %v", errs)
 	}
 	return data, nil

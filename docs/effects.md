@@ -102,7 +102,7 @@ system that shares the clock and the trigger file but not this vocabulary
 | Key | Required | Default | Meaning |
 |---|---|---|---|
 | `effect` | yes | | One of the 12 names above. |
-| `sticker` | yes | | Sticker ID from the manifest. Every placed instance is affected. |
+| `sticker` | yes | | Sticker ID from the manifest, or `all` for every sticker on the canvas. Every placed instance is affected. |
 | `at` | yes | | Seconds into **this language's** narration when the effect starts. |
 | `cue` | no | | Free label for authoring traceability (the word it lines up with). The app ignores it. |
 | `repeat` | no | `1` | `n` cycles (1–50) or `"loop"` until playback ends. Ignored by `fade-in` / `fade-out`. |
@@ -199,10 +199,12 @@ or fantastical places) gets no canvas effects at all.
 
 Each story localization may point at one sidecar next to its audio
 (`docs/pack-format.md`, `localizations[].effects`). Times are per language
-because each narration has its own timing. One `triggers` list carries three
-kinds: an entry whose `effect` is a sticker effect targets a `sticker`; one
-whose `effect` is a canvas effect has none; one with an `animation` and no
-`effect` plays that sticker's live animation ("Live animations" below).
+because each narration has its own timing. One `triggers` list carries four
+kinds: an entry whose `effect` is a sticker effect targets a `sticker` (or
+`all`); one whose `effect` is a canvas effect has none; one with an
+`animation` and no `effect` plays that sticker's live animation ("Live
+animations" below); one with an `expression` and no `effect` changes a
+sticker's face, or everyone's ("Faces" below).
 
 `packs/forest/audio/en-US/shy-mushroom.effects.json`:
 
@@ -216,6 +218,8 @@ whose `effect` is a canvas effect has none; one with an `animation` and no
     { "at": 8.0,  "cue": "rain",                            "effect": "rain",     "intensity": 0.7, "duration": 14 },
     { "at": 12.5, "cue": "blush",   "sticker": "mushroom", "effect": "tint",     "color": "#FFB3C6" },
     { "at": 24.0, "cue": "sun",                             "effect": "sunshine" },
+    { "at": 26.4, "cue": "smiled",  "sticker": "mushroom", "expression": "happy" },
+    { "at": 28.0, "cue": "everyone","sticker": "all",      "effect": "hop" },
     { "at": 30.2, "cue": "yawned",  "sticker": "bear",     "animation": "yawn" },
     { "at": 41.5, "cue": "flies",   "sticker": "bird",     "effect": "fade-out", "hold": true }
   ]
@@ -265,11 +269,15 @@ Stories are authored with cues inline in the text
 The fox gave an enormous {fox:wobble x3} {fox:sparkle} sneeze.
 Plip, plop — {canvas:rain 0.7 14s} here comes the rain.
 Bear gave a {bear:live} great big yawn.
+Mushroom {mushroom:face happy} smiled. And {all:face sleeping} everyone fell asleep.
 ```
 
 A cue fires on the word that follows it; `canvas:` is the reserved target
 for canvas effects, `live` the reserved effect that plays a sticker's live
-animation (`{bear:live}`, or `{owl:live blink}` to name one of several) and
+animation (`{bear:live}`, or `{owl:live blink}` to name one of several),
+`face` the reserved effect that changes a sticker's face (`{bear:face
+happy}`, `{bear:face normal}`), `all` the reserved target for every
+sticker on the canvas (`{all:hop}`, `{all:face sleeping}`) and
 `sfx:` for sound effects (which are mixed into the
 audio, never triggers). The text may also carry Eleven v3 audio tags
 (`[whispers]`) for the narrator. Step 2 of the authoring pipeline
@@ -298,6 +306,31 @@ tell that moment; `storycheck` lists them.
   that is found more than a second late, is skipped.
 - Older apps skip the trigger (it has no `effect`) with a log line, so no
   schema change was needed.
+
+## Faces
+
+Stickers with a face carry expression variants (`docs/pack-format.md`,
+"Expressions"): in Forest, `happy`, `sad`, `sleeping` and `surprised`
+besides the sticker's own `normal` face. An expression trigger
+`{ "at", "cue"?, "sticker": "bear" | "all", "expression": "happy" }`
+changes the face from that moment on:
+
+- **No duration.** A face stays until the next change for that sticker (or
+  for `all`); `normal` goes back to the sticker's own face. The story's
+  end resets every sticker to `normal`.
+- **In place.** A variant has exactly the sticker's outline, so the app
+  swaps the texture with a 0.25 s crossfade and nothing moves; sticker
+  effects keep running on top. During a live animation the frames are on
+  show and the new face is there when they hand back.
+- **`all`** changes every sticker on the canvas; a sticker without that
+  face keeps its own. A later change for one sticker overrides an earlier
+  `all`, and vice versa: the face at any moment is the last change up to
+  then that names the sticker or `all` (`ExpressionTimeline`, so seeking is
+  exact).
+- The story loads only the variants it will show for the stickers on the
+  canvas, off the main thread at play start; until one is in, that sticker
+  keeps its face.
+- Faces are not motion: Reduce Motion and calm mode keep them.
 
 ## Accessibility and calm mode
 
