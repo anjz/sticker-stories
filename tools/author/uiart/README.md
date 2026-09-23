@@ -1,8 +1,9 @@
 # uiart — the app's own art, as alternatives to pick from
 
 Makes the art that belongs to the app rather than to a pack — the main
-screen's **background**, the **"Sticker Stories" title** and every pack's
-**cover** — as a few alternatives each, and installs the one you choose.
+screen's **background**, the **"Sticker Stories" title**, the **store
+tile** (the menu's More stories card) and every pack's **cover** — as a
+few alternatives each, and installs the one you choose.
 Dev-time only; needs `OPENAI_API_KEY` in `tools/.env`.
 
 ```sh
@@ -12,6 +13,7 @@ go run ./author/uiart render -only title -more 2   # two more titles, keeping th
 go run ./author/uiart render -only cover:forest -fresh  # archive the old covers, start over
 go run ./author/uiart pick background 3
 go run ./author/uiart pick title 2
+go run ./author/uiart pick store 4
 go run ./author/uiart pick cover:forest 1
 ```
 
@@ -20,9 +22,9 @@ go run ./author/uiart pick cover:forest 1
 - `style` is prepended to every prompt, so the pieces belong together
   (keep it close to the packs' style).
 - `candidates` (default 4) is how many alternatives `render` makes.
-- `background` / `title` / `cover`: a `size` and a `prompt` each. The title
-  also takes the exact `text` to letter; covers take extra direction per
-  pack under `cover.packs.<packID>`.
+- `background` / `title` / `store` / `cover`: a `size` and a `prompt`
+  each. The title also takes the exact `text` to letter; covers take extra
+  direction per pack under `cover.packs.<packID>`.
 
 The tool adds the rules that must always hold: no text in the background
 or covers (the app writes pack names), the exact spelling and a
@@ -37,6 +39,9 @@ transparent background for the title, no borders.
   and the look) and its scene, both from `author/art/<pack>/out/`, so the
   cover belongs to the pack. The prompt names the pack and its manifest
   `description`.
+- **Store tile**: drawn with up to 8 of the packs' finished stickers
+  (`author/art/<pack>/out/stickers/`, taken in turn from every pack) as
+  references, so the collage shows the app's own characters.
 - Candidates land in `author/art/app/out/<asset>/<n>.png` (covers in
   `out/cover-<pack>/`), with **`choices.png`**: all of them side by side,
   numbered left to right, top to bottom; transparent art on a checkerboard.
@@ -44,8 +49,8 @@ transparent background for the title, no borders.
   to `-count`. `-more N` adds N after the last one (after a prompt tweak,
   say); `-fresh` moves the current set into `old/<timestamp>/` first.
 - `-dry-run` lists what would be generated; `-parallel` (default 4) images
-  run at once. About $0.04–0.08 per image at `high`, so a full round of
-  12 is under a dollar.
+  run at once. About $0.04–0.08 per image at `high` (a store tile, with
+  its eight references, about $0.12), so a full round is about a dollar.
 
 ## What `pick` installs
 
@@ -53,6 +58,7 @@ transparent background for the title, no borders.
 |---|---|---|
 | `background` | `app/StickerStories/Art/menu-background.webp` | Bundled with the app. |
 | `title` | `app/StickerStories/Art/menu-title.webp` | Trimmed to the lettering (with a small margin), alpha kept. |
+| `store` | `app/StickerStories/Art/menu-store.webp` | The More stories card; without it the card keeps its gradient and gift. |
 | `cover:<pack>` | `packs/<pack>/art/cover.webp` | Sets the manifest's `cover` (`docs/pack-format.md`), bumps the pack version, validates. |
 
 Everything is written as WebP (lossy q90, lossless alpha), like the packs'

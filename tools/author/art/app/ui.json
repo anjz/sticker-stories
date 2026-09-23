@@ -3,7 +3,8 @@
     "what": "The app's own art (not a pack's): the main screen's background, the Sticker Stories title and every pack's cover. uiart render makes `candidates` alternatives of each in out/<asset>/ with a choices.png to compare; uiart pick <asset> <n> installs one.",
     "style": "Prepended to every prompt so the pieces belong together; keep it close to the packs' style so the menu and the packs feel like one app.",
     "background": "Sits behind the title (top) and a row of big pack cards (middle), and is cropped to any screen shape: iPad 4:3 in either orientation, phones up to about 2.2:1. Keep it calm and low in detail so the cards stand out.",
-    "cover": "One per pack, drawn from the pack's own style sheet and scene. Shown square-ish in the main menu and wider in the store, so keep what matters in the middle. The app writes the pack's name, so no text in the art."
+    "cover": "One per pack, drawn from the pack's own style sheet and scene. The characters are always shown as realistic die-cut vinyl stickers placed on the scene. Shown square-ish in the main menu and wider in the store, so keep what matters in the middle. The app writes the pack's name, so no text in the art.",
+    "store": "The main menu tile that opens the store (More stories): a collage of stickers from the packs covering the whole tile, overlapping freely. Drawn with a handful of the packs' own finished stickers as references. The app writes the label, so no text in the art."
   },
   "style": "Children's picture-book illustration for ages 4 and up: soft digital gouache with a gentle hand-painted texture, clean rounded shapes, thick-and-thin dark-brown outlines, warm friendly palette (mossy greens, honey yellows, soft browns, sky blue, a touch of berry pink), calm and cheerful, no scary elements, no watermarks.",
   "candidates": 4,
@@ -18,7 +19,11 @@
   },
   "cover": {
     "size": "1024x1024",
-    "prompt": "A joyful, inviting cover picture: the pack's characters gathered together in the middle of their scene, happy and in a lively little moment, framed by the scenery. The group fills the centre square; the outer edges are calm scenery so the picture can be cropped to a wider or taller tile without losing anyone.",
+    "prompt": "A joyful, inviting cover picture: the pack's characters, each one shown as a physical die-cut vinyl sticker — the character's artwork on a glossy sticker with a thick white die-cut border following its outline, a subtle glossy sheen and highlights, the slightly raised edge of real vinyl, and a soft, realistic drop shadow falling onto the scene beneath it, as if real stickers had been pressed onto the painted scenery. The stickers are grouped in the middle, some overlapping a little, in a lively little moment. The sticker effect is ultra realistic, like a photograph of real stickers, while the scene and the art inside each sticker keep the pack's painted style. The group fills the centre square; the outer edges are calm scenery so the picture can be cropped to a wider or taller tile without losing anyone.",
     "packs": {}
+  },
+  "store": {
+    "size": "1024x1024",
+    "prompt": "A dense, joyful collage of many die-cut vinyl stickers covering the whole picture edge to edge: the characters from the attached sticker sheets and more friendly characters and objects in the same painted style, each on its own glossy sticker with a thick white die-cut border following its outline, a glossy sheen and highlights, slightly raised vinyl edges and soft realistic drop shadows. The stickers overlap each other freely at playful angles — some partly covered by others, some peeking out from underneath — so that little or no background shows. The sticker effect is ultra realistic, like a photograph of real stickers piled onto a surface. Bright, cheerful, busy but not chaotic."
   }
 }

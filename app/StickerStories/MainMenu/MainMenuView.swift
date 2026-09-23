@@ -195,29 +195,53 @@ private struct PackMenuCard: View {
     }
 }
 
-/// The final card: opens the grown-ups area (parental gate first), where new
-/// packs live.
+/// The final card: opens the store (parental gate first), where new packs
+/// live. With the store tile's art (`MenuArt.store`) it looks like a pack
+/// card — the art filling it, the label in a banner; without, a gradient
+/// with a gift.
 private struct MoreStoriesCard: View {
+    private let art = MenuArt.shared
+
     var body: some View {
-        ZStack {
-            LinearGradient(
-                colors: [
-                    Color(red: 0.55, green: 0.62, blue: 0.95),
-                    Color(red: 0.85, green: 0.6, blue: 0.9),
-                ],
-                startPoint: .topLeading, endPoint: .bottomTrailing)
-            VStack(spacing: 18) {
-                Image(systemName: "gift.fill")
-                    .font(.system(size: 64, weight: .bold))
-                    .foregroundStyle(.white)
-                    .shadow(color: .black.opacity(0.2), radius: 3, y: 2)
+        ZStack(alignment: .bottom) {
+            if let store = art.store {
+                // Overlay on a clear base so the fill-scaled image cannot
+                // inflate the card's layout size.
+                Color.clear.overlay {
+                    Image(uiImage: store)
+                        .resizable()
+                        .scaledToFill()
+                }
                 Text("More stories")
-                    .font(.system(size: 26, weight: .heavy, design: .rounded))
+                    .font(.system(size: 24, weight: .heavy, design: .rounded))
                     .foregroundStyle(.white)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(2)
+                    .lineLimit(1)
                     .minimumScaleFactor(0.6)
-                    .padding(.horizontal, 12)
+                    .padding(.horizontal, 18)
+                    .padding(.vertical, 12)
+                    .frame(maxWidth: .infinity)
+                    .background(.black.opacity(0.38))
+            } else {
+                LinearGradient(
+                    colors: [
+                        Color(red: 0.55, green: 0.62, blue: 0.95),
+                        Color(red: 0.85, green: 0.6, blue: 0.9),
+                    ],
+                    startPoint: .topLeading, endPoint: .bottomTrailing)
+                VStack(spacing: 18) {
+                    Image(systemName: "gift.fill")
+                        .font(.system(size: 64, weight: .bold))
+                        .foregroundStyle(.white)
+                        .shadow(color: .black.opacity(0.2), radius: 3, y: 2)
+                    Text("More stories")
+                        .font(.system(size: 26, weight: .heavy, design: .rounded))
+                        .foregroundStyle(.white)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.6)
+                        .padding(.horizontal, 12)
+                }
+                .frame(maxHeight: .infinity)
             }
         }
         .clipShape(RoundedRectangle(cornerRadius: 30))
