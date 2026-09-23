@@ -10,35 +10,37 @@ tell their move.
 ## Cast and voice (consistent across the pack)
 
 Pronouns follow the Spanish names' grammatical gender so both languages
-agree (13 he, 12 she).
+agree (13 he, 12 she). The last column is what each sticker's art actually
+shows (checked against `packs/forest/stickers/*.webp`): a story that counts
+or describes a visible feature uses these, not what the real animal has.
 
-| sticker | en / es | pronoun | personality | live move |
-|---|---|---|---|---|
-| acorn | Acorn / Bellota | she | the smallest, impatient to be big, giggly | — |
-| badger | Badger / Tejón | he | grumbly-kind digger, likes things just so, works at dusk | — |
-| bear | Bear cub / Osito | he | cuddly, always sleepy, enormous yawns | yawns, stretches, rubs eyes, pats tummy, nods off |
-| beaver | Beaver / Castor | he | builder, practical, proud of his tail slap | — |
-| bee | Bee / Abeja | she | busy, hums while she works, generous | — |
-| bird | Bird / Pájaro | he | early riser, singer, carries news | — |
-| butterfly | Butterfly / Mariposa | she | dreamy, light, easily blown about | — |
-| caterpillar | Caterpillar / Oruga | she | hungry, patient, dreams of flying | — |
-| deer | Deer / Ciervo | he | tall, gentle, careful where he steps | — |
-| firefly | Firefly / Luciérnaga | she | tiny light, a little shy, kind | — |
-| flower | Flower / Flor | she | sunny, opens and closes with the day | — |
-| fox | Fox / Zorro | he | quick, loud, big-hearted, learns to slow down | — |
-| frog | Frog / Rana | she | show-off with a heart, loves rain and ponds | backflip off her lily pad, catches a fly |
-| hedgehog | Hedgehog / Erizo | he | loves naps, curls up at any excuse | yawns, curls into a ball, peeks out, uncurls |
-| ladybug | Ladybug / Mariquita | she | tiny, brave, counts things, proud | lifts wing cases, flutters, folds, takes a bow |
-| mouse | Mouse / Ratón | he | smallest helper, clever, whispers | — |
-| mushroom | Mushroom / Seta | she | quiet, shelters others | — |
-| owl | Owl / Búho | he | sleeps by day, wise, sleepy blinks | blinks, looks around, fluffs, yawns, sleeps again |
-| pinecone | Pinecone / Piña | she | rolls, opens in sun, closes in rain | — |
-| rabbit | Rabbit / Conejo | he | jumpy, big listening ears | ears perk up, looks left and right, nibbles clover |
-| raccoon | Raccoon / Mapache | he | playful, masked, peekaboo champion | rubs paws, hides eyes, peeks, BOO, giggles |
-| snail | Snail / Caracol | he | slow, shy, always arrives | tucks into shell, waits, peeks out, looks around |
-| squirrel | Squirrel / Ardilla | she | busy, a little possessive of her hazelnut | nibbles, checks nobody's looking, hides it, hugs it |
-| tree | Tree / Árbol | he | old, patient, home to everyone, ticklish | — |
-| woodpecker | Woodpecker / Pájaro carpintero | he | drummer, knocks on doors | taps the trunk, listens, shakes off dust, chirps |
+| sticker | en / es | pronoun | personality | live move | on the sticker (count and describe from this) |
+|---|---|---|---|---|---|
+| acorn | Acorn / Bellota | she | the smallest, impatient to be big, giggly | — | brown acorn with a scaly cap and stalk, little arms and feet |
+| badger | Badger / Tejón | he | grumbly-kind digger, likes things just so, works at dusk | — | grey body, black-and-white striped face, walking on all fours |
+| bear | Bear cub / Osito | he | cuddly, always sleepy, enormous yawns | yawns, stretches, rubs eyes, pats tummy, nods off | brown cub sitting, round tummy, paw pads showing |
+| beaver | Beaver / Castor | he | builder, practical, proud of his tail slap | — | brown, holding a stick with leaves, flat criss-cross tail, two big front teeth |
+| bee | Bee / Abeja | she | busy, hums while she works, generous | — | fuzzy yellow, **2** dark stripes, 2 wings, 2 antennae |
+| bird | Bird / Pájaro | he | early riser, singer, carries news | — | blue bird with a pink-orange breast, on a leafy twig |
+| butterfly | Butterfly / Mariposa | she | dreamy, light, easily blown about | — | orange wings with white dots and a blue eyespot on each upper wing |
+| caterpillar | Caterpillar / Oruga | she | hungry, patient, dreams of flying | — | green, segmented with darker dots, on a leaf |
+| deer | Deer / Ciervo | he | young fawn, gentle, long-legged, careful where he steps | — | **young fawn with white spots, no antlers**, big ears |
+| firefly | Firefly / Luciérnaga | she | tiny light, a little shy, kind | — | brown bug with a glowing yellow tail, on a blade of grass |
+| flower | Flower / Flor | she | sunny, opens and closes with the day | — | **yellow**, **8** petals, round brown middle with a face, 2 leaves |
+| fox | Fox / Zorro | he | quick, loud, big-hearted, learns to slow down | — | orange, white-tipped bushy tail, mid-hop |
+| frog | Frog / Rana | she | show-off with a heart, loves rain and ponds | backflip off her lily pad, catches a fly | green with dark spots, sitting on a lily pad |
+| hedgehog | Hedgehog / Erizo | he | loves naps, curls up at any excuse | yawns, curls into a ball, peeks out, uncurls | brown prickles, cream face |
+| ladybug | Ladybug / Mariquita | she | tiny, brave, counts things, proud | lifts wing cases, flutters, folds, takes a bow | red back with **5** black spots, on a leaf |
+| mouse | Mouse / Ratón | he | smallest helper, clever, whispers | — | grey-brown, big pink ears, long pink tail, standing |
+| mushroom | Mushroom / Seta | she | quiet, shelters others | — | **red cap with white spots**, cream stem with a face |
+| owl | Owl / Búho | he | sleeps by day, wise, sleepy blinks | blinks, looks around, fluffs, yawns, sleeps again | brown, sleepy half-closed eyes, on a branch |
+| pinecone | Pinecone / Piña | she | rolls, opens in sun, closes in rain | — | brown, face among the scales |
+| rabbit | Rabbit / Conejo | he | jumpy, big listening ears | ears perk up, looks left and right, nibbles clover | brown, long ears, white fluffy tail, sitting up |
+| raccoon | Raccoon / Mapache | he | playful, masked, peekaboo champion | rubs paws, hides eyes, peeks, BOO, giggles | grey, black mask, black-and-grey ringed tail, paws together |
+| snail | Snail / Caracol | he | slow, shy, always arrives | tucks into shell, waits, peeks out, looks around | brown spiral shell, green body, eye stalks with the eyes on top |
+| squirrel | Squirrel / Ardilla | she | busy, a little possessive of her hazelnut | nibbles, checks nobody's looking, hides it, hugs it | red-orange, holding a hazelnut, big bushy tail |
+| tree | Tree / Árbol | he | old, patient, home to everyone, ticklish | — | **oak**, full of acorns, face in the trunk, mossy roots |
+| woodpecker | Woodpecker / Pájaro carpintero | he | drummer, knocks on doors | taps the trunk, listens, shakes off dust, chirps | black-and-white spotted, red cap, clinging to its own tree trunk |
 
 ## Roster
 
@@ -62,10 +64,10 @@ agree (13 he, 12 she).
 | 16 | firefly-lights-the-way | firefly, snail, mouse | owl | bedtime, learning | Snail is slow getting home at dusk; Firefly glows beside him all the way, and Mouse walks along. | Andersen's The Little Match Girl's light, turned warm: a light that brings you home. | Fireflies make their own light | fireflies | snail |
 | 17 | caterpillars-long-sleep | caterpillar, ladybug, tree | butterfly | patience, learning | Caterpillar eats and eats, wraps herself up tight, and Ladybug waits and waits beside her until a butterfly opens its wings. | Folk waiting tale; the seasons of Aesop's Ant and Grasshopper, turned kind. | A caterpillar wraps itself up and comes out as a butterfly | — | — |
 | 18 | badger-makes-a-bed | badger, hedgehog, mouse | — | kindness, bedtime, learning | Badger fetches fresh grass for his burrow bed, and by the time it is soft, Hedgehog has curled up in it first. | Goldilocks (folk), turned: the guest is welcome. | Badgers carry fresh grass into their burrows for a soft bed | — | hedgehog |
-| 19 | deers-new-antlers | deer, bird, rabbit | — | seasons, learning | Deer's antlers drop off in winter and he worries he isn't himself; by summer new ones have grown, and Bird sits in them. | Kipling's Just So "how the deer…" pattern, told truly. | Deer lose their antlers every year and grow new ones | — | — |
+| 19 | deer-and-his-white-spots | deer, bird, rabbit | — | curiosity, learning | Young Deer wishes for antlers instead of spots, until his spots make him impossible to find in the dappled grass. | Kipling's Just So stories (how the animal got its coat), turned toward contentment. | A young deer's white spots look like patches of sunlight and fade as it grows up | — | — |
 | 20 | pinecone-opens-up | pinecone, mushroom, bird | squirrel | weather, learning | Pinecone shuts tight in the rain and Bird thinks she's cross; when the sun comes out she opens wide. | The North Wind and the Sun (Aesop), literal and gentle. | Pinecones close when it is wet and open when it is dry | rain → sunshine | — |
 | 21 | mushrooms-after-rain | mushroom, snail, badger | frog | curiosity, learning | After a night of rain Badger finds mushrooms everywhere, and Mushroom is delighted to have so many new friends. | The magic porridge pot (Grimm), turned: abundance that is lovely, not a problem. | Mushrooms pop up after rain | — | — |
-| 22 | bee-and-the-apple-blossom | bee, flower, tree | butterfly | curiosity, learning | Bee visits every blossom on the apple tree, and in autumn Tree shows her what she helped to grow. | The Little Red Hen, turned: the helper is thanked with the harvest. | Bees carry pollen from flower to flower, and that is how fruit begins | — | — |
+| 22 | bee-helps-the-flower | bee, flower, tree | butterfly | curiosity, learning | Bee carries yellow dust from flower to flower; in autumn Flower's brown middle is full of seeds Bee helped to make. | The Little Red Hen, turned: the helper is thanked with the harvest. | Bees carry pollen from flower to flower, and that is how seeds begin | — | — |
 | 23 | bird-builds-a-nest | bird, woodpecker, squirrel | tree | helping, learning | Bird builds a nest one twig at a time; Squirrel brings moss, Woodpecker taps to test it, and it holds. | The Three Little Pigs' building motif, turned: everyone builds one house together. | Birds build nests from twigs, grass and moss | — | woodpecker |
 | 24 | frog-was-a-tadpole | frog, beaver, fox | — | curiosity, learning | Fox doesn't believe Frog was once a tiny wiggly tadpole; Beaver shows him the tadpoles in the pond. | Kipling's Just So "how the frog got her legs", told truly. | Frogs start life as tadpoles swimming in water | — | frog |
 | 25 | fox-learns-to-listen | fox, rabbit, owl | tree | gentle, curiosity | Fox is too loud to hear anything; Rabbit teaches him to stop and listen, and they hear Owl's soft who-who. | Folk listening game; the boast of speed turned to the gift of quiet. | — | — | rabbit |
