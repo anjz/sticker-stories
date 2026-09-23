@@ -106,6 +106,7 @@ final class CanvasEffectLayer: SKNode {
         .nebula: NebulaPainter(),
         .warp: WarpPainter(),
         .planetrise: PlanetrisePainter(),
+        .comet: CometPainter(),
     ]
 
     override init() {
