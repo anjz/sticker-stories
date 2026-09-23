@@ -158,6 +158,7 @@ or fantastical places) gets no canvas effects at all.
 | `firelight` | indoors | A warm glow from below flickers slowly and gently (never a strobe) while the edges of the room dim. | A fireplace, birthday candles, a cosy evening, telling stories together. Never a fire as a danger. | 10 s | 2 / 2 s | full |
 | `rainywindow` | indoors | The room turns cool and grey while faint raindrops trickle down, as if seen through a window. | A rainy day indoors, waiting for the rain to stop, a quiet day inside. | 12 s | 2 / 2 s | runs at ≤0.4 |
 | `confetti` | outdoors, indoors, space | A shower of colourful confetti flutters down over the whole scene. | A birthday, a party, a "hooray!", a happy ending. One per story at most. | 6 s | 0.5 / 1.5 s | runs at ≤0.4 |
+| `bubbles` | outdoors, indoors, space, underwater | Round bubbles float up from the bottom and wobble as they rise. | Bath time, washing up, blowing bubbles, a party; under the sea, a fish talking or something bubbling up. | 8 s | 1 / 1.5 s | runs at ≤0.4 |
 
 - Ramps never eat more than a third of the duration each, so a 3 s effect
   still spends a second at full strength.
