@@ -75,11 +75,21 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
 
 extension StickerNode {
     private static let liveNodeName = "live-animation"
-    private static let liveFade: TimeInterval = 0.15
+    private static let liveStillName = "live-still"
+    /// How long the frames take to fade in over the still art (and out at
+    /// the end), capped at two thirds of the first and last frames' holds;
+    /// the rest of those holds dissolves the still art out underneath (and
+    /// back in). Long enough that where the first frame is the generator's
+    /// drawing rather than the sticker's own art, the difference dissolves
+    /// instead of popping.
+    private static let liveFade: TimeInterval = 0.3
 
-    /// Plays a live animation over this sticker: the frames crossfade in
-    /// over the still art at the rest pose, play through, and crossfade
-    /// back out. The child inherits the sticker's placement, so a pinched,
+    /// Plays a live animation over this sticker. At the rest pose the frames
+    /// fade in over the still art, which stays opaque underneath (two
+    /// half-faded layers would let the background show through), and then
+    /// the still art dissolves away beneath them, so the first frame need
+    /// not be the sticker's exact drawing: where the two differ, the edge
+    /// dissolves. The frames play through and the same happens in reverse. The child inherits the sticker's placement, so a pinched,
     /// turned or effect-driven sticker animates in place. With a shadow
     /// sheet (`StickerShadowCache.shadowSheet`) the drop shadow follows
     /// the frames; without one it keeps the still art's silhouette.
@@ -108,6 +118,13 @@ extension StickerNode {
         live.zPosition = 0.5  // over the sprite's own art, under nothing else of the node's
         live.alpha = 0
         addChild(live)
+        // The still art moves to a child of its own for the crossfade: a
+        // node's own texture cannot fade separately from its children.
+        let still = SKSpriteNode(texture: stillTexture, size: base)
+        still.name = Self.liveStillName
+        still.zPosition = 0.4
+        addChild(still)
+        texture = nil
         if let shadows {
             beginLiveShadow(size: live.size, anchor: live.position)
             setLiveShadow(shadows[0])
@@ -119,32 +136,34 @@ extension StickerNode {
                 if let shadows { self?.setLiveShadow(shadows[index]) }
             }
         }
-        let fade = min(Self.liveFade, animation.hold[0], animation.hold[animation.count - 1])
+        let firstHold = animation.hold[0], lastHold = animation.hold[animation.count - 1]
+        let fade = min(Self.liveFade, min(firstHold, lastHold) * 2 / 3)
+        let stillAction: (SKAction) -> SKAction = { [weak still] action in
+            .run { still?.run(action) }
+        }
         var steps: [SKAction] = [
             .fadeIn(withDuration: fade),
-            .wait(forDuration: animation.hold[0] - fade),
-            // From here the frames leave the rest pose, so the still art
-            // must not show through them.
-            .run { [weak self] in self?.texture = nil },
+            stillAction(.fadeOut(withDuration: firstHold - fade)),
+            .wait(forDuration: firstHold - fade),
         ]
         for index in 1..<max(1, animation.count - 1) {
             steps.append(show(index))
             steps.append(.wait(forDuration: animation.hold[index]))
         }
-        // The last frame is the rest pose again: bring the still art back
-        // underneath and fade the frames out over it.
+        // The last frame is the rest pose again: crossfade back to the still
+        // art, then hand it back to the sprite itself.
         let restore = SKAction.run { [weak self] in
             self?.texture = stillTexture
             self?.liveStillTexture = nil
+            self?.childNode(withName: Self.liveStillName)?.removeFromParent()
         }
         if animation.count > 1 {
-            steps.append(restore)
             steps.append(show(animation.count - 1))
-            steps.append(.wait(forDuration: animation.hold[animation.count - 1] - fade))
-        } else {
-            steps.append(restore)
         }
+        steps.append(stillAction(.fadeIn(withDuration: lastHold - fade)))
+        steps.append(.wait(forDuration: lastHold - fade))
         steps.append(.fadeOut(withDuration: fade))
+        steps.append(restore)
         steps.append(.run { [weak self] in self?.endLiveShadow() })
         if let completion {
             // Before the removal: a removed node runs no more actions.
@@ -160,6 +179,7 @@ extension StickerNode {
         guard let live = childNode(withName: Self.liveNodeName) else { return }
         live.removeAllActions()
         live.removeFromParent()
+        childNode(withName: Self.liveStillName)?.removeFromParent()
         if let liveStillTexture { texture = liveStillTexture }
         liveStillTexture = nil
         endLiveShadow()

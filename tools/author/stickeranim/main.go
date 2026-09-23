@@ -105,6 +105,13 @@ type animSpec struct {
 	// they take the sticker's real art, so the animation starts and ends
 	// on exactly the sticker (needs the raw from stickerart).
 	RestFrames []int `json:"restFrames,omitempty"`
+	// RestFromSticker (default true) puts the sticker's own art in the
+	// rest frames. False keeps the generator's drawing there: the rest
+	// frames still match the sheets' sizes, and the app's crossfade
+	// dissolves the still sticker into the drawing, so a character the
+	// generator redrew with slightly other proportions changes smoothly
+	// instead of cutting to the drawing one frame later.
+	RestFromSticker *bool `json:"restFromSticker,omitempty"`
 	// Normalize (default false) rescales frames so the base keeps its
 	// width: only for a base object that is the widest thing at the
 	// bottom in every pose (a lily pad, a perch); feet, a curling body or
@@ -113,6 +120,8 @@ type animSpec struct {
 }
 
 func (a animSpec) normalize() bool { return a.Normalize }
+
+func (a animSpec) restFromSticker() bool { return a.RestFromSticker == nil || *a.RestFromSticker }
 
 type sheetSpec struct {
 	Columns int      `json:"columns"`
@@ -519,7 +528,7 @@ func (r *renderer) animation(a animSpec) error {
 			hold[i] = defaultHold
 		}
 	}
-	asmFP := hashOf(append([]string{assembleVersion, hashFile(stickerPath), hashFile(r.rawPath(a.Sticker)), fmt.Sprint(r.c.cfg.Columns, r.c.cfg.MaxSheet, art.StickerSize, art.Border, art.Margin, art.finish(), hold, a.RestFrames, a.normalize())}, genFPs...)...)
+	asmFP := hashOf(append([]string{assembleVersion, hashFile(stickerPath), hashFile(r.rawPath(a.Sticker)), fmt.Sprint(r.c.cfg.Columns, r.c.cfg.MaxSheet, art.StickerSize, art.Border, art.Margin, art.finish(), hold, a.RestFrames, a.normalize(), a.restFromSticker())}, genFPs...)...)
 	sheetPath, jsonPath := r.out(a.key()+".png"), r.out(a.key()+".json")
 	if !changed && r.upToDate(sheetPath, asmFP) && r.upToDate(jsonPath, asmFP) {
 		r.say("· %s assembled sheet up to date", a.key())
@@ -584,13 +593,13 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 		opts.SheetSizes = append(opts.SheetSizes, len(s.Frames))
 	}
 
-	if len(a.RestFrames) > 0 {
+	for _, f := range a.RestFrames {
+		opts.RestFrames = append(opts.RestFrames, f-1)
+	}
+	if len(a.RestFrames) > 0 && a.restFromSticker() {
 		if data, err := os.ReadFile(r.rawPath(a.Sticker)); err == nil {
 			if opts.Rest, err = stickerimg.Decode(data); err != nil {
 				return fmt.Errorf("%s raw: %w", a.Sticker, err)
-			}
-			for _, f := range a.RestFrames {
-				opts.RestFrames = append(opts.RestFrames, f-1)
 			}
 		} else {
 			r.say("  (no raw for %s; rest frames keep the generated art)", a.Sticker)

@@ -47,6 +47,13 @@ the same printed vinyl as the sticker.
     size (see Registration): **give every sheet a rest-pose frame** — the
     usual shape is sheet 1 starting "exactly as in the reference" and the
     last sheet ending "exactly as frame 1".
+  - `restFromSticker` (default true): false keeps the generator's own
+    drawing in the rest frames instead of the sticker's art (they still
+    set the sheets' sizes). The app then dissolves the still sticker into
+    the drawing over the first and last frames' holds (give them ~0.45 s),
+    so a character redrawn with slightly different proportions changes
+    smoothly instead of cutting one frame in; the cost is a brief
+    double outline during the dissolve. Forest uses it for the ladybug.
   - `normalize` (default false): rescale every frame so its base keeps
     the first frame's width. Only for a base object that is the widest
     thing at the bottom in every pose — the frog's lily pad, the owl's
