@@ -2,9 +2,21 @@
   "schema": 1,
   "triggers": [
     {
+      "at": 0,
+      "cue": "i",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
       "at": 5.6,
       "sticker": "frog",
       "effect": "pulse"
+    },
+    {
+      "at": 6.18,
+      "cue": "a",
+      "sticker": "fox",
+      "expression": "surprised"
     },
     {
       "at": 7.6,
@@ -12,10 +24,29 @@
       "effect": "wobble"
     },
     {
+      "at": 15.79,
+      "cue": "fox",
+      "sticker": "fox",
+      "expression": "normal"
+    },
+    {
+      "at": 15.79,
+      "cue": "fox",
+      "sticker": "fox",
+      "effect": "shake",
+      "intensity": 0.4
+    },
+    {
       "at": 23.43,
       "cue": "took",
       "sticker": "beaver",
       "effect": "hop"
+    },
+    {
+      "at": 37.88,
+      "cue": "they'll",
+      "sticker": "fox",
+      "expression": "surprised"
     },
     {
       "at": 41.38,
@@ -28,6 +59,18 @@
       "cue": "sprang",
       "sticker": "frog",
       "animation": "backflip-fly"
+    },
+    {
+      "at": 49.6,
+      "cue": "see",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 49.6,
+      "cue": "see",
+      "sticker": "fox",
+      "effect": "hop"
     }
   ]
 }
