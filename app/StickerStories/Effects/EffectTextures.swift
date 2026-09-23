@@ -30,6 +30,8 @@ enum EffectTextures {
         case "bubble": texture = procedural(width: 96, height: 96, bubble)
         case "streak": texture = procedural(width: 256, height: 12, streak)
         case "cometTail": texture = procedural(width: 256, height: 64, cometTail)
+        case "causticsA": texture = procedural(width: 512, height: 384) { u, v in caustics(u, v, phase: 0) }
+        case "causticsB": texture = procedural(width: 512, height: 384) { u, v in caustics(u, v, phase: 2.1) }
         case "confetti": texture = procedural(width: 16, height: 28) { u, v in
             // A paper rectangle with a slightly softened edge.
             (1 - smoothstep(0.8, 1, abs(u - 0.5) * 2)) * (1 - smoothstep(0.86, 1, abs(v - 0.5) * 2))
@@ -198,6 +200,20 @@ enum EffectTextures {
     private static func cometTail(_ u: Double, _ v: Double) -> Double {
         let width = 0.18 + 0.82 * (1 - u)
         return bell(0.5 + (v - 0.5) / width) * pow(u, 1.4)
+    }
+
+    /// Sunlight on a sea floor: a net of wobbly bright lines where three
+    /// waves (with a little warp) cancel out, stronger toward the bottom.
+    /// Two phases of it crossfade into rippling light.
+    private static func caustics(_ u: Double, _ v: Double, phase: Double) -> Double {
+        let x = u * 20, y = v * 15
+        let warp = 0.9 * sin(0.7 * x + 1.3 * y + phase) + 0.6 * sin(1.1 * y - 0.5 * x + phase * 1.7)
+        var sum = 0.0
+        for k in 0..<3 {
+            let angle = Double(k) * 2 * .pi / 3 + 0.35
+            sum += cos(1.6 * (x * cos(angle) + y * sin(angle)) + warp + phase * Double(k + 1))
+        }
+        return exp(-sum * sum * 5) * (0.3 + 0.7 * v)
     }
 
     /// Opaque at the edges, thinner in the middle: a dimmed room.

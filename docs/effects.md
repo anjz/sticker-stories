@@ -165,6 +165,7 @@ or fantastical places) gets no canvas effects at all.
 | `planetrise` | space | A big banded planet with a glowing rim rises slowly from behind the scenery, lighting the scene from below. | Arriving somewhere, a new day in space, "look at that planet!". Builds slowly — cue it a beat early. | 12 s | 3 / 3 s | full |
 | `comet` | space | A comet with a long glowing tail glides slowly across the sky behind the scenery. | A visitor, following something, a slow moment of wonder. Calmer than `shootingstars`. | 12 s | 1.5 / 2 s | full |
 | `sunrays` | underwater | Shafts of sunlight slant down through the water from the surface and sway slowly. | A bright, happy day under the sea, swimming up towards the light, the sun coming out above. | 10 s | 2 / 2 s | full |
+| `ripples` | underwater | A net of rippling light plays over the whole scene, brightest near the sea floor. | Shallow water, a sunny lagoon, calm and playful. Layers nicely with `sunrays`. | 12 s | 2 / 2 s | full |
 
 - Ramps never eat more than a third of the duration each, so a 3 s effect
   still spends a second at full strength.
