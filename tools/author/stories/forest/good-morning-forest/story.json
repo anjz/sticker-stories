@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "id": "good-morning-forest",
+  "pack": "forest",
+  "featured": [],
+  "supporting": [
+    "bird",
+    "flower",
+    "bee",
+    "tree"
+  ],
+  "tags": [
+    "morning",
+    "gentle"
+  ],
+  "premise": "The forest wakes one sound at a time inside a white mist until the sun lifts it off like a blanket.",
+  "inspiration": "Cumulative dawn litany (The House That Jack Built): each new sound joins the ones before, and the turn is light itself arriving.",
+  "lesson": "Every small voice is part of the morning.",
+  "languages": {
+    "en-US": {
+      "title": "Good Morning, Forest",
+      "text": "{canvas:fog 0.6 16s} [softly] Early, early in the morning, the forest is wrapped in a white, woolly mist. Nothing moves. Nothing sings. Then… {sfx:drip} drip. A dewdrop falls from a leaf. Drip, drop. A little bird {bird:fade-in} wakes up and {bird:hop} fluffs his feathers. Tweet, tweet! A bee {bee:float loop 0.4} stretches her wings. Bzzz. A flower {flower:pulse} lifts her sleepy head. [whispers] Is it morning yet? she asks. [excited] And here comes the answer: {canvas:sunshine 0.9 14s} the sun peeks over the hills and lifts the mist away, like a blanket off a bed. The old tree {tree:glow} glows gold. {sfx:birdsong} Tweet, bzzz, drip, drop… [happily] Good morning, forest!"
+    },
+    "es-ES": {
+      "title": "Buenos días, bosque",
+      "text": "{canvas:fog 0.6 16s} [softly] Muy temprano, por la mañana, el bosque está envuelto en una niebla blanca y esponjosa. Nada se mueve. Nada canta. Y entonces… {sfx:drip} plic. Una gota de rocío cae de una hoja. Plic, ploc. Un pajarito {bird:fade-in} se despierta y {bird:hop} se ahueca las plumas. ¡Pío, pío! Una abeja {bee:float loop 0.4} estira las alas. Bzzz. Una flor {flower:pulse} levanta su cabecita dormida. [whispers] ¿Ya es de día?, pregunta. [excited] Y llega la respuesta: {canvas:sunshine 0.9 14s} el sol asoma por las colinas y se lleva la niebla, como quien quita una manta de la cama. El viejo árbol {tree:glow} brilla dorado. {sfx:birdsong} Pío, bzzz, plic, ploc… [happily] ¡Buenos días, bosque!"
+    }
+  },
+  "sounds": {
+    "drip": {
+      "prompt": "a single clear water droplet falling from a leaf into a tiny puddle, soft plip",
+      "seconds": 1.2
+    },
+    "birdsong": {
+      "prompt": "a small songbird's cheerful morning chirps with a soft bee buzz nearby",
+      "seconds": 2.5
+    }
+  }
+}

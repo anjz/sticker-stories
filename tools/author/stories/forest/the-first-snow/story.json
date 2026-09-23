@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "the-first-snow",
+  "pack": "forest",
+  "featured": [],
+  "supporting": [
+    "tree",
+    "pinecone",
+    "bird",
+    "rabbit"
+  ],
+  "tags": [
+    "seasons",
+    "gentle"
+  ],
+  "premise": "The first snowflakes fall so quietly that the forest has to whisper to hear them, and by evening everything wears a white hat.",
+  "inspiration": "Hush lullabies and Andersen's quiet wonder at winter, with a counting beginning (one, two, three) that grows into a blanket.",
+  "lesson": "Quiet things are worth listening for.",
+  "languages": {
+    "en-US": {
+      "title": "The First Snow",
+      "text": "[softly] The sky is quiet and white today. The bird {bird:pulse} looks up. The rabbit {rabbit:pulse} looks up. Then… {canvas:snow 0.5 24s} {sfx:hush} one snowflake. Two snowflakes. Three! [whispers] They fall so softly that the whole forest has to whisper to hear them. The rabbit {rabbit:hop} hops, {sfx:crunch} crunch, and leaves a tiny footprint. The bird {bird:tint #BFE3FF} shivers and fluffs up, round as a ball. A snowflake lands on the pinecone, {pinecone:sparkle} and she wears it like a crown. More and more come down, soft as feathers. [slowly] By evening the tree {tree:glow #EAF6FF} has a white hat, and the pinecone has a white hat, and the whole forest is tucked under a white, white blanket. [whispers] Shhh. Listen. That's the sound of snow."
+    },
+    "es-ES": {
+      "title": "La primera nieve",
+      "text": "[softly] Hoy el cielo está callado y blanco. El pájaro {bird:pulse} mira hacia arriba. El conejo {rabbit:pulse} mira hacia arriba. Y entonces… {canvas:snow 0.5 24s} {sfx:hush} un copo de nieve. Dos copos. ¡Tres! [whispers] Caen tan suaves que todo el bosque tiene que susurrar para oírlos. El conejo {rabbit:hop} da un salto, {sfx:crunch} cric, y deja una huella chiquitita. El pájaro {bird:tint #BFE3FF} tirita y se ahueca, redondo como una bola. Un copo cae sobre la piña, {pinecone:sparkle} y ella lo lleva como una corona. Caen más y más, suaves como plumas. [slowly] Al atardecer, el árbol {tree:glow #EAF6FF} tiene un gorro blanco, y la piña tiene un gorro blanco, y todo el bosque está arropado bajo una manta blanca, muy blanca. [whispers] Chsss. Escuchad. Así suena la nieve."
+    }
+  },
+  "sounds": {
+    "crunch": {
+      "prompt": "one small soft footstep crunching into fresh powdery snow",
+      "seconds": 0.8
+    },
+    "hush": {
+      "prompt": "very quiet winter hush, the faintest breeze in snowy pine trees",
+      "seconds": 20,
+      "loop": true
+    }
+  }
+}
