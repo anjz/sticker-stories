@@ -163,6 +163,7 @@ or fantastical places) gets no canvas effects at all.
 | `nebula` | space | Soft purple, pink and teal clouds of light swell and drift across the sky behind the scenery. | A magical place, wonder, drifting far from home, a dreamy moment. Builds slowly — cue it a beat early. | 12 s | 3 / 3 s | full |
 | `warp` | space | Stars stretch into streaks rushing out from the centre, in the sky behind the stickers and the scenery. | Blast-off, zooming to a new planet, "whoosh!". Short — a few seconds is plenty. | 4 s | 0.6 / 1 s | does not run |
 | `planetrise` | space | A big banded planet with a glowing rim rises slowly from behind the scenery, lighting the scene from below. | Arriving somewhere, a new day in space, "look at that planet!". Builds slowly — cue it a beat early. | 12 s | 3 / 3 s | full |
+| `comet` | space | A comet with a long glowing tail glides slowly across the sky behind the scenery. | A visitor, following something, a slow moment of wonder. Calmer than `shootingstars`. | 12 s | 1.5 / 2 s | full |
 
 - Ramps never eat more than a third of the duration each, so a 3 s effect
   still spends a second at full strength.

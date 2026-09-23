@@ -29,6 +29,7 @@ enum EffectTextures {
         case "trickle": texture = procedural(width: 24, height: 72, trickle)
         case "bubble": texture = procedural(width: 96, height: 96, bubble)
         case "streak": texture = procedural(width: 256, height: 12, streak)
+        case "cometTail": texture = procedural(width: 256, height: 64, cometTail)
         case "confetti": texture = procedural(width: 16, height: 28) { u, v in
             // A paper rectangle with a slightly softened edge.
             (1 - smoothstep(0.8, 1, abs(u - 0.5) * 2)) * (1 - smoothstep(0.86, 1, abs(v - 0.5) * 2))
@@ -190,6 +191,13 @@ enum EffectTextures {
         let d = (dx * dx + dy * dy).squareRoot()
         let x = (d - 0.8) / (d < 0.8 ? 0.05 : 0.14)
         return exp(-x * x) * (1 - smoothstep(0.9, 1, d))  // nothing left at the texture's edge
+    }
+
+    /// A comet's tail: brightest and narrowest at the head (right end),
+    /// widening and fading away behind it.
+    private static func cometTail(_ u: Double, _ v: Double) -> Double {
+        let width = 0.18 + 0.82 * (1 - u)
+        return bell(0.5 + (v - 0.5) / width) * pow(u, 1.4)
     }
 
     /// Opaque at the edges, thinner in the middle: a dimmed room.

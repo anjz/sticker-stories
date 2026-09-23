@@ -201,8 +201,8 @@ Weather and light over the whole scene use the reserved target `canvas`
   `sunset`, `clouds`, `wind`, `fireflies`, `leaves`, `confetti`, `bubbles`
   (outdoors packs); `dimlight`, `windowlight`, `firelight`, `rainywindow`,
   `confetti`, `bubbles` (indoors packs); `confetti`, `bubbles`,
-  `shootingstars`, `nebula`, `warp`, `planetrise` (space packs); and
-  `bubbles` (underwater packs). The pack's `setting` in its manifest
+  `shootingstars`, `nebula`, `warp`, `planetrise`, `comet` (space packs);
+  and `bubbles` (underwater packs). The pack's `setting` in its manifest
   decides which are allowed; a `none` pack allows no canvas cues. Only an
   intensity and a duration (`Ns`) may follow — no `xN`, `loop`, `hold` or
   colour.
