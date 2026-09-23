@@ -130,11 +130,13 @@ no hold; content controls **`intensity`** (how much: thin or thick fog,
 drizzle or downpour) and **`duration`** (how long it stays, ramps
 included).
 
-Each canvas effect suits a pack **`setting`** (`docs/pack-format.md`:
-`outdoors`, `indoors` or `none`). Because these effects *are* the weather
-and the sky lights, an outdoors pack's art paints none of its own — no sun,
-moon, stars, rays, rainbow, rain or mist (`docs/pack-format.md`, "Art safe
-area"). A rain trigger in an indoors pack is an
+Each canvas effect suits one or more pack **`setting`**s
+(`docs/pack-format.md`: `outdoors`, `indoors`, `space`, `underwater` or
+`none`). Because these effects *are* the weather and the sky lights, a
+pack's art paints none of its own — an outdoors pack paints no sun, moon,
+stars, rays, rainbow, rain or mist, and space and underwater packs have
+their own list (`docs/pack-format.md`, "Art safe area"). A rain trigger in
+an indoors pack is an
 error for the packager and is skipped by the app; a `none` pack (abstract
 or fantastical places) gets no canvas effects at all.
 

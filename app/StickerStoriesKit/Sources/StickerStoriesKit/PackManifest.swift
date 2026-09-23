@@ -2,11 +2,15 @@ import Foundation
 
 /// Where a pack's scene takes place. Decides which canvas effects (weather
 /// and light over the whole scene, `docs/effects.md`) suit its stories:
-/// `outdoors` packs can rain, `indoors` packs can dim the lights, `none`
-/// (the default — abstract or fantastical places) gets no canvas effects.
+/// `outdoors` packs can rain, `indoors` packs can dim the lights, `space`
+/// packs can have shooting stars, `underwater` packs can have sunrays
+/// through the water, and `none` (the default — abstract or fantastical
+/// places) gets no canvas effects.
 public enum PackSetting: String, Codable, Sendable, CaseIterable {
     case outdoors
     case indoors
+    case space
+    case underwater
     case none
 }
 

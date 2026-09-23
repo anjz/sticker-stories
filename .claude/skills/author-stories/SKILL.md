@@ -25,8 +25,8 @@ Read, in this order, before writing anything:
 1. `tools/author/stories/GUIDE.md` and `tools/author/stories/FORMAT.md`.
 2. `packs/<packID>/manifest.json` — the pack's `languages`, every
    sticker's `id` and per-language `name` (the cast and the only IDs you
-   may use), and its **`setting`** (`outdoors`, `indoors` or `none`; absent
-   means `none`). The setting decides which canvas effects the stories may
+   may use), and its **`setting`** (`outdoors`, `indoors`, `space`,
+   `underwater` or `none`; absent means `none`). The setting decides which canvas effects the stories may
    use — note it down before writing anything.
 3. `docs/effects/effects.json` — the exact library: the 12 sticker effects
    (`effects`) and the 6 canvas effects (`canvasEffects`), what each means,
