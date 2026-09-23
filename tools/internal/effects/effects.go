@@ -32,7 +32,9 @@ var Names = []string{
 
 // CanvasNames lists every canvas effect (weather and light over the whole
 // scene), in library order.
-var CanvasNames = []string{"fog", "rain", "sunshine", "rainbow", "night", "dimlight"}
+var CanvasNames = []string{
+	"fog", "rain", "sunshine", "rainbow", "night", "snow", "dimlight",
+}
 
 // CanvasSettings maps each canvas effect to the pack settings it suits
 // (docs/pack-format.md, "setting"). A pack whose setting is "none" gets no
@@ -43,6 +45,7 @@ var CanvasSettings = map[string][]string{
 	"sunshine": {"outdoors"},
 	"rainbow":  {"outdoors"},
 	"night":    {"outdoors"},
+	"snow":     {"outdoors"},
 	"dimlight": {"indoors"},
 }
 
