@@ -2,9 +2,12 @@ import StickerStoriesKit
 import SwiftUI
 
 /// The play button and the "story is playing" HUD, layered over the canvas.
-/// Depends only on `PlaybackController.Phase` — never on how narration works.
+/// Depends only on `PlaybackController.Phase` and a 0...1 progress reading —
+/// never on how narration works.
 struct PlaybackOverlay: View {
     let phase: PlaybackController.Phase
+    /// Polled every frame while a story plays; `nil` leaves the ring empty.
+    let progress: () -> Double?
     let onPlay: () -> Void
     let onStop: () -> Void
 
@@ -81,13 +84,14 @@ struct PlaybackOverlay: View {
                 .accessibilityLabel("Stop the story")
                 .padding(.leading, 12)
             }
-            .padding(.leading, 18)
-            .padding(.trailing, 10)
-            .padding(.vertical, 10)
+            .padding(.leading, 22)
+            .padding(.trailing, 14)
+            .padding(.vertical, 14)
             // The shadow is part of the fill style: a view-level .shadow on a
             // translucent capsule rasterises as a hard-edged box on some
             // devices.
             .background(Capsule().fill(.black.opacity(0.55).shadow(.drop(color: .black.opacity(0.2), radius: 8, y: 4))))
+            .overlay(progressRing)
             .padding(.trailing, 20)
             .padding(.bottom, 20)
         }
@@ -98,6 +102,24 @@ struct PlaybackOverlay: View {
             guard (try? await Task.sleep(for: Self.compactAfter)) != nil else { return }
             withAnimation(.spring(duration: 0.5)) { isCompact = true }
         }
+    }
+
+    /// A translucent white line tracing the pill's outline clockwise from the
+    /// bottom centre as the story plays, over a faint track. Follows the pill
+    /// as it collapses to compact.
+    private var progressRing: some View {
+        TimelineView(.animation) { _ in
+            let lineWidth: CGFloat = 6
+            let outline = CapsuleOutline().inset(by: lineWidth / 2)
+            ZStack {
+                outline.stroke(.white.opacity(0.08), lineWidth: lineWidth)
+                outline
+                    .trim(from: 0, to: progress() ?? 0)
+                    .stroke(.white.opacity(0.45), style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
+            }
+        }
+        .allowsHitTesting(false)
+        .accessibilityHidden(true)
     }
 
     private var theEnd: some View {
@@ -113,6 +135,34 @@ struct PlaybackOverlay: View {
         }
         .frame(maxWidth: .infinity)
         .transition(.scale.combined(with: .opacity))
+    }
+}
+
+/// A capsule whose path starts at the bottom centre and runs clockwise, so a
+/// trimmed stroke fills like a progress ring (`Capsule`'s own path starts
+/// elsewhere).
+nonisolated private struct CapsuleOutline: InsettableShape {
+    var insetAmount: CGFloat = 0
+
+    func path(in rect: CGRect) -> Path {
+        let rect = rect.insetBy(dx: insetAmount, dy: insetAmount)
+        let radius = min(rect.width, rect.height) / 2
+        var path = Path()
+        path.move(to: CGPoint(x: rect.midX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.minX + radius, y: rect.maxY))
+        path.addArc(center: CGPoint(x: rect.minX + radius, y: rect.midY), radius: radius,
+                    startAngle: .degrees(90), endAngle: .degrees(270), clockwise: false)
+        path.addLine(to: CGPoint(x: rect.maxX - radius, y: rect.minY))
+        path.addArc(center: CGPoint(x: rect.maxX - radius, y: rect.midY), radius: radius,
+                    startAngle: .degrees(-90), endAngle: .degrees(90), clockwise: false)
+        path.closeSubpath()
+        return path
+    }
+
+    func inset(by amount: CGFloat) -> CapsuleOutline {
+        var shape = self
+        shape.insetAmount += amount
+        return shape
     }
 }
 
