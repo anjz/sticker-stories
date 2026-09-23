@@ -176,7 +176,7 @@ a pack may use is decided by its **`setting`** in `manifest.json`:
 | Setting | Canvas effects available | Cue it on |
 |---|---|---|
 | `outdoors` | `fog` (early morning, hush, something hidden), `rain` (pitter-patter, puddles, sheltering), `sunshine` (the sun comes out, a warm afternoon), `rainbow` (the wonder after rain, a wish come true), `night` (evening, the moon coming up, settling to sleep; never darkness as a threat), `snow` (winter, a snow day, the first flakes, a hush), `sunset` (the end of the day, going home; before night for a gentle bedtime), `clouds` (a cloudy day, a cloud shaped like something, the grey before rain), `wind` (a windy day, a kite, something blown away, a whoosh), `fireflies` (a summer evening, a little magic in the dark; over night or sunset), `leaves` (autumn, a gust in the trees, a leaf pile; only where there are trees) | the sentence where the weather or the light changes |
-| `indoors` | `dimlight` (bedtime, a lamp turned low, a whispered secret; never darkness as a threat), `windowlight` (morning, waking up, a lazy sunny afternoon) | the sentence where the light changes |
+| `indoors` | `dimlight` (bedtime, a lamp turned low, a whispered secret; never darkness as a threat), `windowlight` (morning, waking up, a lazy sunny afternoon), `firelight` (a fireplace, birthday candles, a cosy evening; never a fire as a danger) | the sentence where the light changes |
 | `none` | nothing — the pack's stories use sticker effects only | — |
 
 Grammar: `{canvas:rain}`, `{canvas:rain 0.8 14s}` (intensity, then how long

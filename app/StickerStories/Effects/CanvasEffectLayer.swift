@@ -98,6 +98,7 @@ final class CanvasEffectLayer: SKNode {
         .fireflies: FirefliesPainter(),
         .leaves: LeavesPainter(),
         .windowlight: WindowlightPainter(),
+        .firelight: FirelightPainter(),
     ]
 
     override init() {
