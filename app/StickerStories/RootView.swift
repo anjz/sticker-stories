@@ -1,18 +1,32 @@
 import StickerStoriesKit
 import SwiftUI
 
-/// App shell and navigation: the main menu (pack selection) and the story
-/// screen, plus the gate→Grown-Ups sheet, which only the menu's More stories
-/// card can open.
+/// App shell and navigation: the main menu (pack selection), the story
+/// screen and the store. The store (the menu's More stories card) and the
+/// parent settings (the menu's gear) are both reached only through the
+/// parental gate, presented as a sheet.
 struct RootView: View {
+    /// What the gate sheet is showing: the gate itself, on its way to one of
+    /// the grown-ups destinations, or the settings it opened.
     private enum GrownUpsAccess: Identifiable {
-        case gate, area
-        var id: Self { self }
+        case gate(to: Destination)
+        case settings
+        var id: String {
+            switch self {
+            case .gate(let destination): "gate-\(destination)"
+            case .settings: "settings"
+            }
+        }
+    }
+
+    private enum Destination {
+        case store, settings
     }
 
     private enum Screen: Equatable {
         case menu
         case story(LoadedPack)
+        case store
     }
 
     @State private var screen: Screen = .menu
@@ -58,23 +72,30 @@ struct RootView: View {
                 screen = .story(pack)
             }
             // `-openGate`: show the parental gate (visual checks of it).
-            if args.contains("-openGate") { grownUps = .gate }
+            if args.contains("-openGate") { grownUps = .gate(to: .store) }
+            // `-openStore`: straight into the store, skipping the gate.
+            if args.contains("-openStore") { screen = .store }
             #endif
         }
         .sheet(item: $grownUps) { access in
             Group {
                 switch access {
-                case .gate:
+                case .gate(let destination):
                     ParentalGateView(
-                        onSuccess: { grownUps = .area },
+                        onSuccess: {
+                            switch destination {
+                            case .settings:
+                                grownUps = .settings
+                            case .store:
+                                grownUps = nil
+                                withAnimation(.spring(duration: 0.45)) { screen = .store }
+                            }
+                        },
                         onCancel: { grownUps = nil })
                     // Full-size from the start — no drag-to-resize needed.
                     .presentationDetents([.large])
-                case .area:
-                    GrownUpsView(
-                        store: StoreService(entitlements: entitlements),
-                        packs: library.packs,
-                        settings: settings)
+                case .settings:
+                    SettingsView(settings: settings, galleryPack: library.packs.first)
                 }
             }
             // Sheets are separate presentation trees; re-apply the override.
@@ -93,7 +114,8 @@ struct RootView: View {
                     onSelectPack: { pack in
                         withAnimation(.spring(duration: 0.45)) { screen = .story(pack) }
                     },
-                    onMoreStories: { grownUps = .gate })
+                    onMoreStories: { grownUps = .gate(to: .store) },
+                    onSettings: { grownUps = .gate(to: .settings) })
                 .transition(.opacity.combined(with: .scale(scale: 1.08)))
             case .story(let pack):
                 StoryScreen(
@@ -106,6 +128,15 @@ struct RootView: View {
                 // A plain crossfade: a scale-in would show the root's
                 // background around the loading screen for the whole spring.
                 .transition(.opacity)
+            case .store:
+                StoreScreen(
+                    store: StoreService(entitlements: entitlements),
+                    packs: library.packs,
+                    settings: settings,
+                    onClose: {
+                        withAnimation(.spring(duration: 0.45)) { screen = .menu }
+                    })
+                .transition(.move(edge: .trailing).combined(with: .opacity))
             }
         }
     }

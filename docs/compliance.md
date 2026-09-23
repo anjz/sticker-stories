@@ -37,10 +37,11 @@ pass review, it is a product constraint.
   and the pause live in memory only, shared across openings of the gate so
   closing and reopening it doesn't reset them; nothing about failed
   attempts is ever written to disk.
-- Gates: the Grown-Ups area (purchases, restore, parent settings, future
-  links), reached only via the main menu's "More stories" card. Nothing else
-  in the app leads out of the child experience; the story screen has no
-  grown-ups access at all.
+- Gates: the store (purchases, restore, future links), reached only via the
+  main menu's "More stories" card, and the parent settings, reached only
+  via the gear in the main menu's top right corner. Both open the gate
+  first. Nothing else in the app leads out of the child experience; the
+  story screen has no grown-ups access at all.
 - Review expectation: gate must not be defeatable by random tapping and must be
   presented every time (no "remember me").
 

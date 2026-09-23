@@ -5,13 +5,15 @@ import UIKit
 
 /// The landing screen. Almost all of it is pack selection: one big card per
 /// available pack, sliding horizontally, with a final "More stories" card
-/// that opens the grown-ups area (gate first — it is the only door out of
-/// the child experience).
+/// that opens the store, and a gear in the top right corner for the parent
+/// settings. Both go through the parental gate first — they are the only
+/// doors out of the child experience.
 struct MainMenuView: View {
     let packs: [LoadedPack]
     let preferredLanguages: [String]
     let onSelectPack: (LoadedPack) -> Void
     let onMoreStories: () -> Void
+    let onSettings: () -> Void
 
     var body: some View {
         GeometryReader { geo in
@@ -59,7 +61,28 @@ struct MainMenuView: View {
                 Spacer()
             }
             .frame(maxWidth: .infinity)
+            .overlay(alignment: .topTrailing) {
+                settingsButton
+                    .padding(.top, 18)
+                    .padding(.trailing, 22)
+            }
         }
+    }
+
+    /// Quiet on purpose: a small plain button in the corner, like the rest
+    /// of the app's chrome, so it doesn't call to a child the way the pack
+    /// cards do (and the gate stands behind it anyway).
+    private var settingsButton: some View {
+        Button(action: onSettings) {
+            Image(systemName: "gearshape.fill")
+                .font(.system(size: 19, weight: .heavy))
+                .foregroundStyle(Color(red: 0.25, green: 0.35, blue: 0.4))
+                .padding(14)
+                .background(Circle().fill(.white.opacity(0.92)))
+                .shadow(color: .black.opacity(0.15), radius: 4, y: 2)
+        }
+        .buttonStyle(SquishyButtonStyle())
+        .accessibilityLabel("Settings")
     }
 }
 

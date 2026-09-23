@@ -5,10 +5,10 @@
 - **Sticker packs are non-consumable IAPs**, ~£/$/€1.99 each.
   Product ID convention: `com.anj.stickerstories.pack.<packID>`.
 - The **Forest pack ships bundled and free** — no product, always entitled.
-- **Future: "unlock everything"** non-consumable (~12.99),
-  `com.anj.stickerstories.allaccess`. Not built yet, but the entitlement layer
-  understands it today: a pack is entitled if its own product is owned **or**
-  the all-access product is owned.
+- **"All sticker packs"** non-consumable (~9.99),
+  `com.anj.stickerstories.allaccess`, offered in the banner at the top of the
+  store screen. The entitlement layer understands it: a pack is entitled if
+  its own product is owned **or** the all-access product is owned.
 - StoreKit 2 only. No server of our own in v1; no receipt server.
 
 ## Entitlement data
@@ -47,7 +47,7 @@ Design note: `EntitlementStore` is pure logic over the `TransactionProvider`
 protocol; the StoreKit adapter lives in the app target. Tests simulate
 purchase/refund/all-access without StoreKit.
 
-## Purchase flow (behind the parental gate, Grown-Ups area)
+## Purchase flow (behind the parental gate, store screen)
 
 1. `Product.products(for:)` for the catalogue of pack product IDs.
 2. `product.purchase()` → verify result → record transaction ID keyed by pack ID

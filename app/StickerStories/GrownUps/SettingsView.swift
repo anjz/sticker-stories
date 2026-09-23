@@ -1,8 +1,8 @@
 import StickerStoriesKit
 import SwiftUI
 
-/// Parent settings, reached via the gear in the Grown-Ups area (so always
-/// behind the parental gate): the app + narration language and calm mode.
+/// Parent settings, reached via the gear on the main menu and always behind
+/// the parental gate: the app + narration language and calm mode.
 /// Debug builds also expose the effects gallery here.
 struct SettingsView: View {
     @Bindable var settings: AppSettings
