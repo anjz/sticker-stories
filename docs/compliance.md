@@ -24,12 +24,19 @@ pass review, it is a product constraint.
 
 ## Parental gate
 
-- Challenge: a randomised **single-digit addition** (e.g. "4 + 7") with
-  digit-pad entry, regenerated on every wrong attempt; no persistence of
-  failures. Product decision (2026-07): keep it friction-light for parents.
-  ⚠️ Revisit before App Store submission — the target age band (≤5) mostly
-  cannot read the instruction or add, but early readers can; if review flags
-  5.1.4, harden to multiplication or a hold-three-fingers pattern.
+- Challenge: **three different digits spelled out as words** in the app's
+  language ("seven · two · four", "siete · dos · cuatro"; the system spells
+  them, digits 2–9 only) to type on a digit pad. A reading adult needs a
+  few seconds and no arithmetic; a pre-reader can't read the words; a random
+  tap sequence passes one time in a thousand. A wrong answer poses a fresh
+  challenge. Product decision (2026-09-23, replacing single-digit
+  addition, which random tapping could pass about one time in 25): keep it
+  friction-light for parents.
+- **Three wrong answers in a row pause the gate for 20 seconds** (keypad
+  disabled, countdown shown), so button-mashing gets nowhere. The count
+  and the pause live in memory only, shared across openings of the gate so
+  closing and reopening it doesn't reset them; nothing about failed
+  attempts is ever written to disk.
 - Gates: the Grown-Ups area (purchases, restore, parent settings, future
   links), reached only via the main menu's "More stories" card. Nothing else
   in the app leads out of the child experience; the story screen has no
