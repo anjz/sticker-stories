@@ -112,6 +112,7 @@ final class CanvasEffectLayer: SKNode {
         .deepwater: DeepwaterPainter(),
         .glowplankton: GlowplanktonPainter(),
         .current: CurrentPainter(),
+        .sandcloud: SandcloudPainter(),
     ]
 
     override init() {
