@@ -95,9 +95,13 @@ type animSpec struct {
 	Sticker string `json:"sticker"`
 	// Description is the one-line summary of the whole animation; Base is
 	// what stays still while the character moves ("the lily pad").
-	Description string      `json:"description"`
-	Base        string      `json:"base"`
-	Sheets      []sheetSpec `json:"sheets"`
+	Description string `json:"description"`
+	// Story is what the animation shows, in plain words for story authors
+	// (the sidecar's description, which stories cue it by); absent means
+	// Description. Set it when Description carries drawing instructions.
+	Story  string      `json:"story,omitempty"`
+	Base   string      `json:"base"`
+	Sheets []sheetSpec `json:"sheets"`
 	// Hold is how long each frame shows, in seconds, one entry per frame
 	// across all sheets; absent means 1/12 s each.
 	Hold []float64 `json:"hold,omitempty"`
@@ -143,6 +147,15 @@ func (a animSpec) frameCount() int {
 }
 
 func (a animSpec) key() string { return a.Sticker + "." + a.ID }
+
+// storyDescription is the sidecar's description: what the animation
+// shows, for story authors.
+func (a animSpec) storyDescription() string {
+	if s := strings.TrimSpace(a.Story); s != "" {
+		return s
+	}
+	return strings.TrimSpace(a.Description)
+}
 
 // unit rounds a pixel box to fractions of its image (5 decimals is well
 // under a pixel at any size that matters).
@@ -617,7 +630,7 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 	if err != nil {
 		return err
 	}
-	out := manifest.StickerAnimation{ID: a.ID, Sticker: a.Sticker, Sheet: "anims/" + a.key() + ".webp", Columns: sheet.Columns, Count: sheet.Count, Hold: hold}
+	out := manifest.StickerAnimation{ID: a.ID, Sticker: a.Sticker, Description: a.storyDescription(), Sheet: "anims/" + a.key() + ".webp", Columns: sheet.Columns, Count: sheet.Count, Hold: hold}
 	out.Frame.Width, out.Frame.Height = sheet.Frame.X, sheet.Frame.Y
 	out.Rest = unit(sheet.Rest, sheet.Frame)
 	out.StickerBox = unit(stickerimg.Bounds(sticker, 0), sticker.Bounds().Size())

@@ -7,6 +7,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"strings"
 )
 
 // StickerAnimation is a live-animation sidecar (docs/pack-format.md, "Live
@@ -17,6 +18,11 @@ import (
 type StickerAnimation struct {
 	ID      string `json:"id"`
 	Sticker string `json:"sticker"`
+	// Description says in one plain sentence what the animation shows
+	// ("the bear cub yawns and stretches…"), for story authors: a story
+	// cues it ({bear:live}) on the words that tell that moment. The app
+	// ignores it.
+	Description string `json:"description"`
 	// Sheet is the pack-relative path of the sprite sheet: Columns frames
 	// per row, Count frames read left to right, top to bottom, each
 	// Frame.Width×Frame.Height px.
@@ -78,6 +84,9 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	if a.ID == "" {
 		fail("id must not be empty")
 	}
+	if strings.TrimSpace(a.Description) == "" {
+		fail("description must say what the animation shows")
+	}
 	if a.Sticker != stickerID {
 		fail("sticker %q does not match the declaring sticker %q", a.Sticker, stickerID)
 	}
@@ -116,4 +125,31 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 		}
 	}
 	return errs
+}
+
+// Duration is how long the animation plays, in seconds: the sum of its
+// holds.
+func (a *StickerAnimation) Duration() float64 {
+	total := 0.0
+	for _, h := range a.Hold {
+		total += h
+	}
+	return total
+}
+
+// LoadAnimations reads every live animation the manifest declares, by
+// sticker ID in declaration order, for the story tools. A sidecar that
+// does not load is an error (the packager reports the details).
+func (m *Manifest) LoadAnimations(dir string) (map[string][]*StickerAnimation, error) {
+	out := map[string][]*StickerAnimation{}
+	for _, st := range m.Stickers {
+		for _, rel := range st.Animations {
+			a, err := LoadStickerAnimation(filepath.Join(dir, filepath.FromSlash(rel)))
+			if err != nil {
+				return nil, fmt.Errorf("sticker %q animation %s: %w", st.ID, rel, err)
+			}
+			out[st.ID] = append(out[st.ID], a)
+		}
+	}
+	return out, nil
 }

@@ -182,8 +182,16 @@ final class CanvasScene: SKScene {
         let applier: EffectApplier
         let emitters: EmitterCoordinator
         let clock: PlaybackClock
+        let live: LiveAnimationSchedule
     }
     private var playSession: PlaySession?
+    /// Every live animation the pack declares (`StickerAnimation`), read
+    /// once; the sheets themselves load per story (`liveLoaded`).
+    private lazy var liveAnimations = StickerAnimation.available(in: pack)
+    /// The current story's live animations, loaded when play starts and let
+    /// go of when it ends; a trigger whose sheet is not in yet is skipped.
+    private var liveLoaded: [LiveAnimationKey: LoadedLiveAnimation] = [:]
+    private var liveLoad: Task<Void, Never>?
     private let glowMasks = GlowMaskCache()
     private let shadows = StickerShadowCache()
     private static let effectsLog = Logger(subsystem: "com.anj.stickerstories", category: "effects")
@@ -1230,17 +1238,32 @@ final class CanvasScene: SKScene {
         let targets = Dictionary(grouping: nodes, by: \.stickerID).mapValues { $0.map(\.instanceID) }
         let triggers = loadTriggers(for: story)
         let runner = StickerEffectsRunner(triggers: triggers.sticker, targets: targets, policy: policy)
+        let live = LiveAnimationSchedule(triggers: triggers.live, policy: policy)
+        let placed = Set(nodes.map(\.stickerID))
+        let wanted = live.animations.filter { placed.contains($0.stickerID) }
+        if policy.allowsLiveAnimations, !wanted.isEmpty {
+            liveLoad = Task { [weak self, pack, liveAnimations] in
+                let loaded = await LiveAnimationLoader.load(wanted, from: liveAnimations, pack: pack)
+                guard !Task.isCancelled else { return }
+                self?.liveLoaded = loaded
+            }
+        }
         let canvasRunner = CanvasEffectsRunner(
             triggers: triggers.canvas, setting: pack.manifest.setting, policy: policy)
         let applier = EffectApplier { [weak self] node in self?.glowMask(for: node) }
         applier.normalize(nodes)
         playSession = PlaySession(
-            runner: runner, canvasRunner: canvasRunner, applier: applier, emitters: EmitterCoordinator(), clock: clock)
+            runner: runner, canvasRunner: canvasRunner, applier: applier, emitters: EmitterCoordinator(), clock: clock,
+            live: live)
     }
 
     /// Restores the child's exact arrangement (P4) and tears the pipeline down.
     func endPlayMode() {
+        liveLoad?.cancel()
+        liveLoad = nil
+        liveLoaded.removeAll()
         if let session = playSession {
+            for node in allStickerNodes() { node.stopLive() }
             session.runner.stopAll()
             session.canvasRunner.stopAll()
             session.emitters.clearAll()
@@ -1256,6 +1279,7 @@ final class CanvasScene: SKScene {
     func setEffectPolicy(_ policy: EffectPolicy) {
         playSession?.runner.policy = policy
         playSession?.canvasRunner.policy = policy
+        playSession?.live.policy = policy
     }
 
     /// The runner, for the debug gallery and tests; `nil` outside play mode.
@@ -1269,6 +1293,22 @@ final class CanvasScene: SKScene {
         session.applier.apply(deltas, to: nodes)
         session.emitters.reconcile(session.runner.active, at: time, nodes: nodes)
         canvasEffects.apply(session.canvasRunner.tick(time), at: time)
+        for trigger in session.live.due(at: time) {
+            playLive(trigger)
+        }
+    }
+
+    /// Plays a live animation on every placed instance of its sticker.
+    private func playLive(_ trigger: LiveAnimationTrigger) {
+        let key = LiveAnimationKey(stickerID: trigger.stickerID, animationID: trigger.animationID)
+        guard let loaded = liveLoaded[key] else {
+            Self.effectsLog.notice(
+                "live animation \(trigger.stickerID, privacy: .public).\(trigger.animationID, privacy: .public) not loaded; skipped")
+            return
+        }
+        for node in allStickerNodes() where node.stickerID == trigger.stickerID {
+            node.playLive(loaded.animation, sheet: loaded.sheet, shadowSheet: loaded.shadowSheet)
+        }
     }
 
     /// The sticker's blurred bloom mask, built once per sticker per pack.
@@ -1293,17 +1333,19 @@ final class CanvasScene: SKScene {
 
     /// Decodes the story's trigger sidecar. Problems are logged, never
     /// surfaced: a story with a broken sidecar plays with no effects.
-    private func loadTriggers(for story: Story) -> (sticker: [EffectTrigger], canvas: [CanvasEffectTrigger]) {
-        guard let path = story.effectsPath else { return ([], []) }
+    private func loadTriggers(for story: Story) -> (
+        sticker: [EffectTrigger], canvas: [CanvasEffectTrigger], live: [LiveAnimationTrigger]
+    ) {
+        guard let path = story.effectsPath else { return ([], [], []) }
         do {
             let file = try EffectTriggerFile.load(from: pack.url(forAssetPath: path))
             for warning in file.warnings {
                 Self.effectsLog.notice("\(story.id, privacy: .public): \(warning, privacy: .public)")
             }
-            return (file.triggers, file.canvasTriggers)
+            return (file.triggers, file.canvasTriggers, file.liveTriggers)
         } catch {
             Self.effectsLog.error("\(story.id, privacy: .public): effects file unusable: \(String(describing: error), privacy: .public)")
-            return ([], [])
+            return ([], [], [])
         }
     }
 

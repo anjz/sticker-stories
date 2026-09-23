@@ -40,9 +40,10 @@ func main() {
 		fmt.Fprintf(os.Stderr, "✗ %v\n", err)
 		os.Exit(1)
 	}
-	pack := story.Manifest{ID: m.ID, Languages: m.Languages, Setting: m.EffectiveSetting()}
-	for _, st := range m.Stickers {
-		pack.Stickers = append(pack.Stickers, st.ID)
+	pack, err := story.PackManifest(m, *packDir)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "✗ %v\n", err)
+		os.Exit(1)
 	}
 	cat, err := story.LoadCatalog(*effectsPath)
 	if err != nil {
@@ -102,6 +103,7 @@ func main() {
 		fmt.Printf("  %-*s  %8d  %4d\n", width, id, cov.Featured[id], cov.Used[id])
 	}
 	printEffectUse(cat, cov)
+	printLive(pack, cov)
 	for _, e := range cov.Errors {
 		fmt.Printf("  error: %s\n", e)
 		failed = true
@@ -157,4 +159,25 @@ func printEffectUse(cat *story.Catalog, cov story.Coverage) {
 	fmt.Printf("    audio tags (stories): %s\n", strings.Join(line, ", "))
 	fmt.Printf("    sound effects: %d of %d stories (%d with a solo sound)\n", cov.SoundStories, cov.Stories, cov.SoloStories)
 	fmt.Printf("  learning: %d of %d stories carry a small fact\n", cov.LearningStories, cov.Stories)
+}
+
+// printLive lists the stickers that come alive — what each animation
+// shows and how long it plays, so an author can put {sticker:live} on the
+// words that tell that moment — and how many stories use each.
+func printLive(pack story.Manifest, cov story.Coverage) {
+	var ids []string
+	for _, id := range pack.Stickers {
+		if len(pack.Animations[id]) > 0 {
+			ids = append(ids, id)
+		}
+	}
+	if len(ids) == 0 {
+		return
+	}
+	fmt.Printf("  live stickers ({sticker:live}; %d of %d stories play one):\n", cov.LiveStories, cov.Stories)
+	for _, id := range ids {
+		for _, a := range pack.Animations[id] {
+			fmt.Printf("    %-10s %-13s %4.1fs  %2d stories  %s\n", id, a.ID, a.Seconds, cov.LiveUse[id], a.Description)
+		}
+	}
 }

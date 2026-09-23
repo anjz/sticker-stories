@@ -71,7 +71,7 @@ enum PackTextureLoader {
 
     /// Decodes one image into a plain bitmap on a background thread with
     /// ImageIO (no UIKit decompressor involved).
-    private nonisolated static func decode(_ url: URL) -> CGImage? {
+    nonisolated static func decode(_ url: URL) -> CGImage? {
         guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else { return nil }
         let options: [CFString: Any] = [kCGImageSourceShouldCacheImmediately: true]
         return CGImageSourceCreateImageAtIndex(source, 0, options as CFDictionary)

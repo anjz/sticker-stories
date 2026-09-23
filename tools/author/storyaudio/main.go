@@ -36,6 +36,7 @@ import (
 
 	"stickerstories/tools/internal/audio"
 	"stickerstories/tools/internal/dotenv"
+	"stickerstories/tools/internal/effects"
 	"stickerstories/tools/internal/elevenlabs"
 	"stickerstories/tools/internal/manifest"
 	"stickerstories/tools/internal/render"
@@ -125,6 +126,10 @@ type ctxt struct {
 	storiesDir string
 	stories    []*story.Story
 	declared   map[string]bool
+	// story is the pack as story tools see it (live animations included);
+	// animations the live-animation IDs by sticker, for the sidecar check.
+	story      story.Manifest
+	animations effects.Animations
 }
 
 func load(packDir, storiesDir string) (*ctxt, error) {
@@ -145,6 +150,15 @@ func load(packDir, storiesDir string) (*ctxt, error) {
 	c := &ctxt{pack: m, packDir: packDir, storiesDir: storiesDir, stories: stories, declared: map[string]bool{}}
 	for _, s := range m.Stickers {
 		c.declared[s.ID] = true
+	}
+	if c.story, err = story.PackManifest(m, packDir); err != nil {
+		return nil, err
+	}
+	c.animations = effects.Animations{}
+	for id, anims := range c.story.Animations {
+		for _, a := range anims {
+			c.animations[id] = append(c.animations[id], a.ID)
+		}
 	}
 	return c, nil
 }
@@ -419,6 +433,7 @@ type renderRecord struct {
 	Sounds      []string `json:"sounds,omitempty"`
 	Music       string   `json:"music,omitempty"`
 	Missing     []string `json:"missingSoundCues,omitempty"`
+	LiveOverlap []string `json:"liveOverlaps,omitempty"`
 	RenderedAt  string   `json:"renderedAt"`
 }
 
@@ -735,13 +750,17 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 
 	// Triggers: shift by the lead-in, except cues on the first word, which
 	// are pinned at 0 (scenery loops start with the story).
-	triggers := render.Triggers(nar.Cues, tl)
+	triggers, err := render.Triggers(nar.Cues, tl, r.c.story)
+	if err != nil {
+		return false, err
+	}
 	for i := range triggers {
 		if triggers[i].At > 0 {
 			triggers[i].At = roundCs(triggers[i].At + r.leadIn())
 		}
 	}
-	sidecar, err := render.EncodeSidecar(triggers, r.c.declared, r.c.pack.EffectiveSetting())
+	liveOverlaps := render.LiveOverlaps(triggers, r.c.story)
+	sidecar, err := render.EncodeSidecar(triggers, r.c.declared, r.c.animations, r.c.pack.EffectiveSetting())
 	if err != nil {
 		return false, err
 	}
@@ -749,7 +768,7 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 	mix := audio.Silence(rate, r.leadIn()+voiceClip.Duration()+tailOut)
 	mix.MixAt(voiceClip, r.leadIn(), 1)
 
-	rec := renderRecord{Fingerprint: fp, Music: mood, VoiceID: voice.VoiceID, Voice: voice.Name, Model: model, SampleRate: rate, RenderedAt: time.Now().Format(time.RFC3339)}
+	rec := renderRecord{Fingerprint: fp, Music: mood, VoiceID: voice.VoiceID, Voice: voice.Name, Model: model, SampleRate: rate, LiveOverlap: liveOverlaps, RenderedAt: time.Now().Format(time.RFC3339)}
 
 	if !r.o.noSFX {
 		// Legacy hints: a sound on a spoken word.
@@ -853,6 +872,9 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 	fmt.Fprintf(log, "%.1fs, %d triggers, %d sounds, %s", rec.Duration, len(triggers), len(rec.Sounds), model)
 	if len(rec.Missing) > 0 {
 		fmt.Fprintf(log, " [sound cue word not in text: %s]", strings.Join(rec.Missing, ", "))
+	}
+	if len(rec.LiveOverlap) > 0 {
+		fmt.Fprintf(log, " [effect during a live animation: %s]", strings.Join(rec.LiveOverlap, "; "))
 	}
 	return true, nil
 }

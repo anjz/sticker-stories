@@ -17,8 +17,8 @@ func testCatalog(t *testing.T) *Catalog {
 	if len(c.Effects) != 12 {
 		t.Fatalf("catalogue has %d effects, want 12", len(c.Effects))
 	}
-	if len(c.Canvas) != 5 {
-		t.Fatalf("catalogue has %d canvas effects, want 5", len(c.Canvas))
+	if len(c.Canvas) != 29 {
+		t.Fatalf("catalogue has %d canvas effects, want 29", len(c.Canvas))
 	}
 	return c
 }
@@ -192,7 +192,7 @@ func TestValidationFailures(t *testing.T) {
 		{"forbidden word", func(s *Story) { l := s.Languages["en-US"]; l.Text += " It was scary."; s.Languages["en-US"] = l }, "forbidden"},
 		{"canvas effect on a sticker", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {fox:rain}"; s.Languages["en-US"] = l }, "is a canvas effect; write {canvas:rain"},
 		{"sticker effect on the canvas", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:hop}"; s.Languages["en-US"] = l }, "is a sticker effect"},
-		{"unknown canvas effect", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:snow}"; s.Languages["en-US"] = l }, "unknown canvas effect"},
+		{"unknown canvas effect", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:blizzard}"; s.Languages["en-US"] = l }, "unknown canvas effect"},
 		{"canvas effect for the wrong setting", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:dimlight}"; s.Languages["en-US"] = l }, `suits indoors packs; this pack's setting is "outdoors"`},
 		{"canvas cue with sticker params", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain loop}"; s.Languages["en-US"] = l }, "only an intensity and a duration"},
 		{"canvas cue too short", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain 0.5s}"; s.Languages["en-US"] = l }, "stays on for 1–120 s"},
@@ -427,5 +427,62 @@ func TestSoloAfterEllipsisIsBetweenSentences(t *testing.T) {
 		if strings.Contains(w, "mid-sentence") {
 			t.Fatalf("solo after an ellipsis flagged as mid-sentence: %v", is.Warnings)
 		}
+	}
+}
+
+func TestLiveCues(t *testing.T) {
+	cat := testCatalog(t)
+	pack := forest
+	pack.Animations = map[string][]Animation{
+		"owl": {{ID: "sleepy-blink", Description: "the owl blinks and yawns.", Seconds: 4.5}},
+		"fox": {{ID: "wings", Seconds: 3}, {ID: "tap-tap", Seconds: 3}},
+	}
+	withText := func(en, es string) *Story {
+		s := goodStory()
+		s.Supporting = append(s.Supporting, "owl")
+		l := s.Languages["en-US"]
+		l.Text += en
+		s.Languages["en-US"] = l
+		l = s.Languages["es-ES"]
+		l.Text += es
+		s.Languages["es-ES"] = l
+		return s
+	}
+	cues, _, errs := ParseCues("Owl {owl:live} blinked, fox {fox:live wings} flapped {fox:live tap-tap} tapped.")
+	if len(errs) != 0 || cues[0].Effect != LiveEffect || cues[0].Animation != "" || cues[1].Animation != "wings" || cues[2].Animation != "tap-tap" {
+		t.Fatalf("live cues parsed wrong: %+v %v", cues, errs)
+	}
+	if is := Validate(withText(" {owl:live} blink.", " {owl:live} parpadea."), pack, cat); len(is.Errors) != 0 || len(is.Warnings) != 0 {
+		t.Fatalf("a live cue on an animated sticker is fine: %v %v", is.Errors, is.Warnings)
+	}
+	for _, tc := range []struct{ cue, want string }{
+		{" {rabbit:live} hop.", "has no live animation"},
+		{" {fox:live} hop.", "name one"},
+		{" {fox:live dance} hop.", `no live animation "dance"`},
+		{" {owl:live x2} hop.", "takes no parameters"},
+		{" {owl:live 0.5} hop.", "takes no parameters"},
+	} {
+		is := Validate(withText(tc.cue, tc.cue), pack, cat)
+		if !strings.Contains(strings.Join(is.Errors, "\n"), tc.want) {
+			t.Errorf("%s: want an error containing %q, got %v", tc.cue, tc.want, is.Errors)
+		}
+	}
+	twice := " {owl:live} blink {owl:live} blink."
+	if w := strings.Join(Validate(withText(twice, twice), pack, cat).Warnings, "\n"); !strings.Contains(w, "comes alive twice") {
+		t.Errorf("the same sticker alive twice should warn: %v", w)
+	}
+	// Coverage: an animated, well-featured sticker nobody brings alive warns.
+	set := []*Story{}
+	for i := 0; i < MinFeaturedPer; i++ {
+		s := goodStory()
+		s.Featured = []string{"owl", "fox", "tree"}
+		set = append(set, s)
+	}
+	if w := strings.Join(Cover(set, pack, 0).Warnings, "\n"); !strings.Contains(w, `"owl" comes alive`) {
+		t.Errorf("an unused live sticker should warn: %v", w)
+	}
+	set[0] = withText(" {owl:live} blink.", " {owl:live} parpadea.")
+	if c := Cover(set, pack, 0); c.LiveUse["owl"] != 1 || c.LiveStories != 1 || c.EffectUse[LiveEffect] != 0 {
+		t.Errorf("live use counted wrong: %+v %d", c.LiveUse, c.LiveStories)
 	}
 }

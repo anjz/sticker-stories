@@ -92,8 +92,9 @@ turning on a bedroom wall), `aurora` in space, thunder and lightning
 (flashes are a light-sensitivity risk and storms frighten small children),
 a "zero gravity" effect that floats every sticker (canvas effects never move
 stickers; `float` does that per sticker), and effects that belong to one
-pack only. Character animation is a later, separate system that will share
-the clock but not this vocabulary.
+pack only. Character animation — a sticker's own frames — is a separate
+system that shares the clock and the trigger file but not this vocabulary
+("Live animations" below).
 
 ## Sticker effect parameters (the whole surface)
 
@@ -199,9 +200,10 @@ or fantastical places) gets no canvas effects at all.
 
 Each story localization may point at one sidecar next to its audio
 (`docs/pack-format.md`, `localizations[].effects`). Times are per language
-because each narration has its own timing. One `triggers` list carries both
+because each narration has its own timing. One `triggers` list carries three
 kinds: an entry whose `effect` is a sticker effect targets a `sticker`; one
-whose `effect` is a canvas effect has none.
+whose `effect` is a canvas effect has none; one with an `animation` and no
+`effect` plays that sticker's live animation ("Live animations" below).
 
 `packs/forest/audio/en-US/shy-mushroom.effects.json`:
 
@@ -215,6 +217,7 @@ whose `effect` is a canvas effect has none.
     { "at": 8.0,  "cue": "rain",                            "effect": "rain",     "intensity": 0.7, "duration": 14 },
     { "at": 12.5, "cue": "blush",   "sticker": "mushroom", "effect": "tint",     "color": "#FFB3C6" },
     { "at": 24.0, "cue": "sun",                             "effect": "sunshine" },
+    { "at": 30.2, "cue": "yawned",  "sticker": "bear",     "animation": "yawn" },
     { "at": 41.5, "cue": "flies",   "sticker": "bird",     "effect": "fade-out", "hold": true }
   ]
 }
@@ -226,8 +229,10 @@ whose `effect` is a canvas effect has none.
 - Validation is two-tier. `packager validate` is strict: unknown effect
   names, unknown keys, out-of-range numbers, undeclared stickers, `repeat`
   on a one-way effect, `color`/`hold` on effects that ignore them, `tint`
-  without a colour, sticker keys on a canvas effect, and a canvas effect
-  that does not suit the pack's `setting` are all errors. The app is
+  without a colour, sticker keys on a canvas effect, a canvas effect
+  that does not suit the pack's `setting`, and a live trigger naming an
+  animation its sticker does not declare (or carrying effect keys) are all
+  errors. The app is
   lenient: it skips or clamps and logs. A pack that passes the packager
   never triggers a log.
 - Triggers are evaluated in time order; several may share an `at`.
@@ -259,15 +264,40 @@ Stories are authored with cues inline in the text
 ```
 The fox gave an enormous {fox:wobble x3} {fox:sparkle} sneeze.
 Plip, plop — {canvas:rain 0.7 14s} here comes the rain.
+Bear gave a {bear:live} great big yawn.
 ```
 
 A cue fires on the word that follows it; `canvas:` is the reserved target
-for canvas effects and `sfx:` for sound effects (which are mixed into the
+for canvas effects, `live` the reserved effect that plays a sticker's live
+animation (`{bear:live}`, or `{owl:live blink}` to name one of several) and
+`sfx:` for sound effects (which are mixed into the
 audio, never triggers). The text may also carry Eleven v3 audio tags
 (`[whispers]`) for the narrator. Step 2 of the authoring pipeline
 (`storyaudio`) resolves each cue's `at` from the narration's word
 timestamps and carries the word as `cue`, emitting the sidecar above. The
 app never parses text.
+
+## Live animations
+
+Ten stickers per pack carry a **live animation**: a short frame sequence
+drawn from the sticker's own art — the bear cub yawns and stretches, the
+frog backflips and catches a fly (`docs/pack-format.md`, "Live
+animations"). Each sidecar's `description` says what it shows and its
+`hold`s how long (3–6 s), so story authors can cue it on the words that
+tell that moment; `storycheck` lists them.
+
+- Not an effect: no parameters, no repeat, one animation per sticker per
+  story beat. The trigger is `{ "at", "cue"?, "sticker", "animation" }`.
+- It plays on every placed instance of the sticker, from the rest pose and
+  back to it, and inherits the sticker's placement and any running effect
+  (a `float` loop carries it along). Sticker effects that *start* on the
+  same sticker while it plays fight it; `storyaudio` warns about them.
+- A story loads only the sheets its triggers name for stickers on the
+  canvas, off the main thread as play starts, and drops them when it ends
+  (a sheet is ~35 MB of texture). A trigger whose sheet is not in yet, or
+  that is found more than a second late, is skipped.
+- Older apps skip the trigger (it has no `effect`) with a log line, so no
+  schema change was needed.
 
 ## Accessibility and calm mode
 
@@ -277,6 +307,8 @@ app never parses text.
   (`rain`, `snow` and the others marked in the canvas table) at ≤0.4;
   fades, `glow`, `tint` and the other canvas effects (slow washes of light)
   run in full because they carry story meaning.
+- Live animations (whole-body motion: a backflip, a curl-up) do not play
+  under Reduce Motion or calm mode; the sticker stays still.
 - **Calm mode** (main menu gear → Settings) applies the same policy plus a global
   intensity multiplier of 0.6, for children who are easily overstimulated.
 - Flashes (white `tint`) are capped at 3 per second regardless of

@@ -20,9 +20,11 @@ public struct EffectTrigger: Equatable, Sendable {
 }
 
 /// A story's per-language effects sidecar (`docs/effects.md`, "Trigger file").
-/// One `triggers` list carries both kinds: an entry whose `effect` names a
+/// One `triggers` list carries three kinds: an entry whose `effect` names a
 /// sticker effect targets a `sticker`; one naming a canvas effect has no
-/// sticker and lands in `canvasTriggers`.
+/// sticker and lands in `canvasTriggers`; one naming an `animation` (and
+/// no effect) plays that sticker's live animation and lands in
+/// `liveTriggers`.
 ///
 /// Decoding follows the spec's non-fatal rules: unknown effect → skip,
 /// unknown keys → ignore, out-of-range numbers → clamp, missing effect or
@@ -35,6 +37,7 @@ public struct EffectTriggerFile: Equatable, Sendable {
     public var schema: Int
     public var triggers: [EffectTrigger]
     public var canvasTriggers: [CanvasEffectTrigger]
+    public var liveTriggers: [LiveAnimationTrigger]
     public var warnings: [String]
 
     public enum DecodingError: Error, Equatable {
@@ -45,11 +48,13 @@ public struct EffectTriggerFile: Equatable, Sendable {
 
     public init(
         schema: Int = EffectTriggerFile.supportedSchema, triggers: [EffectTrigger],
-        canvasTriggers: [CanvasEffectTrigger] = [], warnings: [String] = []
+        canvasTriggers: [CanvasEffectTrigger] = [], liveTriggers: [LiveAnimationTrigger] = [],
+        warnings: [String] = []
     ) {
         self.schema = schema
         self.triggers = triggers
         self.canvasTriggers = canvasTriggers
+        self.liveTriggers = liveTriggers
         self.warnings = warnings
     }
 
@@ -77,10 +82,17 @@ public struct EffectTriggerFile: Equatable, Sendable {
 
         var triggers: [EffectTrigger] = []
         var canvasTriggers: [CanvasEffectTrigger] = []
+        var liveTriggers: [LiveAnimationTrigger] = []
         for (index, entry) in list.enumerated() {
             let label = "triggers[\(index)]"
             guard let fields = entry as? [String: Any] else {
                 warnings.append("\(label): not an object; skipped")
+                continue
+            }
+            if fields["animation"] != nil {
+                if let trigger = Self.decodeLiveTrigger(fields, label: label, warnings: &warnings) {
+                    liveTriggers.append(trigger)
+                }
                 continue
             }
             guard let name = fields["effect"] as? String else {
@@ -101,6 +113,7 @@ public struct EffectTriggerFile: Equatable, Sendable {
         }
         self.triggers = triggers.sorted { $0.at < $1.at }
         self.canvasTriggers = canvasTriggers.sorted { $0.at < $1.at }
+        self.liveTriggers = liveTriggers.sorted { $0.at < $1.at }
         self.warnings = warnings
     }
 
@@ -197,6 +210,27 @@ public struct EffectTriggerFile: Equatable, Sendable {
             warnings.append("\(label): \(key) is ignored by canvas effect \(effect.rawValue)")
         }
         return CanvasEffectTrigger(at: at, cue: fields["cue"] as? String, effect: effect, options: options.clamped)
+    }
+
+    /// Live triggers name a sticker and one of its animations; nothing
+    /// else applies to them, so other keys are reported and ignored.
+    private static func decodeLiveTrigger(_ fields: [String: Any], label: String, warnings: inout [String]) -> LiveAnimationTrigger? {
+        guard let animationID = fields["animation"] as? String, !animationID.isEmpty else {
+            warnings.append("\(label): animation must be a non-empty string; skipped")
+            return nil
+        }
+        guard let stickerID = fields["sticker"] as? String, !stickerID.isEmpty else {
+            warnings.append("\(label): missing sticker; skipped")
+            return nil
+        }
+        guard let at = number(fields["at"]), at.isFinite, at >= 0 else {
+            warnings.append("\(label): missing or invalid at; skipped")
+            return nil
+        }
+        for key in ["effect", "repeat", "duration", "intensity", "color", "hold"] where fields[key] != nil {
+            warnings.append("\(label): \(key) is ignored by a live animation")
+        }
+        return LiveAnimationTrigger(at: at, cue: fields["cue"] as? String, stickerID: stickerID, animationID: animationID)
     }
 
     private static func number(_ raw: Any?) -> Double? {

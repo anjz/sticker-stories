@@ -221,7 +221,8 @@ never letterboxes:
     every `stickers[].image`) ends in `.png` or `.webp` ("Image formats").
 12. Every `stickers[].animations` entry is a `.json` file inside the pack.
     The packager validates the sidecar **strictly** (unknown keys, a
-    `sticker` other than the declaring one, a missing or non-image sheet,
+    `sticker` other than the declaring one, an empty `description`, an
+    `id` the sticker already uses, a missing or non-image sheet,
     a `hold` list that does not match `count`, holds outside 0.02–5 s,
     boxes outside the unit square are errors); the app checks the file
     exists and reads it **leniently** (an undecodable sidecar is skipped
@@ -243,7 +244,8 @@ Each animation is a sprite sheet plus a sidecar, made by
 
 | Key | Meaning |
 |---|---|
-| `id`, `sticker` | the animation's id and the sticker it belongs to (must match the declaring sticker) |
+| `id`, `sticker` | the animation's id (unique per sticker) and the sticker it belongs to (must match the declaring sticker) |
+| `description` | one plain sentence saying what the animation shows ("the bear cub yawns and stretches its arms up, rubs its eyes…"), for story authors; required, ignored by the app |
 | `sheet` | pack-relative path of the sheet (PNG or WebP): `columns` frames per row, `count` frames read left to right then top to bottom, each `frame.width` × `frame.height` px |
 | `rest` | the first frame's bordered art within a frame, as fractions of the frame (top-left origin) |
 | `stickerBox` | the same art within the sticker image, as fractions of the image |
@@ -256,11 +258,13 @@ from the still sticker into the frames and back. The app scales and
 offsets the frames so `rest` lands exactly on `stickerBox` over the
 placed sticker, and derives the frames' drop shadow from the sheet.
 
-Status: the developer effects gallery plays animations; stories do not
-trigger them yet (`docs/effects.md` reserves character animation as a
-separate system from the effects library). A sheet decodes to
-width × height × 4 bytes of texture whatever its file size — keep that in
-mind before adding frames.
+Stories play them: the authoring cue `{bear:live}` becomes a trigger
+`{ "at", "sticker": "bear", "animation": "yawn" }` in the story's effects
+sidecar (`docs/effects.md`, "Live animations"), which the packager checks
+against the animations the sticker declares. The developer effects gallery
+plays any of them. A sheet decodes to width × height × 4 bytes of texture
+whatever its file size — keep that in mind before adding frames; a story
+loads only the sheets it triggers.
 
 ## Language resolution (app behaviour)
 

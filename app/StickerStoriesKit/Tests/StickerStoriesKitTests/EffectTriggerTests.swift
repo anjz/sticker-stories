@@ -92,4 +92,42 @@ struct EffectTriggerTests {
         #expect(RGBA(hex: "#GGGGGG") == nil)
         #expect(RGBA.white.isWhite && !(RGBA(hex: "#FF0000")!.isWhite))
     }
+
+    @Test func decodesLiveAnimationTriggersFromTheSameList() throws {
+        let f = try file("""
+            { "schema": 1, "triggers": [
+              { "at": 6.2, "cue": "yawned", "sticker": "bear", "animation": "yawn" },
+              { "at": 1.0, "sticker": "fox", "effect": "hop" },
+              { "at": 2.5, "sticker": "owl", "animation": "sleepy-blink", "repeat": 2 },
+              { "at": 3.0, "animation": "yawn" },
+              { "at": 3.0, "sticker": "bear", "animation": "" }
+            ] }
+            """)
+        #expect(f.triggers.count == 1 && f.canvasTriggers.isEmpty)
+        #expect(f.liveTriggers == [
+            LiveAnimationTrigger(at: 2.5, stickerID: "owl", animationID: "sleepy-blink"),
+            LiveAnimationTrigger(at: 6.2, cue: "yawned", stickerID: "bear", animationID: "yawn"),
+        ])
+        #expect(f.warnings.count == 3)  // repeat ignored, no sticker, empty animation
+    }
+
+    @Test func liveScheduleFiresEachTriggerOnceAndHonoursThePolicy() {
+        let schedule = LiveAnimationSchedule(triggers: [
+            LiveAnimationTrigger(at: 5, stickerID: "bear", animationID: "yawn"),
+            LiveAnimationTrigger(at: 2, stickerID: "owl", animationID: "blink"),
+        ])
+        #expect(schedule.animations.count == 2)
+        #expect(schedule.due(at: 1).isEmpty)
+        #expect(schedule.due(at: 2.1).map(\.stickerID) == ["owl"])
+        #expect(schedule.due(at: 3).isEmpty)  // once only
+        #expect(schedule.due(at: 7).isEmpty)  // 2 s late: dropped, not played out of step
+        #expect(schedule.due(at: 1.5).isEmpty)  // a seek back re-arms what lies ahead
+        #expect(schedule.due(at: 2.2).map(\.stickerID) == ["owl"])
+
+        let calm = LiveAnimationSchedule(
+            triggers: [LiveAnimationTrigger(at: 0, stickerID: "bear", animationID: "yawn")],
+            policy: EffectPolicy(reduceMotion: true))
+        #expect(calm.due(at: 0.1).isEmpty)
+        #expect(!EffectPolicy(calmMode: true).allowsLiveAnimations && EffectPolicy.standard.allowsLiveAnimations)
+    }
 }

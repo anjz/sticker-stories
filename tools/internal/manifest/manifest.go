@@ -227,6 +227,7 @@ func (m *Manifest) Validate(dir string) []error {
 
 	// Rule 2: sticker IDs well-formed and unique.
 	stickerIDs := make(map[string]bool, len(m.Stickers))
+	animations := effects.Animations{}
 	for i, st := range m.Stickers {
 		if !idPattern.MatchString(st.ID) {
 			fail("stickers[%d]: id %q must match %s", i, st.ID, idPattern)
@@ -258,6 +259,12 @@ func (m *Manifest) Validate(dir string) []error {
 			for _, e := range anim.Validate(dir, st.ID) {
 				fail("%s: %v", field, e)
 			}
+			for _, other := range animations[st.ID] {
+				if other == anim.ID {
+					fail("%s: duplicate animation id %q", field, anim.ID)
+				}
+			}
+			animations[st.ID] = append(animations[st.ID], anim.ID)
 		}
 	}
 
@@ -296,7 +303,7 @@ func (m *Manifest) Validate(dir string) []error {
 				before := len(errs)
 				checkFile(locName+" effects", loc.Effects)
 				if len(errs) == before {
-					for _, err := range effects.ValidateFile(filepath.Join(dir, filepath.FromSlash(loc.Effects)), stickerIDs, m.EffectiveSetting()) {
+					for _, err := range effects.ValidateFile(filepath.Join(dir, filepath.FromSlash(loc.Effects)), stickerIDs, animations, m.EffectiveSetting()) {
 						fail("%s effects: %v", locName, err)
 					}
 				}

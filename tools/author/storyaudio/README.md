@@ -30,10 +30,13 @@ go run ./packager validate ../packs/forest
    `eleven_multilingual_v2` with the tags stripped (v2 would say them).
 2. Maps each cue's word to the returned character timings — tags are
    characters the model times too, so cues land on the words — and writes
-   the effects sidecar (`docs/effects.md`) — sticker triggers and canvas
-   triggers (`{canvas:rain …}` cues become entries with no `sticker`) in
-   one list — strictly validated against the pack's stickers and its
-   `setting`. Cues on the first word stay at `0.0`; everything else is
+   the effects sidecar (`docs/effects.md`) — sticker triggers, canvas
+   triggers (`{canvas:rain …}` cues become entries with no `sticker`) and
+   live-animation triggers (`{bear:live}` becomes `"animation": "yawn"`)
+   in one list — strictly validated against the pack's stickers, their
+   animations and its `setting`. A sticker effect that starts while that
+   sticker's live animation is still playing is reported in the log and
+   the render record (`liveOverlaps`). Cues on the first word stay at `0.0`; everything else is
    shifted by the music lead-in. Sound cues are not triggers.
 3. Generates the story's `sounds` with the sound-generation model
    (`eleven_text_to_sound_v2`, cached by prompt/length in `_cache/sfx/`)
