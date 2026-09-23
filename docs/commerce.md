@@ -5,7 +5,7 @@
 - **Sticker packs are non-consumable IAPs**, ~£/$/€1.99 each.
   Product ID convention: `com.anj.stickerstories.pack.<packID>`.
 - The **Forest pack ships bundled and free** — no product, always entitled.
-- **"All sticker packs"** non-consumable (~9.99),
+- **"All Sticker Story Packs"** non-consumable (~9.99),
   `com.anj.stickerstories.allaccess`, offered in the banner at the top of the
   store screen. The entitlement layer understands it: a pack is entitled if
   its own product is owned **or** the all-access product is owned.
@@ -61,6 +61,50 @@ v1 note: purchasable pack downloads don't exist yet (only the bundled pack
 ships). The scaffolding — products in the StoreKit Testing config, purchase
 service, entitlement reconciliation, gate — is in place so adding the first
 purchasable pack is content work, not architecture work.
+
+## Product copy
+
+What parents read about packs, in the store and on the App Store, follows
+one vocabulary and fits App Store Connect's limits in **every** language.
+
+**The product term.** A pack is a **Sticker Story Pack** — stickers *and*
+the stories that come with them, echoing the app's name. Parent-facing copy
+uses it (capitalised, as a product name); pack titles stay short ("Forest
+Friends", not "Forest Friends Sticker Story Pack") because the store frames
+them. Code, docs and the tools keep saying "pack".
+
+| Language | Term | Bundle name | Bundle description |
+|---|---|---|---|
+| en | Sticker Story Pack | All Sticker Story Packs (23) | Every Sticker Story Pack in the app. (36) |
+| es | pack de cuentos (con pegatinas) | Todos los packs de cuentos (26) | Todos los packs de cuentos con pegatinas. (41) |
+
+The Spanish bundle name drops "con pegatinas": the literal "Todos los packs
+de cuentos con pegatinas" is 40 characters, so "pegatinas" lives in the
+description instead.
+
+**App Store Connect limits, per localization of each in-app purchase:**
+
+- **Display name: at most 30 characters.** For a pack product it is the
+  pack's name, so a manifest `displayName` must fit too
+  (`docs/pack-format.md`).
+- **Description: at most 45 characters.** One short sentence.
+- Keep `app/StickerStories.storekit` (the StoreKit test configuration) in
+  step with App Store Connect: the store shows StoreKit's name, description
+  and price verbatim, so the test copy is the copy parents see in testing.
+- The app never promises future content ("now and in the future"): the
+  bundle is every pack in the app.
+
+**Adding a language** (see also `docs/architecture.md`, "Localization"):
+
+1. Pick the language's term for a Sticker Story Pack first, and add a row to
+   the table above.
+2. Write the bundle's name and description, and every pack product's, and
+   **count the characters** against the limits — translations often run
+   longer than English; shorten rather than abbreviate.
+3. Add the localization to each product in App Store Connect and in
+   `app/StickerStories.storekit`.
+4. Translate the store's own strings in `Localizable.xcstrings` (the
+   footnote names the free pack with the term).
 
 ## Testing
 

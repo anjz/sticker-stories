@@ -165,7 +165,7 @@ never letterboxes:
 | `id` | string | Pack identifier: lowercase `a-z0-9-`, unique across the catalogue. Also the IAP product suffix (`com.anj.stickerstories.pack.<id>`). |
 | `version` | int | Content revision of the pack, ≥1. Bump on any asset/story change. |
 | `languages` | [string] | BCP-47 tags (`xx` or `xx-YY`, e.g. `en-US`), non-empty, no duplicates. **The first entry is the pack's fallback language.** |
-| `displayName` | {lang: string} | Human-readable name per language, shown to parents. |
+| `displayName` | {lang: string} | Human-readable name per language, shown to parents. Keep it within **30 characters** in every language (guidance, not validated): a purchasable pack's name is also its in-app purchase display name in App Store Connect, which caps it there (`docs/commerce.md`, "Product copy"). |
 | `theme` | string | Free-form theme tag; future prompt context for generated stories. |
 | `setting` | string | **Optional**, default `none`. Where the scene takes place: `outdoors`, `indoors`, `space`, `underwater` or `none`. Decides which canvas effects (`docs/effects.md`, "Canvas effects") the pack's stories may use: each effect lists the settings it suits, and `none` allows no canvas effects. Story tooling reads it when authoring. |
 | `background` / `foreground` | string | Pack-relative paths to PNG or WebP files that must exist ("Image formats" above). Their frame is the sticker coordinate system ("Art safe area" below). |

@@ -8,7 +8,7 @@ import UIKit
 /// commerce-related lives here; no child-facing surface may link out of the
 /// app or offer purchases (docs/compliance.md).
 ///
-/// A header row (back, title, restore), the "All sticker packs" bundle as a
+/// A header row (back, title, restore), the "All Sticker Story Packs" bundle as a
 /// banner, then the packs as big tiles scrolling horizontally, sized so two
 /// columns are always fully on screen with the next one peeking in — in two
 /// rows on a big screen, so four tiles show at once. Styled like the rest
@@ -45,7 +45,7 @@ struct StoreScreen: View {
                 .padding(.bottom, isCompact ? 12 : 0)
 
                 if !isCompact {
-                    Text("Purchases never leave this screen — the rest of the app is for your child. The Forest Friends pack is included for free.")
+                    Text("Purchases never leave this screen — the rest of the app is for your child. The Forest Friends Sticker Story Pack is included for free.")
                         .font(.system(size: 13, weight: .medium, design: .rounded))
                         .foregroundStyle(.white.opacity(0.85))
                         .multilineTextAlignment(.center)
@@ -179,7 +179,7 @@ struct StoreScreen: View {
 
     // MARK: Content
 
-    /// The "All sticker packs" offer, once StoreKit has loaded it.
+    /// The "All Sticker Story Packs" offer, once StoreKit has loaded it.
     private var bundle: BundleOffer? {
         #if DEBUG
         if Self.isMocked { return .mock }
@@ -259,7 +259,7 @@ private struct BundleOffer {
 
     #if DEBUG
     static let mock = BundleOffer(
-        title: "All sticker packs", subtitle: "Every sticker pack in the app.", price: "$9.99",
+        title: "All Sticker Story Packs", subtitle: "Every Sticker Story Pack in the app.", price: "$9.99",
         isOwned: false, buy: {})
     #endif
 }
