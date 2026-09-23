@@ -101,14 +101,17 @@ struct StoryScreen: View {
 
                 let topPadding = Self.hudTopPadding(safeAreaTop: geometry.safeAreaInsets.top)
                 if scene != nil {
-                    backButton(topPadding: topPadding)
-                    // Editing is locked while a story plays: the controls fade
-                    // out and back in on the same timing as the sticker tray
+                    // Editing is locked while a story plays, and leaving is
+                    // too (stop comes first): the controls fade out and back
+                    // in on the same timing as the sticker tray
                     // (`CanvasScene.setPlayLocked`).
-                    historyControls(topPadding: topPadding)
-                        .opacity(playback.isBusy ? 0 : 1)
-                        .allowsHitTesting(!playback.isBusy)
-                        .animation(.easeInOut(duration: playback.isBusy ? 0.35 : 0.45), value: playback.isBusy)
+                    Group {
+                        backButton(topPadding: topPadding)
+                        historyControls(topPadding: topPadding)
+                    }
+                    .opacity(playback.isBusy ? 0 : 1)
+                    .allowsHitTesting(!playback.isBusy)
+                    .animation(.easeInOut(duration: playback.isBusy ? 0.35 : 0.45), value: playback.isBusy)
                 }
 
                 if isConfirmingClear {
