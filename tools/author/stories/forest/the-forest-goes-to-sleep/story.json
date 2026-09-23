@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "the-forest-goes-to-sleep",
+  "pack": "forest",
+  "featured": [],
+  "supporting": [
+    "tree",
+    "firefly",
+    "mushroom",
+    "owl"
+  ],
+  "tags": [
+    "bedtime",
+    "gentle"
+  ],
+  "premise": "The sun goes down, each thing in the forest says goodnight in its own way, and the moon keeps watch.",
+  "inspiration": "The goodnight litany of folk lullabies, which name each thing in turn; turned so that the night itself has friends who keep watch.",
+  "lesson": "Night is a safe, kind time, watched over by friends.",
+  "languages": {
+    "en-US": {
+      "title": "The Forest Goes to Sleep",
+      "text": "{canvas:sunset 0.8 16s} [softly] The sun is going down behind the hills, and the whole forest turns orange and pink. Time for bed. The mushroom {mushroom:pulse} tucks herself under her cap. Goodnight, mushroom. The tree {tree:wobble 0.3} rocks his branches, slow and low. Goodnight, tree. {canvas:night 0.8 40s} Now the sky is deep blue, and here comes the moon, round and kind. A firefly {firefly:fade-in} switches on her little light. {firefly:glow} Goodnight, firefly. {sfx:crickets} Cri-cri, sing the crickets, cri-cri. {sfx:owl-hoot solo} High in the tree, the owl {owl:fade-in} opens his big round eyes. [whispers] Don't worry, he says. The moon and I will keep watch. [yawns] Goodnight, forest. Goodnight."
+    },
+    "es-ES": {
+      "title": "El bosque se va a dormir",
+      "text": "{canvas:sunset 0.8 16s} [softly] El sol se esconde detrás de las colinas, y todo el bosque se vuelve naranja y rosa. Hora de dormir. La seta {mushroom:pulse} se arropa bajo su sombrero. Buenas noches, seta. El árbol {tree:wobble 0.3} mece sus ramas, despacito, despacito. Buenas noches, árbol. {canvas:night 0.8 40s} Ahora el cielo es azul oscuro, y aquí llega la luna, redonda y buena. Una luciérnaga {firefly:fade-in} enciende su lucecita. {firefly:glow} Buenas noches, luciérnaga. {sfx:crickets} Cri-cri, cantan los grillos, cri-cri. {sfx:owl-hoot solo} En lo alto del árbol, el búho {owl:fade-in} abre sus grandes ojos redondos. [whispers] No os preocupéis, dice. La luna y yo vigilamos. [yawns] Buenas noches, bosque. Buenas noches."
+    }
+  },
+  "sounds": {
+    "crickets": {
+      "prompt": "soft summer night crickets chirping gently far away",
+      "seconds": 20,
+      "loop": true
+    },
+    "owl-hoot": {
+      "prompt": "one soft, warm, distant owl hoot, hoo-hoo, calm and friendly",
+      "seconds": 1.8
+    }
+  }
+}

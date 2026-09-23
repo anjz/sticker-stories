@@ -2,25 +2,36 @@
   "schema": 1,
   "id": "the-ticklish-tree",
   "pack": "forest",
-  "featured": ["tree", "squirrel", "raccoon"],
-  "supporting": ["mouse"],
-  "tags": ["funny", "seasons", "learning"],
-  "premise": "Tree is ticklish; Squirrel and Raccoon try to climb him without tickling, but every step sets him giggling, until he laughs so hard his gold autumn leaves come down in a shower.",
-  "inspiration": "Folk laughing-tree and giant-with-a-secret motifs, turned: the giant's weakness is a giggle, and the leaf shower is a treat for everyone.",
-  "lesson": "Letting go can be the funniest thing that happens all year.",
-  "learning": "In autumn leaves turn gold and fall from the trees.",
+  "featured": [
+    "tree",
+    "woodpecker",
+    "caterpillar"
+  ],
+  "supporting": [],
+  "tags": [
+    "funny"
+  ],
+  "premise": "Caterpillar crawls up the serious old tree and Woodpecker taps his bark, and the tree laughs so hard his leaves shake down.",
+  "inspiration": "The folk tale of the serious king who could not laugh, turned: the smallest tickles, not the grandest jester, do it.",
+  "lesson": "A little silliness is good for everyone, even the oldest.",
   "languages": {
     "en-US": {
       "title": "The Ticklish Tree",
-      "text": "It was autumn, and Tree's {tree:pulse} leaves had turned gold. And Tree had a secret. [whispers] He was ticklish. Squirrel {squirrel:hop} and Raccoon {raccoon:hop} wanted to climb up and see. Squirrel put one paw on the bark. {tree:wobble 0.4} {sfx:rustle} Hee. Raccoon put one paw on the bark. {tree:wobble 0.6} Hee hee. [giggles] Two more paws. Hee hee hee! The whole tree shook. Sorry! said Squirrel. Keep going, said Tree. I can hold it. Up they went, paw by paw. Hee. Hee hee. Mouse {mouse:hop} came out to watch. HEE HEE HEE! [laughs] Tree could not hold it. He laughed so hard that every gold leaf let go at once. {tree:shake 0.8 1.5s} {sfx:leaves solo} Down they came, like a golden rain. Squirrel {squirrel:spin} spun in it. Raccoon {raccoon:sparkle} caught them. Mouse vanished under a pile and came up wearing three. [happily] Tree stood there, bare and giggly. That is how my leaves come down, he said. Every autumn."
+      "text": "The old tree {tree:pulse} was very serious. He never laughed. Not once, in a hundred years. Then one morning, Caterpillar {caterpillar:pulse} started to climb him. Wiggle, wiggle, up his bark. [surprised] The tree {tree:wobble} twitched. Hmm, he rumbled. What's that? Then Woodpecker {woodpecker:pulse} landed on a branch. {woodpecker:live} He tapped the trunk, {sfx:tap} tap, tap, tap, listened, shook off the dust and chirped. [giggles] The tree shivered. Wiggle, wiggle. Tap, tap. Wiggle, tap! [laughs] And the old tree burst out laughing: HO, HO, HO! {tree:wobble x3} {sfx:leaves} His branches shook, and a shower of leaves came tumbling down. [happily] You're ticklish! cried Caterpillar. Only a tiny bit, said the tree, still chuckling. {tree:sparkle} [softly] And ever since, he has been the happiest tree in the forest."
     },
     "es-ES": {
-      "title": "El árbol con cosquillas",
-      "text": "Era otoño, y las hojas de Árbol {tree:pulse} se habían puesto doradas. Y Árbol tenía un secreto. [whispers] Tenía cosquillas. Ardilla {squirrel:hop} y Mapache {raccoon:hop} querían subir a verlas de cerca. Ardilla puso una pata en la corteza. {tree:wobble 0.4} {sfx:rustle} Ji. Mapache puso una pata en la corteza. {tree:wobble 0.6} Ji, ji. [giggles] Dos patas más. ¡Ji, ji, ji! El árbol entero tembló. ¡Perdón!, dijo Ardilla. Seguid, dijo Árbol. Aguanto. Subieron, pata a pata. Ji. Ji, ji. Ratón {mouse:hop} salió a mirar. ¡JI, JI, JI! [laughs] Árbol no pudo aguantar más. Se rio tan fuerte que todas las hojas doradas se soltaron a la vez. {tree:shake 0.8 1.5s} {sfx:leaves solo} Cayeron como una lluvia de oro. Ardilla {squirrel:spin} giró en medio. Mapache {raccoon:sparkle} las cogió al vuelo. Ratón desapareció bajo un montón y salió con tres puestas. [happily] Árbol se quedó allí, sin hojas y con la risa floja. Así caen mis hojas, dijo. Cada otoño."
+      "title": "El árbol cosquilloso",
+      "text": "El viejo árbol {tree:pulse} era muy serio. Nunca se reía. Ni una vez, en cien años. Hasta que una mañana, Oruga {caterpillar:pulse} empezó a trepar por él. Meneo, meneo, corteza arriba. [surprised] El árbol {tree:wobble} se estremeció. Mmm, gruñó. ¿Qué es eso? Entonces el pájaro carpintero {woodpecker:pulse} se posó en una rama. {woodpecker:live} Dio unos golpecitos en el tronco, {sfx:tap} toc, toc, toc, escuchó, se sacudió el polvo y pió. [giggles] El árbol tembló. Meneo, meneo. Toc, toc. ¡Meneo, toc! [laughs] Y el viejo árbol soltó una carcajada: ¡JO, JO, JO! {tree:wobble x3} {sfx:leaves} Se le sacudieron las ramas, y cayó una lluvia de hojas. [happily] ¡Tienes cosquillas!, gritó Oruga. Solo un poquitín, dijo el árbol, todavía riéndose. {tree:sparkle} [softly] Y desde entonces es el árbol más feliz del bosque."
     }
   },
   "sounds": {
-    "rustle": { "prompt": "a tree's leaves rustling in a quick giggly shiver, light and playful", "seconds": 1.2 },
-    "leaves": { "prompt": "a whole tree's dry golden leaves letting go at once and showering down softly onto the ground", "seconds": 2.5 }
+    "tap": {
+      "prompt": "a woodpecker tapping three light knocks on tree bark",
+      "seconds": 1.0
+    },
+    "leaves": {
+      "prompt": "a tree's branches shaking and a shower of leaves rustling down",
+      "seconds": 2.0
+    }
   }
 }

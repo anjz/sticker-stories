@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "the-wind-wants-to-play",
+  "pack": "forest",
+  "featured": [],
+  "supporting": [
+    "tree",
+    "butterfly",
+    "pinecone",
+    "acorn"
+  ],
+  "tags": [
+    "funny",
+    "weather"
+  ],
+  "premise": "The wind tries to play tag with everything in the forest, and only when everyone holds still does it settle in the grass.",
+  "inspiration": "The North Wind and the Sun (Aesop), turned: the wind is a playmate rather than a rival, and stillness, not force, is what calms it.",
+  "lesson": "Sometimes the way to calm things is to be calm yourself.",
+  "languages": {
+    "en-US": {
+      "title": "The Wind Wants to Play",
+      "text": "[curious] Can you feel it? Something is tickling the forest. {canvas:wind 0.6 18s} {sfx:wind-bed} It's the wind, and the wind wants to play tag! {sfx:whoosh} Whoosh! It tags the tree, and {tree:wobble x2} all his leaves giggle. Whoosh! It tags the butterfly, and {butterfly:spin} she twirls round and round. Whoosh! It tags the pinecone, and {pinecone:wobble} she rolls away, and the acorn {acorn:hop x3} bounces after her. Everyone runs. Everyone spins. But nobody can catch the wind! [giggles] Then the tree has an idea. Stand still, he says. So everyone stands very, very still. [softly] The wind looks around. Nobody is running. So the wind lies down in the long grass, {butterfly:float loop 0.3} curls up… and hums. [whispers] Shh. The wind is having a rest."
+    },
+    "es-ES": {
+      "title": "El viento quiere jugar",
+      "text": "[curious] ¿Lo notáis? Algo le está haciendo cosquillas al bosque. {canvas:wind 0.6 18s} {sfx:wind-bed} ¡Es el viento, y el viento quiere jugar al pillapilla! {sfx:whoosh} ¡Fiuuu! Pilla al árbol, y {tree:wobble x2} todas sus hojas se ríen. ¡Fiuuu! Pilla a la mariposa, y {butterfly:spin} ella da vueltas y vueltas. ¡Fiuuu! Pilla a la piña, y {pinecone:wobble} la piña sale rodando, y la bellota {acorn:hop x3} va saltando detrás. Todos corren. Todos giran. ¡Pero nadie puede pillar al viento! [giggles] Entonces el árbol tiene una idea. Quietos, dice. Y todos se quedan muy, muy quietos. [softly] El viento mira a su alrededor. Nadie corre. Así que el viento se tumba en la hierba alta, {butterfly:float loop 0.3} se hace un ovillo… y tararea. [whispers] Chis. El viento está descansando."
+    }
+  },
+  "sounds": {
+    "wind-bed": {
+      "prompt": "a playful gentle breeze rustling through leaves and long grass",
+      "seconds": 16,
+      "loop": true
+    },
+    "whoosh": {
+      "prompt": "a single soft comic whoosh of wind",
+      "seconds": 1.0
+    }
+  }
+}
