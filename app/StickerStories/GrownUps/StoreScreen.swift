@@ -42,16 +42,7 @@ struct StoreScreen: View {
                     tiles(cards, in: area.size)
                         .frame(width: area.size.width, height: area.size.height)  // centred in the space left
                 }
-                .padding(.bottom, isCompact ? 12 : 0)
-
-                if !isCompact {
-                    Text("Purchases never leave this screen — the rest of the app is for your child. The Forest Friends Sticker Story Pack is included for free.")
-                        .font(.system(size: 13, weight: .medium, design: .rounded))
-                        .foregroundStyle(.white.opacity(0.85))
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, Self.horizontalPadding)
-                        .padding(.bottom, 10)
-                }
+                .padding(.bottom, isCompact ? 12 : 20)
             }
         }
         .background {
@@ -113,7 +104,9 @@ struct StoreScreen: View {
                 spacing: spacing
             ) {
                 ForEach(cards) { card in
-                    PackTile(card: card, isWorking: store.isWorking, isCompact: isCompact)
+                    PackTile(
+                        card: card, isWorking: store.isWorking, isCompact: isCompact,
+                        reservesSubtitle: cards.contains { $0.subtitle != nil })
                         .frame(width: tileWidth, height: tileHeight)
                 }
             }
@@ -208,9 +201,7 @@ struct StoreScreen: View {
                 PackCard(
                     id: pack.id,
                     title: pack.manifest.displayName(for: language),
-                    subtitle: .counts(
-                        stickers: pack.manifest.stickers.count,
-                        stories: pack.manifest.stories.count),
+                    subtitle: nil,
                     artwork: background.map { .pack(background: $0, stickers: stickers) }
                         ?? .mystery(symbol: "photo"),
                     availability: pack.source == .bundled ? .included : .owned))
@@ -226,7 +217,7 @@ struct StoreScreen: View {
             result.append(
                 PackCard(
                     id: product.id, title: product.displayName,
-                    subtitle: .text(product.description),
+                    subtitle: product.description,
                     artwork: .mystery(symbol: "gift.fill"),
                     availability: owned
                         ? .owned
@@ -344,35 +335,30 @@ private struct PackCard: Identifiable {
         case owned
         case purchasable(price: String, buy: () -> Void)
     }
-    enum Subtitle {
-        /// Localized via the catalog ("%lld stickers · %lld stories").
-        case counts(stickers: Int, stories: Int)
-        /// Verbatim text already localized elsewhere (StoreKit product copy).
-        case text(String)
-    }
-
     let id: String
     let title: String
-    let subtitle: Subtitle
+    /// StoreKit's description for a pack on sale (already localized); packs
+    /// on the device have none.
+    let subtitle: String?
     let artwork: Artwork
     let availability: Availability
 
     #if DEBUG
     static let mocks = [
         PackCard(
-            id: "mock-meadow", title: "Meadow Friends", subtitle: .text("Bees, frogs and a very tall sunflower."),
+            id: "mock-meadow", title: "Meadow Friends", subtitle: "Bees, frogs and a very tall sunflower.",
             artwork: .mystery(symbol: "gift.fill"), availability: .purchasable(price: "$1.99", buy: {})),
         PackCard(
-            id: "mock-ocean", title: "Under the Sea", subtitle: .text("Fish, crabs and a sleepy whale."),
+            id: "mock-ocean", title: "Under the Sea", subtitle: "Fish, crabs and a sleepy whale.",
             artwork: .mystery(symbol: "gift.fill"), availability: .purchasable(price: "$1.99", buy: {})),
         PackCard(
-            id: "mock-farm", title: "Farm Friends", subtitle: .text("A pig, a hen and a tractor."),
+            id: "mock-farm", title: "Farm Friends", subtitle: "A pig, a hen and a tractor.",
             artwork: .mystery(symbol: "gift.fill"), availability: .purchasable(price: "$1.99", buy: {})),
         PackCard(
-            id: "mock-space", title: "Space Explorers", subtitle: .text("Rockets, robots and a moon cat."),
+            id: "mock-space", title: "Space Explorers", subtitle: "Rockets, robots and a moon cat.",
             artwork: .mystery(symbol: "gift.fill"), availability: .purchasable(price: "$1.99", buy: {})),
         PackCard(
-            id: "mock-dinos", title: "Dinosaur Valley", subtitle: .text("A gentle giant and three eggs."),
+            id: "mock-dinos", title: "Dinosaur Valley", subtitle: "A gentle giant and three eggs.",
             artwork: .mystery(symbol: "gift.fill"), availability: .purchasable(price: "$1.99", buy: {})),
     ]
     #endif
@@ -385,6 +371,9 @@ private struct PackTile: View {
     let isWorking: Bool
     /// A slimmer info block and smaller art: a phone in landscape.
     var isCompact = false
+    /// Keep the subtitle's line even without one, so every tile's name and
+    /// button line up with the tiles beside it.
+    var reservesSubtitle = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -401,10 +390,13 @@ private struct PackTile: View {
                     .foregroundStyle(Color(red: 0.2, green: 0.3, blue: 0.25))
                     .lineLimit(1)
                     .minimumScaleFactor(0.7)
-                subtitleText
-                    .font(.system(size: isCompact ? 13 : 15, weight: .medium, design: .rounded))
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
+                if card.subtitle != nil || reservesSubtitle {
+                    Text(verbatim: card.subtitle ?? " ")
+                        .font(.system(size: isCompact ? 13 : 15, weight: .medium, design: .rounded))
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .accessibilityHidden(card.subtitle == nil)
+                }
                 actionRow
                     .padding(.top, 2)
             }
@@ -415,15 +407,6 @@ private struct PackTile: View {
         .clipShape(RoundedRectangle(cornerRadius: 26))
         .overlay(RoundedRectangle(cornerRadius: 26).strokeBorder(.white.opacity(0.9), lineWidth: 3))
         .shadow(color: .black.opacity(0.18), radius: 10, y: 6)
-    }
-
-    private var subtitleText: Text {
-        switch card.subtitle {
-        case .counts(let stickers, let stories):
-            Text("\(stickers) stickers · \(stories) stories")
-        case .text(let value):
-            Text(verbatim: value)
-        }
     }
 
     private var artwork: some View {

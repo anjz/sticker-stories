@@ -103,8 +103,7 @@ description instead.
    longer than English; shorten rather than abbreviate.
 3. Add the localization to each product in App Store Connect and in
    `app/StickerStories.storekit`.
-4. Translate the store's own strings in `Localizable.xcstrings` (the
-   footnote names the free pack with the term).
+4. Translate the store's own strings in `Localizable.xcstrings`.
 
 ## Testing
 
