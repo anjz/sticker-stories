@@ -170,16 +170,10 @@ struct StoryScreen: View {
     /// What shows while the pack loads and what the canvas fades in over: a
     /// soft sky above a soft meadow, so the art's own sky and ground take
     /// over from something that already looks like them.
+    /// The menu's background art (already decoded by the menu), so opening a
+    /// pack reads as the same place until its own scene fades in.
     private var loadingBackdrop: some View {
-        LinearGradient(
-            stops: [
-                .init(color: Color(red: 0.60, green: 0.85, blue: 0.97), location: 0),
-                .init(color: Color(uiColor: CanvasScene.skyColor), location: 0.45),
-                .init(color: Color(red: 0.62, green: 0.84, blue: 0.66), location: 0.8),
-                .init(color: Color(red: 0.78, green: 0.88, blue: 0.52), location: 1),
-            ],
-            startPoint: .top, endPoint: .bottom)
-        .ignoresSafeArea()
+        MenuBackground()
     }
 
     private var effectPolicy: EffectPolicy {
