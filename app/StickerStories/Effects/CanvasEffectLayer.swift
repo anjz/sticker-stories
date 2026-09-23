@@ -105,6 +105,7 @@ final class CanvasEffectLayer: SKNode {
         .shootingstars: ShootingStarsPainter(),
         .nebula: NebulaPainter(),
         .warp: WarpPainter(),
+        .planetrise: PlanetrisePainter(),
     ]
 
     override init() {
