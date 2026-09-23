@@ -141,11 +141,14 @@ struct EffectsGalleryView: View {
             if arguments.contains("-effectsGalleryDemo") {
                 scene.playAll(intensity: 1.0, repeating: true)
             }
-            // `-canvasDemo snow,confetti`: loop just those canvas effects at
-            // full strength, 12 s each (screenshots of one effect).
+            // `-canvasDemo snow,night+fireflies`: loop just those canvas
+            // effects at full strength, 12 s each; `+` plays a group together
+            // (screenshots of one effect, or of the layers it is meant for).
             if let index = arguments.firstIndex(of: "-canvasDemo"), index + 1 < arguments.count {
-                let effects = arguments[index + 1].split(separator: ",").compactMap { CanvasEffectName(rawValue: String($0)) }
-                scene.playCanvas(effects)
+                let groups = arguments[index + 1].split(separator: ",").map { group in
+                    group.split(separator: "+").compactMap { CanvasEffectName(rawValue: String($0)) }
+                }
+                scene.playCanvas(groups.filter { !$0.isEmpty })
             }
             // `-liveDemo`: loop the first live animation on its sticker.
             if ProcessInfo.processInfo.arguments.contains("-liveDemo"), let animation = animations.first {
@@ -358,14 +361,15 @@ final class EffectsGalleryScene: SKScene {
         run(repeating ? .repeatForever(sequence) : sequence, withKey: "play-all")
     }
 
-    /// Loops the given canvas effects at full strength, 12 s each.
-    func playCanvas(_ effects: [CanvasEffectName]) {
-        guard !effects.isEmpty else { return }
+    /// Loops the given groups of canvas effects at full strength, 12 s each;
+    /// the effects in a group play together.
+    func playCanvas(_ groups: [[CanvasEffectName]]) {
+        guard !groups.isEmpty else { return }
         stopAll()
         var steps: [SKAction] = []
-        for effect in effects {
+        for group in groups {
             steps.append(.run { [weak self] in
-                self?.play(effect, options: CanvasEffectOptions(intensity: 1, duration: 12))
+                for effect in group { self?.play(effect, options: CanvasEffectOptions(intensity: 1, duration: 12)) }
             })
             steps.append(.wait(forDuration: 12.5))
         }
