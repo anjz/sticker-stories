@@ -24,6 +24,7 @@ enum EffectTextures {
         case "moon": texture = procedural(width: 128, height: 128, moon)
         case "moonglow": texture = procedural(width: 256, height: 256, moonGlow)
         case "band": texture = procedural(width: 4, height: 256, band)
+        case "cloud": texture = shaded(width: 320, height: 160, cloud)
         case "rainbow": texture = drawn(size: CGSize(width: 1024, height: 512), scale: 1) { rect, cg in drawRainbow(in: rect, cg) }
         default:
             texture = drawn(size: CGSize(width: 32, height: 32), scale: 3) { rect, cg in
@@ -52,18 +53,26 @@ enum EffectTextures {
     /// A white texture whose alpha is `alpha(u, v)` with `u`, `v` in 0...1,
     /// `v` running top to bottom. Tinted at use with `colorBlendFactor`.
     private static func procedural(width: Int, height: Int, _ alpha: (Double, Double) -> Double) -> SKTexture {
+        shaded(width: width, height: height) { u, v in (1, alpha(u, v)) }
+    }
+
+    /// Like `procedural`, with a grey level per pixel as well: `shade(u, v)`
+    /// returns (grey, alpha). Used as it is (`colorBlendFactor` 0) or tinted.
+    private static func shaded(width: Int, height: Int, _ shade: (Double, Double) -> (Double, Double)) -> SKTexture {
         let bytesPerRow = width * 4
         var bytes = [UInt8](repeating: 0, count: bytesPerRow * height)
         for y in 0..<height {
             let v = (Double(y) + 0.5) / Double(height)
             for x in 0..<width {
                 let u = (Double(x) + 0.5) / Double(width)
-                let a = UInt8((alpha(u, v).clamped(to: 0...1) * 255).rounded())
+                let (grey, alpha) = shade(u, v)
+                let a = alpha.clamped(to: 0...1)
+                let c = UInt8((grey.clamped(to: 0...1) * a * 255).rounded())  // premultiplied
                 let i = y * bytesPerRow + x * 4
-                bytes[i] = a  // premultiplied white
-                bytes[i + 1] = a
-                bytes[i + 2] = a
-                bytes[i + 3] = a
+                bytes[i] = c
+                bytes[i + 1] = c
+                bytes[i + 2] = c
+                bytes[i + 3] = UInt8((a * 255).rounded())
             }
         }
         let data = Data(bytes)
@@ -108,6 +117,24 @@ enum EffectTextures {
     private static func band(_ u: Double, _ v: Double) -> Double {
         let x = (v - 0.5) * 2
         return exp(-4 * x * x)
+    }
+
+    /// A puffy cloud twice as wide as it is tall: soft domes that melt into
+    /// one shape (their fields add up, like metaballs) on a flatter base,
+    /// white on top and faintly shaded underneath.
+    private static func cloud(_ u: Double, _ v: Double) -> (Double, Double) {
+        let puffs: [(Double, Double, Double)] = [
+            (0.30, 0.56, 0.17), (0.50, 0.44, 0.22), (0.68, 0.54, 0.17),
+            (0.16, 0.66, 0.11), (0.84, 0.66, 0.11), (0.40, 0.64, 0.15), (0.60, 0.64, 0.15),
+        ]
+        var field = 0.0
+        for (cu, cv, r) in puffs {
+            let dx = (u - cu) * 2, dy = v - cv  // the texture is 2:1
+            field += exp(-(dx * dx + dy * dy) / (r * r))
+        }
+        var alpha = smoothstep(0.25, 0.75, field)
+        alpha *= 1 - smoothstep(0.68, 0.8, v)  // the flat underside
+        return (1 - 0.1 * smoothstep(0.4, 0.8, v), alpha)
     }
 
     /// Opaque at the edges, thinner in the middle: a dimmed room.
