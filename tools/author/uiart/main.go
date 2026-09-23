@@ -45,8 +45,9 @@ const (
 	// Longest edge of a reference image sent to the API.
 	referencePx = 1536
 	// How many of the packs' finished stickers the store tile is drawn
-	// from, spread across the packs, and their longest edge.
-	storeStickers  = 8
+	// from, spread across the packs, and their longest edge. A few set the
+	// style; more would crowd the tile with one pack's cast.
+	storeStickers  = 4
 	storeStickerPx = 512
 )
 
