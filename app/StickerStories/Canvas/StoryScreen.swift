@@ -327,28 +327,3 @@ struct StoryScreen: View {
     }
 }
 
-/// The loading indicator: three white dots bouncing in turn, like a ball
-/// passed along — a toy, not a system spinner. Under Reduce Motion the dots
-/// stay put and breathe instead.
-struct BouncingDots: View {
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
-
-    var body: some View {
-        TimelineView(.animation) { context in
-            let t = context.date.timeIntervalSinceReferenceDate
-            HStack(spacing: 14) {
-                ForEach(0..<3, id: \.self) { index in
-                    let phase = t * 2 * .pi / 1.2 - Double(index) * 0.9
-                    let lift = max(0, sin(phase))  // a half-sine: up, land, wait
-                    Circle()
-                        .fill(.white)
-                        .frame(width: 18, height: 18)
-                        .shadow(color: .black.opacity(0.18), radius: 3, y: 3)
-                        .offset(y: reduceMotion ? 0 : -18 * lift)
-                        .opacity(reduceMotion ? 0.6 + 0.4 * lift : 1)
-                }
-            }
-            .frame(height: 40, alignment: .bottom)
-        }
-    }
-}
