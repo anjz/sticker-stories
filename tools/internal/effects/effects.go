@@ -34,7 +34,7 @@ var Names = []string{
 // scene), in library order.
 var CanvasNames = []string{
 	"fog", "rain", "sunshine", "rainbow", "night", "snow", "sunset",
-	"clouds", "wind", "fireflies", "dimlight",
+	"clouds", "wind", "fireflies", "leaves", "dimlight",
 }
 
 // CanvasSettings maps each canvas effect to the pack settings it suits
@@ -51,6 +51,7 @@ var CanvasSettings = map[string][]string{
 	"clouds":    {"outdoors"},
 	"wind":      {"outdoors"},
 	"fireflies": {"outdoors"},
+	"leaves":    {"outdoors"},
 	"dimlight":  {"indoors"},
 }
 
