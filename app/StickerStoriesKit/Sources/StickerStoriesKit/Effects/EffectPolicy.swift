@@ -48,7 +48,7 @@ public struct EffectPolicy: Equatable, Sendable {
         var result = options
         switch name {
         case .rain, .snow, .wind, .fireflies, .leaves, .rainywindow, .confetti, .bubbles, .shootingstars,
-            .glowplankton:
+            .glowplankton, .current:
             result.intensity = min(result.intensity, 0.4)
         case .warp:
             return nil
