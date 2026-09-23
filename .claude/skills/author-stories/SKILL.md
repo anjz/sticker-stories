@@ -57,7 +57,8 @@ Before writing any story, produce `tools/author/stories/<packID>/plan.md`: a
 table with one row per story — `id`, `featured` (3–4 stickers, or none for a
 fallback), `supporting`, `tags`, one-line `premise`, `inspiration`,
 `learning` (the one fact the story shows, or `—`), `canvas` (the canvas
-effect the story will use, or `—` for most rows), and `live` (the live
+effects the story will use — every weather or light moment in its premise —
+or `—`), and `live` (the live
 stickers the story brings alive — at most two — or `—`).
 
 Constraints (the validator checks them on the finished set):
@@ -68,10 +69,11 @@ Constraints (the validator checks them on the finished set):
   itself;
 - moods and shapes vary across the set (see GUIDE "Variety"); no two
   premises alike; every sticker is the hero of at least one story;
-- canvas effects planned for a **minority** of stories (aim for roughly one
-  in four or five, never more than 40 %), only where the premise has weather
-  or light in it, spread across the effects the pack's setting allows —
-  none at all when the setting is `none`;
+- canvas effects planned for **every story whose premise has weather or
+  light in it** (a snowy day, a rainy morning, dusk, a windy hill, a party),
+  up to three per story, spread across the effects the pack's setting allows
+  — and none at all when the setting is `none`; think about weather when
+  shaping premises, since it is one of the things the child sees;
 - **every live sticker comes alive in at least three stories**, mostly
   ones where it is featured and whose premise grows from its move (the
   raccoon's peekaboo, the hedgehog curling up for a nap, the woodpecker's
@@ -106,11 +108,16 @@ exactly per `FORMAT.md`:
   tell exactly what that animation shows, with the next sentence or so
   (8–14 words, its 3–6 s) free of other cues on that sticker, each sticker
   once; the words alone must still tell the moment;
-- a canvas cue (`{canvas:rain 0.8 14s}` — see FORMAT "Canvas cues") only in
-  the stories the roster marked for one: at most one or two, an effect the
-  pack's setting allows, cued a beat before the words it illustrates, with
-  the weather or light written into the words themselves so the story reads
-  fine without it;
+- a canvas cue (`{canvas:rain 0.8 14s}` — see FORMAT "Canvas cues") for
+  **every** weather or light moment the words describe that the pack's
+  setting has an effect for — snow falling, rain, fog, sunset, night and
+  the moon, clouds, a gust, autumn leaves, fireflies, a party, bubbles, the
+  sun coming out — up to three per story, cued a beat before the words it
+  illustrates, lasting as long as those beats; the weather stays written
+  into the words so the story reads fine without it. `storycheck` warns
+  when the text mentions one and never cues it: fix every such warning by
+  adding the cue, or, if the word is only a comparison ("faster than the
+  wind"), by rewording;
 - every number, colour or visible feature the text gives a sticker (her
   five spots, the eight yellow petals, his stripy tail) matches the art as
   recorded in the cast table; if a premise needs a feature the sticker
@@ -144,7 +151,7 @@ forbidden words, invalid cues (including a canvas effect the pack's setting
 does not allow, an unknown sound id, a tag outside the allowed list) and
 coverage are mechanical; the safety and quality rules in the GUIDE are
 yours to hold. Watch the tables it prints: effects spread across the whole
-library with canvas effects in a clear minority, every live sticker alive
+library, every weather mention cued, every live sticker alive
 in several stories, audio tags and sounds in most stories but never
 crowding one, and learning at about 40 %.
 
@@ -170,8 +177,9 @@ build step 2 (audio); it is a separate tool.
 - Never cue a live animation on words it contradicts, on a sticker without
   one, or twice on the same sticker in a story.
 - Never use an effect name that is not in `docs/effects/effects.json`, a
-  canvas effect the pack's setting does not allow, a canvas effect as
-  routine decoration, or an audio tag outside FORMAT's allowed list.
+  canvas effect the pack's setting does not allow, a canvas effect the
+  words don't describe, a described snowfall (or rain, sunset…) left
+  without its effect, or an audio tag outside FORMAT's allowed list.
 - Never state the learning fact as a lesson, invent a fact, or put one in
   more than about half the stories.
 - Never a scary sound effect, a solo sound mid-sentence, or a story that

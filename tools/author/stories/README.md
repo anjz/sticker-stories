@@ -36,8 +36,8 @@ stories may use), the effects catalogue (`docs/effects/effects.json`),
    "whole-forest" stories that need no particular sticker;
 2. writes the stories in small batches — bilingual (every pack language),
    80–140 words per language, with effect cues, a few Eleven v3 audio tags
-   for the narrator, sound effects (some in place of sound words), the
-   occasional canvas effect where the weather or light calls for it, and a
+   for the narrator, sound effects (some in place of sound words), a canvas
+   effect wherever the words describe weather or light, and a
    small true fact in about four stories in ten — into
    `<packID>/<storyID>/story.json`;
 3. validates after every batch with `storycheck` and fixes what it flags.

@@ -229,12 +229,18 @@ a pack may use is decided by its **`setting`** in `manifest.json`:
 Grammar: `{canvas:rain}`, `{canvas:rain 0.8 14s}` (intensity, then how long
 it stays). See `FORMAT.md`, "Canvas cues".
 
-- **Occasional, never routine.** A canvas effect is a big moment; a pack
-  where every story rains is a pack where rain means nothing. Most stories
-  have none. Use one — at most two — only in a story whose weather or
-  light genuinely changes, in well under half of the set (the validator
-  warns past 40 %), and vary which: not every outdoors story that uses one
-  should use rain.
+- **Show the weather the words tell.** Whenever the story puts weather or
+  light into the scene that the pack's setting has an effect for — snow
+  falling, rain, fog, the sun going down, night and the moon, clouds, a
+  gust of wind, autumn leaves, fireflies, a party, bubbles, the sun coming
+  out — cue it, so the child sees what the narrator says. `storycheck`
+  warns when the text mentions one of these and never cues it. Only
+  comparisons and stories-within-the-story are exempt ("faster than the
+  wind", "a story about the moon"); if the warning is about one, reword it.
+- **But only what the words tell.** Never a canvas effect as decoration on
+  a story whose words have no weather or light in them; a story with no
+  such moment has none. At most three per story (the validator warns past
+  that): pick the biggest changes when more are mentioned.
 - **The story leads, the effect follows.** Write the rain into the words
   (*plip, plop; pitter-patter*) and cue `{canvas:rain}` a beat before them:
   it takes a moment to build up (fog longest). Let the duration cover the
