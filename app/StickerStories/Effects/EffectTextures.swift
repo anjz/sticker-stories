@@ -24,6 +24,7 @@ enum EffectTextures {
         case "moon": texture = procedural(width: 128, height: 128, moon)
         case "moonglow": texture = procedural(width: 256, height: 256, moonGlow)
         case "band": texture = procedural(width: 4, height: 256, band)
+        case "overcast": texture = procedural(width: 4, height: 256, overcast)
         case "cloud": texture = shaded(width: 320, height: 160, cloud)
         case "wisp": texture = procedural(width: 256, height: 16, wisp)
         case "trickle": texture = procedural(width: 24, height: 72, trickle)
@@ -125,6 +126,13 @@ enum EffectTextures {
     /// Light along the whole top edge, fading downward.
     private static func skyGlow(_ u: Double, _ v: Double) -> Double {
         pow(1 - v, 2.5)
+    }
+
+    /// Solid over the top half, then fading smoothly to nothing: a sky
+    /// that has gone white from the top down.
+    private static func overcast(_ u: Double, _ v: Double) -> Double {
+        let t = ((v - 0.45) / 0.55).clamped(to: 0...1)
+        return 1 - t * t * (3 - 2 * t)
     }
 
     /// A soft horizontal band, brightest along its middle: a glow on the horizon.
