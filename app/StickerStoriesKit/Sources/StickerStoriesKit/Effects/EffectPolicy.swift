@@ -47,7 +47,8 @@ public struct EffectPolicy: Equatable, Sendable {
         guard isCalm else { return options }
         var result = options
         switch name {
-        case .rain, .snow, .wind, .fireflies, .leaves, .rainywindow, .confetti, .bubbles, .shootingstars:
+        case .rain, .snow, .wind, .fireflies, .leaves, .rainywindow, .confetti, .bubbles, .shootingstars,
+            .glowplankton:
             result.intensity = min(result.intensity, 0.4)
         case .warp:
             return nil

@@ -36,6 +36,7 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
     case sunrays
     case ripples
     case deepwater
+    case glowplankton
 
     /// The pack settings (`PackManifest.setting`) this effect suits.
     public var settings: Set<PackSetting> {
@@ -46,7 +47,7 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
         case .confetti: [.outdoors, .indoors, .space]
         case .bubbles: [.outdoors, .indoors, .space, .underwater]
         case .shootingstars, .nebula, .warp, .planetrise, .comet: [.space]
-        case .sunrays, .ripples, .deepwater: [.underwater]
+        case .sunrays, .ripples, .deepwater, .glowplankton: [.underwater]
         }
     }
 
@@ -155,6 +156,9 @@ public struct CanvasEffectDefinition: Sendable {
         CanvasEffectDefinition(
             name: .deepwater, defaultDuration: 12, rampIn: 2.5, rampOut: 2.5,
             summary: "The water darkens to a deep blue, most of all at the edges."),
+        CanvasEffectDefinition(
+            name: .glowplankton, defaultDuration: 12, rampIn: 2.0, rampOut: 2.0,
+            summary: "Tiny blue-green lights twinkle and drift through the water."),
     ]
 }
 
