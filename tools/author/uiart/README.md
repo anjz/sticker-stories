@@ -39,9 +39,9 @@ transparent background for the title, no borders.
   and the look) and its scene, both from `author/art/<pack>/out/`, so the
   cover belongs to the pack. The prompt names the pack and its manifest
   `description`.
-- **Store tile**: drawn with up to 8 of the packs' finished stickers
+- **Store tile**: drawn with up to 4 of the packs' finished stickers
   (`author/art/<pack>/out/stickers/`, taken in turn from every pack) as
-  references, so the collage shows the app's own characters.
+  references, so the tile's stickers share the packs' style.
 - Candidates land in `author/art/app/out/<asset>/<n>.png` (covers in
   `out/cover-<pack>/`), with **`choices.png`**: all of them side by side,
   numbered left to right, top to bottom; transparent art on a checkerboard.
@@ -50,7 +50,7 @@ transparent background for the title, no borders.
   say); `-fresh` moves the current set into `old/<timestamp>/` first.
 - `-dry-run` lists what would be generated; `-parallel` (default 4) images
   run at once. About $0.04–0.08 per image at `high` (a store tile, with
-  its eight references, about $0.12), so a full round is about a dollar.
+  its sticker references, about $0.10), so a full round is about a dollar.
 
 ## What `pick` installs
 
