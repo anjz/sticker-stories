@@ -53,6 +53,20 @@ go run ./packager validate ../packs/forest
    regenerates a sticker, while a `border`, `margin` or `finish` change
    (or a tool update to the finishing) only re-finishes the kept raw — no
    API call, no cost. `-dry-run` says which.
+2b. **Expressions** (`expressions` in art.json, e.g. `happy`, `sad`,
+   `sleeping`, `surprised`), for every sticker with a `face` box
+   (fractions of its raw art; add a `faceNote` when the face is drawn on
+   something that must keep its colour — the flower's brown seed disc).
+   The kept raw is sent to the edits model with a mask over the face and
+   the expression's prompt; only the face of the result, inside a
+   feathered ellipse and with the raw's own alpha, is laid back over the
+   raw (`stickerimg.Face`), and that is finished exactly like the sticker.
+   So every variant has the sticker's exact outline and size and the app
+   swaps it in place (`docs/pack-format.md`, "Expressions"). The API
+   output is kept as `<id>.<expr>.gen.png`, the composite as
+   `<id>.<expr>.raw.png`, the finished variant as `<id>.<expr>.png`.
+   `-only faces` renders just the variants, `-only bear.happy` one; the
+   edits model allows five image inputs a minute, so use `-parallel 2`.
 3. **Scene planes**, one call each, painted directly at the wide 3072×1536
    size with the prompt asking for a complete composition in the central
    4:3 area; the base 2048×1536 rendition is cut from that centre, so the
@@ -83,6 +97,10 @@ pack gets an encoded copy at install.
 `-quality medium` is cheaper while iterating on prompts.
 
 ## Install
+
+`install` also copies each sticker's finished expression variants to
+`stickers/<id>.<expr>.webp` and lists them in the manifest's
+`stickers[].expressions`.
 
 Encodes `out/stickers/<id>.png` into `packs/<id>/stickers/<id>.webp` and
 the four scene planes into `packs/<id>/art/*.webp` — lossy WebP at
