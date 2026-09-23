@@ -109,6 +109,10 @@ description instead.
 
 - `app/StickerStories.storekit` defines test products (a `meadow` pack and
   `allaccess`) for the StoreKit Testing environment; the shared scheme loads it.
+  It also holds five placeholder packs (`ocean`, `farm`, `space`, `dinos`,
+  `home`) that only debug builds ask for (`StoreConfiguration`), so the store
+  can be seen full and test-bought; they have no content and never reach
+  App Store Connect.
 - Refund simulation: Xcode → Debug → StoreKit → Manage Transactions → refund,
   then relaunch → assets for that pack must be gone.
 - Unit tests cover the reconciliation logic in `StickerStoriesKit`.
