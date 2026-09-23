@@ -120,7 +120,7 @@ Three surfaces, one door out of the child experience:
   its own confirmation) that also empties that stack. No grown-ups access
   from here.
 - **Store** (`StoreScreen`) — a full-screen section reached only via the
-  menu's More stories card → parental gate: the "All sticker packs" bundle as
+  menu's More stories card → parental gate: the "All Sticker Story Packs" bundle as
   a banner, the packs as a horizontal row of tiles (two always on screen),
   restore purchases.
 - **Parent settings** (`SettingsView`) — a sheet reached only via the gear in
@@ -156,6 +156,21 @@ Multilingual from day one — currently **en-US** and **es-ES**:
 - Delivery (future): packs ship all languages today; if size ever forces a
   split, keep one download URL per pack + `lang=` query param
   (docs/pack-format.md, "Future: per-language delivery").
+
+**Adding a language** touches four places, each with its own checks:
+
+1. **App UI** — add it to `Localizable.xcstrings` and translate every key
+   (no partial languages: the catalog is the whole UI).
+2. **Settings** — add it to the language override choices in
+   `SettingsView`.
+3. **Pack content** — every pack's manifest gains it in `languages` and in
+   every localized map (display name within 30 characters, sticker names, story
+   title/text/audio); the packager rejects partial coverage
+   (`docs/pack-format.md`, rule 4), and the stories need narration in that
+   language (`tools/author/`).
+4. **Store copy** — the product term, the in-app purchase names and
+   descriptions within App Store Connect's limits, in App Store Connect and
+   the StoreKit test configuration (`docs/commerce.md`, "Product copy").
 
 ## Effects (play mode)
 

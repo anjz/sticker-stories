@@ -109,7 +109,7 @@
 
 ## Later
 
-- [x] All-access unlock (`…allaccess`, "All sticker packs") as the banner
+- [x] All-access unlock (`…allaccess`, "All Sticker Story Packs") as the banner
       at the top of the full-screen store (2026-09-23)
 - [ ] Real TTS pipeline hardening (voice selection, per-story pacing)
 - [ ] Per-sticker character animation (a sibling system to the effects
