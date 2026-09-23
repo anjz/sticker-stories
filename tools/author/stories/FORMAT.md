@@ -203,10 +203,10 @@ Weather and light over the whole scene use the reserved target `canvas`
   `confetti`, `bubbles` (indoors packs); `confetti`, `bubbles`,
   `shootingstars`, `nebula`, `warp`, `planetrise`, `comet` (space packs);
   and `bubbles`, `sunrays`, `ripples`, `deepwater`, `glowplankton`,
-  `current` (underwater packs). The pack's `setting` in its manifest
-  decides which are allowed; a `none` pack allows no canvas cues. Only an
-  intensity and a duration (`Ns`) may follow — no `xN`, `loop`, `hold` or
-  colour.
+  `current`, `sandcloud` (underwater packs). The pack's `setting` in its
+  manifest decides which are allowed; a `none` pack allows no canvas cues.
+  Only an intensity and a duration (`Ns`) may follow — no `xN`, `loop`,
+  `hold` or colour.
 - A canvas cue fires on the word that follows it like any other, and the
   effect takes a moment to build up (fog ~2.5 s, rain ~1 s), so put it a
   beat before the words it illustrates. The duration is how long it stays,
