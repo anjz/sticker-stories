@@ -32,6 +32,8 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
     case warp
     case planetrise
     case comet
+    // Underwater
+    case sunrays
 
     /// The pack settings (`PackManifest.setting`) this effect suits.
     public var settings: Set<PackSetting> {
@@ -42,6 +44,7 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
         case .confetti: [.outdoors, .indoors, .space]
         case .bubbles: [.outdoors, .indoors, .space, .underwater]
         case .shootingstars, .nebula, .warp, .planetrise, .comet: [.space]
+        case .sunrays: [.underwater]
         }
     }
 
@@ -141,6 +144,9 @@ public struct CanvasEffectDefinition: Sendable {
         CanvasEffectDefinition(
             name: .comet, defaultDuration: 12, rampIn: 1.5, rampOut: 2.0,
             summary: "A comet with a long glowing tail glides slowly across the sky."),
+        CanvasEffectDefinition(
+            name: .sunrays, defaultDuration: 10, rampIn: 2.0, rampOut: 2.0,
+            summary: "Shafts of sunlight slant down from the surface and sway slowly."),
     ]
 }
 
