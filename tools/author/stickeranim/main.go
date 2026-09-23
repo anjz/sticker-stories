@@ -52,7 +52,7 @@ const (
 	toolVersion = "1"
 	// assembleVersion changes whenever the registration or finishing of
 	// kept raw sheets changes, so they are re-assembled without new calls.
-	assembleVersion = "9"
+	assembleVersion = "10"
 	editModel       = "gpt-image-2.5-sunburst"
 	defaultQual     = "high"
 	defaultHold     = 1.0 / 12
@@ -579,6 +579,9 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 	opts := stickerimg.AnimOptions{
 		StickerSize: art.StickerSize, Border: art.Border, Margin: art.Margin, Threshold: 8, Finish: &finish,
 		Columns: r.c.cfg.Columns, MaxSheet: r.c.cfg.MaxSheet, Normalize: a.normalize(),
+	}
+	for _, s := range a.Sheets {
+		opts.SheetSizes = append(opts.SheetSizes, len(s.Frames))
 	}
 
 	if len(a.RestFrames) > 0 {

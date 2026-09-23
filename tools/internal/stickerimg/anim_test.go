@@ -149,3 +149,59 @@ func TestSplitGridCutsWhereTheSheetIsEmpty(t *testing.T) {
 		t.Errorf("right character should be whole (65 px), got %v", box)
 	}
 }
+
+func TestSheetScalesMatchEachSheetToTheFirst(t *testing.T) {
+	// Two sheets of three; the second sheet's rest cell (index 5) has 81 %
+	// of the first's area, so its cells scale up by √(1/0.81) ≈ 1.11.
+	areas := []float64{100, 90, 95, 70, 75, 81}
+	got := sheetScales(6, []int{3, 3}, []int{0, 5}, areas, 0.25)
+	for i := 0; i < 3; i++ {
+		if got[i] != 1 {
+			t.Errorf("sheet 1 cell %d scale %.3f, want 1", i, got[i])
+		}
+	}
+	for i := 3; i < 6; i++ {
+		if d := got[i] - 1/0.9; d > 1e-9 || d < -1e-9 {
+			t.Errorf("sheet 2 cell %d scale %.4f, want %.4f", i, got[i], 1/0.9)
+		}
+	}
+
+	// A sheet without a rest frame carries the previous sheet's scale; a
+	// wildly different area (not the same pose) is ignored.
+	got = sheetScales(9, []int{3, 3, 3}, []int{0, 5}, []float64{100, 0, 0, 0, 0, 25, 0, 0, 0}, 0.25)
+	for i, s := range got {
+		if s != 1 {
+			t.Errorf("cell %d scale %.3f, want 1 (drift beyond the limit is ignored)", i, s)
+		}
+	}
+}
+
+func TestAnimationBringsEverySheetToTheRestSize(t *testing.T) {
+	// Sheet 1 drawn at 1.0, sheet 2 at 0.8: after assembly every frame's
+	// pad should be the same width.
+	var cells []*image.RGBA
+	for i := 0; i < 2; i++ {
+		cells = append(cells, cell(200, 30, 60, 20, 1.0))
+	}
+	for i := 0; i < 2; i++ {
+		cells = append(cells, cell(200, 30, 60, 20, 0.8))
+	}
+	rest := cell(200, 30, 60, 20, 1.3)
+	sheet, err := Animation(cells, AnimOptions{
+		StickerSize: 400, Border: 0.02, Margin: 0.02, Threshold: 8, Columns: 4,
+		Rest: rest, RestFrames: []int{0, 3}, SheetSizes: []int{2, 2},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	var widths []int
+	for i := 0; i < 4; i++ {
+		frame := sheet.Image.SubImage(image.Rect(i*sheet.Frame.X, 0, (i+1)*sheet.Frame.X, sheet.Frame.Y)).(*image.RGBA)
+		widths = append(widths, Bounds(frame, 8).Dx())
+	}
+	for i, w := range widths {
+		if d := w - widths[0]; d > 3 || d < -3 {
+			t.Errorf("frame %d is %d px wide, frame 1 %d: sheets not brought to one size (%v)", i+1, w, widths[0], widths)
+		}
+	}
+}
