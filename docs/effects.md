@@ -150,6 +150,7 @@ or fantastical places) gets no canvas effects at all.
 | `snow` | outdoors | Soft snowflakes drift down at different sizes and speeds; the light turns a little cooler and brighter. | Winter, a snow day, the first flakes, a quiet hush. `intensity` is a few flakes to a thick flurry. | 12 s | 2 / 2.5 s | runs at ≤0.4 |
 | `sunset` | outdoors | A warm orange-pink glow spreads from the horizon while the top of the sky deepens to violet. | The end of the day, going home, a calm golden moment. Followed by `night` it makes a gentle bedtime. Builds slowly — cue it a beat early. | 10 s | 2.5 / 2.5 s | full |
 | `clouds` | outdoors | Big soft clouds drift slowly across the sky behind the scenery; the light dims a little. | A cloudy day, "a cloud shaped like…", the grey before rain, the sun going in. | 12 s | 2.5 / 2.5 s | full |
+| `wind` | outdoors | Pale wisps of air sweep across the scene from left to right, with a few specks tumbling along. | A windy day, a kite, something blown away, a whoosh. `intensity` is a breeze to a gust. | 8 s | 1 / 1.5 s | runs at ≤0.4 |
 | `dimlight` | indoors | The lights go low: the scene darkens toward its edges. | Bedtime, a lamp switched low, a cosy evening, a whispered secret. Never darkness as a threat. | 8 s | 1.5 / 1.5 s | full |
 
 - Ramps never eat more than a third of the duration each, so a 3 s effect

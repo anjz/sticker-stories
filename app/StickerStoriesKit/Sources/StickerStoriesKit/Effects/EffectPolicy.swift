@@ -46,7 +46,7 @@ public struct EffectPolicy: Equatable, Sendable {
         guard isCalm else { return options }
         var result = options
         switch name {
-        case .rain, .snow:
+        case .rain, .snow, .wind:
             result.intensity = min(result.intensity, 0.4)
         case .fog, .sunshine, .rainbow, .night, .sunset, .clouds, .dimlight:
             break
