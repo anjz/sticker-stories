@@ -232,10 +232,12 @@ Weather and light over the whole scene use the reserved target `canvas`
   effect takes a moment to build up (fog ~2.5 s, rain ~1 s), so put it a
   beat before the words it illustrates. The duration is how long it stays,
   ramps included; it ends on its own.
-- Canvas effects are **occasional**: at most one or two per story, only
-  when the story's weather or light genuinely changes, and in well under
-  half of a pack's stories. The validator warns past two per story and past
-  40 % of the set.
+- Canvas effects **follow the words**: whenever the text puts weather or
+  light the setting can show into the scene (snow, rain, fog, sunset,
+  night, clouds, wind, autumn leaves, fireflies, a party, bubbles,
+  sunshine), cue it; never cue one the words don't mention. The validator
+  warns when the text mentions one (by keyword, in each language) that is
+  never cued, and past three per story.
 
 ## The roster (`plan.md`)
 
@@ -251,7 +253,6 @@ rules the validator enforces on the finished set:
   at least 5 (warning);
 - at least 3 fallback stories (empty `featured`);
 - no two stories with the same `featured` set *and* the same premise idea;
-- canvas effects in well under half of the stories (warning past 40 %);
 - about four stories in ten carry a `learning` fact (warning outside
   30–50 %);
 - every sticker with a live animation, once featured enough, is brought

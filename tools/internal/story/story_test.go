@@ -218,7 +218,7 @@ func TestSoundCuesAndTagsAreValidated(t *testing.T) {
 	s.Sounds = map[string]SoundSpec{"rain": {Prompt: "gentle rain on leaves", Seconds: 2}, "birds": {Prompt: "dawn chorus", Seconds: 12, Loop: true}}
 	for _, lang := range []string{"en-US", "es-ES"} {
 		l := s.Languages[lang]
-		l.Text = "[softly] It rained all morning, and the whole forest listened to it, drip by drip by drip. {sfx:rain solo} {sfx:birds} " + l.Text
+		l.Text = "{canvas:rain 0.5 12s} [softly] It rained all morning, and the whole forest listened to it, drip by drip by drip. {sfx:rain solo} {sfx:birds} " + l.Text
 		s.Languages[lang] = l
 	}
 	if is := Validate(s, forest, cat); len(is.Errors) != 0 || len(is.Warnings) != 0 {
@@ -327,10 +327,10 @@ func TestCanvasCuesFollowTheSetting(t *testing.T) {
 	}
 	// Too many, and only canvas cues, are warnings.
 	l := s.Languages["en-US"]
-	l.Text = "{canvas:fog} {canvas:rain} {canvas:sunshine} " + words(90, "word")
+	l.Text = "{canvas:fog} {canvas:rain} {canvas:sunshine} {canvas:night} " + words(90, "word")
 	s.Languages["en-US"] = l
 	warnings := strings.Join(Validate(s, forest, cat).Warnings, "\n")
-	for _, want := range []string{"at most 2 per story", "only canvas cues"} {
+	for _, want := range []string{"keep it to the 3 biggest", "only canvas cues"} {
 		if !strings.Contains(warnings, want) {
 			t.Errorf("expected a warning containing %q; got %v", want, warnings)
 		}
@@ -378,9 +378,6 @@ func TestCoverage(t *testing.T) {
 	}
 	if cov.EffectUse["hop"] != 3 || cov.EffectUse["hearts"] != 3 || cov.EffectUse["canvas:rain"] != 1 || cov.CanvasStories != 1 {
 		t.Errorf("effect usage wrong: %+v", cov.EffectUse)
-	}
-	if got := Cover([]*Story{c, c}, forest, 0); !strings.Contains(strings.Join(got.Warnings, "\n"), "occasional weather") {
-		t.Errorf("expected a canvas-share warning: %v", got.Warnings)
 	}
 	joined := strings.Join(cov.Errors, "\n")
 	if !strings.Contains(joined, `"owl" is never featured`) {
@@ -484,5 +481,37 @@ func TestLiveCues(t *testing.T) {
 	set[0] = withText(" {owl:live} blink.", " {owl:live} parpadea.")
 	if c := Cover(set, pack, 0); c.LiveUse["owl"] != 1 || c.LiveStories != 1 || c.EffectUse[LiveEffect] != 0 {
 		t.Errorf("live use counted wrong: %+v %d", c.LiveUse, c.LiveStories)
+	}
+}
+
+func TestWeatherWordsWantTheirCanvasEffect(t *testing.T) {
+	cat := testCatalog(t)
+	s := goodStory()
+	for lang, extra := range map[string]string{"en-US": " Then the snow began to fall.", "es-ES": " Entonces empezó a caer la nieve."} {
+		l := s.Languages[lang]
+		l.Text += extra
+		s.Languages[lang] = l
+	}
+	w := strings.Join(Validate(s, forest, cat).Warnings, "\n")
+	if !strings.Contains(w, `en-US: the text mentions "snow"`) || !strings.Contains(w, `es-ES: the text mentions "nieve"`) {
+		t.Fatalf("snow without {canvas:snow} should warn in both languages: %v", w)
+	}
+	for lang, cue := range map[string]string{"en-US": " {canvas:snow} Snow.", "es-ES": " {canvas:snow} Nieve."} {
+		l := s.Languages[lang]
+		l.Text += cue
+		s.Languages[lang] = l
+	}
+	if w := strings.Join(Validate(s, forest, cat).Warnings, "\n"); strings.Contains(w, "mentions") {
+		t.Errorf("a cued snow story should not warn: %v", w)
+	}
+	// A pack whose setting has no such effect is not asked for one.
+	indoors := forest
+	indoors.Setting = "indoors"
+	plain := goodStory()
+	l := plain.Languages["en-US"]
+	l.Text += " Outside, the snow fell."
+	plain.Languages["en-US"] = l
+	if w := strings.Join(Validate(plain, indoors, cat).Warnings, "\n"); strings.Contains(w, "mentions") {
+		t.Errorf("indoors packs have no snow effect: %v", w)
 	}
 }

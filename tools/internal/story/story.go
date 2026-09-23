@@ -39,10 +39,7 @@ const (
 	MinFeaturedPer = 5 // each sticker should be featured at least this often (warning)
 	MinFallbacks   = 3
 	DefaultCount   = 50
-	MaxCanvasCues  = 2 // canvas effects per story and language before a warning
-	// Share of a pack's stories that may use canvas effects before a warning:
-	// they are occasional weather, not the default.
-	MaxCanvasShare = 0.4
+	MaxCanvasCues  = 3 // canvas effects per story and language before a warning
 	// Audio tags per story and language before a warning: a few well-placed
 	// ones read as performance, many read as a tic (and v3 may say them).
 	MaxAudioTags = 6
@@ -887,8 +884,9 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 			is.warnf("%s: %d live animations; they are the characters' big moments — at most %d per story", lang, liveCues, MaxLiveCues)
 		}
 		if canvasCues > MaxCanvasCues {
-			is.warnf("%s: %d canvas cues; canvas effects are occasional — at most %d per story", lang, canvasCues, MaxCanvasCues)
+			is.warnf("%s: %d canvas cues; keep it to the %d biggest changes of weather or light", lang, canvasCues, MaxCanvasCues)
 		}
+		validateCanvasMentions(&is, lang, nar, m, cat)
 		if canvasCues > 0 && canvasCues == len(cues) {
 			is.warnf("%s: only canvas cues — the stickers should react too", lang)
 		}
@@ -1011,6 +1009,53 @@ func validateTags(is *Issues, lang string, nar Narration) {
 	}
 	if experimental > 1 {
 		is.warnf("%s: %d experimental audio tags ([yawns], [sings]); they are less reliable, use at most one", lang, experimental)
+	}
+}
+
+// canvasWords are the words that put a canvas effect's weather or light
+// into a story, by effect and language (primary subtag). Only words that
+// describe the scene itself: a story that says them should show it.
+var canvasWords = map[string]map[string]*regexp.Regexp{
+	"fog":       {"en": regexp.MustCompile(`\b(fog|foggy|mist|misty)\b`), "es": regexp.MustCompile(`\b(niebla|bruma)\b`)},
+	"rain":      {"en": regexp.MustCompile(`\b(rain|raining|rained|rainy|drizzle|pitter-patter)\b`), "es": regexp.MustCompile(`\b(lluvia|llueve|llover|lloviendo|llovió|chispear)\b`)},
+	"snow":      {"en": regexp.MustCompile(`\b(snow|snowing|snowflakes?)\b`), "es": regexp.MustCompile(`\b(nieve|nevando|nevar|nevó|copos?)\b`)},
+	"rainbow":   {"en": regexp.MustCompile(`\brainbow\b`), "es": regexp.MustCompile(`\barcoíris\b`)},
+	"night":     {"en": regexp.MustCompile(`\b(moon|moonlight)\b`), "es": regexp.MustCompile(`\bluna\b`)},
+	"sunset":    {"en": regexp.MustCompile(`\b(sunset|sun (went|goes|had gone|is going) down)\b`), "es": regexp.MustCompile(`\b(atardecer|sol se (puso|ponía|pone|esconde)|sol ya se había puesto)\b`)},
+	"clouds":    {"en": regexp.MustCompile(`\b(clouds?|cloudy)\b`), "es": regexp.MustCompile(`\b(nubes?|nublad[oa])\b`)},
+	"wind":      {"en": regexp.MustCompile(`\b(wind|windy|gust)\b`), "es": regexp.MustCompile(`\b(viento|ráfaga)\b`)},
+	"fireflies": {"en": regexp.MustCompile(`\bfireflies\b`), "es": regexp.MustCompile(`\bluciérnagas\b`)},
+	"leaves":    {"en": regexp.MustCompile(`\b(autumn|leaves (fell|fall|came down|came tumbling))\b`), "es": regexp.MustCompile(`\botoño\b`)},
+	"confetti":  {"en": regexp.MustCompile(`\b(party|confetti)\b`), "es": regexp.MustCompile(`\b(fiesta|confeti)\b`)},
+	"bubbles":   {"en": regexp.MustCompile(`\bbubbles\b`), "es": regexp.MustCompile(`\bburbujas\b`)},
+}
+
+// validateCanvasMentions warns when the words put weather or light into the
+// scene that a canvas effect for the pack's setting can show, and the story
+// never cues it: the child should see the snow the narrator talks about.
+func validateCanvasMentions(is *Issues, lang string, nar Narration, m Manifest, cat *Catalog) {
+	cued := map[string]bool{}
+	for _, c := range nar.Cues {
+		if c.Canvas {
+			cued[c.Effect] = true
+		}
+	}
+	plain := strings.ToLower(nar.Plain())
+	names := make([]string, 0, len(canvasWords))
+	for name := range canvasWords {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+	for _, name := range names {
+		e, known := cat.Canvas[name]
+		if !known || cued[name] || !e.SuitsSetting(m.EffectiveSetting()) {
+			continue
+		}
+		if re := canvasWords[name][primarySubtag(lang)]; re != nil {
+			if word := re.FindString(plain); word != "" {
+				is.warnf("%s: the text mentions %q but never cues {%s:%s} — cue it a beat before those words", lang, word, CanvasTarget, name)
+			}
+		}
 	}
 }
 
@@ -1194,9 +1239,6 @@ func Cover(stories []*Story, m Manifest, expected int) Coverage {
 	}
 	if c.Fallbacks < MinFallbacks {
 		c.Warnings = append(c.Warnings, fmt.Sprintf("%d fallback stories (no featured stickers); want ≥ %d", c.Fallbacks, MinFallbacks))
-	}
-	if len(stories) > 0 && float64(c.CanvasStories) > MaxCanvasShare*float64(len(stories)) {
-		c.Warnings = append(c.Warnings, fmt.Sprintf("canvas effects in %d of %d stories; they are occasional weather — keep them under %.0f%%", c.CanvasStories, len(stories), MaxCanvasShare*100))
 	}
 	if n := len(stories); n >= 10 {
 		share := float64(c.LearningStories) / float64(n)

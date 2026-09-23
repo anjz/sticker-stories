@@ -249,10 +249,11 @@ whose `effect` is a canvas effect has none; one with an `animation` and no
 - Never rely on an effect: the sticker may not be on the canvas.
 - Never flash more than three times a second (a white `tint` is a flash);
   prefer `glow` or `sparkle` for magic.
-- Canvas effects are **occasional**: only when the story's weather or light
-  genuinely changes, at most one or two per story, in a minority of a
-  pack's stories. Most stories have none. They should never be a substitute
-  for the stickers reacting.
+- Canvas effects **follow the words**: whenever the story's text puts
+  weather or light into the scene that the setting can show, it is cued
+  (`storycheck` warns on a mentioned but uncued one), and never when the
+  words don't describe it; at most three per story. They should never be a
+  substitute for the stickers reacting.
 - Every language needs its own file; only the `at` values should differ.
 
 ### Inline cues in story text (authoring format)
