@@ -8,7 +8,8 @@ description: Author a complete, validated set of bilingual kids' stories (50 per
 You are the pack's author. The bar is the best read-aloud picture books:
 original stories with the depth of the classics, safe for unsupervised
 four-year-olds, bilingual, and written for a narrator who performs — the
-stickers react on their beats, now and then the weather or light of the
+stickers react on their beats, the animated ones come alive in their own
+signature move on the words that tell it, now and then the weather or light of the
 whole scene changes, real sound effects play (sometimes instead of a sound
 word), and the Eleven v3 voice takes your stage directions. About four
 stories in ten quietly teach one true thing about the pack's world. Follow
@@ -28,6 +29,13 @@ Read, in this order, before writing anything:
    may use), and its **`setting`** (`outdoors`, `indoors`, `space`,
    `underwater` or `none`; absent means `none`). The setting decides which canvas effects the stories may
    use — note it down before writing anything.
+   Note which stickers declare `animations`: those are **live stickers**.
+   Read each sidecar (`packs/<packID>/anims/<sticker>.<id>.json`) for its
+   `description` — what the animation shows — and its `hold`s (the sum is
+   how long it plays), or run
+   `cd tools && go run ./author/storycheck -pack ../packs/<packID> -plan`,
+   which prints them all. Each is one fixed action (a yawn, a backflip, a
+   peekaboo); stories choose only when it happens.
 3. `docs/effects/effects.json` — the exact library: the 12 sticker effects
    (`effects`) and the canvas effects (`canvasEffects`), what each means,
    which parameters each accepts, and which `settings` each canvas effect
@@ -40,8 +48,9 @@ Read, in this order, before writing anything:
 Before writing any story, produce `tools/author/stories/<packID>/plan.md`: a
 table with one row per story — `id`, `featured` (3–4 stickers, or none for a
 fallback), `supporting`, `tags`, one-line `premise`, `inspiration`,
-`learning` (the one fact the story shows, or `—`), and `canvas` (the canvas
-effect the story will use, or `—` for most rows).
+`learning` (the one fact the story shows, or `—`), `canvas` (the canvas
+effect the story will use, or `—` for most rows), and `live` (the live
+stickers the story brings alive — at most two — or `—`).
 
 Constraints (the validator checks them on the finished set):
 
@@ -55,6 +64,10 @@ Constraints (the validator checks them on the finished set):
   in four or five, never more than 40 %), only where the premise has weather
   or light in it, spread across the effects the pack's setting allows —
   none at all when the setting is `none`;
+- **every live sticker comes alive in at least three stories**, mostly
+  ones where it is featured and whose premise grows from its move (the
+  raccoon's peekaboo, the hedgehog curling up for a nap, the woodpecker's
+  tap-tap), never in every story it appears in; at most two per story;
 - **about 40 % of the rows carry a `learning` fact** (GUIDE "Learning"):
   one concrete, true, observable thing about how the pack's world works,
   each fact used once, spread across the cast; the other rows stay pure
@@ -80,6 +93,11 @@ exactly per `FORMAT.md`:
   (`glow`, `tint`, `spin`, `fade-in`, `shake`) when a beat wants them, so
   the set uses the whole library rather than `hop`/`pulse`/`wobble` alone —
   but never force one in;
+- a live cue (`{bear:live}` — see FORMAT "Live cues", GUIDE "Live
+  stickers") in the stories the roster marked for one: on the words that
+  tell exactly what that animation shows, with the next sentence or so
+  (8–14 words, its 3–6 s) free of other cues on that sticker, each sticker
+  once; the words alone must still tell the moment;
 - a canvas cue (`{canvas:rain 0.8 14s}` — see FORMAT "Canvas cues") only in
   the stories the roster marked for one: at most one or two, an effect the
   pack's setting allows, cued a beat before the words it illustrates, with
@@ -113,15 +131,16 @@ forbidden words, invalid cues (including a canvas effect the pack's setting
 does not allow, an unknown sound id, a tag outside the allowed list) and
 coverage are mechanical; the safety and quality rules in the GUIDE are
 yours to hold. Watch the tables it prints: effects spread across the whole
-library with canvas effects in a clear minority, audio tags and sounds in
-most stories but never crowding one, and learning at about 40 %.
+library with canvas effects in a clear minority, every live sticker alive
+in several stories, audio tags and sounds in most stories but never
+crowding one, and learning at about 40 %.
 
 ## 4. Finish
 
 When the count is reached: run `storycheck` once more, make sure it exits
 clean with full coverage, and report to the user: how many stories, the
-coverage table, the effects-used, audio-tag and sound tables, the learning
-share, the mood mix, and anything you chose not to write and why. Do not
+coverage table, the effects-used, live-sticker, audio-tag and sound
+tables, the learning share, the mood mix, and anything you chose not to write and why. Do not
 build step 2 (audio); it is a separate tool.
 
 ## Never
@@ -132,6 +151,8 @@ build step 2 (audio); it is a separate tool.
 - Never state the moral. Never mention a sticker that is not featured or
   supporting. Never rely on an effect — sticker or canvas — for the story
   to make sense.
+- Never cue a live animation on words it contradicts, on a sticker without
+  one, or twice on the same sticker in a story.
 - Never use an effect name that is not in `docs/effects/effects.json`, a
   canvas effect the pack's setting does not allow, a canvas effect as
   routine decoration, or an audio tag outside FORMAT's allowed list.

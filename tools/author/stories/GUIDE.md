@@ -9,8 +9,9 @@ checked mechanically.
 Sticker Stories is an app for children aged four and up. A child drags
 stickers onto a scene and presses play; the app picks a story that matches
 what they placed and narrates it while the stickers react with small
-effects (a wobble, a hop, sparkles) and, now and then, the weather or the
-light changes over the whole scene (rain, fog, sunshine, a rainbow, night
+effects (a wobble, a hop, sparkles), some stickers come alive for a moment
+in their own animation (the bear cub yawns, the frog backflips) and, now and
+then, the weather or the light changes over the whole scene (rain, fog, sunshine, a rainbow, night
 falling, the lights going low). Stories are:
 
 - **30–60 seconds** of narration (80–140 words per language), read by an
@@ -167,6 +168,41 @@ Cue grammar is in `FORMAT.md`.
   second.
 - Cue only featured and supporting stickers.
 
+## Live stickers
+
+Some stickers carry a **live animation**: a few seconds of their own
+frames, drawn from the sticker's art — the bear cub yawns and stretches,
+the frog does a backflip and catches a fly, the raccoon plays peekaboo.
+Each is one fixed action; you cannot change what it does, only *when* it
+happens. `storycheck` lists every one — the sticker, what the animation
+shows and how long it plays (3–6 s) — and each sidecar in
+`packs/<pack>/anims/*.json` carries the same `description`. Read them
+before planning the roster: they are the cast's signature moves.
+
+- **Write the moment, then cue it.** `{bear:live}` goes on the words that
+  tell exactly what the animation shows: *Bear gave a {bear:live} great big
+  yawn, stretched up high and rubbed his eyes.* Never on words it
+  contradicts — no backflip cued on "the frog sat very still", no yawn on
+  "the bear jumped". A child sees the sticker do what the narrator says.
+- **Let the words cover its length.** The animation runs 3–6 s, about
+  8–14 spoken words at a gentle pace. Give it the sentence it belongs to
+  and the next one, and cue nothing else on that sticker until it is done
+  (`storyaudio` warns when a sticker effect starts on top of it). Other
+  stickers may react meanwhile.
+- **A signature, not a tic.** At most two live animations in a story, each
+  sticker once (the validator warns past that). Across the set, every
+  animated sticker should come alive in **at least three stories** —
+  mostly ones where it is featured and the premise grows from its move (a
+  peekaboo game for the raccoon, a nap for the hedgehog, a tapping
+  rhythm for the woodpecker) — but not in every story it appears in.
+- **Mostly on featured stickers.** A supporting sticker may come alive
+  too, but the story must read fine if it is not on the canvas.
+- **Never rely on it.** The sticker may be missing, and under Reduce
+  Motion or calm mode the animation does not play: the words alone must
+  tell the moment.
+- A live animation takes no parameters: `{frog:live}`. If a sticker ever
+  has several, name one: `{owl:live sleepy-blink}`.
+
 ## Using canvas effects
 
 Canvas effects change the whole scene — the weather or the light — rather
@@ -266,7 +302,8 @@ no voices". Never a scary sound: no roars, growls, thunder claps, bangs.
 
 ## Process discipline
 
-- Plan the roster first; write in batches of five; validate after every
-  batch; fix before continuing.
+- Plan the roster first (including which stories bring which live
+  stickers alive); write in batches of five; validate after every batch;
+  fix before continuing.
 - Reread each story aloud in your head as a parent at bedtime. If you
   would skip a line, cut it.
