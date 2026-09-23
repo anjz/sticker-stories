@@ -34,25 +34,26 @@ var Names = []string{
 // scene), in library order.
 var CanvasNames = []string{
 	"fog", "rain", "sunshine", "rainbow", "night", "snow", "sunset",
-	"clouds", "wind", "fireflies", "leaves", "dimlight",
+	"clouds", "wind", "fireflies", "leaves", "dimlight", "windowlight",
 }
 
 // CanvasSettings maps each canvas effect to the pack settings it suits
 // (docs/pack-format.md, "setting"). A pack whose setting is "none" gets no
 // canvas effects.
 var CanvasSettings = map[string][]string{
-	"fog":       {"outdoors"},
-	"rain":      {"outdoors"},
-	"sunshine":  {"outdoors"},
-	"rainbow":   {"outdoors"},
-	"night":     {"outdoors"},
-	"snow":      {"outdoors"},
-	"sunset":    {"outdoors"},
-	"clouds":    {"outdoors"},
-	"wind":      {"outdoors"},
-	"fireflies": {"outdoors"},
-	"leaves":    {"outdoors"},
-	"dimlight":  {"indoors"},
+	"fog":         {"outdoors"},
+	"rain":        {"outdoors"},
+	"sunshine":    {"outdoors"},
+	"rainbow":     {"outdoors"},
+	"night":       {"outdoors"},
+	"snow":        {"outdoors"},
+	"sunset":      {"outdoors"},
+	"clouds":      {"outdoors"},
+	"wind":        {"outdoors"},
+	"fireflies":   {"outdoors"},
+	"leaves":      {"outdoors"},
+	"dimlight":    {"indoors"},
+	"windowlight": {"indoors"},
 }
 
 var (

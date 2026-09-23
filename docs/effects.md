@@ -154,6 +154,7 @@ or fantastical places) gets no canvas effects at all.
 | `fireflies` | outdoors | Tiny warm lights drift and pulse slowly, mostly in the lower half of the scene. | A summer evening, a little magic in the dark, lighting the way. Lovely layered over `night` or `sunset`. | 12 s | 2 / 2 s | runs at ≤0.4 |
 | `leaves` | outdoors | Autumn leaves in warm colours flutter down, turning over and drifting sideways. | Autumn, a gust shaking the trees, change, a leaf pile. Only for packs whose scenery has trees. | 10 s | 1.5 / 2 s | runs at ≤0.4 |
 | `dimlight` | indoors | The lights go low: the scene darkens toward its edges. | Bedtime, a lamp switched low, a cosy evening, a whispered secret. Never darkness as a threat. | 8 s | 1.5 / 1.5 s | full |
+| `windowlight` | indoors | A slanted shaft of sunlight falls across the room from the top left, with dust motes turning slowly in it. | Morning, waking up, a lazy sunny afternoon, the sun coming out while everyone is inside. | 10 s | 2 / 2 s | full |
 
 - Ramps never eat more than a third of the duration each, so a 3 s effect
   still spends a second at full strength.
