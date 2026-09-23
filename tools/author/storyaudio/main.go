@@ -128,8 +128,9 @@ type ctxt struct {
 	declared   map[string]bool
 	// story is the pack as story tools see it (live animations included);
 	// animations the live-animation IDs by sticker, for the sidecar check.
-	story      story.Manifest
-	animations effects.Animations
+	story       story.Manifest
+	animations  effects.Animations
+	expressions effects.Expressions
 }
 
 func load(packDir, storiesDir string) (*ctxt, error) {
@@ -154,6 +155,7 @@ func load(packDir, storiesDir string) (*ctxt, error) {
 	if c.story, err = story.PackManifest(m, packDir); err != nil {
 		return nil, err
 	}
+	c.expressions = effects.Expressions(c.story.Expressions)
 	c.animations = effects.Animations{}
 	for id, anims := range c.story.Animations {
 		for _, a := range anims {
@@ -760,7 +762,7 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 		}
 	}
 	liveOverlaps := render.LiveOverlaps(triggers, r.c.story)
-	sidecar, err := render.EncodeSidecar(triggers, r.c.declared, r.c.animations, r.c.pack.EffectiveSetting())
+	sidecar, err := render.EncodeSidecar(triggers, r.c.declared, r.c.animations, r.c.expressions, r.c.pack.EffectiveSetting())
 	if err != nil {
 		return false, err
 	}

@@ -3,6 +3,10 @@ import Foundation
 /// One resolved, declarative trigger: at `at` seconds into the narration,
 /// run `effect` on every placed instance of `stickerID`.
 public struct EffectTrigger: Equatable, Sendable {
+    /// The reserved sticker target meaning every placed sticker (a pack may
+    /// not name a sticker this).
+    public static let allStickers = "all"
+
     public var at: TimeInterval
     /// Optional authoring label ("sneeze"); never interpreted by the app.
     public var cue: String?
@@ -38,6 +42,7 @@ public struct EffectTriggerFile: Equatable, Sendable {
     public var triggers: [EffectTrigger]
     public var canvasTriggers: [CanvasEffectTrigger]
     public var liveTriggers: [LiveAnimationTrigger]
+    public var expressionTriggers: [ExpressionTrigger]
     public var warnings: [String]
 
     public enum DecodingError: Error, Equatable {
@@ -49,12 +54,13 @@ public struct EffectTriggerFile: Equatable, Sendable {
     public init(
         schema: Int = EffectTriggerFile.supportedSchema, triggers: [EffectTrigger],
         canvasTriggers: [CanvasEffectTrigger] = [], liveTriggers: [LiveAnimationTrigger] = [],
-        warnings: [String] = []
+        expressionTriggers: [ExpressionTrigger] = [], warnings: [String] = []
     ) {
         self.schema = schema
         self.triggers = triggers
         self.canvasTriggers = canvasTriggers
         self.liveTriggers = liveTriggers
+        self.expressionTriggers = expressionTriggers
         self.warnings = warnings
     }
 
@@ -83,10 +89,17 @@ public struct EffectTriggerFile: Equatable, Sendable {
         var triggers: [EffectTrigger] = []
         var canvasTriggers: [CanvasEffectTrigger] = []
         var liveTriggers: [LiveAnimationTrigger] = []
+        var expressionTriggers: [ExpressionTrigger] = []
         for (index, entry) in list.enumerated() {
             let label = "triggers[\(index)]"
             guard let fields = entry as? [String: Any] else {
                 warnings.append("\(label): not an object; skipped")
+                continue
+            }
+            if fields["expression"] != nil {
+                if let trigger = Self.decodeExpressionTrigger(fields, label: label, warnings: &warnings) {
+                    expressionTriggers.append(trigger)
+                }
                 continue
             }
             if fields["animation"] != nil {
@@ -114,6 +127,9 @@ public struct EffectTriggerFile: Equatable, Sendable {
         self.triggers = triggers.sorted { $0.at < $1.at }
         self.canvasTriggers = canvasTriggers.sorted { $0.at < $1.at }
         self.liveTriggers = liveTriggers.sorted { $0.at < $1.at }
+        // Stable: two expression changes at the same moment keep file order.
+        self.expressionTriggers = expressionTriggers.enumerated()
+            .sorted { ($0.element.at, $0.offset) < ($1.element.at, $1.offset) }.map(\.element)
         self.warnings = warnings
     }
 
@@ -231,6 +247,27 @@ public struct EffectTriggerFile: Equatable, Sendable {
             warnings.append("\(label): \(key) is ignored by a live animation")
         }
         return LiveAnimationTrigger(at: at, cue: fields["cue"] as? String, stickerID: stickerID, animationID: animationID)
+    }
+
+    /// Expression triggers name a sticker (or `all`) and an expression; they
+    /// have no duration — the face stays until the next one.
+    private static func decodeExpressionTrigger(_ fields: [String: Any], label: String, warnings: inout [String]) -> ExpressionTrigger? {
+        guard let expression = fields["expression"] as? String, !expression.isEmpty else {
+            warnings.append("\(label): expression must be a non-empty string; skipped")
+            return nil
+        }
+        guard let stickerID = fields["sticker"] as? String, !stickerID.isEmpty else {
+            warnings.append("\(label): missing sticker; skipped")
+            return nil
+        }
+        guard let at = number(fields["at"]), at.isFinite, at >= 0 else {
+            warnings.append("\(label): missing or invalid at; skipped")
+            return nil
+        }
+        for key in ["effect", "animation", "repeat", "duration", "intensity", "color", "hold"] where fields[key] != nil {
+            warnings.append("\(label): \(key) is ignored by an expression")
+        }
+        return ExpressionTrigger(at: at, cue: fields["cue"] as? String, stickerID: stickerID, expression: expression)
     }
 
     private static func number(_ raw: Any?) -> Double? {

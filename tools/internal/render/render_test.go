@@ -49,7 +49,7 @@ func TestTriggersAndSounds(t *testing.T) {
 	if tr[3].Cue != "ay" || tr[3].At <= tr[2].At {
 		t.Errorf("trailing cue should fire on last word: %+v", tr[3])
 	}
-	data, err := EncodeSidecar(tr, map[string]bool{"tree": true, "fox": true}, nil, "outdoors")
+	data, err := EncodeSidecar(tr, map[string]bool{"tree": true, "fox": true}, nil, nil, "outdoors")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -85,14 +85,14 @@ func TestCanvasCuesBecomeStickerlessTriggers(t *testing.T) {
 	if tr[1].Effect != "rain" || tr[1].Sticker != "" || tr[1].Duration != 14 || tr[1].Cue != "here" || tr[1].Repeat != nil {
 		t.Errorf("rain wrong: %+v", tr[1])
 	}
-	data, err := EncodeSidecar(tr, map[string]bool{"fox": true}, nil, "outdoors")
+	data, err := EncodeSidecar(tr, map[string]bool{"fox": true}, nil, nil, "outdoors")
 	if err != nil {
 		t.Fatal(err)
 	}
 	if strings.Contains(string(data), `"sticker": ""`) {
 		t.Errorf("canvas triggers must not carry a sticker key: %s", data)
 	}
-	if _, err := EncodeSidecar(tr, map[string]bool{"fox": true}, nil, "indoors"); err == nil {
+	if _, err := EncodeSidecar(tr, map[string]bool{"fox": true}, nil, nil, "indoors"); err == nil {
 		t.Errorf("rain and fog must be rejected for an indoors pack")
 	}
 }
@@ -119,7 +119,7 @@ func TestLiveCuesNameTheirAnimation(t *testing.T) {
 		t.Fatalf("live triggers wrong: %+v", tr)
 	}
 	anims := map[string][]string{"bear": {"yawn"}, "owl": {"blink", "hoot"}}
-	data, err := EncodeSidecar(tr, map[string]bool{"bear": true, "owl": true}, anims, "outdoors")
+	data, err := EncodeSidecar(tr, map[string]bool{"bear": true, "owl": true}, anims, nil, "outdoors")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -191,5 +191,29 @@ func TestTimelineScalesWhenAlignmentDiffers(t *testing.T) {
 	}
 	if tl.At(0) != 0 || tl.At(2) <= tl.At(1) || tl.At(1) <= 0 {
 		t.Errorf("monotonic timings expected: %v %v %v", tl.At(0), tl.At(1), tl.At(2))
+	}
+}
+
+func TestFaceAndAllCues(t *testing.T) {
+	text := "{all:face happy} Everyone smiled. Then {all:hop} they all jumped, and {bear:face sleeping} Bear fell asleep."
+	cues, plain, errs := story.ParseCues(text)
+	if len(errs) > 0 {
+		t.Fatal(errs)
+	}
+	tl, err := NewPlainTimeline(plain, fakeAlignment(plain))
+	if err != nil {
+		t.Fatal(err)
+	}
+	tr, err := Triggers(cues, tl, story.Manifest{})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(tr) != 3 || tr[0].Sticker != "all" || tr[0].Expression != "happy" || tr[0].Effect != "" ||
+		tr[1].Sticker != "all" || tr[1].Effect != "hop" || tr[2].Expression != "sleeping" || tr[2].Cue != "bear" {
+		t.Fatalf("face/all triggers wrong: %+v", tr)
+	}
+	faces := map[string][]string{"bear": {"happy", "sleeping"}}
+	if _, err := EncodeSidecar(tr, map[string]bool{"bear": true}, nil, faces, "outdoors"); err != nil {
+		t.Fatal(err)
 	}
 }

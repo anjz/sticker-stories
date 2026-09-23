@@ -202,7 +202,8 @@ extension StickerNode {
         // The last frame is the rest pose again: crossfade back to the still
         // art, then hand it back to the sprite itself.
         let restore = SKAction.run { [weak self] in
-            self?.texture = stillTexture
+            // The face may have changed while the frames played.
+            self?.texture = self?.liveStillTexture ?? stillTexture
             self?.liveStillTexture = nil
             self?.childNode(withName: Self.liveStillName)?.removeFromParent()
         }

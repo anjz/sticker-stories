@@ -13,6 +13,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"slices"
+	"sort"
 	"strings"
 
 	"stickerstories/tools/internal/effects"
@@ -59,6 +60,11 @@ type Sticker struct {
 	// Animations are pack-relative paths to live-animation sidecars
 	// (StickerAnimation); absent means a still sticker.
 	Animations []string `json:"animations,omitempty"`
+	// Expressions are face variants of the sticker by expression id
+	// ("happy", "sleeping"…): pack-relative images of exactly the
+	// sticker's size and outline, so the app can swap one in place.
+	// Absent means the sticker has only its normal face.
+	Expressions map[string]string `json:"expressions,omitempty"`
 }
 
 // Story is one pregenerated story; its text and narration exist once per
@@ -228,6 +234,7 @@ func (m *Manifest) Validate(dir string) []error {
 	// Rule 2: sticker IDs well-formed and unique.
 	stickerIDs := make(map[string]bool, len(m.Stickers))
 	animations := effects.Animations{}
+	expressions := effects.Expressions{}
 	for i, st := range m.Stickers {
 		if !idPattern.MatchString(st.ID) {
 			fail("stickers[%d]: id %q must match %s", i, st.ID, idPattern)
@@ -236,6 +243,9 @@ func (m *Manifest) Validate(dir string) []error {
 			fail("stickers[%d]: duplicate sticker id %q", i, st.ID)
 		}
 		stickerIDs[st.ID] = true
+		if st.ID == effects.AllStickers {
+			fail("stickers[%d]: id %q is reserved (effect triggers use it for every sticker)", i, st.ID)
+		}
 		checkCoverage(fmt.Sprintf("sticker %q name", st.ID), st.Name)
 		checkImage(fmt.Sprintf("sticker %q image", st.ID), st.Image)
 		// Rule 12: live-animation sidecars exist and are valid.
@@ -265,6 +275,21 @@ func (m *Manifest) Validate(dir string) []error {
 				}
 			}
 			animations[st.ID] = append(animations[st.ID], anim.ID)
+		}
+		// Rule 13: expression variants are images of the sticker; "normal"
+		// is the sticker's own image and cannot be one.
+		names := make([]string, 0, len(st.Expressions))
+		for name := range st.Expressions {
+			names = append(names, name)
+		}
+		sort.Strings(names)
+		for _, name := range names {
+			field := fmt.Sprintf("sticker %q expressions.%s", st.ID, name)
+			if name == effects.Normal || !idPattern.MatchString(name) {
+				fail("%s: expression id must match %s and not be %q", field, idPattern, effects.Normal)
+			}
+			checkImage(field, st.Expressions[name])
+			expressions[st.ID] = append(expressions[st.ID], name)
 		}
 	}
 
@@ -303,7 +328,7 @@ func (m *Manifest) Validate(dir string) []error {
 				before := len(errs)
 				checkFile(locName+" effects", loc.Effects)
 				if len(errs) == before {
-					for _, err := range effects.ValidateFile(filepath.Join(dir, filepath.FromSlash(loc.Effects)), stickerIDs, animations, m.EffectiveSetting()) {
+					for _, err := range effects.ValidateFile(filepath.Join(dir, filepath.FromSlash(loc.Effects)), stickerIDs, animations, expressions, m.EffectiveSetting()) {
 						fail("%s effects: %v", locName, err)
 					}
 				}

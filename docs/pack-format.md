@@ -21,12 +21,13 @@ picks the best match for the device (see "Language resolution" below).
     foreground-wide.webp  # optional: its front plane; declared together with the above
   stickers/
     <stickerID>.webp      # sticker art, alpha background, white border baked in
+    <stickerID>.<expr>.webp  # optional face variant ("Expressions" below)
   anims/
     <stickerID>.<animID>.webp  # live animation: sprite sheet ("Live animations" below)
     <stickerID>.<animID>.json  # its sidecar, declared in stickers[].animations
   audio/
     <lang>/<storyID>.m4a           # pre-rendered narration, AAC, one folder per language
-    <lang>/<storyID>.effects.json  # optional effect triggers (sticker + canvas) for that narration
+    <lang>/<storyID>.effects.json  # optional triggers (sticker, canvas, live, face) for that narration
 ```
 
 The `audio/<lang>/…` layout is a convention, not a rule — audio paths are
@@ -172,10 +173,11 @@ never letterboxes:
 | `background` / `foreground` | string | Pack-relative paths to PNG or WebP files that must exist ("Image formats" above). Their frame is the sticker coordinate system ("Art safe area" below). |
 | `backgroundWide` / `foregroundWide` | string | **Optional, together or not at all.** Wider renditions (e.g. 2:1) with the **same pixel height** as the base art and the base art **centred** inside. The app draws whichever rendition lets a landscape window avoid panning with the least crop (tall phones get the wide one; iPads keep the base one). Files must exist. |
 | `cover` | string | **Optional.** Pack-relative path to the pack's cover art (PNG or WebP, must exist): what its tile shows in the main menu and the store. Made with `uiart` (`tools/author/uiart`); without one the app composes the tile from the background and a few stickers. No text in it — the app writes the name. |
-| `stickers[].id` | string | Lowercase `a-z0-9-`, unique within the pack. |
+| `stickers[].id` | string | Lowercase `a-z0-9-`, unique within the pack. `all` is reserved (triggers use it for every sticker). |
 | `stickers[].name` | {lang: string} | Display/accessibility name per language. |
 | `stickers[].image` | string | Pack-relative path to a PNG or WebP file; must exist. |
 | `stickers[].animations` | [string] | **Optional**, default none. Pack-relative paths to live-animation sidecars (`.json`, "Live animations" below); each must exist and validate. |
+| `stickers[].expressions` | {expr: string} | **Optional**, default none. Face variants by expression id (`happy`, `sad`, `sleeping`, `surprised`…): pack-relative PNG or WebP images with exactly the sticker's size and outline ("Expressions" below). The sticker's own `image` is the `normal` face. |
 | `stories[].id` | string | Unique within the pack. |
 | `stories[].requiredStickers` | [string] | The stickers the story is about: it is a candidate when at most one of them is missing from the canvas (and at least one is present), and preferred when all are. Empty ⇒ fallback story. Every ID must be declared in `stickers`. |
 | `stories[].optionalStickers` | [string] | Sticker IDs that raise the match score when present. Declared in `stickers`; no overlap with `requiredStickers`. |
@@ -227,6 +229,26 @@ never letterboxes:
     boxes outside the unit square are errors); the app checks the file
     exists and reads it **leniently** (an undecodable sidecar is skipped
     with a log, never fatal).
+13. Every `stickers[].expressions` key is lowercase `a-z0-9-` and not
+    `normal`; every value is an image inside the pack (`.png` or `.webp`)
+    that exists. No sticker is called `all`.
+
+## Expressions
+
+A sticker with a face can carry **face variants**: the same sticker with
+another expression — `happy`, `sad`, `sleeping`, `surprised` in the Forest
+pack. Stories change a sticker's face with an expression trigger
+(`docs/effects.md`, "Faces"): it has no duration, the face stays until the
+next change, and the story's end puts every sticker back to `normal`.
+
+Each variant is made by `tools/author/stickerart` from the sticker's own
+raw art: only the face is repainted (the API edits a masked area, and only
+that area is laid back over the raw), and it is finished exactly like the
+sticker, so it has **the sticker's exact size and outline** and the app
+swaps it in place with a short crossfade. A pack may give any subset of
+stickers any subset of expressions; stories may only ask a sticker for a
+face it has (the storycheck and packager check this), while an `all`
+change skips stickers without that face.
 
 ## Live animations
 

@@ -104,6 +104,7 @@ func main() {
 	}
 	printEffectUse(cat, cov)
 	printLive(pack, cov)
+	printFaces(pack)
 	for _, e := range cov.Errors {
 		fmt.Printf("  error: %s\n", e)
 		failed = true
@@ -159,6 +160,19 @@ func printEffectUse(cat *story.Catalog, cov story.Coverage) {
 	fmt.Printf("    audio tags (stories): %s\n", strings.Join(line, ", "))
 	fmt.Printf("    sound effects: %d of %d stories (%d with a solo sound)\n", cov.SoundStories, cov.Stories, cov.SoloStories)
 	fmt.Printf("  learning: %d of %d stories carry a small fact\n", cov.LearningStories, cov.Stories)
+	line = line[:0]
+	faces := make([]string, 0, len(cov.FaceUse))
+	for name := range cov.FaceUse {
+		faces = append(faces, name)
+	}
+	sort.Strings(faces)
+	for _, name := range faces {
+		line = append(line, fmt.Sprintf("%s %d", name, cov.FaceUse[name]))
+	}
+	if len(line) == 0 {
+		line = append(line, "none")
+	}
+	fmt.Printf("  faces: %d of %d stories change one (%s); %d cue every sticker with {%s:…}\n", cov.FaceStories, cov.Stories, strings.Join(line, ", "), cov.AllStories, story.AllTarget)
 }
 
 // printLive lists the stickers that come alive — what each animation
@@ -179,5 +193,34 @@ func printLive(pack story.Manifest, cov story.Coverage) {
 		for _, a := range pack.Animations[id] {
 			fmt.Printf("    %-10s %-13s %4.1fs  %2d stories  %s\n", id, a.ID, a.Seconds, cov.LiveUse[id], a.Description)
 		}
+	}
+}
+
+// printFaces lists the expressions stickers can show ({sticker:face …}),
+// grouped by the set so a pack where everyone has the same faces takes one
+// line.
+func printFaces(pack story.Manifest) {
+	groups := map[string][]string{}
+	for _, id := range pack.Stickers {
+		if list := pack.Expressions[id]; len(list) > 0 {
+			key := strings.Join(list, ", ")
+			groups[key] = append(groups[key], id)
+		}
+	}
+	if len(groups) == 0 {
+		return
+	}
+	keys := make([]string, 0, len(groups))
+	for k := range groups {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+	fmt.Println("  faces ({sticker:face …}, {all:face …}; normal is always there):")
+	for _, k := range keys {
+		who := strings.Join(groups[k], ", ")
+		if len(groups[k]) == len(pack.Stickers) {
+			who = "every sticker"
+		}
+		fmt.Printf("    %s: %s\n", who, k)
 	}
 }

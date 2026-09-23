@@ -83,6 +83,7 @@ var (
 	knownKeys       = set("at", "cue", "sticker", "effect", "repeat", "duration", "intensity", "color", "hold")
 	knownCanvasKeys = set("at", "cue", "effect", "intensity", "duration")
 	knownLiveKeys   = set("at", "cue", "sticker", "animation")
+	knownFaceKeys   = set("at", "cue", "sticker", "expression")
 	colorPattern    = regexp.MustCompile(`^#[0-9A-Fa-f]{6}$`)
 )
 
@@ -114,9 +115,20 @@ func set(items ...string) map[string]bool {
 	return m
 }
 
+// AllStickers is the reserved sticker target meaning every placed sticker
+// (sticker effects and expressions; a pack may not name a sticker this).
+const AllStickers = "all"
+
+// Normal is the expression that shows the sticker's own image.
+const Normal = "normal"
+
 // Animations maps each sticker ID to the IDs of the live animations it
-// declares (docs/pack-format.md, "Live animations").
+// declares (docs/pack-format.md, "Live animations"); Expressions has the
+// same shape for its expression variants ("Expressions").
 type Animations map[string][]string
+
+// Expressions maps each sticker ID to its expression variants' ids.
+type Expressions = Animations
 
 func (a Animations) has(sticker, id string) bool {
 	for _, x := range a[sticker] {
@@ -131,19 +143,19 @@ func (a Animations) has(sticker, id string) bool {
 // maps sticker IDs the pack defines, animations their live animations;
 // setting is the pack's setting (docs/pack-format.md). Every problem found
 // is returned.
-func ValidateFile(path string, declared map[string]bool, animations Animations, setting string) []error {
+func ValidateFile(path string, declared map[string]bool, animations Animations, expressions Expressions, setting string) []error {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return []error{fmt.Errorf("reading effects file: %w", err)}
 	}
-	return Validate(data, declared, animations, setting)
+	return Validate(data, declared, animations, expressions, setting)
 }
 
 // Validate strictly validates the raw JSON of a trigger sidecar. declared
 // maps the pack's sticker IDs (nil skips that check) and animations the
 // live animations each declares (nil skips that check); setting is the
 // pack's setting, which every canvas trigger must suit.
-func Validate(data []byte, declared map[string]bool, animations Animations, setting string) []error {
+func Validate(data []byte, declared map[string]bool, animations Animations, expressions Expressions, setting string) []error {
 	var errs []error
 	fail := func(format string, args ...any) {
 		errs = append(errs, fmt.Errorf(format, args...))
@@ -187,8 +199,13 @@ func Validate(data []byte, declared map[string]bool, animations Animations, sett
 			fail("%s: must be an object", label)
 			continue
 		}
-		// One list, three kinds: a live animation names an animation and
-		// no effect; otherwise the effect name says which.
+		// One list, four kinds: an expression names an expression, a live
+		// animation an animation, and neither has an effect; otherwise the
+		// effect name says which.
+		if _, ok := fields["expression"]; ok {
+			validateFaceTrigger(label, fields, declared, expressions, fail)
+			continue
+		}
 		if _, ok := fields["animation"]; ok {
 			validateLiveTrigger(label, fields, declared, animations, fail)
 			continue
@@ -227,7 +244,7 @@ func validateTrigger(label string, fields map[string]json.RawMessage, declared m
 		effect = ""
 	}
 	sticker := requireString(label, "sticker", fields, fail)
-	if sticker != "" && declared != nil && !declared[sticker] {
+	if sticker != "" && sticker != AllStickers && declared != nil && !declared[sticker] {
 		fail("%s: sticker %q is not declared in the manifest", label, sticker)
 	}
 	if raw, ok := fields["at"]; !ok {
@@ -326,6 +343,49 @@ func validateCanvasTrigger(label, effect string, fields map[string]json.RawMessa
 	if raw, ok := fields["intensity"]; ok {
 		if v, ok := number(raw); !ok || v < 0 || v > 1 {
 			fail("%s: intensity must be a number in 0..1", label)
+		}
+	}
+}
+
+// validateFaceTrigger checks an expression change: a sticker (or all), an
+// expression that sticker has (or normal), at and an optional cue.
+func validateFaceTrigger(label string, fields map[string]json.RawMessage, declared map[string]bool, expressions Expressions, fail func(string, ...any)) {
+	for _, k := range sortedKeys(fields) {
+		if !knownFaceKeys[k] {
+			fail("%s: %s is not used by an expression; remove it", label, k)
+		}
+	}
+	sticker := requireString(label, "sticker", fields, fail)
+	if sticker != "" && sticker != AllStickers && declared != nil && !declared[sticker] {
+		fail("%s: sticker %q is not declared in the manifest", label, sticker)
+		sticker = ""
+	}
+	expression := requireString(label, "expression", fields, fail)
+	if expression != "" && expression != Normal && expressions != nil {
+		switch {
+		case sticker == AllStickers:
+			found := false
+			for _, ids := range expressions {
+				for _, id := range ids {
+					found = found || id == expression
+				}
+			}
+			if !found {
+				fail("%s: no sticker has the expression %q", label, expression)
+			}
+		case sticker != "" && !expressions.has(sticker, expression):
+			fail("%s: sticker %q has no expression %q", label, sticker, expression)
+		}
+	}
+	if raw, ok := fields["at"]; !ok {
+		fail("%s: at is required", label)
+	} else if at, ok := number(raw); !ok || at < 0 {
+		fail("%s: at must be a number >= 0", label)
+	}
+	if raw, ok := fields["cue"]; ok {
+		var s string
+		if err := json.Unmarshal(raw, &s); err != nil {
+			fail("%s: cue must be a string", label)
 		}
 	}
 }

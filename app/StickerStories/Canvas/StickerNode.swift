@@ -61,6 +61,11 @@ final class StickerNode: SKSpriteNode {
     /// (`playLive`, `StickerAnimation.swift`); `nil` otherwise.
     var liveStillTexture: SKTexture?
 
+    /// The expression the sticker shows (`showFace`, `StickerExpression.swift`);
+    /// `normal` is its own image. Only stories change it, and play end
+    /// puts it back.
+    var face = ExpressionTrigger.normal
+
     /// - Parameter shadow: the pack's blurred silhouette for this sticker;
     ///   without one the sprite's own texture stands in (hard-edged).
     init(stickerID: String, texture: SKTexture, size: CGSize, shadow: StickerShadowCache.Shadow? = nil) {
