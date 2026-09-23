@@ -158,6 +158,16 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         #expect(decoded.description(for: "fr-FR") == "Woodland friends.")  // falls back to the first language
     }
 
+    @Test func coverIsOptional() throws {
+        var manifest = makeValidManifest()
+        #expect(manifest.cover == nil)
+        manifest.cover = "art/background.png"  // any image in the pack will do
+        let dir = try materialize(manifest)
+        #expect(manifest.validationIssues(packDirectory: dir).isEmpty)
+        let decoded = try JSONDecoder().decode(PackManifest.self, from: JSONEncoder().encode(manifest))
+        #expect(decoded.cover == "art/background.png")
+    }
+
     @Test func effectsSidecarMustExistWhenDeclared() throws {
         var manifest = makeValidManifest()
         manifest.stories[0].localizations["en-US"]?.effects = "audio/en-US/story-001.effects.json"
@@ -197,6 +207,7 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         InvalidCase("not found") { $0.background = "art/nope.png" },
         InvalidCase(".png or .webp") { $0.background = "art/background.jpg" },
         InvalidCase(".png or .webp") { $0.stickers[0].image = "stickers/mushroom.heic" },
+        InvalidCase("cover") { $0.cover = "art/cover.png" },
         InvalidCase("not found") { $0.stickers[1].animations = ["anims/fox.yawn.json"] },
         InvalidCase(".json") { $0.stickers[1].animations = ["stickers/fox.png"] },
         InvalidCase("declared together") { $0.backgroundWide = "art/background.png" },

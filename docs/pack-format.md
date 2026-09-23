@@ -171,6 +171,7 @@ never letterboxes:
 | `setting` | string | **Optional**, default `none`. Where the scene takes place: `outdoors`, `indoors`, `space`, `underwater` or `none`. Decides which canvas effects (`docs/effects.md`, "Canvas effects") the pack's stories may use: each effect lists the settings it suits, and `none` allows no canvas effects. Story tooling reads it when authoring. |
 | `background` / `foreground` | string | Pack-relative paths to PNG or WebP files that must exist ("Image formats" above). Their frame is the sticker coordinate system ("Art safe area" below). |
 | `backgroundWide` / `foregroundWide` | string | **Optional, together or not at all.** Wider renditions (e.g. 2:1) with the **same pixel height** as the base art and the base art **centred** inside. The app draws whichever rendition lets a landscape window avoid panning with the least crop (tall phones get the wide one; iPads keep the base one). Files must exist. |
+| `cover` | string | **Optional.** Pack-relative path to the pack's cover art (PNG or WebP, must exist): what its tile shows in the main menu and the store. Made with `uiart` (`tools/author/uiart`); without one the app composes the tile from the background and a few stickers. No text in it — the app writes the name. |
 | `stickers[].id` | string | Lowercase `a-z0-9-`, unique within the pack. |
 | `stickers[].name` | {lang: string} | Display/accessibility name per language. |
 | `stickers[].image` | string | Pack-relative path to a PNG or WebP file; must exist. |
@@ -197,7 +198,7 @@ never letterboxes:
    `stories[].localizations`) contains a value for
    every declared language and none for undeclared ones. Partial translations
    are a validation error, not a runtime fallback.
-5. Every referenced file (`background`, `foreground`, sticker images, every
+5. Every referenced file (`background`, `foreground`, `cover`, sticker images, every
    localization's audio and effects sidecar) exists inside the pack. No path
    may escape the pack (no `..`, no absolute paths).
 6. Story sticker references are declared; `requiredStickers` and
@@ -216,8 +217,8 @@ never letterboxes:
 10. `backgroundWide` and `foregroundWide` are declared together or not at
     all, and exist when declared. Their pixel dimensions are the pack
     author's responsibility (same height as the base art, base centred).
-11. Every image path (`background`, `foreground`, the wide planes, every
-    `stickers[].image`) ends in `.png` or `.webp` ("Image formats").
+11. Every image path (`background`, `foreground`, the wide planes, `cover`,
+    every `stickers[].image`) ends in `.png` or `.webp` ("Image formats").
 12. Every `stickers[].animations` entry is a `.json` file inside the pack.
     The packager validates the sidecar **strictly** (unknown keys, a
     `sticker` other than the declaring one, a missing or non-image sheet,
@@ -286,7 +287,8 @@ same device preference.
   and optional `backgroundWide` / `foregroundWide` added (additive, no
   bump); optional `setting` added (additive, defaults to `none`, no
   bump); `setting` values `space` and `underwater` added (no pack has
-  shipped, so no bump); optional `description` added (additive, no bump).
+  shipped, so no bump); optional `description` added (additive, no bump);
+  optional `cover` added (additive, no bump).
 - Any schema change must update this document, the Go validator
   (`tools/internal/manifest`), and the Swift decoder in the **same commit**.
 - `version` (pack content revision) is bumped whenever any asset or story in a

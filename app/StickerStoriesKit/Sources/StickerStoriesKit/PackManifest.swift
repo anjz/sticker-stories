@@ -46,6 +46,10 @@ public struct PackManifest: Codable, Equatable, Sendable {
     /// base art's frame stays the sticker coordinate system. Both or neither.
     public var backgroundWide: String?
     public var foregroundWide: String?
+    /// Optional cover art for the pack's tile in the menu and the store;
+    /// without one the app composes the tile from the background and a few
+    /// stickers.
+    public var cover: String?
     public var stickers: [StickerDefinition]
     public var stories: [StoryDefinition]
 
@@ -54,7 +58,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
         displayName: [String: String], description: [String: String]? = nil,
         theme: String, setting: PackSetting = .none,
         background: String, foreground: String,
-        backgroundWide: String? = nil, foregroundWide: String? = nil,
+        backgroundWide: String? = nil, foregroundWide: String? = nil, cover: String? = nil,
         stickers: [StickerDefinition], stories: [StoryDefinition]
     ) {
         self.schemaVersion = schemaVersion
@@ -69,13 +73,14 @@ public struct PackManifest: Codable, Equatable, Sendable {
         self.foreground = foreground
         self.backgroundWide = backgroundWide
         self.foregroundWide = foregroundWide
+        self.cover = cover
         self.stickers = stickers
         self.stories = stories
     }
 
     private enum CodingKeys: String, CodingKey {
         case schemaVersion, id, version, languages, displayName, description, theme, setting
-        case background, foreground, backgroundWide, foregroundWide, stickers, stories
+        case background, foreground, backgroundWide, foregroundWide, cover, stickers, stories
     }
 
     public init(from decoder: Decoder) throws {
@@ -101,6 +106,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
         foreground = try c.decode(String.self, forKey: .foreground)
         backgroundWide = try c.decodeIfPresent(String.self, forKey: .backgroundWide)
         foregroundWide = try c.decodeIfPresent(String.self, forKey: .foregroundWide)
+        cover = try c.decodeIfPresent(String.self, forKey: .cover)
         stickers = try c.decode([StickerDefinition].self, forKey: .stickers)
         stories = try c.decode([StoryDefinition].self, forKey: .stories)
     }
@@ -312,6 +318,7 @@ extension PackManifest {
         if (backgroundWide == nil) != (foregroundWide == nil) {
             issues.append("backgroundWide and foregroundWide must be declared together")
         }
+        if let cover { checkImage("cover", cover) }
 
         // Rule 2: sticker IDs well-formed and unique.
         var stickerIDs = Set<String>()
