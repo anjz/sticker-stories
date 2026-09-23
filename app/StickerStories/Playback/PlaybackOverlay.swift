@@ -19,10 +19,8 @@ struct PlaybackOverlay: View {
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            if case .playing(let story) = phase {
-                playingHUD(for: story)
-            } else if phase == .finished {
-                theEnd
+            if showsPill {
+                storyPill
             }
 
             if phase == .idle {
@@ -52,61 +50,89 @@ struct PlaybackOverlay: View {
         .transition(.scale.combined(with: .opacity))
     }
 
-    /// Bottom-right, in the play button's corner. The title sits in a frame
-    /// that animates to zero width when the pill goes compact, so the
-    /// capsule shrinks towards the right around the waveform and the stop
-    /// button rather than the title popping out.
-    private func playingHUD(for story: Story) -> some View {
-        VStack {
-            Spacer()
-            HStack(spacing: 0) {
-                Image(systemName: "waveform")
-                    .font(.system(size: 22, weight: .bold))
-                    .foregroundStyle(.white)
-                    .symbolEffect(.variableColor.iterative, options: .repeating)
-                Text(story.title)
-                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+    private var showsPill: Bool {
+        if case .playing = phase { return true }
+        return phase == .finished
+    }
+
+    private var isFinished: Bool { phase == .finished }
+
+    private var playingStoryID: String? {
+        if case .playing(let story) = phase { return story.id }
+        return nil
+    }
+
+    /// Bottom-right, in the play button's corner. One pill serves both the
+    /// playing HUD and "The End": it stays in place when the story finishes
+    /// and resizes around the new contents, so the waveform and stop button
+    /// turn into "The End" rather than one view replacing another.
+    private var storyPill: some View {
+        ZStack {
+            if case .playing(let story) = phase {
+                playingContents(for: story)
+                    .transition(.opacity)
+            } else {
+                Text("The End")
+                    .font(.system(size: 30, weight: .bold, design: .rounded))
                     .foregroundStyle(.white)
                     .lineLimit(1)
-                    .padding(.leading, 12)
-                    .frame(width: isCompact ? 0 : nil, alignment: .trailing)  // nil hugs the title
-                    .clipped()
-                    .opacity(isCompact ? 0 : 1)
-                    .accessibilityHidden(isCompact)
-                Button(action: onStop) {
-                    Image(systemName: "stop.fill")
-                        .font(.system(size: 18, weight: .heavy))
-                        .foregroundStyle(.white)
-                        .padding(10)
-                        .background(Circle().fill(.white.opacity(0.25)))
-                }
-                .buttonStyle(SquishyButtonStyle())
-                .accessibilityLabel("Stop the story")
-                .padding(.leading, 12)
+                    .fixedSize()
+                    .transition(.opacity)
             }
-            .padding(.leading, 22)
-            .padding(.trailing, 14)
-            .padding(.vertical, 14)
-            // The shadow is part of the fill style: a view-level .shadow on a
-            // translucent capsule rasterises as a hard-edged box on some
-            // devices.
-            .background(Capsule().fill(.black.opacity(0.55).shadow(.drop(color: .black.opacity(0.2), radius: 8, y: 4))))
-            .overlay(progressRing)
-            .padding(.trailing, 20)
-            .padding(.bottom, 20)
         }
-        .frame(maxWidth: .infinity, alignment: .trailing)
+        .padding(.leading, isFinished ? 30 : 22)
+        .padding(.trailing, isFinished ? 30 : 14)
+        .padding(.vertical, isFinished ? 12 : 14)
+        // The shadow is part of the fill style: a view-level .shadow on a
+        // translucent capsule rasterises as a hard-edged box on some
+        // devices.
+        .background(Capsule().fill(.black.opacity(0.55).shadow(.drop(color: .black.opacity(0.2), radius: 8, y: 4))))
+        .overlay(progressRing.opacity(isFinished ? 0 : 1))
+        .padding(.trailing, 20)
+        .padding(.bottom, 20)
         .transition(.move(edge: .bottom).combined(with: .opacity))
-        .task(id: story.id) {
+        .task(id: playingStoryID) {
             isCompact = false
-            guard (try? await Task.sleep(for: Self.compactAfter)) != nil else { return }
+            guard playingStoryID != nil,
+                  (try? await Task.sleep(for: Self.compactAfter)) != nil else { return }
             withAnimation(.spring(duration: 0.5)) { isCompact = true }
+        }
+    }
+
+    /// The title sits in a frame that animates to zero width when the pill
+    /// goes compact, so the capsule shrinks towards the right around the
+    /// waveform and the stop button rather than the title popping out.
+    private func playingContents(for story: Story) -> some View {
+        HStack(spacing: 0) {
+            Image(systemName: "waveform")
+                .font(.system(size: 22, weight: .bold))
+                .foregroundStyle(.white)
+                .symbolEffect(.variableColor.iterative, options: .repeating)
+            Text(story.title)
+                .font(.system(size: 18, weight: .semibold, design: .rounded))
+                .foregroundStyle(.white)
+                .lineLimit(1)
+                .padding(.leading, 12)
+                .frame(width: isCompact ? 0 : nil, alignment: .trailing)  // nil hugs the title
+                .clipped()
+                .opacity(isCompact ? 0 : 1)
+                .accessibilityHidden(isCompact)
+            Button(action: onStop) {
+                Image(systemName: "stop.fill")
+                    .font(.system(size: 18, weight: .heavy))
+                    .foregroundStyle(.white)
+                    .padding(10)
+                    .background(Circle().fill(.white.opacity(0.25)))
+            }
+            .buttonStyle(SquishyButtonStyle())
+            .accessibilityLabel("Stop the story")
+            .padding(.leading, 12)
         }
     }
 
     /// A translucent white line tracing the pill's outline clockwise from the
     /// bottom centre as the story plays, over a faint track. Follows the pill
-    /// as it collapses to compact.
+    /// as it collapses to compact; completes and fades as it becomes "The End".
     private var progressRing: some View {
         TimelineView(.animation) { _ in
             let lineWidth: CGFloat = 6
@@ -114,27 +140,12 @@ struct PlaybackOverlay: View {
             ZStack {
                 outline.stroke(.white.opacity(0.08), lineWidth: lineWidth)
                 outline
-                    .trim(from: 0, to: progress() ?? 0)
+                    .trim(from: 0, to: isFinished ? 1 : progress() ?? 0)
                     .stroke(.white.opacity(0.45), style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
             }
         }
         .allowsHitTesting(false)
         .accessibilityHidden(true)
-    }
-
-    private var theEnd: some View {
-        VStack {
-            Spacer()
-            Text("The End")
-                .font(.system(size: 30, weight: .bold, design: .rounded))
-                .foregroundStyle(.white)
-                .padding(.horizontal, 30)
-                .padding(.vertical, 12)
-                .background(Capsule().fill(.black.opacity(0.55)))
-                .padding(.bottom, 24)
-        }
-        .frame(maxWidth: .infinity)
-        .transition(.scale.combined(with: .opacity))
     }
 }
 
