@@ -9,8 +9,9 @@ import UIKit
 /// app or offer purchases (docs/compliance.md).
 ///
 /// A header row (back, title, restore), the "All sticker packs" bundle as a
-/// banner, then the packs as big tiles in a horizontal row sized so two are
-/// always fully on screen, with the next one peeking in. Styled like the rest
+/// banner, then the packs as big tiles scrolling horizontally, sized so two
+/// columns are always fully on screen with the next one peeking in — in two
+/// rows on a big screen, so four tiles show at once. Styled like the rest
 /// of the app — big cards on a meadow gradient, not system chrome.
 struct StoreScreen: View {
     let store: StoreService
@@ -25,15 +26,7 @@ struct StoreScreen: View {
 
     var body: some View {
         GeometryReader { geo in
-            let horizontalPadding: CGFloat = 26
-            let spacing: CGFloat = 20
             let cards = cards
-            // Two tiles fit exactly; with more than two, leave room for the
-            // next one to peek in so the row reads as scrollable.
-            let peek: CGFloat = cards.count > 2 ? 44 : 0
-            let tileWidth = (geo.size.width - 2 * horizontalPadding - spacing - peek) / 2
-            // Tiles stay tile-shaped when the screen is tall (portrait iPad).
-            let tileMaxHeight = tileWidth * 1.3
 
             VStack(spacing: isCompact ? 10 : 16) {
                 header
@@ -42,24 +35,13 @@ struct StoreScreen: View {
 
                 if let bundle {
                     BundleBanner(offer: bundle, isWorking: store.isWorking, isCompact: isCompact)
-                        .padding(.horizontal, horizontalPadding)
+                        .padding(.horizontal, Self.horizontalPadding)
                 }
 
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(alignment: .top, spacing: spacing) {
-                        ForEach(cards) { card in
-                            PackTile(card: card, isWorking: store.isWorking, isCompact: isCompact)
-                                .frame(width: tileWidth)
-                                .frame(maxHeight: tileMaxHeight)
-                        }
-                    }
-                    .scrollTargetLayout()
-                    .padding(.horizontal, horizontalPadding)
+                GeometryReader { area in
+                    tiles(cards, in: area.size)
+                        .frame(width: area.size.width, height: area.size.height)  // centred in the space left
                 }
-                .scrollTargetBehavior(.viewAligned)
-                // The tiles' shadows fall outside the scroll view's bounds.
-                .scrollClipDisabled()
-                .frame(maxHeight: .infinity)  // the row sits centred in the space left
                 .padding(.bottom, isCompact ? 12 : 0)
 
                 if !isCompact {
@@ -67,7 +49,7 @@ struct StoreScreen: View {
                         .font(.system(size: 13, weight: .medium, design: .rounded))
                         .foregroundStyle(.white.opacity(0.85))
                         .multilineTextAlignment(.center)
-                        .padding(.horizontal, horizontalPadding)
+                        .padding(.horizontal, Self.horizontalPadding)
                         .padding(.bottom, 10)
                 }
             }
@@ -96,6 +78,52 @@ struct StoreScreen: View {
         }
         .animation(.easeInOut, value: store.lastMessage)
         .task { await store.refresh() }
+    }
+
+    // MARK: Tiles
+
+    private static let horizontalPadding: CGFloat = 26
+    private static let spacing: CGFloat = 20
+    /// The next column's sliver, so the row reads as scrollable.
+    private static let peek: CGFloat = 44
+    /// Two rows only when each tile keeps at least this much room — a big
+    /// screen. A phone, or an iPad squeezed by multitasking, keeps one row.
+    private static let twoRowMinTileSize = CGSize(width: 240, height: 250)
+
+    /// The packs as a horizontally scrolling grid: two columns always fully
+    /// on screen, the next one peeking in, and two rows of them when there
+    /// is room for four tiles (they fill column by column, so the second
+    /// row is never ahead of the first by more than one tile).
+    private func tiles(_ cards: [PackCard], in size: CGSize) -> some View {
+        let spacing = Self.spacing
+        let columnSpace = size.width - 2 * Self.horizontalPadding - spacing
+        let fullWidth = columnSpace / 2
+        let twoRows = cards.count > 2
+            && fullWidth - Self.peek / 2 >= Self.twoRowMinTileSize.width
+            && (size.height - spacing) / 2 >= Self.twoRowMinTileSize.height
+        let rows = twoRows ? 2 : 1
+        let columns = (cards.count + rows - 1) / rows
+        let tileWidth = columns > 2 ? (columnSpace - Self.peek) / 2 : fullWidth
+        // Tiles stay tile-shaped when the screen is tall (portrait iPad).
+        let tileHeight = min((size.height - spacing * CGFloat(rows - 1)) / CGFloat(rows), tileWidth * 1.3)
+
+        return ScrollView(.horizontal, showsIndicators: false) {
+            LazyHGrid(
+                rows: Array(repeating: GridItem(.fixed(tileHeight), spacing: spacing), count: rows),
+                spacing: spacing
+            ) {
+                ForEach(cards) { card in
+                    PackTile(card: card, isWorking: store.isWorking, isCompact: isCompact)
+                        .frame(width: tileWidth, height: tileHeight)
+                }
+            }
+            .scrollTargetLayout()
+            .padding(.horizontal, Self.horizontalPadding)
+        }
+        .scrollTargetBehavior(.viewAligned)
+        // The tiles' shadows fall outside the scroll view's bounds.
+        .scrollClipDisabled()
+        .frame(height: tileHeight * CGFloat(rows) + spacing * CGFloat(rows - 1))
     }
 
     // MARK: Header
@@ -231,7 +259,7 @@ private struct BundleOffer {
 
     #if DEBUG
     static let mock = BundleOffer(
-        title: "All sticker packs", subtitle: "Every sticker pack, now and in the future.", price: "$9.99",
+        title: "All sticker packs", subtitle: "Every sticker pack in the app.", price: "$9.99",
         isOwned: false, buy: {})
     #endif
 }
@@ -336,6 +364,15 @@ private struct PackCard: Identifiable {
             artwork: .mystery(symbol: "gift.fill"), availability: .purchasable(price: "$1.99", buy: {})),
         PackCard(
             id: "mock-ocean", title: "Under the Sea", subtitle: .text("Fish, crabs and a sleepy whale."),
+            artwork: .mystery(symbol: "gift.fill"), availability: .purchasable(price: "$1.99", buy: {})),
+        PackCard(
+            id: "mock-farm", title: "Farm Friends", subtitle: .text("A pig, a hen and a tractor."),
+            artwork: .mystery(symbol: "gift.fill"), availability: .purchasable(price: "$1.99", buy: {})),
+        PackCard(
+            id: "mock-space", title: "Space Explorers", subtitle: .text("Rockets, robots and a moon cat."),
+            artwork: .mystery(symbol: "gift.fill"), availability: .purchasable(price: "$1.99", buy: {})),
+        PackCard(
+            id: "mock-dinos", title: "Dinosaur Valley", subtitle: .text("A gentle giant and three eggs."),
             artwork: .mystery(symbol: "gift.fill"), availability: .purchasable(price: "$1.99", buy: {})),
     ]
     #endif
