@@ -30,6 +30,14 @@ final class PlaybackController {
     /// Seconds into the narration, for the effects clock; `nil` when not playing.
     var playbackTime: TimeInterval? { narrator.playbackTime }
 
+    /// How far through the narration we are, 0...1; `nil` when not playing
+    /// or the narrator can't tell its length.
+    var playbackProgress: Double? {
+        guard let time = narrator.playbackTime,
+              let duration = narrator.playbackDuration, duration > 0 else { return nil }
+        return min(max(time / duration, 0), 1)
+    }
+
     func play(canvas: CanvasState, pack: LoadedPack, language: String) {
         stop()
         playTask = Task {

@@ -24,6 +24,11 @@ public protocol Narrator: AnyObject {
     /// elapsed speech time for a synthesised narrator.
     var playbackTime: TimeInterval? { get }
 
+    /// Total length of the current narration in seconds, or `nil` when
+    /// nothing is playing or the length isn't known up front (a synthesised
+    /// narrator may not). Only drives the progress ring in the playing HUD.
+    var playbackDuration: TimeInterval? { get }
+
     /// Narrates the story, returning when narration finishes or is cancelled.
     func narrate(_ story: Story, from pack: LoadedPack) async throws
 

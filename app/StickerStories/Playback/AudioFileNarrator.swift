@@ -14,6 +14,11 @@ final class AudioFileNarrator: NSObject, Narrator {
         return player.currentTime
     }
 
+    var playbackDuration: TimeInterval? {
+        guard case .playing = state, let player else { return nil }
+        return player.duration
+    }
+
     private var player: AVAudioPlayer?
     private var finish: CheckedContinuation<Void, any Error>?
     /// A finish that arrived before `narrate` was waiting for it (a very

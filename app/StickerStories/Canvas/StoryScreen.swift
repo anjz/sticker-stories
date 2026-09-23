@@ -84,6 +84,7 @@ struct StoryScreen: View {
 
                     PlaybackOverlay(
                         phase: playback.phase,
+                        progress: { [playback] in playback.playbackProgress },
                         onPlay: {
                             UISounds.shared.play(.playClick)
                             play()
