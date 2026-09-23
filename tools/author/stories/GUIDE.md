@@ -175,7 +175,7 @@ a pack may use is decided by its **`setting`** in `manifest.json`:
 
 | Setting | Canvas effects available | Cue it on |
 |---|---|---|
-| `outdoors` | `fog` (early morning, hush, something hidden), `rain` (pitter-patter, puddles, sheltering), `sunshine` (the sun comes out, a warm afternoon), `rainbow` (the wonder after rain, a wish come true), `night` (evening, the moon coming up, settling to sleep; never darkness as a threat), `snow` (winter, a snow day, the first flakes, a hush) | the sentence where the weather or the light changes |
+| `outdoors` | `fog` (early morning, hush, something hidden), `rain` (pitter-patter, puddles, sheltering), `sunshine` (the sun comes out, a warm afternoon), `rainbow` (the wonder after rain, a wish come true), `night` (evening, the moon coming up, settling to sleep; never darkness as a threat), `snow` (winter, a snow day, the first flakes, a hush), `sunset` (the end of the day, going home; before night for a gentle bedtime) | the sentence where the weather or the light changes |
 | `indoors` | `dimlight` (bedtime, a lamp turned low, a whispered secret; never darkness as a threat) | the sentence where the light changes |
 | `none` | nothing — the pack's stories use sticker effects only | — |
 

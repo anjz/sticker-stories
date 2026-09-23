@@ -148,6 +148,7 @@ or fantastical places) gets no canvas effects at all.
 | `rainbow` | outdoors | A soft rainbow arcs across the sky behind the scenery. | The reward after rain, a wish come true, a wonder everyone looks up at. One per story at most. | 8 s | 2 / 2 s | full |
 | `night` | outdoors | Night falls: the scene darkens and a moon glows in the sky. | Evening and bedtime outdoors, the moon coming up, stars, a story that settles to sleep. Never darkness as a threat. Builds slowly — cue it a beat early. | 10 s | 2 / 2 s | full |
 | `snow` | outdoors | Soft snowflakes drift down at different sizes and speeds; the light turns a little cooler and brighter. | Winter, a snow day, the first flakes, a quiet hush. `intensity` is a few flakes to a thick flurry. | 12 s | 2 / 2.5 s | runs at ≤0.4 |
+| `sunset` | outdoors | A warm orange-pink glow spreads from the horizon while the top of the sky deepens to violet. | The end of the day, going home, a calm golden moment. Followed by `night` it makes a gentle bedtime. Builds slowly — cue it a beat early. | 10 s | 2.5 / 2.5 s | full |
 | `dimlight` | indoors | The lights go low: the scene darkens toward its edges. | Bedtime, a lamp switched low, a cosy evening, a whispered secret. Never darkness as a threat. | 8 s | 1.5 / 1.5 s | full |
 
 - Ramps never eat more than a third of the duration each, so a 3 s effect

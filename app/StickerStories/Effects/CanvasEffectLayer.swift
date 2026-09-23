@@ -92,6 +92,7 @@ final class CanvasEffectLayer: SKNode {
     /// The effects drawn by their own types, one file each in `Canvas/`.
     private let painters: [CanvasEffectName: any CanvasEffectPainter] = [
         .snow: SnowPainter(),
+        .sunset: SunsetPainter(),
     ]
 
     override init() {

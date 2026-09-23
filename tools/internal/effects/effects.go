@@ -33,7 +33,8 @@ var Names = []string{
 // CanvasNames lists every canvas effect (weather and light over the whole
 // scene), in library order.
 var CanvasNames = []string{
-	"fog", "rain", "sunshine", "rainbow", "night", "snow", "dimlight",
+	"fog", "rain", "sunshine", "rainbow", "night", "snow", "sunset",
+	"dimlight",
 }
 
 // CanvasSettings maps each canvas effect to the pack settings it suits
@@ -46,6 +47,7 @@ var CanvasSettings = map[string][]string{
 	"rainbow":  {"outdoors"},
 	"night":    {"outdoors"},
 	"snow":     {"outdoors"},
+	"sunset":   {"outdoors"},
 	"dimlight": {"indoors"},
 }
 
