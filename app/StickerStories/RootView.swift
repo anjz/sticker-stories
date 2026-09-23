@@ -57,6 +57,8 @@ struct RootView: View {
             if args.contains("-autoplay") || args.contains("-openPack"), let pack = library.packs.first {
                 screen = .story(pack)
             }
+            // `-openGate`: show the parental gate (visual checks of it).
+            if args.contains("-openGate") { grownUps = .gate }
             #endif
         }
         .sheet(item: $grownUps) { access in
