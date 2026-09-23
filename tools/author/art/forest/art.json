@@ -132,7 +132,8 @@
         "x": 0.62,
         "y": 0.06,
         "width": 0.36,
-        "height": 0.46
+        "height": 0.46,
+        "edge": 0.008
       }
     },
     {
@@ -160,7 +161,8 @@
         "x": 0.2,
         "y": 0.16,
         "width": 0.3,
-        "height": 0.26
+        "height": 0.26,
+        "edge": 0.01
       }
     },
     {
@@ -174,7 +176,8 @@
         "x": 0.38,
         "y": 0.2,
         "width": 0.36,
-        "height": 0.26
+        "height": 0.26,
+        "edge": 0.01
       }
     },
     {
@@ -216,8 +219,10 @@
         "x": 0.52,
         "y": 0.28,
         "width": 0.38,
-        "height": 0.34
-      }
+        "height": 0.34,
+        "edge": 0.01
+      },
+      "faceNote": "Its face is the round cream-coloured face on the front of its dark head: the face stays cream, only the eyes, brows, mouth and cheeks change."
     },
     {
       "id": "acorn",
@@ -303,7 +308,8 @@
         "y": 0.5,
         "width": 0.34,
         "height": 0.34
-      }
+      },
+      "faceNote": "Keep the long snout, the black nose at its tip and the black-and-white stripes exactly where they are; only the eyes, brows, mouth and cheeks change."
     },
     {
       "id": "beaver",
@@ -331,7 +337,8 @@
         "y": 0.16,
         "width": 0.26,
         "height": 0.24
-      }
+      },
+      "faceNote": "Keep the long grey beak closed and exactly as it is; show the feeling with the eye, brow and cheek only."
     },
     {
       "id": "caterpillar",
@@ -359,7 +366,8 @@
         "y": 0.25,
         "width": 0.32,
         "height": 0.28
-      }
+      },
+      "faceNote": "Its face keeps exactly the same warm brown as the rest of its head: do not lighten or darken it."
     }
   ],
   "expressions": [
@@ -382,7 +390,18 @@
   ],
   "scene": {
     "background": "A bright forest clearing in soft daylight, seen from a child's height: soft grassy ground in the lower third, a gentle line of distant trees and ferns in the middle, a warm pale-blue sky with a few round clouds above (no sun in the sky); open space in the centre where stickers will be placed.",
-    "foreground": "The nearest elements only: two large tree trunks with a little foliage at the left and right edges, a few tall ferns and grass tufts along the very bottom. The whole centre and the sky stay empty and transparent."
+    "foreground": "The nearest elements only: two large tree trunks with a little foliage at the left and right edges, a few tall ferns and grass tufts along the very bottom. The whole centre and the sky stay empty and transparent.",
+    "edits": [
+      {
+        "prompt": "A small, calm forest pond lying flat in the meadow grass, seen from a child's height so it is a wide, flattened oval: clear blue-green water reflecting a little of the sky, three or four round green lily pads (one with a small white flower), a few soft reeds and cattails at its back edge and a thin rim of darker grass and pebbles around it. Gentle and inviting, no frogs or animals.",
+        "area": {
+          "x": 0.53,
+          "y": 0.6,
+          "width": 0.15,
+          "height": 0.13
+        }
+      }
+    ]
   },
   "notes": {
     "stickers": "Every character faces slightly left, whole body visible. Edit prompts freely; a changed prompt re-renders only that sticker.",

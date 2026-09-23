@@ -65,6 +65,15 @@ go run ./packager validate ../packs/forest
    swaps it in place (`docs/pack-format.md`, "Expressions"). The API
    output is kept as `<id>.<expr>.gen.png`, the composite as
    `<id>.<expr>.raw.png`, the finished variant as `<id>.<expr>.png`.
+   A band along the silhouette's edge (3 % of the image; `face.edge`
+   overrides it per sticker, thinner where an eye sits on the outline) is
+   kept off the mask and out of the composite, so the head's outline is
+   always the sticker's own — when the model turned a head, compositing its
+   outline inside the old one showed both. The new face is taken fully over
+   the whole face box and fades out only across the mask's margin, so no
+   half of an old eye or mouth shows next to the new one. A variant whose
+   face differs a lot at that rim is flagged (`!`) to look at. A composite
+   change (`faceVersion`) re-composites the kept generations at no cost.
    `-only faces` renders just the variants, `-only bear.happy` one; the
    edits model allows five image inputs a minute, so use `-parallel 2`.
 3. **Scene planes**, one call each, painted directly at the wide 3072×1536
@@ -95,6 +104,12 @@ regenerates what changed. `out/` is the source of truth for the art; the
 pack gets an encoded copy at install.
 `-only fox,tree`, `-only stylesheet`, `-only scene` narrow a run;
 `-quality medium` is cheaper while iterating on prompts.
+
+`scene.edits` (prompt + `area` on the wide background, fractions) paint a
+feature into the finished background afterwards — Forest's pond — without
+repainting the rest: the generated wide background is kept as
+`background-wide.orig.png`, each edit is a masked edit blended in over its
+area, and the base is re-cut from the edited wide so the two still match.
 
 ## Install
 
