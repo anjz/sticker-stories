@@ -161,6 +161,7 @@ or fantastical places) gets no canvas effects at all.
 | `bubbles` | outdoors, indoors, space, underwater | Round bubbles float up from the bottom and wobble as they rise. | Bath time, washing up, blowing bubbles, a party; under the sea, a fish talking or something bubbling up. | 8 s | 1 / 1.5 s | runs at ≤0.4 |
 | `shootingstars` | space | Now and then a shooting star streaks across the sky behind the scenery. | Making a wish, wonder, "look!". `intensity` is a single one now and then to a meteor shower. | 10 s | 1 / 1.5 s | runs at ≤0.4 |
 | `nebula` | space | Soft purple, pink and teal clouds of light swell and drift across the sky behind the scenery. | A magical place, wonder, drifting far from home, a dreamy moment. Builds slowly — cue it a beat early. | 12 s | 3 / 3 s | full |
+| `warp` | space | Stars stretch into streaks rushing out from the centre, in the sky behind the stickers and the scenery. | Blast-off, zooming to a new planet, "whoosh!". Short — a few seconds is plenty. | 4 s | 0.6 / 1 s | does not run |
 
 - Ramps never eat more than a third of the duration each, so a 3 s effect
   still spends a second at full strength.
@@ -257,7 +258,7 @@ app never parses text.
 ## Accessibility and calm mode
 
 - **Reduce Motion** (system setting) is observed live: `shake`, `hop`,
-  `spin` and `float` do not run; `pulse` and `wobble` run at
+  `spin` and `float` do not run, nor does the canvas effect `warp`; `pulse` and `wobble` run at
   intensity ≤0.3; particles and the canvas effects that fall or drift
   (`rain`, `snow` and the others marked in the canvas table) at ≤0.4;
   fades, `glow`, `tint` and the other canvas effects (slow washes of light)

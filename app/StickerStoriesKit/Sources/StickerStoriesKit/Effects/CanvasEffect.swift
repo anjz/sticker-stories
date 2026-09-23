@@ -29,6 +29,7 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
     // Space
     case shootingstars
     case nebula
+    case warp
 
     /// The pack settings (`PackManifest.setting`) this effect suits.
     public var settings: Set<PackSetting> {
@@ -38,7 +39,7 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
         case .dimlight, .windowlight, .firelight, .rainywindow: [.indoors]
         case .confetti: [.outdoors, .indoors, .space]
         case .bubbles: [.outdoors, .indoors, .space, .underwater]
-        case .shootingstars, .nebula: [.space]
+        case .shootingstars, .nebula, .warp: [.space]
         }
     }
 
@@ -129,6 +130,9 @@ public struct CanvasEffectDefinition: Sendable {
         CanvasEffectDefinition(
             name: .nebula, defaultDuration: 12, rampIn: 3.0, rampOut: 3.0,
             summary: "Soft purple and teal clouds of light swell across the sky behind the scenery."),
+        CanvasEffectDefinition(
+            name: .warp, defaultDuration: 4, rampIn: 0.6, rampOut: 1.0,
+            summary: "Stars stretch into streaks rushing out from the centre: zooming through space."),
     ]
 }
 
