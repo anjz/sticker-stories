@@ -176,11 +176,22 @@ func runRender(args []string) error {
 		})
 	}
 	if want("title") {
-		jobs = append(jobs, job{
+		j := job{
 			key: "title", dir: filepath.Join(out, "title"), size: cfg.Title.Size, transparent: true,
 			prompt: style + "\n\n" + strings.TrimSpace(cfg.Title.Prompt) +
 				fmt.Sprintf("\n\nThe lettering reads exactly \"%s\" — spelled exactly so, nothing else written anywhere. A fully transparent background around the title: no scenery, no backdrop, no box behind it.", cfg.Title.Text),
-		})
+		}
+		// With a background installed, the title is drawn knowing what it
+		// sits on, so its colours can be chosen to stand out against it.
+		if data, err := os.ReadFile(filepath.Join(appArtDir, "menu-background.webp")); err == nil {
+			small, err := downscale(data, referencePx)
+			if err != nil {
+				return fmt.Errorf("title: background reference: %w", err)
+			}
+			j.references = [][]byte{small}
+			j.prompt += " The attached image is the app's home screen background: the title sits across its upper centre. Do not draw that background — use it only to choose colours that stand out clearly against it."
+		}
+		jobs = append(jobs, j)
 	}
 	packs, err := listPacks(*packsDir)
 	if err != nil {
@@ -580,7 +591,9 @@ func runPick(args []string) error {
 		return install(img, filepath.Join(appArtDir, "menu-store.webp"))
 	case key == "title":
 		// Trim the transparent surround so the app can size the title by
-		// its lettering.
+		// its lettering; small smudges the generator left on the edges
+		// would otherwise stretch the box.
+		stickerimg.StripEdgeCrumbs(img, 8, 0.02, 0.12)
 		box := stickerimg.Bounds(img, 8)
 		if box.Empty() {
 			return errors.New("the title candidate is fully transparent")
