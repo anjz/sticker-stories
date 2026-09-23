@@ -34,6 +34,7 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
     case comet
     // Underwater
     case sunrays
+    case ripples
 
     /// The pack settings (`PackManifest.setting`) this effect suits.
     public var settings: Set<PackSetting> {
@@ -44,7 +45,7 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
         case .confetti: [.outdoors, .indoors, .space]
         case .bubbles: [.outdoors, .indoors, .space, .underwater]
         case .shootingstars, .nebula, .warp, .planetrise, .comet: [.space]
-        case .sunrays: [.underwater]
+        case .sunrays, .ripples: [.underwater]
         }
     }
 
@@ -147,6 +148,9 @@ public struct CanvasEffectDefinition: Sendable {
         CanvasEffectDefinition(
             name: .sunrays, defaultDuration: 10, rampIn: 2.0, rampOut: 2.0,
             summary: "Shafts of sunlight slant down from the surface and sway slowly."),
+        CanvasEffectDefinition(
+            name: .ripples, defaultDuration: 12, rampIn: 2.0, rampOut: 2.0,
+            summary: "A net of rippling light plays over the scene, brightest near the sea floor."),
     ]
 }
 

@@ -108,6 +108,7 @@ final class CanvasEffectLayer: SKNode {
         .planetrise: PlanetrisePainter(),
         .comet: CometPainter(),
         .sunrays: SunraysPainter(),
+        .ripples: RipplesPainter(),
     ]
 
     override init() {
