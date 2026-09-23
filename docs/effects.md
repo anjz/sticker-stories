@@ -277,7 +277,7 @@ app never parses text.
   (`rain`, `snow` and the others marked in the canvas table) at ≤0.4;
   fades, `glow`, `tint` and the other canvas effects (slow washes of light)
   run in full because they carry story meaning.
-- **Calm mode** (Grown-Ups → Settings) applies the same policy plus a global
+- **Calm mode** (main menu gear → Settings) applies the same policy plus a global
   intensity multiplier of 0.6, for children who are easily overstimulated.
 - Flashes (white `tint`) are capped at 3 per second regardless of
   settings.

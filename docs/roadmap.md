@@ -109,7 +109,8 @@
 
 ## Later
 
-- [ ] All-access unlock (`…allaccess`) + upsell placement in Grown-Ups area
+- [x] All-access unlock (`…allaccess`, "All sticker packs") as the banner
+      at the top of the full-screen store (2026-09-23)
 - [ ] Real TTS pipeline hardening (voice selection, per-story pacing)
 - [ ] Per-sticker character animation (a sibling system to the effects
       layer, sharing its clock — see `docs/effects.md`, "Deliberately not in

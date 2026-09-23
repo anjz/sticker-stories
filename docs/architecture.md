@@ -9,7 +9,8 @@
 │  StickerStoriesApp ─ RootView                                │
 │    ├─ SpriteView(CanvasScene)      ← the heart: sticker play │
 │    ├─ Play button + playback HUD   (SwiftUI overlays)        │
-│    └─ Grown-Ups button → ParentalGateView → GrownUpsView     │
+│    ├─ More stories card → ParentalGateView → StoreScreen     │
+│    └─ Menu gear → ParentalGateView → SettingsView            │
 │                                                              │
 │  Adapters (platform-coupled):                                │
 │    AudioFileNarrator (AVFoundation)                          │
@@ -118,11 +119,16 @@ Three surfaces, one door out of the child experience:
   screen is (re)entered; Clear is a deliberate, non-undoable reset (behind
   its own confirmation) that also empties that stack. No grown-ups access
   from here.
-- **Grown-Ups area** — reachable only via More stories → parental gate.
-  Contains the store and, behind a gear button, parent settings
-  (`AppSettings`: language override; persisted in UserDefaults).
+- **Store** (`StoreScreen`) — a full-screen section reached only via the
+  menu's More stories card → parental gate: the "All sticker packs" bundle as
+  a banner, the packs as a horizontal row of tiles (two always on screen),
+  restore purchases.
+- **Parent settings** (`SettingsView`) — a sheet reached only via the gear in
+  the menu's top right corner → parental gate (`AppSettings`: language
+  override, calm mode; persisted in UserDefaults).
 
-Routing is a simple two-case screen enum in `RootView` — no NavigationStack.
+Routing is a simple three-case screen enum in `RootView` (menu, story,
+store) — no NavigationStack; the gate and settings are a sheet.
 
 ## Localization
 
@@ -131,7 +137,7 @@ Multilingual from day one — currently **en-US** and **es-ES**:
 - **App UI**: `Localizable.xcstrings` (source `en`, translation `es`). iOS
   resolves the UI language from device settings / the per-app language
   setting; SwiftUI `Text`/`Label` literals localize automatically. A parent
-  can also **override the language in-app** (Grown-Ups → gear → Language):
+  can also **override the language in-app** (menu gear → gate → Language):
   `AppSettings.languageOverride` feeds both `LanguageResolver` (narration)
   and an `\.environment(\.locale)` override (UI text, applied at the root and
   re-applied inside each sheet), switching live without relaunch. Keep
