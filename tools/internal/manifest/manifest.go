@@ -42,10 +42,13 @@ type Manifest struct {
 	Foreground  string            `json:"foreground"`
 	// Optional wider renditions for wide windows (iPhone): same pixel height
 	// as the base art, base art centred inside; declared together or not at all.
-	BackgroundWide string    `json:"backgroundWide,omitempty"`
-	ForegroundWide string    `json:"foregroundWide,omitempty"`
-	Stickers       []Sticker `json:"stickers"`
-	Stories        []Story   `json:"stories"`
+	BackgroundWide string `json:"backgroundWide,omitempty"`
+	ForegroundWide string `json:"foregroundWide,omitempty"`
+	// Optional cover art for the pack's tile in the menu and the store
+	// (made with uiart); without one the app composes the tile itself.
+	Cover    string    `json:"cover,omitempty"`
+	Stickers []Sticker `json:"stickers"`
+	Stories  []Story   `json:"stories"`
 }
 
 // Sticker is one draggable sticker in the pack.
@@ -217,6 +220,9 @@ func (m *Manifest) Validate(dir string) []error {
 	}
 	if (m.BackgroundWide == "") != (m.ForegroundWide == "") {
 		fail("backgroundWide and foregroundWide must be declared together")
+	}
+	if m.Cover != "" {
+		checkImage("cover", m.Cover)
 	}
 
 	// Rule 2: sticker IDs well-formed and unique.

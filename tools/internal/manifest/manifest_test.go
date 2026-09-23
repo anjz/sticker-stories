@@ -171,6 +171,8 @@ func TestValidationFailures(t *testing.T) {
 			m.BackgroundWide = "art/nope-wide.png"
 			m.ForegroundWide = "art/foreground.png"
 		}, "backgroundWide"},
+		{"missing cover file", func(m *Manifest) { m.Cover = "art/cover.png" }, "cover"},
+		{"cover not png or webp", func(m *Manifest) { m.Cover = "art/background.jpg" }, ".png or .webp"},
 		{"absolute path", func(m *Manifest) { m.Foreground = "/etc/passwd" }, "pack-relative"},
 		{"path escape", func(m *Manifest) { m.Foreground = "../../evil.png" }, "escape"},
 		{"duplicate sticker id", func(m *Manifest) { m.Stickers[1].ID = "mushroom" }, "duplicate sticker"},
