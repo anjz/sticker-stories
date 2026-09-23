@@ -6,9 +6,9 @@ closed libraries:
 - **Sticker effects** — one placed sticker does something: a sparkle, a
   wobble, a glow, a fade. Twelve of them.
 - **Canvas effects** — the weather or the light changes over the whole
-  scene: fog, rain, sunshine, a rainbow, night falling, the lights going low.
-  Six of them,
-  each suited to a pack `setting` (see "Canvas effects").
+  scene: fog, rain, sunshine, a rainbow, night falling, the lights going low,
+  and their counterparts indoors, in space and under the sea. Each suits
+  one or more pack `setting`s (see "Canvas effects").
 
 This is the reference for **authoring** them (story tooling, hand-written
 packs) and the contract the app implements.
@@ -118,7 +118,7 @@ clock but not this vocabulary.
   rotation and offsets add, glow/tint take the max, colours and the pivot go
   to the later-started effect. Two glows never stack into a blowout.
 
-## Canvas effects (6, closed)
+## Canvas effects (closed)
 
 Weather and light over the **whole scene**: they draw over the art and the
 stickers (the rainbow, the moon and the stars sit behind the foreground
@@ -161,7 +161,7 @@ or fantastical places) gets no canvas effects at all.
 
 | Key | Required | Default | Meaning |
 |---|---|---|---|
-| `effect` | yes | | One of the 6 names above. A canvas trigger has **no `sticker`**. |
+| `effect` | yes | | One of the names above. A canvas trigger has **no `sticker`**. |
 | `at` | yes | | Seconds into this language's narration when the effect starts building up. |
 | `cue` | no | | Free authoring label; the app ignores it. |
 | `intensity` | no | `0.6` | 0–1. How strong. 0 is visually identical to no effect. |
@@ -268,7 +268,9 @@ drives two particle emitters (`sparkles`, `hearts`) defined in
 `app/StickerStories/Effects/emitters.json`, and renders canvas effects in
 `CanvasEffectLayer` (a rain emitter, drifting fog sprites, a sky glow with light shafts, a
 rainbow arc, a vignette and a moon with a halo, all procedurally textured, sized to the pack's
-art frame — the tuning numbers live in that file). The DEBUG-only gallery
+art frame — the tuning numbers live in that file; every effect added after
+the first six is a `CanvasEffectPainter` of its own in `Effects/Canvas/`,
+placing its sprites from the timeline time so it needs no emitter). The DEBUG-only gallery
 (Settings → Effects gallery in debug builds) plays every sticker effect on
 a real sticker at three intensities and every canvas effect over the pack's
 art, for tuning.

@@ -10,7 +10,9 @@ import StickerStoriesKit
 /// canvas).
 ///
 /// The numbers in this file are the tuning surface — content only ever
-/// reaches `strength` (intensity × envelope).
+/// reaches `strength` (intensity × envelope). The original six effects are
+/// drawn here; every later one is a `CanvasEffectPainter` in `Canvas/`,
+/// registered in `painters`.
 @MainActor
 final class CanvasEffectLayer: SKNode {
     /// In the sky: over the background art, under the background stickers
@@ -87,8 +89,15 @@ final class CanvasEffectLayer: SKNode {
         (0.86, 0.95, 0.011, 2.3, 3.9), (0.92, 0.70, 0.013, 2.9, 0.9), (0.95, 0.85, 0.008, 3.0, 2.1),
     ]
 
+    /// The effects drawn by their own types, one file each in `Canvas/`.
+    private let painters: [CanvasEffectName: any CanvasEffectPainter] = [:]
+
     override init() {
         super.init()
+        for painter in painters.values {
+            painter.node.isHidden = true
+            addChild(painter.node)
+        }
         buildFog()
         buildRain()
         buildSunshine()
@@ -288,6 +297,8 @@ final class CanvasEffectLayer: SKNode {
         moon.position = moonAt
         moonGlow.size = CGSize(width: h * 0.55, height: h * 0.55)
         moonGlow.position = moonAt
+
+        for painter in painters.values { painter.layout(world: world) }
     }
 
     // MARK: Per-frame
@@ -337,6 +348,13 @@ final class CanvasEffectLayer: SKNode {
         }
         moon.alpha = nightStrength
         moonGlow.alpha = nightStrength * (0.55 + 0.06 * sin(2 * .pi * time / 6))
+
+        for (name, painter) in painters {
+            let strength = strengths[name] ?? 0
+            // An effect at rest costs nothing: hidden, and not updated.
+            painter.node.isHidden = strength <= 0
+            if strength > 0 { painter.apply(strength: strength, at: time) }
+        }
     }
 
     /// Everything off at once (playback cancelled); live raindrops are
@@ -345,4 +363,23 @@ final class CanvasEffectLayer: SKNode {
         apply([:], at: lastTime)
         rain.resetSimulation()
     }
+}
+
+/// One canvas effect drawn by its own type (`Effects/Canvas/`). Like the
+/// layer, a painter keeps no time of its own: everything it shows is a pure
+/// function of `strength` and the timeline `time`, so a seek, a pause or a
+/// stop looks right for free (no emitters — particles are sprites placed
+/// from `time`).
+@MainActor
+protocol CanvasEffectPainter: AnyObject {
+    /// Added to the layer once; its children carry the real z-positions
+    /// (`CanvasEffectLayer.skyZ` for things in the sky behind the
+    /// foreground art, `overlayZ` and up for things over everything). The
+    /// layer hides it while the effect is off.
+    var node: SKNode { get }
+    /// Sizes everything to the art frame (world coordinates).
+    func layout(world: CGRect)
+    /// Renders the effect at `strength` (0 < strength ≤ 1, intensity ×
+    /// envelope) at timeline time `time`. Not called while the effect is off.
+    func apply(strength: Double, at time: TimeInterval)
 }

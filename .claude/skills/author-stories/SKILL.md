@@ -29,7 +29,7 @@ Read, in this order, before writing anything:
    `underwater` or `none`; absent means `none`). The setting decides which canvas effects the stories may
    use — note it down before writing anything.
 3. `docs/effects/effects.json` — the exact library: the 12 sticker effects
-   (`effects`) and the 6 canvas effects (`canvasEffects`), what each means,
+   (`effects`) and the canvas effects (`canvasEffects`), what each means,
    which parameters each accepts, and which `settings` each canvas effect
    suits. Use only these names, exactly as spelled.
 4. `tools/author/stories/<packID>/` — existing `plan.md` and stories, if
