@@ -12,13 +12,14 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
     case rainbow
     case night
     case snow
+    case sunset
     // Indoors
     case dimlight
 
     /// The pack settings (`PackManifest.setting`) this effect suits.
     public var settings: Set<PackSetting> {
         switch self {
-        case .fog, .rain, .sunshine, .rainbow, .night, .snow: [.outdoors]
+        case .fog, .rain, .sunshine, .rainbow, .night, .snow, .sunset: [.outdoors]
         case .dimlight: [.indoors]
         }
     }
@@ -71,6 +72,9 @@ public struct CanvasEffectDefinition: Sendable {
         CanvasEffectDefinition(
             name: .snow, defaultDuration: 12, rampIn: 2.0, rampOut: 2.5,
             summary: "Soft snowflakes drift down over everything; the light turns cool and bright."),
+        CanvasEffectDefinition(
+            name: .sunset, defaultDuration: 10, rampIn: 2.5, rampOut: 2.5,
+            summary: "A warm orange-pink glow spreads from the horizon while the sky above deepens."),
         CanvasEffectDefinition(
             name: .dimlight, defaultDuration: 8, rampIn: 1.5, rampOut: 1.5,
             summary: "The lights go low: the scene darkens toward its edges."),

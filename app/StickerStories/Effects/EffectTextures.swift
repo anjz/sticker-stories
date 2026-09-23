@@ -5,7 +5,8 @@ import UIKit
 /// Placeholder-art era: swap for PNGs when real art lands, keeping the same
 /// names (`star`, `dot`, `heart` for the emitters in `emitters.json`;
 /// `drop`, `fog`, `ray`, `skyglow`, `rainbow`, `vignette`, `moon`, `moonglow`
-/// for `CanvasEffectLayer`).
+/// for `CanvasEffectLayer`; `band` and the rest below for the painters in
+/// `Canvas/`).
 /// `dot` is kept as the generic soft particle even though no emitter uses
 /// it today.
 enum EffectTextures {
@@ -22,6 +23,7 @@ enum EffectTextures {
         case "vignette": texture = procedural(width: 256, height: 256, vignette)
         case "moon": texture = procedural(width: 128, height: 128, moon)
         case "moonglow": texture = procedural(width: 256, height: 256, moonGlow)
+        case "band": texture = procedural(width: 4, height: 256, band)
         case "rainbow": texture = drawn(size: CGSize(width: 1024, height: 512), scale: 1) { rect, cg in drawRainbow(in: rect, cg) }
         default:
             texture = drawn(size: CGSize(width: 32, height: 32), scale: 3) { rect, cg in
@@ -100,6 +102,12 @@ enum EffectTextures {
     /// Light along the whole top edge, fading downward.
     private static func skyGlow(_ u: Double, _ v: Double) -> Double {
         pow(1 - v, 2.5)
+    }
+
+    /// A soft horizontal band, brightest along its middle: a glow on the horizon.
+    private static func band(_ u: Double, _ v: Double) -> Double {
+        let x = (v - 0.5) * 2
+        return exp(-4 * x * x)
     }
 
     /// Opaque at the edges, thinner in the middle: a dimmed room.
