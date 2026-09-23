@@ -105,7 +105,13 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         // A sticker without `animations` is a still sticker.
         #expect(absent.stickers.allSatisfy { $0.animations.isEmpty })
 
-        object["setting"] = "underwater"
+        for setting in ["space", "underwater"] {
+            object["setting"] = setting
+            let other = try JSONDecoder().decode(PackManifest.self, from: JSONSerialization.data(withJSONObject: object))
+            #expect(other.setting.rawValue == setting)
+        }
+
+        object["setting"] = "desert"
         #expect(throws: DecodingError.self) {
             try JSONDecoder().decode(PackManifest.self, from: JSONSerialization.data(withJSONObject: object))
         }

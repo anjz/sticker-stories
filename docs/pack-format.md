@@ -93,6 +93,16 @@ never letterboxes:
   stars, sun rays, a rainbow, rain or mist** — a painted moon would show
   twice the moment `night` plays. `stickerart` adds this directive to the
   scene prompts of every outdoors pack.
+- **Space packs paint no moving sky.** The art is a calm, dark starry sky
+  with distant, unlit stars and whatever scenery the pack needs (planets,
+  moons, a rocket pad), but **never shooting stars, comets, a glowing
+  nebula, a bright planet rim on the horizon, a sun flare or speed
+  streaks** — the space canvas effects draw those.
+- **Underwater packs paint no light in the water.** The art is clear,
+  evenly lit water, the sea floor and the scenery, but **never sun rays
+  from the surface, rippling light patterns, bubbles, glowing specks,
+  drifting particles or clouds of sand** — the underwater canvas effects
+  draw those.
 
 ## manifest.json — schema v2
 
@@ -157,7 +167,7 @@ never letterboxes:
 | `languages` | [string] | BCP-47 tags (`xx` or `xx-YY`, e.g. `en-US`), non-empty, no duplicates. **The first entry is the pack's fallback language.** |
 | `displayName` | {lang: string} | Human-readable name per language, shown to parents. |
 | `theme` | string | Free-form theme tag; future prompt context for generated stories. |
-| `setting` | string | **Optional**, default `none`. Where the scene takes place: `outdoors`, `indoors` or `none`. Decides which canvas effects (`docs/effects.md`, "Canvas effects") the pack's stories may use — `outdoors` unlocks fog, rain, sunshine, rainbow and night; `indoors` unlocks dimlight; `none` allows no canvas effects. Story tooling reads it when authoring. |
+| `setting` | string | **Optional**, default `none`. Where the scene takes place: `outdoors`, `indoors`, `space`, `underwater` or `none`. Decides which canvas effects (`docs/effects.md`, "Canvas effects") the pack's stories may use: each effect lists the settings it suits, and `none` allows no canvas effects. Story tooling reads it when authoring. |
 | `background` / `foreground` | string | Pack-relative paths to PNG or WebP files that must exist ("Image formats" above). Their frame is the sticker coordinate system ("Art safe area" below). |
 | `backgroundWide` / `foregroundWide` | string | **Optional, together or not at all.** Wider renditions (e.g. 2:1) with the **same pixel height** as the base art and the base art **centred** inside. The app draws whichever rendition lets a landscape window avoid panning with the least crop (tall phones get the wide one; iPads keep the base one). Files must exist. |
 | `stickers[].id` | string | Lowercase `a-z0-9-`, unique within the pack. |
@@ -194,7 +204,7 @@ never letterboxes:
    never fail regardless of canvas contents.
 8. `weight > 0`, `version ≥ 1`; every `displayName`/`name`/`title`/`text`
    value non-empty; `setting`, when present, is one of `outdoors`,
-   `indoors`, `none`.
+   `indoors`, `space`, `underwater`, `none`.
 9. Every declared effects sidecar is valid per `docs/effects.md` ("Trigger
    file"): the packager validates it **strictly** (unknown effect names,
    unknown keys, out-of-range numbers, undeclared stickers and canvas
@@ -273,7 +283,8 @@ same device preference.
   supported (none shipped). 2026-09: optional `localizations[].effects`
   and optional `backgroundWide` / `foregroundWide` added (additive, no
   bump); optional `setting` added (additive, defaults to `none`, no
-  bump).
+  bump); `setting` values `space` and `underwater` added (no pack has
+  shipped, so no bump).
 - Any schema change must update this document, the Go validator
   (`tools/internal/manifest`), and the Swift decoder in the **same commit**.
 - `version` (pack content revision) is bumped whenever any asset or story in a

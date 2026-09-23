@@ -63,7 +63,26 @@ const (
 	// scene — sunshine, rain, fog, a rainbow, night with a moon and stars —
 	// so the art itself must stay neutral or the moon would show twice.
 	sceneNeutralSky = "Weather and light: plain daytime with soft, even light and a clear or lightly clouded sky. Do NOT paint a sun, a moon, stars, sun rays, a rainbow, rain, mist or fog anywhere in the picture — the app adds those over the scene as effects."
+	// Space and underwater packs get their own version: the art keeps the
+	// sky or the water calm and the canvas effects add everything that moves
+	// or glows in it.
+	sceneNeutralSpace = "Sky: a calm, dark starry sky with small, distant, unlit stars. Do NOT paint shooting stars, comets, a glowing nebula, a bright glowing planet rim along the horizon, a sun flare or speed streaks anywhere in the picture — the app adds those over the scene as effects."
+	sceneNeutralWater = "Water and light: clear water with soft, even light. Do NOT paint sun rays from the surface, rippling light patterns, bubbles, glowing specks, drifting particles or clouds of sand anywhere in the picture — the app adds those over the scene as effects."
 )
+
+// sceneNeutral is the directive that keeps a pack's scene art free of what
+// its setting's canvas effects draw ("" for settings without any).
+func sceneNeutral(setting string) string {
+	switch setting {
+	case "outdoors":
+		return sceneNeutralSky
+	case "space":
+		return sceneNeutralSpace
+	case "underwater":
+		return sceneNeutralWater
+	}
+	return ""
+}
 
 // artConfig is art.json.
 type artConfig struct {
@@ -500,9 +519,9 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 	wide := fmt.Sprintf("%dx%d", wideW, baseH)
 	framing := "Compose it as a complete picture: framing elements such as the nearest trees at the left and right edges of THIS image, an open middle for the stickers. " + sceneSafeArea
 	extend := "Extend the attached scene seamlessly into the transparent side bands, continuing the same style, lighting, horizon and ground line, adding more of the same scenery beyond the current edges. Do not change the existing centre."
-	if r.c.pack.EffectiveSetting() == "outdoors" {
-		framing += " " + sceneNeutralSky
-		extend += " " + sceneNeutralSky
+	if neutral := sceneNeutral(r.c.pack.EffectiveSetting()); neutral != "" {
+		framing += " " + neutral
+		extend += " " + neutral
 	}
 
 	bgFP := hashOf(toolVersion, "background", sheetFP, cfg.Style, cfg.Scene.Background, r.o.quality, "4")

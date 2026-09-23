@@ -626,7 +626,7 @@ type Manifest struct {
 	ID        string
 	Languages []string
 	Stickers  []string
-	Setting   string // outdoors | indoors | none ("" reads as none)
+	Setting   string // outdoors | indoors | space | underwater | none ("" reads as none)
 }
 
 // EffectiveSetting returns the pack's setting, defaulting to "none".

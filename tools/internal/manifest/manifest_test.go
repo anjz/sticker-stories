@@ -134,7 +134,7 @@ func TestValidationFailures(t *testing.T) {
 		{"unsupported schema version", func(m *Manifest) { m.SchemaVersion = 1 }, "schemaVersion"},
 		{"bad pack id", func(m *Manifest) { m.ID = "Forest Pack!" }, "pack id"},
 		{"zero version", func(m *Manifest) { m.Version = 0 }, "version"},
-		{"unknown setting", func(m *Manifest) { m.Setting = "underwater" }, "setting"},
+		{"unknown setting", func(m *Manifest) { m.Setting = "desert" }, "setting"},
 		{"no languages", func(m *Manifest) { m.Languages = nil }, "languages must not be empty"},
 		{"malformed language", func(m *Manifest) { m.Languages[0] = "english" }, "well-formed"},
 		{"duplicate language", func(m *Manifest) { m.Languages = []string{"en-US", "en-US"} }, "duplicate language"},

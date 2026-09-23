@@ -24,7 +24,7 @@ const SupportedSchemaVersion = 2
 // Settings lists the values a pack's "setting" may take: where its scene
 // takes place, which decides the canvas effects its stories may use
 // (docs/effects.md). Absent ⇒ "none".
-var Settings = []string{"outdoors", "indoors", "none"}
+var Settings = []string{"outdoors", "indoors", "space", "underwater", "none"}
 
 // Manifest is the root of a pack's manifest.json.
 type Manifest struct {

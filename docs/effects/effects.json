@@ -7,7 +7,7 @@
     "A Kit test asserts this file matches the compiled library (EffectDefinition.library, CanvasEffectDefinition.library); edit both together.",
     "Story tooling should read this file to learn which effects exist, what they mean, which parameters each accepts, and which canvas effects suit a pack's setting."
   ],
-  "settings": ["outdoors", "indoors", "none"],
+  "settings": ["outdoors", "indoors", "space", "underwater", "none"],
   "parameters": {
     "effect":    { "type": "string",  "required": true,  "description": "One of the effect names below." },
     "sticker":   { "type": "string",  "required": true,  "description": "Sticker ID from the pack manifest. Every placed instance of it is affected; if none is placed the trigger silently does not fire." },
