@@ -103,6 +103,7 @@ final class CanvasEffectLayer: SKNode {
         .confetti: ConfettiPainter(),
         .bubbles: BubblesPainter(),
         .shootingstars: ShootingStarsPainter(),
+        .nebula: NebulaPainter(),
     ]
 
     override init() {

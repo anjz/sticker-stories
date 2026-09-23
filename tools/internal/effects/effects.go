@@ -36,6 +36,7 @@ var CanvasNames = []string{
 	"fog", "rain", "sunshine", "rainbow", "night", "snow", "sunset",
 	"clouds", "wind", "fireflies", "leaves", "dimlight", "windowlight",
 	"firelight", "rainywindow", "confetti", "bubbles", "shootingstars",
+	"nebula",
 }
 
 // CanvasSettings maps each canvas effect to the pack settings it suits
@@ -60,6 +61,7 @@ var CanvasSettings = map[string][]string{
 	"confetti":      {"outdoors", "indoors", "space"},
 	"bubbles":       {"outdoors", "indoors", "space", "underwater"},
 	"shootingstars": {"space"},
+	"nebula":        {"space"},
 }
 
 var (
