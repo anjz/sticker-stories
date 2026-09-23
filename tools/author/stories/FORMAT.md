@@ -198,10 +198,11 @@ Weather and light over the whole scene use the reserved target `canvas`
 
 - `effect` is one of the names in `docs/effects/effects.json` under
   `canvasEffects`: `fog`, `rain`, `sunshine`, `rainbow`, `night`, `snow`,
-  `sunset`, `clouds`, `wind`, `fireflies`, `leaves` (outdoors packs); and
-  `dimlight`, `windowlight`, `firelight`, `rainywindow` (indoors packs).
-  The pack's `setting` in its manifest decides which are allowed; a `none`
-  pack allows no canvas cues. Only an intensity and a duration (`Ns`) may
+  `sunset`, `clouds`, `wind`, `fireflies`, `leaves`, `confetti` (outdoors
+  packs); `dimlight`, `windowlight`, `firelight`, `rainywindow`,
+  `confetti` (indoors packs); and `confetti` (space packs). The pack's
+  `setting` in its manifest decides which are allowed; a `none` pack
+  allows no canvas cues. Only an intensity and a duration (`Ns`) may
   follow — no `xN`, `loop`, `hold` or colour.
 - A canvas cue fires on the word that follows it like any other, and the
   effect takes a moment to build up (fog ~2.5 s, rain ~1 s), so put it a

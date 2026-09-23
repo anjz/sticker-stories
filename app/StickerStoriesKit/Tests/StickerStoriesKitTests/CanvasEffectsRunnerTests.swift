@@ -129,9 +129,18 @@ struct CanvasEffectsRunnerTests {
         #expect(r.active.first?.options.intensity == 0.4)
     }
 
-    @Test func everyCanvasEffectSuitsExactlyOneSetting() {
+    @Test func anEffectForSeveralSettingsRunsInEachOfThem() {
+        let trigger = CanvasEffectTrigger(at: 0, effect: .confetti)
+        for setting in [PackSetting.outdoors, .indoors, .space] {
+            let r = runner([trigger], setting: setting)
+            #expect(!r.tick(1).isEmpty, Comment(rawValue: setting.rawValue))
+        }
+        #expect(runner([trigger], setting: .none).tick(1).isEmpty)
+    }
+
+    @Test func everyCanvasEffectSuitsSomeSettingButNone() {
         for name in CanvasEffectName.allCases {
-            #expect(name.settings.count == 1, Comment(rawValue: name.rawValue))
+            #expect(!name.settings.isEmpty, Comment(rawValue: name.rawValue))
             #expect(!name.suits(.none), Comment(rawValue: name.rawValue))
         }
     }

@@ -27,6 +27,10 @@ enum EffectTextures {
         case "cloud": texture = shaded(width: 320, height: 160, cloud)
         case "wisp": texture = procedural(width: 256, height: 16, wisp)
         case "trickle": texture = procedural(width: 24, height: 72, trickle)
+        case "confetti": texture = procedural(width: 16, height: 28) { u, v in
+            // A paper rectangle with a slightly softened edge.
+            (1 - smoothstep(0.8, 1, abs(u - 0.5) * 2)) * (1 - smoothstep(0.86, 1, abs(v - 0.5) * 2))
+        }
         case "rainbow": texture = drawn(size: CGSize(width: 1024, height: 512), scale: 1) { rect, cg in drawRainbow(in: rect, cg) }
         case "leaf": texture = drawn(size: CGSize(width: 44, height: 64), scale: 2) { rect, cg in drawLeaf(in: rect, cg) }
         default:
