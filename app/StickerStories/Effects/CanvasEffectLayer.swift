@@ -110,6 +110,7 @@ final class CanvasEffectLayer: SKNode {
         .sunrays: SunraysPainter(),
         .ripples: RipplesPainter(),
         .deepwater: DeepwaterPainter(),
+        .glowplankton: GlowplanktonPainter(),
     ]
 
     override init() {
