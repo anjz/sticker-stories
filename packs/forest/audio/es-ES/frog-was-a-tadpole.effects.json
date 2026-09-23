@@ -2,9 +2,21 @@
   "schema": 1,
   "triggers": [
     {
+      "at": 0,
+      "cue": "yo",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
       "at": 5.8,
       "sticker": "frog",
       "effect": "pulse"
+    },
+    {
+      "at": 6.35,
+      "cue": "un",
+      "sticker": "fox",
+      "expression": "surprised"
     },
     {
       "at": 8.36,
@@ -12,10 +24,29 @@
       "effect": "wobble"
     },
     {
+      "at": 16.68,
+      "cue": "zorro",
+      "sticker": "fox",
+      "expression": "normal"
+    },
+    {
+      "at": 16.68,
+      "cue": "zorro",
+      "sticker": "fox",
+      "effect": "shake",
+      "intensity": 0.4
+    },
+    {
       "at": 24.96,
       "cue": "los",
       "sticker": "beaver",
       "effect": "hop"
+    },
+    {
+      "at": 41.35,
+      "cue": "un",
+      "sticker": "fox",
+      "expression": "surprised"
     },
     {
       "at": 44.86,
@@ -28,6 +59,18 @@
       "cue": "dio",
       "sticker": "frog",
       "animation": "backflip-fly"
+    },
+    {
+      "at": 53.46,
+      "cue": "lo",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 53.46,
+      "cue": "lo",
+      "sticker": "fox",
+      "effect": "hop"
     }
   ]
 }
