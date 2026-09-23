@@ -97,10 +97,12 @@ A cue is `{sticker:effect}` with optional parameters separated by spaces:
 {bird:fade-out hold}     keep the end state
 {fox:sparkle 0.9}        a bare number is intensity (0–1)
 {bear:live}              the bear's live animation (see "Live cues")
+{bear:face happy}        the bear's face from now on (see "Face cues")
+{all:hop}                every sticker on the canvas (see "Everyone: all")
 ```
 
 - `sticker` is an ID from the manifest and must be in `featured` or
-  `supporting`. `effect` is one of the 12 names in `docs/effects/effects.json`
+  `supporting` — or the reserved `all`. `effect` is one of the 12 names in `docs/effects/effects.json`
   (`effects`); which parameters each accepts is listed there (`repeat` is
   ignored by `fade-in`/`fade-out`, `color` only for `glow`/`tint`/`sparkle`
   and required by `tint`, `hold` only for the four that support it, a
@@ -109,9 +111,12 @@ A cue is `{sticker:effect}` with optional parameters separated by spaces:
   together on that word. Cues before the first word fire at the story's start
   (use this for scenery loops); a cue after the last word fires on the last
   word.
-- Every story has at least one cue per language. Two to eight is typical;
-  a `float` loop on butterflies, bees or birds at the start plus a cue on
-  each story beat is the usual shape.
+- Every story has at least one cue per language, and in practice a beat on
+  most sentences: about one cue on the stickers (effects, faces, live
+  animations) per 8–12 spoken words — the validator warns past 12. A
+  `float` loop on butterflies, bees or birds at the start, a face change
+  wherever a feeling changes and a reaction on each story beat is the
+  usual shape.
 - The same beats carry the same cues in every language.
 
 ### Sound cues
@@ -204,6 +209,33 @@ Bear gave a {bear:live} great big yawn.     the bear's animation
   action, and cue nothing else on that sticker until it ends.
 - At most two per story and language, each sticker once (warnings). The
   same beats carry the same live cues in every language.
+
+### Face cues
+
+Stickers with expression variants (`stickers[].expressions` in the
+manifest; `storycheck -plan` lists them) change face with the reserved
+effect `face` and the expression's name:
+
+```
+Mouse {mouse:face sad} sighed.        from here on, the mouse looks sad
+{mouse:face happy} Mouse smiled.      …until this
+{all:face sleeping} Everyone slept.   every sticker on the canvas
+{bear:face normal}                    the sticker's own face again
+```
+
+- No duration and no other parameters: a face stays until the next face
+  cue for that sticker or `all`. The story's end resets every face.
+- The expression must be one the sticker has, or `normal`; for `all`, one
+  some sticker has (stickers without it keep their face).
+- The validator warns when a story changes no face at all.
+
+### Everyone: `all`
+
+The reserved target `all` means every sticker on the canvas: `{all:hop}`,
+`{all:hearts}`, `{all:face happy}`. Any sticker effect or a face; not a
+live animation. Use it on words about everyone ("everyone laughed", "they
+all fell asleep"); it is how fallback stories reach whatever the child
+placed.
 
 ### Canvas cues
 
