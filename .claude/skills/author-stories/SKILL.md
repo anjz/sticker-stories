@@ -54,7 +54,7 @@ Read, in this order, before writing anything:
    convert to PNG with `sips -s format png` to view it) and write down what
    the art actually shows: colours, anything countable (spots, petals,
    stripes, legs, wings), what it holds or sits on, and what it lacks
-   (a fawn with no antlers, an oak rather than an apple tree). **Count from
+   (a fawn with no antlers, a ladybug with five spots, not seven). **Count from
    the picture, never from what the real animal or plant usually has** —
    the child is looking at the sticker while the narrator speaks. Put this
    in the roster's cast table.
@@ -135,7 +135,7 @@ exactly per `FORMAT.md`:
   enter); where the story allows, make the first mention an arrival
   ("along came Fox", "Owl fluttered down") that suits its entrance and
   where it lands (the bee up in the air, the owl fluttering down onto a
-  branch, the frog in the pond, the tree standing on the meadow), but it must also read fine when the sticker was on the
+  branch, the frog in the pond, the mushroom popping up on the meadow), but it must also read fine when the sticker was on the
   canvas all along. Cue nothing on a sticker before its entrance except
   a `float` loop or a face;
 - a live cue (`{bear:live}` — see FORMAT "Live cues", GUIDE "Live

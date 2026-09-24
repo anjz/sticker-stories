@@ -67,22 +67,24 @@
       }
     },
     {
-      "id": "tree",
+      "id": "duckling",
       "name": {
-        "en-US": "Tree",
-        "es-ES": "Árbol"
+        "en-US": "Duckling",
+        "es-ES": "Patito"
       },
-      "prompt": "A big old friendly oak tree with a thick trunk, wide round canopy of layered green leaves, a kind sleepy face gently suggested in the bark, roots spreading at the base.",
+      "prompt": "A small round fluffy yellow duckling with soft downy feathers, tiny stubby wings, a flat orange beak, orange webbed feet, big bright curious eyes, standing and mid-waddle, cheerful.",
       "face": {
-        "x": 0.34,
-        "y": 0.52,
-        "width": 0.32,
-        "height": 0.2
+        "x": 0.42,
+        "y": 0.16,
+        "width": 0.38,
+        "height": 0.25,
+        "edge": 0.01
       },
-      "faceNote": "Its face is carved gently into the brown bark of the trunk: the bark stays bark, only the eyes, brows, mouth and cheeks change.",
+      "faceNote": "The face is on fluffy yellow down with a flat orange duck's beak: the beak stays orange and duck-shaped (no lips, no teeth), the down stays yellow.",
       "stage": {
-        "entrance": "grow",
+        "entrance": "hop",
         "on": [
+          "pond",
           "meadow"
         ]
       }

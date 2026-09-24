@@ -149,7 +149,7 @@ never letterboxes:
     {
       "id": "shy-mushroom",
       "requiredStickers": ["mushroom"],
-      "optionalStickers": ["fox", "tree"],
+      "optionalStickers": ["fox", "frog"],
       "weight": 1.0,
       "tags": ["gentle"],
       "localizations": {

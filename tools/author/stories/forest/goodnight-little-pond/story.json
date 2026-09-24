@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "id": "goodnight-little-pond",
+  "pack": "forest",
+  "featured": [
+    "duckling",
+    "frog",
+    "firefly"
+  ],
+  "supporting": [],
+  "tags": [
+    "bedtime",
+    "gentle"
+  ],
+  "premise": "Duckling is not sleepy when the sun goes down; Frog sings slow, Firefly drifts down glowing, and the pond rocks him to sleep.",
+  "inspiration": "Wynken, Blynken and Nod (Eugene Field, public domain), turned: nobody sails away to the stars; the stars and a firefly come down to the pond instead.",
+  "lesson": "Quiet things help us rest.",
+  "languages": {
+    "en-US": {
+      "title": "Goodnight, Little Pond",
+      "text": "{canvas:sunset 0.6 20s} The sun was going down over the pond, but {duckling:enter} Duckling {duckling:face happy} {duckling:hop} was not sleepy at all. [excited] One more splash! One more paddle! {frog:enter} Frog {frog:pulse} sat on her lily pad. [softly] Listen, she said. The pond is getting sleepy. {sfx:ribbit} Ribbit… ribbit… she sang, low and slow. {sfx:night-bed} {canvas:night 0.7 40s} The sky turned dark blue, and the moon came up. {canvas:fireflies 0.5 30s} Then, one by one, little lights began to twinkle. {firefly:enter} Firefly {firefly:glow} drifted down, glowing gold. {duckling:face surprised} [whispers] Oooh. The water rocked him, gently, gently, like a cradle. {duckling:float loop 0.3} Duckling's eyes grew heavy. He tucked his head under his fluffy wing. {duckling:face sleeping} {frog:face sleeping} [softly] Goodnight, Frog. Goodnight, Firefly. {firefly:fade-out hold} Goodnight, little pond. {all:face sleeping}"
+    },
+    "es-ES": {
+      "title": "Buenas noches, charquita",
+      "text": "{canvas:sunset 0.6 20s} El sol se estaba poniendo sobre la charca, pero {duckling:enter} Patito {duckling:face happy} {duckling:hop} no tenía nada de sueño. [excited] ¡Un chapuzón más! ¡Una vuelta más! {frog:enter} Rana {frog:pulse} estaba sentada en su nenúfar. [softly] Escucha, le dijo. La charca se está durmiendo. {sfx:ribbit} Cruac… cruac… cantó, bajito y despacio. {sfx:night-bed} {canvas:night 0.7 40s} El cielo se puso azul oscuro, y salió la luna. {canvas:fireflies 0.5 30s} Entonces, una a una, empezaron a brillar unas lucecitas. {firefly:enter} Luciérnaga {firefly:glow} bajó flotando, dorada y brillante. {duckling:face surprised} [whispers] Oooh. El agua lo mecía, despacito, despacito, como una cuna. {duckling:float loop 0.3} A Patito se le cerraban los ojos. Metió la cabeza bajo su ala esponjosa. {duckling:face sleeping} {frog:face sleeping} [softly] Buenas noches, Rana. Buenas noches, Luciérnaga. {firefly:fade-out hold} Buenas noches, charquita. {all:face sleeping}"
+    }
+  },
+  "sounds": {
+    "ribbit": {
+      "prompt": "a soft, slow, sleepy frog croak by a pond",
+      "seconds": 1.2
+    },
+    "night-bed": {
+      "prompt": "gentle night crickets and a still pond, very calm",
+      "seconds": 30,
+      "loop": true
+    }
+  }
+}
