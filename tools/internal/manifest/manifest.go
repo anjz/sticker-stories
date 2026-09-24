@@ -65,6 +65,32 @@ type Sticker struct {
 	// sticker's size and outline, so the app can swap one in place.
 	// Absent means the sticker has only its normal face.
 	Expressions map[string]string `json:"expressions,omitempty"`
+	// Stage says where the sticker belongs in the scene and how it comes
+	// in when a story names it and the child has not placed it; absent
+	// means the app's default (DefaultStage).
+	Stage *Stage `json:"stage,omitempty"`
+}
+
+// Entrances lists the ways a sticker can come into the scene
+// (docs/pack-format.md, "Stage"): hop in from the nearer side (things that
+// walk), float in from the nearer side (things that fly), or fade in and
+// grow where it stands (things that do not move).
+var Entrances = []string{"hop", "fly", "grow"}
+
+// Stage is where a sticker belongs in the scene and how it enters it.
+type Stage struct {
+	// Entrance is one of Entrances.
+	Entrance string `json:"entrance"`
+	// Area is where the sticker's centre may land, in fractions of the base
+	// art (origin bottom-left, like saved sticker positions).
+	Area StageArea `json:"area"`
+}
+
+// StageArea is a rectangle in fractions of the base art: X and Y are each
+// [min, max] with 0 <= min < max <= 1.
+type StageArea struct {
+	X []float64 `json:"x"`
+	Y []float64 `json:"y"`
 }
 
 // Story is one pregenerated story; its text and narration exist once per
@@ -290,6 +316,18 @@ func (m *Manifest) Validate(dir string) []error {
 			}
 			checkImage(field, st.Expressions[name])
 			expressions[st.ID] = append(expressions[st.ID], name)
+		}
+		// Rule 14: the stage names a known entrance and an area inside the art.
+		if st.Stage != nil {
+			field := fmt.Sprintf("sticker %q stage", st.ID)
+			if !slices.Contains(Entrances, st.Stage.Entrance) {
+				fail("%s: entrance %q must be one of %s", field, st.Stage.Entrance, strings.Join(Entrances, ", "))
+			}
+			for axis, span := range map[string][]float64{"x": st.Stage.Area.X, "y": st.Stage.Area.Y} {
+				if len(span) != 2 || span[0] < 0 || span[1] > 1 || span[0] >= span[1] {
+					fail("%s: area.%s must be [min, max] with 0 <= min < max <= 1, got %v", field, axis, span)
+				}
+			}
 		}
 	}
 

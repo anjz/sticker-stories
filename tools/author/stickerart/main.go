@@ -119,6 +119,10 @@ type stickerSpec struct {
 	// FaceNote says what the face is drawn on when that is not obvious
 	// ("the round brown speckled seed centre"), so an expression keeps it.
 	FaceNote string `json:"faceNote,omitempty"`
+	// Stage is where the sticker belongs in the scene and how it enters
+	// when a story names it (docs/pack-format.md, "Stage"); copied into
+	// the manifest on install. Changing it re-renders nothing.
+	Stage *manifest.Stage `json:"stage,omitempty"`
 }
 
 // expressionSpec is one face variant: an id stories cue ({bear:face happy})
@@ -962,8 +966,11 @@ func runInstall(args []string) error {
 			if len(s.Name) > 0 {
 				c.pack.Stickers[i].Name = s.Name
 			}
+			if s.Stage != nil {
+				c.pack.Stickers[i].Stage = s.Stage
+			}
 		} else {
-			c.pack.Stickers = append(c.pack.Stickers, manifest.Sticker{ID: s.ID, Name: s.Name, Image: rel, Expressions: expressions})
+			c.pack.Stickers = append(c.pack.Stickers, manifest.Sticker{ID: s.ID, Name: s.Name, Image: rel, Expressions: expressions, Stage: s.Stage})
 		}
 		installed++
 	}

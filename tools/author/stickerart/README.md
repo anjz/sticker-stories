@@ -115,7 +115,14 @@ area, and the base is re-cut from the edited wide so the two still match.
 
 `install` also copies each sticker's finished expression variants to
 `stickers/<id>.<expr>.webp` and lists them in the manifest's
-`stickers[].expressions`.
+`stickers[].expressions`, and each sticker's `stage` from art.json —
+where it belongs in the scene and how it comes in when a story names it
+(`{"entrance": "hop" | "fly" | "grow", "area": {"x": [min, max], "y":
+[min, max]}}`, fractions of the base art, `docs/pack-format.md`,
+"Stage") — to `stickers[].stage`. Give every sticker one: things that
+walk hop in onto the ground, things that fly float in to the sky, still
+things grow where they stand. The stage is not part of any fingerprint,
+so changing it regenerates nothing.
 
 Encodes `out/stickers/<id>.png` into `packs/<id>/stickers/<id>.webp` and
 the four scene planes into `packs/<id>/art/*.webp` — lossy WebP at

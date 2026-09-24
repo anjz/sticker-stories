@@ -117,6 +117,22 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         }
     }
 
+    @Test func stageIsOptionalAndDecoded() throws {
+        let json = """
+            { "id": "fox", "name": { "en-US": "Fox" }, "image": "stickers/fox.webp",
+              "stage": { "entrance": "hop", "area": { "x": [0.1, 0.9], "y": [0.18, 0.36] } } }
+            """
+        let fox = try JSONDecoder().decode(StickerDefinition.self, from: Data(json.utf8))
+        #expect(fox.stage == StickerStage(entrance: .hop, area: .init(x: [0.1, 0.9], y: [0.18, 0.36])))
+        let plain = try JSONDecoder().decode(
+            StickerDefinition.self, from: Data(#"{ "id": "tree", "name": { "en-US": "Tree" }, "image": "t.webp" }"#.utf8))
+        #expect(plain.stage == nil)
+        #expect(throws: DecodingError.self) {
+            try JSONDecoder().decode(
+                StickerDefinition.self, from: Data(json.replacingOccurrences(of: "\"hop\"", with: "\"run\"").utf8))
+        }
+    }
+
     @Test func rejectsStoryWithoutLocalizations() throws {
         let json = """
             { "id": "s1", "title": "T", "text": "Body.", "audio": "audio/s1.m4a" }
@@ -214,6 +230,8 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         InvalidCase("backgroundWide") { $0.backgroundWide = "art/nope-wide.png"; $0.foregroundWide = "art/foreground.png" },
         InvalidCase("escape") { $0.foreground = "../../evil.png" },
         InvalidCase("escape") { $0.foreground = "/etc/passwd" },
+        InvalidCase("stage") { $0.stickers[1].stage = StickerStage(entrance: .hop, area: .init(x: [0, 1.2], y: [0.2, 0.4])) },
+        InvalidCase("stage") { $0.stickers[1].stage = StickerStage(entrance: .fly, area: .init(x: [0, 1], y: [0.8, 0.5])) },
         InvalidCase("duplicate sticker") { $0.stickers[1].id = "mushroom" },
         InvalidCase("sticker id") { $0.stickers[0].id = "Mushroom" },
         InvalidCase("duplicate story") { $0.stories[1].id = "story-001" },
@@ -298,6 +316,8 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         #expect(pack.manifest.stickers.filter { !$0.animations.isEmpty }.count == 10)
         #expect(pack.manifest.stories.count >= 10)
         #expect(!pack.manifest.stories.filter(\.isFallback).isEmpty)
+        // Every Forest sticker says where it belongs and how it comes in.
+        #expect(pack.manifest.stickers.allSatisfy { $0.stage != nil })
     }
 }
 

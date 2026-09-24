@@ -124,13 +124,15 @@ never letterboxes:
     {
       "id": "mushroom",
       "name": { "en-US": "Mushroom", "es-ES": "Seta" },
-      "image": "stickers/mushroom.webp"
+      "image": "stickers/mushroom.webp",
+      "stage": { "entrance": "grow", "area": { "x": [0.08, 0.92], "y": [0.16, 0.34] } }
     },
     {
       "id": "frog",
       "name": { "en-US": "Frog", "es-ES": "Rana" },
       "image": "stickers/frog.webp",
-      "animations": ["anims/frog.backflip-fly.json"]
+      "animations": ["anims/frog.backflip-fly.json"],
+      "stage": { "entrance": "hop", "area": { "x": [0.57, 0.74], "y": [0.3, 0.37] } }
     }
   ],
   "stories": [
@@ -178,6 +180,7 @@ never letterboxes:
 | `stickers[].image` | string | Pack-relative path to a PNG or WebP file; must exist. |
 | `stickers[].animations` | [string] | **Optional**, default none. Pack-relative paths to live-animation sidecars (`.json`, "Live animations" below); each must exist and validate. |
 | `stickers[].expressions` | {expr: string} | **Optional**, default none. Face variants by expression id (`happy`, `sad`, `sleeping`, `surprised`…): pack-relative PNG or WebP images with exactly the sticker's size and outline ("Expressions" below). The sticker's own `image` is the `normal` face. |
+| `stickers[].stage` | object | **Optional**, default grow in `x` 0.1–0.9, `y` 0.18–0.45. Where the sticker belongs in the scene and how it comes in when a story names it and the child has not placed it ("Stage" below): `entrance` is `hop`, `fly` or `grow`; `area` is `{ "x": [min, max], "y": [min, max] }`, fractions of the base art. |
 | `stories[].id` | string | Unique within the pack. |
 | `stories[].requiredStickers` | [string] | The stickers the story is about: it is a candidate when at most one of them is missing from the canvas (and at least one is present), and preferred when all are. Empty ⇒ fallback story. Every ID must be declared in `stickers`. |
 | `stories[].optionalStickers` | [string] | Sticker IDs that raise the match score when present. Declared in `stickers`; no overlap with `requiredStickers`. |
@@ -232,6 +235,36 @@ never letterboxes:
 13. Every `stickers[].expressions` key is lowercase `a-z0-9-` and not
     `normal`; every value is an image inside the pack (`.png` or `.webp`)
     that exists. No sticker is called `all`.
+14. A `stickers[].stage`, when present, has an `entrance` of `hop`,
+    `fly` or `grow` and an `area` whose `x` and `y` are each
+    `[min, max]` with 0 ≤ min < max ≤ 1.
+
+## Stage
+
+Stories name stickers the child may not have placed. So that what the
+narrator says is what the child sees, every sticker a story names comes
+into the scene on the word that first names it, if it is not on the
+canvas already (the story's `enter` triggers, `docs/effects.md`,
+"Entrances"), and leaves again when the story ends. Its `stage` says
+where it belongs and how it arrives:
+
+| `entrance` | For | What it does |
+|---|---|---|
+| `hop` | things that walk, crawl or hop | Hops in from the nearer side of the screen, from somewhere on its own ground, to its spot. Walking up the scene (away from the viewer) it starts a little bigger and shrinks to its size; walking down it starts smaller and grows — the meadow has depth. |
+| `fly` | things that fly | Floats in from the nearer side, a little higher up, with a gentle bob and tilt, and settles on its spot. |
+| `grow` | things that do not move (plants, objects) | Fades in and grows from small where it stands, with a little overshoot. |
+
+`area` is where the sticker's **centre** may land, in fractions of the
+base art with the origin at the bottom-left — the space saved positions
+use. Match it to the art: in Forest, walkers take the meadow (`y` 0.18–0.36, the
+lower third that is not cropped), flyers the sky (`y` 0.5–0.8), still
+things the floor (`y` 0.16–0.34), and the frog the pond. The app picks
+the freest spot in the area (farthest from every sticker already there,
+earlier visitors included) among those the window shows; on a crowded
+canvas it takes any spot in the area. Under Reduce Motion or calm mode
+every entrance is a plain fade-in. A sticker without a stage grows in the
+default area. `stickerart` copies each sticker's `stage` from `art.json`
+on install.
 
 ## Expressions
 
@@ -314,7 +347,8 @@ same device preference.
   bump); optional `setting` added (additive, defaults to `none`, no
   bump); `setting` values `space` and `underwater` added (no pack has
   shipped, so no bump); optional `description` added (additive, no bump);
-  optional `cover` added (additive, no bump).
+  optional `cover` added (additive, no bump); optional
+  `stickers[].stage` added (additive, no bump).
 - Any schema change must update this document, the Go validator
   (`tools/internal/manifest`), and the Swift decoder in the **same commit**.
 - `version` (pack content revision) is bumped whenever any asset or story in a

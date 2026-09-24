@@ -147,16 +147,21 @@ public struct StickerDefinition: Codable, Equatable, Sendable, Identifiable {
     /// by expression triggers (`docs/pack-format.md`, "Expressions"). The
     /// sticker's own image is the "normal" face.
     public var expressions: [String: String]
+    /// Where the sticker belongs in the scene and how it comes in when a
+    /// story names it and the child has not placed it (`docs/pack-format.md`,
+    /// "Stage"); `nil` = `StickerStage.default`.
+    public var stage: StickerStage?
 
     public init(
         id: String, name: [String: String], image: String, animations: [String] = [],
-        expressions: [String: String] = [:]
+        expressions: [String: String] = [:], stage: StickerStage? = nil
     ) {
         self.id = id
         self.name = name
         self.image = image
         self.animations = animations
         self.expressions = expressions
+        self.stage = stage
     }
 
     public init(from decoder: Decoder) throws {
@@ -166,10 +171,73 @@ public struct StickerDefinition: Codable, Equatable, Sendable, Identifiable {
         image = try c.decode(String.self, forKey: .image)
         animations = try c.decodeIfPresent([String].self, forKey: .animations) ?? []
         expressions = try c.decodeIfPresent([String: String].self, forKey: .expressions) ?? [:]
+        stage = try c.decodeIfPresent(StickerStage.self, forKey: .stage)
     }
 
     public func name(for language: String, fallbackOrder: [String]) -> String {
         PackManifest.localizedValue(name, language: language, fallbackOrder: fallbackOrder) ?? id
+    }
+}
+
+/// How a sticker comes into the scene when a story names it and the child
+/// has not placed it (`docs/pack-format.md`, "Stage").
+public enum StickerEntrance: String, Codable, Sendable, CaseIterable {
+    /// Hops in from the nearer side of the screen — things that walk.
+    case hop
+    /// Floats in from the nearer side of the screen — things that fly.
+    case fly
+    /// Fades in and grows where it stands — things that do not move.
+    case grow
+}
+
+/// Where a sticker belongs in the scene and how it enters it. The area is
+/// where its centre may land, in fractions of the pack's base art with the
+/// origin at the bottom-left — the same space saved positions use.
+public struct StickerStage: Codable, Equatable, Sendable {
+    public struct Area: Codable, Equatable, Sendable {
+        /// `[min, max]`, 0 ≤ min < max ≤ 1 (validation rule 14).
+        public var x: [Double]
+        public var y: [Double]
+
+        public init(x: [Double], y: [Double]) {
+            self.x = x
+            self.y = y
+        }
+
+        public var isValid: Bool {
+            func valid(_ span: [Double]) -> Bool {
+                guard span.count == 2 else { return false }
+                return span[0] >= 0 && span[1] <= 1 && span[0] < span[1]
+            }
+            return valid(x) && valid(y)
+        }
+    }
+
+    public var entrance: StickerEntrance
+    public var area: Area
+
+    public init(entrance: StickerEntrance, area: Area) {
+        self.entrance = entrance
+        self.area = area
+    }
+
+    /// For a sticker the manifest gives no stage: it grows in, somewhere
+    /// on the lower part of the scene.
+    public static let `default` = StickerStage(
+        entrance: .grow, area: Area(x: [0.1, 0.9], y: [0.18, 0.45]))
+
+    private enum CodingKeys: String, CodingKey { case entrance, area }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        let raw = try c.decode(String.self, forKey: .entrance)
+        guard let entrance = StickerEntrance(rawValue: raw) else {
+            throw DecodingError.dataCorruptedError(
+                forKey: .entrance, in: c,
+                debugDescription: "entrance must be one of \(StickerEntrance.allCases.map(\.rawValue)), got \"\(raw)\"")
+        }
+        self.entrance = entrance
+        area = try c.decode(Area.self, forKey: .area)
     }
 }
 
@@ -362,6 +430,11 @@ extension PackManifest {
                     issues.append("\(field): expression id must be lowercase a-z0-9 and not \"normal\"")
                 }
                 checkImage(field, path)
+            }
+            // Rule 14: the stage area lies inside the art (the entrance is
+            // checked by decoding).
+            if let stage = sticker.stage, !stage.area.isValid {
+                issues.append("sticker \"\(sticker.id)\" stage: area x and y must each be [min, max] with 0 <= min < max <= 1")
             }
         }
 
