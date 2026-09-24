@@ -101,6 +101,25 @@ func TestDescriptionIsOptionalButComplete(t *testing.T) {
 	}
 }
 
+func TestStageIsOptional(t *testing.T) {
+	dir := t.TempDir()
+	m := validManifest(t, dir)
+	m.Stickers[1].Stage = &Stage{Entrance: "hop", Area: StageArea{X: []float64{0.1, 0.9}, Y: []float64{0.18, 0.38}}}
+	if errs := m.Validate(dir); len(errs) != 0 {
+		t.Fatalf("a valid stage should pass, got %v", errs)
+	}
+	data, err := json.Marshal(m)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(data), `"stage":{"entrance":"hop","area":{"x":[0.1,0.9],"y":[0.18,0.38]}}`) {
+		t.Errorf("stage lost on write: %s", data)
+	}
+	if strings.Count(string(data), `"stage"`) != 1 {
+		t.Errorf("an absent stage must not be written: %s", data)
+	}
+}
+
 func TestLoadRoundTrip(t *testing.T) {
 	dir := t.TempDir()
 	m := validManifest(t, dir)
@@ -175,6 +194,16 @@ func TestValidationFailures(t *testing.T) {
 		{"cover not png or webp", func(m *Manifest) { m.Cover = "art/background.jpg" }, ".png or .webp"},
 		{"absolute path", func(m *Manifest) { m.Foreground = "/etc/passwd" }, "pack-relative"},
 		{"path escape", func(m *Manifest) { m.Foreground = "../../evil.png" }, "escape"},
+		{"unknown entrance", func(m *Manifest) {
+			m.Stickers[1].Stage = &Stage{Entrance: "run", Area: StageArea{X: []float64{0, 1}, Y: []float64{0.2, 0.4}}}
+		}, "entrance"},
+		{"stage area outside the art", func(m *Manifest) {
+			m.Stickers[1].Stage = &Stage{Entrance: "hop", Area: StageArea{X: []float64{0, 1.2}, Y: []float64{0.2, 0.4}}}
+		}, "area.x"},
+		{"stage area inverted", func(m *Manifest) {
+			m.Stickers[1].Stage = &Stage{Entrance: "fly", Area: StageArea{X: []float64{0, 1}, Y: []float64{0.8, 0.5}}}
+		}, "area.y"},
+		{"stage area missing", func(m *Manifest) { m.Stickers[1].Stage = &Stage{Entrance: "grow"} }, "area"},
 		{"duplicate sticker id", func(m *Manifest) { m.Stickers[1].ID = "mushroom" }, "duplicate sticker"},
 		{"bad sticker id", func(m *Manifest) { m.Stickers[0].ID = "Mushroom" }, "must match"},
 		{"duplicate story id", func(m *Manifest) { m.Stories[1].ID = "story-001" }, "duplicate story"},
