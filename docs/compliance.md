@@ -19,7 +19,9 @@ pass review, it is a product constraint.
       permission or gate before commerce or link-out).
 - [x] **Privacy manifest** (`PrivacyInfo.xcprivacy`): no tracking, empty
       collection list; declares UserDefaults required-reason API (CA92.1 —
-      app's own settings only: recently-played story IDs, active pack).
+      app's own settings only: recently-played story IDs, active pack,
+      whether the canvas's pinch and layer button have ever been used so
+      their hints stop — local UI state, never sent anywhere).
 - [x] **Privacy nutrition label**: "Data Not Collected" (must stay true).
 
 ## Parental gate

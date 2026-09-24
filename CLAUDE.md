@@ -72,7 +72,8 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
   prompts in `author/art/<pack>/art.json`;
   `stickeranim` = live-sticker sprite sheets that stories cue with
   `{sticker:live}`, spec in `author/art/<pack>/anim.json`; `uiart` =
-  the app's own art — menu background, title, pack covers — as
+  the app's own art — menu background, title, pack covers, the canvas
+  hints' hand — as
   alternatives to pick from, prompts in `author/art/app/ui.json`). API keys
   live in `tools/.env` (`ELEVENLABS_API_KEY`, `OPENAI_API_KEY`).
 - `docs/` — deep documentation; reference it, don't duplicate it here.
