@@ -18,8 +18,10 @@ public protocol HintProgressStore: Sendable {
 
 /// When to show the canvas's hints: after `idleDelay` seconds with no
 /// touch, each gesture the child has never used, in `CanvasHint` order,
-/// at most once per visit to a story. Pure — the scene tells it how long
-/// it has been idle — so it is unit-tested.
+/// at most once per visit to a story. A demo that starts plays to its end
+/// whatever the child does; the next one waits for another idle spell.
+/// Pure — the scene tells it how long it has been idle — so it is
+/// unit-tested.
 public struct CanvasHintSchedule: Sendable {
     public static let idleDelay: TimeInterval = 10
 
@@ -39,6 +41,13 @@ public struct CanvasHintSchedule: Sendable {
         let hints = CanvasHint.allCases.filter { !used.contains($0) && !shown.contains($0) }
         shown.formUnion(hints)
         return hints
+    }
+
+    /// Hints that were due but did not get to play (the child started
+    /// playing during the one before): offered again after the next idle
+    /// spell.
+    public mutating func postpone(_ hints: [CanvasHint]) {
+        shown.subtract(hints)
     }
 
     /// The child used the gesture: its hint never shows again.

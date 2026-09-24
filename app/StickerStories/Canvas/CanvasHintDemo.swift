@@ -124,8 +124,9 @@ final class CanvasHintDemo {
     /// (the sticker slips behind the scenery), taps it again (it comes
     /// back to the front) and leaves.
     private func playLayer(_ sticker: StickerNode, completion: @escaping () -> Void) {
-        let hand = makeHand(mirrored: false)
-        hand.zRotation = 0.35  // pointing up and a little to the left
+        // The art is a left hand seen from the back; mirrored it is the
+        // right hand most children tap with, pointing up and a little left.
+        let hand = makeHand(mirrored: true)
         let ring = makeRing()
         let centre = sticker.position
         let size = sticker.size.width
@@ -213,8 +214,10 @@ final class CanvasHintDemo {
         let hand = SKSpriteNode(texture: texture, size: CGSize(width: stage.handHeight * aspect, height: stage.handHeight))
         hand.anchorPoint = mirrored ? CGPoint(x: 1 - stage.handTip.x, y: stage.handTip.y) : stage.handTip
         if mirrored { hand.xScale = -1 }
-        // Leaning in from below, towards the middle: the left hand points
-        // up and right, the right one up and left.
+        // The art is a left hand seen from the back (knuckles to the
+        // viewer); mirrored, the right one. Leaning in from below, towards
+        // the middle: the left hand points up and right, the right one up
+        // and left.
         hand.zRotation = mirrored ? 0.35 : -0.35
         hand.zPosition = 960
         hand.alpha = 0

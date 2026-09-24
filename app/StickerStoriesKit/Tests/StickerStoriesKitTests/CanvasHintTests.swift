@@ -25,6 +25,15 @@ import Testing
         #expect(!schedule.hasPending)
     }
 
+    @Test func aPostponedHintComesBackAfterTheNextIdleSpell() {
+        var schedule = CanvasHintSchedule(used: [])
+        #expect(schedule.due(idleFor: 10) == [.pinch, .layer])
+        schedule.postpone([.layer])
+        #expect(schedule.hasPending)
+        #expect(schedule.due(idleFor: 5).isEmpty)
+        #expect(schedule.due(idleFor: 10) == [.layer])
+    }
+
     @Test func usingAGestureRetiresItsHint() {
         var schedule = CanvasHintSchedule(used: [])
         schedule.markUsed(.layer)
