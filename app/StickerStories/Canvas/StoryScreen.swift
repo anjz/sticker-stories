@@ -165,6 +165,8 @@ struct StoryScreen: View {
             scene?.setEffectPolicy(effectPolicy)
         }
         .onChange(of: calmMode) { scene?.setEffectPolicy(effectPolicy) }
+        // No gesture hints behind the clear confirmation.
+        .onChange(of: isConfirmingClear) { _, confirming in scene?.hintsAllowed = !confirming }
     }
 
     /// What shows while the pack loads and what the canvas fades in over: a

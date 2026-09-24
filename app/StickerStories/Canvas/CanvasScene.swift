@@ -214,6 +214,26 @@ final class CanvasScene: SKScene {
     private var faceTextures: [String: [String: SKTexture]] = [:]
     private var faceLoad: Task<Void, Never>?
     private let glowMasks = GlowMaskCache()
+
+    // Hints: after `CanvasHintSchedule.idleDelay` seconds with no touch, a
+    // short demo of each gesture the child has never used (pinch, the
+    // layer button), on a sample sticker (`CanvasHintDemo`).
+    private let hintProgress: any HintProgressStore
+    private var hintSchedule: CanvasHintSchedule
+    /// Scene time of the last touch (or anything else that counts as the
+    /// child doing something); nil until the next frame sets it.
+    private var lastActivity: TimeInterval?
+    private var sceneTime: TimeInterval = 0
+    private var hintDemo: CanvasHintDemo?
+    private var hintQueue: [CanvasHint] = []
+    /// Off while something covers the canvas (the clear confirmation).
+    var hintsAllowed = true {
+        didSet { if !hintsAllowed { cancelHints() } }
+    }
+    private lazy var handArt: (texture: SKTexture, tip: CGPoint)? = Self.loadHandArt()
+    /// The drawn foreground art's alpha on a coarse grid, for placing the
+    /// layer demo half behind it; rebuilt when the rendition changes.
+    private var foregroundAlpha: (texture: SKTexture, width: Int, height: Int, alpha: [UInt8])?
     private let shadows = StickerShadowCache()
     private static let effectsLog = Logger(subsystem: "com.anj.stickerstories", category: "effects")
 
@@ -225,10 +245,19 @@ final class CanvasScene: SKScene {
 
     /// `textures` come decoded and preloaded (`PackTextureLoader`) so that
     /// presenting the scene costs nothing on the main thread.
-    init(pack: LoadedPack, textures: PackTextures, stateStore: any CanvasStateStore) {
+    init(
+        pack: LoadedPack, textures: PackTextures, stateStore: any CanvasStateStore,
+        hintProgress: any HintProgressStore = UserDefaultsHintProgress()
+    ) {
         self.pack = pack
         self.textures = textures
         self.stateStore = stateStore
+        self.hintProgress = hintProgress
+        var schedule = CanvasHintSchedule(used: hintProgress.usedHints())
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-hintsDemo") { schedule.idleDelay = 3 }
+        #endif
+        hintSchedule = schedule
         super.init(size: CGSize(width: 1024, height: 768))
         scaleMode = .resizeFill
         backgroundColor = Self.skyColor
@@ -309,6 +338,8 @@ final class CanvasScene: SKScene {
         // A running hint would move the camera back to coordinates that no
         // longer mean anything (an iPhone launches portrait, then rotates).
         cameraNode.removeAction(forKey: Self.panHintActionKey)
+        cancelHints()
+        noteActivity()
         let oldWorld = worldSize
         let overflowedBefore = worldOverflows
         let cameraFraction = CGPoint(
@@ -672,6 +703,10 @@ final class CanvasScene: SKScene {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         cameraNode.removeAction(forKey: Self.panHintActionKey)
+        // Any touch ends a hint at once (before hit-testing, so the sample
+        // sticker is gone) and restarts the idle clock.
+        cancelHints()
+        noteActivity()
         guard !isPlayLocked else {
             // Editing is locked while a story plays, but looking around is
             // fine: any touch pans.
@@ -1086,6 +1121,7 @@ final class CanvasScene: SKScene {
         drags.removeValue(forKey: touchB)
         if node.isSelected { select(nil) }  // hide controls while transforming
         if !alreadyLifted { UISounds.shared.play(.stickerUp) }
+        markHintUsed(.pinch)
 
         let a = touchA.location(in: self)
         let b = touchB.location(in: self)
@@ -1170,6 +1206,7 @@ final class CanvasScene: SKScene {
     }
 
     private func toggleLayer(of sticker: StickerNode) {
+        markHintUsed(.layer)
         let before = snapshot()
         let targetLayer: SKNode
         if sticker.canvasLayer == .foreground {
@@ -1256,6 +1293,8 @@ final class CanvasScene: SKScene {
     /// be placed during a story — and back in when the story ends or is
     /// stopped.
     func setPlayLocked(_ locked: Bool) {
+        cancelHints()
+        noteActivity()
         guard locked != isPlayLocked else { return }
         if locked {
             if let transform = activeTransform {
@@ -1421,6 +1460,8 @@ final class CanvasScene: SKScene {
     var effects: (any StickerEffects)? { playSession?.runner }
 
     override func update(_ currentTime: TimeInterval) {
+        sceneTime = currentTime
+        updateHints()
         guard let session = playSession else { return }
         let time = session.clock.now()
         let nodes = stickerNodesByID()
@@ -1508,6 +1549,167 @@ final class CanvasScene: SKScene {
         }
     }
 
+    // MARK: Hints
+
+    private func noteActivity() {
+        lastActivity = nil  // the next frame's time
+    }
+
+    private func markHintUsed(_ hint: CanvasHint) {
+        hintSchedule.markUsed(hint)
+        hintProgress.markUsed(hint)
+    }
+
+    private func cancelHints() {
+        hintDemo?.cancel()
+        hintDemo = nil
+        hintQueue.removeAll()
+    }
+
+    /// Starts the due hints once the canvas has been left alone long
+    /// enough: not while a story plays, a finger is down or something
+    /// covers the canvas.
+    private func updateHints() {
+        guard hintDemo == nil, hintSchedule.hasPending, hintsAllowed, !isPlayLocked,
+            drags.isEmpty, pans.isEmpty, activeTransform == nil, pendingTrayTouches.isEmpty, trayScrolls.isEmpty
+        else {
+            if hintDemo == nil { lastActivity = nil }
+            return
+        }
+        guard let since = lastActivity else {
+            lastActivity = sceneTime
+            return
+        }
+        hintQueue = hintSchedule.due(idleFor: sceneTime - since)
+        if !hintQueue.isEmpty { playNextHint() }
+    }
+
+    private func playNextHint() {
+        guard !hintQueue.isEmpty, let art = handArt else {
+            hintDemo = nil
+            noteActivity()
+            return
+        }
+        let hint = hintQueue.removeFirst()
+        guard let sample = hintSample() else {
+            playNextHint()
+            return
+        }
+        select(nil)
+        let demo = CanvasHintDemo(stage: CanvasHintDemo.Stage(
+            front: foregroundStickers, back: backgroundStickers, overlay: self,
+            hand: art.texture, handTip: art.tip, handHeight: stickerBaseSize,
+            bubblePosition: { [weak self] frame in self?.bubblePosition(around: frame) ?? .zero }))
+        hintDemo = demo
+        demo.play(hint, sticker: sample, at: hintSpot(for: hint)) { [weak self] in
+            self?.playNextHint()
+        }
+    }
+
+    /// The sample sticker: a character from the pack (one that walks in,
+    /// when the pack says so), at its normal size.
+    private func hintSample() -> StickerNode? {
+        let characters = pack.manifest.stickers.filter { $0.stage?.entrance == .hop }
+        guard let pick = (characters.isEmpty ? pack.manifest.stickers : characters).randomElement(),
+            let texture = stickerTextures[pick.id]
+        else { return nil }
+        return StickerNode(
+            stickerID: pick.id, texture: texture,
+            size: squareFit(texture: texture, side: stickerBaseSize), shadow: shadow(for: pick.id))
+    }
+
+    /// Where the sample goes: on screen, clear of the child's stickers,
+    /// on open ground for the pinch and half over the foreground art for
+    /// the layer button, so going behind it shows (`HintPlacement`).
+    private func hintSpot(for hint: CanvasHint) -> CGPoint {
+        let side = stickerBaseSize
+        let visible = visibleRect.intersection(worldExtent)
+        let area = CGRect(
+            x: visible.minX + side * 0.7, y: visible.minY + side * 0.7,
+            width: max(visible.width - side * 1.4, 1),
+            height: max(min(trayRect.minY - side * 1.5, visible.maxY - side * 0.7) - (visible.minY + side * 0.7), 1))
+        let placed = allStickerNodes().filter { !$0.isVisitor }
+        let halfDiagonal = max(hypot(visible.width, visible.height) / 2, 1)
+        var points: [CGPoint] = []
+        var candidates: [HintPlacement.Candidate] = []
+        for column in 0...8 {
+            for row in 0...5 {
+                let point = CGPoint(
+                    x: area.minX + area.width * CGFloat(column) / 8,
+                    y: area.minY + area.height * CGFloat(row) / 5)
+                let clearance = placed.map {
+                    ($0.position.distance(to: point) - side * 0.4 - max($0.size.width, $0.size.height) * 0.4) / side
+                }.min() ?? 10
+                points.append(point)
+                candidates.append(HintPlacement.Candidate(
+                    coverage: foregroundCoverage(at: point, side: side), clearance: Double(clearance),
+                    offCentre: Double(point.distance(to: CGPoint(x: visible.midX, y: visible.midY)) / halfDiagonal)))
+            }
+        }
+        return HintPlacement.best(candidates, for: hint).map { points[$0] } ?? CGPoint(x: area.midX, y: area.midY)
+    }
+
+    /// How much of a sticker-sized square at `point` the drawn foreground
+    /// art covers, 0…1.
+    private func foregroundCoverage(at point: CGPoint, side: CGFloat) -> CGFloat {
+        guard let texture = foregroundArt.texture else { return 0 }
+        if foregroundAlpha?.texture !== texture {
+            let width = 192, height = max(Int(192 * texture.size().height / max(texture.size().width, 1)), 1)
+            var alpha = [UInt8](repeating: 0, count: width * height)
+            if let context = CGContext(
+                data: &alpha, width: width, height: height, bitsPerComponent: 8, bytesPerRow: width,
+                space: CGColorSpaceCreateDeviceGray(), bitmapInfo: CGImageAlphaInfo.alphaOnly.rawValue) {
+                context.draw(texture.cgImage(), in: CGRect(x: 0, y: 0, width: width, height: height))
+            }
+            foregroundAlpha = (texture, width, height, alpha)
+        }
+        guard let map = foregroundAlpha else { return 0 }
+        let frame = foregroundArt.frame
+        var covered = 0, total = 0
+        for i in 0..<5 {
+            for j in 0..<5 {
+                let p = CGPoint(
+                    x: point.x + side * (CGFloat(i) / 4 - 0.5) * 0.7,
+                    y: point.y + side * (CGFloat(j) / 4 - 0.5) * 0.7)
+                let u = (p.x - frame.minX) / frame.width, v = (p.y - frame.minY) / frame.height
+                guard (0..<1).contains(u), (0..<1).contains(v) else { continue }
+                // The bitmap's rows run top-down; SpriteKit's y runs up.
+                let x = Int(u * CGFloat(map.width)), y = Int((1 - v) * CGFloat(map.height))
+                total += 1
+                if map.alpha[y * map.width + x] > 128 { covered += 1 }
+            }
+        }
+        return total > 0 ? CGFloat(covered) / CGFloat(total) : 0
+    }
+
+    /// The hint hand (`Art/hint-hand.webp`, made with `uiart`) and its
+    /// index fingertip: the middle of the art's topmost row, a little in.
+    private static func loadHandArt() -> (texture: SKTexture, tip: CGPoint)? {
+        guard let url = Bundle.main.url(forResource: "hint-hand", withExtension: "webp"),
+            let image = UIImage(contentsOfFile: url.path), let cg = image.cgImage
+        else { return nil }
+        let width = 128, height = max(Int(128 * CGFloat(cg.height) / CGFloat(max(cg.width, 1))), 1)
+        var alpha = [UInt8](repeating: 0, count: width * height)
+        var tip = CGPoint(x: 0.5, y: 0.97)
+        if let context = CGContext(
+            data: &alpha, width: width, height: height, bitsPerComponent: 8, bytesPerRow: width,
+            space: CGColorSpaceCreateDeviceGray(), bitmapInfo: CGImageAlphaInfo.alphaOnly.rawValue) {
+            context.draw(cg, in: CGRect(x: 0, y: 0, width: width, height: height))
+            // The bitmap's rows run top-down: the fingertip is in the first
+            // row with any art. The anchor (y up) sits a little below it, on
+            // the pad of the finger.
+            for row in 0..<height {
+                let xs = (0..<width).filter { alpha[row * width + $0] > 128 }
+                if !xs.isEmpty {
+                    let x = CGFloat(xs.reduce(0, +)) / CGFloat(xs.count) / CGFloat(width)
+                    tip = CGPoint(x: x, y: max(1 - CGFloat(row) / CGFloat(height) - 0.04, 0))
+                    break
+                }
+            }
+        }
+        return (SKTexture(image: image), tip)
+    }
+
     // MARK: History (undo/redo) & persistence
 
     /// Compares the settled canvas against the gesture's starting point; a
@@ -1552,6 +1754,7 @@ final class CanvasScene: SKScene {
     }
 
     func undo() {
+        noteActivity()
         guard let previous = undoStack.popLast() else { return }
         redoStack.append(snapshot())
         apply(previous)
@@ -1561,6 +1764,7 @@ final class CanvasScene: SKScene {
     }
 
     func redo() {
+        noteActivity()
         guard let next = redoStack.popLast() else { return }
         undoStack.append(snapshot())
         apply(next)
@@ -1572,6 +1776,7 @@ final class CanvasScene: SKScene {
     /// Wipes every sticker and the undo/redo history — a deliberate,
     /// non-undoable reset (the confirmation dialog is the only safety net).
     func clearCanvas() {
+        noteActivity()
         guard !allStickerNodes().isEmpty else { return }
         select(nil)
         backgroundStickers.removeAllChildren()

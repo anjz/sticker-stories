@@ -172,6 +172,24 @@ Multilingual from day one — currently **en-US** and **es-ES**:
    descriptions within App Store Connect's limits, in App Store Connect and
    the StoreKit test configuration (`docs/commerce.md`, "Product copy").
 
+## Gesture hints
+
+Two canvas gestures are easy to miss: pinching a sticker (to scale or
+turn it) and its layer button. Each has a wordless, ~6 s demo on a
+sample sticker (`CanvasHintDemo`): a hand made with `uiart`
+(`Art/hint-hand.webp`) pinches the sample bigger and turns it, or taps it
+and then the real selection bubble's layer button so it slips behind
+the foreground art and back. The scene plays them after 10 s with no
+touch (`CanvasHintSchedule`, Kit, tested), outside stories and dialogs,
+only for gestures the child has **never** used (app-wide flags in
+UserDefaults, `UserDefaultsHintProgress`; local UI state, see
+`docs/compliance.md`), each at most once per visit to a pack, both in a
+row when both are due. Any touch cancels a demo at once. The sample is
+never part of the canvas (not saved, not undoable); it goes where
+`HintPlacement` scores best — open ground for the pinch, half over the
+foreground art for the layer button. DEBUG: `-hintsDemo` shows both
+after 3 s whatever the flags say.
+
 ## Effects (play mode)
 
 While a story plays, individual stickers do small things — a wobble, a
