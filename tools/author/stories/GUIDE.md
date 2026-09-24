@@ -246,14 +246,15 @@ put grow where they stand. It leaves again when the story ends.
   the entrance — *along came {fox:enter} Fox*, *{owl:enter} Owl fluttered
   down*, *a little {mushroom:enter} mushroom popped up* — but the sentence
   must also read fine when the sticker was on the canvas all along.
-- Keep what the words say about where a sticker is inside its stage
-  (`storycheck -plan` lists the entrances; the manifest has the areas):
-  in Forest the bee and the butterfly are up in the air, the walkers on
-  the meadow, the frog in the pond, plants and things on the floor — and
-  so are the flyers drawn perched (the bird on its twig, the owl on its
-  branch, the woodpecker on its trunk, the firefly on its grass blade):
-  they fly in and land low, so write them landing or perching, not
-  high in the sky.
+- Keep what the words say about where a sticker is where it lands.
+  `storycheck -plan` prints the pack's features (the pond, the trees'
+  branches…) with the stickers that land on each, first choice and
+  fallback: in Forest the bee and the butterfly fly in the sky, the bird
+  and the owl perch on the big trees' branches (or fly in the sky when
+  those are off screen), the woodpecker clings to a trunk, the frog sits
+  in the pond, and everyone else — the firefly and the ladybug on their
+  leaves too — is on the meadow. "Owl fluttered down onto a branch" fits;
+  "the fox up on the hill" does not.
 - Cue nothing on a sticker before its entrance (it would play on a
   sticker nobody can see yet), except a `float` loop or a face — those
   simply carry on once it is in. Put a `float` loop for a flyer at the

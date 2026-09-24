@@ -120,19 +120,29 @@ never letterboxes:
   "foreground": "art/foreground.webp",
   "backgroundWide": "art/background-wide.webp",
   "foregroundWide": "art/foreground-wide.webp",
+  "features": {
+    "pond": {
+      "description": "the small pond with lily pads, right of the middle of the meadow",
+      "areas": [{ "x": [0.57, 0.74], "y": [0.3, 0.37] }]
+    },
+    "meadow": {
+      "description": "the open grass of the meadow",
+      "areas": [{ "x": [0.1, 0.9], "y": [0.16, 0.36] }]
+    }
+  },
   "stickers": [
     {
       "id": "mushroom",
       "name": { "en-US": "Mushroom", "es-ES": "Seta" },
       "image": "stickers/mushroom.webp",
-      "stage": { "entrance": "grow", "area": { "x": [0.08, 0.92], "y": [0.16, 0.34] } }
+      "stage": { "entrance": "grow", "on": ["meadow"] }
     },
     {
       "id": "frog",
       "name": { "en-US": "Frog", "es-ES": "Rana" },
       "image": "stickers/frog.webp",
       "animations": ["anims/frog.backflip-fly.json"],
-      "stage": { "entrance": "hop", "area": { "x": [0.57, 0.74], "y": [0.3, 0.37] } }
+      "stage": { "entrance": "hop", "on": ["pond", "meadow"] }
     }
   ],
   "stories": [
@@ -180,7 +190,8 @@ never letterboxes:
 | `stickers[].image` | string | Pack-relative path to a PNG or WebP file; must exist. |
 | `stickers[].animations` | [string] | **Optional**, default none. Pack-relative paths to live-animation sidecars (`.json`, "Live animations" below); each must exist and validate. |
 | `stickers[].expressions` | {expr: string} | **Optional**, default none. Face variants by expression id (`happy`, `sad`, `sleeping`, `surprised`…): pack-relative PNG or WebP images with exactly the sticker's size and outline ("Expressions" below). The sticker's own `image` is the `normal` face. |
-| `stickers[].stage` | object | **Optional**, default grow in `x` 0.1–0.9, `y` 0.18–0.45. Where the sticker belongs in the scene and how it comes in when a story names it and the child has not placed it ("Stage" below): `entrance` is `hop`, `fly` or `grow`; `area` is `{ "x": [min, max], "y": [min, max] }`, fractions of the base art. |
+| `features` | {id: object} | **Optional.** Named places in the art where stickers can land ("Features" below): each has a `description` (for story authors) and `areas`, a non-empty list of `{ "x": [min, max], "y": [min, max] }` in fractions of the base art. |
+| `stickers[].stage` | object | **Optional**, default grow in `x` 0.1–0.9, `y` 0.18–0.45. Where the sticker belongs in the scene and how it comes in when a story names it and the child has not placed it ("Stage" below): `entrance` is `hop`, `fly` or `grow`; `on` lists `features` in order of preference; `area` (`{ "x": [min, max], "y": [min, max] }`, fractions of the base art) is where it lands when none of them is on screen. At least one of `on` and `area`. |
 | `stories[].id` | string | Unique within the pack. |
 | `stories[].requiredStickers` | [string] | The stickers the story is about: it is a candidate when at most one of them is missing from the canvas (and at least one is present), and preferred when all are. Empty ⇒ fallback story. Every ID must be declared in `stickers`. |
 | `stories[].optionalStickers` | [string] | Sticker IDs that raise the match score when present. Declared in `stickers`; no overlap with `requiredStickers`. |
@@ -236,8 +247,12 @@ never letterboxes:
     `normal`; every value is an image inside the pack (`.png` or `.webp`)
     that exists. No sticker is called `all`.
 14. A `stickers[].stage`, when present, has an `entrance` of `hop`,
-    `fly` or `grow` and an `area` whose `x` and `y` are each
-    `[min, max]` with 0 ≤ min < max ≤ 1.
+    `fly` or `grow`, and `on` (declared `features`, no repeats) and/or an
+    `area` whose `x` and `y` are each `[min, max]` with
+    0 ≤ min < max ≤ 1.
+15. Every `features` id is lowercase `a-z0-9-`, has a non-empty
+    `description` (the packager checks it; the app ignores it) and at
+    least one area, each valid like a stage `area`.
 
 ## Stage
 
@@ -254,20 +269,46 @@ where it belongs and how it arrives:
 | `fly` | things that fly | Floats in from the nearer side, a little higher up, with a gentle bob and tilt, and settles on its spot. |
 | `grow` | things that do not move (plants, objects) | Fades in and grows from small where it stands, with a little overshoot. |
 
-`area` is where the sticker's **centre** may land, in fractions of the
-base art with the origin at the bottom-left — the space saved positions
-use. Match it to the art: in Forest, walkers take the meadow (`y` 0.18–0.36, the
-lower third that is not cropped), free flyers (bee, butterfly) the sky
-(`y` 0.5–0.8), still things the floor (`y` 0.16–0.34), and the frog the
-pond. A flyer whose art has it **perched on something** — a bird on a
-twig, an owl on a branch, a firefly on a blade of grass — still flies in
-but lands on the floor: a branch floating in mid-sky looks wrong. The app picks
-the freest spot in the area (farthest from every sticker already there,
-earlier visitors included) among those the window shows; on a crowded
-canvas it takes any spot in the area. Under Reduce Motion or calm mode
-every entrance is a plain fade-in. A sticker without a stage grows in the
-default area. `stickerart` copies each sticker's `stage` from `art.json`
-on install.
+Where it lands is `on`, a list of the pack's **features** in order of
+preference, and/or an `area` of its own; both are about the sticker's
+**centre**, in fractions of the base art with the origin at the
+bottom-left — the space saved positions use. The app goes down the list
+and takes the first feature with a free spot the window shows — the
+freest one, farthest from every sticker already there, earlier visitors
+included; a feature off screen (portrait shows only the middle of the
+art) or full is skipped. Then the `area`. When every choice is crowded
+it takes any spot in the first one on screen. Under Reduce Motion or
+calm mode every entrance is a plain fade-in. A sticker without a stage
+grows in the default area.
+
+Match the stage to what the sticker's art shows:
+
+- walkers, crawlers and still things on the ground (`meadow` in Forest);
+- free flyers — drawn in mid-air (the bee, the butterfly) — in the sky;
+- birds drawn **perched** on something land on the matching feature
+  when there is one (Forest's bird and owl on the trees' `branches`, the
+  woodpecker on a `trunk`), and in the sky otherwise;
+- **insects** drawn on a leaf or a blade of grass (the firefly, the
+  ladybug) land on the ground — a leaf floating in mid-sky looks wrong;
+- anything that belongs somewhere specific goes there first (the frog:
+  `["pond", "meadow"]`).
+
+`stickerart` copies each sticker's `stage` from `art.json` on install.
+
+## Features
+
+`features` names the places in the pack's art that stickers can land
+on: the pond, the trees' branches, their trunks, the meadow, the open
+sky. They are measured on the finished art (draw a grid over the base
+background with the foreground on top) and describe where a sticker's
+**centre** sits when it is on that place — for a bird perching on a
+branch, a little above the branch line. A feature may have several areas
+(one per tree). The app keeps each to the part on screen: the edges of
+the art are cropped or panned away on narrow windows, which is why
+stages list a fallback. Story authors read the descriptions (`storycheck
+-plan` prints them with the stickers that land on each) so the words put
+a sticker where the child will see it. `stickerart` copies them from
+`art.json` (`scene.features`) on install.
 
 ## Expressions
 
@@ -351,7 +392,7 @@ same device preference.
   bump); `setting` values `space` and `underwater` added (no pack has
   shipped, so no bump); optional `description` added (additive, no bump);
   optional `cover` added (additive, no bump); optional
-  `stickers[].stage` added (additive, no bump).
+  `stickers[].stage` and `features` added (additive, no bump).
 - Any schema change must update this document, the Go validator
   (`tools/internal/manifest`), and the Swift decoder in the **same commit**.
 - `version` (pack content revision) is bumped whenever any asset or story in a

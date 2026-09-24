@@ -115,16 +115,19 @@ area, and the base is re-cut from the edited wide so the two still match.
 
 `install` also copies each sticker's finished expression variants to
 `stickers/<id>.<expr>.webp` and lists them in the manifest's
-`stickers[].expressions`, and each sticker's `stage` from art.json —
-where it belongs in the scene and how it comes in when a story names it
-(`{"entrance": "hop" | "fly" | "grow", "area": {"x": [min, max], "y":
-[min, max]}}`, fractions of the base art, `docs/pack-format.md`,
-"Stage") — to `stickers[].stage`. Give every sticker one: things that
-walk hop in onto the ground, things that fly float in to the sky, still
-things grow where they stand. A flyer drawn perched on something (a
-twig, a branch, a leaf) flies in but lands on the floor, never in the
-sky. The stage is not part of any fingerprint,
-so changing it regenerates nothing.
+`stickers[].expressions`; `scene.features` — named places in the
+finished art (`"pond": {"description": "…", "areas": [{"x": [min, max],
+"y": [min, max]}]}`, fractions of the base art, origin bottom-left) — to
+`features`; and each sticker's `stage` — how it comes in when a story
+names it and where it lands (`{"entrance": "hop" | "fly" | "grow",
+"on": ["branches", "sky"], "area": …}`) — to `stickers[].stage`
+(`docs/pack-format.md`, "Stage" and "Features"). Measure the features
+on the finished art with a grid over it, and give every sticker a
+stage: things that walk hop in onto the ground, free flyers fly into the
+sky, birds drawn perched fly to the matching feature (a branch) with the
+sky as fallback, insects on a leaf land on the ground, still things grow
+where they stand. Neither is part of any fingerprint, so changing them
+regenerates nothing.
 
 Encodes `out/stickers/<id>.png` into `packs/<id>/stickers/<id>.webp` and
 the four scene planes into `packs/<id>/art/*.webp` — lossy WebP at

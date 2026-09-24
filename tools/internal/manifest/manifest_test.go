@@ -104,7 +104,9 @@ func TestDescriptionIsOptionalButComplete(t *testing.T) {
 func TestStageIsOptional(t *testing.T) {
 	dir := t.TempDir()
 	m := validManifest(t, dir)
-	m.Stickers[1].Stage = &Stage{Entrance: "hop", Area: StageArea{X: []float64{0.1, 0.9}, Y: []float64{0.18, 0.38}}}
+	m.Features = map[string]Feature{"pond": {Description: "The small pond.", Areas: []StageArea{{X: []float64{0.57, 0.74}, Y: []float64{0.3, 0.37}}}}}
+	m.Stickers[0].Stage = &Stage{Entrance: "grow", On: []string{"pond"}}
+	m.Stickers[1].Stage = &Stage{Entrance: "hop", Area: &StageArea{X: []float64{0.1, 0.9}, Y: []float64{0.18, 0.38}}}
 	if errs := m.Validate(dir); len(errs) != 0 {
 		t.Fatalf("a valid stage should pass, got %v", errs)
 	}
@@ -115,8 +117,13 @@ func TestStageIsOptional(t *testing.T) {
 	if !strings.Contains(string(data), `"stage":{"entrance":"hop","area":{"x":[0.1,0.9],"y":[0.18,0.38]}}`) {
 		t.Errorf("stage lost on write: %s", data)
 	}
-	if strings.Count(string(data), `"stage"`) != 1 {
-		t.Errorf("an absent stage must not be written: %s", data)
+	if !strings.Contains(string(data), `"stage":{"entrance":"grow","on":["pond"]}`) || !strings.Contains(string(data), `"features":{"pond":`) {
+		t.Errorf("features or on lost on write: %s", data)
+	}
+	m.Stickers[0].Stage = nil
+	m.Features = nil
+	if data, _ := json.Marshal(m); strings.Count(string(data), `"stage"`) != 1 || strings.Contains(string(data), "features") {
+		t.Errorf("an absent stage or features must not be written: %s", data)
 	}
 }
 
@@ -195,15 +202,23 @@ func TestValidationFailures(t *testing.T) {
 		{"absolute path", func(m *Manifest) { m.Foreground = "/etc/passwd" }, "pack-relative"},
 		{"path escape", func(m *Manifest) { m.Foreground = "../../evil.png" }, "escape"},
 		{"unknown entrance", func(m *Manifest) {
-			m.Stickers[1].Stage = &Stage{Entrance: "run", Area: StageArea{X: []float64{0, 1}, Y: []float64{0.2, 0.4}}}
+			m.Stickers[1].Stage = &Stage{Entrance: "run", Area: &StageArea{X: []float64{0, 1}, Y: []float64{0.2, 0.4}}}
 		}, "entrance"},
 		{"stage area outside the art", func(m *Manifest) {
-			m.Stickers[1].Stage = &Stage{Entrance: "hop", Area: StageArea{X: []float64{0, 1.2}, Y: []float64{0.2, 0.4}}}
+			m.Stickers[1].Stage = &Stage{Entrance: "hop", Area: &StageArea{X: []float64{0, 1.2}, Y: []float64{0.2, 0.4}}}
 		}, "area.x"},
 		{"stage area inverted", func(m *Manifest) {
-			m.Stickers[1].Stage = &Stage{Entrance: "fly", Area: StageArea{X: []float64{0, 1}, Y: []float64{0.8, 0.5}}}
+			m.Stickers[1].Stage = &Stage{Entrance: "fly", Area: &StageArea{X: []float64{0, 1}, Y: []float64{0.8, 0.5}}}
 		}, "area.y"},
-		{"stage area missing", func(m *Manifest) { m.Stickers[1].Stage = &Stage{Entrance: "grow"} }, "area"},
+		{"stage lands nowhere", func(m *Manifest) { m.Stickers[1].Stage = &Stage{Entrance: "grow"} }, "on) or an area"},
+		{"stage on an undeclared feature", func(m *Manifest) { m.Stickers[1].Stage = &Stage{Entrance: "hop", On: []string{"pond"}} }, "not in features"},
+		{"feature without areas", func(m *Manifest) { m.Features = map[string]Feature{"pond": {Description: "The pond."}} }, "at least one area"},
+		{"feature without description", func(m *Manifest) {
+			m.Features = map[string]Feature{"pond": {Areas: []StageArea{{X: []float64{0.5, 0.7}, Y: []float64{0.3, 0.4}}}}}
+		}, "description"},
+		{"feature area outside the art", func(m *Manifest) {
+			m.Features = map[string]Feature{"pond": {Description: "The pond.", Areas: []StageArea{{X: []float64{0.5, 1.7}, Y: []float64{0.3, 0.4}}}}}
+		}, "areas[0].x"},
 		{"duplicate sticker id", func(m *Manifest) { m.Stickers[1].ID = "mushroom" }, "duplicate sticker"},
 		{"bad sticker id", func(m *Manifest) { m.Stickers[0].ID = "Mushroom" }, "must match"},
 		{"duplicate story id", func(m *Manifest) { m.Stories[1].ID = "story-001" }, "duplicate story"},

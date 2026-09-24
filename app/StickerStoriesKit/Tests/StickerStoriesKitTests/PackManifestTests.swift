@@ -231,6 +231,9 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         InvalidCase("escape") { $0.foreground = "../../evil.png" },
         InvalidCase("escape") { $0.foreground = "/etc/passwd" },
         InvalidCase("stage") { $0.stickers[1].stage = StickerStage(entrance: .hop, area: .init(x: [0, 1.2], y: [0.2, 0.4])) },
+        InvalidCase("not in features") { $0.stickers[1].stage = StickerStage(entrance: .hop, on: ["pond"]) },
+        InvalidCase("(on) or an area") { $0.stickers[1].stage = StickerStage(entrance: .grow) },
+        InvalidCase("feature \"pond\"") { $0.features = ["pond": SceneFeature(description: "Pond.", areas: [])] },
         InvalidCase("stage") { $0.stickers[1].stage = StickerStage(entrance: .fly, area: .init(x: [0, 1], y: [0.8, 0.5])) },
         InvalidCase("duplicate sticker") { $0.stickers[1].id = "mushroom" },
         InvalidCase("sticker id") { $0.stickers[0].id = "Mushroom" },
@@ -318,6 +321,7 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         #expect(!pack.manifest.stories.filter(\.isFallback).isEmpty)
         // Every Forest sticker says where it belongs and how it comes in.
         #expect(pack.manifest.stickers.allSatisfy { $0.stage != nil })
+        #expect(pack.manifest.features["branches"] != nil && pack.manifest.features["pond"] != nil)
     }
 }
 

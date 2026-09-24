@@ -138,6 +138,12 @@ type sceneSpec struct {
 	// Edits are painted into the finished background afterwards, in order:
 	// a feature added to the scene (a pond) without repainting the rest.
 	Edits []sceneEdit `json:"edits,omitempty"`
+	// Features are named places in the finished art (the pond, the
+	// trees' branches), in fractions of the BASE art with the origin at
+	// the bottom-left, where stickers can land when a story brings them
+	// in (docs/pack-format.md, "Features"); copied into the manifest on
+	// install. Changing them re-renders nothing.
+	Features map[string]manifest.Feature `json:"features,omitempty"`
 }
 
 // sceneEdit is one thing painted into the background: what, and where on
@@ -973,6 +979,9 @@ func runInstall(args []string) error {
 			c.pack.Stickers = append(c.pack.Stickers, manifest.Sticker{ID: s.ID, Name: s.Name, Image: rel, Expressions: expressions, Stage: s.Stage})
 		}
 		installed++
+	}
+	if len(c.cfg.Scene.Features) > 0 {
+		c.pack.Features = c.cfg.Scene.Features
 	}
 	planes := map[string]*string{"background": &c.pack.Background, "foreground": &c.pack.Foreground, "background-wide": &c.pack.BackgroundWide, "foreground-wide": &c.pack.ForegroundWide}
 	names := []string{"background", "foreground", "background-wide", "foreground-wide"}

@@ -116,6 +116,46 @@ struct SeededGenerator: RandomNumberGenerator {
         }
     }
 
+    static let features: [String: SceneFeature] = [
+        "branches": SceneFeature(description: "The trees' side branches.", areas: [
+            .init(x: [0.12, 0.18], y: [0.84, 0.9]), .init(x: [0.82, 0.88], y: [0.85, 0.92]),
+        ]),
+        "sky": SceneFeature(description: "Open sky.", areas: [.init(x: [0.15, 0.85], y: [0.55, 0.85])]),
+    ]
+
+    func perch(
+        _ ids: [String], scene: StagePlanner.Scene = Self.scene, obstacles: [StageObstacle] = [], seed: UInt64 = 5
+    ) -> [EntrancePlan] {
+        var random = SeededGenerator(state: seed)
+        let bird = StickerStage(entrance: .fly, on: ["branches", "sky"])
+        return StagePlanner.plan(
+            entrances: ids.enumerated().map { EntranceTrigger(at: Double($0.offset), stickerID: $0.element) },
+            placed: [], stages: Dictionary(uniqueKeysWithValues: ids.map { ($0, bird) }), features: Self.features,
+            scene: scene, obstacles: obstacles, policy: .standard, random: &random)
+    }
+
+    @Test func landsOnItsFirstFeatureWithRoom() {
+        for seed in 1...20 {
+            let plans = perch(["bird", "owl", "woodpecker"], seed: UInt64(seed))
+            // Two branches (one per tree) have room for two birds; the third
+            // goes to the sky.
+            let onBranches = plans.filter { $0.target.y >= 0.84 * 750 - 1e-9 && ($0.target.x <= 200 || $0.target.x >= 800) }
+            #expect(onBranches.count == 2, "seed \(seed): \(plans.map { ($0.target.x, $0.target.y) })")
+            #expect(plans[0].target.y >= 630 && plans[1].target.y >= 630)
+            let third = plans[2].target
+            #expect((150...850).contains(third.x) && (412.5...637.5).contains(third.y))
+        }
+    }
+
+    @Test func aFeatureOffScreenIsSkipped() {
+        var scene = Self.scene
+        // A portrait window over the middle of the art: neither tree shows.
+        scene.visible = StageRect(minX: 300, minY: 0, maxX: 700, maxY: 750)
+        scene.usable = StageRect(minX: 340, minY: 40, maxX: 660, maxY: 710)
+        let bird = perch(["bird"], scene: scene)[0].target
+        #expect((340...660).contains(bird.x) && (412.5...637.5).contains(bird.y))
+    }
+
     @Test func calmModeJustFadesIn() {
         let plans = plan(["fox", "owl", "tree"], policy: EffectPolicy(reduceMotion: true))
         #expect(plans.allSatisfy { $0.motion == .fade && $0.startScale == 1 })

@@ -47,8 +47,12 @@ type Manifest struct {
 	ForegroundWide string `json:"foregroundWide,omitempty"`
 	// Optional cover art for the pack's tile in the menu and the store
 	// (made with uiart); without one the app composes the tile itself.
-	Cover    string    `json:"cover,omitempty"`
-	Stickers []Sticker `json:"stickers"`
+	Cover string `json:"cover,omitempty"`
+	// Features are named places in the art — the pond, the trees'
+	// branches — where stickers can land when a story brings them in
+	// (Stage.On). Optional.
+	Features map[string]Feature `json:"features,omitempty"`
+	Stickers []Sticker          `json:"stickers"`
 	Stories  []Story   `json:"stories"`
 }
 
@@ -77,13 +81,27 @@ type Sticker struct {
 // grow where it stands (things that do not move).
 var Entrances = []string{"hop", "fly", "grow"}
 
-// Stage is where a sticker belongs in the scene and how it enters it.
+// Stage is where a sticker belongs in the scene and how it enters it:
+// the features it lands on, in order of preference, and/or an area of its
+// own (at least one of the two).
 type Stage struct {
 	// Entrance is one of Entrances.
 	Entrance string `json:"entrance"`
-	// Area is where the sticker's centre may land, in fractions of the base
-	// art (origin bottom-left, like saved sticker positions).
-	Area StageArea `json:"area"`
+	// On lists feature ids (Manifest.Features) in order of preference: the
+	// sticker lands on the first one with a free spot on screen.
+	On []string `json:"on,omitempty"`
+	// Area is where the sticker's centre may land when none of On is on
+	// screen (or when On is empty), in fractions of the base art (origin
+	// bottom-left, like saved sticker positions).
+	Area *StageArea `json:"area,omitempty"`
+}
+
+// Feature is a named place in the pack's art: one or more areas (the
+// left and the right tree's branches) where a sticker's centre may land,
+// and a line saying what is there, for story authors.
+type Feature struct {
+	Description string      `json:"description"`
+	Areas       []StageArea `json:"areas"`
 }
 
 // StageArea is a rectangle in fractions of the base art: X and Y are each
@@ -257,6 +275,30 @@ func (m *Manifest) Validate(dir string) []error {
 		checkImage("cover", m.Cover)
 	}
 
+	// Rule 15: features have a well-formed id, a description and areas
+	// inside the art.
+	featureIDs := make([]string, 0, len(m.Features))
+	for id := range m.Features {
+		featureIDs = append(featureIDs, id)
+	}
+	sort.Strings(featureIDs)
+	for _, id := range featureIDs {
+		f := m.Features[id]
+		field := fmt.Sprintf("feature %q", id)
+		if !idPattern.MatchString(id) {
+			fail("%s: id must match %s", field, idPattern)
+		}
+		if strings.TrimSpace(f.Description) == "" {
+			fail("%s: description must not be empty", field)
+		}
+		if len(f.Areas) == 0 {
+			fail("%s: needs at least one area", field)
+		}
+		for i, a := range f.Areas {
+			checkArea(fmt.Sprintf("%s: areas[%d]", field, i), a, fail)
+		}
+	}
+
 	// Rule 2: sticker IDs well-formed and unique.
 	stickerIDs := make(map[string]bool, len(m.Stickers))
 	animations := effects.Animations{}
@@ -317,16 +359,28 @@ func (m *Manifest) Validate(dir string) []error {
 			checkImage(field, st.Expressions[name])
 			expressions[st.ID] = append(expressions[st.ID], name)
 		}
-		// Rule 14: the stage names a known entrance and an area inside the art.
+		// Rule 14: the stage names a known entrance and lands on declared
+		// features and/or an area inside the art.
 		if st.Stage != nil {
 			field := fmt.Sprintf("sticker %q stage", st.ID)
 			if !slices.Contains(Entrances, st.Stage.Entrance) {
 				fail("%s: entrance %q must be one of %s", field, st.Stage.Entrance, strings.Join(Entrances, ", "))
 			}
-			for axis, span := range map[string][]float64{"x": st.Stage.Area.X, "y": st.Stage.Area.Y} {
-				if len(span) != 2 || span[0] < 0 || span[1] > 1 || span[0] >= span[1] {
-					fail("%s: area.%s must be [min, max] with 0 <= min < max <= 1, got %v", field, axis, span)
+			if len(st.Stage.On) == 0 && st.Stage.Area == nil {
+				fail("%s: needs features to land on (on) or an area", field)
+			}
+			seen := map[string]bool{}
+			for _, id := range st.Stage.On {
+				if _, ok := m.Features[id]; !ok {
+					fail("%s: on names %q, which is not in features", field, id)
 				}
+				if seen[id] {
+					fail("%s: on lists %q twice", field, id)
+				}
+				seen[id] = true
+			}
+			if st.Stage.Area != nil {
+				checkArea(field+": area", *st.Stage.Area, fail)
 			}
 		}
 	}
@@ -408,6 +462,19 @@ func (m *Manifest) Validate(dir string) []error {
 	}
 
 	return errs
+}
+
+// checkArea checks that an area is [min, max] on both axes with
+// 0 <= min < max <= 1.
+func checkArea(field string, a StageArea, fail func(string, ...any)) {
+	for _, axis := range []struct {
+		name string
+		span []float64
+	}{{"x", a.X}, {"y", a.Y}} {
+		if len(axis.span) != 2 || axis.span[0] < 0 || axis.span[1] > 1 || axis.span[0] >= axis.span[1] {
+			fail("%s.%s must be [min, max] with 0 <= min < max <= 1, got %v", field, axis.name, axis.span)
+		}
+	}
 }
 
 // pathEscapes reports whether a slash-separated relative path climbs out of

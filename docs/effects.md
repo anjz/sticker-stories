@@ -346,10 +346,12 @@ one per sticker per story, never `all`.
 
 - When play starts, the app looks at the story's entrances. A sticker the
   child already placed ignores its entrance. Every other one is a
-  **visitor**: the app picks its spot — the freest place in its manifest
-  `stage` area that the window shows (`docs/pack-format.md`, "Stage";
-  `StagePlanner`), or any spot in the area when the canvas is crowded —
-  and keeps it hidden there until its entrance.
+  **visitor**: the app picks its spot — the freest place the window shows
+  on the first of its manifest `stage`'s features that has room (a bird
+  on the trees' branches, else in the sky), or else in its `area`
+  (`docs/pack-format.md`, "Stage" and "Features"; `StagePlanner`), or
+  any spot there when the canvas is crowded — and keeps it hidden there
+  until its entrance.
 - At its entrance it comes in as its stage says: `hop` hops in from the
   nearer side of the screen (bigger or smaller at first as it walks away
   from or towards the viewer), `fly` glides in from the nearer side,
