@@ -47,6 +47,9 @@ final class CanvasScene: SKScene {
     private let foregroundShadowBlur = SKEffectNode()
     private let foregroundArt = SKSpriteNode()
     private let foregroundStickers = SKNode()
+    /// Where visitors (stickers a story brought in) fade out once it ends,
+    /// out of the sticker layers so nothing counts them as placed.
+    private let leavingVisitors = SKNode()
     /// Weather and light over the scene during play (`CanvasEffectLayer`);
     /// a permanent child whose children carry the z-positions above.
     private let canvasEffects = CanvasEffectLayer()
@@ -184,6 +187,8 @@ final class CanvasScene: SKScene {
         let clock: PlaybackClock
         let live: LiveAnimationSchedule
         let faces: ExpressionTimeline
+        /// The stickers the story brings in, by node, and how each enters.
+        let visitors: [UUID: EntrancePlan]
     }
     private var playSession: PlaySession?
     /// Every live animation the pack declares (`StickerAnimation`), read
@@ -230,6 +235,7 @@ final class CanvasScene: SKScene {
             foregroundShadowBlur.zPosition = 150
             foregroundArt.zPosition = 200
             foregroundStickers.zPosition = 300
+            leavingVisitors.zPosition = 300
             tray.zPosition = 1000
             foregroundShadow.color = .black
             foregroundShadow.colorBlendFactor = 1
@@ -242,6 +248,7 @@ final class CanvasScene: SKScene {
             addChild(foregroundShadowBlur)
             addChild(foregroundArt)
             addChild(foregroundStickers)
+            addChild(leavingVisitors)
             addChild(canvasEffects)
             addChild(cameraNode)
             camera = cameraNode
@@ -1174,7 +1181,7 @@ final class CanvasScene: SKScene {
     func snapshot() -> CanvasState {
         var placed: [PlacedSticker] = []
         for (layerNode, layer) in [(backgroundStickers, CanvasLayer.background), (foregroundStickers, .foreground)] {
-            for case let node as StickerNode in layerNode.children {
+            for case let node as StickerNode in layerNode.children where !node.isVisitor {
                 // `placement` is the child's base even mid-effect (play mode).
                 let placement = node.placement
                 placed.append(
@@ -1239,9 +1246,15 @@ final class CanvasScene: SKScene {
     func beginPlayMode(story: Story, clock: PlaybackClock, policy: EffectPolicy) {
         endPlayMode()
         setPlayLocked(true)
+        let triggers = loadTriggers(for: story)
+        let applier = EffectApplier { [weak self] node in self?.glowMask(for: node) }
+        applier.normalize(allStickerNodes())
+        // The stickers the story names that the child has not placed come
+        // in when they are first named; from here on they are on the stage
+        // like any other, so every trigger reaches them.
+        let visitors = addVisitors(for: triggers.entrances, policy: policy)
         let nodes = allStickerNodes()
         let targets = Dictionary(grouping: nodes, by: \.stickerID).mapValues { $0.map(\.instanceID) }
-        let triggers = loadTriggers(for: story)
         let runner = StickerEffectsRunner(triggers: triggers.sticker, targets: targets, policy: policy)
         let live = LiveAnimationSchedule(triggers: triggers.live, policy: policy)
         let placed = Set(nodes.map(\.stickerID))
@@ -1264,11 +1277,65 @@ final class CanvasScene: SKScene {
         }
         let canvasRunner = CanvasEffectsRunner(
             triggers: triggers.canvas, setting: pack.manifest.setting, policy: policy)
-        let applier = EffectApplier { [weak self] node in self?.glowMask(for: node) }
-        applier.normalize(nodes)
         playSession = PlaySession(
             runner: runner, canvasRunner: canvasRunner, applier: applier, emitters: EmitterCoordinator(), clock: clock,
-            live: live, faces: faces)
+            live: live, faces: faces, visitors: visitors)
+    }
+
+    /// Puts every sticker the story names but the child has not placed on
+    /// the stage, hidden, at the spot `StagePlanner` picks for it — the
+    /// freest place in its manifest stage's area that can be seen — so its
+    /// entrance plays when the story first names it
+    /// (`docs/effects.md`, "Entrances").
+    private func addVisitors(for entrances: [EntranceTrigger], policy: EffectPolicy) -> [UUID: EntrancePlan] {
+        guard !entrances.isEmpty else { return [:] }
+        let existing = allStickerNodes()
+        var sizes: [String: StageSize] = [:]
+        for entrance in entrances {
+            guard let texture = stickerTextures[entrance.stickerID] else { continue }
+            let size = squareFit(texture: texture, side: stickerBaseSize)
+            sizes[entrance.stickerID] = StageSize(width: size.width, height: size.height)
+        }
+        // Where a sticker can be seen whole: the visible part of the art,
+        // inset like a drop (`keepOnCanvas`). The tray is hidden in play.
+        let margin = stickerBaseSize * 0.45
+        let visible = visibleRect.intersection(worldExtent)
+        let scene = StagePlanner.Scene(
+            world: StageRect(minX: 0, minY: 0, maxX: worldSize.width, maxY: worldSize.height),
+            usable: StageRect(
+                minX: visible.minX + margin, minY: visible.minY + margin,
+                maxX: visible.maxX - margin, maxY: visible.maxY - margin),
+            visible: StageRect(minX: visible.minX, minY: visible.minY, maxX: visible.maxX, maxY: visible.maxY),
+            stickerSize: stickerBaseSize, sizes: sizes)
+        let obstacles = existing.map { node in
+            StageObstacle(
+                center: StagePoint(x: node.placement.x, y: node.placement.y),
+                radius: max(node.size.width, node.size.height) * StagePlanner.footprint)
+        }
+        var random = SystemRandomNumberGenerator()
+        let plans = StagePlanner.plan(
+            entrances: entrances.filter { sizes[$0.stickerID] != nil },
+            placed: Set(existing.map(\.stickerID)),
+            stages: Dictionary(uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.stage.map { (s.id, $0) } }),
+            scene: scene, obstacles: obstacles, policy: policy, random: &random)
+        var visitors: [UUID: EntrancePlan] = [:]
+        for plan in plans {
+            guard let texture = stickerTextures[plan.stickerID] else { continue }
+            let node = StickerNode(
+                stickerID: plan.stickerID, texture: texture,
+                size: squareFit(texture: texture, side: stickerBaseSize),
+                shadow: shadow(for: plan.stickerID))
+            node.isVisitor = true
+            node.position = CGPoint(x: plan.target.x, y: plan.target.y)
+            node.zPosition = nextZ()
+            // Its placement is where it lands; the entrance is a delta on
+            // it that keeps it hidden until its moment.
+            node.effectBase = StickerPlacement(x: plan.target.x, y: plan.target.y, rotation: 0, scale: 1)
+            node.alpha = 0
+            foregroundStickers.addChild(node)
+            visitors[node.instanceID] = plan
+        }
+        return visitors
     }
 
     /// Restores the child's exact arrangement (P4) and tears the pipeline down.
@@ -1280,7 +1347,15 @@ final class CanvasScene: SKScene {
         faceLoad = nil
         faceTextures.removeAll()
         if let session = playSession {
-            for node in allStickerNodes() {
+            // Visitors leave with the story: they fade from wherever they
+            // are and are gone, and nothing restores them.
+            for node in allStickerNodes() where node.isVisitor {
+                node.stopLive()
+                node.effectBase = nil
+                node.move(toParent: leavingVisitors)
+                node.run(.sequence([.fadeOut(withDuration: 0.3), .removeFromParent()]))
+            }
+            for node in allStickerNodes() where !node.isVisitor {
                 node.stopLive()
                 if node.face != ExpressionTrigger.normal, let normal = stickerTextures[node.stickerID] {
                     node.showFace(ExpressionTrigger.normal, texture: normal, fade: 0)
@@ -1311,7 +1386,11 @@ final class CanvasScene: SKScene {
         guard let session = playSession else { return }
         let time = session.clock.now()
         let nodes = stickerNodesByID()
-        let deltas = session.runner.tick(time)
+        var deltas = session.runner.tick(time)
+        for (id, plan) in session.visitors {
+            // The entrance under whatever the story's effects do to it.
+            deltas[id] = plan.delta(at: time).combined(with: deltas[id] ?? .identity)
+        }
         session.applier.apply(deltas, to: nodes)
         session.emitters.reconcile(session.runner.active, at: time, nodes: nodes)
         canvasEffects.apply(session.canvasRunner.tick(time), at: time)
@@ -1376,18 +1455,18 @@ final class CanvasScene: SKScene {
     /// surfaced: a story with a broken sidecar plays with no effects.
     private func loadTriggers(for story: Story) -> (
         sticker: [EffectTrigger], canvas: [CanvasEffectTrigger], live: [LiveAnimationTrigger],
-        faces: [ExpressionTrigger]
+        faces: [ExpressionTrigger], entrances: [EntranceTrigger]
     ) {
-        guard let path = story.effectsPath else { return ([], [], [], []) }
+        guard let path = story.effectsPath else { return ([], [], [], [], []) }
         do {
             let file = try EffectTriggerFile.load(from: pack.url(forAssetPath: path))
             for warning in file.warnings {
                 Self.effectsLog.notice("\(story.id, privacy: .public): \(warning, privacy: .public)")
             }
-            return (file.triggers, file.canvasTriggers, file.liveTriggers, file.expressionTriggers)
+            return (file.triggers, file.canvasTriggers, file.liveTriggers, file.expressionTriggers, file.entranceTriggers)
         } catch {
             Self.effectsLog.error("\(story.id, privacy: .public): effects file unusable: \(String(describing: error), privacy: .public)")
-            return ([], [], [], [])
+            return ([], [], [], [], [])
         }
     }
 

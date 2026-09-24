@@ -52,8 +52,8 @@ func goodStory() *Story {
 		Featured: []string{"fox", "rabbit", "tree"}, Supporting: []string{"flower"},
 		Tags: []string{"friendship", "funny"}, Premise: "A race that ties.", Inspiration: "Aesop, turned.", Lesson: "Finish together.",
 		Languages: map[string]Localization{
-			"en-US": {Title: "The Race", Text: "{flower:float loop 0.4} Ready, steady, {fox:hop} {rabbit:hop} go! " + beats(90, "hop") + " {fox:hearts} friends."},
-			"es-ES": {Title: "La carrera", Text: "{flower:float loop 0.4} Preparados, listos, {fox:hop} {rabbit:hop} ya! " + beats(90, "salta") + " {fox:hearts} amigos."},
+			"en-US": {Title: "The Race", Text: "{flower:enter} {flower:float loop 0.4} {tree:enter} Ready, steady, {fox:enter} {rabbit:enter} {fox:hop} {rabbit:hop} go! " + beats(90, "hop") + " {fox:hearts} friends."},
+			"es-ES": {Title: "La carrera", Text: "{flower:enter} {flower:float loop 0.4} {tree:enter} Preparados, listos, {fox:enter} {rabbit:enter} {fox:hop} {rabbit:hop} ya! " + beats(90, "salta") + " {fox:hearts} amigos."},
 		},
 	}
 }
@@ -462,7 +462,7 @@ func TestLiveCues(t *testing.T) {
 	if len(errs) != 0 || cues[0].Effect != LiveEffect || cues[0].Animation != "" || cues[1].Animation != "wings" || cues[2].Animation != "tap-tap" {
 		t.Fatalf("live cues parsed wrong: %+v %v", cues, errs)
 	}
-	if is := Validate(withText(" {owl:live} blink.", " {owl:live} parpadea."), pack, cat); len(is.Errors) != 0 || len(is.Warnings) != 0 {
+	if is := Validate(withText(" {owl:enter} {owl:live} blink.", " {owl:enter} {owl:live} parpadea."), pack, cat); len(is.Errors) != 0 || len(is.Warnings) != 0 {
 		t.Fatalf("a live cue on an animated sticker is fine: %v %v", is.Errors, is.Warnings)
 	}
 	for _, tc := range []struct{ cue, want string }{
@@ -571,5 +571,61 @@ func TestFaceAndAllCues(t *testing.T) {
 	c := Cover([]*Story{withText(ok, ok)}, pack, 0)
 	if c.FaceStories != 1 || c.AllStories != 1 || c.FaceUse["happy"] != 1 || c.FaceUse["normal"] != 1 {
 		t.Errorf("face coverage wrong: %+v %d %d", c.FaceUse, c.FaceStories, c.AllStories)
+	}
+}
+
+func TestEnterCues(t *testing.T) {
+	cat := testCatalog(t)
+	pack := forest
+	pack.Names = map[string]map[string]string{
+		"fox":    {"en-US": "Fox", "es-ES": "Zorro"},
+		"rabbit": {"en-US": "Rabbit", "es-ES": "Conejo"},
+		"owl":    {"en-US": "Owl", "es-ES": "Búho"},
+	}
+	withText := func(en string) *Story {
+		s := goodStory()
+		s.Supporting = append(s.Supporting, "owl")
+		for _, lang := range []string{"en-US", "es-ES"} {
+			l := s.Languages[lang]
+			l.Text += en
+			s.Languages[lang] = l
+		}
+		return s
+	}
+	if is := Validate(withText(" Then {owl:enter} Owl's eyes opened."), pack, cat); len(is.Errors) != 0 || len(is.Warnings) != 0 {
+		t.Fatalf("an entrance on the first mention is fine: %v %v", is.Errors, is.Warnings)
+	}
+	for _, tc := range []struct{ text, want string }{
+		{" Owl woke.", "owl never enters"},
+		{" {owl:enter} Owl {owl:enter} woke.", "already enters earlier"},
+		{" {all:enter} Owl woke.", "names one sticker"},
+		{" {owl:enter 2s} Owl woke.", "takes no parameters"},
+	} {
+		is := Validate(withText(tc.text), pack, cat)
+		if !strings.Contains(strings.Join(is.Errors, "\n"), tc.want) {
+			t.Errorf("%s: want an error containing %q, got %v", tc.text, tc.want, is.Errors)
+		}
+	}
+	for _, tc := range []struct{ text, want string }{
+		{" Owl woke, {owl:enter} and so on.", "named earlier"},
+		{" {owl:hop} Hop. {owl:enter} Owl woke.", "fires before owl enters"},
+	} {
+		is := Validate(withText(tc.text), pack, cat)
+		if !strings.Contains(strings.Join(is.Warnings, "\n"), tc.want) {
+			t.Errorf("%s: want a warning containing %q, got %v", tc.text, tc.want, is.Warnings)
+		}
+	}
+	// A loop before the entrance carries on once the sticker is in.
+	if is := Validate(withText(" {owl:float loop} Hush. {owl:enter} Owl woke."), pack, cat); len(is.Warnings) != 0 {
+		t.Errorf("a loop before the entrance is fine: %v", is.Warnings)
+	}
+	// A shorter name inside a longer one is not a mention.
+	woodpecker := pack
+	woodpecker.Names = map[string]map[string]string{"owl": {"es-ES": "Pájaro"}, "tree": {"es-ES": "Pájaro carpintero"}}
+	if i := firstMention([]string{"el", "pájaro", "carpintero", "y", "el", "Pájaro."}, "owl", "es-ES", woodpecker); i != 5 {
+		t.Errorf("first mention of Pájaro = %d, want 5", i)
+	}
+	if i := firstMention([]string{"Owl's", "eyes"}, "owl", "en-US", pack); i != 0 {
+		t.Errorf("a possessive is a mention, got %d", i)
 	}
 }

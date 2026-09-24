@@ -225,6 +225,37 @@ stickers) come alive with whatever is on the canvas.
 - A later face cue for one sticker overrides an earlier `{all:face …}` for
   that sticker, and vice versa.
 
+## Entrances
+
+What the narrator says is what the child should see. So every featured
+and supporting sticker **enters** on the word that first names it:
+`{fox:enter} Fox`. If the child placed a fox, nothing happens; if not, a
+fox comes into the scene right then, the way the pack's manifest says
+(`stage`, `docs/pack-format.md`): things that walk hop in from the side
+onto the ground, things that fly glide in to the sky, things that stay
+put grow where they stand. It leaves again when the story ends.
+
+- Exactly one per featured and supporting sticker, per language, right
+  before the first word that names it (its manifest name, or the name
+  the story gives it) and before any other cue on that word. `storycheck`
+  errors when one is missing and warns when the name comes earlier.
+- **Name every featured and supporting sticker** somewhere in the words:
+  the entrance needs a word to sit on, and the child should hear who has
+  arrived.
+- Where it suits the story, make the first mention an arrival that fits
+  the entrance — *along came {fox:enter} Fox*, *{owl:enter} Owl fluttered
+  down*, *a little {mushroom:enter} mushroom popped up* — but the sentence
+  must also read fine when the sticker was on the canvas all along.
+- Keep what the words say about where a sticker is inside its stage: the
+  owl, the bee and the bird are up high, the walkers on the meadow, the
+  frog in the pond, plants and things on the floor.
+- Cue nothing on a sticker before its entrance (it would play on a
+  sticker nobody can see yet), except a `float` loop or a face — those
+  simply carry on once it is in. Put a `float` loop for a flyer at the
+  start as usual.
+- An entrance is not a beat: it does not count toward the cue density.
+  Give the sticker its reaction on the same word or soon after.
+
 ## Live stickers
 
 Some stickers carry a **live animation**: a few seconds of their own

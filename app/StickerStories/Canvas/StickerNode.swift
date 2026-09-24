@@ -52,6 +52,11 @@ final class StickerNode: SKSpriteNode {
 
     private(set) var isSelected = false
 
+    /// A sticker the story brought in because it names it and the child
+    /// had not placed it (`CanvasScene.beginPlayMode`): never part of the
+    /// child's canvas, and gone when the story ends.
+    var isVisitor = false
+
     /// The child's placement while an effect owns this node's transform
     /// (`EffectApplier`); `nil` in edit mode. Snapshots read this so a
     /// mid-effect save never captures a wobble.

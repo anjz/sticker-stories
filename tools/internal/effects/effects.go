@@ -84,6 +84,7 @@ var (
 	knownCanvasKeys = set("at", "cue", "effect", "intensity", "duration")
 	knownLiveKeys   = set("at", "cue", "sticker", "animation")
 	knownFaceKeys   = set("at", "cue", "sticker", "expression")
+	knownEnterKeys  = set("at", "cue", "sticker", "enter")
 	colorPattern    = regexp.MustCompile(`^#[0-9A-Fa-f]{6}$`)
 )
 
@@ -192,6 +193,7 @@ func Validate(data []byte, declared map[string]bool, animations Animations, expr
 		return errs
 	}
 
+	entered := map[string]bool{}
 	for i, raw := range triggers {
 		label := fmt.Sprintf("triggers[%d]", i)
 		var fields map[string]json.RawMessage
@@ -199,9 +201,13 @@ func Validate(data []byte, declared map[string]bool, animations Animations, expr
 			fail("%s: must be an object", label)
 			continue
 		}
-		// One list, four kinds: an expression names an expression, a live
-		// animation an animation, and neither has an effect; otherwise the
-		// effect name says which.
+		// One list, five kinds: an entrance says enter, an expression names
+		// an expression, a live animation an animation, and none of them
+		// has an effect; otherwise the effect name says which.
+		if _, ok := fields["enter"]; ok {
+			validateEnterTrigger(label, fields, declared, entered, fail)
+			continue
+		}
 		if _, ok := fields["expression"]; ok {
 			validateFaceTrigger(label, fields, declared, expressions, fail)
 			continue
@@ -376,6 +382,45 @@ func validateFaceTrigger(label string, fields map[string]json.RawMessage, declar
 		case sticker != "" && !expressions.has(sticker, expression):
 			fail("%s: sticker %q has no expression %q", label, sticker, expression)
 		}
+	}
+	if raw, ok := fields["at"]; !ok {
+		fail("%s: at is required", label)
+	} else if at, ok := number(raw); !ok || at < 0 {
+		fail("%s: at must be a number >= 0", label)
+	}
+	if raw, ok := fields["cue"]; ok {
+		var s string
+		if err := json.Unmarshal(raw, &s); err != nil {
+			fail("%s: cue must be a string", label)
+		}
+	}
+}
+
+// validateEnterTrigger checks an entrance: the moment the story first
+// names a sticker, when the app brings it into the scene if the child has
+// not placed it (docs/effects.md, "Entrances"). A declared sticker (never
+// all), "enter": true, at and an optional cue; one per sticker.
+func validateEnterTrigger(label string, fields map[string]json.RawMessage, declared map[string]bool, entered map[string]bool, fail func(string, ...any)) {
+	for _, k := range sortedKeys(fields) {
+		if !knownEnterKeys[k] {
+			fail("%s: %s is not used by an entrance; remove it", label, k)
+		}
+	}
+	var enter bool
+	if err := json.Unmarshal(fields["enter"], &enter); err != nil || !enter {
+		fail("%s: enter must be true", label)
+	}
+	sticker := requireString(label, "sticker", fields, fail)
+	switch {
+	case sticker == AllStickers:
+		fail("%s: an entrance names one sticker, not %q", label, AllStickers)
+	case sticker != "" && declared != nil && !declared[sticker]:
+		fail("%s: sticker %q is not declared in the manifest", label, sticker)
+	case sticker != "" && entered[sticker]:
+		fail("%s: sticker %q already has an entrance; one per story", label, sticker)
+	}
+	if sticker != "" {
+		entered[sticker] = true
 	}
 	if raw, ok := fields["at"]; !ok {
 		fail("%s: at is required", label)

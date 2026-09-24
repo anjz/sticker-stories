@@ -43,6 +43,9 @@ public struct EffectTriggerFile: Equatable, Sendable {
     public var canvasTriggers: [CanvasEffectTrigger]
     public var liveTriggers: [LiveAnimationTrigger]
     public var expressionTriggers: [ExpressionTrigger]
+    /// Where the story first names each sticker (`docs/effects.md`,
+    /// "Entrances"), in time order, one per sticker.
+    public var entranceTriggers: [EntranceTrigger]
     public var warnings: [String]
 
     public enum DecodingError: Error, Equatable {
@@ -54,13 +57,15 @@ public struct EffectTriggerFile: Equatable, Sendable {
     public init(
         schema: Int = EffectTriggerFile.supportedSchema, triggers: [EffectTrigger],
         canvasTriggers: [CanvasEffectTrigger] = [], liveTriggers: [LiveAnimationTrigger] = [],
-        expressionTriggers: [ExpressionTrigger] = [], warnings: [String] = []
+        expressionTriggers: [ExpressionTrigger] = [], entranceTriggers: [EntranceTrigger] = [],
+        warnings: [String] = []
     ) {
         self.schema = schema
         self.triggers = triggers
         self.canvasTriggers = canvasTriggers
         self.liveTriggers = liveTriggers
         self.expressionTriggers = expressionTriggers
+        self.entranceTriggers = entranceTriggers
         self.warnings = warnings
     }
 
@@ -90,10 +95,21 @@ public struct EffectTriggerFile: Equatable, Sendable {
         var canvasTriggers: [CanvasEffectTrigger] = []
         var liveTriggers: [LiveAnimationTrigger] = []
         var expressionTriggers: [ExpressionTrigger] = []
+        var entranceTriggers: [EntranceTrigger] = []
         for (index, entry) in list.enumerated() {
             let label = "triggers[\(index)]"
             guard let fields = entry as? [String: Any] else {
                 warnings.append("\(label): not an object; skipped")
+                continue
+            }
+            if fields["enter"] != nil {
+                if let trigger = Self.decodeEntranceTrigger(fields, label: label, warnings: &warnings) {
+                    if entranceTriggers.contains(where: { $0.stickerID == trigger.stickerID }) {
+                        warnings.append("\(label): \(trigger.stickerID) already enters; skipped")
+                    } else {
+                        entranceTriggers.append(trigger)
+                    }
+                }
                 continue
             }
             if fields["expression"] != nil {
@@ -130,7 +146,28 @@ public struct EffectTriggerFile: Equatable, Sendable {
         // Stable: two expression changes at the same moment keep file order.
         self.expressionTriggers = expressionTriggers.enumerated()
             .sorted { ($0.element.at, $0.offset) < ($1.element.at, $1.offset) }.map(\.element)
+        self.entranceTriggers = entranceTriggers.sorted { $0.at < $1.at }
         self.warnings = warnings
+    }
+
+    /// Entrances name one sticker (never `all`) and say `"enter": true`.
+    private static func decodeEntranceTrigger(_ fields: [String: Any], label: String, warnings: inout [String]) -> EntranceTrigger? {
+        guard let enter = fields["enter"] as? NSNumber, CFGetTypeID(enter) == CFBooleanGetTypeID(), enter.boolValue else {
+            warnings.append("\(label): enter must be true; skipped")
+            return nil
+        }
+        guard let stickerID = fields["sticker"] as? String, !stickerID.isEmpty, stickerID != EffectTrigger.allStickers else {
+            warnings.append("\(label): an entrance needs one sticker; skipped")
+            return nil
+        }
+        guard let at = number(fields["at"]), at.isFinite, at >= 0 else {
+            warnings.append("\(label): missing or invalid at; skipped")
+            return nil
+        }
+        for key in ["effect", "animation", "expression", "repeat", "duration", "intensity", "color", "hold"] where fields[key] != nil {
+            warnings.append("\(label): \(key) is ignored by an entrance")
+        }
+        return EntranceTrigger(at: at, cue: fields["cue"] as? String, stickerID: stickerID)
     }
 
     private static func decodeTrigger(_ effect: EffectName, _ fields: [String: Any], label: String, warnings: inout [String]) -> EffectTrigger? {

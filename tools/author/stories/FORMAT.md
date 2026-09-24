@@ -18,7 +18,6 @@ reads it.
     "flower"
   ],
   "supporting": [
-    "tree",
     "butterfly"
   ],
   "tags": [
@@ -33,11 +32,11 @@ reads it.
   "languages": {
     "en-US": {
       "title": "The Race That Tied",
-      "text": "[excited] {butterfly:float loop} Ready, steady, {fox:hop} {rabbit:hop} go! Fox and Rabbit raced across the meadow to the big pink flower. Fox was fast, like a {fox:shake 0.8} whoosh of wind. Rabbit was bouncy, like a {rabbit:hop x3} spring. Halfway there, Fox {fox:wobble x2} tripped over his own fluffy tail and {fox:spin} rolled, tumble tumble tumble, into a crunchy pile of leaves. {sfx:leaves solo} Rabbit stopped. She looked at the flower. She looked at Fox. Then she {rabbit:hop x2} hopped all the way back and pulled him up by the paw. They crossed the finish line {fox:hearts} {rabbit:hearts} together, and the flower {flower:pulse} nodded her big pink head. Who won? Both of them, said the flower. That is how best {fox:pulse} {rabbit:pulse} friends race."
+      "text": "[excited] {butterfly:float loop} Ready, steady, go! {fox:enter} {fox:hop} Fox and {rabbit:enter} {rabbit:hop} Rabbit raced across the meadow to the big pink {flower:enter} flower, where a {butterfly:enter} butterfly was waiting. Fox was fast, like a {fox:shake 0.8} whoosh of wind. Rabbit was bouncy, like a {rabbit:hop x3} spring. Halfway there, Fox {fox:wobble x2} tripped over his own fluffy tail and {fox:spin} rolled, tumble tumble tumble, into a crunchy pile of leaves. {sfx:leaves solo} Rabbit stopped. She looked at the flower. She looked at Fox. Then she {rabbit:hop x2} hopped all the way back and pulled him up by the paw. They crossed the finish line {fox:hearts} {rabbit:hearts} together, and the flower {flower:pulse} nodded her big pink head. Who won? Both of them, said the flower. That is how best {fox:pulse} {rabbit:pulse} friends race."
     },
     "es-ES": {
       "title": "La carrera empatada",
-      "text": "{butterfly:float loop} Preparados, listos, {fox:hop} {rabbit:hop} ¡ya! Zorro y Coneja echaron una carrera por el prado hasta la gran flor rosa. Zorro era rápido, como un {fox:shake 0.8} soplo de viento. Coneja era saltarina, como un {rabbit:hop x3} muelle. A mitad de camino, Zorro {fox:wobble x2} tropezó con su propia cola esponjosa y {fox:spin} rodó, pumba pumba pumba, hasta un montón de hojas crujientes. {sfx:leaves solo} Coneja se paró. Miró la flor. Miró a Zorro. Y entonces {rabbit:hop x2} volvió dando saltos hasta él y lo levantó de la pata. Cruzaron la meta {fox:hearts} {rabbit:hearts} juntos, y la flor {flower:pulse} asintió con su gran cabeza rosa. ¿Quién ganó? Los dos, dijo la flor. Así corren los mejores {fox:pulse} {rabbit:pulse} amigos."
+      "text": "{butterfly:float loop} Preparados, listos, ¡ya! {fox:enter} {fox:hop} Zorro y {rabbit:enter} {rabbit:hop} Coneja echaron una carrera por el prado hasta la gran {flower:enter} flor rosa, donde esperaba una {butterfly:enter} mariposa. Zorro era rápido, como un {fox:shake 0.8} soplo de viento. Coneja era saltarina, como un {rabbit:hop x3} muelle. A mitad de camino, Zorro {fox:wobble x2} tropezó con su propia cola esponjosa y {fox:spin} rodó, pumba pumba pumba, hasta un montón de hojas crujientes. {sfx:leaves solo} Coneja se paró. Miró la flor. Miró a Zorro. Y entonces {rabbit:hop x2} volvió dando saltos hasta él y lo levantó de la pata. Cruzaron la meta {fox:hearts} {rabbit:hearts} juntos, y la flor {flower:pulse} asintió con su gran cabeza rosa. ¿Quién ganó? Los dos, dijo la flor. Así corren los mejores {fox:pulse} {rabbit:pulse} amigos."
     }
   },
   "sounds": {
@@ -99,6 +98,7 @@ A cue is `{sticker:effect}` with optional parameters separated by spaces:
 {bear:live}              the bear's live animation (see "Live cues")
 {bear:face happy}        the bear's face from now on (see "Face cues")
 {all:hop}                every sticker on the canvas (see "Everyone: all")
+{fox:enter}              the fox enters here if not placed (see "Entrance cues")
 ```
 
 - `sticker` is an ID from the manifest and must be in `featured` or
@@ -228,6 +228,31 @@ Mouse {mouse:face sad} sighed.        from here on, the mouse looks sad
 - The expression must be one the sticker has, or `normal`; for `all`, one
   some sticker has (stickers without it keep their face).
 - The validator warns when a story changes no face at all.
+
+### Entrance cues
+
+Every featured and supporting sticker marks its first mention with the
+reserved effect `enter`:
+
+```
+Along came {fox:enter} Fox, hop, hop, hop.
+{owl:enter} {owl:face sleeping} Owl was dozing on her branch.
+```
+
+- Exactly one per featured and supporting sticker in every language,
+  right before the word that first names it and before any other cue on
+  that word; no parameters, never on `all`. The same stickers enter in
+  every language (the words they sit on may differ).
+- In play, a sticker the child has not placed comes into the scene on
+  that word — hopping in, flying in or growing, as its manifest `stage`
+  says — and leaves when the story ends. For a placed sticker it does
+  nothing.
+- The validator errors on a missing, repeated or parameterised entrance
+  and warns when the sticker is named before it (by its manifest name) or
+  has a cue before it (a `loop` or a face before it is fine). Entrances
+  do not count toward the cue density.
+- `storyaudio` turns it into a trigger `{ "at", "cue", "sticker",
+  "enter": true }` (`docs/effects.md`, "Entrances").
 
 ### Everyone: `all`
 

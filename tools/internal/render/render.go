@@ -194,6 +194,7 @@ type Trigger struct {
 	Effect     string  `json:"effect,omitempty"`
 	Animation  string  `json:"animation,omitempty"`  // a live animation: no effect
 	Expression string  `json:"expression,omitempty"` // a face change: no effect
+	Enter      bool    `json:"enter,omitempty"`      // an entrance: no effect
 	Repeat     any     `json:"repeat,omitempty"`     // int or "loop"
 	Duration   float64 `json:"duration,omitempty"`
 	Intensity  float64 `json:"intensity,omitempty"`
@@ -212,7 +213,8 @@ type Sidecar struct {
 // becomes a trigger with no sticker and none of the sticker-only keys; a
 // live cue a trigger naming the animation (resolved against the pack, so
 // {bear:live} names the bear's only one) and no effect; sound cues are not
-// triggers (they are mixed into the audio) and are skipped.
+// triggers (they are mixed into the audio) and are skipped. An entrance
+// cue becomes {at, sticker, enter: true}.
 func Triggers(cues []story.Cue, tl *Timeline, pack story.Manifest) ([]Trigger, error) {
 	out := make([]Trigger, 0, len(cues))
 	for _, c := range cues {
@@ -224,6 +226,14 @@ func Triggers(cues []story.Cue, tl *Timeline, pack story.Manifest) ([]Trigger, e
 			at = 0
 		}
 		at = round(at)
+		if c.Effect == story.EnterEffect && !c.Canvas {
+			t := Trigger{At: at, Sticker: c.Sticker, Enter: true}
+			if c.WordIndex < len(tl.Words) {
+				t.Cue = normalizeWord(tl.Words[c.WordIndex].Text)
+			}
+			out = append(out, t)
+			continue
+		}
 		if c.Effect == story.FaceEffect && !c.Canvas {
 			t := Trigger{At: at, Sticker: c.Sticker, Expression: c.Expression}
 			if c.WordIndex < len(tl.Words) {
