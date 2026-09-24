@@ -78,8 +78,10 @@ used storytelling voices in each pack language, takes the top male and the
 top female, adds them to your account, and records both in
 `<pack>/voices.json`. Stories are shared out across a language's voices
 in a fixed order (story ids sorted, round robin), so half the pack is read
-by each voice, a story keeps its voice across runs, and it has the same
-gender in every language.
+by each voice and a story has the same gender in every language. A story
+that has been rendered keeps the voice its `<lang>.render.json` names, so
+adding, removing or renaming other stories never moves a narrator (and
+never re-renders a story that did not change).
 
 Pin your own with `-voice en-US=<id>,es-ES=<id>` (one voice per language)
 or `-voice en-US=<id>+<id>,es-ES=<id>+<id>` (several, shared out the same

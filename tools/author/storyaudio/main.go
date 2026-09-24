@@ -356,10 +356,23 @@ func resolveVoices(ctx context.Context, el *elevenlabs.Client, c *ctxt, flagValu
 	return chosen, nil
 }
 
-// voiceFor assigns a story one of a language's voices: stories sorted by id,
-// round robin, so the split is even and stable across runs and languages.
+// voiceFor assigns a story one of a language's voices. A story rendered
+// before keeps the voice its render record names (while that voice is
+// still one of the language's), so adding or removing stories never moves
+// a narrator; a new story gets the round robin over stories sorted by id,
+// which is even and gives it the same gender in every language.
 func (r *renderer) voiceFor(s *story.Story, lang string) voiceChoice {
 	vs := r.voices[lang]
+	if data, err := os.ReadFile(filepath.Join(s.Dir, "audio", lang+".render.json")); err == nil {
+		var rec renderRecord
+		if json.Unmarshal(data, &rec) == nil {
+			for _, v := range vs {
+				if v.VoiceID == rec.VoiceID {
+					return v
+				}
+			}
+		}
+	}
 	idx := 0
 	for i, st := range r.c.stories { // LoadDir sorts by id
 		if st.ID == s.ID {
