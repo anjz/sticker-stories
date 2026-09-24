@@ -121,7 +121,9 @@ where it belongs in the scene and how it comes in when a story names it
 [min, max]}}`, fractions of the base art, `docs/pack-format.md`,
 "Stage") — to `stickers[].stage`. Give every sticker one: things that
 walk hop in onto the ground, things that fly float in to the sky, still
-things grow where they stand. The stage is not part of any fingerprint,
+things grow where they stand. A flyer drawn perched on something (a
+twig, a branch, a leaf) flies in but lands on the floor, never in the
+sky. The stage is not part of any fingerprint,
 so changing it regenerates nothing.
 
 Encodes `out/stickers/<id>.png` into `packs/<id>/stickers/<id>.webp` and

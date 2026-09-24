@@ -257,8 +257,11 @@ where it belongs and how it arrives:
 `area` is where the sticker's **centre** may land, in fractions of the
 base art with the origin at the bottom-left — the space saved positions
 use. Match it to the art: in Forest, walkers take the meadow (`y` 0.18–0.36, the
-lower third that is not cropped), flyers the sky (`y` 0.5–0.8), still
-things the floor (`y` 0.16–0.34), and the frog the pond. The app picks
+lower third that is not cropped), free flyers (bee, butterfly) the sky
+(`y` 0.5–0.8), still things the floor (`y` 0.16–0.34), and the frog the
+pond. A flyer whose art has it **perched on something** — a bird on a
+twig, an owl on a branch, a firefly on a blade of grass — still flies in
+but lands on the floor: a branch floating in mid-sky looks wrong. The app picks
 the freest spot in the area (farthest from every sticker already there,
 earlier visitors included) among those the window shows; on a crowded
 canvas it takes any spot in the area. Under Reduce Motion or calm mode
