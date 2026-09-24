@@ -42,12 +42,13 @@ Read, in this order, before writing anything:
    stage feel alive; plan to use them in almost every story.
    Note every sticker's **`stage`**: its `entrance` (`hop` for things
    that walk, `fly` for things that fly, `grow` for things that stay put)
-   and its `area` (where on the scene it lands: the meadow, the sky, the
-   pond). A story brings in every sticker it names that the child has not
+   and where it lands — the pack's `features` it goes `on` (the meadow,
+   the sky, the pond, the trees' branches), in order of preference. A story brings in every sticker it names that the child has not
    placed, on the word that first names it (FORMAT "Entrance cues"), so
    the words should fit how and where it arrives. The `-plan` run lists
-   the entrances; a sticker with no stage grows in a default area — tell
-   the user (stages are authored in `tools/author/art/<pack>/art.json`
+   the entrances and, per feature, its description and who lands there;
+   a sticker with no stage grows in a default area — tell the user
+   (stages and features are authored in `tools/author/art/<pack>/art.json`
    and installed by `stickerart`).
    **Look at every sticker's image** (`packs/<packID>/stickers/<id>.webp`;
    convert to PNG with `sips -s format png` to view it) and write down what
@@ -133,8 +134,8 @@ exactly per `FORMAT.md`:
   one of them in the words (a sticker that is never named has nowhere to
   enter); where the story allows, make the first mention an arrival
   ("along came Fox", "Owl fluttered down") that suits its entrance and
-  its area (the bee up in the air, the owl fluttering down to perch, the
-  frog in the pond, the tree standing on the floor), but it must also read fine when the sticker was on the
+  where it lands (the bee up in the air, the owl fluttering down onto a
+  branch, the frog in the pond, the tree standing on the meadow), but it must also read fine when the sticker was on the
   canvas all along. Cue nothing on a sticker before its entrance except
   a `float` loop or a face;
 - a live cue (`{bear:live}` — see FORMAT "Live cues", GUIDE "Live
@@ -216,7 +217,7 @@ build step 2 (audio); it is a separate tool.
 - Never leave a featured or supporting sticker without its `{id:enter}`
   on its first mention, put the entrance later than the first mention,
   or describe a sticker where its stage cannot put it (a fox up in the
-  clouds, a bird walking in from the meadow).
+  clouds, a woodpecker hopping across the meadow).
 - Never cue a live animation on words it contradicts, on a sticker without
   one, or twice on the same sticker in a story.
 - Never use an effect name that is not in `docs/effects/effects.json`, a

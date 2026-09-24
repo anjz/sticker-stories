@@ -50,6 +50,9 @@ public struct PackManifest: Codable, Equatable, Sendable {
     /// without one the app composes the tile from the background and a few
     /// stickers.
     public var cover: String?
+    /// Named places in the art where stickers can land (`StickerStage.on`);
+    /// empty when the pack describes none.
+    public var features: [String: SceneFeature]
     public var stickers: [StickerDefinition]
     public var stories: [StoryDefinition]
 
@@ -59,6 +62,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
         theme: String, setting: PackSetting = .none,
         background: String, foreground: String,
         backgroundWide: String? = nil, foregroundWide: String? = nil, cover: String? = nil,
+        features: [String: SceneFeature] = [:],
         stickers: [StickerDefinition], stories: [StoryDefinition]
     ) {
         self.schemaVersion = schemaVersion
@@ -74,13 +78,14 @@ public struct PackManifest: Codable, Equatable, Sendable {
         self.backgroundWide = backgroundWide
         self.foregroundWide = foregroundWide
         self.cover = cover
+        self.features = features
         self.stickers = stickers
         self.stories = stories
     }
 
     private enum CodingKeys: String, CodingKey {
         case schemaVersion, id, version, languages, displayName, description, theme, setting
-        case background, foreground, backgroundWide, foregroundWide, cover, stickers, stories
+        case background, foreground, backgroundWide, foregroundWide, cover, features, stickers, stories
     }
 
     public init(from decoder: Decoder) throws {
@@ -107,6 +112,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
         backgroundWide = try c.decodeIfPresent(String.self, forKey: .backgroundWide)
         foregroundWide = try c.decodeIfPresent(String.self, forKey: .foregroundWide)
         cover = try c.decodeIfPresent(String.self, forKey: .cover)
+        features = try c.decodeIfPresent([String: SceneFeature].self, forKey: .features) ?? [:]
         stickers = try c.decode([StickerDefinition].self, forKey: .stickers)
         stories = try c.decode([StoryDefinition].self, forKey: .stories)
     }
@@ -214,10 +220,15 @@ public struct StickerStage: Codable, Equatable, Sendable {
     }
 
     public var entrance: StickerEntrance
-    public var area: Area
+    /// Features (`PackManifest.features`) to land on, in order of
+    /// preference: the first with a free spot on screen wins.
+    public var on: [String]
+    /// Where to land when none of `on` is on screen, or when `on` is empty.
+    public var area: Area?
 
-    public init(entrance: StickerEntrance, area: Area) {
+    public init(entrance: StickerEntrance, on: [String] = [], area: Area? = nil) {
         self.entrance = entrance
+        self.on = on
         self.area = area
     }
 
@@ -226,7 +237,7 @@ public struct StickerStage: Codable, Equatable, Sendable {
     public static let `default` = StickerStage(
         entrance: .grow, area: Area(x: [0.1, 0.9], y: [0.18, 0.45]))
 
-    private enum CodingKeys: String, CodingKey { case entrance, area }
+    private enum CodingKeys: String, CodingKey { case entrance, on, area }
 
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
@@ -237,7 +248,22 @@ public struct StickerStage: Codable, Equatable, Sendable {
                 debugDescription: "entrance must be one of \(StickerEntrance.allCases.map(\.rawValue)), got \"\(raw)\"")
         }
         self.entrance = entrance
-        area = try c.decode(Area.self, forKey: .area)
+        on = try c.decodeIfPresent([String].self, forKey: .on) ?? []
+        area = try c.decodeIfPresent(Area.self, forKey: .area)
+    }
+}
+
+/// A named place in the pack's art — the pond, the trees' branches —
+/// where stickers can land (`docs/pack-format.md`, "Features"): one or
+/// more areas in fractions of the base art, origin bottom-left.
+public struct SceneFeature: Codable, Equatable, Sendable {
+    /// What is there, for story authors; the app does not read it.
+    public var description: String
+    public var areas: [StickerStage.Area]
+
+    public init(description: String, areas: [StickerStage.Area]) {
+        self.description = description
+        self.areas = areas
     }
 }
 
@@ -398,6 +424,16 @@ extension PackManifest {
         }
         if let cover { checkImage("cover", cover) }
 
+        // Rule 15: features have a well-formed id and areas inside the art.
+        for (id, feature) in features.sorted(by: { $0.key < $1.key }) {
+            if !Self.isWellFormedID(id) {
+                issues.append("feature \"\(id)\": id must be lowercase a-z0-9 with single hyphens")
+            }
+            if feature.areas.isEmpty || !feature.areas.allSatisfy(\.isValid) {
+                issues.append("feature \"\(id)\": needs areas, each [min, max] on x and y with 0 <= min < max <= 1")
+            }
+        }
+
         // Rule 2: sticker IDs well-formed and unique.
         var stickerIDs = Set<String>()
         for sticker in stickers {
@@ -431,10 +467,19 @@ extension PackManifest {
                 }
                 checkImage(field, path)
             }
-            // Rule 14: the stage area lies inside the art (the entrance is
-            // checked by decoding).
-            if let stage = sticker.stage, !stage.area.isValid {
-                issues.append("sticker \"\(sticker.id)\" stage: area x and y must each be [min, max] with 0 <= min < max <= 1")
+            // Rule 14: the stage lands on declared features and/or an area
+            // inside the art (the entrance is checked by decoding).
+            if let stage = sticker.stage {
+                let field = "sticker \"\(sticker.id)\" stage"
+                if stage.on.isEmpty && stage.area == nil {
+                    issues.append("\(field): needs features to land on (on) or an area")
+                }
+                for feature in stage.on where features[feature] == nil {
+                    issues.append("\(field): on names \"\(feature)\", which is not in features")
+                }
+                if let area = stage.area, !area.isValid {
+                    issues.append("\(field): area x and y must each be [min, max] with 0 <= min < max <= 1")
+                }
             }
         }
 

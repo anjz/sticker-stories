@@ -688,6 +688,10 @@ type Manifest struct {
 	// Stages are each sticker's entrance ("hop", "fly", "grow"); a sticker
 	// without a stage in the manifest is absent.
 	Stages map[string]string
+	// LandsOn are the features each sticker lands on, in order of
+	// preference; Features describe the pack's features by id.
+	LandsOn  map[string][]string
+	Features map[string]string
 }
 
 // HasExpression reports whether a face cue on target may show expression:
@@ -720,12 +724,16 @@ type Animation struct {
 // PackManifest reads what story validation needs from a loaded pack
 // manifest, live animations included (dir is the pack root).
 func PackManifest(m *manifest.Manifest, dir string) (Manifest, error) {
-	pack := Manifest{ID: m.ID, Languages: m.Languages, Setting: m.EffectiveSetting(), Animations: map[string][]Animation{}, Expressions: map[string][]string{}, Names: map[string]map[string]string{}, Stages: map[string]string{}}
+	pack := Manifest{ID: m.ID, Languages: m.Languages, Setting: m.EffectiveSetting(), Animations: map[string][]Animation{}, Expressions: map[string][]string{}, Names: map[string]map[string]string{}, Stages: map[string]string{}, LandsOn: map[string][]string{}, Features: map[string]string{}}
+	for id, f := range m.Features {
+		pack.Features[id] = f.Description
+	}
 	for _, st := range m.Stickers {
 		pack.Stickers = append(pack.Stickers, st.ID)
 		pack.Names[st.ID] = st.Name
 		if st.Stage != nil {
 			pack.Stages[st.ID] = st.Stage.Entrance
+			pack.LandsOn[st.ID] = st.Stage.On
 		}
 		for name := range st.Expressions {
 			pack.Expressions[st.ID] = append(pack.Expressions[st.ID], name)

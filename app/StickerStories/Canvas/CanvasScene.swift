@@ -1284,7 +1284,8 @@ final class CanvasScene: SKScene {
 
     /// Puts every sticker the story names but the child has not placed on
     /// the stage, hidden, at the spot `StagePlanner` picks for it — the
-    /// freest place in its manifest stage's area that can be seen — so its
+    /// freest place on screen among the features its manifest stage lands
+    /// on (a branch, the pond), in order, or else in its area — so its
     /// entrance plays when the story first names it
     /// (`docs/effects.md`, "Entrances").
     private func addVisitors(for entrances: [EntranceTrigger], policy: EffectPolicy) -> [UUID: EntrancePlan] {
@@ -1317,7 +1318,7 @@ final class CanvasScene: SKScene {
             entrances: entrances.filter { sizes[$0.stickerID] != nil },
             placed: Set(existing.map(\.stickerID)),
             stages: Dictionary(uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.stage.map { (s.id, $0) } }),
-            scene: scene, obstacles: obstacles, policy: policy, random: &random)
+            features: pack.manifest.features, scene: scene, obstacles: obstacles, policy: policy, random: &random)
         var visitors: [UUID: EntrancePlan] = [:]
         for plan in plans {
             guard let texture = stickerTextures[plan.stickerID] else { continue }

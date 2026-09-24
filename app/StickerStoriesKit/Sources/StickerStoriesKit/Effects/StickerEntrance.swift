@@ -218,7 +218,8 @@ public enum StagePlanner {
     /// in time order; later visitors avoid the earlier ones' spots.
     public static func plan<R: RandomNumberGenerator>(
         entrances: [EntranceTrigger], placed: Set<String>, stages: [String: StickerStage],
-        scene: Scene, obstacles: [StageObstacle], policy: EffectPolicy, random: inout R
+        features: [String: SceneFeature] = [:], scene: Scene, obstacles: [StageObstacle], policy: EffectPolicy,
+        random: inout R
     ) -> [EntrancePlan] {
         var obstacles = obstacles
         var plans: [EntrancePlan] = []
@@ -226,21 +227,58 @@ public enum StagePlanner {
         for entrance in entrances.sorted(by: { $0.at < $1.at })
         where !placed.contains(entrance.stickerID) && seen.insert(entrance.stickerID).inserted {
             let stage = stages[entrance.stickerID] ?? .default
-            let area = rect(for: stage.area, in: scene)
             let radius = scene.stickerSize * footprint
-            let target = spot(in: area, radius: radius, avoiding: obstacles, random: &random)
+            let choices = places(for: stage, features: features, in: scene)
+            // The first place in order of preference with a free spot;
+            // when every one is crowded, anywhere in the first.
+            var landing: (point: StagePoint, rect: StageRect)?
+            for rects in choices {
+                landing = freeSpot(in: rects, radius: radius, avoiding: obstacles, random: &random)
+                if landing != nil { break }
+            }
+            let (target, rect) = landing ?? randomSpot(in: choices[0], random: &random)
             obstacles.append(StageObstacle(center: target, radius: radius))
             plans.append(
-                path(for: entrance, stage: stage, target: target, area: area, scene: scene, policy: policy, random: &random))
+                path(for: entrance, stage: stage, target: target, area: rect, scene: scene, policy: policy, random: &random))
         }
         return plans
+    }
+
+    /// Where a sticker may land, in order of preference, in world points and
+    /// kept to what the window shows: each of its features that is at least
+    /// partly on screen (its visible parts), then its own area. The area
+    /// always yields a place — when it is off screen on an axis the usable
+    /// band stands in on that axis — and a stage with neither lands in the
+    /// default area, so the list is never empty.
+    static func places(for stage: StickerStage, features: [String: SceneFeature], in scene: Scene) -> [[StageRect]] {
+        var out: [[StageRect]] = []
+        for id in stage.on {
+            let rects = (features[id]?.areas ?? []).filter(\.isValid).compactMap { visibleRect(for: $0, in: scene) }
+            if !rects.isEmpty { out.append(rects) }
+        }
+        if let area = stage.area {
+            out.append([rect(for: area, in: scene)])
+        }
+        if out.isEmpty {
+            out.append([rect(for: StickerStage.default.area!, in: scene)])
+        }
+        return out
+    }
+
+    /// The part of `area` that is on screen, or nil when none of it is.
+    static func visibleRect(for area: StickerStage.Area, in scene: Scene) -> StageRect? {
+        let w = scene.world, width = w.maxX - w.minX, height = w.maxY - w.minY
+        let r = StageRect(
+            minX: max(w.minX + area.x[0] * width, scene.usable.minX), minY: max(w.minY + area.y[0] * height, scene.usable.minY),
+            maxX: min(w.minX + area.x[1] * width, scene.usable.maxX), maxY: min(w.minY + area.y[1] * height, scene.usable.maxY))
+        return r.minX <= r.maxX && r.minY <= r.maxY ? r : nil
     }
 
     /// The stage area in world points, kept to where a sticker can be seen:
     /// a window that shows only part of the art (portrait) narrows it, and
     /// when the two do not meet the usable band stands in on that axis.
     static func rect(for area: StickerStage.Area, in scene: Scene) -> StageRect {
-        let area = area.isValid ? area : StickerStage.default.area
+        let area = area.isValid ? area : StickerStage.default.area!
         func span(_ fraction: [Double], _ min0: Double, _ size: Double, _ lo: Double, _ hi: Double) -> (Double, Double) {
             let a = min0 + fraction[0] * size, b = min0 + fraction[1] * size
             let from = max(a, lo), to = min(b, hi)
@@ -252,38 +290,57 @@ public enum StagePlanner {
         return StageRect(minX: x.0, minY: y.0, maxX: x.1, maxY: y.1)
     }
 
-    /// The best free spot in `area`: the grid point farthest from anything
+    /// The best free spot in `rects`: the grid point farthest from anything
     /// already there (a little randomness among the roomiest so the same
-    /// story does not always use the same spot). When nothing is free —
-    /// the canvas is crowded — any random point in the area.
-    public static func spot<R: RandomNumberGenerator>(
-        in area: StageRect, radius: Double, avoiding obstacles: [StageObstacle], random: inout R
-    ) -> StagePoint {
+    /// story does not always use the same spot), with the rect it is in;
+    /// nil when nothing there is free.
+    static func freeSpot<R: RandomNumberGenerator>(
+        in rects: [StageRect], radius: Double, avoiding obstacles: [StageObstacle], random: inout R
+    ) -> (point: StagePoint, rect: StageRect)? {
         let columns = 9, rows = 5
-        var candidates: [(point: StagePoint, clearance: Double)] = []
-        for column in 0..<columns {
-            for row in 0..<rows {
-                let point = StagePoint(
-                    x: area.minX + (area.maxX - area.minX) * Double(column) / Double(columns - 1),
-                    y: area.minY + (area.maxY - area.minY) * Double(row) / Double(rows - 1))
-                let clearance = obstacles.map { (obstacle: StageObstacle) -> Double in
-                    let dx = point.x - obstacle.center.x, dy = point.y - obstacle.center.y
-                    return (dx * dx + dy * dy).squareRoot() - radius - obstacle.radius
-                }.min() ?? .infinity
-                candidates.append((point, clearance))
+        var free: [(point: StagePoint, rect: StageRect, clearance: Double)] = []
+        for area in rects {
+            for column in 0..<columns {
+                for row in 0..<rows {
+                    let point = StagePoint(
+                        x: area.minX + (area.maxX - area.minX) * Double(column) / Double(columns - 1),
+                        y: area.minY + (area.maxY - area.minY) * Double(row) / Double(rows - 1))
+                    let clearance = obstacles.map { (obstacle: StageObstacle) -> Double in
+                        let dx = point.x - obstacle.center.x, dy = point.y - obstacle.center.y
+                        return (dx * dx + dy * dy).squareRoot() - radius - obstacle.radius
+                    }.min() ?? .infinity
+                    if clearance >= 0 { free.append((point, area, clearance)) }
+                }
             }
         }
-        let free = candidates.filter { $0.clearance >= 0 }
-        guard !free.isEmpty else {
-            return StagePoint(
-                x: Double.random(in: area.minX...area.maxX, using: &random),
-                y: Double.random(in: area.minY...area.maxY, using: &random))
-        }
+        guard !free.isEmpty else { return nil }
         // Everything within a sticker's radius of the roomiest spot is as
         // good; an empty stage makes every spot as good.
         let best = free.map(\.clearance).max() ?? 0
         let roomy = free.filter { best.isInfinite || $0.clearance >= best - radius }
-        return roomy[Int.random(in: 0..<roomy.count, using: &random)].point
+        let pick = roomy[Int.random(in: 0..<roomy.count, using: &random)]
+        return (pick.point, pick.rect)
+    }
+
+    /// Any point in `rects` (the crowded case), each rect as likely as its
+    /// size.
+    static func randomSpot<R: RandomNumberGenerator>(
+        in rects: [StageRect], random: inout R
+    ) -> (point: StagePoint, rect: StageRect) {
+        let sizes = rects.map { max(($0.maxX - $0.minX) * ($0.maxY - $0.minY), 1e-9) }
+        var pick = Double.random(in: 0..<sizes.reduce(0, +), using: &random)
+        var area = rects[rects.count - 1]
+        for (rect, size) in zip(rects, sizes) {
+            if pick < size {
+                area = rect
+                break
+            }
+            pick -= size
+        }
+        let point = StagePoint(
+            x: Double.random(in: area.minX...area.maxX, using: &random),
+            y: Double.random(in: area.minY...area.maxY, using: &random))
+        return (point, area)
     }
 
     /// Relative size change per world height of vertical travel for a

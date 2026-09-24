@@ -244,4 +244,33 @@ func printStages(pack story.Manifest) {
 			fmt.Printf("    %s: %s\n", k, strings.Join(groups[k], ", "))
 		}
 	}
+	if len(pack.Features) == 0 {
+		return
+	}
+	// Where they land: each feature with the stickers that go there first
+	// (then, in brackets, those that go there when their first choice is
+	// taken or off screen) — so the words can put them there too.
+	ids := make([]string, 0, len(pack.Features))
+	for id := range pack.Features {
+		ids = append(ids, id)
+	}
+	sort.Strings(ids)
+	fmt.Println("  where they land (manifest features; write them there):")
+	for _, id := range ids {
+		var first, then []string
+		for _, st := range pack.Stickers {
+			for i, f := range pack.LandsOn[st] {
+				if f == id && i == 0 {
+					first = append(first, st)
+				} else if f == id {
+					then = append(then, st)
+				}
+			}
+		}
+		line := strings.Join(first, ", ")
+		if len(then) > 0 {
+			line += " (else " + strings.Join(then, ", ") + ")"
+		}
+		fmt.Printf("    %-9s %s — %s\n", id, pack.Features[id], line)
+	}
 }
