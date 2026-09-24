@@ -14,30 +14,42 @@ public enum CanvasHint: String, CaseIterable, Sendable {
 public protocol HintProgressStore: Sendable {
     func usedHints() -> Set<CanvasHint>
     func markUsed(_ hint: CanvasHint)
+    /// Whether any sticker pack has ever been opened on this install.
+    func hasOpenedAPack() -> Bool
+    func markOpenedAPack()
 }
 
 /// When to show the canvas's hints: after `idleDelay` seconds with no
 /// touch, each gesture the child has never used, in `CanvasHint` order,
-/// at most once per visit to a story. A demo that starts plays to its end
+/// at most once per visit to a story — and on the very first visit to any
+/// pack since the app was installed, right away (`firstVisitDelay`
+/// instead of `idleDelay`). A demo that starts plays to its end
 /// whatever the child does; the next one waits for another idle spell.
 /// Pure — the scene tells it how long it has been idle — so it is
 /// unit-tested.
 public struct CanvasHintSchedule: Sendable {
     public static let idleDelay: TimeInterval = 10
+    /// On the first visit ever: just long enough for the canvas to settle.
+    public static let firstVisitDelay: TimeInterval = 1.5
 
     public private(set) var used: Set<CanvasHint>
     public private(set) var shown: Set<CanvasHint> = []
     public var idleDelay: TimeInterval
+    /// The first visit to a pack since install: the first hints come
+    /// after `firstVisitDelay`, the rest follow the usual rule.
+    public private(set) var isFirstVisit: Bool
 
-    public init(used: Set<CanvasHint>, idleDelay: TimeInterval = Self.idleDelay) {
+    public init(used: Set<CanvasHint>, idleDelay: TimeInterval = Self.idleDelay, isFirstVisit: Bool = false) {
         self.used = used
         self.idleDelay = idleDelay
+        self.isFirstVisit = isFirstVisit
     }
 
     /// The hints to play now, in order, or none; those returned count as
     /// shown for this visit.
     public mutating func due(idleFor seconds: TimeInterval) -> [CanvasHint] {
-        guard seconds >= idleDelay else { return [] }
+        guard seconds >= (isFirstVisit ? min(Self.firstVisitDelay, idleDelay) : idleDelay) else { return [] }
+        isFirstVisit = false
         let hints = CanvasHint.allCases.filter { !used.contains($0) && !shown.contains($0) }
         shown.formUnion(hints)
         return hints

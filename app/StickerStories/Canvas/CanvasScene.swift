@@ -256,7 +256,11 @@ final class CanvasScene: SKScene {
         self.textures = textures
         self.stateStore = stateStore
         self.hintProgress = hintProgress
-        var schedule = CanvasHintSchedule(used: hintProgress.usedHints())
+        // The first pack ever opened shows its hints right away; this is
+        // that visit from now on, whatever happens during it.
+        var schedule = CanvasHintSchedule(
+            used: hintProgress.usedHints(), isFirstVisit: !hintProgress.hasOpenedAPack())
+        hintProgress.markOpenedAPack()
         #if DEBUG
         if ProcessInfo.processInfo.arguments.contains("-hintsDemo") { schedule.idleDelay = 3 }
         #endif
