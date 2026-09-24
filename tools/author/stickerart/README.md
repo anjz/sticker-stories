@@ -102,7 +102,7 @@ Everything lands in `out/` (gitignored) as lossless PNG, keyed by a
 fingerprint of the prompts, quality and models, so rerunning only
 regenerates what changed. `out/` is the source of truth for the art; the
 pack gets an encoded copy at install.
-`-only fox,tree`, `-only stylesheet`, `-only scene` narrow a run;
+`-only fox,duckling`, `-only stylesheet`, `-only scene` narrow a run;
 `-quality medium` is cheaper while iterating on prompts.
 
 `scene.edits` (prompt + `area` on the wide background, fractions) paint a

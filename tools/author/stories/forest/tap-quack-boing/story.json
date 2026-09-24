@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "id": "tap-quack-boing",
+  "pack": "forest",
+  "featured": [
+    "woodpecker",
+    "duckling",
+    "acorn"
+  ],
+  "supporting": [],
+  "tags": [
+    "funny",
+    "music"
+  ],
+  "premise": "Woodpecker taps a rhythm on the big tree and Duckling quacks it back from the pond; little Acorn has no beak to join in, until Woodpecker says she can hop the beat.",
+  "inspiration": "The call-and-response of folk songs, turned into a copycat game in which the smallest player finds her own sound and plays last.",
+  "lesson": "There is a way for everyone to join in.",
+  "languages": {
+    "en-US": {
+      "title": "Tap, Quack, Boing!",
+      "text": "{woodpecker:enter} Woodpecker {woodpecker:pulse} was clinging to the big tree trunk when he heard a sound from the pond. {duckling:enter} {duckling:hop} {sfx:quack} Quack! [curious] Hello? said Woodpecker. {woodpecker:live} He tapped the trunk, {sfx:tap} tap-tap-tap, listened, shook off the dust and chirped. {duckling:face surprised} Down in the pond, Duckling tried it. Quack-quack-quack! {woodpecker:face happy} It was a copycat game! Tap-tap. {duckling:wobble} Quack-quack. Tap-tap-TAP. {duckling:shake} Quack-quack-QUACK! Then a tiny voice said, [giggles] Can I play? It was {acorn:enter} Acorn, {acorn:face sad} who had no beak at all. Woodpecker thought. {woodpecker:face surprised} You can hop! So Acorn {acorn:face happy} {acorn:hop x3} hopped: boing, boing, boing. Tap-tap, quack-quack, boing! {all:face happy} {all:hop x2} [laughs] {canvas:sunset 0.6 14s} And the whole meadow played copycat until the sun went down, tap, quack, boing… {all:face sleeping} goodnight."
+    },
+    "es-ES": {
+      "title": "¡Toc, cuac, boing!",
+      "text": "{woodpecker:enter} Pájaro carpintero {woodpecker:pulse} estaba agarrado al tronco del árbol grande cuando oyó un ruido en la charca. {duckling:enter} {duckling:hop} {sfx:quack} ¡Cuac! [curious] ¿Hola?, dijo Pájaro carpintero. {woodpecker:live} Dio unos golpecitos en el tronco, {sfx:tap} toc-toc-toc, escuchó, se sacudió el polvo y pió. {duckling:face surprised} Allí en la charca, Patito lo intentó. ¡Cuac-cuac-cuac! {woodpecker:face happy} ¡Era un juego de copiar! Toc-toc. {duckling:wobble} Cuac-cuac. Toc-toc-TOC. {duckling:shake} ¡Cuac-cuac-CUAC! Entonces una vocecita dijo: [giggles] ¿Puedo jugar? Era {acorn:enter} Bellota, {acorn:face sad} que no tenía pico. Pájaro carpintero se quedó pensando. {woodpecker:face surprised} ¡Tú puedes saltar! Así que Bellota {acorn:face happy} {acorn:hop x3} saltó: boing, boing, boing. ¡Toc-toc, cuac-cuac, boing! {all:face happy} {all:hop x2} [laughs] {canvas:sunset 0.6 14s} Y todo el prado jugó a copiar hasta que se puso el sol, toc, cuac, boing… {all:face sleeping} buenas noches."
+    }
+  },
+  "sounds": {
+    "quack": {
+      "prompt": "one small cheerful duckling quack",
+      "seconds": 0.8
+    },
+    "tap": {
+      "prompt": "a small woodpecker tapping lightly on a tree trunk, three quick soft taps",
+      "seconds": 1.0
+    }
+  }
+}

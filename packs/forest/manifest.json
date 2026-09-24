@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "forest",
-  "version": 32,
+  "version": 33,
   "languages": [
     "en-US",
     "es-ES"
@@ -22,17 +22,27 @@
   "foregroundWide": "art/foreground-wide.webp",
   "cover": "art/cover.webp",
   "features": {
-    "sky": {
-      "description": "the open sky between the two big trees, above the far forest",
+    "branches": {
+      "description": "the side branches of the two big trees at the edges, high up under the leaves",
       "areas": [
         {
           "x": [
-            0.15,
-            0.85
+            0.1,
+            0.19
           ],
           "y": [
-            0.55,
-            0.85
+            0.84,
+            0.9
+          ]
+        },
+        {
+          "x": [
+            0.82,
+            0.9
+          ],
+          "y": [
+            0.86,
+            0.92
           ]
         }
       ]
@@ -67,27 +77,17 @@
         }
       ]
     },
-    "branches": {
-      "description": "the side branches of the two big trees at the edges, high up under the leaves",
+    "sky": {
+      "description": "the open sky between the two big trees, above the far forest",
       "areas": [
         {
           "x": [
-            0.1,
-            0.19
+            0.15,
+            0.85
           ],
           "y": [
-            0.84,
-            0.9
-          ]
-        },
-        {
-          "x": [
-            0.82,
-            0.9
-          ],
-          "y": [
-            0.86,
-            0.92
+            0.55,
+            0.85
           ]
         }
       ]
@@ -299,6 +299,27 @@
       "stage": {
         "entrance": "hop",
         "on": [
+          "meadow"
+        ]
+      }
+    },
+    {
+      "id": "duckling",
+      "name": {
+        "en-US": "Duckling",
+        "es-ES": "Patito"
+      },
+      "image": "stickers/duckling.webp",
+      "expressions": {
+        "happy": "stickers/duckling.happy.webp",
+        "sad": "stickers/duckling.sad.webp",
+        "sleeping": "stickers/duckling.sleeping.webp",
+        "surprised": "stickers/duckling.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "pond",
           "meadow"
         ]
       }
@@ -610,26 +631,6 @@
       }
     },
     {
-      "id": "tree",
-      "name": {
-        "en-US": "Tree",
-        "es-ES": "Árbol"
-      },
-      "image": "stickers/tree.webp",
-      "expressions": {
-        "happy": "stickers/tree.happy.webp",
-        "sad": "stickers/tree.sad.webp",
-        "sleeping": "stickers/tree.sleeping.webp",
-        "surprised": "stickers/tree.surprised.webp"
-      },
-      "stage": {
-        "entrance": "grow",
-        "on": [
-          "meadow"
-        ]
-      }
-    },
-    {
       "id": "woodpecker",
       "name": {
         "en-US": "Woodpecker",
@@ -684,10 +685,10 @@
       }
     },
     {
-      "id": "acorn-starts-to-grow",
+      "id": "acorn-grows-down-first",
       "requiredStickers": [
         "acorn",
-        "tree",
+        "duckling",
         "pinecone"
       ],
       "optionalStickers": [],
@@ -699,16 +700,16 @@
       ],
       "localizations": {
         "en-US": {
-          "title": "Acorn Starts to Grow",
-          "text": "Acorn lay on the soft ground in spring. Today, she said, I'm going to grow up, up, up, as tall as Tree! She took a deep breath. She pushed. Was she growing? Pinecone looked. Hmm, she said. You're not going up. Acorn looked down instead. A little white root was wiggling out of her, down, down, down into the soft earth. That's backwards! said Acorn. The old tree chuckled. No, little one. That's how it starts. First you hold on tight. Then you grow. So Acorn held on, and waited. And one morning… a tiny green shoot poked up into the sunshine, with two small leaves. Up! cried Acorn. Pinecone cheered, and Tree rustled with pride.",
-          "audio": "audio/en-US/acorn-starts-to-grow.m4a",
-          "effects": "audio/en-US/acorn-starts-to-grow.effects.json"
+          "title": "Acorn Grows Down First",
+          "text": "Little Acorn looked up at the big oaks at the edge of the meadow. I want to be THAT tall! she said. Pinecone rolled over. You need soft ground, she said. And a drink. Pitter-patter, the rain came down, and the ground by the pond went squishy and soft. Duckling loved it. Quack! Just right for planting! He dug a little hole with his beak, and in went Acorn, snug as a nest. Then they waited. The sun came out. Was she growing up? Not yet! First a tiny root wriggled DOWN into the mud, to hold on tight. Wriggle, wriggle. And then… a little green shoot poked up. Hooray! And one day, a long, long time from now, she will be as tall as the oaks.",
+          "audio": "audio/en-US/acorn-grows-down-first.m4a",
+          "effects": "audio/en-US/acorn-grows-down-first.effects.json"
         },
         "es-ES": {
-          "title": "Bellota empieza a crecer",
-          "text": "Bellota estaba en la tierra blandita, en primavera. Hoy, dijo, voy a crecer hacia arriba, arriba, arriba, ¡tan alta como Árbol! Respiró hondo. Empujó. ¿Estaba creciendo? Piña la miró. Mmm, dijo. No estás subiendo. Bellota miró hacia abajo. Una raicita blanca le salía meneándose, abajo, abajo, abajo, hacia la tierra blandita. ¡Esto va al revés!, dijo Bellota. El viejo árbol se rio bajito. No, pequeña. Así se empieza. Primero te agarras fuerte. Luego creces. Así que Bellota se agarró, y esperó. Y una mañana… un brote verde y chiquitito asomó al sol, con dos hojitas. ¡Arriba!, gritó Bellota. Piña lo celebró, y Árbol susurró con orgullo.",
-          "audio": "audio/es-ES/acorn-starts-to-grow.m4a",
-          "effects": "audio/es-ES/acorn-starts-to-grow.effects.json"
+          "title": "Bellota crece hacia abajo",
+          "text": "La pequeña Bellota miró los grandes robles al borde del prado. ¡Yo quiero ser así de ALTA!, dijo. Piña llegó rodando. Necesitas tierra blandita, le dijo. Y agua. Plic, ploc, empezó a llover, y la tierra junto a la charca se puso blandita y embarrada. A Patito le encantó. ¡Cuac! ¡Perfecta para plantar! Hizo un hoyito con el pico, y allá que entró Bellota, calentita como en un nido. Y esperaron. Salió el sol. ¿Estaba creciendo hacia arriba? ¡Todavía no! Primero, una raicita diminuta bajó hacia el barro, ABAJO, para agarrarse bien. Culebrea que culebrea. Y entonces… asomó un tallito verde. ¡Bien! Y algún día, dentro de mucho, mucho tiempo, será tan alta como los robles.",
+          "audio": "audio/es-ES/acorn-grows-down-first.m4a",
+          "effects": "audio/es-ES/acorn-grows-down-first.effects.json"
         }
       }
     },
@@ -885,36 +886,6 @@
       }
     },
     {
-      "id": "bee-helps-the-flower",
-      "requiredStickers": [
-        "bee",
-        "flower",
-        "tree"
-      ],
-      "optionalStickers": [
-        "butterfly"
-      ],
-      "weight": 1,
-      "tags": [
-        "curiosity",
-        "learning"
-      ],
-      "localizations": {
-        "en-US": {
-          "title": "Bee Helps the Flower",
-          "text": "All summer long, Bee buzzed from flower to flower. Bzzz, bzzz. Why are your legs all yellow? asked Flower . Bee looked down. It was fluffy yellow dust from all the flowers she had visited. It sticks to me, she said, and I carry it from flower to flower. Butterfly came to help. Bzzz, flutter, bzzz. Then autumn came, and Flower's petals began to fall, softly, one by one. Oh, Flower! said Bee. Don't worry, smiled Flower. I'm busy making something. Wait and see, rumbled the old tree . And when the last petal had gone, Flower's round brown middle was full of seeds. Hundreds of them! You helped make those, Bee, said Flower. Every one is a new flower, waiting for spring.",
-          "audio": "audio/en-US/bee-helps-the-flower.m4a",
-          "effects": "audio/en-US/bee-helps-the-flower.effects.json"
-        },
-        "es-ES": {
-          "title": "Abeja ayuda a la flor",
-          "text": "Todo el verano, Abeja fue zumbando de flor en flor. Bzzz, bzzz. ¿Por qué tienes las patas tan amarillas?, le preguntó Flor . Abeja se miró. Era un polvito amarillo y suave de todas las flores que había visitado. Se me pega, dijo, y lo llevo de flor en flor. Mariposa vino a ayudar. Bzzz, fru-fru, bzzz. Luego llegó el otoño, y a Flor se le empezaron a caer los pétalos, suavecito, uno a uno. ¡Ay, Flor!, dijo Abeja. No te preocupes, sonrió Flor. Estoy haciendo algo. Espera y verás, dijo el viejo árbol con su voz grave. Y cuando se cayó el último pétalo, el centro redondo y marrón de Flor estaba lleno de semillas. ¡Cientos! Tú me has ayudado a hacerlas, Abeja, dijo Flor. Cada una es una flor nueva, esperando a la primavera.",
-          "audio": "audio/es-ES/bee-helps-the-flower.m4a",
-          "effects": "audio/es-ES/bee-helps-the-flower.effects.json"
-        }
-      }
-    },
-    {
       "id": "bee-loses-her-hum",
       "requiredStickers": [
         "bee",
@@ -949,9 +920,7 @@
         "woodpecker",
         "squirrel"
       ],
-      "optionalStickers": [
-        "tree"
-      ],
+      "optionalStickers": [],
       "weight": 1,
       "tags": [
         "helping",
@@ -1026,36 +995,6 @@
           "text": "A Mariposa le encantaba el día: colores brillantes, sol calentito, flores por todas partes. Pero cada tarde, justo cuando todo se ponía bonito y dorado, llegaba la hora de dormir. Una tarde, se quedó un poquito más, en el borde de un pétalo de Flor . Y a su lado se encendió una lucecita. Hola, dijo la luz. ¡Era Luciérnaga! Me acabo de despertar. ¿Cómo es el día? Mariposa le contó cómo era el sol, y los colores, y las abejas. ¿Y cómo es la noche?, preguntó. Luciérnaga le habló de la luna, y de las estrellas, y de los grillos. Vamos a vernos aquí cada atardecer, dijo Mariposa. Tú me cuentas la noche, y yo te cuento el día. Y Flor les guardó un sitio, justo en el medio.",
           "audio": "audio/es-ES/butterfly-meets-firefly.m4a",
           "effects": "audio/es-ES/butterfly-meets-firefly.effects.json"
-        }
-      }
-    },
-    {
-      "id": "caterpillars-long-sleep",
-      "requiredStickers": [
-        "caterpillar",
-        "ladybug",
-        "tree"
-      ],
-      "optionalStickers": [
-        "butterfly"
-      ],
-      "weight": 1,
-      "tags": [
-        "patience",
-        "learning"
-      ],
-      "localizations": {
-        "en-US": {
-          "title": "Caterpillar's Long Sleep",
-          "text": "Caterpillar was hungry. Munch, munch, she ate a leaf. Munch, munch, she ate another. That tickles! laughed the tree . Then one day, Caterpillar said: I'm so sleepy. She wrapped herself up tight in a little case, and hung from a branch, very, very still. Ladybug waited beside her. One day. Two days. Lots of days. Is she ever coming out? Ladybug asked the tree. Wait and see, said the tree. And one sunny morning, the little case wobbled… and cracked… and out came… a butterfly! It's me, said the butterfly. It's Caterpillar! And Ladybug was the very first to say hello.",
-          "audio": "audio/en-US/caterpillars-long-sleep.m4a",
-          "effects": "audio/en-US/caterpillars-long-sleep.effects.json"
-        },
-        "es-ES": {
-          "title": "El largo sueño de Oruga",
-          "text": "Oruga tenía hambre. Ñam, ñam, se comió una hoja. Ñam, ñam, se comió otra. ¡Qué cosquillas!, se rio el árbol . Hasta que un día, Oruga dijo: Tengo muchísimo sueño. Se envolvió bien apretada en una cajita, y se colgó de una rama, muy, muy quieta. Mariquita esperaba a su lado. Un día. Dos días. Muchos días. ¿Saldrá algún día?, le preguntó Mariquita al árbol. Espera y verás, dijo el árbol. Y una mañana de sol, la cajita se movió… y se abrió… y de dentro salió… ¡una mariposa! Soy yo, dijo la mariposa. ¡Soy Oruga! Y Mariquita fue la primera en decirle hola.",
-          "audio": "audio/es-ES/caterpillars-long-sleep.m4a",
-          "effects": "audio/es-ES/caterpillars-long-sleep.effects.json"
         }
       }
     },
@@ -1144,6 +1083,36 @@
       }
     },
     {
+      "id": "duckling-finds-the-water",
+      "requiredStickers": [
+        "duckling",
+        "squirrel",
+        "caterpillar"
+      ],
+      "optionalStickers": [
+        "frog"
+      ],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Duckling Finds the Water",
+          "text": "Little Duckling had fluffy yellow feathers, two orange feet, and one big question. What am I good at? He waddled over to Squirrel, who was sitting in the grass. She nibbled her hazelnut, looked left and right, hid it behind her back… and hugged it. Duckling tried to nibble a nut. Tock! Too hard for a beak. Then he waddled to Caterpillar, who was munching a leaf, munch, munch. Duckling tried a nibble. Bleh! Too green. Nothing fits, he said. Just then Frog called from the pond: Come and splash! Duckling waddled to the edge, one step, two steps… In he went! He floated! His orange feet paddled all by themselves, paddle, paddle. Quack! said Duckling. And Squirrel and Caterpillar cheered from the grass.",
+          "audio": "audio/en-US/duckling-finds-the-water.m4a",
+          "effects": "audio/en-US/duckling-finds-the-water.effects.json"
+        },
+        "es-ES": {
+          "title": "Patito encuentra el agua",
+          "text": "El pequeño Patito tenía las plumas amarillas y esponjosas, dos patas naranjas y una gran pregunta. ¿Para qué soy bueno yo? Se fue anadeando hasta Ardilla, que estaba sentada en la hierba. Mordisqueó su avellana, miró a un lado y a otro, la escondió detrás de la espalda… y la abrazó. Patito intentó mordisquear una avellana. ¡Toc! Demasiado dura para un pico. Luego fue anadeando hasta Oruga, que se estaba comiendo una hoja, ñam, ñam. Patito probó un mordisquito. ¡Puaj! Demasiado verde. No me sale nada, dijo. Justo entonces Rana lo llamó desde la charca: ¡Ven a chapotear! Patito anadeó hasta la orilla, un paso, dos pasos… ¡Y adentro! ¡Flotaba! Sus patas naranjas remaban solas, chof, chof. ¡Cuac!, dijo Patito. Y Ardilla y Oruga lo aplaudieron desde la hierba.",
+          "audio": "audio/es-ES/duckling-finds-the-water.m4a",
+          "effects": "audio/es-ES/duckling-finds-the-water.effects.json"
+        }
+      }
+    },
+    {
       "id": "firefly-lights-the-way",
       "requiredStickers": [
         "firefly",
@@ -1202,15 +1171,44 @@
       }
     },
     {
+      "id": "following-the-busy-bee",
+      "requiredStickers": [
+        "duckling",
+        "bee",
+        "caterpillar"
+      ],
+      "optionalStickers": [
+        "flower"
+      ],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "adventure",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Following the Busy Bee",
+          "text": "Duckling was curious about the bee. She buzzed from flower to flower, and her fuzzy legs were covered in yellow dust. Is she painting them? asked Caterpillar. Let's follow her! So Caterpillar came along too. Bzzz! Bee landed on a flower, and the yellow dust stuck to her legs. Bzzz! She flew to the next one, and some of the dust fell off there. She's not painting! said Duckling. She's carrying it! That's right, hummed Bee. This dust helps the flowers make seeds. So they followed her all afternoon, bzzz, quack, bzzz, the busiest helpers in the meadow.",
+          "audio": "audio/en-US/following-the-busy-bee.m4a",
+          "effects": "audio/en-US/following-the-busy-bee.effects.json"
+        },
+        "es-ES": {
+          "title": "Siguiendo a la abeja",
+          "text": "Patito tenía curiosidad por la abeja. Zumbaba de flor en flor, y tenía las patitas peludas llenas de polvo amarillo. ¿Las está pintando?, preguntó Oruga. ¡Vamos a seguirla! Y Oruga se apuntó también. ¡Bzzz! Abeja se posó en una flor, y el polvo amarillo se le pegó a las patas. ¡Bzzz! Voló a la siguiente, y un poco de polvo se quedó allí. ¡No está pintando!, dijo Patito. ¡Lo está llevando! Eso es, zumbó Abeja. Este polvo ayuda a las flores a hacer semillas. Así que la siguieron toda la tarde, bzzz, cuac, bzzz, los ayudantes más ocupados del prado.",
+          "audio": "audio/es-ES/following-the-busy-bee.m4a",
+          "effects": "audio/es-ES/following-the-busy-bee.effects.json"
+        }
+      }
+    },
+    {
       "id": "fox-learns-to-listen",
       "requiredStickers": [
         "fox",
         "rabbit",
         "owl"
       ],
-      "optionalStickers": [
-        "tree"
-      ],
+      "optionalStickers": [],
       "weight": 1,
       "tags": [
         "gentle",
@@ -1295,8 +1293,7 @@
       "optionalStickers": [
         "bird",
         "flower",
-        "bee",
-        "tree"
+        "bee"
       ],
       "weight": 1,
       "tags": [
@@ -1315,6 +1312,34 @@
           "text": "Muy temprano, por la mañana, el bosque está envuelto en una niebla blanca y esponjosa. Nada se mueve. Nada canta. Y entonces… plic. Una gota de rocío cae de una hoja. Plic, ploc. Un pajarito se despierta y se ahueca las plumas. ¡Pío, pío! Una abeja estira las alas. Bzzz. Una flor levanta su cabecita dormida. ¿Ya es de día?, pregunta. Y llega la respuesta: el sol asoma por las colinas y se lleva la niebla, como quien quita una manta de la cama. El viejo árbol brilla dorado. Pío, bzzz, plic, ploc… ¡Buenos días, bosque!",
           "audio": "audio/es-ES/good-morning-forest.m4a",
           "effects": "audio/es-ES/good-morning-forest.effects.json"
+        }
+      }
+    },
+    {
+      "id": "goodnight-little-pond",
+      "requiredStickers": [
+        "duckling",
+        "frog",
+        "firefly"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Goodnight, Little Pond",
+          "text": "The sun was going down over the pond, but Duckling was not sleepy at all. One more splash! One more paddle! Frog sat on her lily pad. Listen, she said. The pond is getting sleepy. Ribbit… ribbit… she sang, low and slow. The sky turned dark blue, and the moon came up. Then, one by one, little lights began to twinkle. Firefly drifted down, glowing gold. Oooh. The water rocked him, gently, gently, like a cradle. Duckling's eyes grew heavy. He tucked his head under his fluffy wing. Goodnight, Frog. Goodnight, Firefly. Goodnight, little pond.",
+          "audio": "audio/en-US/goodnight-little-pond.m4a",
+          "effects": "audio/en-US/goodnight-little-pond.effects.json"
+        },
+        "es-ES": {
+          "title": "Buenas noches, charquita",
+          "text": "El sol se estaba poniendo sobre la charca, pero Patito no tenía nada de sueño. ¡Un chapuzón más! ¡Una vuelta más! Rana estaba sentada en su nenúfar. Escucha, le dijo. La charca se está durmiendo. Cruac… cruac… cantó, bajito y despacio. El cielo se puso azul oscuro, y salió la luna. Entonces, una a una, empezaron a brillar unas lucecitas. Luciérnaga bajó flotando, dorada y brillante. Oooh. El agua lo mecía, despacito, despacito, como una cuna. A Patito se le cerraban los ojos. Metió la cabeza bajo su ala esponjosa. Buenas noches, Rana. Buenas noches, Luciérnaga. Buenas noches, charquita.",
+          "audio": "audio/es-ES/goodnight-little-pond.m4a",
+          "effects": "audio/es-ES/goodnight-little-pond.effects.json"
         }
       }
     },
@@ -1528,9 +1553,7 @@
         "bird",
         "squirrel"
       ],
-      "optionalStickers": [
-        "tree"
-      ],
+      "optionalStickers": [],
       "weight": 1,
       "tags": [
         "kindness",
@@ -1703,9 +1726,7 @@
         "bear",
         "rabbit"
       ],
-      "optionalStickers": [
-        "tree"
-      ],
+      "optionalStickers": [],
       "weight": 1,
       "tags": [
         "funny",
@@ -1785,10 +1806,37 @@
       }
     },
     {
+      "id": "tap-quack-boing",
+      "requiredStickers": [
+        "woodpecker",
+        "duckling",
+        "acorn"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "music"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Tap, Quack, Boing!",
+          "text": "Woodpecker was clinging to the big tree trunk when he heard a sound from the pond. Quack! Hello? said Woodpecker. He tapped the trunk, tap-tap-tap, listened, shook off the dust and chirped. Down in the pond, Duckling tried it. Quack-quack-quack! It was a copycat game! Tap-tap. Quack-quack. Tap-tap-TAP. Quack-quack-QUACK! Then a tiny voice said, Can I play? It was Acorn, who had no beak at all. Woodpecker thought. You can hop! So Acorn hopped: boing, boing, boing. Tap-tap, quack-quack, boing! And the whole meadow played copycat until the sun went down, tap, quack, boing… goodnight.",
+          "audio": "audio/en-US/tap-quack-boing.m4a",
+          "effects": "audio/en-US/tap-quack-boing.effects.json"
+        },
+        "es-ES": {
+          "title": "¡Toc, cuac, boing!",
+          "text": "Pájaro carpintero estaba agarrado al tronco del árbol grande cuando oyó un ruido en la charca. ¡Cuac! ¿Hola?, dijo Pájaro carpintero. Dio unos golpecitos en el tronco, toc-toc-toc, escuchó, se sacudió el polvo y pió. Allí en la charca, Patito lo intentó. ¡Cuac-cuac-cuac! ¡Era un juego de copiar! Toc-toc. Cuac-cuac. Toc-toc-TOC. ¡Cuac-cuac-CUAC! Entonces una vocecita dijo: ¿Puedo jugar? Era Bellota, que no tenía pico. Pájaro carpintero se quedó pensando. ¡Tú puedes saltar! Así que Bellota saltó: boing, boing, boing. ¡Toc-toc, cuac-cuac, boing! Y todo el prado jugó a copiar hasta que se puso el sol, toc, cuac, boing… buenas noches.",
+          "audio": "audio/es-ES/tap-quack-boing.m4a",
+          "effects": "audio/es-ES/tap-quack-boing.effects.json"
+        }
+      }
+    },
+    {
       "id": "the-first-snow",
       "requiredStickers": [],
       "optionalStickers": [
-        "tree",
         "pinecone",
         "bird",
         "rabbit"
@@ -1817,7 +1865,6 @@
       "id": "the-forest-goes-to-sleep",
       "requiredStickers": [],
       "optionalStickers": [
-        "tree",
         "firefly",
         "mushroom",
         "owl"
@@ -1849,9 +1896,7 @@
         "hedgehog",
         "acorn"
       ],
-      "optionalStickers": [
-        "tree"
-      ],
+      "optionalStickers": [],
       "weight": 1,
       "tags": [
         "seasons",
@@ -1870,36 +1915,6 @@
           "text": "Las hojas del viejo árbol se volvieron rojas, y naranjas, y doradas. ¡Otoño!, dijo Zorro . Entonces sopló el viento, y las hojas bajaron dando vueltas y más vueltas por todo el suelo. Zorro hizo un montón. Un montón grande. ¡El montón MÁS GRANDE! Bellota le ayudó a meter las hojas pequeñas. Una… dos… tres… ¡Zorro saltó dentro! ¡CRUNCH! Las hojas volaron por todas partes. Y desde el fondo del montón se oyó una voz dormida. ¿Quién anda ahí? ¡Era Erizo! Bostezó, se hizo una bola, asomó la nariz… y se desenrolló, lleno de hojas. ¡Pareces un montoncito de hojas!, se rio Bellota. Así que lo volvieron a hacer entero, y esta vez saltaron los tres a la vez.",
           "audio": "audio/es-ES/the-great-leaf-pile.m4a",
           "effects": "audio/es-ES/the-great-leaf-pile.effects.json"
-        }
-      }
-    },
-    {
-      "id": "the-nut-that-grew",
-      "requiredStickers": [
-        "squirrel",
-        "acorn",
-        "tree"
-      ],
-      "optionalStickers": [
-        "bird"
-      ],
-      "weight": 1,
-      "tags": [
-        "seasons",
-        "learning"
-      ],
-      "localizations": {
-        "en-US": {
-          "title": "The Nut That Grew",
-          "text": "In autumn, Squirrel was busy, busy, busy. She nibbled a hazelnut, checked that nobody was watching, hid it behind her back… and hugged it. Then she dug a hole, scritch-scratch, and buried it for winter. Acorn watched. Can you bury me too? she asked. I want to see what happens. So Squirrel tucked Acorn into the soft ground. Pat, pat. All winter, Squirrel dug up her nuts, one by one. But Acorn? Squirrel forgot all about her. Then spring came, and Bird sang. Where Squirrel had forgotten, a tiny green tree was poking out of the ground. It was Acorn! The old tree rustled with pride. That's how I began, he said, a long, long time ago.",
-          "audio": "audio/en-US/the-nut-that-grew.m4a",
-          "effects": "audio/en-US/the-nut-that-grew.effects.json"
-        },
-        "es-ES": {
-          "title": "La bellota que creció",
-          "text": "En otoño, Ardilla estaba muy, muy ocupada. Mordisqueó una avellana, comprobó que nadie la miraba, la escondió detrás de la espalda… y la abrazó. Luego cavó un agujero, ras, ras, y la enterró para el invierno. Bellota la miraba. ¿Me entierras a mí también?, preguntó. Quiero ver qué pasa. Así que Ardilla arropó a Bellota en la tierra blandita. Pim, pam. Todo el invierno, Ardilla fue desenterrando sus frutos, uno a uno. ¿Y Bellota? Ardilla se olvidó de ella por completo. Entonces llegó la primavera, y Pájaro cantó. Justo donde Ardilla se había olvidado, un arbolito verde asomaba de la tierra. ¡Era Bellota! El viejo árbol susurró con orgullo. Así empecé yo, dijo, hace muchísimo tiempo.",
-          "audio": "audio/es-ES/the-nut-that-grew.m4a",
-          "effects": "audio/es-ES/the-nut-that-grew.effects.json"
         }
       }
     },
@@ -1988,37 +2003,10 @@
       }
     },
     {
-      "id": "the-ticklish-tree",
-      "requiredStickers": [
-        "tree",
-        "woodpecker",
-        "caterpillar"
-      ],
-      "optionalStickers": [],
-      "weight": 1,
-      "tags": [
-        "funny"
-      ],
-      "localizations": {
-        "en-US": {
-          "title": "The Ticklish Tree",
-          "text": "The old tree was very serious. He never laughed. Not once, in a hundred years. Then one morning, Caterpillar started to climb him. Wiggle, wiggle, up his bark. The tree twitched. Hmm, he rumbled. What's that? Then Woodpecker landed on a branch. He tapped the trunk, tap, tap, tap, listened, shook off the dust and chirped. The tree shivered. Wiggle, wiggle. Tap, tap. Wiggle, tap! And the old tree burst out laughing: HO, HO, HO! His branches shook, and a shower of leaves came tumbling down. You're ticklish! cried Caterpillar. Only a tiny bit, said the tree, still chuckling. And ever since, he has been the happiest tree in the forest.",
-          "audio": "audio/en-US/the-ticklish-tree.m4a",
-          "effects": "audio/en-US/the-ticklish-tree.effects.json"
-        },
-        "es-ES": {
-          "title": "El árbol cosquilloso",
-          "text": "El viejo árbol era muy serio. Nunca se reía. Ni una vez, en cien años. Hasta que una mañana, Oruga empezó a trepar por él. Meneo, meneo, corteza arriba. El árbol se estremeció. Mmm, gruñó. ¿Qué es eso? Entonces el pájaro carpintero se posó en una rama. Dio unos golpecitos en el tronco, toc, toc, toc, escuchó, se sacudió el polvo y pió. El árbol tembló. Meneo, meneo. Toc, toc. ¡Meneo, toc! Y el viejo árbol soltó una carcajada: ¡JO, JO, JO! Se le sacudieron las ramas, y cayeron montones de hojas. ¡Tienes cosquillas!, gritó Oruga. Solo un poquitín, dijo el árbol, todavía riéndose. Y desde entonces es el árbol más feliz del bosque.",
-          "audio": "audio/es-ES/the-ticklish-tree.m4a",
-          "effects": "audio/es-ES/the-ticklish-tree.effects.json"
-        }
-      }
-    },
-    {
       "id": "the-wind-wants-to-play",
       "requiredStickers": [],
       "optionalStickers": [
-        "tree",
+        "duckling",
         "butterfly",
         "pinecone",
         "acorn"
@@ -2031,13 +2019,13 @@
       "localizations": {
         "en-US": {
           "title": "The Wind Wants to Play",
-          "text": "Can you feel it? Something is tickling the forest. It's the wind, and the wind wants to play tag! Whoosh! It tags the tree, and all his leaves giggle. Whoosh! It tags the butterfly, and she twirls round and round. Whoosh! It tags the pinecone, and she rolls away, and the acorn bounces after her. Everyone runs. Everyone spins. But nobody can catch the wind! Then the tree has an idea. Stand still, he says. So everyone stands very, very still. The wind looks around. Nobody is running. So the wind lies down in the long grass, curls up… and hums. Shh. The wind is having a rest.",
+          "text": "Can you feel it? Something is tickling the forest. It's the wind, and the wind wants to play tag! Whoosh! It tags the duckling, and all his fluffy feathers giggle. Whoosh! It tags the butterfly, and she twirls round and round. Whoosh! It tags the pinecone, and she rolls away, and the acorn bounces after her. Everyone runs. Everyone spins. But nobody can catch the wind! Then the duckling has an idea. Stand still, he says. So everyone stands very, very still. The wind looks around. Nobody is running. So the wind lies down in the long grass, curls up… and hums. Shh. The wind is having a rest.",
           "audio": "audio/en-US/the-wind-wants-to-play.m4a",
           "effects": "audio/en-US/the-wind-wants-to-play.effects.json"
         },
         "es-ES": {
           "title": "El viento quiere jugar",
-          "text": "¿Lo notáis? Algo le está haciendo cosquillas al bosque. ¡Es el viento, y el viento quiere jugar al pillapilla! ¡Fiuuu! Pilla al árbol, y todas sus hojas se ríen. ¡Fiuuu! Pilla a la mariposa, y ella da vueltas y vueltas. ¡Fiuuu! Pilla a la piña, y la piña sale rodando, y la bellota va saltando detrás. Todos corren. Todos giran. ¡Pero nadie puede pillar al viento! Entonces el árbol tiene una idea. Quietos, dice. Y todos se quedan muy, muy quietos. El viento mira a su alrededor. Nadie corre. Así que el viento se tumba en la hierba alta, se hace un ovillo… y tararea. Chis. El viento está descansando.",
+          "text": "¿Lo notáis? Algo le está haciendo cosquillas al bosque. ¡Es el viento, y el viento quiere jugar al pillapilla! ¡Fiuuu! Pilla al patito, y todas sus plumitas se ríen. ¡Fiuuu! Pilla a la mariposa, y ella da vueltas y vueltas. ¡Fiuuu! Pilla a la piña, y la piña sale rodando, y la bellota va saltando detrás. Todos corren. Todos giran. ¡Pero nadie puede pillar al viento! Entonces el patito tiene una idea. Quietos, dice. Y todos se quedan muy, muy quietos. El viento mira a su alrededor. Nadie corre. Así que el viento se tumba en la hierba alta, se hace un ovillo… y tararea. Chis. El viento está descansando.",
           "audio": "audio/es-ES/the-wind-wants-to-play.m4a",
           "effects": "audio/es-ES/the-wind-wants-to-play.effects.json"
         }
@@ -2080,9 +2068,7 @@
         "owl",
         "badger"
       ],
-      "optionalStickers": [
-        "tree"
-      ],
+      "optionalStickers": [],
       "weight": 1,
       "tags": [
         "funny",

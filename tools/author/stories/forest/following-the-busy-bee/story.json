@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "id": "following-the-busy-bee",
+  "pack": "forest",
+  "featured": [
+    "duckling",
+    "bee",
+    "caterpillar"
+  ],
+  "supporting": [
+    "flower"
+  ],
+  "tags": [
+    "curiosity",
+    "adventure",
+    "learning"
+  ],
+  "premise": "Duckling and Caterpillar think Bee is painting the flowers yellow, follow her from flower to flower, and find out she is carrying the yellow dust that helps flowers make seeds.",
+  "inspiration": "A Just So-style question (Kipling), answered truly instead of tall: not how the flower got its colour, but what the bee is really doing.",
+  "lesson": "Watching carefully shows you how the world works.",
+  "learning": "Bees carry pollen from flower to flower, and that is how seeds begin",
+  "languages": {
+    "en-US": {
+      "title": "Following the Busy Bee",
+      "text": "{bee:float loop 0.4} {duckling:enter} Duckling {duckling:pulse} was curious about the {bee:enter} bee. She buzzed from {flower:enter} flower to flower, {bee:shake} and her fuzzy legs were covered in yellow dust. [curious] Is she painting them? asked {caterpillar:enter} Caterpillar. {caterpillar:face surprised} Let's follow her! So Caterpillar {caterpillar:hop} came along too. {sfx:buzz} Bzzz! Bee landed on a flower, {flower:wobble} and the yellow dust stuck to her legs. Bzzz! She flew to the next one, {bee:sparkle} and some of the dust fell off there. {duckling:face surprised} [gasps] She's not painting! said Duckling. She's carrying it! {bee:face happy} {bee:hop} That's right, hummed Bee. {flower:face happy} This dust helps the flowers make seeds. {caterpillar:face happy} {duckling:face happy} [happily] So they followed her all afternoon, bzzz, {sfx:quack} quack, bzzz, {all:hearts} the busiest helpers in the meadow."
+    },
+    "es-ES": {
+      "title": "Siguiendo a la abeja",
+      "text": "{bee:float loop 0.4} {duckling:enter} Patito {duckling:pulse} tenía curiosidad por la {bee:enter} abeja. Zumbaba de {flower:enter} flor en flor, {bee:shake} y tenía las patitas peludas llenas de polvo amarillo. [curious] ¿Las está pintando?, preguntó {caterpillar:enter} Oruga. {caterpillar:face surprised} ¡Vamos a seguirla! Y Oruga {caterpillar:hop} se apuntó también. {sfx:buzz} ¡Bzzz! Abeja se posó en una flor, {flower:wobble} y el polvo amarillo se le pegó a las patas. ¡Bzzz! Voló a la siguiente, {bee:sparkle} y un poco de polvo se quedó allí. {duckling:face surprised} [gasps] ¡No está pintando!, dijo Patito. ¡Lo está llevando! {bee:face happy} {bee:hop} Eso es, zumbó Abeja. {flower:face happy} Este polvo ayuda a las flores a hacer semillas. {caterpillar:face happy} {duckling:face happy} [happily] Así que la siguieron toda la tarde, bzzz, {sfx:quack} cuac, bzzz, {all:hearts} los ayudantes más ocupados del prado."
+    }
+  },
+  "sounds": {
+    "buzz": {
+      "prompt": "a small friendly bee buzzing past, soft and short",
+      "seconds": 1.2
+    },
+    "quack": {
+      "prompt": "one small cheerful duckling quack",
+      "seconds": 0.8
+    }
+  }
+}

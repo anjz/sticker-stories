@@ -114,7 +114,7 @@ it is necessary, not sufficient: the rules above are the standard.
 
 - Read the manifest: sticker IDs and their names in each language are the
   cast. Use each sticker as what it is (a snail is slow, a bee buzzes, a
-  tree stands still and shelters) and give each one a personality that
+  duckling paddles and quacks) and give each one a personality that
   stays consistent across the pack.
 - A story is centred on **3–4 featured stickers** (the app prefers it when
   all of them are on the canvas and may still play it with one missing) and
@@ -131,7 +131,8 @@ it is necessary, not sufficient: the rules above are the standard.
   sits on — must be what the image shows, counted from the picture
   (`packs/<pack>/stickers/<id>.webp`), not from what the real animal
   usually has. Forest's ladybug has five spots, its flower eight yellow
-  petals, its deer is a spotted fawn with no antlers and its tree an oak.
+  petals, its deer is a spotted fawn with no antlers and its duckling a fluffy
+  yellow chick.
   Record these in the roster's cast table and write from it; when a premise
   needs a feature the sticker lacks, change the premise.
 
