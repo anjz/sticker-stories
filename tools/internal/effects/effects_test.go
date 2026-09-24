@@ -227,3 +227,30 @@ func TestFaceTriggersAndAllTargets(t *testing.T) {
 		})
 	}
 }
+
+func TestEnterTriggers(t *testing.T) {
+	good := []byte(`{"schema": 1, "triggers": [
+		{"at": 0, "cue": "fox", "sticker": "fox", "enter": true},
+		{"at": 2.4, "sticker": "owl", "enter": true}]}`)
+	if errs := Validate(good, set("fox", "owl"), nil, nil, "outdoors"); len(errs) != 0 {
+		t.Fatalf("valid entrances rejected: %v", errs)
+	}
+	cases := []struct{ name, json, want string }{
+		{"all", `{"schema": 1, "triggers": [{"at": 0, "sticker": "all", "enter": true}]}`, "names one sticker"},
+		{"undeclared", `{"schema": 1, "triggers": [{"at": 0, "sticker": "bear", "enter": true}]}`, "not declared"},
+		{"false", `{"schema": 1, "triggers": [{"at": 0, "sticker": "fox", "enter": false}]}`, "enter must be true"},
+		{"twice", `{"schema": 1, "triggers": [{"at": 0, "sticker": "fox", "enter": true}, {"at": 3, "sticker": "fox", "enter": true}]}`, "already has an entrance"},
+		{"extra keys", `{"schema": 1, "triggers": [{"at": 0, "sticker": "fox", "enter": true, "effect": "hop"}]}`, "not used by an entrance"},
+		{"no at", `{"schema": 1, "triggers": [{"sticker": "fox", "enter": true}]}`, "at is required"},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			for _, e := range Validate([]byte(tc.json), set("fox", "owl"), nil, nil, "outdoors") {
+				if strings.Contains(e.Error(), tc.want) {
+					return
+				}
+			}
+			t.Fatalf("no error contained %q", tc.want)
+		})
+	}
+}

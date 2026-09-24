@@ -202,6 +202,14 @@ const FaceEffect = "face"
 // Normal is the sticker's own face.
 const Normal = "normal"
 
+// EnterEffect is the reserved cue effect that marks where the story first
+// names a sticker: {fox:enter}. If the child has not placed that sticker,
+// the app brings it into the scene there, the way its manifest stage says
+// (hopping or flying in from the side, or growing where it stands). Every
+// featured and supporting sticker has exactly one per language, on the
+// word that first names it; it takes no parameters.
+const EnterEffect = "enter"
+
 // MaxLiveCues is how many live animations one story may play per language
 // before a warning: they are the characters' big moments.
 const MaxLiveCues = 2
@@ -674,6 +682,12 @@ type Manifest struct {
 	Animations map[string][]Animation
 	// Expressions are each sticker's face variants (besides normal).
 	Expressions map[string][]string
+	// Names are each sticker's display names by language, for checking
+	// that an entrance sits on the first mention.
+	Names map[string]map[string]string
+	// Stages are each sticker's entrance ("hop", "fly", "grow"); a sticker
+	// without a stage in the manifest is absent.
+	Stages map[string]string
 }
 
 // HasExpression reports whether a face cue on target may show expression:
@@ -706,9 +720,13 @@ type Animation struct {
 // PackManifest reads what story validation needs from a loaded pack
 // manifest, live animations included (dir is the pack root).
 func PackManifest(m *manifest.Manifest, dir string) (Manifest, error) {
-	pack := Manifest{ID: m.ID, Languages: m.Languages, Setting: m.EffectiveSetting(), Animations: map[string][]Animation{}, Expressions: map[string][]string{}}
+	pack := Manifest{ID: m.ID, Languages: m.Languages, Setting: m.EffectiveSetting(), Animations: map[string][]Animation{}, Expressions: map[string][]string{}, Names: map[string]map[string]string{}, Stages: map[string]string{}}
 	for _, st := range m.Stickers {
 		pack.Stickers = append(pack.Stickers, st.ID)
+		pack.Names[st.ID] = st.Name
+		if st.Stage != nil {
+			pack.Stages[st.ID] = st.Stage.Entrance
+		}
 		for name := range st.Expressions {
 			pack.Expressions[st.ID] = append(pack.Expressions[st.ID], name)
 		}
@@ -877,8 +895,9 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 			is.errorf("%s: no effect cues (at least one required)", lang)
 		}
 		var shape []string
-		canvasCues, sounds, liveCues, faceCues := 0, len(s.Sound), 0, 0
+		canvasCues, sounds, liveCues, faceCues, enterCues := 0, len(s.Sound), 0, 0, 0
 		liveOn := map[string]bool{}
+		enterAt := map[string]int{}
 		for _, c := range cues {
 			if c.Sound {
 				sounds++
@@ -890,6 +909,26 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 				canvasCues++
 				shape = append(shape, CanvasTarget+":"+c.Effect)
 				validateCanvasCue(&is, lang, c, m, cat)
+				continue
+			}
+			if c.Effect == EnterEffect {
+				enterCues++
+				shape = append(shape, c.Sticker+":"+EnterEffect)
+				switch {
+				case c.Sticker == AllTarget:
+					is.errorf("%s: cue %s: an entrance names one sticker", lang, c.Raw)
+				case !inStory[c.Sticker]:
+					is.errorf("%s: cue %s targets %q, which is neither featured nor supporting", lang, c.Raw, c.Sticker)
+				default:
+					if _, twice := enterAt[c.Sticker]; twice {
+						is.errorf("%s: cue %s: %s already enters earlier; one entrance per sticker, on its first mention", lang, c.Raw, c.Sticker)
+					} else {
+						enterAt[c.Sticker] = c.WordIndex
+					}
+				}
+				if c.Repeat > 0 || c.Loop || c.Hold || c.Color != "" || c.Duration > 0 || c.Intensity != 0 {
+					is.errorf("%s: cue %s: an entrance takes no parameters", lang, c.Raw)
+				}
 				continue
 			}
 			if c.Effect == FaceEffect {
@@ -943,7 +982,8 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 				is.errorf("%s: cue %s: %s takes a cycle of %g–%g s", lang, c.Raw, c.Effect, e.DurationRange[0], e.DurationRange[1])
 			}
 		}
-		if stage := len(cues) - canvasCues - (sounds - len(s.Sound)); stage > 0 && n > MaxWordsPerCue*stage {
+		validateEntrances(&is, lang, s, nar, enterAt, m)
+		if stage := len(cues) - canvasCues - enterCues - (sounds - len(s.Sound)); stage > 0 && n > MaxWordsPerCue*stage {
 			is.warnf("%s: %d cues on the stickers for %d words — the stage sits still too long; give most sentences a beat (a reaction, a face, everyone at once), about one cue per %d words", lang, stage, n, MaxWordsPerCue)
 		}
 		if faceCues == 0 && len(m.Expressions) > 0 {
@@ -962,7 +1002,7 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		if sounds > MaxSounds {
 			is.warnf("%s: %d sound effects; keep them to %d so they stay special", lang, sounds, MaxSounds)
 		}
-		if stickerCues := len(cues) - canvasCues - (sounds - len(s.Sound)); stickerCues == 0 {
+		if stickerCues := len(cues) - canvasCues - enterCues - (sounds - len(s.Sound)); stickerCues == 0 {
 			is.errorf("%s: no sticker effect cues (at least one required)", lang)
 		}
 		cueShapes = append(cueShapes, shape)
@@ -1128,6 +1168,100 @@ func validateCanvasMentions(is *Issues, lang string, nar Narration, m Manifest, 
 	}
 }
 
+// validateEntrances checks that every featured and supporting sticker
+// enters exactly once, on the word that first names it: an entrance after
+// the first mention leaves the narrator talking about a sticker that is
+// not there yet, and a cue before it plays on a sticker that has not
+// arrived (loops and faces are fine: they carry on once it is in).
+func validateEntrances(is *Issues, lang string, s *Story, nar Narration, enterAt map[string]int, m Manifest) {
+	cast := append(append([]string(nil), s.Featured...), s.Supporting...)
+	for _, id := range cast {
+		at, ok := enterAt[id]
+		if !ok {
+			is.errorf("%s: %s never enters — put {%s:%s} right before the word that first names it", lang, id, id, EnterEffect)
+			continue
+		}
+		if first := firstMention(nar.Words, id, lang, m); first >= 0 && first < at {
+			is.warnf("%s: {%s:%s} fires on word %d (%q) but %s is named earlier, at word %d (%q) — move it to the first mention", lang, id, EnterEffect, at+1, nar.Words[at], id, first+1, nar.Words[first])
+		}
+		for _, c := range nar.Cues {
+			if c.Sticker != id || c.WordIndex >= at || c.Loop || c.Effect == FaceEffect || c.Effect == EnterEffect {
+				continue
+			}
+			is.warnf("%s: cue %s fires before %s enters — a child who has not placed it would not see it; cue it on or after the entrance", lang, c.Raw, id)
+		}
+	}
+	if len(m.Stages) > 0 {
+		for _, id := range cast {
+			if _, ok := m.Stages[id]; !ok {
+				is.warnf("%s: sticker %q has no stage in the manifest; it will grow in the default area", lang, id)
+			}
+		}
+	}
+}
+
+// firstMention returns the index of the first word that names sticker id
+// in lang (its manifest name, case- and punctuation-insensitive, a
+// possessive counting), or -1. A name that is the start of a longer sticker
+// name found at the same spot ("Pájaro" in "Pájaro carpintero") does not
+// count.
+func firstMention(words []string, id, lang string, m Manifest) int {
+	tokens := func(name string) []string {
+		var out []string
+		for _, w := range strings.Fields(name) {
+			out = append(out, mentionWord(w))
+		}
+		return out
+	}
+	want := tokens(m.Names[id][lang])
+	if len(want) == 0 {
+		return -1
+	}
+	var longer [][]string
+	for other, names := range m.Names {
+		if other == id {
+			continue
+		}
+		if t := tokens(names[lang]); len(t) > len(want) && strings.Join(t[:len(want)], " ") == strings.Join(want, " ") {
+			longer = append(longer, t)
+		}
+	}
+	matchAt := func(i int, t []string) bool {
+		if i+len(t) > len(words) {
+			return false
+		}
+		for k, w := range t {
+			if mentionWord(words[i+k]) != w {
+				return false
+			}
+		}
+		return true
+	}
+	for i := range words {
+		if !matchAt(i, want) {
+			continue
+		}
+		shadowed := false
+		for _, t := range longer {
+			shadowed = shadowed || matchAt(i, t)
+		}
+		if !shadowed {
+			return i
+		}
+	}
+	return -1
+}
+
+// mentionWord normalises a word for name matching: lower case, no
+// surrounding punctuation, no possessive 's.
+func mentionWord(w string) string {
+	w = strings.ToLower(strings.TrimFunc(w, func(r rune) bool { return !unicode.IsLetter(r) && !unicode.IsNumber(r) }))
+	for _, suffix := range []string{"'s", "’s"} {
+		w = strings.TrimSuffix(w, suffix)
+	}
+	return w
+}
+
 // validateFaceCue checks a {sticker:face expression} cue: an expression
 // the sticker has (for all, one some sticker has; normal always), and
 // nothing else set.
@@ -1250,6 +1384,8 @@ func Cover(stories []*Story, m Manifest, expected int) Coverage {
 				key := cue.Effect
 				usesAll = usesAll || cue.Sticker == AllTarget
 				switch {
+				case cue.Effect == EnterEffect && !cue.Canvas && !cue.Sound:
+					continue
 				case cue.Effect == FaceEffect && !cue.Canvas && !cue.Sound:
 					usesFace = true
 					if !seen["face:"+cue.Expression] {

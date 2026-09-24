@@ -105,6 +105,7 @@ func main() {
 	printEffectUse(cat, cov)
 	printLive(pack, cov)
 	printFaces(pack)
+	printStages(pack)
 	for _, e := range cov.Errors {
 		fmt.Printf("  error: %s\n", e)
 		failed = true
@@ -222,5 +223,25 @@ func printFaces(pack story.Manifest) {
 			who = "every sticker"
 		}
 		fmt.Printf("    %s: %s\n", who, k)
+	}
+}
+
+// printStages lists how each sticker comes into the scene when a story
+// names it ({sticker:enter}) and the child has not placed it, grouped by
+// entrance.
+func printStages(pack story.Manifest) {
+	groups := map[string][]string{}
+	for _, id := range pack.Stickers {
+		entrance := pack.Stages[id]
+		if entrance == "" {
+			entrance = "no stage (grows in the default area)"
+		}
+		groups[entrance] = append(groups[entrance], id)
+	}
+	fmt.Println("  entrances ({sticker:enter} on the first mention; used when the child has not placed it):")
+	for _, k := range []string{"hop", "fly", "grow", "no stage (grows in the default area)"} {
+		if len(groups[k]) > 0 {
+			fmt.Printf("    %s: %s\n", k, strings.Join(groups[k], ", "))
+		}
 	}
 }

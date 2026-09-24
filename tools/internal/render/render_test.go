@@ -217,3 +217,30 @@ func TestFaceAndAllCues(t *testing.T) {
 		t.Fatal(err)
 	}
 }
+
+func TestEnterCues(t *testing.T) {
+	text := "{fox:enter} {fox:hop} Fox ran in. Later {owl:enter} Owl woke."
+	cues, plain, errs := story.ParseCues(text)
+	if len(errs) > 0 {
+		t.Fatal(errs)
+	}
+	tl, err := NewPlainTimeline(plain, fakeAlignment(plain))
+	if err != nil {
+		t.Fatal(err)
+	}
+	tr, err := Triggers(cues, tl, story.Manifest{})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(tr) != 3 || !tr[0].Enter || tr[0].At != 0 || tr[0].Effect != "" || tr[1].Effect != "hop" ||
+		!tr[2].Enter || tr[2].Sticker != "owl" || tr[2].Cue != "owl" || tr[2].At <= 0 {
+		t.Fatalf("enter triggers wrong: %+v", tr)
+	}
+	data, err := EncodeSidecar(tr, map[string]bool{"fox": true, "owl": true}, nil, nil, "outdoors")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(data), `"enter": true`) {
+		t.Errorf("sidecar lost the entrance: %s", data)
+	}
+}

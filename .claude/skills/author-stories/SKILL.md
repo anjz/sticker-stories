@@ -40,6 +40,15 @@ Read, in this order, before writing anything:
    `sad`, `sleeping`, `surprised`… plus their own `normal` face) — the
    `-plan` run lists them too. Faces are the cheapest way to make the
    stage feel alive; plan to use them in almost every story.
+   Note every sticker's **`stage`**: its `entrance` (`hop` for things
+   that walk, `fly` for things that fly, `grow` for things that stay put)
+   and its `area` (where on the scene it lands: the meadow, the sky, the
+   pond). A story brings in every sticker it names that the child has not
+   placed, on the word that first names it (FORMAT "Entrance cues"), so
+   the words should fit how and where it arrives. The `-plan` run lists
+   the entrances; a sticker with no stage grows in a default area — tell
+   the user (stages are authored in `tools/author/art/<pack>/art.json`
+   and installed by `stickerart`).
    **Look at every sticker's image** (`packs/<packID>/stickers/<id>.webp`;
    convert to PNG with `sips -s format png` to view it) and write down what
    the art actually shows: colours, anything countable (spots, petals,
@@ -116,6 +125,18 @@ exactly per `FORMAT.md`:
   `{all:hearts}` — when the words are about everyone ("everyone laughed",
   "the whole forest fell asleep"), which is what brings the fallback
   stories to life; one beat per moment, never a pile-up;
+- **an entrance for every featured and supporting sticker**
+  (`{fox:enter}`, FORMAT "Entrance cues", GUIDE "Entrances"), in every
+  language, right before the word that **first names it** — before any
+  other cue on that word — so a sticker the child has not placed hops,
+  flies or grows into the scene as the narrator says its name. Name every
+  one of them in the words (a sticker that is never named has nowhere to
+  enter); where the story allows, make the first mention an arrival
+  ("along came Fox", "Owl fluttered down") that suits its entrance and
+  its area (the owl up high, the frog in the pond, the tree standing on
+  the floor), but it must also read fine when the sticker was on the
+  canvas all along. Cue nothing on a sticker before its entrance except
+  a `float` loop or a face;
 - a live cue (`{bear:live}` — see FORMAT "Live cues", GUIDE "Live
   stickers") in the stories the roster marked for one: on the words that
   tell exactly what that animation shows, with the next sentence or so
@@ -174,7 +195,7 @@ crowding one, and learning at about 40 %.
 When the count is reached: run `storycheck` once more, make sure it exits
 clean with full coverage, and report to the user: how many stories, the
 coverage table, the effects-used, faces, live-sticker, audio-tag and sound
-tables, the learning share, the mood mix, and anything you chose not to write and why. Do not
+tables, that every story's entrances are clean, the learning share, the mood mix, and anything you chose not to write and why. Do not
 build step 2 (audio); it is a separate tool.
 
 ## Never
@@ -192,6 +213,10 @@ build step 2 (audio); it is a separate tool.
   (sleeping while it talks), or a sad face that the story doesn't mend.
 - Never use `{all:…}` for a live animation or on words that aren't about
   everyone.
+- Never leave a featured or supporting sticker without its `{id:enter}`
+  on its first mention, put the entrance later than the first mention,
+  or describe a sticker where its stage cannot put it (a fox up in the
+  clouds, a bird walking in from the meadow).
 - Never cue a live animation on words it contradicts, on a sticker without
   one, or twice on the same sticker in a story.
 - Never use an effect name that is not in `docs/effects/effects.json`, a

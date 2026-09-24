@@ -31,8 +31,9 @@ test. Tooling should read that file rather than parse this one.
    `fade-in` and `fade-out`, are one-way and have their own rule (`hold`).
    A canvas effect is a single envelope: it builds up, stays, clears.
 4. **A trigger whose sticker is not on the canvas simply does not fire.** The
-   story is authored once; which effects happen depends entirely on what the
-   child placed. Write stories that still make sense when half the effects
+   story is authored once; which effects happen depends on what the
+   child placed — and on the stickers the story brings in when it first
+   names them ("Entrances"), which are on the stage from then on. Write stories that still make sense when half the effects
    are silent, and never make a narration beat depend on an effect. (Canvas
    effects always fire — but the same rule of never depending on them holds.)
 5. **Unknown content is ignored, never fatal.** An unknown effect name is
@@ -199,12 +200,13 @@ or fantastical places) gets no canvas effects at all.
 
 Each story localization may point at one sidecar next to its audio
 (`docs/pack-format.md`, `localizations[].effects`). Times are per language
-because each narration has its own timing. One `triggers` list carries four
+because each narration has its own timing. One `triggers` list carries five
 kinds: an entry whose `effect` is a sticker effect targets a `sticker` (or
 `all`); one whose `effect` is a canvas effect has none; one with an
 `animation` and no `effect` plays that sticker's live animation ("Live
 animations" below); one with an `expression` and no `effect` changes a
-sticker's face, or everyone's ("Faces" below).
+sticker's face, or everyone's ("Faces" below); one with `"enter": true`
+marks where the story first names a sticker ("Entrances" below).
 
 `packs/forest/audio/en-US/shy-mushroom.effects.json`:
 
@@ -221,6 +223,7 @@ sticker's face, or everyone's ("Faces" below).
     { "at": 26.4, "cue": "smiled",  "sticker": "mushroom", "expression": "happy" },
     { "at": 28.0, "cue": "everyone","sticker": "all",      "effect": "hop" },
     { "at": 30.2, "cue": "yawned",  "sticker": "bear",     "animation": "yawn" },
+    { "at": 33.0, "cue": "owl",     "sticker": "owl",      "enter": true },
     { "at": 41.5, "cue": "flies",   "sticker": "bird",     "effect": "fade-out", "hold": true }
   ]
 }
@@ -276,7 +279,8 @@ A cue fires on the word that follows it; `canvas:` is the reserved target
 for canvas effects, `live` the reserved effect that plays a sticker's live
 animation (`{bear:live}`, or `{owl:live blink}` to name one of several),
 `face` the reserved effect that changes a sticker's face (`{bear:face
-happy}`, `{bear:face normal}`), `all` the reserved target for every
+happy}`, `{bear:face normal}`), `enter` the reserved effect that marks a
+sticker's first mention (`{owl:enter} Owl`), `all` the reserved target for every
 sticker on the canvas (`{all:hop}`, `{all:face sleeping}`) and
 `sfx:` for sound effects (which are mixed into the
 audio, never triggers). The text may also carry Eleven v3 audio tags
@@ -331,6 +335,36 @@ changes the face from that moment on:
   canvas, off the main thread at play start; until one is in, that sticker
   keeps its face.
 - Faces are not motion: Reduce Motion and calm mode keep them.
+
+## Entrances
+
+A story names stickers the child may not have placed. So that the scene
+shows what the narrator says, every featured and supporting sticker has
+an **entrance** on the word that first names it: authored `{owl:enter}
+Owl woke up`, the trigger `{ "at", "cue"?, "sticker", "enter": true }`,
+one per sticker per story, never `all`.
+
+- When play starts, the app looks at the story's entrances. A sticker the
+  child already placed ignores its entrance. Every other one is a
+  **visitor**: the app picks its spot — the freest place in its manifest
+  `stage` area that the window shows (`docs/pack-format.md`, "Stage";
+  `StagePlanner`), or any spot in the area when the canvas is crowded —
+  and keeps it hidden there until its entrance.
+- At its entrance it comes in as its stage says: `hop` hops in from the
+  nearer side of the screen (bigger or smaller at first as it walks away
+  from or towards the viewer), `fly` glides in from the nearer side,
+  `grow` fades in and grows where it stands. Under Reduce Motion or calm
+  mode it simply fades in.
+- From then on a visitor is on the stage like any placed sticker: its
+  effects, faces, live animation and `all` reach it (they compose with the
+  entrance while it is still arriving). Cues on a visitor before its
+  entrance play on a sticker nobody can see, so authors put the entrance
+  first (loops and faces are fine: they carry on once it is in).
+- Visitors are never part of the child's canvas: not saved, not undoable,
+  and they fade out when the story ends or is stopped (P4 — the canvas
+  snaps back to what the child placed).
+- Older apps skip the trigger (it has no `effect`) with a log line, so no
+  schema change was needed.
 
 ## Accessibility and calm mode
 
