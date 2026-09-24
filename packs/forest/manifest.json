@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "forest",
-  "version": 31,
+  "version": 32,
   "languages": [
     "en-US",
     "es-ES"
@@ -21,6 +21,103 @@
   "backgroundWide": "art/background-wide.webp",
   "foregroundWide": "art/foreground-wide.webp",
   "cover": "art/cover.webp",
+  "features": {
+    "sky": {
+      "description": "the open sky between the two big trees, above the far forest",
+      "areas": [
+        {
+          "x": [
+            0.15,
+            0.85
+          ],
+          "y": [
+            0.55,
+            0.85
+          ]
+        }
+      ]
+    },
+    "meadow": {
+      "description": "the open grass of the meadow, in front of the far bushes",
+      "areas": [
+        {
+          "x": [
+            0.1,
+            0.9
+          ],
+          "y": [
+            0.16,
+            0.36
+          ]
+        }
+      ]
+    },
+    "pond": {
+      "description": "the small pond with lily pads and a water lily, right of the middle of the meadow",
+      "areas": [
+        {
+          "x": [
+            0.57,
+            0.74
+          ],
+          "y": [
+            0.3,
+            0.37
+          ]
+        }
+      ]
+    },
+    "branches": {
+      "description": "the side branches of the two big trees at the edges, high up under the leaves",
+      "areas": [
+        {
+          "x": [
+            0.1,
+            0.19
+          ],
+          "y": [
+            0.84,
+            0.9
+          ]
+        },
+        {
+          "x": [
+            0.82,
+            0.9
+          ],
+          "y": [
+            0.86,
+            0.92
+          ]
+        }
+      ]
+    },
+    "trunks": {
+      "description": "the trunks of the two big trees at the left and right edges",
+      "areas": [
+        {
+          "x": [
+            0.03,
+            0.07
+          ],
+          "y": [
+            0.45,
+            0.75
+          ]
+        },
+        {
+          "x": [
+            0.94,
+            0.97
+          ],
+          "y": [
+            0.45,
+            0.75
+          ]
+        }
+      ]
+    }
+  },
   "stickers": [
     {
       "id": "acorn",
@@ -37,16 +134,9 @@
       },
       "stage": {
         "entrance": "grow",
-        "area": {
-          "x": [
-            0.08,
-            0.92
-          ],
-          "y": [
-            0.16,
-            0.34
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -64,16 +154,9 @@
       },
       "stage": {
         "entrance": "hop",
-        "area": {
-          "x": [
-            0.1,
-            0.9
-          ],
-          "y": [
-            0.18,
-            0.36
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -94,16 +177,9 @@
       },
       "stage": {
         "entrance": "hop",
-        "area": {
-          "x": [
-            0.1,
-            0.9
-          ],
-          "y": [
-            0.18,
-            0.36
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -121,16 +197,9 @@
       },
       "stage": {
         "entrance": "hop",
-        "area": {
-          "x": [
-            0.1,
-            0.9
-          ],
-          "y": [
-            0.18,
-            0.36
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -148,16 +217,9 @@
       },
       "stage": {
         "entrance": "fly",
-        "area": {
-          "x": [
-            0.12,
-            0.88
-          ],
-          "y": [
-            0.5,
-            0.8
-          ]
-        }
+        "on": [
+          "sky"
+        ]
       }
     },
     {
@@ -175,16 +237,10 @@
       },
       "stage": {
         "entrance": "fly",
-        "area": {
-          "x": [
-            0.08,
-            0.92
-          ],
-          "y": [
-            0.16,
-            0.34
-          ]
-        }
+        "on": [
+          "branches",
+          "sky"
+        ]
       }
     },
     {
@@ -202,16 +258,9 @@
       },
       "stage": {
         "entrance": "fly",
-        "area": {
-          "x": [
-            0.12,
-            0.88
-          ],
-          "y": [
-            0.5,
-            0.8
-          ]
-        }
+        "on": [
+          "sky"
+        ]
       }
     },
     {
@@ -229,16 +278,9 @@
       },
       "stage": {
         "entrance": "hop",
-        "area": {
-          "x": [
-            0.1,
-            0.9
-          ],
-          "y": [
-            0.18,
-            0.36
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -256,16 +298,9 @@
       },
       "stage": {
         "entrance": "hop",
-        "area": {
-          "x": [
-            0.1,
-            0.9
-          ],
-          "y": [
-            0.18,
-            0.36
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -283,16 +318,9 @@
       },
       "stage": {
         "entrance": "fly",
-        "area": {
-          "x": [
-            0.08,
-            0.92
-          ],
-          "y": [
-            0.16,
-            0.34
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -310,16 +338,9 @@
       },
       "stage": {
         "entrance": "grow",
-        "area": {
-          "x": [
-            0.08,
-            0.92
-          ],
-          "y": [
-            0.16,
-            0.34
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -337,16 +358,9 @@
       },
       "stage": {
         "entrance": "hop",
-        "area": {
-          "x": [
-            0.1,
-            0.9
-          ],
-          "y": [
-            0.18,
-            0.36
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -367,16 +381,10 @@
       },
       "stage": {
         "entrance": "hop",
-        "area": {
-          "x": [
-            0.57,
-            0.74
-          ],
-          "y": [
-            0.3,
-            0.37
-          ]
-        }
+        "on": [
+          "pond",
+          "meadow"
+        ]
       }
     },
     {
@@ -397,16 +405,9 @@
       },
       "stage": {
         "entrance": "hop",
-        "area": {
-          "x": [
-            0.1,
-            0.9
-          ],
-          "y": [
-            0.18,
-            0.36
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -427,16 +428,9 @@
       },
       "stage": {
         "entrance": "hop",
-        "area": {
-          "x": [
-            0.1,
-            0.9
-          ],
-          "y": [
-            0.18,
-            0.36
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -454,16 +448,9 @@
       },
       "stage": {
         "entrance": "hop",
-        "area": {
-          "x": [
-            0.1,
-            0.9
-          ],
-          "y": [
-            0.18,
-            0.36
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -481,16 +468,9 @@
       },
       "stage": {
         "entrance": "grow",
-        "area": {
-          "x": [
-            0.08,
-            0.92
-          ],
-          "y": [
-            0.16,
-            0.34
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -511,16 +491,10 @@
       },
       "stage": {
         "entrance": "fly",
-        "area": {
-          "x": [
-            0.08,
-            0.92
-          ],
-          "y": [
-            0.16,
-            0.34
-          ]
-        }
+        "on": [
+          "branches",
+          "sky"
+        ]
       }
     },
     {
@@ -538,16 +512,9 @@
       },
       "stage": {
         "entrance": "grow",
-        "area": {
-          "x": [
-            0.08,
-            0.92
-          ],
-          "y": [
-            0.16,
-            0.34
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -568,16 +535,9 @@
       },
       "stage": {
         "entrance": "hop",
-        "area": {
-          "x": [
-            0.1,
-            0.9
-          ],
-          "y": [
-            0.18,
-            0.36
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -598,16 +558,9 @@
       },
       "stage": {
         "entrance": "hop",
-        "area": {
-          "x": [
-            0.1,
-            0.9
-          ],
-          "y": [
-            0.18,
-            0.36
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -628,16 +581,9 @@
       },
       "stage": {
         "entrance": "hop",
-        "area": {
-          "x": [
-            0.1,
-            0.9
-          ],
-          "y": [
-            0.18,
-            0.36
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -658,16 +604,9 @@
       },
       "stage": {
         "entrance": "hop",
-        "area": {
-          "x": [
-            0.1,
-            0.9
-          ],
-          "y": [
-            0.18,
-            0.36
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -685,16 +624,9 @@
       },
       "stage": {
         "entrance": "grow",
-        "area": {
-          "x": [
-            0.08,
-            0.92
-          ],
-          "y": [
-            0.16,
-            0.34
-          ]
-        }
+        "on": [
+          "meadow"
+        ]
       }
     },
     {
@@ -715,16 +647,10 @@
       },
       "stage": {
         "entrance": "fly",
-        "area": {
-          "x": [
-            0.08,
-            0.92
-          ],
-          "y": [
-            0.16,
-            0.34
-          ]
-        }
+        "on": [
+          "trunks",
+          "sky"
+        ]
       }
     }
   ],
