@@ -13,6 +13,8 @@ import UIKit
 ///   (500: rain, fog, sunshine, night, dimlight) < tray (1000); a dragged sticker
 ///   is lifted to its layer's z + 10000 so it floats above everything while
 ///   held.
+///   A sticker's own z stays inside its layer's band (`layerDepth`), so
+///   the layers never interleave however many stickers were moved.
 ///
 /// World and camera: the pack art defines a fixed-aspect **world**, scaled
 /// so it always covers the view (`worldSize`). Sticker positions live in
@@ -101,7 +103,16 @@ final class CanvasScene: SKScene {
     private var worldOverflows: Bool {
         worldExtent.width > size.width + 0.5
     }
-    private var nextZOrder: CGFloat = 1
+    /// A sticker's own zPosition within its layer stays in (0, this]: z
+    /// accumulates down the tree, so a background sticker at 100 + z must
+    /// stay under the foreground shadow (150) and the foreground art (200),
+    /// and a foreground one at 300 + z under the canvas effects (500). A
+    /// counter that grew with every drop once pushed background stickers
+    /// in front of the foreground art — "send to back" stopped working.
+    private static let layerDepth: CGFloat = 40
+    /// A held sticker floats above everything (`beginDrag`); restacking
+    /// leaves such a sticker alone.
+    private static let liftedZ: CGFloat = 10000
 
     private weak var selectedSticker: StickerNode?
     private var selectionBubble: SelectionBubbleNode?
@@ -874,7 +885,7 @@ final class CanvasScene: SKScene {
         drags[touch] = DragInfo(
             node: node, grabOffset: offset, startLocation: location,
             startedFromTray: fromTray, priorZ: node.zPosition, beforeSnapshot: beforeSnapshot)
-        node.zPosition = 10000  // float above everything while held
+        node.zPosition = Self.liftedZ  // float above everything while held
         node.setLifted(true)
         if fromTray {
             UISounds.shared.play(.stickerUp)  // the sticker leaves the tray
@@ -904,6 +915,7 @@ final class CanvasScene: SKScene {
             // touchesBegan; don't reorder, just settle.
             node.run(.scale(to: node.baseScale, duration: 0.1))
             node.zPosition = info.priorZ
+            if let layer = node.parent { restack(layer) }
             return
         }
 
@@ -912,7 +924,7 @@ final class CanvasScene: SKScene {
                 info.startLocation.distanceSquared(to: node.position) < 400 {
                 // A tap on a tray item: hop the new sticker onto the canvas.
                 node.alpha = 1
-                node.zPosition = nextZ()
+                bringToFront(node)
                 let drop = CGPoint(
                     x: min(max(node.position.x, visibleRect.minX + stickerBaseSize), visibleRect.maxX - stickerBaseSize),
                     y: trayRect.minY - stickerBaseSize * 0.9)
@@ -935,7 +947,7 @@ final class CanvasScene: SKScene {
         }
 
         keepOnCanvas(node)
-        node.zPosition = nextZ()
+        bringToFront(node)
         node.alpha = 1
         // The landing "plop": squash, overshoot, settle.
         node.run(.sequence([
@@ -961,9 +973,28 @@ final class CanvasScene: SKScene {
             y: min(max(node.position.y, max(worldExtent.minY + margin, visibleRect.minY + margin)), trayRect.minY - margin * 0.6))
     }
 
-    private func nextZ() -> CGFloat {
-        nextZOrder += 1
-        return nextZOrder
+    /// Puts a sticker in front of the others in its layer.
+    private func bringToFront(_ node: StickerNode) {
+        guard let layer = node.parent else { return }
+        restack(layer, front: node)
+    }
+
+    /// Renumbers a layer's stickers 1…n in their current order (`front`, if
+    /// given, last), squeezed into `layerDepth` when there are more than
+    /// that, so no sticker's z ever leaves its layer's band. A held sticker
+    /// keeps floating.
+    private func restack(_ layer: SKNode, front: StickerNode? = nil) {
+        let resting = layer.children.compactMap { $0 as? StickerNode }
+            .filter { $0 === front || $0.zPosition < Self.liftedZ }
+            .sorted { a, b in
+                if a === front { return false }
+                if b === front { return true }
+                return a.zPosition < b.zPosition
+            }
+        let step = min(1, Self.layerDepth / CGFloat(max(resting.count, 1)))
+        for (index, node) in resting.enumerated() {
+            node.zPosition = CGFloat(index + 1) * step
+        }
     }
 
     // MARK: Selection & controls
@@ -1067,7 +1098,7 @@ final class CanvasScene: SKScene {
             initialNodePosition: node.position,
             initialMidpoint: CGPoint(x: (a.x + b.x) / 2, y: (a.y + b.y) / 2),
             beforeSnapshot: beforeSnapshot)
-        node.zPosition = 10000
+        node.zPosition = Self.liftedZ
         node.setLifted(true)
         softHaptic.impactOccurred()
     }
@@ -1124,7 +1155,7 @@ final class CanvasScene: SKScene {
         }
 
         keepOnCanvas(node)
-        node.zPosition = nextZ()
+        bringToFront(node)
         node.setLifted(false)
         node.run(.sequence([
             .scale(to: node.baseScale * 0.95, duration: 0.08),
@@ -1149,8 +1180,10 @@ final class CanvasScene: SKScene {
             targetLayer = foregroundStickers
         }
         // Both layer nodes sit at the scene origin, so position carries over.
+        let source = sticker.parent
         sticker.move(toParent: targetLayer)
-        sticker.zPosition = nextZ()
+        bringToFront(sticker)
+        if let source { restack(source) }
         refreshSelectionBubble()  // fresh layer glyph
         // A quick dip-and-return sells the "went behind / came forward" change.
         sticker.run(.sequence([
@@ -1181,7 +1214,11 @@ final class CanvasScene: SKScene {
     func snapshot() -> CanvasState {
         var placed: [PlacedSticker] = []
         for (layerNode, layer) in [(backgroundStickers, CanvasLayer.background), (foregroundStickers, .foreground)] {
-            for case let node as StickerNode in layerNode.children where !node.isVisitor {
+            // zOrder is the sticker's rank in its layer (1 = back): the z
+            // values themselves are squeezed into the layer's band.
+            let ordered = layerNode.children.compactMap { $0 as? StickerNode }
+                .filter { !$0.isVisitor }.sorted { $0.zPosition < $1.zPosition }
+            for (rank, node) in ordered.enumerated() {
                 // `placement` is the child's base even mid-effect (play mode).
                 let placement = node.placement
                 placed.append(
@@ -1192,7 +1229,7 @@ final class CanvasScene: SKScene {
                             x: placement.x / max(worldSize.width, 1),
                             y: placement.y / max(worldSize.height, 1)),
                         layer: layer,
-                        zOrder: Int(node.zPosition),
+                        zOrder: rank + 1,
                         scale: placement.scale,
                         rotation: placement.rotation))
             }
@@ -1328,12 +1365,12 @@ final class CanvasScene: SKScene {
                 shadow: shadow(for: plan.stickerID))
             node.isVisitor = true
             node.position = CGPoint(x: plan.target.x, y: plan.target.y)
-            node.zPosition = nextZ()
             // Its placement is where it lands; the entrance is a delta on
             // it that keeps it hidden until its moment.
             node.effectBase = StickerPlacement(x: plan.target.x, y: plan.target.y, rotation: 0, scale: 1)
             node.alpha = 0
             foregroundStickers.addChild(node)
+            bringToFront(node)
             visitors[node.instanceID] = plan
         }
         return visitors
@@ -1508,7 +1545,10 @@ final class CanvasScene: SKScene {
             let parent = placed.layer == .foreground ? foregroundStickers : backgroundStickers
             parent.addChild(node)
         }
-        nextZOrder = CGFloat((state.stickers.map(\.zOrder).max() ?? 0) + 1)
+        // Canvases saved before the layer band existed carry ever-growing
+        // zOrders; renumbering keeps their order and brings them back in.
+        restack(backgroundStickers)
+        restack(foregroundStickers)
     }
 
     func undo() {
