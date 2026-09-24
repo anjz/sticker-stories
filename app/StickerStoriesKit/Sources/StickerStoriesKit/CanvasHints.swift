@@ -29,8 +29,8 @@ public protocol HintProgressStore: Sendable {
 /// unit-tested.
 public struct CanvasHintSchedule: Sendable {
     public static let idleDelay: TimeInterval = 10
-    /// On the first visit ever: just long enough for the canvas to settle.
-    public static let firstVisitDelay: TimeInterval = 1.5
+    /// On the first visit ever: a few seconds to take the canvas in first.
+    public static let firstVisitDelay: TimeInterval = 3
 
     public private(set) var used: Set<CanvasHint>
     public private(set) var shown: Set<CanvasHint> = []

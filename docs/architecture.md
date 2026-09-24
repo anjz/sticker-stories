@@ -180,7 +180,7 @@ sample sticker (`CanvasHintDemo`): a hand made with `uiart`
 (`Art/hint-hand.webp`) pinches the sample bigger and turns it, or taps it
 and then the real selection bubble's layer button so it slips behind
 the foreground art and back. The scene plays them after 10 s with no
-touch (`CanvasHintSchedule`, Kit, tested) — or 1.5 s after the canvas
+touch (`CanvasHintSchedule`, Kit, tested) — or 3 s after the canvas
 appears on the very first visit to any pack since install (an app-wide
 flag, set when that first pack opens) — outside stories and dialogs,
 only for gestures the child has **never** used (app-wide flags in
