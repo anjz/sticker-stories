@@ -62,6 +62,9 @@ type uiConfig struct {
 	Cover      coverSpec `json:"cover"`
 	// Store is the main menu tile that opens the store (More stories).
 	Store assetSpec `json:"store"`
+	// Hand is the pointing hand the canvas's hints show (how to pinch a
+	// sticker, how to use the layer button).
+	Hand assetSpec `json:"hand"`
 }
 
 type assetSpec struct {
@@ -139,7 +142,7 @@ func runRender(args []string) error {
 	fs := flag.NewFlagSet("render", flag.ExitOnError)
 	artDir := fs.String("art", filepath.Join("author", "art", "app"), "art directory holding ui.json")
 	packsDir := fs.String("packs", filepath.Join("..", "packs"), "folder of packs (for covers)")
-	only := fs.String("only", "", "comma-separated: background, title, store, cover (every pack), cover:<pack>")
+	only := fs.String("only", "", "comma-separated: background, title, store, hand, cover (every pack), cover:<pack>")
 	count := fs.Int("count", 0, "candidates per asset (default: ui.json's candidates, or 4)")
 	more := fs.Int("more", 0, "add this many candidates beyond those already there")
 	fresh := fs.Bool("fresh", false, "archive the existing candidates and start a new set")
@@ -192,6 +195,13 @@ func runRender(args []string) error {
 			j.prompt += " The attached image is the app's home screen background: the title sits across its upper centre. Do not draw that background — use it only to choose colours that stand out clearly against it."
 		}
 		jobs = append(jobs, j)
+	}
+	if want("hand") && cfg.Hand.Prompt != "" {
+		jobs = append(jobs, job{
+			key: "hand", dir: filepath.Join(out, "hand"), size: cfg.Hand.Size, transparent: true,
+			prompt: style + "\n\n" + strings.TrimSpace(cfg.Hand.Prompt) +
+				"\n\nOne hand only, pointing straight up, the tip of the index finger at the very top of the picture. A fully transparent background: no scenery, no shadow on the ground, no text, no frame.",
+		})
 	}
 	packs, err := listPacks(*packsDir)
 	if err != nil {
@@ -563,7 +573,7 @@ func runPick(args []string) error {
 	packsDir := fs.String("packs", filepath.Join("..", "packs"), "folder of packs (for covers)")
 	fs.Parse(args)
 	if fs.NArg() != 2 {
-		return errors.New("usage: uiart pick <background|title|store|cover:<pack>> <n>")
+		return errors.New("usage: uiart pick <background|title|store|hand|cover:<pack>> <n>")
 	}
 	key := fs.Arg(0)
 	n, err := strconv.Atoi(fs.Arg(1))
@@ -589,6 +599,17 @@ func runPick(args []string) error {
 		return install(img, filepath.Join(appArtDir, "menu-background.webp"))
 	case key == "store":
 		return install(img, filepath.Join(appArtDir, "menu-store.webp"))
+	case key == "hand":
+		// Trimmed like the title: the app finds the fingertip at the top
+		// of the art, so no margin above it.
+		stickerimg.StripEdgeCrumbs(img, 8, 0.02, 0.12)
+		box := stickerimg.Bounds(img, 8)
+		if box.Empty() {
+			return errors.New("the hand candidate is fully transparent")
+		}
+		trimmed := image.NewRGBA(image.Rect(0, 0, box.Dx(), box.Dy()))
+		draw.Draw(trimmed, trimmed.Bounds(), img, box.Min, draw.Src)
+		return install(trimmed, filepath.Join(appArtDir, "hint-hand.webp"))
 	case key == "title":
 		// Trim the transparent surround so the app can size the title by
 		// its lettering; small smudges the generator left on the edges
@@ -632,7 +653,7 @@ func runPick(args []string) error {
 		fmt.Printf("✓ %s: cover set in the manifest (version %d); manifest validates\n", id, m.Version)
 		return nil
 	}
-	return fmt.Errorf("unknown asset %q (background, title, store or cover:<pack>)", key)
+	return fmt.Errorf("unknown asset %q (background, title, store, hand or cover:<pack>)", key)
 }
 
 // install writes img as WebP (lossy q90, lossless alpha) at dst.
