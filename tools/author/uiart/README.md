@@ -2,7 +2,8 @@
 
 Makes the art that belongs to the app rather than to a pack — the main
 screen's **background**, the **"Sticker Stories" title**, the **store
-tile** (the menu's More stories card) and every pack's **cover** — as a
+tile** (the menu's More stories card), every pack's **cover** and the
+**hand** of the canvas's gesture hints — as a
 few alternatives each, and installs the one you choose.
 Dev-time only; needs `OPENAI_API_KEY` in `tools/.env`.
 
@@ -59,6 +60,7 @@ transparent background for the title, no borders.
 | `background` | `app/StickerStories/Art/menu-background.webp` | Bundled with the app. |
 | `title` | `app/StickerStories/Art/menu-title.webp` | Trimmed to the lettering (with a small margin), alpha kept. |
 | `store` | `app/StickerStories/Art/menu-store.webp` | The More stories card; without it the card keeps its gradient and gift. |
+| `hand` | `app/StickerStories/Art/hint-hand.webp` | The pointing hand of the canvas's gesture hints (`CanvasHintDemo`). Trimmed to the art with no margin: the app takes the topmost point as the fingertip, so the finger must point straight up. |
 | `cover:<pack>` | `packs/<pack>/art/cover.webp` | Sets the manifest's `cover` (`docs/pack-format.md`), bumps the pack version, validates. |
 
 Everything is written as WebP (lossy q90, lossless alpha), like the packs'
