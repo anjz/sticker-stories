@@ -35,6 +35,9 @@ final class CanvasHintDemo {
     private var nodes: [SKNode] = []
     private let driver = SKNode()
     private var bubble: SelectionBubbleNode?
+    /// Where the layer demo's bubble will open, worked out before the
+    /// sticker pops in (its frame is only its real size before that).
+    private var pendingBubblePosition: CGPoint?
 
     init(stage: Stage) {
         self.stage = stage
@@ -67,6 +70,7 @@ final class CanvasHintDemo {
         }
         nodes.removeAll()
         bubble = nil
+        pendingBubblePosition = nil
     }
 
     // MARK: Pinch
@@ -124,14 +128,25 @@ final class CanvasHintDemo {
     /// (the sticker slips behind the scenery), taps it again (it comes
     /// back to the front) and leaves.
     private func playLayer(_ sticker: StickerNode, completion: @escaping () -> Void) {
-        // The art is a left hand seen from the back; mirrored it is the
-        // right hand most children tap with, pointing up and a little left.
-        let hand = makeHand(mirrored: true)
-        let ring = makeRing()
         let centre = sticker.position
         let size = sticker.size.width
-        let start = CGPoint(x: centre.x + size * 0.9, y: centre.y - size * 0.9)
-        var button = centre
+        // The hand comes from the side the bubble opens on (above the
+        // sticker unless it is near the top) so it never covers the
+        // sticker while it goes behind the scenery and comes back.
+        let bubbleAt = stage.bubblePosition(sticker.calculateAccumulatedFrame())
+        pendingBubblePosition = bubbleAt
+        let fromAbove = bubbleAt.y > centre.y
+        // The art is a left hand seen from the back. From above it hangs
+        // down pointing down and a little left; from below it is the right
+        // hand (mirrored), pointing up and a little left.
+        let hand = makeHand(mirrored: !fromAbove)
+        if fromAbove { hand.zRotation = .pi - 0.35 }
+        let ring = makeRing()
+        let side: CGFloat = fromAbove ? 1 : -1
+        let start = CGPoint(x: centre.x + size * 0.9, y: centre.y + side * size * 1.3)
+        // The first tap lands on the sticker's edge nearest the hand.
+        let onSticker = CGPoint(x: centre.x, y: centre.y + side * sticker.size.height * 0.25)
+        var button = onSticker
         var events = Set<Int>()
 
         let step = SKAction.customAction(withDuration: Self.layerDuration) { [weak self] _, elapsed in
@@ -162,13 +177,14 @@ final class CanvasHintDemo {
             let toSticker = Self.ease(t, 0.35, 0.95)
             let toButton = Self.ease(t, 1.45, 2.05)
             var tip = CGPoint(
-                x: start.x + (centre.x - start.x) * CGFloat(toSticker),
-                y: start.y + (centre.y - start.y) * CGFloat(toSticker))
+                x: start.x + (onSticker.x - start.x) * CGFloat(toSticker),
+                y: start.y + (onSticker.y - start.y) * CGFloat(toSticker))
             tip.x += (button.x - tip.x) * CGFloat(toButton)
             tip.y += (button.y - tip.y) * CGFloat(toButton)
             let pressed = [0.95, 2.15, 3.75].map { Self.ease(t, $0, $0 + 0.12) - Self.ease(t, $0 + 0.2, $0 + 0.32) }.max() ?? 0
+            // It leaves the way it came.
             let drop = self.stage.handHeight * 0.3 * CGFloat(leave)
-            hand.position = CGPoint(x: tip.x + drop * 0.5, y: tip.y - drop)
+            hand.position = CGPoint(x: tip.x + drop * 0.5, y: tip.y + side * drop)
             hand.alpha = CGFloat(Self.ease(t, 0.2, 0.5) * (1 - leave))
             Self.press(hand, by: 0.08 * CGFloat(pressed))
             ring.position = tip
@@ -181,7 +197,7 @@ final class CanvasHintDemo {
     }
 
     private func showBubble(for sticker: StickerNode, animated: Bool) {
-        let position = bubble?.position ?? stage.bubblePosition(sticker.calculateAccumulatedFrame())
+        let position = bubble?.position ?? pendingBubblePosition ?? stage.bubblePosition(sticker.calculateAccumulatedFrame())
         bubble?.removeFromParent()
         let new = SelectionBubbleNode(target: sticker)
         new.zPosition = 900
