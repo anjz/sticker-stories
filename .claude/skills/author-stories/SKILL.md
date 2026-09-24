@@ -133,8 +133,8 @@ exactly per `FORMAT.md`:
   one of them in the words (a sticker that is never named has nowhere to
   enter); where the story allows, make the first mention an arrival
   ("along came Fox", "Owl fluttered down") that suits its entrance and
-  its area (the owl up high, the frog in the pond, the tree standing on
-  the floor), but it must also read fine when the sticker was on the
+  its area (the bee up in the air, the owl fluttering down to perch, the
+  frog in the pond, the tree standing on the floor), but it must also read fine when the sticker was on the
   canvas all along. Cue nothing on a sticker before its entrance except
   a `float` loop or a face;
 - a live cue (`{bear:live}` — see FORMAT "Live cues", GUIDE "Live
