@@ -34,6 +34,16 @@ import Testing
         #expect(schedule.due(idleFor: 10) == [.layer])
     }
 
+    @Test func theFirstVisitEverStartsRightAway() {
+        var schedule = CanvasHintSchedule(used: [], isFirstVisit: true)
+        #expect(schedule.due(idleFor: 1).isEmpty)
+        #expect(schedule.due(idleFor: CanvasHintSchedule.firstVisitDelay) == [.pinch, .layer])
+        // Anything postponed then waits the usual idle spell.
+        schedule.postpone([.layer])
+        #expect(schedule.due(idleFor: 2).isEmpty)
+        #expect(schedule.due(idleFor: 10) == [.layer])
+    }
+
     @Test func usingAGestureRetiresItsHint() {
         var schedule = CanvasHintSchedule(used: [])
         schedule.markUsed(.layer)
