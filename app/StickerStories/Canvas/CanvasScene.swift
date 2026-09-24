@@ -226,6 +226,9 @@ final class CanvasScene: SKScene {
     private var sceneTime: TimeInterval = 0
     private var hintDemo: CanvasHintDemo?
     private var hintQueue: [CanvasHint] = []
+    /// The child touched the canvas while a hint played: the queued ones
+    /// wait for the next idle spell.
+    private var touchedDuringHint = false
     /// Off while something covers the canvas (the clear confirmation).
     var hintsAllowed = true {
         didSet { if !hintsAllowed { cancelHints() } }
@@ -703,10 +706,11 @@ final class CanvasScene: SKScene {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         cameraNode.removeAction(forKey: Self.panHintActionKey)
-        // Any touch ends a hint at once (before hit-testing, so the sample
-        // sticker is gone) and restarts the idle clock.
-        cancelHints()
+        // A hint plays to its end whatever the child does (its sample and
+        // bubble ignore touches); a touch only restarts the idle clock and
+        // holds the next hint back for another idle spell.
         noteActivity()
+        if hintDemo != nil { touchedDuringHint = true }
         guard !isPlayLocked else {
             // Editing is locked while a story plays, but looking around is
             // fine: any touch pans.
@@ -724,7 +728,10 @@ final class CanvasScene: SKScene {
 
             if let (control, sticker) = controlHit(in: hits) {
                 handleControlTap(control, on: sticker)
-            } else if hits.contains(where: { self.ancestor(of: $0, as: SelectionBubbleNode.self) != nil }) {
+            } else if hits.contains(where: {
+                guard let bubble = self.ancestor(of: $0, as: SelectionBubbleNode.self) else { return false }
+                return bubble.target?.isVisitor != true  // a hint's bubble is only there to be watched
+            }) {
                 // Tap on the bubble's chrome (not a button): ignore, so a
                 // near-miss doesn't deselect or drop a sticker behind it.
             } else if let trayItem = hits.lazy.compactMap({ self.ancestor(of: $0, as: TrayItemNode.self) }).first {
@@ -772,7 +779,8 @@ final class CanvasScene: SKScene {
         var best: StickerNode?
         var bestZ = -CGFloat.infinity
         for node in hits {
-            guard let sticker = ancestor(of: node, as: StickerNode.self) else { continue }
+            // A hint's sample sticker is only there to be watched.
+            guard let sticker = ancestor(of: node, as: StickerNode.self), !sticker.isVisitor else { continue }
             let z = (sticker.parent?.zPosition ?? 0) + sticker.zPosition
             if z > bestZ {
                 bestZ = z
@@ -885,7 +893,7 @@ final class CanvasScene: SKScene {
             if let name = node.name,
                 name.hasPrefix(SelectionBubbleNode.ControlName.prefix),
                 let bubble = ancestor(of: node, as: SelectionBubbleNode.self),
-                let sticker = bubble.target {
+                let sticker = bubble.target, !sticker.isVisitor {
                 return (name, sticker)
             }
         }
@@ -1560,10 +1568,15 @@ final class CanvasScene: SKScene {
         hintProgress.markUsed(hint)
     }
 
+    /// Stops a hint for things that end the canvas moment — a story
+    /// starting, a dialog, the window changing size — never for a touch.
+    /// Hints that did not get to play are offered again later.
     private func cancelHints() {
         hintDemo?.cancel()
         hintDemo = nil
+        hintSchedule.postpone(hintQueue)
         hintQueue.removeAll()
+        touchedDuringHint = false
     }
 
     /// Starts the due hints once the canvas has been left alone long
@@ -1585,6 +1598,11 @@ final class CanvasScene: SKScene {
     }
 
     private func playNextHint() {
+        if touchedDuringHint {
+            touchedDuringHint = false
+            hintSchedule.postpone(hintQueue)
+            hintQueue.removeAll()
+        }
         guard !hintQueue.isEmpty, let art = handArt else {
             hintDemo = nil
             noteActivity()

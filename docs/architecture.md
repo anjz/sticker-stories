@@ -184,7 +184,11 @@ touch (`CanvasHintSchedule`, Kit, tested), outside stories and dialogs,
 only for gestures the child has **never** used (app-wide flags in
 UserDefaults, `UserDefaultsHintProgress`; local UI state, see
 `docs/compliance.md`), each at most once per visit to a pack, both in a
-row when both are due. Any touch cancels a demo at once. The sample is
+row when both are due. A demo plays to its end even if the child
+touches the screen (the child can keep playing; the sample and its
+bubble ignore touches), and a hint queued behind it then waits for the
+next idle spell; only a story starting, a dialog or the window changing
+size stops one. The sample is
 never part of the canvas (not saved, not undoable); it goes where
 `HintPlacement` scores best — open ground for the pinch, half over the
 foreground art for the layer button. DEBUG: `-hintsDemo` shows both
