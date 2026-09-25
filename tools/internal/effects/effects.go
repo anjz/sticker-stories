@@ -85,6 +85,7 @@ var (
 	knownLiveKeys   = set("at", "cue", "sticker", "animation", "mode")
 	knownFaceKeys   = set("at", "cue", "sticker", "expression")
 	knownEnterKeys  = set("at", "cue", "sticker", "enter")
+	knownGoKeys     = set("at", "cue", "sticker", "go", "target")
 	colorPattern    = regexp.MustCompile(`^#[0-9A-Fa-f]{6}$`)
 )
 
@@ -161,19 +162,20 @@ func (e Expressions) has(sticker, id string) bool {
 // maps sticker IDs the pack defines, animations their live animations;
 // setting is the pack's setting (docs/pack-format.md). Every problem found
 // is returned.
-func ValidateFile(path string, declared map[string]bool, animations Animations, expressions Expressions, setting string) []error {
+func ValidateFile(path string, declared map[string]bool, animations Animations, expressions Expressions, features map[string]bool, setting string) []error {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return []error{fmt.Errorf("reading effects file: %w", err)}
 	}
-	return Validate(data, declared, animations, expressions, setting)
+	return Validate(data, declared, animations, expressions, features, setting)
 }
 
 // Validate strictly validates the raw JSON of a trigger sidecar. declared
 // maps the pack's sticker IDs (nil skips that check) and animations the
-// live animations each declares (nil skips that check); setting is the
-// pack's setting, which every canvas trigger must suit.
-func Validate(data []byte, declared map[string]bool, animations Animations, expressions Expressions, setting string) []error {
+// live animations each declares (nil skips that check); features the
+// pack's named places a move may go to (nil skips that check); setting is
+// the pack's setting, which every canvas trigger must suit.
+func Validate(data []byte, declared map[string]bool, animations Animations, expressions Expressions, features map[string]bool, setting string) []error {
 	var errs []error
 	fail := func(format string, args ...any) {
 		errs = append(errs, fmt.Errorf(format, args...))
@@ -223,6 +225,10 @@ func Validate(data []byte, declared map[string]bool, animations Animations, expr
 		// has an effect; otherwise the effect name says which.
 		if _, ok := fields["enter"]; ok {
 			validateEnterTrigger(label, fields, declared, entered, fail)
+			continue
+		}
+		if _, ok := fields["go"]; ok {
+			validateGoTrigger(label, fields, declared, features, fail)
 			continue
 		}
 		if _, ok := fields["expression"]; ok {
@@ -410,6 +416,62 @@ func validateFaceTrigger(label string, fields map[string]json.RawMessage, declar
 		if err := json.Unmarshal(raw, &s); err != nil {
 			fail("%s: cue must be a string", label)
 		}
+	}
+}
+
+// Move kinds (docs/effects.md, "Movement"): beside another sticker or to
+// a place (to), on or under another sticker, off the canvas (away), back
+// to its own spot (back).
+var goKinds = set("to", "on", "under", "away", "back")
+
+// validateGoTrigger checks a move: one sticker (never all), a kind, a
+// target for to (a sticker or a feature), on and under (a sticker), none
+// for away and back, at and an optional cue.
+func validateGoTrigger(label string, fields map[string]json.RawMessage, declared, features map[string]bool, fail func(string, ...any)) {
+	for _, k := range sortedKeys(fields) {
+		if !knownGoKeys[k] {
+			fail("%s: %s is not used by a move; remove it", label, k)
+		}
+	}
+	sticker := requireString(label, "sticker", fields, fail)
+	if sticker == AllStickers {
+		fail("%s: a move names one sticker, not %q", label, AllStickers)
+	} else if sticker != "" && declared != nil && !declared[sticker] {
+		fail("%s: sticker %q is not declared in the manifest", label, sticker)
+	}
+	kind := requireString(label, "go", fields, fail)
+	if kind != "" && !goKinds[kind] {
+		fail("%s: go must be one of to, on, under, away, back, got %q", label, kind)
+	}
+	var target string
+	if raw, ok := fields["target"]; ok {
+		if err := json.Unmarshal(raw, &target); err != nil || target == "" {
+			fail("%s: target must be a non-empty string", label)
+		}
+	}
+	switch kind {
+	case "to", "on", "under":
+		switch {
+		case target == "":
+			fail("%s: go %s needs a target", label, kind)
+		case target == sticker:
+			fail("%s: a sticker cannot go %s itself", label, kind)
+		case declared != nil && !declared[target] && (kind != "to" || features == nil || !features[target]):
+			if kind == "to" {
+				fail("%s: target %q is neither a declared sticker nor a feature", label, target)
+			} else {
+				fail("%s: target %q is not a declared sticker", label, target)
+			}
+		}
+	case "away", "back":
+		if target != "" {
+			fail("%s: go %s takes no target", label, kind)
+		}
+	}
+	if raw, ok := fields["at"]; !ok {
+		fail("%s: at is required", label)
+	} else if at, ok := number(raw); !ok || at < 0 {
+		fail("%s: at must be a number >= 0", label)
 	}
 }
 

@@ -190,6 +190,7 @@ func printLive(pack story.Manifest, cov story.Coverage) {
 	if len(ids) == 0 {
 		return
 	}
+	fmt.Printf("  moves: %d of %d stories move a sticker ({sticker:go …})\n", cov.GoStories, cov.Stories)
 	fmt.Printf("  live stickers ({sticker:live}; %d of %d stories play one):\n", cov.LiveStories, cov.Stories)
 	for _, id := range ids {
 		for _, a := range pack.Animations[id] {
@@ -248,6 +249,9 @@ func printStages(pack story.Manifest) {
 			fmt.Printf("    %s: %s\n", k, strings.Join(groups[k], ", "))
 		}
 	}
+	movers := append(append([]string{}, groups["hop"]...), groups["fly"]...)
+	fmt.Printf("  moves ({sticker:go to X}, go on X, go under X, go to <place>, go away, go back): %s can move; %s stay put\n",
+		strings.Join(movers, ", "), strings.Join(groups["grow"], ", "))
 	if len(pack.Features) == 0 {
 		return
 	}

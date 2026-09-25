@@ -42,7 +42,10 @@ final class EffectApplier {
             owned.insert(id)
             let composed = EffectTransformMath.compose(
                 node.effectBase!, with: delta,
-                unscaledWidth: node.size.width, unscaledHeight: node.size.height)
+                // The sprite's size includes the scale the last frame gave it
+                // (a sticker shrinking onto a flower), and a mirrored one's is
+                // negative: offsets are measured on the art's own size.
+                unscaledWidth: node.unscaledSize.width, unscaledHeight: node.unscaledSize.height)
             node.applyEffect(composed) { glowMask(node) }
         }
     }

@@ -206,7 +206,8 @@ kinds: an entry whose `effect` is a sticker effect targets a `sticker` (or
 `animation` and no `effect` plays that sticker's live animation, whole or
 (`mode`) up to its pause frame or on from it ("Live animations" below); one with an `expression` and no `effect` changes a
 sticker's face, or everyone's ("Faces" below); one with `"enter": true`
-marks where the story first names a sticker ("Entrances" below).
+marks where the story first names a sticker ("Entrances" below); one with
+`"go"` moves a sticker ("Movement" below).
 
 `packs/forest/audio/en-US/shy-mushroom.effects.json`:
 
@@ -224,8 +225,8 @@ marks where the story first names a sticker ("Entrances" below).
     { "at": 28.0, "cue": "everyone","sticker": "all",      "effect": "hop" },
     { "at": 30.2, "cue": "yawned",  "sticker": "bear",     "animation": "yawn" },
     { "at": 31.0, "cue": "hid",     "sticker": "snail",    "animation": "hide", "mode": "hold" },
-    { "at": 38.4, "cue": "peeked",  "sticker": "snail",    "animation": "hide", "mode": "resume" },
-    { "at": 33.0, "cue": "owl",     "sticker": "owl",      "enter": true },
+    { "at": 38.4, "cue": "peeked",  "sticker": "snail",    "animation": "hide", "mode": "resume" },    { "at": 33.0, "cue": "owl",     "sticker": "owl",      "enter": true },
+    { "at": 36.5, "cue": "flew",    "sticker": "bee",      "go": "on", "target": "flower" },
     { "at": 41.5, "cue": "flies",   "sticker": "bird",     "effect": "fade-out", "hold": true }
   ]
 }
@@ -287,7 +288,9 @@ hold}` / `{snail:live resume}` to stop on its pause frame and go on later),
 happy}`, `{bear:face normal}`), `enter` the reserved effect that marks a
 sticker's first mention (`{owl:enter} Owl`), `all` the reserved target for every
 sticker on the canvas (`{all:hop}`, `{all:face sleeping}`) and
-`sfx:` for sound effects (which are mixed into the
+`go` the reserved effect that moves a sticker (`{fox:go to rabbit}`,
+`{bee:go on flower}`, `{mouse:go under mushroom}`, `{frog:go to pond}`,
+`{fox:go away}`, `{fox:go back}`) and `sfx:` for sound effects (which are mixed into the
 audio, never triggers). The text may also carry Eleven v3 audio tags
 (`[whispers]`) for the narrator. Step 2 of the authoring pipeline
 (`storyaudio`) resolves each cue's `at` from the narration's word
@@ -391,6 +394,52 @@ one per sticker per story, never `all`.
   snaps back to what the child placed).
 - Older apps skip the trigger (it has no `effect`) with a log line, so no
   schema change was needed.
+
+## Movement
+
+A story can move any sticker that walks or flies (its manifest `stage`
+entrance is `hop` or `fly`; things that grow — a flower, a mushroom — stay
+put), placed by the child or visiting, when the words say it goes
+somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"? }`:
+
+| `go` | `target` | where it goes |
+|---|---|---|
+| `to` | a sticker | beside it, on the side it comes from, a little overlapping, feet on the same line (a flyer hovers beside it) |
+| `to` | a feature | the freest spot on screen in that place of the scene (`docs/pack-format.md`, "Features": the pond, the branches) |
+| `on` | a sticker | on top of it: a bee on the flower's head |
+| `under` | a sticker | under it, in front of its base: a mouse under the mushroom's cap |
+| `away` | — | off the canvas by the nearer side; it is gone until it comes back |
+| `back` | — | back to its own spot (where the child put it, or where it came in), in from the side it left by if it went away |
+
+- **It travels as it enters**: walkers walk (their move frames looping)
+  at the pace of their legs, hoppers leap once per loop, flyers glide with
+  their wings going; it turns to face the way it goes (a squash through
+  the turn) and keeps facing that way. The time is not authored: it
+  follows the distance and the sticker's gait (0.8–5 s; a flight
+  1.2–3.4 s). A move cued while an earlier one (or its entrance) is still
+  under way starts when that ends.
+- **On or under**, the mover is at most three quarters the size of the
+  sticker it goes on or under (a sticker already that small keeps its
+  size), and going `to` anything else brings it back to its own size.
+- **Always wholly on screen**: every place a move ends is pushed in from
+  any edge it would cross — on or under a sticker near the edge, that
+  means more overlap, never a cut-off sticker. Only `away` leaves.
+- **The mover is in front**: a sticker that sets off is brought to the
+  front of everything (the front sticker layer, above every sticker) and
+  stays there; the layers and order the child made come back when the
+  story ends.
+- It moves every instance of that sticker on the stage; `to`, `on` and
+  `under` go to the nearest instance of the target. A target that is not
+  on the stage (never placed, never entered) is skipped, and so is the
+  move.
+- Effects, faces and live animations keep playing on a moving sticker;
+  a live action cued during the travel takes over from the move frames.
+- Under Reduce Motion or calm mode it fades out where it is and in where
+  it goes (0.8 s), without frames or turning.
+- The story's end puts every placed sticker back exactly where the child
+  left it (P4); visitors leave.
+- Older apps skip the trigger (it has no `effect`) with a log line. No
+  schema change.
 
 ## Accessibility and calm mode
 

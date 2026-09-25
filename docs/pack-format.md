@@ -255,7 +255,8 @@ never letterboxes:
     `fly` or `grow`, and `on` (declared `features`, no repeats) and/or an
     `area` whose `x` and `y` are each `[min, max]` with
     0 ≤ min < max ≤ 1.
-15. Every `features` id is lowercase `a-z0-9-`, has a non-empty
+15. Every `features` id is lowercase `a-z0-9-`, differs from every
+    sticker id (a move's target, `{frog:go to pond}`, may be either), has a non-empty
     `description` (the packager checks it; the app ignores it) and at
     least one area, each valid like a stage `area`.
 

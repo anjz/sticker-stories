@@ -656,3 +656,57 @@ func TestEnterCues(t *testing.T) {
 		t.Errorf("a possessive is a mention, got %d", i)
 	}
 }
+
+func TestGoCues(t *testing.T) {
+	cat := testCatalog(t)
+	pack := forest
+	pack.Stages = map[string]string{"fox": "hop", "rabbit": "hop", "owl": "fly", "flower": "grow", "tree": "grow"}
+	pack.Features = map[string]string{"pond": "the pond"}
+	withText := func(en string) *Story {
+		s := goodStory()
+		for _, lang := range []string{"en-US", "es-ES"} {
+			l := s.Languages[lang]
+			l.Text += en
+			s.Languages[lang] = l
+		}
+		return s
+	}
+	cues, _, errs := ParseCues("{fox:go to rabbit} a {fox:go on flower} b {fox:go under tree} c {fox:go to pond} d {fox:go away} e {fox:go back} f")
+	if len(errs) != 0 || cues[0].GoKind != GoTo || cues[0].Target != "rabbit" || cues[1].GoKind != GoOn || cues[4].GoKind != GoAway || cues[4].Target != "" {
+		t.Fatalf("go cues parsed wrong: %+v %v", cues, errs)
+	}
+	ok := " {fox:go to rabbit} Fox trotted over, {fox:go on flower} climbed up, {fox:go to pond} went to the pond, {fox:go away} ran off {fox:go back} and came back."
+	if is := Validate(withText(ok), pack, cat); len(is.Errors) != 0 || len(is.Warnings) != 0 {
+		t.Fatalf("moves after the entrances are fine: %v %v", is.Errors, is.Warnings)
+	}
+	for _, tc := range []struct{ text, want string }{
+		{" {flower:go to fox} x.", "only walkers and flyers move"},
+		{" {fox:go to owl} x.", "neither featured nor supporting"},
+		{" {fox:go on fox} x.", "cannot go on itself"},
+		{" {fox:go under} x.", "needs a target"},
+		{" {fox:go away rabbit} x.", "takes no target"},
+		{" {fox:go} x.", "say where it goes"},
+		{" {all:go away} x.", "names one sticker"},
+		{" {fox:go to rabbit 2s} x.", "only where it goes"},
+		{" {fox:go on pond} x.", "neither featured nor supporting"},
+	} {
+		is := Validate(withText(tc.text), pack, cat)
+		if !strings.Contains(strings.Join(is.Errors, "\n"), tc.want) {
+			t.Errorf("%s: want an error containing %q, got %v", tc.text, tc.want, is.Errors)
+		}
+	}
+	// A move before the mover or the target is on stage.
+	early := goodStory()
+	for _, lang := range []string{"en-US", "es-ES"} {
+		l := early.Languages[lang]
+		l.Text = "{fox:go to rabbit} " + l.Text
+		early.Languages[lang] = l
+	}
+	if e := strings.Join(Validate(early, pack, cat).Errors, "\n"); !strings.Contains(e, "moves before it enters") || !strings.Contains(e, "not on stage yet") {
+		t.Errorf("early move: %v", e)
+	}
+	gone := " {fox:go away} Off he ran. {fox:hop} Hop."
+	if w := strings.Join(Validate(withText(gone), pack, cat).Warnings, "\n"); !strings.Contains(w, "has gone away") {
+		t.Errorf("a cue on a sticker that went away should warn: %v", w)
+	}
+}

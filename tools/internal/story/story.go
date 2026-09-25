@@ -220,6 +220,23 @@ const Normal = "normal"
 // word that first names it; it takes no parameters.
 const EnterEffect = "enter"
 
+// GoEffect is the reserved cue effect that moves a sticker
+// (docs/effects.md, "Movement"): {fox:go to rabbit} (beside it),
+// {frog:go to pond} (a feature), {bee:go on flower}, {mouse:go under
+// mushroom}, {fox:go away} (off the canvas), {fox:go back} (to its own
+// spot). Only stickers that walk or fly move (a stage entrance of hop or
+// fly); the target must be on stage already.
+const GoEffect = "go"
+
+// Move kinds.
+const (
+	GoTo    = "to"
+	GoOn    = "on"
+	GoUnder = "under"
+	GoAway  = "away"
+	GoBack  = "back"
+)
+
 // MaxLiveCues is how many live animations one story may start per language
 // before a warning (a hold and its resume count once): they tell the
 // story's moments, but a stage that never stops moving tells none.
@@ -234,6 +251,8 @@ type Cue struct {
 	Canvas     bool
 	Animation  string // a live cue's animation id; "" = the sticker's only one
 	Expression string // a face cue's expression
+	GoKind     string // a move's kind: to, on, under, away, back
+	Target     string // a move's target: a sticker or (to) a feature
 	Sound      bool
 	Solo       bool
 	Effect     string
@@ -576,6 +595,10 @@ func parseCue(inner string) (Cue, error) {
 			c.Solo = true
 		case p == LiveResume && c.Effect == LiveEffect:
 			c.Resume = true
+		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind == "" && (p == GoTo || p == GoOn || p == GoUnder || p == GoAway || p == GoBack):
+			c.GoKind = p
+		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind != "" && c.Target == "" && idPattern.MatchString(p):
+			c.Target = p
 		case c.Effect == FaceEffect && c.Sticker != "" && idPattern.MatchString(p) && !numericParam.MatchString(p):
 			if c.Expression != "" {
 				return c, fmt.Errorf("a face cue names one expression")
@@ -936,7 +959,12 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		canvasCues, sounds, liveCues, faceCues, enterCues := 0, len(s.Sound), 0, 0, 0
 		held := map[string]string{} // sticker → the action it holds paused
 		enterAt := map[string]int{}
+		away := map[string]bool{}  // stickers a move took off the canvas
+		moved := map[string]bool{} // stickers a move took somewhere
 		for _, c := range cues {
+			if c.Sticker != "" && away[c.Sticker] && !(c.Effect == GoEffect && c.GoKind == GoBack) {
+				is.warnf("%s: cue %s: %s has gone away (off the canvas) — bring it back first ({%s:%s %s})", lang, c.Raw, c.Sticker, c.Sticker, GoEffect, GoBack)
+			}
 			if c.Sound {
 				sounds++
 				shape = append(shape, SoundTarget+":"+c.Effect)
@@ -967,6 +995,21 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 				if c.Repeat > 0 || c.Loop || c.Hold || c.Color != "" || c.Duration > 0 || c.Intensity != 0 {
 					is.errorf("%s: cue %s: an entrance takes no parameters", lang, c.Raw)
 				}
+				continue
+			}
+			if c.Effect == GoEffect {
+				shape = append(shape, c.Sticker+":go:"+c.GoKind+":"+c.Target)
+				validateGoCue(&is, lang, c, m, inStory, enterAt)
+				switch c.GoKind {
+				case GoAway:
+					away[c.Sticker] = true
+				case GoBack:
+					if !away[c.Sticker] && !moved[c.Sticker] {
+						is.warnf("%s: cue %s: %s has not gone anywhere to come back from", lang, c.Raw, c.Sticker)
+					}
+					delete(away, c.Sticker)
+				}
+				moved[c.Sticker] = true
 				continue
 			}
 			if c.Effect == FaceEffect {
@@ -1334,6 +1377,55 @@ func validateFaceCue(is *Issues, lang string, c Cue, m Manifest) {
 	}
 }
 
+// validateGoCue checks a {sticker:go …} cue: one sticker in the story
+// that can move (it walks or flies: its stage entrance is hop or fly), on
+// stage already (its entrance earlier), a kind, and a target — for to a
+// sticker in the story (on stage already) or a feature of the pack, for on
+// and under a sticker, none for away and back — and nothing else.
+func validateGoCue(is *Issues, lang string, c Cue, m Manifest, inStory map[string]bool, enterAt map[string]int) {
+	if c.Sticker == AllTarget {
+		is.errorf("%s: cue %s: a move names one sticker", lang, c.Raw)
+		return
+	}
+	if !inStory[c.Sticker] {
+		is.errorf("%s: cue %s targets %q, which is neither featured nor supporting", lang, c.Raw, c.Sticker)
+		return
+	}
+	if e, ok := m.Stages[c.Sticker]; ok && e != "hop" && e != "fly" {
+		is.errorf("%s: cue %s: %s stays where it is (its stage entrance is %s); only walkers and flyers move", lang, c.Raw, c.Sticker, e)
+	}
+	if at, ok := enterAt[c.Sticker]; !ok || at > c.WordIndex {
+		is.errorf("%s: cue %s: %s moves before it enters — put {%s:%s} on its first mention, before this", lang, c.Raw, c.Sticker, c.Sticker, EnterEffect)
+	}
+	switch c.GoKind {
+	case GoTo, GoOn, GoUnder:
+		_, feature := m.Features[c.Target]
+		switch {
+		case c.Target == "":
+			is.errorf("%s: cue %s: go %s needs a target (a sticker%s)", lang, c.Raw, c.GoKind, map[bool]string{true: " or a place", false: ""}[c.GoKind == GoTo])
+		case c.Target == c.Sticker:
+			is.errorf("%s: cue %s: a sticker cannot go %s itself", lang, c.Raw, c.GoKind)
+		case c.GoKind == GoTo && feature:
+			// A place in the scene (the pond): always there.
+		case !inStory[c.Target]:
+			is.errorf("%s: cue %s: the target %q is neither featured nor supporting%s", lang, c.Raw, c.Target, map[bool]string{true: ", nor a place in the scene", false: ""}[c.GoKind == GoTo])
+		default:
+			if at, ok := enterAt[c.Target]; !ok || at > c.WordIndex {
+				is.errorf("%s: cue %s: %s is not on stage yet — its {%s:%s} must come before this", lang, c.Raw, c.Target, c.Target, EnterEffect)
+			}
+		}
+	case GoAway, GoBack:
+		if c.Target != "" {
+			is.errorf("%s: cue %s: go %s takes no target", lang, c.Raw, c.GoKind)
+		}
+	default:
+		is.errorf("%s: cue %s: say where it goes — to, on, under, away or back ({fox:go to rabbit}, {bee:go on flower}, {fox:go away})", lang, c.Raw)
+	}
+	if c.Repeat > 0 || c.Loop || c.Hold || c.Color != "" || c.Duration > 0 || c.Intensity != 0 || c.Animation != "" {
+		is.errorf("%s: cue %s: a move takes only where it goes", lang, c.Raw)
+	}
+}
+
 // validateLiveCue checks a {sticker:live} cue: the sticker has the live
 // animation it asks for, hold/resume only on one with a pause frame, and
 // nothing else is set.
@@ -1396,6 +1488,8 @@ type Coverage struct {
 	// one of its live animations; LiveStories the stories that play any.
 	LiveUse     map[string]int
 	LiveStories int
+	// GoStories counts the stories that move a sticker ({fox:go …}).
+	GoStories int
 	// FaceUse counts the stories whose first language shows each
 	// expression; FaceStories those with any face cue, AllStories those
 	// with any cue on every sticker ({all:…}).
@@ -1440,11 +1534,15 @@ func Cover(stories []*Story, m Manifest, expected int) Coverage {
 			nar, _ := Parse(s.Languages[m.Languages[0]].Text)
 			seen := map[string]bool{}
 			usesCanvas, usesSound, usesSolo, usesLive, usesFace, usesAll := false, len(s.Sound) > 0, false, false, false, false
+			usesGo := false
 			for _, cue := range nar.Cues {
 				key := cue.Effect
 				usesAll = usesAll || cue.Sticker == AllTarget
 				switch {
 				case cue.Effect == EnterEffect && !cue.Canvas && !cue.Sound:
+					continue
+				case cue.Effect == GoEffect && !cue.Canvas && !cue.Sound:
+					usesGo = true
 					continue
 				case cue.Effect == FaceEffect && !cue.Canvas && !cue.Sound:
 					usesFace = true
@@ -1475,6 +1573,9 @@ func Cover(stories []*Story, m Manifest, expected int) Coverage {
 			}
 			if usesCanvas {
 				c.CanvasStories++
+			}
+			if usesGo {
+				c.GoStories++
 			}
 			if usesLive {
 				c.LiveStories++

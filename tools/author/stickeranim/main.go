@@ -90,8 +90,8 @@ func (c artConfig) finish() stickerimg.Finish {
 type animConfig struct {
 	// Columns of the assembled sheet (4) and a cap on its size in px
 	// (4096; the frames are downscaled uniformly to fit).
-	Columns    int        `json:"columns"`
-	MaxSheet   int        `json:"maxSheet"`
+	Columns  int `json:"columns"`
+	MaxSheet int `json:"maxSheet"`
 	// StickerPx is the resolution the frames are drawn at, as the size of
 	// the sticker they would make (the rest frame's art fills a sticker
 	// this big): 512 is plenty for a sticker on screen, and a sheet's

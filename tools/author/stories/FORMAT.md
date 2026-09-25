@@ -95,6 +95,7 @@ A cue is `{sticker:effect}` with optional parameters separated by spaces:
 {owl:tint #9AD0FF 1.2s}  colour and one-cycle duration in seconds
 {bird:fade-out hold}     keep the end state
 {fox:sparkle 0.9}        a bare number is intensity (0–1)
+{fox:go to rabbit}       moves the fox beside the rabbit (see "Move cues")
 {bear:live}              the bear's live action (see "Live cues"); {snail:live hold} … {snail:live resume}
 {bear:face happy}        the bear's face from now on (see "Face cues")
 {all:hop}                every sticker on the canvas (see "Everyone: all")
@@ -228,6 +229,33 @@ Snail {snail:live hold} hid in his shell…        up to the pause pose, and sta
   words around an entrance can say how it comes — hops in, flutters
   down, crawls up slowly. Leave a few words after an entrance before a
   live cue on the same sticker, so it has arrived.
+
+### Move cues
+
+A sticker that walks or flies (`storycheck -plan` lists who can move)
+goes somewhere when the words say so, with the reserved effect `go`:
+
+```
+Fox {fox:go to rabbit} trotted over to Rabbit.     beside another character
+Frog {frog:go to pond} hopped back to the pond.    to a place in the scene (a feature)
+The bee {bee:go on flower} landed on the flower.   on top of another character
+Mouse {mouse:go under mushroom} ducked under her cap.   under another character
+Off {fox:go away} ran Fox, out of the meadow.      off the canvas
+…and {fox:go back} back he came.                   back to its own spot
+```
+
+- Put it on the word that starts the movement; the move takes as long
+  as the distance needs (1–5 s), so give it the words it happens in and
+  keep other cues on that sticker until it arrives light (a face is fine).
+- The mover and a target sticker must both be featured or supporting and
+  on stage already: their `{x:enter}` comes earlier. A target place is
+  one of the pack's features (`storycheck -plan` prints them).
+- Only walkers and flyers move (never a flower or a mushroom); `go on`
+  and `go under` shrink the mover to at most three quarters of the other
+  sticker, so they suit a small one on or under a bigger one.
+- After `go away` a sticker is gone: cue nothing else on it until `go
+  back` (a warning).
+- The same beats carry the same moves in every language.
 
 ### Face cues
 

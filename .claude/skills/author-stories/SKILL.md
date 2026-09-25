@@ -161,6 +161,12 @@ exactly per `FORMAT.md`:
   sticker was on the canvas all along; leave a few words before an
   action on a sticker that just entered (it takes 1–6 s to arrive). Cue nothing on a sticker before its entrance except
   a `float` loop or a face;
+- **move cues** (`{fox:go to rabbit}`, `{bee:go on flower}`, `{mouse:go
+  under mushroom}`, `{frog:go to pond}`, `{fox:go away}` … `{fox:go back}`
+  — FORMAT "Move cues", GUIDE "Movement") wherever the words have a
+  character go somewhere: to another character (on stage already), onto
+  or under one, to a place the scene has, off the canvas and back; only
+  walkers and flyers move; most stories have one to four;
 - live cues (`{bear:live}`, `{snail:live hold}` … `{snail:live resume}` —
   see FORMAT "Live cues", GUIDE "Live stickers") as the roster planned
   them: on the words that tell exactly what that action shows, in the
@@ -251,6 +257,10 @@ build step 2 (audio); it is a separate tool.
   on its first mention, put the entrance later than the first mention,
   or describe a sticker where its stage cannot put it (a fox up in the
   clouds, a woodpecker hopping across the meadow).
+- Never move a sticker that stays put (a flower, a mushroom), move one
+  before its entrance or to one that is not on stage yet, put a big
+  character on or under a small one, or cue anything on a sticker that
+  has gone away before it comes back.
 - Never cue a live action on words it contradicts or out of the frames'
   order, resume one that is not held, hold one without a pause pose, or
   pile more than five into a story.
