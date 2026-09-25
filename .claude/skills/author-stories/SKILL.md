@@ -61,11 +61,21 @@ Read, in this order, before writing anything:
    the picture, never from what the real animal or plant usually has** —
    the child is looking at the sticker while the narrator speaks. Put this
    in the roster's cast table.
-3. `docs/effects/effects.json` — the exact library: the 12 sticker effects
+3. **The scene.** Look at the pack's background and foreground
+   (`packs/<packID>/art/background*.webp`, `foreground*.webp`; convert to
+   PNG with `sips -s format png` and draw a grid over them) and read or
+   write `tools/author/stories/<packID>/scene.md` (GUIDE "Match the
+   scene"): every thing the picture shows with where it is (fractions of
+   the base picture), everything a story might expect that it does **not**
+   show (a hill, a stream, a path, a burrow…), and what each canvas effect
+   the setting allows does and does not change (snow falls but the meadow
+   stays green). If scene.md exists, check it against the art — the art
+   may have changed. Every premise and every sentence must fit it.
+4. `docs/effects/effects.json` — the exact library: the 12 sticker effects
    (`effects`) and the canvas effects (`canvasEffects`), what each means,
    which parameters each accepts, and which `settings` each canvas effect
    suits. Use only these names, exactly as spelled.
-4. `tools/author/stories/<packID>/` — existing `plan.md` and stories, if
+5. `tools/author/stories/<packID>/` — existing `plan.md` and stories, if
    any. Never duplicate an existing id or premise; continue the roster.
 
 ## 2. Build the roster (`plan.md`)
@@ -103,6 +113,9 @@ Constraints (the validator checks them on the finished set):
   one concrete, true, observable thing about how the pack's world works,
   each fact used once, spread across the cast; the other rows stay pure
   story;
+- **every premise happens in the scene** (scene.md): the action on the
+  meadow, at the pond, in or under the two trees, among the far bushes —
+  never on a hill, by a stream or down a path the picture does not have;
 - ids are descriptive kebab-case, unique.
 
 Check the roster: `cd tools && go run ./author/storycheck -pack ../packs/<packID> -plan`.
@@ -165,6 +178,10 @@ exactly per `FORMAT.md`:
   when the text mentions one and never cues it: fix every such warning by
   adding the cue, or, if the word is only a comparison ("faster than the
   wind"), by rewording;
+- every place the text puts the action is one the picture shows
+  (scene.md): no hill, stream, path, burrow or house the art lacks, no
+  weather that repaints the scene (snow covering the meadow, trees turning
+  gold), places off stage only in passing (GUIDE "Match the scene");
 - every number, colour or visible feature the text gives a sticker (her
   five spots, the eight yellow petals, his stripy tail) matches the art as
   recorded in the cast table; if a premise needs a feature the sticker
@@ -219,6 +236,10 @@ build step 2 (audio); it is a separate tool.
 - Never state the moral. Never mention a sticker that is not featured or
   supporting. Never rely on an effect — sticker or canvas — for the story
   to make sense.
+- Never set a story, or any moment of it, in a place the scene does not
+  show (a hill, a stream, a path, a cave), make a weather effect claim to
+  repaint the picture (a white meadow, golden trees), or end a story on
+  something that never appears on screen.
 - Never give a sticker a count, colour or feature its art contradicts —
   a ladybug counting seven spots when the sticker shows five is a mistake
   every child will catch.

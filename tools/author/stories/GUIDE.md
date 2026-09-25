@@ -137,6 +137,47 @@ it is necessary, not sufficient: the rules above are the standard.
   Record these in the roster's cast table and write from it; when a premise
   needs a feature the sticker lacks, change the premise.
 
+## Match the scene
+
+Every story plays over the pack's picture — the background and the
+foreground the stickers sit between — and the child is looking at it the
+whole time. So the words may only put the story in places the picture
+has. `tools/author/stories/<pack>/scene.md` is the inventory: what the
+art shows and where (Forest: a flat meadow with daisies, one small round
+pond with lily pads, two big leafy trees at the edges, the far woods, a
+faint ridge of hills far away, grey rocks, ferns and berries in front)
+and, just as important, what it does not (Forest: no near hill or slope,
+no stream or river, no path, log, burrow, cave or house). Write it before
+the roster if it does not exist, looking at the planes themselves
+(`packs/<pack>/art/*.webp`, with a grid drawn over them), and keep it with
+the stories.
+
+- **The action happens where the picture is.** A mouse that cannot cross
+  "the stream", a pinecone rolling "down the hill", a pond "down the hill"
+  are wrong when the child sees a flat meadow and one small pond. Move the
+  moment to what is there (across the pond, over the meadow, behind a
+  rock, round the big tree) or change the premise.
+- **Places off stage are said in passing, never shown.** "On his way to
+  Grandma's", "back to her burrow", "a nest high in the tree" are fine as
+  a phrase; the story never happens there, and never asks the child to
+  look at it.
+- **What a story makes or finds does not appear.** A den Beaver builds, a
+  nest, a leaf pile, a ring of mushrooms: the picture will not show them,
+  so keep them brief and small, and never make the ending depend on
+  seeing one.
+- **The weather does not repaint the picture.** Canvas effects add light,
+  weather and particles over the art; the meadow and the trees stay as
+  painted (scene.md says what each effect shows). Snow falls, but the
+  meadow stays green — "snowflakes fell", not "everything was white";
+  red and gold leaves twirl down, but the trees stay green — "leaves came
+  twirling down", not "the trees turned gold". No puddles, no mud.
+- **Sounds may come from off stage** (another woodpecker drumming far
+  away, crickets in the grass), but not from scenery that should be in
+  sight (a brook bubbling where there is no brook).
+- Describe the scenery the way it looks: the far hills are faint and far
+  away, the pond is small and round with lily pads and one white water
+  lily, the two trees are big and leafy (no acorns or fruit painted).
+
 ## Using sticker effects
 
 The app has exactly 12 sticker effects (`docs/effects/effects.json`,
