@@ -13,24 +13,28 @@
     "funny",
     "learning"
   ],
-  "premise": "The leaves turn red and gold and fall; Fox builds a huge pile and jumps in, and Hedgehog is already inside.",
+  "premise": "The leaves turn red and gold and fall; Fox builds a huge pile, and just before he jumps he hears Hedgehog snoring inside.",
   "inspiration": "The folk 'big jump' pattern (one, two, three, go!), turned into a hide-and-seek surprise: the pile was already somebody's bed.",
   "lesson": "Surprises are more fun when everyone joins in.",
   "learning": "Leaves change colour and fall in autumn",
   "languages": {
     "en-US": {
       "title": "The Great Leaf Pile",
-      "text": "The leaves on the old tree turned red, and orange, and gold. {fox:face happy} [excited] Autumn! said {fox:enter} Fox {fox:hop}. {canvas:wind 0.5 8s} Then the wind blew, {canvas:leaves 0.8 16s} and down they came, twirling and swirling all over the ground. Fox made a pile. A big pile. The BIGGEST pile! {acorn:enter} Acorn {acorn:hop x2} helped push in the little leaves. One… two… three… [excited] Fox jumped in! {fox:spin} {sfx:crunch} CRUNCH! Leaves flew everywhere. And from the very bottom of the pile came a sleepy voice. {fox:face surprised} {acorn:face surprised} [curious] Who's there? {hedgehog:enter} {hedgehog:live} It was Hedgehog! He yawned, curled into a ball, peeked out… and uncurled, covered in leaves. {acorn:face happy} {fox:face happy} [laughs] You look like a little leaf pile yourself! {acorn:wobble} giggled Acorn. {hedgehog:face happy} [happily] So they built it all again, and this time all three {fox:hop} {acorn:hop} jumped in together. {fox:hearts} {acorn:hearts}"
+      "text": "The leaves on the big trees turned red, and orange, and gold. {canvas:wind 0.5 8s} Then the wind blew, whoosh, {canvas:leaves 0.8 20s} and down they came, twirling and swirling to the ground. {hedgehog:enter} Hedgehog came scurrying by, very sleepy. [softly] What a soft bed! {hedgehog:live hold} He tucked in his nose and curled into a ball, deep in the leaves. Along trotted {fox:enter} Fox. {fox:face happy} [excited] Let's make the BIGGEST leaf pile! {acorn:enter} Acorn came running on her little feet. {acorn:hop x2} Together they pushed in leaves, big and small, until the pile was taller than Fox. One… two… {fox:face surprised} WAIT! {fox:live} Fox pricked up his ears, closed his eyes and listened… {sfx:snore} A tiny snore! [curious] {acorn:face surprised} Who's in there? {hedgehog:live resume} Hedgehog uncurled, peeked out and sniffed, covered in leaves from nose to toes. {hedgehog:face happy} [giggles] {acorn:wobble} You look like a leaf pile yourself! laughed Acorn. [happily] {fox:face happy} So all three counted, one, two, THREE… {fox:hop} {acorn:hop} {hedgehog:hop} and jumped in together. {sfx:crunch} CRUNCH!"
     },
     "es-ES": {
       "title": "El gran montón de hojas",
-      "text": "Las hojas del viejo árbol se volvieron rojas, y naranjas, y doradas. {fox:face happy} [excited] ¡Otoño!, dijo {fox:enter} Zorro {fox:hop}. {canvas:wind 0.5 8s} Entonces sopló el viento, {canvas:leaves 0.8 16s} y las hojas bajaron dando vueltas y más vueltas por todo el suelo. Zorro hizo un montón. Un montón grande. ¡El montón MÁS GRANDE! {acorn:enter} Bellota {acorn:hop x2} le ayudó a meter las hojas pequeñas. Una… dos… tres… [excited] ¡Zorro saltó dentro! {fox:spin} {sfx:crunch} ¡CRUNCH! Las hojas volaron por todas partes. Y desde el fondo del montón se oyó una voz dormida. {fox:face surprised} {acorn:face surprised} [curious] ¿Quién anda ahí? {hedgehog:enter} {hedgehog:live} ¡Era Erizo! Bostezó, se hizo una bola, asomó la nariz… y se desenrolló, lleno de hojas. {acorn:face happy} {fox:face happy} [laughs] ¡Pareces un montoncito de hojas!, {acorn:wobble} se rio Bellota. {hedgehog:face happy} [happily] Así que lo volvieron a hacer entero, y esta vez {fox:hop} {acorn:hop} saltaron los tres a la vez. {fox:hearts} {acorn:hearts}"
+      "text": "Las hojas de los árboles grandes se volvieron rojas, y naranjas, y doradas. {canvas:wind 0.5 8s} Entonces sopló el viento, fiuuu, {canvas:leaves 0.8 20s} y las hojas bajaron dando vueltas hasta el suelo. {hedgehog:enter} Erizo pasó correteando, con mucho sueño. [softly] ¡Qué cama tan blandita! {hedgehog:live hold} Escondió la nariz y se hizo una bola, bien hundido entre las hojas. Llegó trotando {fox:enter} Zorro. {fox:face happy} [excited] ¡Vamos a hacer el montón de hojas MÁS GRANDE! {acorn:enter} Bellota llegó corriendo con sus piececitos. {acorn:hop x2} Juntos amontonaron hojas grandes y pequeñas, hasta que el montón fue más alto que Zorro. Una… dos… {fox:face surprised} ¡ESPERA! {fox:live} Zorro levantó las orejas, cerró los ojos y escuchó… {sfx:snore} ¡Un ronquidito! [curious] {acorn:face surprised} ¿Quién hay ahí? {hedgehog:live resume} Erizo se desenrolló, asomó la nariz y olfateó, lleno de hojas hasta las orejas. {hedgehog:face happy} [giggles] {acorn:wobble} ¡Pareces un montoncito de hojas!, se rio Bellota. [happily] {fox:face happy} Así que los tres contaron: una, dos, ¡TRES!… {fox:hop} {acorn:hop} {hedgehog:hop} y saltaron dentro a la vez. {sfx:crunch} ¡CRUNCH!"
     }
   },
   "sounds": {
     "crunch": {
       "prompt": "a small animal jumping into a big crunchy pile of dry autumn leaves",
       "seconds": 1.8
+    },
+    "snore": {
+      "prompt": "one tiny, soft, cute snore of a small sleeping animal",
+      "seconds": 1.2
     }
   }
 }

@@ -12,23 +12,27 @@
     "funny",
     "friendship"
   ],
-  "premise": "Woodpecker knocks on every door to invite everyone to a party; sleepy Owl answers, blinks, and goes straight back to sleep.",
+  "premise": "Woodpecker knocks on every door to invite everyone to a party; sleepy Owl answers, blinks, and goes straight back to sleep until the evening.",
   "inspiration": "The knock-knock rhythm of folk games and the gathering pattern of The Enormous Turnip, turned: the one who can't come is still remembered.",
   "lesson": "Good friends remember the ones who can't join in.",
   "languages": {
     "en-US": {
       "title": "Woodpecker Knocks on Doors",
-      "text": "{woodpecker:enter} Woodpecker {woodpecker:hop} {woodpecker:face happy} had a wonderful idea: a party in the clearing! And he knew just how to invite everyone. {woodpecker:live} He tapped on the tree, {sfx:knock} knock, knock, knock, listened, shook off the dust, and chirped. Who's there? {badger:enter} Badger {badger:pulse} poked his nose out. {badger:face happy} [excited] A party? I'll bring blackberries! Knock, knock, on the next tree up. Who's there? [slowly] Nobody answered. Knock, knock, KNOCK! {owl:enter} {owl:live} Owl opened one eye. He blinked. He looked around. He fluffed up his feathers, gave a great big yawn… and fell straight back to sleep. {owl:face sleeping} [giggles] Oh dear, whispered Woodpecker. {woodpecker:face surprised} Owl sleeps in the daytime! {woodpecker:face happy} {woodpecker:hop} [softly] So they {canvas:confetti 0.4 6s} had the party very, very quietly, and saved Owl the biggest blackberry {owl:hearts} for tonight."
+      "text": "{woodpecker:enter} Woodpecker flew in and clung to a tree trunk. {woodpecker:face happy} [excited] He had a wonderful idea: a party! {woodpecker:live} He tapped the bark, {sfx:knock} knock-knock-knock, pressed his eye close to listen… knocked once more, and chirped. Who's there? Along trotted {badger:enter} Badger, busy with breakfast. {badger:live} He sniffed, dug with his front paws — earth flew! — pushed his nose into the hole… and popped up grinning, with earth on his nose. {badger:face happy} A party? I'll bring blackberries! {woodpecker:hop} Knock, knock, on the next tree, where {owl:enter} Owl sat on his branch. [slowly] Nobody answered. {woodpecker:shake} Knock, knock, KNOCK! {owl:live hold} Owl blinked. He looked around. He yawned… and fell straight back to sleep. [giggles] {woodpecker:face surprised} Oh dear! Owl sleeps in the daytime! [softly] {canvas:confetti 0.4 8s} {woodpecker:face happy} So they had the party very, very quietly, {badger:hearts} and saved the biggest blackberry. {canvas:night 0.6 16s} And when the moon came up, {owl:live resume} Owl opened one eye, then both… {sfx:hoot} hoo-hoo! {owl:face happy} There was his blackberry, waiting."
     },
     "es-ES": {
       "title": "Toc, toc: ¡hay fiesta!",
-      "text": "El {woodpecker:enter} pájaro carpintero {woodpecker:hop} {woodpecker:face happy} tuvo una idea estupenda: ¡una fiesta en el claro! Y sabía muy bien cómo invitar a todos. {woodpecker:live} Dio unos golpecitos en el árbol, {sfx:knock} toc, toc, toc, escuchó, se sacudió el polvo, y pió. ¿Quién es? {badger:enter} Tejón {badger:pulse} asomó el hocico. {badger:face happy} [excited] ¿Una fiesta? ¡Yo llevo moras! Toc, toc, en el árbol de al lado. ¿Quién es? [slowly] Nadie contestó. Toc, toc, ¡TOC! {owl:enter} {owl:live} Búho abrió un ojo. Parpadeó. Miró a su alrededor. Se ahuecó las plumas, dio un bostezo enorme… y se volvió a dormir. {owl:face sleeping} [giggles] Vaya, susurró el carpintero. {woodpecker:face surprised} ¡Búho duerme de día! {woodpecker:face happy} {woodpecker:hop} [softly] Así que {canvas:confetti 0.4 6s} hicieron la fiesta muy, muy bajito, y le guardaron a Búho la mora más grande {owl:hearts} para esa noche."
+      "text": "El {woodpecker:enter} pájaro carpintero llegó volando y se agarró a un tronco. {woodpecker:face happy} [excited] Tenía una idea estupenda: ¡una fiesta! {woodpecker:live} Dio golpecitos en la corteza, {sfx:knock} toc-toc-toc, pegó el ojo para escuchar… llamó otra vez, y pió. ¿Quién es? Llegó trotando {badger:enter} Tejón, buscando su desayuno. {badger:live} Olfateó, escarbó con las patas —¡volaba la tierra!—, metió el hocico en el agujero… y salió sonriendo, con tierra en la nariz. {badger:face happy} ¿Una fiesta? ¡Yo llevo moras! {woodpecker:hop} Toc, toc, en el árbol de al lado, donde {owl:enter} Búho estaba en su rama. [slowly] Nadie contestó. {woodpecker:shake} Toc, toc, ¡TOC! {owl:live hold} Búho parpadeó. Miró a su alrededor. Bostezó… y se volvió a dormir. [giggles] {woodpecker:face surprised} ¡Vaya! ¡Búho duerme de día! [softly] {canvas:confetti 0.4 8s} {woodpecker:face happy} Así que hicieron la fiesta muy, muy bajito, {badger:hearts} y guardaron la mora más grande. {canvas:night 0.6 16s} Y cuando salió la luna, {owl:live resume} Búho abrió un ojo, luego los dos… {sfx:hoot} ¡uh-uh! {owl:face happy} Allí estaba su mora, esperándolo."
     }
   },
   "sounds": {
     "knock": {
-      "prompt": "a woodpecker knocking three quick light taps on a hollow tree door",
+      "prompt": "a woodpecker knocking three quick light taps on a hollow tree trunk",
       "seconds": 1.2
+    },
+    "hoot": {
+      "prompt": "one soft, friendly, sleepy owl hoot, two gentle notes",
+      "seconds": 1.4
     }
   }
 }

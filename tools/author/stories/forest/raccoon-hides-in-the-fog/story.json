@@ -12,22 +12,26 @@
     "adventure",
     "funny"
   ],
-  "premise": "In the morning fog Fox can't find Raccoon, until Raccoon peeks out from behind his paws right under Fox's nose and says BOO.",
+  "premise": "In the morning fog Raccoon hides by covering his eyes; Badger digs for him, Fox listens, and Raccoon peeks out from behind his paws right under Fox's nose and says BOO.",
   "inspiration": "The hide-and-seek of folk games and Blind Man's Buff, gentled: the fog hides, but the finding happens nose to nose and ends in laughing.",
   "lesson": "The best surprises end with everyone laughing.",
   "languages": {
     "en-US": {
       "title": "Raccoon Hides in the Fog",
-      "text": "{canvas:fog 0.7 32s} [whispers] One morning, a soft white fog rolled into the forest. Everything went fuzzy and quiet. {raccoon:face happy} [excited] Perfect for hide-and-seek! said {raccoon:enter} Raccoon {raccoon:hop}. {fox:enter} Fox {fox:pulse} covered his eyes. One, two, three… ten! Ready or not! He looked behind the bushes. Only fog. {fox:face sad} He looked by the stream. Only fog. {badger:enter} Badger {badger:wobble} shuffled past. [curious] Have you seen Raccoon? {badger:shake 0.4} Badger shook his head. It's too foggy to see anything! Then, very close by, something rustled. {sfx:rustle solo} Fox turned round, and round again. [slowly] And right in front of his nose, out of the fog… {raccoon:live} Raccoon rubbed his paws, covered his eyes, peeked… {fox:face surprised} [surprised] and BOO! Fox {fox:spin} jumped so high he spun. {fox:face happy} [laughs] Found you! said Fox. No, said Raccoon, I found YOU! {fox:hearts}"
+      "text": "{canvas:fog 0.7 35s} [whispers] One morning, a soft white fog rolled into the forest. Everything went fuzzy and quiet. {raccoon:enter} Raccoon came padding out. {raccoon:face happy} [excited] Hide-and-seek time! {fox:enter} Fox trotted up and {fox:pulse} counted. One, two, three… Raccoon {raccoon:live hold} rubbed his paws and hid… by covering his eyes. [giggles] {raccoon:shake 0.3} If I can't see Fox, Fox can't see me! Fox looked behind the {sfx:rustle} bushes. {fox:face sad} Only fog. {badger:enter} Badger came trotting by to help. Maybe he's down here! {badger:live} Badger sniffed, {sfx:dig} dug and dug, pushed his nose into the hole… and popped up with earth on his nose. {badger:face happy} Not down here! So Fox stood still. {fox:live} He pricked up his ears, closed his eyes and listened… then smiled, and swished his tail. A tiny giggle, right in front of his nose! {fox:face surprised} [slowly] Raccoon? {raccoon:live resume} Raccoon peeked through his paws, flung them open… BOO! {fox:spin} [laughs] Fox spun round. {all:face happy} {all:hop} Found you! said Fox. No, giggled Raccoon, I found YOU!"
     },
     "es-ES": {
       "title": "Mapache se esconde en la niebla",
-      "text": "{canvas:fog 0.7 32s} [whispers] Una mañana, una niebla blanca y suave entró en el bosque. Todo se volvió borroso y callado. {raccoon:face happy} [excited] ¡Perfecto para jugar al escondite!, dijo {raccoon:enter} Mapache {raccoon:hop}. {fox:enter} Zorro {fox:pulse} se tapó los ojos. Uno, dos, tres… ¡diez! ¡Allá voy! Buscó detrás de los arbustos. Solo niebla. {fox:face sad} Buscó junto al arroyo. Solo niebla. {badger:enter} Tejón {badger:wobble} pasó arrastrando las patas. [curious] ¿Has visto a Mapache? {badger:shake 0.4} Tejón negó con la cabeza. ¡Con esta niebla no se ve nada! Entonces, muy cerquita, algo crujió. {sfx:rustle solo} Zorro se dio la vuelta, y otra vuelta más. [slowly] Y justo delante de su nariz, saliendo de la niebla… {raccoon:live} Mapache se frotó las patitas, se tapó los ojos, asomó… {fox:face surprised} [surprised] ¡y CUCÚ-TRAS! Zorro {fox:spin} dio un salto tan grande que dio una vuelta. {fox:face happy} [laughs] ¡Te encontré!, dijo Zorro. ¡No, dijo Mapache, yo te encontré a TI! {fox:hearts}"
+      "text": "{canvas:fog 0.7 35s} [whispers] Una mañana, una niebla blanca entró en el bosque. Todo se volvió borroso. {raccoon:enter} Mapache salió andando. {raccoon:face happy} [excited] ¡A jugar al escondite! {fox:enter} Zorro llegó trotando y {fox:pulse} contó. Uno, dos, tres… Mapache {raccoon:live hold} se frotó las patitas y se escondió… tapándose los ojos. [giggles] {raccoon:shake 0.3} ¡Si yo no veo a Zorro, él no me ve a mí! Zorro buscó detrás de los {sfx:rustle} arbustos. {fox:face sad} Solo niebla. {badger:enter} Tejón llegó trotando a ayudar. ¿Estará aquí debajo? {badger:live} Tejón olfateó, {sfx:dig} cavó y cavó, metió el hocico en el hoyo… y asomó con tierra en la nariz. {badger:face happy} ¡Aquí abajo no está! Zorro se quedó quieto. {fox:live} Levantó las orejas, cerró los ojos y escuchó… sonrió y movió la cola. ¡Una risita, justo delante de su nariz! {fox:face surprised} [slowly] ¿Mapache? {raccoon:live resume} Mapache miró entre sus patitas, las abrió… ¡CUCÚ! {fox:spin} [laughs] Zorro giró en redondo. {all:face happy} {all:hop} ¡Te encontré!, dijo Zorro. ¡No, se rio Mapache, yo te encontré a TI!"
     }
   },
   "sounds": {
     "rustle": {
       "prompt": "a small animal rustling gently in leafy bushes, soft and playful",
+      "seconds": 1.5
+    },
+    "dig": {
+      "prompt": "small paws scrabbling quickly in soft earth, little clumps of soil landing on grass",
       "seconds": 1.5
     }
   }

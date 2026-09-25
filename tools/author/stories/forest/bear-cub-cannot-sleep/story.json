@@ -12,17 +12,17 @@
     "bedtime",
     "gentle"
   ],
-  "premise": "Bear cub cannot fall asleep, so Owl shows him how: blink, look around, fluff up, yawn. Bear cub copies every step.",
+  "premise": "Bear cub cannot fall asleep, so Owl shows him how: blink, look around, yawn, eyes shut. Bear cub copies him while Firefly holds up her light, and nods off.",
   "inspiration": "The folk bedtime ritual, where each step of settling down is named in turn; turned so the helper shows instead of tells, and the child listening can copy too.",
   "lesson": "Learning by watching someone kind.",
   "languages": {
     "en-US": {
       "title": "Bear Cub Cannot Sleep",
-      "text": "{canvas:night 0.7 55s} {sfx:night-bed} [softly] The moon was up, and everyone was asleep. Everyone except the {bear:enter} bear cub. {bear:pulse} He wriggled and he {bear:wobble x2} wiggled. {bear:face sad} [sad] I can't fall asleep, he said. I don't know how. {owl:enter} Owl {owl:pulse} was wide awake, as owls are at night. {owl:face happy} [whispers] I'll show you, said Owl. Watch. {owl:live} He blinked, slowly. He looked around. He fluffed up his feathers. He gave a great big yawn… and closed his eyes. {bear:face normal} [curious] Now you try, he whispered. A {firefly:enter} firefly {firefly:glow} made a soft little light, just enough to see by. {bear:live} So the bear cub yawned, and stretched his arms up high. He rubbed his eyes. He patted his round tummy… and nodded off. {bear:face sleeping} {owl:face happy} [whispers] Goodnight, bear cub, said Owl. And the firefly {firefly:fade-out hold} turned her little light down low."
+      "text": "{canvas:night 0.7 60s} {sfx:night-bed} [softly] The moon was up, and the forest was {all:face sleeping} fast asleep. Everyone except little {bear:enter} Bear cub, toddling out of his den. {bear:wobble x2} He wriggled. He wiggled. {bear:face sad} [sad] I can't fall asleep, he said. I don't know how! {owl:enter} Owl flew down onto a branch, wide awake, as owls are at night. {owl:face happy} [whispers] I'll show you. Watch me. {owl:live} He blinked. He looked around. He gave a big yawn… and fell asleep. He opened one eye… then both, and hooted softly. {sfx:hoo} Hoo-hoo. {bear:face happy} {bear:shake 0.4} [giggles] Bear cub giggled. {firefly:enter} Firefly came drifting by. {firefly:face happy} I'll hold the light. {firefly:live hold} She closed her eyes, and her tail glowed brighter and brighter, like a little lantern. [slowly] So Bear cub {bear:live hold} gave a great big yawn. He stretched his arms up high. He rubbed his eyes… and nodded off, sitting up. {owl:hearts} [whispers] Goodnight, Bear cub, said Owl. {firefly:live resume} And Firefly let her light go dim… and blinked it twice."
     },
     "es-ES": {
       "title": "El osito no se puede dormir",
-      "text": "{canvas:night 0.7 55s} {sfx:night-bed} [softly] La luna ya había salido y todos dormían. Todos menos el {bear:enter} osito. {bear:pulse} Daba vueltas y {bear:wobble x2} más vueltas. {bear:face sad} [sad] No me puedo dormir, dijo. No sé cómo se hace. {owl:enter} Búho {owl:pulse} estaba bien despierto, como los búhos por la noche. {owl:face happy} [whispers] Yo te enseño, dijo Búho. Mira. {owl:live} Parpadeó despacio. Miró a su alrededor. Se ahuecó las plumas. Dio un bostezo enorme… y cerró los ojos. {bear:face normal} [curious] Ahora tú, susurró. Una {firefly:enter} luciérnaga {firefly:glow} encendió una lucecita suave, justo la necesaria para ver. {bear:live} Y el osito bostezó, y estiró los brazos bien alto. Se frotó los ojos. Se dio unas palmaditas en la barriga redonda… y se quedó dormido. {bear:face sleeping} {owl:face happy} [whispers] Buenas noches, osito, dijo Búho. Y la luciérnaga {firefly:fade-out hold} bajó su lucecita."
+      "text": "{canvas:night 0.7 60s} {sfx:night-bed} [softly] La luna ya había salido y el bosque {all:face sleeping} dormía profundamente. Todos menos el pequeño {bear:enter} Osito, que salió caminando de su cueva. {bear:wobble x2} Se revolvía. Se retorcía. {bear:face sad} [sad] No me puedo dormir, dijo. ¡No sé cómo se hace! {owl:enter} Búho bajó volando hasta una rama, bien despierto, como los búhos por la noche. {owl:face happy} [whispers] Yo te enseño. Mírame. {owl:live} Parpadeó. Miró a su alrededor. Dio un gran bostezo… y se durmió. Luego abrió un ojo… después los dos, y ululó bajito. {sfx:hoo} Uh-uh. {bear:face happy} {bear:shake 0.4} [giggles] Osito se rio. {firefly:enter} Luciérnaga pasaba volando. {firefly:face happy} Yo os doy luz. {firefly:live hold} Cerró los ojos, y su colita brilló más y más, como un farolillo. [slowly] Así que Osito {bear:live hold} dio un bostezo enorme. Estiró los brazos bien alto. Se frotó los ojos… y se quedó dormido, sentadito. {owl:hearts} [whispers] Buenas noches, Osito, dijo Búho. {firefly:live resume} Y Luciérnaga fue apagando su luz… y parpadeó dos veces."
     }
   },
   "sounds": {
@@ -30,6 +30,10 @@
       "prompt": "a calm summer night in the woods, soft distant crickets and a light breeze",
       "seconds": 30,
       "loop": true
+    },
+    "hoo": {
+      "prompt": "a soft friendly owl hoot, two gentle notes, calm and warm",
+      "seconds": 1.8
     }
   }
 }

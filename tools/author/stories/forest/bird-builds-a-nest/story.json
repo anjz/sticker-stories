@@ -12,24 +12,28 @@
     "helping",
     "learning"
   ],
-  "premise": "Bird builds a nest one twig at a time; Squirrel brings moss, Woodpecker taps the branch to test it, and it holds.",
+  "premise": "Bird builds a nest one twig at a time; Squirrel brings moss, Woodpecker taps the tree to test it, and it holds.",
   "inspiration": "The Three Little Pigs' building motif, turned: nobody builds alone and nobody blows it down; friends help make one house strong.",
   "lesson": "A home is built with friends' help.",
   "learning": "Birds build nests from twigs, grass and moss",
   "languages": {
     "en-US": {
       "title": "Bird Builds a Nest",
-      "text": "{bird:enter} Bird {bird:pulse} needed a home for spring. {squirrel:face surprised} [curious] What's a nest made of? asked {squirrel:enter} Squirrel. Watch, said Bird. {bird:hop} He fetched a twig. Then a twig, and a twig, and a twig, woven round and round. Then a tuft of soft grass. Squirrel {squirrel:hop x2} brought a pawful of green moss to line it. {bird:face happy} {squirrel:face happy} [happily] Snug! {woodpecker:enter} Woodpecker {woodpecker:pulse} flew up to check. Is it strong? {woodpecker:live} He tapped the branch, {sfx:tap} tap, tap, tap, listened, shook off the dust… and chirped. {woodpecker:face happy} Strong as a tree! And the old tree rocked it gently, like a cradle. {canvas:night 0.6 14s} [softly] That night, Bird tucked himself into his nest, {bird:hearts} round and warm, and {bird:face sleeping} sang a sleepy song for his friends."
+      "text": "{bird:enter} Bird flew in and landed on a branch of the big tree. {bird:face happy} [curious] Spring was coming, and he needed a nest. {bird:hop} He fetched a twig. Then another, and another, woven round and round. Then a tuft of soft, dry grass. Along bounded {squirrel:enter} Squirrel. {squirrel:face surprised} Is that a nest? she asked. It needs something soft! {squirrel:hop x2} She brought a pawful of green moss to line it. {squirrel:face happy} [happily] Snug! {woodpecker:enter} Woodpecker flew over and clung to the trunk. {bird:face sad} But is the tree strong enough? [whispers] Everyone waited. {woodpecker:live} Woodpecker tapped the bark, {sfx:tap} tap-tap-tap, pressed his eye close and listened… tapped once more, and chirped. {woodpecker:face happy} {bird:face happy} Strong as can be! {bird:live} Bird puffed up his chest, tipped his head back and {sfx:song} sang his happiest song, then fluttered his wings. {squirrel:hearts} {canvas:night 0.6 16s} [softly] That night, he tucked himself into his nest, round and warm, {bird:face sleeping} and dreamed of his friends."
     },
     "es-ES": {
       "title": "Pájaro hace un nido",
-      "text": "{bird:enter} Pájaro {bird:pulse} necesitaba una casa para la primavera. {squirrel:face surprised} [curious] ¿De qué se hace un nido?, preguntó {squirrel:enter} Ardilla. Mira, dijo Pájaro. {bird:hop} Trajo una ramita. Y otra ramita, y otra, y otra, tejidas en redondo. Luego un mechón de hierba suave. Ardilla {squirrel:hop x2} trajo un puñado de musgo verde para forrarlo. {bird:face happy} {squirrel:face happy} [happily] ¡Qué calentito! El {woodpecker:enter} pájaro carpintero {woodpecker:pulse} subió a revisarlo. ¿Será fuerte? {woodpecker:live} Dio unos golpecitos en la rama, {sfx:tap} toc, toc, toc, escuchó, se sacudió el polvo… y pió. {woodpecker:face happy} ¡Fuerte como un árbol! Y el viejo árbol lo meció con cuidado, como una cuna. {canvas:night 0.6 14s} [softly] Esa noche, Pájaro se acurrucó en su nido, {bird:hearts} redondo y calentito, y {bird:face sleeping} cantó una canción de dormir para sus amigos."
+      "text": "{bird:enter} Pájaro llegó volando y se posó en una rama del árbol grande. {bird:face happy} [curious] Venía la primavera, y necesitaba un nido. {bird:hop} Trajo una ramita. Y otra, y otra más, tejidas en redondo. Luego un mechón de hierba suave y seca. Llegó dando brincos {squirrel:enter} Ardilla. {squirrel:face surprised} ¿Eso es un nido?, preguntó. ¡Le falta algo blandito! {squirrel:hop x2} Trajo un puñado de musgo verde para forrarlo. {squirrel:face happy} [happily] ¡Qué calentito! El {woodpecker:enter} pájaro carpintero llegó volando y se agarró al tronco. {bird:face sad} Pero ¿será fuerte el árbol? [whispers] Todos esperaron. {woodpecker:live} El carpintero dio golpecitos en la corteza, {sfx:tap} toc-toc-toc, pegó el ojo para escuchar… dio otro golpecito, y pió. {woodpecker:face happy} {bird:face happy} ¡Fortísimo! {bird:live} Pájaro infló el pecho, echó la cabeza atrás y {sfx:song} cantó su canción más alegre, batiendo las alas. {squirrel:hearts} {canvas:night 0.6 16s} [softly] Esa noche, se acurrucó en su nido, redondo y calentito, {bird:face sleeping} y soñó con sus amigos."
     }
   },
   "sounds": {
     "tap": {
-      "prompt": "a woodpecker tapping three light knocks on a branch",
+      "prompt": "a woodpecker tapping three light knocks on tree bark",
       "seconds": 1.0
+    },
+    "song": {
+      "prompt": "a small bright songbird singing a short, happy, trilling song",
+      "seconds": 2.0
     }
   }
 }
