@@ -1607,10 +1607,12 @@ final class CanvasScene: SKScene {
     }
 
     /// A sticker that sets off on a move goes behind the others in its
-    /// layer, so it passes behind whoever is in its way; when it gets to
-    /// the sticker it goes to (beside it, on it, under it) it comes in
-    /// front of it — into the front sticker layer if either of them is
-    /// there — and back home it returns to its own layer and place. A
+    /// layer, so it passes behind whoever is in its way — unless it flies:
+    /// a flyer goes over everyone, in front of everything from the start.
+    /// Nearing the sticker it goes to (beside it, on it, under it) it comes
+    /// in front of it — into the front sticker layer if either of them is
+    /// there — as soon as the two could overlap, so no part of it ever
+    /// pops over; back home it returns to its own layer and place. A
     /// shuffle to make room keeps its place. Every layer and z the child
     /// made comes back when the story ends.
     private func stackForMotion(
@@ -1621,24 +1623,41 @@ final class CanvasScene: SKScene {
         let key = "\(node.instanceID)-\(index)"
         if !startedLegs.contains(key) {
             startedLegs.insert(key)
-            if leg.stacking != .shuffle { sendToBack(node) }
+            switch (leg.stacking, leg.gait) {
+            case (.shuffle, _):
+                break
+            case (_, .fly):
+                if node.parent !== foregroundStickers { node.move(toParent: foregroundStickers) }
+                bringToFront(node)
+            default:
+                sendToBack(node)
+            }
         }
-        guard time >= leg.at + leg.duration, !arrivedLegs.contains(key) else { return }
-        arrivedLegs.insert(key)
+        guard !arrivedLegs.contains(key) else { return }
+        let arrived = time >= leg.at + leg.duration
         switch leg.stacking {
         case .onto(let id):
             guard let target = nodes[id] else { return }
+            // In front of it before their pictures can touch: their squares
+            // (bigger than the art) are about to meet, or it has arrived.
+            let margin = node.size.width * 0.1
+            guard arrived || node.calculateAccumulatedFrame().insetBy(dx: -margin, dy: -margin)
+                .intersects(target.calculateAccumulatedFrame())
+            else { return }
+            arrivedLegs.insert(key)
             let front = node.parent === foregroundStickers || target.parent === foregroundStickers
             let layer = front ? foregroundStickers : backgroundStickers
             if node.parent !== layer { node.move(toParent: layer) }
             bringToFront(node)
         case .home:
+            guard arrived else { return }
+            arrivedLegs.insert(key)
             guard let prior = stackBeforeMotion[node.instanceID] else { return bringToFront(node) }
             if node.parent !== prior.parent { node.move(toParent: prior.parent) }
             node.zPosition = prior.z
             restack(prior.parent)
         case .behind, .shuffle:
-            break
+            if arrived { arrivedLegs.insert(key) }
         }
     }
 

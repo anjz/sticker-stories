@@ -469,9 +469,13 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
   means more overlap, never a cut-off sticker. Only `away` leaves.
 - **Behind on the way, in front on arrival**: a sticker that sets off goes
   behind the other stickers in its layer, so it passes behind whoever is
-  in its way; when it gets to the sticker it goes to — beside it, on it,
-  under it — it comes in front of it (in the front sticker layer if
-  either of them is there) and stays there. Going `back` it returns to
+  in its way — except a flyer, which goes over everyone: in front of
+  every sticker (the front sticker layer) from the moment it takes off.
+  Nearing the sticker it goes to — beside it, on it, under it — it comes
+  in front of it (in the front sticker layer if either of them is there)
+  as soon as their squares, a little grown, meet: before any of their
+  art can overlap, so nothing pops over at the last moment; it stays
+  there. Going `back` it returns to
   its own layer and place in the stack; off the canvas or to a place in
   the scene it stays behind; a friend shuffling over to make room keeps
   its place (`MotionLeg.Stacking`). The layers and order the child made
