@@ -59,14 +59,18 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// An action's pause frame (`{snail:live hold}`).
     var pause: Pause?
     /// A move's loop, the way its frames travel, how far one loop carries
-    /// it (sticker widths) and whether the loop hops.
+    /// it (sticker widths), whether the loop hops or flies, and where it
+    /// comes in when a story brings it in this way.
     var loop: FrameRange?
     var facing: StageMove.Facing?
     var stride: Double?
     var hops: Bool?
+    var flies: Bool?
+    var on: [String]?
 
     private enum CodingKeys: String, CodingKey {
-        case id, sticker, kind, sheet, frame, columns, count, rest, stickerBox, hold, pause, loop, facing, stride, hops
+        case id, sticker, kind, sheet, frame, columns, count, rest, stickerBox, hold, pause, loop, facing, stride, hops,
+            flies, on
     }
 
     init(from decoder: any Decoder) throws {
@@ -87,6 +91,8 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         facing = try? c.decodeIfPresent(StageMove.Facing.self, forKey: .facing)
         stride = try? c.decodeIfPresent(Double.self, forKey: .stride)
         hops = try? c.decodeIfPresent(Bool.self, forKey: .hops)
+        flies = try? c.decodeIfPresent(Bool.self, forKey: .flies)
+        on = try? c.decodeIfPresent([String].self, forKey: .on)
     }
 
     var key: String { "\(sticker).\(id)" }
@@ -107,9 +113,11 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         let timing = frames
         if timing.loop != nil {
             guard let stride, stride > 0 else { return nil }
-            return StageMove(cycle: timing.loopDuration, stride: stride, hops: hops ?? false, facing: facing)
+            return StageMove(
+                id: id, cycle: timing.loopDuration, stride: stride, hops: hops ?? false, flies: flies ?? false,
+                on: on ?? [], facing: facing)
         }
-        return StageMove(seconds: timing.duration(.move(travel: 0)) ?? 0)
+        return StageMove(id: id, seconds: timing.duration(.move(travel: 0)) ?? 0)
     }
 
     /// Every animation the pack's manifest declares, in manifest order.

@@ -193,7 +193,18 @@ public struct EffectTriggerFile: Equatable, Sendable {
         }
         return GoTrigger(
             at: at, cue: fields["cue"] as? String, stickerID: stickerID, kind: kind,
-            target: kind == .away || kind == .back ? nil : target)
+            target: kind == .away || kind == .back ? nil : target, by: way(fields, label: label, warnings: &warnings))
+    }
+
+    /// The move an entrance or a move goes by (`"by": "fly"`, one of the
+    /// sticker's moves), when it names one; otherwise its usual move.
+    private static func way(_ fields: [String: Any], label: String, warnings: inout [String]) -> String? {
+        guard let raw = fields["by"] else { return nil }
+        guard let by = raw as? String, !by.isEmpty else {
+            warnings.append("\(label): by must be a move's id; ignored")
+            return nil
+        }
+        return by
     }
 
     /// Entrances name one sticker (never `all`) and say `"enter": true`.
@@ -213,7 +224,7 @@ public struct EffectTriggerFile: Equatable, Sendable {
         for key in ["effect", "animation", "expression", "repeat", "duration", "intensity", "color", "hold"] where fields[key] != nil {
             warnings.append("\(label): \(key) is ignored by an entrance")
         }
-        return EntranceTrigger(at: at, cue: fields["cue"] as? String, stickerID: stickerID)
+        return EntranceTrigger(at: at, cue: fields["cue"] as? String, stickerID: stickerID, by: way(fields, label: label, warnings: &warnings))
     }
 
     private static func decodeTrigger(_ effect: EffectName, _ fields: [String: Any], label: String, warnings: inout [String]) -> EffectTrigger? {

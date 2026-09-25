@@ -211,10 +211,6 @@ final class CanvasScene: SKScene {
     /// go of when it ends; a trigger whose sheet is not in yet is skipped.
     private var liveLoaded: [LiveAnimationKey: LoadedLiveAnimation] = [:]
     private var liveLoad: Task<Void, Never>?
-    /// Each sticker's move (its walk, flight or sprout), which visitors
-    /// play on their way in.
-    private lazy var moveKeys: [String: LiveAnimationKey] = Dictionary(
-        liveAnimations.filter { $0.kind == .move }.map { ($0.sticker, $0.liveKey) }, uniquingKeysWith: { a, _ in a })
     /// Reduce Motion / calm mode for the story playing: no frames at all.
     private var livePolicy = EffectPolicy.standard
     /// Every placed sticker's layer and z before a story that moves
@@ -1379,11 +1375,12 @@ final class CanvasScene: SKScene {
         }
         var wanted = live.animations.filter { placed.contains($0.stickerID) }
         for plan in visitors.values where plan.motion != .fade {
-            if let key = moveKeys[plan.stickerID] { wanted.insert(key) }
+            if let move = plan.move { wanted.insert(LiveAnimationKey(stickerID: plan.stickerID, animationID: move)) }
         }
-        for (id, plan) in motions where plan.legs.contains(where: \.travels) {
-            if let node = nodes.first(where: { $0.instanceID == id }), let key = moveKeys[node.stickerID] {
-                wanted.insert(key)
+        for (id, plan) in motions {
+            guard let node = nodes.first(where: { $0.instanceID == id }) else { continue }
+            for leg in plan.legs where leg.travels {
+                if let move = leg.move { wanted.insert(LiveAnimationKey(stickerID: node.stickerID, animationID: move)) }
             }
         }
         if policy.allowsLiveAnimations, !wanted.isEmpty {
@@ -1417,8 +1414,10 @@ final class CanvasScene: SKScene {
 
     private lazy var stages: [String: StickerStage] = Dictionary(
         uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.stage.map { (s.id, $0) } })
-    private lazy var stageMoves: [String: StageMove] = Dictionary(
-        liveAnimations.compactMap { a in a.stageMove.map { (a.sticker, $0) } }, uniquingKeysWith: { a, _ in a })
+    /// Each sticker's moves (its walk, flight or sprout), its usual one
+    /// first: visitors play one on their way in, movers as they go.
+    private lazy var stageMoves: [String: [StageMove]] = Dictionary(
+        liveAnimations.compactMap { a in a.stageMove.map { (a.sticker, [$0]) } }, uniquingKeysWith: +)
 
     /// Plans how the story moves its stickers (`docs/effects.md`,
     /// "Movement"): every sticker on the stage, placed or visiting, from
@@ -1600,15 +1599,15 @@ final class CanvasScene: SKScene {
             if allowed {
                 let action = session.live.current(for: node.stickerID, at: time, frames: timing)
                 // The latest travel in progress: its entrance, or a move.
-                var travel: (at: TimeInterval, duration: TimeInterval)?
+                var travel: (at: TimeInterval, duration: TimeInterval, move: String?)?
                 if let plan = session.visitors[node.instanceID], time >= plan.at {
-                    travel = (plan.at, plan.travel)
+                    travel = (plan.at, plan.travel, plan.move)
                 }
                 if let move = session.motions[node.instanceID]?.travel(at: time), move.at >= (travel?.at ?? -1) {
                     travel = move
                 }
-                if let travel, action.map({ $0.since < travel.at }) ?? true,
-                    let key = moveKeys[node.stickerID], let move = liveLoaded[key],
+                if let travel, action.map({ $0.since < travel.at }) ?? true, let id = travel.move,
+                    let move = liveLoaded[LiveAnimationKey(stickerID: node.stickerID, animationID: id)],
                     let state = move.timing.state(.move(travel: travel.duration), at: time - travel.at)
                 {
                     shown = (move, state)

@@ -2,6 +2,7 @@ package manifest
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -78,17 +79,20 @@ func TestAnimationsValidate(t *testing.T) {
 		})
 	}
 
-	t.Run("a pausable action and a walk are fine; two moves are not", func(t *testing.T) {
+	t.Run("a pausable action and a walk are fine; a second move must loop", func(t *testing.T) {
 		dir := t.TempDir()
 		m := validManifest(t, dir)
 		m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) {
 			a.Pause = &AnimationPause{Frame: 3, Shows: "the fox asleep"}
 		})}
-		walk := func(id string) string {
+		walk := func(id string, mutate ...func(*StickerAnimation)) string {
 			a := StickerAnimation{ID: id, Sticker: "fox", Kind: KindMove, Description: "the fox trots.", Sheet: "anims/fox.yawn.webp", Columns: 4, Count: 8,
 				Rest: UnitBox{X: 0.1, Y: 0.1, Width: 0.8, Height: 0.8}, StickerBox: UnitBox{X: 0.1, Y: 0.1, Width: 0.8, Height: 0.8},
 				Hold: []float64{0.1, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.3}, Loop: &FrameRange{From: 1, To: 6}, Facing: "left", Stride: 0.6, Hops: true}
 			a.Frame.Width, a.Frame.Height = 400, 400
+			for _, f := range mutate {
+				f(&a)
+			}
 			data, _ := json.Marshal(a)
 			os.WriteFile(filepath.Join(dir, "anims", "fox."+id+".json"), data, 0o644)
 			return "anims/fox." + id + ".json"
@@ -97,9 +101,21 @@ func TestAnimationsValidate(t *testing.T) {
 		if errs := m.Validate(dir); len(errs) != 0 {
 			t.Fatalf("valid action and move rejected: %v", errs)
 		}
-		m.Stickers[1].Animations = append(m.Stickers[1].Animations, walk("run"))
-		if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "at most one move") {
-			t.Errorf("two moves: %v", errs)
+		base := m.Stickers[1].Animations
+		m.Features = map[string]Feature{"pond": {Description: "The small pond.", Areas: []StageArea{{X: []float64{0.57, 0.74}, Y: []float64{0.3, 0.37}}}}}
+		// Another way to go: the fox can swim too, into the pond.
+		m.Stickers[1].Animations = append(base, walk("swim", func(a *StickerAnimation) { a.Hops, a.On = false, []string{"pond"} }))
+		if errs := m.Validate(dir); len(errs) != 0 {
+			t.Errorf("a second looping move rejected: %v", errs)
+		}
+		m.Stickers[1].Animations = append(base, walk("run", func(a *StickerAnimation) { a.Loop, a.Facing, a.Stride, a.Hops = nil, "", 0, false }))
+		if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "second move must loop") {
+			t.Errorf("a second move without a loop: %v", errs)
+		}
+		m.Stickers[1].Animations = append(base, walk("fly", func(a *StickerAnimation) { a.Flies, a.On = true, []string{"lake"} }))
+		errs := m.Validate(dir)
+		if len(errs) != 2 || !strings.Contains(fmt.Sprint(errs), "hops or flies") || !strings.Contains(fmt.Sprint(errs), `"lake" is not a feature`) {
+			t.Errorf("a flying hop onto a missing feature: %v", errs)
 		}
 	})
 

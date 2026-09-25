@@ -166,7 +166,13 @@ exactly per `FORMAT.md`:
   — FORMAT "Move cues", GUIDE "Movement") wherever the words have a
   character go somewhere: to another character (on stage already), onto
   or under one, to a place the scene has, off the canvas and back; only
-  walkers and flyers move; most stories have one to four;
+  walkers and flyers move; most stories have one to four; **the way it
+  goes matches the words** — a sticker with two ways to go
+  (`storycheck -plan`, "ways to go": the ladybug crawls or flies, the
+  bird flies or hops, the duckling waddles or swims, the firefly flies or
+  walks) needs `by` when the words say the other one (`{ladybug:go on
+  flower by fly}`, `{ladybug:enter by fly}`), on each such move; never
+  write a way the sticker has no move for;
 - live cues (`{bear:live}`, `{snail:live hold}` … `{snail:live resume}` —
   see FORMAT "Live cues", GUIDE "Live stickers") as the roster planned
   them: on the words that tell exactly what that action shows, in the

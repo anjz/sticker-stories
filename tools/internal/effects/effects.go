@@ -84,8 +84,8 @@ var (
 	knownCanvasKeys = set("at", "cue", "effect", "intensity", "duration")
 	knownLiveKeys   = set("at", "cue", "sticker", "animation", "mode")
 	knownFaceKeys   = set("at", "cue", "sticker", "expression")
-	knownEnterKeys  = set("at", "cue", "sticker", "enter")
-	knownGoKeys     = set("at", "cue", "sticker", "go", "target")
+	knownEnterKeys  = set("at", "cue", "sticker", "enter", "by")
+	knownGoKeys     = set("at", "cue", "sticker", "go", "target", "by")
 	colorPattern    = regexp.MustCompile(`^#[0-9A-Fa-f]{6}$`)
 )
 
@@ -124,16 +124,17 @@ const AllStickers = "all"
 // Normal is the expression that shows the sticker's own image.
 const Normal = "normal"
 
-// Animations maps each sticker ID to the live-animation actions it
-// declares (docs/pack-format.md, "Live animations"): the ones a live
-// trigger may play. A move (a walk cycle) is not among them.
+// Animations maps each sticker ID to the live animations it declares
+// (docs/pack-format.md, "Live animations"): the actions a live trigger may
+// play, and the moves an entrance or a move may go by ("by").
 type Animations map[string][]Animation
 
-// Animation is one action a trigger may name, and whether it has a frame
-// it can pause on ("mode": "hold").
+// Animation is one animation a trigger may name: an action, and whether
+// it has a frame it can pause on ("mode": "hold"), or a move.
 type Animation struct {
 	ID       string
 	Pausable bool
+	Move     bool
 }
 
 func (a Animations) find(sticker, id string) (Animation, bool) {
@@ -224,11 +225,11 @@ func Validate(data []byte, declared map[string]bool, animations Animations, expr
 		// an expression, a live animation an animation, and none of them
 		// has an effect; otherwise the effect name says which.
 		if _, ok := fields["enter"]; ok {
-			validateEnterTrigger(label, fields, declared, entered, fail)
+			validateEnterTrigger(label, fields, declared, animations, entered, fail)
 			continue
 		}
 		if _, ok := fields["go"]; ok {
-			validateGoTrigger(label, fields, declared, features, fail)
+			validateGoTrigger(label, fields, declared, animations, features, fail)
 			continue
 		}
 		if _, ok := fields["expression"]; ok {
@@ -427,7 +428,7 @@ var goKinds = set("to", "on", "under", "away", "back")
 // validateGoTrigger checks a move: one sticker (never all), a kind, a
 // target for to (a sticker or a feature), on and under (a sticker), none
 // for away and back, at and an optional cue.
-func validateGoTrigger(label string, fields map[string]json.RawMessage, declared, features map[string]bool, fail func(string, ...any)) {
+func validateGoTrigger(label string, fields map[string]json.RawMessage, declared map[string]bool, animations Animations, features map[string]bool, fail func(string, ...any)) {
 	for _, k := range sortedKeys(fields) {
 		if !knownGoKeys[k] {
 			fail("%s: %s is not used by a move; remove it", label, k)
@@ -468,6 +469,7 @@ func validateGoTrigger(label string, fields map[string]json.RawMessage, declared
 			fail("%s: go %s takes no target", label, kind)
 		}
 	}
+	validateBy(label, sticker, fields, animations, fail)
 	if raw, ok := fields["at"]; !ok {
 		fail("%s: at is required", label)
 	} else if at, ok := number(raw); !ok || at < 0 {
@@ -479,7 +481,7 @@ func validateGoTrigger(label string, fields map[string]json.RawMessage, declared
 // names a sticker, when the app brings it into the scene if the child has
 // not placed it (docs/effects.md, "Entrances"). A declared sticker (never
 // all), "enter": true, at and an optional cue; one per sticker.
-func validateEnterTrigger(label string, fields map[string]json.RawMessage, declared map[string]bool, entered map[string]bool, fail func(string, ...any)) {
+func validateEnterTrigger(label string, fields map[string]json.RawMessage, declared map[string]bool, animations Animations, entered map[string]bool, fail func(string, ...any)) {
 	for _, k := range sortedKeys(fields) {
 		if !knownEnterKeys[k] {
 			fail("%s: %s is not used by an entrance; remove it", label, k)
@@ -501,6 +503,7 @@ func validateEnterTrigger(label string, fields map[string]json.RawMessage, decla
 	if sticker != "" {
 		entered[sticker] = true
 	}
+	validateBy(label, sticker, fields, animations, fail)
 	if raw, ok := fields["at"]; !ok {
 		fail("%s: at is required", label)
 	} else if at, ok := number(raw); !ok || at < 0 {
@@ -510,6 +513,25 @@ func validateEnterTrigger(label string, fields map[string]json.RawMessage, decla
 		var s string
 		if err := json.Unmarshal(raw, &s); err != nil {
 			fail("%s: cue must be a string", label)
+		}
+	}
+}
+
+// validateBy checks the move an entrance or a move goes by, when it names
+// one: one of the sticker's moves (nil animations skip that check).
+func validateBy(label, sticker string, fields map[string]json.RawMessage, animations Animations, fail func(string, ...any)) {
+	raw, ok := fields["by"]
+	if !ok {
+		return
+	}
+	var by string
+	if err := json.Unmarshal(raw, &by); err != nil || by == "" {
+		fail("%s: by must be a move's id", label)
+		return
+	}
+	if sticker != "" && sticker != AllStickers && animations != nil {
+		if a, ok := animations.find(sticker, by); !ok || !a.Move {
+			fail("%s: sticker %q has no move %q", label, sticker, by)
 		}
 	}
 }
@@ -543,7 +565,7 @@ func validateLiveTrigger(label string, fields map[string]json.RawMessage, declar
 		}
 	}
 	if sticker != "" && animation != "" && animations != nil {
-		if a, ok := animations.find(sticker, animation); !ok {
+		if a, ok := animations.find(sticker, animation); !ok || a.Move {
 			fail("%s: sticker %q has no live animation %q", label, sticker, animation)
 		} else if mode != "" && !a.Pausable {
 			fail("%s: %s's %s has no pause frame, so it cannot %s", label, sticker, animation, mode)

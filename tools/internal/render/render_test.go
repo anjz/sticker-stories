@@ -310,6 +310,16 @@ func TestGoCuesBecomeMoves(t *testing.T) {
 	if !strings.Contains(string(data), `"go": "to"`) || !strings.Contains(string(data), `"target": "pond"`) {
 		t.Errorf("move encoding: %s", data)
 	}
+	// Another way: only one of the sticker's moves.
+	byTr := []Trigger{{At: 1, Sticker: "fox", Go: "to", Target: "pond", By: "swim"}}
+	anims := effects.Animations{"fox": {{ID: "trot", Move: true}, {ID: "swim", Move: true}, {ID: "nap"}}}
+	if data, err := EncodeSidecar(byTr, map[string]bool{"fox": true}, anims, nil, map[string]bool{"pond": true}, "outdoors"); err != nil || !strings.Contains(string(data), `"by": "swim"`) {
+		t.Errorf("a move by swim: %s %v", data, err)
+	}
+	byTr[0].By = "nap"
+	if _, err := EncodeSidecar(byTr, map[string]bool{"fox": true}, anims, nil, map[string]bool{"pond": true}, "outdoors"); err == nil {
+		t.Error("a move by an action was accepted")
+	}
 	// A target that is neither a sticker nor a feature is refused.
 	tr[1].Target = "river"
 	if _, err := EncodeSidecar(tr, map[string]bool{"fox": true, "rabbit": true}, nil, nil, map[string]bool{"pond": true}, "outdoors"); err == nil {

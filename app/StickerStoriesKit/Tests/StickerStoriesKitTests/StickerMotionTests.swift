@@ -13,7 +13,8 @@ import Testing
               { "at": 7, "sticker": "fox", "go": "back", "target": "rabbit" },
               { "at": 8, "sticker": "fox", "go": "under" },
               { "at": 9, "sticker": "all", "go": "away" },
-              { "at": 9, "sticker": "fox", "go": "fly" } ] }
+              { "at": 9, "sticker": "fox", "go": "fly" },
+              { "at": 10, "sticker": "bee", "go": "to", "target": "fox", "by": "walk" } ] }
             """
         let file = try EffectTriggerFile(data: Data(json.utf8))
         #expect(file.goTriggers == [
@@ -21,6 +22,7 @@ import Testing
             GoTrigger(at: 4, cue: "flew", stickerID: "bee", kind: .on, target: "flower"),
             GoTrigger(at: 6, stickerID: "fox", kind: .away),
             GoTrigger(at: 7, stickerID: "fox", kind: .back),
+            GoTrigger(at: 10, stickerID: "bee", kind: .to, target: "fox", by: "walk"),
         ])
         #expect(file.warnings.count == 4)  // target on back, under without target, all, unknown kind
     }
@@ -51,7 +53,12 @@ import Testing
         var random = SeededGenerator(state: 3)
         return MotionPlanner.plan(
             goes: goes, actors: actors(),
-            moves: ["fox": StageMove(cycle: 0.8, stride: 0.6, facing: .right)],
+            moves: [
+                "fox": [StageMove(id: "trot", cycle: 0.8, stride: 0.6, facing: .right)],
+                // The mouse scurries, and it can fly too (a story says so).
+                "mouse": [StageMove(id: "scurry", cycle: 0.6, stride: 0.4, facing: .left),
+                          StageMove(id: "fly", cycle: 0.5, stride: 1, flies: true, facing: .left)],
+            ],
             scene: Self.scene, policy: policy, random: &random)
     }
 
@@ -152,6 +159,21 @@ import Testing
         #expect(abs((m.x + mw / 2) - (b.x - bw / 2) - MotionPlanner.sharedOverlap * min(mw, bw)) < 1e-6)
         // The bee leaves: the mouse closes up to the middle again.
         #expect(abs(place(mouse, plans, at: 40).x - 450) < 1e-6)
+    }
+
+    @Test func goesTheWayTheStoryNames() {
+        let plans = plan([
+            GoTrigger(at: 0, stickerID: "mouse", kind: .on, target: "flower", by: "fly"),
+            GoTrigger(at: 10, stickerID: "fox", kind: .on, target: "flower"),
+            GoTrigger(at: 20, stickerID: "mouse", kind: .back),
+        ])
+        let legs = plans[mouse]!.legs
+        // Flies onto the flower, its flight frames playing; shuffles over by
+        // the way it came when the fox joins; walks home, its usual way.
+        #expect(legs[0].gait == .fly && legs[0].move == "fly")
+        #expect(legs[1].at >= 10 && legs[1].gait == .fly && legs[1].move == "fly")
+        #expect(legs.last!.gait == .walk && legs.last!.move == "scurry")
+        #expect(plans[fox]!.legs[0].move == "trot")
     }
 
     @Test func twoBesideTheSameStickerTakeBothSides() {

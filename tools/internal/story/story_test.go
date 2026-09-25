@@ -709,4 +709,23 @@ func TestGoCues(t *testing.T) {
 	if w := strings.Join(Validate(withText(gone), pack, cat).Warnings, "\n"); !strings.Contains(w, "has gone away") {
 		t.Errorf("a cue on a sticker that went away should warn: %v", w)
 	}
+
+	// Another way to go: the fox trots, and it can swim.
+	cues, _, errs = ParseCues("{fox:go to pond by swim} a {fox:go back by swim} b {fox:enter by swim} c")
+	if len(errs) != 0 || cues[0].Target != "pond" || cues[0].By != "swim" || cues[1].GoKind != GoBack || cues[1].Target != "" || cues[1].By != "swim" || cues[2].By != "swim" {
+		t.Fatalf("by parsed wrong: %+v %v", cues, errs)
+	}
+	if _, _, errs := ParseCues("{fox:go away by} a"); len(errs) == 0 {
+		t.Error("by without a move was accepted")
+	}
+	pack.Moves = map[string][]Animation{"fox": {{ID: "trot"}, {ID: "swim"}}}
+	if is := Validate(withText(" {fox:go to pond by swim} Fox swam off {fox:go back} and trotted back."), pack, cat); len(is.Errors) != 0 || len(is.Warnings) != 0 {
+		t.Errorf("a move by another way is fine: %v %v", is.Errors, is.Warnings)
+	}
+	if e := strings.Join(Validate(withText(" {fox:go to pond by fly} x."), pack, cat).Errors, "\n"); !strings.Contains(e, `no move "fly" (its moves: trot, swim)`) {
+		t.Errorf("an unknown way: %v", e)
+	}
+	if w := strings.Join(Validate(withText(" {fox:go to pond by trot} x."), pack, cat).Warnings, "\n"); !strings.Contains(w, "usual way") {
+		t.Errorf("naming the usual way should warn: %v", w)
+	}
 }

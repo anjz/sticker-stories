@@ -16,7 +16,7 @@ snail.hide`).
 ```sh
 cd tools
 go run ./author/stickeranim render  -pack ../packs/forest -dry-run   # prints the prompts
-go run ./author/stickeranim render  -pack ../packs/forest [-only frog,owl] [-parallel 3]
+go run ./author/stickeranim render  -pack ../packs/forest [-only frog,owl,ladybug.fly] [-parallel 3]
 go run ./author/stickeranim install -pack ../packs/forest [-only frog,owl] -bump
 go run ./packager validate ../packs/forest
 ```
@@ -35,7 +35,12 @@ removed (`prop` in art.json) is drawn from its art without it
   screen, and a sheet's texture memory goes with its square (a 24-frame
   action of ~520 px frames is ~23 MB decoded).
 - `animations[]`: `id`, `sticker`, `kind` (`action`, the default, or
-  `move`; one move per sticker), a one-line `description` of the whole
+  `move`; a sticker's first move is its usual way, a second one another
+  way it gets about that stories name with `by` — the ladybug's `fly`
+  besides its `crawl`; a move may say `flies` (its loop is a flight) and
+  `on` (the features a story that brings it in that way lands it on:
+  the duckling's `swim`, the pond); install writes both into the sidecar
+  without re-assembling), a one-line `description` of the whole
   animation (it also goes into the pack sidecar, where story authors read
   what the animation shows; add `story` with a plain version when the
   description carries drawing instructions), `base` — what stays put

@@ -252,6 +252,23 @@ func printStages(pack story.Manifest) {
 	movers := append(append([]string{}, groups["hop"]...), groups["fly"]...)
 	fmt.Printf("  moves ({sticker:go to X}, go on X, go under X, go to <place>, go away, go back): %s can move; %s stay put\n",
 		strings.Join(movers, ", "), strings.Join(groups["grow"], ", "))
+	// Stickers with more than one way to go: the first is the usual one,
+	// the others need naming ({ladybug:go on flower by fly}, {ladybug:enter by fly}).
+	var ways []string
+	for _, id := range pack.Stickers {
+		moves := pack.Moves[id]
+		if len(moves) < 2 {
+			continue
+		}
+		others := make([]string, 0, len(moves)-1)
+		for _, m := range moves[1:] {
+			others = append(others, "by "+m.ID)
+		}
+		ways = append(ways, fmt.Sprintf("%s %s (or %s)", id, moves[0].ID, strings.Join(others, ", ")))
+	}
+	if len(ways) > 0 {
+		fmt.Printf("  ways to go (name another than the usual on go and enter cues, as the words say): %s\n", strings.Join(ways, "; "))
+	}
 	if len(pack.Features) == 0 {
 		return
 	}
