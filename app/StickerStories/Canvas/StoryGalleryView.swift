@@ -21,6 +21,10 @@ struct StoryGalleryView: View {
     @State private var canvasState: CanvasState?
     @State private var narrator = RateNarrator()
     @State private var playback: PlaybackController?
+    /// Stories played since the gallery opened ("pack/story"): ticked, and
+    /// the list opens at the first one not played yet. Gone when the
+    /// gallery closes.
+    @State private var played: Set<String> = []
 
     private static let speeds: [Double] = [1, 2, 3]
 
@@ -105,31 +109,59 @@ struct StoryGalleryView: View {
                 ForEach(Self.speeds, id: \.self) { Text(verbatim: "\(Int($0))×").tag($0) }
             }
             .pickerStyle(.segmented)
-            ScrollView {
-                LazyVStack(spacing: 8) {
-                    ForEach(stories) { story in
-                        Button { play(story) } label: {
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(verbatim: story.title)
-                                    .font(.system(size: 16, weight: .bold, design: .rounded))
-                                Text(verbatim: story.id)
-                                    .font(.system(size: 12, weight: .medium, design: .monospaced))
-                                    .foregroundStyle(.secondary)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 8)
-                            .background(RoundedRectangle(cornerRadius: 12).fill(.white.opacity(0.85)))
+            ScrollViewReader { proxy in
+                ScrollView {
+                    LazyVStack(spacing: 8) {
+                        ForEach(stories) { story in
+                            storyButton(story).id(story.id)
                         }
-                        .buttonStyle(.plain)
-                        .disabled(scene == nil)
                     }
                 }
+                // Back from a story (the panel comes back) or on another
+                // pack or language: the first story not played yet on top.
+                .onAppear { scrollToNext(proxy) }
+                .onChange(of: packID) { scrollToNext(proxy) }
+                .onChange(of: language) { scrollToNext(proxy) }
             }
         }
         .padding(16)
         .frame(width: 330)
         .background(.regularMaterial)
+    }
+
+    private func storyButton(_ story: Story) -> some View {
+        let done = played.contains(playedKey(story))
+        return Button { play(story) } label: {
+            HStack(spacing: 10) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(verbatim: story.title)
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                    Text(verbatim: story.id)
+                        .font(.system(size: 12, weight: .medium, design: .monospaced))
+                        .foregroundStyle(.secondary)
+                }
+                Spacer(minLength: 0)
+                if done {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundStyle(Color(red: 0.2, green: 0.55, blue: 0.3))
+                        .accessibilityLabel("Played")
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            .background(RoundedRectangle(cornerRadius: 12).fill(.white.opacity(done ? 0.55 : 0.85)))
+        }
+        .buttonStyle(.plain)
+        .disabled(scene == nil)
+    }
+
+    private func playedKey(_ story: Story) -> String { "\(packID)/\(story.id)" }
+
+    private func scrollToNext(_ proxy: ScrollViewProxy) {
+        guard let next = stories.first(where: { !played.contains(playedKey($0)) }) else { return }
+        DispatchQueue.main.async { proxy.scrollTo(next.id, anchor: .top) }
     }
 
     /// The speed a story is playing at, over the canvas, top left.
@@ -171,6 +203,7 @@ struct StoryGalleryView: View {
     private func play(_ story: Story) {
         guard let pack else { return }
         playback?.stop()
+        played.insert(playedKey(story))
         narrator.rate = speed
         let controller = PlaybackController(storyProvider: ChosenStoryProvider(story: story), narrator: narrator)
         playback = controller
