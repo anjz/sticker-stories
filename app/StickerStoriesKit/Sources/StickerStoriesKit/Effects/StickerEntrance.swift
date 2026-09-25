@@ -327,6 +327,9 @@ public enum StagePlanner {
     /// the art rarely fills its square, so two can stand a little closer
     /// than their squares would say.
     public static let footprint = 0.38
+    /// How far a character's front goes into a place it faces (a trunk),
+    /// as a fraction of its width.
+    public static let contactOverlap = 0.04
 
     /// The plans for every entrance whose sticker is not already placed,
     /// in time order; later visitors avoid the earlier ones' spots.
@@ -394,9 +397,10 @@ public enum StagePlanner {
     }
 
     /// Where a character's centre goes to put its front (a beak) on
-    /// `point`, facing `facing`: `front` of its width behind it.
+    /// `point`, facing `facing`: `front` of its width behind it, less a
+    /// touch (`contactOverlap`) so the beak meets the bark, not the air.
     public static func contact(_ point: StagePoint, facing: StageMove.Facing, width: Double, front: Double?) -> StagePoint {
-        let reach = (front ?? 0.4) * width
+        let reach = ((front ?? 0.4) - contactOverlap) * width
         return StagePoint(x: point.x + (facing == .left ? reach : -reach), y: point.y)
     }
 
