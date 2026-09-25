@@ -67,6 +67,36 @@ struct SeededGenerator: RandomNumberGenerator {
         #expect((100...900).contains(owl.x) && (375...600).contains(owl.y))
     }
 
+    @Test func moveFramesSetThePaceTheGaitAndTheWayRound() {
+        // The fox's frames walk right, 0.5 widths a 0.8 s loop; the tree sprouts.
+        let moves: [String: StageMove] = [
+            "fox": StageMove(cycle: 0.8, stride: 0.5, facing: .right),
+            "owl": StageMove(cycle: 0.5, stride: 1, facing: .left),
+            "tree": StageMove(seconds: 1.4),
+        ]
+        for seed in [UInt64(1), 7, 42] {
+            var random = SeededGenerator(state: seed)
+            let plans = StagePlanner.plan(
+                entrances: ["fox", "owl", "tree"].map { EntranceTrigger(at: 0, stickerID: $0) },
+                placed: [], stages: Self.stages, moves: moves, scene: Self.scene, obstacles: [], policy: .standard,
+                random: &random)
+            let fox = plans[0], owl = plans[1], tree = plans[2]
+            #expect(fox.gait == .walk)
+            let distance = (fox.startOffset.x * fox.startOffset.x + fox.startOffset.y * fox.startOffset.y).squareRoot()
+            #expect(abs(fox.duration - min(max(distance / (0.5 / 0.8), 1.2), 6)) < 1e-9)
+            // Coming in from the left it travels right, as its frames do.
+            #expect(fox.mirrored == (fox.startOffset.x > 0))
+            #expect(owl.mirrored == (owl.startOffset.x < 0))
+            #expect(tree.motion == .sprout && tree.duration == 1.4 && tree.travel == 0)
+        }
+        // Calm: no frames, so no gait from them either.
+        var random = SeededGenerator(state: 3)
+        let calm = StagePlanner.plan(
+            entrances: [EntranceTrigger(at: 0, stickerID: "fox")], placed: [], stages: Self.stages, moves: moves,
+            scene: Self.scene, obstacles: [], policy: EffectPolicy(calmMode: true), random: &random)
+        #expect(calm[0].motion == .fade && !calm[0].mirrored)
+    }
+
     @Test func landsOnTheFreeSpotAndVisitorsAvoidEachOther() {
         // Stickers already fill the left of the ground band.
         let crowd = stride(from: 100.0, through: 500, by: 100).map {
@@ -187,6 +217,19 @@ struct SeededGenerator: RandomNumberGenerator {
             let path = 0.5 * (1 - EntrancePlan.easeOut(p))
             #expect(delta.offsetYSelf <= path + 1e-9)  // y down: bounces go up
         }
+    }
+
+    @Test func hoppingFramesLeapOncePerLoop() {
+        let leaps = EntrancePlan(
+            stickerID: "frog", at: 0, motion: .hop, target: StagePoint(x: 500, y: 200),
+            startOffset: (x: -4, y: 0), duration: 3, gait: .hops(cycle: 0.6))
+        #expect(abs(leaps.delta(at: 0.6).offsetYSelf) < 1e-9)  // landed, one loop in
+        #expect(leaps.delta(at: 0.3).offsetYSelf < -0.2)  // the top of the leap
+        #expect(abs(leaps.delta(at: 1.5).offsetXSelf + 2) < 1e-9)  // an even slide
+        let walk = EntrancePlan(
+            stickerID: "fox", at: 0, motion: .hop, target: StagePoint(x: 500, y: 200),
+            startOffset: (x: -4, y: 0), duration: 3, gait: .walk)
+        #expect(walk.delta(at: 1.3).offsetYSelf == 0)  // the legs walk; it does not bounce
     }
 
     @Test func growFadesInFromSmall() {

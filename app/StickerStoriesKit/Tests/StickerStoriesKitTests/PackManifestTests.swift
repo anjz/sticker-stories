@@ -315,8 +315,9 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         #expect(pack.manifest.languages == ["en-US", "es-ES"])
         #expect(pack.manifest.setting == .outdoors)
         #expect(pack.manifest.stickers.count == 25)
-        // Every pack ships ten animated stickers (docs/pack-format.md, "Live animations").
-        #expect(pack.manifest.stickers.filter { !$0.animations.isEmpty }.count == 10)
+        // Animated stickers (docs/pack-format.md, "Live animations"); every
+        // sticker once the move-and-action set is complete.
+        #expect(pack.manifest.stickers.filter { !$0.animations.isEmpty }.count >= 10)
         #expect(pack.manifest.stories.count >= 10)
         #expect(!pack.manifest.stories.filter(\.isFallback).isEmpty)
         // Every Forest sticker says where it belongs and how it comes in.

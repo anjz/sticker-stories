@@ -193,6 +193,7 @@ type Trigger struct {
 	Sticker    string  `json:"sticker,omitempty"`
 	Effect     string  `json:"effect,omitempty"`
 	Animation  string  `json:"animation,omitempty"`  // a live animation: no effect
+	Mode       string  `json:"mode,omitempty"`       // a live animation's hold or resume
 	Expression string  `json:"expression,omitempty"` // a face change: no effect
 	Enter      bool    `json:"enter,omitempty"`      // an entrance: no effect
 	Repeat     any     `json:"repeat,omitempty"`     // int or "loop"
@@ -248,6 +249,12 @@ func Triggers(cues []story.Cue, tl *Timeline, pack story.Manifest) ([]Trigger, e
 				return nil, fmt.Errorf("cue %s: %w", c.Raw, err)
 			}
 			t := Trigger{At: at, Sticker: c.Sticker, Animation: anim.ID}
+			switch {
+			case c.Hold:
+				t.Mode = story.LiveHold
+			case c.Resume:
+				t.Mode = story.LiveResume
+			}
 			if c.WordIndex < len(tl.Words) {
 				t.Cue = normalizeWord(tl.Words[c.WordIndex].Text)
 			}
@@ -292,7 +299,15 @@ func LiveOverlaps(triggers []Trigger, pack story.Manifest) []string {
 		if err != nil {
 			continue
 		}
+		// Held, the paused frame is as still as the sticker: only the way in
+		// (or, resuming, the way out) is motion.
 		end := live.At + anim.Seconds
+		switch live.Mode {
+		case story.LiveHold:
+			end = live.At + anim.ToPause
+		case story.LiveResume:
+			end = live.At + anim.FromPause
+		}
 		for _, t := range triggers {
 			if (t.Sticker == live.Sticker || t.Sticker == story.AllTarget) && t.Effect != "" && t.Repeat != "loop" && t.At > live.At && t.At < end {
 				out = append(out, fmt.Sprintf("%s %s at %.1fs lands inside %s's %s (%.1f–%.1fs)", t.Sticker, t.Effect, t.At, live.Sticker, live.Animation, live.At, end))

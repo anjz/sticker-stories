@@ -141,7 +141,7 @@ never letterboxes:
       "id": "frog",
       "name": { "en-US": "Frog", "es-ES": "Rana" },
       "image": "stickers/frog.webp",
-      "animations": ["anims/frog.backflip-fly.json"],
+      "animations": ["anims/frog.catch-fly.json", "anims/frog.hop.json"],
       "stage": { "entrance": "hop", "on": ["pond", "meadow"] }
     }
   ],
@@ -240,9 +240,14 @@ never letterboxes:
     `sticker` other than the declaring one, an empty `description`, an
     `id` the sticker already uses, a missing or non-image sheet,
     a `hold` list that does not match `count`, holds outside 0.02–5 s,
-    boxes outside the unit square are errors); the app checks the file
-    exists and reads it **leniently** (an undecodable sidecar is skipped
-    with a log, never fatal).
+    boxes outside the unit square, a `kind` other than `action`/`move`,
+    a second move for one sticker, a `pause` on a move or outside the
+    middle frames or without `shows`, a `loop`, `facing`, `stride` or
+    `hops` on an action, a loop outside the frames, a looping move
+    without `facing` left/right or with a `stride` outside 0–5 are
+    errors); the app checks the file exists and reads it **leniently**
+    (an undecodable sidecar is skipped with a log, never fatal; a pause
+    or loop it cannot use is dropped).
 13. Every `stickers[].expressions` key is lowercase `a-z0-9-` and not
     `normal`; every value is an image inside the pack (`.png` or `.webp`)
     that exists. No sticker is called `all`.
@@ -329,14 +334,29 @@ change skips stickers without that face.
 
 ## Live animations
 
-A sticker can carry animations: short frame sequences that make it come
-alive for a moment — the frog backflips and catches a fly, the owl blinks
-and turns its head. **Every pack ships ten animated stickers** (the
-authoring target, like the story count; not a validation rule), chosen
-among the characters and given small, unhurried motions: a yawn, a
-blink, a nibble, a peek. Nothing fast and nothing that travels — a
-sticker stays where the child put it, and gentle movement is what reads
-well at a few frames per second on a die-cut sticker.
+Every sticker carries animations: short frame sequences drawn from its
+own art that bring it to life. Two kinds (`kind`):
+
+- an **action** — what the character does at a moment of a story: the
+  snail hides in its shell, the frog catches a fly, the bear cub yawns and
+  nods off. Stories cue it on the words that tell it (`docs/effects.md`,
+  "Live animations"). Most actions have a **pause frame** (`pause`): the
+  pose they can stop in and stay — the snail tucked in its shell, the
+  bear cub asleep — for as long as the story needs, until the story
+  resumes it or ends.
+- a **move** — how the character gets about: a walk or a waddle, a hop,
+  a crawl, a flight, a plant sprouting. It plays while a story brings the
+  sticker into the scene (`docs/effects.md`, "Entrances"): a **loop** of
+  frames repeated while it travels, then a few frames that bring it to
+  rest in its sticker pose. A plant's sprout has no loop and plays once.
+  A sticker has at most one move.
+
+**Every pack gives every sticker one action and one move** (the authoring
+target, like the story count; not a validation rule). The motions are
+small and unhurried — nothing fast, nothing that reaches far from the
+sticker — and smooth: about 10–12 frames a second, with frames drawn
+close enough together that each step is small (an action is typically
+24 frames over 2–3 s, a walk cycle 8 frames at 12 fps).
 
 Each animation is a sprite sheet plus a sidecar, made by
 `tools/author/stickeranim` and declared in `stickers[].animations`:
@@ -344,26 +364,36 @@ Each animation is a sprite sheet plus a sidecar, made by
 | Key | Meaning |
 |---|---|
 | `id`, `sticker` | the animation's id (unique per sticker) and the sticker it belongs to (must match the declaring sticker) |
-| `description` | one plain sentence saying what the animation shows ("the bear cub yawns and stretches its arms up, rubs its eyes…"), for story authors; required, ignored by the app |
+| `kind` | `action` (the default when absent) or `move` |
+| `description` | one plain sentence saying what the animation shows ("the snail pulls its head and eye stalks into its shell, waits, then slowly peeks out"), for story authors; required, ignored by the app |
 | `sheet` | pack-relative path of the sheet (PNG or WebP): `columns` frames per row, `count` frames read left to right then top to bottom, each `frame.width` × `frame.height` px |
 | `rest` | the first frame's bordered art within a frame, as fractions of the frame (top-left origin) |
 | `stickerBox` | the same art within the sticker image, as fractions of the image |
 | `hold` | seconds each frame shows, one entry per frame (0.02–5) |
+| `pause` | actions only, optional: `{ "frame": 11, "shows": "the snail tucked inside its shell" }` — the 0-based frame the action can stop on (not the first or last) and what it shows, for story authors |
+| `loop` | moves only, optional: `{ "from": 1, "to": 8 }` — the frames (0-based, both included) repeated while the character travels; the frames after it bring it to rest. Without it the move plays once (a sprout) |
+| `facing` | moves with a loop: `left` or `right`, the way the frames travel (the app mirrors a sticker that has to come in the other way) |
+| `stride` | moves with a loop: how far one loop carries the character, in multiples of the sticker's width (above 0, at most 5), so it travels at the pace of its legs |
+| `hops` | moves with a loop, optional: `true` when the loop is a hop drawn in place; the app lifts the character in an arc once per loop |
 
-The frames are registered on the part that stays still (a lily pad, the
-feet, a branch), carry the same border and finish as the sticker, and the
-first and last frames are the sticker's own art, so the app can crossfade
-from the still sticker into the frames and back. The app scales and
-offsets the frames so `rest` lands exactly on `stickerBox` over the
-placed sticker, and derives the frames' drop shadow from the sheet.
+The frames are registered on the part that stays still (the feet, the
+shell's base) — a move's frames on the character's body, feet on the
+ground — carry the same border and finish as the sticker, and an action's
+first and last frames (a move's first) are the sticker's own art, so the
+app can dissolve from the still sticker into the frames and back. The app
+scales and offsets the frames so `rest` lands exactly on `stickerBox` over
+the placed sticker, and derives the frames' drop shadow from the sheet.
+A move's first frame is only that anchor; it plays from the second.
 
-Stories play them: the authoring cue `{bear:live}` becomes a trigger
-`{ "at", "sticker": "bear", "animation": "yawn" }` in the story's effects
-sidecar (`docs/effects.md`, "Live animations"), which the packager checks
-against the animations the sticker declares. The developer effects gallery
-plays any of them. A sheet decodes to width × height × 4 bytes of texture
-whatever its file size — keep that in mind before adding frames; a story
-loads only the sheets it triggers.
+Stories play actions: the authoring cue `{snail:live}` becomes a trigger
+`{ "at", "sticker": "snail", "animation": "hide" }` in the story's effects
+sidecar (`docs/effects.md`, "Live animations"), `{snail:live hold}` and
+`{snail:live resume}` the same with `"mode": "hold"` / `"resume"`; the
+packager checks them against the actions the sticker declares (and
+`hold`/`resume` against its pause frame). A move is never cued: entrances
+play it. The developer effects gallery plays any. A sheet decodes to width
+× height × 4 bytes of texture whatever its file size — keep that in mind
+before adding frames; a story loads only the sheets it plays.
 
 ## Language resolution (app behaviour)
 
@@ -392,7 +422,10 @@ same device preference.
   bump); `setting` values `space` and `underwater` added (no pack has
   shipped, so no bump); optional `description` added (additive, no bump);
   optional `cover` added (additive, no bump); optional
-  `stickers[].stage` and `features` added (additive, no bump).
+  `stickers[].stage` and `features` added (additive, no bump); the live
+  animation sidecar gained optional `kind`, `pause`, `loop`, `facing`,
+  `stride` and `hops`, and live triggers an optional `mode` (additive,
+  no bump).
 - Any schema change must update this document, the Go validator
   (`tools/internal/manifest`), and the Swift decoder in the **same commit**.
 - `version` (pack content revision) is bumped whenever any asset or story in a

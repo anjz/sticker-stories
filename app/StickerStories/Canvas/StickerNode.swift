@@ -40,7 +40,7 @@ final class StickerNode: SKSpriteNode {
     /// (1 = none).
     private let shadowTexture: SKTexture
     private let shadowSizeMultiplier: CGFloat
-    /// While a live animation plays (`playLive`), the shadows are sized to
+    /// While a live animation plays (`showLive`), the shadows are sized to
     /// its frames and centred on its sprite instead of on this one.
     private var liveShadowSize: CGSize?
     private var liveShadowAnchor: CGPoint = .zero
@@ -57,14 +57,21 @@ final class StickerNode: SKSpriteNode {
     /// child's canvas, and gone when the story ends.
     var isVisitor = false
 
+    /// Drawn the other way round (a visitor whose move frames travel the
+    /// other way from where it has to come in, `EntrancePlan.mirrored`):
+    /// the art, its faces and its frames all mirror together.
+    var mirrored = false
+
     /// The child's placement while an effect owns this node's transform
     /// (`EffectApplier`); `nil` in edit mode. Snapshots read this so a
     /// mid-effect save never captures a wobble.
     var effectBase: StickerPlacement?
 
     /// The sprite's own texture while a live animation stands in for it
-    /// (`playLive`, `StickerAnimation.swift`); `nil` otherwise.
+    /// (`showLive`, `StickerAnimation.swift`); `nil` otherwise.
     var liveStillTexture: SKTexture?
+    /// The live animation on show (`StickerAnimation.key`), if any.
+    var liveKey: String?
 
     /// The expression the sticker shows (`showFace`, `StickerExpression.swift`);
     /// `normal` is its own image. Only stories change it, and play end
@@ -124,8 +131,9 @@ final class StickerNode: SKSpriteNode {
     /// stays the same size on screen.
     private func applyShadowPoses(animated: Bool) {
         let c = cos(-zRotation), s = sin(-zRotation)
-        let scaleX = xScale != 0 ? abs(xScale) : 1
-        let scaleY = yScale != 0 ? abs(yScale) : 1
+        // Signed: a mirrored sticker's own x runs the other way.
+        let scaleX = xScale != 0 ? xScale : 1
+        let scaleY = yScale != 0 ? yScale : 1
         for (layer, pose) in [(contactShadow, contactPose), (castShadow, castPose)] {
             let local = CGPoint(
                 x: liveShadowAnchor.x + (pose.offset.x * c - pose.offset.y * s) / scaleX,
@@ -183,8 +191,8 @@ final class StickerNode: SKSpriteNode {
     /// a pinched sticker's shadow grows by the scale twice.
     var unscaledSize: CGSize {
         CGSize(
-            width: xScale != 0 ? size.width / xScale : size.width,
-            height: yScale != 0 ? size.height / yScale : size.height)
+            width: abs(xScale != 0 ? size.width / xScale : size.width),
+            height: abs(yScale != 0 ? size.height / yScale : size.height))
     }
 
     /// The world rescaled uniformly (window shape changed): keep the same
@@ -216,6 +224,7 @@ final class StickerNode: SKSpriteNode {
         position = CGPoint(x: composed.x, y: composed.y)
         zRotation = CGFloat(composed.rotation)
         setScale(CGFloat(composed.scale))
+        if mirrored { xScale = -xScale }
         alpha = CGFloat(composed.alpha)
         if composed.tintAmount > 0, let tint = composed.tintColor {
             color = UIColor(tint)

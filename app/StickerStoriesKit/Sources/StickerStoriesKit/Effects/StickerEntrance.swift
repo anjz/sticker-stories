@@ -75,9 +75,22 @@ public struct StageObstacle: Equatable, Sendable {
 /// never leaves a sticker half in.
 public struct EntrancePlan: Equatable, Sendable {
     /// What the sticker does on the way in. `fade` is what hops and flights
-    /// become under Reduce Motion or calm mode: it simply appears.
+    /// become under Reduce Motion or calm mode: it simply appears. `sprout`
+    /// is `grow` for a sticker whose move frames grow it (a flower): it
+    /// fades in where it stands and the frames do the growing.
     public enum Motion: String, Equatable, Sendable {
-        case hop, fly, grow, fade
+        case hop, fly, grow, sprout, fade
+    }
+
+    /// How a `hop` entrance carries the sticker. Without move frames it
+    /// bounces along (`bounce`); with a walk cycle its frames do the
+    /// walking and it slides at the pace of its legs (`walk`); with a hop
+    /// cycle it slides and rises in one arc per loop of its frames (`hops`,
+    /// the loop's seconds), so the leaps and the frames stay together.
+    public enum Gait: Equatable, Sendable {
+        case bounce
+        case walk
+        case hops(cycle: TimeInterval)
     }
 
     public var stickerID: String
@@ -94,10 +107,15 @@ public struct EntrancePlan: Equatable, Sendable {
     /// bigger and shrinks, one coming down starts smaller and grows.
     public var startScale: Double
     public var duration: TimeInterval
+    public var gait: Gait
+    /// The sticker is drawn the other way round for the whole visit: its
+    /// move travels one way in its frames and it has to come in the other.
+    public var mirrored: Bool
 
     public init(
         stickerID: String, at: TimeInterval, motion: Motion, target: StagePoint,
-        startOffset: (x: Double, y: Double) = (0, 0), startScale: Double = 1, duration: TimeInterval
+        startOffset: (x: Double, y: Double) = (0, 0), startScale: Double = 1, duration: TimeInterval,
+        gait: Gait = .bounce, mirrored: Bool = false
     ) {
         self.stickerID = stickerID
         self.at = at
@@ -106,12 +124,24 @@ public struct EntrancePlan: Equatable, Sendable {
         self.startOffset = startOffset
         self.startScale = startScale
         self.duration = duration
+        self.gait = gait
+        self.mirrored = mirrored
     }
 
     public static func == (a: EntrancePlan, b: EntrancePlan) -> Bool {
         a.stickerID == b.stickerID && a.at == b.at && a.motion == b.motion && a.target == b.target
             && a.startOffset.x == b.startOffset.x && a.startOffset.y == b.startOffset.y
-            && a.startScale == b.startScale && a.duration == b.duration
+            && a.startScale == b.startScale && a.duration == b.duration && a.gait == b.gait
+            && a.mirrored == b.mirrored
+    }
+
+    /// How long the sticker travels, for its move frames: they loop this
+    /// long and then settle (0 for motions that do not travel).
+    public var travel: TimeInterval {
+        switch motion {
+        case .hop, .fly: duration
+        case .grow, .sprout, .fade: 0
+        }
     }
 
     public func isFinished(at time: TimeInterval) -> Bool { time >= at + duration }
@@ -128,12 +158,23 @@ public struct EntrancePlan: Equatable, Sendable {
         guard p < 1 else { return delta }
         switch motion {
         case .hop:
-            // Walks in at an even pace, slowing for the last step, one hop
-            // per sticker width or so.
-            let travel = Self.easeOut(p)
-            let distance = (startOffset.x * startOffset.x + startOffset.y * startOffset.y).squareRoot()
-            let hops = min(max(distance.rounded(), 2), 8)
-            let bounce = Self.hopHeight * abs(sin(.pi * hops * p))
+            let travel: Double, bounce: Double
+            switch gait {
+            case .bounce:
+                // Walks in at an even pace, slowing for the last step, one
+                // hop per sticker width or so.
+                travel = Self.easeOut(p)
+                let distance = (startOffset.x * startOffset.x + startOffset.y * startOffset.y).squareRoot()
+                let hops = min(max(distance.rounded(), 2), 8)
+                bounce = Self.hopHeight * abs(sin(.pi * hops * p))
+            case .walk:
+                // The legs set the pace: an even slide, the frames settle it.
+                travel = p
+                bounce = 0
+            case .hops(let cycle):
+                travel = p
+                bounce = cycle > 0 ? Self.hopHeight * abs(sin(.pi * (time - at) / cycle)) : 0
+            }
             delta.offsetXSelf = startOffset.x * (1 - travel)
             delta.offsetYSelf = startOffset.y * (1 - travel) - bounce
             delta.scaleMul = startScale + (1 - startScale) * travel
@@ -147,6 +188,8 @@ public struct EntrancePlan: Equatable, Sendable {
             delta.offsetYSelf = startOffset.y * (1 - travel) + Self.flyBob * sin(2 * .pi * 1.5 * p) * fade
             delta.rotationAdd = Self.flyTilt * sin(2 * .pi * 1.5 * p) * fade * (startOffset.x < 0 ? 1 : -1)
             delta.scaleMul = startScale + (1 - startScale) * travel
+        case .sprout:
+            delta.opacityMul = min(p / 0.12, 1)
         case .grow:
             delta.opacityMul = min(p / 0.4, 1)
             delta.scaleMul = Self.growFrom + (1 - Self.growFrom) * Self.easeOutBack(p)
@@ -170,6 +213,37 @@ public struct EntrancePlan: Equatable, Sendable {
     static func easeOutBack(_ p: Double) -> Double {
         let c1 = 1.70158, c3 = c1 + 1
         return 1 + c3 * pow(p - 1, 3) + c1 * pow(p - 1, 2)
+    }
+}
+
+/// A sticker's move frames as the planner needs them (the sidecar's
+/// timing, `docs/pack-format.md`, "Live animations"): a loop that carries
+/// it `stride` sticker widths every `cycle` seconds, facing the way the
+/// frames travel, maybe hopping — or a one-shot (a sprout) of `seconds`.
+public struct StageMove: Equatable, Sendable {
+    public enum Facing: String, Codable, Equatable, Sendable {
+        case left, right
+    }
+
+    public var cycle: TimeInterval?
+    public var stride: Double
+    public var hops: Bool
+    public var facing: Facing?
+    public var seconds: TimeInterval
+
+    public init(cycle: TimeInterval? = nil, stride: Double = 0, hops: Bool = false, facing: Facing? = nil, seconds: TimeInterval = 0) {
+        self.cycle = cycle
+        self.stride = stride
+        self.hops = hops
+        self.facing = facing
+        self.seconds = seconds
+    }
+
+    /// Whether a sticker whose frames travel this way has to be mirrored
+    /// to come in moving right (or left).
+    func mirrors(travellingRight: Bool) -> Bool {
+        guard let facing else { return false }
+        return (facing == .right) != travellingRight
     }
 }
 
@@ -218,8 +292,8 @@ public enum StagePlanner {
     /// in time order; later visitors avoid the earlier ones' spots.
     public static func plan<R: RandomNumberGenerator>(
         entrances: [EntranceTrigger], placed: Set<String>, stages: [String: StickerStage],
-        features: [String: SceneFeature] = [:], scene: Scene, obstacles: [StageObstacle], policy: EffectPolicy,
-        random: inout R
+        features: [String: SceneFeature] = [:], moves: [String: StageMove] = [:], scene: Scene,
+        obstacles: [StageObstacle], policy: EffectPolicy, random: inout R
     ) -> [EntrancePlan] {
         var obstacles = obstacles
         var plans: [EntrancePlan] = []
@@ -239,7 +313,9 @@ public enum StagePlanner {
             let (target, rect) = landing ?? randomSpot(in: choices[0], random: &random)
             obstacles.append(StageObstacle(center: target, radius: radius))
             plans.append(
-                path(for: entrance, stage: stage, target: target, area: rect, scene: scene, policy: policy, random: &random))
+                path(
+                    for: entrance, stage: stage, move: policy.allowsLiveAnimations ? moves[entrance.stickerID] : nil,
+                    target: target, area: rect, scene: scene, policy: policy, random: &random))
         }
         return plans
     }
@@ -348,9 +424,14 @@ public enum StagePlanner {
     static let depthScalePerHeight = 1.2
     static let depthScaleLimit = 0.25
 
+    /// A walker never takes longer than this to come in, however slow its
+    /// legs and far its spot; nor less than `minWalk`.
+    static let maxWalk: TimeInterval = 6
+    static let minWalk: TimeInterval = 1.2
+
     static func path<R: RandomNumberGenerator>(
-        for entrance: EntranceTrigger, stage: StickerStage, target: StagePoint, area: StageRect,
-        scene: Scene, policy: EffectPolicy, random: inout R
+        for entrance: EntranceTrigger, stage: StickerStage, move: StageMove? = nil, target: StagePoint,
+        area: StageRect, scene: Scene, policy: EffectPolicy, random: inout R
     ) -> EntrancePlan {
         let size = scene.size(of: entrance.stickerID)
         let width = max(size.width, 1), height = max(size.height, 1)
@@ -368,6 +449,14 @@ public enum StagePlanner {
             let depth = min(max((target.y - startY) / height * depthScalePerHeight, -depthScaleLimit), depthScaleLimit)
             let offset = (x: dxSelf, y: -(startY - target.y) / height)
             let distance = (offset.x * offset.x + offset.y * offset.y).squareRoot()
+            if let move, let cycle = move.cycle, cycle > 0, move.stride > 0 {
+                // At the pace of its legs: stride widths per loop.
+                let duration = min(max(distance / (move.stride / cycle), minWalk), maxWalk)
+                return EntrancePlan(
+                    stickerID: entrance.stickerID, at: entrance.at, motion: .hop, target: target,
+                    startOffset: offset, startScale: 1 + depth, duration: duration,
+                    gait: move.hops ? .hops(cycle: cycle) : .walk, mirrored: move.mirrors(travellingRight: fromLeft))
+            }
             return EntrancePlan(
                 stickerID: entrance.stickerID, at: entrance.at, motion: .hop, target: target,
                 startOffset: offset, startScale: 1 + depth, duration: min(max(distance * 0.3, 1.2), 3.2))
@@ -378,8 +467,14 @@ public enum StagePlanner {
             let distance = (offset.x * offset.x + offset.y * offset.y).squareRoot()
             return EntrancePlan(
                 stickerID: entrance.stickerID, at: entrance.at, motion: .fly, target: target,
-                startOffset: offset, duration: min(max(distance * 0.3, 1.6), 3.4))
+                startOffset: offset, duration: min(max(distance * 0.3, 1.6), 3.4),
+                mirrored: move?.mirrors(travellingRight: fromLeft) ?? false)
         case (.grow, false):
+            if let move, move.cycle == nil, move.seconds > 0 {
+                return EntrancePlan(
+                    stickerID: entrance.stickerID, at: entrance.at, motion: .sprout, target: target,
+                    duration: min(max(move.seconds, 0.6), 3))
+            }
             return EntrancePlan(stickerID: entrance.stickerID, at: entrance.at, motion: .grow, target: target, duration: 0.8)
         case (_, true):
             return EntrancePlan(stickerID: entrance.stickerID, at: entrance.at, motion: .fade, target: target, duration: 0.6)

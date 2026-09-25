@@ -82,7 +82,7 @@ var (
 	knownCanvas     = set(CanvasNames...)
 	knownKeys       = set("at", "cue", "sticker", "effect", "repeat", "duration", "intensity", "color", "hold")
 	knownCanvasKeys = set("at", "cue", "effect", "intensity", "duration")
-	knownLiveKeys   = set("at", "cue", "sticker", "animation")
+	knownLiveKeys   = set("at", "cue", "sticker", "animation", "mode")
 	knownFaceKeys   = set("at", "cue", "sticker", "expression")
 	knownEnterKeys  = set("at", "cue", "sticker", "enter")
 	colorPattern    = regexp.MustCompile(`^#[0-9A-Fa-f]{6}$`)
@@ -123,16 +123,33 @@ const AllStickers = "all"
 // Normal is the expression that shows the sticker's own image.
 const Normal = "normal"
 
-// Animations maps each sticker ID to the IDs of the live animations it
-// declares (docs/pack-format.md, "Live animations"); Expressions has the
-// same shape for its expression variants ("Expressions").
-type Animations map[string][]string
+// Animations maps each sticker ID to the live-animation actions it
+// declares (docs/pack-format.md, "Live animations"): the ones a live
+// trigger may play. A move (a walk cycle) is not among them.
+type Animations map[string][]Animation
 
-// Expressions maps each sticker ID to its expression variants' ids.
-type Expressions = Animations
+// Animation is one action a trigger may name, and whether it has a frame
+// it can pause on ("mode": "hold").
+type Animation struct {
+	ID       string
+	Pausable bool
+}
 
-func (a Animations) has(sticker, id string) bool {
+func (a Animations) find(sticker, id string) (Animation, bool) {
 	for _, x := range a[sticker] {
+		if x.ID == id {
+			return x, true
+		}
+	}
+	return Animation{}, false
+}
+
+// Expressions maps each sticker ID to its expression variants' ids
+// ("Expressions").
+type Expressions map[string][]string
+
+func (e Expressions) has(sticker, id string) bool {
+	for _, x := range e[sticker] {
 		if x == id {
 			return true
 		}
@@ -435,8 +452,16 @@ func validateEnterTrigger(label string, fields map[string]json.RawMessage, decla
 	}
 }
 
+// Live trigger modes: play an action up to its pause frame and stay there,
+// or play it on from there to the end. No mode plays it whole.
+const (
+	LiveHold   = "hold"
+	LiveResume = "resume"
+)
+
 // validateLiveTrigger checks a trigger that plays one of a sticker's live
-// animations: a sticker, the animation's id, at and an optional cue.
+// animations: a sticker, the animation's id, at, an optional mode and an
+// optional cue.
 func validateLiveTrigger(label string, fields map[string]json.RawMessage, declared map[string]bool, animations Animations, fail func(string, ...any)) {
 	for _, k := range sortedKeys(fields) {
 		if !knownLiveKeys[k] {
@@ -449,8 +474,18 @@ func validateLiveTrigger(label string, fields map[string]json.RawMessage, declar
 		sticker = ""
 	}
 	animation := requireString(label, "animation", fields, fail)
-	if sticker != "" && animation != "" && animations != nil && !animations.has(sticker, animation) {
-		fail("%s: sticker %q has no live animation %q", label, sticker, animation)
+	mode := ""
+	if raw, ok := fields["mode"]; ok {
+		if err := json.Unmarshal(raw, &mode); err != nil || (mode != LiveHold && mode != LiveResume) {
+			fail("%s: mode must be %q or %q", label, LiveHold, LiveResume)
+		}
+	}
+	if sticker != "" && animation != "" && animations != nil {
+		if a, ok := animations.find(sticker, animation); !ok {
+			fail("%s: sticker %q has no live animation %q", label, sticker, animation)
+		} else if mode != "" && !a.Pausable {
+			fail("%s: %s's %s has no pause frame, so it cannot %s", label, sticker, animation, mode)
+		}
 	}
 	if raw, ok := fields["at"]; !ok {
 		fail("%s: at is required", label)

@@ -183,11 +183,20 @@ const (
 )
 
 // LiveEffect is the reserved cue effect that plays one of a sticker's live
-// animations (its own frames: the bear cub yawning, the frog's backflip):
-// {bear:live}, or {bear:live yawn} to name one when a sticker has several.
-// It is not a sticker effect (docs/effects.md keeps character animation a
-// separate system) and takes no other parameters.
+// animations (its own frames: the bear cub yawning, the frog catching a
+// fly): {bear:live}, or {bear:live yawn} to name one when a sticker has
+// several. An animation with a pause frame can also stop there and stay —
+// {snail:live hold}, the snail tucked in its shell — until {snail:live
+// resume} plays the rest (or the story ends with it held). It is not a
+// sticker effect (docs/effects.md keeps character animation a separate
+// system) and takes no other parameters.
 const LiveEffect = "live"
+
+// Live cue keywords: play up to the pause frame and stay; play on from it.
+const (
+	LiveHold   = "hold"
+	LiveResume = "resume"
+)
 
 // AllTarget is the reserved cue target for every sticker on the canvas:
 // {all:hop}, {all:face sleeping}. A pack must not name a sticker this.
@@ -210,9 +219,10 @@ const Normal = "normal"
 // word that first names it; it takes no parameters.
 const EnterEffect = "enter"
 
-// MaxLiveCues is how many live animations one story may play per language
-// before a warning: they are the characters' big moments.
-const MaxLiveCues = 2
+// MaxLiveCues is how many live animations one story may start per language
+// before a warning (a hold and its resume count once): they tell the
+// story's moments, but a stage that never stops moving tells none.
+const MaxLiveCues = 5
 
 // Cue is one parsed inline cue. A canvas cue (Canvas true) has no sticker
 // and takes only an intensity and a duration. A sound cue (Sound true)
@@ -228,7 +238,8 @@ type Cue struct {
 	Effect     string
 	Repeat     int // 0 = default (1)
 	Loop       bool
-	Hold       bool
+	Hold       bool // a sticker effect's hold, or a live cue that stops at the pause frame
+	Resume     bool // a live cue that plays on from the pause frame
 	Color      string  // "#RRGGBB" or ""
 	Duration   float64 // seconds, 0 = default
 	Intensity  float64 // 0 = default; -1 = explicitly zero
@@ -562,6 +573,8 @@ func parseCue(inner string) (Cue, error) {
 			c.Hold = true
 		case p == "solo":
 			c.Solo = true
+		case p == LiveResume && c.Effect == LiveEffect:
+			c.Resume = true
 		case c.Effect == FaceEffect && c.Sticker != "" && idPattern.MatchString(p) && !numericParam.MatchString(p):
 			if c.Expression != "" {
 				return c, fmt.Errorf("a face cue names one expression")
@@ -678,8 +691,10 @@ type Manifest struct {
 	Languages []string
 	Stickers  []string
 	Setting   string // outdoors | indoors | space | underwater | none ("" reads as none)
-	// Animations are each sticker's live animations, in manifest order.
+	// Animations are each sticker's live actions, in manifest order;
+	// Moves each sticker's move (the walk or flight its entrance plays).
 	Animations map[string][]Animation
+	Moves      map[string]Animation
 	// Expressions are each sticker's face variants (besides normal).
 	Expressions map[string][]string
 	// Names are each sticker's display names by language, for checking
@@ -714,17 +729,22 @@ func (m Manifest) HasExpression(target, expression string) bool {
 }
 
 // Animation is one live animation a sticker carries, as story authors
-// need it: what it shows and how long it plays.
+// need it: what it shows and how long it plays. An action with a pause
+// frame says what that frame shows (Pause) and how long it takes to get
+// there and, from there, to the end.
 type Animation struct {
 	ID          string
 	Description string
 	Seconds     float64
+	Pause       string
+	ToPause     float64
+	FromPause   float64
 }
 
 // PackManifest reads what story validation needs from a loaded pack
 // manifest, live animations included (dir is the pack root).
 func PackManifest(m *manifest.Manifest, dir string) (Manifest, error) {
-	pack := Manifest{ID: m.ID, Languages: m.Languages, Setting: m.EffectiveSetting(), Animations: map[string][]Animation{}, Expressions: map[string][]string{}, Names: map[string]map[string]string{}, Stages: map[string]string{}, LandsOn: map[string][]string{}, Features: map[string]string{}}
+	pack := Manifest{ID: m.ID, Languages: m.Languages, Setting: m.EffectiveSetting(), Animations: map[string][]Animation{}, Moves: map[string]Animation{}, Expressions: map[string][]string{}, Names: map[string]map[string]string{}, Stages: map[string]string{}, LandsOn: map[string][]string{}, Features: map[string]string{}}
 	for id, f := range m.Features {
 		pack.Features[id] = f.Description
 	}
@@ -746,7 +766,16 @@ func PackManifest(m *manifest.Manifest, dir string) (Manifest, error) {
 	}
 	for id, list := range anims {
 		for _, a := range list {
-			pack.Animations[id] = append(pack.Animations[id], Animation{ID: a.ID, Description: a.Description, Seconds: a.Duration()})
+			anim := Animation{ID: a.ID, Description: a.Description, Seconds: a.Duration()}
+			if a.EffectiveKind() == manifest.KindMove {
+				pack.Moves[id] = anim
+				continue
+			}
+			if a.Pause != nil {
+				anim.Pause = a.Pause.Shows
+				anim.ToPause, anim.FromPause = a.PlaySeconds()
+			}
+			pack.Animations[id] = append(pack.Animations[id], anim)
 		}
 	}
 	return pack, nil
@@ -904,7 +933,7 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		}
 		var shape []string
 		canvasCues, sounds, liveCues, faceCues, enterCues := 0, len(s.Sound), 0, 0, 0
-		liveOn := map[string]bool{}
+		held := map[string]string{} // sticker → the action it holds paused
 		enterAt := map[string]int{}
 		for _, c := range cues {
 			if c.Sound {
@@ -945,6 +974,9 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 				if c.Sticker != AllTarget && !inStory[c.Sticker] {
 					is.errorf("%s: cue %s targets %q, which is neither featured nor supporting", lang, c.Raw, c.Sticker)
 				}
+				if a, ok := held[c.Sticker]; ok {
+					is.warnf("%s: cue %s: %s is held paused in its %s, so the face shows only once it resumes", lang, c.Raw, c.Sticker, a)
+				}
 				validateFaceCue(&is, lang, c, m)
 				continue
 			}
@@ -957,12 +989,24 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 				is.errorf("%s: cue %s targets %q, which is neither featured nor supporting", lang, c.Raw, c.Sticker)
 			}
 			if c.Effect == LiveEffect {
-				liveCues++
-				if liveOn[c.Sticker] {
-					is.warnf("%s: cue %s: %s comes alive twice; once per story keeps it special", lang, c.Raw, c.Sticker)
+				if !c.Resume {
+					liveCues++
 				}
-				liveOn[c.Sticker] = true
 				validateLiveCue(&is, lang, c, m)
+				anim, _ := m.ResolveAnimation(c.Sticker, c.Animation)
+				holding, isHeld := held[c.Sticker]
+				switch {
+				case c.Resume && !isHeld:
+					is.errorf("%s: cue %s: nothing to resume — %s is not held (cue {%s:%s %s} first)", lang, c.Raw, c.Sticker, c.Sticker, LiveEffect, LiveHold)
+				case c.Resume && anim.ID != "" && holding != anim.ID:
+					is.errorf("%s: cue %s: %s holds its %s, not %s", lang, c.Raw, c.Sticker, holding, anim.ID)
+				case c.Resume:
+					delete(held, c.Sticker)
+				case isHeld:
+					is.errorf("%s: cue %s: %s is still held in its %s; {%s:%s %s} it first", lang, c.Raw, c.Sticker, holding, c.Sticker, LiveEffect, LiveResume)
+				case c.Hold:
+					held[c.Sticker] = anim.ID
+				}
 				continue
 			}
 			e, known := cat.Effects[c.Effect]
@@ -1290,13 +1334,20 @@ func validateFaceCue(is *Issues, lang string, c Cue, m Manifest) {
 }
 
 // validateLiveCue checks a {sticker:live} cue: the sticker has the live
-// animation it asks for, and nothing else is set.
+// animation it asks for, hold/resume only on one with a pause frame, and
+// nothing else is set.
 func validateLiveCue(is *Issues, lang string, c Cue, m Manifest) {
-	if _, err := m.ResolveAnimation(c.Sticker, c.Animation); err != nil {
+	anim, err := m.ResolveAnimation(c.Sticker, c.Animation)
+	if err != nil {
 		is.errorf("%s: cue %s: %v", lang, c.Raw, err)
 	}
-	if c.Repeat > 0 || c.Loop || c.Hold || c.Color != "" || c.Duration > 0 || c.Intensity != 0 {
-		is.errorf("%s: cue %s: a live animation takes no parameters (only an animation id)", lang, c.Raw)
+	if c.Hold && c.Resume {
+		is.errorf("%s: cue %s: hold or resume, not both", lang, c.Raw)
+	} else if (c.Hold || c.Resume) && err == nil && anim.Pause == "" {
+		is.errorf("%s: cue %s: %s's %s has no pause frame; play it whole ({%s:%s})", lang, c.Raw, c.Sticker, anim.ID, c.Sticker, LiveEffect)
+	}
+	if c.Repeat > 0 || c.Loop || c.Color != "" || c.Duration > 0 || c.Intensity != 0 {
+		is.errorf("%s: cue %s: a live animation takes no parameters (only an animation id, and hold or resume)", lang, c.Raw)
 	}
 }
 

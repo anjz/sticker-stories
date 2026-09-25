@@ -203,8 +203,8 @@ Each story localization may point at one sidecar next to its audio
 because each narration has its own timing. One `triggers` list carries five
 kinds: an entry whose `effect` is a sticker effect targets a `sticker` (or
 `all`); one whose `effect` is a canvas effect has none; one with an
-`animation` and no `effect` plays that sticker's live animation ("Live
-animations" below); one with an `expression` and no `effect` changes a
+`animation` and no `effect` plays that sticker's live animation, whole or
+(`mode`) up to its pause frame or on from it ("Live animations" below); one with an `expression` and no `effect` changes a
 sticker's face, or everyone's ("Faces" below); one with `"enter": true`
 marks where the story first names a sticker ("Entrances" below).
 
@@ -223,6 +223,8 @@ marks where the story first names a sticker ("Entrances" below).
     { "at": 26.4, "cue": "smiled",  "sticker": "mushroom", "expression": "happy" },
     { "at": 28.0, "cue": "everyone","sticker": "all",      "effect": "hop" },
     { "at": 30.2, "cue": "yawned",  "sticker": "bear",     "animation": "yawn" },
+    { "at": 31.0, "cue": "hid",     "sticker": "snail",    "animation": "hide", "mode": "hold" },
+    { "at": 38.4, "cue": "peeked",  "sticker": "snail",    "animation": "hide", "mode": "resume" },
     { "at": 33.0, "cue": "owl",     "sticker": "owl",      "enter": true },
     { "at": 41.5, "cue": "flies",   "sticker": "bird",     "effect": "fade-out", "hold": true }
   ]
@@ -236,8 +238,9 @@ marks where the story first names a sticker ("Entrances" below).
   names, unknown keys, out-of-range numbers, undeclared stickers, `repeat`
   on a one-way effect, `color`/`hold` on effects that ignore them, `tint`
   without a colour, sticker keys on a canvas effect, a canvas effect
-  that does not suit the pack's `setting`, and a live trigger naming an
-  animation its sticker does not declare (or carrying effect keys) are all
+  that does not suit the pack's `setting`, a live trigger naming an
+  action its sticker does not declare (or a move, or carrying effect
+  keys), and a `hold`/`resume` on an action without a pause frame are all
   errors. The app is
   lenient: it skips or clamps and logs. A pack that passes the packager
   never triggers a log.
@@ -272,12 +275,14 @@ Stories are authored with cues inline in the text
 The fox gave an enormous {fox:wobble x3} {fox:sparkle} sneeze.
 Plip, plop — {canvas:rain 0.7 14s} here comes the rain.
 Bear gave a {bear:live} great big yawn.
+Snail {snail:live hold} hid in his shell… and waited… then {snail:live resume} peeked out.
 Mushroom {mushroom:face happy} smiled. And {all:face sleeping} everyone fell asleep.
 ```
 
 A cue fires on the word that follows it; `canvas:` is the reserved target
 for canvas effects, `live` the reserved effect that plays a sticker's live
-animation (`{bear:live}`, or `{owl:live blink}` to name one of several),
+action (`{bear:live}`, `{owl:live blink}` to name one of several, `{snail:live
+hold}` / `{snail:live resume}` to stop on its pause frame and go on later),
 `face` the reserved effect that changes a sticker's face (`{bear:face
 happy}`, `{bear:face normal}`), `enter` the reserved effect that marks a
 sticker's first mention (`{owl:enter} Owl`), `all` the reserved target for every
@@ -291,25 +296,37 @@ app never parses text.
 
 ## Live animations
 
-Ten stickers per pack carry a **live animation**: a short frame sequence
-drawn from the sticker's own art — the bear cub yawns and stretches, the
-frog backflips and catches a fly (`docs/pack-format.md`, "Live
-animations"). Each sidecar's `description` says what it shows and its
-`hold`s how long (3–6 s), so story authors can cue it on the words that
-tell that moment; `storycheck` lists them.
+Every sticker carries a **live action**: a short frame sequence drawn from
+its own art — the snail hides in its shell, the frog catches a fly, the
+bear cub yawns and nods off (`docs/pack-format.md`, "Live animations") —
+and a **move** that entrances play ("Entrances" below). Each action's
+sidecar says what it shows (`description`), how long it plays (`hold`s,
+2–4 s) and, for most, the frame it can pause on (`pause.shows`: "the
+snail tucked inside its shell"); `storycheck` lists them.
 
-- Not an effect: no parameters, no repeat, one animation per sticker per
-  story beat. The trigger is `{ "at", "cue"?, "sticker", "animation" }`.
-- It plays on every placed instance of the sticker, from the rest pose and
-  back to it, and inherits the sticker's placement and any running effect
-  (a `float` loop carries it along). Sticker effects that *start* on the
-  same sticker while it plays fight it; `storyaudio` warns about them.
+- Not an effect: no parameters, no repeat. The trigger is
+  `{ "at", "cue"?, "sticker", "animation", "mode"? }`.
+- **Whole** (no `mode`): from the rest pose through every frame and back.
+- **`hold`**: up to the pause frame, and it stays there — for a sentence
+  or to the end of the story — until a `resume` for that sticker (or
+  another action on it, which takes over).
+- **`resume`**: on from the pause frame to the end. After its `hold` the
+  frames simply carry on; without one it dissolves in on the pause frame.
+- What a sticker shows at any moment is the last live trigger for it up
+  to then (`LiveTimeline`, pure: a seek is exact, and a trigger is never
+  lost to a slow frame). The story's end brings the still sticker back.
+- It plays on every placed instance of the sticker and inherits the
+  sticker's placement and any running effect (a `float` loop carries it
+  along). Sticker effects that *start* on the same sticker while it moves
+  fight it; `storyaudio` warns about them. While it is held on its pause
+  frame, effects are fine; a face change waits underneath and shows when
+  it resumes (`storycheck` warns).
 - A story loads only the sheets its triggers name for stickers on the
-  canvas, off the main thread as play starts, and drops them when it ends
-  (a sheet is ~35 MB of texture). A trigger whose sheet is not in yet, or
-  that is found more than a second late, is skipped.
-- Older apps skip the trigger (it has no `effect`) with a log line, so no
-  schema change was needed.
+  canvas, and the moves of the stickers it brings in, off the main thread
+  as play starts, and drops them when it ends. A trigger whose sheet is
+  not in yet shows the still sticker until it is.
+- Older apps skip the trigger (it has no `effect`) with a log line; an
+  app that does not know `mode` plays a `hold` whole. No schema change.
 
 ## Faces
 
@@ -352,11 +369,18 @@ one per sticker per story, never `all`.
   (`docs/pack-format.md`, "Stage" and "Features"; `StagePlanner`), or
   any spot there when the canvas is crowded — and keeps it hidden there
   until its entrance.
-- At its entrance it comes in as its stage says: `hop` hops in from the
-  nearer side of the screen (bigger or smaller at first as it walks away
-  from or towards the viewer), `fly` glides in from the nearer side,
-  `grow` fades in and grows where it stands. Under Reduce Motion or calm
-  mode it simply fades in.
+- At its entrance it comes in as its stage says, playing its **move**:
+  `hop` walks (or hops, or crawls) in from the nearer side of the screen
+  (bigger or smaller at first as it walks away from or towards the
+  viewer), its move's loop going round while it slides at the pace of its
+  legs (`stride` sticker widths a loop, 1.2–6 s in all; a hopping move
+  rises in one arc per loop) and its last frames settling it into its
+  sticker pose as it arrives; `fly` glides in from the nearer side with
+  its wings going; `grow` fades in and grows where it stands, or, with a
+  sprout move, fades in and sprouts. A sticker whose move travels one way
+  and has to come in the other is mirrored for the whole visit. Without a
+  move it bounces in as before. Under Reduce Motion or calm mode it
+  simply fades in (no frames).
 - From then on a visitor is on the stage like any placed sticker: its
   effects, faces, live animation and `all` reach it (they compose with the
   entrance while it is still arriving). Cues on a visitor before its
@@ -376,8 +400,9 @@ one per sticker per story, never `all`.
   (`rain`, `snow` and the others marked in the canvas table) at ≤0.4;
   fades, `glow`, `tint` and the other canvas effects (slow washes of light)
   run in full because they carry story meaning.
-- Live animations (whole-body motion: a backflip, a curl-up) do not play
-  under Reduce Motion or calm mode; the sticker stays still.
+- Live animations (whole-body motion: a curl-up, a walk) do not play
+  under Reduce Motion or calm mode; the sticker stays still, and a held
+  one never shows.
 - **Calm mode** (main menu gear → Settings) applies the same policy plus a global
   intensity multiplier of 0.6, for children who are easily overstimulated.
 - Flashes (white `tint`) are capped at 3 per second regardless of
