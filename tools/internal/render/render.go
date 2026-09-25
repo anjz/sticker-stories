@@ -313,9 +313,10 @@ var LightChanges = map[string]bool{
 }
 
 // HoldLights lengthens every held light so it lasts until the next light
-// change (crossfading into it: it clears while that one builds) or, when
-// none comes, until the story ends at end seconds (it starts clearing only
-// then). Durations only grow, and stay within the effect's range.
+// change (crossfading into it: it starts clearing as that one starts
+// building) or, when none comes, until the story ends at end seconds (it
+// starts clearing only then). Durations only grow, and stay within the
+// effect's range.
 func HoldLights(triggers []Trigger, end float64, cat *story.Catalog) {
 	for i, t := range triggers {
 		if t.Sticker != "" || !HeldLights[t.Effect] {
@@ -325,7 +326,7 @@ func HoldLights(triggers []Trigger, end float64, cat *story.Catalog) {
 		until := end + fx.RampOut
 		for _, next := range triggers {
 			if next.Sticker == "" && LightChanges[next.Effect] && next.At > t.At {
-				until = min(until, next.At+cat.Canvas[next.Effect].RampIn)
+				until = min(until, next.At+fx.RampOut)
 			}
 		}
 		d := round(until - t.At)

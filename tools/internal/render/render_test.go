@@ -348,9 +348,9 @@ func TestHeldLightsLastUntilTheLightChangesOrTheEnd(t *testing.T) {
 		{At: 40, Effect: "rain", Duration: 5},
 	}
 	HoldLights(tr, 70, cat)
-	// The sunset holds until the night has built up over it (30 + 2 s)…
-	if tr[0].Duration != 32 {
-		t.Errorf("sunset lasts %g s, want 32", tr[0].Duration)
+	// The sunset holds until the night comes, clearing as it builds (30 + 2.5 s)…
+	if tr[0].Duration != 32.5 {
+		t.Errorf("sunset lasts %g s, want 32.5", tr[0].Duration)
 	}
 	// …the night until the story's end, clearing only after it (70 + 2 − 30).
 	if tr[1].Duration != 42 {

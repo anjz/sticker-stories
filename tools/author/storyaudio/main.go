@@ -44,7 +44,7 @@ import (
 )
 
 const (
-	toolVersion  = "3" // 3: held lights (render.HoldLights)
+	toolVersion  = "4" // 3: held lights (render.HoldLights); 4: they clear as the next builds
 	defaultModel = "eleven_v3"
 	fallbackTTS  = "eleven_multilingual_v2"
 	tailOut      = 2.0 // seconds of music after the narrator ends
