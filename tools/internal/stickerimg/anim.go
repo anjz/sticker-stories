@@ -375,11 +375,11 @@ func matchFrames(frames []registered, feet bool, loop [2]int, rests []int) {
 	if len(frames) < 2 {
 		return
 	}
-	type place struct{ s, x, y float64 } // art pixel p → common s·p + (x, y)
 	at := make([]place, len(frames))
 	at[0] = place{1, -float64(frames[0].anchor.X), -float64(frames[0].anchor.Y)}
-	// match finds where frame i goes when it follows frame prev (placed).
-	match := func(prev, i int) place {
+	// match finds where frame i goes when it follows frame prev (placed),
+	// its size within ±step of prev's.
+	match := func(prev, i int, step float64) place {
 		pp := at[prev]
 		ref := frames[prev].art
 		if pp.s != 1 {
@@ -394,14 +394,14 @@ func matchFrames(frames []registered, feet bool, loop [2]int, rests []int) {
 			Tx: float64(pad) + (float64(ref.Rect.Dx())-float64(f.Rect.Dx())*pp.s)/2,
 			Ty: float64(pad) + float64(ref.Rect.Dy()) - float64(f.Rect.Dy())*pp.s}
 		fit := Align(canvas, f, AlignOptions{
-			MinScale: pp.s * (1 - matchScaleStep), MaxScale: pp.s * (1 + matchScaleStep), MaxShift: 0.12, Start: guess})
+			MinScale: pp.s * (1 - step), MaxScale: pp.s * (1 + step), MaxShift: 0.12, Start: guess})
 		return place{fit.S, pp.x + fit.Tx - float64(pad), pp.y + fit.Ty - float64(pad)}
 	}
 	for i := 1; i < len(frames); i++ {
-		at[i] = match(i-1, i)
+		at[i] = match(i-1, i, matchScaleStep)
 	}
 	if from, to := loop[0], loop[1]; to > from && from >= 1 && to < len(frames) {
-		again := match(to, from)
+		again := match(to, from, matchScaleStep)
 		dx, dy := again.x-at[from].x, again.y-at[from].y
 		n := float64(to - from + 1)
 		for i := from; i < len(frames); i++ {
@@ -427,16 +427,80 @@ func matchFrames(frames []registered, feet bool, loop [2]int, rests []int) {
 		}
 		fixed = r
 	}
-	ground := at[0].y + float64(frames[0].art.Rect.Dy())
+	if feet {
+		ground := at[0].y + float64(frames[0].art.Rect.Dy())*at[0].s
+		for i := range at {
+			at[i].y = ground - float64(frames[i].art.Rect.Dy())*at[i].s
+		}
+	}
+	fitToRest(frames, at, loop, rests, match)
 	for i, p := range at {
 		art := frames[i].art
 		if math.Abs(p.s-1) > 1e-4 {
 			art = Resize(art, int(math.Round(float64(art.Rect.Dx())*p.s)), int(math.Round(float64(art.Rect.Dy())*p.s)))
 		}
-		if feet {
-			p.y = ground - float64(art.Rect.Dy())
-		}
 		frames[i] = registered{art: art, anchor: image.Pt(int(math.Round(-p.x)), int(math.Round(-p.y)))}
+	}
+}
+
+// place is where a frame's art sits on the common canvas: art pixel p →
+// s·p + (x, y).
+type place struct{ s, x, y float64 }
+
+// restFitStep is how far the frame next to the sticker's own art may be
+// resized to fit it: the generator's drawing of the same pose can come out
+// that much bigger or smaller (the firefly), or with other proportions
+// (the woodpecker's shorter tail) that a ground line or a chain places
+// wrong.
+const restFitStep = 0.18
+
+// fitToRest makes the hand-overs to and from the still sticker seamless:
+// the generated frame next to a rest frame (the sticker's own art) shows
+// almost the same pose, so it is fitted onto the rest frame directly —
+// size and place — and that correction fades in over the frames before it
+// (and out after the first one), so nothing jumps where the frames and the
+// still sticker dissolve into each other. A move's loop is left alone (it
+// must stay seamless); only its settling frames are brought onto the rest
+// pose it ends on.
+func fitToRest(frames []registered, at []place, loop [2]int, rests []int, match func(prev, i int, step float64) place) {
+	last := -1
+	for _, r := range rests {
+		if r > 0 && r < len(frames) && frames[r].art == frames[0].art {
+			last = max(last, r)
+		}
+	}
+	if last < 2 || len(rests) == 0 || rests[0] != 0 {
+		return
+	}
+	// A correction maps the common canvas q → a·q + b.
+	type corr struct{ a, bx, by float64 }
+	correction := func(rest, n int) corr {
+		target := match(rest, n, restFitStep)
+		a := target.s / at[n].s
+		return corr{a, target.x - a*at[n].x, target.y - a*at[n].y}
+	}
+	identity := corr{1, 0, 0}
+	end := correction(last, last-1)
+	start, from := identity, 1
+	if l0, l1 := loop[0], loop[1]; l1 > l0 && l0 >= 1 && l1 < last {
+		from = l1 + 1 // settling frames only
+	} else {
+		start = correction(0, 1)
+	}
+	to := last - 1
+	for i := from; i <= to; i++ {
+		k := 1.0
+		if to > from {
+			k = float64(i-from) / float64(to-from)
+		}
+		if from > 1 {
+			// Moves: the first settling frame is already partly on its way.
+			k = float64(i-from+1) / float64(to-from+1)
+		}
+		a := math.Pow(start.a, 1-k) * math.Pow(end.a, k)
+		bx := start.bx*(1-k) + end.bx*k
+		by := start.by*(1-k) + end.by*k
+		at[i] = place{at[i].s * a, at[i].x*a + bx, at[i].y*a + by}
 	}
 }
 

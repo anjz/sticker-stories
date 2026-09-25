@@ -53,7 +53,7 @@ const (
 	toolVersion = "1"
 	// assembleVersion changes whenever the registration or finishing of
 	// kept raw sheets changes, so they are re-assembled without new calls.
-	assembleVersion = "17"
+	assembleVersion = "18"
 	editModel       = "gpt-image-2.5-sunburst"
 	defaultQual     = "high"
 	defaultHold     = 1.0 / 12
