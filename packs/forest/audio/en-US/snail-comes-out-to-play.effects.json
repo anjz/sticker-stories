@@ -3,94 +3,127 @@
   "triggers": [
     {
       "at": 0,
-      "cue": "rabbit",
-      "sticker": "rabbit",
-      "enter": true
-    },
-    {
-      "at": 0,
-      "cue": "rabbit",
-      "sticker": "butterfly",
-      "enter": true
-    },
-    {
-      "at": 0,
-      "cue": "rabbit",
+      "cue": "slowly",
       "sticker": "butterfly",
       "effect": "float",
       "repeat": "loop",
       "intensity": 0.3
     },
     {
-      "at": 3.45,
-      "cue": "came",
+      "at": 4.57,
+      "cue": "snail",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 9.71,
+      "cue": "rabbit",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 14.07,
+      "cue": "snail",
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 14.07,
+      "cue": "snail",
+      "sticker": "rabbit",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 16.12,
+      "cue": "oh",
+      "sticker": "snail",
+      "expression": "surprised"
+    },
+    {
+      "at": 18.02,
+      "cue": "pulled",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 25.05,
+      "cue": "bounced",
       "sticker": "rabbit",
       "effect": "hop",
       "repeat": 3
     },
     {
-      "at": 7.88,
-      "cue": "snail",
-      "sticker": "snail",
-      "enter": true
-    },
-    {
-      "at": 7.88,
-      "cue": "snail",
-      "sticker": "rabbit",
-      "expression": "happy"
-    },
-    {
-      "at": 11.99,
-      "cue": "right",
-      "sticker": "snail",
-      "effect": "shake"
-    },
-    {
-      "at": 21.14,
+      "at": 28.31,
       "cue": "snail",
       "sticker": "rabbit",
       "expression": "sad"
     },
     {
-      "at": 23.54,
+      "at": 31.46,
       "cue": "flower",
       "sticker": "flower",
       "enter": true
     },
     {
-      "at": 23.93,
-      "cue": "shook",
+      "at": 33.31,
+      "cue": "nodded",
       "sticker": "flower",
       "effect": "wobble"
     },
     {
-      "at": 31.12,
+      "at": 36.52,
+      "cue": "so",
+      "sticker": "rabbit",
+      "expression": "normal"
+    },
+    {
+      "at": 39.56,
       "cue": "the",
       "effect": "sunshine",
-      "duration": 14,
+      "duration": 18,
       "intensity": 0.7
     },
     {
-      "at": 32.44,
-      "cue": "inside",
-      "sticker": "snail",
-      "animation": "hide"
+      "at": 41.3,
+      "cue": "butterfly",
+      "sticker": "butterfly",
+      "enter": true
     },
     {
-      "at": 42.45,
+      "at": 43.93,
+      "cue": "went",
+      "sticker": "rabbit",
+      "animation": "listen"
+    },
+    {
+      "at": 51.56,
+      "cue": "peeked",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 54.53,
       "cue": "hello",
       "sticker": "snail",
       "expression": "happy"
     },
     {
-      "at": 43.95,
+      "at": 56.03,
+      "cue": "and",
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 56.03,
       "cue": "and",
       "sticker": "rabbit",
       "effect": "hearts"
     },
     {
-      "at": 51.67,
+      "at": 63.2,
       "cue": "everybody",
       "sticker": "all",
       "expression": "happy"

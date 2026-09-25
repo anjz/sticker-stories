@@ -3,107 +3,101 @@
   "triggers": [
     {
       "at": 0,
+      "cue": "frog",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 9.28,
       "cue": "fox",
       "sticker": "fox",
       "enter": true
     },
     {
-      "at": 3.35,
-      "cue": "could",
+      "at": 9.85,
+      "cue": "is",
       "sticker": "fox",
-      "effect": "hop"
+      "expression": "surprised"
     },
     {
-      "at": 5.1,
+      "at": 11.88,
+      "cue": "no",
+      "sticker": "frog",
+      "effect": "wobble"
+    },
+    {
+      "at": 13.56,
       "cue": "deer",
       "sticker": "deer",
       "enter": true
     },
     {
-      "at": 5.83,
-      "cue": "could",
+      "at": 15.4,
+      "cue": "is",
       "sticker": "deer",
-      "effect": "pulse"
+      "expression": "surprised"
     },
     {
-      "at": 9.08,
-      "cue": "frog",
-      "sticker": "frog",
-      "enter": true
-    },
-    {
-      "at": 11.22,
-      "cue": "went",
-      "sticker": "frog",
-      "effect": "tint",
-      "color": "#FFB3C6"
-    },
-    {
-      "at": 17.53,
+      "at": 19.38,
       "cue": "mushroom",
       "sticker": "mushroom",
       "enter": true
     },
     {
-      "at": 18.01,
-      "cue": "nodded",
-      "sticker": "mushroom",
-      "effect": "wobble"
-    },
-    {
-      "at": 20.43,
-      "cue": "cheered",
-      "sticker": "fox",
-      "effect": "hop"
-    },
-    {
-      "at": 20.43,
-      "cue": "cheered",
+      "at": 27.52,
+      "cue": "nibbled",
       "sticker": "deer",
-      "effect": "hop"
+      "animation": "graze"
     },
     {
-      "at": 26.6,
-      "cue": "frog",
+      "at": 32.81,
+      "cue": "pricked",
+      "sticker": "fox",
+      "animation": "listen"
+    },
+    {
+      "at": 42.01,
+      "cue": "a",
       "sticker": "frog",
-      "animation": "catch-fly"
+      "animation": "catch-fly",
+      "mode": "hold"
     },
     {
-      "at": 34.9,
-      "cue": "nobody",
+      "at": 50.16,
+      "cue": "snap",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "resume"
+    },
+    {
+      "at": 54.72,
+      "cue": "that",
       "sticker": "all",
       "expression": "surprised"
     },
     {
-      "at": 37.3,
-      "cue": "spun",
-      "sticker": "fox",
-      "effect": "spin"
+      "at": 55.86,
+      "cue": "frog",
+      "sticker": "frog",
+      "expression": "happy"
     },
     {
-      "at": 38.76,
-      "cue": "bounced",
-      "sticker": "deer",
-      "effect": "hop",
-      "repeat": 2
+      "at": 57.97,
+      "cue": "scrunched",
+      "sticker": "mushroom",
+      "animation": "sneeze"
     },
     {
-      "at": 39.99,
-      "cue": "again",
+      "at": 64.87,
+      "cue": "and",
       "sticker": "all",
       "expression": "happy"
     },
     {
-      "at": 43.52,
-      "cue": "the",
-      "sticker": "frog",
-      "expression": "happy"
-    },
-    {
-      "at": 43.52,
-      "cue": "the",
-      "sticker": "frog",
-      "effect": "sparkle"
+      "at": 66.11,
+      "cue": "for",
+      "sticker": "all",
+      "effect": "hop"
     }
   ]
 }

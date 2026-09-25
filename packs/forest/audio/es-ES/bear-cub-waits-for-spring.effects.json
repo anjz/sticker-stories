@@ -2,110 +2,112 @@
   "schema": 1,
   "triggers": [
     {
-      "at": 6.74,
+      "at": 6.41,
       "cue": "osito",
       "sticker": "bear",
       "enter": true
     },
     {
-      "at": 9.85,
+      "at": 8.27,
+      "cue": "me",
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 11.83,
       "cue": "tejón",
       "sticker": "badger",
       "enter": true
     },
     {
-      "at": 10.8,
+      "at": 14.48,
+      "cue": "todo",
       "sticker": "badger",
-      "effect": "pulse"
+      "expression": "surprised"
     },
     {
-      "at": 11.4,
-      "cue": "yo",
-      "sticker": "bear",
-      "expression": "happy"
+      "at": 18.77,
+      "cue": "olfateó",
+      "sticker": "badger",
+      "animation": "dig"
     },
     {
-      "at": 13.36,
-      "sticker": "bear",
-      "effect": "hop"
-    },
-    {
-      "at": 16.36,
-      "cue": "lo",
+      "at": 27.63,
+      "cue": "el",
       "sticker": "bear",
       "effect": "shake",
       "intensity": 0.4
     },
     {
-      "at": 19.02,
+      "at": 29.6,
       "cue": "pero",
       "sticker": "bear",
-      "animation": "nap"
+      "animation": "nap",
+      "mode": "hold"
     },
     {
-      "at": 28.27,
+      "at": 35.84,
       "cue": "tejón",
-      "sticker": "bear",
-      "expression": "sleeping"
-    },
-    {
-      "at": 33.66,
-      "cue": "que",
       "sticker": "badger",
       "expression": "happy"
     },
     {
-      "at": 37.51,
+      "at": 36.1,
+      "cue": "lo",
+      "sticker": "badger",
+      "effect": "hearts"
+    },
+    {
+      "at": 37.67,
       "cue": "todo",
       "effect": "snow",
-      "duration": 9,
+      "duration": 10,
       "intensity": 0.6
     },
     {
-      "at": 43.16,
+      "at": 42.93,
       "cue": "hasta",
       "effect": "sunshine",
-      "duration": 12,
+      "duration": 16,
       "intensity": 0.8
     },
     {
-      "at": 45.04,
+      "at": 44.81,
       "cue": "pájaro",
       "sticker": "bird",
       "enter": true
     },
     {
-      "at": 45.45,
-      "cue": "se",
+      "at": 46.74,
+      "cue": "infló",
       "sticker": "bird",
-      "effect": "float",
-      "repeat": "loop",
-      "intensity": 0.3
+      "animation": "sing"
     },
     {
-      "at": 49.99,
-      "cue": "abrió",
+      "at": 49.68,
+      "cue": "el",
       "sticker": "bear",
-      "expression": "surprised"
+      "animation": "nap",
+      "mode": "resume"
     },
     {
-      "at": 49.99,
-      "cue": "abrió",
+      "at": 54.37,
+      "cue": "ya",
       "sticker": "bear",
-      "effect": "hop",
-      "repeat": 2
+      "expression": "happy"
     },
     {
-      "at": 53.65,
+      "at": 56.97,
       "cue": "no",
       "sticker": "bird",
       "expression": "happy"
     },
     {
-      "at": 55.76,
+      "at": 59.29,
       "cue": "es",
       "sticker": "bear",
-      "expression": "happy"
+      "effect": "hop",
+      "repeat": 2
     }
   ]
 }
