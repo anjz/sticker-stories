@@ -86,6 +86,11 @@ type AnimOptions struct {
 	Finish      *Finish
 	// Columns of the output sheet.
 	Columns int
+	// Resolution, when set, draws the frames at the scale of a sticker
+	// this many px square (the first frame's art fills its inner area) —
+	// smaller than the generated cells when those are bigger than a
+	// sticker on screen needs. Never upscales. 0 = the cells' own size.
+	Resolution int
 	// MaxSheet caps either dimension of the output sheet in px; the frames
 	// are downscaled uniformly to fit. 0 = no cap.
 	MaxSheet int
@@ -104,6 +109,24 @@ type AnimOptions struct {
 	// instead of a redrawing of it.
 	Rest       *image.RGBA
 	RestFrames []int
+	// Register is how frames are put on top of each other: RegisterBase
+	// (the default) anchors each on its base row (a lily pad, feet
+	// planted); RegisterBody puts each where it best matches the frame
+	// before it (a flight: the wings move, the body stays);
+	// RegisterFeet does that sideways and keeps the art's bottom on one
+	// line (a walk: the feet move, the ground stays).
+	Register string
+	// Loop is the run of frames (0-based, both included) a move repeats:
+	// the chain of matches is closed round it, so the last frame leads
+	// back into the first without a jump. Zero value: none.
+	Loop [2]int
+	// SheetsContinue says every sheet after the first starts with the pose
+	// the sheet before it ends with (the way stickeranim's sheets are
+	// written): each sheet is then scaled as a whole so that pair matches
+	// (Align, shape and all), which is far steadier than comparing rest
+	// cells' areas — a snail whose body is in its shell has no rest cell
+	// in that sheet to compare. Off: SheetSizes' rest-area method.
+	SheetsContinue bool
 	// SheetSizes is how many cells came from each generated sheet, in
 	// order (nil: one sheet). The generator draws each sheet at its own
 	// scale — sheets of one animation came out 10 % apart — while the
@@ -140,6 +163,13 @@ type AnimSheet struct {
 const (
 	edgeCrumbFraction = 0.02
 	edgeCrumbDepth    = 0.12
+)
+
+// Registration modes (AnimOptions.Register).
+const (
+	RegisterBase = "base"
+	RegisterBody = "body"
+	RegisterFeet = "feet"
 )
 
 // registered is one frame trimmed to its art with its anchor: the centre
@@ -191,8 +221,12 @@ func Animation(cells []*image.RGBA, o AnimOptions) (*AnimSheet, error) {
 		areas[i] = float64(opaqueCount(art, o.Threshold))
 	}
 
-	// One scale per sheet, against the first sheet's rest-pose cell.
+	// One scale per sheet, against the first sheet's rest-pose cell — or,
+	// when sheets continue each other, against the frame before each.
 	scales := sheetScales(len(cells), o.SheetSizes, o.RestFrames, areas, o.MaxDrift)
+	if o.SheetsContinue && len(o.SheetSizes) > 1 {
+		scales = continuedScales(frames, o.SheetSizes)
+	}
 	if o.Rest != nil && len(o.RestFrames) > 0 {
 		rest := Clean(o.Rest, o.Threshold)
 		box := Bounds(rest, o.Threshold)
@@ -209,7 +243,31 @@ func Animation(cells []*image.RGBA, o AnimOptions) (*AnimSheet, error) {
 			return nil, fmt.Errorf("rest frame %d is out of range", first+1)
 		}
 		s := math.Sqrt(areas[first] / float64(opaqueCount(art, o.Threshold)))
+		if o.SheetsContinue {
+			// Same pose, so a match of shape and size is fairer than areas
+			// (the generator's drawing is often a little rounder).
+			s = 1 / sameScale(frames[first].art, Resize(art, int(math.Round(float64(art.Rect.Dx())*s)), int(math.Round(float64(art.Rect.Dy())*s)))) * s
+		}
 		scaled := Resize(art, int(math.Round(float64(art.Rect.Dx())*s)), int(math.Round(float64(art.Rect.Dy())*s)))
+		if o.SheetsContinue {
+			// A sheet that ends on the rest pose may have drifted in size on
+			// the way: its generated rest cell says by how much, and the
+			// frames since the sheet began are brought back gradually.
+			start := 0
+			for _, size := range o.SheetSizes {
+				end := min(start+size, len(frames))
+				for _, r := range o.RestFrames {
+					if r > start && r == end-1 && r != first {
+						drift := scales[r] * sameScale(scaled, frames[r].art)
+						for j := start; j <= r; j++ {
+							k := float64(j-start) / float64(r-start)
+							scales[j] *= math.Pow(drift/scales[r], k)
+						}
+					}
+				}
+				start = end
+			}
+		}
 		for _, i := range o.RestFrames {
 			if i < 0 || i >= len(frames) {
 				return nil, fmt.Errorf("rest frame %d is out of range", i+1)
@@ -218,6 +276,19 @@ func Animation(cells []*image.RGBA, o AnimOptions) (*AnimSheet, error) {
 			widths[i] = float64(w) * s
 			scales[i] = 1 // already at the first sheet's size
 		}
+	}
+
+	// Frames whose base moves are matched one on the other instead.
+	if o.Register == RegisterBody || o.Register == RegisterFeet {
+		for i := range frames {
+			if scales[i] != 1 {
+				f := frames[i]
+				w, h := int(math.Round(float64(f.art.Rect.Dx())*scales[i])), int(math.Round(float64(f.art.Rect.Dy())*scales[i]))
+				frames[i] = registered{art: Resize(f.art, w, h), anchor: image.Pt(int(math.Round(float64(f.anchor.X)*scales[i])), h)}
+				scales[i] = 1
+			}
+		}
+		matchFrames(frames, o.Register == RegisterFeet, o.Loop, o.RestFrames)
 	}
 
 	// Optionally, also even out the drift between single cells against the
@@ -237,13 +308,17 @@ func Animation(cells []*image.RGBA, o AnimOptions) (*AnimSheet, error) {
 	inner := float64(o.StickerSize) * (1 - 2*o.Margin - 2*o.Border)
 	restMax := float64(max(frames[0].art.Rect.Dx(), frames[0].art.Rect.Dy()))
 	toSticker := inner / restMax
-	// Output scale: native, unless the sheet would exceed the cap.
+	// Output scale: native (or Resolution's, if smaller), unless the sheet
+	// would exceed the cap.
 	global := 1.0
+	if o.Resolution > 0 {
+		global = math.Min(1, float64(o.Resolution)*(1-2*o.Margin-2*o.Border)/restMax)
+	}
 	frameW, frameH := layout(frames, scales, o, toSticker, global)
 	if o.MaxSheet > 0 {
 		rows := (len(frames) + o.Columns - 1) / o.Columns
 		if sw, sh := o.Columns*frameW, rows*frameH; sw > o.MaxSheet || sh > o.MaxSheet {
-			global = math.Min(float64(o.MaxSheet)/float64(sw), float64(o.MaxSheet)/float64(sh))
+			global *= math.Min(float64(o.MaxSheet)/float64(sw), float64(o.MaxSheet)/float64(sh))
 			frameW, frameH = layout(frames, scales, o, toSticker, global)
 			// Rounding can leave the sheet a pixel or two over; the frame's
 			// margin is empty, so trimming it is harmless.
@@ -281,6 +356,91 @@ func Animation(cells []*image.RGBA, o AnimOptions) (*AnimSheet, error) {
 	return &AnimSheet{Image: sheet, Frame: image.Pt(frameW, frameH), Columns: o.Columns, Count: len(frames), Rest: rest, Scales: scales}, nil
 }
 
+// matchFrames re-anchors (and slightly rescales) frames 1… so each sits
+// where it best matches the one before it (Align: a shift and a scale
+// within matchScaleStep), frame 0 keeping its place. With feet, the
+// art's bottom stays on frame 0's line. A loop's chain is closed (the
+// shift from its last frame back into its first is spread over the
+// loop), and every later rest frame — the sticker's own art again, which
+// must land exactly where frame 0 is — pulls the frames since the last
+// fixed one along with it, so the model's slow drift in size and place
+// never shows as a pop at the end.
+func matchFrames(frames []registered, feet bool, loop [2]int, rests []int) {
+	if len(frames) < 2 {
+		return
+	}
+	type place struct{ s, x, y float64 } // art pixel p → common s·p + (x, y)
+	at := make([]place, len(frames))
+	at[0] = place{1, -float64(frames[0].anchor.X), -float64(frames[0].anchor.Y)}
+	// match finds where frame i goes when it follows frame prev (placed).
+	match := func(prev, i int) place {
+		pp := at[prev]
+		ref := frames[prev].art
+		if pp.s != 1 {
+			ref = Resize(ref, int(math.Round(float64(ref.Rect.Dx())*pp.s)), int(math.Round(float64(ref.Rect.Dy())*pp.s)))
+		}
+		f := frames[i].art
+		pad := max(ref.Rect.Dx(), ref.Rect.Dy(), f.Rect.Dx(), f.Rect.Dy()) / 2
+		canvas := image.NewRGBA(image.Rect(0, 0, ref.Rect.Dx()+2*pad, ref.Rect.Dy()+2*pad))
+		draw.Draw(canvas, ref.Rect.Add(image.Pt(pad, pad)), ref, image.Point{}, draw.Src)
+		// Start from the two bottoms and centres coinciding.
+		guess := Placement{S: pp.s,
+			Tx: float64(pad) + (float64(ref.Rect.Dx())-float64(f.Rect.Dx())*pp.s)/2,
+			Ty: float64(pad) + float64(ref.Rect.Dy()) - float64(f.Rect.Dy())*pp.s}
+		fit := Align(canvas, f, AlignOptions{
+			MinScale: pp.s * (1 - matchScaleStep), MaxScale: pp.s * (1 + matchScaleStep), MaxShift: 0.12, Start: guess})
+		return place{fit.S, pp.x + fit.Tx - float64(pad), pp.y + fit.Ty - float64(pad)}
+	}
+	for i := 1; i < len(frames); i++ {
+		at[i] = match(i-1, i)
+	}
+	if from, to := loop[0], loop[1]; to > from && from >= 1 && to < len(frames) {
+		again := match(to, from)
+		dx, dy := again.x-at[from].x, again.y-at[from].y
+		n := float64(to - from + 1)
+		for i := from; i < len(frames); i++ {
+			k := math.Min(float64(i-from), float64(to-from)) / n
+			at[i].x -= dx * k
+			at[i].y -= dy * k
+		}
+	}
+	// Rest frames are fixed points: a correction (scale about the common
+	// origin, frame 0's anchor, then a shift) grows from nothing at the
+	// last fixed frame to exactly what puts this one on frame 0.
+	fixed := 0
+	for _, r := range rests {
+		if r <= fixed || r >= len(frames) || frames[r].art != frames[0].art {
+			continue
+		}
+		a := at[0].s / at[r].s
+		bx, by := at[0].x-a*at[r].x, at[0].y-a*at[r].y
+		for i := fixed + 1; i < len(frames); i++ {
+			k := math.Min(float64(i-fixed)/float64(r-fixed), 1)
+			ak := math.Pow(a, k)
+			at[i] = place{at[i].s * ak, at[i].x*ak + bx*k, at[i].y*ak + by*k}
+		}
+		fixed = r
+	}
+	ground := at[0].y + float64(frames[0].art.Rect.Dy())
+	for i, p := range at {
+		art := frames[i].art
+		if math.Abs(p.s-1) > 1e-4 {
+			art = Resize(art, int(math.Round(float64(art.Rect.Dx())*p.s)), int(math.Round(float64(art.Rect.Dy())*p.s)))
+		}
+		if feet {
+			p.y = ground - float64(art.Rect.Dy())
+		}
+		frames[i] = registered{art: art, anchor: image.Pt(int(math.Round(-p.x)), int(math.Round(-p.y)))}
+	}
+}
+
+// matchScaleStep is how much a frame may differ in size from the one
+// before it when matching. 0: shift only — a match of changing poses
+// favours the bigger frame (it covers where the last one reached), so
+// sizes come from same-pose pairs instead (continuedScales, and a
+// sheet's last frame against the rest art in Animation).
+const matchScaleStep = 0
+
 // extents returns the common left and top extents of all frames' art
 // relative to their anchors (both ≤ 0) at the given output scale; the
 // right and bottom extents are what layout adds.
@@ -305,6 +465,50 @@ func layout(frames []registered, scales []float64, o AnimOptions, toSticker, glo
 	}
 	pad := 2 * (o.Border + o.Margin) * float64(o.StickerSize) / toSticker * global
 	return int(math.Ceil(right-left+pad)) + 1, int(math.Ceil(bottom-top+pad)) + 1
+}
+
+// sameScale is the scale that makes img the size of ref, for two drawings
+// of the same pose (Align, 0.7–1.4, shift free).
+func sameScale(ref, img *image.RGBA) float64 {
+	pad := max(ref.Rect.Dx(), ref.Rect.Dy(), img.Rect.Dx(), img.Rect.Dy()) / 2
+	canvas := image.NewRGBA(image.Rect(0, 0, ref.Rect.Dx()+2*pad, ref.Rect.Dy()+2*pad))
+	draw.Draw(canvas, ref.Rect.Add(image.Pt(pad, pad)), ref, image.Point{}, draw.Src)
+	guess := Placement{S: 1,
+		Tx: float64(pad) + float64(ref.Rect.Dx()-img.Rect.Dx())/2,
+		Ty: float64(pad) + float64(ref.Rect.Dy()-img.Rect.Dy())}
+	return Align(canvas, img, AlignOptions{MinScale: 0.7, MaxScale: 1.4, MaxShift: 0.2, Start: guess}).S
+}
+
+// continuedScales gives every cell its sheet's scale when each sheet
+// starts with the pose the one before it ends with: the first sheet is 1,
+// and each next one is scaled so its first frame matches the last frame
+// before it (Align, 0.8–1.25).
+func continuedScales(frames []registered, sizes []int) []float64 {
+	scales := make([]float64, len(frames))
+	current := 1.0
+	start := 0
+	for k, size := range sizes {
+		end := min(start+size, len(frames))
+		if k > 0 && start > 0 && start < len(frames) {
+			prev, next := frames[start-1].art, frames[start].art
+			if current != 1 {
+				prev = Resize(prev, int(math.Round(float64(prev.Rect.Dx())*current)), int(math.Round(float64(prev.Rect.Dy())*current)))
+			}
+			pad := max(prev.Rect.Dx(), prev.Rect.Dy(), next.Rect.Dx(), next.Rect.Dy()) / 2
+			canvas := image.NewRGBA(image.Rect(0, 0, prev.Rect.Dx()+2*pad, prev.Rect.Dy()+2*pad))
+			draw.Draw(canvas, prev.Rect.Add(image.Pt(pad, pad)), prev, image.Point{}, draw.Src)
+			guess := Placement{S: 1,
+				Tx: float64(pad) + float64(prev.Rect.Dx()-next.Rect.Dx())/2,
+				Ty: float64(pad) + float64(prev.Rect.Dy()-next.Rect.Dy())}
+			fit := Align(canvas, next, AlignOptions{MinScale: 0.8, MaxScale: 1.25, MaxShift: 0.2, Start: guess})
+			current = fit.S
+		}
+		for i := start; i < end; i++ {
+			scales[i] = current
+		}
+		start = end
+	}
+	return scales
 }
 
 // sheetScales gives every cell its sheet's scale: 1 for the first sheet
