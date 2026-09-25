@@ -231,6 +231,12 @@ extension StickerNode {
         childNode(withName: Self.liveStillName)?.alpha = CGFloat(state.stillAlpha)
     }
 
+    /// The live frames and the still art under them, while they are on
+    /// show (the tint reaches them there; `setTint`).
+    var liveSprites: [SKSpriteNode] {
+        [Self.liveNodeName, Self.liveStillName].compactMap { childNode(withName: $0) as? SKSpriteNode }
+    }
+
     private func beginLive(_ loaded: LoadedLiveAnimation) {
         let animation = loaded.animation
         guard let first = loaded.frames.first, let stillTexture = texture else { return }
@@ -256,7 +262,16 @@ extension StickerNode {
         still.name = Self.liveStillName
         still.zPosition = 0.4
         addChild(still)
+        // The frames and the still art take over the sprite's tint; the
+        // sprite, now without a texture, must stay clear or it draws a
+        // solid box in its colour.
+        for sprite in [live, still] {
+            sprite.color = color
+            sprite.colorBlendFactor = colorBlendFactor
+        }
         texture = nil
+        color = .clear
+        colorBlendFactor = 0
         liveStillTexture = stillTexture
         liveKey = animation.key
         if let shadows = loaded.shadowFrames {
@@ -273,6 +288,11 @@ extension StickerNode {
         live.removeFromParent()
         childNode(withName: Self.liveStillName)?.removeFromParent()
         if let liveStillTexture { texture = liveStillTexture }
+        // The sprite's own art is back: a running tint returns to it.
+        if let frames = live as? SKSpriteNode, frames.colorBlendFactor > 0 {
+            color = frames.color
+            colorBlendFactor = frames.colorBlendFactor
+        }
         liveStillTexture = nil
         endLiveShadow()
     }
