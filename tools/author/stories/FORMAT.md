@@ -95,7 +95,7 @@ A cue is `{sticker:effect}` with optional parameters separated by spaces:
 {owl:tint #9AD0FF 1.2s}  colour and one-cycle duration in seconds
 {bird:fade-out hold}     keep the end state
 {fox:sparkle 0.9}        a bare number is intensity (0–1)
-{bear:live}              the bear's live animation (see "Live cues")
+{bear:live}              the bear's live action (see "Live cues"); {snail:live hold} … {snail:live resume}
 {bear:face happy}        the bear's face from now on (see "Face cues")
 {all:hop}                every sticker on the canvas (see "Everyone: all")
 {fox:enter}              the fox enters here if not placed (see "Entrance cues")
@@ -192,23 +192,42 @@ The allowed list (anything else is an error):
 
 ### Live cues
 
-A sticker that carries a live animation (`storycheck` lists them with what
-each shows and how long it plays; the pack's `anims/*.json` sidecars hold
-the same `description`) is brought alive with the reserved effect `live`:
+Every sticker carries a live action (`storycheck` lists each one with what
+it shows, how long it plays and, for most, the pose it can pause on; the
+pack's `anims/*.json` sidecars hold the same `description` and
+`pause.shows`), brought alive with the reserved effect `live`:
 
 ```
-Bear gave a {bear:live} great big yawn.     the bear's animation
-{owl:live sleepy-blink}                     name one when a sticker has several
+Bear gave a {bear:live} great big yawn.          the whole action
+{owl:live sleepy-blink}                          name one when a sticker has several
+Snail {snail:live hold} hid in his shell…        up to the pause pose, and stay there
+…then {snail:live resume} peeked out.            on from the pause pose to the end
 ```
 
-- The sticker must be featured or supporting and must have a live
-  animation; `{sticker:live}` takes no parameters other than an
-  animation id (and needs one only if the sticker has several).
-- It fires on the word that follows, like any cue, and plays for the
-  animation's length (3–6 s): cue it on the words that tell exactly that
-  action, and cue nothing else on that sticker until it ends.
-- At most two per story and language, each sticker once (warnings). The
-  same beats carry the same live cues in every language.
+- The sticker must be featured or supporting; `{sticker:live}` takes no
+  parameters other than an animation id (needed only if the sticker has
+  several) and `hold` or `resume`.
+- It fires on the word that follows, like any cue. Whole, it plays for
+  the action's length (2–4 s): cue it on the words that tell exactly that
+  action, and start no other effect on that sticker until it ends.
+- `hold` plays up to the action's pause pose (`hold:` in the listing —
+  the snail hidden in its shell, the frog watching a fly) and stays there
+  for as long as the story needs: a sentence, a page, or to the end. Cue
+  it on the words that put the character in that pose; `resume` on the
+  words that bring it out of it. A resume needs its hold first, and a
+  held sticker takes no other live cue until it resumes (errors). Effects
+  on a held sticker are fine; a face change waits until it resumes
+  (warning).
+- The words should match what the frames show, beat for beat: the
+  narrator says "hid", the snail hides; says "peeked out", it peeks.
+- At most five live actions per story and language (a hold and its
+  resume count once; warning). The same beats carry the same live cues
+  in every language.
+- A sticker's **move** (its walk, hop, flight or sprout) is never cued:
+  it plays by itself when the sticker enters (`{sticker:enter}`), so the
+  words around an entrance can say how it comes — hops in, flutters
+  down, crawls up slowly. Leave a few words after an entrance before a
+  live cue on the same sticker, so it has arrived.
 
 ### Face cues
 
