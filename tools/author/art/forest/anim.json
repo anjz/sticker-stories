@@ -875,12 +875,13 @@
       "id": "rest",
       "sticker": "butterfly",
       "kind": "action",
-      "description": "the butterfly slowly closes its wings together above its back and rests, then opens them wide again and flutters them happily.",
+      "description": "the butterfly turns sideways and closes its wings together upright above its back, resting, then opens them again, turns back to the front and flutters them happily.",
       "base": "its body",
       "register": "body",
+      "perched": true,
       "pause": {
         "frame": 12,
-        "shows": "the butterfly resting with its wings closed together above its back"
+        "shows": "the butterfly resting side-on, its wings pressed together upright above its back"
       },
       "sheets": [
         {
@@ -889,17 +890,17 @@
           "size": "3072x2304",
           "frames": [
             "Exactly as in the reference.",
-            "The wings starting to lift and come together, slowly.",
-            "The wings a quarter closed, tilting up.",
-            "The wings halfway closed, seen more edge-on.",
-            "The wings three quarters closed, standing up above its back.",
-            "The wings nearly together above its back.",
-            "The wings closed together above its back; its face peeks out below them.",
-            "Resting, wings closed, eyes half closed.",
-            "Resting, eyes closed, a soft smile.",
-            "Resting, still.",
-            "Resting, still.",
-            "Resting: wings closed together above its back, eyes closed, a soft smile."
+            "Starting to turn to the right, the wings beginning to lift.",
+            "Turned a quarter to the right, the wings lifting and tilting up.",
+            "Turned three-quarters to the right, the wings rising above its back.",
+            "Seen from the side, facing right, standing on its little legs, the wings raised high above its back, nearly together.",
+            "Side view facing right: the wings pressed together upright above its back like a sail, standing on its little legs, its face in profile looking right.",
+            "Side view, resting, eyes half closed.",
+            "Side view, resting, eyes closed, a soft smile.",
+            "Side view, resting, the antennae drooping a little.",
+            "Side view, resting, still.",
+            "Side view, resting, still.",
+            "Resting, seen from the side facing right: standing on its little legs, the wings pressed together upright above its back, eyes closed, a soft smile."
           ]
         },
         {
@@ -908,14 +909,14 @@
           "size": "3072x2304",
           "frames": [
             "Exactly the same pose as the last frame of the previous sheet.",
-            "Eyes opening.",
-            "The wings starting to open.",
-            "The wings halfway open.",
-            "The wings nearly open.",
-            "The wings wide open as in the reference.",
-            "A happy flutter: wings lifting a little.",
-            "Wings down a little.",
-            "Wings lifting a little again.",
+            "Eyes opening, still side-on.",
+            "The wings starting to part, still side-on.",
+            "The wings opening, turning back toward the viewer.",
+            "Turned three-quarters toward the viewer, the wings halfway open.",
+            "Facing the viewer, the wings nearly open.",
+            "The wings wide open as in the reference; a happy flutter, the wings lifting a little.",
+            "The wings down a little.",
+            "The wings lifting a little again.",
             "Almost the reference pose, smiling.",
             "Nearly exactly as the reference.",
             "Exactly as in the reference."
@@ -2636,6 +2637,7 @@
       "kind": "action",
       "description": "the owl blinks, turns its head to look around, gives a big yawn and falls asleep, then opens one eye, then both, and hoots softly.",
       "base": "its feet",
+      "perched": true,
       "pause": {
         "frame": 12,
         "shows": "the owl fast asleep, fluffed up round, eyes shut"
