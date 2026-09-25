@@ -102,6 +102,10 @@ type Stage struct {
 type Feature struct {
 	Description string      `json:"description"`
 	Areas       []StageArea `json:"areas"`
+	// Air marks open air (the sky): nothing sits there, so a flyer there
+	// is flying, and a story lands it somewhere else before it rests (an
+	// action marked perched). Story validation reads it; the app does not.
+	Air bool `json:"air,omitempty"`
 }
 
 // StageArea is a rectangle in fractions of the base art: X and Y are each

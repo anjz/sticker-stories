@@ -747,6 +747,9 @@ type Manifest struct {
 	// preference; Features describe the pack's features by id.
 	LandsOn  map[string][]string
 	Features map[string]string
+	// Air are the features that are open air (the sky), where a flyer is
+	// flying: it lands elsewhere before a perched action.
+	Air map[string]bool
 }
 
 // HasExpression reports whether a face cue on target may show expression:
@@ -779,16 +782,24 @@ type Animation struct {
 	Pause       string
 	ToPause     float64
 	FromPause   float64
-	// Flies: a move that is a flight.
+	// Flies: a move that is a flight. On: where a move brings it in
+	// (entrances by that way), empty for its stage's.
 	Flies bool
+	On    []string
+	// Perched: an action it plays sitting on something, never in the air.
+	Perched bool
 }
 
 // PackManifest reads what story validation needs from a loaded pack
 // manifest, live animations included (dir is the pack root).
 func PackManifest(m *manifest.Manifest, dir string) (Manifest, error) {
 	pack := Manifest{ID: m.ID, Languages: m.Languages, Setting: m.EffectiveSetting(), Animations: map[string][]Animation{}, Moves: map[string][]Animation{}, Expressions: map[string][]string{}, Names: map[string]map[string]string{}, Stages: map[string]string{}, LandsOn: map[string][]string{}, Features: map[string]string{}}
+	pack.Air = map[string]bool{}
 	for id, f := range m.Features {
 		pack.Features[id] = f.Description
+		if f.Air {
+			pack.Air[id] = true
+		}
 	}
 	for _, st := range m.Stickers {
 		pack.Stickers = append(pack.Stickers, st.ID)
@@ -808,7 +819,7 @@ func PackManifest(m *manifest.Manifest, dir string) (Manifest, error) {
 	}
 	for id, list := range anims {
 		for _, a := range list {
-			anim := Animation{ID: a.ID, Description: a.Description, Seconds: a.Duration(), Flies: a.Flies}
+			anim := Animation{ID: a.ID, Description: a.Description, Seconds: a.Duration(), Flies: a.Flies, On: a.On, Perched: a.Perched}
 			if a.EffectiveKind() == manifest.KindMove {
 				pack.Moves[id] = append(pack.Moves[id], anim)
 				continue
@@ -821,6 +832,32 @@ func PackManifest(m *manifest.Manifest, dir string) (Manifest, error) {
 		}
 	}
 	return pack, nil
+}
+
+// landsInAir reports whether sticker, coming in by the move by ("" for
+// its usual way), lands in open air: the first place it lands is a
+// feature marked air (a butterfly in the sky).
+func (m Manifest) landsInAir(sticker, by string) bool {
+	on := m.LandsOn[sticker]
+	for _, a := range m.Moves[sticker] {
+		if by != "" && a.ID == by && len(a.On) > 0 {
+			on = a.On
+		}
+	}
+	return len(on) > 0 && m.Air[on[0]]
+}
+
+// fliesBy reports whether sticker goes by a flight: the move by names, or
+// its usual way (a stage entrance of fly).
+func (m Manifest) fliesBy(sticker, by string) bool {
+	if by != "" {
+		for _, a := range m.Moves[sticker] {
+			if a.ID == by {
+				return a.Flies
+			}
+		}
+	}
+	return m.Stages[sticker] == "fly"
 }
 
 // ResolveAnimation returns the animation a live cue on sticker plays: the
@@ -979,6 +1016,12 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		enterAt := map[string]int{}
 		away := map[string]bool{}  // stickers a move took off the canvas
 		moved := map[string]bool{} // stickers a move took somewhere
+		// Stickers up in the air (flying in the sky, hovering beside
+		// someone): a perched action needs them landed first.
+		aloft := map[string]bool{}
+		for id := range inStory {
+			aloft[id] = m.landsInAir(id, "")
+		}
 		for _, c := range cues {
 			if c.Sticker != "" && away[c.Sticker] && !(c.Effect == GoEffect && c.GoKind == GoBack) {
 				is.warnf("%s: cue %s: %s has gone away (off the canvas) — bring it back first ({%s:%s %s})", lang, c.Raw, c.Sticker, c.Sticker, GoEffect, GoBack)
@@ -1008,6 +1051,7 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 						is.errorf("%s: cue %s: %s already enters earlier; one entrance per sticker, on its first mention", lang, c.Raw, c.Sticker)
 					} else {
 						enterAt[c.Sticker] = c.WordIndex
+						aloft[c.Sticker] = m.landsInAir(c.Sticker, c.By)
 					}
 				}
 				if c.Repeat > 0 || c.Loop || c.Hold || c.Color != "" || c.Duration > 0 || c.Intensity != 0 {
@@ -1020,6 +1064,16 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 				shape = append(shape, c.Sticker+":go:"+c.GoKind+":"+c.Target+":"+c.By)
 				validateGoCue(&is, lang, c, m, inStory, enterAt)
 				switch c.GoKind {
+				case GoOn, GoUnder:
+					aloft[c.Sticker] = false
+				case GoTo:
+					// To a place: in the air if that place is; beside someone:
+					// a flyer hovers there.
+					if _, place := m.Features[c.Target]; place {
+						aloft[c.Sticker] = m.Air[c.Target]
+					} else {
+						aloft[c.Sticker] = m.fliesBy(c.Sticker, c.By)
+					}
 				case GoAway:
 					away[c.Sticker] = true
 				case GoBack:
@@ -1027,6 +1081,7 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 						is.warnf("%s: cue %s: %s has not gone anywhere to come back from", lang, c.Raw, c.Sticker)
 					}
 					delete(away, c.Sticker)
+					aloft[c.Sticker] = m.landsInAir(c.Sticker, "")
 				}
 				moved[c.Sticker] = true
 				continue
@@ -1057,6 +1112,9 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 				}
 				validateLiveCue(&is, lang, c, m)
 				anim, _ := m.ResolveAnimation(c.Sticker, c.Animation)
+				if anim.Perched && !c.Resume && aloft[c.Sticker] {
+					is.errorf("%s: cue %s: %s is up in the air, and its %s needs somewhere to sit — land it first a few words before ({%s:go on flower}, {%s:go to meadow}, {%s:go under mushroom})", lang, c.Raw, c.Sticker, anim.ID, c.Sticker, c.Sticker, c.Sticker)
+				}
 				holding, isHeld := held[c.Sticker]
 				switch {
 				case c.Resume && !isHeld:

@@ -53,6 +53,11 @@ type StickerAnimation struct {
 	// hold}) until the story resumes it ({snail:live resume}) or ends:
 	// the snail tucked inside its shell. Actions only; optional.
 	Pause *AnimationPause `json:"pause,omitempty"`
+	// Perched says the action needs the character sitting on something
+	// (the butterfly folding its wings to rest): a story lands a flyer
+	// before it plays it, never in open air (a feature marked air).
+	// Actions only; optional; the app ignores it.
+	Perched bool `json:"perched,omitempty"`
 	// Loop is the run of frames a move repeats while the character
 	// travels (a walk cycle); the frames after it bring it back to rest
 	// when it arrives. Moves only; a move without one (a sprout) plays
@@ -193,8 +198,8 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 			}
 		}
 	case KindMove:
-		if a.Pause != nil {
-			fail("pause belongs to an action, not a move")
+		if a.Pause != nil || a.Perched {
+			fail("pause and perched belong to an action, not a move")
 		}
 		if l := a.Loop; l != nil {
 			if l.From < 0 || l.To < l.From || l.To >= a.Count {
