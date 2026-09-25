@@ -3,8 +3,8 @@ import SpriteKit
 import StickerStoriesKit
 import UIKit
 
-/// A pre-rendered frame animation that brings a sticker to life for a
-/// moment: a sprite sheet the tooling drew from the sticker's own art
+/// A pre-rendered frame animation that brings a sticker to life: a sprite
+/// sheet the tooling drew from the sticker's own art
 /// (`tools/author/stickeranim`), every frame registered on the part that
 /// stays still, bordered and finished like the sticker, plus the mapping
 /// that lays its rest frame exactly over the placed sticker. The sidecar
@@ -12,8 +12,11 @@ import UIKit
 /// declares each sticker's sidecars and this reads them leniently (a
 /// sidecar that does not decode is skipped).
 ///
-/// Stories play them from their effects sidecar (`LiveAnimationTrigger`,
-/// preloaded by `LiveAnimationLoader`); the developer gallery plays any.
+/// An **action** is a moment a story cues (`LiveTimeline`: whole, or held
+/// on its pause frame and resumed); a **move** is how the character gets
+/// about — its walk, hop, flight or sprout — played while a story brings
+/// it into the scene (`EntrancePlan`). Both are loaded per story by
+/// `LiveAnimationLoader`; the developer gallery plays any.
 struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// A box as fractions of its image, top-left origin.
     struct UnitBox: Decodable, Sendable {
@@ -25,8 +28,21 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         var width, height: Int
     }
 
+    struct Pause: Decodable, Sendable {
+        var frame: Int
+    }
+
+    struct FrameRange: Decodable, Sendable {
+        var from, to: Int
+    }
+
+    enum Kind: String, Decodable, Sendable {
+        case action, move
+    }
+
     var id: String
     var sticker: String
+    var kind: Kind
     /// Pack-relative path of the sheet PNG: `columns` frames per row,
     /// `count` frames read left to right, top to bottom.
     var sheet: String
@@ -40,10 +56,61 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     var stickerBox: UnitBox
     /// Seconds each frame shows, one per frame.
     var hold: [Double]
+    /// An action's pause frame (`{snail:live hold}`).
+    var pause: Pause?
+    /// A move's loop, the way its frames travel, how far one loop carries
+    /// it (sticker widths) and whether the loop hops.
+    var loop: FrameRange?
+    var facing: StageMove.Facing?
+    var stride: Double?
+    var hops: Bool?
+
+    private enum CodingKeys: String, CodingKey {
+        case id, sticker, kind, sheet, frame, columns, count, rest, stickerBox, hold, pause, loop, facing, stride, hops
+    }
+
+    init(from decoder: any Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(String.self, forKey: .id)
+        sticker = try c.decode(String.self, forKey: .sticker)
+        // An unknown kind is not an action a story may cue by mistake.
+        kind = try c.decodeIfPresent(Kind.self, forKey: .kind) ?? .action
+        sheet = try c.decode(String.self, forKey: .sheet)
+        frame = try c.decode(FrameSize.self, forKey: .frame)
+        columns = try c.decode(Int.self, forKey: .columns)
+        count = try c.decode(Int.self, forKey: .count)
+        rest = try c.decode(UnitBox.self, forKey: .rest)
+        stickerBox = try c.decode(UnitBox.self, forKey: .stickerBox)
+        hold = try c.decode([Double].self, forKey: .hold)
+        pause = try? c.decodeIfPresent(Pause.self, forKey: .pause)
+        loop = try? c.decodeIfPresent(FrameRange.self, forKey: .loop)
+        facing = try? c.decodeIfPresent(StageMove.Facing.self, forKey: .facing)
+        stride = try? c.decodeIfPresent(Double.self, forKey: .stride)
+        hops = try? c.decodeIfPresent(Bool.self, forKey: .hops)
+    }
 
     var key: String { "\(sticker).\(id)" }
     var liveKey: LiveAnimationKey { LiveAnimationKey(stickerID: sticker, animationID: id) }
     var rows: Int { (count + columns - 1) / columns }
+
+    /// The frame timing the timelines play (`LiveFrames`); a pause or loop
+    /// outside the frames is dropped.
+    var frames: LiveFrames {
+        let validPause = pause.map(\.frame).flatMap { (1..<max(count - 1, 1)).contains($0) ? $0 : nil }
+        let validLoop = loop.flatMap { $0.from >= 0 && $0.from <= $0.to && $0.to < count ? $0.from...$0.to : nil }
+        return LiveFrames(holds: hold, pause: kind == .action ? validPause : nil, loop: kind == .move ? validLoop : nil)
+    }
+
+    /// The move as the stage planner needs it.
+    var stageMove: StageMove? {
+        guard kind == .move else { return nil }
+        let timing = frames
+        if timing.loop != nil {
+            guard let stride, stride > 0 else { return nil }
+            return StageMove(cycle: timing.loopDuration, stride: stride, hops: hops ?? false, facing: facing)
+        }
+        return StageMove(seconds: timing.duration(.move(travel: 0)) ?? 0)
+    }
 
     /// Every animation the pack's manifest declares, in manifest order.
     static func available(in pack: LoadedPack) -> [StickerAnimation] {
@@ -75,18 +142,27 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     }
 }
 
-/// A live animation ready to play: its sheet and shadow sheet as textures.
+/// A live animation ready to play: its frames and their shadows as
+/// textures, cut from the sheet and the shadow sheet once.
 struct LoadedLiveAnimation {
     let animation: StickerAnimation
-    let sheet: SKTexture
-    let shadowSheet: SKTexture?
+    let timing: LiveFrames
+    let frames: [SKTexture]
+    let shadowFrames: [SKTexture]?
+
+    init(animation: StickerAnimation, sheet: SKTexture, shadowSheet: SKTexture?) {
+        self.animation = animation
+        timing = animation.frames
+        frames = animation.frameTextures(from: sheet)
+        shadowFrames = shadowSheet.map { animation.frameTextures(from: $0) }
+    }
 }
 
 /// Loads the live animations a story is about to play. A sheet is a large
-/// texture (width × height × 4 bytes, ~35 MB for 16 frames), so a story
-/// loads only the ones its triggers name for stickers on the canvas, off
-/// the main thread while the music lead-in plays, and lets go of them when
-/// the story ends.
+/// texture (width × height × 4 bytes), so a story loads only the ones its
+/// triggers name for stickers on the canvas and the moves of the stickers
+/// it brings in, off the main thread while the music lead-in plays, and
+/// lets go of them when the story ends.
 enum LiveAnimationLoader {
     @MainActor
     static func load(
@@ -106,15 +182,19 @@ enum LiveAnimationLoader {
             return results
         }
         var loaded: [LiveAnimationKey: LoadedLiveAnimation] = [:]
+        var textures: [SKTexture] = []
         for (animation, sheet, shadow) in decoded {
             guard let sheet else {
                 print("LiveAnimationLoader: could not decode \(animation.sheet)")
                 continue
             }
+            let sheetTexture = SKTexture(cgImage: sheet)
+            let shadowTexture = shadow.map(SKTexture.init(cgImage:))
+            textures.append(sheetTexture)
+            if let shadowTexture { textures.append(shadowTexture) }
             loaded[animation.liveKey] = LoadedLiveAnimation(
-                animation: animation, sheet: SKTexture(cgImage: sheet), shadowSheet: shadow.map(SKTexture.init(cgImage:)))
+                animation: animation, sheet: sheetTexture, shadowSheet: shadowTexture)
         }
-        let textures = loaded.values.flatMap { [$0.sheet] + ($0.shadowSheet.map { [$0] } ?? []) }
         await withCheckedContinuation { continuation in
             SKTexture.preload(textures) { continuation.resume() }
         }
@@ -125,32 +205,35 @@ enum LiveAnimationLoader {
 extension StickerNode {
     private static let liveNodeName = "live-animation"
     private static let liveStillName = "live-still"
-    /// How long the frames take to fade in over the still art (and out at
-    /// the end), capped at two thirds of the first and last frames' holds;
-    /// the rest of those holds dissolves the still art out underneath (and
-    /// back in). Long enough that where the first frame is the generator's
-    /// drawing rather than the sticker's own art, the difference dissolves
-    /// instead of popping.
-    private static let liveFade: TimeInterval = 0.3
 
-    /// Plays a live animation over this sticker. At the rest pose the frames
-    /// fade in over the still art, which stays opaque underneath (two
-    /// half-faded layers would let the background show through), and then
-    /// the still art dissolves away beneath them, so the first frame need
-    /// not be the sticker's exact drawing: where the two differ, the edge
-    /// dissolves. The frames play through and the same happens in reverse. The child inherits the sticker's placement, so a pinched,
-    /// turned or effect-driven sticker animates in place. With a shadow
-    /// sheet (`StickerShadowCache.shadowSheet`) the drop shadow follows
-    /// the frames; without one it keeps the still art's silhouette.
-    func playLive(
-        _ animation: StickerAnimation, sheet: SKTexture, shadowSheet: SKTexture? = nil,
-        completion: (() -> Void)? = nil
-    ) {
-        stopLive()
-        let frames = animation.frameTextures(from: sheet)
-        let shadows = shadowSheet.map { animation.frameTextures(from: $0) }
-        guard let first = frames.first, let stillTexture = texture else { return }
+    /// Shows one moment of a live animation over this sticker
+    /// (`LiveFrames.state`): its frame, and how opaque the frames and the
+    /// still art under them are while one dissolves into the other. The
+    /// frames fade in over the still art, which stays opaque underneath
+    /// (two half-faded layers would let the background show through), and
+    /// then the still art dissolves away beneath them, so the first frame
+    /// need not be the sticker's exact drawing; the end is the same in
+    /// reverse. The frames are a child, so a pinched, turned, mirrored or
+    /// effect-driven sticker animates in place. With shadow frames the
+    /// drop shadow follows the frames.
+    func showLive(_ loaded: LoadedLiveAnimation, state: LiveFrameState) {
+        if liveKey != loaded.animation.key {
+            stopLive()
+            beginLive(loaded)
+        }
+        guard let live = childNode(withName: Self.liveNodeName) as? SKSpriteNode else { return }
+        let index = min(max(state.frame, 0), loaded.frames.count - 1)
+        if live.texture !== loaded.frames[index] {
+            live.texture = loaded.frames[index]
+            if let shadows = loaded.shadowFrames { setLiveShadow(shadows[index]) }
+        }
+        live.alpha = CGFloat(state.liveAlpha)
+        childNode(withName: Self.liveStillName)?.alpha = CGFloat(state.stillAlpha)
+    }
 
+    private func beginLive(_ loaded: LoadedLiveAnimation) {
+        let animation = loaded.animation
+        guard let first = loaded.frames.first, let stillTexture = texture else { return }
         // Scale the frame so the rest art is as wide as the sticker's art,
         // then offset it so the two arts' centres coincide (in the sprite's
         // own, unscaled space, y up).
@@ -174,60 +257,19 @@ extension StickerNode {
         still.zPosition = 0.4
         addChild(still)
         texture = nil
-        if let shadows {
+        liveStillTexture = stillTexture
+        liveKey = animation.key
+        if let shadows = loaded.shadowFrames {
             beginLiveShadow(size: live.size, anchor: live.position)
             setLiveShadow(shadows[0])
         }
-
-        let show: (Int) -> SKAction = { [weak self, weak live] index in
-            .run {
-                live?.texture = frames[index]
-                if let shadows { self?.setLiveShadow(shadows[index]) }
-            }
-        }
-        let firstHold = animation.hold[0], lastHold = animation.hold[animation.count - 1]
-        let fade = min(Self.liveFade, min(firstHold, lastHold) * 2 / 3)
-        let stillAction: (SKAction) -> SKAction = { [weak still] action in
-            .run { still?.run(action) }
-        }
-        var steps: [SKAction] = [
-            .fadeIn(withDuration: fade),
-            stillAction(.fadeOut(withDuration: firstHold - fade)),
-            .wait(forDuration: firstHold - fade),
-        ]
-        for index in 1..<max(1, animation.count - 1) {
-            steps.append(show(index))
-            steps.append(.wait(forDuration: animation.hold[index]))
-        }
-        // The last frame is the rest pose again: crossfade back to the still
-        // art, then hand it back to the sprite itself.
-        let restore = SKAction.run { [weak self] in
-            // The face may have changed while the frames played.
-            self?.texture = self?.liveStillTexture ?? stillTexture
-            self?.liveStillTexture = nil
-            self?.childNode(withName: Self.liveStillName)?.removeFromParent()
-        }
-        if animation.count > 1 {
-            steps.append(show(animation.count - 1))
-        }
-        steps.append(stillAction(.fadeIn(withDuration: lastHold - fade)))
-        steps.append(.wait(forDuration: lastHold - fade))
-        steps.append(.fadeOut(withDuration: fade))
-        steps.append(restore)
-        steps.append(.run { [weak self] in self?.endLiveShadow() })
-        if let completion {
-            // Before the removal: a removed node runs no more actions.
-            steps.append(.run(completion))
-        }
-        steps.append(.removeFromParent())
-        live.run(.sequence(steps), withKey: Self.liveNodeName)
-        liveStillTexture = stillTexture
     }
 
-    /// Cuts a live animation short: the still art is back at once.
+    /// Ends a live animation: the still art is back at once (with the face
+    /// it should show now — it may have changed while the frames played).
     func stopLive() {
+        liveKey = nil
         guard let live = childNode(withName: Self.liveNodeName) else { return }
-        live.removeAllActions()
         live.removeFromParent()
         childNode(withName: Self.liveStillName)?.removeFromParent()
         if let liveStillTexture { texture = liveStillTexture }

@@ -48,6 +48,17 @@ func TestAnimationsValidate(t *testing.T) {
 		{"box outside", func(a *StickerAnimation) { a.Rest.Width = 1.5 }, "unit square"},
 		{"no description", func(a *StickerAnimation) { a.Description = " " }, "description"},
 		{"empty frame", func(a *StickerAnimation) { a.Frame.Height = 0 }, "frame size"},
+		{"unknown kind", func(a *StickerAnimation) { a.Kind = "dance" }, "action or move"},
+		{"pause on the first frame", func(a *StickerAnimation) { a.Pause = &AnimationPause{Frame: 0, Shows: "x"} }, "middle frame"},
+		{"pause without shows", func(a *StickerAnimation) { a.Pause = &AnimationPause{Frame: 3} }, "pause.shows"},
+		{"loop on an action", func(a *StickerAnimation) { a.Loop = &FrameRange{From: 1, To: 4} }, "belong to a move"},
+		{"pause on a move", func(a *StickerAnimation) { a.Kind = KindMove; a.Pause = &AnimationPause{Frame: 3, Shows: "x"} }, "belongs to an action"},
+		{"loop outside", func(a *StickerAnimation) {
+			a.Kind, a.Loop, a.Facing, a.Stride = KindMove, &FrameRange{From: 1, To: 8}, "left", 0.5
+		}, "within 0–7"},
+		{"loop without facing", func(a *StickerAnimation) { a.Kind, a.Loop, a.Stride = KindMove, &FrameRange{From: 1, To: 6}, 0.5 }, "facing"},
+		{"loop without stride", func(a *StickerAnimation) { a.Kind, a.Loop, a.Facing = KindMove, &FrameRange{From: 1, To: 6}, "right" }, "stride"},
+		{"facing without loop", func(a *StickerAnimation) { a.Kind, a.Facing = KindMove, "right" }, "need a loop"},
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
@@ -66,6 +77,31 @@ func TestAnimationsValidate(t *testing.T) {
 			}
 		})
 	}
+
+	t.Run("a pausable action and a walk are fine; two moves are not", func(t *testing.T) {
+		dir := t.TempDir()
+		m := validManifest(t, dir)
+		m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) {
+			a.Pause = &AnimationPause{Frame: 3, Shows: "the fox asleep"}
+		})}
+		walk := func(id string) string {
+			a := StickerAnimation{ID: id, Sticker: "fox", Kind: KindMove, Description: "the fox trots.", Sheet: "anims/fox.yawn.webp", Columns: 4, Count: 8,
+				Rest: UnitBox{X: 0.1, Y: 0.1, Width: 0.8, Height: 0.8}, StickerBox: UnitBox{X: 0.1, Y: 0.1, Width: 0.8, Height: 0.8},
+				Hold: []float64{0.1, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.3}, Loop: &FrameRange{From: 1, To: 6}, Facing: "left", Stride: 0.6, Hops: true}
+			a.Frame.Width, a.Frame.Height = 400, 400
+			data, _ := json.Marshal(a)
+			os.WriteFile(filepath.Join(dir, "anims", "fox."+id+".json"), data, 0o644)
+			return "anims/fox." + id + ".json"
+		}
+		m.Stickers[1].Animations = append(m.Stickers[1].Animations, walk("trot"))
+		if errs := m.Validate(dir); len(errs) != 0 {
+			t.Fatalf("valid action and move rejected: %v", errs)
+		}
+		m.Stickers[1].Animations = append(m.Stickers[1].Animations, walk("run"))
+		if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "at most one move") {
+			t.Errorf("two moves: %v", errs)
+		}
+	})
 
 	t.Run("missing sidecar", func(t *testing.T) {
 		dir := t.TempDir()

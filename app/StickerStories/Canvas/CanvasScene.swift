@@ -196,7 +196,7 @@ final class CanvasScene: SKScene {
         let applier: EffectApplier
         let emitters: EmitterCoordinator
         let clock: PlaybackClock
-        let live: LiveAnimationSchedule
+        let live: LiveTimeline
         let faces: ExpressionTimeline
         /// The stickers the story brings in, by node, and how each enters.
         let visitors: [UUID: EntrancePlan]
@@ -209,6 +209,12 @@ final class CanvasScene: SKScene {
     /// go of when it ends; a trigger whose sheet is not in yet is skipped.
     private var liveLoaded: [LiveAnimationKey: LoadedLiveAnimation] = [:]
     private var liveLoad: Task<Void, Never>?
+    /// Each sticker's move (its walk, flight or sprout), which visitors
+    /// play on their way in.
+    private lazy var moveKeys: [String: LiveAnimationKey] = Dictionary(
+        liveAnimations.filter { $0.kind == .move }.map { ($0.sticker, $0.liveKey) }, uniquingKeysWith: { a, _ in a })
+    /// Reduce Motion / calm mode for the story playing: no frames at all.
+    private var livePolicy = EffectPolicy.standard
     /// The current story's face variants by sticker and expression, loaded
     /// when play starts; until one is in, that sticker keeps its face.
     private var faceTextures: [String: [String: SKTexture]] = [:]
@@ -1344,7 +1350,8 @@ final class CanvasScene: SKScene {
         let nodes = allStickerNodes()
         let targets = Dictionary(grouping: nodes, by: \.stickerID).mapValues { $0.map(\.instanceID) }
         let runner = StickerEffectsRunner(triggers: triggers.sticker, targets: targets, policy: policy)
-        let live = LiveAnimationSchedule(triggers: triggers.live, policy: policy)
+        let live = LiveTimeline(triggers: triggers.live)
+        livePolicy = policy
         let placed = Set(nodes.map(\.stickerID))
         let faces = ExpressionTimeline(triggers: triggers.faces)
         let wantedFaces = faces.expressionsUsed(by: placed)
@@ -1355,7 +1362,12 @@ final class CanvasScene: SKScene {
                 self?.faceTextures = loaded
             }
         }
-        let wanted = live.animations.filter { placed.contains($0.stickerID) }
+        // The actions the story cues on stickers on the stage, and the
+        // moves of the ones it brings in.
+        var wanted = live.animations.filter { placed.contains($0.stickerID) }
+        for plan in visitors.values where plan.motion != .fade {
+            if let key = moveKeys[plan.stickerID] { wanted.insert(key) }
+        }
         if policy.allowsLiveAnimations, !wanted.isEmpty {
             liveLoad = Task { [weak self, pack, liveAnimations] in
                 let loaded = await LiveAnimationLoader.load(wanted, from: liveAnimations, pack: pack)
@@ -1406,7 +1418,9 @@ final class CanvasScene: SKScene {
             entrances: entrances.filter { sizes[$0.stickerID] != nil },
             placed: Set(existing.map(\.stickerID)),
             stages: Dictionary(uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.stage.map { (s.id, $0) } }),
-            features: pack.manifest.features, scene: scene, obstacles: obstacles, policy: policy, random: &random)
+            features: pack.manifest.features,
+            moves: Dictionary(liveAnimations.compactMap { a in a.stageMove.map { (a.sticker, $0) } }, uniquingKeysWith: { a, _ in a }),
+            scene: scene, obstacles: obstacles, policy: policy, random: &random)
         var visitors: [UUID: EntrancePlan] = [:]
         for plan in plans {
             guard let texture = stickerTextures[plan.stickerID] else { continue }
@@ -1415,6 +1429,7 @@ final class CanvasScene: SKScene {
                 size: squareFit(texture: texture, side: stickerBaseSize),
                 shadow: shadow(for: plan.stickerID))
             node.isVisitor = true
+            node.mirrored = plan.mirrored
             node.position = CGPoint(x: plan.target.x, y: plan.target.y)
             // Its placement is where it lands; the entrance is a delta on
             // it that keeps it hidden until its moment.
@@ -1465,7 +1480,7 @@ final class CanvasScene: SKScene {
     func setEffectPolicy(_ policy: EffectPolicy) {
         playSession?.runner.policy = policy
         playSession?.canvasRunner.policy = policy
-        playSession?.live.policy = policy
+        livePolicy = policy
     }
 
     /// The runner, for the debug gallery and tests; `nil` outside play mode.
@@ -1485,10 +1500,40 @@ final class CanvasScene: SKScene {
         session.applier.apply(deltas, to: nodes)
         session.emitters.reconcile(session.runner.active, at: time, nodes: nodes)
         canvasEffects.apply(session.canvasRunner.tick(time), at: time)
-        for trigger in session.live.due(at: time) {
-            playLive(trigger)
-        }
+        applyLive(session, at: time)
         applyFaces(session.faces, at: time)
+    }
+
+    /// Puts on every sticker the frame of its live animation now: a visitor
+    /// on its way in plays its move (unless the story cues an action on it
+    /// after its entrance), anyone else the action the story has it playing
+    /// (`LiveTimeline`), or its still art. An animation whose sheet is not
+    /// in yet leaves the still art.
+    private func applyLive(_ session: PlaySession, at time: TimeInterval) {
+        let allowed = livePolicy.allowsLiveAnimations
+        let timing: (LiveAnimationKey) -> LiveFrames? = { [liveLoaded] in liveLoaded[$0]?.timing }
+        for node in allStickerNodes() {
+            var shown: (LoadedLiveAnimation, LiveFrameState)?
+            if allowed {
+                let action = session.live.current(for: node.stickerID, at: time, frames: timing)
+                if let plan = session.visitors[node.instanceID], time >= plan.at,
+                    action.map({ $0.since < plan.at }) ?? true,
+                    let key = moveKeys[node.stickerID], let move = liveLoaded[key],
+                    let state = move.timing.state(.move(travel: plan.travel), at: time - plan.at)
+                {
+                    shown = (move, state)
+                } else if let action, let loaded = liveLoaded[action.key],
+                    let state = loaded.timing.state(action.part, at: action.elapsed)
+                {
+                    shown = (loaded, state)
+                }
+            }
+            if let (loaded, state) = shown {
+                node.showLive(loaded, state: state)
+            } else if node.liveKey != nil {
+                node.stopLive()
+            }
+        }
     }
 
     /// Puts on every sticker the face the story has it showing now. A face
@@ -1506,19 +1551,6 @@ final class CanvasScene: SKScene {
             if let texture {
                 node.showFace(expression, texture: texture)
             }
-        }
-    }
-
-    /// Plays a live animation on every placed instance of its sticker.
-    private func playLive(_ trigger: LiveAnimationTrigger) {
-        let key = LiveAnimationKey(stickerID: trigger.stickerID, animationID: trigger.animationID)
-        guard let loaded = liveLoaded[key] else {
-            Self.effectsLog.notice(
-                "live animation \(trigger.stickerID, privacy: .public).\(trigger.animationID, privacy: .public) not loaded; skipped")
-            return
-        }
-        for node in allStickerNodes() where node.stickerID == trigger.stickerID {
-            node.playLive(loaded.animation, sheet: loaded.sheet, shadowSheet: loaded.shadowSheet)
         }
     }
 

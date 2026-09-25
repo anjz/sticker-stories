@@ -1,6 +1,7 @@
 package render
 
 import (
+	"stickerstories/tools/internal/effects"
 	"strings"
 	"testing"
 
@@ -97,6 +98,46 @@ func TestCanvasCuesBecomeStickerlessTriggers(t *testing.T) {
 	}
 }
 
+func TestLiveHoldAndResumeCarryTheirMode(t *testing.T) {
+	text := "Snail {snail:live hold} hid. Then {snail:live resume} out he came."
+	cues, plain, errs := story.ParseCues(text)
+	if len(errs) > 0 {
+		t.Fatal(errs)
+	}
+	tl, err := NewPlainTimeline(plain, fakeAlignment(plain))
+	if err != nil {
+		t.Fatal(err)
+	}
+	pack := story.Manifest{Animations: map[string][]story.Animation{
+		"snail": {{ID: "hide", Seconds: 3, Pause: "tucked in its shell", ToPause: 1.2, FromPause: 1.5}},
+	}}
+	tr, err := Triggers(cues, tl, pack)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(tr) != 2 || tr[0].Mode != "hold" || tr[1].Mode != "resume" || tr[1].Animation != "hide" {
+		t.Fatalf("hold/resume triggers wrong: %+v", tr)
+	}
+	anims := effects.Animations{"snail": {{ID: "hide", Pausable: true}}}
+	data, err := EncodeSidecar(tr, map[string]bool{"snail": true}, anims, nil, "outdoors")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(data), `"mode": "hold"`) {
+		t.Errorf("mode not encoded: %s", data)
+	}
+	// Without a pause frame the sidecar is refused.
+	if _, err := EncodeSidecar(tr, map[string]bool{"snail": true}, effects.Animations{"snail": {{ID: "hide"}}}, nil, "outdoors"); err == nil {
+		t.Error("hold on an animation without a pause frame was accepted")
+	}
+	// While held, an effect is not an overlap; on the way in it is.
+	tr[0].At, tr[1].At = 0, 10
+	tr = append(tr, Trigger{At: 0.5, Sticker: "snail", Effect: "wobble"}, Trigger{At: 5, Sticker: "snail", Effect: "hop"})
+	if got := LiveOverlaps(tr, pack); len(got) != 1 || !strings.Contains(got[0], "wobble") {
+		t.Errorf("overlaps %v, want only the wobble", got)
+	}
+}
+
 func TestLiveCuesNameTheirAnimation(t *testing.T) {
 	text := "{owl:float loop 0.3} Bear {bear:live} yawned. Owl {owl:live blink} blinked."
 	cues, plain, errs := story.ParseCues(text)
@@ -118,7 +159,7 @@ func TestLiveCuesNameTheirAnimation(t *testing.T) {
 	if len(tr) != 3 || tr[1].Animation != "yawn" || tr[1].Effect != "" || tr[1].Cue != "yawned" || tr[2].Animation != "blink" {
 		t.Fatalf("live triggers wrong: %+v", tr)
 	}
-	anims := map[string][]string{"bear": {"yawn"}, "owl": {"blink", "hoot"}}
+	anims := effects.Animations{"bear": {{ID: "yawn"}}, "owl": {{ID: "blink"}, {ID: "hoot"}}}
 	data, err := EncodeSidecar(tr, map[string]bool{"bear": true, "owl": true}, anims, nil, "outdoors")
 	if err != nil {
 		t.Fatal(err)

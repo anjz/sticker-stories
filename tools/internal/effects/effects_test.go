@@ -175,7 +175,7 @@ func TestValidationFailures(t *testing.T) {
 }
 
 func TestLiveTriggers(t *testing.T) {
-	anims := Animations{"fox": {"yawn"}}
+	anims := Animations{"fox": {{ID: "yawn"}}}
 	good := []byte(`{"schema": 1, "triggers": [{"at": 1.5, "cue": "yawned", "sticker": "fox", "animation": "yawn"}]}`)
 	if errs := Validate(good, set("fox"), anims, nil, "outdoors"); len(errs) != 0 {
 		t.Fatalf("valid live trigger rejected: %v", errs)

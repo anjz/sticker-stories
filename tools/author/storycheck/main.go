@@ -177,8 +177,9 @@ func printEffectUse(cat *story.Catalog, cov story.Coverage) {
 }
 
 // printLive lists the stickers that come alive — what each animation
-// shows and how long it plays, so an author can put {sticker:live} on the
-// words that tell that moment — and how many stories use each.
+// shows and how long it plays, and where one can pause ({sticker:live
+// hold} … {sticker:live resume}), so an author can put the cues on the
+// words that tell those moments — and how many stories use each.
 func printLive(pack story.Manifest, cov story.Coverage) {
 	var ids []string
 	for _, id := range pack.Stickers {
@@ -193,6 +194,9 @@ func printLive(pack story.Manifest, cov story.Coverage) {
 	for _, id := range ids {
 		for _, a := range pack.Animations[id] {
 			fmt.Printf("    %-10s %-13s %4.1fs  %2d stories  %s\n", id, a.ID, a.Seconds, cov.LiveUse[id], a.Description)
+			if a.Pause != "" {
+				fmt.Printf("    %-10s %-13s %4.1fs + %.1fs   hold: %s\n", "", "", a.ToPause, a.FromPause, a.Pause)
+			}
 		}
 	}
 }

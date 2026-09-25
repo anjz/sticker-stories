@@ -111,23 +111,77 @@ struct EffectTriggerTests {
         #expect(f.warnings.count == 3)  // repeat ignored, no sticker, empty animation
     }
 
-    @Test func liveScheduleFiresEachTriggerOnceAndHonoursThePolicy() {
-        let schedule = LiveAnimationSchedule(triggers: [
-            LiveAnimationTrigger(at: 5, stickerID: "bear", animationID: "yawn"),
-            LiveAnimationTrigger(at: 2, stickerID: "owl", animationID: "blink"),
-        ])
-        #expect(schedule.animations.count == 2)
-        #expect(schedule.due(at: 1).isEmpty)
-        #expect(schedule.due(at: 2.1).map(\.stickerID) == ["owl"])
-        #expect(schedule.due(at: 3).isEmpty)  // once only
-        #expect(schedule.due(at: 7).isEmpty)  // 2 s late: dropped, not played out of step
-        #expect(schedule.due(at: 1.5).isEmpty)  // a seek back re-arms what lies ahead
-        #expect(schedule.due(at: 2.2).map(\.stickerID) == ["owl"])
-
-        let calm = LiveAnimationSchedule(
-            triggers: [LiveAnimationTrigger(at: 0, stickerID: "bear", animationID: "yawn")],
-            policy: EffectPolicy(reduceMotion: true))
-        #expect(calm.due(at: 0.1).isEmpty)
+    @Test func decodesLiveModes() throws {
+        let f = try file("""
+            { "schema": 1, "triggers": [
+              { "at": 1, "sticker": "snail", "animation": "hide", "mode": "hold" },
+              { "at": 5, "sticker": "snail", "animation": "hide", "mode": "resume" },
+              { "at": 6, "sticker": "snail", "animation": "hide", "mode": "twirl" }
+            ] }
+            """)
+        #expect(f.liveTriggers.map(\.mode) == [.hold, .resume, .whole])
+        #expect(f.warnings.count == 1)
         #expect(!EffectPolicy(calmMode: true).allowsLiveAnimations && EffectPolicy.standard.allowsLiveAnimations)
+    }
+
+    // Four frames of 0.5 s, pause on frame 2.
+    private let snail = LiveFrames(holds: [0.5, 0.5, 0.5, 0.5], pause: 2)
+
+    @Test func wholePlayDissolvesInAndOutOfTheStillSticker() throws {
+        #expect(snail.duration(.whole) == 2)
+        let start = try #require(snail.state(.whole, at: 0))
+        #expect(start.frame == 0 && start.liveAlpha == 0 && start.stillAlpha == 1)
+        let early = try #require(snail.state(.whole, at: 0.3))
+        #expect(early.liveAlpha == 1 && early.stillAlpha == 1)  // frames in, still underneath
+        #expect(snail.state(.whole, at: 0.49)!.stillAlpha < 0.1)  // then the still dissolves away
+        #expect(snail.state(.whole, at: 0.75) == LiveFrameState(frame: 1, liveAlpha: 1, stillAlpha: 0))
+        let end = try #require(snail.state(.whole, at: 1.95))
+        #expect(end.frame == 3 && end.stillAlpha == 1 && end.liveAlpha < 0.5)
+        #expect(snail.state(.whole, at: 2) == nil)
+    }
+
+    @Test func holdStaysOnThePauseFrameAndResumePlaysOnFromIt() {
+        #expect(snail.duration(.toPause) == nil)
+        #expect(snail.state(.toPause, at: 60) == LiveFrameState(frame: 2, liveAlpha: 1, stillAlpha: 0))
+        #expect(snail.state(.fromPause(held: true), at: 0) == LiveFrameState(frame: 2, liveAlpha: 1, stillAlpha: 0))
+        #expect(snail.state(.fromPause(held: false), at: 0)?.liveAlpha == 0)  // no hold before: dissolve in
+        #expect(snail.duration(.fromPause(held: true)) == 1)
+        #expect(snail.state(.fromPause(held: true), at: 1) == nil)
+    }
+
+    @Test func moveLoopsWhileTravellingThenSettles() {
+        // Frame 0 rest, 1–4 a walk cycle of 0.1 s each, 5 settles back to rest.
+        let walk = LiveFrames(holds: [0.1, 0.1, 0.1, 0.1, 0.1, 0.4], loop: 1...4)
+        #expect(abs(walk.loopDuration - 0.4) < 1e-9)
+        #expect(walk.state(.move(travel: 2), at: 0) == LiveFrameState(frame: 1, liveAlpha: 1, stillAlpha: 0))
+        #expect(walk.state(.move(travel: 2), at: 0.45)?.frame == 1)  // round again
+        #expect(walk.state(.move(travel: 2), at: 1.55)?.frame == 4)
+        #expect(walk.state(.move(travel: 2), at: 2.05)?.frame == 5)  // arrived: settling
+        #expect(walk.duration(.move(travel: 2)).map { abs($0 - 2.4) < 1e-9 } == true)
+        #expect(walk.state(.move(travel: 2), at: 2.41) == nil)
+        // A sprout plays once from frame 1.
+        let sprout = LiveFrames(holds: [0.1, 0.2, 0.2, 0.3])
+        #expect(sprout.state(.move(travel: 5), at: 0)?.frame == 1)
+        #expect(sprout.duration(.move(travel: 5)).map { abs($0 - 0.7) < 1e-9 } == true)
+    }
+
+    @Test func timelineFollowsTheLastTriggerForEachSticker() {
+        let timeline = LiveTimeline(triggers: [
+            LiveAnimationTrigger(at: 10, stickerID: "snail", animationID: "hide", mode: .resume),
+            LiveAnimationTrigger(at: 2, stickerID: "snail", animationID: "hide", mode: .hold),
+            LiveAnimationTrigger(at: 4, stickerID: "bear", animationID: "yawn"),
+        ])
+        let frames: (LiveAnimationKey) -> LiveFrames? = { key in
+            key.animationID == "hide" ? self.snail : LiveFrames(holds: [1, 1])
+        }
+        #expect(timeline.animations.count == 2)
+        #expect(timeline.current(for: "snail", at: 1, frames: frames) == nil)
+        #expect(timeline.current(for: "snail", at: 9, frames: frames)?.part == .toPause)
+        #expect(timeline.current(for: "snail", at: 10.2, frames: frames)?.part == .fromPause(held: true))
+        #expect(timeline.current(for: "snail", at: 11.5, frames: frames) == nil)  // done
+        #expect(timeline.current(for: "snail", at: 3, frames: frames)?.part == .toPause)  // a seek back is exact
+        #expect(timeline.current(for: "bear", at: 5, frames: frames)?.elapsed == 1)
+        #expect(timeline.current(for: "bear", at: 6.5, frames: frames) == nil)
+        #expect(timeline.current(for: "bear", at: 5, frames: { _ in nil }) == nil)  // not loaded: still
     }
 }

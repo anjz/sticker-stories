@@ -265,8 +265,9 @@ public struct EffectTriggerFile: Equatable, Sendable {
         return CanvasEffectTrigger(at: at, cue: fields["cue"] as? String, effect: effect, options: options.clamped)
     }
 
-    /// Live triggers name a sticker and one of its animations; nothing
-    /// else applies to them, so other keys are reported and ignored.
+    /// Live triggers name a sticker, one of its animations and optionally a
+    /// mode (`hold`, `resume`); nothing else applies to them, so other keys
+    /// are reported and ignored.
     private static func decodeLiveTrigger(_ fields: [String: Any], label: String, warnings: inout [String]) -> LiveAnimationTrigger? {
         guard let animationID = fields["animation"] as? String, !animationID.isEmpty else {
             warnings.append("\(label): animation must be a non-empty string; skipped")
@@ -283,7 +284,16 @@ public struct EffectTriggerFile: Equatable, Sendable {
         for key in ["effect", "repeat", "duration", "intensity", "color", "hold"] where fields[key] != nil {
             warnings.append("\(label): \(key) is ignored by a live animation")
         }
-        return LiveAnimationTrigger(at: at, cue: fields["cue"] as? String, stickerID: stickerID, animationID: animationID)
+        var mode = LiveAnimationTrigger.Mode.whole
+        if let raw = fields["mode"] {
+            if let name = raw as? String, let known = LiveAnimationTrigger.Mode(rawValue: name), known != .whole {
+                mode = known
+            } else {
+                warnings.append("\(label): unknown mode \(raw); played whole")
+            }
+        }
+        return LiveAnimationTrigger(
+            at: at, cue: fields["cue"] as? String, stickerID: stickerID, animationID: animationID, mode: mode)
     }
 
     /// Expression triggers name a sticker (or `all`) and an expression; they

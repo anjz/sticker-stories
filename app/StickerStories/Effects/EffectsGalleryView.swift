@@ -88,10 +88,12 @@ struct EffectsGalleryView: View {
                     } else {
                         LazyVGrid(columns: columns, spacing: 10) {
                             ForEach(live) { animation in
-                                Button { scene.playLive(animation) } label: {
-                                    effectLabel(animation.id, liveColor)
+                                ForEach(parts(of: animation), id: \.label) { part in
+                                    Button { scene.playLive(animation, part: part.part) } label: {
+                                        effectLabel(part.label, liveColor)
+                                    }
+                                    .buttonStyle(SquishyButtonStyle())
                                 }
-                                .buttonStyle(SquishyButtonStyle())
                             }
                         }
                     }
@@ -158,8 +160,24 @@ struct EffectsGalleryView: View {
                 }) ?? animations.first
             {
                 stickerID = animation.sticker
-                scene.playLive(animation, repeating: true)
+                scene.playLive(animation, part: animation.kind == .move ? .move(travel: 3) : .whole, repeating: true)
             }
+        }
+    }
+
+    /// The ways the gallery plays an animation: an action whole, held and
+    /// resumed when it has a pause frame; a move travelling for 3 s.
+    private func parts(of animation: StickerAnimation) -> [(label: String, part: LivePart)] {
+        switch animation.kind {
+        case .move:
+            return [(animation.id, .move(travel: 3))]
+        case .action:
+            var out: [(label: String, part: LivePart)] = [(animation.id, .whole)]
+            if animation.frames.pause != nil {
+                out.append(("\(animation.id) hold", .toPause))
+                out.append(("\(animation.id) resume", .fromPause(held: true)))
+            }
+            return out
         }
     }
 
@@ -214,7 +232,11 @@ final class EffectsGalleryScene: SKScene {
     /// texture; ten animated stickers must not pile up).
     private var sheets: [String: SKTexture] = [:]
     /// A `playLive` requested before its sticker was on show.
-    private var pendingLive: (animation: StickerAnimation, repeating: Bool)?
+    private var pendingLive: (animation: StickerAnimation, part: LivePart, repeating: Bool)?
+    /// The animation on show, which part, since when (scene time) and
+    /// whether it starts over when done.
+    private var liveRun: (loaded: LoadedLiveAnimation, part: LivePart, start: TimeInterval, repeating: Bool)?
+    private var sceneTime: TimeInterval = 0
 
     init(pack: LoadedPack, stickerID: String) {
         self.pack = pack
@@ -296,15 +318,15 @@ final class EffectsGalleryScene: SKScene {
         sticker = node
         if let pending = pendingLive, pending.animation.sticker == stickerID {
             pendingLive = nil
-            playLive(pending.animation, repeating: pending.repeating)
+            playLive(pending.animation, part: pending.part, repeating: pending.repeating)
         }
     }
 
     /// Plays a live animation on the sticker on show; waits for it if the
     /// gallery is still switching to that sticker.
-    func playLive(_ animation: StickerAnimation, repeating: Bool = false) {
+    func playLive(_ animation: StickerAnimation, part: LivePart, repeating: Bool = false) {
         guard let sticker, sticker.stickerID == animation.sticker else {
-            pendingLive = (animation, repeating)
+            pendingLive = (animation, part, repeating)
             return
         }
         let sheet: SKTexture
@@ -320,9 +342,7 @@ final class EffectsGalleryScene: SKScene {
         let shadowSheet = shadows.shadowSheet(for: animation) {
             image ?? UIImage(contentsOfFile: pack.url(forAssetPath: animation.sheet).path)
         }
-        sticker.playLive(animation, sheet: sheet, shadowSheet: shadowSheet) { [weak self] in
-            if repeating { self?.playLive(animation, repeating: true) }
-        }
+        liveRun = (LoadedLiveAnimation(animation: animation, sheet: sheet, shadowSheet: shadowSheet), part, sceneTime, repeating)
     }
 
     func play(_ effect: EffectName, options: EffectOptions) {
@@ -343,6 +363,7 @@ final class EffectsGalleryScene: SKScene {
     }
 
     private func stopEffects() {
+        liveRun = nil
         sticker?.stopLive()
         runner.stopAll()
         canvasRunner.stopAll()
@@ -394,7 +415,18 @@ final class EffectsGalleryScene: SKScene {
     }
 
     override func update(_ currentTime: TimeInterval) {
+        sceneTime = currentTime
         guard let sticker else { return }
+        if let run = liveRun {
+            if let state = run.loaded.timing.state(run.part, at: currentTime - run.start) {
+                sticker.showLive(run.loaded, state: state)
+            } else if run.repeating {
+                liveRun?.start = currentTime
+            } else {
+                liveRun = nil
+                sticker.stopLive()
+            }
+        }
         let nodes = [sticker.instanceID: sticker]
         let time = clock.now()
         applier.apply(runner.tick(time), to: nodes)

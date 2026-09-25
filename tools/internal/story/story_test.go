@@ -477,10 +477,37 @@ func TestLiveCues(t *testing.T) {
 			t.Errorf("%s: want an error containing %q, got %v", tc.cue, tc.want, is.Errors)
 		}
 	}
-	twice := " {owl:live} blink {owl:live} blink."
-	if w := strings.Join(Validate(withText(twice, twice), pack, cat).Warnings, "\n"); !strings.Contains(w, "comes alive twice") {
-		t.Errorf("the same sticker alive twice should warn: %v", w)
+	twice := " {owl:enter} {owl:live} blink {owl:live} blink."
+	if is := Validate(withText(twice, twice), pack, cat); len(is.Errors) != 0 || len(is.Warnings) != 0 {
+		t.Errorf("the same animation twice is fine when the words say so: %v %v", is.Errors, is.Warnings)
 	}
+	// Hold and resume: only on an animation with a pause frame, in order.
+	pack.Animations["owl"] = append(pack.Animations["owl"], Animation{ID: "nap", Seconds: 3, Pause: "asleep", ToPause: 1, FromPause: 1.5})
+	cues, _, _ = ParseCues("{owl:live nap hold} x {owl:live nap resume} y")
+	if !cues[0].Hold || cues[0].Resume || cues[0].Animation != "nap" || !cues[1].Resume {
+		t.Fatalf("hold/resume parsed wrong: %+v", cues)
+	}
+	ok := " {owl:enter} {owl:live nap hold} naps, {owl:face normal} and {owl:live nap resume} wakes."
+	if is := Validate(withText(ok, ok), pack, cat); len(is.Errors) != 0 || !strings.Contains(strings.Join(is.Warnings, "\n"), "held paused") {
+		t.Errorf("hold, face, resume: want no errors and a held-face warning: %v %v", is.Errors, is.Warnings)
+	}
+	heldToTheEnd := " {owl:enter} {owl:live nap hold} naps."
+	if is := Validate(withText(heldToTheEnd, heldToTheEnd), pack, cat); len(is.Errors) != 0 {
+		t.Errorf("held until the story ends is fine: %v", is.Errors)
+	}
+	for _, tc := range []struct{ cue, want string }{
+		{" {owl:live sleepy-blink hold} x.", "no pause frame"},
+		{" {owl:live nap resume} x.", "nothing to resume"},
+		{" {owl:live nap hold} x {owl:live nap hold} y.", "still held"},
+		{" {owl:live nap hold} x {owl:live sleepy-blink} y.", "still held"},
+		{" {owl:live nap hold resume} x.", "not both"},
+	} {
+		is := Validate(withText(tc.cue, tc.cue), pack, cat)
+		if !strings.Contains(strings.Join(is.Errors, "\n"), tc.want) {
+			t.Errorf("%s: want an error containing %q, got %v", tc.cue, tc.want, is.Errors)
+		}
+	}
+	pack.Animations["owl"] = pack.Animations["owl"][:1]
 	// Coverage: an animated, well-featured sticker nobody brings alive warns.
 	set := []*Story{}
 	for i := 0; i < MinFeaturedPer; i++ {

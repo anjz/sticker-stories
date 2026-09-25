@@ -302,6 +302,7 @@ func (m *Manifest) Validate(dir string) []error {
 	// Rule 2: sticker IDs well-formed and unique.
 	stickerIDs := make(map[string]bool, len(m.Stickers))
 	animations := effects.Animations{}
+	moves, animIDs := map[string]bool{}, map[string]bool{}
 	expressions := effects.Expressions{}
 	for i, st := range m.Stickers {
 		if !idPattern.MatchString(st.ID) {
@@ -337,12 +338,18 @@ func (m *Manifest) Validate(dir string) []error {
 			for _, e := range anim.Validate(dir, st.ID) {
 				fail("%s: %v", field, e)
 			}
-			for _, other := range animations[st.ID] {
-				if other == anim.ID {
-					fail("%s: duplicate animation id %q", field, anim.ID)
-				}
+			if animIDs[st.ID+"."+anim.ID] {
+				fail("%s: duplicate animation id %q", field, anim.ID)
 			}
-			animations[st.ID] = append(animations[st.ID], anim.ID)
+			animIDs[st.ID+"."+anim.ID] = true
+			if anim.EffectiveKind() == KindMove {
+				if moves[st.ID] {
+					fail("%s: a sticker has at most one move", field)
+				}
+				moves[st.ID] = true
+			} else {
+				animations[st.ID] = append(animations[st.ID], effects.Animation{ID: anim.ID, Pausable: anim.Pause != nil})
+			}
 		}
 		// Rule 13: expression variants are images of the sticker; "normal"
 		// is the sticker's own image and cannot be one.
