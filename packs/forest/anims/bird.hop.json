@@ -1,0 +1,49 @@
+{
+  "id": "hop",
+  "sticker": "bird",
+  "kind": "move",
+  "description": "the bird hops along the ground to the right on both little feet, hop after hop, wings folded, then stops.",
+  "sheet": "anims/bird.hop.webp",
+  "frame": {
+    "width": 507,
+    "height": 516
+  },
+  "columns": 6,
+  "count": 12,
+  "rest": {
+    "x": 0.02959,
+    "y": 0.03295,
+    "width": 0.86982,
+    "height": 0.93411
+  },
+  "stickerBox": {
+    "x": 0.07031,
+    "y": 0.02995,
+    "width": 0.85938,
+    "height": 0.9401
+  },
+  "hold": [
+    0.1,
+    0.08,
+    0.07,
+    0.08,
+    0.08,
+    0.07,
+    0.07,
+    0.08,
+    0.08,
+    0.15,
+    0.15,
+    0.45
+  ],
+  "loop": {
+    "from": 1,
+    "to": 8
+  },
+  "facing": "right",
+  "stride": 0.5,
+  "hops": true,
+  "on": [
+    "meadow"
+  ]
+}

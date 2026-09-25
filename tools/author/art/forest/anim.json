@@ -2,7 +2,7 @@
   "columns": 6,
   "maxSheet": 4096,
   "notes": {
-    "kinds": "Every sticker has one action (a moment stories cue: {snail:live}, held on its pause frame with {snail:live hold} and carried on with {snail:live resume}) and one move (its walk, hop, crawl, flight or sprout; entrances play it).",
+    "kinds": "Every sticker has one action (a moment stories cue: {snail:live}, held on its pause frame with {snail:live hold} and carried on with {snail:live resume}) and one move (its walk, hop, crawl, flight or sprout; entrances and go cues play it). A sticker that gets about more than one way has a second move after its usual one (the ladybug crawls, and flies: {ladybug:go on flower by fly}); flies marks a flight, on where a story that brings it in that way lands it.",
     "sheets": "Each sheet is one API call drawing a grid of frames; the previous sheet is passed back as a reference so the next one continues it. 12 frames per 3072x2304 sheet (4x3) gives 768 px cells; an action is two sheets (24 frames), a move one.",
     "smooth": "About 10-12 frames a second: 0.08-0.1 s per frame while something moves, longer holds only on the poses the eye should rest on. Each frame a small step on from the one before.",
     "hold": "Seconds per frame, one entry per frame across all sheets (an action's first and last frames are the dissolve from and back to the still sticker; a move's frame 1 is the rest pose it never plays).",
@@ -638,6 +638,7 @@
       },
       "facing": "left",
       "stride": 1.0,
+      "flies": true,
       "sheets": [
         {
           "columns": 4,
@@ -773,6 +774,7 @@
       },
       "facing": "right",
       "stride": 1.2,
+      "flies": true,
       "sheets": [
         {
           "columns": 4,
@@ -804,6 +806,62 @@
         0.07,
         0.07,
         0.07,
+        0.15,
+        0.15,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "hop",
+      "sticker": "bird",
+      "kind": "move",
+      "description": "the bird hops along the ground to the right on both little feet, hop after hop, wings folded, then stops.",
+      "base": "its feet",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.5,
+      "hops": true,
+      "on": [
+        "meadow"
+      ],
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Turned to the right, wings folded, crouching a little on both feet, about to hop.",
+            "Springing up: both feet pushing off together, the round body lifting and leaning right.",
+            "In the air: both feet tucked up under the round body, wings folded, tail lifted a little.",
+            "Still in the air, the feet reaching down.",
+            "Landing on both feet together, the tail flicking up.",
+            "Landed: the body squashed a touch, looking ahead.",
+            "Upright on both feet, a little bob of the head.",
+            "Crouching a little again, about to hop (leading back into frame 2).",
+            "Stopping: standing still, turning back toward the reference pose.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.08,
+        0.07,
+        0.08,
+        0.08,
+        0.07,
+        0.07,
+        0.08,
+        0.08,
         0.15,
         0.15,
         0.45
@@ -908,6 +966,7 @@
       },
       "facing": "right",
       "stride": 0.9,
+      "flies": true,
       "sheets": [
         {
           "columns": 4,
@@ -1348,6 +1407,63 @@
       ]
     },
     {
+      "id": "swim",
+      "sticker": "duckling",
+      "kind": "move",
+      "description": "the duckling paddles along to the right, floating low with its orange feet kicking underneath, then stops.",
+      "base": "its round body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.5,
+      "on": [
+        "pond"
+      ],
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Swimming to the right, turned three-quarters toward the right: sitting low and level as if floating (no water drawn), the body round, the tail up, the near orange foot kicking back under the body.",
+            "The near foot pushing back, the far foot coming forward, the body gliding.",
+            "The feet passing each other under the body, the body bobbing up a touch.",
+            "The far foot kicking back, the near foot coming forward.",
+            "The far foot pushing back, the body gliding, the tail wiggling.",
+            "The feet passing each other, the body bobbing down a touch.",
+            "The near foot kicking back again.",
+            "Almost as frame 2 (leading back into frame 2).",
+            "Slowing: both feet still under the body, drifting, turning back toward the reference pose.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ],
+          "hint": "Floating, not running: the body sits low, level and calm, tail up, and the legs stay tucked right under the round body — only the orange feet peek out below it, small paddling movements, never stretched out behind or in front. The whole body only bobs a touch from frame to frame."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
       "id": "glow",
       "sticker": "firefly",
       "kind": "action",
@@ -1441,6 +1557,7 @@
       },
       "facing": "left",
       "stride": 1.0,
+      "flies": true,
       "sheets": [
         {
           "columns": 4,
@@ -1458,6 +1575,61 @@
             "Wings halfway up, about to rise again (leading back into frame 2).",
             "Gliding down: wings spread wide, legs reaching down to land.",
             "Landed, wings folding, settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.14,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "walk",
+      "sticker": "firefly",
+      "kind": "move",
+      "description": "the firefly walks along to the left on its six little legs, wings folded and tail glowing softly, then stops.",
+      "base": "its legs",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.3,
+      "on": [
+        "meadow"
+      ],
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Walking to the left, wings folded on its back, tail glowing softly: the front and back legs on one side stepping forward, the middle leg on the other side stepping.",
+            "Those legs down, the others lifting.",
+            "The other set of legs stepping forward.",
+            "Those legs down.",
+            "The first set lifting again.",
+            "Stepping forward.",
+            "The other set lifting.",
+            "Almost as frame 2 (leading back into frame 2).",
+            "Stopping: legs together, turning back toward the reference pose.",
+            "Settling into the reference pose.",
             "Exactly as in the reference."
           ]
         }
@@ -2144,6 +2316,60 @@
       ]
     },
     {
+      "id": "fly",
+      "sticker": "ladybug",
+      "kind": "move",
+      "description": "the ladybug lifts its red spotted wing cases and flies along to the right on its thin clear wings, then lands and folds them away.",
+      "base": "its round body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 1.0,
+      "flies": true,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Flying to the right: the red spotted wing cases lifted and held open, the thin clear wings spread and raised high, the six little legs tucked under, the body tilted a little up.",
+            "The clear wings coming down, halfway, a light blur.",
+            "The clear wings down low, the body at its highest.",
+            "The clear wings halfway up.",
+            "The clear wings raised high again, the body dipping a touch.",
+            "The clear wings halfway down, a light blur.",
+            "The clear wings down, the body level.",
+            "The clear wings halfway up, about to rise again (leading back into frame 2).",
+            "Landing: the legs reaching down, the clear wings folding in under the lifted wing cases.",
+            "Landed: the red wing cases coming down closed, settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.14,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
       "id": "sniff",
       "sticker": "mouse",
       "kind": "action",
@@ -2498,6 +2724,7 @@
       },
       "facing": "right",
       "stride": 1.2,
+      "flies": true,
       "sheets": [
         {
           "columns": 4,
@@ -3306,6 +3533,7 @@
       },
       "facing": "left",
       "stride": 1.2,
+      "flies": true,
       "sheets": [
         {
           "columns": 4,

@@ -1,20 +1,20 @@
 {
-  "id": "fly",
+  "id": "walk",
   "sticker": "firefly",
   "kind": "move",
-  "description": "the firefly flies along to the left, wings buzzing and tail glowing, then lands.",
-  "sheet": "anims/firefly.fly.webp",
+  "description": "the firefly walks along to the left on its six little legs, wings folded and tail glowing softly, then stops.",
+  "sheet": "anims/firefly.walk.webp",
   "frame": {
-    "width": 517,
-    "height": 439
+    "width": 513,
+    "height": 435
   },
   "columns": 6,
   "count": 12,
   "rest": {
-    "x": 0.03675,
-    "y": 0.04328,
-    "width": 0.9323,
-    "height": 0.918
+    "x": 0.02924,
+    "y": 0.03448,
+    "width": 0.93957,
+    "height": 0.92874
   },
   "stickerBox": {
     "x": 0.02995,
@@ -41,6 +41,8 @@
     "to": 8
   },
   "facing": "left",
-  "stride": 1,
-  "flies": true
+  "stride": 0.3,
+  "on": [
+    "meadow"
+  ]
 }
