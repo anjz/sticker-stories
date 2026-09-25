@@ -715,6 +715,14 @@ func TestGoCues(t *testing.T) {
 	if len(errs) != 0 || cues[0].Target != "pond" || cues[0].By != "swim" || cues[1].GoKind != GoBack || cues[1].Target != "" || cues[1].By != "swim" || cues[2].By != "swim" {
 		t.Fatalf("by parsed wrong: %+v %v", cues, errs)
 	}
+	// Which way across the screen: with the wind, right.
+	cues, _, errs = ParseCues("{fox:go away right} a {fox:go to pond left by swim} b")
+	if len(errs) != 0 || cues[0].Toward != GoRight || cues[1].Toward != GoLeft || cues[1].Target != "pond" || cues[1].By != "swim" {
+		t.Fatalf("toward parsed wrong: %+v %v", cues, errs)
+	}
+	if e := strings.Join(Validate(withText(" {fox:go on flower right} x."), pack, cat).Errors, "\n"); !strings.Contains(e, "left and right are for go to and go away") {
+		t.Errorf("a side on go on: %v", e)
+	}
 	if _, _, errs := ParseCues("{fox:go away by} a"); len(errs) == 0 {
 		t.Error("by without a move was accepted")
 	}

@@ -316,6 +316,15 @@ func TestGoCuesBecomeMoves(t *testing.T) {
 	if data, err := EncodeSidecar(byTr, map[string]bool{"fox": true}, anims, nil, map[string]bool{"pond": true}, "outdoors"); err != nil || !strings.Contains(string(data), `"by": "swim"`) {
 		t.Errorf("a move by swim: %s %v", data, err)
 	}
+	byTr[0].Toward = "right"
+	if data, err := EncodeSidecar(byTr, map[string]bool{"fox": true}, anims, nil, map[string]bool{"pond": true}, "outdoors"); err != nil || !strings.Contains(string(data), `"toward": "right"`) {
+		t.Errorf("a move toward the right: %s %v", data, err)
+	}
+	byTr[0].Toward = "up"
+	if _, err := EncodeSidecar(byTr, map[string]bool{"fox": true}, anims, nil, map[string]bool{"pond": true}, "outdoors"); err == nil {
+		t.Error("a move toward up was accepted")
+	}
+	byTr[0].Toward = ""
 	byTr[0].By = "nap"
 	if _, err := EncodeSidecar(byTr, map[string]bool{"fox": true}, anims, nil, map[string]bool{"pond": true}, "outdoors"); err == nil {
 		t.Error("a move by an action was accepted")

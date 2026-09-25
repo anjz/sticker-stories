@@ -234,6 +234,14 @@ const GoEffect = "go"
 // GoBy introduces the move an entrance or a move goes by: {x:go … by fly}.
 const GoBy = "by"
 
+// GoLeft and GoRight say which way across the screen a move goes, when
+// the story says: {leaf:go away right} — what the wind carries goes
+// right, the way the wind effect blows. On go to and go away only.
+const (
+	GoLeft  = "left"
+	GoRight = "right"
+)
+
 // Move kinds.
 const (
 	GoTo    = "to"
@@ -260,6 +268,7 @@ type Cue struct {
 	GoKind     string // a move's kind: to, on, under, away, back
 	Target     string // a move's target: a sticker or (to) a feature
 	By         string // the move an entrance or a move goes by ("" = its usual one)
+	Toward     string // the side a move goes toward: left, right ("" = where it goes decides)
 	Sound      bool
 	Solo       bool
 	Effect     string
@@ -612,6 +621,11 @@ func parseCue(inner string) (Cue, error) {
 			c.Resume = true
 		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind == "" && (p == GoTo || p == GoOn || p == GoUnder || p == GoAway || p == GoBack):
 			c.GoKind = p
+		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind != "" && (p == GoLeft || p == GoRight):
+			if c.Toward != "" {
+				return c, fmt.Errorf("a move goes one way: left or right")
+			}
+			c.Toward = p
 		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind != "" && c.Target == "" && idPattern.MatchString(p):
 			c.Target = p
 		case c.Effect == FaceEffect && c.Sticker != "" && idPattern.MatchString(p) && !numericParam.MatchString(p):
@@ -1061,7 +1075,7 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 				continue
 			}
 			if c.Effect == GoEffect {
-				shape = append(shape, c.Sticker+":go:"+c.GoKind+":"+c.Target+":"+c.By)
+				shape = append(shape, c.Sticker+":go:"+c.GoKind+":"+c.Target+":"+c.By+":"+c.Toward)
 				validateGoCue(&is, lang, c, m, inStory, enterAt)
 				switch c.GoKind {
 				case GoOn, GoUnder:
@@ -1500,6 +1514,9 @@ func validateGoCue(is *Issues, lang string, c Cue, m Manifest, inStory map[strin
 	}
 	if c.Repeat > 0 || c.Loop || c.Hold || c.Color != "" || c.Duration > 0 || c.Intensity != 0 || c.Animation != "" {
 		is.errorf("%s: cue %s: a move takes only where it goes and the way it goes (by …)", lang, c.Raw)
+	}
+	if c.Toward != "" && c.GoKind != GoTo && c.GoKind != GoAway {
+		is.errorf("%s: cue %s: left and right are for go to and go away (the way it goes across the screen)", lang, c.Raw)
 	}
 	validateBy(is, lang, c, m)
 }

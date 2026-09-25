@@ -191,6 +191,34 @@ import Testing
         #expect(plans[mouse]!.legs.map(\.stacking) == [.onto(flower), .shuffle, .shuffle])
     }
 
+    @Test func goesTheWayTheWindBlows() throws {
+        let file = try EffectTriggerFile(data: Data("""
+            { "schema": 1, "triggers": [
+              { "at": 1, "sticker": "fox", "go": "away", "toward": "right" },
+              { "at": 2, "sticker": "fox", "go": "on", "target": "rabbit", "toward": "right" },
+              { "at": 3, "sticker": "fox", "go": "to", "target": "rabbit", "toward": "up" } ] }
+            """.utf8))
+        #expect(file.goTriggers.map(\.toward) == [.right, nil, nil])
+        #expect(file.warnings.count == 2)
+
+        // The fox is on the left: away goes by the nearer (left) side, unless
+        // the wind carries it right.
+        #expect(place(fox, plan([GoTrigger(at: 0, stickerID: "fox", kind: .away)]), at: 20).x < 0)
+        #expect(place(fox, plan([GoTrigger(at: 0, stickerID: "fox", kind: .away, toward: .right)]), at: 20).x > 1000)
+        // Beside the rabbit: on the side it comes from, or the one named.
+        #expect(place(fox, plan([GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "rabbit")]), at: 20).x < 700)
+        #expect(place(fox, plan([GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "rabbit", toward: .right)]), at: 20).x > 700)
+        // To a place: somewhere on that side of it.
+        let meadow = ["meadow": SceneFeature(description: "Grass.", areas: [.init(x: [0.1, 0.9], y: [0.2, 0.4])])]
+        for seed in UInt64(1)...8 {
+            var random = SeededGenerator(state: seed)
+            let plans = MotionPlanner.plan(
+                goes: [GoTrigger(at: 0, stickerID: "rabbit", kind: .to, target: "meadow", toward: .left)],
+                actors: actors(), features: meadow, scene: Self.scene, policy: .standard, random: &random)
+            #expect(place(rabbit, plans, at: 20).x <= 700 - 120 + 1e-6)
+        }
+    }
+
     @Test func twoBesideTheSameStickerTakeBothSides() {
         let plans = plan([
             GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "rabbit"),
