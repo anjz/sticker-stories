@@ -515,7 +515,7 @@ func TestLiveCues(t *testing.T) {
 		s.Featured = []string{"owl", "fox", "tree"}
 		set = append(set, s)
 	}
-	if w := strings.Join(Cover(set, pack, 0).Warnings, "\n"); !strings.Contains(w, `"owl" comes alive`) {
+	if w := strings.Join(Cover(set, pack, 0).Warnings, "\n"); !strings.Contains(w, `"owl"'s action`) {
 		t.Errorf("an unused live sticker should warn: %v", w)
 	}
 	set[0] = withText(" {owl:live} blink.", " {owl:live} parpadea.")

@@ -37,6 +37,7 @@ const (
 	MaxSupporting  = 4
 	MaxTags        = 5
 	MinFeaturedPer = 5 // each sticker should be featured at least this often (warning)
+	MinLivePer     = 3 // each sticker's action should play in at least this many stories (warning)
 	MinFallbacks   = 3
 	DefaultCount   = 50
 	MaxCanvasCues  = 3 // canvas effects per story and language before a warning
@@ -238,8 +239,8 @@ type Cue struct {
 	Effect     string
 	Repeat     int // 0 = default (1)
 	Loop       bool
-	Hold       bool // a sticker effect's hold, or a live cue that stops at the pause frame
-	Resume     bool // a live cue that plays on from the pause frame
+	Hold       bool    // a sticker effect's hold, or a live cue that stops at the pause frame
+	Resume     bool    // a live cue that plays on from the pause frame
 	Color      string  // "#RRGGBB" or ""
 	Duration   float64 // seconds, 0 = default
 	Intensity  float64 // 0 = default; -1 = explicitly zero
@@ -1536,8 +1537,8 @@ func Cover(stories []*Story, m Manifest, expected int) Coverage {
 		}
 	}
 	for _, st := range m.Stickers {
-		if len(m.Animations[st]) > 0 && c.Featured[st] >= MinFeaturedPer && c.LiveUse[st] == 0 {
-			c.Warnings = append(c.Warnings, fmt.Sprintf("sticker %q comes alive (%s) but no story cues {%s:%s}", st, m.Animations[st][0].Description, st, LiveEffect))
+		if len(m.Animations[st]) > 0 && c.Featured[st] >= MinFeaturedPer && c.LiveUse[st] < MinLivePer {
+			c.Warnings = append(c.Warnings, fmt.Sprintf("sticker %q's action (%s) plays in %d stories; aim for at least %d ({%s:%s})", st, m.Animations[st][0].Description, c.LiveUse[st], MinLivePer, st, LiveEffect))
 		}
 	}
 	if c.Fallbacks < MinFallbacks {

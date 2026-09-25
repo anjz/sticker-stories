@@ -8,8 +8,9 @@ description: Author a complete, validated set of bilingual kids' stories (50 per
 You are the pack's author. The bar is the best read-aloud picture books:
 original stories with the depth of the classics, safe for unsupervised
 four-year-olds, bilingual, and written for a narrator who performs — the
-stickers react on their beats, the animated ones come alive in their own
-signature move on the words that tell it, now and then the weather or light of the
+stickers react on their beats, every sticker comes alive in its own
+action on the words that tell it (staying in its pause pose while the
+story lingers there), stickers walk, hop, fly or sprout in as they are named, now and then the weather or light of the
 whole scene changes, real sound effects play (sometimes instead of a sound
 word), and the Eleven v3 voice takes your stage directions. About four
 stories in ten quietly teach one true thing about the pack's world. Follow
@@ -28,20 +29,22 @@ Read, in this order, before writing anything:
    sticker's `id` and per-language `name` (the cast and the only IDs you
    may use), and its **`setting`** (`outdoors`, `indoors`, `space`,
    `underwater` or `none`; absent means `none`). The setting decides which canvas effects the stories may
-   use — note it down before writing anything.
-   Note which stickers declare `animations`: those are **live stickers**.
-   Read each sidecar (`packs/<packID>/anims/<sticker>.<id>.json`) for its
-   `description` — what the animation shows — and its `hold`s (the sum is
-   how long it plays), or run
+   use — note it down before writing anything.   Every sticker declares `animations`: one **action** (what stories cue)
+   and one **move** (its walk, hop, flight or sprout, played by its
+   entrance). Run
    `cd tools && go run ./author/storycheck -pack ../packs/<packID> -plan`,
-   which prints them all. Each is one fixed action (a yawn, a backflip, a
-   peekaboo); stories choose only when it happens.
+   which prints every action: what it shows, how long it plays and, for
+   most, its **pause pose** (`hold:` — the snail hidden in its shell, the
+   bear cub asleep) with the time to reach it and to come out of it. The
+   sidecars (`packs/<packID>/anims/<sticker>.<id>.json`) hold the same
+   `description` and `pause.shows`. Each action is one fixed sequence;
+   stories choose when it happens and whether it stops on its pause pose.
    Note which stickers declare `expressions` (face variants: `happy`,
    `sad`, `sleeping`, `surprised`… plus their own `normal` face) — the
    `-plan` run lists them too. Faces are the cheapest way to make the
-   stage feel alive; plan to use them in almost every story.
-   Note every sticker's **`stage`**: its `entrance` (`hop` for things
-   that walk, `fly` for things that fly, `grow` for things that stay put)
+   stage feel alive; plan to use them in almost every story.   Note every sticker's **`stage`**: its `entrance` (`hop` for things
+   that walk, hop, crawl or roll in — they play their move on the way —,
+   `fly` for things that fly, `grow` for plants that sprout where they stand)
    and where it lands — the pack's `features` it goes `on` (the meadow,
    the sky, the pond, the trees' branches), in order of preference. A story brings in every sticker it names that the child has not
    placed, on the word that first names it (FORMAT "Entrance cues"), so
@@ -53,7 +56,7 @@ Read, in this order, before writing anything:
    **Look at every sticker's image** (`packs/<packID>/stickers/<id>.webp`;
    convert to PNG with `sips -s format png` to view it) and write down what
    the art actually shows: colours, anything countable (spots, petals,
-   stripes, legs, wings), what it holds or sits on, and what it lacks
+   stripes, legs, wings), what it holds, and what it lacks
    (a fawn with no antlers, a ladybug with five spots, not seven). **Count from
    the picture, never from what the real animal or plant usually has** —
    the child is looking at the sticker while the narrator speaks. Put this
@@ -72,8 +75,9 @@ table with one row per story — `id`, `featured` (3–4 stickers, or none for a
 fallback), `supporting`, `tags`, one-line `premise`, `inspiration`,
 `learning` (the one fact the story shows, or `—`), `canvas` (the canvas
 effects the story will use — every weather or light moment in its premise —
-or `—`), and `live` (the live
-stickers the story brings alive — at most two — or `—`).
+or `—`), and `live` (the stickers whose actions the story plays, marking
+the ones it holds on their pause pose: `snail (hold), frog` — two to four
+is typical, five at most — or `—`).
 
 Constraints (the validator checks them on the finished set):
 
@@ -88,10 +92,13 @@ Constraints (the validator checks them on the finished set):
   up to three per story, spread across the effects the pack's setting allows
   — and none at all when the setting is `none`; think about weather when
   shaping premises, since it is one of the things the child sees;
-- **every live sticker comes alive in at least three stories**, mostly
-  ones where it is featured and whose premise grows from its move (the
-  raccoon's peekaboo, the hedgehog curling up for a nap, the woodpecker's
-  tap-tap), never in every story it appears in; at most two per story;
+- **every sticker's action plays in at least three stories**, mostly
+  ones where it is featured and whose premise grows from it (the raccoon's
+  peekaboo, the snail hiding in its shell, the flower closing at night);
+  most stories play two to four actions, on the words that tell them, and
+  hold one on its pause pose where the story lingers in it (a hiding
+  snail, a sleeping bear, a wishing acorn) — about half the stories use a
+  hold;
 - **about 40 % of the rows carry a `learning` fact** (GUIDE "Learning"):
   one concrete, true, observable thing about how the pack's world works,
   each fact used once, spread across the cast; the other rows stay pure
@@ -130,19 +137,24 @@ exactly per `FORMAT.md`:
   (`{fox:enter}`, FORMAT "Entrance cues", GUIDE "Entrances"), in every
   language, right before the word that **first names it** — before any
   other cue on that word — so a sticker the child has not placed hops,
-  flies or grows into the scene as the narrator says its name. Name every
+  flies or sprouts into the scene, playing its move, as the narrator
+  says its name. Name every
   one of them in the words (a sticker that is never named has nowhere to
   enter); where the story allows, make the first mention an arrival
-  ("along came Fox", "Owl fluttered down") that suits its entrance and
-  where it lands (the bee up in the air, the owl fluttering down onto a
-  branch, the frog in the pond, the mushroom popping up on the meadow), but it must also read fine when the sticker was on the
-  canvas all along. Cue nothing on a sticker before its entrance except
+  ("along trotted Fox", "Frog came hopping", "Snail crawled up slowly")
+  that suits its move and where it lands (the bee buzzing up in the air,
+  the owl flying down onto a branch, the frog hopping to the pond, the
+  mushroom popping up on the meadow), but it must also read fine when the
+  sticker was on the canvas all along; leave a few words before an
+  action on a sticker that just entered (it takes 1–6 s to arrive). Cue nothing on a sticker before its entrance except
   a `float` loop or a face;
-- a live cue (`{bear:live}` — see FORMAT "Live cues", GUIDE "Live
-  stickers") in the stories the roster marked for one: on the words that
-  tell exactly what that animation shows, with the next sentence or so
-  (8–14 words, its 3–6 s) free of other cues on that sticker, each sticker
-  once; the words alone must still tell the moment;
+- live cues (`{bear:live}`, `{snail:live hold}` … `{snail:live resume}` —
+  see FORMAT "Live cues", GUIDE "Live stickers") as the roster planned
+  them: on the words that tell exactly what that action shows, in the
+  frames' order, with the next 6–10 words free of other effects on that
+  sticker; a hold on the words that put it in its pause pose, its resume
+  (if any) on the words that bring it out, no face change on it while it
+  is held; the words alone must still tell the moment;
 - a canvas cue (`{canvas:rain 0.8 14s}` — see FORMAT "Canvas cues") for
   **every** weather or light moment the words describe that the pack's
   setting has an effect for — snow falling, rain, fog, sunset, night and
@@ -187,8 +199,8 @@ does not allow, an unknown sound id, a tag outside the allowed list) and
 coverage are mechanical; the safety and quality rules in the GUIDE are
 yours to hold. Watch the tables it prints: effects spread across the whole
 library, every weather mention cued, faces changing in almost every
-story, every live sticker alive
-in several stories, audio tags and sounds in most stories but never
+story, every sticker's action in several stories and holds in about
+half, audio tags and sounds in most stories but never
 crowding one, and learning at about 40 %.
 
 ## 4. Finish
@@ -218,8 +230,9 @@ build step 2 (audio); it is a separate tool.
   on its first mention, put the entrance later than the first mention,
   or describe a sticker where its stage cannot put it (a fox up in the
   clouds, a woodpecker hopping across the meadow).
-- Never cue a live animation on words it contradicts, on a sticker without
-  one, or twice on the same sticker in a story.
+- Never cue a live action on words it contradicts or out of the frames'
+  order, resume one that is not held, hold one without a pause pose, or
+  pile more than five into a story.
 - Never use an effect name that is not in `docs/effects/effects.json`, a
   canvas effect the pack's setting does not allow, a canvas effect the
   words don't describe, a described snowfall (or rain, sunset…) left

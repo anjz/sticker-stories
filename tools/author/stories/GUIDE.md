@@ -10,9 +10,10 @@ Sticker Stories is an app for children aged four and up. A child drags
 stickers onto a scene and presses play; the app picks a story that matches
 what they placed and narrates it while the stickers react with small
 effects (a wobble, a hop, sparkles), their faces change with the story
-(a smile, a sad face, eyes closed in sleep, a surprised "o"), some stickers
-come alive for a moment in their own animation (the bear cub yawns, the frog
-backflips) and, whenever the words bring it, the weather or the light changes over the whole scene (rain, fog, sunshine, a rainbow, night
+(a smile, a sad face, eyes closed in sleep, a surprised "o"), every sticker
+comes alive in its own animation (the bear cub yawns and nods off, the snail
+hides in its shell and stays there until it peeks out, the frog snaps up a
+fly), stickers the story names walk, hop, fly or sprout into the scene and, whenever the words bring it, the weather or the light changes over the whole scene (rain, fog, sunshine, a rainbow, night
 falling, the lights going low). Stories are:
 
 - **30–60 seconds** of narration (80–140 words per language), read by an
@@ -128,7 +129,7 @@ it is necessary, not sufficient: the rules above are the standard.
 - **Match the art.** The child is looking at the sticker while the
   narrator talks about it, so anything the text says it looks like — how
   many spots, petals, stripes or legs, its colours, what it holds, what it
-  sits on — must be what the image shows, counted from the picture
+  stands on — must be what the image shows, counted from the picture
   (`packs/<pack>/stickers/<id>.webp`), not from what the real animal
   usually has. Forest's ladybug has five spots, its flower eight yellow
   petals, its deer is a spotted fawn with no antlers and its duckling a fluffy
@@ -206,9 +207,10 @@ from that word on.
   a sticker feel alive and it never distracts; most stories want two to
   five face changes. `storycheck` warns when a story has none.
 - **With the other effects.** A face and an effect can fire together
-  (`{fox:face happy} {fox:hop}`). A face change during a live animation is
-  fine — it shows when the frames end — but a sleeping face does not fit a
-  sticker about to do a backflip.
+  (`{fox:face happy} {fox:hop}`). A face change during a live action shows
+  when the frames end (while an action is held on its pause pose, it waits
+  until it resumes), so change the face before or after; and a face must
+  fit what follows — a sleeping face does not fit a sticker about to leap.
 - Only faces the sticker has; `normal` always works.
 
 ## Everyone at once: `all`
@@ -232,9 +234,12 @@ What the narrator says is what the child should see. So every featured
 and supporting sticker **enters** on the word that first names it:
 `{fox:enter} Fox`. If the child placed a fox, nothing happens; if not, a
 fox comes into the scene right then, the way the pack's manifest says
-(`stage`, `docs/pack-format.md`): things that walk hop in from the side
-onto the ground, things that fly glide in to the sky, things that stay
-put grow where they stand. It leaves again when the story ends.
+(`stage`, `docs/pack-format.md`), **playing its move**: things that walk
+walk (or hop, crawl, roll) in from the side onto the ground at the pace
+of their legs, things that fly fly in to the sky or a branch, plants
+sprout where they stand. It leaves again when the story ends. An
+arrival takes 1–6 s (a snail is slow), so leave a few words after an
+entrance before an action on that sticker.
 
 - Exactly one per featured and supporting sticker, per language, right
   before the first word that names it (its manifest name, or the name
@@ -244,17 +249,20 @@ put grow where they stand. It leaves again when the story ends.
   the entrance needs a word to sit on, and the child should hear who has
   arrived.
 - Where it suits the story, make the first mention an arrival that fits
-  the entrance — *along came {fox:enter} Fox*, *{owl:enter} Owl fluttered
-  down*, *a little {mushroom:enter} mushroom popped up* — but the sentence
-  must also read fine when the sticker was on the canvas all along.
+  its move — *along trotted {fox:enter} Fox*, *{owl:enter} Owl flew down*,
+  *{frog:enter} Frog came hopping*, *slowly, slowly, {snail:enter} Snail
+  crawled up*, *a little {mushroom:enter} mushroom popped up* — but the
+  sentence must also read fine when the sticker was on the canvas all
+  along.
 - Keep what the words say about where a sticker is where it lands.
   `storycheck -plan` prints the pack's features (the pond, the trees'
   branches…) with the stickers that land on each, first choice and
   fallback: in Forest the bee and the butterfly fly in the sky, the bird
   and the owl perch on the big trees' branches (or fly in the sky when
   those are off screen), the woodpecker clings to a trunk, the frog sits
-  in the pond, and everyone else — the firefly and the ladybug on their
-  leaves too — is on the meadow. "Owl fluttered down onto a branch" fits;
+  in the pond, and everyone else is on the meadow. The stickers carry no
+  lily pads, twigs or leaves of their own any more: the bird and the owl
+  perch on the scene's branches, the woodpecker on its trunks. "Owl fluttered down onto a branch" fits;
   "the fox up on the hill" does not.
 - Cue nothing on a sticker before its entrance (it would play on a
   sticker nobody can see yet), except a `float` loop or a face — those
@@ -265,38 +273,56 @@ put grow where they stand. It leaves again when the story ends.
 
 ## Live stickers
 
-Some stickers carry a **live animation**: a few seconds of their own
-frames, drawn from the sticker's art — the bear cub yawns and stretches,
-the frog does a backflip and catches a fly, the raccoon plays peekaboo.
-Each is one fixed action; you cannot change what it does, only *when* it
-happens. `storycheck` lists every one — the sticker, what the animation
-shows and how long it plays (3–6 s) — and each sidecar in
-`packs/<pack>/anims/*.json` carries the same `description`. Read them
-before planning the roster: they are the cast's signature moves.
+**Every sticker is alive.** Each one carries an **action** — a few seconds
+of its own frames, drawn from the sticker's art: the snail hides in its
+shell and peeks out, the frog watches a fly and snaps it up, the bear cub
+yawns and nods off, the flower folds its petals up for the night — and a
+**move**, how it gets about (a walk, a hop, a crawl, a flight, a sprout),
+which plays by itself when it enters (below). An action is one fixed
+sequence; you cannot change what it does, only *when* it happens and,
+for most, **where it stops**: its **pause pose** — the snail hidden in its
+shell, the bear cub asleep, the frog frozen watching the fly. `storycheck
+-plan` lists every action with what it shows, how long it plays (2–4 s),
+its pause pose (`hold:`) and the time to it and from it. Read them before
+planning the roster: they are the cast's vocabulary, and the stories are
+written to them.
 
-- **Write the moment, then cue it.** `{bear:live}` goes on the words that
-  tell exactly what the animation shows: *Bear gave a {bear:live} great big
-  yawn, stretched up high and rubbed his eyes.* Never on words it
-  contradicts — no backflip cued on "the frog sat very still", no yawn on
-  "the bear jumped". A child sees the sticker do what the narrator says.
-- **Let the words cover its length.** The animation runs 3–6 s, about
-  8–14 spoken words at a gentle pace. Give it the sentence it belongs to
-  and the next one, and cue nothing else on that sticker until it is done
-  (`storyaudio` warns when a sticker effect starts on top of it). Other
-  stickers may react meanwhile.
-- **A signature, not a tic.** At most two live animations in a story, each
-  sticker once (the validator warns past that). Across the set, every
-  animated sticker should come alive in **at least three stories** —
-  mostly ones where it is featured and the premise grows from its move (a
-  peekaboo game for the raccoon, a nap for the hedgehog, a tapping
-  rhythm for the woodpecker) — but not in every story it appears in.
-- **Mostly on featured stickers.** A supporting sticker may come alive
-  too, but the story must read fine if it is not on the canvas.
+- **Write the moment, then cue it — beat for beat.** `{bear:live}` goes on
+  the words that tell exactly what the frames show: *Bear gave a
+  {bear:live} great big yawn, stretched up high and rubbed his eyes.* Never
+  on words it contradicts. The child sees the sticker do what the narrator
+  says, so the words follow the frames' order: the frog *watches* the fly
+  before it *snaps* it up.
+- **Pause where the story lingers.** When a character stays in that pose
+  for a while — hides and waits, falls asleep, holds a wish — play it up
+  to its pause pose and keep it there: *Snail {snail:live hold} tucked
+  himself deep into his shell.* … *Knock, knock. Nothing.* … *Then, slowly,
+  {snail:live resume} he peeked out.* Hold on the words that put it in the
+  pose, resume on the words that bring it out. It may stay held to the end
+  of the story (a bear asleep at bedtime). While held, the character is
+  still — other stickers carry the scene — and a face cue on it waits
+  until it resumes, so change its face before the hold or after the
+  resume.
+- **Let the words cover the motion.** Whole, an action runs 2–4 s, about
+  6–10 spoken words; the way into a pause pose about half that. Give it
+  the words it belongs to and cue no other effect on that sticker until
+  the motion is done (`storyaudio` warns when a sticker effect starts on
+  top of it); a held sticker may take effects again. Other stickers may
+  react meanwhile.
+- **Use them — this is how the stories come alive**, but only where the
+  words tell that moment: typically two to four actions in a story, on
+  different stickers (at most five; a hold and its resume count once).
+  The same action may play twice in a story if the words tell it twice.
+  Across the set, every sticker's action plays in **at least three
+  stories**, and premises grow from them (a hide-and-seek for the snail,
+  a wish for the acorn, a flower closing at night).
+- **Mostly on featured stickers.** A supporting sticker may act too, but
+  the story must read fine if it is not on the canvas.
 - **Never rely on it.** The sticker may be missing, and under Reduce
-  Motion or calm mode the animation does not play: the words alone must
-  tell the moment.
-- A live animation takes no parameters: `{frog:live}`. If a sticker ever
-  has several, name one: `{owl:live sleepy-blink}`.
+  Motion or calm mode no frames play: the words alone must tell the moment.
+- An action takes no parameters other than `hold` or `resume`:
+  `{frog:live}`, `{frog:live hold}`. If a sticker ever has several, name
+  one: `{owl:live doze}`.
 
 ## Using canvas effects
 
