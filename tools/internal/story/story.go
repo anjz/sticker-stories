@@ -301,6 +301,10 @@ type CanvasEffect struct {
 	Settings      []string  `json:"settings"`
 	Parameters    []string  `json:"parameters"`
 	DurationRange []float64 `json:"durationRange"`
+	// RampIn and RampOut are how long it takes to build up and to clear,
+	// in seconds, within its duration.
+	RampIn  float64 `json:"rampIn"`
+	RampOut float64 `json:"rampOut"`
 }
 
 // Catalog is the effects library as tooling sees it: sticker effects and

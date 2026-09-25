@@ -379,6 +379,13 @@ Weather and light over the whole scene use the reserved target `canvas`
   effect takes a moment to build up (fog ~2.5 s, rain ~1 s), so put it a
   beat before the words it illustrates. The duration is how long it stays,
   ramps included; it ends on its own.
+- **The time of day holds.** `night`, `sunset` and `dimlight` last until
+  the story changes the light — morning `sunshine` after the night,
+  `night` after the sunset, a `windowlight` morning indoors — or ends,
+  however short their duration (`storyaudio` lengthens them to the real
+  narration; a duration is only a minimum). So a story that stays at night
+  needs nothing more; one where the day comes back says so and cues it
+  (`{canvas:sunshine}` on "In the morning…").
 - Canvas effects **follow the words**: whenever the text puts weather or
   light the setting can show into the scene (snow, rain, fog, sunset,
   night, clouds, wind, autumn leaves, fireflies, a party, bubbles,

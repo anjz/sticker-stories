@@ -136,7 +136,13 @@ move a sticker. Where a sticker effect is a cycle, a canvas effect is one
 clears over its ramp-out — then it is gone. There is no repeat, no colour,
 no hold; content controls **`intensity`** (how much: thin or thick fog,
 drizzle or downpour) and **`duration`** (how long it stays, ramps
-included).
+included). The exception is the light of the time of day: a `night`,
+`sunset` or `dimlight` holds until the story changes the light (the next
+`night`, `sunset`, `dimlight`, `sunshine`, `sunrays`, `windowlight` or
+`firelight`, which it crossfades into) or ends — `storyaudio` lengthens
+its trigger's duration to that on the real narration
+(`render.HoldLights`), so the day never comes back unless the words bring
+it.
 
 Each canvas effect suits one or more pack **`setting`**s
 (`docs/pack-format.md`: `outdoors`, `indoors`, `space`, `underwater` or

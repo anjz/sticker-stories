@@ -335,3 +335,35 @@ func TestGoCuesBecomeMoves(t *testing.T) {
 		t.Error("a move to an unknown place was accepted")
 	}
 }
+
+func TestHeldLightsLastUntilTheLightChangesOrTheEnd(t *testing.T) {
+	cat, err := story.LoadCatalog("../../../docs/effects/effects.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	tr := []Trigger{
+		{At: 0, Effect: "sunset", Duration: 20},
+		{At: 30, Effect: "night", Duration: 10},
+		{At: 5, Sticker: "fox", Effect: "hop"},
+		{At: 40, Effect: "rain", Duration: 5},
+	}
+	HoldLights(tr, 70, cat)
+	// The sunset holds until the night has built up over it (30 + 2 s)…
+	if tr[0].Duration != 32 {
+		t.Errorf("sunset lasts %g s, want 32", tr[0].Duration)
+	}
+	// …the night until the story's end, clearing only after it (70 + 2 − 30).
+	if tr[1].Duration != 42 {
+		t.Errorf("night lasts %g s, want 42", tr[1].Duration)
+	}
+	if tr[2].Duration != 0 || tr[3].Duration != 5 {
+		t.Errorf("other triggers changed: %+v", tr[2:])
+	}
+	// A morning ends the night where the sun comes up; an authored duration
+	// longer than needed stays.
+	tr = []Trigger{{At: 10, Effect: "night", Duration: 50}, {At: 20, Effect: "sunshine", Duration: 8}}
+	HoldLights(tr, 70, cat)
+	if tr[0].Duration != 50 {
+		t.Errorf("a longer authored night was cut to %g", tr[0].Duration)
+	}
+}

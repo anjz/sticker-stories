@@ -44,7 +44,7 @@ import (
 )
 
 const (
-	toolVersion  = "2"
+	toolVersion  = "3" // 3: held lights (render.HoldLights)
 	defaultModel = "eleven_v3"
 	fallbackTTS  = "eleven_multilingual_v2"
 	tailOut      = 2.0 // seconds of music after the narrator ends
@@ -130,6 +130,8 @@ type ctxt struct {
 	// animations the live-animation IDs by sticker, for the sidecar check.
 	story       story.Manifest
 	animations  effects.Animations
+	// catalog is the effects catalogue (canvas ramps, for held lights).
+	catalog *story.Catalog
 	expressions effects.Expressions
 }
 
@@ -154,6 +156,9 @@ func load(packDir, storiesDir string) (*ctxt, error) {
 	}
 	if c.story, err = story.PackManifest(m, packDir); err != nil {
 		return nil, err
+	}
+	if c.catalog, err = story.LoadCatalog(filepath.Join("..", "docs", "effects", "effects.json")); err != nil {
+		return nil, fmt.Errorf("effects catalogue (run from tools/): %w", err)
 	}
 	c.expressions = effects.Expressions(c.story.Expressions)
 	c.animations = effects.Animations{}
@@ -779,6 +784,9 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 			triggers[i].At = roundCs(triggers[i].At + r.leadIn())
 		}
 	}
+	// Night, a sunset or a lamp turned low holds until the story changes
+	// the light or ends (the file ends after the narrator and the tail).
+	render.HoldLights(triggers, r.leadIn()+voiceClip.Duration()+tailOut, r.c.catalog)
 	liveOverlaps := render.LiveOverlaps(triggers, r.c.story)
 	features := map[string]bool{}
 	for id := range r.c.pack.Features {

@@ -298,6 +298,46 @@ func Triggers(cues []story.Cue, tl *Timeline, pack story.Manifest) ([]Trigger, e
 	return out, nil
 }
 
+// HeldLights are the canvas effects that set the time of day or the room's
+// light (night, a sunset, a lamp turned low): once the story brings one, it
+// holds until the story changes the light or ends, whatever its authored
+// duration — a night that ran out mid-story would bring the day back
+// without the words saying so.
+var HeldLights = map[string]bool{"night": true, "sunset": true, "dimlight": true}
+
+// LightChanges are the canvas effects that change the light: a held light
+// gives way to the next one of these (morning sunshine after the night, the
+// night after a sunset).
+var LightChanges = map[string]bool{
+	"night": true, "sunset": true, "dimlight": true, "sunshine": true, "sunrays": true, "windowlight": true, "firelight": true,
+}
+
+// HoldLights lengthens every held light so it lasts until the next light
+// change (crossfading into it: it clears while that one builds) or, when
+// none comes, until the story ends at end seconds (it starts clearing only
+// then). Durations only grow, and stay within the effect's range.
+func HoldLights(triggers []Trigger, end float64, cat *story.Catalog) {
+	for i, t := range triggers {
+		if t.Sticker != "" || !HeldLights[t.Effect] {
+			continue
+		}
+		fx := cat.Canvas[t.Effect]
+		until := end + fx.RampOut
+		for _, next := range triggers {
+			if next.Sticker == "" && LightChanges[next.Effect] && next.At > t.At {
+				until = min(until, next.At+cat.Canvas[next.Effect].RampIn)
+			}
+		}
+		d := round(until - t.At)
+		if len(fx.DurationRange) == 2 {
+			d = min(d, fx.DurationRange[1])
+		}
+		if d > t.Duration {
+			triggers[i].Duration = d
+		}
+	}
+}
+
 // LiveOverlaps reports sticker effects that start on a sticker while one
 // of its live animations is still playing: the frames carry the whole
 // moment, and a hop or a wobble on top of them fights it.
