@@ -353,6 +353,17 @@ the branches), off the canvas and back.
   bear on a snail. Several can share one spot — two friends tucked under
   the mushroom's cap stand side by side under it, a little squashed — so
   when the words have them shelter together, send them all under it.
+- **Flyers land to rest.** A butterfly or a bee in the sky is flying;
+  when the words have a flyer rest, fold its wings, sit, doze or sleep,
+  it first goes somewhere it can sit — onto a flower or a mushroom
+  (`go on`), under one (`go under`), down to the meadow or up to the
+  branches (`go to`) — a few words before the rest, so it has landed.
+  Going *beside* someone a flyer hovers, and the sky is open air: neither
+  is a landing. The actions that need a perch are marked (`storycheck
+  -plan` lists them; the butterfly's rest, the owl dozing off), and
+  storycheck errors on one played in the air. When it flies on again
+  afterwards, move it (`go back`, `go to sky`), so the words and the
+  picture keep agreeing.
 - **Away means gone** until it comes back; say where it went in passing
   ("off home for tea") and bring it back with `go back` if it returns.
 - **Let the move finish** before the next thing that sticker does: a move

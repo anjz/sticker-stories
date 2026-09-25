@@ -258,6 +258,13 @@ Off {fox:go away} ran Fox, out of the meadow.      off the canvas
   (they stand side by side under it, overlapping a little).
 - After `go away` a sticker is gone: cue nothing else on it until `go
   back` (a warning).
+- **A flyer lands before it rests.** An action marked perched (`storycheck
+  -plan`: the butterfly's rest, the owl dozing off) plays only once the
+  flyer sits on something: after `go on …`, `go under …` or `go to` a
+  place that is not open air (the meadow, the branches) — not in the sky,
+  not hovering beside someone (`go to <sticker>`). Otherwise it is an
+  error. Land it a few words before: `Butterfly {butterfly:go on flower}
+  drifted down to the flower and {butterfly:live hold} folded her wings.`
 - **The way it goes must be the way the words say.** Some stickers get
   about more than one way (`storycheck -plan`, "ways to go": the ladybug
   crawls or flies, the bird flies or hops, the duckling waddles or swims,

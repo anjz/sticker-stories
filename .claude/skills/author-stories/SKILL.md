@@ -172,7 +172,11 @@ exactly per `FORMAT.md`:
   bird flies or hops, the duckling waddles or swims, the firefly flies or
   walks) needs `by` when the words say the other one (`{ladybug:go on
   flower by fly}`, `{ladybug:enter by fly}`), on each such move; never
-  write a way the sticker has no move for;
+  write a way the sticker has no move for; **a flyer lands before it
+  rests** — before a perched action (the butterfly folding its wings, the
+  owl dozing off) move it onto or under something or down to the
+  meadow or branches, never resting in the sky or hovering beside
+  someone (storycheck errors);
 - live cues (`{bear:live}`, `{snail:live hold}` … `{snail:live resume}` —
   see FORMAT "Live cues", GUIDE "Live stickers") as the roster planned
   them: on the words that tell exactly what that action shows, in the

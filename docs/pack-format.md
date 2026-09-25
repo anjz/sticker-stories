@@ -190,7 +190,7 @@ never letterboxes:
 | `stickers[].image` | string | Pack-relative path to a PNG or WebP file; must exist. |
 | `stickers[].animations` | [string] | **Optional**, default none. Pack-relative paths to live-animation sidecars (`.json`, "Live animations" below); each must exist and validate. |
 | `stickers[].expressions` | {expr: string} | **Optional**, default none. Face variants by expression id (`happy`, `sad`, `sleeping`, `surprised`…): pack-relative PNG or WebP images with exactly the sticker's size and outline ("Expressions" below). The sticker's own `image` is the `normal` face. |
-| `features` | {id: object} | **Optional.** Named places in the art where stickers can land ("Features" below): each has a `description` (for story authors) and `areas`, a non-empty list of `{ "x": [min, max], "y": [min, max] }` in fractions of the base art. |
+| `features` | {id: object} | **Optional.** Named places in the art where stickers can land ("Features" below): each has a `description` (for story authors) and `areas`, a non-empty list of `{ "x": [min, max], "y": [min, max] }` in fractions of the base art, and optionally `"air": true` for open air (the sky: nothing sits there; story validation keeps flyers from resting in it, the app ignores it). |
 | `stickers[].stage` | object | **Optional**, default grow in `x` 0.1–0.9, `y` 0.18–0.45. Where the sticker belongs in the scene and how it comes in when a story names it and the child has not placed it ("Stage" below): `entrance` is `hop`, `fly` or `grow`; `on` lists `features` in order of preference; `area` (`{ "x": [min, max], "y": [min, max] }`, fractions of the base art) is where it lands when none of them is on screen. At least one of `on` and `area`. |
 | `stories[].id` | string | Unique within the pack. |
 | `stories[].requiredStickers` | [string] | The stickers the story is about: it is a candidate when at most one of them is missing from the canvas (and at least one is present), and preferred when all are. Empty ⇒ fallback story. Every ID must be declared in `stickers`. |
@@ -242,7 +242,7 @@ never letterboxes:
     a `hold` list that does not match `count`, holds outside 0.02–5 s,
     boxes outside the unit square, a `kind` other than `action`/`move`,
     a second move for one sticker without a `loop`, a `pause` on a move
-    or outside the middle frames or without `shows`, a `loop`, `facing`,
+    or a `perched` on a move, a `pause` outside the middle frames or without `shows`, a `loop`, `facing`,
     `stride`, `hops`, `flies` or `on` on an action or a move without a
     loop, a loop outside the frames, a looping move without `facing`
     left/right or with a `stride` outside 0–5, `hops` with `flies`, an
@@ -316,7 +316,11 @@ the art are cropped or panned away on narrow windows, which is why
 stages list a fallback. Story authors read the descriptions (`storycheck
 -plan` prints them with the stickers that land on each) so the words put
 a sticker where the child will see it. `stickerart` copies them from
-`art.json` (`scene.features`) on install.
+`art.json` (`scene.features`) on install. A feature marked `air` is open
+air — the sky: a flyer there is flying, with nothing to sit on, so a
+story lands it somewhere else (on a flower, on the meadow, on a branch)
+before it plays an action marked `perched` ("Live animations"); stages
+never fall back to it for a character that stands or sits.
 
 ## Expressions
 
@@ -379,6 +383,7 @@ Each animation is a sprite sheet plus a sidecar, made by
 | `rest` | the first frame's bordered art within a frame, as fractions of the frame (top-left origin) |
 | `stickerBox` | the same art within the sticker image, as fractions of the image |
 | `hold` | seconds each frame shows, one entry per frame (0.02–5) |
+| `perched` | actions only, optional: `true` when the character sits on something in it (the butterfly folding its wings to rest, the owl dozing off); stories land a flyer before they play it, never in a feature marked `air` (checked by storycheck; the app ignores it) |
 | `pause` | actions only, optional: `{ "frame": 11, "shows": "the snail tucked inside its shell" }` — the 0-based frame the action can stop on (not the first or last) and what it shows, for story authors |
 | `loop` | moves only, optional: `{ "from": 1, "to": 8 }` — the frames (0-based, both included) repeated while the character travels; the frames after it bring it to rest. Without it the move plays once (a sprout) |
 | `facing` | moves with a loop: `left` or `right`, the way the frames travel (the app mirrors a sticker that has to come in the other way) |

@@ -53,7 +53,7 @@ func TestAnimationsValidate(t *testing.T) {
 		{"pause on the first frame", func(a *StickerAnimation) { a.Pause = &AnimationPause{Frame: 0, Shows: "x"} }, "middle frame"},
 		{"pause without shows", func(a *StickerAnimation) { a.Pause = &AnimationPause{Frame: 3} }, "pause.shows"},
 		{"loop on an action", func(a *StickerAnimation) { a.Loop = &FrameRange{From: 1, To: 4} }, "belong to a move"},
-		{"pause on a move", func(a *StickerAnimation) { a.Kind = KindMove; a.Pause = &AnimationPause{Frame: 3, Shows: "x"} }, "belongs to an action"},
+		{"pause on a move", func(a *StickerAnimation) { a.Kind = KindMove; a.Pause = &AnimationPause{Frame: 3, Shows: "x"} }, "belong to an action"},
 		{"loop outside", func(a *StickerAnimation) {
 			a.Kind, a.Loop, a.Facing, a.Stride = KindMove, &FrameRange{From: 1, To: 8}, "left", 0.5
 		}, "within 0–7"},
@@ -148,4 +148,19 @@ func TestAnimationsValidate(t *testing.T) {
 			t.Errorf("got %v", errs)
 		}
 	})
+}
+
+func TestPerchedIsForActions(t *testing.T) {
+	dir := t.TempDir()
+	m := validManifest(t, dir)
+	m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) { a.Perched = true })}
+	if errs := m.Validate(dir); len(errs) != 0 {
+		t.Errorf("a perched action rejected: %v", errs)
+	}
+	m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) {
+		a.Kind, a.Perched, a.Loop, a.Facing, a.Stride = KindMove, true, &FrameRange{From: 1, To: 2}, "left", 0.5
+	})}
+	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "perched belong to an action") {
+		t.Errorf("a perched move: %v", errs)
+	}
 }

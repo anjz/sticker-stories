@@ -729,3 +729,39 @@ func TestGoCues(t *testing.T) {
 		t.Errorf("naming the usual way should warn: %v", w)
 	}
 }
+
+func TestPerchedActionsNeedALanding(t *testing.T) {
+	cat := testCatalog(t)
+	pack := forest
+	// The rabbit flies here, in the sky, and rests folding its ears.
+	pack.Stages = map[string]string{"fox": "hop", "rabbit": "fly", "flower": "grow", "tree": "grow"}
+	pack.LandsOn = map[string][]string{"rabbit": {"sky"}}
+	pack.Features = map[string]string{"sky": "the sky", "meadow": "the meadow"}
+	pack.Air = map[string]bool{"sky": true}
+	pack.Animations = map[string][]Animation{"rabbit": {{ID: "rest", Pause: "resting", Perched: true}}}
+	withText := func(en string) *Story {
+		s := goodStory()
+		for _, lang := range []string{"en-US", "es-ES"} {
+			l := s.Languages[lang]
+			l.Text += en
+			s.Languages[lang] = l
+		}
+		return s
+	}
+	for _, tc := range []struct {
+		text  string
+		perch bool
+	}{
+		{" {rabbit:live} Rabbit rested.", false},
+		{" {rabbit:go to fox} Over she flew, and {rabbit:live} rested.", false},
+		{" {rabbit:go to sky} Up she flew, and {rabbit:live} rested.", false},
+		{" {rabbit:go on tree} Down she came, and {rabbit:live} rested.", true},
+		{" {rabbit:go to meadow} Down she came, and {rabbit:live hold} rested, and {rabbit:live resume} woke.", true},
+		{" {rabbit:go on tree} Down she came, {rabbit:go back} back up, and {rabbit:live} rested.", false},
+	} {
+		errs := strings.Join(Validate(withText(tc.text), pack, cat).Errors, "\n")
+		if got := !strings.Contains(errs, "up in the air"); got != tc.perch {
+			t.Errorf("%s: landed = %v, want %v (%s)", tc.text, got, tc.perch, errs)
+		}
+	}
+}
