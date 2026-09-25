@@ -113,6 +113,10 @@ type Feature struct {
 type StageArea struct {
 	X []float64 `json:"x"`
 	Y []float64 `json:"y"`
+	// Facing (feature areas only) is the way a character there faces,
+	// "left" or "right": the area holds its front (a beak on the bark of a
+	// trunk), not its centre.
+	Facing string `json:"facing,omitempty"`
 }
 
 // Story is one pregenerated story; its text and narration exist once per
@@ -311,6 +315,9 @@ func (m *Manifest) Validate(dir string) []error {
 		}
 		for i, a := range f.Areas {
 			checkArea(fmt.Sprintf("%s: areas[%d]", field, i), a, fail)
+			if a.Facing != "" && a.Facing != "left" && a.Facing != "right" {
+				fail("%s: areas[%d]: facing must be left or right, got %q", field, i, a.Facing)
+			}
 		}
 	}
 
@@ -371,6 +378,11 @@ func (m *Manifest) Validate(dir string) []error {
 					}
 				}
 			}
+			for _, f := range anim.Place {
+				if _, ok := m.Features[f]; !ok {
+					fail("%s: place: %q is not a feature of the pack", field, f)
+				}
+			}
 			animations[st.ID] = append(animations[st.ID], effects.Animation{ID: anim.ID, Pausable: anim.Pause != nil, Move: anim.EffectiveKind() == KindMove})
 		}
 		// Rule 13: expression variants are images of the sticker; "normal"
@@ -410,6 +422,9 @@ func (m *Manifest) Validate(dir string) []error {
 			}
 			if st.Stage.Area != nil {
 				checkArea(field+": area", *st.Stage.Area, fail)
+				if st.Stage.Area.Facing != "" {
+					fail("%s: area: facing belongs to a feature's areas, not a stage's", field)
+				}
 			}
 		}
 	}

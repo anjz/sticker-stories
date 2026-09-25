@@ -198,6 +198,9 @@ func printLive(pack story.Manifest, cov story.Coverage) {
 			if a.Pause != "" {
 				fmt.Printf("    %-10s %-13s %4.1fs + %.1fs   hold: %s\n", "", "", a.ToPause, a.FromPause, a.Pause)
 			}
+			if len(a.Place) > 0 {
+				fmt.Printf("    %-10s %-13s place: only on the %s (the app takes it there first; after moving it elsewhere, {%s:go to %s})\n", "", "", strings.Join(a.Place, " or "), id, a.Place[0])
+			}
 			if a.Perched {
 				fmt.Printf("    %-10s %-13s perched: land it first (go on/under a sticker, go to the ground or a tree), never in the air\n", "", "")
 			}

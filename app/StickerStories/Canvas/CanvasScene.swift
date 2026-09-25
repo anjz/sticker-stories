@@ -1360,7 +1360,6 @@ final class CanvasScene: SKScene {
         let nodes = allStickerNodes()
         let targets = Dictionary(grouping: nodes, by: \.stickerID).mapValues { $0.map(\.instanceID) }
         let runner = StickerEffectsRunner(triggers: triggers.sticker, targets: targets, policy: policy)
-        let live = LiveTimeline(triggers: triggers.live)
         livePolicy = policy
         let placed = Set(nodes.map(\.stickerID))
         let faces = ExpressionTimeline(triggers: triggers.faces)
@@ -1372,9 +1371,16 @@ final class CanvasScene: SKScene {
                 self?.faceTextures = loaded
             }
         }
+        // The story's moves, and the app's own to take a sticker where an
+        // action of its happens (the woodpecker to a trunk before it taps);
+        // those actions wait for it to get there.
+        let placing = PlacementPlanner.goes(live: triggers.live, places: actionPlaces, goes: triggers.goes)
+        let motions = planMotions(triggers.goes + placing, visitors: visitors, policy: policy)
+        let live = LiveTimeline(triggers: PlacementPlanner.delayed(
+            triggers.live, plans: motions, stickers: Dictionary(uniqueKeysWithValues: nodes.map { ($0.instanceID, $0.stickerID) }),
+            places: Set(actionPlaces.keys)))
         // The actions the story cues on stickers on the stage, and the
         // moves of the ones it brings in.
-        let motions = planMotions(triggers.goes, visitors: visitors, policy: policy)
         if !motions.isEmpty {
             for node in nodes where !node.isVisitor {
                 if let parent = node.parent { stackBeforeMotion[node.instanceID] = (parent, node.zPosition) }
@@ -1416,8 +1422,27 @@ final class CanvasScene: SKScene {
                 minX: visible.minX + margin, minY: visible.minY + margin,
                 maxX: visible.maxX - margin, maxY: visible.maxY - margin),
             visible: StageRect(minX: visible.minX, minY: visible.minY, maxX: visible.maxX, maxY: visible.maxY),
-            stickerSize: stickerBaseSize, sizes: sizes)
+            stickerSize: stickerBaseSize, sizes: sizes, fronts: stickerFronts)
     }
+
+    /// The actions that happen in one place (`place`), by animation.
+    private lazy var actionPlaces: [LiveAnimationKey: [String]] = Dictionary(
+        liveAnimations.compactMap { a in a.kind == .action && !(a.place ?? []).isEmpty ? (a.liveKey, a.place!) : nil },
+        uniquingKeysWith: { a, _ in a })
+
+    /// How far each sticker's art reaches in front of its centre (its
+    /// beak), as a fraction of its width: from its art's box in the image
+    /// (`stickerBox`) and the way its usual move faces.
+    private lazy var stickerFronts: [String: Double] = {
+        var fronts: [String: Double] = [:]
+        for (sticker, moves) in stageMoves {
+            guard let facing = moves.first?.facing,
+                let box = liveAnimations.first(where: { $0.sticker == sticker })?.stickerBox
+            else { continue }
+            fronts[sticker] = facing == .left ? 0.5 - box.x : box.x + box.width - 0.5
+        }
+        return fronts
+    }()
 
     private lazy var stages: [String: StickerStage] = Dictionary(
         uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.stage.map { (s.id, $0) } })

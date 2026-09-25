@@ -266,6 +266,12 @@ Off {fox:go away} ran Fox, out of the meadow.      off the canvas
   right} tumbled up and away`). `go to <place> right` lands on the part of
   that place to its right, `go to <sticker> right` on that sticker's
   right-hand side. Not on `go on`, `go under` or `go back` (an error).
+- **Some actions happen in one place** (`storycheck -plan`, "place": the
+  woodpecker taps only on a trunk). The app takes the character there
+  before the action, wherever it was put; but once the story has moved it
+  somewhere else (`go to owl`), take it back with a move of your own a few
+  words before (`{woodpecker:go to trunks}`, which from one trunk goes on
+  to the other tree) — otherwise it is an error.
 - **A flyer lands before it rests.** An action marked perched (`storycheck
   -plan`: the butterfly's rest, the owl dozing off) plays only once the
   flyer sits on something: after `go on …`, `go under …` or `go to` a

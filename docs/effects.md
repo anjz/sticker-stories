@@ -425,6 +425,17 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
   follows the distance and the sticker's gait (0.8–5 s; a flight
   1.2–3.4 s). A move cued while an earlier one (or its entrance) is still
   under way starts when that ends.
+- **Where an action happens**: an action with a `place` (the woodpecker
+  taps only on a trunk; `docs/pack-format.md`, "Live animations") gets a
+  move of its own from the app (`PlacementPlanner`): to the nearest spot
+  on that place — on a feature area with `facing`, its front on it (the
+  beak on the bark), facing it — unless the sticker is there already,
+  just after its last story move before the action; the action waits
+  until it arrives. A child's woodpecker put on the meadow flies to a
+  trunk before it taps. A story sending a sticker to a place it is at
+  already (`{woodpecker:go to trunks}` "on to the next tree") takes it to
+  another area of that place. Entrances onto a facing area come in from
+  the side that has them arrive facing it.
 - **Which way across the screen**: `toward` (`left` or `right`, on `to`
   and `away` only) says the way it goes when the story says — above all
   what the wind carries, which goes right, the way the `wind` canvas

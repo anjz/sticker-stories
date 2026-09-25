@@ -359,6 +359,12 @@ the branches), off the canvas and back.
   branches — its move goes **right** (`{leaf:go away right}`, `{butterfly:go
   to branches right}`), never against the wind. A character walking
   against the wind on purpose goes left, and says so.
+- **Actions have their places.** The woodpecker taps on the bark of a
+  trunk, never in the air or on the grass: when the story sends it
+  somewhere else, bring it back to a trunk (`{woodpecker:go to trunks}`)
+  before it taps again. "On to the next tree" is `go to trunks` too — from
+  one trunk it flies to the other. `storycheck -plan` lists each action's
+  place.
 - **Flyers land to rest.** A butterfly or a bee in the sky is flying;
   when the words have a flyer rest, fold its wings, sit, doze or sleep,
   it first goes somewhere it can sit — onto a flower or a mushroom

@@ -204,10 +204,15 @@ public struct StickerStage: Codable, Equatable, Sendable {
         /// `[min, max]`, 0 ≤ min < max ≤ 1 (validation rule 14).
         public var x: [Double]
         public var y: [Double]
+        /// A feature area only: the way a character there faces, its front
+        /// (a beak) on `x` rather than its centre — the woodpecker facing
+        /// the bark of a trunk (`docs/pack-format.md`, "Features").
+        public var facing: StageMove.Facing?
 
-        public init(x: [Double], y: [Double]) {
+        public init(x: [Double], y: [Double], facing: StageMove.Facing? = nil) {
             self.x = x
             self.y = y
+            self.facing = facing
         }
 
         public var isValid: Bool {

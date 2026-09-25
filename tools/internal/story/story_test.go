@@ -738,6 +738,39 @@ func TestGoCues(t *testing.T) {
 	}
 }
 
+func TestPlacedActionsHappenInTheirPlace(t *testing.T) {
+	cat := testCatalog(t)
+	pack := forest
+	// The owl taps, like a woodpecker, only on the trunks.
+	pack.Stages = map[string]string{"fox": "hop", "rabbit": "hop", "owl": "fly", "flower": "grow", "tree": "grow"}
+	pack.LandsOn = map[string][]string{"owl": {"trunks", "meadow"}}
+	pack.Features = map[string]string{"trunks": "bark", "meadow": "grass"}
+	pack.Animations = map[string][]Animation{"owl": {{ID: "tap", Place: []string{"trunks"}}}}
+	s := goodStory()
+	s.Supporting = append(s.Supporting, "owl")
+	for _, tc := range []struct {
+		text string
+		ok   bool
+	}{
+		{" {owl:enter} Owl {owl:live} tapped.", true},
+		{" {owl:enter} Owl {owl:go to fox} flew over and {owl:live} tapped.", false},
+		{" {owl:enter} Owl {owl:go to meadow} flew down and {owl:live} tapped.", false},
+		{" {owl:enter} Owl {owl:go to fox} flew over, {owl:go to trunks} back, and {owl:live} tapped.", true},
+		{" {owl:enter} Owl {owl:go to fox} flew over, {owl:go back} back, and {owl:live} tapped.", true},
+	} {
+		story := *s
+		story.Languages = map[string]Localization{}
+		for lang, l := range s.Languages {
+			l.Text += tc.text
+			story.Languages[lang] = l
+		}
+		errs := strings.Join(Validate(&story, pack, cat).Errors, "\n")
+		if got := !strings.Contains(errs, "happens only on the trunks"); got != tc.ok {
+			t.Errorf("%s: ok = %v, want %v (%s)", tc.text, got, tc.ok, errs)
+		}
+	}
+}
+
 func TestPerchedActionsNeedALanding(t *testing.T) {
 	cat := testCatalog(t)
 	pack := forest

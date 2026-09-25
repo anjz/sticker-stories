@@ -58,6 +58,11 @@ type StickerAnimation struct {
 	// before it plays it, never in open air (a feature marked air).
 	// Actions only; optional; the app ignores it.
 	Perched bool `json:"perched,omitempty"`
+	// Place are the features an action happens at (the woodpecker's tap:
+	// the trunks). Before it plays, the app takes the character to the
+	// nearest spot on one unless it is there; stories that move it
+	// elsewhere take it back first. Actions only; optional.
+	Place []string `json:"place,omitempty"`
 	// Loop is the run of frames a move repeats while the character
 	// travels (a walk cycle); the frames after it bring it back to rest
 	// when it arrives. Moves only; a move without one (a sprout) plays
@@ -198,8 +203,8 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 			}
 		}
 	case KindMove:
-		if a.Pause != nil || a.Perched {
-			fail("pause and perched belong to an action, not a move")
+		if a.Pause != nil || a.Perched || len(a.Place) > 0 {
+			fail("pause, perched and place belong to an action, not a move")
 		}
 		if l := a.Loop; l != nil {
 			if l.From < 0 || l.To < l.From || l.To >= a.Count {

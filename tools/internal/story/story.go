@@ -12,6 +12,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"slices"
 	"sort"
 	"strconv"
 	"strings"
@@ -802,6 +803,9 @@ type Animation struct {
 	On    []string
 	// Perched: an action it plays sitting on something, never in the air.
 	Perched bool
+	// Place: the features an action happens at (the woodpecker taps on
+	// the trunks).
+	Place []string
 }
 
 // PackManifest reads what story validation needs from a loaded pack
@@ -833,7 +837,7 @@ func PackManifest(m *manifest.Manifest, dir string) (Manifest, error) {
 	}
 	for id, list := range anims {
 		for _, a := range list {
-			anim := Animation{ID: a.ID, Description: a.Description, Seconds: a.Duration(), Flies: a.Flies, On: a.On, Perched: a.Perched}
+			anim := Animation{ID: a.ID, Description: a.Description, Seconds: a.Duration(), Flies: a.Flies, On: a.On, Perched: a.Perched, Place: a.Place}
 			if a.EffectiveKind() == manifest.KindMove {
 				pack.Moves[id] = append(pack.Moves[id], anim)
 				continue
@@ -1033,8 +1037,18 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		// Stickers up in the air (flying in the sky, hovering beside
 		// someone): a perched action needs them landed first.
 		aloft := map[string]bool{}
+		// The feature each sticker is on ("" when beside or on another,
+		// or off the canvas), for actions that happen in one place.
+		place := map[string]string{}
+		home := func(id string) string {
+			if on := m.LandsOn[id]; len(on) > 0 {
+				return on[0]
+			}
+			return ""
+		}
 		for id := range inStory {
 			aloft[id] = m.landsInAir(id, "")
+			place[id] = home(id)
 		}
 		for _, c := range cues {
 			if c.Sticker != "" && away[c.Sticker] && !(c.Effect == GoEffect && c.GoKind == GoBack) {
@@ -1077,6 +1091,18 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 			if c.Effect == GoEffect {
 				shape = append(shape, c.Sticker+":go:"+c.GoKind+":"+c.Target+":"+c.By+":"+c.Toward)
 				validateGoCue(&is, lang, c, m, inStory, enterAt)
+				switch c.GoKind {
+				case GoTo:
+					if _, isPlace := m.Features[c.Target]; isPlace {
+						place[c.Sticker] = c.Target
+					} else {
+						place[c.Sticker] = ""
+					}
+				case GoBack:
+					place[c.Sticker] = home(c.Sticker)
+				default:
+					place[c.Sticker] = ""
+				}
 				switch c.GoKind {
 				case GoOn, GoUnder:
 					aloft[c.Sticker] = false
@@ -1126,6 +1152,9 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 				}
 				validateLiveCue(&is, lang, c, m)
 				anim, _ := m.ResolveAnimation(c.Sticker, c.Animation)
+				if len(anim.Place) > 0 && !c.Resume && !slices.Contains(anim.Place, place[c.Sticker]) {
+					is.errorf("%s: cue %s: %s's %s happens only on the %s, and the story has taken it elsewhere — take it back first a few words before ({%s:go to %s})", lang, c.Raw, c.Sticker, anim.ID, strings.Join(anim.Place, " or "), c.Sticker, anim.Place[0])
+				}
 				if anim.Perched && !c.Resume && aloft[c.Sticker] {
 					is.errorf("%s: cue %s: %s is up in the air, and its %s needs somewhere to sit — land it first a few words before ({%s:go on flower}, {%s:go to meadow}, {%s:go under mushroom})", lang, c.Raw, c.Sticker, anim.ID, c.Sticker, c.Sticker, c.Sticker)
 				}

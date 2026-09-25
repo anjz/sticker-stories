@@ -174,7 +174,9 @@ exactly per `FORMAT.md`:
   flower by fly}`, `{ladybug:enter by fly}`), on each such move; never
   write a way the sticker has no move for; **what the wind carries goes
   right** (`go away right`, `go to <place> right`: the wind effect blows
-  left to right); **a flyer lands before it
+  left to right); **an action with a place happens there** (the
+  woodpecker taps on a trunk: after moving it elsewhere, `{woodpecker:go
+  to trunks}` first); **a flyer lands before it
   rests** — before a perched action (the butterfly folding its wings, the
   owl dozing off) move it onto or under something or down to the
   meadow or branches, never resting in the sky or hovering beside
