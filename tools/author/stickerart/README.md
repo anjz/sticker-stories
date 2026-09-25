@@ -53,6 +53,23 @@ go run ./packager validate ../packs/forest
    regenerates a sticker, while a `border`, `margin` or `finish` change
    (or a tool update to the finishing) only re-finishes the kept raw — no
    API call, no cost. `-dry-run` says which.
+2a. **Props** (`prop` on a sticker: `remove` — what to take away, "the
+   lily pad under the frog" —, `area` — a box on the raw art, fractions
+   with a top-left origin, that covers the whole prop — and an optional
+   `note` on how the character looks without it). A character drawn on
+   something (a lily pad, a branch, a leaf) loses it, so it can walk or
+   fly into the scene on its own and land on the art's own branches and
+   pond. The kept raw goes to the edits model with the box masked
+   (`<id>.noprop.gen.png`); the model usually redraws the whole character
+   a little bigger once the prop is gone, so its result is first scaled
+   and moved onto the raw where the raw was kept (`stickerimg.Align`),
+   then only the box is laid over the raw and blobs left of the prop
+   outside it are cleared (`stickerimg.RemoveProp`) — the character keeps
+   its own pixels outside the box. The result, `<id>.noprop.png`, is what
+   everything downstream uses: the finished sticker, the expressions'
+   composite (their generations are kept; only the composite is redone,
+   free) and `stickeranim`'s reference. Make the box generous: anything
+   of the prop in the fade margin just outside it stays faintly.
 2b. **Expressions** (`expressions` in art.json, e.g. `happy`, `sad`,
    `sleeping`, `surprised`), for every sticker with a `face` box
    (fractions of its raw art; add a `faceNote` when the face is drawn on
@@ -124,9 +141,8 @@ names it and where it lands (`{"entrance": "hop" | "fly" | "grow",
 (`docs/pack-format.md`, "Stage" and "Features"). Measure the features
 on the finished art with a grid over it, and give every sticker a
 stage: things that walk hop in onto the ground, free flyers fly into the
-sky, birds drawn perched fly to the matching feature (a branch) with the
-sky as fallback, insects on a leaf land on the ground, still things grow
-where they stand. Neither is part of any fingerprint, so changing them
+sky, birds fly to the matching feature (a branch) with the sky as fallback,
+insects land on the ground, still things grow where they stand. Neither is part of any fingerprint, so changing them
 regenerates nothing.
 
 Encodes `out/stickers/<id>.png` into `packs/<id>/stickers/<id>.webp` and

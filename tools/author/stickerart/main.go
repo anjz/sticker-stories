@@ -119,10 +119,26 @@ type stickerSpec struct {
 	// FaceNote says what the face is drawn on when that is not obvious
 	// ("the round brown speckled seed centre"), so an expression keeps it.
 	FaceNote string `json:"faceNote,omitempty"`
+	// Prop is something the character was drawn on (a lily pad, a branch)
+	// that the sticker no longer carries: removed from the kept raw by a
+	// masked edit over its area, the character's own pixels kept outside
+	// it (stickerimg.RemoveProp). Everything downstream — the finished
+	// sticker, its faces, its animations — uses the result (<id>.noprop.png).
+	Prop *propSpec `json:"prop,omitempty"`
 	// Stage is where the sticker belongs in the scene and how it enters
 	// when a story names it (docs/pack-format.md, "Stage"); copied into
 	// the manifest on install. Changing it re-renders nothing.
 	Stage *manifest.Stage `json:"stage,omitempty"`
+}
+
+// propSpec is a prop to remove: what it is, where it is on the raw art
+// (fractions, top-left origin; it must cover the whole prop, and the
+// character's parts that touch it are redrawn inside it), and how the
+// character looks without it.
+type propSpec struct {
+	Remove string             `json:"remove"`
+	Area   stickerimg.FaceBox `json:"area"`
+	Note   string             `json:"note,omitempty"`
 }
 
 // expressionSpec is one face variant: an id stories cue ({bear:face happy})
@@ -498,11 +514,13 @@ const finishVersion = "2"
 // sticker generates a sticker's art (the costly call, kept as <id>.raw.png)
 // and finishes it into the pack's sticker (<id>.png). The two have their
 // own fingerprints: a prompt change regenerates, a border or finish change
-// only re-finishes the kept raw.
+// only re-finishes the kept raw. A sticker with a prop has it removed
+// from the raw first (<id>.noprop.png, its own fingerprint and call).
 func (r *renderer) sticker(s stickerSpec, sheet []byte, sheetFP string) error {
 	cfg := r.c.cfg
 	genFP := hashOf(toolVersion, "sticker", sheetFP, cfg.Style, s.Prompt, r.o.quality, editModel)
-	finishFP := hashOf(genFP, finishVersion, fmt.Sprint(cfg.StickerSize, cfg.Border, cfg.Margin), fmt.Sprint(cfg.finish()))
+	baseFP := r.baseFP(s, genFP)
+	finishFP := hashOf(baseFP, finishVersion, fmt.Sprint(cfg.StickerSize, cfg.Border, cfg.Margin), fmt.Sprint(cfg.finish()))
 	raw := r.out("stickers", s.ID+".raw.png")
 	final := r.out("stickers", s.ID+".png")
 	if r.upToDate(final, finishFP) {
@@ -516,40 +534,141 @@ func (r *renderer) sticker(s stickerSpec, sheet []byte, sheetFP string) error {
 	if exists(raw) && r.fps[raw] == "" && r.fps[final] == legacyFP && !r.o.force {
 		r.done(raw, genFP)
 	}
-	if r.upToDate(raw, genFP) {
+	if !r.upToDate(raw, genFP) {
 		if r.o.dry {
-			r.mu.Lock()
-			r.planned = append(r.planned, fmt.Sprintf("sticker %s (re-finish the kept raw, no API call)", s.ID))
-			r.mu.Unlock()
+			r.plan(fmt.Sprintf("sticker %s (%dx%d, transparent)", s.ID, stickerGenPx, stickerGenPx))
+			if s.Prop != nil {
+				r.plan(fmt.Sprintf("sticker %s without %s (masked edit)", s.ID, s.Prop.Remove))
+			}
 			return nil
 		}
-		if err := r.finish(s.ID, raw, final, finishFP); err != nil {
+		r.say("▶ %s", s.ID)
+		started := time.Now()
+		prompt := fmt.Sprintf("%s\n\nUsing the attached style sheet as the exact reference for style, palette and line, draw one sticker: %s Single subject, centred, filling most of the frame, whole subject visible with nothing cut off, no shadow on the ground, no text, no background — fully transparent background.", cfg.Style, s.Prompt)
+		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: fmt.Sprintf("%dx%d", stickerGenPx, stickerGenPx), Quality: r.o.quality, Background: "transparent", References: [][]byte{sheet}})
+		if err != nil {
 			return err
 		}
-		r.say("✓ %s re-finished from the kept raw", s.ID)
+		if err := os.WriteFile(raw, img.PNG, 0o644); err != nil {
+			return err
+		}
+		r.done(raw, genFP)
+		r.say("✓ %s (%s, %.0fs)", s.ID, r.charge(img.Usage), time.Since(started).Seconds())
+	}
+	if s.Prop != nil {
+		if err := r.removeProp(s, raw, r.propFP(s, genFP), baseFP); err != nil {
+			return err
+		}
+	}
+	if r.o.dry {
+		r.plan(fmt.Sprintf("sticker %s (re-finish the kept raw, no API call)", s.ID))
+		return nil
+	}
+	if err := r.finish(s.ID, r.workingRaw(s), final, finishFP); err != nil {
+		return err
+	}
+	r.say("✓ %s finished", s.ID)
+	return nil
+}
+
+func (r *renderer) plan(step string) {
+	r.mu.Lock()
+	r.planned = append(r.planned, step)
+	r.mu.Unlock()
+}
+
+// propVersion changes whenever the prop mask or its prompt's fixed wording
+// changes: the props are removed again. propCompositeVersion changes with
+// stickerimg.RemoveProp: the kept edits are composited again, free.
+const (
+	propVersion          = "1"
+	propCompositeVersion = "2"
+)
+
+// propFP is the fingerprint of a prop removal's edit.
+func (r *renderer) propFP(s stickerSpec, genFP string) string {
+	return hashOf(toolVersion, "prop", propVersion, genFP, s.Prop.Remove, fmt.Sprint(s.Prop.Area), s.Prop.Note, r.o.quality, editModel)
+}
+
+// baseFP is the fingerprint of the art everything downstream starts from:
+// the raw's own, or with a prop, the composite without it.
+func (r *renderer) baseFP(s stickerSpec, genFP string) string {
+	if s.Prop == nil {
+		return genFP
+	}
+	return hashOf(r.propFP(s, genFP), propCompositeVersion)
+}
+
+// workingRaw is the raw art everything downstream uses: without its prop
+// when it has one.
+func (r *renderer) workingRaw(s stickerSpec) string {
+	if s.Prop != nil {
+		return r.out("stickers", s.ID+".noprop.png")
+	}
+	return r.out("stickers", s.ID+".raw.png")
+}
+
+// removeProp takes the prop off the kept raw: a masked edit over the
+// prop's area (kept as <id>.noprop.gen.png), of which only that area is
+// laid over the raw, so the character keeps its pixels everywhere else.
+func (r *renderer) removeProp(s stickerSpec, raw, fp, outFP string) error {
+	cfg := r.c.cfg
+	gen := r.out("stickers", s.ID+".noprop.gen.png")
+	out := r.workingRaw(s)
+	if r.upToDate(out, outFP) {
 		return nil
 	}
 	if r.o.dry {
-		r.mu.Lock()
-		r.planned = append(r.planned, fmt.Sprintf("sticker %s (%dx%d, transparent)", s.ID, stickerGenPx, stickerGenPx))
-		r.mu.Unlock()
+		r.plan(fmt.Sprintf("sticker %s without %s (masked edit)", s.ID, s.Prop.Remove))
 		return nil
 	}
-	r.say("▶ %s", s.ID)
-	started := time.Now()
-	prompt := fmt.Sprintf("%s\n\nUsing the attached style sheet as the exact reference for style, palette and line, draw one sticker: %s Single subject, centred, filling most of the frame, whole subject visible with nothing cut off, no shadow on the ground, no text, no background — fully transparent background.", cfg.Style, s.Prompt)
-	img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: fmt.Sprintf("%dx%d", stickerGenPx, stickerGenPx), Quality: r.o.quality, Background: "transparent", References: [][]byte{sheet}})
+	rawData, err := os.ReadFile(raw)
 	if err != nil {
 		return err
 	}
-	if err := os.WriteFile(raw, img.PNG, 0o644); err != nil {
+	base, err := stickerimg.Decode(rawData)
+	if err != nil {
 		return err
 	}
-	r.done(raw, genFP)
-	if err := r.finish(s.ID, raw, final, finishFP); err != nil {
+	if !r.upToDate(gen, fp) {
+		r.say("▶ %s without %s", s.ID, s.Prop.Remove)
+		started := time.Now()
+		maskPNG, err := stickerimg.Encode(stickerimg.PropMask(base, s.Prop.Area))
+		if err != nil {
+			return err
+		}
+		note := ""
+		if s.Prop.Note != "" {
+			note = " " + s.Prop.Note
+		}
+		prompt := fmt.Sprintf("%s\n\nThis is a finished sticker: %s Remove %s completely, so the character stands on its own: inside the masked area, everything that belongs to %s becomes fully transparent background, and the parts of the character there (feet, legs, tail, belly) are drawn whole and complete in the same style, as if nothing were under them.%s The character itself does not move, turn, grow or change: its outline, colours, pose and everything outside the masked area stay exactly as they are. No ground, no shadow, no replacement object. Fully transparent background.", cfg.Style, s.Prompt, s.Prop.Remove, s.Prop.Remove, note)
+		b := base.Bounds()
+		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: fmt.Sprintf("%dx%d", b.Dx(), b.Dy()), Quality: r.o.quality, Background: "transparent", References: [][]byte{rawData}, Mask: maskPNG})
+		if err != nil {
+			return fmt.Errorf("removing %s: %w", s.Prop.Remove, err)
+		}
+		if err := os.WriteFile(gen, img.PNG, 0o644); err != nil {
+			return err
+		}
+		r.done(gen, fp)
+		r.say("✓ %s without %s (%s, %.0fs)", s.ID, s.Prop.Remove, r.charge(img.Usage), time.Since(started).Seconds())
+	}
+	genData, err := os.ReadFile(gen)
+	if err != nil {
 		return err
 	}
-	r.say("✓ %s (%s, %.0fs)", s.ID, r.charge(img.Usage), time.Since(started).Seconds())
+	edited, err := stickerimg.Decode(genData)
+	if err != nil {
+		return err
+	}
+	png, err := stickerimg.Encode(stickerimg.RemoveProp(base, edited, s.Prop.Area))
+	if err != nil {
+		return err
+	}
+	if err := os.WriteFile(out, png, 0o644); err != nil {
+		return err
+	}
+	r.done(out, outFP)
 	return nil
 }
 
@@ -609,6 +728,10 @@ func (r *renderer) face(s stickerSpec, e expressionSpec) error {
 	// The composite has its own version: a change there re-composites the
 	// kept generation at no cost.
 	finishFP := hashOf(genFP, faceVersion, finishVersion, fmt.Sprint(cfg.StickerSize, cfg.Border, cfg.Margin), fmt.Sprint(cfg.finish()))
+	if s.Prop != nil {
+		// The face goes over the art without the prop.
+		finishFP = hashOf(finishFP, r.fps[r.workingRaw(s)])
+	}
 	gen := r.out("stickers", key+".gen.png")
 	comp := r.out("stickers", key+".raw.png")
 	final := r.out("stickers", key+".png")
@@ -662,6 +785,17 @@ func (r *renderer) face(s stickerSpec, e expressionSpec) error {
 	edited, err := stickerimg.Decode(genData)
 	if err != nil {
 		return err
+	}
+	if s.Prop != nil {
+		// The generation edited the raw with its prop; its face goes over
+		// the art without it (the prop never reaches the face).
+		data, err := os.ReadFile(r.workingRaw(s))
+		if err != nil {
+			return fmt.Errorf("no art without the prop yet: %w", err)
+		}
+		if base, err = stickerimg.Decode(data); err != nil {
+			return err
+		}
 	}
 	if seam := stickerimg.FaceSeam(base, edited, *s.Face); seam > faceSeamWarn {
 		r.say("! %s: the new face differs a lot at its rim (%.2f) — check %s for the old face showing through", key, seam, final)
