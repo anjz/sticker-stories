@@ -2,112 +2,111 @@
   "schema": 1,
   "triggers": [
     {
-      "at": 0,
-      "cue": "a",
-      "sticker": "butterfly",
-      "effect": "float",
-      "repeat": "loop",
-      "intensity": 0.4
-    },
-    {
       "at": 3.12,
       "cue": "mariposa",
       "sticker": "butterfly",
       "enter": true
     },
     {
-      "at": 10.44,
+      "at": 9.61,
       "cue": "pero",
       "sticker": "butterfly",
       "expression": "sad"
     },
     {
-      "at": 14.56,
+      "at": 13.66,
       "cue": "una",
       "effect": "sunset",
       "duration": 30,
       "intensity": 0.8
     },
     {
-      "at": 17.54,
+      "at": 16.92,
       "cue": "flor",
       "sticker": "flower",
       "enter": true
     },
     {
-      "at": 18.24,
+      "at": 16.92,
+      "cue": "flor",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "flower"
+    },
+    {
+      "at": 17.36,
       "sticker": "flower",
       "effect": "pulse"
     },
     {
-      "at": 18.72,
+      "at": 19.8,
       "cue": "juntó",
       "sticker": "butterfly",
       "animation": "rest"
     },
     {
-      "at": 26.72,
+      "at": 27.82,
       "cue": "hola",
       "sticker": "butterfly",
       "expression": "surprised"
     },
     {
-      "at": 29.06,
+      "at": 29.78,
       "cue": "luciérnaga",
       "sticker": "firefly",
       "enter": true
     },
     {
-      "at": 29.91,
+      "at": 30.65,
       "cue": "me",
       "sticker": "firefly",
       "expression": "happy"
     },
     {
-      "at": 32.88,
+      "at": 33.48,
       "cue": "mariposa",
       "sticker": "butterfly",
       "expression": "happy"
     },
     {
-      "at": 32.88,
+      "at": 33.48,
       "cue": "mariposa",
       "sticker": "butterfly",
       "effect": "sparkle"
     },
     {
-      "at": 39.36,
+      "at": 39.72,
       "cue": "luciérnaga",
       "effect": "night",
       "duration": 24,
       "intensity": 0.6
     },
     {
-      "at": 39.36,
+      "at": 39.72,
       "cue": "luciérnaga",
       "sticker": "firefly",
       "animation": "glow"
     },
     {
-      "at": 50.27,
+      "at": 50.04,
       "cue": "vamos",
       "sticker": "firefly",
       "effect": "hearts"
     },
     {
-      "at": 50.27,
+      "at": 50.04,
       "cue": "vamos",
       "sticker": "butterfly",
       "effect": "hearts"
     },
     {
-      "at": 53.24,
+      "at": 52.95,
       "cue": "flor",
       "sticker": "flower",
       "expression": "happy"
     },
     {
-      "at": 56.96,
+      "at": 56.48,
       "cue": "plegó",
       "sticker": "flower",
       "animation": "close",
