@@ -226,13 +226,28 @@ final class StickerNode: SKSpriteNode {
         setScale(CGFloat(composed.scale))
         if mirrored { xScale = -xScale }
         alpha = CGFloat(composed.alpha)
-        if composed.tintAmount > 0, let tint = composed.tintColor {
-            color = UIColor(tint)
-            colorBlendFactor = CGFloat(composed.tintAmount)
-        } else {
-            colorBlendFactor = 0
-        }
+        setTint(composed.tintAmount > 0 ? composed.tintColor : nil, amount: CGFloat(composed.tintAmount))
         setGlow(composed.glow, color: composed.glowColor, mask: glowMask)
+    }
+
+    /// Tints the art on show. While a live animation plays, the sprite has
+    /// no texture of its own (its art moves to a child, `showLive`), and a
+    /// texture-less sprite draws its `color` as a solid rectangle — so the
+    /// sprite stays clear and the tint goes onto the frames and the still
+    /// art underneath instead. With no tint, every colour goes back to
+    /// clear, never left over from an earlier tint.
+    private func setTint(_ tint: RGBA?, amount: CGFloat) {
+        let live = liveSprites
+        let targets: [SKSpriteNode] = texture == nil ? live : [self]
+        for sprite in [self] + live {
+            if let tint, targets.contains(sprite) {
+                sprite.color = UIColor(tint)
+                sprite.colorBlendFactor = amount
+            } else {
+                sprite.color = .clear
+                sprite.colorBlendFactor = 0
+            }
+        }
     }
 
     private func setGlow(_ amount: Double, color glowColor: RGBA?, mask: () -> GlowMaskCache.Mask?) {
