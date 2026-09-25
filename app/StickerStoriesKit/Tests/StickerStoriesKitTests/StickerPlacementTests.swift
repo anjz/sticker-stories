@@ -30,12 +30,12 @@ import Testing
                 entrances: [EntranceTrigger(at: 0, stickerID: "woodpecker")], placed: [],
                 stages: ["woodpecker": StickerStage(entrance: .fly, on: ["trunks"])], features: Self.trunks,
                 moves: Self.moves, scene: Self.scene, obstacles: [], policy: .standard, random: &random)[0]
-            // Centre a quarter width (30) behind the bark, facing it: on the
+            // Centre a quarter width less the overlap (25.2) behind the bark, facing it: on the
             // left tree facing left (its art's way), on the right mirrored.
             if plan.target.x < 500 {
-                #expect((80...90).contains(plan.target.x) && !plan.mirrored && plan.startOffset.x > 0)
+                #expect((75.2...85.2).contains(plan.target.x) && !plan.mirrored && plan.startOffset.x > 0)
             } else {
-                #expect((920...930).contains(plan.target.x) && plan.mirrored && plan.startOffset.x < 0)
+                #expect((924.8...934.8).contains(plan.target.x) && plan.mirrored && plan.startOffset.x < 0)
             }
             #expect((375...525).contains(plan.target.y))
         }
@@ -61,23 +61,23 @@ import Testing
         let away = plans(auto, home: StagePoint(x: 480, y: 300))
         let leg = away[woodpecker]!.legs[0]
         #expect(leg.gait == .fly && leg.facingTo == 1)
-        #expect(abs(480 + leg.to.x * 120 - 90) < 1e-6 && abs(300 - leg.to.y * 120 - 375) < 1e-6)
+        #expect(abs(480 + leg.to.x * 120 - 85.2) < 1e-6 && abs(300 - leg.to.y * 120 - 375) < 1e-6)
         // …and taps only once it is there.
         let tap = PlacementPlanner.delayed(live, plans: away, stickers: [woodpecker: "woodpecker"], places: Set(places.keys))
         #expect(tap[0].at == leg.at + leg.duration)
 
         // Already on the bark, facing it: it stays, and taps on its cue.
-        let there = plans(auto, home: StagePoint(x: 88, y: 450))
+        let there = plans(auto, home: StagePoint(x: 84, y: 450))
         #expect(there[woodpecker] == nil)
         // On the right spot but facing away: it turns round.
-        #expect(plans(auto, home: StagePoint(x: 88, y: 450), facing: -1)[woodpecker] != nil)
+        #expect(plans(auto, home: StagePoint(x: 84, y: 450), facing: -1)[woodpecker] != nil)
     }
 
     @Test func onToTheNextTree() {
         // On the left tree's bark, a story sends it to the trunks: the other one.
-        let next = plans([GoTrigger(at: 0, stickerID: "woodpecker", kind: .to, target: "trunks")], home: StagePoint(x: 88, y: 450))
+        let next = plans([GoTrigger(at: 0, stickerID: "woodpecker", kind: .to, target: "trunks")], home: StagePoint(x: 84, y: 450))
         let leg = next[woodpecker]!.legs[0]
-        #expect(abs(88 + leg.to.x * 120 - 920) < 1e-6 && leg.facingTo == -1)
+        #expect(abs(84 + leg.to.x * 120 - 924.8) < 1e-6 && leg.facingTo == -1)
     }
 
     @Test func aStoryThatTakesItThereNeedsNoHelp() {
