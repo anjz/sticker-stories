@@ -12,17 +12,17 @@
     "weather",
     "funny"
   ],
-  "premise": "A rainy day makes Mouse glum, so Raccoon plays peekaboo and Frog does a backflip, and a rainbow comes to watch the show.",
+  "premise": "A rainy day makes Mouse glum, so Raccoon plays peekaboo and Frog shows how she watches a fly very still and snaps it up, and a rainbow comes to watch the show.",
   "inspiration": "The Grimm tale of the princess who could not laugh, made small and kind: friends put on a show until the glum one giggles, and the sky joins in.",
   "lesson": "Friends can turn a grey day bright.",
   "languages": {
     "en-US": {
       "title": "The Rainy Day Show",
-      "text": "{canvas:rain 0.6 40s} {sfx:rain-bed} Drip, drop. It rained all morning. {mouse:enter} Mouse {mouse:pulse} sat under a leaf with a long face. {mouse:face sad} [sad] Nothing to do, he sighed. {raccoon:enter} Raccoon {raccoon:hop} bounced over. [excited] Time for a show! Watch this! {raccoon:live} He rubbed his paws, covered his eyes, peeked out… and BOO! Mouse's whiskers {mouse:wobble} twitched. Almost a smile. Then {frog:enter} Frog {frog:pulse} jumped onto her lily pad. My turn! {frog:live} She sprang up, flipped over backwards, landed with a {sfx:splash} splash, and snap! caught a fly. {mouse:face happy} [laughs] Mouse laughed so hard he tumbled {mouse:spin} right into a puddle. And guess who else came to watch? {canvas:rainbow 0.9 16s} {all:face surprised} [gasps] A rainbow, stretched right across the sky! {all:face happy} [happily] The best rainy day ever, said Mouse. {mouse:hearts} {raccoon:hearts} {frog:hearts}"
+      "text": "{canvas:rain 0.6 40s} {sfx:rain-bed} Drip, drop. It rained all morning. {mouse:enter} Mouse sat under a bush with a long face. {mouse:face sad} [sad] Nothing to do, he sighed. {raccoon:enter} Raccoon came padding over. {raccoon:face happy} [excited] Time for a show! Watch this! {raccoon:live} He rubbed his paws, hid his eyes, peeked out… and BOO! Mouse's whiskers {mouse:wobble} twitched. Almost a smile. Then {frog:enter} Frog came hopping to the pond. {frog:face happy} My turn, she said. Watch closely! {frog:live} A little fly buzzed up. Frog watched it, very, very still… SNAP! Gulp. She grinned. {mouse:face happy} [laughs] Mouse laughed so hard he {mouse:spin} tumbled into a puddle. {sfx:splash} Splash! [curious] Then {mouse:live} Mouse sniffed the air. He stood up on tiptoe to look and listen… and washed the raindrops off his face. The rain had stopped! {canvas:rainbow 0.9 16s} {all:face surprised} [gasps] A rainbow came to watch the show! {all:face happy} [happily] The best rainy day ever, said Mouse. {all:hearts}"
     },
     "es-ES": {
       "title": "El espectáculo del día de lluvia",
-      "text": "{canvas:rain 0.6 40s} {sfx:rain-bed} Plic, ploc. Llovió toda la mañana. {mouse:enter} Ratón {mouse:pulse} estaba debajo de una hoja, con cara larga. {mouse:face sad} [sad] No hay nada que hacer, suspiró. {raccoon:enter} Mapache {raccoon:hop} llegó dando saltitos. [excited] ¡Hora del espectáculo! ¡Mira esto! {raccoon:live} Se frotó las patitas, se tapó los ojos, asomó… ¡y CUCÚ-TRAS! Los bigotes de Ratón {mouse:wobble} se movieron. Casi una sonrisa. Luego {frog:enter} Rana {frog:pulse} saltó a su hoja de nenúfar. ¡Me toca! {frog:live} Dio un brinco, una voltereta hacia atrás, cayó con un {sfx:splash} chapuzón, y ¡zas!, atrapó una mosca. {mouse:face happy} [laughs] Ratón se rio tanto que se cayó {mouse:spin} en un charco. ¿Y sabéis quién más vino a verlo? {canvas:rainbow 0.9 16s} {all:face surprised} [gasps] ¡Un arcoíris, de punta a punta del cielo! {all:face happy} [happily] El mejor día de lluvia del mundo, dijo Ratón. {mouse:hearts} {raccoon:hearts} {frog:hearts}"
+      "text": "{canvas:rain 0.6 40s} {sfx:rain-bed} Plic, ploc. Llovió toda la mañana. {mouse:enter} Ratón estaba debajo de un arbusto, con cara larga. {mouse:face sad} [sad] No hay nada que hacer, suspiró. {raccoon:enter} Mapache llegó andando. {raccoon:face happy} [excited] ¡Hora del espectáculo! ¡Mira esto! {raccoon:live} Se frotó las patitas, se tapó los ojos, asomó… ¡y CUCÚ! Los bigotes de Ratón {mouse:wobble} se movieron. Casi una sonrisa. Luego {frog:enter} Rana llegó saltando a la charca. {frog:face happy} ¡Me toca!, dijo. ¡Mirad bien! {frog:live} Llegó una mosca zumbando. Rana la miró quieta, quietísima… ¡ZAS! Glup. Y sonrió. {mouse:face happy} [laughs] Ratón se rio tanto que {mouse:spin} se cayó en un charco. {sfx:splash} ¡Chof! [curious] Entonces {mouse:live} Ratón olfateó el aire. Se puso de puntillas para mirar y escuchar… y se lavó las gotas de la cara. ¡Había dejado de llover! {canvas:rainbow 0.9 16s} {all:face surprised} [gasps] ¡Un arcoíris vino a ver el espectáculo! {all:face happy} [happily] El mejor día de lluvia del mundo, dijo Ratón. {all:hearts}"
     }
   },
   "sounds": {
@@ -32,7 +32,7 @@
       "loop": true
     },
     "splash": {
-      "prompt": "a small frog landing on a lily pad with a light water splash",
+      "prompt": "a small mouse tumbling into a shallow puddle, a light playful splash",
       "seconds": 1.0
     }
   }
