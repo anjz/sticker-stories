@@ -1,74 +1,16 @@
 {
-  "columns": 4,
+  "columns": 6,
   "maxSheet": 4096,
   "notes": {
-    "sheets": "Each sheet is one API call drawing a grid of frames; the previous sheet is passed back as a reference so the next one continues it. 8 frames per 3072x1536 sheet gives 768 px cells.",
-    "hold": "Seconds per frame, one entry per frame across all sheets (the first and last frames are the crossfade with the still sticker).",
-    "motion": "Gentle by design: nothing fast, nothing that travels. A sticker stays where the child put it; a blink, a yawn, a nibble, a peek read best at a few frames per second.",
-    "normalize": "Opt in (normalize: true) only for a base object that is the widest thing at the bottom in every pose — a lily pad, a perch. Feet, a curling body or spread wings make the measure jump."
+    "kinds": "Every sticker has one action (a moment stories cue: {snail:live}, held on its pause frame with {snail:live hold} and carried on with {snail:live resume}) and one move (its walk, hop, crawl, flight or sprout; entrances play it).",
+    "sheets": "Each sheet is one API call drawing a grid of frames; the previous sheet is passed back as a reference so the next one continues it. 12 frames per 3072x2304 sheet (4x3) gives 768 px cells; an action is two sheets (24 frames), a move one.",
+    "smooth": "About 10-12 frames a second: 0.08-0.1 s per frame while something moves, longer holds only on the poses the eye should rest on. Each frame a small step on from the one before.",
+    "hold": "Seconds per frame, one entry per frame across all sheets (an action's first and last frames are the dissolve from and back to the still sticker; a move's frame 1 is the rest pose it never plays).",
+    "pause": "An action's pause frame (1-based) is a still pose worth staying in (hidden in the shell, asleep, watching the fly): it ends sheet 1 and sheet 2 starts from it, so both sheets have a rest pose or a shared pose for scale.",
+    "motion": "Gentle by design: nothing fast, nothing that reaches far from the sticker. A move is drawn in place, as on a treadmill; the app slides it across the scene at stride sticker widths per loop.",
+    "register": "base (actions; feet or shell planted), feet (walks: bottom on one ground line, matched sideways), body (flights, or an action whose base changes shape — the snail's shell alone once the body is in)."
   },
   "animations": [
-    {
-      "id": "backflip-fly",
-      "sticker": "frog",
-      "description": "the frog does a backflip off its lily pad, lands, then flicks out its tongue to catch a passing fly.",
-      "base": "the lily pad",
-      "normalize": true,
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "Sitting on the lily pad exactly as in the reference: same pose, same happy grin, looking slightly left.",
-            "Crouched low on the pad, body squashed down and wide, legs bent and coiled, eyes looking up, about to spring.",
-            "Launching straight up off the pad: body stretched tall and thin, arms flung up, legs fully extended, toes just leaving the pad.",
-            "In the air above the pad, leaning back, the start of a backflip: tilted backwards about 45 degrees, arms out, legs tucking in.",
-            "High above the pad at the top of the flip, fully upside down: belly to the sky, legs tucked, the happy face upside down.",
-            "Coming round: tilted forward past three quarters of the turn, head coming up, falling back toward the pad.",
-            "Upright again just above the pad, legs reaching down for it, arms out for balance, mouth open in a delighted grin.",
-            "Landed on the pad in a deep squash: body low and wide, arms out to the sides, feet spread, big proud smile, mouth closed. No fly and no tongue in this frame."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "Sitting upright on the pad again, recovered, eyes turned up to the right where a small round fly with two tiny wings hovers in the top right.",
-            "Mouth opening wide, eyes locked on the fly, which has drifted a little closer.",
-            "A long pink tongue shooting out of the wide-open mouth up toward the fly, halfway there.",
-            "The tongue at full stretch, its rounded tip touching the fly.",
-            "The tongue snapping back toward the mouth with the fly stuck on its tip.",
-            "Mouth closed tight, cheeks puffed out full and round, eyes wide with surprise.",
-            "A satisfied gulp: eyes closed in a happy smile, cheeks back to normal, looking content.",
-            "Sitting on the lily pad exactly as in frame 1: same pose, same happy grin, looking slightly left, no fly anywhere."
-          ]
-        }
-      ],
-      "hold": [
-        0.3,
-        0.22,
-        0.07,
-        0.07,
-        0.1,
-        0.07,
-        0.08,
-        0.16,
-        0.45,
-        0.25,
-        0.06,
-        0.12,
-        0.06,
-        0.4,
-        0.4,
-        0.3
-      ],
-      "restFrames": [
-        1,
-        16
-      ]
-    },
     {
       "id": "sleepy-blink",
       "sticker": "owl",
@@ -555,65 +497,410 @@
       ]
     },
     {
-      "id": "peek",
+      "id": "hide",
       "sticker": "snail",
-      "description": "the snail pulls its head and eye stalks into its shell, waits, then slowly peeks out and looks around. Its only eyes are the ones at the tips of its eye stalks, exactly as in the reference: its face never has eyes, just rosy cheeks and a smile.",
-      "story": "the snail pulls its head and eye stalks into its shell, waits, then slowly peeks out and looks around.",
-      "base": "its body along the ground and its shell",
+      "kind": "action",
+      "description": "the snail pulls its head and eye stalks into its shell, waits there, then slowly peeks out again and looks around. Its only eyes are the ones at the tips of its eye stalks, exactly as in the reference: its face never has eyes, just rosy cheeks and a smile.",
+      "story": "the snail pulls its head and eye stalks into its shell, waits there, then slowly peeks out again and looks around.",
+      "base": "the swirly shell",
+      "register": "body",
+      "pause": {
+        "frame": 12,
+        "shows": "the snail hidden inside its shell: only the shell shows"
+      },
       "sheets": [
         {
           "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
+          "rows": 3,
+          "size": "3072x2304",
           "frames": [
-            "Sliding along exactly as in the reference, eye stalks up.",
-            "Eye stalks bending back, a little worried.",
-            "Eye stalks shrinking shorter, eyes closing.",
-            "Eye stalks almost gone, head pulling back toward the shell opening.",
-            "Head tucked into the shell opening, only a little of the body left outside, the foot still along the ground.",
-            "Fully tucked in: just the shell sitting on its foot, no eyes showing.",
-            "The shell on its foot, still.",
-            "The shell on its foot, one tiny eye stalk peeking out of the opening."
+            "Exactly as in the reference: gliding along, eye stalks up, a tiny smile.",
+            "The eye stalks dip a little and the eyes at their tips go wide: something startled it.",
+            "The eye stalks bend down and get shorter; the head begins to draw back toward the shell's opening.",
+            "The eye stalks half their length; the head and neck drawing back, the front of the soft body shorter.",
+            "The eye stalks short stubs; the head halfway back to the shell's opening; the tail end of the foot sliding in under the shell.",
+            "The eye stalks tiny nubs; the head right at the shell's opening; the soft body mostly gone under the shell.",
+            "Only the top of the green head still shows at the shell's opening; the foot almost all in.",
+            "Just a small curve of green at the shell's opening.",
+            "The last sliver of green slipping into the shell.",
+            "The shell alone, resting on the ground where it was, no body showing at all.",
+            "The shell alone, exactly as in frame 10.",
+            "The shell alone, exactly as in frame 10: the snail is hidden inside."
           ]
         },
         {
           "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
+          "rows": 3,
+          "size": "3072x2304",
           "frames": [
-            "Two tiny eye stalks peeking out of the opening, looking around.",
-            "Head coming out of the shell, eye stalks half their length.",
-            "Head fully out, eye stalks stretching tall, eyes wide.",
-            "Eye stalks tall, both eyes looking to its left.",
-            "Both eyes looking to its right.",
-            "Both eyes on the viewer, a big relieved smile.",
-            "Eye stalks relaxing to their usual height, content.",
-            "Sliding along exactly as in frame 1, eye stalks up."
+            "The shell alone, exactly as the last frame of the previous sheet: the snail hidden inside.",
+            "A tiny tip of green head peeks out of the shell's opening.",
+            "The head halfway out, two tiny eye-stalk nubs appearing.",
+            "The head out, the eye stalks growing a little; the foot sliding out under the shell.",
+            "The eye stalks half grown, the eyes at their tips peeking out to the right.",
+            "The eye stalks almost full length, the foot out along the ground again.",
+            "The eye stalks full length, the eyes at their tips looking to the left, curious.",
+            "The eye stalks turned, the eyes looking to the right.",
+            "The eye stalks straight, the eyes looking at the viewer, the smile a little bigger.",
+            "The body settling, the stalks easing back.",
+            "Almost exactly as in the reference.",
+            "Exactly as in the reference: gliding along, eye stalks up, a tiny smile."
           ]
         }
       ],
       "hold": [
         0.3,
+        0.15,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.12,
+        0.12,
+        0.8,
+        0.25,
+        0.15,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
         0.3,
         0.3,
         0.3,
-        0.35,
-        0.45,
-        0.45,
-        0.45,
-        0.4,
-        0.35,
-        0.35,
-        0.35,
-        0.35,
-        0.4,
-        0.3,
+        0.1,
+        0.1,
         0.3
       ],
       "restFrames": [
         1,
-        16
+        24
+      ]
+    },
+    {
+      "id": "crawl",
+      "sticker": "snail",
+      "kind": "move",
+      "description": "the snail glides forward to the right on its foot, a gentle ripple running along it, eye stalks bobbing, then stops and settles. Its only eyes are the ones at the tips of its eye stalks, exactly as in the reference.",
+      "story": "the snail glides along on its foot, eye stalks bobbing, and settles.",
+      "base": "the swirly shell",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.35,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Gliding right: the head and neck stretched a little forward, eye stalks leaning forward.",
+            "The head stretched a touch further; a small ripple rises at the tail end of the foot.",
+            "The ripple halfway along the foot under the shell; the shell tipped forward very slightly.",
+            "The ripple near the front of the foot; the head easing back to normal; the stalks upright.",
+            "The head at its normal length, the shell level, the eye stalks bobbing up a little.",
+            "The tail end of the foot drawn forward, the foot a little shorter; the stalks leaning back a little.",
+            "The foot gathered under the shell, the shell level, the stalks upright.",
+            "Almost as frame 2, about to stretch forward again.",
+            "Stopping: the foot relaxed and still, the stalks upright.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.12,
+        0.15,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "catch-fly",
+      "sticker": "frog",
+      "kind": "action",
+      "description": "a little fly buzzes up above the frog, who watches it very still; then its long tongue flicks out, catches the fly, and it gulps and grins.",
+      "base": "its sitting bottom and feet",
+      "pause": {
+        "frame": 10,
+        "shows": "the frog perfectly still, eyes locked on a little fly buzzing just above it"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference: sitting, big happy grin. No fly anywhere.",
+            "A small round dark fly with two tiny clear wings appears in the top right corner of the cell; the frog's eyes begin to turn toward it.",
+            "The fly a little closer, upper right; the eyes looking up at it.",
+            "The head tilted slightly up to the right, eyes locked on the fly; the grin closing into a small focused smile.",
+            "The fly drifted a little to the left, just above the frog's head; the eyes follow it.",
+            "The fly drifted back to the upper right; the eyes follow it.",
+            "The frog crouches a touch lower, mouth closed, eyes on the fly hovering upper right, close.",
+            "Holding very still, eyes narrowed with focus, the fly hovering upper right.",
+            "The same still pose, the fly's wings a little blur.",
+            "The same still pose: perfectly still, eyes locked on the fly hovering just above and to the right, mouth closed.",
+            "The mouth opening, eyes still on the fly.",
+            "A long pink tongue shooting out of the mouth toward the fly, halfway there."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "The tongue at full stretch, its round tip touching the fly.",
+            "The tongue snapping back with the fly stuck on its tip.",
+            "The tongue almost back in, the fly at the lips.",
+            "Mouth closed tight, cheeks puffed out round, eyes wide. No fly and no tongue anywhere.",
+            "A gulp: the cheeks going down, eyes closing happily.",
+            "Eyes closed in a content smile.",
+            "Eyes opening; one front foot patting its tummy.",
+            "The front foot back down on the ground.",
+            "The big happy grin coming back.",
+            "Nearly the reference pose.",
+            "Almost exactly as in the reference.",
+            "Exactly as in the reference: sitting, big happy grin, no fly."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.15,
+        0.15,
+        0.6,
+        0.06,
+        0.05,
+        0.08,
+        0.06,
+        0.06,
+        0.3,
+        0.2,
+        0.3,
+        0.15,
+        0.15,
+        0.2,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "hop",
+      "sticker": "frog",
+      "kind": "move",
+      "description": "the frog hops along to the right, leap after leap, then lands and sits back down.",
+      "base": "its body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.9,
+      "hops": true,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Turned a little to the right, crouched low, legs coiled, about to leap.",
+            "Pushing off: back legs straightening, body lifting and leaning right, front feet leaving the ground.",
+            "Mid-leap, stretched long toward the right: back legs straight out behind, front legs reaching forward, happy face.",
+            "Still stretched, beginning to tuck the back legs in.",
+            "Legs tucking in under the body, front feet reaching down to land.",
+            "Landing: front feet touching down, back legs coming under.",
+            "Squashed low after landing, all feet down, body round.",
+            "Crouched and coiled again, about to leap (leading back into frame 2).",
+            "Landed and turning to face front, sitting up.",
+            "Sitting, settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.08,
+        0.07,
+        0.08,
+        0.08,
+        0.07,
+        0.07,
+        0.08,
+        0.08,
+        0.15,
+        0.15,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "sing",
+      "sticker": "bird",
+      "kind": "action",
+      "description": "the bird puffs up its chest, tips its head back and sings a long happy song with its eyes closed, then flutters its wings, flicks its tail and chirps.",
+      "base": "its feet",
+      "pause": {
+        "frame": 12,
+        "shows": "the bird singing a long note, head tipped back, beak wide open, eyes closed"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "The beak closing, looking at the viewer.",
+            "Taking a breath: the rosy chest starting to puff out.",
+            "The chest puffed round, the head starting to rise.",
+            "The head tipping back a little.",
+            "The beak opening, the eyes closing.",
+            "Singing: head tipped back, beak wide open, eyes closed, chest round.",
+            "Singing on, the throat feathers fluffed.",
+            "Singing, swaying a little to the left, still turned to the right as in the reference.",
+            "Singing, swaying a little to the right, still turned to the right as in the reference.",
+            "Singing, upright again.",
+            "Singing a long note: head tipped back, beak wide open, eyes closed, chest round."
+          ],
+          "hint": "In every frame the bird keeps exactly the reference's three-quarter view, turned to the right: it never turns to face the viewer, and its wing and tail stay on the same side as in the reference."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as the last frame of the previous sheet: singing a long note.",
+            "The beak closing a little, the head coming forward.",
+            "The head level, the eyes opening, the chest settling.",
+            "A happy little flutter: both wings lifting slightly from the body.",
+            "The wings up a little more, fluttering.",
+            "The wings folding back.",
+            "The tail flicking up.",
+            "The tail back down.",
+            "A cheerful chirp: beak slightly open, looking up to the right.",
+            "Nearly the reference pose.",
+            "Almost exactly as in the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.15,
+        0.2,
+        0.2,
+        0.2,
+        0.15,
+        0.6,
+        0.2,
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.1,
+        0.08,
+        0.1,
+        0.3,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "fly",
+      "sticker": "bird",
+      "kind": "move",
+      "description": "the bird flies along to the right flapping its little wings, then glides down, lands and folds its wings.",
+      "base": "its round body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 1.2,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Flying to the right: body tilted forward, feet tucked, both wings raised high.",
+            "Wings coming down, halfway.",
+            "Wings level, spread wide.",
+            "Wings pushed down low under the body.",
+            "Wings coming back up, halfway, slightly folded.",
+            "Wings level again, rising.",
+            "Wings raised high again.",
+            "Wings at the top, about to come down (leading back into frame 2).",
+            "Gliding: wings spread wide, body level, legs reaching down to land.",
+            "Landed: standing, wings half folded, settling.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.15,
+        0.15,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
       ]
     }
-  ]
+  ],
+  "stickerPx": 512
 }
