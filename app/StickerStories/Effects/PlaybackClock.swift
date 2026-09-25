@@ -18,22 +18,29 @@ final class PlaybackClock {
     static let seekThreshold: TimeInterval = 0.5
 
     private let source: () -> TimeInterval?
+    /// How fast the narration plays (the developer story gallery plays it
+    /// at 2× and 3×): the interpolation between resyncs runs at this rate.
+    private let rate: () -> Double
     private var anchorValue: TimeInterval?
     private var anchorHost: CFTimeInterval = 0
     private var lastReturned: TimeInterval = 0
     private var isPaused = false
     private var syntheticStart: CFTimeInterval?
 
-    /// - Parameter source: seconds into the narration, or `nil` when unknown.
-    init(source: @escaping () -> TimeInterval?) {
+    /// - Parameters:
+    ///   - rate: how many narration seconds pass per real second (1 normally).
+    ///   - source: seconds into the narration, or `nil` when unknown.
+    init(rate: @escaping () -> Double = { 1 }, source: @escaping () -> TimeInterval?) {
+        self.rate = rate
         self.source = source
     }
 
     func now() -> TimeInterval {
         let host = CACurrentMediaTime()
+        let rate = max(rate(), 0.01)
         guard let value = source() else {
-            if syntheticStart == nil { syntheticStart = host - lastReturned }
-            return advance(to: host - syntheticStart!)
+            if syntheticStart == nil { syntheticStart = host - lastReturned / rate }
+            return advance(to: (host - syntheticStart!) * rate)
         }
         syntheticStart = nil
 
@@ -43,7 +50,7 @@ final class PlaybackClock {
             return advance(to: value)
         }
 
-        let predicted = isPaused ? lastReturned : anchor + (host - anchorHost)
+        let predicted = isPaused ? lastReturned : anchor + (host - anchorHost) * rate
         let due = host - anchorHost >= Self.resyncInterval || abs(value - predicted) > Self.driftTolerance
         guard due else { return advance(to: predicted) }
 

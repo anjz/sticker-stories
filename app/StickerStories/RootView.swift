@@ -53,6 +53,12 @@ struct RootView: View {
             // the simulator).
             if ProcessInfo.processInfo.arguments.contains(where: { $0.hasPrefix("-effectsGallery") }) {
                 if let pack = library.packs.first { EffectsGalleryView(pack: pack) }
+            } else if ProcessInfo.processInfo.arguments.contains("-storyGallery") {
+                // `-storyGallery` opens the debug story gallery
+                // (`StoryGalleryView` lists its other arguments).
+                if !library.packs.isEmpty {
+                    StoryGalleryView(packs: library.packs, preferredLanguages: settings.preferredLanguages)
+                }
             } else {
                 content
             }
@@ -109,7 +115,7 @@ struct RootView: View {
                 case .settings:
                     SettingsView(
                         settings: settings, store: StoreService(entitlements: entitlements),
-                        galleryPack: library.packs.first)
+                        galleryPack: library.packs.first, galleryPacks: library.packs)
                     .onAppear { leftSettings = true }
                     // Page-sized on iPad: the default form sheet is too short
                     // for every section, cutting the last row off.
