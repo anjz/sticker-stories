@@ -176,6 +176,21 @@ import Testing
         #expect(plans[fox]!.legs[0].move == "trot")
     }
 
+    @Test func travelsBehindOthersAndEndsInFrontOfWhereItGoes() {
+        let plans = plan([
+            GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "rabbit"),
+            GoTrigger(at: 0, stickerID: "mouse", kind: .under, target: "flower"),
+            GoTrigger(at: 10, stickerID: "bee", kind: .under, target: "flower"),
+            GoTrigger(at: 10, stickerID: "fox", kind: .away),
+            GoTrigger(at: 20, stickerID: "fox", kind: .back),
+            GoTrigger(at: 30, stickerID: "bee", kind: .to, target: "rabbit"),
+        ])
+        #expect(plans[fox]!.legs.map(\.stacking) == [.onto(rabbit), .behind, .home])
+        #expect(plans[bee]!.legs.map(\.stacking) == [.onto(flower), .onto(rabbit)])
+        // The mouse went under the flower, then shuffled to make room.
+        #expect(plans[mouse]!.legs.map(\.stacking) == [.onto(flower), .shuffle, .shuffle])
+    }
+
     @Test func twoBesideTheSameStickerTakeBothSides() {
         let plans = plan([
             GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "rabbit"),

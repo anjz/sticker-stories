@@ -450,10 +450,15 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"? }`:
 - **Always wholly on screen**: every place a move ends is pushed in from
   any edge it would cross — on or under a sticker near the edge, that
   means more overlap, never a cut-off sticker. Only `away` leaves.
-- **The mover is in front**: a sticker that sets off is brought to the
-  front of everything (the front sticker layer, above every sticker) and
-  stays there; the layers and order the child made come back when the
-  story ends.
+- **Behind on the way, in front on arrival**: a sticker that sets off goes
+  behind the other stickers in its layer, so it passes behind whoever is
+  in its way; when it gets to the sticker it goes to — beside it, on it,
+  under it — it comes in front of it (in the front sticker layer if
+  either of them is there) and stays there. Going `back` it returns to
+  its own layer and place in the stack; off the canvas or to a place in
+  the scene it stays behind; a friend shuffling over to make room keeps
+  its place (`MotionLeg.Stacking`). The layers and order the child made
+  come back when the story ends.
 - It moves every instance of that sticker on the stage; `to`, `on` and
   `under` go to the nearest instance of the target. A target that is not
   on the stage (never placed, never entered) is skipped, and so is the

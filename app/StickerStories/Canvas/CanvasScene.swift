@@ -214,10 +214,11 @@ final class CanvasScene: SKScene {
     /// Reduce Motion / calm mode for the story playing: no frames at all.
     private var livePolicy = EffectPolicy.standard
     /// Every placed sticker's layer and z before a story that moves
-    /// stickers (bringing a mover to the front restacks its layer), to put
-    /// back when it ends; and the moves already started.
+    /// stickers (restacking a mover renumbers its layer), to put back when
+    /// it ends; and the moves already started and already arrived.
     private var stackBeforeMotion: [UUID: (parent: SKNode, z: CGFloat)] = [:]
     private var startedLegs: Set<String> = []
+    private var arrivedLegs: Set<String> = []
     /// The current story's face variants by sticker and expression, loaded
     /// when play starts; until one is in, that sticker keeps its face.
     private var faceTextures: [String: [String: SKTexture]] = [:]
@@ -1035,16 +1036,22 @@ final class CanvasScene: SKScene {
         restack(layer, front: node)
     }
 
+    /// Puts a sticker behind the others in its layer.
+    private func sendToBack(_ node: StickerNode) {
+        guard let layer = node.parent else { return }
+        restack(layer, back: node)
+    }
+
     /// Renumbers a layer's stickers 1…n in their current order (`front`, if
-    /// given, last), squeezed into `layerDepth` when there are more than
-    /// that, so no sticker's z ever leaves its layer's band. A held sticker
-    /// keeps floating.
-    private func restack(_ layer: SKNode, front: StickerNode? = nil) {
+    /// given, last; `back` first), squeezed into `layerDepth` when there
+    /// are more than that, so no sticker's z ever leaves its layer's band.
+    /// A held sticker keeps floating.
+    private func restack(_ layer: SKNode, front: StickerNode? = nil, back: StickerNode? = nil) {
         let resting = layer.children.compactMap { $0 as? StickerNode }
-            .filter { $0 === front || $0.zPosition < Self.liftedZ }
+            .filter { $0 === front || $0 === back || $0.zPosition < Self.liftedZ }
             .sorted { a, b in
-                if a === front { return false }
-                if b === front { return true }
+                if a === front || b === back { return false }
+                if b === front || a === back { return true }
                 return a.zPosition < b.zPosition
             }
         let step = min(1, Self.layerDepth / CGFloat(max(resting.count, 1)))
@@ -1519,6 +1526,7 @@ final class CanvasScene: SKScene {
             }
             stackBeforeMotion.removeAll()
             startedLegs.removeAll()
+            arrivedLegs.removeAll()
             for node in allStickerNodes() where !node.isVisitor {
                 node.facing = 1
                 node.stopLive()
@@ -1559,7 +1567,7 @@ final class CanvasScene: SKScene {
             deltas[id] = plan.delta(at: time).combined(with: deltas[id] ?? .identity)
             if let node = nodes[id] {
                 node.facing = CGFloat(plan.facing(at: time))
-                raiseIfMoving(node, plan: plan, at: time)
+                stackForMotion(node, plan: plan, at: time, nodes: nodes)
             }
         }
         for (id, plan) in session.visitors {
@@ -1573,17 +1581,40 @@ final class CanvasScene: SKScene {
         applyFaces(session.faces, at: time)
     }
 
-    /// A sticker that sets off on a move comes to the very front — the
-    /// front sticker layer, above everyone — so a mover is never hidden by
-    /// the sticker it goes to (on it, under it, beside it). Its layer and z
-    /// come back when the story ends.
-    private func raiseIfMoving(_ node: StickerNode, plan: MotionPlan, at time: TimeInterval) {
+    /// A sticker that sets off on a move goes behind the others in its
+    /// layer, so it passes behind whoever is in its way; when it gets to
+    /// the sticker it goes to (beside it, on it, under it) it comes in
+    /// front of it — into the front sticker layer if either of them is
+    /// there — and back home it returns to its own layer and place. A
+    /// shuffle to make room keeps its place. Every layer and z the child
+    /// made comes back when the story ends.
+    private func stackForMotion(
+        _ node: StickerNode, plan: MotionPlan, at time: TimeInterval, nodes: [UUID: StickerNode]
+    ) {
         guard let index = plan.legs.lastIndex(where: { $0.at <= time }) else { return }
+        let leg = plan.legs[index]
         let key = "\(node.instanceID)-\(index)"
-        guard !startedLegs.contains(key) else { return }
-        startedLegs.insert(key)
-        if node.parent !== foregroundStickers { node.move(toParent: foregroundStickers) }
-        bringToFront(node)
+        if !startedLegs.contains(key) {
+            startedLegs.insert(key)
+            if leg.stacking != .shuffle { sendToBack(node) }
+        }
+        guard time >= leg.at + leg.duration, !arrivedLegs.contains(key) else { return }
+        arrivedLegs.insert(key)
+        switch leg.stacking {
+        case .onto(let id):
+            guard let target = nodes[id] else { return }
+            let front = node.parent === foregroundStickers || target.parent === foregroundStickers
+            let layer = front ? foregroundStickers : backgroundStickers
+            if node.parent !== layer { node.move(toParent: layer) }
+            bringToFront(node)
+        case .home:
+            guard let prior = stackBeforeMotion[node.instanceID] else { return bringToFront(node) }
+            if node.parent !== prior.parent { node.move(toParent: prior.parent) }
+            node.zPosition = prior.z
+            restack(prior.parent)
+        case .behind, .shuffle:
+            break
+        }
     }
 
     /// Puts on every sticker the frame of its live animation now: a visitor

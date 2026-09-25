@@ -79,11 +79,31 @@ public struct MotionLeg: Equatable, Sendable {
         case fade
     }
 
+    /// How the sticker stacks with the others while it goes and when it
+    /// gets there: it travels behind everyone in its layer (passing
+    /// behind whoever is in its way) and ends in front of the sticker it
+    /// goes to, on or under.
+    public enum Stacking: Equatable, Sendable {
+        /// Behind the others on the way, and stays there (off the canvas,
+        /// to a place in the scene).
+        case behind
+        /// Behind the others on the way, in front of that sticker (an
+        /// instance id) when it gets there.
+        case onto(UUID)
+        /// Back to its own spot: behind the others on the way, back in
+        /// its own layer and place in the stack when it gets there.
+        case home
+        /// A little shuffle to make room beside the sticker it shares a
+        /// spot with: it keeps its place in the stack.
+        case shuffle
+    }
+
     public var at: TimeInterval
     public var duration: TimeInterval
     public var from: MotionSpot
     public var to: MotionSpot
     public var gait: Gait
+    public var stacking: Stacking
     /// The way it faces (+1 its art's own way, -1 mirrored) before and
     /// after: it turns at the start to face where it goes.
     public var facingFrom: Double
@@ -93,7 +113,7 @@ public struct MotionLeg: Equatable, Sendable {
 
     public init(
         at: TimeInterval, duration: TimeInterval, from: MotionSpot, to: MotionSpot, gait: Gait,
-        facingFrom: Double = 1, facingTo: Double = 1, move: String? = nil
+        facingFrom: Double = 1, facingTo: Double = 1, move: String? = nil, stacking: Stacking = .behind
     ) {
         self.at = at
         self.duration = duration
@@ -103,6 +123,7 @@ public struct MotionLeg: Equatable, Sendable {
         self.facingFrom = facingFrom
         self.facingTo = facingTo
         self.move = move
+        self.stacking = stacking
     }
 
     /// Whether its move frames play along (not while fading).
@@ -310,7 +331,9 @@ public enum MotionPlanner {
                 groups[key] = members
                 relayout(key, start: start, mover: index)
             } else if let destination = destination(go, for: index, random: &random) {
-                leg(index, to: destination.point, scale: destination.scale, visible: destination.visible, start: start)
+                leg(
+                    index, to: destination.point, scale: destination.scale, visible: destination.visible, start: start,
+                    stacking: destination.stacking)
             }
             if let left, left != groupKey(of: index) { relayout(left, start: start, mover: nil) }
         }
@@ -368,7 +391,9 @@ public enum MotionPlanner {
                 point.x = min(max(point.x, v.minX + slot.w / 2), max(v.maxX - slot.w / 2, v.minX + slot.w / 2))
                 point.y = min(max(point.y, v.minY + slot.h / 2), max(v.maxY - slot.h / 2, v.minY + slot.h / 2))
                 let begin = slot.index == mover ? start : max(start, states[slot.index].busyUntil)
-                leg(slot.index, to: point, scale: slot.scale, visible: true, start: begin, shuffle: slot.index != mover)
+                leg(
+                    slot.index, to: point, scale: slot.scale, visible: true, start: begin, shuffle: slot.index != mover,
+                    stacking: slot.index == mover ? .onto(them.actor.id) : .shuffle)
             }
         }
 
@@ -387,7 +412,7 @@ public enum MotionPlanner {
         /// in the scene, off the canvas, back home.
         mutating func destination<R: RandomNumberGenerator>(
             _ go: GoTrigger, for index: Int, random: inout R
-        ) -> (point: StagePoint, scale: Double, visible: Bool)? {
+        ) -> (point: StagePoint, scale: Double, visible: Bool, stacking: MotionLeg.Stacking)? {
             let state = states[index]
             let me = state.actor
             let others = states.indices.filter { $0 != index && states[$0].visible }
@@ -409,7 +434,7 @@ public enum MotionPlanner {
                     let radius = max(me.size.width, me.size.height) * StagePlanner.footprint
                     let point = (StagePlanner.freeSpot(in: rects, radius: radius, avoiding: obstacles, random: &random)
                         ?? StagePlanner.randomSpot(in: rects, random: &random)).point
-                    return (point, 1, true)
+                    return (point, 1, true, .behind)
                 }
                 guard let other = nearest(name, to: index) else { return nil }
                 let them = states[other]
@@ -435,14 +460,14 @@ public enum MotionPlanner {
                         : them.actor.flies && feetLevel > state.center.y + me.size.height
                             ? state.center.y : feetLevel)
                 states[index].at = key
-                return (point, 1, true)
+                return (point, 1, true, .onto(them.actor.id))
             case .away:
                 let side: Double = state.center.x < scene.visible.midX ? -1 : 1
                 let x = side < 0 ? scene.visible.minX - me.size.width * 0.8 : scene.visible.maxX + me.size.width * 0.8
                 states[index].leftBy = side
-                return (StagePoint(x: x, y: state.center.y), 1, false)
+                return (StagePoint(x: x, y: state.center.y), 1, false, .behind)
             case .back:
-                return (me.home, 1, true)
+                return (me.home, 1, true, .home)
             case .on, .under:
                 return nil
             }
@@ -452,7 +477,8 @@ public enum MotionPlanner {
         /// about, for as long as the distance needs, turned to face where it
         /// goes (not for a little shuffle to make room).
         mutating func leg(
-            _ index: Int, to point: StagePoint, scale: Double, visible: Bool, start: TimeInterval, shuffle: Bool = false
+            _ index: Int, to point: StagePoint, scale: Double, visible: Bool, start: TimeInterval, shuffle: Bool = false,
+            stacking: MotionLeg.Stacking = .behind
         ) {
             let state = states[index]
             let me = state.actor
@@ -503,7 +529,7 @@ public enum MotionPlanner {
             }
             states[index].legs.append(MotionLeg(
                 at: start, duration: duration, from: spot(from, state.scale, true), to: spot(target, scale, visible),
-                gait: gait, facingFrom: state.facing, facingTo: facing, move: move?.id))
+                gait: gait, facingFrom: state.facing, facingTo: facing, move: move?.id, stacking: stacking))
             states[index].center = target
             states[index].scale = scale
             states[index].visible = visible
