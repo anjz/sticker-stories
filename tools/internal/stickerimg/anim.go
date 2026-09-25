@@ -150,8 +150,10 @@ type AnimSheet struct {
 	// it is how the app scales and offsets the frames onto the placed
 	// sticker.
 	Rest image.Rectangle
-	// Scales is the per-frame normalisation applied (1 = none), for the log.
+	// Scales is the per-frame normalisation applied (1 = none), and Notes
+	// what the sheet-to-sheet sizing measured, for the log.
 	Scales []float64
+	Notes  []string
 }
 
 // A blob on a cell's edge is a neighbour's stray sliver (StripEdgeCrumbs)
@@ -223,6 +225,7 @@ func Animation(cells []*image.RGBA, o AnimOptions) (*AnimSheet, error) {
 
 	// One scale per sheet, against the first sheet's rest-pose cell — or,
 	// when sheets continue each other, against the frame before each.
+	var notes []string
 	scales := sheetScales(len(cells), o.SheetSizes, o.RestFrames, areas, o.MaxDrift)
 	if o.SheetsContinue && len(o.SheetSizes) > 1 {
 		scales = continuedScales(frames, o.SheetSizes)
@@ -258,7 +261,10 @@ func Animation(cells []*image.RGBA, o AnimOptions) (*AnimSheet, error) {
 				end := min(start+size, len(frames))
 				for _, r := range o.RestFrames {
 					if r > start && r == end-1 && r != first {
-						drift := scales[r] * sameScale(scaled, frames[r].art)
+						// The scale that brings this sheet's own rest cell to the
+						// sticker's size (absolute, like scales[]).
+						drift := sameScale(scaled, frames[r].art)
+						notes = append(notes, fmt.Sprintf("sheet from frame %d: %.3f at its start, %.3f by its rest frame %d", start+1, scales[start], drift, r+1))
 						for j := start; j <= r; j++ {
 							k := float64(j-start) / float64(r-start)
 							scales[j] *= math.Pow(drift/scales[r], k)
@@ -353,7 +359,7 @@ func Animation(cells []*image.RGBA, o AnimOptions) (*AnimSheet, error) {
 		col, row := i%o.Columns, i/o.Columns
 		draw.Draw(sheet, image.Rect(col*frameW, row*frameH, (col+1)*frameW, (row+1)*frameH), frame, image.Point{}, draw.Src)
 	}
-	return &AnimSheet{Image: sheet, Frame: image.Pt(frameW, frameH), Columns: o.Columns, Count: len(frames), Rest: rest, Scales: scales}, nil
+	return &AnimSheet{Image: sheet, Frame: image.Pt(frameW, frameH), Columns: o.Columns, Count: len(frames), Rest: rest, Scales: scales, Notes: notes}, nil
 }
 
 // matchFrames re-anchors (and slightly rescales) frames 1… so each sits
@@ -481,8 +487,11 @@ func sameScale(ref, img *image.RGBA) float64 {
 
 // continuedScales gives every cell its sheet's scale when each sheet
 // starts with the pose the one before it ends with: the first sheet is 1,
-// and each next one is scaled so its first frame matches the last frame
-// before it (Align, 0.8–1.25).
+// and each next one is scaled so its first frame covers as much as the
+// last frame before it (square root of the areas, 0.8–1.25). For two
+// drawings meant to be the same pose, area is fairer than a shape match:
+// when the model does not quite repeat the pose, a match reads the
+// difference as size.
 func continuedScales(frames []registered, sizes []int) []float64 {
 	scales := make([]float64, len(frames))
 	current := 1.0
@@ -490,18 +499,10 @@ func continuedScales(frames []registered, sizes []int) []float64 {
 	for k, size := range sizes {
 		end := min(start+size, len(frames))
 		if k > 0 && start > 0 && start < len(frames) {
-			prev, next := frames[start-1].art, frames[start].art
-			if current != 1 {
-				prev = Resize(prev, int(math.Round(float64(prev.Rect.Dx())*current)), int(math.Round(float64(prev.Rect.Dy())*current)))
+			prev, next := opaqueCount(frames[start-1].art, 128), opaqueCount(frames[start].art, 128) // solid only: a soft glow is not size
+			if prev > 0 && next > 0 {
+				current = math.Min(math.Max(current*math.Sqrt(float64(prev)/float64(next)), 0.8), 1.25)
 			}
-			pad := max(prev.Rect.Dx(), prev.Rect.Dy(), next.Rect.Dx(), next.Rect.Dy()) / 2
-			canvas := image.NewRGBA(image.Rect(0, 0, prev.Rect.Dx()+2*pad, prev.Rect.Dy()+2*pad))
-			draw.Draw(canvas, prev.Rect.Add(image.Pt(pad, pad)), prev, image.Point{}, draw.Src)
-			guess := Placement{S: 1,
-				Tx: float64(pad) + float64(prev.Rect.Dx()-next.Rect.Dx())/2,
-				Ty: float64(pad) + float64(prev.Rect.Dy()-next.Rect.Dy())}
-			fit := Align(canvas, next, AlignOptions{MinScale: 0.8, MaxScale: 1.25, MaxShift: 0.2, Start: guess})
-			current = fit.S
 		}
 		for i := start; i < end; i++ {
 			scales[i] = current

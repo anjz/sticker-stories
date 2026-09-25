@@ -53,7 +53,7 @@ const (
 	toolVersion = "1"
 	// assembleVersion changes whenever the registration or finishing of
 	// kept raw sheets changes, so they are re-assembled without new calls.
-	assembleVersion = "14"
+	assembleVersion = "17"
 	editModel       = "gpt-image-2.5-sunburst"
 	defaultQual     = "high"
 	defaultHold     = 1.0 / 12
@@ -758,6 +758,9 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 	scales := make([]string, len(sheet.Scales))
 	for i, s := range sheet.Scales {
 		scales[i] = fmt.Sprintf("%.2f", s)
+	}
+	for _, n := range sheet.Notes {
+		r.say("  %s: %s", a.key(), n)
 	}
 	r.say("✓ %s: %d frames of %dx%d in a %dx%d sheet (frame scales %s)", a.key(), sheet.Count, sheet.Frame.X, sheet.Frame.Y, sheet.Image.Bounds().Dx(), sheet.Image.Bounds().Dy(), strings.Join(scales, " "))
 	return nil
