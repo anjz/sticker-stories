@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "forest",
-  "version": 33,
+  "version": 34,
   "languages": [
     "en-US",
     "es-ES"
@@ -229,6 +229,10 @@
         "es-ES": "Pájaro"
       },
       "image": "stickers/bird.webp",
+      "animations": [
+        "anims/bird.sing.json",
+        "anims/bird.fly.json"
+      ],
       "expressions": {
         "happy": "stickers/bird.happy.webp",
         "sad": "stickers/bird.sad.webp",
@@ -392,7 +396,8 @@
       },
       "image": "stickers/frog.webp",
       "animations": [
-        "anims/frog.backflip-fly.json"
+        "anims/frog.catch-fly.json",
+        "anims/frog.hop.json"
       ],
       "expressions": {
         "happy": "stickers/frog.happy.webp",
@@ -592,7 +597,8 @@
       },
       "image": "stickers/snail.webp",
       "animations": [
-        "anims/snail.peek.json"
+        "anims/snail.hide.json",
+        "anims/snail.crawl.json"
       ],
       "expressions": {
         "happy": "stickers/snail.happy.webp",
