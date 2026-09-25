@@ -12,6 +12,8 @@ tools/author/
     FORMAT.md          the intermediate story format (story.json), the cue grammar,
                        the allowed audio tags
     <packID>/
+      scene.md         what the pack's background and foreground actually show, where,
+                       and what they don't (no hill, no stream…): stories only use these places
       plan.md          the roster: which stickers each of the 50 stories centres on
       <storyID>/
         story.json     one story, every language, with inline effect cues
@@ -31,10 +33,12 @@ already exist — and its `setting`, which decides the canvas effects the
 stories may use), the effects catalogue (`docs/effects/effects.json`),
 `GUIDE.md` and `FORMAT.md`, then:
 
-1. builds a roster (`plan.md`) of 50 stories, each centred on 3–4 stickers,
+1. looks at the pack's scene art and writes (or checks) `scene.md`, the
+   inventory of what the background and foreground show and where;
+2. builds a roster (`plan.md`) of 50 stories, each centred on 3–4 stickers,
    covering every sticker in the pack several times plus a few
    "whole-forest" stories that need no particular sticker;
-2. writes the stories in small batches — bilingual (every pack language),
+3. writes the stories in small batches — bilingual (every pack language),
    80–140 words per language, with effect cues, a few Eleven v3 audio tags
    for the narrator, sound effects (some in place of sound words), a canvas
    effect wherever the words describe weather or light, and a
