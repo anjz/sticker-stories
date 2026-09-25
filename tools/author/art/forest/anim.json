@@ -12,501 +12,14 @@
   },
   "animations": [
     {
-      "id": "sleepy-blink",
-      "sticker": "owl",
-      "description": "the owl blinks, turns its head to look around, fluffs its feathers, yawns and settles back to sleep.",
-      "base": "the short branch it perches on",
-      "normalize": true,
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "Perched on the branch exactly as in the reference: calm, eyes half closed, wings folded.",
-            "Eyes fully closed in a slow blink, feathers soft, wings folded.",
-            "Eyes open wide, suddenly awake and curious.",
-            "Head turning to its right, eyes looking that way, body still.",
-            "Head turned further, almost looking over its shoulder, curious, body still.",
-            "Head coming back to the front, eyes wide.",
-            "Head tilted a little to one side, curious.",
-            "Head straight again, one eye closed in a slow wink."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "Both eyes open, feathers starting to fluff up, chest puffed.",
-            "Feathers fluffed out fully, a round ball of an owl, content.",
-            "Feathers settling back down, beak opening a little as a yawn begins.",
-            "Beak open wide in a big sleepy yawn, eyes squeezed shut.",
-            "Beak closing, eyes still shut.",
-            "Eyes half open, drowsy, head sinking down into the shoulders.",
-            "Eyes nearly closed, calm and sleepy, head low.",
-            "Perched on the branch exactly as in frame 1: calm, eyes half closed, wings folded."
-          ]
-        }
-      ],
-      "hold": [
-        0.3,
-        0.15,
-        0.25,
-        0.15,
-        0.4,
-        0.15,
-        0.35,
-        0.35,
-        0.2,
-        0.4,
-        0.2,
-        0.45,
-        0.2,
-        0.3,
-        0.35,
-        0.3
-      ],
-      "restFrames": [
-        1,
-        16
-      ]
-    },
-    {
-      "id": "tap-tap",
-      "sticker": "woodpecker",
-      "description": "the woodpecker taps the trunk a few times, listens, shakes off the dust and chirps.",
-      "base": "the piece of tree trunk",
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "Clinging to the trunk exactly as in the reference, beak pointed at the wood.",
-            "Head drawn back a little from the wood, getting ready to tap.",
-            "Beak touching the bark: a tap, with a tiny puff of wood dust.",
-            "Head drawn back again.",
-            "Beak on the bark: a tap, two small wood chips flying off.",
-            "Head drawn back once more.",
-            "Beak on the bark: a tap, one small wood chip flying off.",
-            "Head up and turned to look out at the viewer, proud, a tiny wood chip resting on its red cap."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "Head tilted with one eye close to the bark, listening to the trunk.",
-            "Eyes wide: it heard something inside the wood, a small surprised look.",
-            "One gentle tap with the beak, a single wood chip.",
-            "Head drawn back, looking at the spot, delighted.",
-            "Wings lifting slightly and fluffing, shaking off the dust, a few specks in the air.",
-            "Feathers settled, wings folded, head turned to the viewer with a happy chirp, beak slightly open.",
-            "Beak closed, cheerful, head turning back to face the wood.",
-            "Clinging to the trunk exactly as in frame 1, beak pointed at the wood."
-          ]
-        }
-      ],
-      "hold": [
-        0.3,
-        0.15,
-        0.12,
-        0.15,
-        0.12,
-        0.15,
-        0.12,
-        0.45,
-        0.4,
-        0.3,
-        0.12,
-        0.35,
-        0.25,
-        0.4,
-        0.25,
-        0.3
-      ],
-      "restFrames": [
-        1,
-        16
-      ]
-    },
-    {
-      "id": "wings",
-      "sticker": "ladybug",
-      "description": "the ladybug lifts its red wing cases, spreads the thin wings underneath, flutters them, folds everything away and takes a proud little bow.",
-      "base": "the green leaf",
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "hint": "Keep the reference's exact proportions in every frame: the ladybug is as big on the leaf as in the reference — its red dome as wide, its head as large — and the leaf is the same size and shape as in the reference, not larger.",
-          "frames": [
-            "Standing on the leaf exactly as in the reference.",
-            "Looking up, antennae lifting.",
-            "The red wing cases beginning to lift and part down the middle.",
-            "Wing cases open halfway, the thin translucent flying wings peeking out beneath.",
-            "Wing cases fully open, the translucent wings unfolded and spread wide, delighted.",
-            "The translucent wings fluttering, drawn with a soft blur, body lifting a tiny bit on its legs.",
-            "Wings fluttering, body settled back down on the leaf.",
-            "Wings spread wide and still, chin up, showing off."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "hint": "Keep the reference's exact proportions in every frame: the ladybug is as big on the leaf as in the reference — its red dome as wide, its head as large — and the leaf is the same size and shape as in the reference, not larger.",
-          "frames": [
-            "The translucent wings folding back under the cases.",
-            "Wing cases closing halfway.",
-            "Wing cases closed, a little shake to settle them.",
-            "Looking at the viewer with a proud grin.",
-            "Bowing its head a little, a shy bow.",
-            "Head up, antennae wiggling, happy.",
-            "Settling, calm smile.",
-            "Standing on the leaf exactly as in frame 1."
-          ]
-        }
-      ],
-      "hold": [
-        0.45,
-        0.25,
-        0.2,
-        0.2,
-        0.35,
-        0.15,
-        0.15,
-        0.35,
-        0.2,
-        0.2,
-        0.25,
-        0.4,
-        0.3,
-        0.3,
-        0.25,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        16
-      ],
-      "restFromSticker": false
-    },
-    {
-      "id": "curl-up",
-      "sticker": "hedgehog",
-      "description": "the hedgehog yawns, curls up into a spiny ball for a nap, then peeks out and uncurls.",
-      "base": "its feet on the ground",
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "Standing on all fours exactly as in the reference.",
-            "Yawning: mouth opening, eyes squeezing shut, feet planted.",
-            "A big yawn, mouth wide open, eyes shut tight, feet planted.",
-            "Yawn ending, mouth closing, drowsy eyes.",
-            "Head tucking down toward its belly, spines starting to round over its back, feet still on the same spot.",
-            "Curling up: nose almost touching its feet, body rounding into a ball, only the eyes still showing.",
-            "Curled into a round spiny ball, nose and eyes hidden, sitting on the spot where it stood.",
-            "The spiny ball, a small snore bubble growing at its hidden nose."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "The spiny ball, the snore bubble bigger.",
-            "The spiny ball, still and calm, the bubble gone.",
-            "One eye peeking out of the ball, the spines parting a little.",
-            "Nose and both eyes peeking out, blinking sleepily.",
-            "Uncurling: head coming out, body still rounded.",
-            "Almost standing, stretching its front legs forward, spines settling.",
-            "Standing on all fours, giving a little shake, spines fluffed.",
-            "Standing on all fours exactly as in frame 1."
-          ]
-        }
-      ],
-      "hold": [
-        0.3,
-        0.25,
-        0.4,
-        0.25,
-        0.25,
-        0.25,
-        0.4,
-        0.45,
-        0.45,
-        0.4,
-        0.35,
-        0.35,
-        0.3,
-        0.3,
-        0.3,
-        0.3
-      ],
-      "restFrames": [
-        1,
-        16
-      ]
-    },
-    {
-      "id": "nibble",
-      "sticker": "squirrel",
-      "description": "the squirrel nibbles its hazelnut, checks nobody is watching, hides it behind its back, then hugs it happily.",
-      "base": "its feet and the bottom of its tail on the ground",
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "Sitting holding the hazelnut with both paws exactly as in the reference, tail curled over its back.",
-            "Bringing the hazelnut up to its mouth, eyes on it, tail still.",
-            "Nibbling the hazelnut, mouth on the nut, cheeks puffed a little.",
-            "Nibbling, head tilted the other way, cheeks puffed.",
-            "Chewing with cheeks full and round, holding the nut, eyes closed happily.",
-            "Chewing, eyes open, glancing to its left as if someone might want the nut.",
-            "Glancing to its right, cheeks still full, holding the nut close to its chest.",
-            "Hugging the nut to its chest with both paws, a shy grin."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "Hiding the nut behind its back with one paw, looking innocent.",
-            "Looking straight at the viewer, innocent, nothing in its front paws.",
-            "Peeking sideways at the nut behind its back, a sneaky little smile.",
-            "Bringing the nut back out in front, relieved.",
-            "Holding the nut up with both paws, proud.",
-            "Hugging the nut to its chest, eyes closed in a happy smile.",
-            "Holding the nut with both paws, cheerful, the tip of its tail curled a little tighter.",
-            "Sitting holding the hazelnut with both paws exactly as in frame 1."
-          ]
-        }
-      ],
-      "hold": [
-        0.3,
-        0.25,
-        0.2,
-        0.2,
-        0.4,
-        0.35,
-        0.35,
-        0.3,
-        0.35,
-        0.45,
-        0.35,
-        0.3,
-        0.35,
-        0.4,
-        0.3,
-        0.3
-      ],
-      "restFrames": [
-        1,
-        16
-      ]
-    },
-    {
-      "id": "listen",
-      "sticker": "rabbit",
-      "description": "the rabbit's ears perk up as it listens, it looks left and right, then nibbles a little clover leaf.",
-      "base": "its feet on the ground",
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "Sitting up exactly as in the reference, paws empty.",
-            "One ear turning sideways, listening, paws empty.",
-            "Both ears straight up and alert, eyes wide, paws empty.",
-            "Nose twitching, whiskers spread, ears up, paws empty.",
-            "Head tilted to its left, ears leaning that way, curious, paws empty.",
-            "Head tilted to its right, ears leaning that way, paws empty.",
-            "Head straight, one ear flopped down and the other up, puzzled, paws empty.",
-            "Both ears flopped down, relaxed, a little smile, paws empty."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "Ears back up, a small three-leaf clover now held in its front paws, looking at it.",
-            "Nibbling the clover, cheeks moving.",
-            "Nibbling the clover, eyes closed happily, cheeks full.",
-            "The clover gone, chewing, one ear tilted.",
-            "Licking its lips, content, paws empty.",
-            "Ears relaxing halfway, a happy sleepy smile.",
-            "Ears up again, bright eyes, a small wiggle: the round tail raised a little.",
-            "Sitting up exactly as in frame 1, paws empty."
-          ],
-          "hint": "Size: the rabbit is tall with its ears up, so draw it at exactly the same size as in the previous sheet, with the whole rabbit — ear tips to feet — inside the middle three quarters of its cell's height, leaving clear empty space above the ears and below the feet."
-        }
-      ],
-      "hold": [
-        0.3,
-        0.3,
-        0.3,
-        0.25,
-        0.35,
-        0.35,
-        0.35,
-        0.35,
-        0.25,
-        0.3,
-        0.35,
-        0.3,
-        0.3,
-        0.35,
-        0.3,
-        0.3
-      ],
-      "restFrames": [
-        1,
-        16
-      ]
-    },
-    {
-      "id": "peekaboo",
-      "sticker": "raccoon",
-      "description": "the raccoon rubs its paws, hides its eyes behind them, peeks, then flings them open for a big boo and giggles.",
-      "base": "its feet on the ground",
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "Standing upright with paws held up in front exactly as in the reference.",
-            "Rubbing its paws together like washing them, looking down at them.",
-            "Rubbing paws, looking at the viewer with a cheeky grin.",
-            "Paws lifting up toward its face.",
-            "Paws covering both eyes, a small smile: hiding.",
-            "Paws over the eyes, the smile widening, one ear twitching.",
-            "Paws parting a little, one eye peeking through the gap.",
-            "Paws snapped shut over the eyes again."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "Paws flung open wide beside its face, eyes wide, a big delighted grin: boo!",
-            "Paws open, laughing with eyes squeezed shut.",
-            "Paws coming down to its chest, giggling.",
-            "Covering its mouth with both paws, shoulders up, giggling.",
-            "Paws down at its chest, looking to its left cheekily.",
-            "Looking to its right, paws held up in front.",
-            "Paws held up, a happy sigh, calm cheeky face.",
-            "Standing upright with paws held up in front exactly as in frame 1."
-          ]
-        }
-      ],
-      "hold": [
-        0.3,
-        0.3,
-        0.35,
-        0.2,
-        0.45,
-        0.35,
-        0.4,
-        0.25,
-        0.45,
-        0.35,
-        0.3,
-        0.4,
-        0.3,
-        0.3,
-        0.3,
-        0.3
-      ],
-      "restFrames": [
-        1,
-        16
-      ]
-    },
-    {
-      "id": "yawn",
-      "sticker": "bear",
-      "description": "the bear cub yawns and stretches its arms up, rubs its eyes, pats its tummy and nods off again.",
-      "base": "its bottom and feet on the ground",
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "Sitting exactly as in the reference, sleepy and content, arms resting on its belly.",
-            "Eyes closing in a slow blink.",
-            "Mouth beginning to open in a yawn, eyes shut.",
-            "A big wide yawn, mouth open, eyes squeezed shut, arms starting to lift.",
-            "Yawning wide with both arms stretched straight up above its head.",
-            "Arms still stretched up, mouth closing, eyes shut, ears back.",
-            "Arms coming down, rubbing one eye with a paw.",
-            "Rubbing both eyes with both paws."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 2,
-          "size": "3072x1536",
-          "frames": [
-            "Paws down, eyes blinking open, a little dazed.",
-            "Eyes open, looking at the viewer with a soft smile.",
-            "Scratching its round tummy with one paw, content.",
-            "Patting its tummy with both paws, happy.",
-            "Arms resting on its belly, eyes half closing again.",
-            "Head nodding down a little, eyes closed, drifting off.",
-            "Head coming back up, eyes half open, a sleepy smile.",
-            "Sitting exactly as in frame 1, arms resting on its belly."
-          ]
-        }
-      ],
-      "hold": [
-        0.3,
-        0.25,
-        0.2,
-        0.3,
-        0.5,
-        0.3,
-        0.3,
-        0.35,
-        0.3,
-        0.35,
-        0.35,
-        0.35,
-        0.35,
-        0.4,
-        0.3,
-        0.3
-      ],
-      "restFrames": [
-        1,
-        16
-      ]
-    },
-    {
-      "id": "hide",
-      "sticker": "snail",
+      "id": "wish",
+      "sticker": "acorn",
       "kind": "action",
-      "description": "the snail pulls its head and eye stalks into its shell, waits there, then slowly peeks out again and looks around. Its only eyes are the ones at the tips of its eye stalks, exactly as in the reference: its face never has eyes, just rosy cheeks and a smile.",
-      "story": "the snail pulls its head and eye stalks into its shell, waits there, then slowly peeks out again and looks around.",
-      "base": "the swirly shell",
-      "register": "body",
+      "description": "the acorn clasps its little hands, shuts its eyes tight and makes a wish, then opens its eyes, throws its arms up and does a happy little bounce.",
+      "base": "its little feet",
       "pause": {
         "frame": 12,
-        "shows": "the snail hidden inside its shell: only the shell shows"
+        "shows": "the acorn with its eyes shut tight and its hands clasped, making a wish"
       },
       "sheets": [
         {
@@ -514,18 +27,18 @@
           "rows": 3,
           "size": "3072x2304",
           "frames": [
-            "Exactly as in the reference: gliding along, eye stalks up, a tiny smile.",
-            "The eye stalks dip a little and the eyes at their tips go wide: something startled it.",
-            "The eye stalks bend down and get shorter; the head begins to draw back toward the shell's opening.",
-            "The eye stalks half their length; the head and neck drawing back, the front of the soft body shorter.",
-            "The eye stalks short stubs; the head halfway back to the shell's opening; the tail end of the foot sliding in under the shell.",
-            "The eye stalks tiny nubs; the head right at the shell's opening; the soft body mostly gone under the shell.",
-            "Only the top of the green head still shows at the shell's opening; the foot almost all in.",
-            "Just a small curve of green at the shell's opening.",
-            "The last sliver of green slipping into the shell.",
-            "The shell alone, resting on the ground where it was, no body showing at all.",
-            "The shell alone, exactly as in frame 10.",
-            "The shell alone, exactly as in frame 10: the snail is hidden inside."
+            "Exactly as in the reference.",
+            "The arms coming in toward its tummy.",
+            "The hands meeting in front of its tummy.",
+            "The hands clasped together, looking up.",
+            "The eyes starting to close.",
+            "The eyes closing, a hopeful little smile.",
+            "The eyes squeezed shut, hands clasped tight under its chin.",
+            "Wishing hard: eyes shut tight, hands clasped, leaning forward a touch.",
+            "Wishing, eyes shut tight, the smile growing.",
+            "Still wishing, perfectly still.",
+            "Still wishing, perfectly still.",
+            "Wishing: eyes shut tight, hands clasped under its chin, a hopeful smile."
           ]
         },
         {
@@ -533,42 +46,710 @@
           "rows": 3,
           "size": "3072x2304",
           "frames": [
-            "The shell alone, exactly as the last frame of the previous sheet: the snail hidden inside.",
-            "A tiny tip of green head peeks out of the shell's opening.",
-            "The head halfway out, two tiny eye-stalk nubs appearing.",
-            "The head out, the eye stalks growing a little; the foot sliding out under the shell.",
-            "The eye stalks half grown, the eyes at their tips peeking out to the right.",
-            "The eye stalks almost full length, the foot out along the ground again.",
-            "The eye stalks full length, the eyes at their tips looking to the left, curious.",
-            "The eye stalks turned, the eyes looking to the right.",
-            "The eye stalks straight, the eyes looking at the viewer, the smile a little bigger.",
-            "The body settling, the stalks easing back.",
-            "Almost exactly as in the reference.",
-            "Exactly as in the reference: gliding along, eye stalks up, a tiny smile."
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The eyes opening wide.",
+            "The hands coming apart.",
+            "The arms swinging up.",
+            "Both arms thrown up high, a big open smile.",
+            "Crouching a little on its feet, arms still up.",
+            "A tiny bounce: both feet just off the ground, arms up, delighted.",
+            "Landing on its feet, arms up.",
+            "The arms coming down a little, beaming.",
+            "The arms opening out to the sides as in the reference.",
+            "Nearly the reference pose.",
+            "Exactly as in the reference."
           ]
         }
       ],
       "hold": [
         0.3,
+        0.09,
+        0.09,
+        0.12,
+        0.09,
+        0.12,
+        0.15,
+        0.2,
+        0.2,
+        0.15,
+        0.15,
+        0.7,
+        0.2,
+        0.1,
+        0.09,
+        0.09,
+        0.2,
+        0.1,
+        0.12,
+        0.1,
+        0.12,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "walk",
+      "sticker": "acorn",
+      "kind": "move",
+      "description": "the acorn toddles along to the right on its little feet, swinging its arms, then stops and faces front.",
+      "base": "its little feet",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.45,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Walking to the right, turned three-quarters toward the right: the leg nearest us stepping forward, the body leaning a little the other way and its little arms swinging.",
+            "The near foot down, the weight on it, the body swaying over it.",
+            "The far foot lifting and passing, the body at its highest.",
+            "The far foot stepping forward, the body leaning a little toward us.",
+            "The far foot down, the weight on it, the body swaying the other way.",
+            "The near foot lifting and passing, the body at its highest.",
+            "The near foot reaching forward again.",
+            "Almost as frame 2, about to step again (leading back into frame 2).",
+            "Stopping: feet together, turning back toward the reference pose.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.14,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "dig",
+      "sticker": "badger",
+      "kind": "action",
+      "description": "the badger sniffs the ground, digs with its front paws so little clumps of earth fly, pushes its nose down into the hole, then pops its head up with a bit of earth on its nose and grins.",
+      "base": "its feet",
+      "pause": {
+        "frame": 12,
+        "shows": "the badger with its nose down in a little hole it dug, sniffing"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "The head lowering, nose toward the ground, sniffing.",
+            "The nose close to the ground, sniffing, eyes curious.",
+            "One front paw scraping at the ground, two small clumps of earth flying back.",
+            "The other front paw scraping, a small clump of earth flying back.",
+            "The first paw scraping again, a little earth in the air.",
+            "The other paw scraping, earth flying.",
+            "Both paws resting, the nose pushing down to where it dug.",
+            "The nose deep down at the ground, the back end up, tail wagging.",
+            "The same, the tail swinging the other way.",
+            "The same, still, snuffling.",
+            "Nose down in its little hole, sniffing, the back end up."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The head starting to come up.",
+            "The head up, a small smudge of earth on the tip of its nose.",
+            "Eyes crossing to look at the earth on its nose.",
+            "A little sneeze: eyes shut, head jerking a touch.",
+            "Eyes open, the earth gone from its nose, a surprised look.",
+            "A pleased grin.",
+            "Standing proudly, grinning.",
+            "The head turning back to its reference pose.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.1,
         0.15,
         0.09,
         0.09,
         0.09,
         0.09,
-        0.09,
-        0.09,
-        0.09,
         0.12,
         0.12,
+        0.12,
+        0.12,
+        0.6,
+        0.2,
+        0.1,
+        0.2,
+        0.15,
+        0.1,
+        0.15,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "trot",
+      "sticker": "badger",
+      "kind": "move",
+      "description": "the badger trots along to the left on its short legs, then stops.",
+      "base": "its feet",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.55,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Walking to the left, turned three-quarters toward the left: the front leg nearest us reaching forward, the back leg nearest us pushing back.",
+            "The front leg nearest us planted, the body moving over it; the far legs swinging.",
+            "Legs passing under the body, the body at its highest, head bobbing up a little.",
+            "The far front leg reaching forward, the near back leg reaching forward.",
+            "The far front leg planted, the near back leg planted, the body moving over them.",
+            "Legs passing under the body again, the body at its highest.",
+            "The near front leg lifting to reach forward again.",
+            "Almost as frame 2, about to step again (leading back into frame 2).",
+            "Stopping: feet together, turning back toward the reference pose.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.14,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "nap",
+      "sticker": "bear",
+      "kind": "action",
+      "description": "the bear cub gives a big yawn and stretches its arms up, rubs its eyes and nods off to sleep sitting up, then wakes with a little start, blinks and smiles.",
+      "base": "its sitting bottom and feet",
+      "pause": {
+        "frame": 12,
+        "shows": "the bear cub fast asleep sitting up, eyes shut, head drooped"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "The mouth starting to open in a yawn.",
+            "A big yawn, eyes squeezed shut, arms starting to lift.",
+            "Arms stretched up high, yawning wide.",
+            "Arms coming down, the yawn ending.",
+            "One paw rubbing an eye.",
+            "Both paws resting on its tummy, eyes heavy and half closed.",
+            "The head starting to droop, eyes nearly shut.",
+            "The head drooping lower, eyes shut.",
+            "Asleep, head drooped, a tiny smile.",
+            "Asleep, breathing softly, head drooped.",
+            "Fast asleep sitting up: eyes shut, head drooped a little, paws on its tummy."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The head jerking up a little, eyes springing open, a small surprised look.",
+            "Blinking, eyes half shut.",
+            "Eyes open, looking around sleepily.",
+            "Looking the other way.",
+            "A little stretch of the arms to the sides.",
+            "Arms back down, a warm smile.",
+            "Patting its tummy happily.",
+            "The paws back down.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.12,
+        0.15,
+        0.3,
+        0.12,
+        0.2,
+        0.2,
+        0.15,
+        0.15,
+        0.2,
+        0.2,
         0.8,
-        0.25,
+        0.15,
+        0.15,
+        0.2,
+        0.2,
+        0.15,
+        0.2,
+        0.2,
+        0.15,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "walk",
+      "sticker": "bear",
+      "kind": "move",
+      "description": "the bear cub toddles along to the right on its hind legs, swaying, then sits back down.",
+      "base": "its feet",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.45,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Walking to the right, turned three-quarters toward the right: the leg nearest us stepping forward, the body leaning a little the other way its arms out a little for balance.",
+            "The near foot down, the weight on it, the body swaying over it.",
+            "The far foot lifting and passing, the body at its highest.",
+            "The far foot stepping forward, the body leaning a little toward us.",
+            "The far foot down, the weight on it, the body swaying the other way.",
+            "The near foot lifting and passing, the body at its highest.",
+            "The near foot reaching forward again.",
+            "Almost as frame 2, about to step again (leading back into frame 2).",
+            "Stopping and sitting down.",
+            "Settling into the reference pose, sitting.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.14,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "gnaw",
+      "sticker": "beaver",
+      "kind": "action",
+      "description": "the beaver lifts its stick and gnaws along it with its big front teeth so little wood chips fly, then holds up the pointy stick to admire it and pats it proudly.",
+      "base": "its sitting bottom and feet",
+      "pause": {
+        "frame": 12,
+        "shows": "the beaver holding up its freshly gnawed pointy stick, admiring it"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "The stick lifting toward its mouth.",
+            "The big front teeth on the stick.",
+            "Gnawing: a small wood chip flying off.",
+            "Gnawing a little further along: two small chips flying.",
+            "Gnawing: one chip flying.",
+            "Gnawing: two chips flying.",
+            "The stick coming away from its mouth, now pointy at the top.",
+            "Holding the pointy stick up in both paws.",
+            "Holding it up higher, admiring it, eyes bright.",
+            "Admiring the pointy stick, a proud smile.",
+            "Holding the pointy stick up in front of it, admiring it with a proud smile."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Lowering the stick a little.",
+            "Tucking the stick against its chest.",
+            "Patting the stick with one paw.",
+            "Patting it again, eyes closed happily.",
+            "Looking up with a big buck-toothed grin.",
+            "A little wiggle of its flat tail.",
+            "The tail back down.",
+            "Holding the stick as in the reference.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.12,
+        0.15,
+        0.2,
+        0.2,
+        0.6,
+        0.15,
+        0.12,
+        0.12,
+        0.15,
+        0.2,
+        0.12,
+        0.12,
+        0.12,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "waddle",
+      "sticker": "beaver",
+      "kind": "move",
+      "description": "the beaver waddles along to the left on its hind legs holding its stick, flat tail dragging, then stops.",
+      "base": "its feet",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.4,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Walking to the left, turned three-quarters toward the left: the leg nearest us stepping forward, the body leaning a little the other way holding its stick against its chest.",
+            "The near foot down, the weight on it, the body swaying over it.",
+            "The far foot lifting and passing, the body at its highest.",
+            "The far foot stepping forward, the body leaning a little toward us.",
+            "The far foot down, the weight on it, the body swaying the other way.",
+            "The near foot lifting and passing, the body at its highest.",
+            "The near foot reaching forward again.",
+            "Almost as frame 2, about to step again (leading back into frame 2).",
+            "Stopping: feet together, turning back toward the reference pose.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.14,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "hum",
+      "sticker": "bee",
+      "kind": "action",
+      "description": "the bee takes a deep breath and hums a happy tune with her eyes closed, wings buzzing, then does a little waggle dance with her striped bottom and smiles.",
+      "base": "its round striped body",
+      "register": "body",
+      "pause": {
+        "frame": 12,
+        "shows": "the bee humming with her eyes closed, wings buzzing"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Taking a breath, the chest puffing a little.",
+            "Eyes closing, a small smile.",
+            "Humming: eyes closed, mouth a small round 'o', wings a light blur.",
+            "Humming, bobbing up a touch.",
+            "Humming, bobbing down.",
+            "Humming, swaying a little to the left.",
+            "Humming, swaying a little to the right.",
+            "Humming, bobbing up.",
+            "Humming, bobbing down.",
+            "Humming, eyes closed, perfectly happy.",
+            "Humming a happy tune: eyes closed, mouth a small round 'o', wings a light blur."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Eyes opening, the humming ending.",
+            "Her striped bottom wiggling to the left.",
+            "Wiggling to the right.",
+            "Wiggling to the left.",
+            "Wiggling to the right.",
+            "A little spin of joy: turned a touch toward us.",
+            "Back as before, giggling.",
+            "A big smile.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.12,
+        0.12,
+        0.15,
+        0.12,
+        0.12,
+        0.15,
+        0.15,
+        0.12,
+        0.12,
+        0.15,
+        0.6,
         0.15,
         0.1,
         0.1,
         0.1,
         0.1,
+        0.12,
+        0.12,
+        0.15,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "fly",
+      "sticker": "bee",
+      "kind": "move",
+      "description": "the bee buzzes along to the left, wings a blur, bobbing a little, then hovers in place.",
+      "base": "its round striped body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 1.0,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Flying to the left, body level, its little wings raised.",
+            "Wings a light blur, halfway down, body bobbing up a touch.",
+            "Wings down, body at its highest.",
+            "Wings halfway up, body level.",
+            "Wings raised again, body dipping a touch.",
+            "Wings a light blur, halfway down.",
+            "Wings down, body level.",
+            "Wings halfway up, about to rise again (leading back into frame 2).",
+            "Slowing down, hovering.",
+            "Hovering, settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.12,
+        0.15,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "sing",
+      "sticker": "bird",
+      "kind": "action",
+      "description": "the bird puffs up its chest, tips its head back and sings a long happy song with its eyes closed, then flutters its wings, flicks its tail and chirps.",
+      "base": "its feet",
+      "pause": {
+        "frame": 12,
+        "shows": "the bird singing a long note, head tipped back, beak wide open, eyes closed"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "The beak closing, looking at the viewer.",
+            "Taking a breath: the rosy chest starting to puff out.",
+            "The chest puffed round, the head starting to rise.",
+            "The head tipping back a little.",
+            "The beak opening, the eyes closing.",
+            "Singing: head tipped back, beak wide open, eyes closed, chest round.",
+            "Singing on, the throat feathers fluffed.",
+            "Singing, swaying a little to the left, still turned to the right as in the reference.",
+            "Singing, swaying a little to the right, still turned to the right as in the reference.",
+            "Singing, upright again.",
+            "Singing a long note: head tipped back, beak wide open, eyes closed, chest round."
+          ],
+          "hint": "In every frame the bird keeps exactly the reference's three-quarter view, turned to the right: it never turns to face the viewer, and its wing and tail stay on the same side as in the reference."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as the last frame of the previous sheet: singing a long note.",
+            "The beak closing a little, the head coming forward.",
+            "The head level, the eyes opening, the chest settling.",
+            "A happy little flutter: both wings lifting slightly from the body.",
+            "The wings up a little more, fluttering.",
+            "The wings folding back.",
+            "The tail flicking up.",
+            "The tail back down.",
+            "A cheerful chirp: beak slightly open, looking up to the right.",
+            "Nearly the reference pose.",
+            "Almost exactly as in the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
         0.3,
-        0.3,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.15,
+        0.2,
+        0.2,
+        0.2,
+        0.15,
+        0.6,
+        0.2,
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.1,
+        0.08,
+        0.1,
         0.3,
         0.1,
         0.1,
@@ -580,17 +761,285 @@
       ]
     },
     {
-      "id": "crawl",
-      "sticker": "snail",
+      "id": "fly",
+      "sticker": "bird",
       "kind": "move",
-      "description": "the snail glides forward to the right on its foot, a gentle ripple running along it, eye stalks bobbing, then stops and settles. Its only eyes are the ones at the tips of its eye stalks, exactly as in the reference.",
-      "story": "the snail glides along on its foot, eye stalks bobbing, and settles.",
-      "base": "the swirly shell",
+      "description": "the bird flies along to the right flapping its little wings, then glides down, lands and folds its wings.",
+      "base": "its round body",
+      "register": "body",
       "loop": {
         "from": 2,
         "to": 9
       },
       "facing": "right",
+      "stride": 1.2,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Flying to the right: body tilted forward, feet tucked, both wings raised high.",
+            "Wings coming down, halfway.",
+            "Wings level, spread wide.",
+            "Wings pushed down low under the body.",
+            "Wings coming back up, halfway, slightly folded.",
+            "Wings level again, rising.",
+            "Wings raised high again.",
+            "Wings at the top, about to come down (leading back into frame 2).",
+            "Gliding: wings spread wide, body level, legs reaching down to land.",
+            "Landed: standing, wings half folded, settling.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.15,
+        0.15,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "rest",
+      "sticker": "butterfly",
+      "kind": "action",
+      "description": "the butterfly slowly closes its wings together above its back and rests, then opens them wide again and flutters them happily.",
+      "base": "its body",
+      "register": "body",
+      "pause": {
+        "frame": 12,
+        "shows": "the butterfly resting with its wings closed together above its back"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "The wings starting to lift and come together, slowly.",
+            "The wings a quarter closed, tilting up.",
+            "The wings halfway closed, seen more edge-on.",
+            "The wings three quarters closed, standing up above its back.",
+            "The wings nearly together above its back.",
+            "The wings closed together above its back; its face peeks out below them.",
+            "Resting, wings closed, eyes half closed.",
+            "Resting, eyes closed, a soft smile.",
+            "Resting, still.",
+            "Resting, still.",
+            "Resting: wings closed together above its back, eyes closed, a soft smile."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Eyes opening.",
+            "The wings starting to open.",
+            "The wings halfway open.",
+            "The wings nearly open.",
+            "The wings wide open as in the reference.",
+            "A happy flutter: wings lifting a little.",
+            "Wings down a little.",
+            "Wings lifting a little again.",
+            "Almost the reference pose, smiling.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.15,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.8,
+        0.15,
+        0.12,
+        0.12,
+        0.12,
+        0.15,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "flutter",
+      "sticker": "butterfly",
+      "kind": "move",
+      "description": "the butterfly flutters along to the right, wings opening and closing softly, then settles with its wings open.",
+      "base": "its body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.9,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Flying to the right, turned a little that way, wings wide open.",
+            "Wings starting to come up.",
+            "Wings halfway up.",
+            "Wings nearly together above the body.",
+            "Wings together above the body.",
+            "Wings coming back down, halfway.",
+            "Wings nearly open.",
+            "Wings wide open again (leading back into frame 2).",
+            "Gliding, wings open, turning to face front.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.15,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "look-up",
+      "sticker": "caterpillar",
+      "kind": "action",
+      "description": "the caterpillar rears up tall on the back of its body, sways and gazes up at the sky, then lowers itself down again and wiggles happily.",
+      "base": "the back part of its body and its little legs",
+      "pause": {
+        "frame": 12,
+        "shows": "the caterpillar reared up tall, gazing up at the sky"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "The front of its body lifting a little higher.",
+            "Rearing up: the front half rising.",
+            "The front half rising higher, the head tilting up.",
+            "Reared up tall on the back of its body, looking up.",
+            "Swaying a little to the left, looking up.",
+            "Swaying a little to the right, looking up.",
+            "Upright again, looking up in wonder.",
+            "Looking up, antennae lifting.",
+            "Looking up, eyes shining.",
+            "Looking up, perfectly still.",
+            "Reared up tall on the back of its body, gazing up at the sky in wonder."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The front half starting to lower.",
+            "Lowering halfway.",
+            "Lowering nearly to the reference height.",
+            "Its body giving a happy wiggle: a ripple along the segments.",
+            "The ripple reaching the tail.",
+            "A happy smile, antennae bobbing.",
+            "The antennae settling.",
+            "Almost the reference pose.",
+            "Nearly the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.12,
+        0.1,
+        0.1,
+        0.15,
+        0.2,
+        0.2,
+        0.15,
+        0.15,
+        0.2,
+        0.2,
+        0.7,
+        0.15,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.15,
+        0.12,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "crawl",
+      "sticker": "caterpillar",
+      "kind": "move",
+      "description": "the caterpillar crawls along to the left, a hump rippling through its body, then stops.",
+      "base": "the back part of its body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
       "stride": 0.35,
       "sheets": [
         {
@@ -599,15 +1048,15 @@
           "size": "3072x2304",
           "frames": [
             "Exactly as in the reference.",
-            "Gliding right: the head and neck stretched a little forward, eye stalks leaning forward.",
-            "The head stretched a touch further; a small ripple rises at the tail end of the foot.",
-            "The ripple halfway along the foot under the shell; the shell tipped forward very slightly.",
-            "The ripple near the front of the foot; the head easing back to normal; the stalks upright.",
-            "The head at its normal length, the shell level, the eye stalks bobbing up a little.",
-            "The tail end of the foot drawn forward, the foot a little shorter; the stalks leaning back a little.",
-            "The foot gathered under the shell, the shell level, the stalks upright.",
-            "Almost as frame 2, about to stretch forward again.",
-            "Stopping: the foot relaxed and still, the stalks upright.",
+            "Crawling to the left: the head reaching forward, the body stretched long.",
+            "The tail end drawing forward, a small hump rising at the back.",
+            "The hump moving to the middle of the body.",
+            "The hump near the front, the head pausing.",
+            "The head reaching forward again, the hump flattening.",
+            "The body long and flat.",
+            "The tail drawing forward again, a new hump at the back.",
+            "Almost as frame 2 (leading back into frame 2).",
+            "Stopping, lifting its front a little.",
             "Settling into the reference pose.",
             "Exactly as in the reference."
           ]
@@ -615,16 +1064,677 @@
       ],
       "hold": [
         0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.14,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "graze",
+      "sticker": "deer",
+      "kind": "action",
+      "description": "the fawn lowers its head to nibble the grass, then lifts it, flicks its ears, wags its little white tail and looks around brightly.",
+      "base": "its four hooves",
+      "pause": {
+        "frame": 12,
+        "shows": "the fawn with its head down, nibbling the grass"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "The head starting to lower.",
+            "The neck bending, head halfway down.",
+            "The head down near its hooves.",
+            "Nibbling: mouth moving at the grass level.",
+            "Nibbling, an ear flicking.",
+            "Nibbling.",
+            "Nibbling, the little tail wagging.",
+            "Nibbling.",
+            "Chewing, head down, content.",
+            "Head down, calm, chewing.",
+            "Head down near its front hooves, nibbling the grass, calm."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The head starting to lift, chewing.",
+            "The head halfway up.",
+            "The head up, ears turning forward.",
+            "An ear flicking.",
+            "The other ear flicking.",
+            "The little white tail wagging up.",
+            "The tail down, looking to the side brightly.",
+            "Looking back as in the reference.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.12,
+        0.12,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.2,
+        0.2,
+        0.2,
+        0.7,
+        0.15,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.15,
+        0.15,
         0.1,
         0.1,
         0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "walk",
+      "sticker": "deer",
+      "kind": "move",
+      "description": "the fawn walks along to the left on its slender legs, then stops.",
+      "base": "its four hooves",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.55,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Walking to the left, turned three-quarters toward the left: the front leg nearest us reaching forward, the back leg nearest us pushing back.",
+            "The front leg nearest us planted, the body moving over it; the far legs swinging.",
+            "Legs passing under the body, the body at its highest, head bobbing up a little.",
+            "The far front leg reaching forward, the near back leg reaching forward.",
+            "The far front leg planted, the near back leg planted, the body moving over them.",
+            "Legs passing under the body again, the body at its highest.",
+            "The near front leg lifting to reach forward again.",
+            "Almost as frame 2, about to step again (leading back into frame 2).",
+            "Stopping: feet together, turning back toward the reference pose.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
         0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.14,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "nap",
+      "sticker": "duckling",
+      "kind": "action",
+      "description": "the duckling fluffs up and tucks its head under its wing for a nap, then pops its head out, shakes its feathers and gives a happy quack.",
+      "base": "its orange feet",
+      "pause": {
+        "frame": 12,
+        "shows": "the duckling asleep with its head tucked under its wing"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Fluffing up its feathers.",
+            "Round and fluffy, eyes getting sleepy.",
+            "The head turning back toward its wing.",
+            "The wing lifting a little, the head turning under it.",
+            "The beak slipping under the wing.",
+            "The head half under the wing.",
+            "The head tucked under the wing, only the top of its head showing.",
+            "Asleep: a round fluffy ball, head tucked under its wing.",
+            "Asleep, breathing softly.",
+            "Asleep, still.",
+            "Asleep: a round fluffy ball with its head tucked under its wing."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The head starting to come out.",
+            "The head out, blinking.",
+            "A shake: feathers ruffled, a little blur at the edges.",
+            "Shaking the other way.",
+            "The feathers settling.",
+            "Beak open in a happy quack.",
+            "The beak closing, a big smile.",
+            "Standing as in the reference, one foot lifted a touch.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.15,
+        0.12,
+        0.12,
+        0.1,
+        0.1,
+        0.12,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.8,
+        0.12,
+        0.15,
+        0.08,
+        0.08,
+        0.12,
+        0.25,
+        0.15,
+        0.12,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "waddle",
+      "sticker": "duckling",
+      "kind": "move",
+      "description": "the duckling waddles along to the right on its orange feet, wiggling its tail, then stops.",
+      "base": "its orange feet",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.4,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Walking to the right, turned three-quarters toward the right: the leg nearest us stepping forward, the body leaning a little the other way its little tail wiggling.",
+            "The near foot down, the weight on it, the body swaying over it.",
+            "The far foot lifting and passing, the body at its highest.",
+            "The far foot stepping forward, the body leaning a little toward us.",
+            "The far foot down, the weight on it, the body swaying the other way.",
+            "The near foot lifting and passing, the body at its highest.",
+            "The near foot reaching forward again.",
+            "Almost as frame 2, about to step again (leading back into frame 2).",
+            "Stopping: feet together, turning back toward the reference pose.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.14,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "glow",
+      "sticker": "firefly",
+      "kind": "action",
+      "description": "the firefly closes its eyes and makes its tail glow brighter and brighter until it shines like a little lantern, then lets it dim and blinks it twice, smiling.",
+      "base": "its legs",
+      "pause": {
+        "frame": 12,
+        "shows": "the firefly glowing its brightest, like a little lantern"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Eyes closing, concentrating.",
+            "The tail light a little brighter.",
+            "The tail light brighter, a warm yellow glow around it.",
+            "Brighter, a soft golden halo around the tail.",
+            "Brighter still, the halo wider.",
+            "Glowing brightly, eyes closed, smiling.",
+            "Glowing its brightest, a big soft golden halo.",
+            "Glowing, peaceful.",
+            "Glowing, peaceful.",
+            "Glowing, peaceful.",
+            "The tail glowing its brightest like a little lantern, a big soft golden halo around it, eyes closed peacefully."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The glow starting to fade.",
+            "The glow halfway.",
+            "The glow soft, eyes opening.",
+            "The tail dark for a moment.",
+            "The tail flashing bright.",
+            "The tail dark.",
+            "The tail flashing bright again.",
+            "The glow back to its gentle reference glow, smiling.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.15,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.15,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.8,
+        0.15,
+        0.15,
+        0.15,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.15,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "fly",
+      "sticker": "firefly",
+      "kind": "move",
+      "description": "the firefly flies along to the left, wings buzzing and tail glowing, then lands.",
+      "base": "its body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 1.0,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Flying to the left, body level, its little wings raised and its tail glowing softly.",
+            "Wings a light blur, halfway down, body bobbing up a touch.",
+            "Wings down, body at its highest.",
+            "Wings halfway up, body level.",
+            "Wings raised again, body dipping a touch.",
+            "Wings a light blur, halfway down.",
+            "Wings down, body level.",
+            "Wings halfway up, about to rise again (leading back into frame 2).",
+            "Gliding down: wings spread wide, legs reaching down to land.",
+            "Landed, wings folding, settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.14,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "close",
+      "sticker": "flower",
+      "kind": "action",
+      "description": "the flower slowly folds its yellow petals up and closes over its face like a bud for the night, then opens them wide again to the sun and smiles.",
+      "base": "its stem and leaves",
+      "pause": {
+        "frame": 12,
+        "shows": "the flower closed for the night, a bud with its petals folded over its face"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "The petals starting to lift, eyes getting sleepy.",
+            "The petals lifting higher, eyes half closed.",
+            "The petals halfway up around the face, eyes closed.",
+            "The petals rising up around the face.",
+            "The petals nearly meeting above the face.",
+            "The petals meeting: a closed yellow bud, only a little of the face shows.",
+            "A closed yellow bud on its stem.",
+            "A closed bud, still.",
+            "A closed bud, still.",
+            "A closed bud, still.",
+            "Closed for the night: a yellow bud on its stem, the petals folded up over its face."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The petals starting to part.",
+            "The petals opening, the face peeking out with closed eyes.",
+            "The petals halfway open, eyes opening.",
+            "The petals nearly open, eyes open.",
+            "The petals wide open, a big smile.",
+            "The petals stretching wide in the sun.",
+            "The leaves lifting happily.",
+            "The leaves settling.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.8,
+        0.15,
+        0.15,
+        0.12,
+        0.12,
+        0.15,
+        0.15,
+        0.12,
+        0.12,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "sprout",
+      "sticker": "flower",
+      "kind": "move",
+      "description": "the flower sprouts: a tiny shoot pushes up, the stem grows and unfolds its leaves, a bud forms and opens into the smiling flower.",
+      "base": "the foot of its stem",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Only a tiny green shoot, two small seed leaves, at the very bottom of the cell where the stem starts.",
+            "A short green stem with two small leaves.",
+            "The stem a third of its height, the leaves growing.",
+            "The stem half its height, the leaves unfolding.",
+            "The stem nearly full height, a small closed green bud on top.",
+            "The full stem and leaves, the bud swelling and turning yellow.",
+            "The yellow bud starting to open.",
+            "The petals half open, the face peeking out, smiling.",
+            "The petals wide open.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ],
+          "hint": "Every frame's stem starts from the same spot at the bottom of its cell, so the plant grows up from one point."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.1,
+        0.1,
+        0.12,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "listen",
+      "sticker": "fox",
+      "kind": "action",
+      "description": "the fox pricks up its ears, closes its eyes and listens very carefully, then opens its eyes with a smile and swishes its big tail.",
+      "base": "its feet",
+      "pause": {
+        "frame": 12,
+        "shows": "the fox listening very carefully, ears tall and eyes closed"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "The ears lifting.",
+            "The ears standing tall, turning forward.",
+            "The head tilting a little, listening.",
+            "The eyes closing, the ears tall.",
+            "Listening carefully, eyes closed, the tail still.",
+            "Listening, one ear turning.",
+            "Listening, the other ear turning.",
+            "Listening, perfectly still.",
+            "Listening, a small smile starting.",
+            "Listening, still.",
+            "Listening very carefully: ears standing tall, eyes closed, head tilted a little."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The eyes opening, a bright look.",
+            "A smile.",
+            "The big tail starting to swish to one side.",
+            "The tail swished out wide.",
+            "The tail swishing back.",
+            "The tail swishing the other way.",
+            "The tail settling.",
+            "A happy grin.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.12,
+        0.12,
+        0.15,
+        0.15,
+        0.2,
+        0.15,
+        0.15,
+        0.2,
+        0.15,
+        0.2,
+        0.7,
+        0.15,
+        0.15,
         0.1,
         0.1,
         0.1,
         0.1,
         0.12,
         0.15,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "trot",
+      "sticker": "fox",
+      "kind": "move",
+      "description": "the fox trots along to the right on all four legs, its big tail streaming behind, then stops.",
+      "base": "its feet",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.6,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Walking to the right, turned three-quarters toward the right: the front leg nearest us reaching forward, the back leg nearest us pushing back and its big tail streaming behind.",
+            "The front leg nearest us planted, the body moving over it; the far legs swinging.",
+            "Legs passing under the body, the body at its highest, head bobbing up a little.",
+            "The far front leg reaching forward, the near back leg reaching forward.",
+            "The far front leg planted, the near back leg planted, the body moving over them.",
+            "Legs passing under the body again, the body at its highest.",
+            "The near front leg lifting to reach forward again.",
+            "Almost as frame 2, about to step again (leading back into frame 2).",
+            "Stopping and rising onto its hind legs.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.14,
+        0.16,
         0.3
       ],
       "restFrames": [
@@ -767,14 +1877,15 @@
       ]
     },
     {
-      "id": "sing",
-      "sticker": "bird",
+      "id": "curl",
+      "sticker": "hedgehog",
       "kind": "action",
-      "description": "the bird puffs up its chest, tips its head back and sings a long happy song with its eyes closed, then flutters its wings, flicks its tail and chirps.",
-      "base": "its feet",
+      "description": "the hedgehog tucks in its nose and curls up into a round spiny ball, then slowly uncurls, peeks out and sniffs.",
+      "base": "the ground under it",
+      "register": "body",
       "pause": {
         "frame": 12,
-        "shows": "the bird singing a long note, head tipped back, beak wide open, eyes closed"
+        "shows": "the hedgehog curled up into a round spiny ball"
       },
       "sheets": [
         {
@@ -783,36 +1894,168 @@
           "size": "3072x2304",
           "frames": [
             "Exactly as in the reference.",
-            "The beak closing, looking at the viewer.",
-            "Taking a breath: the rosy chest starting to puff out.",
-            "The chest puffed round, the head starting to rise.",
-            "The head tipping back a little.",
-            "The beak opening, the eyes closing.",
-            "Singing: head tipped back, beak wide open, eyes closed, chest round.",
-            "Singing on, the throat feathers fluffed.",
-            "Singing, swaying a little to the left, still turned to the right as in the reference.",
-            "Singing, swaying a little to the right, still turned to the right as in the reference.",
-            "Singing, upright again.",
-            "Singing a long note: head tipped back, beak wide open, eyes closed, chest round."
-          ],
-          "hint": "In every frame the bird keeps exactly the reference's three-quarter view, turned to the right: it never turns to face the viewer, and its wing and tail stay on the same side as in the reference."
+            "The nose dipping, a surprised look.",
+            "The head tucking down.",
+            "The body rounding, the head tucking in.",
+            "Rounder, the little feet tucking under.",
+            "Almost a ball, the nose just showing.",
+            "A round spiny ball, nose tucked in.",
+            "A round spiny ball.",
+            "A round spiny ball, still.",
+            "A round spiny ball, still.",
+            "A round spiny ball, still.",
+            "Curled up into a round spiny ball, nose tucked in, nothing but spines showing."
+          ]
         },
         {
           "columns": 4,
           "rows": 3,
           "size": "3072x2304",
           "frames": [
-            "Exactly as the last frame of the previous sheet: singing a long note.",
-            "The beak closing a little, the head coming forward.",
-            "The head level, the eyes opening, the chest settling.",
-            "A happy little flutter: both wings lifting slightly from the body.",
-            "The wings up a little more, fluttering.",
-            "The wings folding back.",
-            "The tail flicking up.",
-            "The tail back down.",
-            "A cheerful chirp: beak slightly open, looking up to the right.",
-            "Nearly the reference pose.",
-            "Almost exactly as in the reference.",
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The ball loosening a little.",
+            "The nose peeking out.",
+            "The nose and one eye peeking out.",
+            "The face out, looking around.",
+            "Uncurling, the feet coming down.",
+            "Almost uncurled, sniffing.",
+            "Sniffing the air, nose up.",
+            "A little smile.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.8,
+        0.15,
+        0.2,
+        0.2,
+        0.15,
+        0.1,
+        0.1,
+        0.15,
+        0.15,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "scurry",
+      "sticker": "hedgehog",
+      "kind": "move",
+      "description": "the hedgehog scurries along to the left on its tiny feet, then stops.",
+      "base": "the ground under it",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.4,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Walking to the left, turned three-quarters toward the left: the front leg nearest us reaching forward, the back leg nearest us pushing back with quick little steps.",
+            "The front leg nearest us planted, the body moving over it; the far legs swinging.",
+            "Legs passing under the body, the body at its highest, head bobbing up a little.",
+            "The far front leg reaching forward, the near back leg reaching forward.",
+            "The far front leg planted, the near back leg planted, the body moving over them.",
+            "Legs passing under the body again, the body at its highest.",
+            "The near front leg lifting to reach forward again.",
+            "Almost as frame 2, about to step again (leading back into frame 2).",
+            "Stopping: feet together, turning back toward the reference pose.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.14,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "wings",
+      "sticker": "ladybug",
+      "kind": "action",
+      "description": "the ladybug lifts its red spotted wing cases, spreads the thin clear wings underneath and flutters them, then folds everything away and takes a little bow.",
+      "base": "its six little legs",
+      "pause": {
+        "frame": 12,
+        "shows": "the ladybug with its wing cases lifted and its thin wings spread, ready to fly"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "The red wing cases starting to lift at the back.",
+            "The wing cases lifted a little, parting in the middle.",
+            "The wing cases lifted higher, the thin clear wings showing underneath.",
+            "The clear wings unfolding.",
+            "The clear wings spread out.",
+            "The clear wings fluttering: a light blur.",
+            "Fluttering, the wing cases held up.",
+            "Fluttering.",
+            "Fluttering, eyes bright.",
+            "Fluttering, ready to fly.",
+            "The red spotted wing cases lifted and the thin clear wings spread and fluttering, ready to fly."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The fluttering slowing.",
+            "The clear wings folding.",
+            "The clear wings folded away.",
+            "The wing cases coming down.",
+            "The wing cases closed.",
+            "A little bow: the head dipping.",
+            "The head coming back up, smiling.",
+            "Proud and happy.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
             "Exactly as in the reference."
           ]
         }
@@ -824,21 +2067,415 @@
         0.1,
         0.1,
         0.1,
-        0.15,
-        0.2,
-        0.2,
-        0.2,
-        0.15,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
         0.6,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.12,
+        0.2,
+        0.15,
+        0.15,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "crawl",
+      "sticker": "ladybug",
+      "kind": "move",
+      "description": "the ladybug walks along to the right on its six little legs, then stops.",
+      "base": "its six little legs",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.35,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Walking to the right: the front and back legs on one side stepping forward, the middle leg on the other side stepping.",
+            "Those legs down, the others lifting.",
+            "The other set of legs stepping forward.",
+            "Those legs down.",
+            "The first set lifting again.",
+            "Stepping forward.",
+            "The other set lifting.",
+            "Almost as frame 2 (leading back into frame 2).",
+            "Stopping: feet together, turning back toward the reference pose.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.14,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "sniff",
+      "sticker": "mouse",
+      "kind": "action",
+      "description": "the mouse sniffs the air with its whiskers twitching, rises up on tiptoes to look and listen, then drops down and washes its face with its paws.",
+      "base": "its feet",
+      "pause": {
+        "frame": 12,
+        "shows": "the mouse up on tiptoes, ears wide, looking and listening"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "The nose lifting, whiskers twitching.",
+            "Sniffing, whiskers twitching the other way.",
+            "Rising up a little.",
+            "Up on tiptoes, ears turning.",
+            "Up on tiptoes, ears up, looking to the left.",
+            "Looking to the right.",
+            "Looking ahead, ears wide.",
+            "On tiptoes, still, listening.",
+            "On tiptoes, listening, whiskers still.",
+            "On tiptoes, listening.",
+            "Up on tiptoes, ears wide, perfectly still, looking and listening."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Dropping down.",
+            "Back on its feet, paws up to its face.",
+            "Washing its face: paws rubbing its cheeks.",
+            "Paws rubbing over its ears.",
+            "Paws rubbing its nose.",
+            "Paws coming down.",
+            "A tidy, happy smile.",
+            "Whiskers twitching once.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.1,
+        0.1,
+        0.12,
+        0.12,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.7,
+        0.12,
+        0.12,
+        0.1,
+        0.1,
+        0.1,
+        0.12,
+        0.2,
+        0.12,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "scamper",
+      "sticker": "mouse",
+      "kind": "move",
+      "description": "the mouse scampers along to the left on all fours, its tail curling behind, then stops and sits up.",
+      "base": "its feet",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.5,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Walking to the left, turned three-quarters toward the left: the front leg nearest us reaching forward, the back leg nearest us pushing back with quick little steps, its long tail curling behind.",
+            "The front leg nearest us planted, the body moving over it; the far legs swinging.",
+            "Legs passing under the body, the body at its highest, head bobbing up a little.",
+            "The far front leg reaching forward, the near back leg reaching forward.",
+            "The far front leg planted, the near back leg planted, the body moving over them.",
+            "Legs passing under the body again, the body at its highest.",
+            "The near front leg lifting to reach forward again.",
+            "Almost as frame 2, about to step again (leading back into frame 2).",
+            "Stopping and sitting up.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.14,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "sneeze",
+      "sticker": "mushroom",
+      "kind": "action",
+      "description": "the mushroom scrunches up its face and holds its breath — ah… ah… — then sneezes a little puff of glittery spores from under its cap and smiles.",
+      "base": "its stem",
+      "pause": {
+        "frame": 12,
+        "shows": "the mushroom about to sneeze, eyes scrunched and cheeks puffed — ah… ah…"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "The nose twitching.",
+            "The eyes starting to scrunch.",
+            "'Ah…': eyes scrunched, the cap tipping back a little.",
+            "'Ah…': the cap tipping back further.",
+            "Holding its breath: eyes shut tight, cheeks puffed.",
+            "Holding it, the cap tipped back.",
+            "Holding it.",
+            "Holding it, about to sneeze.",
+            "Holding it.",
+            "Holding it.",
+            "About to sneeze: eyes scrunched shut, cheeks puffed, cap tipped back — ah… ah…"
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Achoo: the cap jerking forward, a small puff of glittery spores from under the cap.",
+            "The puff of glittery spores spreading, eyes shut.",
+            "The puff drifting away, fainter.",
+            "The last sparkles fading, eyes opening.",
+            "No spores left; a surprised little look.",
+            "A giggle.",
+            "A warm smile.",
+            "The cap settling.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.1,
+        0.12,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.15,
+        0.2,
+        0.2,
+        0.2,
+        0.7,
+        0.08,
+        0.1,
+        0.12,
+        0.12,
+        0.15,
+        0.15,
+        0.2,
+        0.12,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "sprout",
+      "sticker": "mushroom",
+      "kind": "move",
+      "description": "the mushroom pops up out of the ground: a little round button grows up, its stem stretches and its spotted cap unfurls.",
+      "base": "the foot of its stem",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Only a tiny round white button at the very bottom of the cell.",
+            "A small button, a hint of red on top.",
+            "The button taller, the red cap round and closed.",
+            "The stem showing, the cap still closed round it.",
+            "The stem taller, the cap starting to open.",
+            "The cap opening, the white spots showing.",
+            "The cap nearly open, the face appearing under it.",
+            "The cap open, the face smiling.",
+            "Full size, bobbing once.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ],
+          "hint": "Every frame's stem starts from the same spot at the bottom of its cell, so the mushroom grows up from one point."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.1,
+        0.1,
+        0.12,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "doze",
+      "sticker": "owl",
+      "kind": "action",
+      "description": "the owl blinks, turns its head to look around, gives a big yawn and falls asleep, then opens one eye, then both, and hoots softly.",
+      "base": "its feet",
+      "pause": {
+        "frame": 12,
+        "shows": "the owl fast asleep, fluffed up round, eyes shut"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "A slow blink.",
+            "Eyes open, the head turning to its right.",
+            "The head turned right, looking.",
+            "The head coming back to the front.",
+            "The head turning to its left, looking.",
+            "The head coming back to the front.",
+            "A big yawn, beak open, eyes shut.",
+            "The beak closing, feathers fluffing up.",
+            "Fluffed up round, eyes closing.",
+            "Asleep, fluffed up, eyes shut.",
+            "Fast asleep: fluffed up round, eyes shut, calm."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "One eye opening a crack.",
+            "One eye open, peeking.",
+            "Both eyes opening.",
+            "Eyes wide awake.",
+            "The feathers settling back.",
+            "A soft hoot: beak a little open, eyes smiling.",
+            "The beak closing.",
+            "Blinking slowly.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.15,
+        0.12,
+        0.25,
+        0.12,
+        0.12,
+        0.25,
+        0.12,
+        0.3,
+        0.15,
+        0.2,
+        0.8,
+        0.2,
+        0.25,
+        0.15,
+        0.2,
+        0.15,
+        0.25,
+        0.12,
         0.2,
         0.1,
-        0.1,
-        0.08,
-        0.08,
-        0.1,
-        0.08,
-        0.1,
-        0.3,
         0.1,
         0.1,
         0.3
@@ -850,9 +2487,9 @@
     },
     {
       "id": "fly",
-      "sticker": "bird",
+      "sticker": "owl",
       "kind": "move",
-      "description": "the bird flies along to the right flapping its little wings, then glides down, lands and folds its wings.",
+      "description": "the owl flies along to the right on broad soft wings, then glides down and lands.",
       "base": "its round body",
       "register": "body",
       "loop": {
@@ -868,7 +2505,7 @@
           "size": "3072x2304",
           "frames": [
             "Exactly as in the reference.",
-            "Flying to the right: body tilted forward, feet tucked, both wings raised high.",
+            "Flying to the right: body tilted a little forward, feet tucked, wings raised high.",
             "Wings coming down, halfway.",
             "Wings level, spread wide.",
             "Wings pushed down low under the body.",
@@ -876,8 +2513,277 @@
             "Wings level again, rising.",
             "Wings raised high again.",
             "Wings at the top, about to come down (leading back into frame 2).",
-            "Gliding: wings spread wide, body level, legs reaching down to land.",
-            "Landed: standing, wings half folded, settling.",
+            "Gliding down: wings spread wide, legs reaching down to land.",
+            "Landed, wings folding, settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "open",
+      "sticker": "pinecone",
+      "kind": "action",
+      "description": "the pinecone slowly opens its scales outward like a flower in the sun, then gently closes them up snug again and smiles.",
+      "base": "its bottom",
+      "register": "body",
+      "pause": {
+        "frame": 12,
+        "shows": "the pinecone with its scales wide open like a flower in the sun"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "The scales starting to lift at the edges.",
+            "The lower scales lifting outward.",
+            "The scales opening wider, gaps showing between them.",
+            "The scales open further, the face beaming.",
+            "The scales wide open like petals.",
+            "Wide open, eyes closed happily in the sun.",
+            "Wide open, still.",
+            "Wide open, still.",
+            "Wide open, still.",
+            "Wide open, still.",
+            "Its scales wide open like a flower in the sun, eyes closed happily."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The scales starting to close.",
+            "The scales halfway closed.",
+            "The scales nearly closed.",
+            "The scales snug, eyes opening.",
+            "A contented smile.",
+            "A little wiggle.",
+            "The wiggle the other way.",
+            "Settled.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.8,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.1,
+        0.1,
+        0.12,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "roll",
+      "sticker": "pinecone",
+      "kind": "move",
+      "description": "the pinecone rolls along to the right, tumbling over and over, then rocks to a stop upright.",
+      "base": "its round body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.9,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Rolling to the right: tipped an eighth of a turn to the right.",
+            "A quarter turn round, lying on its side, its face sideways.",
+            "Three eighths of a turn round.",
+            "Half a turn round: upside down, the face upside down and giggling.",
+            "Five eighths of a turn round.",
+            "Three quarters of a turn round, on its other side.",
+            "Seven eighths of a turn round.",
+            "A full turn round, upright again (leading back into frame 2).",
+            "Rocking to a stop, tilted a little.",
+            "Rocking back, upright, settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.18,
+        0.2,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "listen",
+      "sticker": "rabbit",
+      "kind": "action",
+      "description": "the rabbit's ears shoot up as it listens very still, then it relaxes, finds a little clover leaf and nibbles it happily.",
+      "base": "its sitting bottom and feet",
+      "pause": {
+        "frame": 12,
+        "shows": "the rabbit listening very still, ears standing straight up"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "The ears lifting.",
+            "The ears standing tall.",
+            "The ears tall, turning forward.",
+            "The eyes wide, sitting very still.",
+            "Listening, one ear turning.",
+            "Listening, the other ear turning.",
+            "Listening, perfectly still.",
+            "Listening, the nose twitching.",
+            "Listening, still.",
+            "Listening, still.",
+            "Listening very still: ears standing straight up, eyes wide."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The ears relaxing.",
+            "Looking down: a small green clover leaf appears in its front paws.",
+            "Holding the clover leaf up to its mouth.",
+            "Nibbling the clover.",
+            "Nibbling, the leaf smaller.",
+            "Nibbling, the leaf nearly gone.",
+            "The last bit of clover gone, chewing.",
+            "A happy smile, whiskers twitching.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.1,
+        0.12,
+        0.15,
+        0.2,
+        0.15,
+        0.15,
+        0.2,
+        0.15,
+        0.2,
+        0.2,
+        0.7,
+        0.15,
+        0.15,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.15,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "hop",
+      "sticker": "rabbit",
+      "kind": "move",
+      "description": "the rabbit hops along to the left, leap after leap, then sits back up.",
+      "base": "its body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.9,
+      "hops": true,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Crouched low, turned toward the left, back legs coiled, about to hop.",
+            "Pushing off: back legs straightening, body stretching left, front paws lifting.",
+            "Mid-hop, stretched long toward the left: back legs out behind, front paws reaching forward, ears back.",
+            "Still stretched, the back legs starting to come forward.",
+            "The front paws reaching down to land.",
+            "Landing on the front paws, back legs swinging under.",
+            "All four feet down, crouched.",
+            "Crouched and coiled again, about to hop (leading back into frame 2).",
+            "Landed, sitting up and turning back.",
+            "Settling into the reference pose.",
             "Exactly as in the reference."
           ]
         }
@@ -893,7 +2799,545 @@
         0.07,
         0.07,
         0.15,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "peekaboo",
+      "sticker": "raccoon",
+      "kind": "action",
+      "description": "the raccoon rubs its paws, then hides its eyes behind them, peeks through its fingers and flings them open for a big 'boo!', giggling.",
+      "base": "its feet",
+      "pause": {
+        "frame": 12,
+        "shows": "the raccoon hiding its eyes behind its paws"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Rubbing its paws together, a sly smile.",
+            "Rubbing its paws again.",
+            "The paws lifting toward its face.",
+            "The paws covering its eyes.",
+            "Hiding its eyes behind its paws, a grin below them.",
+            "Hiding.",
+            "Hiding, the tail swishing.",
+            "Hiding, still.",
+            "Hiding.",
+            "Hiding, still.",
+            "Hiding its eyes behind both paws, a big grin below them."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Peeking through its fingers with one eye.",
+            "Hiding again.",
+            "The paws flinging open wide: boo!",
+            "Boo: arms wide, mouth open in a big grin, eyes bright.",
+            "Giggling, eyes squeezed shut, paws on its tummy.",
+            "Giggling, leaning back a little.",
+            "Giggling, straightening up.",
+            "A big happy smile.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.7,
+        0.25,
+        0.2,
+        0.06,
+        0.3,
         0.15,
+        0.12,
+        0.12,
+        0.15,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "walk",
+      "sticker": "raccoon",
+      "kind": "move",
+      "description": "the raccoon walks along to the right on all fours, its ringed tail swaying, then sits up.",
+      "base": "its feet",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.55,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Walking to the right, turned three-quarters toward the right: the front leg nearest us reaching forward, the back leg nearest us pushing back and its ringed tail swaying.",
+            "The front leg nearest us planted, the body moving over it; the far legs swinging.",
+            "Legs passing under the body, the body at its highest, head bobbing up a little.",
+            "The far front leg reaching forward, the near back leg reaching forward.",
+            "The far front leg planted, the near back leg planted, the body moving over them.",
+            "Legs passing under the body again, the body at its highest.",
+            "The near front leg lifting to reach forward again.",
+            "Almost as frame 2, about to step again (leading back into frame 2).",
+            "Stopping and sitting up.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.14,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "hide",
+      "sticker": "snail",
+      "kind": "action",
+      "description": "the snail pulls its head and eye stalks into its shell, waits there, then slowly peeks out again and looks around. Its only eyes are the ones at the tips of its eye stalks, exactly as in the reference: its face never has eyes, just rosy cheeks and a smile.",
+      "story": "the snail pulls its head and eye stalks into its shell, waits there, then slowly peeks out again and looks around.",
+      "base": "the swirly shell",
+      "register": "body",
+      "pause": {
+        "frame": 12,
+        "shows": "the snail hidden inside its shell: only the shell shows"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference: gliding along, eye stalks up, a tiny smile.",
+            "The eye stalks dip a little and the eyes at their tips go wide: something startled it.",
+            "The eye stalks bend down and get shorter; the head begins to draw back toward the shell's opening.",
+            "The eye stalks half their length; the head and neck drawing back, the front of the soft body shorter.",
+            "The eye stalks short stubs; the head halfway back to the shell's opening; the tail end of the foot sliding in under the shell.",
+            "The eye stalks tiny nubs; the head right at the shell's opening; the soft body mostly gone under the shell.",
+            "Only the top of the green head still shows at the shell's opening; the foot almost all in.",
+            "Just a small curve of green at the shell's opening.",
+            "The last sliver of green slipping into the shell.",
+            "The shell alone, resting on the ground where it was, no body showing at all.",
+            "The shell alone, exactly as in frame 10.",
+            "The shell alone, exactly as in frame 10: the snail is hidden inside."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "The shell alone, exactly as the last frame of the previous sheet: the snail hidden inside.",
+            "A tiny tip of green head peeks out of the shell's opening.",
+            "The head halfway out, two tiny eye-stalk nubs appearing.",
+            "The head out, the eye stalks growing a little; the foot sliding out under the shell.",
+            "The eye stalks half grown, the eyes at their tips peeking out to the right.",
+            "The eye stalks almost full length, the foot out along the ground again.",
+            "The eye stalks full length, the eyes at their tips looking to the left, curious.",
+            "The eye stalks turned, the eyes looking to the right.",
+            "The eye stalks straight, the eyes looking at the viewer, the smile a little bigger.",
+            "The body settling, the stalks easing back.",
+            "Almost exactly as in the reference.",
+            "Exactly as in the reference: gliding along, eye stalks up, a tiny smile."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.15,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.12,
+        0.12,
+        0.8,
+        0.25,
+        0.15,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.3,
+        0.3,
+        0.3,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "crawl",
+      "sticker": "snail",
+      "kind": "move",
+      "description": "the snail glides forward to the right on its foot, a gentle ripple running along it, eye stalks bobbing, then stops and settles. Its only eyes are the ones at the tips of its eye stalks, exactly as in the reference.",
+      "story": "the snail glides along on its foot, eye stalks bobbing, and settles.",
+      "base": "the swirly shell",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.35,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Gliding right: the head and neck stretched a little forward, eye stalks leaning forward.",
+            "The head stretched a touch further; a small ripple rises at the tail end of the foot.",
+            "The ripple halfway along the foot under the shell; the shell tipped forward very slightly.",
+            "The ripple near the front of the foot; the head easing back to normal; the stalks upright.",
+            "The head at its normal length, the shell level, the eye stalks bobbing up a little.",
+            "The tail end of the foot drawn forward, the foot a little shorter; the stalks leaning back a little.",
+            "The foot gathered under the shell, the shell level, the stalks upright.",
+            "Almost as frame 2, about to stretch forward again.",
+            "Stopping: the foot relaxed and still, the stalks upright.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.12,
+        0.15,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "hide-nut",
+      "sticker": "squirrel",
+      "kind": "action",
+      "description": "the squirrel nibbles its hazelnut, looks left and right to check nobody is watching, hides the nut behind its back with an innocent look, then brings it out and hugs it.",
+      "base": "its sitting bottom and feet",
+      "pause": {
+        "frame": 12,
+        "shows": "the squirrel with the nut hidden behind its back, looking innocent"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Lifting the hazelnut to its mouth.",
+            "Nibbling the nut.",
+            "Nibbling, cheeks round.",
+            "Looking to the left, holding the nut.",
+            "Looking to the right.",
+            "Looking ahead, a sly smile.",
+            "Moving the nut behind its back.",
+            "The nut hidden behind its back, paws behind it.",
+            "Innocent look: eyes up, whistling mouth.",
+            "Innocent look, the tail swishing.",
+            "The nut hidden behind its back, paws behind it, an innocent look."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "A little giggle.",
+            "Bringing the nut out from behind its back.",
+            "Holding the nut up.",
+            "Hugging the nut to its chest, eyes closed happily.",
+            "Hugging it, swaying.",
+            "Hugging it, swaying back.",
+            "Eyes opening, beaming.",
+            "Holding the nut as in the reference.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.1,
+        0.1,
+        0.12,
+        0.2,
+        0.2,
+        0.2,
+        0.1,
+        0.15,
+        0.25,
+        0.2,
+        0.7,
+        0.15,
+        0.1,
+        0.12,
+        0.2,
+        0.15,
+        0.15,
+        0.15,
+        0.12,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "scamper",
+      "sticker": "squirrel",
+      "kind": "move",
+      "description": "the squirrel bounds along to the left, its big bushy tail waving, then sits up with its nut.",
+      "base": "its body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.8,
+      "hops": true,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Crouched, turned toward the left, back legs coiled, nut in its mouth, tail up.",
+            "Pushing off, body stretching left.",
+            "Mid-bound, stretched long, the tail streaming behind in a curve.",
+            "The front paws reaching down.",
+            "Landing on the front paws, the back legs swinging under.",
+            "All four paws down, the tail curling up.",
+            "Gathered, about to bound again.",
+            "Crouched and coiled again (leading back into frame 2).",
+            "Stopping, sitting up with the nut in its paws.",
+            "Settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.07,
+        0.15,
+        0.16,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "tap",
+      "sticker": "woodpecker",
+      "kind": "action",
+      "description": "the woodpecker taps its beak against the bark, tap-tap-tap, with little wood chips flying, then presses its eye close to listen for bugs, then taps once more and chirps happily.",
+      "base": "its feet",
+      "pause": {
+        "frame": 12,
+        "shows": "the woodpecker listening, head tilted, one eye close to where it tapped"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Head drawn back, ready to tap.",
+            "Beak forward: a tap, a tiny puff of wood dust at its tip.",
+            "Head drawn back.",
+            "Beak forward: a tap, two small wood chips flying.",
+            "Head drawn back.",
+            "Beak forward: a tap, one small wood chip flying.",
+            "Head drawn back, looking at the spot.",
+            "Head tilting, the eye turning toward the spot.",
+            "The head tilted, the eye close to where it tapped, listening.",
+            "Listening, perfectly still.",
+            "Head tilted with one eye close to where it tapped, listening for bugs."
+          ],
+          "hint": "Keep its upright clinging pose in every frame, as if on an upright trunk that is not drawn: only the head, beak and neck move for the taps."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Eyes wide: it heard something.",
+            "Head drawn back.",
+            "One more tap, a single chip flying.",
+            "Head drawn back, delighted.",
+            "Wings lifting a little, shaking off the dust.",
+            "Wings settled, turned to us with a happy chirp, beak a little open.",
+            "The beak closing, cheerful.",
+            "Turning back to face left.",
+            "Almost the reference pose.",
+            "Nearly exactly as the reference.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.3,
+        0.1,
+        0.07,
+        0.1,
+        0.07,
+        0.1,
+        0.07,
+        0.15,
+        0.12,
+        0.2,
+        0.2,
+        0.7,
+        0.2,
+        0.1,
+        0.07,
+        0.15,
+        0.12,
+        0.25,
+        0.12,
+        0.12,
+        0.1,
+        0.1,
+        0.1,
+        0.3
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "fly",
+      "sticker": "woodpecker",
+      "kind": "move",
+      "description": "the woodpecker flies along to the left with bouncy wingbeats, then lands clinging upright.",
+      "base": "its body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 1.2,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the reference.",
+            "Flying to the left: body tilted a little forward, feet tucked, wings raised high.",
+            "Wings coming down, halfway.",
+            "Wings level, spread wide.",
+            "Wings pushed down low under the body.",
+            "Wings coming back up, halfway, slightly folded.",
+            "Wings level again, rising.",
+            "Wings raised high again.",
+            "Wings at the top, about to come down (leading back into frame 2).",
+            "Swooping up, wings spread, feet reaching forward to cling.",
+            "Clinging upright, wings folding, settling into the reference pose.",
+            "Exactly as in the reference."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.14,
+        0.16,
         0.3
       ],
       "restFrames": [
