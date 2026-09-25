@@ -152,11 +152,12 @@ struct EffectsGalleryView: View {
                 }
                 scene.playCanvas(groups.filter { !$0.isEmpty })
             }
-            // `-liveDemo [sticker]`: loop a live animation on its sticker (the
-            // first one, or the named sticker's).
+            // `-liveDemo [sticker | sticker.animation]`: loop a live animation
+            // on its sticker (the first one, the named sticker's first, or
+            // the named one); a move travels 3 s each time round.
             if let index = arguments.firstIndex(of: "-liveDemo"),
                 let animation = animations.first(where: {
-                    index + 1 < arguments.count ? $0.sticker == arguments[index + 1] : true
+                    index + 1 < arguments.count ? $0.sticker == arguments[index + 1] || $0.key == arguments[index + 1] : true
                 }) ?? animations.first
             {
                 stickerID = animation.sticker

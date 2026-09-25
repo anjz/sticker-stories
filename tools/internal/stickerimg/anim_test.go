@@ -205,3 +205,53 @@ func TestAnimationBringsEverySheetToTheRestSize(t *testing.T) {
 		}
 	}
 }
+
+// flyer draws a body with a pattern (so a match has something to hold on
+// to) and a wing that sweeps from one side to the other, the whole thing
+// shifted by (dx, dy) in its cell — the generator's placement wanders.
+func flyer(wing, dx, dy int) *image.RGBA {
+	img := image.NewRGBA(image.Rect(0, 0, 300, 300))
+	for y := 0; y < 300; y++ {
+		for x := 0; x < 300; x++ {
+			bx, by := x-dx, y-dy
+			switch {
+			case bx >= 110 && bx < 190 && by >= 120 && by < 200:
+				img.SetRGBA(x, y, color.RGBA{uint8(bx), uint8(by), 120, 255})
+			case bx >= 150+wing-20 && bx < 150+wing+20 && by >= 80 && by < 120:
+				img.SetRGBA(x, y, color.RGBA{250, 250, 250, 255})
+			}
+		}
+	}
+	return img
+}
+
+func TestAnimationMatchesMovingFramesOnTheirBody(t *testing.T) {
+	cells := []*image.RGBA{
+		flyer(0, 0, 0), flyer(-30, 12, -7), flyer(-10, -9, 5), flyer(20, 6, 10), flyer(30, -4, -8), flyer(0, 0, 0),
+	}
+	sheet, err := Animation(cells, AnimOptions{StickerSize: 300, Border: 0.01, Margin: 0.01, Threshold: 8, Columns: 6, Register: RegisterBody, Loop: [2]int{1, 4}})
+	if err != nil {
+		t.Fatal(err)
+	}
+	// The body's top-left corner (its darkest red) is in the same spot in every frame.
+	var at []image.Point
+	for i := 0; i < sheet.Count; i++ {
+		frame := image.Rect(i*sheet.Frame.X, 0, (i+1)*sheet.Frame.X, sheet.Frame.Y)
+		found := image.Pt(-1, -1)
+		for y := frame.Min.Y; y < frame.Max.Y && found.X < 0; y++ {
+			for x := frame.Min.X; x < frame.Max.X; x++ {
+				c := sheet.Image.RGBAAt(x, y)
+				if c.A == 255 && c.B == 120 && c.R < 115 && c.G < 125 {
+					found = image.Pt(x-frame.Min.X, y)
+					break
+				}
+			}
+		}
+		at = append(at, found)
+	}
+	for i, p := range at {
+		if d := p.Sub(at[0]); abs(d.X) > 2 || abs(d.Y) > 2 {
+			t.Errorf("frame %d body at %v, frame 0 at %v", i, p, at[0])
+		}
+	}
+}

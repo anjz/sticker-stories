@@ -1,7 +1,8 @@
 // Command stickeranim produces frame animations ("live" stickers) for a
 // pack's stickers with the OpenAI Images API and installs them into the
-// pack (docs/pack-format.md, "Live animations"). The app's developer
-// gallery plays them; stories do not trigger them yet.
+// pack (docs/pack-format.md, "Live animations"): each sticker's action,
+// which stories cue (whole, or held on its pause frame and resumed), and
+// its move — the walk, hop, flight or sprout its entrance plays.
 //
 // Usage:
 //
@@ -52,7 +53,7 @@ const (
 	toolVersion = "1"
 	// assembleVersion changes whenever the registration or finishing of
 	// kept raw sheets changes, so they are re-assembled without new calls.
-	assembleVersion = "10"
+	assembleVersion = "14"
 	editModel       = "gpt-image-2.5-sunburst"
 	defaultQual     = "high"
 	defaultHold     = 1.0 / 12
@@ -70,6 +71,11 @@ type artConfig struct {
 	Stickers    []struct {
 		ID     string `json:"id"`
 		Prompt string `json:"prompt"`
+		// Prop is what stickerart removed from the sticker (a lily pad): the
+		// frames are drawn without it, from the art without it.
+		Prop *struct {
+			Remove string `json:"remove"`
+		} `json:"prop,omitempty"`
 	} `json:"stickers"`
 }
 
@@ -86,6 +92,11 @@ type animConfig struct {
 	// (4096; the frames are downscaled uniformly to fit).
 	Columns    int        `json:"columns"`
 	MaxSheet   int        `json:"maxSheet"`
+	// StickerPx is the resolution the frames are drawn at, as the size of
+	// the sticker they would make (the rest frame's art fills a sticker
+	// this big): 512 is plenty for a sticker on screen, and a sheet's
+	// texture memory goes with its square. 0 = the pack's sticker size.
+	StickerPx  int        `json:"stickerPx,omitempty"`
 	Animations []animSpec `json:"animations"`
 	Notes      any        `json:"notes,omitempty"`
 }
@@ -121,6 +132,46 @@ type animSpec struct {
 	// bottom in every pose (a lily pad, a perch); feet, a curling body or
 	// spread wings make the measure jump and the frame pop in size.
 	Normalize bool `json:"normalize,omitempty"`
+	// Kind is "action" (the default: a moment stories cue) or "move" (how
+	// the character gets about; its entrance plays it).
+	Kind string `json:"kind,omitempty"`
+	// Pause (actions) is the 1-based frame the action can stop on and what
+	// it shows there, for story authors ({snail:live hold}).
+	Pause *struct {
+		Frame int    `json:"frame"`
+		Shows string `json:"shows"`
+	} `json:"pause,omitempty"`
+	// Loop (moves) is the 1-based run of frames repeated while the
+	// character travels; Facing the way they travel (left/right), Stride
+	// how far one loop carries it in sticker widths, Hops that the loop
+	// is a hop drawn in place (the app adds the arc).
+	Loop *struct {
+		From int `json:"from"`
+		To   int `json:"to"`
+	} `json:"loop,omitempty"`
+	Facing string  `json:"facing,omitempty"`
+	Stride float64 `json:"stride,omitempty"`
+	Hops   bool    `json:"hops,omitempty"`
+	// Register is how frames are laid on each other: "feet" (the default:
+	// each frame matched on the one before, its bottom kept on one ground
+	// line — a character sitting or walking), "body" (matched both ways —
+	// a flight, or the snail whose body goes into its shell) or "base"
+	// (on the base row, without matching: the old way, for a lily pad).
+	Register string `json:"register,omitempty"`
+}
+
+func (a animSpec) kind() string {
+	if a.Kind == "" {
+		return manifest.KindAction
+	}
+	return a.Kind
+}
+
+func (a animSpec) register() string {
+	if a.Register != "" {
+		return a.Register
+	}
+	return stickerimg.RegisterFeet
 }
 
 func (a animSpec) normalize() bool { return a.Normalize }
@@ -253,6 +304,29 @@ func load(packDir, artDir string) (*ctxt, error) {
 				return nil, fmt.Errorf("anim.json: %s: restFrames entry %d is out of 1–%d", a.key(), f, a.frameCount())
 			}
 		}
+		switch a.kind() {
+		case manifest.KindAction:
+			if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops {
+				return nil, fmt.Errorf("anim.json: %s: loop, facing, stride and hops are for moves", a.key())
+			}
+			if a.Pause != nil && (a.Pause.Frame < 2 || a.Pause.Frame > a.frameCount()-1 || strings.TrimSpace(a.Pause.Shows) == "") {
+				return nil, fmt.Errorf("anim.json: %s: pause needs a middle frame (2–%d) and what it shows", a.key(), a.frameCount()-1)
+			}
+		case manifest.KindMove:
+			if a.Pause != nil {
+				return nil, fmt.Errorf("anim.json: %s: pause is for actions", a.key())
+			}
+			if l := a.Loop; l != nil && (l.From < 2 || l.To < l.From || l.To > a.frameCount()) {
+				return nil, fmt.Errorf("anim.json: %s: loop must be frames within 2–%d (frame 1 is the rest pose)", a.key(), a.frameCount())
+			}
+		default:
+			return nil, fmt.Errorf("anim.json: %s: kind %q must be action or move", a.key(), a.Kind)
+		}
+		switch a.register() {
+		case stickerimg.RegisterBase, stickerimg.RegisterBody, stickerimg.RegisterFeet:
+		default:
+			return nil, fmt.Errorf("anim.json: %s: register %q must be base, feet or body", a.key(), a.Register)
+		}
 	}
 	return c, nil
 }
@@ -278,6 +352,9 @@ func (c *ctxt) stickerImage(id string) string {
 func (c *ctxt) stickerPrompt(id string) string {
 	for _, s := range c.art.Stickers {
 		if s.ID == id {
+			if s.Prop != nil {
+				return fmt.Sprintf("%s (The sticker no longer has %s: the reference shows the character on its own, and so do the frames — nothing under it.)", s.Prompt, s.Prop.Remove)
+			}
 			return s.Prompt
 		}
 	}
@@ -446,8 +523,13 @@ func (r *renderer) done(path, fp string) {
 	os.WriteFile(r.out("render.json"), append(data, '\n'), 0o644)
 }
 
-// rawPath is where stickerart keeps the sticker's raw art (no border).
+// rawPath is where stickerart keeps the sticker's raw art (no border):
+// without its prop when stickerart removed one.
 func (r *renderer) rawPath(stickerID string) string {
+	noprop := filepath.Join(r.c.artDir, "out", "stickers", stickerID+".noprop.png")
+	if exists(noprop) {
+		return noprop
+	}
 	return filepath.Join(r.c.artDir, "out", "stickers", stickerID+".raw.png")
 }
 
@@ -541,7 +623,7 @@ func (r *renderer) animation(a animSpec) error {
 			hold[i] = defaultHold
 		}
 	}
-	asmFP := hashOf(append([]string{assembleVersion, hashFile(stickerPath), hashFile(r.rawPath(a.Sticker)), fmt.Sprint(r.c.cfg.Columns, r.c.cfg.MaxSheet, art.StickerSize, art.Border, art.Margin, art.finish(), hold, a.RestFrames, a.normalize(), a.restFromSticker())}, genFPs...)...)
+	asmFP := hashOf(append([]string{assembleVersion, hashFile(stickerPath), hashFile(r.rawPath(a.Sticker)), fmt.Sprint(r.c.cfg.Columns, r.c.cfg.MaxSheet, r.c.cfg.StickerPx, art.StickerSize, art.Border, art.Margin, art.finish(), hold, a.RestFrames, a.normalize(), a.restFromSticker(), a.register(), a.Loop, a.kind(), a.Pause, a.Facing, a.Stride, a.Hops, a.Story)}, genFPs...)...)
 	sheetPath, jsonPath := r.out(a.key()+".png"), r.out(a.key()+".json")
 	if !changed && r.upToDate(sheetPath, asmFP) && r.upToDate(jsonPath, asmFP) {
 		r.say("· %s assembled sheet up to date", a.key())
@@ -573,7 +655,16 @@ func sheetPrompt(style, sticker string, a animSpec, sh sheetSpec, first, total i
 	for i, f := range sh.Frames {
 		fmt.Fprintf(&b, "%d. %s\n", first+i, strings.TrimSpace(f))
 	}
-	fmt.Fprintf(&b, "\nRules: draw every frame at exactly the same scale, with %s the same size and in the same place in every cell — centred horizontally and resting on the bottom part of the cell — so that only the character moves relative to it. Keep each frame well inside its own cell with clear empty space around it: nothing touches or crosses a cell boundary, and the frames are spaced evenly. No grid lines, no cell borders, no boxes, no numbers, no labels, no text, no ground shadow, no background — a fully transparent background everywhere except the drawing itself.", a.Base)
+	if a.kind() == manifest.KindMove && a.Loop != nil {
+		fmt.Fprintf(&b, "\nFrames %d–%d are one seamless cycle: frame %d follows on from frame %d exactly, so they can repeat for ever. The character moves in place, as if on a treadmill: it does not travel across its cell.", a.Loop.From, a.Loop.To, a.Loop.From, a.Loop.To)
+	}
+	if a.kind() == manifest.KindMove {
+		b.WriteString(" Draw the character small in its cell — about half the cell's width at rest — so that even its most stretched pose (legs out, wings spread) stays well inside the cell.")
+	}
+	if continued {
+		b.WriteString(" The first frame of this sheet shows exactly the same pose, at exactly the same size, as the last frame of the previous sheet.")
+	}
+	fmt.Fprintf(&b, "\nRules: draw every frame at exactly the same scale, with %s the same size and in the same place in every cell — centred horizontally and resting on the bottom part of the cell — so that only the character moves relative to it. Consecutive frames are close together — each one a small step on from the one before — so the animation plays smoothly. Keep each frame well inside its own cell with clear empty space around it: nothing touches or crosses a cell boundary, and the frames are spaced evenly. No grid lines, no cell borders, no boxes, no numbers, no labels, no text, no ground, no shadow, no background — a fully transparent background everywhere except the drawing itself.", a.Base)
 	if h := strings.TrimSpace(sh.Hint); h != "" {
 		fmt.Fprintf(&b, " %s", h)
 	}
@@ -601,6 +692,11 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 	opts := stickerimg.AnimOptions{
 		StickerSize: art.StickerSize, Border: art.Border, Margin: art.Margin, Threshold: 8, Finish: &finish,
 		Columns: r.c.cfg.Columns, MaxSheet: r.c.cfg.MaxSheet, Normalize: a.normalize(),
+		Register: a.register(), SheetsContinue: len(a.Sheets) > 1,
+	}
+	opts.Resolution = r.c.cfg.StickerPx
+	if a.Loop != nil {
+		opts.Loop = [2]int{a.Loop.From - 1, a.Loop.To - 1}
 	}
 	for _, s := range a.Sheets {
 		opts.SheetSizes = append(opts.SheetSizes, len(s.Frames))
@@ -631,6 +727,16 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 		return err
 	}
 	out := manifest.StickerAnimation{ID: a.ID, Sticker: a.Sticker, Description: a.storyDescription(), Sheet: "anims/" + a.key() + ".webp", Columns: sheet.Columns, Count: sheet.Count, Hold: hold}
+	if a.kind() == manifest.KindMove {
+		out.Kind = manifest.KindMove
+		if a.Loop != nil {
+			out.Loop = &manifest.FrameRange{From: a.Loop.From - 1, To: a.Loop.To - 1}
+			out.Facing, out.Stride, out.Hops = a.Facing, a.Stride, a.Hops
+		}
+	}
+	if a.Pause != nil {
+		out.Pause = &manifest.AnimationPause{Frame: a.Pause.Frame - 1, Shows: strings.TrimSpace(a.Pause.Shows)}
+	}
 	out.Frame.Width, out.Frame.Height = sheet.Frame.X, sheet.Frame.Y
 	out.Rest = unit(sheet.Rest, sheet.Frame)
 	out.StickerBox = unit(stickerimg.Bounds(sticker, 0), sticker.Bounds().Size())
@@ -706,7 +812,14 @@ func runInstall(args []string) error {
 	packDir := fs.String("pack", "", "pack directory")
 	artDir := fs.String("art", "", "art directory (default author/art/<packID>)")
 	bump := fs.Bool("bump", false, "increment the pack's content version")
+	only := fs.String("only", "", "comma-separated animation or sticker ids to copy in (the rest keep what the pack has)")
 	fs.Parse(args)
+	wanted := map[string]bool{}
+	for _, id := range strings.Split(*only, ",") {
+		if id = strings.TrimSpace(id); id != "" {
+			wanted[id] = true
+		}
+	}
 	c, err := load(*packDir, *artDir)
 	if err != nil {
 		return err
@@ -720,8 +833,34 @@ func runInstall(args []string) error {
 	if data, err := os.ReadFile(filepath.Join(outDir, "render.json")); err == nil {
 		json.Unmarshal(data, &cache)
 	}
+	// The manifest declares exactly what anim.json lists, in its order: an
+	// animation taken out of anim.json leaves the pack (sheet and sidecar)
+	// — stories that still cue it fail validation until they are updated.
+	listed := map[string]bool{}
+	for _, a := range c.cfg.Animations {
+		listed["anims/"+a.key()+".json"] = true
+	}
+	for i := range c.pack.Stickers {
+		st := &c.pack.Stickers[i]
+		kept := st.Animations[:0]
+		for _, rel := range st.Animations {
+			if listed[rel] {
+				kept = append(kept, rel)
+				continue
+			}
+			fmt.Printf("remove %s (no longer in anim.json)\n", rel)
+			base := strings.TrimSuffix(filepath.Join(c.packDir, filepath.FromSlash(rel)), ".json")
+			os.Remove(base + ".json")
+			os.Remove(base + ".webp")
+			os.Remove(base + ".png")
+		}
+		st.Animations = kept
+	}
 	installed := 0
 	for _, a := range c.cfg.Animations {
+		if len(wanted) > 0 && !wanted[a.ID] && !wanted[a.Sticker] {
+			continue
+		}
 		src := filepath.Join(outDir, a.key())
 		if !exists(src+".png") || !exists(src+".json") {
 			fmt.Printf("skip %s: not rendered\n", a.key())
