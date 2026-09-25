@@ -66,7 +66,7 @@ reads it.
 | `lesson` | One line, for reviewers. The story must never state it. |
 | `learning` | Optional. The one small, true thing about the pack's world the story shows in passing ("Bees carry pollen from flower to flower"), for reviewers and the roster. About four stories in ten carry one (GUIDE "Learning"); the rest leave it empty or out. |
 | `languages` | One entry per pack language, **all of them**. Each has `title` (≤ 6 words, parent-facing) and `text`. Each language is written natively, not translated word for word; the same beats carry the same cues. |
-| `sounds` | Optional. The story's sound effects, by id: `prompt` describes the sound in plain words (concrete, "gentle rain tapping on big leaves"), `seconds` its length (0.5–30, default 2), `loop` true for an ambience bed. Cued in the text with `{sfx:id}` — see "Sound cues". |
+| `sounds` | Optional. The story's sound effects, by id: `prompt` describes the sound in plain words (concrete, "gentle rain tapping on big leaves"; for nature — wind, rain, water, birds — ask for the real thing, "realistic field recording", and keep "playful", "comic" and "cartoon" for comic sounds like a boing or a hiccup: "a playful breeze" and "a comic whoosh of wind" came back as a hum and a cartoon swoosh, not wind), `seconds` its length (0.5–30, default 2), `loop` true for an ambience bed. Cued in the text with `{sfx:id}` — see "Sound cues". |
 | `sound` | The older hint form, still accepted: `cue` is a word in the text, `note` describes a sound played on it. Prefer `sounds` + `{sfx:…}`. |
 
 ## Text and length
