@@ -35,6 +35,10 @@ public struct GoTrigger: Equatable, Sendable {
     /// by that side, to a place on that side of where it is, beside a
     /// sticker on that side of it. Only `to` and `away`.
     public var toward: Side?
+    /// Not from a story but from the app (`PlacementPlanner`): taking a
+    /// sticker to where an action of its must happen — skipped when it is
+    /// there already.
+    public var unlessThere: Bool
 
     public enum Side: String, Equatable, Sendable {
         case left, right
@@ -42,8 +46,9 @@ public struct GoTrigger: Equatable, Sendable {
 
     public init(
         at: TimeInterval, cue: String? = nil, stickerID: String, kind: Kind, target: String? = nil, by: String? = nil,
-        toward: Side? = nil
+        toward: Side? = nil, unlessThere: Bool = false
     ) {
+        self.unlessThere = unlessThere
         self.at = at
         self.cue = cue
         self.stickerID = stickerID
@@ -342,9 +347,10 @@ public enum MotionPlanner {
                 groups[key] = members
                 relayout(key, start: start, mover: index)
             } else if let destination = destination(go, for: index, random: &random) {
+                if go.unlessThere, arrived(index, at: destination.point, facing: destination.face) { return }
                 leg(
                     index, to: destination.point, scale: destination.scale, visible: destination.visible, start: start,
-                    stacking: destination.stacking)
+                    stacking: destination.stacking, face: destination.face)
             }
             if let left, left != groupKey(of: index) { relayout(left, start: start, mover: nil) }
         }
@@ -408,6 +414,22 @@ public enum MotionPlanner {
             }
         }
 
+        /// Whether it is already where a move would take it (within a
+        /// fifth of its width), facing the way it would face there.
+        func arrived(_ index: Int, at point: StagePoint, facing face: StageMove.Facing?) -> Bool {
+            let state = states[index]
+            let close = distance(state.center, point) < state.actor.size.width * 0.2 && abs(state.scale - 1) < 0.01
+            guard close, let face, let facing = sign(face, for: index) else { return close }
+            return (facing > 0) == (state.facing > 0)
+        }
+
+        /// The facing value (+1 its art's own way, -1 mirrored) that turns
+        /// it `face`, when its art's way is known (its usual move's).
+        func sign(_ face: StageMove.Facing, for index: Int) -> Double? {
+            guard let art = moves[states[index].actor.stickerID]?.first?.facing else { return nil }
+            return art == face ? 1 : -1
+        }
+
         /// The move it goes by now (the one the story names, else its
         /// usual one) and whether that way flies.
         func way(_ index: Int) -> (move: StageMove?, flies: Bool) {
@@ -423,7 +445,7 @@ public enum MotionPlanner {
         /// in the scene, off the canvas, back home.
         mutating func destination<R: RandomNumberGenerator>(
             _ go: GoTrigger, for index: Int, random: inout R
-        ) -> (point: StagePoint, scale: Double, visible: Bool, stacking: MotionLeg.Stacking)? {
+        ) -> (point: StagePoint, scale: Double, visible: Bool, stacking: MotionLeg.Stacking, face: StageMove.Facing?)? {
             let state = states[index]
             let me = state.actor
             let others = states.indices.filter { $0 != index && states[$0].visible }
@@ -456,6 +478,11 @@ public enum MotionPlanner {
                         }
                     }
                     guard !rects.isEmpty else { return nil }
+                    if let near = nearestContact(in: rects, for: index, elsewhere: !go.unlessThere) {
+                        // A place it faces into (a trunk's bark): the nearest
+                        // spot, its front on it, facing it.
+                        return (near.point, 1, true, .behind, near.face)
+                    }
                     let obstacles = others.map {
                         StageObstacle(
                             center: states[$0].center,
@@ -465,7 +492,7 @@ public enum MotionPlanner {
                     let radius = max(me.size.width, me.size.height) * StagePlanner.footprint
                     let point = (StagePlanner.freeSpot(in: rects, radius: radius, avoiding: obstacles, random: &random)
                         ?? StagePlanner.randomSpot(in: rects, random: &random)).point
-                    return (point, 1, true, .behind)
+                    return (point, 1, true, .behind, nil)
                 }
                 guard let other = nearest(name, to: index) else { return nil }
                 let them = states[other]
@@ -492,18 +519,38 @@ public enum MotionPlanner {
                         : them.actor.flies && feetLevel > state.center.y + me.size.height
                             ? state.center.y : feetLevel)
                 states[index].at = key
-                return (point, 1, true, .onto(them.actor.id))
+                return (point, 1, true, .onto(them.actor.id), nil)
             case .away:
                 let side: Double = go.toward.map { $0 == .right ? 1 : -1 }
                     ?? (state.center.x < scene.visible.midX ? -1 : 1)
                 let x = side < 0 ? scene.visible.minX - me.size.width * 0.8 : scene.visible.maxX + me.size.width * 0.8
                 states[index].leftBy = side
-                return (StagePoint(x: x, y: state.center.y), 1, false, .behind)
+                return (StagePoint(x: x, y: state.center.y), 1, false, .behind, nil)
             case .back:
-                return (me.home, 1, true, .home)
+                return (me.home, 1, true, .home, nil)
             case .on, .under:
                 return nil
             }
+        }
+
+        /// The spot nearest to it on a place it faces into — its front on
+        /// the rect, its centre behind — or nil when `rects` are not such a
+        /// place. `elsewhere` (a story sending it to the place it is at:
+        /// "on to the next tree"): another area of the place, when there is
+        /// one.
+        func nearestContact(
+            in rects: [StageRect], for index: Int, elsewhere: Bool = false
+        ) -> (point: StagePoint, face: StageMove.Facing)? {
+            let state = states[index]
+            let spots = rects.compactMap { r -> (point: StagePoint, face: StageMove.Facing)? in
+                guard let face = r.facing else { return nil }
+                let edge = StagePoint(x: min(max(state.center.x, r.minX), r.maxX), y: min(max(state.center.y, r.minY), r.maxY))
+                return (StagePlanner.contact(edge, facing: face, width: state.actor.size.width,
+                                             front: scene.fronts[state.actor.stickerID]), face)
+            }
+            let others = spots.filter { distance($0.point, state.center) > state.actor.size.width * 0.5 }
+            let choice = elsewhere && !others.isEmpty ? others : spots
+            return choice.min { distance($0.point, state.center) < distance($1.point, state.center) }
         }
 
         /// Adds the leg that takes a sticker to `point`: the way it gets
@@ -511,7 +558,7 @@ public enum MotionPlanner {
         /// goes (not for a little shuffle to make room).
         mutating func leg(
             _ index: Int, to point: StagePoint, scale: Double, visible: Bool, start: TimeInterval, shuffle: Bool = false,
-            stacking: MotionLeg.Stacking = .behind
+            stacking: MotionLeg.Stacking = .behind, face: StageMove.Facing? = nil
         ) {
             let state = states[index]
             let me = state.actor
@@ -532,7 +579,8 @@ public enum MotionPlanner {
             }
             let dx = target.x - from.x, dy = target.y - from.y
             let widths = (dx * dx + dy * dy).squareRoot() / max(me.size.width, 1)
-            guard widths > 0.05 || abs(scale - state.scale) > 0.01 || visible != state.visible else { return }
+            let turns = face.flatMap { sign($0, for: index) }.map { ($0 > 0) != (state.facing > 0) } ?? false
+            guard widths > 0.05 || abs(scale - state.scale) > 0.01 || visible != state.visible || turns else { return }
 
             let (move, flies) = way(index)
             var gait: MotionLeg.Gait
@@ -554,6 +602,9 @@ public enum MotionPlanner {
             if !shuffle, let way = move?.facing, abs(dx) > me.size.width * 0.1, gait != .fade {
                 facing = (way == .right) == (dx > 0) ? 1 : -1
             }
+            // Onto a place it faces into: facing it when it gets there,
+            // whichever way it came.
+            if let face, let sign = sign(face, for: index) { facing = sign }
             let base = me.home
             let spot = { (p: StagePoint, s: Double, visible: Bool) in
                 MotionSpot(

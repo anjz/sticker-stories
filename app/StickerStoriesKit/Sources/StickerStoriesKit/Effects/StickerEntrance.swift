@@ -38,12 +38,16 @@ public struct StageRect: Equatable, Sendable {
     public var minY: Double
     public var maxX: Double
     public var maxY: Double
+    /// A place a character faces into (a trunk's bark): the rect is where
+    /// its front goes, and it faces this way (`StickerStage.Area.facing`).
+    public var facing: StageMove.Facing?
 
-    public init(minX: Double, minY: Double, maxX: Double, maxY: Double) {
+    public init(minX: Double, minY: Double, maxX: Double, maxY: Double, facing: StageMove.Facing? = nil) {
         self.minX = minX
         self.minY = minY
         self.maxX = maxX
         self.maxY = maxY
+        self.facing = facing
     }
 
     public var midX: Double { (minX + maxX) / 2 }
@@ -296,16 +300,22 @@ public enum StagePlanner {
         /// Each sticker's rendered size at scale 1, when known; a sticker
         /// without one is a `stickerSize` square.
         public var sizes: [String: StageSize]
+        /// How far each sticker's art reaches from its centre toward the way
+        /// it faces (its beak), as a fraction of its rendered width; 0.4
+        /// when unknown. Puts a character's front, not its centre, on a place
+        /// it faces into.
+        public var fronts: [String: Double]
 
         public init(
             world: StageRect, usable: StageRect, visible: StageRect, stickerSize: Double,
-            sizes: [String: StageSize] = [:]
+            sizes: [String: StageSize] = [:], fronts: [String: Double] = [:]
         ) {
             self.world = world
             self.usable = usable
             self.visible = visible
             self.stickerSize = stickerSize
             self.sizes = sizes
+            self.fronts = fronts
         }
 
         func size(of stickerID: String) -> StageSize {
@@ -348,7 +358,11 @@ public enum StagePlanner {
                 landing = freeSpot(in: rects, radius: radius, avoiding: obstacles, random: &random)
                 if landing != nil { break }
             }
-            let (target, rect) = landing ?? randomSpot(in: choices[0], random: &random)
+            var (target, rect) = landing ?? randomSpot(in: choices[0], random: &random)
+            if let facing = rect.facing {
+                target = contact(target, facing: facing, width: scene.size(of: entrance.stickerID).width,
+                                 front: scene.fronts[entrance.stickerID])
+            }
             obstacles.append(StageObstacle(center: target, radius: radius))
             plans.append(
                 path(
@@ -379,12 +393,23 @@ public enum StagePlanner {
         return out
     }
 
-    /// The part of `area` that is on screen, or nil when none of it is.
+    /// Where a character's centre goes to put its front (a beak) on
+    /// `point`, facing `facing`: `front` of its width behind it.
+    public static func contact(_ point: StagePoint, facing: StageMove.Facing, width: Double, front: Double?) -> StagePoint {
+        let reach = (front ?? 0.4) * width
+        return StagePoint(x: point.x + (facing == .left ? reach : -reach), y: point.y)
+    }
+
+    /// The part of `area` that is on screen, or nil when none of it is. An
+    /// area a character faces into holds its front, its centre further in,
+    /// so it only has to be on screen, not inset.
     static func visibleRect(for area: StickerStage.Area, in scene: Scene) -> StageRect? {
         let w = scene.world, width = w.maxX - w.minX, height = w.maxY - w.minY
+        let sides = area.facing == nil ? scene.usable : scene.visible
         let r = StageRect(
-            minX: max(w.minX + area.x[0] * width, scene.usable.minX), minY: max(w.minY + area.y[0] * height, scene.usable.minY),
-            maxX: min(w.minX + area.x[1] * width, scene.usable.maxX), maxY: min(w.minY + area.y[1] * height, scene.usable.maxY))
+            minX: max(w.minX + area.x[0] * width, sides.minX), minY: max(w.minY + area.y[0] * height, scene.usable.minY),
+            maxX: min(w.minX + area.x[1] * width, sides.maxX), maxY: min(w.minY + area.y[1] * height, scene.usable.maxY),
+            facing: area.facing)
         return r.minX <= r.maxX && r.minY <= r.maxY ? r : nil
     }
 
@@ -473,7 +498,9 @@ public enum StagePlanner {
     ) -> EntrancePlan {
         let size = scene.size(of: entrance.stickerID)
         let width = max(size.width, 1), height = max(size.height, 1)
-        let fromLeft = target.x < scene.visible.midX
+        // From the nearer side — or, onto a place it faces into (a trunk),
+        // from the side that has it arrive facing that way.
+        let fromLeft = area.facing.map { $0 == .right } ?? (target.x < scene.visible.midX)
         // Just out of sight, even at the bigger start size of a walker.
         let startX = fromLeft
             ? scene.visible.minX - width * (0.5 + depthScaleLimit) : scene.visible.maxX + width * (0.5 + depthScaleLimit)

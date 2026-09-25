@@ -67,10 +67,13 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     var hops: Bool?
     var flies: Bool?
     var on: [String]?
+    /// An action that happens in one place: the features it needs (the
+    /// woodpecker's tap: the trunks).
+    var place: [String]?
 
     private enum CodingKeys: String, CodingKey {
         case id, sticker, kind, sheet, frame, columns, count, rest, stickerBox, hold, pause, loop, facing, stride, hops,
-            flies, on
+            flies, on, place
     }
 
     init(from decoder: any Decoder) throws {
@@ -93,6 +96,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         hops = try? c.decodeIfPresent(Bool.self, forKey: .hops)
         flies = try? c.decodeIfPresent(Bool.self, forKey: .flies)
         on = try? c.decodeIfPresent([String].self, forKey: .on)
+        place = try? c.decodeIfPresent([String].self, forKey: .place)
     }
 
     var key: String { "\(sticker).\(id)" }

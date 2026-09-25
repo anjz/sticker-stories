@@ -160,7 +160,23 @@ func TestPerchedIsForActions(t *testing.T) {
 	m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) {
 		a.Kind, a.Perched, a.Loop, a.Facing, a.Stride = KindMove, true, &FrameRange{From: 1, To: 2}, "left", 0.5
 	})}
-	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "perched belong to an action") {
+	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "perched and place belong to an action") {
 		t.Errorf("a perched move: %v", errs)
+	}
+}
+
+func TestPlaceNamesFeatures(t *testing.T) {
+	dir := t.TempDir()
+	m := validManifest(t, dir)
+	m.Features = map[string]Feature{"trunks": {Description: "Bark.", Areas: []StageArea{{X: []float64{0.05, 0.06}, Y: []float64{0.5, 0.7}, Facing: "left"}}}}
+	m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) { a.Place = []string{"trunks"} })}
+	if errs := m.Validate(dir); len(errs) != 0 {
+		t.Errorf("an action on the trunks rejected: %v", errs)
+	}
+	m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) { a.Place = []string{"cliff"} })}
+	m.Features["trunks"].Areas[0].Facing = "up"
+	errs := fmt.Sprint(m.Validate(dir))
+	if !strings.Contains(errs, `place: "cliff" is not a feature`) || !strings.Contains(errs, "facing must be left or right") {
+		t.Errorf("a missing place and a bad facing: %v", errs)
 	}
 }

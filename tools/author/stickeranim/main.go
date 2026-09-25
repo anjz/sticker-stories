@@ -161,6 +161,9 @@ type animSpec struct {
 	// Perched (actions) says the character sits on something in it: a
 	// story lands a flyer before it plays it. Written at install too.
 	Perched bool `json:"perched,omitempty"`
+	// Place (actions) are the features it happens at (the woodpecker's
+	// tap: the trunks). Written at install too.
+	Place []string `json:"place,omitempty"`
 	// Register is how frames are laid on each other: "feet" (the default:
 	// each frame matched on the one before, its bottom kept on one ground
 	// line — a character sitting or walking), "body" (matched both ways —
@@ -743,7 +746,9 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 			out.Facing, out.Stride, out.Hops, out.Flies, out.On = a.Facing, a.Stride, a.Hops, a.Flies, a.On
 		}
 	}
-	out.Perched = a.kind() == manifest.KindAction && a.Perched
+	if a.kind() == manifest.KindAction {
+		out.Perched, out.Place = a.Perched, a.Place
+	}
 	if a.Pause != nil {
 		out.Pause = &manifest.AnimationPause{Frame: a.Pause.Frame - 1, Shows: strings.TrimSpace(a.Pause.Shows)}
 	}
@@ -896,7 +901,7 @@ func runInstall(args []string) error {
 			side.Flies, side.On = a.Flies, a.On
 		}
 		if a.kind() == manifest.KindAction {
-			side.Perched = a.Perched
+			side.Perched, side.Place = a.Perched, a.Place
 		}
 		data, _ := json.MarshalIndent(side, "", "  ")
 		if err := os.WriteFile(dst+".json", append(data, '\n'), 0o644); err != nil {
