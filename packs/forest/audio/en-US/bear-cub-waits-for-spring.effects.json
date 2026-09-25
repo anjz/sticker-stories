@@ -2,110 +2,112 @@
   "schema": 1,
   "triggers": [
     {
-      "at": 6.16,
+      "at": 6.41,
       "cue": "bear",
       "sticker": "bear",
       "enter": true
     },
     {
-      "at": 8.82,
+      "at": 7.63,
+      "cue": "i'm",
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 10.36,
       "cue": "badger",
       "sticker": "badger",
       "enter": true
     },
     {
-      "at": 9.6,
+      "at": 12.95,
+      "cue": "all",
       "sticker": "badger",
-      "effect": "pulse"
+      "expression": "surprised"
     },
     {
-      "at": 10.1,
-      "cue": "not",
-      "sticker": "bear",
-      "expression": "happy"
-    },
-    {
-      "at": 12.04,
-      "sticker": "bear",
-      "effect": "hop"
-    },
-    {
-      "at": 14.44,
+      "at": 16.58,
       "cue": "he",
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 25.59,
+      "cue": "the",
       "sticker": "bear",
       "effect": "shake",
       "intensity": 0.4
     },
     {
-      "at": 16.22,
+      "at": 28.45,
       "cue": "but",
       "sticker": "bear",
-      "animation": "nap"
+      "animation": "nap",
+      "mode": "hold"
     },
     {
-      "at": 25.26,
+      "at": 34.79,
       "cue": "badger",
-      "sticker": "bear",
-      "expression": "sleeping"
-    },
-    {
-      "at": 30.86,
-      "cue": "sleep",
       "sticker": "badger",
       "expression": "happy"
     },
     {
-      "at": 34.34,
+      "at": 35.06,
+      "cue": "tucked",
+      "sticker": "badger",
+      "effect": "hearts"
+    },
+    {
+      "at": 36.93,
       "cue": "all",
       "effect": "snow",
-      "duration": 9,
+      "duration": 10,
       "intensity": 0.6
     },
     {
-      "at": 41.71,
+      "at": 42.56,
       "cue": "then",
       "effect": "sunshine",
-      "duration": 12,
+      "duration": 16,
       "intensity": 0.8
     },
     {
-      "at": 43.95,
+      "at": 43.97,
       "cue": "bird",
       "sticker": "bird",
       "enter": true
     },
     {
-      "at": 44.26,
-      "cue": "landed",
+      "at": 46.1,
+      "cue": "he",
       "sticker": "bird",
-      "effect": "float",
-      "repeat": "loop",
-      "intensity": 0.3
+      "animation": "sing"
     },
     {
-      "at": 49.37,
-      "cue": "opened",
+      "at": 49.75,
+      "cue": "the",
       "sticker": "bear",
-      "expression": "surprised"
+      "animation": "nap",
+      "mode": "resume"
     },
     {
-      "at": 49.37,
-      "cue": "opened",
+      "at": 54.02,
+      "cue": "is",
       "sticker": "bear",
-      "effect": "hop",
-      "repeat": 2
+      "expression": "happy"
     },
     {
-      "at": 53.29,
+      "at": 56.32,
       "cue": "no",
       "sticker": "bird",
       "expression": "happy"
     },
     {
-      "at": 55.14,
+      "at": 58.42,
       "cue": "it's",
       "sticker": "bear",
-      "expression": "happy"
+      "effect": "hop",
+      "repeat": 2
     }
   ]
 }

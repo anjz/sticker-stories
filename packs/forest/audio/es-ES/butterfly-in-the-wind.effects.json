@@ -3,105 +3,122 @@
   "triggers": [
     {
       "at": 0,
-      "cue": "a",
+      "cue": "mariposa",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "mariposa",
       "sticker": "butterfly",
       "effect": "float",
       "repeat": "loop",
       "intensity": 0.4
     },
     {
-      "at": 3.15,
-      "cue": "mariposa",
-      "sticker": "butterfly",
-      "enter": true
-    },
-    {
-      "at": 4.68,
+      "at": 6.02,
       "cue": "flor",
       "sticker": "flower",
       "enter": true
     },
     {
-      "at": 5.32,
+      "at": 7.04,
+      "cue": "cada",
       "sticker": "flower",
-      "effect": "pulse"
+      "expression": "happy"
     },
     {
-      "at": 10.26,
+      "at": 10.08,
       "cue": "fiuuu",
       "effect": "wind",
-      "duration": 16,
+      "duration": 26,
       "intensity": 0.8
     },
     {
-      "at": 15.28,
+      "at": 14.72,
       "cue": "salió",
       "sticker": "butterfly",
       "effect": "spin"
     },
     {
-      "at": 21.71,
+      "at": 19.04,
       "cue": "flor",
       "sticker": "butterfly",
       "expression": "sad"
     },
     {
-      "at": 25.19,
+      "at": 21.29,
+      "cue": "flor",
+      "sticker": "flower",
+      "expression": "sad"
+    },
+    {
+      "at": 22.49,
+      "cue": "cerró",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 28.07,
       "cue": "ciervo",
       "sticker": "deer",
       "enter": true
     },
     {
-      "at": 26.31,
-      "cue": "estaba",
+      "at": 29.88,
+      "cue": "bajó",
       "sticker": "deer",
-      "effect": "pulse"
+      "animation": "graze"
     },
     {
-      "at": 28.53,
-      "cue": "posa",
+      "at": 37.44,
+      "cue": "pósate",
       "sticker": "deer",
       "expression": "happy"
     },
     {
-      "at": 39,
-      "cue": "paso",
+      "at": 41.52,
+      "cue": "juntó",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 49.8,
+      "cue": "contra",
       "sticker": "deer",
       "effect": "pulse",
       "repeat": 2
     },
     {
-      "at": 48.97,
-      "cue": "hasta",
+      "at": 55.82,
+      "cue": "flor",
       "sticker": "flower",
-      "expression": "surprised"
+      "animation": "close",
+      "mode": "resume"
     },
     {
-      "at": 51.95,
+      "at": 58.4,
+      "cue": "mariposa",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 64.06,
       "cue": "hola",
       "sticker": "butterfly",
       "expression": "happy"
     },
     {
-      "at": 51.95,
+      "at": 64.06,
       "cue": "hola",
       "sticker": "flower",
       "expression": "happy"
     },
     {
-      "at": 53.83,
-      "cue": "he",
-      "sticker": "flower",
-      "effect": "hearts"
-    },
-    {
-      "at": 53.83,
-      "cue": "he",
-      "sticker": "butterfly",
-      "effect": "hearts"
-    },
-    {
-      "at": 55.23,
+      "at": 67.62,
       "cue": "largo",
       "sticker": "deer",
       "effect": "glow"

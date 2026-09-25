@@ -4,6 +4,14 @@
     {
       "at": 0,
       "cue": "muy",
+      "sticker": "bee",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.4
+    },
+    {
+      "at": 0,
+      "cue": "muy",
       "sticker": "all",
       "expression": "sleeping"
     },
@@ -11,92 +19,98 @@
       "at": 0,
       "cue": "muy",
       "effect": "fog",
-      "duration": 16,
+      "duration": 18,
       "intensity": 0.6
     },
     {
-      "at": 19.24,
+      "at": 16.72,
+      "cue": "florecilla",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 19.85,
+      "cue": "cierra",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 22.72,
       "cue": "pajarito",
       "sticker": "bird",
       "enter": true
     },
     {
-      "at": 19.75,
+      "at": 24.55,
       "cue": "se",
       "sticker": "bird",
       "expression": "happy"
     },
     {
-      "at": 19.75,
-      "cue": "se",
+      "at": 25.5,
+      "cue": "hincha",
       "sticker": "bird",
-      "effect": "fade-in"
+      "animation": "sing"
     },
     {
-      "at": 20.65,
-      "cue": "se",
-      "sticker": "bird",
-      "effect": "hop"
-    },
-    {
-      "at": 24.17,
+      "at": 32.15,
       "cue": "abeja",
       "sticker": "bee",
       "enter": true
     },
     {
-      "at": 24.5,
-      "cue": "estira",
-      "sticker": "bee",
-      "effect": "float",
-      "repeat": "loop",
-      "intensity": 0.4
-    },
-    {
-      "at": 24.5,
-      "cue": "estira",
+      "at": 32.15,
+      "cue": "abeja",
       "sticker": "bee",
       "expression": "happy"
     },
     {
-      "at": 28.09,
-      "cue": "flor",
-      "sticker": "flower",
-      "enter": true
+      "at": 34.35,
+      "cue": "respira",
+      "sticker": "bee",
+      "animation": "hum"
     },
     {
-      "at": 28.34,
-      "cue": "levanta",
-      "sticker": "flower",
-      "effect": "pulse"
-    },
-    {
-      "at": 30.99,
-      "cue": "ya",
-      "sticker": "flower",
-      "expression": "surprised"
-    },
-    {
-      "at": 35.13,
+      "at": 45.11,
       "cue": "el",
       "effect": "sunshine",
       "duration": 14,
       "intensity": 0.9
     },
     {
-      "at": 40.23,
-      "cue": "el",
+      "at": 45.69,
+      "cue": "asoma",
       "sticker": "all",
-      "expression": "normal"
+      "effect": "glow"
     },
     {
-      "at": 46.33,
+      "at": 51.13,
+      "cue": "abre",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 53.52,
+      "cue": "pío",
+      "sticker": "bird",
+      "effect": "hop"
+    },
+    {
+      "at": 54.52,
+      "cue": "bzzz",
+      "sticker": "bee",
+      "effect": "shake"
+    },
+    {
+      "at": 56.78,
       "cue": "buenos",
       "sticker": "all",
       "expression": "happy"
     },
     {
-      "at": 46.33,
+      "at": 56.78,
       "cue": "buenos",
       "sticker": "all",
       "effect": "hop"
