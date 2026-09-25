@@ -514,4 +514,11 @@ the first six is a `CanvasEffectPainter` of its own in `Effects/Canvas/`,
 placing its sprites from the timeline time so it needs no emitter). The DEBUG-only gallery
 (Settings → Effects gallery in debug builds) plays every sticker effect on
 a real sticker at three intensities and every canvas effect over the pack's
-art, for tuning.
+art, for tuning. Its sibling, the story gallery (Settings → Story gallery), plays any
+story of any installed pack on an empty, unsaved canvas at 1×, 2× or 3×
+(`RateNarrator`: the narration through AVAudioEngine, pitch kept; the
+canvas follows the narration clock, the scene's actions and particles its
+`speed`), in either language — for checking stories and how the stickers
+behave in them. Launch arguments `-storyGallery [-storyGalleryPack forest]
+[-storyGalleryPlay <story id>] [-storyGallerySpeed 3]` open it on the
+simulator.

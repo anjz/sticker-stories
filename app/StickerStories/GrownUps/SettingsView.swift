@@ -4,15 +4,18 @@ import SwiftUI
 /// Parent settings, reached via the gear on the main menu and always behind
 /// the parental gate: the app + narration language, calm mode and restoring
 /// purchases.
-/// Debug builds also expose the effects gallery here.
+/// Debug builds also expose the effects and story galleries here.
 struct SettingsView: View {
     @Bindable var settings: AppSettings
     /// For restoring purchases (the store itself only sells).
     let store: StoreService
     /// A pack whose stickers the debug effects gallery can use.
     var galleryPack: LoadedPack? = nil
+    /// The installed packs the debug story gallery plays stories from.
+    var galleryPacks: [LoadedPack] = []
     @Environment(\.dismiss) private var dismiss
     @State private var isShowingGallery = false
+    @State private var isShowingStoryGallery = false
 
     /// nil = follow the device language.
     private let choices: [(override: String?, label: Text)] = [
@@ -111,6 +114,12 @@ struct SettingsView: View {
                             .fullScreenCover(isPresented: $isShowingGallery) {
                                 EffectsGalleryView(pack: galleryPack)
                             }
+                            developerRow(title: "Story gallery", symbol: "play.rectangle.on.rectangle") {
+                                isShowingStoryGallery = true
+                            }
+                            .fullScreenCover(isPresented: $isShowingStoryGallery) {
+                                StoryGalleryView(packs: galleryPacks, preferredLanguages: settings.preferredLanguages)
+                            }
                         }
                         #endif
                     }
@@ -121,6 +130,30 @@ struct SettingsView: View {
             }
         }
     }
+
+    #if DEBUG
+    private func developerRow(title: LocalizedStringKey, symbol: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack {
+                Text(title)
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                    .foregroundStyle(Color(red: 0.2, green: 0.3, blue: 0.25))
+                Spacer()
+                Image(systemName: symbol)
+                    .font(.system(size: 22, weight: .bold))
+                    .foregroundStyle(Color(red: 0.2, green: 0.55, blue: 0.3))
+            }
+            .padding(.horizontal, 20)
+            .padding(.vertical, 16)
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(.white.opacity(0.85))
+                    .shadow(color: .black.opacity(0.12), radius: 6, y: 3))
+        }
+        .buttonStyle(SquishyButtonStyle())
+        .frame(maxWidth: 460)
+    }
+    #endif
 
     private var closeButton: some View {
         Button { dismiss() } label: {

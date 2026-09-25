@@ -57,6 +57,7 @@
       with triggers
 - [x] Calm mode (parent setting) + live Reduce Motion policy; flash cap
 - [x] DEBUG effects gallery for tuning against real art
+- [x] DEBUG story gallery: any story of any installed pack at 1×/2×/3×
 - [ ] Real emitter textures + tuning pass once real sticker art lands
 - [x] Story authoring step 1 (2026-09): `/author-stories` skill + brief +
       intermediate format with inline cues (`tools/author/stories/`),
