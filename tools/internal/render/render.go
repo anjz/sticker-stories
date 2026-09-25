@@ -196,6 +196,8 @@ type Trigger struct {
 	Mode       string  `json:"mode,omitempty"`       // a live animation's hold or resume
 	Expression string  `json:"expression,omitempty"` // a face change: no effect
 	Enter      bool    `json:"enter,omitempty"`      // an entrance: no effect
+	Go         string  `json:"go,omitempty"`         // a move: no effect
+	Target     string  `json:"target,omitempty"`     // a move's target
 	Repeat     any     `json:"repeat,omitempty"`     // int or "loop"
 	Duration   float64 `json:"duration,omitempty"`
 	Intensity  float64 `json:"intensity,omitempty"`
@@ -229,6 +231,14 @@ func Triggers(cues []story.Cue, tl *Timeline, pack story.Manifest) ([]Trigger, e
 		at = round(at)
 		if c.Effect == story.EnterEffect && !c.Canvas {
 			t := Trigger{At: at, Sticker: c.Sticker, Enter: true}
+			if c.WordIndex < len(tl.Words) {
+				t.Cue = normalizeWord(tl.Words[c.WordIndex].Text)
+			}
+			out = append(out, t)
+			continue
+		}
+		if c.Effect == story.GoEffect && !c.Canvas {
+			t := Trigger{At: at, Sticker: c.Sticker, Go: c.GoKind, Target: c.Target}
 			if c.WordIndex < len(tl.Words) {
 				t.Cue = normalizeWord(tl.Words[c.WordIndex].Text)
 			}
@@ -319,13 +329,13 @@ func LiveOverlaps(triggers []Trigger, pack story.Manifest) []string {
 
 // EncodeSidecar serialises and strictly validates a sidecar for a pack
 // with the given declared stickers, their live animations and setting.
-func EncodeSidecar(triggers []Trigger, declared map[string]bool, animations effects.Animations, expressions effects.Expressions, setting string) ([]byte, error) {
+func EncodeSidecar(triggers []Trigger, declared map[string]bool, animations effects.Animations, expressions effects.Expressions, features map[string]bool, setting string) ([]byte, error) {
 	data, err := json.MarshalIndent(Sidecar{Schema: effects.SupportedSchema, Triggers: triggers}, "", "  ")
 	if err != nil {
 		return nil, err
 	}
 	data = append(data, '\n')
-	if errs := effects.Validate(data, declared, animations, expressions, setting); len(errs) > 0 {
+	if errs := effects.Validate(data, declared, animations, expressions, features, setting); len(errs) > 0 {
 		return nil, fmt.Errorf("sidecar invalid: %v", errs)
 	}
 	return data, nil

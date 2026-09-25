@@ -200,6 +200,8 @@ final class CanvasScene: SKScene {
         let faces: ExpressionTimeline
         /// The stickers the story brings in, by node, and how each enters.
         let visitors: [UUID: EntrancePlan]
+        /// How the story moves stickers about, by node (`MotionPlanner`).
+        let motions: [UUID: MotionPlan]
     }
     private var playSession: PlaySession?
     /// Every live animation the pack declares (`StickerAnimation`), read
@@ -215,6 +217,11 @@ final class CanvasScene: SKScene {
         liveAnimations.filter { $0.kind == .move }.map { ($0.sticker, $0.liveKey) }, uniquingKeysWith: { a, _ in a })
     /// Reduce Motion / calm mode for the story playing: no frames at all.
     private var livePolicy = EffectPolicy.standard
+    /// Every placed sticker's layer and z before a story that moves
+    /// stickers (bringing a mover to the front restacks its layer), to put
+    /// back when it ends; and the moves already started.
+    private var stackBeforeMotion: [UUID: (parent: SKNode, z: CGFloat)] = [:]
+    private var startedLegs: Set<String> = []
     /// The current story's face variants by sticker and expression, loaded
     /// when play starts; until one is in, that sticker keeps its face.
     private var faceTextures: [String: [String: SKTexture]] = [:]
@@ -1364,9 +1371,20 @@ final class CanvasScene: SKScene {
         }
         // The actions the story cues on stickers on the stage, and the
         // moves of the ones it brings in.
+        let motions = planMotions(triggers.goes, visitors: visitors, policy: policy)
+        if !motions.isEmpty {
+            for node in nodes where !node.isVisitor {
+                if let parent = node.parent { stackBeforeMotion[node.instanceID] = (parent, node.zPosition) }
+            }
+        }
         var wanted = live.animations.filter { placed.contains($0.stickerID) }
         for plan in visitors.values where plan.motion != .fade {
             if let key = moveKeys[plan.stickerID] { wanted.insert(key) }
+        }
+        for (id, plan) in motions where plan.legs.contains(where: \.travels) {
+            if let node = nodes.first(where: { $0.instanceID == id }), let key = moveKeys[node.stickerID] {
+                wanted.insert(key)
+            }
         }
         if policy.allowsLiveAnimations, !wanted.isEmpty {
             liveLoad = Task { [weak self, pack, liveAnimations] in
@@ -1379,7 +1397,51 @@ final class CanvasScene: SKScene {
             triggers: triggers.canvas, setting: pack.manifest.setting, policy: policy)
         playSession = PlaySession(
             runner: runner, canvasRunner: canvasRunner, applier: applier, emitters: EmitterCoordinator(), clock: clock,
-            live: live, faces: faces, visitors: visitors)
+            live: live, faces: faces, visitors: visitors, motions: motions)
+    }
+
+    /// The scene as the stage and motion planners see it, in world points:
+    /// the base art's frame, where a sticker can be seen whole, and the
+    /// visible part of the art (the tray is hidden in play).
+    private func stageScene(sizes: [String: StageSize] = [:]) -> StagePlanner.Scene {
+        let margin = stickerBaseSize * 0.45
+        let visible = visibleRect.intersection(worldExtent)
+        return StagePlanner.Scene(
+            world: StageRect(minX: 0, minY: 0, maxX: worldSize.width, maxY: worldSize.height),
+            usable: StageRect(
+                minX: visible.minX + margin, minY: visible.minY + margin,
+                maxX: visible.maxX - margin, maxY: visible.maxY - margin),
+            visible: StageRect(minX: visible.minX, minY: visible.minY, maxX: visible.maxX, maxY: visible.maxY),
+            stickerSize: stickerBaseSize, sizes: sizes)
+    }
+
+    private lazy var stages: [String: StickerStage] = Dictionary(
+        uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.stage.map { (s.id, $0) } })
+    private lazy var stageMoves: [String: StageMove] = Dictionary(
+        liveAnimations.compactMap { a in a.stageMove.map { (a.sticker, $0) } }, uniquingKeysWith: { a, _ in a })
+
+    /// Plans how the story moves its stickers (`docs/effects.md`,
+    /// "Movement"): every sticker on the stage, placed or visiting, from
+    /// its spot, once it has come in; still things (a flower) stay put.
+    private func planMotions(
+        _ goes: [GoTrigger], visitors: [UUID: EntrancePlan], policy: EffectPolicy
+    ) -> [UUID: MotionPlan] {
+        guard !goes.isEmpty else { return [:] }
+        let actors = allStickerNodes().map { node -> MotionPlanner.Actor in
+            let base = node.effectBase ?? node.placement
+            let unscaled = node.unscaledSize
+            let stage = stages[node.stickerID] ?? .default
+            let visit = visitors[node.instanceID]
+            return MotionPlanner.Actor(
+                id: node.instanceID, stickerID: node.stickerID, home: StagePoint(x: base.x, y: base.y),
+                size: StageSize(width: unscaled.width * base.scale, height: unscaled.height * base.scale),
+                readyAt: visit.map { $0.at + $0.duration } ?? 0, facing: Double(node.facing),
+                canMove: stage.entrance != .grow, flies: stage.entrance == .fly)
+        }
+        var random = SystemRandomNumberGenerator()
+        return MotionPlanner.plan(
+            goes: goes, actors: actors, features: pack.manifest.features, moves: stageMoves,
+            scene: stageScene(), policy: policy, random: &random)
     }
 
     /// Puts every sticker the story names but the child has not placed on
@@ -1399,15 +1461,7 @@ final class CanvasScene: SKScene {
         }
         // Where a sticker can be seen whole: the visible part of the art,
         // inset like a drop (`keepOnCanvas`). The tray is hidden in play.
-        let margin = stickerBaseSize * 0.45
-        let visible = visibleRect.intersection(worldExtent)
-        let scene = StagePlanner.Scene(
-            world: StageRect(minX: 0, minY: 0, maxX: worldSize.width, maxY: worldSize.height),
-            usable: StageRect(
-                minX: visible.minX + margin, minY: visible.minY + margin,
-                maxX: visible.maxX - margin, maxY: visible.maxY - margin),
-            visible: StageRect(minX: visible.minX, minY: visible.minY, maxX: visible.maxX, maxY: visible.maxY),
-            stickerSize: stickerBaseSize, sizes: sizes)
+        let scene = stageScene(sizes: sizes)
         let obstacles = existing.map { node in
             StageObstacle(
                 center: StagePoint(x: node.placement.x, y: node.placement.y),
@@ -1417,9 +1471,9 @@ final class CanvasScene: SKScene {
         let plans = StagePlanner.plan(
             entrances: entrances.filter { sizes[$0.stickerID] != nil },
             placed: Set(existing.map(\.stickerID)),
-            stages: Dictionary(uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.stage.map { (s.id, $0) } }),
+            stages: stages,
             features: pack.manifest.features,
-            moves: Dictionary(liveAnimations.compactMap { a in a.stageMove.map { (a.sticker, $0) } }, uniquingKeysWith: { a, _ in a }),
+            moves: stageMoves,
             scene: scene, obstacles: obstacles, policy: policy, random: &random)
         var visitors: [UUID: EntrancePlan] = [:]
         for plan in plans {
@@ -1429,7 +1483,7 @@ final class CanvasScene: SKScene {
                 size: squareFit(texture: texture, side: stickerBaseSize),
                 shadow: shadow(for: plan.stickerID))
             node.isVisitor = true
-            node.mirrored = plan.mirrored
+            node.facing = plan.mirrored ? -1 : 1
             node.position = CGPoint(x: plan.target.x, y: plan.target.y)
             // Its placement is where it lands; the entrance is a delta on
             // it that keeps it hidden until its moment.
@@ -1460,6 +1514,14 @@ final class CanvasScene: SKScene {
                 node.run(.sequence([.fadeOut(withDuration: 0.3), .removeFromParent()]))
             }
             for node in allStickerNodes() where !node.isVisitor {
+                guard let prior = stackBeforeMotion[node.instanceID] else { continue }
+                if node.parent !== prior.parent { node.move(toParent: prior.parent) }
+                node.zPosition = prior.z
+            }
+            stackBeforeMotion.removeAll()
+            startedLegs.removeAll()
+            for node in allStickerNodes() where !node.isVisitor {
+                node.facing = 1
                 node.stopLive()
                 if node.face != ExpressionTrigger.normal, let normal = stickerTextures[node.stickerID] {
                     node.showFace(ExpressionTrigger.normal, texture: normal, fade: 0)
@@ -1493,6 +1555,14 @@ final class CanvasScene: SKScene {
         let time = session.clock.now()
         let nodes = stickerNodesByID()
         var deltas = session.runner.tick(time)
+        for (id, plan) in session.motions {
+            // Where the story has moved it, under its effects.
+            deltas[id] = plan.delta(at: time).combined(with: deltas[id] ?? .identity)
+            if let node = nodes[id] {
+                node.facing = CGFloat(plan.facing(at: time))
+                raiseIfMoving(node, plan: plan, at: time)
+            }
+        }
         for (id, plan) in session.visitors {
             // The entrance under whatever the story's effects do to it.
             deltas[id] = plan.delta(at: time).combined(with: deltas[id] ?? .identity)
@@ -1502,6 +1572,19 @@ final class CanvasScene: SKScene {
         canvasEffects.apply(session.canvasRunner.tick(time), at: time)
         applyLive(session, at: time)
         applyFaces(session.faces, at: time)
+    }
+
+    /// A sticker that sets off on a move comes to the very front — the
+    /// front sticker layer, above everyone — so a mover is never hidden by
+    /// the sticker it goes to (on it, under it, beside it). Its layer and z
+    /// come back when the story ends.
+    private func raiseIfMoving(_ node: StickerNode, plan: MotionPlan, at time: TimeInterval) {
+        guard let index = plan.legs.lastIndex(where: { $0.at <= time }) else { return }
+        let key = "\(node.instanceID)-\(index)"
+        guard !startedLegs.contains(key) else { return }
+        startedLegs.insert(key)
+        if node.parent !== foregroundStickers { node.move(toParent: foregroundStickers) }
+        bringToFront(node)
     }
 
     /// Puts on every sticker the frame of its live animation now: a visitor
@@ -1516,10 +1599,17 @@ final class CanvasScene: SKScene {
             var shown: (LoadedLiveAnimation, LiveFrameState)?
             if allowed {
                 let action = session.live.current(for: node.stickerID, at: time, frames: timing)
-                if let plan = session.visitors[node.instanceID], time >= plan.at,
-                    action.map({ $0.since < plan.at }) ?? true,
+                // The latest travel in progress: its entrance, or a move.
+                var travel: (at: TimeInterval, duration: TimeInterval)?
+                if let plan = session.visitors[node.instanceID], time >= plan.at {
+                    travel = (plan.at, plan.travel)
+                }
+                if let move = session.motions[node.instanceID]?.travel(at: time), move.at >= (travel?.at ?? -1) {
+                    travel = move
+                }
+                if let travel, action.map({ $0.since < travel.at }) ?? true,
                     let key = moveKeys[node.stickerID], let move = liveLoaded[key],
-                    let state = move.timing.state(.move(travel: plan.travel), at: time - plan.at)
+                    let state = move.timing.state(.move(travel: travel.duration), at: time - travel.at)
                 {
                     shown = (move, state)
                 } else if let action, let loaded = liveLoaded[action.key],
@@ -1578,18 +1668,20 @@ final class CanvasScene: SKScene {
     /// surfaced: a story with a broken sidecar plays with no effects.
     private func loadTriggers(for story: Story) -> (
         sticker: [EffectTrigger], canvas: [CanvasEffectTrigger], live: [LiveAnimationTrigger],
-        faces: [ExpressionTrigger], entrances: [EntranceTrigger]
+        faces: [ExpressionTrigger], entrances: [EntranceTrigger], goes: [GoTrigger]
     ) {
-        guard let path = story.effectsPath else { return ([], [], [], [], []) }
+        guard let path = story.effectsPath else { return ([], [], [], [], [], []) }
         do {
             let file = try EffectTriggerFile.load(from: pack.url(forAssetPath: path))
             for warning in file.warnings {
                 Self.effectsLog.notice("\(story.id, privacy: .public): \(warning, privacy: .public)")
             }
-            return (file.triggers, file.canvasTriggers, file.liveTriggers, file.expressionTriggers, file.entranceTriggers)
+            return (
+                file.triggers, file.canvasTriggers, file.liveTriggers, file.expressionTriggers, file.entranceTriggers,
+                file.goTriggers)
         } catch {
             Self.effectsLog.error("\(story.id, privacy: .public): effects file unusable: \(String(describing: error), privacy: .public)")
-            return ([], [], [], [], [])
+            return ([], [], [], [], [], [])
         }
     }
 

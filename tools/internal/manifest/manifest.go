@@ -282,6 +282,10 @@ func (m *Manifest) Validate(dir string) []error {
 		featureIDs = append(featureIDs, id)
 	}
 	sort.Strings(featureIDs)
+	featureSet := make(map[string]bool, len(featureIDs))
+	for _, id := range featureIDs {
+		featureSet[id] = true
+	}
 	for _, id := range featureIDs {
 		f := m.Features[id]
 		field := fmt.Sprintf("feature %q", id)
@@ -290,6 +294,13 @@ func (m *Manifest) Validate(dir string) []error {
 		}
 		if strings.TrimSpace(f.Description) == "" {
 			fail("%s: description must not be empty", field)
+		}
+		for _, st := range m.Stickers {
+			if st.ID == id {
+				// A move's target ({frog:go to pond}) is a sticker or a
+				// feature: the two must never share a name.
+				fail("%s: id is also a sticker's id", field)
+			}
 		}
 		if len(f.Areas) == 0 {
 			fail("%s: needs at least one area", field)
@@ -427,7 +438,7 @@ func (m *Manifest) Validate(dir string) []error {
 				before := len(errs)
 				checkFile(locName+" effects", loc.Effects)
 				if len(errs) == before {
-					for _, err := range effects.ValidateFile(filepath.Join(dir, filepath.FromSlash(loc.Effects)), stickerIDs, animations, expressions, m.EffectiveSetting()) {
+					for _, err := range effects.ValidateFile(filepath.Join(dir, filepath.FromSlash(loc.Effects)), stickerIDs, animations, expressions, featureSet, m.EffectiveSetting()) {
 						fail("%s effects: %v", locName, err)
 					}
 				}

@@ -312,6 +312,38 @@ entrance before an action on that sticker.
 - An entrance is not a beat: it does not count toward the cue density.
   Give the sticker its reaction on the same word or soon after.
 
+## Movement
+
+The stickers are on a stage: when the words say a character goes
+somewhere, it goes there on screen (`{fox:go to rabbit}`, FORMAT "Move
+cues") — to another character, onto or under one (a bee onto the
+flower, a mouse under the mushroom), to a place in the scene (the pond,
+the branches), off the canvas and back.
+
+- **Move them when the story moves them.** "Fox trotted over to Rabbit",
+  "the bee landed on the flower", "Duckling waddled down to the pond",
+  "off ran Fox", "they all gathered round Owl": each is a move. A story
+  that has its characters meet, gather, chase, hide or leave should show
+  it — most stories have one to four moves. Not every "came" is a move:
+  an arrival on the first mention is the entrance, and the words must
+  still work if the sticker never moves.
+- **Where it goes has to exist**: another character in the story (on
+  stage by then), or one of the pack's features — scene.md and
+  `storycheck -plan` list them. Moving somewhere the picture lacks is
+  still wrong (GUIDE "Match the scene").
+- **Walkers and flyers only**: a flower or a mushroom never walks off;
+  something may come *to* them instead.
+- **On and under shrink the mover** to at most three quarters of the one
+  it goes on or under: write it for a small character and a bigger one
+  (a ladybug on the mushroom, the mouse under its cap, the bee on the
+  flower), not a bear on a snail.
+- **Away means gone** until it comes back; say where it went in passing
+  ("off home for tea") and bring it back with `go back` if it returns.
+- **Let the move finish** before the next thing that sticker does: a move
+  takes one to five seconds, a few words; a face on it meanwhile is fine.
+- Every placed sticker goes back to where the child put it when the
+  story ends; the stage always ends where it started.
+
 ## Live stickers
 
 **Every sticker is alive.** Each one carries an **action** — a few seconds

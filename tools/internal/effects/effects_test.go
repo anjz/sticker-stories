@@ -80,10 +80,10 @@ func TestCanvasTriggersAreValidated(t *testing.T) {
 	  { "at": 30, "effect": "rainbow", "duration": 1 },
 	  { "at": 1, "sticker": "fox", "effect": "hop" }
 	] }`)
-	if errs := Validate(good, set("fox"), nil, nil, "outdoors"); len(errs) != 0 {
+	if errs := Validate(good, set("fox"), nil, nil, nil, "outdoors"); len(errs) != 0 {
 		t.Fatalf("unexpected errors: %v", errs)
 	}
-	if errs := Validate([]byte(`{"schema": 1, "triggers": [{"at": 0, "effect": "dimlight"}]}`), nil, nil, nil, "indoors"); len(errs) != 0 {
+	if errs := Validate([]byte(`{"schema": 1, "triggers": [{"at": 0, "effect": "dimlight"}]}`), nil, nil, nil, nil, "indoors"); len(errs) != 0 {
 		t.Fatalf("dimlight should suit an indoors pack: %v", errs)
 	}
 	cases := []struct {
@@ -103,7 +103,7 @@ func TestCanvasTriggersAreValidated(t *testing.T) {
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			errs := Validate([]byte(tc.json), set("fox"), nil, nil, tc.setting)
+			errs := Validate([]byte(tc.json), set("fox"), nil, nil, nil, tc.setting)
 			if len(errs) == 0 {
 				t.Fatalf("expected an error containing %q, got none", tc.want)
 			}
@@ -125,7 +125,7 @@ func TestValidFileHasNoErrors(t *testing.T) {
 	  { "at": 41.5, "sticker": "fox", "effect": "fade-out", "hold": true },
 	  { "at": 5, "sticker": "fox", "effect": "tint", "color": "#FF0000", "duration": 0.2 }
 	] }`)
-	if errs := Validate(data, set("fox", "tree"), nil, nil, "outdoors"); len(errs) != 0 {
+	if errs := Validate(data, set("fox", "tree"), nil, nil, nil, "outdoors"); len(errs) != 0 {
 		t.Fatalf("unexpected errors: %v", errs)
 	}
 }
@@ -160,7 +160,7 @@ func TestValidationFailures(t *testing.T) {
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			errs := Validate([]byte(tc.json), set("fox", "tree"), nil, nil, "outdoors")
+			errs := Validate([]byte(tc.json), set("fox", "tree"), nil, nil, nil, "outdoors")
 			if len(errs) == 0 {
 				t.Fatalf("expected an error containing %q, got none", tc.want)
 			}
@@ -177,7 +177,7 @@ func TestValidationFailures(t *testing.T) {
 func TestLiveTriggers(t *testing.T) {
 	anims := Animations{"fox": {{ID: "yawn"}}}
 	good := []byte(`{"schema": 1, "triggers": [{"at": 1.5, "cue": "yawned", "sticker": "fox", "animation": "yawn"}]}`)
-	if errs := Validate(good, set("fox"), anims, nil, "outdoors"); len(errs) != 0 {
+	if errs := Validate(good, set("fox"), anims, nil, nil, "outdoors"); len(errs) != 0 {
 		t.Fatalf("valid live trigger rejected: %v", errs)
 	}
 	cases := []struct{ name, json, want string }{
@@ -189,7 +189,7 @@ func TestLiveTriggers(t *testing.T) {
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			errs := Validate([]byte(tc.json), set("fox"), anims, nil, "outdoors")
+			errs := Validate([]byte(tc.json), set("fox"), anims, nil, nil, "outdoors")
 			for _, e := range errs {
 				if strings.Contains(e.Error(), tc.want) {
 					return
@@ -207,7 +207,7 @@ func TestFaceTriggersAndAllTargets(t *testing.T) {
 		{"at": 2, "sticker": "all", "expression": "sleeping"},
 		{"at": 3, "sticker": "all", "expression": "normal"},
 		{"at": 4, "sticker": "all", "effect": "hop"}]}`)
-	if errs := Validate(good, set("fox"), nil, faces, "outdoors"); len(errs) != 0 {
+	if errs := Validate(good, set("fox"), nil, faces, nil, "outdoors"); len(errs) != 0 {
 		t.Fatalf("valid expression triggers rejected: %v", errs)
 	}
 	cases := []struct{ name, json, want string }{
@@ -218,7 +218,7 @@ func TestFaceTriggersAndAllTargets(t *testing.T) {
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			for _, e := range Validate([]byte(tc.json), set("fox"), nil, faces, "outdoors") {
+			for _, e := range Validate([]byte(tc.json), set("fox"), nil, faces, nil, "outdoors") {
 				if strings.Contains(e.Error(), tc.want) {
 					return
 				}
@@ -232,7 +232,7 @@ func TestEnterTriggers(t *testing.T) {
 	good := []byte(`{"schema": 1, "triggers": [
 		{"at": 0, "cue": "fox", "sticker": "fox", "enter": true},
 		{"at": 2.4, "sticker": "owl", "enter": true}]}`)
-	if errs := Validate(good, set("fox", "owl"), nil, nil, "outdoors"); len(errs) != 0 {
+	if errs := Validate(good, set("fox", "owl"), nil, nil, nil, "outdoors"); len(errs) != 0 {
 		t.Fatalf("valid entrances rejected: %v", errs)
 	}
 	cases := []struct{ name, json, want string }{
@@ -245,7 +245,7 @@ func TestEnterTriggers(t *testing.T) {
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			for _, e := range Validate([]byte(tc.json), set("fox", "owl"), nil, nil, "outdoors") {
+			for _, e := range Validate([]byte(tc.json), set("fox", "owl"), nil, nil, nil, "outdoors") {
 				if strings.Contains(e.Error(), tc.want) {
 					return
 				}

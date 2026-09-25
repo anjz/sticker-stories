@@ -46,6 +46,9 @@ public struct EffectTriggerFile: Equatable, Sendable {
     /// Where the story first names each sticker (`docs/effects.md`,
     /// "Entrances"), in time order, one per sticker.
     public var entranceTriggers: [EntranceTrigger]
+    /// Where the story moves stickers (`docs/effects.md`, "Movement"), in
+    /// time order.
+    public var goTriggers: [GoTrigger]
     public var warnings: [String]
 
     public enum DecodingError: Error, Equatable {
@@ -58,7 +61,7 @@ public struct EffectTriggerFile: Equatable, Sendable {
         schema: Int = EffectTriggerFile.supportedSchema, triggers: [EffectTrigger],
         canvasTriggers: [CanvasEffectTrigger] = [], liveTriggers: [LiveAnimationTrigger] = [],
         expressionTriggers: [ExpressionTrigger] = [], entranceTriggers: [EntranceTrigger] = [],
-        warnings: [String] = []
+        goTriggers: [GoTrigger] = [], warnings: [String] = []
     ) {
         self.schema = schema
         self.triggers = triggers
@@ -66,6 +69,7 @@ public struct EffectTriggerFile: Equatable, Sendable {
         self.liveTriggers = liveTriggers
         self.expressionTriggers = expressionTriggers
         self.entranceTriggers = entranceTriggers
+        self.goTriggers = goTriggers
         self.warnings = warnings
     }
 
@@ -96,10 +100,17 @@ public struct EffectTriggerFile: Equatable, Sendable {
         var liveTriggers: [LiveAnimationTrigger] = []
         var expressionTriggers: [ExpressionTrigger] = []
         var entranceTriggers: [EntranceTrigger] = []
+        var goTriggers: [GoTrigger] = []
         for (index, entry) in list.enumerated() {
             let label = "triggers[\(index)]"
             guard let fields = entry as? [String: Any] else {
                 warnings.append("\(label): not an object; skipped")
+                continue
+            }
+            if fields["go"] != nil {
+                if let trigger = Self.decodeGoTrigger(fields, label: label, warnings: &warnings) {
+                    goTriggers.append(trigger)
+                }
                 continue
             }
             if fields["enter"] != nil {
@@ -147,7 +158,42 @@ public struct EffectTriggerFile: Equatable, Sendable {
         self.expressionTriggers = expressionTriggers.enumerated()
             .sorted { ($0.element.at, $0.offset) < ($1.element.at, $1.offset) }.map(\.element)
         self.entranceTriggers = entranceTriggers.sorted { $0.at < $1.at }
+        self.goTriggers = goTriggers.enumerated()
+            .sorted { ($0.element.at, $0.offset) < ($1.element.at, $1.offset) }.map(\.element)
         self.warnings = warnings
+    }
+
+    /// Moves name one sticker (never `all`), a kind and, for to/on/under, a
+    /// target.
+    private static func decodeGoTrigger(_ fields: [String: Any], label: String, warnings: inout [String]) -> GoTrigger? {
+        guard let name = fields["go"] as? String, let kind = GoTrigger.Kind(rawValue: name) else {
+            warnings.append("\(label): go must be one of to, on, under, away, back; skipped")
+            return nil
+        }
+        guard let stickerID = fields["sticker"] as? String, !stickerID.isEmpty, stickerID != EffectTrigger.allStickers else {
+            warnings.append("\(label): a move needs one sticker; skipped")
+            return nil
+        }
+        guard let at = number(fields["at"]), at.isFinite, at >= 0 else {
+            warnings.append("\(label): missing or invalid at; skipped")
+            return nil
+        }
+        let target = fields["target"] as? String
+        switch kind {
+        case .to, .on, .under:
+            guard let target, !target.isEmpty, target != stickerID else {
+                warnings.append("\(label): go \(kind.rawValue) needs a target other than the sticker; skipped")
+                return nil
+            }
+        case .away, .back:
+            if target != nil { warnings.append("\(label): go \(kind.rawValue) takes no target") }
+        }
+        for key in ["effect", "animation", "expression", "enter", "repeat", "duration", "intensity", "color", "hold"] where fields[key] != nil {
+            warnings.append("\(label): \(key) is ignored by a move")
+        }
+        return GoTrigger(
+            at: at, cue: fields["cue"] as? String, stickerID: stickerID, kind: kind,
+            target: kind == .away || kind == .back ? nil : target)
     }
 
     /// Entrances name one sticker (never `all`) and say `"enter": true`.

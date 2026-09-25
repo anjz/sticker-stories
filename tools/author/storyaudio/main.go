@@ -775,7 +775,11 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 		}
 	}
 	liveOverlaps := render.LiveOverlaps(triggers, r.c.story)
-	sidecar, err := render.EncodeSidecar(triggers, r.c.declared, r.c.animations, r.c.expressions, r.c.pack.EffectiveSetting())
+	features := map[string]bool{}
+	for id := range r.c.pack.Features {
+		features[id] = true
+	}
+	sidecar, err := render.EncodeSidecar(triggers, r.c.declared, r.c.animations, r.c.expressions, features, r.c.pack.EffectiveSetting())
 	if err != nil {
 		return false, err
 	}

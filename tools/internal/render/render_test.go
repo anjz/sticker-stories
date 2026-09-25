@@ -50,7 +50,7 @@ func TestTriggersAndSounds(t *testing.T) {
 	if tr[3].Cue != "ay" || tr[3].At <= tr[2].At {
 		t.Errorf("trailing cue should fire on last word: %+v", tr[3])
 	}
-	data, err := EncodeSidecar(tr, map[string]bool{"tree": true, "fox": true}, nil, nil, "outdoors")
+	data, err := EncodeSidecar(tr, map[string]bool{"tree": true, "fox": true}, nil, nil, nil, "outdoors")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -86,14 +86,14 @@ func TestCanvasCuesBecomeStickerlessTriggers(t *testing.T) {
 	if tr[1].Effect != "rain" || tr[1].Sticker != "" || tr[1].Duration != 14 || tr[1].Cue != "here" || tr[1].Repeat != nil {
 		t.Errorf("rain wrong: %+v", tr[1])
 	}
-	data, err := EncodeSidecar(tr, map[string]bool{"fox": true}, nil, nil, "outdoors")
+	data, err := EncodeSidecar(tr, map[string]bool{"fox": true}, nil, nil, nil, "outdoors")
 	if err != nil {
 		t.Fatal(err)
 	}
 	if strings.Contains(string(data), `"sticker": ""`) {
 		t.Errorf("canvas triggers must not carry a sticker key: %s", data)
 	}
-	if _, err := EncodeSidecar(tr, map[string]bool{"fox": true}, nil, nil, "indoors"); err == nil {
+	if _, err := EncodeSidecar(tr, map[string]bool{"fox": true}, nil, nil, nil, "indoors"); err == nil {
 		t.Errorf("rain and fog must be rejected for an indoors pack")
 	}
 }
@@ -119,7 +119,7 @@ func TestLiveHoldAndResumeCarryTheirMode(t *testing.T) {
 		t.Fatalf("hold/resume triggers wrong: %+v", tr)
 	}
 	anims := effects.Animations{"snail": {{ID: "hide", Pausable: true}}}
-	data, err := EncodeSidecar(tr, map[string]bool{"snail": true}, anims, nil, "outdoors")
+	data, err := EncodeSidecar(tr, map[string]bool{"snail": true}, anims, nil, nil, "outdoors")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -127,7 +127,7 @@ func TestLiveHoldAndResumeCarryTheirMode(t *testing.T) {
 		t.Errorf("mode not encoded: %s", data)
 	}
 	// Without a pause frame the sidecar is refused.
-	if _, err := EncodeSidecar(tr, map[string]bool{"snail": true}, effects.Animations{"snail": {{ID: "hide"}}}, nil, "outdoors"); err == nil {
+	if _, err := EncodeSidecar(tr, map[string]bool{"snail": true}, effects.Animations{"snail": {{ID: "hide"}}}, nil, nil, "outdoors"); err == nil {
 		t.Error("hold on an animation without a pause frame was accepted")
 	}
 	// While held, an effect is not an overlap; on the way in it is.
@@ -160,7 +160,7 @@ func TestLiveCuesNameTheirAnimation(t *testing.T) {
 		t.Fatalf("live triggers wrong: %+v", tr)
 	}
 	anims := effects.Animations{"bear": {{ID: "yawn"}}, "owl": {{ID: "blink"}, {ID: "hoot"}}}
-	data, err := EncodeSidecar(tr, map[string]bool{"bear": true, "owl": true}, anims, nil, "outdoors")
+	data, err := EncodeSidecar(tr, map[string]bool{"bear": true, "owl": true}, anims, nil, nil, "outdoors")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -254,7 +254,7 @@ func TestFaceAndAllCues(t *testing.T) {
 		t.Fatalf("face/all triggers wrong: %+v", tr)
 	}
 	faces := map[string][]string{"bear": {"happy", "sleeping"}}
-	if _, err := EncodeSidecar(tr, map[string]bool{"bear": true}, nil, faces, "outdoors"); err != nil {
+	if _, err := EncodeSidecar(tr, map[string]bool{"bear": true}, nil, faces, nil, "outdoors"); err != nil {
 		t.Fatal(err)
 	}
 }
@@ -277,11 +277,42 @@ func TestEnterCues(t *testing.T) {
 		!tr[2].Enter || tr[2].Sticker != "owl" || tr[2].Cue != "owl" || tr[2].At <= 0 {
 		t.Fatalf("enter triggers wrong: %+v", tr)
 	}
-	data, err := EncodeSidecar(tr, map[string]bool{"fox": true, "owl": true}, nil, nil, "outdoors")
+	data, err := EncodeSidecar(tr, map[string]bool{"fox": true, "owl": true}, nil, nil, nil, "outdoors")
 	if err != nil {
 		t.Fatal(err)
 	}
 	if !strings.Contains(string(data), `"enter": true`) {
 		t.Errorf("sidecar lost the entrance: %s", data)
+	}
+}
+
+func TestGoCuesBecomeMoves(t *testing.T) {
+	text := "{fox:go to rabbit} Fox trotted over, {fox:go to pond} then {fox:go away} left."
+	cues, plain, errs := story.ParseCues(text)
+	if len(errs) > 0 {
+		t.Fatal(errs)
+	}
+	tl, err := NewPlainTimeline(plain, fakeAlignment(plain))
+	if err != nil {
+		t.Fatal(err)
+	}
+	tr, err := Triggers(cues, tl, story.Manifest{})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(tr) != 3 || tr[0].Go != "to" || tr[0].Target != "rabbit" || tr[2].Go != "away" || tr[2].Target != "" || tr[0].Effect != "" {
+		t.Fatalf("moves wrong: %+v", tr)
+	}
+	data, err := EncodeSidecar(tr, map[string]bool{"fox": true, "rabbit": true}, nil, nil, map[string]bool{"pond": true}, "outdoors")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(data), `"go": "to"`) || !strings.Contains(string(data), `"target": "pond"`) {
+		t.Errorf("move encoding: %s", data)
+	}
+	// A target that is neither a sticker nor a feature is refused.
+	tr[1].Target = "river"
+	if _, err := EncodeSidecar(tr, map[string]bool{"fox": true, "rabbit": true}, nil, nil, map[string]bool{"pond": true}, "outdoors"); err == nil {
+		t.Error("a move to an unknown place was accepted")
 	}
 }

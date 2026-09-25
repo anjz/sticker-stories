@@ -57,10 +57,12 @@ final class StickerNode: SKSpriteNode {
     /// child's canvas, and gone when the story ends.
     var isVisitor = false
 
-    /// Drawn the other way round (a visitor whose move frames travel the
-    /// other way from where it has to come in, `EntrancePlan.mirrored`):
-    /// the art, its faces and its frames all mirror together.
-    var mirrored = false
+    /// Which way the sticker faces while a story plays: 1 its art's own
+    /// way, -1 mirrored (a visitor or a mover whose move frames travel the
+    /// other way, `EntrancePlan.mirrored`, `MotionPlan.facing`), and in
+    /// between while it turns round. The art, its faces and its frames all
+    /// mirror together.
+    var facing: CGFloat = 1
 
     /// The child's placement while an effect owns this node's transform
     /// (`EffectApplier`); `nil` in edit mode. Snapshots read this so a
@@ -224,7 +226,7 @@ final class StickerNode: SKSpriteNode {
         position = CGPoint(x: composed.x, y: composed.y)
         zRotation = CGFloat(composed.rotation)
         setScale(CGFloat(composed.scale))
-        if mirrored { xScale = -xScale }
+        xScale *= facing
         alpha = CGFloat(composed.alpha)
         setTint(composed.tintAmount > 0 ? composed.tintColor : nil, amount: CGFloat(composed.tintAmount))
         setGlow(composed.glow, color: composed.glowColor, mask: glowMask)
