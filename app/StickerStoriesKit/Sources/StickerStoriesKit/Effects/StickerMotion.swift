@@ -220,8 +220,8 @@ public enum MotionPlanner {
     }
 
     /// On or under another sticker, the mover is at most this big relative
-    /// to it (left alone when already smaller).
-    public static let nestedScale = 0.75
+    /// to it — at least 35 % smaller (left alone when already smaller).
+    public static let nestedScale = 0.65
     /// A walker never takes longer than this to get anywhere, nor less than
     /// `minTravel`.
     static let maxTravel: TimeInterval = 5
@@ -239,8 +239,8 @@ public enum MotionPlanner {
         var legs: [MotionLeg] = []
         /// The side it left by, to come back from.
         var leftBy: Double = 1
-        /// Who it went to, on or under last ("to:rabbit"), so the next one
-        /// that goes there takes another place.
+        /// Whom it stands beside ("to:<id>"), so the next one that goes
+        /// there takes the other side.
         var at: String?
     }
 
@@ -248,174 +248,243 @@ public enum MotionPlanner {
         goes: [GoTrigger], actors: [Actor], features: [String: SceneFeature] = [:],
         moves: [String: StageMove] = [:], scene: StagePlanner.Scene, policy: EffectPolicy, random: inout R
     ) -> [UUID: MotionPlan] {
-        var states = actors.map {
-            State(actor: $0, center: $0.home, scale: 1, visible: true, busyUntil: $0.readyAt, facing: $0.facing)
-        }
+        var planner = Planner(
+            states: actors.map {
+                State(actor: $0, center: $0.home, scale: 1, visible: true, busyUntil: $0.readyAt, facing: $0.facing)
+            },
+            features: features, moves: moves, scene: scene, policy: policy)
         for go in goes.sorted(by: { $0.at < $1.at }) {
-            for index in states.indices where states[index].actor.stickerID == go.stickerID && states[index].actor.canMove {
-                guard let leg = plan(go, for: index, in: &states, features: features, moves: moves, scene: scene,
-                                     policy: policy, random: &random)
-                else { continue }
-                states[index].legs.append(leg)
+            for index in planner.states.indices
+            where planner.states[index].actor.stickerID == go.stickerID && planner.states[index].actor.canMove {
+                planner.apply(go, to: index, random: &random)
             }
         }
         var plans: [UUID: MotionPlan] = [:]
-        for state in states where !state.legs.isEmpty {
+        for state in planner.states where !state.legs.isEmpty {
             plans[state.actor.id] = MotionPlan(legs: state.legs, facing: state.actor.facing)
         }
         return plans
     }
 
-    private static func plan<R: RandomNumberGenerator>(
-        _ go: GoTrigger, for index: Int, in states: inout [State], features: [String: SceneFeature],
-        moves: [String: StageMove], scene: StagePlanner.Scene, policy: EffectPolicy, random: inout R
-    ) -> MotionLeg? {
-        let state = states[index]
-        let me = state.actor
-        let start = max(go.at, state.busyUntil)
-        var scale = 1.0
-        var target: StagePoint
-        var visibleAfter = true
-        let myWidth = { (s: Double) in me.size.width * s }, myHeight = { (s: Double) in me.size.height * s }
-        let others = states.indices.filter { $0 != index && states[$0].visible }
+    /// How much two stickers sharing a spot on or under another overlap, as
+    /// a fraction of the narrower one's width: tucked in together, a little
+    /// squashed, both still easy to see.
+    public static let sharedOverlap = 0.25
 
-        switch go.kind {
-        case .to, .on, .under:
-            guard let name = go.target else { return nil }
-            if go.kind == .to, features[name] != nil, !states.contains(where: { $0.actor.stickerID == name }) {
-                // A place in the scene: its freest spot on screen.
-                let stage = StickerStage(entrance: me.flies ? .fly : .hop, on: [name])
-                let rects = StagePlanner.places(for: stage, features: features, in: scene).first ?? []
-                let obstacles = others.map {
-                    StageObstacle(center: states[$0].center, radius: max(states[$0].actor.size.width, states[$0].actor.size.height) * states[$0].scale * StagePlanner.footprint)
+    private struct Planner {
+        var states: [State]
+        let features: [String: SceneFeature]
+        let moves: [String: StageMove]
+        let scene: StagePlanner.Scene
+        let policy: EffectPolicy
+        /// Who shares a spot on or under a sticker ("under:<id>"), left to
+        /// right.
+        var groups: [String: [Int]] = [:]
+
+        mutating func apply<R: RandomNumberGenerator>(_ go: GoTrigger, to index: Int, random: inout R) {
+            let state = states[index]
+            let start = max(go.at, state.busyUntil)
+            // Leaving a shared spot: the others close up. Whoever it stood
+            // beside, it no longer does (a move to a sticker sets it again).
+            let left = leaveGroup(index)
+            states[index].at = nil
+
+            if go.kind == .on || go.kind == .under, let name = go.target, let other = nearest(name, to: index) {
+                let key = "\(go.kind.rawValue):\(states[other].actor.id)"
+                var members = groups[key] ?? []
+                // In on the side it comes from.
+                if state.center.x < states[other].center.x { members.insert(index, at: 0) } else { members.append(index) }
+                groups[key] = members
+                relayout(key, start: start, mover: index)
+            } else if let destination = destination(go, for: index, random: &random) {
+                leg(index, to: destination.point, scale: destination.scale, visible: destination.visible, start: start)
+            }
+            if let left, left != groupKey(of: index) { relayout(left, start: start, mover: nil) }
+        }
+
+        func groupKey(of index: Int) -> String? {
+            groups.first { $0.value.contains(index) }?.key
+        }
+
+        mutating func leaveGroup(_ index: Int) -> String? {
+            guard let key = groupKey(of: index) else { return nil }
+            groups[key]?.removeAll { $0 == index }
+            return key
+        }
+
+        /// The nearest instance of that sticker on the canvas now.
+        func nearest(_ name: String, to index: Int) -> Int? {
+            states.indices.filter { $0 != index && states[$0].visible && states[$0].actor.stickerID == name }
+                .min { distance(states[$0].center, states[index].center) < distance(states[$1].center, states[index].center) }
+        }
+
+        /// Lays out everyone on or under one sticker: side by side, each
+        /// shrunk to at most `nestedScale` of it, overlapping by
+        /// `sharedOverlap`, the whole row centred on it — and pushed in as a
+        /// row from any screen edge. The mover goes to its place; the others
+        /// shuffle to theirs.
+        mutating func relayout(_ key: String, start: TimeInterval, mover: Int?) {
+            guard let members = groups[key], !members.isEmpty,
+                let targetID = UUID(uuidString: String(key.split(separator: ":")[1])),
+                let t = states.firstIndex(where: { $0.actor.id == targetID })
+            else { return }
+            let on = key.hasPrefix("on:")
+            let them = states[t]
+            let th = them.actor.size.height * them.scale
+            var slots: [(index: Int, x: Double, y: Double, scale: Double, w: Double, h: Double)] = []
+            var x = 0.0
+            for (n, i) in members.enumerated() {
+                let a = states[i].actor
+                let scale = min(1, nestedScale * th / max(a.size.height, 1))
+                let w = a.size.width * scale, h = a.size.height * scale
+                if n > 0 {
+                    let prev = slots[n - 1]
+                    x += prev.w / 2 + w / 2 - sharedOverlap * min(prev.w, w)
                 }
-                let radius = max(me.size.width, me.size.height) * StagePlanner.footprint
-                guard !rects.isEmpty else { return nil }
-                target = (StagePlanner.freeSpot(in: rects, radius: radius, avoiding: obstacles, random: &random)
-                    ?? StagePlanner.randomSpot(in: rects, random: &random)).point
-            } else {
-                // The nearest of that sticker's instances on the canvas now.
-                guard let other = others.filter({ states[$0].actor.stickerID == name })
-                    .min(by: { distance(states[$0].center, state.center) < distance(states[$1].center, state.center) })
-                else { return nil }
+                let y = on ? them.center.y + th * 0.32 + h * 0.3 : them.center.y - th / 2 + h / 2
+                slots.append((i, x, y, scale, w, h))
+            }
+            // Centre the row on the sticker, then keep it on screen.
+            let left = slots.map { $0.x - $0.w / 2 }.min() ?? 0, right = slots.map { $0.x + $0.w / 2 }.max() ?? 0
+            var shift = them.center.x - (left + right) / 2
+            let v = scene.visible
+            if left + shift < v.minX { shift += v.minX - (left + shift) }
+            if right + shift > v.maxX { shift -= (right + shift) - v.maxX }
+            for slot in slots {
+                var point = StagePoint(x: slot.x + shift, y: slot.y)
+                point.x = min(max(point.x, v.minX + slot.w / 2), max(v.maxX - slot.w / 2, v.minX + slot.w / 2))
+                point.y = min(max(point.y, v.minY + slot.h / 2), max(v.maxY - slot.h / 2, v.minY + slot.h / 2))
+                let begin = slot.index == mover ? start : max(start, states[slot.index].busyUntil)
+                leg(slot.index, to: point, scale: slot.scale, visible: true, start: begin, shuffle: slot.index != mover)
+            }
+        }
+
+        /// Where a move other than on/under ends: beside a sticker, a place
+        /// in the scene, off the canvas, back home.
+        mutating func destination<R: RandomNumberGenerator>(
+            _ go: GoTrigger, for index: Int, random: inout R
+        ) -> (point: StagePoint, scale: Double, visible: Bool)? {
+            let state = states[index]
+            let me = state.actor
+            let others = states.indices.filter { $0 != index && states[$0].visible }
+            switch go.kind {
+            case .to:
+                guard let name = go.target else { return nil }
+                if features[name] != nil, !states.contains(where: { $0.actor.stickerID == name }) {
+                    // A place in the scene: its freest spot on screen.
+                    let stage = StickerStage(entrance: me.flies ? .fly : .hop, on: [name])
+                    let rects = StagePlanner.places(for: stage, features: features, in: scene).first ?? []
+                    guard !rects.isEmpty else { return nil }
+                    let obstacles = others.map {
+                        StageObstacle(
+                            center: states[$0].center,
+                            radius: max(states[$0].actor.size.width, states[$0].actor.size.height) * states[$0].scale
+                                * StagePlanner.footprint)
+                    }
+                    let radius = max(me.size.width, me.size.height) * StagePlanner.footprint
+                    let point = (StagePlanner.freeSpot(in: rects, radius: radius, avoiding: obstacles, random: &random)
+                        ?? StagePlanner.randomSpot(in: rects, random: &random)).point
+                    return (point, 1, true)
+                }
+                guard let other = nearest(name, to: index) else { return nil }
                 let them = states[other]
                 let tw = them.actor.size.width * them.scale, th = them.actor.size.height * them.scale
-                // Others already there (on it, under it, beside it) move up
-                // the queue: the next one takes the other side, then further
-                // out, so nobody lands on top of anybody.
-                let spotKey = "\(go.kind.rawValue):\(them.actor.id)"
-                let already = states.indices.filter { $0 != index && states[$0].at == spotKey }.count
-                switch go.kind {
-                case .to:
-                    // Beside it, on the side it comes from, a little overlapping.
-                    var side: Double = state.center.x <= them.center.x ? -1 : 1
-                    if already % 2 == 1 { side = -side }
-                    let feetLevel = them.center.y - th / 2 + myHeight(1) / 2  // feet on the same line
-                    target = StagePoint(
-                        x: them.center.x + side * (tw / 2 + myWidth(1) / 2) * (0.72 + 0.6 * Double(already / 2)),
-                        y: me.flies
-                            ? them.center.y + th * 0.15
-                            // A walker going to a flyer up on a branch or in
-                            // the sky stays on the ground, just below it.
-                            : them.actor.flies && feetLevel > state.center.y + myHeight(1)
-                                ? state.center.y : feetLevel)
-                case .on:
-                    scale = min(1, nestedScale * th / max(me.size.height, 1))
-                    target = StagePoint(
-                        x: them.center.x + Self.queueOffset(already) * tw,
-                        y: them.center.y + th * 0.32 + myHeight(scale) * 0.3)
-                default:  // under
-                    scale = min(1, nestedScale * th / max(me.size.height, 1))
-                    target = StagePoint(
-                        x: them.center.x + tw * 0.08 + Self.queueOffset(already) * tw,
-                        y: them.center.y - th / 2 + myHeight(scale) / 2)
-                }
+                // Beside it, on the side it comes from, a little overlapping;
+                // the next one to come takes the other side, then further out.
+                let key = "to:\(them.actor.id)"
+                let beside = states.indices.filter { $0 != index && states[$0].at == key }
+                let xs = beside.map { states[$0].center.x - them.center.x }
+                let onSide = { (side: Double) in xs.filter { $0 * side > 0 }.count }
+                // Its own side if free, else the other; both taken, further out
+                // on the emptier one.
+                var side: Double = state.center.x <= them.center.x ? -1 : 1
+                if onSide(side) > onSide(-side) { side = -side }
+                let already = onSide(side) * 2
+                let feetLevel = them.center.y - th / 2 + me.size.height / 2  // feet on the same line
+                let point = StagePoint(
+                    x: them.center.x + side * (tw / 2 + me.size.width / 2) * (0.72 + 0.6 * Double(already / 2)),
+                    y: me.flies
+                        ? them.center.y + th * 0.15
+                        // A walker going to a flyer up on a branch or in the
+                        // sky stays on the ground, just below it.
+                        : them.actor.flies && feetLevel > state.center.y + me.size.height
+                            ? state.center.y : feetLevel)
+                states[index].at = key
+                return (point, 1, true)
+            case .away:
+                let side: Double = state.center.x < scene.visible.midX ? -1 : 1
+                let x = side < 0 ? scene.visible.minX - me.size.width * 0.8 : scene.visible.maxX + me.size.width * 0.8
+                states[index].leftBy = side
+                return (StagePoint(x: x, y: state.center.y), 1, false)
+            case .back:
+                return (me.home, 1, true)
+            case .on, .under:
+                return nil
             }
-        case .away:
-            let side: Double = state.center.x < scene.visible.midX ? -1 : 1
-            let x = side < 0 ? scene.visible.minX - myWidth(1) * 0.8 : scene.visible.maxX + myWidth(1) * 0.8
-            target = StagePoint(x: x, y: state.center.y)
-            visibleAfter = false
-            states[index].leftBy = side
-        case .back:
-            target = me.home
-        }
-        if visibleAfter {
-            // Always wholly on screen: pushed in from any edge it would cross
-            // (on or under another sticker near an edge, that means more
-            // overlap, never a cut-off sticker).
-            let w = myWidth(scale) / 2, h = myHeight(scale) / 2
-            let v = scene.visible
-            target.x = min(max(target.x, v.minX + w), max(v.maxX - w, v.minX + w))
-            target.y = min(max(target.y, v.minY + h), max(v.maxY - h, v.minY + h))
         }
 
-        // Coming back onto the canvas: from just off the side it left by.
-        var from = state.center
-        if !state.visible {
-            from = StagePoint(
-                x: state.leftBy < 0 ? scene.visible.minX - myWidth(1) * 0.8 : scene.visible.maxX + myWidth(1) * 0.8,
-                y: target.y)
-        }
-        let dx = target.x - from.x, dy = target.y - from.y
-        let widths = (dx * dx + dy * dy).squareRoot() / max(me.size.width, 1)
-        guard widths > 0.05 || abs(scale - state.scale) > 0.01 || visibleAfter != state.visible else { return nil }
+        /// Adds the leg that takes a sticker to `point`: the way it gets
+        /// about, for as long as the distance needs, turned to face where it
+        /// goes (not for a little shuffle to make room).
+        mutating func leg(
+            _ index: Int, to point: StagePoint, scale: Double, visible: Bool, start: TimeInterval, shuffle: Bool = false
+        ) {
+            let state = states[index]
+            let me = state.actor
+            var target = point
+            if visible {
+                // Always wholly on screen: pushed in from any edge it would cross.
+                let w = me.size.width * scale / 2, h = me.size.height * scale / 2
+                let v = scene.visible
+                target.x = min(max(target.x, v.minX + w), max(v.maxX - w, v.minX + w))
+                target.y = min(max(target.y, v.minY + h), max(v.maxY - h, v.minY + h))
+            }
+            // Coming back onto the canvas: from just off the side it left by.
+            var from = state.center
+            if !state.visible {
+                from = StagePoint(
+                    x: state.leftBy < 0 ? scene.visible.minX - me.size.width * 0.8 : scene.visible.maxX + me.size.width * 0.8,
+                    y: target.y)
+            }
+            let dx = target.x - from.x, dy = target.y - from.y
+            let widths = (dx * dx + dy * dy).squareRoot() / max(me.size.width, 1)
+            guard widths > 0.05 || abs(scale - state.scale) > 0.01 || visible != state.visible else { return }
 
-        // How it gets there, and for how long.
-        let move = moves[me.stickerID]
-        var gait: MotionLeg.Gait
-        var duration: TimeInterval
-        if policy.isCalm {
-            gait = .fade
-            duration = fadeTime
-        } else if me.flies {
-            gait = .fly
-            duration = min(max(widths * 0.3 + 0.6, 1.2), 3.4)
-        } else if let move, let cycle = move.cycle, cycle > 0, move.stride > 0, policy.allowsLiveAnimations {
-            gait = move.hops ? .hops(cycle: cycle) : .walk
-            duration = min(max(widths / (move.stride / cycle), minTravel), maxTravel)
-        } else {
-            gait = .bounce
-            duration = min(max(widths * 0.35, minTravel), 3.2)
+            let move = moves[me.stickerID]
+            var gait: MotionLeg.Gait
+            var duration: TimeInterval
+            if policy.isCalm {
+                gait = .fade
+                duration = fadeTime
+            } else if me.flies {
+                gait = .fly
+                duration = min(max(widths * 0.3 + 0.6, shuffle ? 0.6 : 1.2), 3.4)
+            } else if let move, let cycle = move.cycle, cycle > 0, move.stride > 0, policy.allowsLiveAnimations {
+                gait = move.hops ? .hops(cycle: cycle) : .walk
+                duration = min(max(widths / (move.stride / cycle), shuffle ? 0.5 : minTravel), maxTravel)
+            } else {
+                gait = .bounce
+                duration = min(max(widths * 0.35, shuffle ? 0.5 : minTravel), 3.2)
+            }
+            var facing = state.facing
+            if !shuffle, let way = move?.facing, abs(dx) > me.size.width * 0.1, gait != .fade {
+                facing = (way == .right) == (dx > 0) ? 1 : -1
+            }
+            let base = me.home
+            let spot = { (p: StagePoint, s: Double, visible: Bool) in
+                MotionSpot(
+                    x: (p.x - base.x) / max(me.size.width, 1), y: -(p.y - base.y) / max(me.size.height, 1),
+                    scale: s, visible: visible)
+            }
+            states[index].legs.append(MotionLeg(
+                at: start, duration: duration, from: spot(from, state.scale, true), to: spot(target, scale, visible),
+                gait: gait, facingFrom: state.facing, facingTo: facing))
+            states[index].center = target
+            states[index].scale = scale
+            states[index].visible = visible
+            states[index].busyUntil = start + duration
+            states[index].facing = facing
         }
-
-        // It turns to face where it goes (when its frames have a way round).
-        var facing = state.facing
-        if let way = move?.facing, abs(dx) > me.size.width * 0.1, gait != .fade {
-            let right = dx > 0
-            facing = (way == .right) == right ? 1 : -1
-        }
-
-        let base = me.home
-        let spot = { (p: StagePoint, s: Double, visible: Bool) in
-            MotionSpot(
-                x: (p.x - base.x) / max(me.size.width, 1), y: -(p.y - base.y) / max(me.size.height, 1),
-                scale: s, visible: visible)
-        }
-        let leg = MotionLeg(
-            at: start, duration: duration, from: spot(from, state.scale, true),
-            to: spot(target, scale, visibleAfter), gait: gait, facingFrom: state.facing, facingTo: facing)
-        states[index].center = target
-        states[index].scale = scale
-        if let name = go.target, let other = states.firstIndex(where: {
-            $0.actor.stickerID == name && distance($0.center, target) < max($0.actor.size.width, $0.actor.size.height) * 1.5
-        }), go.kind == .to || go.kind == .on || go.kind == .under {
-            states[index].at = "\(go.kind.rawValue):\(states[other].actor.id)"
-        } else {
-            states[index].at = nil
-        }
-        states[index].visible = visibleAfter
-        states[index].busyUntil = start + duration
-        states[index].facing = facing
-        return leg
-    }
-
-    /// Where the n-th sticker on or under the same one goes, sideways, in
-    /// multiples of that one's width: the middle, then right, left, further…
-    static func queueOffset(_ n: Int) -> Double {
-        guard n > 0 else { return 0 }
-        let step = Double((n + 1) / 2) * 0.32
-        return n % 2 == 1 ? step : -step
     }
 
     static func distance(_ a: StagePoint, _ b: StagePoint) -> Double {

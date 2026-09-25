@@ -82,8 +82,8 @@ import Testing
             GoTrigger(at: 0, stickerID: "fox", kind: .on, target: "mushroom"),
         ])
         let bee = place(self.bee, plans, at: 20)
-        #expect(abs(bee.scale - 0.75) < 1e-9 && abs(bee.x - 450) < 1e-6 && bee.y > 200)
-        // The mouse is already less than three quarters of the mushroom: its size stays.
+        #expect(abs(bee.scale - 0.65) < 1e-9 && abs(bee.x - 450) < 1e-6 && bee.y > 200)
+        // The mouse is already smaller than 65 % of the mushroom: its size stays.
         let mouse = place(self.mouse, plans, at: 20)
         #expect(mouse.scale == 1)
         // The mushroom is in the top-right corner: whoever goes on it is
@@ -133,16 +133,33 @@ import Testing
         #expect(abs(end.y - 200) < 1e-6 && abs(end.x - 500) < 150)
     }
 
-    @Test func twoGoingToTheSameStickerTakeDifferentPlaces() {
+    @Test func twoUnderTheSameStickerShareItCentredAndOverlapping() {
         let plans = plan([
             GoTrigger(at: 0, stickerID: "mouse", kind: .under, target: "flower"),
-            GoTrigger(at: 0, stickerID: "bee", kind: .under, target: "flower"),
+            GoTrigger(at: 10, stickerID: "bee", kind: .under, target: "flower"),
+            GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "rabbit"),
+            GoTrigger(at: 20, stickerID: "bee", kind: .away),
+        ])
+        // Alone, the mouse is centred under the flower.
+        #expect(abs(place(mouse, plans, at: 9).x - 450) < 1e-6)
+        // The bee comes (from the right): both shuffle so the pair is
+        // centred on the flower, overlapping by a quarter of the narrower.
+        let m = place(mouse, plans, at: 19), b = place(bee, plans, at: 19)
+        let mw = 60.0 * m.scale, bw = 120.0 * b.scale
+        #expect(m.x < 450 && b.x > 450)
+        let leftEdge = m.x - mw / 2, rightEdge = b.x + bw / 2
+        #expect(abs((leftEdge + rightEdge) / 2 - 450) < 1e-6)
+        #expect(abs((m.x + mw / 2) - (b.x - bw / 2) - MotionPlanner.sharedOverlap * min(mw, bw)) < 1e-6)
+        // The bee leaves: the mouse closes up to the middle again.
+        #expect(abs(place(mouse, plans, at: 40).x - 450) < 1e-6)
+    }
+
+    @Test func twoBesideTheSameStickerTakeBothSides() {
+        let plans = plan([
             GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "rabbit"),
             GoTrigger(at: 0, stickerID: "mouse", kind: .to, target: "rabbit"),
         ])
-        let bee = place(self.bee, plans, at: 30), fox = place(self.fox, plans, at: 30)
-        #expect(abs(bee.x - 450) > 20)  // not on the mouse's spot under the flower
-        let mouse = place(self.mouse, plans, at: 30)
-        #expect((fox.x - 700) * (mouse.x - 700) < 0)  // one each side of the rabbit
+        let fox = place(self.fox, plans, at: 30), mouse = place(self.mouse, plans, at: 30)
+        #expect((fox.x - 700) * (mouse.x - 700) < 0)
     }
 }
