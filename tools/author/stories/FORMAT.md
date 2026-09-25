@@ -251,8 +251,9 @@ Off {fox:go away} ran Fox, out of the meadow.      off the canvas
   on stage already: their `{x:enter}` comes earlier. A target place is
   one of the pack's features (`storycheck -plan` prints them).
 - Only walkers and flyers move (never a flower or a mushroom); `go on`
-  and `go under` shrink the mover to at most three quarters of the other
-  sticker, so they suit a small one on or under a bigger one.
+  and `go under` shrink the mover to at most 65 % of the other sticker, so
+  they suit a small one on or under a bigger one; several may share one
+  (they stand side by side under it, overlapping a little).
 - After `go away` a sticker is gone: cue nothing else on it until `go
   back` (a warning).
 - The same beats carry the same moves in every language.

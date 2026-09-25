@@ -418,9 +418,18 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"? }`:
   follows the distance and the sticker's gait (0.8–5 s; a flight
   1.2–3.4 s). A move cued while an earlier one (or its entrance) is still
   under way starts when that ends.
-- **On or under**, the mover is at most three quarters the size of the
-  sticker it goes on or under (a sticker already that small keeps its
-  size), and going `to` anything else brings it back to its own size.
+- **On or under**, the mover is at least 35 % smaller than the sticker it
+  goes on or under — at most 65 % of its size (a sticker already that
+  small keeps its size) — and going `to` anything else brings it back to
+  its own size.
+- **They share the spot**: everyone on (or under) the same sticker stands
+  in one row centred on it, each overlapping the next by a quarter of the
+  narrower one's width — tucked in together, a little squashed, all still
+  easy to see. When another comes, the ones already there shuffle over to
+  make room (it joins on the side it comes from); when one leaves, the
+  rest close up. Near a screen edge the whole row is pushed back in.
+  Two going *beside* the same sticker take its two sides, then further
+  out.
 - **Always wholly on screen**: every place a move ends is pushed in from
   any edge it would cross — on or under a sticker near the edge, that
   means more overlap, never a cut-off sticker. Only `away` leaves.

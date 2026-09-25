@@ -333,10 +333,12 @@ the branches), off the canvas and back.
   still wrong (GUIDE "Match the scene").
 - **Walkers and flyers only**: a flower or a mushroom never walks off;
   something may come *to* them instead.
-- **On and under shrink the mover** to at most three quarters of the one
-  it goes on or under: write it for a small character and a bigger one
-  (a ladybug on the mushroom, the mouse under its cap, the bee on the
-  flower), not a bear on a snail.
+- **On and under shrink the mover** to at most 65 % of the one it goes on
+  or under: write it for a small character and a bigger one (a ladybug on
+  the mushroom, the mouse under its cap, the bee on the flower), not a
+  bear on a snail. Several can share one spot — two friends tucked under
+  the mushroom's cap stand side by side under it, a little squashed — so
+  when the words have them shelter together, send them all under it.
 - **Away means gone** until it comes back; say where it went in passing
   ("off home for tea") and bring it back with `go back` if it returns.
 - **Let the move finish** before the next thing that sticker does: a move
