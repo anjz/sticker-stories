@@ -2,14 +2,6 @@
   "schema": 1,
   "triggers": [
     {
-      "at": 0,
-      "cue": "can",
-      "sticker": "butterfly",
-      "effect": "float",
-      "repeat": "loop",
-      "intensity": 0.3
-    },
-    {
       "at": 6.76,
       "cue": "it's",
       "effect": "wind",
@@ -57,6 +49,14 @@
       "cue": "pinecone",
       "sticker": "pinecone",
       "enter": true
+    },
+    {
+      "at": 29.6,
+      "cue": "she",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "meadow",
+      "toward": "right"
     },
     {
       "at": 29.81,
@@ -108,6 +108,13 @@
       "cue": "so",
       "sticker": "all",
       "expression": "normal"
+    },
+    {
+      "at": 42.04,
+      "cue": "so",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "meadow"
     },
     {
       "at": 46.69,
