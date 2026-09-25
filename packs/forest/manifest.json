@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "forest",
-  "version": 34,
+  "version": 35,
   "languages": [
     "en-US",
     "es-ES"
@@ -126,6 +126,10 @@
         "es-ES": "Bellota"
       },
       "image": "stickers/acorn.webp",
+      "animations": [
+        "anims/acorn.wish.json",
+        "anims/acorn.walk.json"
+      ],
       "expressions": {
         "happy": "stickers/acorn.happy.webp",
         "sad": "stickers/acorn.sad.webp",
@@ -133,7 +137,7 @@
         "surprised": "stickers/acorn.surprised.webp"
       },
       "stage": {
-        "entrance": "grow",
+        "entrance": "hop",
         "on": [
           "meadow"
         ]
@@ -146,6 +150,10 @@
         "es-ES": "Tejón"
       },
       "image": "stickers/badger.webp",
+      "animations": [
+        "anims/badger.dig.json",
+        "anims/badger.trot.json"
+      ],
       "expressions": {
         "happy": "stickers/badger.happy.webp",
         "sad": "stickers/badger.sad.webp",
@@ -167,7 +175,8 @@
       },
       "image": "stickers/bear.webp",
       "animations": [
-        "anims/bear.yawn.json"
+        "anims/bear.nap.json",
+        "anims/bear.walk.json"
       ],
       "expressions": {
         "happy": "stickers/bear.happy.webp",
@@ -189,6 +198,10 @@
         "es-ES": "Castor"
       },
       "image": "stickers/beaver.webp",
+      "animations": [
+        "anims/beaver.gnaw.json",
+        "anims/beaver.waddle.json"
+      ],
       "expressions": {
         "happy": "stickers/beaver.happy.webp",
         "sad": "stickers/beaver.sad.webp",
@@ -209,6 +222,10 @@
         "es-ES": "Abeja"
       },
       "image": "stickers/bee.webp",
+      "animations": [
+        "anims/bee.hum.json",
+        "anims/bee.fly.json"
+      ],
       "expressions": {
         "happy": "stickers/bee.happy.webp",
         "sad": "stickers/bee.sad.webp",
@@ -254,6 +271,10 @@
         "es-ES": "Mariposa"
       },
       "image": "stickers/butterfly.webp",
+      "animations": [
+        "anims/butterfly.rest.json",
+        "anims/butterfly.flutter.json"
+      ],
       "expressions": {
         "happy": "stickers/butterfly.happy.webp",
         "sad": "stickers/butterfly.sad.webp",
@@ -274,6 +295,10 @@
         "es-ES": "Oruga"
       },
       "image": "stickers/caterpillar.webp",
+      "animations": [
+        "anims/caterpillar.look-up.json",
+        "anims/caterpillar.crawl.json"
+      ],
       "expressions": {
         "happy": "stickers/caterpillar.happy.webp",
         "sad": "stickers/caterpillar.sad.webp",
@@ -294,6 +319,10 @@
         "es-ES": "Ciervo"
       },
       "image": "stickers/deer.webp",
+      "animations": [
+        "anims/deer.graze.json",
+        "anims/deer.walk.json"
+      ],
       "expressions": {
         "happy": "stickers/deer.happy.webp",
         "sad": "stickers/deer.sad.webp",
@@ -314,6 +343,10 @@
         "es-ES": "Patito"
       },
       "image": "stickers/duckling.webp",
+      "animations": [
+        "anims/duckling.nap.json",
+        "anims/duckling.waddle.json"
+      ],
       "expressions": {
         "happy": "stickers/duckling.happy.webp",
         "sad": "stickers/duckling.sad.webp",
@@ -335,6 +368,10 @@
         "es-ES": "Luciérnaga"
       },
       "image": "stickers/firefly.webp",
+      "animations": [
+        "anims/firefly.glow.json",
+        "anims/firefly.fly.json"
+      ],
       "expressions": {
         "happy": "stickers/firefly.happy.webp",
         "sad": "stickers/firefly.sad.webp",
@@ -355,6 +392,10 @@
         "es-ES": "Flor"
       },
       "image": "stickers/flower.webp",
+      "animations": [
+        "anims/flower.close.json",
+        "anims/flower.sprout.json"
+      ],
       "expressions": {
         "happy": "stickers/flower.happy.webp",
         "sad": "stickers/flower.sad.webp",
@@ -375,6 +416,10 @@
         "es-ES": "Zorro"
       },
       "image": "stickers/fox.webp",
+      "animations": [
+        "anims/fox.listen.json",
+        "anims/fox.trot.json"
+      ],
       "expressions": {
         "happy": "stickers/fox.happy.webp",
         "sad": "stickers/fox.sad.webp",
@@ -421,7 +466,8 @@
       },
       "image": "stickers/hedgehog.webp",
       "animations": [
-        "anims/hedgehog.curl-up.json"
+        "anims/hedgehog.curl.json",
+        "anims/hedgehog.scurry.json"
       ],
       "expressions": {
         "happy": "stickers/hedgehog.happy.webp",
@@ -444,7 +490,8 @@
       },
       "image": "stickers/ladybug.webp",
       "animations": [
-        "anims/ladybug.wings.json"
+        "anims/ladybug.wings.json",
+        "anims/ladybug.crawl.json"
       ],
       "expressions": {
         "happy": "stickers/ladybug.happy.webp",
@@ -466,6 +513,10 @@
         "es-ES": "Ratón"
       },
       "image": "stickers/mouse.webp",
+      "animations": [
+        "anims/mouse.sniff.json",
+        "anims/mouse.scamper.json"
+      ],
       "expressions": {
         "happy": "stickers/mouse.happy.webp",
         "sad": "stickers/mouse.sad.webp",
@@ -486,6 +537,10 @@
         "es-ES": "Seta"
       },
       "image": "stickers/mushroom.webp",
+      "animations": [
+        "anims/mushroom.sneeze.json",
+        "anims/mushroom.sprout.json"
+      ],
       "expressions": {
         "happy": "stickers/mushroom.happy.webp",
         "sad": "stickers/mushroom.sad.webp",
@@ -507,7 +562,8 @@
       },
       "image": "stickers/owl.webp",
       "animations": [
-        "anims/owl.sleepy-blink.json"
+        "anims/owl.doze.json",
+        "anims/owl.fly.json"
       ],
       "expressions": {
         "happy": "stickers/owl.happy.webp",
@@ -530,6 +586,10 @@
         "es-ES": "Piña de pino"
       },
       "image": "stickers/pinecone.webp",
+      "animations": [
+        "anims/pinecone.open.json",
+        "anims/pinecone.roll.json"
+      ],
       "expressions": {
         "happy": "stickers/pinecone.happy.webp",
         "sad": "stickers/pinecone.sad.webp",
@@ -537,7 +597,7 @@
         "surprised": "stickers/pinecone.surprised.webp"
       },
       "stage": {
-        "entrance": "grow",
+        "entrance": "hop",
         "on": [
           "meadow"
         ]
@@ -551,7 +611,8 @@
       },
       "image": "stickers/rabbit.webp",
       "animations": [
-        "anims/rabbit.listen.json"
+        "anims/rabbit.listen.json",
+        "anims/rabbit.hop.json"
       ],
       "expressions": {
         "happy": "stickers/rabbit.happy.webp",
@@ -574,7 +635,8 @@
       },
       "image": "stickers/raccoon.webp",
       "animations": [
-        "anims/raccoon.peekaboo.json"
+        "anims/raccoon.peekaboo.json",
+        "anims/raccoon.walk.json"
       ],
       "expressions": {
         "happy": "stickers/raccoon.happy.webp",
@@ -621,7 +683,8 @@
       },
       "image": "stickers/squirrel.webp",
       "animations": [
-        "anims/squirrel.nibble.json"
+        "anims/squirrel.hide-nut.json",
+        "anims/squirrel.scamper.json"
       ],
       "expressions": {
         "happy": "stickers/squirrel.happy.webp",
@@ -644,7 +707,8 @@
       },
       "image": "stickers/woodpecker.webp",
       "animations": [
-        "anims/woodpecker.tap-tap.json"
+        "anims/woodpecker.tap.json",
+        "anims/woodpecker.fly.json"
       ],
       "expressions": {
         "happy": "stickers/woodpecker.happy.webp",
