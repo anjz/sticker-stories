@@ -16,7 +16,7 @@ struct SeededGenerator: RandomNumberGenerator {
     @Test func decodesEntrancesOnePerSticker() throws {
         let json = """
             { "schema": 1, "triggers": [
-              { "at": 4.2, "cue": "owl", "sticker": "owl", "enter": true },
+              { "at": 4.2, "cue": "owl", "sticker": "owl", "enter": true, "by": "hop" },
               { "at": 0, "sticker": "fox", "enter": true },
               { "at": 6, "sticker": "fox", "enter": true },
               { "at": 1, "sticker": "all", "enter": true },
@@ -26,7 +26,7 @@ struct SeededGenerator: RandomNumberGenerator {
         let file = try EffectTriggerFile(data: Data(json.utf8))
         #expect(file.entranceTriggers == [
             EntranceTrigger(at: 0, stickerID: "fox"),
-            EntranceTrigger(at: 4.2, cue: "owl", stickerID: "owl"),
+            EntranceTrigger(at: 4.2, cue: "owl", stickerID: "owl", by: "hop"),
         ])
         #expect(file.triggers.count == 1)
         #expect(file.warnings.count == 3)
@@ -69,10 +69,10 @@ struct SeededGenerator: RandomNumberGenerator {
 
     @Test func moveFramesSetThePaceTheGaitAndTheWayRound() {
         // The fox's frames walk right, 0.5 widths a 0.8 s loop; the tree sprouts.
-        let moves: [String: StageMove] = [
-            "fox": StageMove(cycle: 0.8, stride: 0.5, facing: .right),
-            "owl": StageMove(cycle: 0.5, stride: 1, facing: .left),
-            "tree": StageMove(seconds: 1.4),
+        let moves: [String: [StageMove]] = [
+            "fox": [StageMove(id: "trot", cycle: 0.8, stride: 0.5, facing: .right)],
+            "owl": [StageMove(id: "fly", cycle: 0.5, stride: 1, flies: true, facing: .left)],
+            "tree": [StageMove(id: "sprout", seconds: 1.4)],
         ]
         for seed in [UInt64(1), 7, 42] {
             var random = SeededGenerator(state: seed)
@@ -88,6 +88,7 @@ struct SeededGenerator: RandomNumberGenerator {
             #expect(fox.mirrored == (fox.startOffset.x > 0))
             #expect(owl.mirrored == (owl.startOffset.x < 0))
             #expect(tree.motion == .sprout && tree.duration == 1.4 && tree.travel == 0)
+            #expect([fox.move, owl.move, tree.move] == ["trot", "fly", "sprout"])
         }
         // Calm: no frames, so no gait from them either.
         var random = SeededGenerator(state: 3)
@@ -184,6 +185,41 @@ struct SeededGenerator: RandomNumberGenerator {
         scene.usable = StageRect(minX: 340, minY: 40, maxX: 660, maxY: 710)
         let bird = perch(["bird"], scene: scene)[0].target
         #expect((340...660).contains(bird.x) && (412.5...637.5).contains(bird.y))
+    }
+
+    @Test func comesInAnotherWayWhenTheStoryNamesIt() {
+        // The bird usually flies onto a branch; hopping, it comes along the
+        // ground onto the meadow. The ladybug usually crawls; flying, it
+        // glides in.
+        let features = Self.features.merging(
+            ["meadow": SceneFeature(description: "Grass.", areas: [.init(x: [0.1, 0.9], y: [0.16, 0.36])])]) { a, _ in a }
+        let moves: [String: [StageMove]] = [
+            "bird": [
+                StageMove(id: "fly", cycle: 0.6, stride: 1.2, flies: true, facing: .right),
+                StageMove(id: "hop", cycle: 0.5, stride: 0.5, hops: true, on: ["meadow"], facing: .right),
+            ],
+            "ladybug": [
+                StageMove(id: "crawl", cycle: 0.6, stride: 0.35, facing: .right),
+                StageMove(id: "fly", cycle: 0.5, stride: 1, flies: true, facing: .right),
+            ],
+        ]
+        let stages: [String: StickerStage] = [
+            "bird": StickerStage(entrance: .fly, on: ["branches", "sky"]),
+            "ladybug": StickerStage(entrance: .hop, on: ["meadow"]),
+        ]
+        for seed in [UInt64(1), 9] {
+            var random = SeededGenerator(state: seed)
+            let plans = StagePlanner.plan(
+                entrances: [EntranceTrigger(at: 0, stickerID: "bird", by: "hop"),
+                            EntranceTrigger(at: 1, stickerID: "ladybug", by: "fly")],
+                placed: [], stages: stages, features: features, moves: moves, scene: Self.scene, obstacles: [],
+                policy: .standard, random: &random)
+            let bird = plans[0], ladybug = plans[1]
+            #expect(bird.motion == .hop && bird.gait == .hops(cycle: 0.5) && bird.move == "hop")
+            #expect((0.16 * 750...0.36 * 750).contains(bird.target.y))
+            #expect(ladybug.motion == .fly && ladybug.move == "fly")
+            #expect((0.16 * 750...0.36 * 750).contains(ladybug.target.y))
+        }
     }
 
     @Test func calmModeJustFadesIn() {

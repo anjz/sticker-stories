@@ -217,7 +217,8 @@ const Normal = "normal"
 // the app brings it into the scene there, the way its manifest stage says
 // (hopping or flying in from the side, or growing where it stands). Every
 // featured and supporting sticker has exactly one per language, on the
-// word that first names it; it takes no parameters.
+// word that first names it. Its only parameter is another way in than the
+// usual one: {ladybug:enter by fly} (GoBy, one of the sticker's moves).
 const EnterEffect = "enter"
 
 // GoEffect is the reserved cue effect that moves a sticker
@@ -225,8 +226,13 @@ const EnterEffect = "enter"
 // {frog:go to pond} (a feature), {bee:go on flower}, {mouse:go under
 // mushroom}, {fox:go away} (off the canvas), {fox:go back} (to its own
 // spot). Only stickers that walk or fly move (a stage entrance of hop or
-// fly); the target must be on stage already.
+// fly); the target must be on stage already. A sticker with more than one
+// move goes its usual way unless the cue names another:
+// {ladybug:go on flower by fly}.
 const GoEffect = "go"
+
+// GoBy introduces the move an entrance or a move goes by: {x:go … by fly}.
+const GoBy = "by"
 
 // Move kinds.
 const (
@@ -253,6 +259,7 @@ type Cue struct {
 	Expression string // a face cue's expression
 	GoKind     string // a move's kind: to, on, under, away, back
 	Target     string // a move's target: a sticker or (to) a feature
+	By         string // the move an entrance or a move goes by ("" = its usual one)
 	Sound      bool
 	Solo       bool
 	Effect     string
@@ -585,8 +592,16 @@ func parseCue(inner string) (Cue, error) {
 	default:
 		c.Sticker = target
 	}
-	for _, p := range strings.Fields(params) {
+	fields := strings.Fields(params)
+	for i := 0; i < len(fields); i++ {
+		p := fields[i]
 		switch {
+		case p == GoBy && c.Sticker != "" && (c.Effect == GoEffect || c.Effect == EnterEffect):
+			if i+1 >= len(fields) || !idPattern.MatchString(fields[i+1]) || c.By != "" {
+				return c, fmt.Errorf("by names one of the sticker's moves: by fly")
+			}
+			i++
+			c.By = fields[i]
 		case p == "loop":
 			c.Loop = true
 		case p == "hold":
@@ -716,9 +731,10 @@ type Manifest struct {
 	Stickers  []string
 	Setting   string // outdoors | indoors | space | underwater | none ("" reads as none)
 	// Animations are each sticker's live actions, in manifest order;
-	// Moves each sticker's move (the walk or flight its entrance plays).
+	// Moves each sticker's moves (the walk or flight its entrances and
+	// moves play), its usual one first.
 	Animations map[string][]Animation
-	Moves      map[string]Animation
+	Moves      map[string][]Animation
 	// Expressions are each sticker's face variants (besides normal).
 	Expressions map[string][]string
 	// Names are each sticker's display names by language, for checking
@@ -763,12 +779,14 @@ type Animation struct {
 	Pause       string
 	ToPause     float64
 	FromPause   float64
+	// Flies: a move that is a flight.
+	Flies bool
 }
 
 // PackManifest reads what story validation needs from a loaded pack
 // manifest, live animations included (dir is the pack root).
 func PackManifest(m *manifest.Manifest, dir string) (Manifest, error) {
-	pack := Manifest{ID: m.ID, Languages: m.Languages, Setting: m.EffectiveSetting(), Animations: map[string][]Animation{}, Moves: map[string]Animation{}, Expressions: map[string][]string{}, Names: map[string]map[string]string{}, Stages: map[string]string{}, LandsOn: map[string][]string{}, Features: map[string]string{}}
+	pack := Manifest{ID: m.ID, Languages: m.Languages, Setting: m.EffectiveSetting(), Animations: map[string][]Animation{}, Moves: map[string][]Animation{}, Expressions: map[string][]string{}, Names: map[string]map[string]string{}, Stages: map[string]string{}, LandsOn: map[string][]string{}, Features: map[string]string{}}
 	for id, f := range m.Features {
 		pack.Features[id] = f.Description
 	}
@@ -790,9 +808,9 @@ func PackManifest(m *manifest.Manifest, dir string) (Manifest, error) {
 	}
 	for id, list := range anims {
 		for _, a := range list {
-			anim := Animation{ID: a.ID, Description: a.Description, Seconds: a.Duration()}
+			anim := Animation{ID: a.ID, Description: a.Description, Seconds: a.Duration(), Flies: a.Flies}
 			if a.EffectiveKind() == manifest.KindMove {
-				pack.Moves[id] = anim
+				pack.Moves[id] = append(pack.Moves[id], anim)
 				continue
 			}
 			if a.Pause != nil {
@@ -979,7 +997,7 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 			}
 			if c.Effect == EnterEffect {
 				enterCues++
-				shape = append(shape, c.Sticker+":"+EnterEffect)
+				shape = append(shape, c.Sticker+":"+EnterEffect+":"+c.By)
 				switch {
 				case c.Sticker == AllTarget:
 					is.errorf("%s: cue %s: an entrance names one sticker", lang, c.Raw)
@@ -993,12 +1011,13 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 					}
 				}
 				if c.Repeat > 0 || c.Loop || c.Hold || c.Color != "" || c.Duration > 0 || c.Intensity != 0 {
-					is.errorf("%s: cue %s: an entrance takes no parameters", lang, c.Raw)
+					is.errorf("%s: cue %s: an entrance takes no parameters but the way it comes in (by …)", lang, c.Raw)
 				}
+				validateBy(&is, lang, c, m)
 				continue
 			}
 			if c.Effect == GoEffect {
-				shape = append(shape, c.Sticker+":go:"+c.GoKind+":"+c.Target)
+				shape = append(shape, c.Sticker+":go:"+c.GoKind+":"+c.Target+":"+c.By)
 				validateGoCue(&is, lang, c, m, inStory, enterAt)
 				switch c.GoKind {
 				case GoAway:
@@ -1422,8 +1441,29 @@ func validateGoCue(is *Issues, lang string, c Cue, m Manifest, inStory map[strin
 		is.errorf("%s: cue %s: say where it goes — to, on, under, away or back ({fox:go to rabbit}, {bee:go on flower}, {fox:go away})", lang, c.Raw)
 	}
 	if c.Repeat > 0 || c.Loop || c.Hold || c.Color != "" || c.Duration > 0 || c.Intensity != 0 || c.Animation != "" {
-		is.errorf("%s: cue %s: a move takes only where it goes", lang, c.Raw)
+		is.errorf("%s: cue %s: a move takes only where it goes and the way it goes (by …)", lang, c.Raw)
 	}
+	validateBy(is, lang, c, m)
+}
+
+// validateBy checks the way an entrance or a move names (by fly): one of
+// the sticker's moves. Its usual way needs no naming.
+func validateBy(is *Issues, lang string, c Cue, m Manifest) {
+	if c.By == "" || c.Sticker == AllTarget {
+		return
+	}
+	moves := m.Moves[c.Sticker]
+	var ids []string
+	for _, a := range moves {
+		if a.ID == c.By {
+			if a.ID == moves[0].ID {
+				is.warnf("%s: cue %s: %s is %s's usual way; drop the by", lang, c.Raw, c.By, c.Sticker)
+			}
+			return
+		}
+		ids = append(ids, a.ID)
+	}
+	is.errorf("%s: cue %s: %s has no move %q (its moves: %s)", lang, c.Raw, c.Sticker, c.By, strings.Join(ids, ", "))
 }
 
 // validateLiveCue checks a {sticker:live} cue: the sticker has the live

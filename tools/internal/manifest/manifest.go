@@ -53,7 +53,7 @@ type Manifest struct {
 	// (Stage.On). Optional.
 	Features map[string]Feature `json:"features,omitempty"`
 	Stickers []Sticker          `json:"stickers"`
-	Stories  []Story   `json:"stories"`
+	Stories  []Story            `json:"stories"`
 }
 
 // Sticker is one draggable sticker in the pack.
@@ -354,13 +354,20 @@ func (m *Manifest) Validate(dir string) []error {
 			}
 			animIDs[st.ID+"."+anim.ID] = true
 			if anim.EffectiveKind() == KindMove {
-				if moves[st.ID] {
-					fail("%s: a sticker has at most one move", field)
+				// The first move is the sticker's usual way; another is a way
+				// a story can name ({ladybug:go on flower by fly}), so it
+				// travels: it loops.
+				if moves[st.ID] && anim.Loop == nil {
+					fail("%s: a sticker's second move must loop (only its first may be a sprout)", field)
 				}
 				moves[st.ID] = true
-			} else {
-				animations[st.ID] = append(animations[st.ID], effects.Animation{ID: anim.ID, Pausable: anim.Pause != nil})
+				for _, f := range anim.On {
+					if _, ok := m.Features[f]; !ok {
+						fail("%s: on: %q is not a feature of the pack", field, f)
+					}
+				}
 			}
+			animations[st.ID] = append(animations[st.ID], effects.Animation{ID: anim.ID, Pausable: anim.Pause != nil, Move: anim.EffectiveKind() == KindMove})
 		}
 		// Rule 13: expression variants are images of the sticker; "normal"
 		// is the sticker's own image and cannot be one.

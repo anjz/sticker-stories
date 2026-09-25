@@ -294,7 +294,9 @@ entrance before an action on that sticker.
   *{frog:enter} Frog came hopping*, *slowly, slowly, {snail:enter} Snail
   crawled up*, *a little {mushroom:enter} mushroom popped up* — but the
   sentence must also read fine when the sticker was on the canvas all
-  along.
+  along. A sticker that gets about two ways comes in its usual way; if
+  the words have it arrive the other way, say so on the cue
+  (*{ladybug:enter by fly} Ladybug flew in*; "Movement").
 - Keep what the words say about where a sticker is where it lands.
   `storycheck -plan` prints the pack's features (the pond, the trees'
   branches…) with the stickers that land on each, first choice and
@@ -333,6 +335,18 @@ the branches), off the canvas and back.
   still wrong (GUIDE "Match the scene").
 - **Walkers and flyers only**: a flower or a mushroom never walks off;
   something may come *to* them instead.
+- **The way it goes is the way the words say.** A move plays the
+  sticker's frames: the ladybug crawling, the bird flying. Some get about
+  two ways (`storycheck -plan`, "ways to go": the ladybug crawls or
+  flies, the bird flies or hops along the ground, the duckling waddles or
+  swims, the firefly flies or walks). When the words say the other way —
+  "she *flew* to the flower", "Duckling *paddled* across the pond", "Bird
+  *hopped* through the grass" — name it on the cue (`by fly`, `by swim`,
+  `by hop`), on every move that goes that way and on the entrance if it
+  arrives that way. And the other way round: don't write "flew" for a
+  sticker that only walks, nor "crept" for one that only flies — say what
+  the sticker does. Swimming belongs in the pond; hopping and walking on
+  the ground.
 - **On and under shrink the mover** to at most 65 % of the one it goes on
   or under: write it for a small character and a bigger one (a ladybug on
   the mushroom, the mouse under its cap, the bee on the flower), not a

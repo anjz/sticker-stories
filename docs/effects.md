@@ -384,6 +384,13 @@ one per sticker per story, never `all`.
   and has to come in the other is mirrored for the whole visit. Without a
   move it bounces in as before. Under Reduce Motion or calm mode it
   simply fades in (no frames).
+- **Another way in**: a sticker with more than one move comes in its
+  usual way (its first move) unless the story names another —
+  `{ladybug:enter by fly}`, the trigger's `"by": "fly"`. It then comes in
+  that way: a flying move glides in (`fly`), any other walks or hops in
+  (`hop`), onto that move's `on` features when it has them (a duckling
+  swimming in lands on the pond, a bird hopping in on the meadow), else
+  onto its stage's.
 - From then on a visitor is on the stage like any placed sticker: its
   effects, faces, live animation and `all` reach it (they compose with the
   entrance while it is still arriving). Cues on a visitor before its
@@ -400,7 +407,7 @@ one per sticker per story, never `all`.
 A story can move any sticker that walks or flies (its manifest `stage`
 entrance is `hop` or `fly`; things that grow — a flower, a mushroom — stay
 put), placed by the child or visiting, when the words say it goes
-somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"? }`:
+somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"? }`:
 
 | `go` | `target` | where it goes |
 |---|---|---|
@@ -418,6 +425,16 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"? }`:
   follows the distance and the sticker's gait (0.8–5 s; a flight
   1.2–3.4 s). A move cued while an earlier one (or its entrance) is still
   under way starts when that ends.
+- **The way the words say**: a sticker that gets about more than one way
+  (`docs/pack-format.md`, "Live animations": the ladybug crawls and
+  flies, the bird flies and hops, the duckling waddles and swims) goes its
+  usual way — its first move — unless the trigger names another with
+  `by` (`{ladybug:go on flower by fly}` → `"by": "fly"`): then that
+  move's frames play and it travels that way — a flying move glides and
+  hovers beside whom it goes to, any other walks or hops on the ground.
+  The next move goes the usual way again unless it names one too (so
+  `{ladybug:go back by fly}` to fly home); a shuffle to make room goes
+  the way the sticker last went.
 - **On or under**, the mover is at least 35 % smaller than the sticker it
   goes on or under — at most 65 % of its size (a sticker already that
   small keeps its size) — and going `to` anything else brings it back to

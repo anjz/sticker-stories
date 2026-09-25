@@ -152,6 +152,12 @@ type animSpec struct {
 	Facing string  `json:"facing,omitempty"`
 	Stride float64 `json:"stride,omitempty"`
 	Hops   bool    `json:"hops,omitempty"`
+	// Flies (moves) says the loop is a flight; On lists the features a
+	// story that brings the sticker in this way lands it on (a second
+	// move: the duckling's swim, the pond). Neither changes the frames:
+	// install writes them into the sidecar.
+	Flies bool     `json:"flies,omitempty"`
+	On    []string `json:"on,omitempty"`
 	// Register is how frames are laid on each other: "feet" (the default:
 	// each frame matched on the one before, its bottom kept on one ground
 	// line — a character sitting or walking), "body" (matched both ways —
@@ -306,8 +312,8 @@ func load(packDir, artDir string) (*ctxt, error) {
 		}
 		switch a.kind() {
 		case manifest.KindAction:
-			if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops {
-				return nil, fmt.Errorf("anim.json: %s: loop, facing, stride and hops are for moves", a.key())
+			if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || len(a.On) > 0 {
+				return nil, fmt.Errorf("anim.json: %s: loop, facing, stride, hops, flies and on are for moves", a.key())
 			}
 			if a.Pause != nil && (a.Pause.Frame < 2 || a.Pause.Frame > a.frameCount()-1 || strings.TrimSpace(a.Pause.Shows) == "") {
 				return nil, fmt.Errorf("anim.json: %s: pause needs a middle frame (2–%d) and what it shows", a.key(), a.frameCount()-1)
@@ -435,7 +441,7 @@ func runRender(args []string) error {
 	fs := flag.NewFlagSet("render", flag.ExitOnError)
 	packDir := fs.String("pack", "", "pack directory")
 	artDir := fs.String("art", "", "art directory (default author/art/<packID>)")
-	only := fs.String("only", "", "comma-separated animation ids or sticker ids")
+	only := fs.String("only", "", "comma-separated animation ids, sticker ids or sticker.animation keys")
 	quality := fs.String("quality", defaultQual, "low | medium | high | xhigh | max")
 	fidelity := fs.String("fidelity", "", "input_fidelity for the reference (high | low) on models that take it; gpt-image-2.5 does not")
 	force := fs.Bool("force", false, "re-render even if nothing changed")
@@ -487,7 +493,7 @@ func runRender(args []string) error {
 		}()
 	}
 	for _, a := range c.cfg.Animations {
-		if o.only != nil && !o.only[a.ID] && !o.only[a.Sticker] {
+		if o.only != nil && !o.only[a.ID] && !o.only[a.Sticker] && !o.only[a.key()] {
 			continue
 		}
 		queue <- a
@@ -731,7 +737,7 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 		out.Kind = manifest.KindMove
 		if a.Loop != nil {
 			out.Loop = &manifest.FrameRange{From: a.Loop.From - 1, To: a.Loop.To - 1}
-			out.Facing, out.Stride, out.Hops = a.Facing, a.Stride, a.Hops
+			out.Facing, out.Stride, out.Hops, out.Flies, out.On = a.Facing, a.Stride, a.Hops, a.Flies, a.On
 		}
 	}
 	if a.Pause != nil {
@@ -815,7 +821,7 @@ func runInstall(args []string) error {
 	packDir := fs.String("pack", "", "pack directory")
 	artDir := fs.String("art", "", "art directory (default author/art/<packID>)")
 	bump := fs.Bool("bump", false, "increment the pack's content version")
-	only := fs.String("only", "", "comma-separated animation or sticker ids to copy in (the rest keep what the pack has)")
+	only := fs.String("only", "", "comma-separated animation ids, sticker ids or sticker.animation keys to copy in (the rest keep what the pack has)")
 	fs.Parse(args)
 	wanted := map[string]bool{}
 	for _, id := range strings.Split(*only, ",") {
@@ -861,7 +867,7 @@ func runInstall(args []string) error {
 	}
 	installed := 0
 	for _, a := range c.cfg.Animations {
-		if len(wanted) > 0 && !wanted[a.ID] && !wanted[a.Sticker] {
+		if len(wanted) > 0 && !wanted[a.ID] && !wanted[a.Sticker] && !wanted[a.key()] {
 			continue
 		}
 		src := filepath.Join(outDir, a.key())
@@ -876,7 +882,17 @@ func runInstall(args []string) error {
 			return err
 		}
 		os.Remove(dst + ".png")
-		if err := copyFile(src+".json", dst+".json"); err != nil {
+		// The sidecar as assembled, with what anim.json says now about the
+		// parts that do not change the frames.
+		side, err := manifest.LoadStickerAnimation(src + ".json")
+		if err != nil {
+			return fmt.Errorf("%s: %w", a.key(), err)
+		}
+		if a.kind() == manifest.KindMove && a.Loop != nil {
+			side.Flies, side.On = a.Flies, a.On
+		}
+		data, _ := json.MarshalIndent(side, "", "  ")
+		if err := os.WriteFile(dst+".json", append(data, '\n'), 0o644); err != nil {
 			return err
 		}
 		rel := "anims/" + a.key() + ".json"
@@ -885,6 +901,14 @@ func runInstall(args []string) error {
 			st.Animations = append(st.Animations, rel)
 		}
 		installed++
+	}
+	// In anim.json's order: a sticker's first move is its usual way.
+	order := map[string]int{}
+	for i, a := range c.cfg.Animations {
+		order["anims/"+a.key()+".json"] = i
+	}
+	for i := range c.pack.Stickers {
+		slices.SortStableFunc(c.pack.Stickers[i].Animations, func(a, b string) int { return order[a] - order[b] })
 	}
 	if data, err := json.MarshalIndent(cache, "", "  "); err == nil {
 		os.WriteFile(filepath.Join(outDir, "render.json"), append(data, '\n'), 0o644)
@@ -907,15 +931,4 @@ func runInstall(args []string) error {
 	}
 	fmt.Printf("✓ installed %d animation(s) into %s/anims and declared them in the manifest (version %d); manifest validates\n", installed, c.packDir, c.pack.Version)
 	return nil
-}
-
-func copyFile(src, dst string) error {
-	data, err := os.ReadFile(src)
-	if err != nil {
-		return err
-	}
-	if err := os.MkdirAll(filepath.Dir(dst), 0o755); err != nil {
-		return err
-	}
-	return os.WriteFile(dst, data, 0o644)
 }

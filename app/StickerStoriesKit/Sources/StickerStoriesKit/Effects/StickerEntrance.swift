@@ -9,11 +9,15 @@ public struct EntranceTrigger: Equatable, Sendable {
     /// Optional authoring label (the word it fires on); never interpreted.
     public var cue: String?
     public var stickerID: String
+    /// The move it comes in by (`{ladybug:enter by fly}`), one of the
+    /// sticker's moves; nil for its usual one.
+    public var by: String?
 
-    public init(at: TimeInterval, cue: String? = nil, stickerID: String) {
+    public init(at: TimeInterval, cue: String? = nil, stickerID: String, by: String? = nil) {
         self.at = at
         self.cue = cue
         self.stickerID = stickerID
+        self.by = by
     }
 }
 
@@ -111,11 +115,13 @@ public struct EntrancePlan: Equatable, Sendable {
     /// The sticker is drawn the other way round for the whole visit: its
     /// move travels one way in its frames and it has to come in the other.
     public var mirrored: Bool
+    /// The id of the move whose frames play on the way in; nil for none.
+    public var move: String?
 
     public init(
         stickerID: String, at: TimeInterval, motion: Motion, target: StagePoint,
         startOffset: (x: Double, y: Double) = (0, 0), startScale: Double = 1, duration: TimeInterval,
-        gait: Gait = .bounce, mirrored: Bool = false
+        gait: Gait = .bounce, mirrored: Bool = false, move: String? = nil
     ) {
         self.stickerID = stickerID
         self.at = at
@@ -126,13 +132,14 @@ public struct EntrancePlan: Equatable, Sendable {
         self.duration = duration
         self.gait = gait
         self.mirrored = mirrored
+        self.move = move
     }
 
     public static func == (a: EntrancePlan, b: EntrancePlan) -> Bool {
         a.stickerID == b.stickerID && a.at == b.at && a.motion == b.motion && a.target == b.target
             && a.startOffset.x == b.startOffset.x && a.startOffset.y == b.startOffset.y
             && a.startScale == b.startScale && a.duration == b.duration && a.gait == b.gait
-            && a.mirrored == b.mirrored
+            && a.mirrored == b.mirrored && a.move == b.move
     }
 
     /// How long the sticker travels, for its move frames: they loop this
@@ -219,24 +226,47 @@ public struct EntrancePlan: Equatable, Sendable {
 /// A sticker's move frames as the planner needs them (the sidecar's
 /// timing, `docs/pack-format.md`, "Live animations"): a loop that carries
 /// it `stride` sticker widths every `cycle` seconds, facing the way the
-/// frames travel, maybe hopping — or a one-shot (a sprout) of `seconds`.
+/// frames travel, maybe hopping or flying — or a one-shot (a sprout) of
+/// `seconds`. A sticker can have more than one (the ladybug crawls and
+/// flies): the first is its usual way, the others play when a story says
+/// so (`{ladybug:go on flower by fly}`).
 public struct StageMove: Equatable, Sendable {
     public enum Facing: String, Codable, Equatable, Sendable {
         case left, right
     }
 
+    /// The animation's id (`fly`), which triggers name in `by`.
+    public var id: String
     public var cycle: TimeInterval?
     public var stride: Double
     public var hops: Bool
+    /// The loop is a flight: it glides along with a gentle bob.
+    public var flies: Bool
+    /// Features it comes in on when a story brings it in this way (a
+    /// duckling swimming in: the pond); empty for the sticker's stage.
+    public var on: [String]
     public var facing: Facing?
     public var seconds: TimeInterval
 
-    public init(cycle: TimeInterval? = nil, stride: Double = 0, hops: Bool = false, facing: Facing? = nil, seconds: TimeInterval = 0) {
+    public init(
+        id: String = "", cycle: TimeInterval? = nil, stride: Double = 0, hops: Bool = false, flies: Bool = false,
+        on: [String] = [], facing: Facing? = nil, seconds: TimeInterval = 0
+    ) {
+        self.id = id
         self.cycle = cycle
         self.stride = stride
         self.hops = hops
+        self.flies = flies
+        self.on = on
         self.facing = facing
         self.seconds = seconds
+    }
+
+    /// The move `by` names among a sticker's moves, or its usual one (the
+    /// first) when `by` is nil or not one of them.
+    public static func pick(_ moves: [StageMove]?, by: String?) -> StageMove? {
+        guard let moves else { return nil }
+        return by.flatMap { id in moves.first { $0.id == id } } ?? moves.first
     }
 
     /// Whether a sticker whose frames travel this way has to be mirrored
@@ -292,7 +322,7 @@ public enum StagePlanner {
     /// in time order; later visitors avoid the earlier ones' spots.
     public static func plan<R: RandomNumberGenerator>(
         entrances: [EntranceTrigger], placed: Set<String>, stages: [String: StickerStage],
-        features: [String: SceneFeature] = [:], moves: [String: StageMove] = [:], scene: Scene,
+        features: [String: SceneFeature] = [:], moves: [String: [StageMove]] = [:], scene: Scene,
         obstacles: [StageObstacle], policy: EffectPolicy, random: inout R
     ) -> [EntrancePlan] {
         var obstacles = obstacles
@@ -300,7 +330,15 @@ public enum StagePlanner {
         var seen = Set<String>()
         for entrance in entrances.sorted(by: { $0.at < $1.at })
         where !placed.contains(entrance.stickerID) && seen.insert(entrance.stickerID).inserted {
-            let stage = stages[entrance.stickerID] ?? .default
+            var stage = stages[entrance.stickerID] ?? .default
+            let move = StageMove.pick(moves[entrance.stickerID], by: entrance.by)
+            if let move, let by = entrance.by, move.id == by, move.cycle != nil {
+                // Another way in than its usual one: it flies or walks in
+                // that way, onto the places that way goes (a duckling
+                // swimming in lands on the pond).
+                stage.entrance = move.flies ? .fly : .hop
+                if !move.on.isEmpty { stage.on = move.on }
+            }
             let radius = scene.stickerSize * footprint
             let choices = places(for: stage, features: features, in: scene)
             // The first place in order of preference with a free spot;
@@ -314,7 +352,7 @@ public enum StagePlanner {
             obstacles.append(StageObstacle(center: target, radius: radius))
             plans.append(
                 path(
-                    for: entrance, stage: stage, move: policy.allowsLiveAnimations ? moves[entrance.stickerID] : nil,
+                    for: entrance, stage: stage, move: policy.allowsLiveAnimations ? move : nil,
                     target: target, area: rect, scene: scene, policy: policy, random: &random))
         }
         return plans
@@ -455,7 +493,8 @@ public enum StagePlanner {
                 return EntrancePlan(
                     stickerID: entrance.stickerID, at: entrance.at, motion: .hop, target: target,
                     startOffset: offset, startScale: 1 + depth, duration: duration,
-                    gait: move.hops ? .hops(cycle: cycle) : .walk, mirrored: move.mirrors(travellingRight: fromLeft))
+                    gait: move.hops ? .hops(cycle: cycle) : .walk, mirrored: move.mirrors(travellingRight: fromLeft),
+                    move: move.id)
             }
             return EntrancePlan(
                 stickerID: entrance.stickerID, at: entrance.at, motion: .hop, target: target,
@@ -468,12 +507,12 @@ public enum StagePlanner {
             return EntrancePlan(
                 stickerID: entrance.stickerID, at: entrance.at, motion: .fly, target: target,
                 startOffset: offset, duration: min(max(distance * 0.3, 1.6), 3.4),
-                mirrored: move?.mirrors(travellingRight: fromLeft) ?? false)
+                mirrored: move?.mirrors(travellingRight: fromLeft) ?? false, move: move?.id)
         case (.grow, false):
             if let move, move.cycle == nil, move.seconds > 0 {
                 return EntrancePlan(
                     stickerID: entrance.stickerID, at: entrance.at, motion: .sprout, target: target,
-                    duration: min(max(move.seconds, 0.6), 3))
+                    duration: min(max(move.seconds, 0.6), 3), move: move.id)
             }
             return EntrancePlan(stickerID: entrance.stickerID, at: entrance.at, motion: .grow, target: target, duration: 0.8)
         case (_, true):

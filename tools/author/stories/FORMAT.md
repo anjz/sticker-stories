@@ -225,9 +225,11 @@ Snail {snail:live hold} hid in his shell…        up to the pause pose, and sta
   resume count once; warning). The same beats carry the same live cues
   in every language.
 - A sticker's **move** (its walk, hop, flight or sprout) is never cued:
-  it plays by itself when the sticker enters (`{sticker:enter}`), so the
-  words around an entrance can say how it comes — hops in, flutters
-  down, crawls up slowly. Leave a few words after an entrance before a
+  it plays by itself when the sticker enters (`{sticker:enter}`) or goes
+  somewhere (`{sticker:go …}`), so the words around an entrance can say
+  how it comes — hops in, flutters down, crawls up slowly. A sticker with
+  more than one way to go comes in and goes its usual way unless the cue
+  names another with `by` ("Move cues"). Leave a few words after an entrance before a
   live cue on the same sticker, so it has arrived.
 
 ### Move cues
@@ -256,6 +258,23 @@ Off {fox:go away} ran Fox, out of the meadow.      off the canvas
   (they stand side by side under it, overlapping a little).
 - After `go away` a sticker is gone: cue nothing else on it until `go
   back` (a warning).
+- **The way it goes must be the way the words say.** Some stickers get
+  about more than one way (`storycheck -plan`, "ways to go": the ladybug
+  crawls or flies, the bird flies or hops, the duckling waddles or swims,
+  the firefly flies or walks). Without `by` they go their usual way (the
+  first listed); when the words say the other, name it — on moves and
+  entrances alike, and on each move (the next one is back to the usual
+  way unless it names one too):
+
+  ```
+  Then she flew {ladybug:go on flower by fly} to the flower {ladybug:go back by fly} and back.
+  Duckling {duckling:go to pond by swim} paddled across the pond.
+  Along came {bird:enter by hop} Bird, hopping through the grass.
+  ```
+
+  Naming the usual way is a warning (drop the `by`); a way the sticker
+  does not have is an error. If the words say a way the sticker has no
+  move for (a fox that swims), change the words.
 - The same beats carry the same moves in every language.
 
 ### Face cues
@@ -289,18 +308,20 @@ Along came {fox:enter} Fox, hop, hop, hop.
 
 - Exactly one per featured and supporting sticker in every language,
   right before the word that first names it and before any other cue on
-  that word; no parameters, never on `all`. The same stickers enter in
-  every language (the words they sit on may differ).
+  that word; never on `all`. Its only parameter is another way in than
+  the usual one (`{ladybug:enter by fly} Ladybug flew in`, "Move cues"),
+  when the words say so. The same stickers enter in every language (the
+  words they sit on may differ), the same way.
 - In play, a sticker the child has not placed comes into the scene on
   that word — hopping in, flying in or growing, as its manifest `stage`
-  says — and leaves when the story ends. For a placed sticker it does
-  nothing.
+  says (or the way `by` names) — and leaves when the story ends. For a
+  placed sticker it does nothing.
 - The validator errors on a missing, repeated or parameterised entrance
   and warns when the sticker is named before it (by its manifest name) or
   has a cue before it (a `loop` or a face before it is fine). Entrances
   do not count toward the cue density.
 - `storyaudio` turns it into a trigger `{ "at", "cue", "sticker",
-  "enter": true }` (`docs/effects.md`, "Entrances").
+  "enter": true, "by"? }` (`docs/effects.md`, "Entrances").
 
 ### Everyone: `all`
 

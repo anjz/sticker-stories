@@ -27,13 +27,19 @@ public struct GoTrigger: Equatable, Sendable {
     public var kind: Kind
     /// A sticker id (to, on, under) or a feature id (to); nil for away and back.
     public var target: String?
+    /// The move it goes by (`{ladybug:go on flower by fly}`), one of the
+    /// sticker's moves; nil for its usual one.
+    public var by: String?
 
-    public init(at: TimeInterval, cue: String? = nil, stickerID: String, kind: Kind, target: String? = nil) {
+    public init(
+        at: TimeInterval, cue: String? = nil, stickerID: String, kind: Kind, target: String? = nil, by: String? = nil
+    ) {
         self.at = at
         self.cue = cue
         self.stickerID = stickerID
         self.kind = kind
         self.target = target
+        self.by = by
     }
 }
 
@@ -82,10 +88,12 @@ public struct MotionLeg: Equatable, Sendable {
     /// after: it turns at the start to face where it goes.
     public var facingFrom: Double
     public var facingTo: Double
+    /// The id of the move whose frames play along; nil for none.
+    public var move: String?
 
     public init(
         at: TimeInterval, duration: TimeInterval, from: MotionSpot, to: MotionSpot, gait: Gait,
-        facingFrom: Double = 1, facingTo: Double = 1
+        facingFrom: Double = 1, facingTo: Double = 1, move: String? = nil
     ) {
         self.at = at
         self.duration = duration
@@ -94,6 +102,7 @@ public struct MotionLeg: Equatable, Sendable {
         self.gait = gait
         self.facingFrom = facingFrom
         self.facingTo = facingTo
+        self.move = move
     }
 
     /// Whether its move frames play along (not while fading).
@@ -170,11 +179,11 @@ public struct MotionPlan: Equatable, Sendable {
         return abs(value) < 0.05 ? (value < 0 ? -0.05 : 0.05) : value
     }
 
-    /// The move in progress at `time` whose frames should play (its start
-    /// and how long it travels), if any.
-    public func travel(at time: TimeInterval) -> (at: TimeInterval, duration: TimeInterval)? {
+    /// The move in progress at `time` whose frames should play (its start,
+    /// how long it travels and which move), if any.
+    public func travel(at time: TimeInterval) -> (at: TimeInterval, duration: TimeInterval, move: String?)? {
         guard let leg = leg(at: time), leg.travels else { return nil }
-        return (leg.at, leg.duration)
+        return (leg.at, leg.duration, leg.move)
     }
 
     static func mix(_ a: MotionSpot, _ b: MotionSpot, _ k: Double) -> MotionSpot {
@@ -202,6 +211,7 @@ public enum MotionPlanner {
         public var facing: Double
         /// Walkers and flyers move; still things (a flower) don't.
         public var canMove: Bool
+        /// Its usual way is a flight (when it has no move frames to say so).
         public var flies: Bool
 
         public init(
@@ -242,11 +252,13 @@ public enum MotionPlanner {
         /// Whom it stands beside ("to:<id>"), so the next one that goes
         /// there takes the other side.
         var at: String?
+        /// The way it last went (a move's id), for a shuffle to make room.
+        var by: String?
     }
 
     public static func plan<R: RandomNumberGenerator>(
         goes: [GoTrigger], actors: [Actor], features: [String: SceneFeature] = [:],
-        moves: [String: StageMove] = [:], scene: StagePlanner.Scene, policy: EffectPolicy, random: inout R
+        moves: [String: [StageMove]] = [:], scene: StagePlanner.Scene, policy: EffectPolicy, random: inout R
     ) -> [UUID: MotionPlan] {
         var planner = Planner(
             states: actors.map {
@@ -274,7 +286,7 @@ public enum MotionPlanner {
     private struct Planner {
         var states: [State]
         let features: [String: SceneFeature]
-        let moves: [String: StageMove]
+        let moves: [String: [StageMove]]
         let scene: StagePlanner.Scene
         let policy: EffectPolicy
         /// Who shares a spot on or under a sticker ("under:<id>"), left to
@@ -288,6 +300,7 @@ public enum MotionPlanner {
             // beside, it no longer does (a move to a sticker sets it again).
             let left = leaveGroup(index)
             states[index].at = nil
+            states[index].by = go.by
 
             if go.kind == .on || go.kind == .under, let name = go.target, let other = nearest(name, to: index) {
                 let key = "\(go.kind.rawValue):\(states[other].actor.id)"
@@ -359,6 +372,17 @@ public enum MotionPlanner {
             }
         }
 
+        /// The move it goes by now (the one the story names, else its
+        /// usual one) and whether that way flies.
+        func way(_ index: Int) -> (move: StageMove?, flies: Bool) {
+            let me = states[index].actor
+            let by = states[index].by
+            let move = StageMove.pick(moves[me.stickerID], by: by)
+            // Named, the move says; its usual way flies when its stage does.
+            if let move, by != nil, move.id == by { return (move, move.flies) }
+            return (move, me.flies || move?.flies == true)
+        }
+
         /// Where a move other than on/under ends: beside a sticker, a place
         /// in the scene, off the canvas, back home.
         mutating func destination<R: RandomNumberGenerator>(
@@ -367,12 +391,13 @@ public enum MotionPlanner {
             let state = states[index]
             let me = state.actor
             let others = states.indices.filter { $0 != index && states[$0].visible }
+            let flies = way(index).flies
             switch go.kind {
             case .to:
                 guard let name = go.target else { return nil }
                 if features[name] != nil, !states.contains(where: { $0.actor.stickerID == name }) {
                     // A place in the scene: its freest spot on screen.
-                    let stage = StickerStage(entrance: me.flies ? .fly : .hop, on: [name])
+                    let stage = StickerStage(entrance: flies ? .fly : .hop, on: [name])
                     let rects = StagePlanner.places(for: stage, features: features, in: scene).first ?? []
                     guard !rects.isEmpty else { return nil }
                     let obstacles = others.map {
@@ -403,7 +428,7 @@ public enum MotionPlanner {
                 let feetLevel = them.center.y - th / 2 + me.size.height / 2  // feet on the same line
                 let point = StagePoint(
                     x: them.center.x + side * (tw / 2 + me.size.width / 2) * (0.72 + 0.6 * Double(already / 2)),
-                    y: me.flies
+                    y: flies
                         ? them.center.y + th * 0.15
                         // A walker going to a flyer up on a branch or in the
                         // sky stays on the ground, just below it.
@@ -450,13 +475,13 @@ public enum MotionPlanner {
             let widths = (dx * dx + dy * dy).squareRoot() / max(me.size.width, 1)
             guard widths > 0.05 || abs(scale - state.scale) > 0.01 || visible != state.visible else { return }
 
-            let move = moves[me.stickerID]
+            let (move, flies) = way(index)
             var gait: MotionLeg.Gait
             var duration: TimeInterval
             if policy.isCalm {
                 gait = .fade
                 duration = fadeTime
-            } else if me.flies {
+            } else if flies {
                 gait = .fly
                 duration = min(max(widths * 0.3 + 0.6, shuffle ? 0.6 : 1.2), 3.4)
             } else if let move, let cycle = move.cycle, cycle > 0, move.stride > 0, policy.allowsLiveAnimations {
@@ -478,7 +503,7 @@ public enum MotionPlanner {
             }
             states[index].legs.append(MotionLeg(
                 at: start, duration: duration, from: spot(from, state.scale, true), to: spot(target, scale, visible),
-                gait: gait, facingFrom: state.facing, facingTo: facing))
+                gait: gait, facingFrom: state.facing, facingTo: facing, move: move?.id))
             states[index].center = target
             states[index].scale = scale
             states[index].visible = visible

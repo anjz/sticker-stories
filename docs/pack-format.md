@@ -241,10 +241,12 @@ never letterboxes:
     `id` the sticker already uses, a missing or non-image sheet,
     a `hold` list that does not match `count`, holds outside 0.02–5 s,
     boxes outside the unit square, a `kind` other than `action`/`move`,
-    a second move for one sticker, a `pause` on a move or outside the
-    middle frames or without `shows`, a `loop`, `facing`, `stride` or
-    `hops` on an action, a loop outside the frames, a looping move
-    without `facing` left/right or with a `stride` outside 0–5 are
+    a second move for one sticker without a `loop`, a `pause` on a move
+    or outside the middle frames or without `shows`, a `loop`, `facing`,
+    `stride`, `hops`, `flies` or `on` on an action or a move without a
+    loop, a loop outside the frames, a looping move without `facing`
+    left/right or with a `stride` outside 0–5, `hops` with `flies`, an
+    `on` naming no feature are
     errors); the app checks the file exists and reads it **leniently**
     (an undecodable sidecar is skipped with a log, never fatal; a pause
     or loop it cannot use is dropped).
@@ -347,13 +349,19 @@ own art that bring it to life. Two kinds (`kind`):
   resumes it or ends.
 - a **move** — how the character gets about: a walk or a waddle, a hop,
   a crawl, a flight, a plant sprouting. It plays while a story brings the
-  sticker into the scene (`docs/effects.md`, "Entrances"): a **loop** of
-  frames repeated while it travels, then a few frames that bring it to
-  rest in its sticker pose. A plant's sprout has no loop and plays once.
-  A sticker has at most one move.
+  sticker into the scene or moves it (`docs/effects.md`, "Entrances",
+  "Movement"): a **loop** of frames repeated while it travels, then a few
+  frames that bring it to rest in its sticker pose. A plant's sprout has
+  no loop and plays once. A character that gets about more than one way
+  has a move for each — the ladybug crawls and flies, the duckling
+  waddles and swims: its **first** declared move is its usual way, and
+  any other plays only when a story names it (`"by": "fly"` on an
+  entrance or a move trigger), so what the words say and what the screen
+  shows agree.
 
 **Every pack gives every sticker one action and one move** (the authoring
-target, like the story count; not a validation rule). The motions are
+target, like the story count; not a validation rule), and a second move
+to a character that plainly gets about two ways. The motions are
 small and unhurried — nothing fast, nothing that reaches far from the
 sticker — and smooth: about 10–12 frames a second, with frames drawn
 close enough together that each step is small (an action is typically
@@ -376,6 +384,8 @@ Each animation is a sprite sheet plus a sidecar, made by
 | `facing` | moves with a loop: `left` or `right`, the way the frames travel (the app mirrors a sticker that has to come in the other way) |
 | `stride` | moves with a loop: how far one loop carries the character, in multiples of the sticker's width (above 0, at most 5), so it travels at the pace of its legs |
 | `hops` | moves with a loop, optional: `true` when the loop is a hop drawn in place; the app lifts the character in an arc once per loop |
+| `flies` | moves with a loop, optional: `true` when the loop is a flight; the app glides the character along with a gentle bob and stops it beside others at their height (not with `hops`) |
+| `on` | moves with a loop, optional: feature ids (`features` above) a story that brings the character in this way lands it on, in order of preference — the duckling swimming in lands on the pond; empty for its `stage`'s |
 
 The frames are registered on the part that stays still (the feet, the
 shell's base) — a move's frames on the character's body, feet on the
@@ -391,8 +401,10 @@ Stories play actions: the authoring cue `{snail:live}` becomes a trigger
 sidecar (`docs/effects.md`, "Live animations"), `{snail:live hold}` and
 `{snail:live resume}` the same with `"mode": "hold"` / `"resume"`; the
 packager checks them against the actions the sticker declares (and
-`hold`/`resume` against its pause frame). A move is never cued: entrances
-play it. The developer effects gallery plays any. A sheet decodes to width
+`hold`/`resume` against its pause frame). A move is never cued on its
+own: entrances and moves (`{fox:go to rabbit}`) play it, the usual one
+unless the cue names another (`{ladybug:go on flower by fly}` becomes
+`"by": "fly"`, checked against the sticker's moves). The developer effects gallery plays any. A sheet decodes to width
 × height × 4 bytes of texture whatever its file size — keep that in mind
 before adding frames; a story loads only the sheets it plays.
 

@@ -198,6 +198,7 @@ type Trigger struct {
 	Enter      bool    `json:"enter,omitempty"`      // an entrance: no effect
 	Go         string  `json:"go,omitempty"`         // a move: no effect
 	Target     string  `json:"target,omitempty"`     // a move's target
+	By         string  `json:"by,omitempty"`         // the move an entrance or a move goes by
 	Repeat     any     `json:"repeat,omitempty"`     // int or "loop"
 	Duration   float64 `json:"duration,omitempty"`
 	Intensity  float64 `json:"intensity,omitempty"`
@@ -230,7 +231,7 @@ func Triggers(cues []story.Cue, tl *Timeline, pack story.Manifest) ([]Trigger, e
 		}
 		at = round(at)
 		if c.Effect == story.EnterEffect && !c.Canvas {
-			t := Trigger{At: at, Sticker: c.Sticker, Enter: true}
+			t := Trigger{At: at, Sticker: c.Sticker, Enter: true, By: c.By}
 			if c.WordIndex < len(tl.Words) {
 				t.Cue = normalizeWord(tl.Words[c.WordIndex].Text)
 			}
@@ -238,7 +239,7 @@ func Triggers(cues []story.Cue, tl *Timeline, pack story.Manifest) ([]Trigger, e
 			continue
 		}
 		if c.Effect == story.GoEffect && !c.Canvas {
-			t := Trigger{At: at, Sticker: c.Sticker, Go: c.GoKind, Target: c.Target}
+			t := Trigger{At: at, Sticker: c.Sticker, Go: c.GoKind, Target: c.Target, By: c.By}
 			if c.WordIndex < len(tl.Words) {
 				t.Cue = normalizeWord(tl.Words[c.WordIndex].Text)
 			}

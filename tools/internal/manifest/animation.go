@@ -21,8 +21,10 @@ type StickerAnimation struct {
 	// Kind is what the animation is for: an "action" (the default) is a
 	// moment a story cues ({snail:live}); a "move" is how the character
 	// gets about — a walk, a hop, a flight, a sprout — and plays while a
-	// story brings it into the scene (docs/effects.md, "Entrances"). A
-	// sticker has at most one move.
+	// story brings it into the scene or moves it (docs/effects.md,
+	// "Entrances", "Movement"). A sticker's first move is its usual way;
+	// any other is another way it can go (the ladybug crawls, and flies
+	// when a story says so: {ladybug:go on flower by fly}).
 	Kind string `json:"kind,omitempty"`
 	// Description says in one plain sentence what the animation shows
 	// ("the bear cub yawns and stretches…"), for story authors: a story
@@ -65,6 +67,13 @@ type StickerAnimation struct {
 	// Hops says the loop's frames are hops drawn in place: the app lifts
 	// the character in an arc once per loop as it travels.
 	Hops bool `json:"hops,omitempty"`
+	// Flies says the loop is a flight: the app glides the character along
+	// with a gentle bob, and it stops beside others at their height.
+	Flies bool `json:"flies,omitempty"`
+	// On are the features a story that brings the character in this way
+	// lands it on ({duckling:enter by swim}: the pond), in order of
+	// preference; empty for its stage's. Moves with a loop only.
+	On []string `json:"on,omitempty"`
 }
 
 // Animation kinds.
@@ -172,8 +181,8 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	}
 	switch a.EffectiveKind() {
 	case KindAction:
-		if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops {
-			fail("loop, facing, stride and hops belong to a move, not an action")
+		if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || len(a.On) > 0 {
+			fail("loop, facing, stride, hops, flies and on belong to a move, not an action")
 		}
 		if p := a.Pause; p != nil {
 			if p.Frame < 1 || p.Frame > a.Count-2 {
@@ -197,8 +206,11 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 			if a.Stride <= 0 || a.Stride > 5 {
 				fail("stride %g must be above 0 and at most 5 sticker widths", a.Stride)
 			}
-		} else if a.Facing != "" || a.Stride != 0 || a.Hops {
-			fail("facing, stride and hops need a loop")
+			if a.Hops && a.Flies {
+				fail("a move hops or flies, not both")
+			}
+		} else if a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || len(a.On) > 0 {
+			fail("facing, stride, hops, flies and on need a loop")
 		}
 	default:
 		fail("kind %q must be action or move", a.Kind)
