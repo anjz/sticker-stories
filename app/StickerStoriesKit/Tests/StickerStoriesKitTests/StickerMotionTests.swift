@@ -126,4 +126,23 @@ import Testing
         let mid = plan.facing(at: 10 + MotionPlan.turn / 2)
         #expect(abs(mid) < 0.6 && abs(mid) >= 0.05)
     }
+
+    @Test func aWalkerGoingToAFlyerStaysOnTheGround() {
+        let plans = plan([GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "bee")])
+        let end = place(fox, plans, at: 20)
+        #expect(abs(end.y - 200) < 1e-6 && abs(end.x - 500) < 150)
+    }
+
+    @Test func twoGoingToTheSameStickerTakeDifferentPlaces() {
+        let plans = plan([
+            GoTrigger(at: 0, stickerID: "mouse", kind: .under, target: "flower"),
+            GoTrigger(at: 0, stickerID: "bee", kind: .under, target: "flower"),
+            GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "rabbit"),
+            GoTrigger(at: 0, stickerID: "mouse", kind: .to, target: "rabbit"),
+        ])
+        let bee = place(self.bee, plans, at: 30), fox = place(self.fox, plans, at: 30)
+        #expect(abs(bee.x - 450) > 20)  // not on the mouse's spot under the flower
+        let mouse = place(self.mouse, plans, at: 30)
+        #expect((fox.x - 700) * (mouse.x - 700) < 0)  // one each side of the rabbit
+    }
 }

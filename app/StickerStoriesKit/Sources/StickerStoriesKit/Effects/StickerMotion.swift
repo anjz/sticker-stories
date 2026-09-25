@@ -239,6 +239,9 @@ public enum MotionPlanner {
         var legs: [MotionLeg] = []
         /// The side it left by, to come back from.
         var leftBy: Double = 1
+        /// Who it went to, on or under last ("to:rabbit"), so the next one
+        /// that goes there takes another place.
+        var at: String?
     }
 
     public static func plan<R: RandomNumberGenerator>(
@@ -297,21 +300,35 @@ public enum MotionPlanner {
                 else { return nil }
                 let them = states[other]
                 let tw = them.actor.size.width * them.scale, th = them.actor.size.height * them.scale
+                // Others already there (on it, under it, beside it) move up
+                // the queue: the next one takes the other side, then further
+                // out, so nobody lands on top of anybody.
+                let spotKey = "\(go.kind.rawValue):\(them.actor.id)"
+                let already = states.indices.filter { $0 != index && states[$0].at == spotKey }.count
                 switch go.kind {
                 case .to:
                     // Beside it, on the side it comes from, a little overlapping.
-                    let side: Double = state.center.x <= them.center.x ? -1 : 1
+                    var side: Double = state.center.x <= them.center.x ? -1 : 1
+                    if already % 2 == 1 { side = -side }
+                    let feetLevel = them.center.y - th / 2 + myHeight(1) / 2  // feet on the same line
                     target = StagePoint(
-                        x: them.center.x + side * (tw / 2 + myWidth(1) / 2) * 0.72,
+                        x: them.center.x + side * (tw / 2 + myWidth(1) / 2) * (0.72 + 0.6 * Double(already / 2)),
                         y: me.flies
                             ? them.center.y + th * 0.15
-                            : them.center.y - th / 2 + myHeight(1) / 2)  // feet on the same line
+                            // A walker going to a flyer up on a branch or in
+                            // the sky stays on the ground, just below it.
+                            : them.actor.flies && feetLevel > state.center.y + myHeight(1)
+                                ? state.center.y : feetLevel)
                 case .on:
                     scale = min(1, nestedScale * th / max(me.size.height, 1))
-                    target = StagePoint(x: them.center.x, y: them.center.y + th * 0.32 + myHeight(scale) * 0.3)
+                    target = StagePoint(
+                        x: them.center.x + Self.queueOffset(already) * tw,
+                        y: them.center.y + th * 0.32 + myHeight(scale) * 0.3)
                 default:  // under
                     scale = min(1, nestedScale * th / max(me.size.height, 1))
-                    target = StagePoint(x: them.center.x + tw * 0.08, y: them.center.y - th / 2 + myHeight(scale) / 2)
+                    target = StagePoint(
+                        x: them.center.x + tw * 0.08 + Self.queueOffset(already) * tw,
+                        y: them.center.y - th / 2 + myHeight(scale) / 2)
                 }
             }
         case .away:
@@ -380,10 +397,25 @@ public enum MotionPlanner {
             to: spot(target, scale, visibleAfter), gait: gait, facingFrom: state.facing, facingTo: facing)
         states[index].center = target
         states[index].scale = scale
+        if let name = go.target, let other = states.firstIndex(where: {
+            $0.actor.stickerID == name && distance($0.center, target) < max($0.actor.size.width, $0.actor.size.height) * 1.5
+        }), go.kind == .to || go.kind == .on || go.kind == .under {
+            states[index].at = "\(go.kind.rawValue):\(states[other].actor.id)"
+        } else {
+            states[index].at = nil
+        }
         states[index].visible = visibleAfter
         states[index].busyUntil = start + duration
         states[index].facing = facing
         return leg
+    }
+
+    /// Where the n-th sticker on or under the same one goes, sideways, in
+    /// multiples of that one's width: the middle, then right, left, further…
+    static func queueOffset(_ n: Int) -> Double {
+        guard n > 0 else { return 0 }
+        let step = Double((n + 1) / 2) * 0.32
+        return n % 2 == 1 ? step : -step
     }
 
     static func distance(_ a: StagePoint, _ b: StagePoint) -> Double {
