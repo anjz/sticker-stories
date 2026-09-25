@@ -172,7 +172,9 @@ exactly per `FORMAT.md`:
   bird flies or hops, the duckling waddles or swims, the firefly flies or
   walks) needs `by` when the words say the other one (`{ladybug:go on
   flower by fly}`, `{ladybug:enter by fly}`), on each such move; never
-  write a way the sticker has no move for; **a flyer lands before it
+  write a way the sticker has no move for; **what the wind carries goes
+  right** (`go away right`, `go to <place> right`: the wind effect blows
+  left to right); **a flyer lands before it
   rests** — before a perched action (the butterfly folding its wings, the
   owl dozing off) move it onto or under something or down to the
   meadow or branches, never resting in the sky or hovering beside

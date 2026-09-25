@@ -193,7 +193,24 @@ public struct EffectTriggerFile: Equatable, Sendable {
         }
         return GoTrigger(
             at: at, cue: fields["cue"] as? String, stickerID: stickerID, kind: kind,
-            target: kind == .away || kind == .back ? nil : target, by: way(fields, label: label, warnings: &warnings))
+            target: kind == .away || kind == .back ? nil : target, by: way(fields, label: label, warnings: &warnings),
+            toward: side(fields, kind: kind, label: label, warnings: &warnings))
+    }
+
+    /// The side a move goes toward (`"toward": "right"`), on `to` and `away`.
+    private static func side(
+        _ fields: [String: Any], kind: GoTrigger.Kind, label: String, warnings: inout [String]
+    ) -> GoTrigger.Side? {
+        guard let raw = fields["toward"] else { return nil }
+        guard let text = raw as? String, let side = GoTrigger.Side(rawValue: text) else {
+            warnings.append("\(label): toward must be left or right; ignored")
+            return nil
+        }
+        guard kind == .to || kind == .away else {
+            warnings.append("\(label): toward is only for go to and go away; ignored")
+            return nil
+        }
+        return side
     }
 
     /// The move an entrance or a move goes by (`"by": "fly"`, one of the

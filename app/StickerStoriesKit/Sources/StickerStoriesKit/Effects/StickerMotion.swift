@@ -30,9 +30,19 @@ public struct GoTrigger: Equatable, Sendable {
     /// The move it goes by (`{ladybug:go on flower by fly}`), one of the
     /// sticker's moves; nil for its usual one.
     public var by: String?
+    /// The way it goes across the screen, when the story says (the wind
+    /// blows left to right, so what it carries goes right): off the canvas
+    /// by that side, to a place on that side of where it is, beside a
+    /// sticker on that side of it. Only `to` and `away`.
+    public var toward: Side?
+
+    public enum Side: String, Equatable, Sendable {
+        case left, right
+    }
 
     public init(
-        at: TimeInterval, cue: String? = nil, stickerID: String, kind: Kind, target: String? = nil, by: String? = nil
+        at: TimeInterval, cue: String? = nil, stickerID: String, kind: Kind, target: String? = nil, by: String? = nil,
+        toward: Side? = nil
     ) {
         self.at = at
         self.cue = cue
@@ -40,6 +50,7 @@ public struct GoTrigger: Equatable, Sendable {
         self.kind = kind
         self.target = target
         self.by = by
+        self.toward = toward
     }
 }
 
@@ -423,7 +434,27 @@ public enum MotionPlanner {
                 if features[name] != nil, !states.contains(where: { $0.actor.stickerID == name }) {
                     // A place in the scene: its freest spot on screen.
                     let stage = StickerStage(entrance: flies ? .fly : .hop, on: [name])
-                    let rects = StagePlanner.places(for: stage, features: features, in: scene).first ?? []
+                    var rects = StagePlanner.places(for: stage, features: features, in: scene).first ?? []
+                    if let toward = go.toward {
+                        // Only the part of the place at least a width away on
+                        // that side of it (the wind carries it right); none
+                        // there: the far end.
+                        let edge = state.center.x + (toward == .right ? 1 : -1) * me.size.width
+                        let side = rects.compactMap { r -> StageRect? in
+                            let clipped = toward == .right
+                                ? StageRect(minX: max(r.minX, edge), minY: r.minY, maxX: r.maxX, maxY: r.maxY)
+                                : StageRect(minX: r.minX, minY: r.minY, maxX: min(r.maxX, edge), maxY: r.maxY)
+                            return clipped.maxX > clipped.minX ? clipped : nil
+                        }
+                        if !side.isEmpty {
+                            rects = side
+                        } else if let far = (toward == .right ? rects.max { $0.maxX < $1.maxX } : rects.min { $0.minX < $1.minX }) {
+                            let w = (far.maxX - far.minX) * 0.3
+                            rects = [toward == .right
+                                ? StageRect(minX: far.maxX - w, minY: far.minY, maxX: far.maxX, maxY: far.maxY)
+                                : StageRect(minX: far.minX, minY: far.minY, maxX: far.minX + w, maxY: far.maxY)]
+                        }
+                    }
                     guard !rects.isEmpty else { return nil }
                     let obstacles = others.map {
                         StageObstacle(
@@ -449,6 +480,7 @@ public enum MotionPlanner {
                 // on the emptier one.
                 var side: Double = state.center.x <= them.center.x ? -1 : 1
                 if onSide(side) > onSide(-side) { side = -side }
+                if let toward = go.toward { side = toward == .right ? 1 : -1 }
                 let already = onSide(side) * 2
                 let feetLevel = them.center.y - th / 2 + me.size.height / 2  // feet on the same line
                 let point = StagePoint(
@@ -462,7 +494,8 @@ public enum MotionPlanner {
                 states[index].at = key
                 return (point, 1, true, .onto(them.actor.id))
             case .away:
-                let side: Double = state.center.x < scene.visible.midX ? -1 : 1
+                let side: Double = go.toward.map { $0 == .right ? 1 : -1 }
+                    ?? (state.center.x < scene.visible.midX ? -1 : 1)
                 let x = side < 0 ? scene.visible.minX - me.size.width * 0.8 : scene.visible.maxX + me.size.width * 0.8
                 states[index].leftBy = side
                 return (StagePoint(x: x, y: state.center.y), 1, false, .behind)

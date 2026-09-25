@@ -353,6 +353,12 @@ the branches), off the canvas and back.
   bear on a snail. Several can share one spot — two friends tucked under
   the mushroom's cap stand side by side under it, a little squashed — so
   when the words have them shelter together, send them all under it.
+- **With the wind.** The `wind` effect blows from left to right across
+  the screen. When the words have the wind carry, push or blow a
+  character somewhere — tumbling away, rolling off, blown up into the
+  branches — its move goes **right** (`{leaf:go away right}`, `{butterfly:go
+  to branches right}`), never against the wind. A character walking
+  against the wind on purpose goes left, and says so.
 - **Flyers land to rest.** A butterfly or a bee in the sky is flying;
   when the words have a flyer rest, fold its wings, sit, doze or sleep,
   it first goes somewhere it can sit — onto a flower or a mushroom

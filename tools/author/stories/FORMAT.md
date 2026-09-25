@@ -258,6 +258,14 @@ Off {fox:go away} ran Fox, out of the meadow.      off the canvas
   (they stand side by side under it, overlapping a little).
 - After `go away` a sticker is gone: cue nothing else on it until `go
   back` (a warning).
+- **Which way it goes**: add `left` or `right` to `go to` and `go away`
+  when the words say which way across the screen — above all when **the
+  wind** carries something: the wind effect blows from left to right, so
+  whatever it blows away, along or up goes **right** (`Whoosh! {leaf:go
+  away right} Off went the leaf`, `Butterfly {butterfly:go to branches
+  right} tumbled up and away`). `go to <place> right` lands on the part of
+  that place to its right, `go to <sticker> right` on that sticker's
+  right-hand side. Not on `go on`, `go under` or `go back` (an error).
 - **A flyer lands before it rests.** An action marked perched (`storycheck
   -plan`: the butterfly's rest, the owl dozing off) plays only once the
   flyer sits on something: after `go on …`, `go under …` or `go to` a

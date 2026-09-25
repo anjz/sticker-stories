@@ -407,7 +407,7 @@ one per sticker per story, never `all`.
 A story can move any sticker that walks or flies (its manifest `stage`
 entrance is `hop` or `fly`; things that grow — a flower, a mushroom — stay
 put), placed by the child or visiting, when the words say it goes
-somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"? }`:
+somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "toward"? }`:
 
 | `go` | `target` | where it goes |
 |---|---|---|
@@ -425,6 +425,12 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"? }`:
   follows the distance and the sticker's gait (0.8–5 s; a flight
   1.2–3.4 s). A move cued while an earlier one (or its entrance) is still
   under way starts when that ends.
+- **Which way across the screen**: `toward` (`left` or `right`, on `to`
+  and `away` only) says the way it goes when the story says — above all
+  what the wind carries, which goes right, the way the `wind` canvas
+  effect blows: `away` leaves by that side, `to` a place lands on the
+  part of it at least a sticker's width that way (or its far end), `to`
+  a sticker stands on that side of it. Authored `{leaf:go away right}`.
 - **The way the words say**: a sticker that gets about more than one way
   (`docs/pack-format.md`, "Live animations": the ladybug crawls and
   flies, the bird flies and hops, the duckling waddles and swims) goes its
