@@ -46,9 +46,15 @@ struct StoryScreen: View {
         #if DEBUG
         if Self.isAutoplay {
             // Deterministic pick (highest-scoring story) so a seeded canvas
-            // always plays the same story.
+            // always plays the same story — or `-autoplayStory <id>`: that
+            // one, whatever the canvas holds.
+            let args = ProcessInfo.processInfo.arguments
+            let chosen = args.firstIndex(of: "-autoplayStory").flatMap { i in
+                i + 1 < args.count ? pack.manifest.stories.first { $0.id == args[i + 1] } : nil
+            }
             _playback = State(initialValue: PlaybackController(
-                storyProvider: BundledStoryProvider(recents: UserDefaultsRecentStories(), random: { $0.lowerBound }),
+                storyProvider: chosen.map { AutoplayStoryProvider(definition: $0) as any StoryProvider }
+                    ?? BundledStoryProvider(recents: UserDefaultsRecentStories(), random: { $0.lowerBound }),
                 narrator: AudioFileNarrator()))
         }
         #endif
@@ -323,3 +329,12 @@ struct StoryScreen: View {
     }
 }
 
+#if DEBUG
+/// `-autoplayStory <id>`: plays that story in the canvas's language.
+private struct AutoplayStoryProvider: StoryProvider {
+    let definition: StoryDefinition
+    func story(for canvas: CanvasState, in pack: LoadedPack, language: String) async throws -> Story {
+        Story(definition, language: language, fallbackOrder: pack.manifest.languages)
+    }
+}
+#endif
