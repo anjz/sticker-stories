@@ -246,6 +246,18 @@ import Testing
         #expect(plans[bird]!.legs.last!.to.scale == 1)
     }
 
+    @Test func aStickerAlreadyThereStays() {
+        let pond = ["pond": SceneFeature(description: "Water.", areas: [.init(x: [0.1, 0.3], y: [0.2, 0.35])])]
+        func planned(_ go: GoTrigger) -> [UUID: MotionPlan] {
+            var random = SeededGenerator(state: 4)
+            return MotionPlanner.plan(goes: [go], actors: actors(), features: pond, scene: Self.scene, policy: .standard, random: &random)
+        }
+        // The fox (at 200, 200) is in the pond's area: "went to the pond" keeps it there.
+        #expect(planned(GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "pond"))[fox] == nil)
+        // The rabbit (at 700) is not: it goes.
+        #expect(planned(GoTrigger(at: 0, stickerID: "rabbit", kind: .to, target: "pond"))[rabbit] != nil)
+    }
+
     @Test func twoBesideTheSameStickerTakeBothSides() {
         let plans = plan([
             GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "rabbit"),

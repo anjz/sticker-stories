@@ -806,3 +806,41 @@ func TestPerchedActionsNeedALanding(t *testing.T) {
 		}
 	}
 }
+
+func TestWordsThatPutACharacterSomewhereNeedAMove(t *testing.T) {
+	cat := testCatalog(t)
+	pack := forest
+	pack.Stages = map[string]string{"fox": "hop", "rabbit": "hop", "owl": "fly", "flower": "grow", "tree": "grow"}
+	pack.LandsOn = map[string][]string{"owl": {"branches"}, "fox": {"meadow"}}
+	pack.Features = map[string]string{"branches": "branches", "meadow": "grass"}
+	pack.PlaceWords = map[string]map[string][]string{"branches": {"en-US": {"branch"}, "es-ES": {"rama"}}}
+	s := goodStory()
+	s.Supporting = append(s.Supporting, "owl")
+	withText := func(en, es string) *Story {
+		story := *s
+		story.Languages = map[string]Localization{}
+		for lang, l := range s.Languages {
+			l.Text += map[string]string{"en-US": en, "es-ES": es}[lang]
+			story.Languages[lang] = l
+		}
+		return &story
+	}
+	warns := func(st *Story) string { return strings.Join(Validate(st, pack, cat).Warnings, "\n") }
+	if w := warns(withText(" {owl:enter} Owl flew down onto a branch.", " {owl:enter} Owl bajó a una rama.")); !strings.Contains(w, "puts owl at the branches") {
+		t.Errorf("no move to the branch should warn: %s", w)
+	}
+	if w := warns(withText(" {owl:enter} {owl:go to branches} Owl flew down onto a branch. Owl sat on the branch.", " {owl:enter} {owl:go to branches} Owl bajó a una rama. Owl en la rama.")); strings.Contains(w, "puts owl") {
+		t.Errorf("a move there is enough, for later sentences too: %s", w)
+	}
+	// The fox cannot perch: a branch in its sentence is not a place for it.
+	if w := warns(withText(" Fox looked up at a branch.", " Zorro miró una rama.")); strings.Contains(w, "puts fox") {
+		t.Errorf("a fox under a branch: %s", w)
+	}
+	cues, _, errs := ParseCues("{owl:go to branches another} a")
+	if len(errs) != 0 || !cues[0].Another || cues[0].Target != "branches" {
+		t.Fatalf("another parsed wrong: %+v %v", cues, errs)
+	}
+	if e := strings.Join(Validate(withText(" {owl:enter} Owl {owl:go to fox another} x.", " {owl:enter} Owl {owl:go to fox another} x."), pack, cat).Errors, "\n"); !strings.Contains(e, "another is for going to a place") {
+		t.Errorf("another to a sticker: %s", e)
+	}
+}

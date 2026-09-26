@@ -74,8 +74,10 @@ import Testing
     }
 
     @Test func onToTheNextTree() {
-        // On the left tree's bark, a story sends it to the trunks: the other one.
-        let next = plans([GoTrigger(at: 0, stickerID: "woodpecker", kind: .to, target: "trunks")], home: StagePoint(x: 84, y: 450))
+        // On the left tree's bark, "go to the trunks" keeps it there…
+        #expect(plans([GoTrigger(at: 0, stickerID: "woodpecker", kind: .to, target: "trunks")], home: StagePoint(x: 84, y: 450))[woodpecker] == nil)
+        // …and "another" sends it on to the other tree.
+        let next = plans([GoTrigger(at: 0, stickerID: "woodpecker", kind: .to, target: "trunks", another: true)], home: StagePoint(x: 84, y: 450))
         let leg = next[woodpecker]!.legs[0]
         #expect(abs(84 + leg.to.x * 120 - 924.8) < 1e-6 && leg.facingTo == -1)
     }

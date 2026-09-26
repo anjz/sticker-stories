@@ -194,7 +194,8 @@ public struct EffectTriggerFile: Equatable, Sendable {
         return GoTrigger(
             at: at, cue: fields["cue"] as? String, stickerID: stickerID, kind: kind,
             target: kind == .away || kind == .back ? nil : target, by: way(fields, label: label, warnings: &warnings),
-            toward: side(fields, kind: kind, label: label, warnings: &warnings))
+            toward: side(fields, kind: kind, label: label, warnings: &warnings),
+            another: kind == .to && (fields["another"] as? Bool ?? false))
     }
 
     /// The side a move goes toward (`"toward": "right"`), on `to` and `away`.

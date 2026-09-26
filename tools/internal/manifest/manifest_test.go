@@ -2,6 +2,7 @@ package manifest
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -337,5 +338,16 @@ func TestStickerSizes(t *testing.T) {
 	m.Stickers[0].Size = "huge"
 	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), `size "huge" must be one of big, medium, small, tiny`) {
 		t.Errorf("a huge sticker: %v", errs)
+	}
+}
+
+func TestFeatureWords(t *testing.T) {
+	dir := t.TempDir()
+	m := validManifest(t, dir)
+	m.Features = map[string]Feature{"pond": {Description: "The pond.", Areas: []StageArea{{X: []float64{0.5, 0.7}, Y: []float64{0.3, 0.4}}},
+		Words: map[string][]string{"en-US": {"pond", "water"}, "fr-FR": {"étang"}, "es-ES": {"la charca"}}}}
+	errs := fmt.Sprint(m.Validate(dir))
+	if !strings.Contains(errs, `"fr-FR" is not one of the pack's languages`) || !strings.Contains(errs, `"la charca" must be one word`) {
+		t.Errorf("bad place words: %v", errs)
 	}
 }

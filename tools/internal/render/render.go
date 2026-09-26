@@ -200,6 +200,7 @@ type Trigger struct {
 	Target     string  `json:"target,omitempty"`     // a move's target
 	By         string  `json:"by,omitempty"`         // the move an entrance or a move goes by
 	Toward     string  `json:"toward,omitempty"`     // the side a move goes toward
+	Another    bool    `json:"another,omitempty"`    // a move to another part of a place
 	Repeat     any     `json:"repeat,omitempty"`     // int or "loop"
 	Duration   float64 `json:"duration,omitempty"`
 	Intensity  float64 `json:"intensity,omitempty"`
@@ -240,7 +241,7 @@ func Triggers(cues []story.Cue, tl *Timeline, pack story.Manifest) ([]Trigger, e
 			continue
 		}
 		if c.Effect == story.GoEffect && !c.Canvas {
-			t := Trigger{At: at, Sticker: c.Sticker, Go: c.GoKind, Target: c.Target, By: c.By, Toward: c.Toward}
+			t := Trigger{At: at, Sticker: c.Sticker, Go: c.GoKind, Target: c.Target, By: c.By, Toward: c.Toward, Another: c.Another}
 			if c.WordIndex < len(tl.Words) {
 				t.Cue = normalizeWord(tl.Words[c.WordIndex].Text)
 			}

@@ -39,6 +39,10 @@ public struct GoTrigger: Equatable, Sendable {
     /// sticker to where an action of its must happen — skipped when it is
     /// there already.
     public var unlessThere: Bool
+    /// To a place: another part of it than the one it is at ("on to the
+    /// next tree": `{woodpecker:go to trunks another}`). Without it a move
+    /// to where the sticker already is does nothing.
+    public var another: Bool
 
     public enum Side: String, Equatable, Sendable {
         case left, right
@@ -46,9 +50,10 @@ public struct GoTrigger: Equatable, Sendable {
 
     public init(
         at: TimeInterval, cue: String? = nil, stickerID: String, kind: Kind, target: String? = nil, by: String? = nil,
-        toward: Side? = nil, unlessThere: Bool = false
+        toward: Side? = nil, unlessThere: Bool = false, another: Bool = false
     ) {
         self.unlessThere = unlessThere
+        self.another = another
         self.at = at
         self.cue = cue
         self.stickerID = stickerID
@@ -356,7 +361,10 @@ public enum MotionPlanner {
                 groups[key] = members
                 relayout(key, start: start, mover: index)
             } else if let destination = destination(go, for: index, random: &random) {
-                if go.unlessThere, arrived(index, at: destination.point, facing: destination.face) { return }
+                // Already there (a visitor that came in onto the pond, then
+                // "went to the pond"): it stays, unless the story asks for
+                // another part of the place.
+                if !go.another, arrived(index, at: destination.point, facing: destination.face) { return }
                 leg(
                     index, to: destination.point, scale: destination.scale, visible: destination.visible, start: start,
                     stacking: destination.stacking, face: destination.face)
@@ -487,7 +495,22 @@ public enum MotionPlanner {
                         }
                     }
                     guard !rects.isEmpty else { return nil }
-                    if let near = nearestContact(in: rects, for: index, elsewhere: !go.unlessThere) {
+                    let margin = me.size.width * 0.25
+                    let inside = { (r: StageRect) in
+                        state.center.x >= r.minX - margin && state.center.x <= r.maxX + margin
+                            && state.center.y >= r.minY - margin && state.center.y <= r.maxY + margin
+                    }
+                    if rects.allSatisfy({ $0.facing == nil }) {
+                        if !go.another, rects.contains(where: inside) {
+                            // There already: it stays where it is.
+                            return (state.center, 1, true, .behind, nil)
+                        }
+                        if go.another {
+                            let elsewhere = rects.filter { !inside($0) }
+                            if !elsewhere.isEmpty { rects = elsewhere }
+                        }
+                    }
+                    if let near = nearestContact(in: rects, for: index, elsewhere: go.another) {
                         // A place it faces into (a trunk's bark): the nearest
                         // spot, its front on it, facing it.
                         return (near.point, 1, true, .behind, near.face)

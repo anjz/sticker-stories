@@ -110,6 +110,11 @@ type Stage struct {
 type Feature struct {
 	Description string      `json:"description"`
 	Areas       []StageArea `json:"areas"`
+	// Words are how each language's stories name the place ("branch",
+	// "branches"; "rama"): story validation warns when a sentence puts a
+	// character there with no move taking it there. Optional; the app
+	// ignores it.
+	Words map[string][]string `json:"words,omitempty"`
 	// Air marks open air (the sky): nothing sits there, so a flyer there
 	// is flying, and a story lands it somewhere else before it rests (an
 	// action marked perched). Story validation reads it; the app does not.
@@ -320,6 +325,16 @@ func (m *Manifest) Validate(dir string) []error {
 		}
 		if len(f.Areas) == 0 {
 			fail("%s: needs at least one area", field)
+		}
+		for lang, words := range f.Words {
+			if !slices.Contains(m.Languages, lang) {
+				fail("%s: words: %q is not one of the pack's languages", field, lang)
+			}
+			for _, w := range words {
+				if strings.TrimSpace(w) == "" || strings.ContainsAny(w, " \t") {
+					fail("%s: words: %q must be one word", field, w)
+				}
+			}
 		}
 		for i, a := range f.Areas {
 			checkArea(fmt.Sprintf("%s: areas[%d]", field, i), a, fail)

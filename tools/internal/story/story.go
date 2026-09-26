@@ -243,6 +243,11 @@ const (
 	GoRight = "right"
 )
 
+// GoAnother sends a sticker to another part of the place it is at: {woodpecker:go
+// to trunks another} flies on to the next tree. Without it, going to a
+// place it is already at keeps it there.
+const GoAnother = "another"
+
 // Move kinds.
 const (
 	GoTo    = "to"
@@ -270,6 +275,7 @@ type Cue struct {
 	Target     string // a move's target: a sticker or (to) a feature
 	By         string // the move an entrance or a move goes by ("" = its usual one)
 	Toward     string // the side a move goes toward: left, right ("" = where it goes decides)
+	Another    bool   // go to a place: another part of it than where it is ("on to the next tree")
 	Sound      bool
 	Solo       bool
 	Effect     string
@@ -626,6 +632,8 @@ func parseCue(inner string) (Cue, error) {
 			c.Resume = true
 		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind == "" && (p == GoTo || p == GoOn || p == GoUnder || p == GoAway || p == GoBack):
 			c.GoKind = p
+		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind != "" && p == GoAnother:
+			c.Another = true
 		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind != "" && (p == GoLeft || p == GoRight):
 			if c.Toward != "" {
 				return c, fmt.Errorf("a move goes one way: left or right")
@@ -769,6 +777,10 @@ type Manifest struct {
 	// Air are the features that are open air (the sky), where a flyer is
 	// flying: it lands elsewhere before a perched action.
 	Air map[string]bool
+	// PlaceWords are the words each feature is named by, per language
+	// (feature → language → words), for sentences that put a character
+	// there.
+	PlaceWords map[string]map[string][]string
 }
 
 // HasExpression reports whether a face cue on target may show expression:
@@ -817,8 +829,12 @@ type Animation struct {
 func PackManifest(m *manifest.Manifest, dir string) (Manifest, error) {
 	pack := Manifest{ID: m.ID, Languages: m.Languages, Setting: m.EffectiveSetting(), Animations: map[string][]Animation{}, Moves: map[string][]Animation{}, Expressions: map[string][]string{}, Names: map[string]map[string]string{}, Stages: map[string]string{}, LandsOn: map[string][]string{}, Features: map[string]string{}}
 	pack.Air = map[string]bool{}
+	pack.PlaceWords = map[string]map[string][]string{}
 	for id, f := range m.Features {
 		pack.Features[id] = f.Description
+		if len(f.Words) > 0 {
+			pack.PlaceWords[id] = f.Words
+		}
 		if f.Air {
 			pack.Air[id] = true
 		}
@@ -1093,7 +1109,7 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 				continue
 			}
 			if c.Effect == GoEffect {
-				shape = append(shape, c.Sticker+":go:"+c.GoKind+":"+c.Target+":"+c.By+":"+c.Toward)
+				shape = append(shape, c.Sticker+":go:"+c.GoKind+":"+c.Target+":"+c.By+":"+c.Toward+":"+fmt.Sprint(c.Another))
 				validateGoCue(&is, lang, c, m, inStory, enterAt)
 				switch c.GoKind {
 				case GoTo:
@@ -1216,6 +1232,7 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 			is.warnf("%s: %d canvas cues; keep it to the %d biggest changes of weather or light", lang, canvasCues, MaxCanvasCues)
 		}
 		validateCanvasMentions(&is, lang, nar, m, cat)
+		validatePlaceMentions(&is, lang, nar, m, inStory)
 		if canvasCues > 0 && canvasCues == len(cues) {
 			is.warnf("%s: only canvas cues — the stickers should react too", lang)
 		}
@@ -1548,6 +1565,9 @@ func validateGoCue(is *Issues, lang string, c Cue, m Manifest, inStory map[strin
 	if c.Repeat > 0 || c.Loop || c.Hold || c.Color != "" || c.Duration > 0 || c.Intensity != 0 || c.Animation != "" {
 		is.errorf("%s: cue %s: a move takes only where it goes and the way it goes (by …)", lang, c.Raw)
 	}
+	if _, place := m.Features[c.Target]; c.Another && (c.GoKind != GoTo || !place) {
+		is.errorf("%s: cue %s: another is for going to a place (go to trunks another: on to the next tree)", lang, c.Raw)
+	}
 	if c.Toward != "" && c.GoKind != GoTo && c.GoKind != GoAway {
 		is.errorf("%s: cue %s: left and right are for go to and go away (the way it goes across the screen)", lang, c.Raw)
 	}
@@ -1572,6 +1592,85 @@ func validateBy(is *Issues, lang string, c Cue, m Manifest) {
 		ids = append(ids, a.ID)
 	}
 	is.errorf("%s: cue %s: %s has no move %q (its moves: %s)", lang, c.Raw, c.Sticker, c.By, strings.Join(ids, ", "))
+}
+
+// validatePlaceMentions warns when a sentence puts a character in a place
+// of the scene ("Bird flew down onto a branch", "Frog hopped to the pond")
+// that no move of the story has taken it to: a visitor may come in there,
+// but a sticker the child put in the middle of the meadow stays there
+// unless a {bird:go to branches} takes it (and one that is there already
+// stays put).
+func validatePlaceMentions(is *Issues, lang string, nar Narration, m Manifest, inStory map[string]bool) {
+	if len(m.PlaceWords) == 0 {
+		return
+	}
+	at := map[string]string{} // where the story's moves have put each sticker
+	canBe := func(id, place string) bool {
+		if e := m.Stages[id]; e != "hop" && e != "fly" {
+			return false
+		}
+		if slices.Contains(m.LandsOn[id], place) {
+			return true
+		}
+		for _, mv := range m.Moves[id] {
+			if slices.Contains(mv.On, place) {
+				return true
+			}
+		}
+		return false
+	}
+	start := 0
+	for end := range nar.Words {
+		w := nar.Words[end]
+		last := end == len(nar.Words)-1
+		if !last && !strings.ContainsAny(strings.TrimRight(w, "»\"”'’)"), ".!?…") {
+			continue
+		}
+		words := nar.Words[start : end+1]
+		mentioned := map[string]bool{}
+		for _, c := range nar.Cues {
+			if c.WordIndex < start || c.WordIndex > end || c.Sticker == "" || c.Sticker == AllTarget || !inStory[c.Sticker] {
+				continue
+			}
+			mentioned[c.Sticker] = true
+			if c.Effect == GoEffect {
+				if _, place := m.Features[c.Target]; place && c.GoKind == GoTo {
+					at[c.Sticker] = c.Target
+				} else {
+					at[c.Sticker] = ""
+				}
+			}
+		}
+		for id := range inStory {
+			if firstMention(words, id, lang, m) >= 0 {
+				mentioned[id] = true
+			}
+		}
+		ids := make([]string, 0, len(mentioned))
+		for id := range mentioned {
+			ids = append(ids, id)
+		}
+		sort.Strings(ids)
+		for place, byLang := range m.PlaceWords {
+			named := false
+			for _, word := range words {
+				if slices.Contains(byLang[lang], mentionWord(word)) {
+					named = true
+					break
+				}
+			}
+			if !named {
+				continue
+			}
+			for _, id := range ids {
+				if at[id] != place && canBe(id, place) {
+					snippet := strings.Join(words[:min(len(words), 9)], " ")
+					is.warnf("%s: %q… puts %s at the %s, but no move takes it there — cue {%s:go to %s} (a sticker already there stays; one the child put elsewhere goes)", lang, snippet, id, place, id, place)
+				}
+			}
+		}
+		start = end + 1
+	}
 }
 
 // validateLiveCue checks a {sticker:live} cue: the sticker has the live

@@ -174,7 +174,10 @@ exactly per `FORMAT.md`:
   flower by fly}`, `{ladybug:enter by fly}`), on each such move; never
   write a way the sticker has no move for; **what the wind carries goes
   right** (`go away right`, `go to <place> right`: the wind effect blows
-  left to right); **an action with a place happens there** (the
+  left to right); **where the words put a character, a move takes it**
+  (`{bird:enter} {bird:go to branches} Bird flew down onto a branch` — a
+  sticker the child placed in the meadow goes there; one already there
+  stays; `another` for "the next tree"); **an action with a place happens there** (the
   woodpecker taps on a trunk: after moving it elsewhere, `{woodpecker:go
   to trunks}` first); **a flyer lands before it
   rests** — before a perched action (the butterfly folding its wings, the

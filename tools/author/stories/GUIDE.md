@@ -364,6 +364,13 @@ the branches), off the canvas and back.
   branches — its move goes **right** (`{leaf:go away right}`, `{butterfly:go
   to branches right}`), never against the wind. A character walking
   against the wind on purpose goes left, and says so.
+- **Where the words put them, move them.** When a sentence says where a
+  character is or goes — onto a branch, into the pond, onto the bark of a
+  tree — cue a move there (`{bird:go to branches}`) on those words, even on
+  its entrance: the child may have put the bird in the middle of the
+  meadow, and a bird building a nest in the grass while the narrator says
+  "on a branch" breaks the story. A move to where it already is does
+  nothing; `another` sends it to another part of the place.
 - **Actions have their places.** The woodpecker taps on the bark of a
   trunk, never in the air or on the grass: when the story sends it
   somewhere else, bring it back to a trunk (`{woodpecker:go to trunks}`)

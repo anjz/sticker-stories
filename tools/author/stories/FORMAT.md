@@ -258,6 +258,18 @@ Off {fox:go away} ran Fox, out of the meadow.      off the canvas
   (they stand side by side under it, overlapping a little).
 - After `go away` a sticker is gone: cue nothing else on it until `go
   back` (a warning).
+- **When the words put a character somewhere, move it there.** "Bird flew
+  down onto a branch", "Frog came hopping to the pond", "Woodpecker clung
+  to the trunk": a visitor comes in there, but a sticker the child put in
+  the middle of the meadow stays there unless a move takes it, so cue it
+  on the words — `{bird:enter} {bird:go to branches} Bird flew down onto a
+  branch`. A move to a place the sticker is already at does nothing (the
+  visitor stays where it came in), so it costs nothing to add; to send it
+  on to **another** part of the place ("on to the next tree", "paddled
+  across the pond"), add `another`: `{woodpecker:go to trunks another}`.
+  storycheck warns when a sentence names a place (the pack's features'
+  `words`: branch, pond, trunk…) with a character that can be there and no
+  move has taken it there.
 - **Which way it goes**: add `left` or `right` to `go to` and `go away`
   when the words say which way across the screen — above all when **the
   wind** carries something: the wind effect blows from left to right, so

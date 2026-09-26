@@ -414,7 +414,7 @@ one per sticker per story, never `all`.
 A story can move any sticker that walks or flies (its manifest `stage`
 entrance is `hop` or `fly`; things that grow — a flower, a mushroom — stay
 put), placed by the child or visiting, when the words say it goes
-somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "toward"? }`:
+somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "toward"?, "another"? }`:
 
 | `go` | `target` | where it goes |
 |---|---|---|
@@ -432,6 +432,12 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
   follows the distance and the sticker's gait (0.8–5 s; a flight
   1.2–3.4 s). A move cued while an earlier one (or its entrance) is still
   under way starts when that ends.
+- **Already there, it stays**: a `to` move to a place (or beside a
+  sticker) the sticker is already at does nothing — a visitor that came
+  in onto the pond stays put when the words then say it went to the pond,
+  while a sticker the child placed elsewhere goes. `"another": true`
+  (authored `{woodpecker:go to trunks another}`) sends it to another part
+  of the place instead: the other tree, another spot on the pond.
 - **Where an action happens**: an action with a `place` (the woodpecker
   taps only on a trunk; `docs/pack-format.md`, "Live animations") gets a
   move of its own from the app (`PlacementPlanner`): to the nearest spot
