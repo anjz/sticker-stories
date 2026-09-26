@@ -366,4 +366,10 @@ func TestHeldLightsLastUntilTheLightChangesOrTheEnd(t *testing.T) {
 	if tr[0].Duration != 50 {
 		t.Errorf("a longer authored night was cut to %g", tr[0].Duration)
 	}
+	// Snow keeps falling through the night, and stops when the sun comes out.
+	tr = []Trigger{{At: 5, Effect: "snow", Duration: 10}, {At: 20, Effect: "night", Duration: 10}, {At: 40, Effect: "sunshine", Duration: 8}}
+	HoldLights(tr, 70, cat)
+	if want := 40 + cat.Canvas["snow"].RampOut - 5; tr[0].Duration != want {
+		t.Errorf("snow lasts %g s, want %g", tr[0].Duration, want)
+	}
 }

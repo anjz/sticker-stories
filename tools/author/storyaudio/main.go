@@ -44,7 +44,7 @@ import (
 )
 
 const (
-	toolVersion  = "4" // 3: held lights (render.HoldLights); 4: they clear as the next builds
+	toolVersion  = "5" // 3: held lights (render.HoldLights); 4: they clear as the next builds; 5: snow holds
 	defaultModel = "eleven_v3"
 	fallbackTTS  = "eleven_multilingual_v2"
 	tailOut      = 2.0 // seconds of music after the narrator ends
@@ -784,8 +784,9 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 			triggers[i].At = roundCs(triggers[i].At + r.leadIn())
 		}
 	}
-	// Night, a sunset or a lamp turned low holds until the story changes
-	// the light or ends (the file ends after the narrator and the tail).
+	// Night, a sunset, a lamp turned low or snow holds until the story ends
+	// it (the light changes, the sun comes out) or ends (the file ends after
+	// the narrator and the tail).
 	render.HoldLights(triggers, r.leadIn()+voiceClip.Duration()+tailOut, r.c.catalog)
 	liveOverlaps := render.LiveOverlaps(triggers, r.c.story)
 	features := map[string]bool{}

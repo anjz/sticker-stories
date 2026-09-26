@@ -298,13 +298,6 @@ func Triggers(cues []story.Cue, tl *Timeline, pack story.Manifest) ([]Trigger, e
 	return out, nil
 }
 
-// HeldLights are the canvas effects that set the time of day or the room's
-// light (night, a sunset, a lamp turned low): once the story brings one, it
-// holds until the story changes the light or ends, whatever its authored
-// duration — a night that ran out mid-story would bring the day back
-// without the words saying so.
-var HeldLights = map[string]bool{"night": true, "sunset": true, "dimlight": true}
-
 // LightChanges are the canvas effects that change the light: a held light
 // gives way to the next one of these (morning sunshine after the night, the
 // night after a sunset).
@@ -312,20 +305,34 @@ var LightChanges = map[string]bool{
 	"night": true, "sunset": true, "dimlight": true, "sunshine": true, "sunrays": true, "windowlight": true, "firelight": true,
 }
 
-// HoldLights lengthens every held light so it lasts until the next light
-// change (crossfading into it: it starts clearing as that one starts
+// Held are the canvas effects that, once the story brings them, hold until
+// something ends them or the story ends, whatever their authored duration,
+// each with what ends it: the time of day or the room's light (night, a
+// sunset, a lamp turned low) until the light changes, and snow until the
+// sun comes out or rain washes it away — a night or a snowfall that ran out
+// mid-story would change the scene without the words saying so.
+var Held = map[string]map[string]bool{
+	"night":    LightChanges,
+	"sunset":   LightChanges,
+	"dimlight": LightChanges,
+	"snow":     {"snow": true, "sunshine": true, "sunrays": true, "rain": true},
+}
+
+// HoldLights lengthens every held effect so it lasts until the next effect
+// that ends it (crossfading into it: it starts clearing as that one starts
 // building) or, when none comes, until the story ends at end seconds (it
 // starts clearing only then). Durations only grow, and stay within the
 // effect's range.
 func HoldLights(triggers []Trigger, end float64, cat *story.Catalog) {
 	for i, t := range triggers {
-		if t.Sticker != "" || !HeldLights[t.Effect] {
+		enders, held := Held[t.Effect]
+		if t.Sticker != "" || !held {
 			continue
 		}
 		fx := cat.Canvas[t.Effect]
 		until := end + fx.RampOut
 		for _, next := range triggers {
-			if next.Sticker == "" && LightChanges[next.Effect] && next.At > t.At {
+			if next.Sticker == "" && enders[next.Effect] && next.At > t.At {
 				until = min(until, next.At+fx.RampOut)
 			}
 		}

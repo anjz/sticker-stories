@@ -379,8 +379,9 @@ Weather and light over the whole scene use the reserved target `canvas`
   effect takes a moment to build up (fog ~2.5 s, rain ~1 s), so put it a
   beat before the words it illustrates. The duration is how long it stays,
   ramps included; it ends on its own.
-- **The time of day holds.** `night`, `sunset` and `dimlight` last until
-  the story changes the light — morning `sunshine` after the night,
+- **The time of day holds, and so does snow.** `snow` keeps falling until
+  `sunshine` (or `rain`) ends it or the story does. `night`, `sunset` and
+  `dimlight` last until the story changes the light — morning `sunshine` after the night,
   `night` after the sunset, a `windowlight` morning indoors — or ends,
   however short their duration (`storyaudio` lengthens them to the real
   narration; a duration is only a minimum). So a story that stays at night
