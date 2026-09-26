@@ -433,6 +433,7 @@ final class EffectsGalleryScene: SKScene {
         applier.apply(runner.tick(time), to: nodes)
         emitters.reconcile(runner.active, at: time, nodes: nodes)
         canvasEffects.apply(canvasRunner.tick(time), at: time)
+        canvasEffects.applySnowCover(canvasRunner.snowCover)
     }
 }
 #endif

@@ -99,7 +99,7 @@ public struct CanvasEffectDefinition: Sendable {
             summary: "Night falls: the scene darkens and a moon glows in the sky."),
         CanvasEffectDefinition(
             name: .snow, defaultDuration: 12, rampIn: 2.0, rampOut: 2.5,
-            summary: "Soft snowflakes drift down over everything; the top of the sky turns white and the light cool and bright. It keeps falling until the sun comes out or rain washes it away."),
+            summary: "Soft snowflakes drift down over everything; the top of the sky turns white and the light cool and bright. It keeps falling until the sun comes out or rain washes it away, and settles on the ground as a snow cover that stays after the snowfall until sunshine or rain melts it."),
         CanvasEffectDefinition(
             name: .sunset, defaultDuration: 10, rampIn: 2.5, rampOut: 2.5,
             summary: "A warm orange-pink glow spreads from the horizon while the sky above deepens."),

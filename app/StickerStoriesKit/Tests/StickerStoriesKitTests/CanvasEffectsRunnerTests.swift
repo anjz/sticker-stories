@@ -145,3 +145,39 @@ struct CanvasEffectsRunnerTests {
         }
     }
 }
+
+@Suite struct SnowCoverTests {
+    func runner() -> CanvasEffectsRunner {
+        CanvasEffectsRunner(
+            triggers: [
+                CanvasEffectTrigger(at: 0, effect: .snow, options: CanvasEffectOptions(intensity: 1, duration: 12)),
+                CanvasEffectTrigger(at: 20, effect: .night, options: CanvasEffectOptions(intensity: 1, duration: 10)),
+                CanvasEffectTrigger(at: 40, effect: .sunshine, options: CanvasEffectOptions(intensity: 1, duration: 10)),
+            ],
+            setting: .outdoors, log: { _ in })
+    }
+
+    @Test func settlesStaysAndMeltsInTheSun() {
+        let r = runner()
+        var cover: [Double] = []
+        for t in stride(from: 0.0, through: 55, by: 1 / 30) {
+            r.tick(t)
+            if [6.0, 14.0, 30.0, 39.0, 55.0].contains(where: { abs($0 - t) < 1e-6 }) { cover.append(r.snowCover) }
+        }
+        // Building while it snows, then as it was through the night…
+        #expect(cover[0] > 0.1 && cover[1] > cover[0])
+        #expect(abs(cover[2] - cover[1]) < 1e-9 && abs(cover[3] - cover[1]) < 1e-9)
+        // …and gone once the sun has shone a while.
+        #expect(cover[4] == 0)
+    }
+
+    @Test func aSeekGivesTheSameCover() {
+        let forward = runner()
+        for t in stride(from: 0.0, through: 30, by: 0.05) { forward.tick(t) }
+        let seeked = runner()
+        seeked.tick(45)
+        seeked.tick(30)  // back: rebuilt from the start
+        #expect(abs(seeked.snowCover - forward.snowCover) < 0.01)
+        #expect(seeked.snowCover > 0.3)
+    }
+}

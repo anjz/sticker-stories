@@ -74,6 +74,23 @@ final class CanvasEffectLayer: SKNode {
     private let rainbow = SKSpriteNode()
     private let dim = SKSpriteNode()
 
+    // Snow on the ground (`CanvasEffectsRunner.snowCover`): a soft white
+    // blanket along the bottom and flakes settled in it that appear one by
+    // one as the snow builds and go the same way as it melts — over the
+    // scenery, under the stickers standing on it.
+    private let snowGround = SKNode()
+    private let snowBlanket = SKSpriteNode()
+    private struct Settled {
+        let node: SKSpriteNode
+        let x: CGFloat, y: CGFloat  // fractions of the world; y from the bottom
+        let size: CGFloat  // fraction of the world height
+        let threshold: Double  // the cover at which it appears
+    }
+    private var settled: [Settled] = []
+    /// Over the foreground art (200) and the back stickers, under the front
+    /// stickers (300): snow lies on the ground the characters stand on.
+    static let groundZ: CGFloat = 250
+
     // Night: the dimlight vignette in a deeper blue and a darker wash down
     // from the top edge so the sky goes first, both over everything like
     // the other overlays; a few small stars twinkling on their own slow
@@ -138,6 +155,7 @@ final class CanvasEffectLayer: SKNode {
         }
         buildFog()
         buildRain()
+        buildSnowGround()
         buildSunshine()
         rainbow.texture = EffectTextures.texture(named: "rainbow")
         rainbow.anchorPoint = CGPoint(x: 0.5, y: 0)
@@ -218,6 +236,42 @@ final class CanvasEffectLayer: SKNode {
             node.alpha = 0
             addChild(node)
             fog.append(Blob(node: node, base: base, size: size, period: period, phase: phase, weight: weight))
+        }
+    }
+
+    private func buildSnowGround() {
+        snowBlanket.texture = EffectTextures.texture(named: "overcast")
+        // The sky's band turned over: solid at the bottom, fading upwards.
+        snowBlanket.anchorPoint = CGPoint(x: 0.5, y: 1)
+        snowBlanket.zRotation = .pi
+        snowBlanket.color = UIColor(red: 0.97, green: 0.98, blue: 1, alpha: 1)
+        snowBlanket.colorBlendFactor = 1
+        snowBlanket.zPosition = Self.groundZ
+        snowGround.addChild(snowBlanket)
+        var random = SeededRandom(seed: 0x5E77)
+        let texture = EffectTextures.texture(named: "dot")
+        for _ in 0..<280 {
+            let node = SKSpriteNode(texture: texture)
+            node.color = .white
+            node.colorBlendFactor = 1
+            node.zPosition = Self.groundZ + 1
+            // Thicker towards the bottom of the scene.
+            settled.append(Settled(
+                node: node, x: CGFloat(random.next()), y: CGFloat(pow(random.next(), 1.7) * 0.3),
+                size: CGFloat(0.014 + 0.02 * random.next()), threshold: 0.03 + 0.9 * random.next()))
+            snowGround.addChild(node)
+        }
+        snowGround.isHidden = true
+        addChild(snowGround)
+    }
+
+    /// Shows `cover` (0...1) of snow lying on the ground.
+    func applySnowCover(_ cover: Double) {
+        snowGround.isHidden = cover <= 0
+        guard cover > 0 else { return }
+        snowBlanket.alpha = min(0.9, cover * 1.1)
+        for flake in settled {
+            flake.node.alpha = min(max((cover - flake.threshold) / 0.1, 0), 1) * 0.95
         }
     }
 
@@ -349,6 +403,13 @@ final class CanvasEffectLayer: SKNode {
         moonGlow.size = CGSize(width: h * 0.55, height: h * 0.55)
         moonGlow.position = moonAt
 
+        snowBlanket.size = CGSize(width: w * 1.04, height: h * 0.34)
+        snowBlanket.position = CGPoint(x: world.midX, y: world.minY)
+        for flake in settled {
+            flake.node.position = CGPoint(x: world.minX + w * flake.x, y: world.minY + h * flake.y)
+            flake.node.size = CGSize(width: h * flake.size * 1.5, height: h * flake.size)  // lying flat
+        }
+
         for painter in painters.values { painter.layout(world: world) }
     }
 
@@ -424,6 +485,7 @@ final class CanvasEffectLayer: SKNode {
     /// dropped too so nothing lingers into edit mode.
     func clearAll() {
         apply([:], at: lastTime)
+        applySnowCover(0)
         rain.resetSimulation()
     }
 }

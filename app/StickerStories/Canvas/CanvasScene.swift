@@ -1607,6 +1607,7 @@ final class CanvasScene: SKScene {
         session.applier.apply(deltas, to: nodes)
         session.emitters.reconcile(session.runner.active, at: time, nodes: nodes)
         canvasEffects.apply(session.canvasRunner.tick(time), at: time)
+        canvasEffects.applySnowCover(session.canvasRunner.snowCover)
         applyLive(session, at: time)
         applyFaces(session.faces, at: time)
     }

@@ -99,6 +99,41 @@ public enum CanvasEffectEvaluator {
         return result
     }
 
+    /// Snow lying on the ground, 0...1: it builds while snow falls
+    /// (`snowBuild` seconds of full snow to a full cover), stays when the
+    /// snowfall stops, and melts under sunshine or sun rays (`sunMelt`) and
+    /// rain (`rainMelt`). A pure function of the effects and the time,
+    /// integrated from `from` (at `amount`) in small steps.
+    public static func snowCover(
+        of effects: [ActiveCanvasEffect], from: TimeInterval, amount: Double, to time: TimeInterval
+    ) -> Double {
+        var amount = amount
+        var t = from
+        while t < time {
+            let dt = min(snowStep, time - t)
+            let at = t + dt / 2
+            var snow = 0.0, sun = 0.0, rain = 0.0
+            for effect in effects {
+                let s = strength(of: effect, at: at)
+                guard s > 0 else { continue }
+                switch effect.name {
+                case .snow: snow = max(snow, s)
+                case .sunshine, .sunrays: sun = max(sun, s)
+                case .rain: rain = max(rain, s)
+                default: break
+                }
+            }
+            amount = (amount + (snow / snowBuild - sun / sunMelt - rain / rainMelt) * dt).clamped(to: 0...1)
+            t += dt
+        }
+        return amount
+    }
+
+    public static let snowBuild: TimeInterval = 14
+    public static let sunMelt: TimeInterval = 6
+    public static let rainMelt: TimeInterval = 9
+    static let snowStep: TimeInterval = 0.1
+
     static func smoothstep(_ t: Double) -> Double {
         let x = t.clamped(to: 0...1)
         return x * x * (3 - 2 * x)
@@ -111,6 +146,13 @@ public enum CanvasEffectEvaluator {
 public final class CanvasEffectsRunner {
     public private(set) var currentTime: TimeInterval = 0
     public private(set) var active: [ActiveCanvasEffect] = []
+    /// Snow lying on the ground now, 0...1 (`CanvasEffectEvaluator.snowCover`):
+    /// it outlives the snowfall, so it follows every effect started so far.
+    public private(set) var snowCover: Double = 0
+    /// Every effect started since the story began (or the last seek), for
+    /// the snow cover.
+    private var started: [ActiveCanvasEffect] = []
+    private var coverTime: TimeInterval = 0
     /// Applied when an effect starts; running effects keep their options.
     public var policy: EffectPolicy
 
@@ -156,13 +198,21 @@ public final class CanvasEffectsRunner {
         fireDueTriggers()
         let strengths = CanvasEffectEvaluator.strengths(for: active, at: time)
         active.removeAll { CanvasEffectEvaluator.isFinished($0, at: time) }
+        if started.contains(where: { $0.name == .snow }) {
+            snowCover = CanvasEffectEvaluator.snowCover(of: started, from: coverTime, amount: snowCover, to: time)
+        }
+        coverTime = time
         return strengths
     }
 
     private func seek(to time: TimeInterval) {
         active.removeAll()
+        started.removeAll()
         firedTriggers.removeAll()
         currentTime = time
+        // Rebuilt from the start once the triggers before `time` fire again.
+        snowCover = 0
+        coverTime = 0
     }
 
     private func fireDueTriggers() {
@@ -190,6 +240,8 @@ public final class CanvasEffectsRunner {
     /// Called on playback end: drops everything immediately.
     public func stopAll() {
         active.removeAll()
+        started.removeAll()
+        snowCover = 0
     }
 
     @discardableResult
@@ -198,6 +250,7 @@ public final class CanvasEffectsRunner {
         sequence += 1
         let effect = ActiveCanvasEffect(name: name, startTime: time, options: options, sequence: sequence)
         active.append(effect)
+        started.append(effect)
         return effect.handle
     }
 }

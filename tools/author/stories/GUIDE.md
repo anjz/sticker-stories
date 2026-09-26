@@ -477,7 +477,9 @@ it stays). See `FORMAT.md`, "Canvas cues".
 - **Night stays night, snow stays snow.** The time of day — `night`,
   `sunset`, `dimlight` — holds until the words change it or the story
   ends, whatever its duration: nothing brightens by itself; and snow keeps
-  falling until the sun comes out (`{canvas:sunshine}`) or the rain comes. If the day comes back, the words
+  falling until the sun comes out (`{canvas:sunshine}`) or the rain comes.
+  Snow also settles on the ground and stays there after it stops, until the
+  sunshine or the rain melts it — so a story that melts the snow says so. If the day comes back, the words
   say so ("In the morning…") and `{canvas:sunshine}` (indoors
   `{canvas:windowlight}`) brings it.
 - **Classic shapes** that earn one: rain → sunshine → rainbow as a story
