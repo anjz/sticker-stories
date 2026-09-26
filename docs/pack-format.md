@@ -192,6 +192,7 @@ never letterboxes:
 | `stickers[].expressions` | {expr: string} | **Optional**, default none. Face variants by expression id (`happy`, `sad`, `sleeping`, `surprised`…): pack-relative PNG or WebP images with exactly the sticker's size and outline ("Expressions" below). The sticker's own `image` is the `normal` face. |
 | `features` | {id: object} | **Optional.** Named places in the art where stickers can land ("Features" below): each has a `description` (for story authors) and `areas`, a non-empty list of `{ "x": [min, max], "y": [min, max] }` in fractions of the base art, each area optionally with `"facing": "left"` or `"right"` — a place a character faces into, the area holding its **front** rather than its centre (a woodpecker's beak on the bark of a trunk) — and optionally `"air": true` for open air (the sky: nothing sits there; story validation keeps flyers from resting in it, the app ignores it). |
 | `stickers[].stage` | object | **Optional**, default grow in `x` 0.1–0.9, `y` 0.18–0.45. Where the sticker belongs in the scene and how it comes in when a story names it and the child has not placed it ("Stage" below): `entrance` is `hop`, `fly` or `grow`; `on` lists `features` in order of preference; `area` (`{ "x": [min, max], "y": [min, max] }`, fractions of the base art) is where it lands when none of them is on screen. At least one of `on` and `area`. |
+| `stickers[].size` | string | **Optional**, default none. How big the character is next to the others: `big` (a deer, a bear), `medium` (a fox, a rabbit), `small` (a bird, a mouse) or `tiny` (a ladybug, a bee). A story moving it beside another scales it so the two keep the ratio of their classes (relative heights 1, 0.75, 0.55, 0.4; `docs/effects.md`, "Movement"); without one it keeps its size. |
 | `stories[].id` | string | Unique within the pack. |
 | `stories[].requiredStickers` | [string] | The stickers the story is about: it is a candidate when at most one of them is missing from the canvas (and at least one is present), and preferred when all are. Empty ⇒ fallback story. Every ID must be declared in `stickers`. |
 | `stories[].optionalStickers` | [string] | Sticker IDs that raise the match score when present. Declared in `stickers`; no overlap with `requiredStickers`. |
@@ -257,6 +258,8 @@ never letterboxes:
     `fly` or `grow`, and `on` (declared `features`, no repeats) and/or an
     `area` whose `x` and `y` are each `[min, max]` with
     0 ≤ min < max ≤ 1.
+    A `stickers[].size`, when present, is `big`, `medium`, `small` or
+    `tiny`.
 15. Every `features` id is lowercase `a-z0-9-`, differs from every
     sticker id (a move's target, `{frog:go to pond}`, may be either), has a non-empty
     `description` (the packager checks it; the app ignores it) and at

@@ -219,6 +219,33 @@ import Testing
         }
     }
 
+    @Test func besideAnotherItTakesTheirSizeRatio() {
+        let deer = UUID(), bird = UUID(), ladybug = UUID(), fox = UUID()
+        func actor(_ id: UUID, _ name: String, x: Double, _ size: StickerSize?) -> MotionPlanner.Actor {
+            .init(id: id, stickerID: name, home: StagePoint(x: x, y: 200), size: Self.size, stature: size?.relativeHeight)
+        }
+        let actors = [actor(deer, "deer", x: 700, .big), actor(bird, "bird", x: 200, .small),
+                      actor(ladybug, "ladybug", x: 400, .tiny), actor(fox, "fox", x: 900, nil)]
+        var random = SeededGenerator(state: 2)
+        let plans = MotionPlanner.plan(
+            goes: [GoTrigger(at: 0, stickerID: "bird", kind: .to, target: "deer"),
+                   GoTrigger(at: 0, stickerID: "ladybug", kind: .to, target: "deer"),
+                   GoTrigger(at: 0, stickerID: "deer", kind: .to, target: "fox"),
+                   GoTrigger(at: 10, stickerID: "bird", kind: .back)],
+            actors: actors, scene: Self.scene, policy: .standard, random: &random)
+        // A small bird by a big deer: 0.55 of its height.
+        #expect(abs(plans[bird]!.legs[0].to.scale - 0.55) < 1e-9)
+        // A tiny ladybug by it would be 0.4; never under 0.45 of its own size.
+        #expect(abs(plans[ladybug]!.legs[0].to.scale - MotionPlanner.besideScale.lowerBound) < 1e-9)
+        // No size class on the fox: the deer keeps its own size.
+        #expect(plans[deer]!.legs[0].to.scale == 1)
+        // Its feet stay on the deer's line though it is smaller.
+        let bottom = 200 - plans[bird]!.legs[0].to.y * 120 - 60 * plans[bird]!.legs[0].to.scale
+        #expect(abs(bottom - 140) < 1e-6)
+        // Home again, its own size.
+        #expect(plans[bird]!.legs.last!.to.scale == 1)
+    }
+
     @Test func twoBesideTheSameStickerTakeBothSides() {
         let plans = plan([
             GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "rabbit"),

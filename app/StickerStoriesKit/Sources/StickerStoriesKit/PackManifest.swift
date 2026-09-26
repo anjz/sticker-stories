@@ -157,10 +157,14 @@ public struct StickerDefinition: Codable, Equatable, Sendable, Identifiable {
     /// story names it and the child has not placed it (`docs/pack-format.md`,
     /// "Stage"); `nil` = `StickerStage.default`.
     public var stage: StickerStage?
+    /// How big the character is next to the others (`docs/pack-format.md`,
+    /// "Stickers"); `nil` (absent or unknown) = it keeps its size when a
+    /// story moves it beside another.
+    public var size: StickerSize?
 
     public init(
         id: String, name: [String: String], image: String, animations: [String] = [],
-        expressions: [String: String] = [:], stage: StickerStage? = nil
+        expressions: [String: String] = [:], stage: StickerStage? = nil, size: StickerSize? = nil
     ) {
         self.id = id
         self.name = name
@@ -168,6 +172,7 @@ public struct StickerDefinition: Codable, Equatable, Sendable, Identifiable {
         self.animations = animations
         self.expressions = expressions
         self.stage = stage
+        self.size = size
     }
 
     public init(from decoder: Decoder) throws {
@@ -178,6 +183,7 @@ public struct StickerDefinition: Codable, Equatable, Sendable, Identifiable {
         animations = try c.decodeIfPresent([String].self, forKey: .animations) ?? []
         expressions = try c.decodeIfPresent([String: String].self, forKey: .expressions) ?? [:]
         stage = try c.decodeIfPresent(StickerStage.self, forKey: .stage)
+        size = (try? c.decodeIfPresent(String.self, forKey: .size)).flatMap { $0.flatMap(StickerSize.init(rawValue:)) }
     }
 
     public func name(for language: String, fallbackOrder: [String]) -> String {
@@ -194,6 +200,23 @@ public enum StickerEntrance: String, Codable, Sendable, CaseIterable {
     case fly
     /// Fades in and grows where it stands — things that do not move.
     case grow
+}
+
+/// How big a character is next to the others: a story moving it beside
+/// another scales it so the two keep this ratio (`MotionPlanner`).
+public enum StickerSize: String, Codable, Equatable, Sendable, CaseIterable {
+    case big, medium, small, tiny
+
+    /// Its height relative to a big character's. Not true to life — a
+    /// ladybug beside a deer would be a speck — but true to the order.
+    public var relativeHeight: Double {
+        switch self {
+        case .big: 1
+        case .medium: 0.75
+        case .small: 0.55
+        case .tiny: 0.4
+        }
+    }
 }
 
 /// Where a sticker belongs in the scene and how it enters it. The area is

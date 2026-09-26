@@ -250,11 +250,15 @@ public enum MotionPlanner {
         public var canMove: Bool
         /// Its usual way is a flight (when it has no move frames to say so).
         public var flies: Bool
+        /// How big it is next to the others (`StickerSize.relativeHeight`):
+        /// going beside another it takes their ratio; nil keeps its size.
+        public var stature: Double?
 
         public init(
             id: UUID, stickerID: String, home: StagePoint, size: StageSize, readyAt: TimeInterval = 0,
-            facing: Double = 1, canMove: Bool = true, flies: Bool = false
+            facing: Double = 1, canMove: Bool = true, flies: Bool = false, stature: Double? = nil
         ) {
+            self.stature = stature
             self.id = id
             self.stickerID = stickerID
             self.home = home
@@ -314,6 +318,11 @@ public enum MotionPlanner {
         }
         return plans
     }
+
+    /// How far a sticker is scaled to stand beside another (its own size
+    /// times this): enough to keep the pair's proportions, never so far
+    /// that a child's sticker becomes a speck or a giant.
+    public static let besideScale = 0.45...1.25
 
     /// How much two stickers sharing a spot on or under another overlap, as
     /// a fraction of the narrower one's width: tucked in together, a little
@@ -497,6 +506,14 @@ public enum MotionPlanner {
                 guard let other = nearest(name, to: index) else { return nil }
                 let them = states[other]
                 let tw = them.actor.size.width * them.scale, th = them.actor.size.height * them.scale
+                // Beside it, the size their classes say (a ladybug by a deer
+                // small, by a butterfly as big), within reason.
+                var scale = 1.0
+                if let mine = me.stature, let theirs = them.actor.stature, theirs > 0 {
+                    scale = min(max(th * mine / theirs / max(me.size.height, 1), MotionPlanner.besideScale.lowerBound),
+                                MotionPlanner.besideScale.upperBound)
+                }
+                let mw = me.size.width * scale, mh = me.size.height * scale
                 // Beside it, on the side it comes from, a little overlapping;
                 // the next one to come takes the other side, then further out.
                 let key = "to:\(them.actor.id)"
@@ -509,17 +526,17 @@ public enum MotionPlanner {
                 if onSide(side) > onSide(-side) { side = -side }
                 if let toward = go.toward { side = toward == .right ? 1 : -1 }
                 let already = onSide(side) * 2
-                let feetLevel = them.center.y - th / 2 + me.size.height / 2  // feet on the same line
+                let feetLevel = them.center.y - th / 2 + mh / 2  // feet on the same line
                 let point = StagePoint(
-                    x: them.center.x + side * (tw / 2 + me.size.width / 2) * (0.72 + 0.6 * Double(already / 2)),
+                    x: them.center.x + side * (tw / 2 + mw / 2) * (0.72 + 0.6 * Double(already / 2)),
                     y: flies
                         ? them.center.y + th * 0.15
                         // A walker going to a flyer up on a branch or in the
                         // sky stays on the ground, just below it.
-                        : them.actor.flies && feetLevel > state.center.y + me.size.height
+                        : them.actor.flies && feetLevel > state.center.y + mh
                             ? state.center.y : feetLevel)
                 states[index].at = key
-                return (point, 1, true, .onto(them.actor.id), nil)
+                return (point, scale, true, .onto(them.actor.id), nil)
             case .away:
                 let side: Double = go.toward.map { $0 == .right ? 1 : -1 }
                     ?? (state.center.x < scene.visible.midX ? -1 : 1)

@@ -347,6 +347,11 @@ the branches), off the canvas and back.
   sticker that only walks, nor "crept" for one that only flies — say what
   the sticker does. Swimming belongs in the pond; hopping and walking on
   the ground.
+- **Beside, sizes follow the characters**: every sticker has a size class
+  (big: bear, deer; tiny: ladybug, bee…), and a move `to` another scales
+  the mover to fit — a bird that hops over to the deer ends up bird-sized
+  next to it. Nothing to write for it; just don't make the words fight it
+  ("the tiny mouse stood as tall as the bear").
 - **On and under shrink the mover** to at most 65 % of the one it goes on
   or under: write it for a small character and a bigger one (a ladybug on
   the mushroom, the mouse under its cap, the bee on the flower), not a

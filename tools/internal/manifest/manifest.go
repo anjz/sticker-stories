@@ -73,7 +73,15 @@ type Sticker struct {
 	// in when a story names it and the child has not placed it; absent
 	// means the app's default (DefaultStage).
 	Stage *Stage `json:"stage,omitempty"`
+	// Size is how big the character is next to the others — "big" (a
+	// deer, a bear), "medium" (a fox), "small" (a bird) or "tiny" (a
+	// ladybug): a story moving it beside another scales it to their
+	// ratio (docs/effects.md, "Movement"). Absent: it keeps its size.
+	Size string `json:"size,omitempty"`
 }
+
+// Sizes are the size classes a sticker may have, biggest first.
+var Sizes = []string{"big", "medium", "small", "tiny"}
 
 // Entrances lists the ways a sticker can come into the scene
 // (docs/pack-format.md, "Stage"): hop in from the nearer side (things that
@@ -336,6 +344,9 @@ func (m *Manifest) Validate(dir string) []error {
 		stickerIDs[st.ID] = true
 		if st.ID == effects.AllStickers {
 			fail("stickers[%d]: id %q is reserved (effect triggers use it for every sticker)", i, st.ID)
+		}
+		if st.Size != "" && !slices.Contains(Sizes, st.Size) {
+			fail("stickers[%d]: size %q must be one of %s", i, st.Size, strings.Join(Sizes, ", "))
 		}
 		checkCoverage(fmt.Sprintf("sticker %q name", st.ID), st.Name)
 		checkImage(fmt.Sprintf("sticker %q image", st.ID), st.Image)

@@ -326,3 +326,16 @@ func TestEffectsSidecarIsValidatedStrictly(t *testing.T) {
 		t.Fatalf("a pack without a setting allows no canvas effects; got %v", errs)
 	}
 }
+
+func TestStickerSizes(t *testing.T) {
+	dir := t.TempDir()
+	m := validManifest(t, dir)
+	m.Stickers[0].Size = "tiny"
+	if errs := m.Validate(dir); len(errs) != 0 {
+		t.Errorf("a tiny sticker rejected: %v", errs)
+	}
+	m.Stickers[0].Size = "huge"
+	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), `size "huge" must be one of big, medium, small, tiny`) {
+		t.Errorf("a huge sticker: %v", errs)
+	}
+}

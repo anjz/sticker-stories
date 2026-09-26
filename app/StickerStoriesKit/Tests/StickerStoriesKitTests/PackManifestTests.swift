@@ -320,6 +320,8 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         #expect(pack.manifest.stickers.allSatisfy { (2...3).contains($0.animations.count) })
         #expect(pack.manifest.stickers.filter { $0.animations.count == 3 }.map(\.id).sorted()
             == ["bird", "duckling", "firefly", "ladybug"])
+        // Every character has a size class, for moves beside another.
+        #expect(pack.manifest.stickers.allSatisfy { $0.size != nil })
         #expect(pack.manifest.stories.count >= 10)
         #expect(!pack.manifest.stories.filter(\.isFallback).isEmpty)
         // Every Forest sticker says where it belongs and how it comes in.

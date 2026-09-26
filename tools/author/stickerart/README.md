@@ -138,6 +138,8 @@ finished art (`"pond": {"description": "…", "areas": [{"x": [min, max],
 `features`; and each sticker's `stage` — how it comes in when a story
 names it and where it lands (`{"entrance": "hop" | "fly" | "grow",
 "on": ["branches", "sky"], "area": …}`) — to `stickers[].stage`
+(and its `size` class, `big`/`medium`/`small`/`tiny`, to
+`stickers[].size`)
 (`docs/pack-format.md`, "Stage" and "Features"). Measure the features
 on the finished art with a grid over it, and give every sticker a
 stage: things that walk hop in onto the ground, free flyers fly into the

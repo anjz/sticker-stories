@@ -1444,6 +1444,10 @@ final class CanvasScene: SKScene {
         return fronts
     }()
 
+    /// How big each character is next to the others (its manifest
+    /// `size`), for moves beside another.
+    private lazy var statures: [String: Double] = Dictionary(
+        uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.size.map { (s.id, $0.relativeHeight) } })
     private lazy var stages: [String: StickerStage] = Dictionary(
         uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.stage.map { (s.id, $0) } })
     /// Each sticker's moves (its walk, flight or sprout), its usual one
@@ -1467,7 +1471,8 @@ final class CanvasScene: SKScene {
                 id: node.instanceID, stickerID: node.stickerID, home: StagePoint(x: base.x, y: base.y),
                 size: StageSize(width: unscaled.width * base.scale, height: unscaled.height * base.scale),
                 readyAt: visit.map { $0.at + $0.duration } ?? 0, facing: Double(node.facing),
-                canMove: stage.entrance != .grow, flies: stage.entrance == .fly)
+                canMove: stage.entrance != .grow, flies: stage.entrance == .fly,
+                stature: statures[node.stickerID])
         }
         var random = SystemRandomNumberGenerator()
         return MotionPlanner.plan(

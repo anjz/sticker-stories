@@ -129,6 +129,9 @@ type stickerSpec struct {
 	// when a story names it (docs/pack-format.md, "Stage"); copied into
 	// the manifest on install. Changing it re-renders nothing.
 	Stage *manifest.Stage `json:"stage,omitempty"`
+	// Size is how big the character is next to the others (big, medium,
+	// small, tiny); copied into the manifest on install.
+	Size string `json:"size,omitempty"`
 }
 
 // propSpec is a prop to remove: what it is, where it is on the raw art
@@ -1109,8 +1112,9 @@ func runInstall(args []string) error {
 			if s.Stage != nil {
 				c.pack.Stickers[i].Stage = s.Stage
 			}
+			c.pack.Stickers[i].Size = s.Size
 		} else {
-			c.pack.Stickers = append(c.pack.Stickers, manifest.Sticker{ID: s.ID, Name: s.Name, Image: rel, Expressions: expressions, Stage: s.Stage})
+			c.pack.Stickers = append(c.pack.Stickers, manifest.Sticker{ID: s.ID, Name: s.Name, Image: rel, Expressions: expressions, Stage: s.Stage, Size: s.Size})
 		}
 		installed++
 	}

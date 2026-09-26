@@ -458,6 +458,15 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
   The next move goes the usual way again unless it names one too (so
   `{ladybug:go back by fly}` to fly home); a shuffle to make room goes
   the way the sticker last went.
+- **Beside another, the size their classes say**: going `to` a sticker,
+  the mover is scaled so the pair keeps the ratio of their manifest
+  `size` classes (`big` 1, `medium` 0.75, `small` 0.55, `tiny` 0.4 of the
+  height; `docs/pack-format.md`), measured on the target as it is then — a
+  bird by a deer ends up about half its height, a ladybug by the
+  butterfly as big as her. Never below 0.45 nor above 1.25 of its own
+  size, so a sticker never becomes a speck or a giant; either one without
+  a class keeps its size. Going anywhere else (a place, away, back) brings
+  it back to its own size.
 - **On or under**, the mover is at least 35 % smaller than the sticker it
   goes on or under — at most 65 % of its size (a sticker already that
   small keeps its size) — and going `to` anything else brings it back to
