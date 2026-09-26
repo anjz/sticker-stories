@@ -537,7 +537,13 @@ public enum MotionPlanner {
                                 * StagePlanner.footprint)
                     }
                     let radius = max(me.size.width, me.size.height) * StagePlanner.footprint
-                    let point = (StagePlanner.freeSpot(in: rects, radius: radius, avoiding: obstacles, random: &random)
+                    // Never under the screen's furniture (the story's pill)
+                    // while the place has room elsewhere.
+                    let stageScene = scene, size = me.size
+                    let uncovered = { (p: StagePoint) in !stageScene.isCovered(p, size: size) }
+                    let point = (StagePlanner.freeSpot(
+                        in: rects, radius: radius, avoiding: obstacles, random: &random, uncovered: uncovered)
+                        ?? StagePlanner.freeSpot(in: rects, radius: 0, avoiding: [], random: &random, uncovered: uncovered)
                         ?? StagePlanner.randomSpot(in: rects, random: &random)).point
                     return (point, 1, true, .behind, nil)
                 }

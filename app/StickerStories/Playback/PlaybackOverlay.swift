@@ -10,6 +10,9 @@ struct PlaybackOverlay: View {
     let progress: () -> Double?
     let onPlay: () -> Void
     let onStop: () -> Void
+    /// Where the compact pill sits, in global coordinates, whenever that
+    /// changes: the scene keeps story visitors from landing under it.
+    var onCompactPillFrame: (CGRect) -> Void = { _ in }
 
     /// The playing pill shows the title for the first seconds of a story,
     /// then collapses to the waveform and the stop button so it stops
@@ -17,8 +20,15 @@ struct PlaybackOverlay: View {
     static let compactAfter: Duration = .seconds(8)
     @State private var isCompact = false
 
+    /// The playing pill's padding around its contents, and its margin from
+    /// the corner.
+    private static let pillPadding = EdgeInsets(top: 14, leading: 22, bottom: 14, trailing: 14)
+    private static let pillMargin: CGFloat = 20
+
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
+            compactPillFootprint
+
             if showsPill {
                 storyPill
             }
@@ -69,7 +79,7 @@ struct PlaybackOverlay: View {
     private var storyPill: some View {
         ZStack {
             if case .playing(let story) = phase {
-                playingContents(for: story)
+                playingContents(title: story.title, compact: isCompact)
                     .transition(.opacity)
             } else {
                 Text("The End")
@@ -80,16 +90,16 @@ struct PlaybackOverlay: View {
                     .transition(.opacity)
             }
         }
-        .padding(.leading, isFinished ? 30 : 22)
-        .padding(.trailing, isFinished ? 30 : 14)
-        .padding(.vertical, isFinished ? 12 : 14)
+        .padding(.leading, isFinished ? 30 : Self.pillPadding.leading)
+        .padding(.trailing, isFinished ? 30 : Self.pillPadding.trailing)
+        .padding(.vertical, isFinished ? 12 : Self.pillPadding.top)
         // The shadow is part of the fill style: a view-level .shadow on a
         // translucent capsule rasterises as a hard-edged box on some
         // devices.
         .background(Capsule().fill(.black.opacity(0.55).shadow(.drop(color: .black.opacity(0.2), radius: 8, y: 4))))
         .overlay(progressRing.opacity(isFinished ? 0 : 1))
-        .padding(.trailing, 20)
-        .padding(.bottom, 20)
+        .padding(.trailing, Self.pillMargin)
+        .padding(.bottom, Self.pillMargin)
         .transition(.move(edge: .bottom).combined(with: .opacity))
         .task(id: playingStoryID) {
             isCompact = false
@@ -99,16 +109,30 @@ struct PlaybackOverlay: View {
         }
     }
 
+    /// Where the pill sits once it is compact — the waveform and the stop
+    /// button, as it stays for most of a story — measured on an invisible
+    /// copy of it, there before a story starts.
+    private var compactPillFootprint: some View {
+        playingContents(title: "", compact: true)
+            .padding(Self.pillPadding)
+            .hidden()
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
+            .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { onCompactPillFrame($0) }
+            .padding(.trailing, Self.pillMargin)
+            .padding(.bottom, Self.pillMargin)
+    }
+
     /// The title sits in a frame that animates to zero width when the pill
     /// goes compact, so the capsule shrinks towards the right around the
     /// waveform and the stop button rather than the title popping out.
-    private func playingContents(for story: Story) -> some View {
+    private func playingContents(title: String, compact isCompact: Bool) -> some View {
         HStack(spacing: 0) {
             Image(systemName: "waveform")
                 .font(.system(size: 22, weight: .bold))
                 .foregroundStyle(.white)
                 .symbolEffect(.variableColor.iterative, options: .repeating)
-            Text(story.title)
+            Text(title)
                 .font(.system(size: 18, weight: .semibold, design: .rounded))
                 .foregroundStyle(.white)
                 .lineLimit(1)

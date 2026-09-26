@@ -93,6 +93,19 @@ final class CanvasScene: SKScene {
     private var trayRectInView: CGRect = .zero
     /// The tray pill in world coordinates, for sticker drop/hover tests.
     private var trayRect: CGRect { trayRectInView.offsetBy(dx: viewOrigin.x, dy: viewOrigin.y) }
+    /// The playing story's pill (its waveform and stop button, where it
+    /// sits once compact) in global view coordinates, from
+    /// `PlaybackOverlay`: story visitors keep out from under it.
+    var playbackPillFrame: CGRect = .zero
+    /// The pill in world coordinates, with a little room around it; nil
+    /// before it has been measured.
+    private var playbackPillRect: CGRect? {
+        guard !playbackPillFrame.isEmpty, view != nil else { return nil }
+        let a = convertPoint(fromView: CGPoint(x: playbackPillFrame.minX, y: playbackPillFrame.minY))
+        let b = convertPoint(fromView: CGPoint(x: playbackPillFrame.maxX, y: playbackPillFrame.maxY))
+        return CGRect(x: min(a.x, b.x), y: min(a.y, b.y), width: abs(b.x - a.x), height: abs(b.y - a.y))
+            .insetBy(dx: -8, dy: -8)
+    }
     /// World coordinate of the view's bottom-left corner.
     private var viewOrigin: CGPoint {
         CGPoint(x: cameraNode.position.x - size.width / 2, y: cameraNode.position.y - size.height / 2)
@@ -1422,7 +1435,8 @@ final class CanvasScene: SKScene {
                 minX: visible.minX + margin, minY: visible.minY + margin,
                 maxX: visible.maxX - margin, maxY: visible.maxY - margin),
             visible: StageRect(minX: visible.minX, minY: visible.minY, maxX: visible.maxX, maxY: visible.maxY),
-            stickerSize: stickerBaseSize, sizes: sizes, fronts: stickerFronts)
+            stickerSize: stickerBaseSize, sizes: sizes, fronts: stickerFronts,
+            avoid: playbackPillRect.map { [StageRect(minX: $0.minX, minY: $0.minY, maxX: $0.maxX, maxY: $0.maxY)] } ?? [])
     }
 
     /// The actions that happen in one place (`place`), by animation.

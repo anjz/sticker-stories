@@ -378,7 +378,11 @@ one per sticker per story, never `all`.
   on the trees' branches, else in the sky), or else in its `area`
   (`docs/pack-format.md`, "Stage" and "Features"; `StagePlanner`), or
   any spot there when the canvas is crowded — and keeps it hidden there
-  until its entrance.
+  until its entrance. It never lands where any of it would sit under the
+  playing story's pill (the waveform and the stop button in the corner,
+  as the pill stays once compact; `PlaybackOverlay` reports where), and it
+  comes in on a way that does not pass under it — another height from the
+  nearer side, else from the far side — unless there is nowhere else.
 - At its entrance it comes in as its stage says, playing its **move**:
   `hop` walks (or hops, or crawls) in from the nearer side of the screen
   (bigger or smaller at first as it walks away from or towards the
@@ -426,7 +430,7 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
 | `go` | `target` | where it goes |
 |---|---|---|
 | `to` | a sticker | beside it, on the side it comes from, a little overlapping, feet on the same line (a flyer hovers beside it) |
-| `to` | a feature | the freest spot on screen in that place of the scene (`docs/pack-format.md`, "Features": the pond, the branches) — in it when the sticker belongs there (its stage lands on it, or the move it goes by does: the frog, the duckling `by swim`), else at its `edge` when it has one (a mouse or the waddling duckling stops at the water's edge) |
+| `to` | a feature | the freest spot on screen in that place of the scene (`docs/pack-format.md`, "Features": the pond, the branches) — in it when the sticker belongs there (its stage lands on it, or the move it goes by does: the frog, the duckling `by swim`), else at its `edge` when it has one (a mouse or the waddling duckling stops at the water's edge); never under the playing story's pill while the place has room elsewhere |
 | `on` | a sticker | on top of it: a bee on the flower's head |
 | `under` | a sticker | under it, in front of its base: a mouse under the mushroom's cap |
 | `away` | — | off the canvas by the nearer side; it is gone until it comes back |

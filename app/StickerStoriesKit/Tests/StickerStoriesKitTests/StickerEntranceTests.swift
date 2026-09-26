@@ -134,6 +134,40 @@ struct SeededGenerator: RandomNumberGenerator {
         }
     }
 
+    @Test func visitorsKeepClearOfThePlayingStorysPill() {
+        // The story's pill over the bottom-right corner of the stage, and a
+        // walker and a flyer whose ground runs under it.
+        var scene = Self.scene
+        scene.avoid = [StageRect(minX: 800, minY: 20, maxX: 980, maxY: 100)]
+        let stages: [String: StickerStage] = [
+            "fox": StickerStage(entrance: .hop, area: .init(x: [0.6, 1], y: [0.05, 0.3])),
+            "bee": StickerStage(entrance: .fly, area: .init(x: [0.6, 1], y: [0.05, 0.3])),
+        ]
+        let size = StageSize(width: 120, height: 120)
+        for seed in UInt64(1)...40 {
+            var random = SeededGenerator(state: seed)
+            let plans = StagePlanner.plan(
+                entrances: ["fox", "bee"].map { EntranceTrigger(at: 0, stickerID: $0) }, placed: [], stages: stages,
+                scene: scene, obstacles: [], policy: .standard, random: &random)
+            for plan in plans {
+                // It never ends under the pill…
+                #expect(!scene.isCovered(plan.target, size: size), "seed \(seed): \(plan.stickerID) lands under it")
+                // …and never comes in under it: there is always the other way.
+                let start = StagePoint(
+                    x: plan.target.x + plan.startOffset.x * 120, y: plan.target.y - plan.startOffset.y * 120)
+                #expect(!scene.crosses(from: start, to: plan.target, size: size),
+                        "seed \(seed): \(plan.stickerID) walks in under it from \(start)")
+            }
+        }
+        // All of its ground under the pill: it still comes in, somewhere there.
+        scene.avoid = [StageRect(minX: 0, minY: 0, maxX: 1000, maxY: 300)]
+        var random = SeededGenerator(state: 3)
+        let covered = StagePlanner.plan(
+            entrances: [EntranceTrigger(at: 0, stickerID: "fox")], placed: [], stages: stages, scene: scene,
+            obstacles: [], policy: .standard, random: &random)
+        #expect(covered.count == 1 && (600...960).contains(covered[0].target.x))
+    }
+
     @Test func aCrowdedStageStillGivesASpotInTheArea() {
         let wall = stride(from: 0.0, through: 1000, by: 40).flatMap { x in
             stride(from: 100.0, through: 300, by: 40).map { StageObstacle(center: StagePoint(x: x, y: $0), radius: 60) }

@@ -293,6 +293,20 @@ import Testing
         }
     }
 
+    @Test func aPlaceSpotIsNeverUnderThePill() {
+        var scene = Self.scene
+        scene.avoid = [StageRect(minX: 700, minY: 0, maxX: 1000, maxY: 260)]
+        let meadow = ["meadow": SceneFeature(description: "Grass.", areas: [.init(x: [0.1, 0.9], y: [0.1, 0.35])])]
+        for seed in UInt64(1)...20 {
+            var random = SeededGenerator(state: seed)
+            let plans = MotionPlanner.plan(
+                goes: [GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "meadow", another: true)],
+                actors: actors(), features: meadow, scene: scene, policy: .standard, random: &random)
+            let spot = place(fox, plans, at: 30)
+            #expect(!scene.isCovered(StagePoint(x: spot.x, y: spot.y), size: Self.size), "seed \(seed): \(spot)")
+        }
+    }
+
     @Test func twoBesideTheSameStickerTakeBothSides() {
         let plans = plan([
             GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "rabbit"),

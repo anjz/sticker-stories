@@ -310,10 +310,15 @@ public enum StagePlanner {
         /// when unknown. Puts a character's front, not its centre, on a place
         /// it faces into.
         public var fronts: [String: Double]
+        /// Screen furniture over the stage (the playing story's pill with
+        /// its waveform and stop button): a visitor lands where none of it
+        /// is under one, and comes in on a way that does not cross one,
+        /// whenever it can.
+        public var avoid: [StageRect]
 
         public init(
             world: StageRect, usable: StageRect, visible: StageRect, stickerSize: Double,
-            sizes: [String: StageSize] = [:], fronts: [String: Double] = [:]
+            sizes: [String: StageSize] = [:], fronts: [String: Double] = [:], avoid: [StageRect] = []
         ) {
             self.world = world
             self.usable = usable
@@ -321,6 +326,27 @@ public enum StagePlanner {
             self.stickerSize = stickerSize
             self.sizes = sizes
             self.fronts = fronts
+            self.avoid = avoid
+        }
+
+        /// Whether a sticker of `size` centred on `point` would sit, even
+        /// partly, under something to avoid.
+        func isCovered(_ point: StagePoint, size: StageSize) -> Bool {
+            let rx = size.width * StagePlanner.reach, ry = size.height * StagePlanner.reach
+            return avoid.contains { r in
+                point.x + rx > r.minX && point.x - rx < r.maxX && point.y + ry > r.minY && point.y - ry < r.maxY
+            }
+        }
+
+        /// Whether a sticker of `size` going straight from `start` to
+        /// `target` would pass under something to avoid on the way.
+        func crosses(from start: StagePoint, to target: StagePoint, size: StageSize) -> Bool {
+            guard !avoid.isEmpty else { return false }
+            return (0...24).contains { i in
+                let f = Double(i) / 24
+                return isCovered(
+                    StagePoint(x: start.x + (target.x - start.x) * f, y: start.y + (target.y - start.y) * f), size: size)
+            }
         }
 
         func size(of stickerID: String) -> StageSize {
@@ -349,6 +375,9 @@ public enum StagePlanner {
     /// the art rarely fills its square, so two can stand a little closer
     /// than their squares would say.
     public static let footprint = 0.38
+    /// How far a sticker's art reaches from its centre, as a fraction of
+    /// its side, when deciding whether it sits under something to avoid.
+    public static let reach = 0.45
     /// How far a character's front goes into a place it faces (a trunk),
     /// as a fraction of its width.
     public static let contactOverlap = 0.04
@@ -379,15 +408,22 @@ public enum StagePlanner {
             let scale = scales[entrance.stickerID] ?? 1
             let scene = scene.visiting(entrance.stickerID, at: scale)
             let radius = scene.stickerSize * scale * footprint
+            let size = scene.size(of: entrance.stickerID)
             let choices = places(for: stage, features: features, in: scene)
-            // The first place in order of preference with a free spot;
-            // when every one is crowded, anywhere in the first.
+            // The first place in order of preference with a free spot, clear
+            // of the screen's furniture; when every one is crowded, anywhere
+            // in the first that is still clear of it, else anywhere in it.
             var landing: (point: StagePoint, rect: StageRect)?
             for rects in choices {
-                landing = freeSpot(in: rects, radius: radius, avoiding: obstacles, random: &random)
+                landing = freeSpot(
+                    in: rects, radius: radius, avoiding: obstacles, random: &random,
+                    uncovered: { !scene.isCovered($0, size: size) })
                 if landing != nil { break }
             }
-            var (target, rect) = landing ?? randomSpot(in: choices[0], random: &random)
+            var (target, rect) = landing
+                ?? freeSpot(in: choices[0], radius: 0, avoiding: [], random: &random,
+                            uncovered: { !scene.isCovered($0, size: size) })
+                ?? randomSpot(in: choices[0], random: &random)
             if let facing = rect.facing {
                 target = contact(target, facing: facing, width: scene.size(of: entrance.stickerID).width,
                                  front: scene.fronts[entrance.stickerID])
@@ -465,7 +501,8 @@ public enum StagePlanner {
     /// story does not always use the same spot), with the rect it is in;
     /// nil when nothing there is free.
     static func freeSpot<R: RandomNumberGenerator>(
-        in rects: [StageRect], radius: Double, avoiding obstacles: [StageObstacle], random: inout R
+        in rects: [StageRect], radius: Double, avoiding obstacles: [StageObstacle], random: inout R,
+        uncovered: (StagePoint) -> Bool = { _ in true }
     ) -> (point: StagePoint, rect: StageRect)? {
         let columns = 9, rows = 5
         var free: [(point: StagePoint, rect: StageRect, clearance: Double)] = []
@@ -479,7 +516,7 @@ public enum StagePlanner {
                         let dx = point.x - obstacle.center.x, dy = point.y - obstacle.center.y
                         return (dx * dx + dy * dy).squareRoot() - radius - obstacle.radius
                     }.min() ?? .infinity
-                    if clearance >= 0 { free.append((point, area, clearance)) }
+                    if clearance >= 0, uncovered(point) { free.append((point, area, clearance)) }
                 }
             }
         }
@@ -531,16 +568,51 @@ public enum StagePlanner {
         let width = max(size.width, 1), height = max(size.height, 1)
         // From the nearer side — or, onto a place it faces into (a trunk),
         // from the side that has it arrive facing that way.
-        let fromLeft = area.facing.map { $0 == .right } ?? (target.x < scene.visible.midX)
+        let nearLeft = area.facing.map { $0 == .right } ?? (target.x < scene.visible.midX)
         // Just out of sight, even at the bigger start size of a walker.
-        let startX = fromLeft
-            ? scene.visible.minX - width * (0.5 + depthScaleLimit) : scene.visible.maxX + width * (0.5 + depthScaleLimit)
-        let dxSelf = (startX - target.x) / width
+        func startX(_ left: Bool) -> Double {
+            left
+                ? scene.visible.minX - width * (0.5 + depthScaleLimit) : scene.visible.maxX + width * (0.5 + depthScaleLimit)
+        }
+        // A walker starts somewhere else on the same ground, so it walks up
+        // or down the meadow as well as across; a flyer a little higher than
+        // its spot, gliding down to it.
+        func drawY() -> Double {
+            stage.entrance == .fly
+                ? target.y + height * Double.random(in: 0.3...0.8, using: &random)
+                : Double.random(in: area.minY...area.maxY, using: &random)
+        }
+        // Where it really starts from that height: a walker's vertical
+        // offset is in world heights, applied in its own (the depth it
+        // walks across stays subtle).
+        let worldHeight = max(scene.world.maxY - scene.world.minY, 1)
+        func start(_ left: Bool, _ y: Double) -> StagePoint {
+            StagePoint(
+                x: startX(left),
+                y: stage.entrance == .fly ? y : target.y + (y - target.y) * height / worldHeight)
+        }
+        let travels = !policy.isCalm && (stage.entrance == .hop || stage.entrance == .fly)
+        var fromLeft = nearLeft
+        var startY = travels ? drawY() : target.y
+        if travels, scene.crosses(from: start(fromLeft, startY), to: target, size: size) {
+            // That way passes under the screen's furniture (the story's
+            // pill): a few other heights from the nearer side, then from the
+            // far one; none clear, the first.
+            let sides = area.facing == nil ? [nearLeft, !nearLeft] : [nearLeft]
+            search: for left in sides {
+                for _ in 0..<6 {
+                    let y = drawY()
+                    if !scene.crosses(from: start(left, y), to: target, size: size) {
+                        fromLeft = left
+                        startY = y
+                        break search
+                    }
+                }
+            }
+        }
+        let dxSelf = (startX(fromLeft) - target.x) / width
         switch (stage.entrance, policy.isCalm) {
         case (.hop, false):
-            // From somewhere else on the same ground, so it walks up or
-            // down the meadow as well as across.
-            let startY = Double.random(in: area.minY...area.maxY, using: &random)
             let height = max(scene.world.maxY - scene.world.minY, 1)
             let depth = min(max((target.y - startY) / height * depthScalePerHeight, -depthScaleLimit), depthScaleLimit)
             let offset = (x: dxSelf, y: -(startY - target.y) / height)
@@ -558,8 +630,6 @@ public enum StagePlanner {
                 stickerID: entrance.stickerID, at: entrance.at, motion: .hop, target: target,
                 startOffset: offset, startScale: 1 + depth, duration: min(max(distance * 0.3, 1.2), 3.2))
         case (.fly, false):
-            // From a little higher, gliding down to its spot.
-            let startY = target.y + height * Double.random(in: 0.3...0.8, using: &random)
             let offset = (x: dxSelf, y: -(startY - target.y) / height)
             let distance = (offset.x * offset.x + offset.y * offset.y).squareRoot()
             return EntrancePlan(

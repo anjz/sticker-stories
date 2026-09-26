@@ -54,7 +54,8 @@ struct StoryGalleryView: View {
                     phase: playback.phase,
                     progress: { playback.playbackProgress },
                     onPlay: {},
-                    onStop: { playback.stop() })
+                    onStop: { playback.stop() },
+                    onCompactPillFrame: { [scene] frame in scene?.playbackPillFrame = frame })
                 speedBadge
             } else {
                 panel

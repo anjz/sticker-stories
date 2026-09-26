@@ -98,7 +98,8 @@ struct StoryScreen: View {
                         onStop: {
                             UISounds.shared.play(.playClick)
                             playback.stop()
-                        })
+                        },
+                        onCompactPillFrame: { [scene] frame in scene.playbackPillFrame = frame })
                 } else if showsLoader {
                     BouncingDots()
                         .accessibilityLabel("Loading")
