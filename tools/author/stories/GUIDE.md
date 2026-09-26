@@ -411,12 +411,16 @@ its pause pose (`hold:`) and the time to it and from it. Read them before
 planning the roster: they are the cast's vocabulary, and the stories are
 written to them.
 
-- **Write the moment, then cue it — beat for beat.** `{bear:live}` goes on
-  the words that tell exactly what the frames show: *Bear gave a
-  {bear:live} great big yawn, stretched up high and rubbed his eyes.* Never
-  on words it contradicts. The child sees the sticker do what the narrator
-  says, so the words follow the frames' order: the frog *watches* the fly
-  before it *snaps* it up.
+- **Name the moment, then cue it.** `{bear:live}` goes on the words that
+  say what the sticker does: *Bear gave a {bear:live} great big yawn.* A
+  few words are enough — *Badger {badger:live} dug a hole.* — and the
+  picture shows the rest. Don't narrate the frames (*put his head down
+  close to the ground and dug, and got soil on his nose*): it is tedious
+  to hear and spends words the story needs. Add a detail only when the
+  story uses it later (the soil on his nose is what makes Rabbit laugh).
+  Never cue it on words it contradicts, and if you mention two steps,
+  keep the frames' order: the frog *watches* the fly before it *snaps* it
+  up.
 - **Pause where the story lingers.** When a character stays in that pose
   for a while — hides and waits, falls asleep, holds a wish — play it up
   to its pause pose and keep it there: *Snail {snail:live hold} tucked
@@ -427,9 +431,11 @@ written to them.
   still — other stickers carry the scene — and a face cue on it waits
   until it resumes, so change its face before the hold or after the
   resume.
-- **Let the words cover the motion.** Whole, an action runs 2–4 s, about
-  6–10 spoken words; the way into a pause pose about half that. Give it
-  the words it belongs to and cue no other effect on that sticker until
+- **Let the story carry on over the motion.** Whole, an action runs
+  2–4 s, about 6–10 spoken words; the way into a pause pose about half
+  that. Those words don't have to describe it: once it's named, the
+  narration moves on (another character speaks, the next thing happens)
+  while the sticker finishes. Cue no other effect on that sticker until
   the motion is done (`storyaudio` warns when a sticker effect starts on
   top of it); a held sticker may take effects again. Other stickers may
   react meanwhile.

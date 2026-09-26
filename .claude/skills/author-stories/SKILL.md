@@ -186,9 +186,10 @@ exactly per `FORMAT.md`:
   someone (storycheck errors);
 - live cues (`{bear:live}`, `{snail:live hold}` … `{snail:live resume}` —
   see FORMAT "Live cues", GUIDE "Live stickers") as the roster planned
-  them: on the words that tell exactly what that action shows, in the
-  frames' order, with the next 6–10 words free of other effects on that
-  sticker; a hold on the words that put it in its pause pose, its resume
+  them: on a few words that name what that action shows (*Badger dug a
+  hole*), not a frame-by-frame description unless the story uses a
+  detail later, with the next 6–10 words (the story moving on) free of
+  other effects on that sticker; a hold on the words that put it in its pause pose, its resume
   (if any) on the words that bring it out, no face change on it while it
   is held; the words alone must still tell the moment;
 - a canvas cue (`{canvas:rain 0.8 14s}` — see FORMAT "Canvas cues") for

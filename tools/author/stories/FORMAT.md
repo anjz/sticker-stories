@@ -219,8 +219,10 @@ Snail {snail:live hold} hid in his shell…        up to the pause pose, and sta
   held sticker takes no other live cue until it resumes (errors). Effects
   on a held sticker are fine; a face change waits until it resumes
   (warning).
-- The words should match what the frames show, beat for beat: the
-  narrator says "hid", the snail hides; says "peeked out", it peeks.
+- The words should match what the frames show: the narrator says "hid",
+  the snail hides; says "peeked out", it peeks. Name the action in a few
+  words ("Badger dug a hole"); don't narrate it frame by frame unless the
+  story uses a detail later (GUIDE "Live stickers").
 - At most five live actions per story and language (a hold and its
   resume count once; warning). The same beats carry the same live cues
   in every language.
