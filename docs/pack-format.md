@@ -190,7 +190,7 @@ never letterboxes:
 | `stickers[].image` | string | Pack-relative path to a PNG or WebP file; must exist. |
 | `stickers[].animations` | [string] | **Optional**, default none. Pack-relative paths to live-animation sidecars (`.json`, "Live animations" below); each must exist and validate. |
 | `stickers[].expressions` | {expr: string} | **Optional**, default none. Face variants by expression id (`happy`, `sad`, `sleeping`, `surprised`…): pack-relative PNG or WebP images with exactly the sticker's size and outline ("Expressions" below). The sticker's own `image` is the `normal` face. |
-| `features` | {id: object} | **Optional.** Named places in the art where stickers can land ("Features" below): each has a `description` (for story authors) and `areas`, a non-empty list of `{ "x": [min, max], "y": [min, max] }` in fractions of the base art, each area optionally with `"facing": "left"` or `"right"` — a place a character faces into, the area holding its **front** rather than its centre (a woodpecker's beak on the bark of a trunk) — optionally `words` — how each language's stories name the place (`{ "en-US": ["pond", "water"], "es-ES": ["charca", "agua"] }`, single words; storycheck warns when a sentence puts a character there with no move taking it there; the app ignores them) — and optionally `"air": true` for open air (the sky: nothing sits there; story validation keeps flyers from resting in it, the app ignores it). |
+| `features` | {id: object} | **Optional.** Named places in the art where stickers can land ("Features" below): each has a `description` (for story authors) and `areas`, a non-empty list of `{ "x": [min, max], "y": [min, max] }` in fractions of the base art, each area optionally with `"facing": "left"` or `"right"` — a place a character faces into, the area holding its **front** rather than its centre (a woodpecker's beak on the bark of a trunk) — optionally `words` — how each language's stories name the place (`{ "en-US": ["pond", "water"], "es-ES": ["charca", "agua"] }`, single words; storycheck warns when a sentence puts a character there with no move taking it there; the app ignores them) — optionally `"air": true` for open air (the sky: nothing sits there; story validation keeps flyers from resting in it, the app ignores it) — and optionally `edge`, a non-empty list of areas like `areas` (no `facing`) where a character that does not go into the place stands beside it: the grass at the pond's edge ("Features" below). |
 | `stickers[].stage` | object | **Optional**, default grow in `x` 0.1–0.9, `y` 0.18–0.45. Where the sticker belongs in the scene and how it comes in when a story names it and the child has not placed it ("Stage" below): `entrance` is `hop`, `fly` or `grow`; `on` lists `features` in order of preference; `area` (`{ "x": [min, max], "y": [min, max] }`, fractions of the base art) is where it lands when none of them is on screen. At least one of `on` and `area`. |
 | `stickers[].size` | string | **Optional**, default none. How big the character is next to the others: `big` (a deer, a bear), `medium` (a fox, a rabbit), `small` (a bird, a mouse) or `tiny` (a ladybug, a bee). A story moving it beside another scales it so the two keep the ratio of their classes (relative heights 1, 0.75, 0.55, 0.4; `docs/effects.md`, "Movement"), and a story that invites it (a visitor) brings a big one in at 1.3× a sticker's default size and a tiny one at 0.8× (`docs/effects.md`, "Entrances"); without one it keeps its size. |
 | `stories[].id` | string | Unique within the pack. |
@@ -264,7 +264,9 @@ never letterboxes:
     sticker id (a move's target, `{frog:go to pond}`, may be either), has a non-empty
     `description` (the packager checks it; the app ignores it) and at
     least one area, each valid like a stage `area`; its `words`, when
-    present, are keyed by the pack's languages and are single words.
+    present, are keyed by the pack's languages and are single words; its
+    `edge`, when present, is a non-empty list of areas valid like a stage
+    `area`, none with `facing`.
 
 ## Stage
 
@@ -325,6 +327,19 @@ air — the sky: a flyer there is flying, with nothing to sit on, so a
 story lands it somewhere else (on a flower, on the meadow, on a branch)
 before it plays an action marked `perched` ("Live animations"); stages
 never fall back to it for a character that stands or sits.
+
+A feature may have an **`edge`**: areas beside it where a character that
+does not belong *in* it stands — Forest's pond has three banks (left,
+right, and the grass in front of the water). A story that sends a
+character to the place (`{mouse:go to pond}`) takes it into the place
+when its `stage` lands there or the move it goes by lands there (its
+`on`: the frog hops in, the duckling swims in `by swim`); anyone else
+stops at the edge, close enough to touch the water — the mouse, the
+beaver, the duckling waddling up. Without an `edge` everyone goes in.
+Measure the edge like the areas: where a character's centre sits so it
+stands at the water, seen whole. Story validation treats every walker
+and flyer as able to be at a place with an edge, so a sentence that puts
+one by the pond needs a move there.
 
 ## Expressions
 

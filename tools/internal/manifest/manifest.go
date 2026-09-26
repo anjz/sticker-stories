@@ -119,6 +119,11 @@ type Feature struct {
 	// is flying, and a story lands it somewhere else before it rests (an
 	// action marked perched). Story validation reads it; the app does not.
 	Air bool `json:"air,omitempty"`
+	// Edge (optional) is where a character that does not go into the
+	// place stands beside it — the grass at the pond's edge: one whose
+	// stage does not land on the place and whose way of going there does
+	// not either. A mouse going to the pond stops here; the frog hops in.
+	Edge []StageArea `json:"edge,omitempty"`
 }
 
 // StageArea is a rectangle in fractions of the base art: X and Y are each
@@ -340,6 +345,12 @@ func (m *Manifest) Validate(dir string) []error {
 			checkArea(fmt.Sprintf("%s: areas[%d]", field, i), a, fail)
 			if a.Facing != "" && a.Facing != "left" && a.Facing != "right" {
 				fail("%s: areas[%d]: facing must be left or right, got %q", field, i, a.Facing)
+			}
+		}
+		for i, a := range f.Edge {
+			checkArea(fmt.Sprintf("%s: edge[%d]", field, i), a, fail)
+			if a.Facing != "" {
+				fail("%s: edge[%d]: facing belongs to a feature's areas, not its edge", field, i)
 			}
 		}
 	}

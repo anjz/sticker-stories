@@ -302,10 +302,16 @@ public struct SceneFeature: Codable, Equatable, Sendable {
     /// What is there, for story authors; the app does not read it.
     public var description: String
     public var areas: [StickerStage.Area]
+    /// Where a character that does not go into the place stands beside it
+    /// (the grass at the pond's edge): one whose stage does not land on it
+    /// and whose way of going there does not either — a mouse going to the
+    /// pond stops here, the frog hops in (`MotionPlanner`). Optional.
+    public var edge: [StickerStage.Area]?
 
-    public init(description: String, areas: [StickerStage.Area]) {
+    public init(description: String, areas: [StickerStage.Area], edge: [StickerStage.Area]? = nil) {
         self.description = description
         self.areas = areas
+        self.edge = edge
     }
 }
 
@@ -473,6 +479,11 @@ extension PackManifest {
             }
             if feature.areas.isEmpty || !feature.areas.allSatisfy(\.isValid) {
                 issues.append("feature \"\(id)\": needs areas, each [min, max] on x and y with 0 <= min < max <= 1")
+            }
+            if let edge = feature.edge,
+                edge.isEmpty || !edge.allSatisfy({ $0.isValid && $0.facing == nil })
+            {
+                issues.append("feature \"\(id)\": edge needs areas, each [min, max] on x and y with 0 <= min < max <= 1 and no facing")
             }
         }
 

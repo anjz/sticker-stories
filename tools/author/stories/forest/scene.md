@@ -18,7 +18,7 @@ tops and the bottom row of plants may be cut.
 | **far woods** | behind the meadow, all across, y .25–.55 | a wall of dark pointed pine/fir trees and round leafy bushes: the edge of the forest. |
 | **far hills** | only in the centre gap between the far trees, x .38–.62, y .40–.47 | a faint, low, hazy blue-green ridge far away. Fine as "far away" or "the far hills"; nothing can climb, roll down or stand on it. |
 | **meadow** | the whole lower half, y .55–1 | wide, **flat** open grass, yellow-green, with tufts, little white daisies and a few yellow buttercups. No slope. Feature id `meadow`. |
-| **pond** | in the meadow, right of the middle, x .54–.77 y .60–.72 | small, round, still blue water with three green lily pads and one white water lily. The only water in the scene. Feature id `pond`. |
+| **pond** | in the meadow, right of the middle, x .54–.77 y .60–.72 | small, round, still blue water with three green lily pads and one white water lily. The only water in the scene. Feature id `pond`: the frog (and the duckling swimming) go into it; anyone else sent to the pond stops on its `edge` — a bank on its left (x .47–.51) or right (x .79–.83), or the grass in front of it — right at the water. |
 | **rocks** | two small grey stones at the back edge of the meadow (x .12–.17 and x .8, y .55–.58); a big rounded grey boulder in each bottom corner (x .03–.17 and x .87–1, y .85–1) | |
 | **plants in front** | along both sides and the bottom edge | ferns, leafy plants, tall grass, red berries on thin stems (left x .02–.05 y .70–.74; right x .92–.95 y .78–.84), daisies and buttercups. |
 

@@ -303,7 +303,8 @@ entrance before an action on that sticker.
   fallback: in Forest the bee and the butterfly fly in the sky, the bird
   and the owl perch on the big trees' branches (or fly in the sky when
   those are off screen), the woodpecker clings to a trunk, the frog sits
-  in the pond, and everyone else is on the meadow. The stickers carry no
+  in the pond, and everyone else — the duckling too, unless he swims in
+  (`{duckling:enter by swim}`) — is on the meadow. The stickers carry no
   lily pads, twigs or leaves of their own any more: the bird and the owl
   perch on the scene's branches, the woodpecker on its trunks. "Owl fluttered down onto a branch" fits;
   "the fox up on the hill" does not.
@@ -371,6 +372,19 @@ the branches), off the canvas and back.
   meadow, and a bird building a nest in the grass while the narrator says
   "on a branch" breaks the story. A move to where it already is does
   nothing; `another` sends it to another part of the place.
+- **At the pond.** The pond is small, right of the middle of the meadow,
+  and most of the meadow is far from it. Whenever the words put a
+  character at, by, beside or into the pond or the water — "Mouse sat by
+  the pond", "Beaver waded to the water", "they gathered at the pond" —
+  move it there (`{mouse:go to pond}`), or the child sees it on the far
+  side of the meadow while the narrator says it is at the water. The move
+  knows who goes in: the frog hops into the pond; anyone else stops on its
+  edge, close enough to touch the water (a bank to its left or right, or
+  the grass in front of it); the duckling waddles up to the edge and only
+  goes in when he swims (`{duckling:go to pond by swim}`), so write
+  "waddled up to the pond" and "paddled out onto the water" as two
+  moves. `storycheck` warns when a sentence puts any character there
+  with no move.
 - **Actions have their places.** The woodpecker taps on the bark of a
   trunk, never in the air or on the grass: when the story sends it
   somewhere else, bring it back to a trunk (`{woodpecker:go to trunks}`)

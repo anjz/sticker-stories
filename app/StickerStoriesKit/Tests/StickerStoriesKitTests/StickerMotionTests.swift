@@ -258,6 +258,41 @@ import Testing
         #expect(planned(GoTrigger(at: 0, stickerID: "rabbit", kind: .to, target: "pond"))[rabbit] != nil)
     }
 
+    @Test func onlyThoseThatBelongGoIntoAPlaceTheRestStopAtItsEdge() {
+        // The water at x 500–700, its banks either side of it.
+        let pond = ["pond": SceneFeature(
+            description: "Water.", areas: [.init(x: [0.5, 0.7], y: [0.3, 0.4])],
+            edge: [.init(x: [0.3, 0.45], y: [0.3, 0.4]), .init(x: [0.75, 0.9], y: [0.3, 0.4])])]
+        let frog = UUID(), duckling = UUID()
+        let actors = actors() + [
+            .init(id: frog, stickerID: "frog", home: StagePoint(x: 150, y: 150), size: Self.size, places: ["pond", "meadow"]),
+            .init(id: duckling, stickerID: "duckling", home: StagePoint(x: 900, y: 150), size: Self.size, places: ["meadow"]),
+        ]
+        let moves = ["duckling": [StageMove(id: "waddle", cycle: 0.8, stride: 0.4, facing: .right),
+                                  StageMove(id: "swim", cycle: 0.8, stride: 0.5, on: ["pond"], facing: .right)]]
+        func spot(_ id: UUID, _ go: GoTrigger, seed: UInt64) -> Double {
+            var random = SeededGenerator(state: seed)
+            let plans = MotionPlanner.plan(
+                goes: [go], actors: actors, features: pond, moves: moves, scene: Self.scene, policy: .standard,
+                random: &random)
+            let actor = actors.first { $0.id == id }!
+            return actor.home.x + (plans[id]?.delta(at: 30) ?? .identity).offsetXSelf * actor.size.width
+        }
+        let water = 500.0...700.0
+        for seed in UInt64(1)...10 {
+            // The frog's stage lands on the pond: it hops in.
+            #expect(water.contains(spot(frog, GoTrigger(at: 0, stickerID: "frog", kind: .to, target: "pond"), seed: seed)))
+            // The mouse's doesn't: it stops on a bank.
+            let mouse = spot(mouse, GoTrigger(at: 0, stickerID: "mouse", kind: .to, target: "pond"), seed: seed)
+            #expect((300...450).contains(mouse) || (750...900).contains(mouse), "seed \(seed): mouse at \(mouse)")
+            // The duckling waddles up to the edge, and swims in when the story says so.
+            let waddled = spot(duckling, GoTrigger(at: 0, stickerID: "duckling", kind: .to, target: "pond"), seed: seed)
+            #expect(!water.contains(waddled), "seed \(seed): duckling waddled into the water at \(waddled)")
+            let swam = spot(duckling, GoTrigger(at: 0, stickerID: "duckling", kind: .to, target: "pond", by: "swim"), seed: seed)
+            #expect(water.contains(swam))
+        }
+    }
+
     @Test func twoBesideTheSameStickerTakeBothSides() {
         let plans = plan([
             GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "rabbit"),

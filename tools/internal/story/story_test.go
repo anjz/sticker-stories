@@ -836,6 +836,23 @@ func TestWordsThatPutACharacterSomewhereNeedAMove(t *testing.T) {
 	if w := warns(withText(" Fox looked up at a branch.", " Zorro miró una rama.")); strings.Contains(w, "puts fox") {
 		t.Errorf("a fox under a branch: %s", w)
 	}
+	// A place with an edge (the pond): anyone who walks or flies can be at
+	// it — the ones that do not go in stand at its edge — so a fox sitting
+	// by the water needs a move there too.
+	pond := pack
+	pond.Features = map[string]string{"branches": "branches", "meadow": "grass", "pond": "water"}
+	pond.PlaceWords = map[string]map[string][]string{"pond": {"en-US": {"pond"}, "es-ES": {"charca"}}}
+	pond.Edges = map[string]bool{"pond": true}
+	pondWarns := func(st *Story) string { return strings.Join(Validate(st, pond, cat).Warnings, "\n") }
+	if w := pondWarns(withText(" {fox:hop} Fox sat by the pond.", " {fox:hop} Zorro se sentó junto a la charca.")); !strings.Contains(w, "puts fox at the pond") {
+		t.Errorf("a fox by the pond with no move should warn: %s", w)
+	}
+	if w := pondWarns(withText(" {fox:go to pond} Fox sat by the pond.", " {fox:go to pond} Zorro se sentó junto a la charca.")); strings.Contains(w, "puts fox") {
+		t.Errorf("a move to the pond is enough: %s", w)
+	}
+	if w := warns(withText(" {fox:hop} Fox sat by the pond.", " {fox:hop} Zorro se sentó junto a la charca.")); strings.Contains(w, "puts fox") {
+		t.Errorf("no edge, and the fox's stage is not the pond: %s", w)
+	}
 	cues, _, errs := ParseCues("{owl:go to branches another} a")
 	if len(errs) != 0 || !cues[0].Another || cues[0].Target != "branches" {
 		t.Fatalf("another parsed wrong: %+v %v", cues, errs)

@@ -1476,7 +1476,7 @@ final class CanvasScene: SKScene {
                 size: StageSize(width: unscaled.width * base.scale, height: unscaled.height * base.scale),
                 readyAt: visit.map { $0.at + $0.duration } ?? 0, facing: Double(node.facing),
                 canMove: stage.entrance != .grow, flies: stage.entrance == .fly,
-                stature: statures[node.stickerID])
+                stature: statures[node.stickerID], places: stage.on)
         }
         var random = SystemRandomNumberGenerator()
         return MotionPlanner.plan(

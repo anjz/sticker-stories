@@ -774,6 +774,9 @@ type Manifest struct {
 	// preference; Features describe the pack's features by id.
 	LandsOn  map[string][]string
 	Features map[string]string
+	// Edges are the features with an edge (the pond): any walker or flyer
+	// can be there, the ones that do not go in standing at its edge.
+	Edges map[string]bool
 	// Air are the features that are open air (the sky), where a flyer is
 	// flying: it lands elsewhere before a perched action.
 	Air map[string]bool
@@ -829,9 +832,13 @@ type Animation struct {
 func PackManifest(m *manifest.Manifest, dir string) (Manifest, error) {
 	pack := Manifest{ID: m.ID, Languages: m.Languages, Setting: m.EffectiveSetting(), Animations: map[string][]Animation{}, Moves: map[string][]Animation{}, Expressions: map[string][]string{}, Names: map[string]map[string]string{}, Stages: map[string]string{}, LandsOn: map[string][]string{}, Features: map[string]string{}}
 	pack.Air = map[string]bool{}
+	pack.Edges = map[string]bool{}
 	pack.PlaceWords = map[string]map[string][]string{}
 	for id, f := range m.Features {
 		pack.Features[id] = f.Description
+		if len(f.Edge) > 0 {
+			pack.Edges[id] = true
+		}
 		if len(f.Words) > 0 {
 			pack.PlaceWords[id] = f.Words
 		}
@@ -1595,11 +1602,12 @@ func validateBy(is *Issues, lang string, c Cue, m Manifest) {
 }
 
 // validatePlaceMentions warns when a sentence puts a character in a place
-// of the scene ("Bird flew down onto a branch", "Frog hopped to the pond")
-// that no move of the story has taken it to: a visitor may come in there,
-// but a sticker the child put in the middle of the meadow stays there
-// unless a {bird:go to branches} takes it (and one that is there already
-// stays put).
+// of the scene ("Bird flew down onto a branch", "Frog hopped to the pond",
+// "Mouse sat by the water") that no move of the story has taken it to: a
+// visitor may come in there, but a sticker the child put in the middle of
+// the meadow stays there unless a {bird:go to branches} takes it (and one
+// that is there already stays put). Any walker or flyer can be at a place
+// with an edge (the pond): the ones that do not go in stop at its edge.
 func validatePlaceMentions(is *Issues, lang string, nar Narration, m Manifest, inStory map[string]bool) {
 	if len(m.PlaceWords) == 0 {
 		return
@@ -1609,7 +1617,7 @@ func validatePlaceMentions(is *Issues, lang string, nar Narration, m Manifest, i
 		if e := m.Stages[id]; e != "hop" && e != "fly" {
 			return false
 		}
-		if slices.Contains(m.LandsOn[id], place) {
+		if m.Edges[place] || slices.Contains(m.LandsOn[id], place) {
 			return true
 		}
 		for _, mv := range m.Moves[id] {

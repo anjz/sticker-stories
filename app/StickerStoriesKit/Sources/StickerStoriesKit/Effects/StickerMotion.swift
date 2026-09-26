@@ -258,12 +258,18 @@ public enum MotionPlanner {
         /// How big it is next to the others (`StickerSize.relativeHeight`):
         /// going beside another it takes their ratio; nil keeps its size.
         public var stature: Double?
+        /// The features its stage lands on (the frog: the pond, the
+        /// meadow): going to one of these it goes into it; to a place with
+        /// an edge that is not one of them, it stops at the edge.
+        public var places: [String]
 
         public init(
             id: UUID, stickerID: String, home: StagePoint, size: StageSize, readyAt: TimeInterval = 0,
-            facing: Double = 1, canMove: Bool = true, flies: Bool = false, stature: Double? = nil
+            facing: Double = 1, canMove: Bool = true, flies: Bool = false, stature: Double? = nil,
+            places: [String] = []
         ) {
             self.stature = stature
+            self.places = places
             self.id = id
             self.stickerID = stickerID
             self.home = home
@@ -470,10 +476,19 @@ public enum MotionPlanner {
             switch go.kind {
             case .to:
                 guard let name = go.target else { return nil }
-                if features[name] != nil, !states.contains(where: { $0.actor.stickerID == name }) {
-                    // A place in the scene: its freest spot on screen.
+                if let feature = features[name], !states.contains(where: { $0.actor.stickerID == name }) {
+                    // A place in the scene: its freest spot on screen — in
+                    // it for one that belongs there (its stage lands on it,
+                    // or the way it goes does: the frog, the duckling
+                    // swimming), else at its edge when it has one (a mouse,
+                    // the duckling waddling up to the pond).
+                    let move = way(index).move
+                    let into = (move?.on.isEmpty == false ? move!.on : me.places).contains(name)
+                    let edge = feature.edge ?? []
+                    let place = SceneFeature(
+                        description: feature.description, areas: into || edge.isEmpty ? feature.areas : edge)
                     let stage = StickerStage(entrance: flies ? .fly : .hop, on: [name])
-                    var rects = StagePlanner.places(for: stage, features: features, in: scene).first ?? []
+                    var rects = StagePlanner.places(for: stage, features: [name: place], in: scene).first ?? []
                     if let toward = go.toward {
                         // Only the part of the place at least a width away on
                         // that side of it (the wind carries it right); none

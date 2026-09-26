@@ -16,6 +16,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"slices"
 	"sort"
 	"strings"
 
@@ -303,5 +304,20 @@ func printStages(pack story.Manifest) {
 			line += " (else " + strings.Join(then, ", ") + ")"
 		}
 		fmt.Printf("    %-9s %s — %s\n", id, pack.Features[id], line)
+		if pack.Edges[id] {
+			var by []string
+			for _, st := range pack.Stickers {
+				for _, mv := range pack.Moves[st] {
+					if slices.Contains(mv.On, id) {
+						by = append(by, st+" by "+mv.ID)
+					}
+				}
+			}
+			note := "anyone else who goes there ({mouse:go to " + id + "}) stops at its edge"
+			if len(by) > 0 {
+				note += "; in by: " + strings.Join(by, ", ")
+			}
+			fmt.Printf("    %-9s %s\n", "", note)
+		}
 	}
 }

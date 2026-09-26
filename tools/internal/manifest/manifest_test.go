@@ -220,6 +220,14 @@ func TestValidationFailures(t *testing.T) {
 		{"feature area outside the art", func(m *Manifest) {
 			m.Features = map[string]Feature{"pond": {Description: "The pond.", Areas: []StageArea{{X: []float64{0.5, 1.7}, Y: []float64{0.3, 0.4}}}}}
 		}, "areas[0].x"},
+		{"feature edge outside the art", func(m *Manifest) {
+			m.Features = map[string]Feature{"pond": {Description: "The pond.", Areas: []StageArea{{X: []float64{0.5, 0.7}, Y: []float64{0.3, 0.4}}},
+				Edge: []StageArea{{X: []float64{0.4, 0.45}, Y: []float64{0.3, 1.4}}}}}
+		}, "edge[0].y"},
+		{"feature edge facing", func(m *Manifest) {
+			m.Features = map[string]Feature{"pond": {Description: "The pond.", Areas: []StageArea{{X: []float64{0.5, 0.7}, Y: []float64{0.3, 0.4}}},
+				Edge: []StageArea{{X: []float64{0.4, 0.45}, Y: []float64{0.3, 0.4}, Facing: "left"}}}}
+		}, "not its edge"},
 		{"duplicate sticker id", func(m *Manifest) { m.Stickers[1].ID = "mushroom" }, "duplicate sticker"},
 		{"bad sticker id", func(m *Manifest) { m.Stickers[0].ID = "Mushroom" }, "must match"},
 		{"duplicate story id", func(m *Manifest) { m.Stories[1].ID = "story-001" }, "duplicate story"},
