@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.87,
+      "cue": "patito",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 6.88,
+      "cue": "jugamos",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 9.68,
+      "cue": "zorro",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 10.33,
+      "cue": "se",
+      "sticker": "fox",
+      "go": "to",
+      "target": "duckling"
+    },
+    {
+      "at": 11.78,
+      "cue": "castor",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 12.25,
+      "cue": "se",
+      "sticker": "beaver",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 15.68,
+      "cue": "zorro",
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 17.14,
+      "cue": "castor",
+      "sticker": "beaver",
+      "effect": "wobble"
+    },
+    {
+      "at": 21.44,
+      "cue": "zorro",
+      "sticker": "fox",
+      "effect": "hop"
+    },
+    {
+      "at": 23.26,
+      "cue": "castor",
+      "sticker": "beaver",
+      "effect": "hop"
+    },
+    {
+      "at": 27.29,
+      "cue": "escondió",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 29.32,
+      "cue": "zorro",
+      "sticker": "fox",
+      "expression": "sleeping"
+    },
+    {
+      "at": 31.8,
+      "cue": "castor",
+      "sticker": "beaver",
+      "effect": "shake",
+      "intensity": 0.4
+    },
+    {
+      "at": 35.92,
+      "cue": "plop",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 38.99,
+      "cue": "todos",
+      "sticker": "fox",
+      "expression": "surprised"
+    },
+    {
+      "at": 38.99,
+      "cue": "todos",
+      "sticker": "beaver",
+      "expression": "surprised"
+    },
+    {
+      "at": 44.74,
+      "cue": "royó",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 49.08,
+      "cue": "zorro",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 54.91,
+      "cue": "caracol",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 56.16,
+      "cue": "puedo",
+      "sticker": "snail",
+      "expression": "sad"
+    },
+    {
+      "at": 60.88,
+      "cue": "y",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 60.88,
+      "cue": "y",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 60.88,
+      "cue": "y",
+      "sticker": "fox",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 60.88,
+      "cue": "y",
+      "sticker": "beaver",
+      "go": "to",
+      "target": "snail"
+    }
+  ]
+}

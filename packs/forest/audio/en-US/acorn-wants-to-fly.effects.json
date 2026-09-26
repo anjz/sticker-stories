@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "butterfly",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 5.83,
+      "cue": "acorn",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 7.92,
+      "cue": "i",
+      "sticker": "acorn",
+      "expression": "sad"
+    },
+    {
+      "at": 9.93,
+      "cue": "butterfly",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "meadow"
+    },
+    {
+      "at": 15.86,
+      "cue": "folded",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 18.66,
+      "cue": "mushroom",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 20.6,
+      "cue": "up",
+      "sticker": "acorn",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 23.52,
+      "cue": "she",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 23.52,
+      "cue": "she",
+      "sticker": "acorn",
+      "effect": "wobble",
+      "repeat": 2
+    },
+    {
+      "at": 27.75,
+      "cue": "so",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 33.2,
+      "cue": "just",
+      "effect": "wind",
+      "duration": 8,
+      "intensity": 0.6
+    },
+    {
+      "at": 36.26,
+      "cue": "ah",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 38.83,
+      "cue": "off",
+      "sticker": "acorn",
+      "go": "to",
+      "target": "meadow",
+      "toward": "right"
+    },
+    {
+      "at": 38.83,
+      "cue": "off",
+      "sticker": "acorn",
+      "effect": "spin"
+    },
+    {
+      "at": 45.73,
+      "cue": "she",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 48.73,
+      "cue": "well",
+      "sticker": "mushroom",
+      "expression": "surprised"
+    },
+    {
+      "at": 50.88,
+      "cue": "butterfly",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 56.85,
+      "cue": "again",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 56.85,
+      "cue": "again",
+      "sticker": "acorn",
+      "effect": "hop",
+      "repeat": 3
+    }
+  ]
+}

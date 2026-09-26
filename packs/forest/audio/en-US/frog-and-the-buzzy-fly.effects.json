@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "it",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.6
+    },
+    {
+      "at": 6.01,
+      "cue": "deer",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 7.68,
+      "cue": "nibbling",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 15.93,
+      "cue": "shoo",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 15.93,
+      "cue": "shoo",
+      "sticker": "deer",
+      "effect": "wobble"
+    },
+    {
+      "at": 17.88,
+      "cue": "snail",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 20.31,
+      "cue": "tickly",
+      "sticker": "snail",
+      "expression": "surprised"
+    },
+    {
+      "at": 21.27,
+      "cue": "in",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 24.39,
+      "cue": "deer",
+      "sticker": "deer",
+      "effect": "hop"
+    },
+    {
+      "at": 26.73,
+      "cue": "nothing",
+      "sticker": "deer",
+      "expression": "sad"
+    },
+    {
+      "at": 30.22,
+      "cue": "frog",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 30.22,
+      "cue": "frog",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 32.23,
+      "cue": "leave",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 36.02,
+      "cue": "very",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "hold"
+    },
+    {
+      "at": 41.56,
+      "cue": "deer",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 44.07,
+      "cue": "snap",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "resume"
+    },
+    {
+      "at": 47.45,
+      "cue": "snail",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 50.18,
+      "cue": "what",
+      "sticker": "frog",
+      "effect": "pulse"
+    },
+    {
+      "at": 54.8,
+      "cue": "and",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 54.8,
+      "cue": "and",
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}

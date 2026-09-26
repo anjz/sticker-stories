@@ -1,0 +1,181 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "llegaban",
+      "effect": "clouds",
+      "duration": 30,
+      "intensity": 0.7
+    },
+    {
+      "at": 7.24,
+      "cue": "castor",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 8.7,
+      "cue": "caracol",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 9.52,
+      "cue": "caracol",
+      "sticker": "beaver",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 9.52,
+      "cue": "caracol",
+      "sticker": "beaver",
+      "expression": "surprised"
+    },
+    {
+      "at": 11.96,
+      "cue": "aquí",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 15.8,
+      "cue": "le",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 20.07,
+      "cue": "se",
+      "sticker": "beaver",
+      "go": "away"
+    },
+    {
+      "at": 22.44,
+      "cue": "tejón",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 22.44,
+      "cue": "tejón",
+      "sticker": "badger",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 23.36,
+      "cue": "caracol",
+      "sticker": "badger",
+      "expression": "surprised"
+    },
+    {
+      "at": 29.27,
+      "cue": "le",
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 33.13,
+      "cue": "se",
+      "sticker": "badger",
+      "go": "away"
+    },
+    {
+      "at": 35.08,
+      "cue": "pájaro",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 35.08,
+      "cue": "pájaro",
+      "sticker": "bird",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 37.14,
+      "cue": "caracol",
+      "sticker": "bird",
+      "expression": "surprised"
+    },
+    {
+      "at": 42.92,
+      "cue": "pájaro",
+      "sticker": "bird",
+      "go": "away"
+    },
+    {
+      "at": 44.72,
+      "cue": "plic",
+      "effect": "rain",
+      "duration": 14,
+      "intensity": 0.8
+    },
+    {
+      "at": 47.48,
+      "cue": "caracol",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 52.23,
+      "cue": "cuando",
+      "effect": "sunshine",
+      "duration": 16,
+      "intensity": 0.8
+    },
+    {
+      "at": 53.84,
+      "cue": "volvieron",
+      "sticker": "beaver",
+      "go": "back"
+    },
+    {
+      "at": 53.84,
+      "cue": "volvieron",
+      "sticker": "badger",
+      "go": "back"
+    },
+    {
+      "at": 53.84,
+      "cue": "volvieron",
+      "sticker": "bird",
+      "go": "back"
+    },
+    {
+      "at": 55.91,
+      "cue": "caracol",
+      "sticker": "badger",
+      "expression": "sad"
+    },
+    {
+      "at": 57.81,
+      "cue": "caracol",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 61.33,
+      "cue": "ya",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 63.4,
+      "cue": "mi",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 63.4,
+      "cue": "mi",
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}

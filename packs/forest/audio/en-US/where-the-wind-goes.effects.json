@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "one",
+      "effect": "fog",
+      "duration": 10,
+      "intensity": 0.6
+    },
+    {
+      "at": 6.88,
+      "cue": "whoosh",
+      "effect": "wind",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 10.52,
+      "cue": "wind",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 16.07,
+      "cue": "it",
+      "sticker": "all",
+      "effect": "wobble",
+      "intensity": 0.5
+    },
+    {
+      "at": 19.32,
+      "cue": "it",
+      "effect": "leaves",
+      "duration": 16,
+      "intensity": 0.6
+    },
+    {
+      "at": 22.2,
+      "cue": "pinecone",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 25.2,
+      "cue": "tumbled",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "meadow",
+      "toward": "right"
+    },
+    {
+      "at": 25.2,
+      "cue": "tumbled",
+      "sticker": "pinecone",
+      "effect": "spin"
+    },
+    {
+      "at": 27.19,
+      "cue": "wheee",
+      "sticker": "pinecone",
+      "expression": "happy"
+    },
+    {
+      "at": 28.41,
+      "cue": "butterfly",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 28.41,
+      "cue": "butterfly",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 30.63,
+      "cue": "up",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "branches",
+      "toward": "right"
+    },
+    {
+      "at": 32.35,
+      "cue": "folded",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 34.9,
+      "cue": "acorn",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 36.77,
+      "cue": "held",
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 36.77,
+      "cue": "held",
+      "sticker": "acorn",
+      "effect": "shake"
+    },
+    {
+      "at": 45.95,
+      "cue": "pinecone",
+      "sticker": "pinecone",
+      "animation": "open"
+    },
+    {
+      "at": 49.86,
+      "cue": "acorn",
+      "sticker": "acorn",
+      "animation": "wish"
+    },
+    {
+      "at": 59.55,
+      "cue": "what",
+      "sticker": "all",
+      "expression": "happy"
+    }
+  ]
+}

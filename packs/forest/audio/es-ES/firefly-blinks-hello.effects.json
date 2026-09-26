@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "era",
+      "effect": "sunset",
+      "duration": 19.06,
+      "intensity": 0.6
+    },
+    {
+      "at": 6.18,
+      "cue": "luciérnaga",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 6.96,
+      "cue": "encendió",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 2,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 8.18,
+      "cue": "parpadeo",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 16.56,
+      "cue": "parpadeo",
+      "effect": "night",
+      "duration": 60.84,
+      "intensity": 0.7
+    },
+    {
+      "at": 16.56,
+      "cue": "parpadeo",
+      "sticker": "firefly",
+      "expression": "sad"
+    },
+    {
+      "at": 19.42,
+      "cue": "ratón",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 19.42,
+      "cue": "ratón",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "firefly"
+    },
+    {
+      "at": 29.84,
+      "cue": "ratón",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "hold"
+    },
+    {
+      "at": 36.17,
+      "cue": "erizo",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 39.88,
+      "cue": "prueba",
+      "sticker": "hedgehog",
+      "effect": "pulse"
+    },
+    {
+      "at": 45.6,
+      "cue": "brilló",
+      "sticker": "firefly",
+      "effect": "glow",
+      "repeat": 4,
+      "duration": 2,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 49.7,
+      "cue": "entonces",
+      "effect": "fireflies",
+      "duration": 35,
+      "intensity": 0.6
+    },
+    {
+      "at": 58.2,
+      "cue": "ratón",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "resume"
+    },
+    {
+      "at": 62.02,
+      "cue": "luciérnaga",
+      "sticker": "firefly",
+      "effect": "glow",
+      "repeat": 2,
+      "duration": 0.4,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 66.24,
+      "cue": "hola",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 66.24,
+      "cue": "hola",
+      "sticker": "firefly",
+      "animation": "wave"
+    },
+    {
+      "at": 70.11,
+      "cue": "y",
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 70.49,
+      "cue": "se",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    }
+  ]
+}

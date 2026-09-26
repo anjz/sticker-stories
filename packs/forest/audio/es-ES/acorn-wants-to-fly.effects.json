@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "mariposa",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 5.77,
+      "cue": "bellota",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 7.78,
+      "cue": "ojalá",
+      "sticker": "acorn",
+      "expression": "sad"
+    },
+    {
+      "at": 10.14,
+      "cue": "mariposa",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "meadow"
+    },
+    {
+      "at": 15.84,
+      "cue": "plegó",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 18.52,
+      "cue": "seta",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 21.21,
+      "cue": "bellota",
+      "sticker": "acorn",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 23.62,
+      "cue": "agitó",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 23.62,
+      "cue": "agitó",
+      "sticker": "acorn",
+      "effect": "wobble",
+      "repeat": 2
+    },
+    {
+      "at": 28.79,
+      "cue": "así",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 35.82,
+      "cue": "justo",
+      "effect": "wind",
+      "duration": 8,
+      "intensity": 0.6
+    },
+    {
+      "at": 39.71,
+      "cue": "aaa",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 42.57,
+      "cue": "bellota",
+      "sticker": "acorn",
+      "go": "to",
+      "target": "meadow",
+      "toward": "right"
+    },
+    {
+      "at": 42.57,
+      "cue": "bellota",
+      "sticker": "acorn",
+      "effect": "spin"
+    },
+    {
+      "at": 50.63,
+      "cue": "abrió",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 54.17,
+      "cue": "bueno",
+      "sticker": "mushroom",
+      "expression": "surprised"
+    },
+    {
+      "at": 57.92,
+      "cue": "mariposa",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 64.17,
+      "cue": "otra",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 64.17,
+      "cue": "otra",
+      "sticker": "acorn",
+      "effect": "hop",
+      "repeat": 3
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "plip",
+      "effect": "rain",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 8.87,
+      "cue": "on",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 13.32,
+      "cue": "frog",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 13.32,
+      "cue": "frog",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 15.61,
+      "cue": "grinning",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 16.39,
+      "cue": "on",
+      "sticker": "all",
+      "effect": "pulse",
+      "intensity": 0.4
+    },
+    {
+      "at": 21.56,
+      "cue": "in",
+      "sticker": "all",
+      "effect": "wobble",
+      "intensity": 0.4
+    },
+    {
+      "at": 26.55,
+      "cue": "snail",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 32.73,
+      "cue": "in",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 36.6,
+      "cue": "duckling",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 39.35,
+      "cue": "quack",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 39.35,
+      "cue": "quack",
+      "sticker": "duckling",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 44.41,
+      "cue": "what",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 44.41,
+      "cue": "what",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 50.74,
+      "cue": "out",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.8
+    },
+    {
+      "at": 52.57,
+      "cue": "snail",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 54.48,
+      "cue": "and",
+      "effect": "rainbow",
+      "duration": 15,
+      "intensity": 0.8
+    },
+    {
+      "at": 57.74,
+      "cue": "frog",
+      "sticker": "frog",
+      "animation": "catch-fly"
+    },
+    {
+      "at": 60,
+      "cue": "and",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    }
+  ]
+}

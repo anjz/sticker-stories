@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "it",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.7
+    },
+    {
+      "at": 4.92,
+      "cue": "frog",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 4.92,
+      "cue": "frog",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 6.48,
+      "cue": "catching",
+      "sticker": "frog",
+      "animation": "catch-fly"
+    },
+    {
+      "at": 9.86,
+      "cue": "come",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 10.89,
+      "cue": "duckling",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 11.62,
+      "cue": "duckling",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 14.07,
+      "cue": "the",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 20.49,
+      "cue": "tucked",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 25.4,
+      "cue": "snail",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 31.91,
+      "cue": "in",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 34.58,
+      "cue": "out",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 36.87,
+      "cue": "duckling",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 45.7,
+      "cue": "his",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond",
+      "by": "swim",
+      "another": true
+    },
+    {
+      "at": 52.56,
+      "cue": "i'm",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 53.69,
+      "cue": "quack",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 53.69,
+      "cue": "quack",
+      "sticker": "duckling",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 53.69,
+      "cue": "quack",
+      "sticker": "frog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 55.14,
+      "cue": "snail",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 55.14,
+      "cue": "snail",
+      "sticker": "snail",
+      "effect": "hearts"
+    }
+  ]
+}

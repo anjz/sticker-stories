@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "el",
+      "effect": "sunset",
+      "duration": 32.65,
+      "intensity": 0.7
+    },
+    {
+      "at": 0,
+      "cue": "el",
+      "sticker": "firefly",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 5.37,
+      "cue": "empezó",
+      "sticker": "all",
+      "effect": "glow",
+      "intensity": 0.4,
+      "color": "#FFD9A0"
+    },
+    {
+      "at": 13.8,
+      "cue": "y",
+      "sticker": "all",
+      "effect": "wobble",
+      "intensity": 0.4
+    },
+    {
+      "at": 17.78,
+      "cue": "flor",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 20.16,
+      "cue": "plegó",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 26,
+      "cue": "búho",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 26,
+      "cue": "búho",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 28.73,
+      "cue": "seguía",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    },
+    {
+      "at": 30.15,
+      "cue": "el",
+      "effect": "night",
+      "duration": 40,
+      "intensity": 0.8
+    },
+    {
+      "at": 35.96,
+      "cue": "búho",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "resume"
+    },
+    {
+      "at": 42.39,
+      "cue": "me",
+      "sticker": "owl",
+      "expression": "happy"
+    },
+    {
+      "at": 43.96,
+      "cue": "en",
+      "effect": "fireflies",
+      "duration": 30,
+      "intensity": 0.5
+    },
+    {
+      "at": 46.9,
+      "cue": "luciérnaga",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 48.82,
+      "cue": "encendió",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A",
+      "hold": true
+    },
+    {
+      "at": 54.12,
+      "cue": "y",
+      "sticker": "all",
+      "expression": "sleeping"
+    },
+    {
+      "at": 57.47,
+      "cue": "todos",
+      "sticker": "owl",
+      "expression": "happy"
+    },
+    {
+      "at": 57.47,
+      "cue": "todos",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 59.69,
+      "cue": "saludaron",
+      "sticker": "firefly",
+      "animation": "wave"
+    }
+  ]
+}

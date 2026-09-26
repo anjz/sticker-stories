@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "castor",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 8.37,
+      "cue": "justo",
+      "sticker": "beaver",
+      "expression": "happy"
+    },
+    {
+      "at": 11.64,
+      "cue": "aúpa",
+      "sticker": "beaver",
+      "effect": "shake"
+    },
+    {
+      "at": 16.44,
+      "cue": "osito",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 17.32,
+      "cue": "te",
+      "sticker": "bear",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 20.56,
+      "cue": "aúpa",
+      "sticker": "bear",
+      "effect": "shake"
+    },
+    {
+      "at": 24.94,
+      "cue": "conejo",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 26.73,
+      "cue": "ya",
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 28.62,
+      "cue": "aúpa",
+      "sticker": "rabbit",
+      "effect": "shake"
+    },
+    {
+      "at": 33.62,
+      "cue": "entonces",
+      "sticker": "beaver",
+      "expression": "sad"
+    },
+    {
+      "at": 34.52,
+      "cue": "ratón",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 37.06,
+      "cue": "olfateó",
+      "sticker": "mouse",
+      "animation": "sniff"
+    },
+    {
+      "at": 39.96,
+      "cue": "tú",
+      "sticker": "bear",
+      "expression": "surprised"
+    },
+    {
+      "at": 44.06,
+      "cue": "ratón",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 56.68,
+      "cue": "salió",
+      "sticker": "beaver",
+      "effect": "spin"
+    },
+    {
+      "at": 56.68,
+      "cue": "salió",
+      "sticker": "bear",
+      "effect": "spin"
+    },
+    {
+      "at": 56.68,
+      "cue": "salió",
+      "sticker": "rabbit",
+      "effect": "spin"
+    },
+    {
+      "at": 56.68,
+      "cue": "salió",
+      "sticker": "mouse",
+      "effect": "spin"
+    },
+    {
+      "at": 62.65,
+      "cue": "castor",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 62.65,
+      "cue": "castor",
+      "sticker": "beaver",
+      "animation": "gnaw",
+      "mode": "hold"
+    },
+    {
+      "at": 71.51,
+      "cue": "yo",
+      "sticker": "mouse",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

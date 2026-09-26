@@ -1,0 +1,132 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ladybug",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 12.28,
+      "cue": "easy",
+      "sticker": "ladybug",
+      "expression": "happy"
+    },
+    {
+      "at": 12.28,
+      "cue": "easy",
+      "sticker": "ladybug",
+      "effect": "hop"
+    },
+    {
+      "at": 14.34,
+      "cue": "deer's",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 15.36,
+      "cue": "she",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "deer"
+    },
+    {
+      "at": 20.1,
+      "cue": "bent",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 22.87,
+      "cue": "oh",
+      "sticker": "ladybug",
+      "expression": "surprised"
+    },
+    {
+      "at": 25,
+      "cue": "frog",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 25,
+      "cue": "frog",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 27.24,
+      "cue": "ladybug",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "frog",
+      "by": "fly"
+    },
+    {
+      "at": 31.21,
+      "cue": "frog",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "hold"
+    },
+    {
+      "at": 38.06,
+      "cue": "snap",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "resume"
+    },
+    {
+      "at": 42.9,
+      "cue": "mushroom's",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 44.24,
+      "cue": "but",
+      "sticker": "mushroom",
+      "effect": "wobble"
+    },
+    {
+      "at": 49.23,
+      "cue": "duckling",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 56.23,
+      "cue": "no",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 62.58,
+      "cue": "so",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 62.58,
+      "cue": "so",
+      "sticker": "duckling",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 74.85,
+      "cue": "ladybug",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 74.85,
+      "cue": "ladybug",
+      "sticker": "ladybug",
+      "animation": "wings"
+    }
+  ]
+}

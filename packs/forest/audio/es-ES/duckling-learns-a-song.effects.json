@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "pájaro",
+      "sticker": "bee",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.4
+    },
+    {
+      "at": 0,
+      "cue": "pájaro",
+      "sticker": "bird",
+      "enter": true,
+      "by": "hop"
+    },
+    {
+      "at": 7.92,
+      "cue": "patito",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 10.85,
+      "cue": "enséñame",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 17.52,
+      "cue": "así",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 19.68,
+      "cue": "otra",
+      "sticker": "bird",
+      "effect": "hop"
+    },
+    {
+      "at": 29.66,
+      "cue": "abeja",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 32.54,
+      "cue": "tarareó",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 36.84,
+      "cue": "rana",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 41.73,
+      "cue": "todos",
+      "sticker": "frog",
+      "effect": "hop"
+    },
+    {
+      "at": 45.2,
+      "cue": "vamos",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 50.48,
+      "cue": "mmm",
+      "sticker": "bee",
+      "effect": "wobble"
+    },
+    {
+      "at": 51.4,
+      "cue": "croac",
+      "sticker": "frog",
+      "effect": "pulse"
+    },
+    {
+      "at": 52.56,
+      "cue": "y",
+      "sticker": "bird",
+      "animation": "sing",
+      "mode": "hold"
+    },
+    {
+      "at": 57.96,
+      "cue": "a",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 61.24,
+      "cue": "patito",
+      "sticker": "duckling",
+      "animation": "nap"
+    },
+    {
+      "at": 68.48,
+      "cue": "eso",
+      "sticker": "bird",
+      "animation": "sing",
+      "mode": "resume"
+    },
+    {
+      "at": 70.91,
+      "cue": "todos",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 70.91,
+      "cue": "todos",
+      "sticker": "all",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

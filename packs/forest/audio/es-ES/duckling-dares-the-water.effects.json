@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "era",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.7
+    },
+    {
+      "at": 5.16,
+      "cue": "rana",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 5.16,
+      "cue": "rana",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 6.8,
+      "cue": "cazando",
+      "sticker": "frog",
+      "animation": "catch-fly"
+    },
+    {
+      "at": 9.8,
+      "cue": "métete",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 10.56,
+      "cue": "patito",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 11.38,
+      "cue": "patito",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 14.73,
+      "cue": "el",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 21.53,
+      "cue": "escondió",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 26.59,
+      "cue": "caracol",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 34.29,
+      "cue": "y",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 37.46,
+      "cue": "asomó",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 39.39,
+      "cue": "patito",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 48.67,
+      "cue": "sus",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond",
+      "by": "swim",
+      "another": true
+    },
+    {
+      "at": 54.2,
+      "cue": "estoy",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 55.33,
+      "cue": "cua",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 55.33,
+      "cue": "cua",
+      "sticker": "duckling",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 55.33,
+      "cue": "cua",
+      "sticker": "frog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 57.16,
+      "cue": "caracol",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 57.16,
+      "cue": "caracol",
+      "sticker": "snail",
+      "effect": "hearts"
+    }
+  ]
+}

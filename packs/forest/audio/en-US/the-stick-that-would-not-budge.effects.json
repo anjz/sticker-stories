@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "beaver",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 8.08,
+      "cue": "just",
+      "sticker": "beaver",
+      "expression": "happy"
+    },
+    {
+      "at": 11.67,
+      "cue": "heave-ho",
+      "sticker": "beaver",
+      "effect": "shake"
+    },
+    {
+      "at": 16.73,
+      "cue": "bear",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 17.61,
+      "cue": "i'll",
+      "sticker": "bear",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 20.13,
+      "cue": "heave-ho",
+      "sticker": "bear",
+      "effect": "shake"
+    },
+    {
+      "at": 23.97,
+      "cue": "rabbit",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 25.38,
+      "cue": "three",
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 27.14,
+      "cue": "heave-ho",
+      "sticker": "rabbit",
+      "effect": "shake"
+    },
+    {
+      "at": 32.73,
+      "cue": "then",
+      "sticker": "beaver",
+      "expression": "sad"
+    },
+    {
+      "at": 33.49,
+      "cue": "mouse",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 36.05,
+      "cue": "he",
+      "sticker": "mouse",
+      "animation": "sniff"
+    },
+    {
+      "at": 38.72,
+      "cue": "you",
+      "sticker": "bear",
+      "expression": "surprised"
+    },
+    {
+      "at": 41.82,
+      "cue": "mouse",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 53.43,
+      "cue": "out",
+      "sticker": "beaver",
+      "effect": "spin"
+    },
+    {
+      "at": 53.43,
+      "cue": "out",
+      "sticker": "bear",
+      "effect": "spin"
+    },
+    {
+      "at": 53.43,
+      "cue": "out",
+      "sticker": "rabbit",
+      "effect": "spin"
+    },
+    {
+      "at": 53.43,
+      "cue": "out",
+      "sticker": "mouse",
+      "effect": "spin"
+    },
+    {
+      "at": 58.4,
+      "cue": "beaver",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 58.4,
+      "cue": "beaver",
+      "sticker": "beaver",
+      "animation": "gnaw",
+      "mode": "hold"
+    },
+    {
+      "at": 65.09,
+      "cue": "i",
+      "sticker": "mouse",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

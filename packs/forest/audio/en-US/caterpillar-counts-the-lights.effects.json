@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "it",
+      "effect": "night",
+      "duration": 75.48,
+      "intensity": 0.7
+    },
+    {
+      "at": 5.39,
+      "cue": "caterpillar",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 7.69,
+      "cue": "grass",
+      "sticker": "caterpillar",
+      "expression": "sad"
+    },
+    {
+      "at": 11.54,
+      "cue": "mushroom",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 12.75,
+      "cue": "climb",
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 14.65,
+      "cue": "up",
+      "sticker": "caterpillar",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 16.5,
+      "cue": "onto",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 18.04,
+      "cue": "reared",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "hold"
+    },
+    {
+      "at": 24.66,
+      "cue": "butterfly",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 26.66,
+      "cue": "she",
+      "sticker": "butterfly",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 29.3,
+      "cue": "folded",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 33.94,
+      "cue": "firefly",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 38.32,
+      "cue": "she",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 40.26,
+      "cue": "and",
+      "effect": "fireflies",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 52.02,
+      "cue": "then",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 61.29,
+      "cue": "caterpillar",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "resume"
+    },
+    {
+      "at": 64.34,
+      "cue": "she",
+      "sticker": "caterpillar",
+      "expression": "sleeping"
+    },
+    {
+      "at": 67.22,
+      "cue": "firefly",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 67.22,
+      "cue": "firefly",
+      "sticker": "firefly",
+      "animation": "wave"
+    }
+  ]
+}

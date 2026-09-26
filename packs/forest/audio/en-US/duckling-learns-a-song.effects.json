@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "bird",
+      "sticker": "bee",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.4
+    },
+    {
+      "at": 0,
+      "cue": "bird",
+      "sticker": "bird",
+      "enter": true,
+      "by": "hop"
+    },
+    {
+      "at": 6.82,
+      "cue": "duckling",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 9.05,
+      "cue": "teach",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 14.66,
+      "cue": "that's",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 16.67,
+      "cue": "again",
+      "sticker": "bird",
+      "effect": "hop"
+    },
+    {
+      "at": 27.26,
+      "cue": "bee",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 29.6,
+      "cue": "she",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 33.1,
+      "cue": "frog",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 37.46,
+      "cue": "everyone",
+      "sticker": "frog",
+      "effect": "hop"
+    },
+    {
+      "at": 39.98,
+      "cue": "let's",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 44.02,
+      "cue": "mmm",
+      "sticker": "bee",
+      "effect": "wobble"
+    },
+    {
+      "at": 45,
+      "cue": "ribbit",
+      "sticker": "frog",
+      "effect": "pulse"
+    },
+    {
+      "at": 45.94,
+      "cue": "and",
+      "sticker": "bird",
+      "animation": "sing",
+      "mode": "hold"
+    },
+    {
+      "at": 51,
+      "cue": "the",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 53.35,
+      "cue": "duckling",
+      "sticker": "duckling",
+      "animation": "nap"
+    },
+    {
+      "at": 60.04,
+      "cue": "that's",
+      "sticker": "bird",
+      "animation": "sing",
+      "mode": "resume"
+    },
+    {
+      "at": 61.68,
+      "cue": "everyone",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 61.68,
+      "cue": "everyone",
+      "sticker": "all",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

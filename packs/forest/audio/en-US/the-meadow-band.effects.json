@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "beaver",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 6.76,
+      "cue": "who",
+      "sticker": "beaver",
+      "expression": "happy"
+    },
+    {
+      "at": 6.76,
+      "cue": "who",
+      "sticker": "beaver",
+      "effect": "hop"
+    },
+    {
+      "at": 8.46,
+      "cue": "woodpecker",
+      "sticker": "woodpecker",
+      "enter": true
+    },
+    {
+      "at": 8.46,
+      "cue": "woodpecker",
+      "sticker": "woodpecker",
+      "go": "to",
+      "target": "trunks"
+    },
+    {
+      "at": 12.44,
+      "cue": "rat-a-tat-tat",
+      "sticker": "woodpecker",
+      "animation": "tap"
+    },
+    {
+      "at": 13.85,
+      "cue": "pinecone",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 17.45,
+      "cue": "shh-shh",
+      "sticker": "pinecone",
+      "animation": "open"
+    },
+    {
+      "at": 19.68,
+      "cue": "bee",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 23.52,
+      "cue": "mmm-mmm",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 25.14,
+      "cue": "frog",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 25.14,
+      "cue": "frog",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 31.16,
+      "cue": "beaver",
+      "sticker": "beaver",
+      "expression": "sad"
+    },
+    {
+      "at": 41.34,
+      "cue": "all",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 41.34,
+      "cue": "all",
+      "sticker": "all",
+      "effect": "wobble"
+    },
+    {
+      "at": 48.33,
+      "cue": "gnawed",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 53.35,
+      "cue": "woodpecker",
+      "sticker": "woodpecker",
+      "effect": "pulse"
+    },
+    {
+      "at": 55.4,
+      "cue": "pinecone",
+      "sticker": "pinecone",
+      "effect": "pulse"
+    },
+    {
+      "at": 57.26,
+      "cue": "frog",
+      "sticker": "frog",
+      "effect": "hop"
+    },
+    {
+      "at": 61.35,
+      "cue": "it",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 62.65,
+      "cue": "hooray",
+      "effect": "confetti",
+      "duration": 6,
+      "intensity": 0.7
+    },
+    {
+      "at": 62.65,
+      "cue": "hooray",
+      "sticker": "all",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

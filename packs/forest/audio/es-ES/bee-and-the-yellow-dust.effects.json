@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.1,
+      "cue": "flor",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 6.34,
+      "cue": "abeja",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 8,
+      "cue": "bajó",
+      "sticker": "bee",
+      "go": "on",
+      "target": "flower"
+    },
+    {
+      "at": 11.14,
+      "cue": "estaba",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 13,
+      "cue": "patito",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 15.44,
+      "cue": "ay",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 19.24,
+      "cue": "y",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 21.04,
+      "cue": "chof",
+      "effect": "bubbles",
+      "duration": 8,
+      "intensity": 0.6
+    },
+    {
+      "at": 21.04,
+      "cue": "chof",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond",
+      "by": "swim"
+    },
+    {
+      "at": 23.96,
+      "cue": "ven",
+      "sticker": "duckling",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 26.22,
+      "cue": "espera",
+      "sticker": "flower",
+      "effect": "wobble"
+    },
+    {
+      "at": 30.74,
+      "cue": "abeja",
+      "sticker": "bee",
+      "effect": "pulse"
+    },
+    {
+      "at": 36.97,
+      "cue": "ah",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 39.45,
+      "cue": "escondió",
+      "sticker": "duckling",
+      "animation": "nap"
+    },
+    {
+      "at": 42.3,
+      "cue": "era",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 48.84,
+      "cue": "abeja",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 52.82,
+      "cue": "mucho",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 57.99,
+      "cue": "se",
+      "sticker": "bee",
+      "go": "to",
+      "target": "meadow"
+    }
+  ]
+}

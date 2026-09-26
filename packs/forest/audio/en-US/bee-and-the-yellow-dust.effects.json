@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 3.78,
+      "cue": "flower",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 6.46,
+      "cue": "bee",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 7.9,
+      "cue": "down",
+      "sticker": "bee",
+      "go": "on",
+      "target": "flower"
+    },
+    {
+      "at": 11.03,
+      "cue": "yellow",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 13.56,
+      "cue": "duckling",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 16.17,
+      "cue": "oh",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 19.82,
+      "cue": "off",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 21.6,
+      "cue": "splish",
+      "effect": "bubbles",
+      "duration": 8,
+      "intensity": 0.6
+    },
+    {
+      "at": 21.6,
+      "cue": "splish",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond",
+      "by": "swim"
+    },
+    {
+      "at": 24.73,
+      "cue": "come",
+      "sticker": "duckling",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 26.71,
+      "cue": "wait",
+      "sticker": "flower",
+      "effect": "wobble"
+    },
+    {
+      "at": 31.32,
+      "cue": "bee",
+      "sticker": "bee",
+      "effect": "pulse"
+    },
+    {
+      "at": 37.95,
+      "cue": "oh",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 40.52,
+      "cue": "he",
+      "sticker": "duckling",
+      "animation": "nap"
+    },
+    {
+      "at": 42.87,
+      "cue": "it",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 48.14,
+      "cue": "bee",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 50.57,
+      "cue": "busy",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 54.61,
+      "cue": "off",
+      "sticker": "bee",
+      "go": "to",
+      "target": "meadow"
+    }
+  ]
+}

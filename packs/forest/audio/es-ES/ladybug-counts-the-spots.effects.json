@@ -1,0 +1,132 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "a",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 12.01,
+      "cue": "facilísimo",
+      "sticker": "ladybug",
+      "expression": "happy"
+    },
+    {
+      "at": 12.01,
+      "cue": "facilísimo",
+      "sticker": "ladybug",
+      "effect": "hop"
+    },
+    {
+      "at": 15.3,
+      "cue": "ciervo",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 16.31,
+      "cue": "se",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "deer"
+    },
+    {
+      "at": 20.81,
+      "cue": "bajó",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 23.93,
+      "cue": "oh",
+      "sticker": "ladybug",
+      "expression": "surprised"
+    },
+    {
+      "at": 25.89,
+      "cue": "pues",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 25.89,
+      "cue": "pues",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 28.37,
+      "cue": "mariquita",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "frog",
+      "by": "fly"
+    },
+    {
+      "at": 32.85,
+      "cue": "rana",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "hold"
+    },
+    {
+      "at": 38.81,
+      "cue": "zas",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "resume"
+    },
+    {
+      "at": 45.05,
+      "cue": "seta",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 46,
+      "cue": "pero",
+      "sticker": "mushroom",
+      "effect": "wobble"
+    },
+    {
+      "at": 51.05,
+      "cue": "patito",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 58.39,
+      "cue": "ni",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 64.85,
+      "cue": "así",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 64.85,
+      "cue": "así",
+      "sticker": "duckling",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 74,
+      "cue": "mariquita",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 74,
+      "cue": "mariquita",
+      "sticker": "ladybug",
+      "animation": "wings"
+    }
+  ]
+}

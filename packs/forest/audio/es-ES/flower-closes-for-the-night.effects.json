@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "el",
+      "effect": "sunset",
+      "duration": 28.18,
+      "intensity": 0.7
+    },
+    {
+      "at": 4.6,
+      "cue": "flor",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 6.84,
+      "cue": "caracol",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 6.84,
+      "cue": "caracol",
+      "sticker": "snail",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 12.24,
+      "cue": "plegó",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 16.79,
+      "cue": "flor",
+      "sticker": "snail",
+      "expression": "surprised"
+    },
+    {
+      "at": 20.64,
+      "cue": "pues",
+      "sticker": "snail",
+      "expression": "sad"
+    },
+    {
+      "at": 25.68,
+      "cue": "salió",
+      "effect": "night",
+      "duration": 40,
+      "intensity": 0.7
+    },
+    {
+      "at": 28.02,
+      "cue": "luciérnaga",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 29.08,
+      "cue": "yo",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 31.93,
+      "cue": "brilló",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 39.93,
+      "cue": "se",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 42.18,
+      "cue": "por",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.8
+    },
+    {
+      "at": 44.79,
+      "cue": "flor",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 47.36,
+      "cue": "buenos",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 49.44,
+      "cue": "caracol",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 53.7,
+      "cue": "las",
+      "sticker": "flower",
+      "effect": "glow"
+    },
+    {
+      "at": 60.4,
+      "cue": "entonces",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 60.4,
+      "cue": "entonces",
+      "sticker": "snail",
+      "effect": "hearts"
+    }
+  ]
+}

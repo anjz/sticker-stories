@@ -1,0 +1,144 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "abeja",
+      "sticker": "bee",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.4
+    },
+    {
+      "at": 0,
+      "cue": "abeja",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 6.04,
+      "cue": "había",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 9.52,
+      "cue": "tarareó",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 12.44,
+      "cue": "oruga",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 14.84,
+      "cue": "qué",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 16.46,
+      "cue": "mariquita",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 21.8,
+      "cue": "meneo",
+      "sticker": "caterpillar",
+      "effect": "wobble",
+      "repeat": 2
+    },
+    {
+      "at": 23.93,
+      "cue": "mariquita",
+      "sticker": "ladybug",
+      "animation": "wings"
+    },
+    {
+      "at": 28.94,
+      "cue": "que",
+      "sticker": "bee",
+      "expression": "sad"
+    },
+    {
+      "at": 36.23,
+      "cue": "lo",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 39.64,
+      "cue": "oruga",
+      "sticker": "caterpillar",
+      "animation": "look-up"
+    },
+    {
+      "at": 43.68,
+      "cue": "por",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 43.68,
+      "cue": "por",
+      "sticker": "bee",
+      "effect": "hop"
+    },
+    {
+      "at": 48.25,
+      "cue": "flor",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 49.3,
+      "cue": "allá",
+      "sticker": "bee",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 49.3,
+      "cue": "allá",
+      "sticker": "caterpillar",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 49.3,
+      "cue": "allá",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "flower",
+      "by": "fly"
+    },
+    {
+      "at": 55.72,
+      "cue": "hola",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 57.2,
+      "cue": "tu",
+      "sticker": "caterpillar",
+      "expression": "surprised"
+    },
+    {
+      "at": 60.1,
+      "cue": "y",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 61.63,
+      "cue": "flor",
+      "sticker": "flower",
+      "effect": "wobble"
+    }
+  ]
+}

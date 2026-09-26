@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.58,
+      "cue": "duckling",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 5.28,
+      "cue": "let's",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 7.28,
+      "cue": "fox",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 8.17,
+      "cue": "trotted",
+      "sticker": "fox",
+      "go": "to",
+      "target": "duckling"
+    },
+    {
+      "at": 9.74,
+      "cue": "beaver",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 10.16,
+      "cue": "waddled",
+      "sticker": "beaver",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 13.34,
+      "cue": "fox",
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 14.45,
+      "cue": "beaver",
+      "sticker": "beaver",
+      "effect": "wobble"
+    },
+    {
+      "at": 18.21,
+      "cue": "fox",
+      "sticker": "fox",
+      "effect": "hop"
+    },
+    {
+      "at": 19.86,
+      "cue": "beaver",
+      "sticker": "beaver",
+      "effect": "hop"
+    },
+    {
+      "at": 22.87,
+      "cue": "tucked",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 25.04,
+      "cue": "fox",
+      "sticker": "fox",
+      "expression": "sleeping"
+    },
+    {
+      "at": 27.27,
+      "cue": "beaver",
+      "sticker": "beaver",
+      "effect": "shake",
+      "intensity": 0.4
+    },
+    {
+      "at": 31.5,
+      "cue": "pop",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 34.71,
+      "cue": "everyone",
+      "sticker": "fox",
+      "expression": "surprised"
+    },
+    {
+      "at": 34.71,
+      "cue": "everyone",
+      "sticker": "beaver",
+      "expression": "surprised"
+    },
+    {
+      "at": 39.64,
+      "cue": "he",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 43.5,
+      "cue": "fox",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 49.03,
+      "cue": "snail",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 49.8,
+      "cue": "can",
+      "sticker": "snail",
+      "expression": "sad"
+    },
+    {
+      "at": 53.68,
+      "cue": "off",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 53.68,
+      "cue": "off",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 53.68,
+      "cue": "off",
+      "sticker": "fox",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 53.68,
+      "cue": "off",
+      "sticker": "beaver",
+      "go": "to",
+      "target": "snail"
+    }
+  ]
+}

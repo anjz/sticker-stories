@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "era",
+      "effect": "clouds",
+      "duration": 30,
+      "intensity": 0.7
+    },
+    {
+      "at": 0,
+      "cue": "era",
+      "sticker": "bee",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 5.36,
+      "cue": "mariposa",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 5.36,
+      "cue": "mariposa",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "meadow"
+    },
+    {
+      "at": 8.36,
+      "cue": "aleteo",
+      "sticker": "butterfly",
+      "effect": "shake"
+    },
+    {
+      "at": 12.11,
+      "cue": "tengo",
+      "sticker": "butterfly",
+      "expression": "sad"
+    },
+    {
+      "at": 18.24,
+      "cue": "abeja",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 20.56,
+      "cue": "yo",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 21.88,
+      "cue": "bzzz",
+      "sticker": "bee",
+      "go": "to",
+      "target": "butterfly"
+    },
+    {
+      "at": 25.8,
+      "cue": "brrr",
+      "sticker": "butterfly",
+      "effect": "tint",
+      "color": "#9AD0FF"
+    },
+    {
+      "at": 30.79,
+      "cue": "le",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 36.25,
+      "cue": "piña",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 41.77,
+      "cue": "mariposa",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 49.08,
+      "cue": "y",
+      "effect": "sunshine",
+      "duration": 22,
+      "intensity": 0.8
+    },
+    {
+      "at": 52.14,
+      "cue": "mariposa",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 54.76,
+      "cue": "piña",
+      "sticker": "pinecone",
+      "expression": "happy"
+    },
+    {
+      "at": 54.76,
+      "cue": "piña",
+      "sticker": "pinecone",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 56.56,
+      "cue": "por",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 58.56,
+      "cue": "y",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "sky"
+    },
+    {
+      "at": 59.98,
+      "cue": "con",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 59.98,
+      "cue": "con",
+      "sticker": "bee",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

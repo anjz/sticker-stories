@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "bellota",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 6.66,
+      "cue": "quiero",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 6.66,
+      "cue": "quiero",
+      "sticker": "acorn",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 9.8,
+      "cue": "ardilla",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 13.69,
+      "cue": "escondió",
+      "sticker": "squirrel",
+      "animation": "hide-nut"
+    },
+    {
+      "at": 22.65,
+      "cue": "así",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "acorn"
+    },
+    {
+      "at": 27.32,
+      "cue": "a",
+      "sticker": "squirrel",
+      "effect": "hearts"
+    },
+    {
+      "at": 28.42,
+      "cue": "flor",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 28.72,
+      "cue": "tiritó",
+      "sticker": "flower",
+      "effect": "tint",
+      "color": "#BFE3FF"
+    },
+    {
+      "at": 29.91,
+      "cue": "se",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 31.46,
+      "cue": "entonces",
+      "effect": "snow",
+      "duration": 20,
+      "intensity": 0.6
+    },
+    {
+      "at": 34.49,
+      "cue": "bellota",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 41.46,
+      "cue": "una",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.9
+    },
+    {
+      "at": 45.1,
+      "cue": "flor",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 50.48,
+      "cue": "ya",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 51.66,
+      "cue": "todavía",
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 51.66,
+      "cue": "todavía",
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 51.66,
+      "cue": "todavía",
+      "sticker": "squirrel",
+      "effect": "hop"
+    },
+    {
+      "at": 58.28,
+      "cue": "primero",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 58.28,
+      "cue": "primero",
+      "sticker": "acorn",
+      "effect": "glow"
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "era",
+      "effect": "night",
+      "duration": 85.08,
+      "intensity": 0.7
+    },
+    {
+      "at": 5.69,
+      "cue": "oruga",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 7.64,
+      "cue": "hierba",
+      "sticker": "caterpillar",
+      "expression": "sad"
+    },
+    {
+      "at": 12.08,
+      "cue": "seta",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 13.71,
+      "cue": "súbete",
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 16.12,
+      "cue": "oruga",
+      "sticker": "caterpillar",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 17.06,
+      "cue": "hasta",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 18.41,
+      "cue": "se",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "hold"
+    },
+    {
+      "at": 24.82,
+      "cue": "mariposa",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 28.36,
+      "cue": "se",
+      "sticker": "butterfly",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 30.96,
+      "cue": "plegó",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 36.26,
+      "cue": "luciérnaga",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 41.4,
+      "cue": "brilló",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 43.64,
+      "cue": "y",
+      "effect": "fireflies",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 59.64,
+      "cue": "entonces",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 69.88,
+      "cue": "oruga",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "resume"
+    },
+    {
+      "at": 73.39,
+      "cue": "se",
+      "sticker": "caterpillar",
+      "expression": "sleeping"
+    },
+    {
+      "at": 75.54,
+      "cue": "luciérnaga",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 75.54,
+      "cue": "luciérnaga",
+      "sticker": "firefly",
+      "animation": "wave"
+    }
+  ]
+}

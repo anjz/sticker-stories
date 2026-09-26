@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "acorn",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 5.94,
+      "cue": "i",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 5.94,
+      "cue": "i",
+      "sticker": "acorn",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 9.2,
+      "cue": "squirrel",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 13.3,
+      "cue": "hid",
+      "sticker": "squirrel",
+      "animation": "hide-nut"
+    },
+    {
+      "at": 20.63,
+      "cue": "so",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "acorn"
+    },
+    {
+      "at": 25.16,
+      "cue": "beside",
+      "sticker": "squirrel",
+      "effect": "hearts"
+    },
+    {
+      "at": 25.86,
+      "cue": "flower",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 26.25,
+      "cue": "shivered",
+      "sticker": "flower",
+      "effect": "tint",
+      "color": "#BFE3FF"
+    },
+    {
+      "at": 27.48,
+      "cue": "folded",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 29.16,
+      "cue": "then",
+      "effect": "snow",
+      "duration": 20,
+      "intensity": 0.6
+    },
+    {
+      "at": 31.08,
+      "cue": "acorn",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 39.28,
+      "cue": "one",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.9
+    },
+    {
+      "at": 42.71,
+      "cue": "flower",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 48.25,
+      "cue": "am",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 49.48,
+      "cue": "not",
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 49.48,
+      "cue": "not",
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 49.48,
+      "cue": "not",
+      "sticker": "squirrel",
+      "effect": "hop"
+    },
+    {
+      "at": 55.94,
+      "cue": "down",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 55.94,
+      "cue": "down",
+      "sticker": "acorn",
+      "effect": "glow"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "pitter-patter",
+      "effect": "rain",
+      "duration": 40,
+      "intensity": 0.7
+    },
+    {
+      "at": 6.92,
+      "cue": "ladybug",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 8.64,
+      "cue": "mushroom",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 9.08,
+      "cue": "and",
+      "sticker": "ladybug",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 11.14,
+      "cue": "come",
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 15.03,
+      "cue": "snail",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 17.83,
+      "cue": "of",
+      "sticker": "mushroom",
+      "effect": "pulse"
+    },
+    {
+      "at": 19.13,
+      "cue": "in",
+      "sticker": "snail",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 20.84,
+      "cue": "frog",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 22.34,
+      "cue": "splish",
+      "sticker": "frog",
+      "effect": "hop",
+      "repeat": 3
+    },
+    {
+      "at": 30.56,
+      "cue": "frog",
+      "sticker": "frog",
+      "expression": "sad"
+    },
+    {
+      "at": 34.61,
+      "cue": "so",
+      "sticker": "frog",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 36.41,
+      "cue": "squish",
+      "sticker": "ladybug",
+      "expression": "surprised"
+    },
+    {
+      "at": 38.02,
+      "cue": "snail",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 44.81,
+      "cue": "and",
+      "sticker": "mushroom",
+      "effect": "glow"
+    },
+    {
+      "at": 44.81,
+      "cue": "and",
+      "sticker": "mushroom",
+      "effect": "pulse",
+      "repeat": 2
+    },
+    {
+      "at": 48.85,
+      "cue": "drip",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 52.39,
+      "cue": "ah",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 55.56,
+      "cue": "everyone",
+      "sticker": "ladybug",
+      "expression": "happy"
+    },
+    {
+      "at": 55.56,
+      "cue": "everyone",
+      "sticker": "ladybug",
+      "effect": "wobble"
+    },
+    {
+      "at": 55.56,
+      "cue": "everyone",
+      "sticker": "frog",
+      "effect": "wobble"
+    },
+    {
+      "at": 56.69,
+      "cue": "then",
+      "effect": "sunshine",
+      "duration": 16,
+      "intensity": 0.8
+    },
+    {
+      "at": 58.33,
+      "cue": "out",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 59.87,
+      "cue": "out",
+      "sticker": "ladybug",
+      "go": "back"
+    },
+    {
+      "at": 61.37,
+      "cue": "out",
+      "sticker": "frog",
+      "go": "back"
+    }
+  ]
+}

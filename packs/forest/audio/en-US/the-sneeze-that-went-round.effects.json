@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "mushroom",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 6.03,
+      "cue": "hedgehog",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 7.72,
+      "cue": "to",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "mushroom"
+    },
+    {
+      "at": 9.39,
+      "cue": "all",
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 12.5,
+      "cue": "fox",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 13.38,
+      "cue": "butterfly",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 14.73,
+      "cue": "right",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "fox"
+    },
+    {
+      "at": 17.4,
+      "cue": "ah",
+      "sticker": "fox",
+      "expression": "surprised"
+    },
+    {
+      "at": 20.33,
+      "cue": "whoosh",
+      "sticker": "fox",
+      "effect": "wobble",
+      "repeat": 2
+    },
+    {
+      "at": 23.23,
+      "cue": "onto",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 24.92,
+      "cue": "she",
+      "sticker": "butterfly",
+      "animation": "rest"
+    },
+    {
+      "at": 29.03,
+      "cue": "ah",
+      "sticker": "mushroom",
+      "animation": "sneeze",
+      "mode": "hold"
+    },
+    {
+      "at": 30.44,
+      "cue": "achoo",
+      "sticker": "mushroom",
+      "animation": "sneeze",
+      "mode": "resume"
+    },
+    {
+      "at": 35.95,
+      "cue": "hedgehog",
+      "sticker": "hedgehog",
+      "expression": "surprised"
+    },
+    {
+      "at": 35.95,
+      "cue": "hedgehog",
+      "sticker": "hedgehog",
+      "animation": "curl"
+    },
+    {
+      "at": 41.57,
+      "cue": "tishoo",
+      "sticker": "hedgehog",
+      "effect": "wobble"
+    },
+    {
+      "at": 50.81,
+      "cue": "but",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 53.41,
+      "cue": "giggled",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 53.41,
+      "cue": "giggled",
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 55.37,
+      "cue": "and",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 55.37,
+      "cue": "and",
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "grey",
+      "effect": "clouds",
+      "duration": 30,
+      "intensity": 0.7
+    },
+    {
+      "at": 8.03,
+      "cue": "beaver",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 9.03,
+      "cue": "snail",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 9.91,
+      "cue": "snail",
+      "sticker": "beaver",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 9.91,
+      "cue": "snail",
+      "sticker": "beaver",
+      "expression": "surprised"
+    },
+    {
+      "at": 11.9,
+      "cue": "right",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 14.17,
+      "cue": "gnawed",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 17.96,
+      "cue": "off",
+      "sticker": "beaver",
+      "go": "away"
+    },
+    {
+      "at": 19.9,
+      "cue": "badger",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 19.9,
+      "cue": "badger",
+      "sticker": "badger",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 21.48,
+      "cue": "snail",
+      "sticker": "badger",
+      "expression": "surprised"
+    },
+    {
+      "at": 25.22,
+      "cue": "dug",
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 28.54,
+      "cue": "off",
+      "sticker": "badger",
+      "go": "away"
+    },
+    {
+      "at": 30.38,
+      "cue": "bird",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 30.38,
+      "cue": "bird",
+      "sticker": "bird",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 31.99,
+      "cue": "snail",
+      "sticker": "bird",
+      "expression": "surprised"
+    },
+    {
+      "at": 36.81,
+      "cue": "flew",
+      "sticker": "bird",
+      "go": "away"
+    },
+    {
+      "at": 38.6,
+      "cue": "pitter-patter",
+      "effect": "rain",
+      "duration": 14,
+      "intensity": 0.8
+    },
+    {
+      "at": 41.19,
+      "cue": "snail",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 46.35,
+      "cue": "when",
+      "effect": "sunshine",
+      "duration": 16,
+      "intensity": 0.8
+    },
+    {
+      "at": 48.01,
+      "cue": "back",
+      "sticker": "beaver",
+      "go": "back"
+    },
+    {
+      "at": 48.01,
+      "cue": "back",
+      "sticker": "badger",
+      "go": "back"
+    },
+    {
+      "at": 48.01,
+      "cue": "back",
+      "sticker": "bird",
+      "go": "back"
+    },
+    {
+      "at": 49.94,
+      "cue": "snail",
+      "sticker": "badger",
+      "expression": "sad"
+    },
+    {
+      "at": 51.66,
+      "cue": "out",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 54.72,
+      "cue": "i",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 56.26,
+      "cue": "my",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 56.26,
+      "cue": "my",
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}
