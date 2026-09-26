@@ -217,6 +217,20 @@ public enum StickerSize: String, Codable, Equatable, Sendable, CaseIterable {
         case .tiny: 0.4
         }
     }
+
+    /// The scale it comes in at when a story invites it (a visitor the
+    /// child has not placed): a big one a little bigger than a sticker's
+    /// default size, a tiny one a little smaller, the rest as they are —
+    /// so a fawn walking in is not the size of a ladybug. Well inside the
+    /// child's own pinch range; moves beside another still size it by
+    /// `relativeHeight` from there (`MotionPlanner`).
+    public var visitScale: Double {
+        switch self {
+        case .big: 1.3
+        case .tiny: 0.8
+        case .medium, .small: 1
+        }
+    }
 }
 
 /// Where a sticker belongs in the scene and how it enters it. The area is

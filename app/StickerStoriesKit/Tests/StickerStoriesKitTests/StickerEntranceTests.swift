@@ -111,6 +111,29 @@ struct SeededGenerator: RandomNumberGenerator {
         }
     }
 
+    @Test func bigVisitorsComeInBiggerTinyOnesSmaller() {
+        #expect(StickerSize.allCases.map(\.visitScale) == [1.3, 1, 1, 0.8])
+        // A deer whose area runs to both edges of the art.
+        var stages = Self.stages
+        stages["deer"] = StickerStage(entrance: .hop, area: .init(x: [0, 1], y: [0.18, 0.36]))
+        let scales = ["deer": StickerSize.big.visitScale, "owl": StickerSize.tiny.visitScale]
+        for seed in UInt64(1)...30 {
+            var random = SeededGenerator(state: seed)
+            let plans = StagePlanner.plan(
+                entrances: ["deer", "owl", "tree"].map { EntranceTrigger(at: 0, stickerID: $0) },
+                placed: [], stages: stages, scales: scales, scene: Self.scene, obstacles: [], policy: .standard,
+                random: &random)
+            #expect(plans.map(\.scale) == [1.3, 0.8, 1])
+            let deer = plans[0], width = 120 * deer.scale
+            // Seen whole at its bigger size: the extra half of it is kept off the edges.
+            let extra = (width - 120) / 2
+            #expect(deer.target.x >= 40 + extra - 1e-9 && deer.target.x <= 960 - extra + 1e-9)
+            // It starts out of sight at that size (offsets are in its own widths).
+            let start = deer.target.x + deer.startOffset.x * width
+            #expect(start + width / 2 <= 0 || start - width / 2 >= 1000, "seed \(seed): starts at \(start)")
+        }
+    }
+
     @Test func aCrowdedStageStillGivesASpotInTheArea() {
         let wall = stride(from: 0.0, through: 1000, by: 40).flatMap { x in
             stride(from: 100.0, through: 300, by: 40).map { StageObstacle(center: StagePoint(x: x, y: $0), radius: 60) }

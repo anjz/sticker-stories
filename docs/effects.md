@@ -391,6 +391,13 @@ one per sticker per story, never `all`.
   and has to come in the other is mirrored for the whole visit. Without a
   move it bounces in as before. Under Reduce Motion or calm mode it
   simply fades in (no frames).
+- **Its size**: a visitor comes in at its size class's visiting scale
+  (manifest `stickers[].size`, `StickerSize.visitScale`): a big one
+  1.3× a sticker's default size, a tiny one 0.8×, small and medium as
+  they are — so a fawn walking in is not the size of a ladybug. It lands
+  where it is seen whole at that size, and from then on moves size it as
+  they size any sticker ("Movement": beside another by their classes,
+  back to this size for the rest).
 - **Another way in**: a sticker with more than one move comes in its
   usual way (its first move) unless the story names another —
   `{ladybug:enter by fly}`, the trigger's `"by": "fly"`. It then comes in

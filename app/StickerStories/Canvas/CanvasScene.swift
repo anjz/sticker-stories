@@ -1448,6 +1448,10 @@ final class CanvasScene: SKScene {
     /// `size`), for moves beside another.
     private lazy var statures: [String: Double] = Dictionary(
         uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.size.map { (s.id, $0.relativeHeight) } })
+    /// The scale each sticker comes in at when a story invites it (its
+    /// size class: big ones a little bigger, tiny ones a little smaller).
+    private lazy var visitScales: [String: Double] = Dictionary(
+        uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.size.map { (s.id, $0.visitScale) } })
     private lazy var stages: [String: StickerStage] = Dictionary(
         uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.stage.map { (s.id, $0) } })
     /// Each sticker's moves (its walk, flight or sprout), its usual one
@@ -1510,6 +1514,7 @@ final class CanvasScene: SKScene {
             stages: stages,
             features: pack.manifest.features,
             moves: stageMoves,
+            scales: visitScales,
             scene: scene, obstacles: obstacles, policy: policy, random: &random)
         var visitors: [UUID: EntrancePlan] = [:]
         for plan in plans {
@@ -1521,9 +1526,12 @@ final class CanvasScene: SKScene {
             node.isVisitor = true
             node.facing = plan.mirrored ? -1 : 1
             node.position = CGPoint(x: plan.target.x, y: plan.target.y)
-            // Its placement is where it lands; the entrance is a delta on
-            // it that keeps it hidden until its moment.
-            node.effectBase = StickerPlacement(x: plan.target.x, y: plan.target.y, rotation: 0, scale: 1)
+            // Its placement is where it lands, at its size class's visiting
+            // scale; the entrance is a delta on it that keeps it hidden
+            // until its moment.
+            node.baseScale = CGFloat(plan.scale)
+            node.setScale(node.baseScale)
+            node.effectBase = StickerPlacement(x: plan.target.x, y: plan.target.y, rotation: 0, scale: plan.scale)
             node.alpha = 0
             foregroundStickers.addChild(node)
             bringToFront(node)

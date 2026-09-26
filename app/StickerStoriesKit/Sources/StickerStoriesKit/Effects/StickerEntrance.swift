@@ -121,11 +121,15 @@ public struct EntrancePlan: Equatable, Sendable {
     public var mirrored: Bool
     /// The id of the move whose frames play on the way in; nil for none.
     public var move: String?
+    /// Its size for the whole visit, as a placement scale: what its size
+    /// class says a visitor comes in at (`StickerSize.visitScale`), 1 for
+    /// most. The entrance's own scaling (`startScale`) is relative to it.
+    public var scale: Double
 
     public init(
         stickerID: String, at: TimeInterval, motion: Motion, target: StagePoint,
         startOffset: (x: Double, y: Double) = (0, 0), startScale: Double = 1, duration: TimeInterval,
-        gait: Gait = .bounce, mirrored: Bool = false, move: String? = nil
+        gait: Gait = .bounce, mirrored: Bool = false, move: String? = nil, scale: Double = 1
     ) {
         self.stickerID = stickerID
         self.at = at
@@ -137,13 +141,14 @@ public struct EntrancePlan: Equatable, Sendable {
         self.gait = gait
         self.mirrored = mirrored
         self.move = move
+        self.scale = scale
     }
 
     public static func == (a: EntrancePlan, b: EntrancePlan) -> Bool {
         a.stickerID == b.stickerID && a.at == b.at && a.motion == b.motion && a.target == b.target
             && a.startOffset.x == b.startOffset.x && a.startOffset.y == b.startOffset.y
             && a.startScale == b.startScale && a.duration == b.duration && a.gait == b.gait
-            && a.mirrored == b.mirrored && a.move == b.move
+            && a.mirrored == b.mirrored && a.move == b.move && a.scale == b.scale
     }
 
     /// How long the sticker travels, for its move frames: they loop this
@@ -321,6 +326,23 @@ public enum StagePlanner {
         func size(of stickerID: String) -> StageSize {
             sizes[stickerID] ?? StageSize(width: stickerSize, height: stickerSize)
         }
+
+        /// The scene as one sticker coming in at `scale` sees it: its size
+        /// scaled, and — when it is bigger than usual — the usable band
+        /// inset by the extra half of it, so it is still seen whole.
+        func visiting(_ stickerID: String, at scale: Double) -> Scene {
+            guard scale != 1 else { return self }
+            var scene = self
+            let size = size(of: stickerID)
+            scene.sizes[stickerID] = StageSize(width: size.width * scale, height: size.height * scale)
+            let extra = max(scale - 1, 0) * max(size.width, size.height) / 2
+            func inset(_ lo: Double, _ hi: Double) -> (Double, Double) {
+                lo + extra <= hi - extra ? (lo + extra, hi - extra) : ((lo + hi) / 2, (lo + hi) / 2)
+            }
+            let x = inset(usable.minX, usable.maxX), y = inset(usable.minY, usable.maxY)
+            scene.usable = StageRect(minX: x.0, minY: y.0, maxX: x.1, maxY: y.1)
+            return scene
+        }
     }
 
     /// How much of a sticker's square counts when deciding if two overlap:
@@ -332,11 +354,13 @@ public enum StagePlanner {
     public static let contactOverlap = 0.04
 
     /// The plans for every entrance whose sticker is not already placed,
-    /// in time order; later visitors avoid the earlier ones' spots.
+    /// in time order; later visitors avoid the earlier ones' spots. Each
+    /// comes in at its `scales` entry (its size class's `visitScale`; 1
+    /// when missing) and lands where it is seen whole at that size.
     public static func plan<R: RandomNumberGenerator>(
         entrances: [EntranceTrigger], placed: Set<String>, stages: [String: StickerStage],
-        features: [String: SceneFeature] = [:], moves: [String: [StageMove]] = [:], scene: Scene,
-        obstacles: [StageObstacle], policy: EffectPolicy, random: inout R
+        features: [String: SceneFeature] = [:], moves: [String: [StageMove]] = [:], scales: [String: Double] = [:],
+        scene: Scene, obstacles: [StageObstacle], policy: EffectPolicy, random: inout R
     ) -> [EntrancePlan] {
         var obstacles = obstacles
         var plans: [EntrancePlan] = []
@@ -352,7 +376,9 @@ public enum StagePlanner {
                 stage.entrance = move.flies ? .fly : .hop
                 if !move.on.isEmpty { stage.on = move.on }
             }
-            let radius = scene.stickerSize * footprint
+            let scale = scales[entrance.stickerID] ?? 1
+            let scene = scene.visiting(entrance.stickerID, at: scale)
+            let radius = scene.stickerSize * scale * footprint
             let choices = places(for: stage, features: features, in: scene)
             // The first place in order of preference with a free spot;
             // when every one is crowded, anywhere in the first.
@@ -367,10 +393,11 @@ public enum StagePlanner {
                                  front: scene.fronts[entrance.stickerID])
             }
             obstacles.append(StageObstacle(center: target, radius: radius))
-            plans.append(
-                path(
-                    for: entrance, stage: stage, move: policy.allowsLiveAnimations ? move : nil,
-                    target: target, area: rect, scene: scene, policy: policy, random: &random))
+            var plan = path(
+                for: entrance, stage: stage, move: policy.allowsLiveAnimations ? move : nil,
+                target: target, area: rect, scene: scene, policy: policy, random: &random)
+            plan.scale = scale
+            plans.append(plan)
         }
         return plans
     }
