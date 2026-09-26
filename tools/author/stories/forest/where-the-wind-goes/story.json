@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "id": "where-the-wind-goes",
+  "pack": "forest",
+  "featured": [],
+  "supporting": [
+    "butterfly",
+    "pinecone",
+    "acorn"
+  ],
+  "tags": [
+    "weather",
+    "curiosity"
+  ],
+  "premise": "The meadow asks the wind where it's going; it can't stop to answer — it's busy blowing the fog away, spinning the leaves, tumbling Pinecone along and lifting Butterfly into the branches — until it lies down in the grass for a rest and whispers its answer.",
+  "inspiration": "The North Wind and the Sun (Aesop), turned: the wind isn't a rival to be beaten, just a busy visitor with a secret.",
+  "lesson": "Some questions are answered by waiting for a quiet moment.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Where the Wind Goes",
+      "text": "{canvas:fog 0.6 10s} [softly] One morning, the meadow was hidden in fog. Then — {canvas:wind 0.6 30s} {sfx:wind} WHOOSH! — the wind blew the fog away. {all:face surprised} [curious] Wind, where are you going? asked the meadow. But the wind was too busy to stop. {all:wobble 0.5} It tickled the grass. It ruffled the pond. {canvas:leaves 0.6 16s} {sfx:leaves} It sent leaves spinning from the trees. {pinecone:enter} Pinecone came rolling by, and the wind {pinecone:go to meadow right} {pinecone:spin} tumbled her along. {pinecone:face happy} [giggles] Wheee! {butterfly:enter} {butterfly:face happy} Butterfly let it carry her {butterfly:go to branches right} up into the branches, where she {butterfly:live hold} folded her wings and held on. {acorn:enter} Acorn came walking up and {acorn:face surprised} {acorn:shake} held on to her cap. Then the wind got tired. Whoo… shhh. It lay down in the grass to rest. {pinecone:live} Pinecone opened her scales to feel it go still. {acorn:live} Acorn made a wish: tell us where you're going! [whispers] The wind whispered back, so softly only the grass could hear. {all:face happy} [happily] What did it say? It said: see you tomorrow."
+    },
+    "es-ES": {
+      "title": "Adónde va el viento",
+      "text": "{canvas:fog 0.6 10s} [softly] Una mañana, el prado estaba escondido en la niebla. Y entonces… {canvas:wind 0.6 30s} {sfx:wind} ¡FIUUU! Llegó el viento, y se llevó la niebla. {all:face surprised} [curious] Viento, ¿adónde vas? preguntó el prado. Pero el viento tenía demasiada prisa para contestar. {all:wobble 0.5} Le hizo cosquillas a la hierba. Rizó el agua de la charca. {canvas:leaves 0.6 16s} {sfx:leaves} Hizo volar hojas de los árboles grandes, dando vueltas. {pinecone:enter} Piña pasaba rodando, y el viento {pinecone:go to meadow right} {pinecone:spin} se la llevó dando tumbos. {pinecone:face happy} [giggles] ¡Yupiii! {butterfly:enter} {butterfly:face happy} Mariposa se dejó llevar {butterfly:go to branches right} hasta las ramas, y allí {butterfly:live hold} plegó las alas y se agarró. {acorn:enter} Bellota llegó andando y {acorn:face surprised} {acorn:shake} se sujetó el sombrerito. Luego el viento se cansó. Fiuu… chsss. Se tumbó en la hierba a descansar. {pinecone:live} Piña abrió sus escamas para sentirlo quieto. {acorn:live} Bellota pidió un deseo: ¡dinos adónde vas! [whispers] Y el viento contestó, tan bajito que solo lo oyó la hierba. {all:face happy} [happily] ¿Qué dijo? Dijo: hasta mañana."
+    }
+  },
+  "sounds": {
+    "wind": {
+      "prompt": "a gust of wind sweeping through a meadow and leafy trees, realistic field recording",
+      "seconds": 2
+    },
+    "leaves": {
+      "prompt": "dry leaves swirling and rustling in a gust of wind, realistic field recording",
+      "seconds": 2
+    }
+  }
+}

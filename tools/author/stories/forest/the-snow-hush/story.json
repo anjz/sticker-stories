@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "the-snow-hush",
+  "pack": "forest",
+  "featured": [],
+  "supporting": [
+    "rabbit",
+    "bird",
+    "deer"
+  ],
+  "tags": [
+    "seasons",
+    "gentle"
+  ],
+  "premise": "The first snowflakes fall so softly that the meadow goes quiet to hear them, and everyone who is there whispers so as not to miss one.",
+  "inspiration": "Hush lullabies and Andersen's quiet wonder at the first snow, turned: the whole meadow listens together.",
+  "lesson": "Some wonders you only notice when you're quiet.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "The Snow Hush",
+      "text": "{canvas:snow 0.4 40s} {sfx:hush-bed} [softly] One morning, something came floating down from the sky. Not a raindrop. Not a leaf. {all:glow 0.3 #EAF6FF} The first snowflakes, soft as feathers. {all:face surprised} [whispers] Shhh… The whole meadow went quiet. {rabbit:enter} Rabbit came hopping up and sat very still. {rabbit:live hold} His long ears went straight up. [whispers] I can hear them, he said. They go… hush. {deer:enter} Deer came stepping over, careful, careful, and {deer:live} bent down to nibble the grass. {deer:face surprised} Cold! A snowflake on his nose. On a branch, {bird:enter} {bird:go to branches} Bird fluffed up his feathers. {bird:tint #BFE3FF} Brrr. Nobody wanted to be loud. Nobody wanted to miss a single flake. {deer:face happy} {bird:face happy} So everyone watched them float down, one by one: {all:pulse 0.3} hush, hush, hush. {bird:live} Then Bird {sfx:song} sang a little snow song, very softly. {rabbit:live resume} Rabbit relaxed and found a clover to nibble. {all:face happy} [happily] And the snowflakes kept on falling, all day long, as quiet as a secret."
+    },
+    "es-ES": {
+      "title": "El silencio de la nieve",
+      "text": "{canvas:snow 0.4 40s} {sfx:hush-bed} [softly] Una mañana, algo empezó a bajar flotando del cielo. No eran gotas. No eran hojas. {all:glow 0.3 #EAF6FF} Eran los primeros copos de nieve, suaves como plumas. {all:face surprised} [whispers] Chsss… Todo el prado se quedó callado. {rabbit:enter} Conejo llegó dando saltitos y se sentó muy quieto. {rabbit:live hold} Levantó las orejas bien tiesas. [whispers] Los oigo, dijo. Hacen… chsss. {deer:enter} Ciervo se acercó con cuidado, pasito a pasito, y {deer:live} bajó la cabeza a mordisquear la hierba. {deer:face surprised} ¡Qué frío! Tenía un copo en la nariz. En una rama, {bird:enter} {bird:go to branches} Pájaro ahuecó las plumas. {bird:tint #BFE3FF} Brrr. Nadie quería hacer ruido. Nadie quería perderse ni un copo. {deer:face happy} {bird:face happy} Así que todos los miraron caer, uno a uno: {all:pulse 0.3} chsss, chsss, chsss. {bird:live} Entonces Pájaro {sfx:song} cantó bajito una canción de nieve. {rabbit:live resume} Conejo se relajó y encontró un trébol que mordisquear. {all:face happy} [happily] Y los copos siguieron cayendo todo el día, callados como un secreto."
+    }
+  },
+  "sounds": {
+    "hush-bed": {
+      "prompt": "a very still, quiet winter morning outdoors in a meadow, faint soft air, almost silent, realistic field recording",
+      "seconds": 30,
+      "loop": true
+    },
+    "song": {
+      "prompt": "a small songbird singing a very soft, quiet little song on a still winter morning, realistic field recording",
+      "seconds": 3
+    }
+  }
+}

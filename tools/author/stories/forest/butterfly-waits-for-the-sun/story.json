@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "butterfly-waits-for-the-sun",
+  "pack": "forest",
+  "featured": [
+    "butterfly",
+    "pinecone",
+    "bee"
+  ],
+  "supporting": [],
+  "tags": [
+    "weather",
+    "patience",
+    "learning"
+  ],
+  "premise": "On a grey morning Butterfly can't fly, her wings are too cold; Bee tries to fan her warm (brrr, colder!) and hums her a sunny tune, Pinecone waits with her, and when the clouds part they both open wide in the sun.",
+  "inspiration": "The North Wind and the Sun (Aesop), turned: blowing only makes it colder, and the warmth that works is the one you wait for together.",
+  "lesson": "Some things can't be hurried, and waiting is easier with friends.",
+  "learning": "Butterflies warm their wings in the sun before they can fly.",
+  "languages": {
+    "en-US": {
+      "title": "Butterfly Waits for the Sun",
+      "text": "{canvas:clouds 0.7 30s} {bee:float loop 0.3} [softly] It was a grey, cloudy morning. {butterfly:enter} {butterfly:go to meadow} Butterfly landed in the grass and tried to fly. {butterfly:shake} Flap, flap… nothing. {butterfly:face sad} [sad] My wings are too cold, she sighed. A butterfly needs warm wings to fly. {bee:enter} Bee came buzzing by. {bee:face happy} I'll warm you up! {bee:go to butterfly} {sfx:buzz} Bzzz! She fanned her wings as fast as she could. {butterfly:tint #9AD0FF} Brrr! That's even colder! [giggles] So Bee {bee:live} hummed her sunniest tune. Still cold. Then along rolled {pinecone:enter} Pinecone. [whispers] When it's cold, I wait for the sun. So they waited. {butterfly:live hold} Butterfly folded her wings. Come out, sun, they whispered. Come out, sun. {canvas:sunshine 0.8 22s} And out it came, warm and golden. {butterfly:live resume} Butterfly opened her wings to the sun. {pinecone:face happy} {pinecone:live hold} Pinecone opened her scales. {butterfly:face happy} Warm at last! {butterfly:go to sky} {sfx:flutter} Up she fluttered, {bee:face happy} {bee:hop x2} and Bee looped beside her. [happily] And on grey mornings after that, three friends sat in the grass together, whispering: come out, sun."
+    },
+    "es-ES": {
+      "title": "Mariposa espera al sol",
+      "text": "{canvas:clouds 0.7 30s} {bee:float loop 0.3} [softly] Era una mañana gris y nublada. {butterfly:enter} {butterfly:go to meadow} Mariposa se posó en la hierba e intentó volar. {butterfly:shake} Aleteo, aleteo… nada. {butterfly:face sad} [sad] Tengo las alas frías, suspiró. Y una mariposa necesita las alas calentitas para volar. {bee:enter} Abeja pasó zumbando. {bee:face happy} ¡Yo te caliento! {bee:go to butterfly} {sfx:buzz} ¡Bzzz! Le hizo aire con las alas, rapidísimo. {butterfly:tint #9AD0FF} ¡Brrr! ¡Ahora tengo más frío! [giggles] Así que Abeja {bee:live} le tarareó su canción más soleada. Pero seguía el frío. Entonces llegó rodando {pinecone:enter} Piña. [whispers] Cuando hace frío, yo espero al sol. Y esperaron. {butterfly:live hold} Mariposa plegó las alas. Sol, solito, susurraban, caliéntanos un poquito. {canvas:sunshine 0.8 22s} Y el sol salió, dorado y calentito. {butterfly:live resume} Mariposa abrió las alas al sol. {pinecone:face happy} {pinecone:live hold} Piña abrió sus escamas. {butterfly:face happy} ¡Por fin, calentita! {butterfly:go to sky} {sfx:flutter} Y echó a volar, {bee:face happy} {bee:hop x2} con Abeja dando vueltas a su lado. [happily] Y desde entonces, las mañanas grises, tres amigas se sientan en la hierba y susurran: sol, solito, caliéntanos un poquito."
+    }
+  },
+  "sounds": {
+    "buzz": {
+      "prompt": "a small bee buzzing close by, wings whirring fast, realistic",
+      "seconds": 1.5
+    },
+    "flutter": {
+      "prompt": "a butterfly's soft wings fluttering, very light and close",
+      "seconds": 1.2
+    }
+  }
+}

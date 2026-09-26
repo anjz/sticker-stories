@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "id": "mushroom-grows-in-the-rain",
+  "pack": "forest",
+  "featured": [
+    "mushroom",
+    "ladybug",
+    "snail",
+    "frog"
+  ],
+  "supporting": [],
+  "tags": [
+    "weather",
+    "kindness",
+    "learning"
+  ],
+  "premise": "When the rain comes Ladybug and Snail squeeze under Mushroom's cap, and then Frog — who loves the rain — squeezes in too, just to be with everyone; it's a squash, but Mushroom drinks up the rain and grows a little.",
+  "inspiration": "The Mitten (Ukrainian folk), where more and more animals squeeze into one shelter; turned: the shelter grows instead of bursting.",
+  "lesson": "There is always room for one more friend.",
+  "learning": "Mushrooms pop up and grow fast after rain.",
+  "languages": {
+    "en-US": {
+      "title": "Mushroom Grows in the Rain",
+      "text": "{canvas:rain 0.7 40s} {sfx:rain} [softly] Pitter-patter, pitter-patter. Rain was falling on the meadow. {ladybug:enter} Ladybug hurried to the red {mushroom:enter} mushroom {ladybug:go under mushroom} and tucked in under her cap. {mushroom:face happy} Come in! said Mushroom. Slowly, slowly, {snail:enter} Snail came crawling. Room for me? {mushroom:pulse} Of course! {snail:go under mushroom} In he squeezed. {frog:enter} Frog hopped past. {frog:hop x3} Splish, splash, splosh! [excited] I LOVE the rain! But under the cap, Ladybug and Snail were giggling together. {frog:face sad} Frog stopped. [sad] Splashing alone wasn't much fun. {frog:go under mushroom} So she squeezed in too. {ladybug:face surprised} Squish! {snail:live hold} Snail tucked into his shell to make room. Too many! said Ladybug. But Mushroom drank up the rain… {mushroom:glow} {mushroom:pulse x2} and grew, just a little. Room for everyone! {frog:face happy} Drip. A raindrop landed on Mushroom's nose. {mushroom:live} Ah… ah… {sfx:achoo} ACHOO! {ladybug:face happy} {all:wobble} [laughs] Everyone giggled. {canvas:sunshine 0.8 16s} Then out came the sun. {snail:live resume} Out peeked Snail. {ladybug:go back} Out came Ladybug. {frog:go back} Out hopped Frog. [happily] And there stood Mushroom in the sunshine, just a little bit taller."
+    },
+    "es-ES": {
+      "title": "Seta crece con la lluvia",
+      "text": "{canvas:rain 0.7 40s} {sfx:rain} [softly] Plic, ploc, plic, ploc. Llovía sobre el prado. {ladybug:enter} Mariquita corrió hasta la {mushroom:enter} seta roja {ladybug:go under mushroom} y se metió bajo su sombrero. {mushroom:face happy} ¡Pasa! dijo Seta. Despacito, despacito, llegó {snail:enter} Caracol. ¿Hay sitio para mí? {mushroom:pulse} ¡Claro! {snail:go under mushroom} Y se metió, apretadito. {frog:enter} Rana pasó saltando. {frog:hop x3} ¡Chip, chap, chop! [excited] ¡Me ENCANTA la lluvia! Pero bajo el sombrero, Mariquita y Caracol se reían juntos. {frog:face sad} Rana se paró. [sad] Chapotear sola no tenía gracia. {frog:go under mushroom} Así que se metió también. {ladybug:face surprised} ¡Apretujones! {snail:live hold} Caracol se escondió en su concha para dejar sitio. ¡No cabemos! dijo Mariquita. Pero Seta se bebió la lluvia… {mushroom:glow} {mushroom:pulse x2} y creció, solo un poquito. ¡Sitio para todos! {frog:face happy} Plic. Una gota le cayó a Seta en la nariz. {mushroom:live} Aaa… aaa… {sfx:achoo} ¡ACHÍS! {ladybug:face happy} {all:wobble} [laughs] Todos se rieron. {canvas:sunshine 0.8 16s} Y salió el sol. {snail:live resume} Caracol asomó la cabeza. {ladybug:go back} Salió Mariquita. {frog:go back} Salió Rana de un brinco. [happily] Y allí estaba Seta, al sol, un poquito más alta."
+    }
+  },
+  "sounds": {
+    "rain": {
+      "prompt": "gentle rain pattering on grass and big leaves, realistic field recording",
+      "seconds": 30,
+      "loop": true
+    },
+    "achoo": {
+      "prompt": "a tiny, cute comic sneeze, achoo, with a soft sparkly twinkle after it, playful",
+      "seconds": 1.2
+    }
+  }
+}

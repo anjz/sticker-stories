@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "id": "duckling-learns-a-song",
+  "pack": "forest",
+  "featured": [
+    "bird",
+    "duckling",
+    "bee"
+  ],
+  "supporting": [
+    "frog"
+  ],
+  "tags": [
+    "music",
+    "friendship",
+    "funny"
+  ],
+  "premise": "Bird teaches Duckling his song, but all Duckling can sing is QUACK; Bee hums, Frog croaks, and the quack turns out to be exactly the big finish the song was missing.",
+  "inspiration": "The Bremen Town Musicians (Grimm), where odd voices make a band, turned: nobody leaves home, and the voice that seemed wrong is the finale.",
+  "lesson": "Your own voice has its place.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Duckling Learns a Song",
+      "text": "{bee:float loop 0.4} {bird:enter by hop} Bird hopped through the grass, singing. Tweet-a-lee, tweet-a-loo! {duckling:enter} Duckling waddled after him. {duckling:face happy} [excited] Teach me! So Bird sang, and Duckling tried. {sfx:quack} QUACK. {duckling:face sad} [sad] That's not it, said Duckling. {bird:hop} Again! Bird sang it slowly: Tweet… a… lee… Duckling took a big breath. QUACK. {bee:enter} Bee came buzzing over to listen. {bee:live} She hummed along. Mmm-mmm. {frog:enter} Frog came hopping. {sfx:ribbit} Ribbit, ribbit! {frog:hop} [sighs] Everyone can sing but me, said Duckling. {bird:face happy} Let's all sing together, said Bird. Tweet-a-lee! {bee:wobble} Mmm! {frog:pulse} Ribbit! {bird:live hold} And Bird held the last note, long and high… waiting. {duckling:face surprised} The song needed a big finish. {duckling:live} Duckling hid his head under his wing… then out he popped, and — {sfx:quack} QUACK! {bird:live resume} [laughs] That's IT! cried Bird. {all:face happy} {all:hop x2} Everyone cheered. [happily] And now the forest song goes: tweet-a-lee, mmm, ribbit… QUACK!"
+    },
+    "es-ES": {
+      "title": "Patito aprende una canción",
+      "text": "{bee:float loop 0.4} {bird:enter by hop} Pájaro iba saltando por la hierba, cantando. ¡Tiruri-lí, tiruri-ló! {duckling:enter} Patito lo siguió, anadeando. {duckling:face happy} [excited] ¡Enséñame! Así que Pájaro cantó, y Patito lo intentó. {sfx:quack} CUAC. {duckling:face sad} [sad] Así no es, dijo Patito. {bird:hop} ¡Otra vez! Pájaro cantó despacito: Ti… ru… ri… lí… Patito cogió aire. CUAC. {bee:enter} Abeja se acercó zumbando a escuchar. {bee:live} Tarareó con ellos. Mmm-mmm. {frog:enter} Rana llegó saltando. {sfx:ribbit} ¡Croac, croac! {frog:hop} [sighs] Todos saben cantar menos yo, dijo Patito. {bird:face happy} Vamos a cantar todos juntos, dijo Pájaro. ¡Tiruri-lí! {bee:wobble} ¡Mmm! {frog:pulse} ¡Croac! {bird:live hold} Y Pájaro sostuvo la última nota, larga y aguda… esperando. {duckling:face surprised} A la canción le faltaba un final bien grande. {duckling:live} Patito escondió la cabeza bajo el ala… y de pronto asomó, y… {sfx:quack} ¡CUAC! {bird:live resume} [laughs] ¡ESO ES! gritó Pájaro. {all:face happy} {all:hop x2} Todos aplaudieron. [happily] Y desde entonces, la canción del bosque dice así: tiruri-lí, mmm, croac… ¡CUAC!"
+    }
+  },
+  "sounds": {
+    "quack": {
+      "prompt": "a small duckling's loud, cheerful quack, realistic",
+      "seconds": 0.8
+    },
+    "ribbit": {
+      "prompt": "a small frog's cheerful croak by a pond, realistic",
+      "seconds": 1
+    }
+  }
+}

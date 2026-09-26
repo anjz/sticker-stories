@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "id": "firefly-blinks-hello",
+  "pack": "forest",
+  "featured": [
+    "firefly",
+    "mouse",
+    "hedgehog"
+  ],
+  "supporting": [],
+  "tags": [
+    "bedtime",
+    "friendship",
+    "learning"
+  ],
+  "premise": "Firefly blinks hello on her first summer night but nobody blinks back; Mouse stands on tiptoe to look, Hedgehog says to shine brighter, and at last, far over the meadow, little lights blink back.",
+  "inspiration": "The Ugly Duckling's finding your own kind (Andersen), turned: new friends help you look, and the answer was out there all along.",
+  "lesson": "Keep shining; someone will answer.",
+  "learning": "Fireflies blink their lights to talk to each other.",
+  "languages": {
+    "en-US": {
+      "title": "Firefly Blinks Hello",
+      "text": "{canvas:sunset 0.6 14s} [softly] It was the first warm evening of summer. {firefly:enter} Firefly's little tail {firefly:glow 1 2s #FFE27A} lit up. {firefly:face happy} {sfx:twinkle} Blink, blink, she went. Hello! [pause] Nobody blinked back. {canvas:night 0.7 50s} {sfx:crickets} {firefly:face sad} [sad] Blink, blink. Hello? {mouse:enter} {mouse:go to firefly} Mouse scampered up. [curious] Who are you blinking at? Anyone, said Firefly. That's how fireflies talk. {mouse:live hold} Mouse stood on his tiptoes and looked. And looked. No lights anywhere. {hedgehog:enter} Hedgehog came snuffling through the grass. {hedgehog:pulse} Try blinking BRIGHTER, he said. So Firefly closed her eyes and {firefly:glow 1 2s x4 #FFE27A} glowed her very brightest. [whispers] Everyone waited. {canvas:fireflies 0.6 35s} Then, far across the meadow… a tiny light blinked. And another. And another! {mouse:live resume} Mouse dropped down and washed his whiskers, very pleased. {firefly:glow 1 0.4s x2 #FFE27A} {sfx:twinkle} Firefly blinked back: blink, blink. {firefly:face happy} {firefly:live} Hello, hello! she waved. {hedgehog:face sleeping} [happily] And Hedgehog {hedgehog:live hold} curled up in the grass, snug as a ball, with little lights twinkling all around."
+    },
+    "es-ES": {
+      "title": "Luciérnaga dice hola",
+      "text": "{canvas:sunset 0.6 14s} [softly] Era la primera tarde calurosa del verano. A {firefly:enter} Luciérnaga se le {firefly:glow 1 2s #FFE27A} encendió la colita. {firefly:face happy} {sfx:twinkle} Parpadeo, parpadeo, hizo su lucecita. ¡Hola! [pause] Nadie contestó. {canvas:night 0.7 50s} {sfx:crickets} {firefly:face sad} [sad] Parpadeo, parpadeo. ¿Hola? {mouse:enter} {mouse:go to firefly} Ratón llegó correteando. [curious] ¿A quién le haces guiños? A cualquiera, dijo Luciérnaga. Así hablamos las luciérnagas. {mouse:live hold} Ratón se puso de puntillas y miró. Y miró. Ni una luz. {hedgehog:enter} Erizo llegó husmeando entre la hierba. {hedgehog:pulse} Prueba a brillar MÁS, dijo. Así que Luciérnaga cerró los ojos y {firefly:glow 1 2s x4 #FFE27A} brilló con todas sus fuerzas. [whispers] Todos esperaron. {canvas:fireflies 0.6 35s} Entonces, al otro lado del prado… parpadeó una lucecita. Y otra. ¡Y otra! {mouse:live resume} Ratón bajó y se lavó los bigotes, muy contento. {firefly:glow 1 0.4s x2 #FFE27A} {sfx:twinkle} Luciérnaga contestó: parpadeo, parpadeo. {firefly:face happy} {firefly:live} ¡Hola, hola!, saludó con la patita. {hedgehog:face sleeping} [happily] Y Erizo {hedgehog:live hold} se hizo una bolita en la hierba, rodeado de lucecitas."
+    }
+  },
+  "sounds": {
+    "twinkle": {
+      "prompt": "a tiny, soft twinkling chime, like a little light blinking on, magical and gentle",
+      "seconds": 1
+    },
+    "crickets": {
+      "prompt": "gentle night crickets in a summer meadow, very calm and soft, realistic field recording",
+      "seconds": 30,
+      "loop": true
+    }
+  }
+}

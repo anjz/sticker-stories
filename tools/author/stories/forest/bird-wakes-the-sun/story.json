@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "id": "bird-wakes-the-sun",
+  "pack": "forest",
+  "featured": [
+    "bird",
+    "owl",
+    "flower"
+  ],
+  "supporting": [
+    "rabbit"
+  ],
+  "tags": [
+    "morning",
+    "funny",
+    "gentle"
+  ],
+  "premise": "Bird is sure his song makes the sun come up, until the morning he oversleeps and the sun rises anyway — and everyone was still waiting for his song to start their day.",
+  "inspiration": "Chanticleer, the rooster who believes his crowing raises the sun (European folk, Chaucer), turned: the song doesn't move the sun, but it starts everyone's day — and ends Owl's night.",
+  "lesson": "What you give matters even when it isn't what you thought.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Bird Wakes the Sun",
+      "text": "{canvas:night 0.7 10s} [softly] It was nearly morning. Up on a branch, {bird:enter} {bird:go to branches} Bird was sure: {bird:face happy} his song woke up the sun. I sing, and up it comes! Down in the meadow, {flower:enter} Flower waited, {flower:live hold} folded up tight. {owl:enter} {owl:go to branches} Owl {sfx:hoot} hooted from his branch. [curious] Are you sure? {bird:pulse} Of course, said Bird. I'll just rest my eyes… {bird:face sleeping} And he fell fast asleep. {canvas:sunshine 0.8 24s} Up came the sun anyway. {flower:live resume} Flower opened wide. {rabbit:enter} Rabbit came hopping out… and stopped. {rabbit:face sad} Where's the song? I can't start my day without it! {owl:face sad} [sighs] And I can't go to sleep without it, said Owl. {bird:face surprised} {bird:wobble} [gasps] Bird woke with a jump. The sun was up without him! {bird:face sad} [sad] Then what is my song for? {rabbit:hop x2} For US! said Rabbit. So Bird {bird:live} puffed up his chest and {sfx:birdsong} sang. {rabbit:face happy} {rabbit:hop x3} Off bounced Rabbit to play. {flower:glow} Flower smiled at the sun. {owl:face happy} {owl:live hold} And Owl, at last, fell fast asleep. [happily] Good morning, meadow. Goodnight, Owl."
+    },
+    "es-ES": {
+      "title": "Pájaro despierta al sol",
+      "text": "{canvas:night 0.7 10s} [softly] Estaba a punto de amanecer. En una rama, {bird:enter} {bird:go to branches} Pájaro lo tenía clarísimo: {bird:face happy} su canción despertaba al sol. ¡Yo canto, y el sol sale! Abajo, {flower:enter} Flor esperaba, {flower:live hold} cerradita. {owl:enter} {owl:go to branches} Búho {sfx:hoot} ululó desde su rama. [curious] ¿Estás seguro? {bird:pulse} Segurísimo, dijo Pájaro. Voy a cerrar los ojos un momentito… {bird:face sleeping} Y se quedó dormido. {canvas:sunshine 0.8 24s} Y el sol salió igual. {flower:live resume} Flor se abrió de par en par. {rabbit:enter} Conejo salió dando saltos… y se paró. {rabbit:face sad} ¿Y la canción? Sin ella no puedo empezar el día. {owl:face sad} [sighs] Y yo sin ella no me puedo dormir, dijo Búho. {bird:face surprised} {bird:wobble} [gasps] Pájaro se despertó de un salto. ¡El sol había salido sin él! {bird:face sad} [sad] Entonces, ¿para qué sirve mi canción? {rabbit:hop x2} ¡Para NOSOTROS! dijo Conejo. Así que Pájaro {bird:live} infló el pecho y {sfx:birdsong} cantó. {rabbit:face happy} {rabbit:hop x3} Conejo se fue dando botes. {flower:glow} Flor le sonrió al sol. {owl:face happy} {owl:live hold} Y Búho, por fin, se quedó dormido. [happily] Buenos días, prado. Buenas noches, Búho."
+    }
+  },
+  "sounds": {
+    "hoot": {
+      "prompt": "a single soft owl hoot in the quiet before dawn, realistic field recording",
+      "seconds": 1.5
+    },
+    "birdsong": {
+      "prompt": "a small songbird singing a bright, happy morning song, realistic field recording",
+      "seconds": 3
+    }
+  }
+}

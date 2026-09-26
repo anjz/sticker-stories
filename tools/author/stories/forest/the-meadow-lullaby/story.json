@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "the-meadow-lullaby",
+  "pack": "forest",
+  "featured": [],
+  "supporting": [
+    "owl",
+    "firefly",
+    "flower"
+  ],
+  "tags": [
+    "bedtime",
+    "gentle"
+  ],
+  "premise": "As the sun goes down the whole meadow says goodnight in its own way — the trees shush, the pond goes still, the grass whispers — and the moon comes up to keep watch.",
+  "inspiration": "Folk goodnight litanies that name each thing in turn, turned: the place itself sings everyone to sleep, and two night friends keep watch.",
+  "lesson": "At night the world takes care of you.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "The Meadow Lullaby",
+      "text": "{canvas:sunset 0.7 16s} {firefly:float loop 0.3} [softly] The sun was going down, and the meadow {all:glow 0.4 #FFD9A0} began to say goodnight. The two big trees swayed. Shhh, said their leaves. Shhh. {all:wobble 0.4} And everyone in the meadow swayed with them. Down in the grass, {flower:enter} Flower said goodnight in her own way: {flower:live hold} she folded up her petals. The pond went still as a mirror. Up on a branch sat {owl:enter} {owl:go to branches} Owl, who had slept all day — and {owl:live hold} was sleeping still. {canvas:night 0.8 40s} {sfx:crickets} The sky turned deep blue, and up came the moon, round and bright. {owl:live resume} Owl opened one eye, then the other. {sfx:hoot} Hoo, he said softly. {owl:face happy} My turn. {canvas:fireflies 0.5 30s} Out in the grass, little lights blinked on. {firefly:enter} Firefly came drifting by, and {firefly:glow 1 3s hold #FFE27A} lit her lantern too. [whispers] Goodnight, meadow, said the moon. {all:face sleeping} And everyone who was there closed their eyes… {owl:face happy} {firefly:face happy} everyone but Owl and Firefly, who {firefly:live} waved to the moon and kept watch till morning."
+    },
+    "es-ES": {
+      "title": "La nana del prado",
+      "text": "{canvas:sunset 0.7 16s} {firefly:float loop 0.3} [softly] El sol se estaba poniendo, y el prado {all:glow 0.4 #FFD9A0} empezó a dar las buenas noches. Los dos árboles grandes se mecieron. Chsss, decían sus hojas. Chsss. {all:wobble 0.4} Y todo el prado se meció con ellos. En la hierba, {flower:enter} Flor dio las buenas noches a su manera: {flower:live hold} plegó sus pétalos. La charca se quedó quieta como un espejo. En una rama estaba {owl:enter} {owl:go to branches} Búho, que había dormido todo el día… y {owl:live hold} seguía durmiendo. {canvas:night 0.8 40s} {sfx:crickets} El cielo se volvió azul oscuro, y salió la luna, redonda y brillante. {owl:live resume} Búho abrió un ojo, y luego el otro. {sfx:hoot} Uuu, dijo bajito. {owl:face happy} Me toca a mí. {canvas:fireflies 0.5 30s} En la hierba se encendieron lucecitas. {firefly:enter} Luciérnaga llegó volando y {firefly:glow 1 3s hold #FFE27A} encendió su farolillo. [whispers] Buenas noches, prado, dijo la luna. {all:face sleeping} Y todos los que estaban allí cerraron los ojos… {owl:face happy} {firefly:face happy} todos menos Búho y Luciérnaga, que {firefly:live} saludaron a la luna y vigilaron hasta la mañana."
+    }
+  },
+  "sounds": {
+    "crickets": {
+      "prompt": "gentle night crickets in a summer meadow, very calm and soft, realistic field recording",
+      "seconds": 30,
+      "loop": true
+    },
+    "hoot": {
+      "prompt": "a single soft owl hoot at night, far and gentle, realistic field recording",
+      "seconds": 1.5
+    }
+  }
+}

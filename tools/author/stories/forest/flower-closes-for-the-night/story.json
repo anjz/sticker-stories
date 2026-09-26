@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "id": "flower-closes-for-the-night",
+  "pack": "forest",
+  "featured": [
+    "flower",
+    "snail",
+    "firefly"
+  ],
+  "supporting": [],
+  "tags": [
+    "bedtime",
+    "kindness",
+    "learning"
+  ],
+  "premise": "At sunset Flower folds up her petals and Snail thinks she's sad, so he stays with her all night by Firefly's light — and in the morning Flower opens wide: she was only sleeping.",
+  "inspiration": "The faithful watcher of folk tales who keeps vigil through the night, turned: the worry was needless, and the kindness still counts.",
+  "lesson": "Staying close is a kind thing to do, even when nothing is wrong.",
+  "learning": "Some flowers fold their petals up at night and open again in the morning sun.",
+  "languages": {
+    "en-US": {
+      "title": "Flower Closes for the Night",
+      "text": "{canvas:sunset 0.7 16s} [softly] The sun was going down. {flower:enter} Flower glowed in the golden light. {snail:enter} {snail:go to flower} Snail crawled up beside her. Goodnight, Flower! And Flower {flower:live hold} folded up her petals, tight as a bud. {snail:face surprised} [gasps] Flower? Are you sad? No answer. {snail:face sad} Then I'll stay with you, said Snail. All night long. {canvas:night 0.7 40s} {sfx:crickets} Up came the moon. Along came {firefly:enter} Firefly. {firefly:face happy} I'll stay too, she said, and {firefly:glow 1 3s #FFE27A} glowed like a little lantern. So Snail told Flower all about his day, very slowly. [yawns] Then {snail:live hold} he tucked into his shell, right beside her. {canvas:sunshine 0.8 20s} In the morning, {sfx:birds} up came the sun. {flower:live resume} Flower opened wide. {flower:face happy} Good morning, Snail! {snail:live resume} Snail peeked out. [surprised] You were only sleeping? {flower:glow} Flowers fold up at night, said Flower, and open in the sun. {snail:face happy} {snail:hearts} [happily] Then I'll say goodnight every evening, said Snail. And good morning, too."
+    },
+    "es-ES": {
+      "title": "Flor se cierra por la noche",
+      "text": "{canvas:sunset 0.7 16s} [softly] El sol se estaba poniendo. {flower:enter} Flor brillaba con la luz dorada. {snail:enter} {snail:go to flower} Caracol se acercó hasta ella. ¡Buenas noches, Flor! Y Flor {flower:live hold} plegó sus pétalos, cerradita como un capullo. {snail:face surprised} [gasps] ¿Flor? ¿Estás triste? No contestó. {snail:face sad} Pues me quedo contigo, dijo Caracol. Toda la noche. {canvas:night 0.7 40s} {sfx:crickets} Salió la luna. Llegó {firefly:enter} Luciérnaga. {firefly:face happy} Yo también me quedo, dijo, y {firefly:glow 1 3s #FFE27A} brilló como un farolillo. Así que Caracol le contó a Flor todo su día, muy despacito. [yawns] Luego {snail:live hold} se metió en su concha, a su lado. {canvas:sunshine 0.8 20s} Por la mañana, {sfx:birds} salió el sol. {flower:live resume} Flor se abrió de par en par. {flower:face happy} ¡Buenos días, Caracol! {snail:live resume} Caracol asomó. [surprised] ¿Solo estabas durmiendo? {flower:glow} Las flores nos cerramos de noche, dijo Flor, y nos abrimos al sol. {snail:face happy} {snail:hearts} [happily] Entonces te daré las buenas noches cada tarde, dijo Caracol. Y los buenos días también."
+    }
+  },
+  "sounds": {
+    "crickets": {
+      "prompt": "gentle night crickets in a summer meadow, very calm and soft, realistic field recording",
+      "seconds": 25,
+      "loop": true
+    },
+    "birds": {
+      "prompt": "soft early-morning birdsong far away across a meadow, realistic field recording",
+      "seconds": 2.5
+    }
+  }
+}

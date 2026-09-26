@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "deer-meets-the-snow",
+  "pack": "forest",
+  "featured": [
+    "deer",
+    "rabbit",
+    "fox"
+  ],
+  "supporting": [],
+  "tags": [
+    "seasons",
+    "wonder"
+  ],
+  "premise": "Deer has never seen snow; a flake tickles his nose, he nibbles one off the grass — crunchy water! — and while Fox bounds about snapping at flakes, Rabbit shows them both the best part: listening to the snow, the quietest sound there is.",
+  "inspiration": "Andersen's moments of first wonder and the folk \"first snow\" motif, turned: the wonder is found by going still, not by catching it.",
+  "lesson": "Some wonders you only notice when you are quiet.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Deer Meets the Snow",
+      "text": "{canvas:snow 0.5 60s} {sfx:hush} [softly] One morning, something new came drifting down. {deer:enter} Deer looked up. {deer:face surprised} What's that? A tiny white flake landed on his nose. {deer:tint #9AD0FF} Cold! And tickly! Another landed on his ear. {deer:hop} What's THAT? [giggles] Snow! said {rabbit:enter} {rabbit:face happy} Rabbit, hopping up. So Deer {deer:live} nibbled a snowflake off the grass. Mmm. Crunchy water! Then {fox:enter} {fox:face happy} Fox came bounding in, {sfx:crunch} crunch, crunch, {fox:hop x3} snapping at the flakes. Catch one! [whispers] Shhh, said Rabbit. That's not the best part. {rabbit:live hold} His ears went up, and he stood very still. {fox:face normal} Fox stopped. {fox:live} He pricked up his ears too. And Deer listened. And listened. [curious] What do you hear? he whispered. Nothing, said Fox. {rabbit:live resume} Rabbit smiled and nibbled a clover. That's it. Snow is the quietest sound there is. {deer:face happy} {deer:hearts} [happily] So the three friends stood in the falling snow, listening to the quietest sound in the world."
+    },
+    "es-ES": {
+      "title": "Ciervo conoce la nieve",
+      "text": "{canvas:snow 0.5 60s} {sfx:hush} [softly] Una mañana, algo nuevo empezó a caer, despacito. {deer:enter} Ciervo miró hacia arriba. {deer:face surprised} ¿Qué es eso? Una motita blanca se le posó en la nariz. {deer:tint #9AD0FF} ¡Qué fría! ¡Y qué cosquillas! Otra se le posó en la oreja. {deer:hop} ¿Y ESO qué es? [giggles] ¡Nieve! dijo {rabbit:enter} {rabbit:face happy} Conejo, llegando a saltitos. Ciervo {deer:live} mordisqueó un copo de la hierba. Mmm. ¡Agua crujiente! Entonces llegó {fox:enter} {fox:face happy} Zorro dando brincos, {sfx:crunch} cruj, cruj, {fox:hop x3} intentando coger copos al vuelo. [whispers] Chsss, dijo Conejo. Eso no es lo mejor. {rabbit:live hold} Levantó las orejas y se quedó muy quieto. {fox:face normal} Zorro se paró. {fox:live} Él también levantó las orejas. Y Ciervo escuchó. Y escuchó. [curious] ¿Qué oís? susurró. Nada, dijo Zorro. {rabbit:live resume} Conejo sonrió y mordisqueó un trébol. Eso es. La nieve es el sonido más callado que hay. {deer:face happy} {deer:hearts} [happily] Y los tres amigos se quedaron bajo la nieve, escuchando el sonido más callado del mundo."
+    }
+  },
+  "sounds": {
+    "hush": {
+      "prompt": "a very quiet winter morning in a meadow with soft snow falling, almost silent, faint air, realistic field recording",
+      "seconds": 30,
+      "loop": true
+    },
+    "crunch": {
+      "prompt": "small light paws bounding through fresh powdery snow, soft crunching, realistic",
+      "seconds": 1.5
+    }
+  }
+}

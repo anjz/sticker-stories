@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "id": "pinecone-knows-the-weather",
+  "pack": "forest",
+  "featured": [
+    "pinecone",
+    "squirrel",
+    "rabbit"
+  ],
+  "supporting": [],
+  "tags": [
+    "weather",
+    "funny",
+    "learning"
+  ],
+  "premise": "Squirrel and Rabbit want to play in the sun all day, but Pinecone closes her scales up tight — rain is coming; nobody believes her, then pitter-patter; and when she opens again, out comes the sun.",
+  "inspiration": "Chicken Little (folk), turned: the warning is calm and true, and the friends who doubted shelter together and learn to read it.",
+  "lesson": "Quiet friends can know things worth listening to.",
+  "learning": "Pinecones close up when the air is damp and open when it's dry.",
+  "languages": {
+    "en-US": {
+      "title": "Pinecone Knows the Weather",
+      "text": "It was a bright, dry morning, and {pinecone:enter} Pinecone sat in the middle of the meadow {pinecone:live hold} with her scales open wide. {squirrel:enter} Squirrel came bounding up. {squirrel:hop} [excited] Let's play all day! {rabbit:enter} Rabbit hopped over too. {rabbit:hop x2} All day! All day! But Pinecone felt the air turn soft and damp. {pinecone:live resume} She closed her scales up snug. [softly] Closed means rain, she said. {squirrel:face surprised} Rain? said Squirrel. {rabbit:face happy} {rabbit:wobble} [giggles] The sky is blue! {canvas:clouds 0.7 24s} Then came a cloud. And another. {rabbit:live} Rabbit's ears shot up. Far away… pitter-patter… {canvas:rain 0.8 16s} {sfx:rain} Down came the rain! {rabbit:face surprised} {squirrel:face sad} {rabbit:go to pinecone} {squirrel:go to pinecone} They squeezed up close to Pinecone. {squirrel:live} Squirrel tucked her hazelnut behind her back, to keep it dry. [curious] How did you know? asked Rabbit. Pinecones can feel it, said Pinecone. Slowly the drops stopped, and the air turned dry. {pinecone:live hold} {sfx:crackle} Pinecone opened her scales wide. {canvas:sunshine 0.8 14s} And out came the sun! {all:face happy} {all:hop} Open means sun! they cried. And they played all day."
+    },
+    "es-ES": {
+      "title": "Piña sabe qué tiempo hará",
+      "text": "Era una mañana clara y seca, y {pinecone:enter} Piña descansaba en medio del prado {pinecone:live hold} con las escamas bien abiertas. {squirrel:enter} Ardilla llegó dando brincos. {squirrel:hop} [excited] ¡Vamos a jugar todo el día! {rabbit:enter} Conejo llegó saltando también. {rabbit:hop x2} ¡Todo el día! ¡Todo el día! Pero Piña notó el aire húmedo. {pinecone:live resume} Cerró sus escamas, bien apretadita. [softly] Cerrada, lluvia, dijo. {squirrel:face surprised} ¿Lluvia? dijo Ardilla. {rabbit:face happy} {rabbit:wobble} [giggles] ¡Si el cielo está azul! {canvas:clouds 0.7 24s} Entonces llegó una nube. Y otra. {rabbit:live} Conejo levantó las orejas. A lo lejos… plic, plic… {canvas:rain 0.8 16s} {sfx:rain} ¡Y empezó a llover! {rabbit:face surprised} {squirrel:face sad} {rabbit:go to pinecone} {squirrel:go to pinecone} Se apretujaron junto a Piña. {squirrel:live} Ardilla escondió su avellana detrás de la espalda, para que no se mojara. [curious] ¿Cómo lo sabías? preguntó Conejo. Las piñas lo notan, dijo Piña. Poco a poco dejó de gotear, y el aire se secó. {pinecone:live hold} {sfx:crackle} Piña abrió sus escamas. {canvas:sunshine 0.8 14s} ¡Y salió el sol! {all:face happy} {all:hop} ¡Abierta, sol! gritaron. Y jugaron todo el día."
+    }
+  },
+  "sounds": {
+    "rain": {
+      "prompt": "light summer rain falling on grass and leaves, soft and steady, realistic field recording",
+      "seconds": 12,
+      "loop": true
+    },
+    "crackle": {
+      "prompt": "a dry pinecone's scales creaking open with tiny soft crackles, very close, realistic",
+      "seconds": 1.5
+    }
+  }
+}

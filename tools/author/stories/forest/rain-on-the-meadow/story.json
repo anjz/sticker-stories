@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "rain-on-the-meadow",
+  "pack": "forest",
+  "featured": [],
+  "supporting": [
+    "frog",
+    "snail",
+    "duckling"
+  ],
+  "tags": [
+    "weather",
+    "music"
+  ],
+  "premise": "Rain comes to the meadow and every part of it plays a different note — plip on the pond, pat on the leaves, shhh in the grass, quack from Duckling — until the sun comes back and a rainbow arches over everything.",
+  "inspiration": "Cumulative rain-song rounds (folk), turned: the whole meadow is the band, and the listener is invited to play it too.",
+  "lesson": "Every small voice adds to the song.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Rain on the Meadow",
+      "text": "{canvas:rain 0.6 30s} {sfx:rain-bed} [softly] Plip. Plop. The rain came to the meadow, and the meadow began to play. {all:face surprised} On the pond: plip, plip, plip, like tiny bells. {frog:enter} {frog:go to pond} Frog sat right in the middle, {frog:face happy} grinning. {all:pulse 0.4} On the leaves of the big trees: pat, pat, pat, like little drums. {all:wobble 0.4} In the grass: shhh, shhh, like someone whispering. {snail:enter} Snail came out to listen, and a big drop fell — {sfx:plink} PLINK! — right on his shell. {snail:live hold} In he went. [giggles] Along came {duckling:enter} Duckling, waddling through the wet grass. {duckling:face happy} {duckling:hop x2} QUACK, QUACK! he sang. Plip, pat, shhh, quack! {all:face happy} {all:hop} [excited] What a song! Then the drops got slower… drip… drip… drop. {canvas:sunshine 0.8 20s} Out came the sun. {snail:live resume} Snail peeked out. {canvas:rainbow 0.8 15s} [gasps] And over the whole meadow… a rainbow! {frog:live} Frog snapped up a fly, {duckling:live hold} and Duckling tucked his head under his wing for a sunny nap. [happily] Plip, pat, shhh, quack. Can you play it too?"
+    },
+    "es-ES": {
+      "title": "Lluvia en el prado",
+      "text": "{canvas:rain 0.6 30s} {sfx:rain-bed} [softly] Plic. Ploc. La lluvia llegó al prado, y el prado se puso a tocar. {all:face surprised} En la charca: plic, plic, plic, como campanitas. {frog:enter} {frog:go to pond} Rana estaba justo en el centro, {frog:face happy} sonriendo. {all:pulse 0.4} En las hojas de los árboles grandes: pam, pam, pam, como tamborcitos. {all:wobble 0.4} En la hierba: chsss, chsss, como alguien que susurra. {snail:enter} Caracol salió a escuchar, y una gota enorme cayó — {sfx:plink} ¡PLINC! — justo en su concha. {snail:live hold} Y se metió dentro. [giggles] Por allí llegó {duckling:enter} Patito, bamboleándose por la hierba mojada. {duckling:face happy} {duckling:hop x2} ¡CUAC, CUAC! cantó. ¡Plic, pam, chsss, cuac! {all:face happy} {all:hop} [excited] ¡Qué canción! Luego las gotas fueron más despacio… plic… plic… ploc. {canvas:sunshine 0.8 20s} Salió el sol. {snail:live resume} Caracol se asomó. {canvas:rainbow 0.8 15s} [gasps] Y sobre todo el prado… ¡un arcoíris! {frog:live} Rana cazó una mosca, {duckling:live hold} y Patito metió la cabeza bajo el ala para echarse una siesta al sol. [happily] Plic, pam, chsss, cuac. ¿Sabes tocarla tú?"
+    }
+  },
+  "sounds": {
+    "rain-bed": {
+      "prompt": "gentle steady rain falling on leaves, grass and a small pond, calm, realistic field recording",
+      "seconds": 30,
+      "loop": true
+    },
+    "plink": {
+      "prompt": "a single big raindrop landing on a small hard snail shell, a bright little plink, realistic",
+      "seconds": 0.6
+    }
+  }
+}

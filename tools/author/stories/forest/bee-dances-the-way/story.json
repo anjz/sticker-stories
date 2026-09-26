@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "id": "bee-dances-the-way",
+  "pack": "forest",
+  "featured": [
+    "bee",
+    "caterpillar",
+    "ladybug"
+  ],
+  "supporting": [
+    "flower"
+  ],
+  "tags": [
+    "curiosity",
+    "funny",
+    "learning"
+  ],
+  "premise": "Bee finds something sweet and wiggles a funny dance; Caterpillar and Ladybug think it's just a dance and join in, until they follow where the dance points and find Flower.",
+  "inspiration": "A Just So question (\"why does the bee dance?\", Kipling), answered truly instead of tall.",
+  "lesson": "Listen to what a friend is really trying to tell you.",
+  "learning": "Bees do a little dance to show other bees where the flowers are.",
+  "languages": {
+    "en-US": {
+      "title": "Bee Dances the Way",
+      "text": "{bee:float loop 0.4} {bee:enter} Bee came {sfx:buzz} buzzing home, fizzing with news. {bee:face happy} She had found something SWEET! [excited] So she {bee:live} hummed her tune and danced a wiggly dance. {caterpillar:enter} Caterpillar crawled up to watch. {caterpillar:face happy} [giggles] What a funny dance! {ladybug:enter} Ladybug came too. Can we dance? So they all wiggled. {caterpillar:wobble x2} Wiggle, waggle, wiggle! {ladybug:live} Ladybug even {sfx:flutter} fluttered her wings and took a bow. {bee:face sad} [sighs] No, no, said Bee. It's not just a dance. It's a bee map! It shows where the flowers are. {bee:live} She danced it again, wiggling one way. {caterpillar:live} Caterpillar reared up tall to look. [curious] That way? {bee:face happy} {bee:hop} That way! And there, just where the dance said, was a yellow {flower:enter} flower. {bee:go to flower} {caterpillar:go to flower} {ladybug:go to flower by fly} Off they went: buzz, crawl, flutter! {flower:face happy} [happily] Hello! said Flower. {caterpillar:face surprised} Your dance was right! said Caterpillar. {all:hop} So they danced again, {flower:wobble} Flower too. Wiggle, waggle… SWEET!"
+    },
+    "es-ES": {
+      "title": "Abeja baila el camino",
+      "text": "{bee:float loop 0.4} {bee:enter} Abeja volvió {sfx:buzz} zumbando, loca de contenta. {bee:face happy} ¡Había encontrado algo DULCE! [excited] Así que {bee:live} tarareó su canción y bailó un baile muy meneado. {caterpillar:enter} Oruga se acercó a mirar. {caterpillar:face happy} [giggles] ¡Qué baile tan gracioso! {ladybug:enter} Mariquita vino también. ¿Podemos bailar? Y todos se menearon. {caterpillar:wobble x2} ¡Meneo, meneíto, meneo! {ladybug:live} Mariquita hasta {sfx:flutter} sacudió las alas e hizo una reverencia. {bee:face sad} [sighs] Que no, que no, dijo Abeja. No es solo un baile. ¡Es un mapa de abeja! Dice dónde están las flores. {bee:live} Lo bailó otra vez, meneándose hacia un lado. {caterpillar:live} Oruga se irguió bien alta para mirar. [curious] ¿Por allí? {bee:face happy} {bee:hop} ¡Por allí! Y allí, justo donde decía el baile, había una {flower:enter} flor amarilla. {bee:go to flower} {caterpillar:go to flower} {ladybug:go to flower by fly} Allá fueron: Abeja zumbando, Oruga reptando y Mariquita volando. {flower:face happy} [happily] ¡Hola! dijo Flor. {caterpillar:face surprised} ¡Tu baile tenía razón! dijo Oruga. {all:hop} Y volvieron a bailar, {flower:wobble} Flor también. Meneo, meneíto… ¡DULCE!"
+    }
+  },
+  "sounds": {
+    "buzz": {
+      "prompt": "a bee buzzing close by, happy and busy, realistic",
+      "seconds": 1.5
+    },
+    "flutter": {
+      "prompt": "tiny insect wings fluttering, very light and quick, close",
+      "seconds": 1
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "id": "caterpillar-counts-the-lights",
+  "pack": "forest",
+  "featured": [
+    "firefly",
+    "caterpillar",
+    "mushroom"
+  ],
+  "supporting": [
+    "butterfly"
+  ],
+  "tags": [
+    "bedtime",
+    "counting"
+  ],
+  "premise": "Caterpillar has never seen the night from down in the grass; she climbs up on Mushroom and rears up tall, and Firefly's friends glow back one by one — ten little lights to count, and then Mushroom's glittery sneeze adds a hundred more.",
+  "inspiration": "Counting-rhyme lullabies (Over in the Meadow, folk), turned into a night-sky count that ends in giggles and sleep.",
+  "lesson": "Friends can lift you up to see the world.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Caterpillar Counts the Lights",
+      "text": "{canvas:night 0.7 20s} {sfx:crickets} [softly] It was night, and down in the grass, {caterpillar:enter} Caterpillar couldn't see a thing. {caterpillar:face sad} Grass, grass, and more grass. Then up popped {mushroom:enter} Mushroom. {mushroom:face happy} [whispers] Climb up on me, she said. {caterpillar:go on mushroom} Up crawled Caterpillar, {caterpillar:face happy} onto the red cap, and {caterpillar:live hold} reared up tall. [gasps] There was the sky, and the moon, round and bright! Sleepy {butterfly:enter} Butterfly came fluttering by. {butterfly:go under mushroom} She tucked herself under Mushroom's cap and {butterfly:live hold} folded her wings. [curious] But where are all the lights? asked Caterpillar. {firefly:enter} Firefly came flying over. Watch, she whispered. {firefly:glow 1 3s #FFE27A} She glowed her brightest. {canvas:fireflies 0.6 30s} And across the meadow, little lights glowed back. [excited] One… two, three… four, five, six… seven, eight, nine… TEN! {mushroom:live} Then Mushroom sneezed. {sfx:achoo} ACHOO! Glitter everywhere. Eleven? Twelve? A HUNDRED! {caterpillar:live resume} Caterpillar laughed and wiggled all over. {caterpillar:face sleeping} [softly] She fell asleep before she got to a hundred and one. {firefly:face happy} {firefly:live} Firefly waved goodnight. The lights will be here tomorrow."
+    },
+    "es-ES": {
+      "title": "Oruga cuenta las lucecitas",
+      "text": "{canvas:night 0.7 20s} {sfx:crickets} [softly] Era de noche, y abajo, entre la hierba, {caterpillar:enter} Oruga no veía nada. {caterpillar:face sad} Hierba, hierba y más hierba. Entonces asomó {mushroom:enter} Seta. {mushroom:face happy} [whispers] Súbete a mí, le dijo. {caterpillar:go on mushroom} Oruga trepó {caterpillar:face happy} hasta el sombrero rojo y {caterpillar:live hold} se estiró bien alta. [gasps] ¡Allí estaba el cielo, y la luna, redonda y brillante! {butterfly:enter} Mariposa pasó revoloteando camino de la cama. {butterfly:go under mushroom} Se acurrucó bajo el sombrero de Seta y {butterfly:live hold} plegó las alas. [curious] ¿Y dónde están las lucecitas? preguntó Oruga. {firefly:enter} Luciérnaga llegó volando. Mira esto, le susurró. {firefly:glow 1 3s #FFE27A} Brilló todo lo que pudo. {canvas:fireflies 0.6 30s} Y al otro lado del prado, otras lucecitas le contestaron. [excited] Una… dos, tres… cuatro, cinco, seis… siete, ocho, nueve… ¡DIEZ! {mushroom:live} Entonces Seta estornudó. {sfx:achoo} ¡ACHÍS! Purpurina por todas partes. ¿Once? ¿Doce? ¡CIEN! {caterpillar:live resume} Oruga se rió y se meneó entera. {caterpillar:face sleeping} [softly] Se durmió antes de llegar a ciento uno. {firefly:face happy} {firefly:live} Luciérnaga dijo adiós con la patita. Mañana las lucecitas seguirán aquí."
+    }
+  },
+  "sounds": {
+    "crickets": {
+      "prompt": "gentle night crickets in a summer meadow, very calm and soft, realistic field recording",
+      "seconds": 30,
+      "loop": true
+    },
+    "achoo": {
+      "prompt": "a tiny, cute comic sneeze, achoo, with a soft sparkly twinkle after it, playful",
+      "seconds": 1.2
+    }
+  }
+}

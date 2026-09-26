@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "owl-flies-without-a-sound",
+  "pack": "forest",
+  "featured": [
+    "owl",
+    "firefly",
+    "raccoon"
+  ],
+  "supporting": [],
+  "tags": [
+    "funny",
+    "friendship",
+    "learning"
+  ],
+  "premise": "At dusk hide-and-seek, Owl finds Raccoon because he flies without a sound — but Firefly can't hide at all, because her tail keeps glowing, so she seeks instead and her light finds Owl.",
+  "inspiration": "The folk \"who can hide best\" contest, turned: the one who can't hide lights up the game, and looking beats listening.",
+  "lesson": "What seems like a weakness can be just what the game needs.",
+  "learning": "Owls fly without a sound on their soft feathers.",
+  "languages": {
+    "en-US": {
+      "title": "Owl Flies Without a Sound",
+      "text": "{canvas:sunset 0.7 14s} [softly] The sun was going down. Up on a branch, {owl:enter} {owl:go to branches} Owl, who slept all day, {owl:live hold} was sleeping still. Along came {raccoon:enter} Raccoon. {raccoon:hop} [excited] Owl! Let's play hide-and-seek! {owl:live resume} Owl opened one eye, then the other. {sfx:hoot} Hoo. I'll seek. {raccoon:face happy} Raccoon hid his usual way: {raccoon:live hold} paws over his eyes. If I can't see Owl, Owl can't see me! {canvas:night 0.8 40s} The sky grew dark. {firefly:enter} {firefly:go to meadow} Firefly tucked herself down in the grass {firefly:fade-out 0.5 2s} and tried to be invisible. Owl {owl:go to raccoon} flew down. Raccoon listened. Not a flap. Not a swish. Owl's soft feathers made no sound. [whispers] Found you! {raccoon:live resume} Raccoon peeked. BOO! I didn't hear you! Then Firefly. Easy! {firefly:glow 1 0.5s x2 #FFE27A} {sfx:twinkle} Blink… blink… went her little tail. {firefly:face sad} [sad] I'm no good at hiding, she sighed. {raccoon:face happy} {raccoon:hop x2} Then YOU seek! said Raccoon. {firefly:face happy} So Firefly {firefly:glow 1 2.5s hold #FFE27A} glowed her brightest, and there was Owl, in her light. {firefly:live} Found you! she waved. {owl:face surprised} Hoo! How? [happily] I didn't listen, said Firefly. I looked!"
+    },
+    "es-ES": {
+      "title": "Búho vuela sin hacer ruido",
+      "text": "{canvas:sunset 0.7 14s} [softly] El sol se estaba poniendo. En una rama, {owl:enter} {owl:go to branches} Búho, que dormía todo el día, {owl:live hold} seguía durmiendo. Llegó {raccoon:enter} Mapache. {raccoon:hop} [excited] ¡Búho! ¡Vamos a jugar al escondite! {owl:live resume} Búho abrió un ojo, y luego el otro. {sfx:hoot} Uuu. Yo busco. {raccoon:face happy} Mapache se escondió como siempre: {raccoon:live hold} tapándose los ojos. ¡Si no veo a Búho, Búho no me ve! {canvas:night 0.8 40s} El cielo se oscureció. {firefly:enter} {firefly:go to meadow} Luciérnaga se agachó entre la hierba {firefly:fade-out 0.5 2s} para no verse. Búho {owl:go to raccoon} bajó volando. Mapache escuchó: ni un aleteo. Ni un fiu. Las plumas suaves de Búho no hacían ruido. [whispers] ¡Te pillé! {raccoon:live resume} Mapache miró. ¡BU! ¡No te he oído! Luego, Luciérnaga. ¡Facilísimo! {firefly:glow 1 0.5s x2 #FFE27A} {sfx:twinkle} Blin… blin… hacía su colita. {firefly:face sad} [sad] Qué mal me escondo, suspiró. {raccoon:face happy} {raccoon:hop x2} ¡Pues busca TÚ! dijo Mapache. {firefly:face happy} Y Luciérnaga {firefly:glow 1 2.5s hold #FFE27A} brilló con fuerza, y allí estaba Búho, en plena luz. {firefly:live} ¡Te pillé!, saludó con la patita. {owl:face surprised} ¡Uuu! ¿Cómo? [happily] No he escuchado, dijo Luciérnaga. ¡He mirado!"
+    }
+  },
+  "sounds": {
+    "hoot": {
+      "prompt": "a single soft owl hoot at dusk, gentle, realistic field recording",
+      "seconds": 1.5
+    },
+    "twinkle": {
+      "prompt": "two tiny soft twinkles, like a little light blinking on and off, playful",
+      "seconds": 1.2
+    }
+  }
+}
