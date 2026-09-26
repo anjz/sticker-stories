@@ -19,12 +19,15 @@ public protocol RecentStoriesStore: Sendable {
 /// 1. **Not heard this session** before anything already played since the
 ///    app opened: nothing repeats until the whole pack has played (then the
 ///    one played longest ago comes first).
-/// 2. **Best match to the canvas**: each featured sticker on it counts 1,
+/// 2. **About what the child placed**: any story with a placed sticker in
+///    it — featured or supporting — before any story without one (a fallback
+///    included), however many visitors it needs.
+/// 3. **Best match to the canvas**: each featured sticker on it counts 1,
 ///    each supporting one 0.5, each featured one missing −0.25 (it has to come
-///    in as a visitor) — stories about what the child placed first, needing
-///    as few visitors as possible; then fewer visitors among equals.
-/// 3. **Never heard**, then heard longest ago (across launches).
-/// 4. The story's `weight`, then a random pick among exact ties, so an empty
+///    in as a visitor) — needing as few visitors as possible; then fewer
+///    visitors among equals.
+/// 4. **Never heard**, then heard longest ago (across launches).
+/// 5. The story's `weight`, then a random pick among exact ties, so an empty
 ///    canvas still varies.
 public struct BundledStoryProvider: StoryProvider {
     /// Match points for a featured sticker on the canvas, a supporting one,
@@ -63,19 +66,21 @@ public struct BundledStoryProvider: StoryProvider {
         struct Rank: Comparable {
             // Each "smaller comes first".
             var heardThisSession: Int  // -1 not heard; else how long ago, negated (oldest first)
+            var about: Int  // 0 with a placed sticker in it, else 1
             var match: Double  // negated
             var visitors: Int
             var heardBefore: Int  // -1 never; else recency index negated (oldest first)
             var weight: Double  // negated
             static func < (a: Rank, b: Rank) -> Bool {
-                (a.heardThisSession, a.match, a.visitors, a.heardBefore, a.weight)
-                    < (b.heardThisSession, b.match, b.visitors, b.heardBefore, b.weight)
+                (a.heardThisSession, a.about, a.match, a.visitors, a.heardBefore, a.weight)
+                    < (b.heardThisSession, b.about, b.match, b.visitors, b.heardBefore, b.weight)
             }
         }
         func rank(_ story: StoryDefinition) -> Rank {
             let fit = Self.match(story, placed: placed)
             return Rank(
                 heardThisSession: sessionIDs.firstIndex(of: story.id).map { -$0 } ?? Int.min,
+                about: Set(story.requiredStickers + story.optionalStickers).isDisjoint(with: placed) ? 1 : 0,
                 match: -fit.score, visitors: fit.visitors,
                 heardBefore: recentIDs.firstIndex(of: story.id).map { -$0 } ?? Int.min,
                 weight: -story.weight)

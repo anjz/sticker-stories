@@ -91,6 +91,17 @@ private func deterministicProvider(recents: RecentStoriesStore = MemoryRecents()
         #expect(partial.id == "needs-fox-rabbit-owl")
     }
 
+    @Test func aSupportingPartBeatsAFallbackHoweverManyVisitors() async throws {
+        let pack = makePack(stories: [
+            story("fallback"),
+            // The fox only supports; three featured visitors would score it
+            // under the fallback (0.5 - 0.75), but it is about the fox.
+            story("fox-helps", required: ["bird", "owl", "flower"], optional: ["fox"]),
+        ])
+        let chosen = try await deterministicProvider().story(for: canvas(["fox"]), in: pack, language: "en-US")
+        #expect(chosen.id == "fox-helps")
+    }
+
     @Test func fullMatchBeatsAStoryMissingASticker() async throws {
         let pack = makePack(stories: [
             story("missing-tree", required: ["fox", "rabbit", "tree"], optional: ["owl"]),

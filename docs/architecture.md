@@ -87,11 +87,12 @@ AVFoundation. This is our own code, not a third-party dependency.
    filter. First, stories **not heard this session** (since the app opened;
    kept in memory) before any already played in it: nothing repeats until
    the whole pack has played, and then the one played longest ago comes
-   first. Among those, the **best match to the canvas**: +1 for each
-   featured sticker placed, +0.5 for each supporting one, −0.25 for each
-   featured one that has to come in — so every story with a placed
-   character in it comes before any without, and fewer visitors wins among
-   equals. Then stories **never heard** (the long-term list in UserDefaults),
+   first. Among those, every story with a **placed character in it**
+   (featured or supporting) before any without — the fallbacks included,
+   however many visitors it needs — and then the **best match to the
+   canvas**: +1 for each featured sticker placed, +0.5 for each supporting
+   one, −0.25 for each featured one that has to come in, fewer visitors
+   winning among equals. Then stories **never heard** (the long-term list in UserDefaults),
    then heard longest ago; then the manifest `weight`; and a random pick
    among exact ties (injectable RNG for deterministic tests), so an empty
    canvas still varies. The fallback stories need no visitors, so an empty
