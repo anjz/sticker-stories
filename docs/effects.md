@@ -136,13 +136,14 @@ move a sticker. Where a sticker effect is a cycle, a canvas effect is one
 clears over its ramp-out — then it is gone. There is no repeat, no colour,
 no hold; content controls **`intensity`** (how much: thin or thick fog,
 drizzle or downpour) and **`duration`** (how long it stays, ramps
-included). The exception is the light of the time of day: a `night`,
-`sunset` or `dimlight` holds until the story changes the light (the next
-`night`, `sunset`, `dimlight`, `sunshine`, `sunrays`, `windowlight` or
-`firelight`, which it crossfades into) or ends — `storyaudio` lengthens
-its trigger's duration to that on the real narration
-(`render.HoldLights`), so the day never comes back unless the words bring
-it.
+included). The exceptions are the light of the time of day and snow: a
+`night`, `sunset` or `dimlight` holds until the story changes the light
+(the next `night`, `sunset`, `dimlight`, `sunshine`, `sunrays`,
+`windowlight` or `firelight`, which it crossfades into), and `snow` keeps
+falling until the sun comes out (`sunshine`, `sunrays`) or `rain` washes it
+away — or the story ends. `storyaudio` lengthens their triggers' duration
+to that on the real narration (`render.HoldLights`), so the day never
+comes back, nor the snow stops, unless the words bring it.
 
 Each canvas effect suits one or more pack **`setting`**s
 (`docs/pack-format.md`: `outdoors`, `indoors`, `space`, `underwater` or
@@ -157,11 +158,11 @@ or fantastical places) gets no canvas effects at all.
 | Effect | Setting | What it looks like | Good for | Default duration | Ramp in / out | Reduce Motion |
 |---|---|---|---|---|---|---|
 | `fog` | outdoors | Soft mist drifting slowly across the whole scene. | Early morning, a mystery, hush, something hidden then found. Builds slowly — cue it a beat early. | 12 s | 2.5 / 2.5 s | full |
-| `rain` | outdoors | Rain falls over everything; the light cools a little. | Rain in the story: pitter-patter, puddles, sheltering. `intensity` is drizzle to downpour. | 10 s | 1.2 / 1.5 s | runs at ≤0.4 |
+| `rain` | outdoors | Rain falls over everything under a grey sky: an overcast band from the top and a few slow grey clouds (behind the scenery), and the light cools a little. | Rain in the story: pitter-patter, puddles, sheltering. `intensity` is drizzle to downpour. | 10 s | 1.2 / 1.5 s | runs at ≤0.4 |
 | `sunshine` | outdoors | Warm light across the top of the scene, soft shafts drifting down. | The sun comes out, a warm afternoon, waking up, a happy ending after rain. | 8 s | 1.5 / 1.5 s | full |
 | `rainbow` | outdoors | A soft rainbow arcs across the sky behind the scenery. | The reward after rain, a wish come true, a wonder everyone looks up at. One per story at most. | 8 s | 2 / 2 s | full |
 | `night` | outdoors | Night falls: the scene darkens and a moon glows in the sky. | Evening and bedtime outdoors, the moon coming up, stars, a story that settles to sleep. Never darkness as a threat. Builds slowly — cue it a beat early. | 10 s | 2 / 2 s | full |
-| `snow` | outdoors | Soft snowflakes drift down at different sizes and speeds; the top of the sky turns white (behind the scenery) and the light a little cooler and brighter. | Winter, a snow day, the first flakes, a quiet hush. `intensity` is a few flakes to a thick flurry. | 12 s | 2 / 2.5 s | runs at ≤0.4 |
+| `snow` | outdoors | Soft snowflakes drift down at different sizes and speeds; the top of the sky turns white (behind the scenery) and the light a little cooler and brighter. It keeps falling until `sunshine`, `sunrays` or `rain` or the story's end (held, like the time of day). | Winter, a snow day, the first flakes, a quiet hush. `intensity` is a few flakes to a thick flurry. | 12 s | 2 / 2.5 s | runs at ≤0.4 |
 | `sunset` | outdoors | A warm orange-pink glow spreads from the horizon while the top of the sky deepens to violet. | The end of the day, going home, a calm golden moment. Followed by `night` it makes a gentle bedtime. Builds slowly — cue it a beat early. | 10 s | 2.5 / 2.5 s | full |
 | `clouds` | outdoors | Big soft clouds drift slowly across the sky behind the scenery; the light dims a little. | A cloudy day, "a cloud shaped like…", the grey before rain, the sun going in. | 12 s | 2.5 / 2.5 s | full |
 | `wind` | outdoors | Pale wisps of air sweep across the scene from left to right, with a few specks tumbling along. | A windy day, a kite, something blown away, a whoosh. `intensity` is a breeze to a gust. | 8 s | 1 / 1.5 s | runs at ≤0.4 |

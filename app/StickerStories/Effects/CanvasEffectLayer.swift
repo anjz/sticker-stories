@@ -36,9 +36,25 @@ final class CanvasEffectLayer: SKNode {
     }
     private var fog: [Blob] = []
 
-    // Rain: an emitter across the top edge plus a cool wash.
+    // Rain: an emitter across the top edge plus a cool wash, under a grey
+    // sky — an overcast band hanging from the top edge and a few slow grey
+    // clouds, both in the sky behind the foreground art (rain out of a
+    // bright blue sky looks wrong).
     private let rain = SKEmitterNode()
     private let rainWash = SKSpriteNode()
+    private let rainSky = SKSpriteNode()
+    private let rainClouds = DriftField(.init(
+        count: 6, texture: EffectTextures.texture(named: "cloud"),
+        colors: [UIColor(red: 0.66, green: 0.69, blue: 0.75, alpha: 1), UIColor(red: 0.74, green: 0.77, blue: 0.82, alpha: 1)],
+        zPosition: CanvasEffectLayer.skyZ + 1,
+        size: 0.12...0.24, aspect: 2,
+        velocity: CGVector(dx: 0.014, dy: 0), depthSpeed: 0.5...1,
+        wander: 0.005, wanderPeriod: 9...14,
+        alpha: 0.8...0.95,
+        region: CGRect(x: 0, y: 0.6, width: 1, height: 0.28),
+        margin: CGVector(dx: 0.3, dy: 0), enters: false,
+        seed: 0x6A1D))
+    private var rainWasOn = false
 
     // Sunshine: a warm wash, a glow along the whole top edge and a few broad
     // shafts hanging from it — the art paints no sun of its own
@@ -225,6 +241,16 @@ final class CanvasEffectLayer: SKNode {
         rainWash.zPosition = Self.overlayZ
         rainWash.alpha = 0
         addChild(rainWash)
+
+        rainSky.texture = EffectTextures.texture(named: "overcast")
+        rainSky.anchorPoint = CGPoint(x: 0.5, y: 1)  // hangs from the top edge
+        rainSky.color = UIColor(red: 0.6, green: 0.64, blue: 0.7, alpha: 1)
+        rainSky.colorBlendFactor = 1
+        rainSky.zPosition = Self.skyZ
+        rainSky.alpha = 0
+        addChild(rainSky)
+        rainClouds.node.isHidden = true
+        addChild(rainClouds.node)
     }
 
     private func buildSunshine() {
@@ -285,6 +311,9 @@ final class CanvasEffectLayer: SKNode {
         rain.particleScaleRange = rain.particleScale * 0.4
         rainWash.size = CGSize(width: w * 1.02, height: h * 1.02)
         rainWash.position = center
+        rainSky.size = CGSize(width: w * 1.04, height: h * 0.6)
+        rainSky.position = CGPoint(x: world.midX, y: world.maxY + h * 0.01)
+        rainClouds.layout(world: world)
 
         sunWash.size = rainWash.size
         sunWash.position = center
@@ -347,6 +376,16 @@ final class CanvasEffectLayer: SKNode {
         rain.particleBirthRate = rainStrength * 380 * (world.width / 1000)
         rain.isPaused = paused
         rainWash.alpha = rainStrength * 0.16
+        // A grey sky even for a drizzle; a downpour all but hides the blue.
+        rainSky.alpha = min(0.85, rainStrength * 1.3)
+        if rainStrength > 0 {
+            rainClouds.node.isHidden = false
+            rainClouds.apply(strength: rainStrength, at: time)
+        } else if rainWasOn {
+            rainClouds.node.isHidden = true
+            rainClouds.reset()
+        }
+        rainWasOn = rainStrength > 0
 
         let sunStrength = strengths[.sunshine] ?? 0
         sunWash.alpha = sunStrength * 0.12

@@ -87,7 +87,7 @@ public struct CanvasEffectDefinition: Sendable {
             summary: "Soft mist drifts slowly across the whole scene."),
         CanvasEffectDefinition(
             name: .rain, defaultDuration: 10, rampIn: 1.2, rampOut: 1.5,
-            summary: "Rain falls over everything; the light cools a little."),
+            summary: "Rain falls over everything under a grey sky with a few grey clouds; the light cools a little."),
         CanvasEffectDefinition(
             name: .sunshine, defaultDuration: 8, rampIn: 1.5, rampOut: 1.5,
             summary: "Warm light across the top of the scene, soft shafts drifting down."),
@@ -99,7 +99,7 @@ public struct CanvasEffectDefinition: Sendable {
             summary: "Night falls: the scene darkens and a moon glows in the sky."),
         CanvasEffectDefinition(
             name: .snow, defaultDuration: 12, rampIn: 2.0, rampOut: 2.5,
-            summary: "Soft snowflakes drift down over everything; the top of the sky turns white and the light cool and bright."),
+            summary: "Soft snowflakes drift down over everything; the top of the sky turns white and the light cool and bright. It keeps falling until the sun comes out or rain washes it away."),
         CanvasEffectDefinition(
             name: .sunset, defaultDuration: 10, rampIn: 2.5, rampOut: 2.5,
             summary: "A warm orange-pink glow spreads from the horizon while the sky above deepens."),
