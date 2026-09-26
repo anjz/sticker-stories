@@ -57,7 +57,7 @@ Read, in this order, before writing anything:
    convert to PNG with `sips -s format png` to view it) and write down what
    the art actually shows: colours, anything countable (spots, petals,
    stripes, legs, wings), what it holds, and what it lacks
-   (a fawn with no antlers, a ladybug with five spots, not seven). **Count from
+   (a fawn with no antlers, a ladybug with six spots, not seven). **Count from
    the picture, never from what the real animal or plant usually has** —
    the child is looking at the sticker while the narrator speaks. Put this
    in the roster's cast table.
@@ -207,7 +207,7 @@ exactly per `FORMAT.md`:
   weather that repaints the scene (snow covering the meadow, trees turning
   gold), places off stage only in passing (GUIDE "Match the scene");
 - every number, colour or visible feature the text gives a sticker (her
-  five spots, the eight yellow petals, his stripy tail) matches the art as
+  six spots, the eight yellow petals, his stripy tail) matches the art as
   recorded in the cast table; if a premise needs a feature the sticker
   doesn't show (antlers on the fawn, blossom on the oak), change the
   premise, not the fact;
@@ -265,7 +265,7 @@ build step 2 (audio); it is a separate tool.
   repaint the picture (a white meadow, golden trees), or end a story on
   something that never appears on screen.
 - Never give a sticker a count, colour or feature its art contradicts —
-  a ladybug counting seven spots when the sticker shows five is a mistake
+  a ladybug counting seven spots when the sticker shows six is a mistake
   every child will catch.
 - Never give a sticker a face it doesn't have, a face the words contradict
   (sleeping while it talks), or a sad face that the story doesn't mend.

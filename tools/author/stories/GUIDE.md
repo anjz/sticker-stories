@@ -131,7 +131,7 @@ it is necessary, not sufficient: the rules above are the standard.
   many spots, petals, stripes or legs, its colours, what it holds, what it
   stands on — must be what the image shows, counted from the picture
   (`packs/<pack>/stickers/<id>.webp`), not from what the real animal
-  usually has. Forest's ladybug has five spots, its flower eight yellow
+  usually has. Forest's ladybug has six spots, its flower eight yellow
   petals, its deer is a spotted fawn with no antlers and its duckling a fluffy
   yellow chick.
   Record these in the roster's cast table and write from it; when a premise
