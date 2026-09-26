@@ -81,17 +81,22 @@ AVFoundation. This is our own code, not a third-party dependency.
    shrinking its items in very narrow windows rather than overlapping them.
    Touches on the pill between stickers scroll the tray, never the world.
 
-4. **Story selection** (`BundledStoryProvider`): a story is a candidate when at
-   most one of its `requiredStickers` is missing from the canvas (and at least
-   one is present) — stories read fine without any one sticker, and requiring
-   all of them left most of a pack unreachable from an ordinary canvas. Score
-   = present required + optional-sticker matches × manifest weight, well
-   under a full match when one is missing. Candidates are ranked stalest
-   first (never played, then longest ago; the app remembers a whole round),
-   score second, and the pick is a weighted random among the top few
-   (injectable RNG for deterministic tests): the best match is likely first
-   on a fresh canvas and every candidate is heard before any repeats. Stories
-   with no required stickers are always candidates, so play never fails.
+4. **Story selection** (`BundledStoryProvider`): every story is playable on
+   any canvas — a character the child has not placed comes in as a visitor
+   (`docs/effects.md`, "Entrances") — so selection is an order, not a
+   filter. First, stories **not heard this session** (since the app opened;
+   kept in memory) before any already played in it: nothing repeats until
+   the whole pack has played, and then the one played longest ago comes
+   first. Among those, the **best match to the canvas**: +1 for each
+   featured sticker placed, +0.5 for each supporting one, −0.25 for each
+   featured one that has to come in — so every story with a placed
+   character in it comes before any without, and fewer visitors wins among
+   equals. Then stories **never heard** (the long-term list in UserDefaults),
+   then heard longest ago; then the manifest `weight`; and a random pick
+   among exact ties (injectable RNG for deterministic tests), so an empty
+   canvas still varies. The fallback stories need no visitors, so an empty
+   canvas starts with them and then works through the rest. A story with an
+   unusable effects sidecar is left out unless nothing else is.
 
 5. **Entitlement enforcement happens at launch** (see `docs/commerce.md`):
    stored pack→transaction records are reconciled against StoreKit 2's current

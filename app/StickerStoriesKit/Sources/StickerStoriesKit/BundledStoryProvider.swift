@@ -1,36 +1,37 @@
 import Foundation
 
-/// Remembers which stories played recently so they can be deprioritised.
-/// The app implementation persists to UserDefaults; tests use an in-memory one.
+/// Remembers which stories played, so selection brings new ones. The app
+/// implementation persists the long-term list to UserDefaults and keeps the
+/// session's in memory; tests use an in-memory one.
 public protocol RecentStoriesStore: Sendable {
-    /// Most recent first.
+    /// Every story played before, most recent first (across launches).
     func recentStoryIDs(forPackID packID: String) -> [String]
+    /// The stories played since the app was opened, most recent first.
+    func sessionStoryIDs(forPackID packID: String) -> [String]
     func recordPlayed(storyID: String, packID: String)
 }
 
-/// v1 `StoryProvider`: scores the pack's pregenerated stories against the
-/// canvas (docs/architecture.md §"Key design decisions").
+/// v1 `StoryProvider`: picks one of the pack's pregenerated stories for the
+/// canvas (docs/architecture.md §"Key design decisions"). Every story is
+/// playable on any canvas — a character the child has not placed comes in
+/// as a visitor — so the pick is an order, not a filter:
 ///
-/// - Candidates: stories with at most one of their `requiredStickers`
-///   missing from the canvas (and at least one present). Stories are written
-///   to read fine without any particular sticker — a cue for a missing one
-///   simply never fires — and requiring every featured sticker left most of
-///   a pack unreachable from an ordinary canvas. Fallback stories (no
-///   required stickers) are always candidates, so play never fails.
-/// - Score: present required + optional sticker matches, times the story's
-///   weight; a story with a sticker missing scores well under a full match.
-/// - Pick: candidates are ranked by staleness first — never played, then
-///   longest ago — and score second, and a weighted random is drawn among
-///   the top few. So the best match is likely first on a fresh canvas, every
-///   candidate is heard before any repeats, and the last one played is
-///   always last in line.
+/// 1. **Not heard this session** before anything already played since the
+///    app opened: nothing repeats until the whole pack has played (then the
+///    one played longest ago comes first).
+/// 2. **Best match to the canvas**: each featured sticker on it counts 1,
+///    each supporting one 0.5, each featured one missing −0.25 (it has to come
+///    in as a visitor) — stories about what the child placed first, needing
+///    as few visitors as possible; then fewer visitors among equals.
+/// 3. **Never heard**, then heard longest ago (across launches).
+/// 4. The story's `weight`, then a random pick among exact ties, so an empty
+///    canvas still varies.
 public struct BundledStoryProvider: StoryProvider {
-    /// How many top candidates the random pick draws from.
-    private static let topPool = 3
-    /// How many required stickers a candidate may be missing.
-    private static let maxMissingRequired = 1
-    /// Score factor for a candidate missing a required sticker.
-    private static let missingPenalty = 0.6
+    /// Match points for a featured sticker on the canvas, a supporting one,
+    /// and a featured one that has to come in.
+    static let featuredPoint = 1.0
+    static let supportingPoint = 0.5
+    static let visitorPoint = -0.25
 
     private let recents: RecentStoriesStore
     private let random: @Sendable (ClosedRange<Double>) -> Double
@@ -43,51 +44,52 @@ public struct BundledStoryProvider: StoryProvider {
         self.random = random
     }
 
+    /// How well a story fits the canvas, and how many visitors it needs.
+    static func match(_ story: StoryDefinition, placed: Set<String>) -> (score: Double, visitors: Int) {
+        let required = Set(story.requiredStickers)
+        let present = required.intersection(placed).count
+        let missing = required.count - present
+        let supporting = Set(story.optionalStickers).intersection(placed).count
+        let score = Double(present) * featuredPoint + Double(supporting) * supportingPoint + Double(missing) * visitorPoint
+        return (score, missing)
+    }
+
     public func story(for canvas: CanvasState, in pack: LoadedPack, language: String) async throws -> Story {
         let placed = canvas.stickerIDs
-        let recentIDs = recents.recentStoryIDs(forPackID: pack.id)  // most recent first
+        let recentIDs = recents.recentStoryIDs(forPackID: pack.id)
+        let sessionIDs = recents.sessionStoryIDs(forPackID: pack.id)
+        guard !pack.manifest.stories.isEmpty else { throw StoryProviderError.noPlayableStory }
 
-        var scored: [(story: StoryDefinition, score: Double)] = []
-        for story in pack.manifest.stories {
-            let required = Set(story.requiredStickers)
-            let present = required.intersection(placed).count
-            let missing = required.count - present
-            guard missing <= Self.maxMissingRequired, required.isEmpty || present > 0 else { continue }
-
-            let optionalMatches = story.optionalStickers.filter(placed.contains).count
-            // Present required matches count too: a story specifically about
-            // what's on the canvas beats a generic fallback.
-            var score = (1.0 + Double(present) + Double(optionalMatches)) * story.weight
-            if missing > 0 { score *= Self.missingPenalty }
-            scored.append((story, score))
+        struct Rank: Comparable {
+            // Each "smaller comes first".
+            var heardThisSession: Int  // -1 not heard; else how long ago, negated (oldest first)
+            var match: Double  // negated
+            var visitors: Int
+            var heardBefore: Int  // -1 never; else recency index negated (oldest first)
+            var weight: Double  // negated
+            static func < (a: Rank, b: Rank) -> Bool {
+                (a.heardThisSession, a.match, a.visitors, a.heardBefore, a.weight)
+                    < (b.heardThisSession, b.match, b.visitors, b.heardBefore, b.weight)
+            }
         }
-
-        guard !scored.isEmpty else { throw StoryProviderError.noPlayableStory }
-
-        // Stalest first (never played counts as stalest), best score among
-        // equals; a stable sort keeps manifest order for full ties.
-        func staleness(_ story: StoryDefinition) -> Int {
-            recentIDs.firstIndex(of: story.id) ?? .max  // index 0 = played last
-        }
-        let ranked = scored.sorted { a, b in
-            let sa = staleness(a.story), sb = staleness(b.story)
-            return sa != sb ? sa > sb : a.score > b.score
+        func rank(_ story: StoryDefinition) -> Rank {
+            let fit = Self.match(story, placed: placed)
+            return Rank(
+                heardThisSession: sessionIDs.firstIndex(of: story.id).map { -$0 } ?? Int.min,
+                match: -fit.score, visitors: fit.visitors,
+                heardBefore: recentIDs.firstIndex(of: story.id).map { -$0 } ?? Int.min,
+                weight: -story.weight)
         }
         // A story whose effects sidecar is unusable is excluded rather than
         // played broken (docs/effects.md) — unless nothing else is left, in
         // which case it plays with no effects; play must never fail.
-        var pool = Array(ranked.lazy.filter { Self.hasUsableEffects($0.story, language: language, in: pack) }.prefix(Self.topPool))
-        if pool.isEmpty { pool = Array(ranked.prefix(Self.topPool)) }
-        let total = pool.reduce(0) { $0 + $1.score }
-        var pick = random(0...max(total, .ulpOfOne))
-        var chosen = pool[pool.count - 1].story
-        for entry in pool {
-            pick -= entry.score
-            if pick <= 0 {
-                chosen = entry.story
-                break
-            }
-        }
+        let usable = pack.manifest.stories.filter { Self.hasUsableEffects($0, language: language, in: pack) }
+        let ranked = (usable.isEmpty ? pack.manifest.stories : usable).map { ($0, rank($0)) }
+        let best = ranked.map(\.1).min()!
+        // Every story as good as the best, in manifest order: a random one.
+        let ties = ranked.filter { $0.1 == best }.map(\.0)
+        let index = min(Int(random(0...Double(ties.count))), ties.count - 1)
+        let chosen = ties[max(index, 0)]
 
         recents.recordPlayed(storyID: chosen.id, packID: pack.id)
         return Story(chosen, language: language, fallbackOrder: pack.manifest.languages)
