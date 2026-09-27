@@ -8,6 +8,7 @@ package manifest
 import (
 	"encoding/json"
 	"fmt"
+	"maps"
 	"os"
 	"path"
 	"path/filepath"
@@ -52,8 +53,14 @@ type Manifest struct {
 	// branches — where stickers can land when a story brings them in
 	// (Stage.On). Optional.
 	Features map[string]Feature `json:"features,omitempty"`
-	Stickers []Sticker          `json:"stickers"`
-	Stories  []Story            `json:"stories"`
+	// NarrationPacks names, per language, the Apple-hosted asset pack that
+	// carries that language's narration audio (docs/asset-delivery.md):
+	// "<pack>-narration-<language>-<hash of the audio>", written by
+	// storyaudio install. Optional; a language without one is read from
+	// the pack itself.
+	NarrationPacks map[string]string `json:"narrationPacks,omitempty"`
+	Stickers       []Sticker         `json:"stickers"`
+	Stories        []Story           `json:"stories"`
 }
 
 // Sticker is one draggable sticker in the pack.
@@ -540,6 +547,30 @@ func (m *Manifest) Validate(dir string) []error {
 	}
 	if len(m.Stickers) == 0 {
 		fail("pack must contain at least one sticker")
+	}
+
+	// Rule 16: each narration pack is named for a declared language, is a
+	// well-formed ID of its own, and matches the audio it will carry (a
+	// recording that changed needs a new asset pack).
+	packIDs := map[string]string{}
+	for _, lang := range slices.Sorted(maps.Keys(m.NarrationPacks)) {
+		id := m.NarrationPacks[lang]
+		field := fmt.Sprintf("narrationPacks[%q]", lang)
+		if !declared[lang] {
+			fail("%s: %q is not a declared language", field, lang)
+			continue
+		}
+		if !narrationPackPattern.MatchString(id) {
+			fail("%s: %q must be lowercase a-z0-9 with single hyphens", field, id)
+			continue
+		}
+		if other, ok := packIDs[id]; ok {
+			fail("%s: %q is also %s's narration pack", field, id, other)
+		}
+		packIDs[id] = lang
+		if want, err := m.NarrationPackID(dir, lang); err == nil && want != id {
+			fail("%s: %q is stale — the %s narration now makes %q (storyaudio install writes it)", field, id, lang, want)
+		}
 	}
 
 	return errs

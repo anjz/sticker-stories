@@ -152,6 +152,34 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         #expect(manifest.validationIssues(packDirectory: dir).isEmpty)
     }
 
+    @Test func narrationFromAnAssetPackNeedNotBeInThePack() throws {
+        var manifest = makeValidManifest()
+        manifest.narrationPacks = ["en-US": "forest-narration-en-1a2b3c4d"]
+        let dir = try materialize(manifest)
+        // The English narration comes from its asset pack: none in the folder.
+        for story in manifest.stories {
+            try FileManager.default.removeItem(at: dir.appendingPathComponent(story.localizations["en-US"]!.audio))
+        }
+        #expect(manifest.validationIssues(packDirectory: dir).isEmpty)
+        let decoded = try JSONDecoder().decode(PackManifest.self, from: JSONEncoder().encode(manifest))
+        #expect(decoded.narrationPacks == ["en-US": "forest-narration-en-1a2b3c4d"])
+        // Spanish has no asset pack, so its narration must still be there.
+        for story in manifest.stories {
+            try FileManager.default.removeItem(at: dir.appendingPathComponent(story.localizations["es-ES"]!.audio))
+        }
+        #expect(manifest.validationIssues(packDirectory: dir).contains { $0.contains("es-ES audio") })
+
+        for (packs, expected) in [
+            (["fr-FR": "forest-narration-fr-1a2b3c4d"], "not a declared language"),
+            (["en-US": "Forest_EN"], "lowercase"),
+            (["en-US": "forest-narration", "es-ES": "forest-narration"], "also"),
+        ] {
+            var bad = makeValidManifest()
+            bad.narrationPacks = packs
+            #expect(bad.validationIssues(packDirectory: nil).contains { $0.contains(expected) }, "\(packs)")
+        }
+    }
+
     @Test func wideArtPairIsAccepted() throws {
         var manifest = makeValidManifest()
         manifest.backgroundWide = "art/background-wide.png"

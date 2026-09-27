@@ -1298,6 +1298,16 @@ func runInstall(args []string) error {
 		c.pack.Stories = kept
 	}
 	sort.SliceStable(c.pack.Stories, func(i, j int) bool { return c.pack.Stories[i].ID < c.pack.Stories[j].ID })
+	// Each language's narration ships as its own asset pack, named for its
+	// audio (docs/asset-delivery.md); a new recording gets a new name.
+	c.pack.NarrationPacks = map[string]string{}
+	for _, lang := range c.pack.Languages {
+		id, err := c.pack.NarrationPackID(c.packDir, lang)
+		if err != nil {
+			return fmt.Errorf("naming the %s narration pack: %w", lang, err)
+		}
+		c.pack.NarrationPacks[lang] = id
+	}
 	if *bump {
 		c.pack.Version++
 	}

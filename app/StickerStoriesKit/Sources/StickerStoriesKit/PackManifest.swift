@@ -53,6 +53,10 @@ public struct PackManifest: Codable, Equatable, Sendable {
     /// Named places in the art where stickers can land (`StickerStage.on`);
     /// empty when the pack describes none.
     public var features: [String: SceneFeature]
+    /// Per language, the Apple-hosted asset pack that carries that
+    /// language's narration audio (docs/asset-delivery.md); empty when every
+    /// language's narration is in the pack itself.
+    public var narrationPacks: [String: String]
     public var stickers: [StickerDefinition]
     public var stories: [StoryDefinition]
 
@@ -62,7 +66,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
         theme: String, setting: PackSetting = .none,
         background: String, foreground: String,
         backgroundWide: String? = nil, foregroundWide: String? = nil, cover: String? = nil,
-        features: [String: SceneFeature] = [:],
+        features: [String: SceneFeature] = [:], narrationPacks: [String: String] = [:],
         stickers: [StickerDefinition], stories: [StoryDefinition]
     ) {
         self.schemaVersion = schemaVersion
@@ -79,13 +83,14 @@ public struct PackManifest: Codable, Equatable, Sendable {
         self.foregroundWide = foregroundWide
         self.cover = cover
         self.features = features
+        self.narrationPacks = narrationPacks
         self.stickers = stickers
         self.stories = stories
     }
 
     private enum CodingKeys: String, CodingKey {
         case schemaVersion, id, version, languages, displayName, description, theme, setting
-        case background, foreground, backgroundWide, foregroundWide, cover, features, stickers, stories
+        case background, foreground, backgroundWide, foregroundWide, cover, features, narrationPacks, stickers, stories
     }
 
     public init(from decoder: Decoder) throws {
@@ -113,6 +118,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
         foregroundWide = try c.decodeIfPresent(String.self, forKey: .foregroundWide)
         cover = try c.decodeIfPresent(String.self, forKey: .cover)
         features = try c.decodeIfPresent([String: SceneFeature].self, forKey: .features) ?? [:]
+        narrationPacks = try c.decodeIfPresent([String: String].self, forKey: .narrationPacks) ?? [:]
         stickers = try c.decode([StickerDefinition].self, forKey: .stickers)
         stories = try c.decode([StoryDefinition].self, forKey: .stories)
     }
@@ -564,7 +570,15 @@ extension PackManifest {
                 if localization.text.trimmingCharacters(in: .whitespaces).isEmpty {
                     issues.append("\(locName): text must not be empty (stories must carry their text)")
                 }
-                checkFile("\(locName) audio", localization.audio)
+                if narrationPacks[language] == nil {
+                    checkFile("\(locName) audio", localization.audio)
+                } else if localization.audio.isEmpty || localization.audio.hasPrefix("/")
+                    || localization.audio.split(separator: "/").contains("..")
+                {
+                    // Served by its asset pack, not the pack's folder: only the
+                    // path itself is checked here (rule 5).
+                    issues.append("\(locName) audio: path \"\(localization.audio)\" must be pack-relative and must not escape the pack")
+                }
                 if let effects = localization.effects {
                     checkFile("\(locName) effects", effects)
                 }
@@ -592,6 +606,22 @@ extension PackManifest {
         }
         if stories.isEmpty { issues.append("pack must contain at least one story") }
         if stickers.isEmpty { issues.append("pack must contain at least one sticker") }
+
+        // Rule 16: narration packs are named for declared languages, one
+        // well-formed ID each (the packager also checks each still matches
+        // its audio).
+        var narrationLanguages: [String: String] = [:]
+        for (language, packID) in narrationPacks.sorted(by: { $0.key < $1.key }) {
+            let field = "narrationPacks[\"\(language)\"]"
+            if !declared.contains(language) {
+                issues.append("\(field): \"\(language)\" is not a declared language")
+            } else if !Self.isWellFormedID(packID) {
+                issues.append("\(field): \"\(packID)\" must be lowercase a-z0-9 with single hyphens")
+            } else if let other = narrationLanguages[packID] {
+                issues.append("\(field): \"\(packID)\" is also \(other)'s narration pack")
+            }
+            narrationLanguages[packID] = language
+        }
 
         return issues
     }
