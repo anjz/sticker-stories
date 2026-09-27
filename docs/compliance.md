@@ -10,9 +10,17 @@ pass review, it is a product constraint.
 - [x] **No data collection.** No analytics or attribution SDKs (first- or
       third-party), no crash reporters that phone home, no identifiers, no
       server of our own. Nothing personally identifiable ever leaves the device.
-- [x] **No network calls from child-facing flows.** The only networking in the
-      entire v1 app is StoreKit itself, and purchase UI is only reachable behind
-      the parental gate. Story playback, canvas, pack loading: 100% local.
+- [x] **No network calls from child-facing flows.** The app makes no network
+      calls of its own. The only networking is Apple's: StoreKit, whose
+      purchase UI is only reachable behind the parental gate, and the
+      system's Background Assets downloads of story narration from Apple's
+      hosting (`docs/asset-delivery.md`) — with the app at install and on
+      updates, at launch when the family's language is missing, and when a
+      parent changes the language in Settings. Nothing is sent but the
+      request for the app's own content, and nothing a child does on the
+      canvas starts a download: a story whose narration hasn't arrived plays
+      in a language that has, or waits. Story playback, canvas, pack
+      loading: 100% local.
 - [x] **No ads.** Ever.
 - [x] **No external links** outside the parental gate.
 - [x] **Purchases only behind the parental gate** (guideline 1.3: parental
@@ -21,7 +29,10 @@ pass review, it is a product constraint.
       collection list; declares UserDefaults required-reason API (CA92.1 —
       app's own settings only: recently-played story IDs, active pack,
       whether the canvas's pinch and layer button have ever been used so
-      their hints stop — local UI state, never sent anywhere).
+      their hints stop, the narration languages recently played and the
+      narration asset packs seen — local UI state, never sent anywhere) and
+      the disk-space API (E174.1 — whether there is room to keep the
+      previous language's narration, which is removed otherwise).
 - [x] **Privacy nutrition label**: "Data Not Collected" (must stay true).
 
 ## Parental gate

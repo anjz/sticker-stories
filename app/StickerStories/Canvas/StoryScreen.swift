@@ -14,6 +14,8 @@ import SwiftUI
 struct StoryScreen: View {
     let pack: LoadedPack
     let preferredLanguages: [String]
+    /// Where each language's narration is, and what plays while one downloads.
+    let narration: NarrationLibrary
     /// Parent setting: softer effects (docs/effects.md, "calm mode").
     let calmMode: Bool
     let onLeave: () -> Void
@@ -21,9 +23,10 @@ struct StoryScreen: View {
     /// `nil` until the pack's textures are loaded.
     @State private var scene: CanvasScene?
     @State private var canvasState: CanvasState?
-    @State private var playback = PlaybackController(
-        storyProvider: BundledStoryProvider(recents: UserDefaultsRecentStories()),
-        narrator: AudioFileNarrator())
+    @State private var playback: PlaybackController
+    /// Shown for a few seconds when a story can't play in the chosen
+    /// language yet (docs/asset-delivery.md).
+    @State private var notice: NarrationNotice?
     @State private var canUndo = false
     @State private var canRedo = false
     @State private var canClear = false
@@ -38,11 +41,20 @@ struct StoryScreen: View {
     /// state change right after reliably brings it in.
     @State private var showsLoader = false
 
-    init(pack: LoadedPack, preferredLanguages: [String], calmMode: Bool, onLeave: @escaping () -> Void) {
+    init(
+        pack: LoadedPack, preferredLanguages: [String], narration: NarrationLibrary, calmMode: Bool,
+        onLeave: @escaping () -> Void
+    ) {
         self.pack = pack
         self.preferredLanguages = preferredLanguages
+        self.narration = narration
         self.calmMode = calmMode
         self.onLeave = onLeave
+        let narrator = AudioFileNarrator { [narration] story, pack in
+            story.audioPath.flatMap { narration.url(forAudio: $0, in: pack, language: story.language) }
+        }
+        _playback = State(initialValue: PlaybackController(
+            storyProvider: BundledStoryProvider(recents: UserDefaultsRecentStories()), narrator: narrator))
         #if DEBUG
         if Self.isAutoplay {
             // Deterministic pick (highest-scoring story) so a seeded canvas
@@ -55,7 +67,7 @@ struct StoryScreen: View {
             _playback = State(initialValue: PlaybackController(
                 storyProvider: chosen.map { AutoplayStoryProvider(definition: $0) as any StoryProvider }
                     ?? BundledStoryProvider(recents: UserDefaultsRecentStories(), random: { $0.lowerBound }),
-                narrator: AudioFileNarrator()))
+                narrator: narrator))
         }
         #endif
     }
@@ -64,12 +76,17 @@ struct StoryScreen: View {
     private static var isAutoplay: Bool { ProcessInfo.processInfo.arguments.contains("-autoplay") }
     #endif
 
+    /// Plays a story in the chosen language — or, while its narration is
+    /// still downloading, in the last one used that is here, and says so.
     private func play() {
-        playback.play(
-            canvas: canvasState ?? CanvasState(packID: pack.id),
-            pack: pack,
-            language: LanguageResolver(preferredLanguages: preferredLanguages)
-                .resolve(from: pack.manifest.languages))
+        let preferred = LanguageResolver(preferredLanguages: preferredLanguages).resolve(from: pack.manifest.languages)
+        guard let choice = narration.choice(for: pack, preferred: preferred) else {
+            notice = .arriving
+            return
+        }
+        notice = choice.isFallback ? .fallback(wanted: preferred, playing: choice.language) : nil
+        narration.played(choice.language)
+        playback.play(canvas: canvasState ?? CanvasState(packID: pack.id), pack: pack, language: choice.language)
     }
 
     var body: some View {
@@ -121,11 +138,28 @@ struct StoryScreen: View {
                     .animation(.easeInOut(duration: playback.isBusy ? 0.35 : 0.45), value: playback.isBusy)
                 }
 
+                if let notice {
+                    // Below the sticker tray, which is still there when no
+                    // story could start.
+                    let sceneHeight = geometry.size.height + geometry.safeAreaInsets.top + geometry.safeAreaInsets.bottom
+                    NarrationBanner(notice: notice)
+                        .padding(.horizontal, 20)
+                        .padding(.top, topPadding + CanvasScene.trayBarHeight(sceneHeight: sceneHeight) + 12)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                        .allowsHitTesting(false)
+                        .transition(.move(edge: .top).combined(with: .opacity))
+                        .task(id: notice) {
+                            guard (try? await Task.sleep(for: .seconds(5))) != nil else { return }
+                            self.notice = nil
+                        }
+                }
+
                 if isConfirmingClear {
                     clearConfirmation
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .animation(.spring(duration: 0.45), value: notice)
         }
         // A swipe down from the top edge — easy to do by accident while
         // dragging a sticker out of the tray — shows the system's grabber

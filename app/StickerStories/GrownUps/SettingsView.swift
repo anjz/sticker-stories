@@ -9,6 +9,8 @@ struct SettingsView: View {
     @Bindable var settings: AppSettings
     /// For restoring purchases (the store itself only sells).
     let store: StoreService
+    /// Whether each language's narration is on the device.
+    let narration: NarrationLibrary
     /// A pack whose stickers the debug effects gallery can use.
     var galleryPack: LoadedPack? = nil
     /// The installed packs the debug story gallery plays stories from.
@@ -240,9 +242,14 @@ struct SettingsView: View {
             settings.languageOverride = override
         } label: {
             HStack {
-                label
-                    .font(.system(size: 20, weight: .bold, design: .rounded))
-                    .foregroundStyle(Color(red: 0.2, green: 0.3, blue: 0.25))
+                VStack(alignment: .leading, spacing: 3) {
+                    label
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .foregroundStyle(Color(red: 0.2, green: 0.3, blue: 0.25))
+                    if let state = narrationState(for: override) {
+                        NarrationStateLabel(state: state)
+                    }
+                }
                 Spacer()
                 Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                     .font(.system(size: 24, weight: .bold))
@@ -259,5 +266,45 @@ struct SettingsView: View {
                     .shadow(color: .black.opacity(0.12), radius: 6, y: 3))
         }
         .buttonStyle(SquishyButtonStyle())
+    }
+
+    /// Where a language row's stories stand: its own language, or — for
+    /// the system row — the one the device's languages resolve to.
+    private func narrationState(for override: String?) -> NarrationLibrary.LanguageState? {
+        let language = override ?? LanguageResolver().resolve(from: narration.languages)
+        return narration.states[language]
+    }
+}
+
+/// A language's narration under its row in Settings: here, arriving (with
+/// how much), waiting for the network, or not downloaded yet.
+private struct NarrationStateLabel: View {
+    let state: NarrationLibrary.LanguageState
+
+    var body: some View {
+        HStack(spacing: 6) {
+            switch state {
+            case .onDevice:
+                Image(systemName: "checkmark.icloud")
+                Text("On this device")
+            case .downloading(let fraction):
+                ProgressView(value: fraction)
+                    .progressViewStyle(.circular)
+                    .controlSize(.mini)
+                Text("Downloading \(Int((fraction * 100).rounded()))%")
+            case .waiting:
+                Image(systemName: "icloud.slash")
+                Text("Waiting to download")
+            case .notDownloaded(let bytes):
+                Image(systemName: "icloud.and.arrow.down")
+                if let bytes {
+                    Text("Not downloaded · \(Int64(bytes).formatted(.byteCount(style: .file)))")
+                } else {
+                    Text("Not downloaded")
+                }
+            }
+        }
+        .font(.system(size: 14, weight: .semibold, design: .rounded))
+        .foregroundStyle(Color(red: 0.2, green: 0.3, blue: 0.25).opacity(0.7))
     }
 }

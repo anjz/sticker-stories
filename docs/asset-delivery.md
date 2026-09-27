@@ -38,21 +38,31 @@ first story plays offline in their language.
 
 `LanguageResolver` (the parent's override in Settings, else the device's
 preferred languages; exact tag, then primary subtag, then English) picks
-the language, as before. The app mirrors the parent's override into
-`AssetPackManager.shared.resolvedLanguage` (its primary subtag; `nil` to
-follow the device), so the system's own choice — at install, on updates —
-is the same language.
+the language, as before. The system picks its own at install and on
+updates from the device's languages (or the app's language in iOS
+Settings), and the app fetches the family's at launch when it is missing:
+after the device language changed, or after an update re-recorded a
+language the parent chose in Settings (the system brought the device's,
+which plays until the chosen one arrives).
+
+The parent's override is **not** mirrored into
+`AssetPackManager.shared.resolvedLanguage`: setting it sets the app's own
+preferred language (`AppleLanguages` in its defaults, the language iOS
+Settings shows for the app), which hides the device's languages from
+`Locale.preferredLanguages` — "System language" would then mean the last
+language a parent picked.
 
 ## Switching language
 
 Switching happens in Settings, behind the parental gate:
 
-1. the new language is saved and mirrored to `resolvedLanguage`;
+1. the new language is saved;
 2. its narration packs — for every pack the family has — are requested in
    one batch (`ensureLocalAvailability(of:)` with a set);
-3. Settings shows each language's state from `statusUpdates`: *on this
-   iPad*, *downloading 45 %* (a progress ring), *not downloaded* (with its
-   size), or *waiting* after a failure (the system retries).
+3. Settings shows each language's state under its row, from
+   `statusUpdates`: *on this device*, *downloading 45 %* (a progress
+   ring), *not downloaded* (with its size), or *waiting to download* after
+   a failure (the system retries).
 
 `reconcilePreferredLanguages()` is **not** used: it would remove every
 other language at once, and the previous one is what plays until the new
@@ -62,7 +72,8 @@ one has arrived.
 
 Per pack, the story plays in the chosen language when its narration is on
 the device (`assetPackIsAvailableLocally(withID:)`); otherwise in the most
-recently used language that is. The story's title in the pill follows the
+recently used language that is (`NarrationPlanner`, unit-tested in the
+Kit). The story's title in the pill follows the
 language it plays in, and a small **non-blocking banner** tells the parent
 ("Spanish stories are still downloading — playing in English for now"): a
 four-year-old can't read a modal, and it would stand between them and the
@@ -110,4 +121,9 @@ purchase removes them (`docs/commerce.md`).
 - Debug builds also carry the narration inside the pack, read only when no
   asset pack has it, so simulator runs (`-autoplay`) work offline;
   `-narrationFromAssetPacksOnly` ignores it to exercise downloads. Release
-  builds leave it out.
+  builds leave it out (a build phase deletes the pack's `.m4a` files).
+- In the simulator, and on a device without Xcode serving them, the
+  download fails (Apple's hosting has no packs for an unpublished app):
+  Settings shows *waiting to download*. To see the fallback banner, delete
+  one language's `.m4a` files from the installed app and launch with
+  `-autoplay -settings.languageOverride <that language>`.

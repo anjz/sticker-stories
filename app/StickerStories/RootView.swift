@@ -33,6 +33,8 @@ struct RootView: View {
     @State private var library = PackLibrary()
     @State private var entitlements = EntitlementCoordinator()
     @State private var settings = AppSettings()
+    /// Each language's narration as it arrives (docs/asset-delivery.md).
+    @State private var narration = NarrationLibrary()
     @State private var grownUps: GrownUpsAccess?
     /// Set while Settings is the sheet on show, so its dismissal counts as
     /// leaving a grown-ups section (the gate's own dismissal does not).
@@ -76,6 +78,7 @@ struct RootView: View {
             await entitlements.validateOnLaunch()
             entitlements.startObservingTransactions()
             library.discoverPacks()
+            narration.start(packs: library.packs, preferredLanguages: settings.preferredLanguages)
             #if DEBUG
             // `-autoplay`: open the first pack and press play (simulator
             // verification of the playback pipeline without touch injection).
@@ -90,6 +93,11 @@ struct RootView: View {
             if args.contains("-openStore") { screen = .store }
             if args.contains("-openSettings") { grownUps = .settings }
             #endif
+        }
+        // A parent chose another language: fetch its narration now, while
+        // the previous one keeps playing.
+        .onChange(of: settings.languageOverride) {
+            narration.languageChanged(preferredLanguages: settings.preferredLanguages)
         }
         .sheet(item: $grownUps, onDismiss: {
             // Settings closed (by its button or a swipe down): a parent was here.
@@ -115,7 +123,7 @@ struct RootView: View {
                 case .settings:
                     SettingsView(
                         settings: settings, store: StoreService(entitlements: entitlements),
-                        galleryPack: library.packs.first, galleryPacks: library.packs)
+                        narration: narration, galleryPack: library.packs.first, galleryPacks: library.packs)
                     .onAppear { leftSettings = true }
                     // Page-sized on iPad: the default form sheet is too short
                     // for every section, cutting the last row off.
@@ -162,6 +170,7 @@ struct RootView: View {
                 StoryScreen(
                     pack: pack,
                     preferredLanguages: settings.preferredLanguages,
+                    narration: narration,
                     calmMode: settings.calmMode,
                     onLeave: {
                         withAnimation(.spring(duration: 0.45)) { screen = .menu }

@@ -14,6 +14,7 @@
 │                                                              │
 │  Adapters (platform-coupled):                                │
 │    AudioFileNarrator (AVFoundation)                          │
+│    NarrationLibrary (Background Assets: narration per lang)  │
 │    StoreKitTransactionProvider, PurchaseService (StoreKit 2) │
 │    PackLibrary (bundle + Application Support discovery)      │
 ├──────────────────────────────────────────────────────────────┤
@@ -23,6 +24,7 @@
 │  PackLoader(directory:)      StoryProvider / Narrator seams  │
 │  BundledStoryProvider        EntitlementStore (+ protocol    │
 │  (scoring algorithm)          TransactionProvider)           │
+│  NarrationPlanner (fallback language, which to keep)         │
 └──────────────────────────────────────────────────────────────┘
             ▲  manifest schema contract (docs/pack-format.md)
             │
@@ -159,9 +161,12 @@ Multilingual from day one — currently **en-US** and **es-ES**:
   untouched — it plays whatever `Story` it is given.
 - Both mechanisms follow the same device preference, so UI language and
   narration language agree whenever the pack supports the device language.
-- Delivery (future): packs ship all languages today; if size ever forces a
-  split, keep one download URL per pack + `lang=` query param
-  (docs/pack-format.md, "Future: per-language delivery").
+- Delivery: a pack's text, art and effect sidecars ship in every language;
+  its narration arrives per language as Apple-hosted asset packs.
+  `NarrationLibrary` finds a story's narration file for the `Narrator`,
+  fetches the family's language, keeps or removes the others and tells
+  Settings each language's state; a story plays in the last language on
+  the device while the chosen one downloads (`docs/asset-delivery.md`).
 
 **Adding a language** touches four places, each with its own checks:
 

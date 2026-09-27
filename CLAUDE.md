@@ -59,6 +59,9 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
 - `app/StickerStoriesKit/` — local SwiftPM package: manifest models, `CanvasState`,
   story selection, entitlement logic + all unit tests (platform-independent code
   lives here; also builds on macOS so `swift test` needs no simulator).
+- `app/StickerStoriesDownloader/` — the Background Assets downloader
+  extension (empty: the system does the downloading); the app's
+  `Narration/` finds, fetches and tidies each language's narration.
 - `app/StickerStories/Effects/` + `app/StickerStoriesKit/.../Effects/` — play-mode
   effects: 12 sticker effects + the canvas effects (scene-wide weather/light,
   gated by the pack `setting`; one painter per effect in

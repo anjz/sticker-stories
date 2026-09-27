@@ -87,6 +87,12 @@ final class CanvasScene: SKScene {
     static let hudMinimumTopInset: CGFloat = 24
     static let hudTopClearance: CGFloat = 14
 
+    /// The sticker tray's height in a scene `sceneHeight` tall (StoryScreen
+    /// hangs its notices below it).
+    static func trayBarHeight(sceneHeight: CGFloat) -> CGFloat {
+        min(96, max(64, sceneHeight * 0.15))
+    }
+
     private var stickerTextures: [String: SKTexture] = [:]
     /// The tray pill in view coordinates (the tray node is laid out in view
     /// space and follows the camera).
@@ -555,7 +561,7 @@ final class CanvasScene: SKScene {
         let items = trayContent.children.compactMap { $0 as? TrayItemNode }
         guard !items.isEmpty else { return }
 
-        let barHeight: CGFloat = min(96, max(64, size.height * 0.15))
+        let barHeight = Self.trayBarHeight(sceneHeight: size.height)
         var itemSize = barHeight * 0.78
         var spacing = itemSize * 0.35
         var sidePadding = spacing * 1.6

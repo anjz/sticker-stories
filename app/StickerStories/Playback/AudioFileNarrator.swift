@@ -32,10 +32,18 @@ final class AudioFileNarrator: NSObject, Narrator {
         let player: AVAudioPlayer
     }
 
+    /// Finds a story's narration file: in its language's asset pack, or
+    /// the pack itself (`NarrationLibrary`); nil when it isn't here.
+    private let locate: (Story, LoadedPack) -> URL?
+
+    init(locate: @escaping (Story, LoadedPack) -> URL? = { story, pack in story.audioPath.map(pack.url(forAssetPath:)) }) {
+        self.locate = locate
+    }
+
     func narrate(_ story: Story, from pack: LoadedPack) async throws {
         stop()
 
-        guard let audioPath = story.audioPath else {
+        guard story.audioPath != nil, let url = locate(story, pack) else {
             throw NarrationError.missingAudio(storyID: story.id)
         }
         state = .preparing
@@ -43,7 +51,6 @@ final class AudioFileNarrator: NSObject, Narrator {
 
         let started: StartedPlayer
         do {
-            let url = pack.url(forAssetPath: audioPath)
             started = try await Self.startPlayback(of: url, delegate: self)
         } catch {
             state = .idle

@@ -20,6 +20,16 @@
 				<string>CA92.1</string>
 			</array>
 		</dict>
+		<dict>
+			<!-- Disk space: whether there is room to keep the previous language's
+			     narration on the device, which is removed otherwise (docs/asset-delivery.md) -->
+			<key>NSPrivacyAccessedAPIType</key>
+			<string>NSPrivacyAccessedAPICategoryDiskSpace</string>
+			<key>NSPrivacyAccessedAPITypeReasons</key>
+			<array>
+				<string>E174.1</string>
+			</array>
+		</dict>
 	</array>
 </dict>
 </plist>

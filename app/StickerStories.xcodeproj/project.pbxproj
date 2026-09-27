@@ -9,10 +9,36 @@
 /* Begin PBXBuildFile section */
 		AA57570000000000000000A1 /* forest in Resources */ = {isa = PBXBuildFile; fileRef = AA5757000000000000000091 /* forest */; };
 		AA57570000000000000000A2 /* StickerStoriesKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA5757000000000000000092 /* StickerStoriesKit */; };
+		AA57570000000000000000A3 /* StickerStoriesDownloader.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = AA5757000000000000000032 /* StickerStoriesDownloader.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA5757000000000000000081 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA5757000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA5757000000000000000052;
+			remoteInfo = StickerStoriesDownloader;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AA5757000000000000000044 /* Embed ExtensionKit Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+				AA57570000000000000000A3 /* StickerStoriesDownloader.appex in Embed ExtensionKit Extensions */,
+			);
+			name = "Embed ExtensionKit Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		AA5757000000000000000031 /* StickerStories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickerStories.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA5757000000000000000032 /* StickerStoriesDownloader.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = StickerStoriesDownloader.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5757000000000000000091 /* forest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = forest; path = ../packs/forest; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -20,6 +46,11 @@
 		AA5757000000000000000021 /* StickerStories */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = StickerStories;
+			sourceTree = "<group>";
+		};
+		AA5757000000000000000022 /* StickerStoriesDownloader */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = StickerStoriesDownloader;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -33,6 +64,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA5757000000000000000047 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -40,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				AA5757000000000000000021 /* StickerStories */,
+				AA5757000000000000000022 /* StickerStoriesDownloader */,
 				AA5757000000000000000091 /* forest */,
 				AA5757000000000000000012 /* Products */,
 			);
@@ -49,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				AA5757000000000000000031 /* StickerStories.app */,
+				AA5757000000000000000032 /* StickerStoriesDownloader.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -63,10 +103,13 @@
 				AA5757000000000000000041 /* Sources */,
 				AA5757000000000000000043 /* Frameworks */,
 				AA5757000000000000000042 /* Resources */,
+				AA5757000000000000000044 /* Embed ExtensionKit Extensions */,
+				AA5757000000000000000045 /* Leave the narration out of release builds */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AA5757000000000000000082 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				AA5757000000000000000021 /* StickerStories */,
@@ -78,6 +121,26 @@
 			productName = StickerStories;
 			productReference = AA5757000000000000000031 /* StickerStories.app */;
 			productType = "com.apple.product-type.application";
+		};
+		AA5757000000000000000052 /* StickerStoriesDownloader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA5757000000000000000063 /* Build configuration list for PBXNativeTarget "StickerStoriesDownloader" */;
+			buildPhases = (
+				AA5757000000000000000046 /* Sources */,
+				AA5757000000000000000047 /* Frameworks */,
+				AA5757000000000000000048 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				AA5757000000000000000022 /* StickerStoriesDownloader */,
+			);
+			name = StickerStoriesDownloader;
+			productName = StickerStoriesDownloader;
+			productReference = AA5757000000000000000032 /* StickerStoriesDownloader.appex */;
+			productType = "com.apple.product-type.extensionkit-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -91,6 +154,9 @@
 				TargetAttributes = {
 					AA5757000000000000000051 = {
 						CreatedOnToolsVersion = 26.0;
+					};
+					AA5757000000000000000052 = {
+						CreatedOnToolsVersion = 27.0;
 					};
 				};
 			};
@@ -112,6 +178,7 @@
 			projectRoot = "";
 			targets = (
 				AA5757000000000000000051 /* StickerStories */,
+				AA5757000000000000000052 /* StickerStoriesDownloader */,
 			);
 		};
 /* End PBXProject section */
@@ -125,7 +192,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA5757000000000000000048 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AA5757000000000000000045 /* Leave the narration out of release builds */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Leave the narration out of release builds";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/forest/audio",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Narration reaches users as Apple-hosted asset packs (docs/asset-delivery.md):\n# debug builds keep the copy in the packs for simulator runs; release builds\n# leave it out.\nif [ \"$CONFIGURATION\" = \"Release\" ]; then\n  find \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/forest/audio\" -name '*.m4a' -delete\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AA5757000000000000000041 /* Sources */ = {
@@ -135,7 +232,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA5757000000000000000046 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA5757000000000000000082 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA5757000000000000000052 /* StickerStoriesDownloader */;
+			targetProxy = AA5757000000000000000081 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		AA5757000000000000000071 /* Debug */ = {
@@ -265,11 +377,13 @@
 		AA5757000000000000000073 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = StickerStories.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FZ8L932CA8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "StickerStories-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Sticker Stories";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.kids-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -297,11 +411,13 @@
 		AA5757000000000000000074 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = StickerStories.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FZ8L932CA8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "StickerStories-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Sticker Stories";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.kids-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -326,6 +442,62 @@
 			};
 			name = Release;
 		};
+		AA5757000000000000000075 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = StickerStoriesDownloader.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FZ8L932CA8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "StickerStoriesDownloader-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sticker Stories";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anj.stickerstories.downloader;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA5757000000000000000076 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = StickerStoriesDownloader.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FZ8L932CA8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "StickerStoriesDownloader-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sticker Stories";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anj.stickerstories.downloader;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -334,6 +506,15 @@
 			buildConfigurations = (
 				AA5757000000000000000073 /* Debug */,
 				AA5757000000000000000074 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA5757000000000000000063 /* Build configuration list for PBXNativeTarget "StickerStoriesDownloader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA5757000000000000000075 /* Debug */,
+				AA5757000000000000000076 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
