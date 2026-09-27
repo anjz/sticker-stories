@@ -18,7 +18,7 @@ no data collection, Kids Category compliant.
 
 ## Running the app
 
-Requires Xcode 26+ with an iOS 26+ simulator runtime.
+Requires Xcode 27+ with an iOS 27+ simulator runtime.
 
 ```sh
 # Build & run (or just open app/StickerStories.xcodeproj in Xcode and hit Run)
