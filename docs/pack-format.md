@@ -94,11 +94,12 @@ never letterboxes:
   stars, sun rays, a rainbow, rain or mist** — a painted moon would show
   twice the moment `night` plays. `stickerart` adds this directive to the
   scene prompts of every outdoors pack.
-- **Space packs paint no moving sky.** The art is a calm, dark starry sky
-  with distant, unlit stars and whatever scenery the pack needs (planets,
-  moons, a rocket pad), but **never shooting stars, comets, a glowing
-  nebula, a bright planet rim on the horizon, a sun flare or speed
-  streaks** — the space canvas effects draw those.
+- **Space packs paint no moving sky and no light of their own.** The art
+  is a calm, dark starry sky with distant, unlit stars and whatever
+  scenery the pack needs (planets, moons, a rocket pad), in plain
+  daylight, but **never comets, a band of the Milky Way, the Sun or its
+  glare, beams of light, clouds of dust or a bright planet rim on the
+  horizon** — the space canvas effects draw those (and the night).
 - **Underwater packs paint no light in the water.** The art is clear,
   evenly lit water, the sea floor and the scenery, but **never sun rays
   from the surface, rippling light patterns, bubbles, glowing specks,

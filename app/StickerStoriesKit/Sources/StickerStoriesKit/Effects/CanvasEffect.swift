@@ -17,20 +17,26 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
     case wind
     case fireflies
     case leaves
+    case shootingstars
     // Indoors
     case dimlight
     case windowlight
     case firelight
     case rainywindow
-    // Indoors, outdoors and space
+    // Outdoors and indoors
     case confetti
-    // Every setting but none
+    // Outdoors, indoors and underwater
     case bubbles
-    // Space
-    case shootingstars
-    case nebula
-    case warp
+    // Space: a real sky over a moon or planet with no air
     case comet
+    case nightfall
+    case daybreak
+    case eclipse
+    case milkyway
+    case satellites
+    case dust
+    case floodlights
+    case glints
     // Underwater
     case sunrays
     case ripples
@@ -43,11 +49,11 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
     public var settings: Set<PackSetting> {
         switch self {
         case .fog, .rain, .sunshine, .rainbow, .night, .snow, .sunset, .clouds, .wind, .fireflies,
-            .leaves: [.outdoors]
+            .leaves, .shootingstars: [.outdoors]
         case .dimlight, .windowlight, .firelight, .rainywindow: [.indoors]
-        case .confetti: [.outdoors, .indoors, .space]
-        case .bubbles: [.outdoors, .indoors, .space, .underwater]
-        case .shootingstars, .nebula, .warp, .comet: [.space]
+        case .confetti: [.outdoors, .indoors]
+        case .bubbles: [.outdoors, .indoors, .underwater]
+        case .comet, .nightfall, .daybreak, .eclipse, .milkyway, .satellites, .dust, .floodlights, .glints: [.space]
         case .sunrays, .ripples, .deepwater, .glowplankton, .current, .sandcloud: [.underwater]
         }
     }
@@ -116,6 +122,9 @@ public struct CanvasEffectDefinition: Sendable {
             name: .leaves, defaultDuration: 10, rampIn: 1.5, rampOut: 2.0,
             summary: "Autumn leaves flutter down and drift sideways across the scene."),
         CanvasEffectDefinition(
+            name: .shootingstars, defaultDuration: 10, rampIn: 1.0, rampOut: 1.5,
+            summary: "Now and then a shooting star streaks across the sky."),
+        CanvasEffectDefinition(
             name: .dimlight, defaultDuration: 8, rampIn: 1.5, rampOut: 1.5,
             summary: "The lights go low: the scene darkens toward its edges."),
         CanvasEffectDefinition(
@@ -134,17 +143,32 @@ public struct CanvasEffectDefinition: Sendable {
             name: .bubbles, defaultDuration: 8, rampIn: 1.0, rampOut: 1.5,
             summary: "Bubbles float up and wobble gently over the scene."),
         CanvasEffectDefinition(
-            name: .shootingstars, defaultDuration: 10, rampIn: 1.0, rampOut: 1.5,
-            summary: "Now and then a shooting star streaks across the sky."),
-        CanvasEffectDefinition(
-            name: .nebula, defaultDuration: 12, rampIn: 3.0, rampOut: 3.0,
-            summary: "Soft purple and teal clouds of light swell across the sky behind the scenery."),
-        CanvasEffectDefinition(
-            name: .warp, defaultDuration: 4, rampIn: 0.6, rampOut: 1.0,
-            summary: "Stars stretch into streaks rushing out from the centre: zooming through space."),
-        CanvasEffectDefinition(
             name: .comet, defaultDuration: 12, rampIn: 1.5, rampOut: 2.0,
             summary: "A comet with a long glowing tail glides slowly across the sky."),
+        CanvasEffectDefinition(
+            name: .nightfall, defaultDuration: 10, rampIn: 2.5, rampOut: 2.5,
+            summary: "The long night comes: the ground darkens to a deep blue-grey and many more stars come out."),
+        CanvasEffectDefinition(
+            name: .daybreak, defaultDuration: 8, rampIn: 1.5, rampOut: 2.0,
+            summary: "Stark white sunlight sweeps across the scene from the left, with a soft glare in the top-left corner."),
+        CanvasEffectDefinition(
+            name: .eclipse, defaultDuration: 12, rampIn: 3.0, rampOut: 3.0,
+            summary: "The light turns a deep, dim copper-red for a while, then comes back."),
+        CanvasEffectDefinition(
+            name: .milkyway, defaultDuration: 12, rampIn: 3.0, rampOut: 3.0,
+            summary: "A pale band of countless stars glows across the black sky."),
+        CanvasEffectDefinition(
+            name: .satellites, defaultDuration: 12, rampIn: 1.5, rampOut: 2.0,
+            summary: "A few tiny steady lights glide slowly across the sky, far overhead."),
+        CanvasEffectDefinition(
+            name: .dust, defaultDuration: 5, rampIn: 0.8, rampOut: 2.0,
+            summary: "A cloud of grey dust sprays up across the lower scene and falls back down."),
+        CanvasEffectDefinition(
+            name: .floodlights, defaultDuration: 10, rampIn: 0.8, rampOut: 1.5,
+            summary: "Floodlights switch on: white beams from the top corners and pools of light on the ground."),
+        CanvasEffectDefinition(
+            name: .glints, defaultDuration: 8, rampIn: 1.5, rampOut: 2.0,
+            summary: "The ground sparkles softly here and there, as the light catches tiny beads."),
         CanvasEffectDefinition(
             name: .sunrays, defaultDuration: 10, rampIn: 2.0, rampOut: 2.0,
             summary: "Shafts of sunlight slant down from the surface and sway slowly."),

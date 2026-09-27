@@ -380,10 +380,11 @@ Weather and light over the whole scene use the reserved target `canvas`
 
 - `effect` is one of the names in `docs/effects/effects.json` under
   `canvasEffects`: `fog`, `rain`, `sunshine`, `rainbow`, `night`, `snow`,
-  `sunset`, `clouds`, `wind`, `fireflies`, `leaves`, `confetti`, `bubbles`
-  (outdoors packs); `dimlight`, `windowlight`, `firelight`, `rainywindow`,
-  `confetti`, `bubbles` (indoors packs); `confetti`, `bubbles`,
-  `shootingstars`, `nebula`, `warp`, `comet` (space packs);
+  `sunset`, `clouds`, `wind`, `fireflies`, `leaves`, `shootingstars`,
+  `confetti`, `bubbles` (outdoors packs); `dimlight`, `windowlight`,
+  `firelight`, `rainywindow`, `confetti`, `bubbles` (indoors packs);
+  `comet`, `nightfall`, `daybreak`, `eclipse`, `milkyway`, `satellites`,
+  `dust`, `floodlights`, `glints` (space packs);
   and `bubbles`, `sunrays`, `ripples`, `deepwater`, `glowplankton`,
   `current`, `sandcloud` (underwater packs). The pack's
   `setting` in its manifest decides which are allowed; a `none` pack

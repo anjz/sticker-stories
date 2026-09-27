@@ -88,7 +88,9 @@ squash and stretch, keyframe authoring, scene shake and parallax,
 background-layer targeting, z-order and flip changes, blur, saturation,
 brightness, shimmer, halo, composite presets, pack-custom emitters. Weather
 and light over the scene are the canvas effects below — that list is closed
-too. Removed in 2026-09 and not to be reused: `planetrise` and `seasnow`.
+too. Removed in 2026-09 and not to be reused: `planetrise`, `seasnow`,
+and `nebula` and `warp` (space's sky is a real one now: no glowing
+nebulae, no warp speed).
 Considered for it and turned down (2026-09): `nightlight` (stars
 turning on a bedroom wall), `aurora` in space, thunder and lightning
 (flashes are a light-sensitivity risk and storms frighten small children),
@@ -139,7 +141,8 @@ drizzle or downpour) and **`duration`** (how long it stays, ramps
 included). The exceptions are the light of the time of day and snow: a
 `night`, `sunset` or `dimlight` holds until the story changes the light
 (the next `night`, `sunset`, `dimlight`, `sunshine`, `sunrays`,
-`windowlight` or `firelight`, which it crossfades into), and `snow` keeps
+`windowlight` or `firelight`, which it crossfades into), a space
+`nightfall` holds until `daybreak` (or the next `nightfall`), and `snow` keeps
 falling until the sun comes out (`sunshine`, `sunrays`) or `rain` washes it
 away — or the story ends. `storyaudio` lengthens their triggers' duration
 to that on the real narration (`render.HoldLights`), so the day never
@@ -168,16 +171,22 @@ or fantastical places) gets no canvas effects at all.
 | `wind` | outdoors | Pale wisps of air sweep across the scene from left to right, with a few specks tumbling along. | A windy day, a kite, something blown away, a whoosh. `intensity` is a breeze to a gust. | 8 s | 1 / 1.5 s | runs at ≤0.4 |
 | `fireflies` | outdoors | Tiny warm lights drift and pulse slowly, mostly in the lower half of the scene. | A summer evening, a little magic in the dark, lighting the way. Lovely layered over `night` or `sunset`. | 12 s | 2 / 2 s | runs at ≤0.4 |
 | `leaves` | outdoors | Autumn leaves in warm colours flutter down, turning over and drifting sideways. | Autumn, a gust shaking the trees, change, a leaf pile. Only for packs whose scenery has trees. | 10 s | 1.5 / 2 s | runs at ≤0.4 |
+| `shootingstars` | outdoors | Now and then a shooting star streaks across the sky behind the scenery. | Making a wish on a clear night, wonder, "look!". Best over `night`. `intensity` is a single one now and then to a meteor shower. | 10 s | 1 / 1.5 s | runs at ≤0.4 |
 | `dimlight` | indoors | The lights go low: the scene darkens toward its edges. | Bedtime, a lamp switched low, a cosy evening, a whispered secret. Never darkness as a threat. | 8 s | 1.5 / 1.5 s | full |
 | `windowlight` | indoors | A slanted shaft of sunlight falls across the room from the top left, with dust motes turning slowly in it. | Morning, waking up, a lazy sunny afternoon, the sun coming out while everyone is inside. | 10 s | 2 / 2 s | full |
 | `firelight` | indoors | A warm glow from below flickers slowly and gently (never a strobe) while the edges of the room dim. | A fireplace, birthday candles, a cosy evening, telling stories together. Never a fire as a danger. | 10 s | 2 / 2 s | full |
 | `rainywindow` | indoors | The room turns cool and grey while faint raindrops trickle down, as if seen through a window. | A rainy day indoors, waiting for the rain to stop, a quiet day inside. | 12 s | 2 / 2 s | runs at ≤0.4 |
-| `confetti` | outdoors, indoors, space | A shower of colourful confetti flutters down over the whole scene. | A birthday, a party, a "hooray!", a happy ending. One per story at most. | 6 s | 0.5 / 1.5 s | runs at ≤0.4 |
-| `bubbles` | outdoors, indoors, space, underwater | Round bubbles float up from the bottom and wobble as they rise. | Bath time, washing up, blowing bubbles, a party; under the sea, a fish talking or something bubbling up. | 8 s | 1 / 1.5 s | runs at ≤0.4 |
-| `shootingstars` | space | Now and then a shooting star streaks across the sky behind the scenery. | Making a wish, wonder, "look!". `intensity` is a single one now and then to a meteor shower. | 10 s | 1 / 1.5 s | runs at ≤0.4 |
-| `nebula` | space | Soft purple, pink and teal clouds of light swell and drift across the sky behind the scenery. | A magical place, wonder, drifting far from home, a dreamy moment. Builds slowly — cue it a beat early. | 12 s | 3 / 3 s | full |
-| `warp` | space | Stars stretch into streaks rushing out from the centre, in the sky behind the stickers and the scenery. | Blast-off, zooming to a new planet, "whoosh!". Short — a few seconds is plenty. | 4 s | 0.6 / 1 s | does not run |
-| `comet` | space | A comet with a long glowing tail glides slowly across the sky behind the scenery. | A visitor, following something, a slow moment of wonder. Calmer than `shootingstars`. | 12 s | 1.5 / 2 s | full |
+| `confetti` | outdoors, indoors | A shower of colourful confetti flutters down over the whole scene. | A birthday, a party, a "hooray!", a happy ending. One per story at most. | 6 s | 0.5 / 1.5 s | runs at ≤0.4 |
+| `bubbles` | outdoors, indoors, underwater | Round bubbles float up from the bottom and wobble as they rise. | Bath time, washing up, blowing bubbles, a party; under the sea, a fish talking or something bubbling up. | 8 s | 1 / 1.5 s | runs at ≤0.4 |
+| `comet` | space | A comet with a long glowing tail glides slowly across the sky behind the scenery. | A visitor, following something, a slow moment of wonder. | 12 s | 1.5 / 2 s | full |
+| `nightfall` | space | The long night comes: the scene darkens to a deep blue-grey (never black) and many more stars come out one by one in the sky behind the scenery, shining steadily — with no air, stars don't twinkle. It holds until `daybreak` or the story's end, like `night`. | Night at the base, bedtime, waiting out the dark and the cold. Never darkness as a threat. Builds slowly — cue it a beat early. | 10 s | 2.5 / 2.5 s | full |
+| `daybreak` | space | Stark white sunlight sweeps across the scene from the left and leaves everything a little brighter, with a soft glare in the top-left corner as if the Sun had just cleared the edge of the picture. No golden dawn: there is no air to colour it. Ends a `nightfall`. | Morning at the base, the long night over, the sun coming up over the ridge. | 8 s | 1.5 / 2 s | full |
+| `eclipse` | space | The light turns a deep, dim copper-red — seen from the Moon, the Earth in front of the Sun, ringed by all its sunsets — darkest toward the edges, then comes back. | A rare wonder everyone stops to watch. One per story at most. | 12 s | 3 / 3 s | full |
+| `milkyway` | space | A pale band of countless tiny steady stars leans gently across the upper sky behind the scenery, clear of the horizon. | Stargazing, a clear dark night, feeling tiny. Lovely over `nightfall`. | 12 s | 3 / 3 s | full |
+| `satellites` | space | A few tiny steady lights glide slowly across the sky behind the scenery, far overhead — spacecraft catching the sunlight. Never blinking. | Something passing high above, waving to someone far away, a quiet look up. | 12 s | 1.5 / 2 s | full |
+| `dust` | space | A cloud of grey dust billows up across the lower scene — up quickly, down slowly — while grains rain straight back down. | A landing or a lift-off, wheels racing, digging, a thump. Short — a few seconds is plenty. | 5 s | 0.8 / 2 s | runs at ≤0.4 |
+| `floodlights` | space | Floodlights switch on: two broad white beams slant down from lamps at the top corners into pools of light on the ground that brighten whatever stands in them. Steady, never a flicker; above `nightfall`'s darkness. | Lights on for the night's work, guiding a landing, finding someone in the dark. Lovely over `nightfall`. | 10 s | 0.8 / 1.5 s | full |
+| `glints` | space | The ground sparkles softly here and there, each glint swelling and fading on its own slow pulse (never a flash) — the light catching tiny beads of glass in the dust. Over the ground, under the stickers standing in front. | A discovery, something precious in the dust, a quiet magical beat. | 8 s | 1.5 / 2 s | runs at ≤0.4 |
 | `sunrays` | underwater | Shafts of sunlight slant down through the water from the surface and sway slowly. | A bright, happy day under the sea, swimming up towards the light, the sun coming out above. | 10 s | 2 / 2 s | full |
 | `ripples` | underwater | A net of rippling light plays over the whole scene, brightest near the sea floor. | Shallow water, a sunny lagoon, calm and playful. Layers nicely with `sunrays`. | 12 s | 2 / 2 s | full |
 | `deepwater` | underwater | The water darkens to a deep blue, most of all toward the edges and the surface. | Diving deeper, exploring, bedtime under the sea. Never darkness as a threat. Builds slowly — cue it a beat early. | 12 s | 2.5 / 2.5 s | full |
@@ -529,7 +538,7 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
 ## Accessibility and calm mode
 
 - **Reduce Motion** (system setting) is observed live: `shake`, `hop`,
-  `spin` and `float` do not run, nor does the canvas effect `warp`; `pulse` and `wobble` run at
+  `spin` and `float` do not run; `pulse` and `wobble` run at
   intensity ≤0.3; particles and the canvas effects that fall or drift
   (`rain`, `snow` and the others marked in the canvas table) at ≤0.4;
   fades, `glow`, `tint` and the other canvas effects (slow washes of light)

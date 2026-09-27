@@ -130,11 +130,12 @@ struct CanvasEffectsRunnerTests {
     }
 
     @Test func anEffectForSeveralSettingsRunsInEachOfThem() {
-        let trigger = CanvasEffectTrigger(at: 0, effect: .confetti)
-        for setting in [PackSetting.outdoors, .indoors, .space] {
+        let trigger = CanvasEffectTrigger(at: 0, effect: .bubbles)
+        for setting in [PackSetting.outdoors, .indoors, .underwater] {
             let r = runner([trigger], setting: setting)
             #expect(!r.tick(1).isEmpty, Comment(rawValue: setting.rawValue))
         }
+        #expect(runner([trigger], setting: .space).tick(1).isEmpty)
         #expect(runner([trigger], setting: .none).tick(1).isEmpty)
     }
 

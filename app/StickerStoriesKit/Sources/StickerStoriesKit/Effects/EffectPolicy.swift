@@ -45,20 +45,20 @@ public struct EffectPolicy: Equatable, Sendable {
     }
 
     /// The canvas-effect options to actually run with, or `nil` to drop the
-    /// effect. The ones that fall or drift (rain, snow, confetti…) are
-    /// damped, `warp` — the whole sky rushing past — is dropped, and the
-    /// slow washes of light carry story meaning and run in full.
+    /// effect. The ones that fall, drift or twinkle (rain, snow, confetti,
+    /// dust, glints…) are damped, and the slow washes of light and the
+    /// things gliding slowly across the sky carry story meaning and run in
+    /// full.
     public func adjusted(_ name: CanvasEffectName, _ options: CanvasEffectOptions) -> CanvasEffectOptions? {
         guard isCalm else { return options }
         var result = options
         switch name {
         case .rain, .snow, .wind, .fireflies, .leaves, .rainywindow, .confetti, .bubbles, .shootingstars,
-            .glowplankton, .current, .sandcloud:
+            .dust, .glints, .glowplankton, .current, .sandcloud:
             result.intensity = min(result.intensity, 0.4)
-        case .warp:
-            return nil
         case .fog, .sunshine, .rainbow, .night, .sunset, .clouds, .dimlight, .windowlight, .firelight,
-            .nebula, .comet, .sunrays, .ripples, .deepwater:
+            .comet, .nightfall, .daybreak, .eclipse, .milkyway, .satellites, .floodlights,
+            .sunrays, .ripples, .deepwater:
             break
         }
         if calmMode { result.intensity *= calmIntensityMultiplier }

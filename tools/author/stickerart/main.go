@@ -66,7 +66,7 @@ const (
 	// Space and underwater packs get their own version: the art keeps the
 	// sky or the water calm and the canvas effects add everything that moves
 	// or glows in it.
-	sceneNeutralSpace = "Sky: a calm, dark starry sky with small, distant, unlit stars. Do NOT paint shooting stars, comets, a glowing nebula, a bright glowing planet rim along the horizon, a sun flare or speed streaks anywhere in the picture — the app adds those over the scene as effects."
+	sceneNeutralSpace = "Sky: a calm, dark starry sky with small, distant, unlit stars. Do NOT paint comets, a band of the Milky Way, the Sun or its glare, beams of light, clouds of dust or a bright glowing planet rim along the horizon anywhere in the picture — the app adds those over the scene as effects."
 	sceneNeutralWater = "Water and light: clear water with soft, even light. Do NOT paint sun rays from the surface, rippling light patterns, bubbles, glowing specks, drifting particles or clouds of sand anywhere in the picture — the app adds those over the scene as effects."
 )
 

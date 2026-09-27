@@ -1369,18 +1369,26 @@ func validateTags(is *Issues, lang string, nar Narration) {
 // into a story, by effect and language (primary subtag). Only words that
 // describe the scene itself: a story that says them should show it.
 var canvasWords = map[string]map[string]*regexp.Regexp{
-	"fog":       {"en": regexp.MustCompile(`\b(fog|foggy|mist|misty)\b`), "es": regexp.MustCompile(`\b(niebla|bruma)\b`)},
-	"rain":      {"en": regexp.MustCompile(`\b(rain|raining|rained|rainy|drizzle|pitter-patter)\b`), "es": regexp.MustCompile(`\b(lluvia|llueve|llover|lloviendo|llovió|chispear)\b`)},
-	"snow":      {"en": regexp.MustCompile(`\b(snow|snowing|snowflakes?)\b`), "es": regexp.MustCompile(`\b(nieve|nevando|nevar|nevó|copos?)\b`)},
-	"rainbow":   {"en": regexp.MustCompile(`\brainbow\b`), "es": regexp.MustCompile(`\barcoíris\b`)},
-	"night":     {"en": regexp.MustCompile(`\b(moon|moonlight)\b`), "es": regexp.MustCompile(`\bluna\b`)},
-	"sunset":    {"en": regexp.MustCompile(`\b(sunset|sun (went|goes|had gone|is going) down)\b`), "es": regexp.MustCompile(`\b(atardecer|sol se (puso|ponía|pone|esconde)|sol ya se había puesto)\b`)},
-	"clouds":    {"en": regexp.MustCompile(`\b(clouds?|cloudy)\b`), "es": regexp.MustCompile(`\b(nubes?|nublad[oa])\b`)},
-	"wind":      {"en": regexp.MustCompile(`\b(wind|windy|gust)\b`), "es": regexp.MustCompile(`\b(viento|ráfaga)\b`)},
-	"fireflies": {"en": regexp.MustCompile(`\bfireflies\b`), "es": regexp.MustCompile(`\bluciérnagas\b`)},
-	"leaves":    {"en": regexp.MustCompile(`\b(autumn|leaves (fell|fall|came down|came tumbling))\b`), "es": regexp.MustCompile(`\botoño\b`)},
-	"confetti":  {"en": regexp.MustCompile(`\b(party|confetti)\b`), "es": regexp.MustCompile(`\b(fiesta|confeti)\b`)},
-	"bubbles":   {"en": regexp.MustCompile(`\bbubbles\b`), "es": regexp.MustCompile(`\bburbujas\b`)},
+	"fog":           {"en": regexp.MustCompile(`\b(fog|foggy|mist|misty)\b`), "es": regexp.MustCompile(`\b(niebla|bruma)\b`)},
+	"rain":          {"en": regexp.MustCompile(`\b(rain|raining|rained|rainy|drizzle|pitter-patter)\b`), "es": regexp.MustCompile(`\b(lluvia|llueve|llover|lloviendo|llovió|chispear)\b`)},
+	"snow":          {"en": regexp.MustCompile(`\b(snow|snowing|snowflakes?)\b`), "es": regexp.MustCompile(`\b(nieve|nevando|nevar|nevó|copos?)\b`)},
+	"rainbow":       {"en": regexp.MustCompile(`\brainbow\b`), "es": regexp.MustCompile(`\barcoíris\b`)},
+	"night":         {"en": regexp.MustCompile(`\b(moon|moonlight)\b`), "es": regexp.MustCompile(`\bluna\b`)},
+	"sunset":        {"en": regexp.MustCompile(`\b(sunset|sun (went|goes|had gone|is going) down)\b`), "es": regexp.MustCompile(`\b(atardecer|sol se (puso|ponía|pone|esconde)|sol ya se había puesto)\b`)},
+	"clouds":        {"en": regexp.MustCompile(`\b(clouds?|cloudy)\b`), "es": regexp.MustCompile(`\b(nubes?|nublad[oa])\b`)},
+	"wind":          {"en": regexp.MustCompile(`\b(wind|windy|gust)\b`), "es": regexp.MustCompile(`\b(viento|ráfaga)\b`)},
+	"fireflies":     {"en": regexp.MustCompile(`\bfireflies\b`), "es": regexp.MustCompile(`\bluciérnagas\b`)},
+	"leaves":        {"en": regexp.MustCompile(`\b(autumn|leaves (fell|fall|came down|came tumbling))\b`), "es": regexp.MustCompile(`\botoño\b`)},
+	"confetti":      {"en": regexp.MustCompile(`\b(party|confetti)\b`), "es": regexp.MustCompile(`\b(fiesta|confeti)\b`)},
+	"bubbles":       {"en": regexp.MustCompile(`\bbubbles\b`), "es": regexp.MustCompile(`\bburbujas\b`)},
+	"shootingstars": {"en": regexp.MustCompile(`\bshooting stars?\b`), "es": regexp.MustCompile(`\bestrellas? fugac?(es|z)\b`)},
+	"comet":         {"en": regexp.MustCompile(`\bcomets?\b`), "es": regexp.MustCompile(`\bcometas?\b`)},
+	"nightfall":     {"en": regexp.MustCompile(`\b(nightfall|night (fell|falls|came|was falling)|(long|lunar) night)\b`), "es": regexp.MustCompile(`\b(anocheció|anochecer|(cayó|caía|llegó) la noche|noche lunar|larga noche)\b`)},
+	"daybreak":      {"en": regexp.MustCompile(`\b(daybreak|sunrise|dawn|the sun (rose|came up|comes up|rises|was rising))\b`), "es": regexp.MustCompile(`\b(amanecer|amaneció|amanece|(salió|sale|salía) el sol)\b`)},
+	"eclipse":       {"en": regexp.MustCompile(`\beclipse\b`), "es": regexp.MustCompile(`\beclipse\b`)},
+	"milkyway":      {"en": regexp.MustCompile(`\bmilky way\b`), "es": regexp.MustCompile(`\bvía láctea\b`)},
+	"dust":          {"en": regexp.MustCompile(`\b(cloud of dust|dust cloud|dust (flew|sprayed|sprays|rose|billowed))\b`), "es": regexp.MustCompile(`\b(nube de polvo|polvareda)\b`)},
+	"floodlights":   {"en": regexp.MustCompile(`\bfloodlights?\b`), "es": regexp.MustCompile(`\b(focos|reflectores)\b`)},
 }
 
 // validateCanvasMentions warns when the words put weather or light into the

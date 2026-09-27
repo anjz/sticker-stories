@@ -317,6 +317,8 @@ var Held = map[string]map[string]bool{
 	"sunset":   LightChanges,
 	"dimlight": LightChanges,
 	"snow":     {"snow": true, "sunshine": true, "sunrays": true, "rain": true},
+	// Space: the long night holds until the sun comes back.
+	"nightfall": {"nightfall": true, "daybreak": true},
 }
 
 // HoldLights lengthens every held effect so it lasts until the next effect

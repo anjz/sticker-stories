@@ -91,6 +91,11 @@
       `comet`; underwater `sunrays`, `ripples`, `deepwater`,
       `glowplankton`, `current`, `sandcloud` (`planetrise` and `seasnow`
       were built and later removed)
+- [x] Space effects made real for Moon Base (2026-09): `comet` kept;
+      new `nightfall` (held until `daybreak`), `daybreak`, `eclipse`,
+      `milkyway`, `satellites`, `dust`, `floodlights`, `glints`;
+      `shootingstars` moved to outdoors; `confetti` and `bubbles` left
+      space; `nebula` and `warp` retired
 - [x] `CanvasEffectPainter` seam (one file per effect in `Effects/Canvas/`)
       and `DriftField` for particle-style effects; gallery
       `-canvasDemo` / `-galleryBackdrop` for simulator screenshots

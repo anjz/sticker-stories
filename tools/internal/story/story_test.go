@@ -17,8 +17,8 @@ func testCatalog(t *testing.T) *Catalog {
 	if len(c.Effects) != 12 {
 		t.Fatalf("catalogue has %d effects, want 12", len(c.Effects))
 	}
-	if len(c.Canvas) != 27 {
-		t.Fatalf("catalogue has %d canvas effects, want 27", len(c.Canvas))
+	if len(c.Canvas) != 33 {
+		t.Fatalf("catalogue has %d canvas effects, want 33", len(c.Canvas))
 	}
 	return c
 }
