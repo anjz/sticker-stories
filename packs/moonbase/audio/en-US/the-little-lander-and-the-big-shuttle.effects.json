@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "high",
+      "sticker": "station",
+      "enter": true
+    },
+    {
+      "at": 7.54,
+      "cue": "shuttle",
+      "sticker": "shuttle",
+      "enter": true
+    },
+    {
+      "at": 10.07,
+      "cue": "it",
+      "sticker": "shuttle",
+      "animation": "cargo",
+      "mode": "hold"
+    },
+    {
+      "at": 14.24,
+      "cue": "but",
+      "sticker": "shuttle",
+      "effect": "shake"
+    },
+    {
+      "at": 18.42,
+      "cue": "the",
+      "sticker": "station",
+      "animation": "turn"
+    },
+    {
+      "at": 24.6,
+      "cue": "i'll",
+      "sticker": "lander",
+      "enter": true
+    },
+    {
+      "at": 24.6,
+      "cue": "i'll",
+      "sticker": "lander",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 26.93,
+      "cue": "small",
+      "sticker": "lander",
+      "effect": "hop"
+    },
+    {
+      "at": 29.24,
+      "cue": "up",
+      "sticker": "lander",
+      "go": "to",
+      "target": "shuttle"
+    },
+    {
+      "at": 33.48,
+      "cue": "slowly",
+      "sticker": "lander",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 35.08,
+      "cue": "it",
+      "effect": "dust",
+      "duration": 5
+    },
+    {
+      "at": 37.58,
+      "cue": "pilot",
+      "sticker": "pilot",
+      "enter": true
+    },
+    {
+      "at": 37.58,
+      "cue": "pilot",
+      "sticker": "pilot",
+      "expression": "happy"
+    },
+    {
+      "at": 37.58,
+      "cue": "pilot",
+      "sticker": "pilot",
+      "effect": "hop"
+    },
+    {
+      "at": 38.69,
+      "cue": "thank",
+      "sticker": "shuttle",
+      "animation": "cargo",
+      "mode": "resume"
+    },
+    {
+      "at": 43.8,
+      "cue": "bring",
+      "sticker": "lander",
+      "effect": "sparkle"
+    }
+  ]
+}

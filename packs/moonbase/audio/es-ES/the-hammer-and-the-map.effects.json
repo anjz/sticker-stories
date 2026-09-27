@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "el",
+      "sticker": "lander",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "el",
+      "sticker": "lander",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 6.79,
+      "cue": "astronauta",
+      "sticker": "astronaut",
+      "enter": true
+    },
+    {
+      "at": 6.79,
+      "cue": "astronauta",
+      "sticker": "astronaut",
+      "go": "to",
+      "target": "lander"
+    },
+    {
+      "at": 9.61,
+      "cue": "geólogo",
+      "sticker": "geologist",
+      "enter": true
+    },
+    {
+      "at": 9.61,
+      "cue": "geólogo",
+      "sticker": "geologist",
+      "go": "to",
+      "target": "lander"
+    },
+    {
+      "at": 17.16,
+      "cue": "mi",
+      "sticker": "geologist",
+      "expression": "happy"
+    },
+    {
+      "at": 24.84,
+      "cue": "hecho",
+      "sticker": "astronaut",
+      "expression": "happy"
+    },
+    {
+      "at": 24.84,
+      "cue": "hecho",
+      "sticker": "astronaut",
+      "effect": "hop"
+    },
+    {
+      "at": 33.88,
+      "cue": "el",
+      "sticker": "geologist",
+      "expression": "surprised"
+    },
+    {
+      "at": 33.88,
+      "cue": "el",
+      "sticker": "astronaut",
+      "expression": "surprised"
+    },
+    {
+      "at": 46.31,
+      "cue": "la",
+      "sticker": "lander",
+      "animation": "hatch"
+    },
+    {
+      "at": 49.31,
+      "cue": "empate",
+      "sticker": "pilot",
+      "enter": true
+    },
+    {
+      "at": 49.31,
+      "cue": "empate",
+      "sticker": "pilot",
+      "expression": "happy"
+    },
+    {
+      "at": 54.81,
+      "cue": "geólogo",
+      "sticker": "geologist",
+      "animation": "study"
+    }
+  ]
+}

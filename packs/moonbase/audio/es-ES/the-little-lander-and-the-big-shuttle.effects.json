@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "allá",
+      "sticker": "station",
+      "enter": true
+    },
+    {
+      "at": 8.41,
+      "cue": "transbordador",
+      "sticker": "shuttle",
+      "enter": true
+    },
+    {
+      "at": 11.59,
+      "cue": "abrió",
+      "sticker": "shuttle",
+      "animation": "cargo",
+      "mode": "hold"
+    },
+    {
+      "at": 17.32,
+      "cue": "pero",
+      "sticker": "shuttle",
+      "effect": "shake"
+    },
+    {
+      "at": 23,
+      "cue": "la",
+      "sticker": "station",
+      "animation": "turn"
+    },
+    {
+      "at": 30.97,
+      "cue": "yo",
+      "sticker": "lander",
+      "enter": true
+    },
+    {
+      "at": 30.97,
+      "cue": "yo",
+      "sticker": "lander",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 34.08,
+      "cue": "pequeño",
+      "sticker": "lander",
+      "effect": "hop"
+    },
+    {
+      "at": 36,
+      "cue": "subió",
+      "sticker": "lander",
+      "go": "to",
+      "target": "shuttle"
+    },
+    {
+      "at": 41.14,
+      "cue": "despacio",
+      "sticker": "lander",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 43.16,
+      "cue": "aterrizó",
+      "effect": "dust",
+      "duration": 5
+    },
+    {
+      "at": 45.58,
+      "cue": "piloto",
+      "sticker": "pilot",
+      "enter": true
+    },
+    {
+      "at": 45.58,
+      "cue": "piloto",
+      "sticker": "pilot",
+      "expression": "happy"
+    },
+    {
+      "at": 45.58,
+      "cue": "piloto",
+      "sticker": "pilot",
+      "effect": "hop"
+    },
+    {
+      "at": 47.29,
+      "cue": "gracias",
+      "sticker": "shuttle",
+      "animation": "cargo",
+      "mode": "resume"
+    },
+    {
+      "at": 54.28,
+      "cue": "tráeme",
+      "sticker": "lander",
+      "effect": "sparkle"
+    }
+  ]
+}

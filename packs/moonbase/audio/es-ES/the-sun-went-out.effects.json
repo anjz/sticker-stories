@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "la",
+      "effect": "eclipse",
+      "duration": 18
+    },
+    {
+      "at": 8.09,
+      "cue": "el",
+      "sticker": "solar-panel",
+      "enter": true
+    },
+    {
+      "at": 10.17,
+      "cue": "de",
+      "sticker": "solar-panel",
+      "animation": "track"
+    },
+    {
+      "at": 12.41,
+      "cue": "robot",
+      "sticker": "robot",
+      "enter": true
+    },
+    {
+      "at": 12.41,
+      "cue": "robot",
+      "sticker": "robot",
+      "expression": "surprised"
+    },
+    {
+      "at": 13.51,
+      "cue": "se",
+      "sticker": "robot",
+      "effect": "spin"
+    },
+    {
+      "at": 15.76,
+      "cue": "corrió",
+      "sticker": "geologist",
+      "enter": true
+    },
+    {
+      "at": 15.76,
+      "cue": "corrió",
+      "sticker": "robot",
+      "go": "to",
+      "target": "geologist"
+    },
+    {
+      "at": 18.92,
+      "cue": "corrió",
+      "sticker": "geologist",
+      "expression": "surprised"
+    },
+    {
+      "at": 18.92,
+      "cue": "corrió",
+      "sticker": "pilot",
+      "enter": true
+    },
+    {
+      "at": 18.92,
+      "cue": "corrió",
+      "sticker": "robot",
+      "go": "to",
+      "target": "pilot"
+    },
+    {
+      "at": 22.32,
+      "cue": "piloto",
+      "sticker": "pilot",
+      "expression": "happy"
+    },
+    {
+      "at": 28.85,
+      "cue": "robot",
+      "sticker": "robot",
+      "expression": "normal"
+    },
+    {
+      "at": 45.36,
+      "cue": "todos",
+      "sticker": "robot",
+      "expression": "surprised"
+    },
+    {
+      "at": 49.1,
+      "cue": "después",
+      "sticker": "geologist",
+      "expression": "happy"
+    },
+    {
+      "at": 55.79,
+      "cue": "robot",
+      "sticker": "robot",
+      "expression": "happy"
+    },
+    {
+      "at": 55.79,
+      "cue": "robot",
+      "sticker": "robot",
+      "animation": "dance"
+    }
+  ]
+}

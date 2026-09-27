@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "the",
+      "sticker": "lander",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "the",
+      "sticker": "lander",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 5.96,
+      "cue": "astronaut",
+      "sticker": "astronaut",
+      "enter": true
+    },
+    {
+      "at": 5.96,
+      "cue": "astronaut",
+      "sticker": "astronaut",
+      "go": "to",
+      "target": "lander"
+    },
+    {
+      "at": 8.28,
+      "cue": "geologist",
+      "sticker": "geologist",
+      "enter": true
+    },
+    {
+      "at": 8.28,
+      "cue": "geologist",
+      "sticker": "geologist",
+      "go": "to",
+      "target": "lander"
+    },
+    {
+      "at": 14.81,
+      "cue": "my",
+      "sticker": "geologist",
+      "expression": "happy"
+    },
+    {
+      "at": 21.79,
+      "cue": "deal",
+      "sticker": "astronaut",
+      "expression": "happy"
+    },
+    {
+      "at": 21.79,
+      "cue": "deal",
+      "sticker": "astronaut",
+      "effect": "hop"
+    },
+    {
+      "at": 30.16,
+      "cue": "the",
+      "sticker": "geologist",
+      "expression": "surprised"
+    },
+    {
+      "at": 30.16,
+      "cue": "the",
+      "sticker": "astronaut",
+      "expression": "surprised"
+    },
+    {
+      "at": 42.68,
+      "cue": "the",
+      "sticker": "lander",
+      "animation": "hatch"
+    },
+    {
+      "at": 45.76,
+      "cue": "a",
+      "sticker": "pilot",
+      "enter": true
+    },
+    {
+      "at": 45.76,
+      "cue": "a",
+      "sticker": "pilot",
+      "expression": "happy"
+    },
+    {
+      "at": 50.41,
+      "cue": "geologist",
+      "sticker": "geologist",
+      "animation": "study"
+    }
+  ]
+}

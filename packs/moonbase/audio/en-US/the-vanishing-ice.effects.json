@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "geologist",
+      "sticker": "geologist",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "geologist",
+      "sticker": "geologist",
+      "expression": "happy"
+    },
+    {
+      "at": 5.36,
+      "cue": "ice",
+      "sticker": "ice",
+      "enter": true
+    },
+    {
+      "at": 8.83,
+      "cue": "nobody",
+      "sticker": "geologist",
+      "expression": "surprised"
+    },
+    {
+      "at": 15.53,
+      "cue": "geologist",
+      "sticker": "drone",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 15.53,
+      "cue": "geologist",
+      "sticker": "geologist",
+      "go": "to",
+      "target": "ice"
+    },
+    {
+      "at": 16.91,
+      "cue": "drone",
+      "sticker": "drone",
+      "enter": true
+    },
+    {
+      "at": 18.6,
+      "cue": "lens",
+      "sticker": "drone",
+      "animation": "photo",
+      "mode": "hold"
+    },
+    {
+      "at": 24.33,
+      "cue": "flash",
+      "sticker": "drone",
+      "animation": "photo",
+      "mode": "resume"
+    },
+    {
+      "at": 27.85,
+      "cue": "he",
+      "sticker": "geologist",
+      "animation": "study"
+    },
+    {
+      "at": 30.27,
+      "cue": "there",
+      "sticker": "ice",
+      "animation": "frost",
+      "mode": "hold"
+    },
+    {
+      "at": 35.71,
+      "cue": "the",
+      "sticker": "geologist",
+      "expression": "happy"
+    },
+    {
+      "at": 45.5,
+      "cue": "case",
+      "sticker": "geologist",
+      "effect": "hearts"
+    },
+    {
+      "at": 47.79,
+      "cue": "the",
+      "sticker": "drone",
+      "effect": "pulse"
+    }
+  ]
+}

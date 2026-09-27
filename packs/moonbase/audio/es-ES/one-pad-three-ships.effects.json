@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 8.04,
+      "cue": "yo",
+      "sticker": "supply-pod",
+      "enter": true
+    },
+    {
+      "at": 13.45,
+      "cue": "piloto",
+      "sticker": "pilot",
+      "enter": true
+    },
+    {
+      "at": 15.04,
+      "cue": "movió",
+      "sticker": "pilot",
+      "animation": "signal"
+    },
+    {
+      "at": 20.14,
+      "cue": "bajó",
+      "sticker": "supply-pod",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 20.14,
+      "cue": "bajó",
+      "effect": "dust",
+      "duration": 4
+    },
+    {
+      "at": 23.43,
+      "cue": "se",
+      "sticker": "supply-pod",
+      "animation": "open"
+    },
+    {
+      "at": 26.54,
+      "cue": "y",
+      "sticker": "supply-pod",
+      "go": "away"
+    },
+    {
+      "at": 28.76,
+      "cue": "ahora",
+      "sticker": "lander",
+      "enter": true
+    },
+    {
+      "at": 33.9,
+      "cue": "bajó",
+      "sticker": "lander",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 33.9,
+      "cue": "bajó",
+      "sticker": "pilot",
+      "expression": "happy"
+    },
+    {
+      "at": 36.83,
+      "cue": "escotilla",
+      "sticker": "lander",
+      "animation": "hatch"
+    },
+    {
+      "at": 39.62,
+      "cue": "y",
+      "sticker": "lander",
+      "go": "away"
+    },
+    {
+      "at": 47.32,
+      "cue": "te",
+      "sticker": "pilot",
+      "expression": "surprised"
+    },
+    {
+      "at": 49.44,
+      "cue": "cohete",
+      "sticker": "rocket",
+      "enter": true
+    },
+    {
+      "at": 50.8,
+      "cue": "bajó",
+      "sticker": "rocket",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 52.87,
+      "cue": "con",
+      "sticker": "rocket",
+      "animation": "engines"
+    },
+    {
+      "at": 56.48,
+      "cue": "tres",
+      "sticker": "pilot",
+      "expression": "happy"
+    },
+    {
+      "at": 56.48,
+      "cue": "tres",
+      "sticker": "pilot",
+      "effect": "hop"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "muy",
+      "sticker": "shuttle",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 4.41,
+      "cue": "transbordador",
+      "sticker": "shuttle",
+      "enter": true
+    },
+    {
+      "at": 10.04,
+      "cue": "piloto",
+      "sticker": "pilot",
+      "enter": true
+    },
+    {
+      "at": 10.04,
+      "cue": "piloto",
+      "sticker": "pilot",
+      "expression": "sad"
+    },
+    {
+      "at": 18.63,
+      "cue": "la",
+      "sticker": "station",
+      "enter": true
+    },
+    {
+      "at": 20.9,
+      "cue": "alas",
+      "sticker": "station",
+      "animation": "turn"
+    },
+    {
+      "at": 25.16,
+      "cue": "el",
+      "sticker": "shuttle",
+      "effect": "pulse"
+    },
+    {
+      "at": 30.52,
+      "cue": "y",
+      "sticker": "pilot",
+      "animation": "signal",
+      "mode": "hold"
+    },
+    {
+      "at": 37.46,
+      "cue": "por",
+      "sticker": "pilot",
+      "effect": "pulse"
+    },
+    {
+      "at": 40.25,
+      "cue": "el",
+      "sticker": "shuttle",
+      "animation": "cargo"
+    },
+    {
+      "at": 45.96,
+      "cue": "se",
+      "sticker": "pilot",
+      "animation": "signal",
+      "mode": "resume"
+    },
+    {
+      "at": 45.96,
+      "cue": "se",
+      "sticker": "pilot",
+      "expression": "happy"
+    },
+    {
+      "at": 50.49,
+      "cue": "pronto",
+      "sticker": "pilot",
+      "effect": "hearts"
+    }
+  ]
+}

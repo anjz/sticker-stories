@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "la",
+      "sticker": "supply-pod",
+      "enter": true
+    },
+    {
+      "at": 5.69,
+      "cue": "se",
+      "sticker": "supply-pod",
+      "animation": "open"
+    },
+    {
+      "at": 13.93,
+      "cue": "a",
+      "sticker": "engineer",
+      "enter": true
+    },
+    {
+      "at": 13.93,
+      "cue": "a",
+      "sticker": "engineer",
+      "expression": "happy"
+    },
+    {
+      "at": 20.5,
+      "cue": "no",
+      "sticker": "engineer",
+      "expression": "surprised"
+    },
+    {
+      "at": 29.91,
+      "cue": "mmm",
+      "sticker": "engineer",
+      "expression": "normal"
+    },
+    {
+      "at": 32.34,
+      "cue": "fuera",
+      "sticker": "engineer",
+      "animation": "fix",
+      "mode": "hold"
+    },
+    {
+      "at": 40.95,
+      "cue": "robot",
+      "sticker": "engineer",
+      "animation": "fix",
+      "mode": "resume"
+    },
+    {
+      "at": 40.95,
+      "cue": "robot",
+      "sticker": "robot",
+      "enter": true
+    },
+    {
+      "at": 40.95,
+      "cue": "robot",
+      "sticker": "robot",
+      "expression": "surprised"
+    },
+    {
+      "at": 48.05,
+      "cue": "y",
+      "sticker": "drone",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.4
+    },
+    {
+      "at": 50.1,
+      "cue": "dron",
+      "sticker": "drone",
+      "enter": true
+    },
+    {
+      "at": 54.17,
+      "cue": "su",
+      "sticker": "engineer",
+      "expression": "happy"
+    },
+    {
+      "at": 54.17,
+      "cue": "su",
+      "sticker": "robot",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 56.06,
+      "cue": "ingeniera",
+      "sticker": "drone",
+      "animation": "photo"
+    }
+  ]
+}

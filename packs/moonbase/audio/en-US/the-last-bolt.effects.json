@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ten",
+      "effect": "nightfall",
+      "duration": 55.74
+    },
+    {
+      "at": 9.05,
+      "cue": "rocket's",
+      "sticker": "rocket",
+      "enter": true
+    },
+    {
+      "at": 10.77,
+      "cue": "for",
+      "sticker": "pilot",
+      "enter": true
+    },
+    {
+      "at": 10.77,
+      "cue": "for",
+      "sticker": "pilot",
+      "expression": "surprised"
+    },
+    {
+      "at": 18.92,
+      "cue": "not",
+      "sticker": "engineer",
+      "enter": true
+    },
+    {
+      "at": 18.92,
+      "cue": "not",
+      "sticker": "engineer",
+      "expression": "happy"
+    },
+    {
+      "at": 21.12,
+      "cue": "she",
+      "effect": "floodlights",
+      "duration": 16
+    },
+    {
+      "at": 23.06,
+      "cue": "beacon",
+      "sticker": "beacon",
+      "enter": true
+    },
+    {
+      "at": 25.06,
+      "cue": "lit",
+      "sticker": "beacon",
+      "animation": "blink",
+      "mode": "hold"
+    },
+    {
+      "at": 26.1,
+      "cue": "out",
+      "sticker": "engineer",
+      "go": "to",
+      "target": "rocket"
+    },
+    {
+      "at": 32.38,
+      "cue": "turn",
+      "sticker": "engineer",
+      "animation": "fix",
+      "mode": "hold"
+    },
+    {
+      "at": 37.65,
+      "cue": "done",
+      "sticker": "engineer",
+      "animation": "fix",
+      "mode": "resume"
+    },
+    {
+      "at": 40.12,
+      "cue": "three",
+      "sticker": "pilot",
+      "expression": "happy"
+    },
+    {
+      "at": 42.63,
+      "cue": "the",
+      "sticker": "rocket",
+      "animation": "engines"
+    },
+    {
+      "at": 48.07,
+      "cue": "and",
+      "sticker": "engineer",
+      "expression": "happy"
+    },
+    {
+      "at": 48.07,
+      "cue": "and",
+      "sticker": "engineer",
+      "effect": "hop"
+    }
+  ]
+}

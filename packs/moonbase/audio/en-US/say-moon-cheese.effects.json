@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "drone",
+      "sticker": "drone",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "drone",
+      "sticker": "drone",
+      "enter": true
+    },
+    {
+      "at": 5.86,
+      "cue": "lander",
+      "sticker": "lander",
+      "enter": true
+    },
+    {
+      "at": 6.64,
+      "cue": "standing",
+      "sticker": "lander",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 9.75,
+      "cue": "it",
+      "sticker": "drone",
+      "animation": "photo",
+      "mode": "hold"
+    },
+    {
+      "at": 14.14,
+      "cue": "robo-dog",
+      "sticker": "robodog",
+      "enter": true
+    },
+    {
+      "at": 14.14,
+      "cue": "robo-dog",
+      "sticker": "robodog",
+      "go": "to",
+      "target": "lander"
+    },
+    {
+      "at": 16.26,
+      "cue": "sat",
+      "sticker": "robodog",
+      "animation": "sit-up"
+    },
+    {
+      "at": 18.16,
+      "cue": "not",
+      "sticker": "robodog",
+      "expression": "happy"
+    },
+    {
+      "at": 20.28,
+      "cue": "robo-dog",
+      "sticker": "robodog",
+      "expression": "sad"
+    },
+    {
+      "at": 25,
+      "cue": "then",
+      "sticker": "buggy",
+      "enter": true
+    },
+    {
+      "at": 25,
+      "cue": "then",
+      "sticker": "buggy",
+      "go": "to",
+      "target": "lander"
+    },
+    {
+      "at": 26.44,
+      "cue": "spun",
+      "effect": "dust",
+      "duration": 5
+    },
+    {
+      "at": 26.44,
+      "cue": "spun",
+      "sticker": "buggy",
+      "animation": "wheelspin"
+    },
+    {
+      "at": 30.94,
+      "cue": "the",
+      "sticker": "lander",
+      "animation": "hatch"
+    },
+    {
+      "at": 37.2,
+      "cue": "flash",
+      "sticker": "drone",
+      "animation": "photo",
+      "mode": "resume"
+    },
+    {
+      "at": 45.5,
+      "cue": "the",
+      "sticker": "robodog",
+      "expression": "surprised"
+    },
+    {
+      "at": 48.15,
+      "cue": "everyone's",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 48.15,
+      "cue": "everyone's",
+      "sticker": "all",
+      "effect": "hop"
+    }
+  ]
+}

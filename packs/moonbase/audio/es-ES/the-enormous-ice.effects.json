@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "róver",
+      "sticker": "rover",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "róver",
+      "sticker": "rover",
+      "go": "to",
+      "target": "crater"
+    },
+    {
+      "at": 8.25,
+      "cue": "su",
+      "sticker": "rover",
+      "animation": "drill"
+    },
+    {
+      "at": 15.56,
+      "cue": "hielo",
+      "sticker": "ice",
+      "enter": true
+    },
+    {
+      "at": 19.72,
+      "cue": "el",
+      "effect": "glints",
+      "duration": 12
+    },
+    {
+      "at": 27.76,
+      "cue": "llegó",
+      "sticker": "excavator",
+      "enter": true
+    },
+    {
+      "at": 27.76,
+      "cue": "llegó",
+      "sticker": "excavator",
+      "go": "to",
+      "target": "crater"
+    },
+    {
+      "at": 31.28,
+      "cue": "y",
+      "sticker": "excavator",
+      "animation": "dig",
+      "mode": "hold"
+    },
+    {
+      "at": 34.13,
+      "cue": "robot",
+      "sticker": "robot",
+      "enter": true
+    },
+    {
+      "at": 34.13,
+      "cue": "robot",
+      "sticker": "robot",
+      "go": "to",
+      "target": "excavator"
+    },
+    {
+      "at": 36,
+      "cue": "yo",
+      "sticker": "robot",
+      "expression": "happy"
+    },
+    {
+      "at": 38.78,
+      "cue": "seguía",
+      "sticker": "robot",
+      "expression": "sad"
+    },
+    {
+      "at": 48.47,
+      "cue": "un",
+      "sticker": "robot",
+      "effect": "shake"
+    },
+    {
+      "at": 55.4,
+      "cue": "salió",
+      "sticker": "excavator",
+      "animation": "dig",
+      "mode": "resume"
+    },
+    {
+      "at": 55.4,
+      "cue": "salió",
+      "sticker": "ice",
+      "animation": "frost"
+    },
+    {
+      "at": 59.23,
+      "cue": "ha",
+      "sticker": "robot",
+      "expression": "surprised"
+    },
+    {
+      "at": 62.71,
+      "cue": "geólogo",
+      "sticker": "geologist",
+      "enter": true
+    },
+    {
+      "at": 66.34,
+      "cue": "y",
+      "sticker": "robot",
+      "expression": "happy"
+    },
+    {
+      "at": 66.34,
+      "cue": "y",
+      "sticker": "robot",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

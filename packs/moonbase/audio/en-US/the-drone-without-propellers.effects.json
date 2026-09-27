@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "the",
+      "sticker": "supply-pod",
+      "enter": true
+    },
+    {
+      "at": 5.37,
+      "cue": "popped",
+      "sticker": "supply-pod",
+      "animation": "open"
+    },
+    {
+      "at": 14.09,
+      "cue": "let's",
+      "sticker": "engineer",
+      "enter": true
+    },
+    {
+      "at": 14.09,
+      "cue": "let's",
+      "sticker": "engineer",
+      "expression": "happy"
+    },
+    {
+      "at": 19.93,
+      "cue": "it",
+      "sticker": "engineer",
+      "expression": "surprised"
+    },
+    {
+      "at": 28.72,
+      "cue": "hmm",
+      "sticker": "engineer",
+      "expression": "normal"
+    },
+    {
+      "at": 31,
+      "cue": "off",
+      "sticker": "engineer",
+      "animation": "fix",
+      "mode": "hold"
+    },
+    {
+      "at": 38.97,
+      "cue": "robot",
+      "sticker": "engineer",
+      "animation": "fix",
+      "mode": "resume"
+    },
+    {
+      "at": 38.97,
+      "cue": "robot",
+      "sticker": "robot",
+      "enter": true
+    },
+    {
+      "at": 38.97,
+      "cue": "robot",
+      "sticker": "robot",
+      "expression": "surprised"
+    },
+    {
+      "at": 45.26,
+      "cue": "and",
+      "sticker": "drone",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.4
+    },
+    {
+      "at": 48.29,
+      "cue": "drone",
+      "sticker": "drone",
+      "enter": true
+    },
+    {
+      "at": 51.3,
+      "cue": "its",
+      "sticker": "engineer",
+      "expression": "happy"
+    },
+    {
+      "at": 51.3,
+      "cue": "its",
+      "sticker": "robot",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 53.6,
+      "cue": "engineer",
+      "sticker": "drone",
+      "animation": "photo"
+    }
+  ]
+}

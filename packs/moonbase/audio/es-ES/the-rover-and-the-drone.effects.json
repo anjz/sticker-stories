@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "geólogo",
+      "sticker": "geologist",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "geólogo",
+      "sticker": "geologist",
+      "expression": "happy"
+    },
+    {
+      "at": 11.29,
+      "cue": "yo",
+      "sticker": "drone",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 13.28,
+      "cue": "dron",
+      "sticker": "drone",
+      "enter": true
+    },
+    {
+      "at": 16.55,
+      "cue": "yo",
+      "sticker": "rover",
+      "enter": true
+    },
+    {
+      "at": 19.61,
+      "cue": "pero",
+      "sticker": "rover",
+      "effect": "pulse"
+    },
+    {
+      "at": 24.38,
+      "cue": "dron",
+      "sticker": "drone",
+      "go": "to",
+      "target": "crater"
+    },
+    {
+      "at": 27.54,
+      "cue": "flash",
+      "sticker": "drone",
+      "animation": "photo"
+    },
+    {
+      "at": 30.58,
+      "cue": "róver",
+      "sticker": "rover",
+      "go": "to",
+      "target": "crater"
+    },
+    {
+      "at": 35.4,
+      "cue": "y",
+      "effect": "glints",
+      "duration": 10
+    },
+    {
+      "at": 39.12,
+      "cue": "hielo",
+      "sticker": "ice",
+      "enter": true
+    },
+    {
+      "at": 40.23,
+      "cue": "un",
+      "sticker": "ice",
+      "animation": "frost"
+    },
+    {
+      "at": 43.18,
+      "cue": "róver",
+      "sticker": "rover",
+      "animation": "drill",
+      "mode": "hold"
+    },
+    {
+      "at": 46.19,
+      "cue": "volvieron",
+      "sticker": "drone",
+      "effect": "pulse"
+    },
+    {
+      "at": 46.19,
+      "cue": "volvieron",
+      "sticker": "rover",
+      "animation": "drill",
+      "mode": "resume"
+    },
+    {
+      "at": 52.59,
+      "cue": "perfecto",
+      "sticker": "geologist",
+      "expression": "happy"
+    },
+    {
+      "at": 52.59,
+      "cue": "perfecto",
+      "sticker": "geologist",
+      "effect": "hop"
+    },
+    {
+      "at": 55.55,
+      "cue": "dos",
+      "sticker": "all",
+      "effect": "sparkle"
+    }
+  ]
+}

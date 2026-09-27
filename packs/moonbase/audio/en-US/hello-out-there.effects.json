@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "high",
+      "sticker": "satellite",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 4.18,
+      "cue": "satellite",
+      "sticker": "satellite",
+      "enter": true
+    },
+    {
+      "at": 6.24,
+      "cue": "robot",
+      "sticker": "robot",
+      "enter": true
+    },
+    {
+      "at": 8.71,
+      "cue": "hello",
+      "sticker": "robot",
+      "expression": "happy"
+    },
+    {
+      "at": 9.03,
+      "cue": "probe",
+      "sticker": "probe",
+      "enter": true
+    },
+    {
+      "at": 10.45,
+      "cue": "the",
+      "sticker": "satellite",
+      "animation": "signal",
+      "mode": "hold"
+    },
+    {
+      "at": 18.66,
+      "cue": "no",
+      "sticker": "robot",
+      "expression": "sad"
+    },
+    {
+      "at": 22.75,
+      "cue": "nothing",
+      "sticker": "robot",
+      "effect": "shake"
+    },
+    {
+      "at": 27.93,
+      "cue": "ping",
+      "sticker": "satellite",
+      "effect": "pulse"
+    },
+    {
+      "at": 32.78,
+      "cue": "messages",
+      "sticker": "robot",
+      "expression": "surprised"
+    },
+    {
+      "at": 39.23,
+      "cue": "far",
+      "sticker": "probe",
+      "animation": "turn"
+    },
+    {
+      "at": 43.95,
+      "cue": "robot",
+      "sticker": "robot",
+      "expression": "happy"
+    },
+    {
+      "at": 43.95,
+      "cue": "robot",
+      "sticker": "robot",
+      "effect": "hop"
+    },
+    {
+      "at": 47.95,
+      "cue": "and",
+      "sticker": "robot",
+      "animation": "dance"
+    }
+  ]
+}

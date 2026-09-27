@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 7.77,
+      "cue": "me",
+      "sticker": "supply-pod",
+      "enter": true
+    },
+    {
+      "at": 11.99,
+      "cue": "pilot",
+      "sticker": "pilot",
+      "enter": true
+    },
+    {
+      "at": 14.17,
+      "cue": "waved",
+      "sticker": "pilot",
+      "animation": "signal"
+    },
+    {
+      "at": 17.67,
+      "cue": "down",
+      "sticker": "supply-pod",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 17.67,
+      "cue": "down",
+      "effect": "dust",
+      "duration": 4
+    },
+    {
+      "at": 21.18,
+      "cue": "its",
+      "sticker": "supply-pod",
+      "animation": "open"
+    },
+    {
+      "at": 24.04,
+      "cue": "and",
+      "sticker": "supply-pod",
+      "go": "away"
+    },
+    {
+      "at": 26.2,
+      "cue": "me",
+      "sticker": "lander",
+      "enter": true
+    },
+    {
+      "at": 29.91,
+      "cue": "down",
+      "sticker": "lander",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 29.91,
+      "cue": "down",
+      "sticker": "pilot",
+      "expression": "happy"
+    },
+    {
+      "at": 33.04,
+      "cue": "hatch",
+      "sticker": "lander",
+      "animation": "hatch"
+    },
+    {
+      "at": 35.61,
+      "cue": "and",
+      "sticker": "lander",
+      "go": "away"
+    },
+    {
+      "at": 42.94,
+      "cue": "your",
+      "sticker": "pilot",
+      "expression": "surprised"
+    },
+    {
+      "at": 45.55,
+      "cue": "rocket",
+      "sticker": "rocket",
+      "enter": true
+    },
+    {
+      "at": 46.31,
+      "cue": "down",
+      "sticker": "rocket",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 49.7,
+      "cue": "its",
+      "sticker": "rocket",
+      "animation": "engines"
+    },
+    {
+      "at": 53.07,
+      "cue": "three",
+      "sticker": "pilot",
+      "expression": "happy"
+    },
+    {
+      "at": 53.07,
+      "cue": "three",
+      "sticker": "pilot",
+      "effect": "hop"
+    }
+  ]
+}

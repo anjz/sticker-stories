@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "after",
+      "effect": "daybreak",
+      "duration": 10
+    },
+    {
+      "at": 7.01,
+      "cue": "the",
+      "sticker": "solar-panel",
+      "enter": true
+    },
+    {
+      "at": 8.54,
+      "cue": "face",
+      "sticker": "solar-panel",
+      "animation": "track",
+      "mode": "hold"
+    },
+    {
+      "at": 10.33,
+      "cue": "robot",
+      "sticker": "robot",
+      "enter": true
+    },
+    {
+      "at": 12.33,
+      "cue": "is",
+      "sticker": "robot",
+      "expression": "surprised"
+    },
+    {
+      "at": 14.04,
+      "cue": "he",
+      "sticker": "robot",
+      "effect": "wobble"
+    },
+    {
+      "at": 15.54,
+      "cue": "the",
+      "sticker": "solar-panel",
+      "effect": "pulse"
+    },
+    {
+      "at": 23.95,
+      "cue": "a",
+      "sticker": "robot",
+      "expression": "happy"
+    },
+    {
+      "at": 25.32,
+      "cue": "he",
+      "sticker": "robot",
+      "animation": "dance",
+      "mode": "hold"
+    },
+    {
+      "at": 28.34,
+      "cue": "robo-dog",
+      "sticker": "robodog",
+      "enter": true
+    },
+    {
+      "at": 30.56,
+      "cue": "and",
+      "sticker": "robodog",
+      "expression": "happy"
+    },
+    {
+      "at": 30.76,
+      "cue": "sat",
+      "sticker": "robodog",
+      "animation": "sit-up",
+      "mode": "hold"
+    },
+    {
+      "at": 36.97,
+      "cue": "soaking",
+      "sticker": "all",
+      "effect": "glow"
+    }
+  ]
+}

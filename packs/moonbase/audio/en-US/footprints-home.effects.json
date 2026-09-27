@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "night",
+      "effect": "nightfall",
+      "duration": 68.54
+    },
+    {
+      "at": 5.42,
+      "cue": "astronomer",
+      "sticker": "astronomer",
+      "enter": true
+    },
+    {
+      "at": 7.16,
+      "cue": "she",
+      "sticker": "astronomer",
+      "go": "to",
+      "target": "crater"
+    },
+    {
+      "at": 7.96,
+      "cue": "walking",
+      "sticker": "astronomer",
+      "animation": "stargaze",
+      "mode": "hold"
+    },
+    {
+      "at": 17.52,
+      "cue": "she",
+      "sticker": "astronomer",
+      "animation": "stargaze",
+      "mode": "resume"
+    },
+    {
+      "at": 20.6,
+      "cue": "and",
+      "sticker": "astronomer",
+      "expression": "surprised"
+    },
+    {
+      "at": 24.6,
+      "cue": "robo-dog",
+      "sticker": "robodog",
+      "enter": true
+    },
+    {
+      "at": 27.62,
+      "cue": "astronaut",
+      "sticker": "astronaut",
+      "enter": true
+    },
+    {
+      "at": 29.08,
+      "cue": "he",
+      "sticker": "robodog",
+      "go": "to",
+      "target": "astronomer"
+    },
+    {
+      "at": 29.08,
+      "cue": "he",
+      "sticker": "robodog",
+      "expression": "happy"
+    },
+    {
+      "at": 45.34,
+      "cue": "step",
+      "sticker": "astronomer",
+      "expression": "happy"
+    },
+    {
+      "at": 45.34,
+      "cue": "step",
+      "sticker": "astronomer",
+      "go": "to",
+      "target": "hatch"
+    },
+    {
+      "at": 45.34,
+      "cue": "step",
+      "sticker": "robodog",
+      "go": "to",
+      "target": "hatch"
+    },
+    {
+      "at": 49.1,
+      "cue": "the",
+      "effect": "floodlights",
+      "duration": 10
+    },
+    {
+      "at": 51.31,
+      "cue": "beacon",
+      "sticker": "beacon",
+      "enter": true
+    },
+    {
+      "at": 54.08,
+      "cue": "switched",
+      "sticker": "beacon",
+      "animation": "blink",
+      "mode": "hold"
+    },
+    {
+      "at": 55.61,
+      "cue": "home",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 63.12,
+      "cue": "one",
+      "sticker": "robodog",
+      "effect": "hop"
+    }
+  ]
+}

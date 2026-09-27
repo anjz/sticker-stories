@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "moonbase",
-  "version": 2,
+  "version": 3,
   "languages": [
     "en-US",
     "es-ES"
@@ -175,6 +175,10 @@
       ],
       "air": true
     }
+  },
+  "narrationPacks": {
+    "en-US": "moonbase-narration-en-803f179a",
+    "es-ES": "moonbase-narration-es-78dad50a"
   },
   "stickers": [
     {
@@ -702,23 +706,1454 @@
   ],
   "stories": [
     {
-      "id": "moonbase-welcome",
+      "id": "black-sky-at-noon",
       "requiredStickers": [],
       "optionalStickers": [],
       "weight": 1,
       "tags": [
-        "placeholder"
+        "curiosity",
+        "learning"
       ],
       "localizations": {
         "en-US": {
-          "title": "Welcome to Moon Base",
-          "text": "Welcome to Moon Base! The stories are on their way.",
-          "audio": "audio/en-US/moonbase-welcome.m4a"
+          "title": "Black Sky at Noon",
+          "text": "Midday on the Moon. The Sun blazed down, bright and white. The dust sparkled. Every rock threw a shadow as black as ink. And then somebody looked up. The sky was black. Pitch black, and full of stars, right in the middle of the day. On Earth, the air scatters sunlight all over the sky and paints it blue. The Moon has no air at all. So here the sky stays dark, even at noon, and the stars never go away. Everyone at the base stopped to look. Sunshine on the ground. Stars overhead. Other places get a blue sky. The Moon gets both.",
+          "audio": "audio/en-US/black-sky-at-noon.m4a",
+          "effects": "audio/en-US/black-sky-at-noon.effects.json"
         },
         "es-ES": {
-          "title": "Bienvenidos a la Base Lunar",
-          "text": "¡Bienvenidos a la Base Lunar! Los cuentos están en camino.",
-          "audio": "audio/es-ES/moonbase-welcome.m4a"
+          "title": "Cielo negro al mediodía",
+          "text": "Mediodía en la Luna. El Sol pegaba fuerte, blanco y brillante. El polvo destellaba. Cada roca dejaba una sombra negra como la tinta. Y entonces alguien miró arriba. El cielo era negro. Negro, negrísimo, y lleno de estrellas, en pleno día. En la Tierra, el aire reparte la luz del sol por todo el cielo y lo pinta de azul. La Luna no tiene nada de aire. Así que aquí el cielo se queda oscuro, incluso a mediodía, y las estrellas nunca se van. Todos en la base se pararon a mirar. Sol en el suelo. Estrellas en el cielo. Otros sitios tienen un cielo azul. La Luna tiene las dos cosas.",
+          "audio": "audio/es-ES/black-sky-at-noon.m4a",
+          "effects": "audio/es-ES/black-sky-at-noon.effects.json"
+        }
+      }
+    },
+    {
+      "id": "counting-stars",
+      "requiredStickers": [
+        "astronomer",
+        "robot",
+        "telescope"
+      ],
+      "optionalStickers": [
+        "pilot"
+      ],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "counting",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Counting Stars",
+          "text": "I'm going to count every star in the sky! said Robot. He did a little counting dance. One. Two. Three… Then the Milky Way came out: a river of stars across the black sky. More! The space telescope turned its golden mirror to help, and found more behind those, and more behind those. Robot's counter ran out of numbers. Astronomer sat down beside him. Look closely, she said. She raised her binoculars. They don't twinkle. On Earth, the air makes stars shimmer. Here there's no air, so they just… shine. Robot looked. And looked. Pilot was already snoring. Robot stopped counting at three thousand, one hundred and twenty-seven. After that, he just looked.",
+          "audio": "audio/en-US/counting-stars.m4a",
+          "effects": "audio/en-US/counting-stars.effects.json"
+        },
+        "es-ES": {
+          "title": "Contar estrellas",
+          "text": "¡Voy a contar todas las estrellas del cielo! dijo Robot. Hizo un bailecito de contar. Una. Dos. Tres… Entonces salió la Vía Láctea: un río de estrellas cruzando el cielo negro. ¡Más! El telescopio espacial giró su espejo dorado para ayudar, y encontró más detrás de esas, y más detrás de esas. A Robot se le acabaron los números. Astrónoma se sentó a su lado. Mira bien, dijo. Levantó sus prismáticos. No titilan. En la Tierra, el aire hace que las estrellas tiemblen. Aquí no hay aire, así que solo… brillan. Robot miró. Y miró. Piloto ya roncaba. Robot dejó de contar en tres mil ciento veintisiete. Después de eso, solo miró.",
+          "audio": "audio/es-ES/counting-stars.m4a",
+          "effects": "audio/es-ES/counting-stars.effects.json"
+        }
+      }
+    },
+    {
+      "id": "everyone-looks-up",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "wonder",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Everyone Looks Up",
+          "text": "It was a busy afternoon at the base. Somebody was fixing. Somebody was digging. Somebody was counting rocks. Then somebody looked up, and stopped. A comet! Gliding across the black sky, trailing its long, glowing tail. One by one, everyone stopped. The fixing stopped. The digging stopped. Even the counting stopped, at rock number eighty-four. Nobody said a word. The comet sailed on, slow and silent, as if it had all the time in the world. It had. It would be back in about a hundred years. So everyone had a very good look. And then? The fixing, and the digging, and the counting started again. At rock number eighty-five.",
+          "audio": "audio/en-US/everyone-looks-up.m4a",
+          "effects": "audio/en-US/everyone-looks-up.effects.json"
+        },
+        "es-ES": {
+          "title": "Todos miran arriba",
+          "text": "Era una tarde muy ajetreada en la base. Alguien arreglaba cosas. Alguien cavaba. Alguien contaba rocas. Entonces alguien miró arriba, y se quedó quieto. ¡Un cometa! Cruzaba el cielo negro con su larga cola brillante. Uno a uno, todos se pararon. Se paró el arreglar. Se paró el cavar. Hasta el contar se paró, en la roca número ochenta y cuatro. Nadie dijo nada. El cometa siguió navegando, lento y silencioso, como si tuviera todo el tiempo del mundo. Y lo tenía. Volvería dentro de unos cien años. Así que todos lo miraron muy bien. ¿Y después? El arreglar, el cavar y el contar volvieron a empezar. En la roca número ochenta y cinco.",
+          "audio": "audio/es-ES/everyone-looks-up.m4a",
+          "effects": "audio/es-ES/everyone-looks-up.effects.json"
+        }
+      }
+    },
+    {
+      "id": "footprints-home",
+      "requiredStickers": [
+        "astronomer",
+        "beacon",
+        "robodog"
+      ],
+      "optionalStickers": [
+        "astronaut"
+      ],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "bedtime",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Footprints Home",
+          "text": "Night was falling on the Moon. Astronomer didn't notice. She was walking and stargazing, one step, one star, one step, one star… When she lowered her binoculars, she was right across the plain, at the edge of the crater. And it was getting dark. Which way had she come? Robo-dog came trotting over — Astronaut had sent him. He scanned the ground and wagged his antenna tail. There, pressed in the grey dust, were her footprints, every single one. On the Moon, footprints last for ages: no wind or rain ever wipes them away. Step by step, they followed the trail back. The floodlights came on, and the beacon unfolded, stood up tall and switched on its light. Home. Behind them ran two trails, side by side: one of boots, one of paws.",
+          "audio": "audio/en-US/footprints-home.m4a",
+          "effects": "audio/en-US/footprints-home.effects.json"
+        },
+        "es-ES": {
+          "title": "Huellas hasta casa",
+          "text": "Caía la noche en la Luna. Astrónoma ni se dio cuenta. Iba andando y mirando las estrellas: un paso, una estrella, un paso, una estrella… Cuando bajó los prismáticos, estaba al otro lado de la llanura, en el borde del cráter. Y se estaba haciendo de noche. ¿Por dónde había venido? Perro robot llegó trotando: lo había mandado Astronauta. Escaneó el suelo y movió su cola de antena. Allí, marcadas en el polvo gris, estaban sus huellas, todas y cada una. En la Luna las huellas duran muchísimo: no hay viento ni lluvia que las borren. Paso a paso, siguieron el rastro de vuelta. Se encendieron los focos, y la baliza se desplegó, se enderezó y encendió su luz. En casa. Detrás de ellos quedaban dos rastros, uno al lado del otro: uno de botas y otro de patitas.",
+          "audio": "audio/es-ES/footprints-home.m4a",
+          "effects": "audio/es-ES/footprints-home.effects.json"
+        }
+      }
+    },
+    {
+      "id": "hello-out-there",
+      "requiredStickers": [
+        "satellite",
+        "robot",
+        "probe"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Hello Out There",
+          "text": "High over the base, the satellite passed messages along. Robot had one to send. Hello, Probe! he called. The satellite beamed it out, far, far away, to where the probe was sailing off toward the outer planets. Robot waited. No answer. So he said it again. Hello, Probe! Nothing. HELLO, PROBE! Then — ping, ping, ping! — three hellos came back, one after another. Messages take time to cross space: about a second to reach the Earth, and hours to reach a probe that far away. Far out in the dark, the probe turned slowly, as if it were waving. Robot had an idea. Goodnight, Probe! he called — and did a little dance, so the goodnight would get there by bedtime.",
+          "audio": "audio/en-US/hello-out-there.m4a",
+          "effects": "audio/en-US/hello-out-there.effects.json"
+        },
+        "es-ES": {
+          "title": "Hola, ¿hay alguien ahí?",
+          "text": "Muy por encima de la base, el satélite iba pasando mensajes. Robot tenía uno que enviar. ¡Hola, Sonda! dijo. El satélite lo lanzó lejos, lejísimos, hasta donde la sonda navegaba hacia los planetas más lejanos. Robot esperó. Nada. Así que lo repitió. ¡Hola, Sonda! Nada. ¡HOLA, SONDA! Y entonces — ¡pin, pin, pin! — llegaron tres holas, uno detrás de otro. Los mensajes tardan en cruzar el espacio: más o menos un segundo hasta la Tierra, y horas hasta una sonda tan lejana. Allá lejos, en la oscuridad, la sonda giró despacio, como si saludara. Robot tuvo una idea. ¡Buenas noches, Sonda! dijo… y se puso a bailar, para que las buenas noches llegaran justo a la hora de dormir.",
+          "audio": "audio/es-ES/hello-out-there.m4a",
+          "effects": "audio/es-ES/hello-out-there.effects.json"
+        }
+      }
+    },
+    {
+      "id": "how-the-moon-got-its-freckles",
+      "requiredStickers": [
+        "geologist",
+        "asteroid",
+        "rover"
+      ],
+      "optionalStickers": [
+        "robodog"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "How the Moon Got Its Freckles",
+          "text": "Rover stopped beside a small, round hole in the dust. Beep? It had a question. Why is the Moon covered in holes? Geologist sat down. Once upon a time, he said, the Moon's face was smooth. Then the Sun told her a joke, and she laughed so hard she got freckles, all over. Robo-dog tilted his head. That's the made-up story, said Geologist. Here's the true one. Long, long ago, rocks from space came flying and thumped into the Moon, and every thump made a crater. Far, far away, an asteroid tumbled past, minding its own business. Rover drilled a tiny sample from the freckle. Geologist studied it. So which story is true? beeped Rover. The second one, said Geologist. But I like the first.",
+          "audio": "audio/en-US/how-the-moon-got-its-freckles.m4a",
+          "effects": "audio/en-US/how-the-moon-got-its-freckles.effects.json"
+        },
+        "es-ES": {
+          "title": "Las pecas de la Luna",
+          "text": "Róver se paró junto a un agujero pequeño y redondo en el polvo. ¿Bip? Tenía una pregunta. ¿Por qué la Luna está llena de agujeros? Geólogo se sentó. Érase una vez, dijo, que la cara de la Luna era lisa. Entonces el Sol le contó un chiste, y ella se rio tanto que le salieron pecas por todas partes. Perro robot ladeó la cabeza. Esa es la historia inventada, dijo Geólogo. Esta es la de verdad. Hace muchísimo tiempo, llegaron rocas del espacio y chocaron con la Luna, y cada choque dejó un cráter. Muy, muy lejos, pasó un asteroide dando vueltas, a lo suyo. Róver taladró una muestra diminuta de la peca. Geólogo la estudió. ¿Y cuál de las dos es verdad? pitó Róver. La segunda, dijo Geólogo. Pero a mí me gusta más la primera.",
+          "audio": "audio/es-ES/how-the-moon-got-its-freckles.m4a",
+          "effects": "audio/es-ES/how-the-moon-got-its-freckles.effects.json"
+        }
+      }
+    },
+    {
+      "id": "ice-for-the-rocket",
+      "requiredStickers": [
+        "rocket",
+        "ice",
+        "excavator"
+      ],
+      "optionalStickers": [
+        "engineer"
+      ],
+      "weight": 1,
+      "tags": [
+        "mission",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Ice for the Rocket",
+          "text": "The rocket stood on the pad with its fuel tanks nearly empty. How would it ever fly home? Engineer tapped her helmet. The answer is in the crater, she said. Excavator trundled down into the shadows and dug. Scrape… scrape… scrape… Something glittered. Ice! Water ice, hidden in the dark where the Sun never shines. It sparkled as the light caught it. Water can be split into two gases, said Engineer, and those two gases make rocket fuel. So they melted it, and split it, and filled the tanks, drop by drop. Three, two, one… The rocket fired its engines, just to test. Enough to get home, said Engineer. And a little extra, to come back.",
+          "audio": "audio/en-US/ice-for-the-rocket.m4a",
+          "effects": "audio/en-US/ice-for-the-rocket.effects.json"
+        },
+        "es-ES": {
+          "title": "Hielo para el cohete",
+          "text": "El cohete esperaba en la plataforma con los depósitos casi vacíos. ¿Cómo iba a volver a casa? Ingeniera se dio un golpecito en el casco. La respuesta está en el cráter, dijo. Excavadora bajó traqueteando hasta las sombras y cavó. Rasca… rasca… rasca… Algo brilló. ¡ Hielo! Hielo de agua, escondido en la oscuridad donde nunca da el sol. Destellaba cuando le llegaba la luz. El agua se puede separar en dos gases, dijo Ingeniera, y con esos dos gases se hace combustible para cohetes. Así que lo derritieron, lo separaron y llenaron los depósitos, gota a gota. Tres, dos, uno… El cohete encendió los motores, solo para probar. Suficiente para volver a casa, dijo Ingeniera. Y un poquito más, para regresar.",
+          "audio": "audio/es-ES/ice-for-the-rocket.m4a",
+          "effects": "audio/es-ES/ice-for-the-rocket.effects.json"
+        }
+      }
+    },
+    {
+      "id": "just-right",
+      "requiredStickers": [
+        "seedling",
+        "ice",
+        "solar-panel",
+        "engineer"
+      ],
+      "optionalStickers": [
+        "greenhouse"
+      ],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Just Right",
+          "text": "Where should the new seedling live? Engineer took out her thermometer to find out. First she tried the sunny spot by the solar panel. The panel tilted up, glinting. The thermometer shot up. Too hot! Next she tried the shadow where the ice lay. A wisp of frost curled up off it. Brrr. The thermometer dropped right down. Too cold! On the Moon there's no air to share the warmth around: scorching in sunlight, freezing in shade. Last of all, she tried the greenhouse. Warm. Bright. Just right. So that's where the seedling lives. And every morning, it reaches up to say so.",
+          "audio": "audio/en-US/just-right.m4a",
+          "effects": "audio/en-US/just-right.effects.json"
+        },
+        "es-ES": {
+          "title": "Justo lo que necesitaba",
+          "text": "¿Dónde viviría el brote nuevo? Ingeniera sacó su termómetro para averiguarlo. Primero probó el sitio soleado junto al panel solar. El panel se inclinó, destellando. El termómetro se disparó. ¡Demasiado calor! Luego probó la sombra donde estaba el hielo. Un hilito de escarcha subió de él. Brrr. El termómetro bajó del todo. ¡Demasiado frío! En la Luna no hay aire que reparta el calor: al sol, abrasa; a la sombra, hiela. Por último, probó el invernadero. Calentito. Luminoso. Justo lo que necesitaba. Por eso el brote vive allí. Y cada mañana se estira para decirlo.",
+          "audio": "audio/es-ES/just-right.m4a",
+          "effects": "audio/es-ES/just-right.effects.json"
+        }
+      }
+    },
+    {
+      "id": "lullaby-for-the-base",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Lullaby for the Base",
+          "text": "Goodnight, Moon Base. The work is done. The tools are put away, and the boots are lined up in a row. Overhead, the Milky Way comes out: a river of stars, with nothing to sail on it but dreams. Goodnight, plain. Goodnight, crater. Goodnight, landing pad and tall radio mast. Tiny lights glide across the sky, far, far above, like little boats. Goodnight, Earth, glowing blue over the ridge: somebody down there is falling asleep too. The base hums softly, like a purring cat. One by one, everyone closes their eyes. The stars keep watch. They don't even blink. Goodnight, Moon Base. Goodnight.",
+          "audio": "audio/en-US/lullaby-for-the-base.m4a",
+          "effects": "audio/en-US/lullaby-for-the-base.effects.json"
+        },
+        "es-ES": {
+          "title": "Nana para la base",
+          "text": "Buenas noches, Base Lunar. El trabajo está hecho. Las herramientas, recogidas, y las botas, en fila. Allá arriba sale la Vía Láctea: un río de estrellas por el que solo navegan los sueños. Buenas noches, llanura. Buenas noches, cráter. Buenas noches, plataforma y mástil de la antena. Unas lucecitas cruzan el cielo, muy, muy arriba, como barquitas. Buenas noches, Tierra, que brillas azul sobre la cordillera: allí abajo también hay alguien quedándose dormido. La base ronronea bajito, como un gato. Uno a uno, todos cierran los ojos. Las estrellas vigilan. Ni siquiera parpadean. Buenas noches, Base Lunar. Buenas noches.",
+          "audio": "audio/es-ES/lullaby-for-the-base.m4a",
+          "effects": "audio/es-ES/lullaby-for-the-base.effects.json"
+        }
+      }
+    },
+    {
+      "id": "one-pad-three-ships",
+      "requiredStickers": [
+        "rocket",
+        "lander",
+        "supply-pod"
+      ],
+      "optionalStickers": [
+        "pilot"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "patience"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "One Pad, Three Ships",
+          "text": "There was one landing pad, and three ships wanted it, all at once. Me first! puffed the supply pod. I'm the smallest! Pilot came loping over and waved his glowing wands. One at a time, please. Down came the pod, in a little puff of dust. Its lid popped open: parcels out. And off it went again. Me next! said the lander. I'm the middle-sized one! Down it came, gold and gleaming. Hatch open, crew out. And off it went. All this time, the biggest ship had been waiting up in the sky, rumbling. Your turn, said Pilot, to the rocket. Down it came, the biggest of all, its engines rumbling in a great cloud of dust. Three ships, one pad, no fuss. Just turns.",
+          "audio": "audio/en-US/one-pad-three-ships.m4a",
+          "effects": "audio/en-US/one-pad-three-ships.effects.json"
+        },
+        "es-ES": {
+          "title": "Una plataforma, tres naves",
+          "text": "Había una sola plataforma de aterrizaje, y tres naves la querían a la vez. ¡Yo primero! resopló la cápsula de carga. ¡Soy la más pequeña! Piloto llegó a zancadas y movió sus bastones luminosos. De una en una, por favor. Bajó la cápsula, en una nubecita de polvo. Se le abrió la tapa: fuera paquetes. Y se volvió a marchar. ¡Ahora yo! dijo el módulo lunar. ¡Soy el mediano! Bajó él, dorado y reluciente. Escotilla abierta, tripulación fuera. Y se marchó. Mientras tanto, la nave más grande había esperado allá arriba, retumbando. Te toca, le dijo Piloto al cohete. Bajó el más grande de todos, con los motores retumbando en una gran nube de polvo. Tres naves, una plataforma, ni un lío. Solo turnos.",
+          "audio": "audio/es-ES/one-pad-three-ships.m4a",
+          "effects": "audio/es-ES/one-pad-three-ships.effects.json"
+        }
+      }
+    },
+    {
+      "id": "say-moon-cheese",
+      "requiredStickers": [
+        "drone",
+        "robodog",
+        "buggy",
+        "lander"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Say Moon Cheese",
+          "text": "Drone wanted one perfect photo: the lander, standing on the landing pad, neat and gold. It zoomed in its lens. Focus… focus… Robo-dog trotted into the picture and sat up, paws in the air. Not you! said Drone. Robo-dog wandered off. Focus… focus… Then the buggy rolled up and spun its wheels. Wheee! Grey dust everywhere. The lander opened its hatch to see what all the fuss was about. Drone gave up and — FLASH! — took the photo anyway. There it was: a dog doing a trick, a buggy in a cloud, a lander peeking out. The worst photo ever taken on the Moon. Everyone's favourite.",
+          "audio": "audio/en-US/say-moon-cheese.m4a",
+          "effects": "audio/en-US/say-moon-cheese.effects.json"
+        },
+        "es-ES": {
+          "title": "Di patata lunar",
+          "text": "Dron quería una foto perfecta: el módulo lunar en la plataforma de aterrizaje, reluciente y dorado. Acercó el zoom. Enfocar… enfocar… Perro robot se metió en la foto y se sentó con las patas en el aire. ¡Tú no! dijo Dron. Perro robot se fue. Enfocar… enfocar… Entonces llegó el buggy y hizo girar las ruedas. ¡Yuuuju! Polvo gris por todas partes. El módulo abrió la escotilla para ver a qué venía tanto jaleo. Dron se rindió y — ¡FLASH! — hizo la foto de todas formas. Y ahí estaba: un perro haciendo una gracia, un buggy dentro de una nube, un módulo asomándose. La peor foto jamás hecha en la Luna. La favorita de todos.",
+          "audio": "audio/es-ES/say-moon-cheese.m4a",
+          "effects": "audio/es-ES/say-moon-cheese.effects.json"
+        }
+      }
+    },
+    {
+      "id": "special-delivery",
+      "requiredStickers": [
+        "supply-pod",
+        "shuttle",
+        "pilot",
+        "buggy"
+      ],
+      "optionalStickers": [
+        "engineer"
+      ],
+      "weight": 1,
+      "tags": [
+        "mystery",
+        "kindness"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Special Delivery",
+          "text": "High overhead, the shuttle glided in, slow and grand, and opened its cargo-bay doors. Out came a supply pod, puffing its little thrusters all the way down. Pilot waved his glowing wands to guide it in. It landed on the pad in a soft puff of dust. Delivery! Over he went in the buggy — bump, bump, bump. Engineer was already there. Three guesses, she said. Bolts? said Pilot. Socks? More bolts? The lid popped open in a puff of cold air. Inside were seeds… and drawings from children on Earth: a rocket with a smiley face, a Moon in a hat, a dog in a spacesuit. They pinned every one up inside the habitat. Nobody had guessed right. Nobody minded.",
+          "audio": "audio/en-US/special-delivery.m4a",
+          "effects": "audio/en-US/special-delivery.effects.json"
+        },
+        "es-ES": {
+          "title": "Envío especial",
+          "text": "Muy arriba, el transbordador llegó planeando, lento y majestuoso, y abrió las puertas de su bodega. De ella salió una cápsula de carga, que bajó soltando soplidos por sus propulsores. Piloto movió sus bastones luminosos para guiarla. Aterrizó en la plataforma con una nubecita de polvo. ¡Ha llegado un paquete! Allá fue en el buggy: bum, bum, bum. Ingeniera ya estaba allí. Tres intentos, dijo. ¿Tornillos? dijo Piloto. ¿Calcetines? ¿Más tornillos? La tapa se abrió con un soplo de aire frío. Dentro había semillas… y dibujos de niños y niñas de la Tierra: un cohete con una cara sonriente, una Luna con sombrero, un perro con traje espacial. Los colgaron todos dentro de la base. Nadie había acertado. A nadie le importó.",
+          "audio": "audio/es-ES/special-delivery.m4a",
+          "effects": "audio/es-ES/special-delivery.effects.json"
+        }
+      }
+    },
+    {
+      "id": "stop-little-digger",
+      "requiredStickers": [
+        "excavator",
+        "geologist",
+        "buggy"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Stop, Little Digger!",
+          "text": "Geologist needed a rock from deep down. Dig, Excavator, dig! he said. And Excavator dug. Scoop. Scoop. Scoop. Grey dust flew up in clouds. Geologist found his rock and studied it. Perfect! You can stop now. Scoop. Scoop. Stop! Halt! Enough! Scoop. Scoop. Scoop. The pile grew, and grew. Along came the buggy — and spun its wheels against the pile. Wheeee… What was the word? He tried everything. Freeze! Whoa! Off! Then he remembered. Please stop, Excavator. And Excavator stopped. You only had to ask nicely, it rumbled. So the buggy went the long way round.",
+          "audio": "audio/en-US/stop-little-digger.m4a",
+          "effects": "audio/en-US/stop-little-digger.effects.json"
+        },
+        "es-ES": {
+          "title": "¡Para, excavadora!",
+          "text": "Geólogo necesitaba una roca de muy abajo. ¡Cava, Excavadora, cava! dijo. Y Excavadora cavó. Paletada. Paletada. Paletada. El polvo gris salía volando en nubes. Geólogo encontró su roca y la estudió. ¡Perfecta! Ya puedes parar. Paletada. Paletada. ¡Para! ¡Alto! ¡Basta! Paletada. Paletada. Paletada. El montón crecía, y crecía. Llegó el buggy… y hizo girar las ruedas contra el montón. Rrrrrr… ¿Cuál era la palabra? Lo probó todo. ¡Quieta! ¡So! ¡Apágate! Y entonces se acordó. Para, Excavadora, por favor. Y Excavadora paró. Solo tenías que pedirlo con educación, retumbó. Así que el buggy dio la vuelta larga.",
+          "audio": "audio/es-ES/stop-little-digger.m4a",
+          "effects": "audio/es-ES/stop-little-digger.effects.json"
+        }
+      }
+    },
+    {
+      "id": "switch-on-day",
+      "requiredStickers": [
+        "beacon",
+        "drone",
+        "robodog"
+      ],
+      "optionalStickers": [
+        "astronaut",
+        "pilot"
+      ],
+      "weight": 1,
+      "tags": [
+        "celebration",
+        "kindness"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Switch-On Day",
+          "text": "Today was a special day: the day Robo-dog was first switched on. Astronaut had a plan. There are no cakes on the Moon, and no candles either — a flame needs air. So they used the beacon. The floodlights came on, and the beacon lit up, round and bright, like the biggest birthday candle in space. Happy switch-on day to you… Everyone sang. Robo-dog sat up and made a wish. You can't blow a candle out without air, so he pressed the switch with his paw. Click! And Drone came buzzing over to take the picture. Flash! What did you wish for? asked Astronaut. Robo-dog wagged his antenna tail. Some wishes are secrets.",
+          "audio": "audio/en-US/switch-on-day.m4a",
+          "effects": "audio/en-US/switch-on-day.effects.json"
+        },
+        "es-ES": {
+          "title": "El día del encendido",
+          "text": "Hoy era un día especial: el día en que encendieron a Perro robot por primera vez. Astronauta tenía un plan. En la Luna no hay tartas, ni velas tampoco: una llama necesita aire. Así que usaron la baliza. Se encendieron los focos, y la baliza se iluminó, redonda y brillante, como la vela de cumpleaños más grande del espacio. Feliz día del encendido… Todos cantaron. Perro robot se sentó y pidió un deseo. Sin aire no se puede soplar una vela, así que pulsó el interruptor con la pata. ¡Clic! Y Dron llegó zumbando enseguida para hacer la foto. ¡Flash! ¿Qué has pedido? preguntó Astronauta. Perro robot movió su cola de antena. Hay deseos que son secretos.",
+          "audio": "audio/es-ES/switch-on-day.m4a",
+          "effects": "audio/es-ES/switch-on-day.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-broken-dish",
+      "requiredStickers": [
+        "engineer",
+        "satellite",
+        "drone"
+      ],
+      "optionalStickers": [
+        "robot"
+      ],
+      "weight": 1,
+      "tags": [
+        "mission"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Broken Dish",
+          "text": "It was call-home day. On Earth, a whole class of children was waiting to say hello. The satellite was ready. But the picture came through fuzzy, all crackles and snow. Hmm, said Engineer. It must be the dish. Up flew Drone, to the top of the radio mast, and took a close-up. Flash! There it was: the dish, knocked a little out of line. Easy, said Engineer. She loped over to the foot of the mast. Turn. Tighten. Sparks! One last hard twist… And the signal came through, clear as glass. There they were: thirty children, waving! Robot waved back so hard his antenna wobbled. Hello, Moon! they shouted. Hello, Earth!",
+          "audio": "audio/en-US/the-broken-dish.m4a",
+          "effects": "audio/en-US/the-broken-dish.effects.json"
+        },
+        "es-ES": {
+          "title": "La antena torcida",
+          "text": "Era el día de llamar a casa. En la Tierra, toda una clase de niños y niñas esperaba para saludar. El satélite estaba listo. Pero la imagen llegaba borrosa, llena de chisporroteos y puntitos. Mmm, dijo Ingeniera. Debe de ser la antena. Dron subió volando hasta lo alto del mástil y sacó una foto de cerca. ¡Flash! Ahí estaba: la antena, un poquito torcida. Pan comido, dijo Ingeniera. Fue a zancadas hasta el pie del mástil. Girar. Apretar. ¡Chispas! Una última vuelta fuerte… Y la señal llegó, clara como el cristal. ¡Allí estaban: treinta niños y niñas, saludando! Robot los saludó con tantas ganas que se le bamboleó la antena. ¡Hola, Luna! gritaron. ¡Hola, Tierra!",
+          "audio": "audio/es-ES/the-broken-dish.m4a",
+          "effects": "audio/es-ES/the-broken-dish.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-buggy-in-the-dust",
+      "requiredStickers": [
+        "buggy",
+        "rover",
+        "astronaut"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "race"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Buggy in the Dust",
+          "text": "Astronaut needed a rock sample. I'll get it! I'm the fastest! said the buggy, and zoomed off. A cloud of dust flew up behind it. Rover set off too: slowly, carefully, beep… beep… beep. At the edge of the crater, the buggy rolled into a patch of soft dust. Its wheels spun and spun. Wheeee… Stuck. Along came Rover, steady as ever. It stopped and drilled a rock sample, right there. Then it hooked on a cable and pulled, and out came the buggy. They rolled back side by side. So who won? asked Astronaut, and tossed a pebble up while she waited. The buggy thought about it. The one who brought us both home, it said.",
+          "audio": "audio/en-US/the-buggy-in-the-dust.m4a",
+          "effects": "audio/en-US/the-buggy-in-the-dust.effects.json"
+        },
+        "es-ES": {
+          "title": "El buggy en el polvo",
+          "text": "Astronauta necesitaba una muestra de roca. ¡Voy yo! ¡Soy el más rápido! dijo el buggy, y salió disparado. Una nube de polvo se levantó detrás de él. Róver también se puso en marcha: despacito, con cuidado, bip… bip… bip. En el borde del cráter, el buggy se metió en un polvo muy blandito. Sus ruedas giraban y giraban. Rrrrrr… Atascado. Llegó Róver, tranquilo como siempre. Se paró y taladró una muestra de roca, allí mismo. Luego enganchó un cable, tiró, y el buggy salió. Volvieron uno al lado del otro. ¿Y quién ha ganado? preguntó Astronauta, y lanzó un guijarro al aire mientras esperaba. El buggy se lo pensó. El que nos ha traído a los dos de vuelta, dijo.",
+          "audio": "audio/es-ES/the-buggy-in-the-dust.m4a",
+          "effects": "audio/es-ES/the-buggy-in-the-dust.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-busiest-sky",
+      "requiredStickers": [
+        "pilot",
+        "shuttle",
+        "satellite",
+        "asteroid"
+      ],
+      "optionalStickers": [
+        "robodog"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Busiest Sky",
+          "text": "Pilot looked up. The sky was getting busy. The shuttle was gliding one way. A satellite was drifting the other. And right through the middle, tumbling like a lost potato, came an asteroid. This calls for a traffic warden! Pilot crossed his glowing wands up high: STOP! The shuttle opened its doors and waited politely. The satellite blinked: waiting. The asteroid just kept tumbling. Asteroids don't listen to anybody. Robo-dog beeped at it. Fine, said Pilot. Rocks first! Off it tumbled. Then the shuttle, then the satellite. Pilot took a bow. Really, they had been thousands of miles apart. But it was a very good job.",
+          "audio": "audio/en-US/the-busiest-sky.m4a",
+          "effects": "audio/en-US/the-busiest-sky.effects.json"
+        },
+        "es-ES": {
+          "title": "El cielo más concurrido",
+          "text": "Piloto miró arriba. El cielo se estaba llenando. El transbordador iba hacia un lado. Un satélite flotaba hacia el otro. Y justo por el medio, dando tumbos como una patata perdida, llegaba un asteroide. ¡Esto necesita un guardia de tráfico! Piloto cruzó sus bastones luminosos bien alto: ¡ALTO! El transbordador abrió sus puertas y esperó con educación. El satélite parpadeó: esperando. El asteroide siguió dando tumbos. Los asteroides no hacen caso a nadie. Perro robot le pitó. Vale, dijo Piloto. ¡Primero las rocas! Allá se fue, rodando. Luego el transbordador, y luego el satélite. Piloto hizo una reverencia. En realidad, estaban a miles de kilómetros unos de otros. Pero había sido un trabajo estupendo.",
+          "audio": "audio/es-ES/the-busiest-sky.m4a",
+          "effects": "audio/es-ES/the-busiest-sky.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-clang-that-never-came",
+      "requiredStickers": [
+        "engineer",
+        "pilot",
+        "solar-panel"
+      ],
+      "optionalStickers": [
+        "robot"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Clang That Never Came",
+          "text": "The solar panel had a wobbly bolt. Engineer knelt beside it and gave it three hard turns with her big wrench. Then — oops — the wrench slipped and fell onto a rock. She scrunched her face up for the CLANG. Nothing. Not a clink. Not a clonk. Even Robot heard nothing. Pilot's voice crackled in her helmet. Didn't hear a thing! Of course: the Moon has no air, and sound needs air to travel. That's why the crew talk by radio. Pilot loped over and pressed his helmet against hers. Can you hear me now? His voice came through the glass, faint and fuzzy: sound travels through things that touch. Then he told her his worst joke. She laughed so hard that the solar panel tilted up to see what was so funny.",
+          "audio": "audio/en-US/the-clang-that-never-came.m4a",
+          "effects": "audio/en-US/the-clang-that-never-came.effects.json"
+        },
+        "es-ES": {
+          "title": "El clonc que nunca sonó",
+          "text": "El panel solar tenía un tornillo flojo. Ingeniera se arrodilló a su lado y le dio tres vueltas fuertes con su llave inglesa. Y entonces — ¡uy! — la llave se le escurrió y cayó sobre una roca. Arrugó la cara esperando el ¡CLONC! Nada. Ni un clinc. Ni un clonc. Ni Robot oyó nada. La voz de Piloto chisporroteó en su casco: ¡No he oído nada! Claro: en la Luna no hay aire, y el sonido necesita aire para viajar. Por eso la tripulación habla por radio. Piloto se acercó y juntó su casco con el de ella. ¿Me oyes ahora? Su voz cruzó el cristal, bajita: el sonido viaja por las cosas que se tocan. Luego le contó su peor chiste. Ella se rio tanto que el panel solar se inclinó para ver qué era tan gracioso.",
+          "audio": "audio/es-ES/the-clang-that-never-came.m4a",
+          "effects": "audio/es-ES/the-clang-that-never-came.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-comet-wish",
+      "requiredStickers": [
+        "telescope",
+        "astronomer",
+        "probe"
+      ],
+      "optionalStickers": [
+        "astronaut"
+      ],
+      "weight": 1,
+      "tags": [
+        "wonder",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Comet Wish",
+          "text": "A comet! A ball of ice and dust, gliding across the black sky with a long, glowing tail. Astronomer raised her binoculars and pointed. High above, the space telescope turned its golden mirror toward it. Look at the tail, she said. It always points away from the Sun, like hair in a breeze of sunlight. Make a wish! said Astronaut. Astronomer closed her eyes. I wish I could see it up close. And far out in the dark, the probe turned slowly on its way — toward the comet. Its mission was to go and meet it! Some wishes are already on their way.",
+          "audio": "audio/en-US/the-comet-wish.m4a",
+          "effects": "audio/en-US/the-comet-wish.effects.json"
+        },
+        "es-ES": {
+          "title": "El deseo del cometa",
+          "text": "¡Un cometa! Una bola de hielo y polvo que cruzaba el cielo negro con una cola larga y brillante. Astrónoma levantó los prismáticos y señaló. Allá arriba, el telescopio espacial giró su espejo dorado hacia él. Mirad la cola, dijo. Siempre apunta al lado contrario del Sol, como un pelo al viento, pero de luz. ¡Pide un deseo! dijo Astronauta. Astrónoma cerró los ojos. Ojalá pudiera verlo de cerca. Y allá lejos, en la oscuridad, la sonda giró despacio en su camino… hacia el cometa. ¡Su misión era ir a su encuentro! Hay deseos que ya van de camino.",
+          "audio": "audio/es-ES/the-comet-wish.m4a",
+          "effects": "audio/es-ES/the-comet-wish.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-countdown",
+      "requiredStickers": [
+        "rocket",
+        "pilot",
+        "robot"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "counting"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Countdown",
+          "text": "The rocket stood on the pad, ready for its engine test. Robot had the most important job of all: the countdown. Pilot loped over, stood tall and waved his glowing wands. All clear! Whenever you're ready. One! Two! Three! Down, Robot, not up. Down? Ten, eleven, twelve… Pilot sat him down. Backwards, he said. Like walking backwards. So Robot did a backwards dance and counted along: ten, nine, eight, seven, six, five, four… three… two… one… ZERO! The engines fired in a great cloud of dust. Again! said Robot. And after that I'll count UP: one second, two seconds, three seconds of engines! That part, said Pilot, you're already very good at.",
+          "audio": "audio/en-US/the-countdown.m4a",
+          "effects": "audio/en-US/the-countdown.effects.json"
+        },
+        "es-ES": {
+          "title": "La cuenta atrás",
+          "text": "El cohete esperaba en la plataforma, listo para probar los motores. Robot tenía el trabajo más importante de todos: la cuenta atrás. Piloto llegó a zancadas, se plantó y movió sus bastones luminosos. ¡Todo despejado! Cuando quieras. ¡Uno! ¡Dos! ¡Tres! Hacia atrás, Robot, no hacia delante. ¿Hacia atrás? Diez, once, doce… Piloto se sentó con él. Al revés, dijo. Como cuando andas de espaldas. Así que Robot bailó hacia atrás y contó: diez, nueve, ocho, siete, seis, cinco, cuatro… tres… dos… uno… ¡CERO! Los motores se encendieron en una gran nube de polvo. ¡Otra vez! dijo Robot. ¡Y luego contaré hacia DELANTE: un segundo, dos segundos, tres segundos de motores! Eso, dijo Piloto, ya se te da de maravilla.",
+          "audio": "audio/es-ES/the-countdown.m4a",
+          "effects": "audio/es-ES/the-countdown.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-dance-of-the-sun",
+      "requiredStickers": [
+        "solar-panel",
+        "robot",
+        "robodog"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Dance of the Sun",
+          "text": "After the long, dark night, the Sun peeked over the ridge. The solar panel tilted its face slowly up toward it. Robot stared. Is it… dancing? He tilted his head. The panel tilted a little more. Solar panels turn to face the Sun, to catch as much light as they can. But Robot didn't know that. A dance class! He struck a pose, one arm up to the Sun. Robo-dog came trotting over, and sat up with his paws in the air. And there they stayed, three dancers, perfectly still, soaking up the light. It was the slowest dance on the Moon. It lasted all day.",
+          "audio": "audio/en-US/the-dance-of-the-sun.m4a",
+          "effects": "audio/en-US/the-dance-of-the-sun.effects.json"
+        },
+        "es-ES": {
+          "title": "El baile del Sol",
+          "text": "Por fin se acabó la noche: el Sol asomó por la cordillera. El panel solar inclinó la cara despacito hacia él. Robot se quedó mirando. ¿Está… bailando? Ladeó la cabeza. El panel se inclinó un poco más. Los paneles solares se giran hacia el Sol para atrapar toda la luz que pueden. Pero Robot no lo sabía. ¡Una clase de baile! Se puso en pose, con un brazo hacia el Sol. Perro robot llegó trotando, y se sentó con las patas en el aire. Y allí se quedaron, tres bailarines, quietos, quietísimos, empapándose de luz. Fue el baile más lento de la Luna. Duró todo el día.",
+          "audio": "audio/es-ES/the-dance-of-the-sun.m4a",
+          "effects": "audio/es-ES/the-dance-of-the-sun.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-drone-without-propellers",
+      "requiredStickers": [
+        "drone",
+        "engineer",
+        "supply-pod"
+      ],
+      "optionalStickers": [
+        "robot"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Drone Without Propellers",
+          "text": "The supply pod had just come down from Earth, and it popped open. Inside, packed in foam, was a brand-new flying machine with four little propellers. Let's see you fly! said Engineer. The propellers spun up. Whirrrr. It didn't rise one bit. Propellers push against air, and the Moon has none. The propellers drooped. Hmm, said Engineer. Off came the propellers. On went four tiny thrusters. One last hard turn of the wrench… Robot held his breath, even though he doesn't breathe. Puff. Puff-puff. And up it went — a real Moon drone, bobbing on little puffs of gas. Its very first photo? Engineer, grinning from ear to ear.",
+          "audio": "audio/en-US/the-drone-without-propellers.m4a",
+          "effects": "audio/en-US/the-drone-without-propellers.effects.json"
+        },
+        "es-ES": {
+          "title": "El dron sin hélices",
+          "text": "La cápsula de carga acababa de llegar de la Tierra, y se abrió. Dentro, envuelto en espuma, había un aparato volador nuevecito con cuatro hélices. ¡A ver cómo vuelas! dijo Ingeniera. Las hélices empezaron a girar. Zzzzzz. No se levantó ni un poquito. Las hélices empujan el aire, y en la Luna no hay. Las hélices se quedaron mustias. Mmm, dijo Ingeniera. Fuera hélices. Dentro, cuatro propulsores diminutos. Una última vuelta fuerte de la llave… Robot contuvo la respiración, aunque no respira. Puf. Puf, puf. Y arriba que fue: un dron lunar de verdad, subiendo a soplidos de gas. ¿Su primera foto? Ingeniera, sonriendo de oreja a oreja.",
+          "audio": "audio/es-ES/the-drone-without-propellers.m4a",
+          "effects": "audio/es-ES/the-drone-without-propellers.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-dust-that-stuck",
+      "requiredStickers": [
+        "robodog",
+        "buggy",
+        "engineer"
+      ],
+      "optionalStickers": [
+        "astronaut"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Dust That Stuck",
+          "text": "The buggy came rolling back from a long drive, with Robo-dog trotting alongside. Both of them were grey from top to bottom. Moon dust! It sticks to everything, and gets in everywhere. Look at you two, sighed Engineer. She grabbed a brush and scrubbed the buggy's wheels. Scrub, scrub, scrub. Robo-dog wanted to help. So he did what dogs do. He shook himself from nose to tail. Dust flew everywhere… all over Engineer. Astronaut burst out laughing. The buggy spun its wheels, just to join in. Robo-dog sat up, very proud. So they all brushed each other, and by bedtime everyone was clean. Almost.",
+          "audio": "audio/en-US/the-dust-that-stuck.m4a",
+          "effects": "audio/en-US/the-dust-that-stuck.effects.json"
+        },
+        "es-ES": {
+          "title": "El polvo pegajoso",
+          "text": "El buggy volvió rodando de un paseo muy largo, con Perro robot trotando a su lado. Los dos estaban grises de arriba abajo. ¡Polvo lunar! Se pega a todo y se mete por todas partes. Pero mirad cómo venís, suspiró Ingeniera. Cogió un cepillo y frotó las ruedas del buggy. Frota, frota, frota. Perro robot quiso ayudar. Así que hizo lo que hacen los perros. Se sacudió del hocico a la cola. El polvo voló por todas partes… encima de Ingeniera. Astronauta se partió de risa. El buggy hizo girar las ruedas, para apuntarse. Perro robot se sentó, muy orgulloso. Así que se cepillaron unos a otros, y a la hora de dormir todos estaban limpios. Casi.",
+          "audio": "audio/es-ES/the-dust-that-stuck.m4a",
+          "effects": "audio/es-ES/the-dust-that-stuck.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-enormous-ice",
+      "requiredStickers": [
+        "ice",
+        "excavator",
+        "rover",
+        "robot"
+      ],
+      "optionalStickers": [
+        "geologist"
+      ],
+      "weight": 1,
+      "tags": [
+        "teamwork",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Enormous Ice",
+          "text": "Rover crept down into the crater, into the deep shadow where sunlight never reaches. Its drill whirred into the dust — and stopped. Something hard. Something cold. Ice! A chunk of ice, frozen fast. Water ice hides in places like this, where it's always dark and freezing. But it would not come out. Excavator rolled up. Its drum dug and dug. Stuck. Robot came to help. I will push! He pushed. Still stuck. So they got in a line: Rover pulling, Excavator digging, Robot pushing. One more push, said Robot, the smallest of them. And — POP! Out came the ice, glittering like treasure. Was it my push? asked Robot. Geologist chuckled. It was everybody's. And Robot's.",
+          "audio": "audio/en-US/the-enormous-ice.m4a",
+          "effects": "audio/en-US/the-enormous-ice.effects.json"
+        },
+        "es-ES": {
+          "title": "El hielo enorme",
+          "text": "Róver bajó despacito al cráter, a la sombra profunda donde nunca llega la luz del sol. Su taladro zumbó dentro del polvo… y se paró. Algo duro. Algo frío. ¡Hielo! Un bloque de hielo, bien congelado. El hielo de agua se esconde en sitios así, siempre oscuros y helados. Pero no había manera de sacarlo. Llegó Excavadora. Su tambor excavó y excavó. Atascado. Robot vino a ayudar. ¡Yo empujo! Empujó. Seguía atascado. Así que se pusieron en fila: Róver tirando, Excavadora cavando, Robot empujando. Un empujoncito más, dijo Robot, el más pequeño de todos. Y… ¡PLOP! Salió el hielo, brillando como un tesoro. ¿Ha sido mi empujón? preguntó Robot. Geólogo se rio. Ha sido el de todos. Y el tuyo.",
+          "audio": "audio/es-ES/the-enormous-ice.m4a",
+          "effects": "audio/es-ES/the-enormous-ice.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-far-traveller",
+      "requiredStickers": [
+        "probe",
+        "asteroid",
+        "satellite",
+        "telescope"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "wonder",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Far Traveller",
+          "text": "The probe had been travelling for months, and it had years still to go. Today it had company: an asteroid, tumbling through the dark. Lumpy. Grey. Very, very old. Far away, the space telescope turned its golden mirror to watch. Closer… closer… The probe turned slowly, pointing its cameras. Click. Click. Click. The pictures went racing back across space, and the satellite passed them down to the base. There it was, up close: craters, boulders, a dusty grey skin. And going round and round it — what was that? A tiny moon! The asteroid had a little moon of its own. Even out there, nobody travels alone.",
+          "audio": "audio/en-US/the-far-traveller.m4a",
+          "effects": "audio/en-US/the-far-traveller.effects.json"
+        },
+        "es-ES": {
+          "title": "El viajero lejano",
+          "text": "La sonda llevaba meses viajando, y aún le quedaban años. Ese día tuvo compañía: un asteroide, dando tumbos en la oscuridad. Abollado. Gris. Viejísimo. Muy lejos, el telescopio espacial giró su espejo dorado para mirar. Más cerca… más cerca… La sonda giró despacio, apuntando sus cámaras. Clic. Clic. Clic. Las fotos cruzaron el espacio a toda velocidad, y el satélite se las pasó a la base. Allí estaba, de cerca: cráteres, rocas, una piel gris y polvorienta. Y dando vueltas a su alrededor… ¿qué era eso? ¡Una luna diminuta! El asteroide tenía su propia lunita. Ni siquiera allí fuera viaja nadie solo.",
+          "audio": "audio/es-ES/the-far-traveller.m4a",
+          "effects": "audio/es-ES/the-far-traveller.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-first-leaf",
+      "requiredStickers": [
+        "seedling",
+        "greenhouse",
+        "engineer",
+        "solar-panel"
+      ],
+      "optionalStickers": [
+        "astronaut"
+      ],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "wonder",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The First Leaf",
+          "text": "In its little glass dome, the seedling had two leaves, and a third one curled up tight, waiting. Engineer had a plan, a cable and a solar panel. She turned the panel to face the Sun, and ran the cable into the greenhouse. Click — the grow-lights glowed a soft violet. Plants can grow on the Moon, inside a sealed dome, under lights like these. The seedling reached up toward them. And slowly, slowly, the curled-up leaf began to open. Everyone came to look. Astronaut pressed her visor to the glass. The leaf was smaller than a thumbnail. It's opening! It was the biggest thing that had ever happened on the Moon.",
+          "audio": "audio/en-US/the-first-leaf.m4a",
+          "effects": "audio/en-US/the-first-leaf.effects.json"
+        },
+        "es-ES": {
+          "title": "La primera hoja",
+          "text": "En su cúpula de cristal, el brote tenía dos hojas, y una tercera enrollada, esperando. Ingeniera tenía un plan, un cable y un panel solar. Giró el panel hacia el Sol y llevó el cable hasta el invernadero. Clic: las luces de cultivo se encendieron, de un violeta suave. En la Luna las plantas pueden crecer dentro de una cúpula cerrada, con luces como estas. El brote se estiró hacia ellas. Y despacito, despacito, la hoja enrollada empezó a abrirse. Todos vinieron a mirar. Astronauta pegó el visor al cristal. La hoja era más pequeña que una uña. ¡Se está abriendo! Era lo más grande que había pasado nunca en la Luna.",
+          "audio": "audio/es-ES/the-first-leaf.m4a",
+          "effects": "audio/es-ES/the-first-leaf.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-greenhouse-glow",
+      "requiredStickers": [
+        "greenhouse",
+        "seedling",
+        "astronomer"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Greenhouse Glow",
+          "text": "The Moon night was long, and Astronomer couldn't sleep. She tried counting stars. She tried counting craters. Then she saw a soft glow across the plain. It was the greenhouse, lit up violet in the dark. She tiptoed over. Inside, in its little glass dome, the seedling was reaching up for the light. You can't sleep either? said Astronomer. So she sat down beside it and told it a story about the stars: which ones make a hunter, which a swan, which a great bear. The seedling listened. And somewhere around the swan, Astronomer fell fast asleep, in the glow of the greenhouse, warm as a lamp.",
+          "audio": "audio/en-US/the-greenhouse-glow.m4a",
+          "effects": "audio/en-US/the-greenhouse-glow.effects.json"
+        },
+        "es-ES": {
+          "title": "La luz del invernadero",
+          "text": "La noche lunar era larga, y Astrónoma no podía dormir. Probó a contar estrellas. Probó a contar cráteres. Entonces vio un brillo suave al otro lado de la llanura. Era el invernadero, iluminado de violeta en la oscuridad. Se acercó de puntillas. Dentro, en su cúpula de cristal, el brote se estiraba hacia la luz. ¿Tú tampoco puedes dormir? dijo Astrónoma. Así que se sentó a su lado y le contó una historia sobre las estrellas: cuáles forman un cazador, cuáles un cisne, cuáles una gran osa. El brote escuchaba. Y más o menos por el cisne, Astrónoma se quedó dormida, al calor del invernadero, tibio como una lámpara.",
+          "audio": "audio/es-ES/the-greenhouse-glow.m4a",
+          "effects": "audio/es-ES/the-greenhouse-glow.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-hammer-and-the-map",
+      "requiredStickers": [
+        "lander",
+        "geologist",
+        "astronaut"
+      ],
+      "optionalStickers": [
+        "pilot"
+      ],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Hammer and the Map",
+          "text": "The lander stood on its pad, gold and shiny. Astronaut held up her paper map. Geologist held up his heavy hammer. Which one will land first? asked Astronaut. My hammer, of course. Heavy things fall faster. Want to bet? The loser polishes the lander. Deal. They held them out, side by side. Three, two, one… drop! The hammer and the map fell together — and landed at exactly the same moment. On Earth, the air would catch the paper and float it down slowly. But the Moon has no air to get in the way. The lander's hatch swung open. A tie! said Pilot. So they both polished the lander. Geologist tapped the gold with his hammer, just to check.",
+          "audio": "audio/en-US/the-hammer-and-the-map.m4a",
+          "effects": "audio/en-US/the-hammer-and-the-map.effects.json"
+        },
+        "es-ES": {
+          "title": "El martillo y el mapa",
+          "text": "El módulo lunar estaba en su plataforma, dorado y reluciente. Astronauta levantó su mapa de papel. Geólogo levantó su martillo, bien pesado. ¿Cuál llegará antes al suelo? preguntó Astronauta. Mi martillo, claro. Lo pesado cae más rápido. ¿Apostamos? Quien pierda, saca brillo al módulo. Hecho. Los sostuvieron uno al lado del otro. Tres, dos, uno… ¡ya! El martillo y el mapa cayeron juntos… y llegaron al suelo a la vez. En la Tierra, el aire frenaría el papel y lo bajaría despacito. Pero en la Luna no hay aire que se meta por medio. La escotilla del módulo se abrió. ¡Empate! dijo Piloto. Así que los dos le sacaron brillo al módulo. Geólogo le dio unos golpecitos al dorado con el martillo, por si acaso.",
+          "audio": "audio/es-ES/the-hammer-and-the-map.m4a",
+          "effects": "audio/es-ES/the-hammer-and-the-map.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-lander-comes-home",
+      "requiredStickers": [
+        "lander",
+        "pilot",
+        "beacon"
+      ],
+      "optionalStickers": [
+        "robodog"
+      ],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "bedtime"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Lander Comes Home",
+          "text": "The Moon night was deep and dark, and somewhere out there, someone was flying home. Pilot loped out to the landing pad. He held up his glowing wands and crossed them high: here, here! The beacon swept its light round and round. The floodlights came on, bright pools on the grey dust. Then — a tiny light in the sky, getting bigger… the lander! It came down gently, right onto the pad, in a soft puff of dust. Welcome home! The hatch swung open, spilling warm light. Robo-dog came trotting to say hello, as if it had been gone a year. It had been gone a day.",
+          "audio": "audio/en-US/the-lander-comes-home.m4a",
+          "effects": "audio/en-US/the-lander-comes-home.effects.json"
+        },
+        "es-ES": {
+          "title": "El módulo vuelve a casa",
+          "text": "La noche lunar era honda y oscura, y en algún lugar de allá fuera, alguien volvía a casa. Piloto salió a zancadas hasta la plataforma. Levantó sus bastones luminosos y los cruzó bien alto: ¡aquí, aquí! La baliza giró su luz, vuelta y vuelta. Se encendieron los focos, charcos de luz sobre el polvo gris. Y entonces… una lucecita en el cielo, cada vez más grande… ¡el módulo! Bajó despacito, justo sobre la plataforma, en una nubecita de polvo. ¡Bienvenido a casa! La escotilla se abrió, derramando una luz cálida. Perro robot llegó trotando a saludar, como si hubiera estado fuera un año. Había estado fuera un día.",
+          "audio": "audio/es-ES/the-lander-comes-home.m4a",
+          "effects": "audio/es-ES/the-lander-comes-home.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-last-bolt",
+      "requiredStickers": [
+        "engineer",
+        "rocket",
+        "beacon"
+      ],
+      "optionalStickers": [
+        "pilot"
+      ],
+      "weight": 1,
+      "tags": [
+        "adventure"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Last Bolt",
+          "text": "Ten minutes to the engine test. Then a warning light blinked: one loose bolt on the rocket's landing leg. For want of a bolt, a leg would wobble, said Pilot. For want of a leg, the rocket would lean… Not today, said Engineer. She switched on the floodlights, and the beacon unfolded by the rocket and lit the way. Out she loped, wrench in hand. Clamp. Turn. Turn. Sparks. One last, hard turn… Done. Three… two… one… The rocket's engines fired, right on time, in a great cloud of exhaust. And the leg did not wobble one bit.",
+          "audio": "audio/en-US/the-last-bolt.m4a",
+          "effects": "audio/en-US/the-last-bolt.effects.json"
+        },
+        "es-ES": {
+          "title": "El último tornillo",
+          "text": "Faltaban diez minutos para la prueba de motores. Entonces parpadeó una luz de aviso: un tornillo flojo en la pata del cohete. Por un tornillo, la pata se tambalea, dijo Piloto. Por una pata, el cohete se inclina… Hoy no, dijo Ingeniera. Encendió los focos, y la baliza se desplegó junto al cohete y le iluminó el camino. Allá fue a zancadas, llave en mano. Ajustar. Girar. Girar. Chispas. Una última vuelta, bien fuerte… Listo. Tres… dos… uno… Los motores del cohete se encendieron justo a tiempo, en una gran nube de humo. Y la pata no se tambaleó ni un poquito.",
+          "audio": "audio/es-ES/the-last-bolt.m4a",
+          "effects": "audio/es-ES/the-last-bolt.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-little-lander-and-the-big-shuttle",
+      "requiredStickers": [
+        "shuttle",
+        "lander",
+        "station"
+      ],
+      "optionalStickers": [
+        "pilot"
+      ],
+      "weight": 1,
+      "tags": [
+        "kindness"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Lander and the Shuttle",
+          "text": "High above, the space station turned slowly. Docked beside it was the grand old shuttle, with its long white wings. It opened its cargo doors. I've brought supplies for the base, it said. But I can't land. My wings need air, and the Moon has none. The station blinked its lights, thinking. Then, from the landing pad, a small voice piped up: I'll take them! It was the lander: small, gold and brave. Up it puffed on its little engine, loaded up, and down it came again, slowly, carefully. It landed in a soft puff of dust. Pilot cheered. Thank you, little one, said the shuttle. Next time you're on Earth, said the lander, bring me a cloud.",
+          "audio": "audio/en-US/the-little-lander-and-the-big-shuttle.m4a",
+          "effects": "audio/en-US/the-little-lander-and-the-big-shuttle.effects.json"
+        },
+        "es-ES": {
+          "title": "El módulo y el transbordador",
+          "text": "Allá arriba, la estación espacial giraba despacio. A su lado estaba el gran y viejo transbordador, con sus largas alas blancas. Abrió las puertas de su bodega. Traigo provisiones para la base, dijo. Pero no puedo aterrizar. Mis alas necesitan aire, y en la Luna no hay. La estación parpadeó sus luces, pensando. Entonces, desde la plataforma, se oyó una vocecita: ¡ Yo las llevo! Era el módulo lunar: pequeño, dorado y valiente. Subió a soplidos con su motorcito, cargó las cajas y volvió a bajar, despacio, con cuidado. Aterrizó en una nubecita de polvo. Piloto lo celebró. Gracias, pequeño, dijo el transbordador. La próxima vez que vayas a la Tierra, dijo el módulo, tráeme una nube.",
+          "audio": "audio/es-ES/the-little-lander-and-the-big-shuttle.m4a",
+          "effects": "audio/es-ES/the-little-lander-and-the-big-shuttle.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-little-red-tomato",
+      "requiredStickers": [
+        "greenhouse",
+        "excavator",
+        "supply-pod",
+        "geologist"
+      ],
+      "optionalStickers": [
+        "robodog"
+      ],
+      "weight": 1,
+      "tags": [
+        "sharing",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Little Red Tomato",
+          "text": "Who will help me grow a tomato on the Moon? asked Geologist. I will, said the supply pod, and popped its lid: inside was one tomato seed. I will, rumbled Excavator, and dug up a heap of moon dust to make soil. Geologist tapped it and peered at it. Good dust, he said. Robo-dog wagged in agreement. I will, said the greenhouse, and switched on its grow-lights. Weeks went by. Then one morning, there it was: one small red tomato. Who will help me eat it? Everybody helped with that. Geologist cut it into the thinnest slices in the solar system, one for everyone — and the robots got the seeds, to grow the next one.",
+          "audio": "audio/en-US/the-little-red-tomato.m4a",
+          "effects": "audio/en-US/the-little-red-tomato.effects.json"
+        },
+        "es-ES": {
+          "title": "El tomatito rojo",
+          "text": "¿Quién me ayuda a cultivar un tomate en la Luna? preguntó Geólogo. Yo, dijo la cápsula de carga, y abrió la tapa: dentro había una semilla de tomate. Yo, retumbó Excavadora, y sacó un montón de polvo lunar para hacer tierra. Geólogo le dio unos golpecitos y lo miró de cerca. Buen polvo, dijo. Perro robot movió la cola, muy de acuerdo. Yo, dijo el invernadero, y encendió sus luces de cultivo. Pasaron las semanas. Y una mañana, allí estaba: un tomatito rojo. ¿Quién me ayuda a comérmelo? Para eso ayudó todo el mundo. Geólogo lo cortó en las rodajas más finas del sistema solar, una para cada uno… y los robots se quedaron las semillas, para cultivar el siguiente.",
+          "audio": "audio/es-ES/the-little-red-tomato.m4a",
+          "effects": "audio/es-ES/the-little-red-tomato.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-longest-night",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Longest Night",
+          "text": "On the Moon, the Sun takes its time. When night falls, it stays: about two whole weeks of dark. Two weeks! So the base gets ready. The floodlights come on, bright pools on the grey dust. Everyone works a little. Everyone sleeps a little. Everyone wakes up, works a little more, has a snack, and sleeps again… The stars stay out. The Earth glows blue over the ridge. The base hums quietly to itself, sleep after sleep after sleep. And then, one morning — though it's hard to tell which — a thin white line of sunlight creeps over the ridge. Morning! The longest night is over. Only two weeks till the next one.",
+          "audio": "audio/en-US/the-longest-night.m4a",
+          "effects": "audio/en-US/the-longest-night.effects.json"
+        },
+        "es-ES": {
+          "title": "La noche más larga",
+          "text": "En la Luna, el Sol se toma su tiempo. Cuando se hace de noche, se queda: unas dos semanas enteras de oscuridad. ¡Dos semanas! Así que la base se prepara. Se encienden los focos, charcos de luz sobre el polvo gris. Todos trabajan un poco. Todos duermen un poco. Todos se despiertan, trabajan otro poco, meriendan algo y vuelven a dormir… Las estrellas siguen ahí. La Tierra brilla azul sobre la cordillera. La base zumba bajito, sueño tras sueño tras sueño. Y entonces, una mañana —aunque cuesta saber cuál—, una fina línea blanca de sol asoma por la cordillera. ¡Buenos días! Se acabó la noche más larga. Solo faltan dos semanas para la siguiente.",
+          "audio": "audio/es-ES/the-longest-night.m4a",
+          "effects": "audio/es-ES/the-longest-night.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-lullaby-from-home",
+      "requiredStickers": [
+        "satellite",
+        "astronaut",
+        "station"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "music"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Lullaby from Home",
+          "text": "Far from home, in the long Moon night, Astronaut couldn't stop thinking of her grandmother. High above, the satellite caught a message, sent all the way from Earth. It was a song: her grandmother's song, the one she sang at bedtime long ago. Listen… Hush now, little star, the night is wide… Astronaut hummed along. Tiny lights drifted across the sky. The space station glided over, turning its wings, as if it were listening too. Astronaut tossed a pebble up and watched it float, slow as a lullaby. By the last line she was fast asleep, and home didn't feel so far away.",
+          "audio": "audio/en-US/the-lullaby-from-home.m4a",
+          "effects": "audio/en-US/the-lullaby-from-home.effects.json"
+        },
+        "es-ES": {
+          "title": "La nana de casa",
+          "text": "Lejos de casa, en la larga noche lunar, Astronauta no dejaba de pensar en su abuela. Allá arriba, el satélite recogió un mensaje enviado desde la Tierra. Era una canción: la canción de su abuela, la que le cantaba al dormir cuando era pequeña. Escucha… Duérmete, estrellita, que la noche es grande… Astronauta la tarareó. Unas lucecitas cruzaron el cielo. La estación espacial pasó deslizándose, girando sus alas, como si también escuchara. Astronauta lanzó un guijarro al aire y lo vio flotar, lento como una nana. Al terminar la canción ya estaba dormida, y su casa ya no parecía tan lejos.",
+          "audio": "audio/es-ES/the-lullaby-from-home.m4a",
+          "effects": "audio/es-ES/the-lullaby-from-home.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-lumpy-beauty",
+      "requiredStickers": [
+        "asteroid",
+        "geologist",
+        "telescope"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Lumpy Beauty",
+          "text": "The space telescope turned its golden mirror and found something tumbling past: an asteroid. Lumpy. Bumpy. Covered in pits. It looks like a potato! somebody laughed. A potato that rolled down the stairs! But Geologist didn't laugh. He leaned in close. It's beautiful, he said. Asteroids are rocks left over from when the planets were made. That lumpy potato is as old as the Earth itself. He tapped his own rock with his hammer and looked at the asteroid again. Every bump is a story, he said. Up there, the asteroid tumbled over, as if it were taking a bow. Nobody called it a potato after that. Well. Only a little bit.",
+          "audio": "audio/en-US/the-lumpy-beauty.m4a",
+          "effects": "audio/en-US/the-lumpy-beauty.effects.json"
+        },
+        "es-ES": {
+          "title": "La belleza abollada",
+          "text": "El telescopio espacial giró su espejo dorado y encontró algo que pasaba dando tumbos: un asteroide. Abollado. Lleno de bultos. Cubierto de agujeritos. ¡Parece una patata! se rio alguien. ¡Una patata que se ha caído por las escaleras! Pero Geólogo no se rio. Se acercó mucho. Es precioso, dijo. Los asteroides son rocas que sobraron cuando se formaron los planetas. Esa patata abollada es tan antigua como la propia Tierra. Le dio unos golpecitos a su propia roca con el martillo y volvió a mirar el asteroide. Cada bulto es una historia, dijo. Allá arriba, el asteroide dio una voltereta, como si hiciera una reverencia. Después de aquello, nadie volvió a llamarlo patata. Bueno. Solo un poquito.",
+          "audio": "audio/es-ES/the-lumpy-beauty.m4a",
+          "effects": "audio/es-ES/the-lumpy-beauty.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-pebble-that-took-its-time",
+      "requiredStickers": [
+        "astronaut",
+        "robodog",
+        "geologist"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Pebble That Took Its Time",
+          "text": "Robo-dog wanted to play. He trotted over to Astronaut, wagging his antenna tail. Fetch? said Astronaut. She scooped up a grey pebble and tossed it up… and up… and up. On the Moon, gravity is gentle, and things fall very, very slowly. Robo-dog sat up to wait. And waited. The pebble hung above them like a lazy little moon. Geologist came loping over. Careful! Nobody has studied that rock yet! Down, down it drifted, into Astronaut's glove — and she tossed it to Geologist. He tapped it with his hammer and peered at it through his round glasses. Hmm. Perfectly ordinary. Then his eyes lit up. Throw it again! Science needs more tries! So they played the slowest game of fetch in the solar system, all afternoon.",
+          "audio": "audio/en-US/the-pebble-that-took-its-time.m4a",
+          "effects": "audio/en-US/the-pebble-that-took-its-time.effects.json"
+        },
+        "es-ES": {
+          "title": "El guijarro sin prisa",
+          "text": "Perro robot quería jugar. Fue trotando hasta Astronauta, moviendo su cola de antena. ¿Jugamos? dijo ella. Cogió un guijarro gris y lo lanzó hacia arriba… y arriba… y arriba. En la Luna la gravedad es suave, y las cosas caen muy, muy despacio. Perro robot se sentó a esperar. Y esperó. El guijarro flotaba sobre ellos como una lunita perezosa. Geólogo llegó dando zancadas. ¡Cuidado! ¡Esa roca no la ha estudiado nadie! Bajó flotando, despacito, hasta el guante de Astronauta… y ella se la lanzó a Geólogo. Él la golpeó con su martillo y la miró de cerca con sus gafas. Mmm. Una piedra normal. Pero entonces le brillaron los ojos. ¡Otra vez! ¡La ciencia necesita más pruebas! Y jugaron al juego de lanzar y traer más lento del sistema solar, toda la tarde.",
+          "audio": "audio/es-ES/the-pebble-that-took-its-time.m4a",
+          "effects": "audio/es-ES/the-pebble-that-took-its-time.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-probe-says-goodbye",
+      "requiredStickers": [
+        "probe",
+        "drone",
+        "satellite",
+        "astronomer"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "goodbye",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Probe Says Goodbye",
+          "text": "The probe came sailing past the Moon. It had a long way to go: years and years, all the way to the far planets. Astronomer waved both arms. Everyone, wave! Drone zoomed up as high as it could and took the probe's picture. Flash! The probe turned its big white dish toward home. For years it would talk to the Earth through that dish, sending back pictures of places nobody has ever seen. The satellite sent one last message after it: Safe travels! Astronomer watched it grow smaller and smaller. Then — ping — a message came back. A picture. The Moon, and on it a tiny base, and tinier dots, waving. That's us, she said.",
+          "audio": "audio/en-US/the-probe-says-goodbye.m4a",
+          "effects": "audio/en-US/the-probe-says-goodbye.effects.json"
+        },
+        "es-ES": {
+          "title": "La sonda se despide",
+          "text": "La sonda pasó navegando junto a la Luna. Le quedaba muchísimo camino: años y años, hasta los planetas más lejanos. Astrónoma saludó con los dos brazos. ¡Todos a saludar! Dron subió todo lo alto que pudo y le hizo una foto a la sonda. ¡Flash! La sonda giró su gran antena blanca hacia casa. Durante años hablaría con la Tierra a través de esa antena, enviando fotos de lugares que nadie ha visto nunca. El satélite le mandó un último mensaje: ¡Buen viaje! Astrónoma la vio hacerse pequeña, cada vez más pequeña. Y entonces — pin — llegó un mensaje de vuelta. Una foto. La Luna, y en ella una base diminuta, y unos puntitos todavía más diminutos, saludando. Somos nosotros, dijo.",
+          "audio": "audio/es-ES/the-probe-says-goodbye.m4a",
+          "effects": "audio/es-ES/the-probe-says-goodbye.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-robot-who-wanted-to-dream",
+      "requiredStickers": [
+        "robot",
+        "robodog",
+        "station"
+      ],
+      "optionalStickers": [
+        "pilot"
+      ],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Robot Who Wanted to Dream",
+          "text": "It was the middle of the long Moon night, and the whole base was asleep. Pilot snored softly. Everyone was asleep, except Robot. I want to dream, he said. But robots don't know how. Robo-dog trotted over. He knew a trick. He sat up and looked at the sky. Robot looked too. There went the space station, gliding over. It turned its wings, slow and gentle. Round it went. And round. And round… Robot's screen dimmed. He started a little dance and, halfway through, one arm up — powered down. And there he stood all night, fast asleep in the middle of a dance, dreaming about round things.",
+          "audio": "audio/en-US/the-robot-who-wanted-to-dream.m4a",
+          "effects": "audio/en-US/the-robot-who-wanted-to-dream.effects.json"
+        },
+        "es-ES": {
+          "title": "El robot que quería soñar",
+          "text": "Era la mitad de la larga noche lunar, y toda la base dormía. Piloto roncaba bajito. Todos dormían, menos Robot. Quiero soñar, dijo. Pero los robots no saben. Perro robot se acercó trotando. Él conocía un truco. Se sentó y miró al cielo. Robot miró también. Allá iba la estación espacial, deslizándose. Giró sus alas, despacio, suave. Daba la vuelta. Y otra vuelta. Y otra… La pantalla de Robot se atenuó. Empezó un bailecito y, a medias, con un brazo en alto… se apagó. Y allí se quedó toda la noche, dormido en mitad de un baile, soñando con cosas redondas.",
+          "audio": "audio/es-ES/the-robot-who-wanted-to-dream.m4a",
+          "effects": "audio/es-ES/the-robot-who-wanted-to-dream.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-rocket-goes-home",
+      "requiredStickers": [
+        "rocket",
+        "astronaut",
+        "engineer"
+      ],
+      "optionalStickers": [
+        "pilot"
+      ],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "goodbye"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Rocket Goes Home",
+          "text": "Engineer's mission was over. Today she was flying home. Astronaut was staying. The rocket stood ready on the pad. One last job, for luck, said Engineer, and gave a bolt on its leg a good hard turn. Then she handed Astronaut her big wrench. Keep it for me? Until you come back. She climbed aboard, and so did Pilot, to fly her. Three, two, one… The engines fired in a great cloud of dust… and up, up, up went the rocket, into the black sky. Astronaut waved, and tossed a pebble up to wave with. She waved until the rocket was a speck, and the speck was a star. Then she went to fix something, with a very good wrench.",
+          "audio": "audio/en-US/the-rocket-goes-home.m4a",
+          "effects": "audio/en-US/the-rocket-goes-home.effects.json"
+        },
+        "es-ES": {
+          "title": "El cohete vuelve a casa",
+          "text": "La misión de Ingeniera había terminado. Hoy volvía a casa. Astronauta se quedaba. El cohete esperaba listo en la plataforma. Un último trabajo, para la suerte, dijo Ingeniera, y le dio una buena vuelta a un tornillo de la pata. Luego le dio a Astronauta su llave inglesa. ¿Me la guardas? Hasta que vuelvas. Subió a bordo, y Piloto también, para llevarla. Tres, dos, uno… Los motores rugieron en una gran nube de polvo… y arriba, arriba, arriba subió el cohete, hacia el cielo negro. Astronauta dijo adiós con la mano, y lanzó un guijarro al aire para despedirse también. Saludó hasta que el cohete fue un puntito, y el puntito, una estrella. Luego se fue a arreglar algo, con una llave inglesa estupenda.",
+          "audio": "audio/es-ES/the-rocket-goes-home.m4a",
+          "effects": "audio/es-ES/the-rocket-goes-home.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-rover-and-the-drone",
+      "requiredStickers": [
+        "rover",
+        "drone",
+        "ice"
+      ],
+      "optionalStickers": [
+        "geologist"
+      ],
+      "weight": 1,
+      "tags": [
+        "teamwork"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Rover and the Drone",
+          "text": "Geologist had a job for two machines. Down in the wide, dark crater, something frozen was waiting. I can see far, said Drone, but I can't carry a thing. I can carry plenty, beeped Rover, but I only see a little way. So they made a plan. Drone flew ahead into the shadows. Flash! It lit up the way. Rover rolled after it, slow and steady, from flash to flash. Then — something sparkled. Ice! A wisp of frost curled up off it. Rover drilled out a chunk and loaded it up. Back they came, Drone lighting the way and Rover doing the carrying. Perfect! said Geologist. Two halves of one very good team.",
+          "audio": "audio/en-US/the-rover-and-the-drone.m4a",
+          "effects": "audio/en-US/the-rover-and-the-drone.effects.json"
+        },
+        "es-ES": {
+          "title": "El róver y el dron",
+          "text": "Geólogo tenía un trabajo para dos máquinas. Allá abajo, en el cráter ancho y oscuro, algo helado esperaba. Yo veo lejos, dijo Dron, pero no puedo cargar nada. Yo cargo mucho, pitó Róver, pero solo veo un poquito. Así que hicieron un plan. Dron voló delante, hacia las sombras. ¡Flash! Iluminó el camino. Róver lo siguió, despacio y seguro, de flash en flash. Y entonces… algo brilló. ¡ Hielo! Un hilito de escarcha subió de él. Róver taladró un trozo y lo cargó. Volvieron juntos, Dron iluminando el camino y Róver llevando la carga. ¡Perfecto! dijo Geólogo. Dos mitades de un equipo buenísimo.",
+          "audio": "audio/es-ES/the-rover-and-the-drone.m4a",
+          "effects": "audio/es-ES/the-rover-and-the-drone.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-shuttles-last-trip",
+      "requiredStickers": [
+        "shuttle",
+        "pilot",
+        "station"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "goodbye"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Shuttle's Last Trip",
+          "text": "High overhead, the old shuttle was making its very last trip. After this, it was going home to a museum on Earth. Pilot watched from the plain. Long ago, when his beard was brown, he had flown that shuttle himself. The space station turned its wings to welcome it in. Gently, gently, the shuttle docked. Pilot lifted his glowing wands and crossed them high over his helmet: the old signal. All good. For a moment, nothing. Then the shuttle opened its cargo doors, and its long robot arm waved. It remembered! Well done, old friend, said Pilot. Soon, children on Earth would climb inside it and dream of the Moon.",
+          "audio": "audio/en-US/the-shuttles-last-trip.m4a",
+          "effects": "audio/en-US/the-shuttles-last-trip.effects.json"
+        },
+        "es-ES": {
+          "title": "El último viaje del transbordador",
+          "text": "Muy arriba, el viejo transbordador hacía su último viaje. Después volvería a la Tierra, a un museo. Piloto lo miraba desde la llanura. Hacía mucho, cuando tenía la barba castaña, él mismo había pilotado ese transbordador. La estación espacial giró sus alas para darle la bienvenida. Con cuidado, con cuidado, el transbordador se acopló. Piloto levantó sus bastones luminosos y los cruzó bien alto sobre el casco: la vieja señal. Todo bien. Por un momento, nada. Entonces el transbordador abrió las puertas de su bodega, y su largo brazo robótico saludó. ¡Se acordaba! Buen trabajo, viejo amigo, dijo Piloto. Pronto, niños y niñas de la Tierra se subirían a él y soñarían con la Luna.",
+          "audio": "audio/es-ES/the-shuttles-last-trip.m4a",
+          "effects": "audio/es-ES/the-shuttles-last-trip.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-station-overhead",
+      "requiredStickers": [
+        "station",
+        "shuttle",
+        "robodog"
+      ],
+      "optionalStickers": [
+        "astronomer"
+      ],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "bedtime"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Station Overhead",
+          "text": "Every night, just after dark, Robo-dog trotted out onto the plain and sat up to wait. Astronomer knew what for. There it came, right on time: the space station, gliding over the ridge, its lights blinking hello. It turned its solar wings to catch the last of the sunlight. Robo-dog's tail wagged. But tonight… tonight there were two lights. Tucked against the station was a second ship: the shuttle! It opened its cargo doors, and its long robot arm waved. Robo-dog bounced so high he nearly floated. Now, every night, he waits for two.",
+          "audio": "audio/en-US/the-station-overhead.m4a",
+          "effects": "audio/en-US/the-station-overhead.effects.json"
+        },
+        "es-ES": {
+          "title": "La estación en el cielo",
+          "text": "Todas las noches, justo al oscurecer, Perro robot salía trotando a la llanura y se sentaba a esperar. Astrónoma sabía a qué. Allí llegaba, puntual: la estación espacial, deslizándose sobre la cordillera, guiñando sus luces para saludar. Giró sus alas solares para atrapar la última luz del sol. Perro robot movió la cola. Pero esa noche… esa noche había dos luces. Pegada a la estación había otra nave: ¡el transbordador! Abrió las puertas de su bodega, y su largo brazo robótico saludó. Perro robot saltó tan alto que casi se quedó flotando. Ahora, cada noche, espera a los dos.",
+          "audio": "audio/es-ES/the-station-overhead.m4a",
+          "effects": "audio/es-ES/the-station-overhead.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-sun-went-out",
+      "requiredStickers": [
+        "pilot",
+        "robot",
+        "solar-panel"
+      ],
+      "optionalStickers": [
+        "geologist"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "wonder",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Day the Sun Went Out",
+          "text": "The light turned red. Copper-red, like an old penny. The solar panel tilted about, hunting for the Sun. Robot panicked. The Sun is broken! He dashed to Geologist. The Sun is broken! He dashed to Pilot. The Sun is BROKEN! Pilot just smiled and patted the rock beside him. Sit. Look. Robot looked. The Earth was sliding in front of the Sun. An eclipse, said Pilot. That red light is every sunset on Earth — and every morning's first light — all at once, shining through its air. Every sunset at once? said Robot. Nobody said a word after that. They just watched. And when the Sun came back, Robot danced to welcome it.",
+          "audio": "audio/en-US/the-sun-went-out.m4a",
+          "effects": "audio/en-US/the-sun-went-out.effects.json"
+        },
+        "es-ES": {
+          "title": "Cuando se apagó el Sol",
+          "text": "La luz se volvió roja. Rojo cobre, como una moneda vieja. El panel solar se inclinaba de un lado a otro, buscando el Sol. Robot se asustó. ¡El Sol se ha roto! Corrió hasta Geólogo. ¡El Sol se ha roto! Corrió hasta Piloto. ¡El Sol se ha ROTO! Piloto sonrió y dio unas palmaditas en la roca de al lado. Siéntate. Mira. Robot miró. La Tierra se estaba deslizando por delante del Sol. Un eclipse, dijo Piloto. Esa luz roja son todos los amaneceres y todos los atardeceres de la Tierra a la vez, brillando a través de su aire. ¿Todos los atardeceres a la vez? dijo Robot. Después de eso nadie dijo nada. Solo miraron. Y cuando volvió el Sol, Robot bailó para darle la bienvenida.",
+          "audio": "audio/es-ES/the-sun-went-out.m4a",
+          "effects": "audio/es-ES/the-sun-went-out.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-supply-pod-garden",
+      "requiredStickers": [
+        "supply-pod",
+        "seedling",
+        "greenhouse"
+      ],
+      "optionalStickers": [
+        "engineer"
+      ],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "wonder"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Seed from Earth",
+          "text": "The supply pod popped open with a puff of cold air. Inside was a tiny envelope, and inside that, one seed. And a note, in wobbly letters: Please grow this on the Moon. So they planted it in the greenhouse, under the violet grow-lights. Engineer checked on it every morning. Day one: nothing. Day two: nothing. Day three… still nothing. What if it never grows? Day four. A green tip, poking up out of the soil! The seedling! Its leaves opened, reaching for the light. They took its picture and sent it home. And somewhere on Earth, a grin grew as wide as the Moon.",
+          "audio": "audio/en-US/the-supply-pod-garden.m4a",
+          "effects": "audio/en-US/the-supply-pod-garden.effects.json"
+        },
+        "es-ES": {
+          "title": "La semilla de la Tierra",
+          "text": "La cápsula de carga se abrió con un soplo de aire frío. Dentro había un sobrecito, y dentro del sobrecito, una semilla. Y una nota, con letra temblorosa: Por favor, haz que crezca en la Luna. Así que la plantaron en el invernadero, bajo las luces violetas. Ingeniera iba a verla cada mañana. Día uno: nada. Día dos: nada. Día tres… nada todavía. ¿Y si no crece nunca? Día cuatro. ¡Una puntita verde asomando de la tierra! ¡El brote! Sus hojas se abrieron, buscando la luz. Le hicieron una foto y la enviaron a casa. Y en algún lugar de la Tierra, una sonrisa creció tan grande como la Luna.",
+          "audio": "audio/es-ES/the-supply-pod-garden.m4a",
+          "effects": "audio/es-ES/the-supply-pod-garden.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-tallest-tale",
+      "requiredStickers": [
+        "pilot",
+        "asteroid",
+        "robot"
+      ],
+      "optionalStickers": [
+        "astronomer"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Tallest Tale",
+          "text": "Did I ever tell you, said Pilot, about the time I rode a space rock? Robot shook his head. Well, said Pilot, I lassoed it with a cable and rode it round the Moon, twice, like a bucking pony. Yee-ha! He waved his glowing wands to show how. Really? He's pulling your leg, said Astronomer. Robot checked both legs. Nobody was pulling them. Just then, far above the ridge, an asteroid came tumbling past. Pilot waved up at it. Evening, Bumpy! The asteroid turned over, slow and lumpy, as if it were waving back. Robot looked at the asteroid. Robot looked at Pilot. I KNEW it! said Robot, and did a victory dance.",
+          "audio": "audio/en-US/the-tallest-tale.m4a",
+          "effects": "audio/en-US/the-tallest-tale.effects.json"
+        },
+        "es-ES": {
+          "title": "El cuento más largo",
+          "text": "¿Te he contado alguna vez, dijo Piloto, cuando monté en una roca espacial? Robot negó con la cabeza. Pues nada, dijo Piloto, lo enlacé con un cable y di dos vueltas a la Luna montado en él, como en un potro salvaje. ¡Yijaaa! Movió sus bastones luminosos para enseñárselo. ¿De verdad? Te está tomando el pelo, dijo Astrónoma. Robot se tocó la cabeza. No tenía pelo que tomar. Justo entonces, muy por encima de la cordillera, pasó un asteroide dando tumbos. Piloto lo saludó. ¡Buenas noches, Pedrusco! El asteroide dio una vuelta, lento y abollado, como si le devolviera el saludo. Robot miró al asteroide. Robot miró a Piloto. ¡LO SABÍA! dijo Robot, y se marcó un baile de victoria.",
+          "audio": "audio/es-ES/the-tallest-tale.m4a",
+          "effects": "audio/es-ES/the-tallest-tale.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-telescope-sees-home",
+      "requiredStickers": [
+        "telescope",
+        "astronaut",
+        "probe"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "home"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Telescope Sees Home",
+          "text": "Astronaut missed home. The blue Earth hung over the ridge, but it looked so far away. High above, the space telescope turned its golden mirror toward the Earth. Suddenly home was close: blue oceans, white swirls of cloud, the curve of a coast. Somewhere under that cloud was her town. Probably raining. Then — ping — a picture arrived from the probe, far out on its long journey. It had turned round to look back. There, in one small picture: the Earth and the Moon, side by side. Tiny. Close together, like two marbles in a pocket. From out there, she said, we're right next door. She tossed a pebble up and watched it float, and didn't feel so far away.",
+          "audio": "audio/en-US/the-telescope-sees-home.m4a",
+          "effects": "audio/en-US/the-telescope-sees-home.effects.json"
+        },
+        "es-ES": {
+          "title": "El telescopio ve la Tierra",
+          "text": "Astronauta echaba de menos su casa. La Tierra azul asomaba sobre la cordillera, pero parecía tan lejos… Allá arriba, el telescopio espacial giró su espejo dorado hacia la Tierra. De repente, su casa estaba cerca: océanos azules, remolinos blancos de nubes, la curva de una costa. Debajo de esa nube estaba su pueblo. Seguro que llovía. Entonces — pin — llegó una foto de la sonda, muy lejos en su largo viaje. Se había dado la vuelta para mirar atrás. Allí, en una foto pequeñita: la Tierra y la Luna, una al lado de la otra. Diminutas. Juntitas, como dos canicas en un bolsillo. Desde allí, dijo, somos vecinos. Lanzó un guijarro al aire, lo vio flotar y ya no se sintió tan lejos.",
+          "audio": "audio/es-ES/the-telescope-sees-home.m4a",
+          "effects": "audio/es-ES/the-telescope-sees-home.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-vanishing-ice",
+      "requiredStickers": [
+        "ice",
+        "geologist",
+        "drone"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "mystery",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Vanishing Ice",
+          "text": "Geologist had found a beautiful chunk of ice. But every day, it got a little smaller. Nobody had touched it. Nobody had chipped it. So where was it going? A mystery! Geologist set Drone to keep watch, its lens focused on the ice all day long. Nobody came. Nobody at all. Flash! Geologist looked at the photos. He peered through his glasses… there! Thin wisps of frost, curling up off the ice in the sunlight. The thief is the Sun! In sunlight, moon ice turns straight into vapour, without melting at all. So he built the ice a little shade out of moon-brick. Case closed. The thief is still up there, shining.",
+          "audio": "audio/en-US/the-vanishing-ice.m4a",
+          "effects": "audio/en-US/the-vanishing-ice.effects.json"
+        },
+        "es-ES": {
+          "title": "El hielo que desaparecía",
+          "text": "Geólogo había encontrado un trozo precioso de hielo. Pero cada día era un poquito más pequeño. Nadie lo había tocado. Nadie le había arrancado un trozo. ¿Adónde se iba, entonces? ¡Un misterio! Geólogo puso a Dron de vigilante, con el objetivo enfocado en el hielo todo el día. No vino nadie. Nadie de nadie. ¡Flash! Geólogo miró las fotos. Las estudió con sus gafas… ¡ahí! Hilillos de escarcha que subían del hielo, al sol. ¡El ladrón es el Sol! Con la luz del sol, el hielo lunar se convierte directamente en vapor, sin derretirse. Así que le construyó al hielo una sombrilla de ladrillo lunar. Caso cerrado. El ladrón sigue ahí arriba, brillando.",
+          "audio": "audio/es-ES/the-vanishing-ice.m4a",
+          "effects": "audio/es-ES/the-vanishing-ice.effects.json"
+        }
+      }
+    },
+    {
+      "id": "three-little-domes",
+      "requiredStickers": [
+        "excavator",
+        "greenhouse",
+        "seedling"
+      ],
+      "optionalStickers": [
+        "robot"
+      ],
+      "weight": 1,
+      "tags": [
+        "building",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Three Little Domes",
+          "text": "The seedling needed a proper home. Leave it to me! rumbled Excavator. It dug up moon dust and piled it into a little dome. But the wind will blow it down! said Robot. There's no wind on the Moon, said Excavator. Still, it built a stronger dome from pebbles, and then the strongest of all, from moon dust pressed into bricks. Dust flew. Bricks stacked. But the seedling drooped. Walls weren't what it needed. I know! said Robot. It needs light, and air, and warmth. Across the plain, the greenhouse switched on its grow-lights. So they set the seedling's pod inside, and it reached up into the violet light. And the brick house? Excavator kept that. Every digger needs a garage.",
+          "audio": "audio/en-US/three-little-domes.m4a",
+          "effects": "audio/en-US/three-little-domes.effects.json"
+        },
+        "es-ES": {
+          "title": "Tres cúpulas",
+          "text": "El brote necesitaba una casa como es debido. ¡Déjamelo a mí! retumbó Excavadora. Sacó polvo lunar y lo amontonó en una cupulita. ¡Pero el viento la va a tirar! dijo Robot. En la Luna no hay viento, dijo Excavadora. Aun así, hizo una cúpula más fuerte, de piedrecitas, y luego la más fuerte de todas, con ladrillos de polvo lunar prensado. Volaba el polvo. Se apilaban los ladrillos. Pero el brote estaba mustio. No necesitaba paredes. ¡Ya sé! dijo Robot. Necesita luz, y aire, y calorcito. Al otro lado de la llanura, el invernadero encendió sus luces de cultivo. Así que pusieron la maceta del brote dentro, y se estiró hacia la luz violeta. ¿Y la casa de ladrillo? Esa se la quedó Excavadora. Toda excavadora necesita un garaje.",
+          "audio": "audio/es-ES/three-little-domes.m4a",
+          "effects": "audio/es-ES/three-little-domes.effects.json"
+        }
+      }
+    },
+    {
+      "id": "up-and-down",
+      "requiredStickers": [
+        "astronomer",
+        "geologist",
+        "rover"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "friendship",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Up and Down",
+          "text": "Astronomer always walked with her eyes on the sky. Binoculars up, pointing at stars. Geologist always walked with his eyes on the ground. Hammer tapping, peering at rocks. Rover was drilling nearby when it saw what was coming. Beep. Beep. BEEP! Bonk! Helmet met helmet. Sorry! Sorry! Then Geologist pointed down. Look! The dust sparkled. Moon dust is full of tiny glass beads, he said, made long ago when rocks from space melted it. Astronomer pointed up. And look at that! A comet was gliding over. Ooh… So from then on they walked together: one looking up, one looking down. And Rover, beep, beep, looked where they were going.",
+          "audio": "audio/en-US/up-and-down.m4a",
+          "effects": "audio/en-US/up-and-down.effects.json"
+        },
+        "es-ES": {
+          "title": "Arriba y abajo",
+          "text": "Astrónoma siempre caminaba con los ojos en el cielo. Prismáticos arriba, señalando estrellas. Geólogo siempre caminaba con los ojos en el suelo. Martillo dando golpecitos, mirando rocas. Róver estaba taladrando cerca cuando vio lo que iba a pasar. Bip. Bip. ¡BIP! ¡Bonc! Casco contra casco. ¡Perdón! ¡Perdón! Entonces Geólogo señaló hacia abajo. ¡Mira! El polvo brillaba. El polvo lunar está lleno de bolitas de cristal diminutas, dijo, que se formaron hace mucho cuando las rocas del espacio lo derritieron. Astrónoma señaló hacia arriba. ¡Y mira eso! Un cometa cruzaba el cielo. Oooh… Así que desde entonces caminaron juntos: una mirando arriba y otro mirando abajo. Y Róver, bip, bip, miraba por dónde iban.",
+          "audio": "audio/es-ES/up-and-down.m4a",
+          "effects": "audio/es-ES/up-and-down.effects.json"
+        }
+      }
+    },
+    {
+      "id": "who-left-the-light-on",
+      "requiredStickers": [
+        "astronomer",
+        "robot",
+        "beacon"
+      ],
+      "optionalStickers": [
+        "pilot"
+      ],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "bedtime",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Who Left the Light On?",
+          "text": "The long Moon night had begun. Out on the plain, the beacon was shining. Robot had one job: save power. Click. He switched the beacon off. Darkness. Except… it wasn't quite dark. The grey plain still glowed, soft and silvery-blue. Who left the light on? Robot checked every switch. Off. Off. Off. Astronomer laughed. Look up, she said. She raised her binoculars. There hung the Earth, big and blue. Sunlight bounces off the Earth and lands on us, she said. It's called earthshine. Robot waved at the Earth. Thank you for the light! Pilot waved too. And just in case the Earth wanted to see them back, Robot switched the beacon on again.",
+          "audio": "audio/en-US/who-left-the-light-on.m4a",
+          "effects": "audio/en-US/who-left-the-light-on.effects.json"
+        },
+        "es-ES": {
+          "title": "¿Quién ha dejado la luz puesta?",
+          "text": "Había empezado la larga noche lunar. En la llanura, la baliza brillaba. Robot tenía una tarea: ahorrar energía. Clic. Apagó la baliza. Oscuridad. Aunque… no estaba del todo oscuro. La llanura gris seguía brillando, suave, de un azul plateado. ¿Quién se ha dejado la luz encendida? Robot revisó todos los interruptores. Apagado. Apagado. Apagado. Astrónoma se rio. Mira arriba, dijo. Levantó sus prismáticos. Allí estaba la Tierra, grande y azul. La luz del sol rebota en la Tierra y llega hasta nosotros, dijo. Se llama luz cenicienta. Robot saludó a la Tierra. ¡Gracias por la luz! Piloto también saludó. Y, por si la Tierra quería verlos a ellos, Robot volvió a encender la baliza.",
+          "audio": "audio/es-ES/who-left-the-light-on.m4a",
+          "effects": "audio/es-ES/who-left-the-light-on.effects.json"
         }
       }
     }

@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "geologist",
+      "sticker": "geologist",
+      "enter": true
+    },
+    {
+      "at": 5.5,
+      "cue": "dig",
+      "sticker": "geologist",
+      "expression": "happy"
+    },
+    {
+      "at": 6.36,
+      "cue": "excavator",
+      "sticker": "excavator",
+      "enter": true
+    },
+    {
+      "at": 8.66,
+      "cue": "excavator",
+      "sticker": "excavator",
+      "animation": "dig",
+      "mode": "hold"
+    },
+    {
+      "at": 12.31,
+      "cue": "grey",
+      "effect": "dust",
+      "duration": 8
+    },
+    {
+      "at": 14.71,
+      "cue": "geologist",
+      "sticker": "geologist",
+      "animation": "study"
+    },
+    {
+      "at": 21.24,
+      "cue": "stop",
+      "sticker": "geologist",
+      "expression": "surprised"
+    },
+    {
+      "at": 23.6,
+      "cue": "scoop",
+      "sticker": "excavator",
+      "effect": "shake"
+    },
+    {
+      "at": 28.05,
+      "cue": "along",
+      "sticker": "buggy",
+      "enter": true
+    },
+    {
+      "at": 29.7,
+      "cue": "spun",
+      "sticker": "buggy",
+      "animation": "wheelspin"
+    },
+    {
+      "at": 33.43,
+      "cue": "what",
+      "sticker": "geologist",
+      "expression": "sad"
+    },
+    {
+      "at": 40.52,
+      "cue": "please",
+      "sticker": "geologist",
+      "expression": "happy"
+    },
+    {
+      "at": 42.05,
+      "cue": "and",
+      "sticker": "excavator",
+      "animation": "dig",
+      "mode": "resume"
+    },
+    {
+      "at": 48.04,
+      "cue": "so",
+      "sticker": "buggy",
+      "effect": "pulse"
+    }
+  ]
+}

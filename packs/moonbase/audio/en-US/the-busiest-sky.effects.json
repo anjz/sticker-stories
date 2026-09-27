@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "pilot",
+      "sticker": "pilot",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "pilot",
+      "sticker": "pilot",
+      "expression": "surprised"
+    },
+    {
+      "at": 6.14,
+      "cue": "the",
+      "sticker": "shuttle",
+      "enter": true
+    },
+    {
+      "at": 7.94,
+      "cue": "a",
+      "sticker": "satellite",
+      "enter": true
+    },
+    {
+      "at": 13.72,
+      "cue": "asteroid",
+      "sticker": "asteroid",
+      "enter": true
+    },
+    {
+      "at": 17.04,
+      "cue": "pilot",
+      "sticker": "pilot",
+      "animation": "signal",
+      "mode": "hold"
+    },
+    {
+      "at": 21.08,
+      "cue": "the",
+      "sticker": "shuttle",
+      "animation": "cargo"
+    },
+    {
+      "at": 24.22,
+      "cue": "the",
+      "sticker": "satellite",
+      "animation": "signal"
+    },
+    {
+      "at": 26.42,
+      "cue": "the",
+      "sticker": "asteroid",
+      "animation": "tumble"
+    },
+    {
+      "at": 31.15,
+      "cue": "robo-dog",
+      "sticker": "robodog",
+      "enter": true
+    },
+    {
+      "at": 31.15,
+      "cue": "robo-dog",
+      "sticker": "robodog",
+      "expression": "surprised"
+    },
+    {
+      "at": 33.41,
+      "cue": "fine",
+      "sticker": "pilot",
+      "animation": "signal",
+      "mode": "resume"
+    },
+    {
+      "at": 33.41,
+      "cue": "fine",
+      "sticker": "pilot",
+      "expression": "happy"
+    },
+    {
+      "at": 36.11,
+      "cue": "off",
+      "sticker": "asteroid",
+      "go": "away",
+      "toward": "right"
+    },
+    {
+      "at": 37.99,
+      "cue": "the",
+      "sticker": "shuttle",
+      "go": "away",
+      "toward": "left"
+    },
+    {
+      "at": 38.88,
+      "cue": "then",
+      "sticker": "satellite",
+      "go": "away",
+      "toward": "right"
+    },
+    {
+      "at": 39.95,
+      "cue": "pilot",
+      "sticker": "pilot",
+      "effect": "hop"
+    },
+    {
+      "at": 45.23,
+      "cue": "but",
+      "sticker": "robodog",
+      "effect": "hop"
+    }
+  ]
+}

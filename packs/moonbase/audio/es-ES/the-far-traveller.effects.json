@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "la",
+      "sticker": "probe",
+      "enter": true
+    },
+    {
+      "at": 9.28,
+      "cue": "asteroide",
+      "sticker": "asteroid",
+      "enter": true
+    },
+    {
+      "at": 11.83,
+      "cue": "abollado",
+      "sticker": "asteroid",
+      "animation": "tumble",
+      "mode": "hold"
+    },
+    {
+      "at": 14.2,
+      "cue": "viejísimo",
+      "sticker": "asteroid",
+      "effect": "pulse"
+    },
+    {
+      "at": 15.96,
+      "cue": "muy",
+      "sticker": "telescope",
+      "enter": true
+    },
+    {
+      "at": 18.34,
+      "cue": "giró",
+      "sticker": "telescope",
+      "animation": "look"
+    },
+    {
+      "at": 23.88,
+      "cue": "la",
+      "sticker": "probe",
+      "animation": "turn"
+    },
+    {
+      "at": 31.8,
+      "cue": "las",
+      "sticker": "satellite",
+      "enter": true
+    },
+    {
+      "at": 36.04,
+      "cue": "se",
+      "sticker": "satellite",
+      "animation": "signal"
+    },
+    {
+      "at": 46.52,
+      "cue": "qué",
+      "sticker": "telescope",
+      "effect": "pulse"
+    },
+    {
+      "at": 48.67,
+      "cue": "una",
+      "sticker": "asteroid",
+      "animation": "tumble",
+      "mode": "resume"
+    },
+    {
+      "at": 53.24,
+      "cue": "ni",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 53.24,
+      "cue": "ni",
+      "sticker": "all",
+      "effect": "sparkle"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "era",
+      "effect": "nightfall",
+      "duration": 64.22
+    },
+    {
+      "at": 7.99,
+      "cue": "piloto",
+      "sticker": "pilot",
+      "enter": true
+    },
+    {
+      "at": 7.99,
+      "cue": "piloto",
+      "sticker": "pilot",
+      "expression": "sleeping"
+    },
+    {
+      "at": 12.63,
+      "cue": "robot",
+      "sticker": "robot",
+      "enter": true
+    },
+    {
+      "at": 14.01,
+      "cue": "quiero",
+      "sticker": "robot",
+      "expression": "sad"
+    },
+    {
+      "at": 20.26,
+      "cue": "perro",
+      "sticker": "robodog",
+      "enter": true
+    },
+    {
+      "at": 20.26,
+      "cue": "perro",
+      "sticker": "robodog",
+      "go": "to",
+      "target": "robot"
+    },
+    {
+      "at": 23.32,
+      "cue": "él",
+      "sticker": "robodog",
+      "expression": "happy"
+    },
+    {
+      "at": 25.29,
+      "cue": "se",
+      "sticker": "robodog",
+      "animation": "sit-up"
+    },
+    {
+      "at": 30.18,
+      "cue": "allá",
+      "sticker": "station",
+      "enter": true
+    },
+    {
+      "at": 34.03,
+      "cue": "giró",
+      "sticker": "station",
+      "animation": "turn"
+    },
+    {
+      "at": 39.74,
+      "cue": "y",
+      "sticker": "robot",
+      "effect": "pulse"
+    },
+    {
+      "at": 43.43,
+      "cue": "la",
+      "sticker": "robot",
+      "expression": "sleeping"
+    },
+    {
+      "at": 46.04,
+      "cue": "empezó",
+      "sticker": "robot",
+      "animation": "dance",
+      "mode": "hold"
+    },
+    {
+      "at": 52.99,
+      "cue": "y",
+      "sticker": "robodog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 57.51,
+      "cue": "soñando",
+      "sticker": "all",
+      "expression": "sleeping"
+    }
+  ]
+}

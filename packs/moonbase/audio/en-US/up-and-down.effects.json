@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "astronomer",
+      "sticker": "astronomer",
+      "enter": true
+    },
+    {
+      "at": 6.08,
+      "cue": "binoculars",
+      "sticker": "astronomer",
+      "animation": "stargaze"
+    },
+    {
+      "at": 8.79,
+      "cue": "geologist",
+      "sticker": "geologist",
+      "enter": true
+    },
+    {
+      "at": 12.01,
+      "cue": "hammer",
+      "sticker": "geologist",
+      "animation": "study"
+    },
+    {
+      "at": 14.44,
+      "cue": "rover",
+      "sticker": "rover",
+      "enter": true
+    },
+    {
+      "at": 16.55,
+      "cue": "it",
+      "sticker": "rover",
+      "animation": "drill"
+    },
+    {
+      "at": 17.96,
+      "cue": "beep",
+      "sticker": "rover",
+      "effect": "pulse"
+    },
+    {
+      "at": 25.84,
+      "cue": "sorry",
+      "sticker": "astronomer",
+      "expression": "surprised"
+    },
+    {
+      "at": 25.84,
+      "cue": "sorry",
+      "sticker": "geologist",
+      "expression": "surprised"
+    },
+    {
+      "at": 28.52,
+      "cue": "geologist",
+      "sticker": "geologist",
+      "effect": "pulse"
+    },
+    {
+      "at": 30.18,
+      "cue": "look",
+      "effect": "glints",
+      "duration": 12
+    },
+    {
+      "at": 38.73,
+      "cue": "astronomer",
+      "sticker": "astronomer",
+      "expression": "happy"
+    },
+    {
+      "at": 38.73,
+      "cue": "astronomer",
+      "effect": "comet",
+      "duration": 14
+    },
+    {
+      "at": 45.08,
+      "cue": "ooh",
+      "sticker": "geologist",
+      "expression": "happy"
+    },
+    {
+      "at": 50.96,
+      "cue": "and",
+      "sticker": "rover",
+      "effect": "hop"
+    }
+  ]
+}
