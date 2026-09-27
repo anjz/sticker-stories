@@ -1,0 +1,640 @@
+{
+  "style": "Classic European adventure-comic illustration in the clean-line style, for kids around ten: uniform-weight black ink outlines, flat bright colours with no gradients and no texture, very little shading, clear readable silhouettes, carefully drawn machines with neat panel lines and rivets; a retro-adventure feel with lively expressions. Natural proportions and believable, realistic space hardware; not chibi, not big-eyed, not cute or fluffy — friendly and capable, never scary. No text, no lettering, no logos, no flags, no watermarks.",
+  "styleSheet": "A style sheet on a plain white background, four sticker characters standing side by side, all facing slightly to the left, whole bodies visible: an astronaut woman in a white-and-orange spacesuit, her face clearly visible through a clear helmet visor, waving; a humanoid helper robot whose face is an LED screen showing a friendly smile; a six-wheeled science rover with a mast camera and a drill arm; and a tall white rocket with fins standing upright. Plus a small swatch of lunar ground (grey dust, a small crater, a rock) in the bottom corner. Consistent style, palette and line weight across everything.",
+  "stickerSize": 768,
+  "border": 0.025,
+  "margin": 0.03,
+  "stickers": [
+    {
+      "id": "astronaut",
+      "name": {
+        "en-US": "Astronaut",
+        "es-ES": "Astronauta"
+      },
+      "prompt": "An astronaut woman in a white spacesuit with orange panels and a life-support backpack, her face clearly visible through a clear, round helmet visor (warm brown skin, brown hair), confident and cheerful, standing and waving one hand, whole body visible, facing slightly left.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium",
+      "face": {
+        "x": 0.43,
+        "y": 0.09,
+        "width": 0.12,
+        "height": 0.12
+      },
+      "faceNote": "The face is seen through a clear helmet visor: the visor's rim, its shine and the hair stay exactly as they are; only the face's expression changes."
+    },
+    {
+      "id": "engineer",
+      "name": {
+        "en-US": "Engineer",
+        "es-ES": "Ingeniera"
+      },
+      "prompt": "An engineer woman in a white spacesuit with yellow panels, a tool belt and a big wrench held in one hand, her face clearly visible through a clear, round helmet visor (dark brown skin, short black curly hair), practical and focused with a small smile, standing ready to work, whole body visible, facing slightly left.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium",
+      "face": {
+        "x": 0.41,
+        "y": 0.1,
+        "width": 0.12,
+        "height": 0.11
+      },
+      "faceNote": "The face is seen through a clear helmet visor: the visor's rim, its shine and the hair stay exactly as they are; only the face's expression changes."
+    },
+    {
+      "id": "geologist",
+      "name": {
+        "en-US": "Geologist",
+        "es-ES": "Geólogo"
+      },
+      "prompt": "A geologist man in a white spacesuit with green panels, a sample bag at his hip and a small rock hammer held in one hand, his face clearly visible through a clear, round helmet visor (East Asian, black hair, round glasses), curious and thoughtful, standing, whole body visible, facing slightly left.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium",
+      "face": {
+        "x": 0.41,
+        "y": 0.09,
+        "width": 0.13,
+        "height": 0.11
+      },
+      "faceNote": "The face is seen through a clear helmet visor: the visor's rim, its shine and the hair stay exactly as they are; only the face's expression changes. He keeps his round glasses."
+    },
+    {
+      "id": "pilot",
+      "name": {
+        "en-US": "Pilot",
+        "es-ES": "Piloto"
+      },
+      "prompt": "A pilot, an older man in a white spacesuit with blue panels and plain round shoulder patches, holding two unlit orange signal wands down at his sides, his face clearly visible through a clear, round helmet visor (pale skin, short grey beard), calm and experienced with a half smile, standing, whole body visible, facing slightly left.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium",
+      "face": {
+        "x": 0.43,
+        "y": 0.1,
+        "width": 0.12,
+        "height": 0.1
+      },
+      "faceNote": "The face is seen through a clear helmet visor: the visor's rim, its shine and the hair stay exactly as they are; only the face's expression changes. He keeps his short grey beard."
+    },
+    {
+      "id": "astronomer",
+      "name": {
+        "en-US": "Astronomer",
+        "es-ES": "Astrónoma"
+      },
+      "prompt": "An astronomer woman in a white spacesuit with purple panels and a pair of binoculars on a strap around her neck, one hand resting on them, her face clearly visible through a clear, round helmet visor (South Asian, a dark braid), bright-eyed and dreamy, standing, whole body visible, facing slightly left.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium",
+      "face": {
+        "x": 0.42,
+        "y": 0.09,
+        "width": 0.12,
+        "height": 0.11
+      },
+      "faceNote": "The face is seen through a clear helmet visor: the visor's rim, its shine and the hair stay exactly as they are; only the face's expression changes."
+    },
+    {
+      "id": "robot",
+      "name": {
+        "en-US": "Robot",
+        "es-ES": "Robot"
+      },
+      "prompt": "The helper robot from the style sheet: a slim humanoid robot in white and orange panels with dark joints, its face a dark LED screen showing a friendly smile made of glowing blue dots, a small antenna on its head, standing and waving one hand, whole body visible, facing slightly left.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium",
+      "face": {
+        "x": 0.385,
+        "y": 0.07,
+        "width": 0.175,
+        "height": 0.14
+      },
+      "faceNote": "Its face is a dark LED screen: draw the expression only as glowing blue LED dots on the dark screen, like the reference — eyes and a mouth, no eyebrows; the screen stays dark and its white frame stays as it is."
+    },
+    {
+      "id": "robodog",
+      "name": {
+        "en-US": "Robo-dog",
+        "es-ES": "Perro robot"
+      },
+      "prompt": "A robot dog: a sleek four-legged robot in white and orange panels with dark jointed legs, a head with a dark visor strip showing two glowing blue LED eyes, and a short antenna for a tail, standing alert on all four legs, whole body visible, facing slightly left.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "small",
+      "face": {
+        "x": 0.115,
+        "y": 0.12,
+        "width": 0.2,
+        "height": 0.11
+      },
+      "faceNote": "Its face is the dark visor strip with two glowing blue LED eyes: draw the expression only as the shape of those two glowing blue LED eyes (arcs, lines or circles) inside the dark visor — no eyebrows, no mouth; the visor's outline, the white head and the snout stay exactly as they are."
+    },
+    {
+      "id": "rover",
+      "name": {
+        "en-US": "Rover",
+        "es-ES": "Róver"
+      },
+      "prompt": "The six-wheeled science rover from the style sheet: a white-and-orange body, a tall mast with a camera head, a folded robotic arm with a drill, big ridged wheels, whole vehicle visible, facing slightly left.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain",
+          "crater"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "buggy",
+      "name": {
+        "en-US": "Moon buggy",
+        "es-ES": "Buggy lunar"
+      },
+      "prompt": "An open two-seat moon buggy with four big wire-mesh wheels, a light tubular frame, a small dish antenna and two empty seats, white and orange with grey, nobody in it, whole vehicle visible, facing slightly left.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "excavator",
+      "name": {
+        "en-US": "Excavator",
+        "es-ES": "Excavadora"
+      },
+      "prompt": "A lunar excavator robot: a compact tracked vehicle in white and yellow with two big drum-shaped digging buckets on short arms at the front and the back, both raised, and a small camera mast, whole vehicle visible, facing slightly left.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain",
+          "crater"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "drone",
+      "name": {
+        "en-US": "Drone",
+        "es-ES": "Dron"
+      },
+      "prompt": "A small hovering drone made for the Moon (no propellers, since there is no air): a compact white-and-orange body with four small thruster nozzles underneath and a round camera lens at the front, hovering, whole drone visible, facing slightly left.",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "tiny"
+    },
+    {
+      "id": "rocket",
+      "name": {
+        "en-US": "Rocket",
+        "es-ES": "Cohete"
+      },
+      "prompt": "The white rocket from the style sheet: tall and slim with an orange band, fins, three short landing legs and engine nozzles at the base, standing upright, whole rocket visible.",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "pad"
+        ]
+      },
+      "size": "big"
+    },
+    {
+      "id": "lander",
+      "name": {
+        "en-US": "Lander",
+        "es-ES": "Módulo lunar"
+      },
+      "prompt": "A lunar lander: a boxy descent stage wrapped in gold foil on four spindly legs with round footpads, a white crew cabin on top with small triangular windows, a folded ladder on one leg and a small engine bell underneath, standing on its legs, whole lander visible, facing slightly left.",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "pad",
+          "plain"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "shuttle",
+      "name": {
+        "en-US": "Space shuttle",
+        "es-ES": "Transbordador"
+      },
+      "prompt": "A space shuttle orbiter: a white winged spaceplane with a black nose and black belly tiles, closed cargo-bay doors along its back and three engines at the tail, flying level with its nose to the left, seen from the side and a little above, whole shuttle visible.",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "big"
+    },
+    {
+      "id": "supply-pod",
+      "name": {
+        "en-US": "Supply pod",
+        "es-ES": "Cápsula de carga"
+      },
+      "prompt": "A supply pod: a squat cylindrical cargo capsule in white with orange stripes, a closed hinged lid on top, small thruster nozzles around its base and four short landing feet, standing on its feet, whole pod visible, facing slightly left.",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "pad",
+          "plain"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "satellite",
+      "name": {
+        "en-US": "Satellite",
+        "es-ES": "Satélite"
+      },
+      "prompt": "A communications satellite: a boxy body wrapped in gold foil with a white dish antenna and two long blue solar panels folded flat against its sides, a few thin antennas, floating, whole satellite visible, facing slightly left.",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "station",
+      "name": {
+        "en-US": "Space station",
+        "es-ES": "Estación espacial"
+      },
+      "prompt": "A space station: a long white truss with several white cylindrical modules and four pairs of long blue-and-gold solar wings and white radiators, seen from a little below, floating, whole station visible.",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "telescope",
+      "name": {
+        "en-US": "Space telescope",
+        "es-ES": "Telescopio espacial"
+      },
+      "prompt": "A space telescope: a large mirror of golden hexagonal segments, folded partly closed, on a boom above a big layered silver-violet sunshield and a small boxy body, floating, seen from the side, whole telescope visible.",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "probe",
+      "name": {
+        "en-US": "Probe",
+        "es-ES": "Sonda"
+      },
+      "prompt": "A deep-space probe: a small boxy body in gold foil with a big white dish antenna on the front, long thin booms and a small instrument platform, floating with its dish facing left, whole probe visible.",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "asteroid",
+      "name": {
+        "en-US": "Asteroid",
+        "es-ES": "Asteroide"
+      },
+      "prompt": "A small asteroid: a lumpy, potato-shaped grey-brown rock covered in little craters, pits and pebbles, floating in space, whole asteroid visible.",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "seedling",
+      "name": {
+        "en-US": "Seedling",
+        "es-ES": "Brote"
+      },
+      "prompt": "A seedling in a sealed grow pod: a small clear glass dome on a round white base with a violet grow-light ring (switched off), inside a little green sprout with two open leaves and a third leaf still curled up, whole pod visible.",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "tiny"
+    },
+    {
+      "id": "solar-panel",
+      "name": {
+        "en-US": "Solar panel",
+        "es-ES": "Panel solar"
+      },
+      "prompt": "A solar panel on a stand: a single square panel of dark blue cells in a silver frame, tilted up, on a folding silver tripod stand with small feet, whole panel visible, facing slightly left.",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "greenhouse",
+      "name": {
+        "en-US": "Greenhouse",
+        "es-ES": "Invernadero"
+      },
+      "prompt": "An inflatable greenhouse dome: a round white-and-clear inflated dome with soft ribs, rows of green plants visible inside, a small airlock door with a round window and a little solar panel beside it, its lights off, whole dome visible, facing slightly left.",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "beacon",
+      "name": {
+        "en-US": "Beacon",
+        "es-ES": "Baliza"
+      },
+      "prompt": "A light beacon: a short orange-and-white striped pole on a small tripod base with a round lamp on top (switched off) and a small indicator light, whole beacon visible.",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "ice",
+      "name": {
+        "en-US": "Ice",
+        "es-ES": "Hielo"
+      },
+      "prompt": "A chunk of water ice: a jagged, frosty block of pale blue-white ice with streaks of grey moon dust frozen into it and a few sharp glints, whole chunk visible.",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "crater",
+          "plain"
+        ]
+      },
+      "size": "small"
+    }
+  ],
+  "expressions": [
+    {
+      "id": "happy",
+      "prompt": "happy — a big, open, confident smile, the eyes smiling (curved upward, crinkled with joy), cheeks lifted."
+    },
+    {
+      "id": "sad",
+      "prompt": "a little sad — eyebrows tilted up in the middle, eyes soft and a bit droopy, a small downturned mouth. Gentle, not crying, no tears."
+    },
+    {
+      "id": "sleeping",
+      "prompt": "fast asleep — both eyes peacefully closed as soft curved lines, a small relaxed mouth, calm."
+    },
+    {
+      "id": "surprised",
+      "prompt": "amazed — eyes wide open and round, eyebrows raised high, a small round open \"o\" mouth. Amazed and excited, never scared."
+    }
+  ],
+  "scene": {
+    "background": "The surface of the Moon seen from a child's height, a wide landscape: grey dusty ground with pebbles and small craters across the lower part, gently rolling; a long, low, jagged ridge of grey mountains along the horizon; on the horizon right of the middle, the small white domes and modules of a distant moon base with a few lit windows; a black sky above with the Earth hanging in it, blue and white and half lit, left of the middle. On the ground left of the middle, a flat hexagonal landing pad of grey metal plates with yellow markings and small lights around its edge, seen in low perspective as a wide, flattened hexagon, empty. On the ground right of the middle, a wide, shallow crater with a raised rim, a flattened oval seen from low down. The middle of the ground stays open where stickers will be placed. No people, no robots, no vehicles, no rockets.",
+    "foreground": "The nearest elements only: at the left edge, the corner of a white-and-orange habitat module close to us, with a round airlock hatch with a porthole and a short ladder down to the ground; at the right edge, a dark rock outcrop with a tall lattice radio mast and a dish on top; along the very bottom, a few grey rocks and dust. The whole centre and the sky stay empty and transparent.",
+    "features": {
+      "sky": {
+        "description": "the black starry sky above the far ridge, between the habitat and the radio mast",
+        "air": true,
+        "areas": [
+          {
+            "x": [
+              0.22,
+              0.8
+            ],
+            "y": [
+              0.64,
+              0.84
+            ]
+          }
+        ]
+      },
+      "plain": {
+        "description": "the open grey ground of the plain, in front of the far ridge",
+        "areas": [
+          {
+            "x": [
+              0.24,
+              0.82
+            ],
+            "y": [
+              0.25,
+              0.4
+            ]
+          }
+        ]
+      },
+      "pad": {
+        "description": "the hexagonal landing pad left of the middle, beside the habitat",
+        "words": {
+          "en-US": [
+            "pad"
+          ],
+          "es-ES": [
+            "plataforma"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.25,
+              0.37
+            ],
+            "y": [
+              0.42,
+              0.46
+            ]
+          }
+        ]
+      },
+      "crater": {
+        "description": "the wide, shallow crater right of the middle",
+        "words": {
+          "en-US": [
+            "crater"
+          ],
+          "es-ES": [
+            "cráter"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.73,
+              0.86
+            ],
+            "y": [
+              0.44,
+              0.47
+            ]
+          }
+        ],
+        "edge": [
+          {
+            "x": [
+              0.66,
+              0.69
+            ],
+            "y": [
+              0.43,
+              0.47
+            ]
+          },
+          {
+            "x": [
+              0.72,
+              0.86
+            ],
+            "y": [
+              0.38,
+              0.41
+            ]
+          }
+        ]
+      },
+      "hatch": {
+        "description": "the foot of the ladder up to the habitat's round airlock hatch, at the left edge",
+        "words": {
+          "en-US": [
+            "hatch",
+            "airlock",
+            "ladder"
+          ],
+          "es-ES": [
+            "escotilla",
+            "esclusa",
+            "escalera"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.22,
+              0.27
+            ],
+            "y": [
+              0.19,
+              0.25
+            ]
+          }
+        ]
+      },
+      "mast": {
+        "description": "the foot of the radio mast with its dish, on the rocks at the right edge: someone there faces the mast",
+        "words": {
+          "en-US": [
+            "mast",
+            "antenna",
+            "dish"
+          ],
+          "es-ES": [
+            "antena",
+            "mástil",
+            "parabólica"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.8,
+              0.84
+            ],
+            "y": [
+              0.3,
+              0.35
+            ],
+            "facing": "right"
+          }
+        ]
+      }
+    },
+    "edits": [
+      {
+        "prompt": "Plain black space with a few small, distant, unlit stars, exactly like the rest of the sky around it. Nothing else: no planet, no moon, no glow.",
+        "area": {
+          "x": 0.29,
+          "y": 0.09,
+          "width": 0.15,
+          "height": 0.23
+        }
+      },
+      {
+        "prompt": "The Earth rising over the far grey ridge: a blue-and-white planet with white clouds, half lit from the left and dark on the right, its lower part hidden behind the jagged grey mountains of the horizon. Crisp and calm, with no glow around it. The ridge in front of it stays as it is.",
+        "area": {
+          "x": 0.3,
+          "y": 0.26,
+          "width": 0.12,
+          "height": 0.18
+        }
+      }
+    ]
+  },
+  "notes": {
+    "stickers": "Every character faces slightly left, whole body visible. Edit prompts freely; a changed prompt re-renders only that sticker.",
+    "expressions": "Faces for the crew (through the visor) and the robots (on their LED screens); vehicles, spacecraft and objects have none."
+  }
+}

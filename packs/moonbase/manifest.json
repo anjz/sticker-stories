@@ -1,0 +1,626 @@
+{
+  "schemaVersion": 2,
+  "id": "moonbase",
+  "version": 1,
+  "languages": [
+    "en-US",
+    "es-ES"
+  ],
+  "displayName": {
+    "en-US": "Moon Base",
+    "es-ES": "Base Lunar"
+  },
+  "description": {
+    "en-US": "Life on a moon base: astronauts, robots and rockets.",
+    "es-ES": "La vida en una base lunar: astronautas, robots y cohetes."
+  },
+  "theme": "moonbase",
+  "setting": "space",
+  "background": "art/background.webp",
+  "foreground": "art/foreground.webp",
+  "backgroundWide": "art/background-wide.webp",
+  "foregroundWide": "art/foreground-wide.webp",
+  "features": {
+    "crater": {
+      "description": "the wide, shallow crater right of the middle",
+      "areas": [
+        {
+          "x": [
+            0.73,
+            0.86
+          ],
+          "y": [
+            0.44,
+            0.47
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "crater"
+        ],
+        "es-ES": [
+          "cráter"
+        ]
+      },
+      "edge": [
+        {
+          "x": [
+            0.66,
+            0.69
+          ],
+          "y": [
+            0.43,
+            0.47
+          ]
+        },
+        {
+          "x": [
+            0.72,
+            0.86
+          ],
+          "y": [
+            0.38,
+            0.41
+          ]
+        }
+      ]
+    },
+    "hatch": {
+      "description": "the foot of the ladder up to the habitat's round airlock hatch, at the left edge",
+      "areas": [
+        {
+          "x": [
+            0.22,
+            0.27
+          ],
+          "y": [
+            0.19,
+            0.25
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "hatch",
+          "airlock",
+          "ladder"
+        ],
+        "es-ES": [
+          "escotilla",
+          "esclusa",
+          "escalera"
+        ]
+      }
+    },
+    "mast": {
+      "description": "the foot of the radio mast with its dish, on the rocks at the right edge: someone there faces the mast",
+      "areas": [
+        {
+          "x": [
+            0.8,
+            0.84
+          ],
+          "y": [
+            0.3,
+            0.35
+          ],
+          "facing": "right"
+        }
+      ],
+      "words": {
+        "en-US": [
+          "mast",
+          "antenna",
+          "dish"
+        ],
+        "es-ES": [
+          "antena",
+          "mástil",
+          "parabólica"
+        ]
+      }
+    },
+    "pad": {
+      "description": "the hexagonal landing pad left of the middle, beside the habitat",
+      "areas": [
+        {
+          "x": [
+            0.25,
+            0.37
+          ],
+          "y": [
+            0.42,
+            0.46
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "pad"
+        ],
+        "es-ES": [
+          "plataforma"
+        ]
+      }
+    },
+    "plain": {
+      "description": "the open grey ground of the plain, in front of the far ridge",
+      "areas": [
+        {
+          "x": [
+            0.24,
+            0.82
+          ],
+          "y": [
+            0.25,
+            0.4
+          ]
+        }
+      ]
+    },
+    "sky": {
+      "description": "the black starry sky above the far ridge, between the habitat and the radio mast",
+      "areas": [
+        {
+          "x": [
+            0.22,
+            0.8
+          ],
+          "y": [
+            0.64,
+            0.84
+          ]
+        }
+      ],
+      "air": true
+    }
+  },
+  "stickers": [
+    {
+      "id": "asteroid",
+      "name": {
+        "en-US": "Asteroid",
+        "es-ES": "Asteroide"
+      },
+      "image": "stickers/asteroid.webp",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "astronaut",
+      "name": {
+        "en-US": "Astronaut",
+        "es-ES": "Astronauta"
+      },
+      "image": "stickers/astronaut.webp",
+      "expressions": {
+        "happy": "stickers/astronaut.happy.webp",
+        "sad": "stickers/astronaut.sad.webp",
+        "sleeping": "stickers/astronaut.sleeping.webp",
+        "surprised": "stickers/astronaut.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "astronomer",
+      "name": {
+        "en-US": "Astronomer",
+        "es-ES": "Astrónoma"
+      },
+      "image": "stickers/astronomer.webp",
+      "expressions": {
+        "happy": "stickers/astronomer.happy.webp",
+        "sad": "stickers/astronomer.sad.webp",
+        "sleeping": "stickers/astronomer.sleeping.webp",
+        "surprised": "stickers/astronomer.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "beacon",
+      "name": {
+        "en-US": "Beacon",
+        "es-ES": "Baliza"
+      },
+      "image": "stickers/beacon.webp",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "buggy",
+      "name": {
+        "en-US": "Moon buggy",
+        "es-ES": "Buggy lunar"
+      },
+      "image": "stickers/buggy.webp",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "drone",
+      "name": {
+        "en-US": "Drone",
+        "es-ES": "Dron"
+      },
+      "image": "stickers/drone.webp",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "tiny"
+    },
+    {
+      "id": "engineer",
+      "name": {
+        "en-US": "Engineer",
+        "es-ES": "Ingeniera"
+      },
+      "image": "stickers/engineer.webp",
+      "expressions": {
+        "happy": "stickers/engineer.happy.webp",
+        "sad": "stickers/engineer.sad.webp",
+        "sleeping": "stickers/engineer.sleeping.webp",
+        "surprised": "stickers/engineer.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "excavator",
+      "name": {
+        "en-US": "Excavator",
+        "es-ES": "Excavadora"
+      },
+      "image": "stickers/excavator.webp",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain",
+          "crater"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "geologist",
+      "name": {
+        "en-US": "Geologist",
+        "es-ES": "Geólogo"
+      },
+      "image": "stickers/geologist.webp",
+      "expressions": {
+        "happy": "stickers/geologist.happy.webp",
+        "sad": "stickers/geologist.sad.webp",
+        "sleeping": "stickers/geologist.sleeping.webp",
+        "surprised": "stickers/geologist.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "greenhouse",
+      "name": {
+        "en-US": "Greenhouse",
+        "es-ES": "Invernadero"
+      },
+      "image": "stickers/greenhouse.webp",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "ice",
+      "name": {
+        "en-US": "Ice",
+        "es-ES": "Hielo"
+      },
+      "image": "stickers/ice.webp",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "crater",
+          "plain"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "lander",
+      "name": {
+        "en-US": "Lander",
+        "es-ES": "Módulo lunar"
+      },
+      "image": "stickers/lander.webp",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "pad",
+          "plain"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "pilot",
+      "name": {
+        "en-US": "Pilot",
+        "es-ES": "Piloto"
+      },
+      "image": "stickers/pilot.webp",
+      "expressions": {
+        "happy": "stickers/pilot.happy.webp",
+        "sad": "stickers/pilot.sad.webp",
+        "sleeping": "stickers/pilot.sleeping.webp",
+        "surprised": "stickers/pilot.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "probe",
+      "name": {
+        "en-US": "Probe",
+        "es-ES": "Sonda"
+      },
+      "image": "stickers/probe.webp",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "robodog",
+      "name": {
+        "en-US": "Robo-dog",
+        "es-ES": "Perro robot"
+      },
+      "image": "stickers/robodog.webp",
+      "expressions": {
+        "happy": "stickers/robodog.happy.webp",
+        "sad": "stickers/robodog.sad.webp",
+        "sleeping": "stickers/robodog.sleeping.webp",
+        "surprised": "stickers/robodog.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "robot",
+      "name": {
+        "en-US": "Robot",
+        "es-ES": "Robot"
+      },
+      "image": "stickers/robot.webp",
+      "expressions": {
+        "happy": "stickers/robot.happy.webp",
+        "sad": "stickers/robot.sad.webp",
+        "sleeping": "stickers/robot.sleeping.webp",
+        "surprised": "stickers/robot.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "rocket",
+      "name": {
+        "en-US": "Rocket",
+        "es-ES": "Cohete"
+      },
+      "image": "stickers/rocket.webp",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "pad"
+        ]
+      },
+      "size": "big"
+    },
+    {
+      "id": "rover",
+      "name": {
+        "en-US": "Rover",
+        "es-ES": "Róver"
+      },
+      "image": "stickers/rover.webp",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain",
+          "crater"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "satellite",
+      "name": {
+        "en-US": "Satellite",
+        "es-ES": "Satélite"
+      },
+      "image": "stickers/satellite.webp",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "seedling",
+      "name": {
+        "en-US": "Seedling",
+        "es-ES": "Brote"
+      },
+      "image": "stickers/seedling.webp",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "tiny"
+    },
+    {
+      "id": "shuttle",
+      "name": {
+        "en-US": "Space shuttle",
+        "es-ES": "Transbordador"
+      },
+      "image": "stickers/shuttle.webp",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "big"
+    },
+    {
+      "id": "solar-panel",
+      "name": {
+        "en-US": "Solar panel",
+        "es-ES": "Panel solar"
+      },
+      "image": "stickers/solar-panel.webp",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "station",
+      "name": {
+        "en-US": "Space station",
+        "es-ES": "Estación espacial"
+      },
+      "image": "stickers/station.webp",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "supply-pod",
+      "name": {
+        "en-US": "Supply pod",
+        "es-ES": "Cápsula de carga"
+      },
+      "image": "stickers/supply-pod.webp",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "pad",
+          "plain"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "telescope",
+      "name": {
+        "en-US": "Space telescope",
+        "es-ES": "Telescopio espacial"
+      },
+      "image": "stickers/telescope.webp",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "small"
+    }
+  ],
+  "stories": [
+    {
+      "id": "moonbase-welcome",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "placeholder"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Welcome to Moon Base",
+          "text": "Welcome to Moon Base! The stories are on their way.",
+          "audio": "audio/en-US/moonbase-welcome.m4a"
+        },
+        "es-ES": {
+          "title": "Bienvenidos a la Base Lunar",
+          "text": "¡Bienvenidos a la Base Lunar! Los cuentos están en camino.",
+          "audio": "audio/es-ES/moonbase-welcome.m4a"
+        }
+      }
+    }
+  ]
+}
