@@ -626,6 +626,13 @@ extension PackManifest {
         return issues
     }
 
+    /// Where a narration file sits inside the asset pack that carries it:
+    /// under the asset pack's ID (docs/asset-delivery.md), as the packager
+    /// puts it there.
+    public static func narrationPath(assetPackID: String, audio: String) -> String {
+        "\(assetPackID)/\(audio)"
+    }
+
     static func isWellFormedID(_ id: String) -> Bool {
         id.wholeMatch(of: /[a-z0-9]+(-[a-z0-9]+)*/) != nil
     }

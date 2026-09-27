@@ -12,13 +12,20 @@ public struct Story: Equatable, Sendable, Identifiable {
     /// Pack-relative path to this language's sticker-effect triggers
     /// (`docs/effects.md`), if the story has any.
     public let effectsPath: String?
+    /// The pack language the story is in (a narrator looks its narration up
+    /// by it: `docs/asset-delivery.md`); nil when unknown.
+    public let language: String?
 
-    public init(id: String, title: String, text: String, audioPath: String?, effectsPath: String? = nil) {
+    public init(
+        id: String, title: String, text: String, audioPath: String?, effectsPath: String? = nil,
+        language: String? = nil
+    ) {
         self.id = id
         self.title = title
         self.text = text
         self.audioPath = audioPath
         self.effectsPath = effectsPath
+        self.language = language
     }
 
     /// Resolves a story definition into the given language (falling back
@@ -30,7 +37,9 @@ public struct Story: Equatable, Sendable, Identifiable {
             title: localization?.title ?? definition.id,
             text: localization?.text ?? "",
             audioPath: localization?.audio,
-            effectsPath: localization?.effects)
+            effectsPath: localization?.effects,
+            language: definition.localizations[language] != nil
+                ? language : fallbackOrder.first { definition.localizations[$0] != nil })
     }
 }
 
