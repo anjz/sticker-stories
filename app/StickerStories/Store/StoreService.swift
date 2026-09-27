@@ -30,11 +30,14 @@ final class StoreService {
         ownedProductIDs = await StoreKitTransactionProvider().currentEntitledProductIDs()
     }
 
-    func purchase(_ product: Product) async {
+    /// Buys `product` with the view's `purchase` action, which shows the
+    /// App Store sheet over the window the store screen is in — on iPadOS
+    /// several can be open.
+    func purchase(_ product: Product, using purchase: PurchaseAction) async {
         isWorking = true
         defer { isWorking = false }
         do {
-            switch try await product.purchase() {
+            switch try await purchase(product) {
             case .success(let verification):
                 guard case .verified(let transaction) = verification else {
                     lastMessage = "Purchase could not be verified."

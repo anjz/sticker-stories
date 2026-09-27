@@ -22,6 +22,7 @@ struct StoreScreen: View {
     /// Compact height is a phone in landscape: everything tightens so the
     /// banner and a whole row of tiles still fit on one screen.
     @Environment(\.verticalSizeClass) private var verticalSizeClass
+    @Environment(\.purchase) private var purchase
     private var isCompact: Bool { verticalSizeClass == .compact }
 
     var body: some View {
@@ -166,7 +167,7 @@ struct StoreScreen: View {
         return BundleOffer(
             title: product.displayName, subtitle: product.description, price: product.displayPrice,
             isOwned: store.ownedProductIDs.contains(product.id),
-            buy: { [store] in Task { await store.purchase(product) } })
+            buy: { [store, purchase] in Task { await store.purchase(product, using: purchase) } })
     }
 
     private var cards: [PackCard] {
@@ -208,8 +209,8 @@ struct StoreScreen: View {
                     artwork: .mystery(symbol: "gift.fill"),
                     availability: owned
                         ? .owned
-                        : .purchasable(price: product.displayPrice) { [store] in
-                            Task { await store.purchase(product) }
+                        : .purchasable(price: product.displayPrice) { [store, purchase] in
+                            Task { await store.purchase(product, using: purchase) }
                         }))
         }
         #if DEBUG

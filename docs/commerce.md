@@ -50,7 +50,9 @@ purchase/refund/all-access without StoreKit.
 ## Purchase flow (behind the parental gate, store screen)
 
 1. `Product.products(for:)` for the catalogue of pack product IDs.
-2. `product.purchase()` → verify result → record transaction ID keyed by pack ID
+2. The store screen's SwiftUI `purchase` action (`@Environment(\.purchase)`,
+   so the App Store sheet shows over that window on multi-window iPadOS) →
+   verify result → record transaction ID keyed by pack ID
    → `transaction.finish()` **after** assets are in place.
 3. Restore = re-running the launch reconciliation (`currentEntitlements` covers
    it); the "Restore purchases" row in Settings simply triggers it with
