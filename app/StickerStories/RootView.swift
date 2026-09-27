@@ -44,6 +44,15 @@ struct RootView: View {
     @State private var lastGrownUpsExit: Date?
     private static let gateGrace: TimeInterval = 60
 
+    #if DEBUG
+    /// The pack the debug launch arguments open: `-pack <id>`, else the first.
+    private var debugPack: LoadedPack? {
+        let args = ProcessInfo.processInfo.arguments
+        guard let index = args.firstIndex(of: "-pack"), args.indices.contains(index + 1) else { return library.packs.first }
+        return library.packs.first { $0.id == args[index + 1] } ?? library.packs.first
+    }
+    #endif
+
     var body: some View {
         ZStack {
             Color(red: 0.49, green: 0.78, blue: 0.91)
@@ -54,7 +63,7 @@ struct RootView: View {
             // the debug gallery instead of the app (no touch injection on
             // the simulator).
             if ProcessInfo.processInfo.arguments.contains(where: { $0.hasPrefix("-effectsGallery") }) {
-                if let pack = library.packs.first { EffectsGalleryView(pack: pack) }
+                if let pack = debugPack { EffectsGalleryView(pack: pack) }
             } else if ProcessInfo.processInfo.arguments.contains("-storyGallery") {
                 // `-storyGallery` opens the debug story gallery
                 // (`StoryGalleryView` lists its other arguments).
@@ -83,12 +92,8 @@ struct RootView: View {
             // `-autoplay`: open the first pack and press play (simulator
             // verification of the playback pipeline without touch injection).
             // `-openPack`: only open it, silently (visual checks of the canvas).
-            // `-pack <id>`: that pack instead of the first.
             let args = ProcessInfo.processInfo.arguments
-            let packID = args.firstIndex(of: "-pack").flatMap { args.indices.contains($0 + 1) ? args[$0 + 1] : nil }
-            if args.contains("-autoplay") || args.contains("-openPack"),
-                let pack = packID.map({ id in library.packs.first { $0.id == id } }) ?? library.packs.first
-            {
+            if args.contains("-autoplay") || args.contains("-openPack"), let pack = debugPack {
                 screen = .story(pack)
             }
             // `-openGate`: show the parental gate (visual checks of it).
