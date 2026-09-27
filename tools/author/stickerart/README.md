@@ -26,7 +26,11 @@ go run ./packager validate ../packs/forest
   facing the same way.
 - `scene.background` / `scene.foreground`: the plane behind the stickers
   and the plane in front of them (foreground is transparent everywhere
-  except its elements).
+  except its elements). `scene.foregroundWide` (optional) is extra
+  direction for widening the foreground to 2:1 — an element the 4:3
+  picture cuts at its edge that must carry on into the side bands (Moon
+  Base's habitat); changing it re-widens the kept 4:3 foreground and
+  repaints nothing else.
 - `stickerSize` (768 — `docs/pack-format.md`, "Image formats"), `border`
   (white outline as a fraction of the size, 0.025) and `margin` (0.03).
 - `finish` (optional): the printed-sticker material the post-processing

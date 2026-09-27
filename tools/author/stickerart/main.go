@@ -154,6 +154,12 @@ type expressionSpec struct {
 type sceneSpec struct {
 	Background string `json:"background"`
 	Foreground string `json:"foreground"`
+	// ForegroundWide is extra direction for widening the foreground to the
+	// 2:1 rendition (optional): an element the 4:3 picture cuts at its
+	// edge — a building, a big rock — that must carry on into the side
+	// bands. Changing it re-widens the kept 4:3 foreground; nothing else
+	// is repainted.
+	ForegroundWide string `json:"foregroundWide,omitempty"`
 	// Edits are painted into the finished background afterwards, in order:
 	// a feature added to the scene (a pond) without repainting the rest.
 	Edits []sceneEdit `json:"edits,omitempty"`
@@ -858,8 +864,35 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 
 	fgFP := hashOf(toolVersion, "foreground", bgFP, cfg.Scene.Foreground, r.o.quality, "4")
 	fgBase, fgWide := r.out("art", "foreground.png"), r.out("art", "foreground-wide.png")
-	if r.upToDate(fgWide, fgFP) && r.upToDate(fgBase, fgFP) {
+	// The wide rendition's own fingerprint: the same as the base's unless
+	// the widening has direction of its own.
+	fgWideFP := fgFP
+	fgExtend := extend + " Keep everything outside the foreground elements fully transparent."
+	if hint := strings.TrimSpace(cfg.Scene.ForegroundWide); hint != "" {
+		fgWideFP = hashOf(fgFP, "wide", hint)
+		fgExtend += " " + hint
+	}
+	if r.upToDate(fgWide, fgWideFP) && r.upToDate(fgBase, fgFP) {
 		r.say("· foreground up to date")
+		return nil
+	}
+	if r.upToDate(fgBase, fgFP) && exists(fgWide) {
+		// Only the widening changed: re-widen the kept 4:3 foreground.
+		if r.o.dry {
+			r.planned = append(r.planned, "foreground-wide ("+wide+", outpaint the kept foreground again)")
+			return nil
+		}
+		base, err := os.ReadFile(fgBase)
+		if err != nil {
+			return err
+		}
+		r.say("▶ foreground-wide")
+		if err := r.extend(base, fgBase, fgWide, fgExtend, "transparent", wide, true); err != nil {
+			return fmt.Errorf("foreground-wide: %w", err)
+		}
+		r.done(fgBase, fgFP)
+		r.done(fgWide, fgWideFP)
+		r.say("✓ foreground-wide")
 		return nil
 	}
 	if r.o.dry {
@@ -880,11 +913,11 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 		return fmt.Errorf("foreground: %w", err)
 	}
 	cost := r.charge(img.Usage)
-	if err := r.extend(img.PNG, fgBase, fgWide, extend+" Keep everything outside the foreground elements fully transparent.", "transparent", wide, true); err != nil {
+	if err := r.extend(img.PNG, fgBase, fgWide, fgExtend, "transparent", wide, true); err != nil {
 		return fmt.Errorf("foreground-wide: %w", err)
 	}
 	r.done(fgBase, fgFP)
-	r.done(fgWide, fgFP)
+	r.done(fgWide, fgWideFP)
 	r.say("✓ foreground (%s) + wide", cost)
 	return nil
 }
