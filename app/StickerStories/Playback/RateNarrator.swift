@@ -60,8 +60,8 @@ final class RateNarrator: Narrator {
             let session = AVAudioSession.sharedInstance()
             try session.setCategory(.playback, mode: .spokenAudio)
             try session.setActive(true)
-            engine.connect(node, to: pitch, format: audio.processingFormat)
-            engine.connect(pitch, to: engine.mainMixerNode, format: audio.processingFormat)
+            try engine.connectNode(node, to: pitch, format: audio.processingFormat)
+            try engine.connectNode(pitch, to: engine.mainMixerNode, format: audio.processingFormat)
             pitch.rate = Float(rate)
             try engine.start()
         } catch {
@@ -79,7 +79,12 @@ final class RateNarrator: Narrator {
                     node.scheduleFile(audio, at: nil, completionCallbackType: .dataPlayedBack) { [weak self] _ in
                         Task { @MainActor in self?.played(current) }
                     }
-                    node.play()
+                    do {
+                        try node.playAudio()
+                    } catch {
+                        finish = nil
+                        continuation.resume(throwing: NarrationError.unplayableAudio(String(describing: error)))
+                    }
                 }
             } onCancel: {
                 Task { @MainActor in self.stop() }
