@@ -83,8 +83,12 @@ struct RootView: View {
             // `-autoplay`: open the first pack and press play (simulator
             // verification of the playback pipeline without touch injection).
             // `-openPack`: only open it, silently (visual checks of the canvas).
+            // `-pack <id>`: that pack instead of the first.
             let args = ProcessInfo.processInfo.arguments
-            if args.contains("-autoplay") || args.contains("-openPack"), let pack = library.packs.first {
+            let packID = args.firstIndex(of: "-pack").flatMap { args.indices.contains($0 + 1) ? args[$0 + 1] : nil }
+            if args.contains("-autoplay") || args.contains("-openPack"),
+                let pack = packID.map({ id in library.packs.first { $0.id == id } }) ?? library.packs.first
+            {
                 screen = .story(pack)
             }
             // `-openGate`: show the parental gate (visual checks of it).
