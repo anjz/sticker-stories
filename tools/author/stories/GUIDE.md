@@ -27,6 +27,17 @@ falling, the lights going low). Stories are:
   so it must reward repetition (rhythm, a callback, a line the child will
   say along) and never grate.
 
+## Audience by pack
+
+Packs are written for four and up unless their roster (`plan.md`,
+"Audience") pitches them older. An older pitch changes the writing, never
+the length (80–140 words) or a single safety rule: the app is in the Kids
+Category's youngest band whatever the pack. **Moon Base** is pitched at
+8–10: a real plot with a twist, missions and problem-solving, dry humour,
+one true piece of Moon science where the roster puts it, and the words a
+nine-year-old enjoys (*gravity*, *orbit*, *airlock*, *vacuum*) — still
+read aloud, still gentle, still warm at the end.
+
 ## Quality bar
 
 Write at the level of the best read-aloud picture books, not app filler.

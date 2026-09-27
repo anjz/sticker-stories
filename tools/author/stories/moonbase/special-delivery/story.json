@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "id": "special-delivery",
+  "pack": "moonbase",
+  "featured": [
+    "supply-pod",
+    "shuttle",
+    "pilot",
+    "buggy"
+  ],
+  "supporting": [
+    "engineer"
+  ],
+  "tags": [
+    "mystery",
+    "kindness"
+  ],
+  "premise": "The shuttle sends a supply pod down to the pad; Pilot drives the buggy over; three guesses what's inside — seeds, and drawings from children on Earth.",
+  "inspiration": "Pandora's box (Greek myth), turned: the box everyone wonders about is full of good things.",
+  "lesson": "The best gifts are the ones that say someone is thinking of you.",
+  "languages": {
+    "en-US": {
+      "title": "Special Delivery",
+      "text": "{shuttle:float loop 0.2} High overhead, the {shuttle:enter} shuttle {shuttle:live} opened its cargo-bay doors. Out came a {supply-pod:enter} supply pod, puffing its little thrusters all the way down. {pilot:enter} {pilot:live} Pilot waved his glowing wands to guide it in. {canvas:dust 5s} It landed on the pad in a soft puff of dust. {pilot:face happy} [excited] Delivery! {pilot:go to supply-pod} {buggy:enter} {buggy:go to supply-pod} Over he went in the buggy — bump, bump, bump. {engineer:enter} Engineer was already there. Three guesses, she said. Bolts? said Pilot. Socks? {engineer:face happy} More bolts? {supply-pod:live hold} {sfx:hiss} The lid popped open in a puff of cold air. {pilot:face surprised} [gasps] Inside were seeds… and drawings from children on Earth: a rocket with a smiley face, a Moon in a hat, a dog in a spacesuit. {pilot:face happy} {all:hearts} They pinned every one up inside the habitat. Nobody had guessed right. Nobody minded."
+    },
+    "es-ES": {
+      "title": "Envío especial",
+      "text": "{shuttle:float loop 0.2} Muy arriba, el {shuttle:enter} transbordador {shuttle:live} abrió las puertas de su bodega. De ella salió una {supply-pod:enter} cápsula de carga, que bajó soltando soplidos por sus propulsores. {pilot:enter} {pilot:live} Piloto movió sus bastones luminosos para guiarla. {canvas:dust 5s} Aterrizó en la plataforma con una nubecita de polvo. {pilot:face happy} [excited] ¡Ha llegado un paquete! {pilot:go to supply-pod} {buggy:enter} {buggy:go to supply-pod} Allá fue en el buggy: bum, bum, bum. {engineer:enter} Ingeniera ya estaba allí. Tres intentos, dijo. ¿Tornillos? dijo Piloto. ¿Calcetines? {engineer:face happy} ¿Más tornillos? {supply-pod:live hold} {sfx:hiss} La tapa se abrió con un soplo de aire frío. {pilot:face surprised} [gasps] Dentro había semillas… y dibujos de niños y niñas de la Tierra: un cohete con una cara sonriente, una Luna con sombrero, un perro con traje espacial. {pilot:face happy} {all:hearts} Los colgaron todos dentro de la base. Nadie había acertado. A nadie le importó."
+    }
+  },
+  "sounds": {
+    "hiss": {
+      "prompt": "a sealed lid unlatching with a gentle pressurised hiss and a soft pop",
+      "seconds": 1.2
+    }
+  }
+}

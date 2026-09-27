@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "id": "the-rover-and-the-drone",
+  "pack": "moonbase",
+  "featured": [
+    "rover",
+    "drone",
+    "ice"
+  ],
+  "supporting": [
+    "geologist"
+  ],
+  "tags": [
+    "teamwork"
+  ],
+  "premise": "Drone can see far but can't carry; Rover can carry but can't see far; together, flash by flash, they bring back ice from the dark crater.",
+  "inspiration": "Aesop's 'The Blind Man and the Lame Man', turned: two machines, each missing what the other has, and one very good team.",
+  "lesson": "Together, we're whole.",
+  "languages": {
+    "en-US": {
+      "title": "The Rover and the Drone",
+      "text": "{geologist:enter} {geologist:face happy} Geologist had a job for two machines. Down in the wide, dark crater, something frozen was waiting. {drone:float loop 0.3} I can see far, said {drone:enter} Drone, but I can't carry a thing. {rover:enter} I can carry plenty, beeped Rover, {rover:pulse} but I only see a little way. [curious] So they made a plan. {drone:go to crater} Drone flew ahead into the shadows. {drone:live} Flash! It lit up the way. {rover:go to crater} Rover rolled after it, slow and steady, from flash to flash. {canvas:glints 10s} Then — something sparkled. {ice:enter} Ice! {ice:live} A wisp of frost curled up off it. {rover:live hold} Rover drilled out a chunk and loaded it up. {drone:pulse} {rover:live resume} Back they came, Drone lighting the way and Rover doing the carrying. {geologist:face happy} {geologist:hop} [excited] Perfect! said Geologist. {all:sparkle} Two halves of one very good team."
+    },
+    "es-ES": {
+      "title": "El róver y el dron",
+      "text": "{geologist:enter} {geologist:face happy} Geólogo tenía un trabajo para dos máquinas. Allá abajo, en el cráter ancho y oscuro, algo helado esperaba. {drone:float loop 0.3} Yo veo lejos, dijo {drone:enter} Dron, pero no puedo cargar nada. {rover:enter} Yo cargo mucho, pitó Róver, {rover:pulse} pero solo veo un poquito. [curious] Así que hicieron un plan. {drone:go to crater} Dron voló delante, hacia las sombras. {drone:live} ¡Flash! Iluminó el camino. {rover:go to crater} Róver lo siguió, despacio y seguro, de flash en flash. {canvas:glints 10s} Y entonces… algo brilló. ¡{ice:enter} Hielo! {ice:live} Un hilito de escarcha subió de él. {rover:live hold} Róver taladró un trozo y lo cargó. {drone:pulse} {rover:live resume} Volvieron juntos, Dron iluminando el camino y Róver llevando la carga. {geologist:face happy} {geologist:hop} [excited] ¡Perfecto! dijo Geólogo. {all:sparkle} Dos mitades de un equipo buenísimo."
+    }
+  },
+  "sounds": {
+    "drill": {
+      "prompt": "a small rover drill whirring into icy gravel, a gritty buzz, short",
+      "seconds": 1.5
+    }
+  }
+}

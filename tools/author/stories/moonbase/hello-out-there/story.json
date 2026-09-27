@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "id": "hello-out-there",
+  "pack": "moonbase",
+  "featured": [
+    "satellite",
+    "robot",
+    "probe"
+  ],
+  "supporting": [],
+  "tags": [
+    "funny",
+    "learning"
+  ],
+  "premise": "Robot says hello to the far-off probe through the satellite; the answer takes so long that he says it again, and again — and all the hellos come back at once.",
+  "inspiration": "Ovid's Echo, turned: the echo is a friend a very long way off, and the trick is to speak early.",
+  "lesson": "Faraway friends are worth waiting for.",
+  "learning": "Radio messages take time to cross space: over a second to reach the Earth, hours to reach a far probe.",
+  "languages": {
+    "en-US": {
+      "title": "Hello Out There",
+      "text": "{satellite:float loop 0.3} High over the base, the {satellite:enter} satellite passed messages along. {robot:enter} Robot had one to send. {robot:face happy} [excited] Hello, {probe:enter} Probe! he called. {satellite:live hold} The satellite beamed it out, far, far away, to where the probe was sailing off toward the outer planets. Robot waited. {robot:face sad} No answer. So he said it again. Hello, Probe! {robot:shake} Nothing. HELLO, PROBE! [pause] Then — {sfx:ping} {satellite:pulse} ping, ping, ping! — three hellos came back, one after another. {robot:face surprised} [gasps] Messages take time to cross space: about a second to reach the Earth, and hours to reach a probe that far away. {probe:live} Far out in the dark, the probe turned slowly, as if it were waving. {robot:face happy} {robot:hop} Robot had an idea. Goodnight, Probe! he called — [giggles] {robot:live} and did a little dance, so the goodnight would get there by bedtime."
+    },
+    "es-ES": {
+      "title": "Hola, ¿hay alguien ahí?",
+      "text": "{satellite:float loop 0.3} Muy por encima de la base, el {satellite:enter} satélite iba pasando mensajes. {robot:enter} Robot tenía uno que enviar. {robot:face happy} [excited] ¡Hola, {probe:enter} Sonda! dijo. {satellite:live hold} El satélite lo lanzó lejos, lejísimos, hasta donde la sonda navegaba hacia los planetas más lejanos. Robot esperó. {robot:face sad} Nada. Así que lo repitió. ¡Hola, Sonda! {robot:shake} Nada. ¡HOLA, SONDA! [pause] Y entonces — {sfx:ping} {satellite:pulse} ¡pin, pin, pin! — llegaron tres holas, uno detrás de otro. {robot:face surprised} [gasps] Los mensajes tardan en cruzar el espacio: más o menos un segundo hasta la Tierra, y horas hasta una sonda tan lejana. {probe:live} Allá lejos, en la oscuridad, la sonda giró despacio, como si saludara. {robot:face happy} {robot:hop} Robot tuvo una idea. ¡Buenas noches, Sonda! dijo… [giggles] {robot:live} y se puso a bailar, para que las buenas noches llegaran justo a la hora de dormir."
+    }
+  },
+  "sounds": {
+    "ping": {
+      "prompt": "three soft, bright radio pings arriving one after another, friendly electronic chimes",
+      "seconds": 1.5
+    }
+  }
+}

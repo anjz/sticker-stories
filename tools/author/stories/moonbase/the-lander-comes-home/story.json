@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "id": "the-lander-comes-home",
+  "pack": "moonbase",
+  "featured": [
+    "lander",
+    "pilot",
+    "beacon"
+  ],
+  "supporting": [
+    "robodog"
+  ],
+  "tags": [
+    "adventure",
+    "bedtime"
+  ],
+  "premise": "At night the lander comes home; Pilot waves his glowing wands, the beacon sweeps its light, the floodlights come on, and it touches down in a puff of dust.",
+  "inspiration": "The lamp in the window (folk custom), turned: the lamp is waved by a friend and swept by a beacon.",
+  "lesson": "Someone always leaves the light on for you.",
+  "languages": {
+    "en-US": {
+      "title": "The Lander Comes Home",
+      "text": "{canvas:nightfall 14s} [softly] The Moon night was deep and dark, and somewhere out there, someone was flying home. {pilot:enter} {pilot:go to pad} Pilot loped out to the landing pad. {pilot:live hold} He held up his glowing wands and crossed them high: here, here! {beacon:enter} {beacon:live} The beacon swept its light round and round. {canvas:floodlights 16s} The floodlights came on, bright pools on the grey dust. [pause] Then — {pilot:pulse} a tiny light in the sky, getting bigger… {lander:enter} the lander! {canvas:dust 5s} It came down gently, right onto the pad, in a soft puff of dust. {pilot:live resume} {pilot:face happy} [excited] Welcome home! {sfx:hiss} {lander:live} The hatch swung open, spilling warm light. {robodog:enter} {robodog:go to lander} {robodog:face happy} Robo-dog came trotting to say hello, {robodog:hop x2} as if it had been gone a year. [giggles] It had been gone a day."
+    },
+    "es-ES": {
+      "title": "El módulo vuelve a casa",
+      "text": "{canvas:nightfall 14s} [softly] La noche lunar era honda y oscura, y en algún lugar de allá fuera, alguien volvía a casa. {pilot:enter} {pilot:go to pad} Piloto salió a zancadas hasta la plataforma. {pilot:live hold} Levantó sus bastones luminosos y los cruzó bien alto: ¡aquí, aquí! {beacon:enter} {beacon:live} La baliza giró su luz, vuelta y vuelta. {canvas:floodlights 16s} Se encendieron los focos, charcos de luz sobre el polvo gris. [pause] Y entonces… {pilot:pulse} una lucecita en el cielo, cada vez más grande… ¡el {lander:enter} módulo! {canvas:dust 5s} Bajó despacito, justo sobre la plataforma, en una nubecita de polvo. {pilot:live resume} {pilot:face happy} [excited] ¡Bienvenido a casa! {sfx:hiss} {lander:live} La escotilla se abrió, derramando una luz cálida. {robodog:enter} {robodog:go to lander} {robodog:face happy} Perro robot llegó trotando a saludar, {robodog:hop x2} como si hubiera estado fuera un año. [giggles] Había estado fuera un día."
+    }
+  },
+  "sounds": {
+    "hiss": {
+      "prompt": "a spacecraft hatch unlatching with a soft pneumatic hiss and a gentle clunk",
+      "seconds": 1.2
+    }
+  }
+}

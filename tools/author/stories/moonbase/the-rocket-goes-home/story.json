@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "id": "the-rocket-goes-home",
+  "pack": "moonbase",
+  "featured": [
+    "rocket",
+    "astronaut",
+    "engineer"
+  ],
+  "supporting": [
+    "pilot"
+  ],
+  "tags": [
+    "gentle",
+    "goodbye"
+  ],
+  "premise": "Engineer's mission is over and she flies home; Astronaut stays behind with her wrench; the rocket fires up in a cloud of dust, and she waves until it's a speck.",
+  "inspiration": "The farewell songs of the old ballads (the sailor's goodbye), turned: the one who stays keeps a promise and a wrench, and is happy too.",
+  "lesson": "A goodbye can hold a promise.",
+  "languages": {
+    "en-US": {
+      "title": "The Rocket Goes Home",
+      "text": "{engineer:enter} {engineer:face sad} Engineer's mission was over. Today she was flying home. {astronaut:enter} {astronaut:face sad} Astronaut was staying. {rocket:enter} {rocket:go to pad} The rocket stood ready on the pad. {engineer:go to rocket} One last job, for luck, said Engineer, and {engineer:live} gave a bolt on its leg a good hard turn. {engineer:face happy} Then she handed Astronaut her big wrench. Keep it for me? {astronaut:face happy} [softly] Until you come back. {engineer:fade-out hold} She climbed aboard, {pilot:enter} {pilot:fade-out hold} and so did Pilot, to fly her. [excited] Three, two, one… {canvas:dust 6s} {sfx:rumble} {rocket:live hold} The engines fired in a great cloud of dust… {rocket:live resume} {rocket:go away} and up, up, up went the rocket, into the black sky. {astronaut:live} Astronaut waved, and tossed a pebble up to wave with. She waved until the rocket was a speck, and the speck was a star. {astronaut:face happy} [softly] Then she went to fix something, with a very good wrench."
+    },
+    "es-ES": {
+      "title": "El cohete vuelve a casa",
+      "text": "{engineer:enter} {engineer:face sad} La misión de Ingeniera había terminado. Hoy volvía a casa. {astronaut:enter} {astronaut:face sad} Astronauta se quedaba. {rocket:enter} {rocket:go to pad} El cohete esperaba listo en la plataforma. {engineer:go to rocket} Un último trabajo, para la suerte, dijo Ingeniera, y {engineer:live} le dio una buena vuelta a un tornillo de la pata. {engineer:face happy} Luego le dio a Astronauta su llave inglesa. ¿Me la guardas? {astronaut:face happy} [softly] Hasta que vuelvas. {engineer:fade-out hold} Subió a bordo, {pilot:enter} {pilot:fade-out hold} y Piloto también, para llevarla. [excited] Tres, dos, uno… {canvas:dust 6s} {sfx:rumble} {rocket:live hold} Los motores rugieron en una gran nube de polvo… {rocket:live resume} {rocket:go away} y arriba, arriba, arriba subió el cohete, hacia el cielo negro. {astronaut:live} Astronauta dijo adiós con la mano, y lanzó un guijarro al aire para despedirse también. Saludó hasta que el cohete fue un puntito, y el puntito, una estrella. {astronaut:face happy} [softly] Luego se fue a arreglar algo, con una llave inglesa estupenda."
+    }
+  },
+  "sounds": {
+    "rumble": {
+      "prompt": "a deep, soft rocket engine rumble felt through the ground, steady and warm, not loud or scary",
+      "seconds": 2.5
+    }
+  }
+}

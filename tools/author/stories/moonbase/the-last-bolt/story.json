@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "id": "the-last-bolt",
+  "pack": "moonbase",
+  "featured": [
+    "engineer",
+    "rocket",
+    "beacon"
+  ],
+  "supporting": [
+    "pilot"
+  ],
+  "tags": [
+    "adventure"
+  ],
+  "premise": "Minutes before a night-time engine test, one bolt on the rocket's leg is loose; Engineer tightens it by beacon-light and floodlight, and the rocket fires up right on time.",
+  "inspiration": "'For want of a nail' (nursery rhyme), turned: the nail is found and the whole chain holds.",
+  "lesson": "Small things matter, and so does the person who notices them.",
+  "languages": {
+    "en-US": {
+      "title": "The Last Bolt",
+      "text": "{canvas:nightfall 12s} [whispers] Ten minutes to the engine test. Then a warning light blinked: one loose bolt on the {rocket:enter} rocket's landing leg. {pilot:enter} {pilot:face surprised} For want of a bolt, a leg would wobble, said Pilot. For want of a leg, the rocket would lean… {engineer:enter} {engineer:face happy} Not today, said Engineer. {canvas:floodlights 16s} She switched on the floodlights, and the {beacon:enter} beacon {beacon:live hold} lit the way. {engineer:go to rocket} Out she loped, wrench in hand. [slowly] Clamp. Turn. {engineer:live hold} Turn. Sparks. One last, hard turn… {engineer:live resume} Done. {pilot:face happy} [excited] Three… two… one… {sfx:rumble} {rocket:live} The rocket's engines fired, right on time, in a great cloud of exhaust. {engineer:face happy} {engineer:hop} And the leg did not wobble one bit."
+    },
+    "es-ES": {
+      "title": "El último tornillo",
+      "text": "{canvas:nightfall 12s} [whispers] Faltaban diez minutos para la prueba de motores. Entonces parpadeó una luz de aviso: un tornillo flojo en la pata del {rocket:enter} cohete. {pilot:enter} {pilot:face surprised} Por un tornillo, la pata se tambalea, dijo Piloto. Por una pata, el cohete se inclina… {engineer:enter} {engineer:face happy} Hoy no, dijo Ingeniera. {canvas:floodlights 16s} Encendió los focos, y la {beacon:enter} baliza {beacon:live hold} le iluminó el camino. {engineer:go to rocket} Allá fue a zancadas, llave en mano. [slowly] Ajustar. Girar. {engineer:live hold} Girar. Chispas. Una última vuelta, bien fuerte… {engineer:live resume} Listo. {pilot:face happy} [excited] Tres… dos… uno… {sfx:rumble} {rocket:live} Los motores del cohete se encendieron justo a tiempo, en una gran nube de humo. {engineer:face happy} {engineer:hop} Y la pata no se tambaleó ni un poquito."
+    }
+  },
+  "sounds": {
+    "rumble": {
+      "prompt": "a deep, soft rocket engine rumble felt through the ground, steady and warm, not loud or scary",
+      "seconds": 2.5
+    }
+  }
+}
