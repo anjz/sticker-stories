@@ -22,11 +22,11 @@ final class MenuArt {
 
     /// Longest side of the decoded background: a 13" iPad is 2752 px wide;
     /// the art is soft enough that a little upscaling beyond that is fine.
-    private static let backgroundPixels = 2400
+    private nonisolated static let backgroundPixels = 2400
     /// The title is drawn at most ~40 % of the screen width.
-    private static let titlePixels = 1200
+    private nonisolated static let titlePixels = 1200
     /// The store tile is a menu card: ~0.48 of the screen width at most.
-    private static let storePixels = 1024
+    private nonisolated static let storePixels = 1024
 
     /// Starts decoding; safe to call from every screen's `task`.
     func load() {
@@ -36,19 +36,24 @@ final class MenuArt {
             let backgroundURL = Bundle.main.url(forResource: "menu-background", withExtension: "webp")
             let titleURL = Bundle.main.url(forResource: "menu-title", withExtension: "webp")
             let storeURL = Bundle.main.url(forResource: "menu-store", withExtension: "webp")
-            let backgroundPixels = Self.backgroundPixels, titlePixels = Self.titlePixels
-            let storePixels = Self.storePixels
-            let (background, title, store) = await Task.detached(priority: .userInitiated) {
-                (backgroundURL.flatMap { Thumbnail.load($0, maxPixelSize: backgroundPixels) },
-                 titleURL.flatMap { Thumbnail.load($0, maxPixelSize: titlePixels) },
-                 storeURL.flatMap { Thumbnail.load($0, maxPixelSize: storePixels) })
-            }.value
+            let (background, title, store) = await Self.decode(
+                background: backgroundURL, title: titleURL, store: storeURL)
             withAnimation(.easeOut(duration: 0.25)) {
                 self.background = background
                 self.title = title
                 self.store = store
             }
         }
+    }
+
+    /// Decodes the menu's art off the main actor.
+    @concurrent
+    private nonisolated static func decode(
+        background: URL?, title: URL?, store: URL?
+    ) async -> (UIImage?, UIImage?, UIImage?) {
+        (background.flatMap { Thumbnail.load($0, maxPixelSize: backgroundPixels) },
+         title.flatMap { Thumbnail.load($0, maxPixelSize: titlePixels) },
+         store.flatMap { Thumbnail.load($0, maxPixelSize: storePixels) })
     }
 }
 

@@ -130,9 +130,9 @@ private struct PackMenuCard: View {
 
     /// Longest side of the background thumbnail: a card is at most ~0.42 of
     /// the screen width, well under this at 2× or 3×.
-    private static let backgroundPixels = 1200
+    private nonisolated static let backgroundPixels = 1200
     /// The spilled stickers are 76 pt tall.
-    private static let stickerPixels = 256
+    private nonisolated static let stickerPixels = 256
 
     var body: some View {
         let language = LanguageResolver(preferredLanguages: preferredLanguages)
@@ -173,14 +173,18 @@ private struct PackMenuCard: View {
             let backgroundURL = pack.url(forAssetPath: pack.manifest.cover ?? pack.manifest.background)
             let stickerURLs = pack.manifest.cover != nil
                 ? [] : pack.manifest.stickers.prefix(3).map { pack.url(forAssetPath: $0.image) }
-            let backgroundPixels = Self.backgroundPixels, stickerPixels = Self.stickerPixels
-            let (backgroundThumbnail, stickerThumbnails) = await Task.detached(priority: .userInitiated) {
-                (Thumbnail.load(backgroundURL, maxPixelSize: backgroundPixels),
-                 stickerURLs.compactMap { Thumbnail.load($0, maxPixelSize: stickerPixels) })
-            }.value
+            let (backgroundThumbnail, stickerThumbnails) = await Self.thumbnails(
+                background: backgroundURL, stickers: stickerURLs)
             background = backgroundThumbnail
             stickers = stickerThumbnails
         }
+    }
+
+    /// Decodes the card's art off the main actor.
+    @concurrent
+    private nonisolated static func thumbnails(background: URL, stickers: [URL]) async -> (UIImage?, [UIImage]) {
+        (Thumbnail.load(background, maxPixelSize: backgroundPixels),
+         stickers.compactMap { Thumbnail.load($0, maxPixelSize: stickerPixels) })
     }
 
     private var stickerSpill: some View {

@@ -10,7 +10,9 @@ packs are non-consumable IAPs (~1.99); one "Forest" pack ships bundled and free.
 ## Tech stack & hard constraints
 
 - **Apple-only, Swift-only.** SwiftUI app shell, SpriteKit canvas (`CanvasScene`),
-  StoreKit 2, AVFoundation. Swift 6 language mode. Minimum iOS/iPadOS **18**.
+  StoreKit 2, AVFoundation. Swift 6 language mode (app target: main-actor
+  default isolation + approachable concurrency; work that must leave the main
+  actor is `@concurrent`). Minimum iOS/iPadOS **26**.
   Landscape-first: iPhone is landscape-only; iPad supports every orientation
   and resizable windows (iPadOS 26 requirement — no `UIRequiresFullScreen`,
   layouts must adapt to any scene size). Bundle ID `com.anj.stickerstories`.

@@ -4,7 +4,7 @@
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│ App target: StickerStories (SwiftUI + SpriteKit, iOS 18+)    │
+│ App target: StickerStories (SwiftUI + SpriteKit, iOS 26+)    │
 │                                                              │
 │  StickerStoriesApp ─ RootView                                │
 │    ├─ SpriteView(CanvasScene)      ← the heart: sticker play │

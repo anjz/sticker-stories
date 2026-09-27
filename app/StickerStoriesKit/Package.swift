@@ -1,4 +1,4 @@
-// swift-tools-version: 6.0
+// swift-tools-version: 6.2
 import PackageDescription
 
 // StickerStoriesKit holds the platform-independent core of the app: pack
@@ -7,7 +7,7 @@ import PackageDescription
 // simulator. This is first-party code, not a third-party dependency.
 let package = Package(
     name: "StickerStoriesKit",
-    platforms: [.iOS(.v18), .macOS(.v15)],
+    platforms: [.iOS(.v26), .macOS(.v26)],
     products: [
         .library(name: "StickerStoriesKit", targets: ["StickerStoriesKit"])
     ],

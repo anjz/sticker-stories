@@ -44,9 +44,7 @@ final class AudioFileNarrator: NSObject, Narrator {
         let started: StartedPlayer
         do {
             let url = pack.url(forAssetPath: audioPath)
-            started = try await Task.detached(priority: .userInitiated) {
-                try Self.startPlayback(of: url, delegate: self)
-            }.value
+            started = try await Self.startPlayback(of: url, delegate: self)
         } catch {
             state = .idle
             throw NarrationError.unplayableAudio(String(describing: error))
@@ -83,7 +81,8 @@ final class AudioFileNarrator: NSObject, Narrator {
     /// all block on the audio server — Xcode flags them as hang risks on the
     /// main thread — so the whole set-up runs off it and only the running
     /// player comes back.
-    private nonisolated static func startPlayback(of url: URL, delegate: AudioFileNarrator) throws -> StartedPlayer {
+    @concurrent
+    private nonisolated static func startPlayback(of url: URL, delegate: AudioFileNarrator) async throws -> StartedPlayer {
         let session = AVAudioSession.sharedInstance()
         try session.setCategory(.playback, mode: .spokenAudio)
         try session.setActive(true)
