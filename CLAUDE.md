@@ -45,10 +45,11 @@ cd app/StickerStoriesKit && swift test
 # Tools tests + pack validation
 cd tools && go test ./...
 cd tools && go run ./packager validate ../packs/forest
+cd tools && go run ./packager assetpacks ../packs/forest   # narration asset packs → build/assetpacks
 
-# App build (simulator)
+# App build (simulator; an iOS 27 runtime)
 xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
-  -destination 'platform=iOS Simulator,name=iPad Pro 11-inch (M4)' build
+  -destination 'platform=iOS Simulator,name=iPad Pro 11-inch (M5),OS=27.0' build
 ```
 
 ## Folder map
@@ -83,6 +84,8 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
   alternatives to pick from, prompts in `author/art/app/ui.json`). API keys
   live in `tools/.env` (`ELEVENLABS_API_KEY`, `OPENAI_API_KEY`).
 - `docs/` — deep documentation; reference it, don't duplicate it here.
+  Narration ships per language as Apple-hosted asset packs, not in the app:
+  `docs/asset-delivery.md`.
 
 ## Working rules
 
