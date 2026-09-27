@@ -1,0 +1,46 @@
+{
+  "id": "drift",
+  "sticker": "telescope",
+  "kind": "move",
+  "description": "the space telescope drifts slowly along to the left through space, then comes to rest.",
+  "sheet": "anims/telescope.drift.webp",
+  "frame": {
+    "width": 521,
+    "height": 469
+  },
+  "columns": 6,
+  "count": 12,
+  "rest": {
+    "x": 0.03263,
+    "y": 0.03412,
+    "width": 0.92514,
+    "height": 0.91258
+  },
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.08333,
+    "width": 0.9401,
+    "height": 0.83333
+  },
+  "hold": [
+    0.1,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.15,
+    0.16,
+    0.45
+  ],
+  "loop": {
+    "from": 1,
+    "to": 8
+  },
+  "facing": "left",
+  "stride": 0.6,
+  "flies": true
+}

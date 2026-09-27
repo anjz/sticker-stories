@@ -1,0 +1,46 @@
+{
+  "id": "drift",
+  "sticker": "probe",
+  "kind": "move",
+  "description": "the probe drifts slowly along to the left through space, then comes to rest.",
+  "sheet": "anims/probe.drift.webp",
+  "frame": {
+    "width": 520,
+    "height": 519
+  },
+  "columns": 6,
+  "count": 12,
+  "rest": {
+    "x": 0.03654,
+    "y": 0.04239,
+    "width": 0.92692,
+    "height": 0.92486
+  },
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.03125,
+    "width": 0.9401,
+    "height": 0.9362
+  },
+  "hold": [
+    0.1,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.15,
+    0.16,
+    0.45
+  ],
+  "loop": {
+    "from": 1,
+    "to": 8
+  },
+  "facing": "left",
+  "stride": 0.7,
+  "flies": true
+}

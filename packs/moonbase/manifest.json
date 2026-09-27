@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "moonbase",
-  "version": 1,
+  "version": 2,
   "languages": [
     "en-US",
     "es-ES"
@@ -184,6 +184,10 @@
         "es-ES": "Asteroide"
       },
       "image": "stickers/asteroid.webp",
+      "animations": [
+        "anims/asteroid.tumble.json",
+        "anims/asteroid.drift.json"
+      ],
       "stage": {
         "entrance": "fly",
         "on": [
@@ -199,6 +203,10 @@
         "es-ES": "Astronauta"
       },
       "image": "stickers/astronaut.webp",
+      "animations": [
+        "anims/astronaut.toss.json",
+        "anims/astronaut.moon-hop.json"
+      ],
       "expressions": {
         "happy": "stickers/astronaut.happy.webp",
         "sad": "stickers/astronaut.sad.webp",
@@ -220,6 +228,10 @@
         "es-ES": "Astrónoma"
       },
       "image": "stickers/astronomer.webp",
+      "animations": [
+        "anims/astronomer.stargaze.json",
+        "anims/astronomer.lope.json"
+      ],
       "expressions": {
         "happy": "stickers/astronomer.happy.webp",
         "sad": "stickers/astronomer.sad.webp",
@@ -241,6 +253,10 @@
         "es-ES": "Baliza"
       },
       "image": "stickers/beacon.webp",
+      "animations": [
+        "anims/beacon.blink.json",
+        "anims/beacon.unfold.json"
+      ],
       "stage": {
         "entrance": "grow",
         "on": [
@@ -256,6 +272,10 @@
         "es-ES": "Buggy lunar"
       },
       "image": "stickers/buggy.webp",
+      "animations": [
+        "anims/buggy.wheelspin.json",
+        "anims/buggy.drive.json"
+      ],
       "stage": {
         "entrance": "hop",
         "on": [
@@ -271,6 +291,10 @@
         "es-ES": "Dron"
       },
       "image": "stickers/drone.webp",
+      "animations": [
+        "anims/drone.photo.json",
+        "anims/drone.fly.json"
+      ],
       "stage": {
         "entrance": "fly",
         "on": [
@@ -286,6 +310,10 @@
         "es-ES": "Ingeniera"
       },
       "image": "stickers/engineer.webp",
+      "animations": [
+        "anims/engineer.fix.json",
+        "anims/engineer.lope.json"
+      ],
       "expressions": {
         "happy": "stickers/engineer.happy.webp",
         "sad": "stickers/engineer.sad.webp",
@@ -307,6 +335,10 @@
         "es-ES": "Excavadora"
       },
       "image": "stickers/excavator.webp",
+      "animations": [
+        "anims/excavator.dig.json",
+        "anims/excavator.trundle.json"
+      ],
       "stage": {
         "entrance": "hop",
         "on": [
@@ -323,6 +355,10 @@
         "es-ES": "Geólogo"
       },
       "image": "stickers/geologist.webp",
+      "animations": [
+        "anims/geologist.study.json",
+        "anims/geologist.lope.json"
+      ],
       "expressions": {
         "happy": "stickers/geologist.happy.webp",
         "sad": "stickers/geologist.sad.webp",
@@ -344,6 +380,10 @@
         "es-ES": "Invernadero"
       },
       "image": "stickers/greenhouse.webp",
+      "animations": [
+        "anims/greenhouse.lights.json",
+        "anims/greenhouse.inflate.json"
+      ],
       "stage": {
         "entrance": "grow",
         "on": [
@@ -359,6 +399,10 @@
         "es-ES": "Hielo"
       },
       "image": "stickers/ice.webp",
+      "animations": [
+        "anims/ice.frost.json",
+        "anims/ice.surface.json"
+      ],
       "stage": {
         "entrance": "grow",
         "on": [
@@ -375,6 +419,10 @@
         "es-ES": "Módulo lunar"
       },
       "image": "stickers/lander.webp",
+      "animations": [
+        "anims/lander.hatch.json",
+        "anims/lander.fly.json"
+      ],
       "stage": {
         "entrance": "fly",
         "on": [
@@ -391,6 +439,10 @@
         "es-ES": "Piloto"
       },
       "image": "stickers/pilot.webp",
+      "animations": [
+        "anims/pilot.signal.json",
+        "anims/pilot.lope.json"
+      ],
       "expressions": {
         "happy": "stickers/pilot.happy.webp",
         "sad": "stickers/pilot.sad.webp",
@@ -412,6 +464,10 @@
         "es-ES": "Sonda"
       },
       "image": "stickers/probe.webp",
+      "animations": [
+        "anims/probe.turn.json",
+        "anims/probe.drift.json"
+      ],
       "stage": {
         "entrance": "fly",
         "on": [
@@ -427,6 +483,10 @@
         "es-ES": "Perro robot"
       },
       "image": "stickers/robodog.webp",
+      "animations": [
+        "anims/robodog.sit-up.json",
+        "anims/robodog.trot.json"
+      ],
       "expressions": {
         "happy": "stickers/robodog.happy.webp",
         "sad": "stickers/robodog.sad.webp",
@@ -448,6 +508,10 @@
         "es-ES": "Robot"
       },
       "image": "stickers/robot.webp",
+      "animations": [
+        "anims/robot.dance.json",
+        "anims/robot.walk.json"
+      ],
       "expressions": {
         "happy": "stickers/robot.happy.webp",
         "sad": "stickers/robot.sad.webp",
@@ -469,6 +533,10 @@
         "es-ES": "Cohete"
       },
       "image": "stickers/rocket.webp",
+      "animations": [
+        "anims/rocket.engines.json",
+        "anims/rocket.fly.json"
+      ],
       "stage": {
         "entrance": "fly",
         "on": [
@@ -484,6 +552,10 @@
         "es-ES": "Róver"
       },
       "image": "stickers/rover.webp",
+      "animations": [
+        "anims/rover.drill.json",
+        "anims/rover.drive.json"
+      ],
       "stage": {
         "entrance": "hop",
         "on": [
@@ -500,6 +572,10 @@
         "es-ES": "Satélite"
       },
       "image": "stickers/satellite.webp",
+      "animations": [
+        "anims/satellite.signal.json",
+        "anims/satellite.drift.json"
+      ],
       "stage": {
         "entrance": "fly",
         "on": [
@@ -515,6 +591,10 @@
         "es-ES": "Brote"
       },
       "image": "stickers/seedling.webp",
+      "animations": [
+        "anims/seedling.reach.json",
+        "anims/seedling.grow.json"
+      ],
       "stage": {
         "entrance": "grow",
         "on": [
@@ -530,6 +610,10 @@
         "es-ES": "Transbordador"
       },
       "image": "stickers/shuttle.webp",
+      "animations": [
+        "anims/shuttle.cargo.json",
+        "anims/shuttle.glide.json"
+      ],
       "stage": {
         "entrance": "fly",
         "on": [
@@ -545,6 +629,10 @@
         "es-ES": "Panel solar"
       },
       "image": "stickers/solar-panel.webp",
+      "animations": [
+        "anims/solar-panel.track.json",
+        "anims/solar-panel.unfold.json"
+      ],
       "stage": {
         "entrance": "grow",
         "on": [
@@ -560,6 +648,10 @@
         "es-ES": "Estación espacial"
       },
       "image": "stickers/station.webp",
+      "animations": [
+        "anims/station.turn.json",
+        "anims/station.drift.json"
+      ],
       "stage": {
         "entrance": "fly",
         "on": [
@@ -575,6 +667,10 @@
         "es-ES": "Cápsula de carga"
       },
       "image": "stickers/supply-pod.webp",
+      "animations": [
+        "anims/supply-pod.open.json",
+        "anims/supply-pod.fly.json"
+      ],
       "stage": {
         "entrance": "fly",
         "on": [
@@ -591,6 +687,10 @@
         "es-ES": "Telescopio espacial"
       },
       "image": "stickers/telescope.webp",
+      "animations": [
+        "anims/telescope.look.json",
+        "anims/telescope.drift.json"
+      ],
       "stage": {
         "entrance": "fly",
         "on": [

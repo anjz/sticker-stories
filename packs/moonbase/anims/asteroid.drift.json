@@ -1,0 +1,46 @@
+{
+  "id": "drift",
+  "sticker": "asteroid",
+  "kind": "move",
+  "description": "the asteroid drifts slowly along to the left through space, then comes to rest.",
+  "sheet": "anims/asteroid.drift.webp",
+  "frame": {
+    "width": 513,
+    "height": 474
+  },
+  "columns": 6,
+  "count": 12,
+  "rest": {
+    "x": 0.02924,
+    "y": 0.06751,
+    "width": 0.93957,
+    "height": 0.88397
+  },
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.08984,
+    "width": 0.9401,
+    "height": 0.81901
+  },
+  "hold": [
+    0.1,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.12,
+    0.15,
+    0.16,
+    0.45
+  ],
+  "loop": {
+    "from": 1,
+    "to": 8
+  },
+  "facing": "left",
+  "stride": 0.7,
+  "flies": true
+}
