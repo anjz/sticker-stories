@@ -48,7 +48,7 @@ const (
 	// from, spread across the packs, and their longest edge. A few set the
 	// style; more would crowd the tile with one pack's cast.
 	storeStickers  = 4
-	storeStickerPx = 512
+	storeStickerPx = 512 // also a cover's sticker references
 )
 
 // uiConfig is ui.json.
@@ -82,6 +82,11 @@ type coverSpec struct {
 	assetSpec
 	// Packs adds pack-specific direction by pack ID (optional).
 	Packs map[string]string `json:"packs,omitempty"`
+	// Stickers names, by pack ID, the stickers the cover shows (optional):
+	// their finished art (stickerart's out/stickers) goes along as extra
+	// references, so the characters look exactly like their stickers —
+	// the style sheet alone can differ (a skin tone, a detail).
+	Stickers map[string][]string `json:"stickers,omitempty"`
 }
 
 func main() {
@@ -388,9 +393,18 @@ func listPacks(dir string) ([]pack, error) {
 }
 
 // coverJob asks for a cover drawn from the pack itself: its style sheet
-// (the characters and the look) and its background art as references, so
-// the cover belongs to the pack.
+// (the characters and the look) and its background art as references, and
+// the pack's own art style (its art.json) in place of the app's when it
+// has one, so the cover belongs to the pack.
 func coverJob(cfg *uiConfig, style string, p pack, out string) (job, error) {
+	if data, err := os.ReadFile(filepath.Join("author", "art", p.m.ID, "art.json")); err == nil {
+		var art struct {
+			Style string `json:"style"`
+		}
+		if json.Unmarshal(data, &art) == nil && strings.TrimSpace(art.Style) != "" {
+			style = strings.TrimSpace(art.Style)
+		}
+	}
 	lang := p.m.Languages[0]
 	name := p.m.DisplayName[lang]
 	about := ""
@@ -420,9 +434,24 @@ func coverJob(cfg *uiConfig, style string, p pack, out string) (job, error) {
 	if len(refs) == 0 {
 		return job{}, errors.New("no style sheet or background art to draw the cover from")
 	}
-	prompt := style + "\n\n" +
-		fmt.Sprintf("A cover for the sticker pack \"%s\"%s. The attached images are this pack's own art: its characters and style (first) and its scene (second). Use the very same style, palette and characters.\n\n", name, about) +
-		strings.TrimSpace(cfg.Cover.Prompt)
+	intro := fmt.Sprintf("A cover for the sticker pack \"%s\"%s. The attached images are this pack's own art: its characters and style (first) and its scene (second). Use the very same style, palette and characters.", name, about)
+	var shown []string
+	for _, id := range cfg.Cover.Stickers[p.m.ID] {
+		data, err := os.ReadFile(filepath.Join(packArt, "stickers", id+".png"))
+		if err != nil {
+			return job{}, fmt.Errorf("cover sticker %q: %w", id, err)
+		}
+		small, err := downscale(data, storeStickerPx)
+		if err != nil {
+			return job{}, fmt.Errorf("cover sticker %q: %w", id, err)
+		}
+		refs = append(refs, small)
+		shown = append(shown, id)
+	}
+	if len(shown) > 0 {
+		intro += fmt.Sprintf(" The next %d images are the finished stickers of the characters to show (%s), in that order: draw each exactly like its sticker — the same face, skin, colours and details.", len(shown), strings.Join(shown, ", "))
+	}
+	prompt := style + "\n\n" + intro + "\n\n" + strings.TrimSpace(cfg.Cover.Prompt)
 	if extra := strings.TrimSpace(cfg.Cover.Packs[p.m.ID]); extra != "" {
 		prompt += " " + extra
 	}

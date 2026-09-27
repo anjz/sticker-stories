@@ -25,7 +25,10 @@ go run ./author/uiart pick cover:forest 1
 - `candidates` (default 4) is how many alternatives `render` makes.
 - `background` / `title` / `store` / `cover`: a `size` and a `prompt`
   each. The title also takes the exact `text` to letter; covers take extra
-  direction per pack under `cover.packs.<packID>`.
+  direction per pack under `cover.packs.<packID>`, and the stickers they
+  show under `cover.stickers.<packID>` (ids): their finished art goes along
+  as references so the characters match their stickers exactly — the style
+  sheet alone drew Moon Base's astronaut with the wrong skin tone.
 
 The tool adds the rules that must always hold: no text in the background
 or covers (the app writes pack names), the exact spelling and a
@@ -37,9 +40,11 @@ transparent background for the title, no borders.
   title on a transparent background.
 - **Covers**: one per pack in `../packs`, drawn with the pack's own art as
   references (`gpt-image-2.5-sunburst`): its style sheet (the characters
-  and the look) and its scene, both from `author/art/<pack>/out/`, so the
-  cover belongs to the pack. The prompt names the pack and its manifest
-  `description`.
+  and the look) and its scene, both from `author/art/<pack>/out/`, and in
+  the pack's own art style (the `style` in `author/art/<pack>/art.json`,
+  in place of `ui.json`'s), so the cover belongs to the pack — a pack drawn
+  in another style than the app gets a cover in its style. The prompt
+  names the pack and its manifest `description`.
 - **Store tile**: drawn with up to 4 of the packs' finished stickers
   (`author/art/<pack>/out/stickers/`, taken in turn from every pack) as
   references, so the tile's stickers share the packs' style.
