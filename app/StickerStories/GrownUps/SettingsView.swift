@@ -11,9 +11,7 @@ struct SettingsView: View {
     let store: StoreService
     /// Whether each language's narration is on the device.
     let narration: NarrationLibrary
-    /// A pack whose stickers the debug effects gallery can use.
-    var galleryPack: LoadedPack? = nil
-    /// The installed packs the debug story gallery plays stories from.
+    /// The installed packs the debug effects and story galleries use.
     var galleryPacks: [LoadedPack] = []
     @Environment(\.dismiss) private var dismiss
     @State private var isShowingGallery = false
@@ -89,7 +87,7 @@ struct SettingsView: View {
                         }
 
                         #if DEBUG
-                        if let galleryPack {
+                        if let galleryPack = galleryPacks.first {
                             Text("Developer")
                                 .font(.system(size: 21, weight: .bold, design: .rounded))
                                 .foregroundStyle(.white.opacity(0.95))
@@ -114,7 +112,7 @@ struct SettingsView: View {
                             .buttonStyle(SquishyButtonStyle())
                             .frame(maxWidth: 460)
                             .fullScreenCover(isPresented: $isShowingGallery) {
-                                EffectsGalleryView(pack: galleryPack)
+                                EffectsGalleryView(packs: galleryPacks, pack: galleryPack)
                             }
                             developerRow(title: "Story gallery", symbol: "play.rectangle.on.rectangle") {
                                 isShowingStoryGallery = true

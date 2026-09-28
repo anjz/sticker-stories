@@ -8,22 +8,27 @@ import SwiftUI
 /// library's numbers can be tuned against real art. Reached from Settings
 /// in debug builds; never compiled into release.
 struct EffectsGalleryView: View {
-    let pack: LoadedPack
+    /// The installed packs the gallery can switch between.
+    let packs: [LoadedPack]
     @Environment(\.dismiss) private var dismiss
+    @State private var pack: LoadedPack
+    @State private var packID: String
     @State private var scene: EffectsGalleryScene
     @State private var intensity = 0.6
     @State private var loop = false
     @State private var canvasDuration = 6.0
     @State private var stickerID: String
     /// Live animations found in the pack (`StickerAnimation`), by sticker.
-    private let animations: [StickerAnimation]
+    @State private var animations: [StickerAnimation]
 
-    init(pack: LoadedPack) {
-        self.pack = pack
+    init(packs: [LoadedPack], pack: LoadedPack) {
+        self.packs = packs
+        _pack = State(initialValue: pack)
+        _packID = State(initialValue: pack.id)
         let first = pack.manifest.stickers.first?.id ?? ""
         _stickerID = State(initialValue: first)
         _scene = State(initialValue: EffectsGalleryScene(pack: pack, stickerID: first))
-        animations = StickerAnimation.available(in: pack)
+        _animations = State(initialValue: StickerAnimation.available(in: pack))
     }
 
     private let columns = [GridItem(.adaptive(minimum: 120), spacing: 10)]
@@ -31,6 +36,7 @@ struct EffectsGalleryView: View {
     var body: some View {
         HStack(spacing: 0) {
             SpriteView(scene: scene)
+                .id(pack.id)  // a new view presents the new pack's scene
                 .ignoresSafeArea()
 
             VStack(alignment: .leading, spacing: 14) {
@@ -44,12 +50,23 @@ struct EffectsGalleryView: View {
                     .accessibilityLabel("Close")
                 }
 
-                Picker("Sticker", selection: $stickerID) {
-                    ForEach(pack.manifest.stickers) { sticker in
-                        Text(verbatim: sticker.id).tag(sticker.id)
+                HStack {
+                    Picker("Pack", selection: $packID) {
+                        ForEach(packs) { pack in
+                            Text(verbatim: pack.manifest.languages.first.flatMap { pack.manifest.displayName[$0] } ?? pack.id)
+                                .tag(pack.id)
+                        }
                     }
+                    .fixedSize()
+                    .onChange(of: packID) { switchPack() }
+                    Picker("Sticker", selection: $stickerID) {
+                        ForEach(pack.manifest.stickers) { sticker in
+                            Text(verbatim: sticker.id).tag(sticker.id)
+                        }
+                    }
+                    .onChange(of: stickerID) { scene.show(stickerID: stickerID) }
                 }
-                .onChange(of: stickerID) { scene.show(stickerID: stickerID) }
+                .pickerStyle(.menu)
 
                 Picker("Intensity", selection: $intensity) {
                     Text(verbatim: "0.3").tag(0.3)
@@ -164,6 +181,18 @@ struct EffectsGalleryView: View {
                 scene.playLive(animation, part: animation.kind == .move ? .move(travel: 3) : .whole, repeating: true)
             }
         }
+    }
+
+    /// Moves the gallery to the picked pack: a new scene over its art,
+    /// showing its first sticker, with its live animations.
+    private func switchPack() {
+        guard let next = packs.first(where: { $0.id == packID }), next.id != pack.id else { return }
+        scene.stopAll()
+        let first = next.manifest.stickers.first?.id ?? ""
+        pack = next
+        animations = StickerAnimation.available(in: next)
+        stickerID = first
+        scene = EffectsGalleryScene(pack: next, stickerID: first)
     }
 
     /// The ways the gallery plays an animation: an action whole, held and

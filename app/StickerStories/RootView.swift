@@ -63,7 +63,7 @@ struct RootView: View {
             // the debug gallery instead of the app (no touch injection on
             // the simulator).
             if ProcessInfo.processInfo.arguments.contains(where: { $0.hasPrefix("-effectsGallery") }) {
-                if let pack = debugPack { EffectsGalleryView(pack: pack) }
+                if let pack = debugPack { EffectsGalleryView(packs: library.packs, pack: pack) }
             } else if ProcessInfo.processInfo.arguments.contains("-storyGallery") {
                 // `-storyGallery` opens the debug story gallery
                 // (`StoryGalleryView` lists its other arguments).
@@ -132,7 +132,7 @@ struct RootView: View {
                 case .settings:
                     SettingsView(
                         settings: settings, store: StoreService(entitlements: entitlements),
-                        narration: narration, galleryPack: library.packs.first, galleryPacks: library.packs)
+                        narration: narration, galleryPacks: library.packs)
                     .onAppear { leftSettings = true }
                     // Page-sized on iPad: the default form sheet is too short
                     // for every section, cutting the last row off.
