@@ -253,16 +253,21 @@ func TestSoundCuesAndTagsAreValidated(t *testing.T) {
 			l.Text = "It rained {sfx:rain solo} hard. " + l.Text
 			s.Languages["en-US"] = l
 		}, "mid-sentence", true},
-		{"solo leaves a short stretch", func(s *Story) {
-			l := s.Languages["en-US"]
-			l.Text = "It rained. {sfx:rain solo} " + l.Text
-			s.Languages["en-US"] = l
-		}, "stretch of only", true},
 		{"too many tags", func(s *Story) {
 			l := s.Languages["en-US"]
 			l.Text = "[excited] [curious] [happily] [laughs] [gasps] [sighs] [whispers] " + l.Text
 			s.Languages["en-US"] = l
 		}, "audio tags", true},
+		{"a tag that names a sound", func(s *Story) {
+			l := s.Languages["en-US"]
+			l.Text = "[light rain] " + l.Text
+			s.Languages["en-US"] = l
+		}, "not one the narration may use", false},
+		{"a voice tag that is not a voice", func(s *Story) {
+			l := s.Languages["en-US"]
+			l.Text = "[in a deep forest] " + l.Text
+			s.Languages["en-US"] = l
+		}, "not one the narration may use", false},
 		{"stacked tags", func(s *Story) {
 			l := s.Languages["en-US"]
 			l.Text = "[excited] [whispers] " + l.Text
@@ -859,5 +864,22 @@ func TestWordsThatPutACharacterSomewhereNeedAMove(t *testing.T) {
 	}
 	if e := strings.Join(Validate(withText(" {owl:enter} Owl {owl:go to fox another} x.", " {owl:enter} Owl {owl:go to fox another} x."), pack, cat).Errors, "\n"); !strings.Contains(e, "another is for going to a place") {
 		t.Errorf("another to a sticker: %s", e)
+	}
+}
+
+func TestLookupAudioTag(t *testing.T) {
+	for _, name := range []string{"long pause", "in awe", "warmly", "in a deep, slow voice", "in a tiny squeaky voice", "In An Old, Crackly Voice"} {
+		if _, ok := LookupAudioTag(name); !ok {
+			t.Errorf("%q should be allowed", name)
+		}
+	}
+	for _, name := range []string{"applause", "light rain", "door slams", "in a deep forest", "in a voice", "shouting"} {
+		if _, ok := LookupAudioTag(name); ok {
+			t.Errorf("%q should not be allowed", name)
+		}
+	}
+	nar, errs := Parse("[long pause] [whispers] Shh. [in a deep, slow voice] Who is there? said Owl.")
+	if len(errs) != 0 || len(nar.Tags) != 3 {
+		t.Fatalf("parse: %v, tags %v", errs, nar.Tags)
 	}
 }

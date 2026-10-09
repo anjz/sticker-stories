@@ -16,9 +16,9 @@ hides in its shell and stays there until it peeks out, the frog snaps up a
 fly), stickers the story names walk, hop, fly or sprout into the scene and, whenever the words bring it, the weather or the light changes over the whole scene (rain, fog, sunshine, a rainbow, night
 falling, the lights going low). Stories are:
 
-- **30–60 seconds** of narration (80–140 words per language), read by an
-  Eleven v3 voice that takes stage directions and plays real sound
-  effects — you write those in too (see "Voice performance" and "Sound
+- **30–60 seconds** of narration (80–140 words per language), read in one
+  take by an Eleven v4 voice that takes stage directions, with real sound
+  effects mixed in — you write those in too (see "Voice performance" and "Sound
   effects");
 - **bilingual from day one** (currently en-US and es-ES), each language
   written natively;
@@ -530,29 +530,57 @@ it stays). See `FORMAT.md`, "Canvas cues".
 
 ## Voice performance
 
-The narrator is an Eleven v3 voice: it acts what you write, and it takes
-stage directions in square brackets (FORMAT.md, "Audio tags"). Use them the
-way a good reader marks up a picture book:
+The narrator is an **Eleven v4** voice reading the whole story in **one
+take**, like an actor with the script in hand: it reads the tone from the
+words, carries one mood from the first line to the last, and takes stage
+directions in square brackets (FORMAT.md, "Audio tags"). Write for that
+performer:
 
-- **Punctuation first.** An ellipsis (…) is a held breath, a dash (—) a
-  snag, a short sentence a quick step, ONE WORD IN CAPITALS a shout. This
-  is the most reliable control there is — write the rhythm into the text
-  before reaching for a tag.
+- **Let the words carry the feeling.** v4 acts what the sentence says:
+  *She whispered, so she wouldn't wake him* is already whispered. Tags only
+  fine-tune — put one where the words alone can't say how to say it.
+- **Rhythm is written in, never set.** There is no speed control: pace is
+  the text. Short sentences step quickly; a long, flowing one slows the
+  reader down. An ellipsis (…) is a held breath, a dash (—) a snag or a
+  line cut off (*"Wait, that's my—"*), ONE WORD IN CAPITALS the word that
+  lands (once or twice a story). `[slowly]` or `[rushed]` sets the pace of
+  a whole passage.
+- **Silence is a tool.** `[short pause]` is a held breath before a reveal;
+  `[long pause]` a real hush — before the rocket lifts, as the bedtime
+  story settles. One or two a story; a pause may sit beside a direction
+  (`[long pause] [whispers]`), nothing else stacks.
 - **A tag where the feeling changes**, right before the words it colours:
-  `[whispers]` for a secret or a sleeping friend, `[excited]` when the game
-  starts, `[curious]` for a peek, `[softly]` as the story settles,
-  `[slowly]` / `[drawn out]` for a snail or a *sloooow* word, `[happily]`
-  for the ending. Reactions are sounds the narrator makes: `[giggles]`,
-  `[gasps]`, `[sighs]`, `[laughs]`, `[yawns]` (bedtime, experimental).
-- **Few and true.** Two to five per story is plenty, six is the limit, one
-  direction per spot (never `[excited] [whispers]`), and only where the
-  words already carry the feeling. Over-tagged text is what makes the
-  model read a tag aloud instead of performing it.
+  `[whispers]` for a secret, `[excited]` when the game starts, `[curious]`
+  for a peek, `[warmly]` / `[gently]` for comfort, `[playfully]` for a
+  tease, `[proudly]` for a job done, `[in awe]` for something huge or
+  beautiful, `[nervously]` for a small worry the story soon solves,
+  `[softly]` as it settles, `[happily]` for the ending. Reactions are
+  sounds the narrator makes: `[giggles]`, `[gasps]`, `[sighs]`,
+  `[laughs]`, `[yawns]` (experimental).
+- **Characters get a voice, the narrator stays the narrator.** For a line
+  a character says, name the speaker *before* the line when the way it is
+  said matters (*Owl yawned and said, "Who's there?"*) — the reader knows
+  how to say it before saying it. For a character worth a voice of their
+  own, `[in a deep, slow voice]`, `[in a tiny, squeaky voice]`: an open
+  tag that must read "in a … voice", right before the line, the same
+  description every time that character speaks in the story, at most two
+  characters per story. Put a narrator direction (`[warmly]`, `[softly]`…)
+  on the narration right after it if the take might stay in character.
+- **Tags direct the voice — never a sound.** v4 performs any tag, and one
+  that names a sound (`[applause]`, `[door slams]`, `[light rain]`) makes
+  the narrator produce it. Sounds belong in the sounds table, cued
+  (below); the validator only accepts the allowed list.
+- **Few and true.** Two to four per story is right, six the limit, one
+  direction per spot, and only where the words already lean that way. An
+  over-tagged script reads as a tic.
+- **Speakable text.** Spell numbers out (*three moons*, *tres lunas*),
+  avoid abbreviations and symbols, and keep a name the narrator may stumble
+  on to words it knows.
 - **The same beats, not the same tags.** Each language gets the tags its
-  own phrasing wants.
-- The narration is read in one go unless a solo sound splits it (below), so
-  the voice stays consistent; the tool keeps a natural stability and
-  handles the rest.
+  own phrasing wants (tags are always written in English).
+- **One take, so solo sounds come at full stops.** The tool cuts the take
+  where a solo sound goes (below), in the narrator's own pause — which is
+  only there at the end of a sentence.
 
 ## Sound effects
 

@@ -307,7 +307,7 @@ sticker on the canvas (`{all:hop}`, `{all:face sleeping}`) and
 `go` the reserved effect that moves a sticker (`{fox:go to rabbit}`,
 `{bee:go on flower}`, `{mouse:go under mushroom}`, `{frog:go to pond}`,
 `{fox:go away}`, `{fox:go back}`) and `sfx:` for sound effects (which are mixed into the
-audio, never triggers). The text may also carry Eleven v3 audio tags
+audio, never triggers). The text may also carry Eleven v4 audio tags
 (`[whispers]`) for the narrator. Step 2 of the authoring pipeline
 (`storyaudio`) resolves each cue's `at` from the narration's word
 timestamps and carries the word as `cue`, emitting the sidecar above. The

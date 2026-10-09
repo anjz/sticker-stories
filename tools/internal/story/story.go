@@ -120,31 +120,43 @@ type SoundHint struct {
 	Note string `json:"note"`
 }
 
-// AudioTag is one Eleven v3 audio tag the narration may carry inline, in
-// square brackets ([whispers], [giggles], [pause]). The list is curated for
-// children's narration and for what the model performs reliably; the
-// validator rejects anything else. Experimental tags are documented by
-// ElevenLabs as less consistent — use them sparingly.
+// AudioTag is one audio tag the narration may carry inline, in square
+// brackets ([whispers], [giggles], [pause]), for Eleven v4 to perform.
+// The list is curated for children's narration and for what the model
+// performs reliably — and it names only ways of speaking: v4 also plays
+// tags that name a sound ([applause], [light rain]), and a story's sounds
+// come from its sounds table, mixed, never from the voice. The validator
+// rejects anything else. Experimental tags are documented by ElevenLabs as
+// less consistent — use them sparingly.
 type AudioTag struct {
 	Name         string
-	Kind         string // delivery | emotion | reaction
+	Kind         string // pause | delivery | emotion | reaction | voice
 	Note         string
 	Experimental bool
 }
 
 // AudioTags lists every allowed audio tag.
 var AudioTags = []AudioTag{
-	{"pause", "delivery", "a beat of silence; also written as an ellipsis (…) in the text", false},
+	{"pause", "pause", "a beat of silence; also written as an ellipsis (…) in the text", false},
+	{"short pause", "pause", "a quick beat: a held breath before a reveal", false},
+	{"long pause", "pause", "a real silence: the moment before something big, or a sleepy hush", false},
 	{"whispers", "delivery", "a secret, a sleeping friend, a hush", false},
 	{"softly", "delivery", "tender, close, bedtime", false},
 	{"slowly", "delivery", "a snail, a sleepy voice, suspense", false},
 	{"drawn out", "delivery", "stretches the next word (sloooowly)", false},
 	{"rushed", "delivery", "hurry, excitement tumbling over itself", false},
+	{"warmly", "delivery", "a kind word, a welcome, a hug in the voice", false},
+	{"gently", "delivery", "a careful moment, a small creature, comfort", false},
+	{"playfully", "delivery", "a game, a tease, a joke between friends", false},
 	{"excited", "emotion", "big news, a game, a discovery", false},
 	{"curious", "emotion", "a question, a peek, a wondering", false},
 	{"happily", "emotion", "the warm ending, a reunion", false},
 	{"surprised", "emotion", "a friend appears, a sneeze, a splash", false},
 	{"sad", "emotion", "a small sorrow that the story mends", false},
+	{"proudly", "emotion", "a job well done, a first time", false},
+	{"in awe", "emotion", "something huge or beautiful: the Earth rising, a rocket, a rainbow", false},
+	{"nervously", "emotion", "a small worry before it is solved (never fear)", false},
+	{"mischievously", "emotion", "a secret plan, a trick about to be played", false},
 	{"laughs", "reaction", "a good laugh", false},
 	{"giggles", "reaction", "a small, playful laugh", false},
 	{"gasps", "reaction", "a surprise, a wonder", false},
@@ -162,10 +174,22 @@ var audioTagByName = func() map[string]AudioTag {
 	return m
 }()
 
+// voiceTagPattern is the one open-ended tag: the narrator doing a
+// character's voice, described the way v4 follows best — "[in a deep,
+// slow voice]", "[in a tiny, squeaky voice]". It must end in "voice", so it
+// can only ever direct the speaking.
+var voiceTagPattern = regexp.MustCompile(`^in an? [a-z]+(?:,? [a-z-]+){0,4} voice$`)
+
 // LookupAudioTag returns the allowed tag with this name, if any.
 func LookupAudioTag(name string) (AudioTag, bool) {
-	t, ok := audioTagByName[strings.ToLower(strings.TrimSpace(name))]
-	return t, ok
+	name = strings.ToLower(strings.TrimSpace(name))
+	if t, ok := audioTagByName[name]; ok {
+		return t, true
+	}
+	if voiceTagPattern.MatchString(name) {
+		return AudioTag{name, "voice", "the narrator doing a character's voice, right before the line", false}, true
+	}
+	return AudioTag{}, false
 }
 
 // PlacedTag is an audio tag in a text and the spoken word it precedes.
@@ -418,7 +442,7 @@ var (
 	// animation id.
 	numericParam = regexp.MustCompile(`^(x[0-9]+|[0-9.]+s?)$`)
 	cuePattern   = regexp.MustCompile(`\{([^{}]*)\}`)
-	tagPattern   = regexp.MustCompile(`\[([A-Za-z][A-Za-z ]{0,24})\]`)
+	tagPattern   = regexp.MustCompile(`\[([A-Za-z][A-Za-z ,'-]{0,40})\]`)
 	colorPattern = regexp.MustCompile(`^#[0-9A-Fa-f]{6}$`)
 )
 
@@ -1038,7 +1062,6 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		}
 		cues, plain := nar.Cues, nar.Plain()
 		validateTags(&is, lang, nar)
-		validateSegments(&is, lang, nar)
 		n := len(strings.Fields(plain))
 		switch {
 		case n < MinWords || n > MaxWords:
@@ -1326,26 +1349,6 @@ func lastRune(s string) rune {
 	return r
 }
 
-// MinSegmentWords is the shortest stretch of narration a solo sound should
-// leave on either side: v3 reads each stretch on its own, and its tone
-// settles over a sentence or two.
-const MinSegmentWords = 12
-
-// validateSegments warns when solo sounds chop the narration into stretches
-// too short for the voice to settle.
-func validateSegments(is *Issues, lang string, nar Narration) {
-	segs := nar.Segments()
-	if len(segs) < 2 {
-		return
-	}
-	for _, seg := range segs {
-		if n := seg.To - seg.From; n < MinSegmentWords {
-			is.warnf("%s: a solo sound leaves a stretch of only %d words (want ≥ %d) — the narrator reads each stretch on its own and its tone may shift", lang, n, MinSegmentWords)
-			return
-		}
-	}
-}
-
 // validateTags checks a language's audio tags: few, and never stacked.
 func validateTags(is *Issues, lang string, nar Narration) {
 	if len(nar.Tags) > MaxAudioTags {
@@ -1356,13 +1359,20 @@ func validateTags(is *Issues, lang string, nar Narration) {
 		if tag, _ := LookupAudioTag(t.Name); tag.Experimental {
 			experimental++
 		}
-		if i > 0 && nar.Tags[i-1].WordIndex == t.WordIndex && t.Name != "pause" && nar.Tags[i-1].Name != "pause" {
+		if i > 0 && nar.Tags[i-1].WordIndex == t.WordIndex && !isPause(t.Name) && !isPause(nar.Tags[i-1].Name) {
 			is.warnf("%s: tags %s and %s stacked on one word; one direction at a time", lang, nar.Tags[i-1].Raw, t.Raw)
 		}
 	}
 	if experimental > 1 {
 		is.warnf("%s: %d experimental audio tags ([yawns], [sings]); they are less reliable, use at most one", lang, experimental)
 	}
+}
+
+// isPause reports whether a tag is a silence, which may sit beside a
+// direction ([long pause] [whispers]) without stacking two.
+func isPause(name string) bool {
+	t, _ := LookupAudioTag(name)
+	return t.Kind == "pause"
 }
 
 // canvasWords are the words that put a canvas effect's weather or light

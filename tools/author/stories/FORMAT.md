@@ -3,7 +3,7 @@
 One folder per story, `tools/author/stories/<packID>/<storyID>/story.json`.
 This is the authoring format: human-readable, bilingual, with everything
 that happens around the words inline in the text — effect cues (sticker,
-live animation, canvas, sound) in curly braces and the narrator's delivery (Eleven v3 audio
+live animation, canvas, sound) in curly braces and the narrator's delivery (Eleven v4 audio
 tags) in square brackets. Step 2 turns it into pack content; the app never
 reads it.
 
@@ -78,10 +78,12 @@ reads it.
   (pitter-patter, whoosh, plic ploc) are welcome — they are what the cues
   and the sound effects hang on — but a real sound can also stand in for
   them (see "Sound cues").
-- Punctuation is performance with Eleven v3: an ellipsis (…) is a beat of
-  silence, a dash (—) a shorter one, ONE WORD IN CAPITALS is said louder,
-  and short sentences read briskly. Use them; they are the most reliable
-  pacing tools the model has (it does not support `<break>` tags).
+- Punctuation is performance with Eleven v4: an ellipsis (…) is a beat of
+  silence, a dash (—) a shorter one or a line cut off, ONE WORD IN
+  CAPITALS is said louder, and short sentences read briskly. Use them; with
+  the pause tags they are the only pacing tools there are (the model has no
+  speed setting and no `<break>` tags).
+- Speakable: numbers spelled out, no abbreviations or symbols.
 - Cues and audio tags are not read aloud: step 2 strips the cues and hands
   the tags to the model as directions. Neither counts as a word.
 
@@ -137,9 +139,9 @@ Sound effects use the reserved target `sfx` (a pack must not name a sticker
   sound's `seconds` (plus a breath), the sound plays alone, then reading
   resumes. Put it **between sentences** (after a full stop; the validator
   warns otherwise), give it 1–3 s, and use at most two per story — a
-  four-year-old's attention does not survive a long silence. The voice
-  reads each stretch between solo sounds on its own, so leave at least a
-  sentence or two (12+ words) on either side or its tone may shift.
+  four-year-old's attention does not survive a long silence. The story is
+  read in one take and cut for the sound in the narrator's pause at that
+  full stop, so the voice carries straight across it.
 - A sound with `"loop": true` is an **ambience bed**: from its cue it plays
   low under the narration for its `seconds`, faded in and out, ducked under
   the voice. Rain, wind, a stream, night crickets. One per story at most;
@@ -150,46 +152,59 @@ Sound effects use the reserved target `sfx` (a pack must not name a sticker
 
 ### Audio tags (the narrator's delivery)
 
-Eleven v3 takes stage directions in square brackets, inline, right before
-the words they colour. They are never read aloud and never count as words:
+Eleven v4 takes stage directions in square brackets, inline, right before
+the words they colour. They are never read aloud and never count as words.
+Tags are written in English in every language:
 
 ```
 [whispers] Shhh, said Owl. Everyone is asleep.
 [excited] Ready, steady, GO!
 Snail took one step… [slowly] and then another.
 [giggles] That tickles!
+[long pause] [whispers] Three… two… one…
+Owl ruffled his feathers. [in a deep, slow voice] Who is out so late?
 ```
 
 The allowed list (anything else is an error):
 
 | Tag | Kind | Use |
 |---|---|---|
-| `[pause]` | delivery | a beat of silence (an ellipsis does the same) |
+| `[pause]` `[short pause]` `[long pause]` | pause | a beat, a held breath before a reveal, a real hush (an ellipsis is a short one) |
 | `[whispers]` | delivery | a secret, a sleeping friend, a hush |
 | `[softly]` | delivery | tender, close, bedtime |
 | `[slowly]` | delivery | a snail, a sleepy voice, suspense |
 | `[drawn out]` | delivery | stretches the next word (*sloooowly*) |
 | `[rushed]` | delivery | hurry, excitement tumbling over itself |
+| `[warmly]` | delivery | a kind word, a welcome |
+| `[gently]` | delivery | a careful moment, a small creature, comfort |
+| `[playfully]` | delivery | a game, a tease, a joke between friends |
 | `[excited]` | emotion | big news, a game, a discovery |
 | `[curious]` | emotion | a question, a peek, a wondering |
 | `[happily]` | emotion | the warm ending, a reunion |
 | `[surprised]` | emotion | a friend appears, a sneeze, a splash |
 | `[sad]` | emotion | a small sorrow the story mends |
+| `[proudly]` | emotion | a job well done, a first time |
+| `[in awe]` | emotion | something huge or beautiful |
+| `[nervously]` | emotion | a small worry, soon solved (never fear) |
+| `[mischievously]` | emotion | a secret plan, a trick about to be played |
 | `[laughs]` `[giggles]` | reaction | a good laugh; a small playful one |
 | `[gasps]` | reaction | a surprise, a wonder |
 | `[sighs]` `[exhales]` | reaction | relief, tiredness, calm |
 | `[yawns]` `[sings]` | reaction, *experimental* | bedtime; a line sung — at most one per story |
+| `[in a … voice]` | voice | the narrator doing a character: `[in a deep, slow voice]`, `[in a tiny, squeaky voice]` — up to five describing words, ending in *voice* |
 
 - A tag colours what follows it until the delivery naturally changes; a
   reaction (`[giggles]`, `[gasps]`) is a sound the narrator makes at that
-  point.
+  point. A voice tag colours the character's line: give the next stretch
+  of narration a narrator direction if it should clearly come back.
+- **Never a tag that names a sound** (`[applause]`, `[door slams]`,
+  `[rain]`): Eleven v4 performs tags, sounds included, so the narrator
+  would make it. Real sounds are sound cues (below); the list above names
+  only ways of speaking, and the validator holds to it.
 - **At most six per language**, one direction per spot (never
-  `[excited] [whispers]`), and only where the words already carry the
-  feeling — a tag on flat text reads as a tic, and an over-tagged script is
-  what makes the model *say* a tag instead of performing it.
+  `[excited] [whispers]`; a pause may sit beside one), and only where the
+  words already carry the feeling — a tag on flat text reads as a tic.
 - Tags may differ between languages; the beats should still match.
-- Step 2 keeps the tags for v3 and strips them if it ever has to fall back
-  to the v2 model (which would read them aloud).
 
 ### Live cues
 

@@ -39,7 +39,7 @@ stories may use), the effects catalogue (`docs/effects/effects.json`),
    covering every sticker in the pack several times plus a few
    "whole-forest" stories that need no particular sticker;
 3. writes the stories in small batches — bilingual (every pack language),
-   80–140 words per language, with effect cues, a few Eleven v3 audio tags
+   80–140 words per language, with effect cues, a few Eleven v4 audio tags
    for the narrator, sound effects (some in place of sound words), a canvas
    effect wherever the words describe weather or light, and a
    small true fact in about four stories in ten — into
@@ -67,8 +67,8 @@ cd tools && go run ./author/storyaudio install -pack ../packs/forest -prune -bum
 
 `storyaudio` (`tools/author/storyaudio/README.md`) takes each `story.json`,
 takes the text apart (words, cues, audio tags, solo sounds), renders it
-with ElevenLabs (Eleven v3 narration with character timestamps and the
-tags performed, the story's sound effects — under words, in gaps the
+with ElevenLabs (Eleven v4 narration, one take per story, with character
+timestamps and the tags performed, the story's sound effects — under words, in gaps the
 narrator leaves for them, or as ambience — and a calm background loop),
 aligns the cues — sticker and canvas — to the spoken words, and emits the
 `.m4a` per language plus the `.effects.json` sidecar per language

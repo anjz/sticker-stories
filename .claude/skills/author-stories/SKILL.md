@@ -1,6 +1,6 @@
 ---
 name: author-stories
-description: Author a complete, validated set of bilingual kids' stories (50 per pack; sticker, canvas and sound cues, face changes and everyone-at-once cues plus Eleven v3 audio tags inline; setting-aware; about 40 % carry a small piece of learning) for a Sticker Stories sticker pack into tools/author/stories/<pack>/. Use when asked to write, create, generate or extend stories for a sticker pack, or to run/fix the story roster or storycheck.
+description: Author a complete, validated set of bilingual kids' stories (50 per pack; sticker, canvas and sound cues, face changes and everyone-at-once cues plus Eleven v4 audio tags inline; setting-aware; about 40 % carry a small piece of learning) for a Sticker Stories sticker pack into tools/author/stories/<pack>/. Use when asked to write, create, generate or extend stories for a sticker pack, or to run/fix the story roster or storycheck.
 ---
 
 # Author stories for a sticker pack
@@ -12,7 +12,8 @@ stickers react on their beats, every sticker comes alive in its own
 action on the words that tell it (staying in its pause pose while the
 story lingers there), stickers walk, hop, fly or sprout in as they are named, now and then the weather or light of the
 whole scene changes, real sound effects play (sometimes instead of a sound
-word), and the Eleven v3 voice takes your stage directions. About four
+word), and the Eleven v4 voice reads it in one take and takes your stage
+directions. About four
 stories in ten quietly teach one true thing about the pack's world. Follow
 `tools/author/stories/GUIDE.md` to the letter and `FORMAT.md` for the file
 format. Professional results, not filler.
@@ -211,11 +212,16 @@ exactly per `FORMAT.md`:
   recorded in the cast table; if a premise needs a feature the sticker
   doesn't show (antlers on the fawn, blossom on the oak), change the
   premise, not the fact;
-- **the narrator's performance** (GUIDE "Voice performance"): rhythm in the
-  punctuation first (… — CAPITALS, short sentences), then two to five audio
-  tags from the allowed list in FORMAT "Audio tags", each right before the
-  words it colours, where the feeling genuinely changes — never stacked,
-  never more than six;
+- **the narrator's performance** (GUIDE "Voice performance"): the feeling
+  in the words first (v4 acts what the sentence says), rhythm in the
+  punctuation and sentence length (… — CAPITALS, short sentences; there is
+  no speed setting), a `[short pause]` / `[long pause]` where a silence
+  tells it, then two to four audio tags from the allowed list in FORMAT
+  "Audio tags", each right before the words it colours, where the feeling
+  genuinely changes — never stacked, never more than six, never a tag that
+  names a sound (v4 would make it); a character's line named before it
+  is said, and `[in a … voice]` for at most two characters worth a voice
+  of their own; numbers spelled out;
 - **sound effects** (GUIDE "Sound effects", FORMAT "Sound cues"): two or
   three per story in a `sounds` table, cued inline — `{sfx:id solo}`
   between sentences where a real sound tells it better than the sound word
