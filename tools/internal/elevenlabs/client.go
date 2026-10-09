@@ -50,9 +50,17 @@ func (e *APIError) Error() string {
 // IsClientError reports whether err is a 4xx that will not succeed on retry.
 func IsClientError(err error) bool {
 	if e, ok := err.(*APIError); ok {
-		return e.Status >= 400 && e.Status < 500 && e.Status != 429
+		return e.Status >= 400 && e.Status < 500 && e.Status != 429 && !isAlreadyRunning(e.Status, []byte(e.Body))
 	}
 	return false
+}
+
+// isAlreadyRunning recognises the 409 ElevenLabs returns when parallel
+// requests are the first to use a library voice and each tries to add it
+// to the account ("already_running ... Please retry shortly"): transient,
+// so it is retried like a 429.
+func isAlreadyRunning(status int, body []byte) bool {
+	return status == http.StatusConflict && bytes.Contains(body, []byte("already_running"))
 }
 
 func (c *Client) do(ctx context.Context, method, path string, query url.Values, body any, accept string) ([]byte, error) {
@@ -103,7 +111,7 @@ func (c *Client) do(ctx context.Context, method, path string, query url.Values, 
 			return data, nil
 		}
 		last = &APIError{Status: resp.StatusCode, Body: string(data)}
-		if resp.StatusCode == 429 || resp.StatusCode >= 500 {
+		if resp.StatusCode == 429 || resp.StatusCode >= 500 || isAlreadyRunning(resp.StatusCode, data) {
 			continue
 		}
 		return nil, last

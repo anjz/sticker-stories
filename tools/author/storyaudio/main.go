@@ -11,6 +11,7 @@
 //	                   [-no-sfx] [-no-music] [-music-prompt "…"] [-sfx-db -12] [-music-db -14]
 //	                   [-lead 3] [-intro-db -6] [-parallel 10]
 //	storyaudio voices  -pack ../packs/forest            # list candidate voices per language
+//	storyaudio audition -pack ../packs/forest -only id,… -stability 0.3,0.5,0.7 [-all-voices] [-out dir]
 //	storyaudio install -pack ../packs/forest [-prune] [-bump] [-model eleven_v4]
 //
 // The API key is read from ELEVENLABS_API_KEY, loaded from tools/.env or the
@@ -121,6 +122,8 @@ func main() {
 		err = runRender(os.Args[2:])
 	case "voices":
 		err = runVoices(os.Args[2:])
+	case "audition":
+		err = runAudition(os.Args[2:])
 	case "install":
 		err = runInstall(os.Args[2:])
 	default:
@@ -133,7 +136,7 @@ func main() {
 }
 
 func usage() {
-	fmt.Fprintln(os.Stderr, "usage: storyaudio render|voices|install -pack <pack-dir> [flags]  (see -h on each)")
+	fmt.Fprintln(os.Stderr, "usage: storyaudio render|voices|audition|install -pack <pack-dir> [flags]  (see -h on each)")
 	os.Exit(2)
 }
 
@@ -465,6 +468,10 @@ type renderOpts struct {
 	only           map[string]bool
 	lang           string
 	bitrate        int
+	// An audition writes <outDir>/<story>.<lang>.<label>.m4a and nothing
+	// else, read by voice when set (else the story's own narrator).
+	outDir, label string
+	voice         *voiceChoice
 }
 
 type renderRecord struct {
@@ -673,8 +680,16 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 	}
 	plain := nar.Plain()
 	voice := r.voiceFor(s, lang)
+	if r.o.voice != nil {
+		voice = *r.o.voice
+	}
 	outDir := filepath.Join(s.Dir, "audio")
 	m4a := filepath.Join(outDir, lang+".m4a")
+	audition := r.o.outDir != ""
+	if audition {
+		outDir = r.o.outDir
+		m4a = filepath.Join(outDir, s.ID+"."+lang+"."+r.o.label+".m4a")
+	}
 	fxPath := filepath.Join(outDir, lang+".effects.json")
 	recPath := filepath.Join(outDir, lang+".render.json")
 
@@ -696,7 +711,7 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 	fp := hashOf(toolVersion, plain, loc.Text, voice.VoiceID, r.o.model, stabilityKey(r.o.stability), fmt.Sprint(r.o.sampleRate),
 		strings.Join(notes, ";"), musicKey, fmt.Sprint(r.o.sfxDB, r.o.ambienceDB, r.o.musicDB, r.o.lead, r.o.introDB, r.o.bitrate))
 
-	if !r.o.force {
+	if !r.o.force && !audition {
 		if data, err := os.ReadFile(recPath); err == nil {
 			var rec renderRecord
 			if json.Unmarshal(data, &rec) == nil && rec.Fingerprint == fp && exists(m4a) && exists(fxPath) {
@@ -907,7 +922,7 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 	if err := os.MkdirAll(outDir, 0o755); err != nil {
 		return false, err
 	}
-	wav := filepath.Join(outDir, lang+".wav")
+	wav := strings.TrimSuffix(m4a, ".m4a") + ".wav"
 	if err := mix.WriteWAV(wav); err != nil {
 		return false, err
 	}
@@ -915,6 +930,10 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 		return false, err
 	}
 	os.Remove(wav)
+	if audition {
+		fmt.Fprintf(log, "%.1fs → %s", mix.Duration(), m4a)
+		return true, nil
+	}
 	if err := writeAtomic(fxPath, sidecar); err != nil {
 		return false, err
 	}
@@ -1287,6 +1306,113 @@ func (r *renderer) musicLoop(prompt, mood string, rate int, log *strings.Builder
 	r.music[key] = clip
 	r.mu.Unlock()
 	return clip, nil
+}
+
+// ---------- audition ----------
+
+// runAudition renders a few stories once per stability value (and, with
+// -all-voices, once per voice of each language) into one folder, to
+// choose the settings by ear. Nothing in the stories or the pack changes;
+// each take is cached like any render, so a setting picked here costs
+// nothing to render again.
+func runAudition(args []string) error {
+	fs := flag.NewFlagSet("audition", flag.ExitOnError)
+	packDir := fs.String("pack", "", "pack directory")
+	storiesDir := fs.String("stories", "", "stories directory (default author/stories/<packID>)")
+	only := fs.String("only", "", "comma-separated story ids to audition (required)")
+	lang := fs.String("lang", "", "audition only this language")
+	stabilities := fs.String("stability", "0.3,0.5,0.7", "comma-separated stability values to compare")
+	allVoices := fs.Bool("all-voices", false, "read every story with every voice of its language, not only its own narrator")
+	model := fs.String("model", defaultModel, "TTS model")
+	out := fs.String("out", "", "output folder (default <stories>/_audition)")
+	noMusic := fs.Bool("no-music", false, "narration and sounds only")
+	dry := fs.Bool("dry-run", false, "print the characters that would be synthesised; no API calls that cost")
+	fs.Parse(args)
+	if *only == "" {
+		return errors.New("-only is required: audition a few stories, not a pack")
+	}
+	c, err := load(*packDir, *storiesDir)
+	if err != nil {
+		return err
+	}
+	if *lang != "" && !slices.Contains(c.pack.Languages, *lang) {
+		return fmt.Errorf("-lang %q is not one of the pack's languages", *lang)
+	}
+	var stabs []float64
+	for _, v := range strings.Split(*stabilities, ",") {
+		st, err := parseStability(strings.TrimSpace(v))
+		if err != nil {
+			return err
+		}
+		stabs = append(stabs, st)
+	}
+	voices := loadVoices(c)
+	for _, l := range c.pack.Languages {
+		if len(voices[l]) == 0 {
+			return fmt.Errorf("no voices for %s in %s: run storyaudio render (or voices) first", l, voicesPath(c))
+		}
+	}
+	dir := *out
+	if dir == "" {
+		dir = filepath.Join(c.storiesDir, "_audition")
+	}
+	if err := os.MkdirAll(dir, 0o755); err != nil {
+		return err
+	}
+	el := elevenlabs.New(os.Getenv("ELEVENLABS_API_KEY"))
+	if !*dry {
+		if el, err = client(); err != nil {
+			return err
+		}
+	}
+	ids := map[string]bool{}
+	for _, id := range strings.Split(*only, ",") {
+		ids[strings.TrimSpace(id)] = true
+	}
+	var langs []string
+	for _, l := range c.pack.Languages {
+		if *lang == "" || *lang == l {
+			langs = append(langs, l)
+		}
+	}
+	mp3 := false
+	for _, st := range stabs {
+		for _, l := range langs {
+			picks := []*voiceChoice{nil} // nil: each story's own narrator
+			if *allVoices {
+				picks = nil
+				for i := range voices[l] {
+					picks = append(picks, &voices[l][i])
+				}
+			}
+			for _, v := range picks {
+				label := "s" + stabilityKey(st)
+				if v != nil {
+					label += "." + voiceSlug(v.Name)
+				}
+				o := renderOpts{model: *model, sampleRate: 44100, noMusic: *noMusic, sfxDB: -12, ambienceDB: -18,
+					musicDB: -14, lead: 3, introDB: -6, stability: st, parallel: 4, force: true, dry: *dry,
+					only: ids, lang: l, bitrate: 64000, outDir: dir, label: label, voice: v}
+				r := &renderer{c: c, el: el, o: o, voices: voices, ctx: context.Background(), mp3: mp3}
+				err := r.run()
+				mp3 = r.mp3 // the plan does not change between runs
+				if err != nil {
+					return err
+				}
+			}
+		}
+	}
+	fmt.Printf("\nAuditions in %s — listen, then render with the -stability you liked.\n", dir)
+	return nil
+}
+
+// voiceSlug is a voice's name as a short file-name part: its first word.
+func voiceSlug(name string) string {
+	f := strings.Fields(name)
+	if len(f) == 0 {
+		return "voice"
+	}
+	return strings.ToLower(strings.Trim(f[0], ".,-"))
 }
 
 // ---------- install ----------

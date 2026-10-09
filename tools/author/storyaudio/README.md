@@ -73,7 +73,9 @@ read of a story you are not happy with. `-only id,…` and
 `-lang` narrow a run. Renditions are rendered `-parallel` at a time
 (default 10); each shared asset (a mood's music, a sound effect) is still
 generated exactly once. A failed rendition does not stop the others; the
-run ends with the list, and rerunning retries only those.
+run ends with the list, and rerunning retries only those. The first use of a library voice
+adds it to the account, and parallel requests doing so collide (HTTP 409
+"already_running"): the client retries those like a rate limit.
 
 ## Voices
 
@@ -101,6 +103,21 @@ can edit it. A story uses the first of its tags that has a prompt, so
 `bedtime` stories get a hushed music-box piece and `funny` ones something
 bouncy. Each distinct prompt is composed once (60 s) and cached in
 `_cache/music/`. `-music-prompt "…"` forces one prompt for every story.
+
+## Audition
+
+```sh
+go run ./author/storyaudio audition -pack ../packs/forest -only woodpecker-drums-hello,the-meadow-lullaby \
+  -stability 0.3,0.5,0.7 [-all-voices] [-lang en-US] [-dry-run]
+```
+
+Reads a few stories once per stability value — and with `-all-voices`
+once per voice of each language, not only each story's own narrator —
+into `<stories>/_audition/<id>.<lang>.s<stability>[.<voice>].m4a`, fully
+mixed, to choose by ear. Nothing in the stories or the pack changes, and
+each take lands in the same cache as a render, so rendering a story with
+the setting you picked costs nothing more. Try it whenever a pack gets new
+voices or the model changes.
 
 ## Mix controls
 

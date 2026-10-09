@@ -66,3 +66,28 @@ func TestSpeechWithTimestampsAndRetry(t *testing.T) {
 		t.Errorf("want 4xx client error, got %v", err)
 	}
 }
+
+func TestVoiceAdditionConflictIsRetried(t *testing.T) {
+	calls := 0
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		calls++
+		if calls == 1 {
+			w.WriteHeader(409)
+			w.Write([]byte(`{"detail":{"type":"conflict","code":"already_running","message":"Multiple voice additions/deletions for the same voice were called at the same time. Please retry shortly."}}`))
+			return
+		}
+		w.Write([]byte(`{"audio_base64":"AAAA","alignment":{"characters":["h"],"character_start_times_seconds":[0],"character_end_times_seconds":[0.1]}}`))
+	}))
+	defer srv.Close()
+	c := New("k")
+	c.BaseURL = srv.URL
+	if _, err := c.SpeechWithTimestamps(context.Background(), SpeechRequest{VoiceID: "v", Text: "h"}); err != nil {
+		t.Fatalf("a voice-addition conflict should be retried: %v", err)
+	}
+	if calls != 2 {
+		t.Errorf("calls = %d, want 2", calls)
+	}
+	if IsClientError(&APIError{Status: 409, Body: `{"detail":{"code":"already_running"}}`}) {
+		t.Error("already_running is transient, not a client error")
+	}
+}
