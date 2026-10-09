@@ -360,6 +360,13 @@ snail tucked inside its shell"); `storycheck` lists them.
   canvas, and the moves of the stickers it brings in, off the main thread
   as play starts, and drops them when it ends. A trigger whose sheet is
   not in yet shows the still sticker until it is.
+- **Particles from frames**: an animation's sidecar can say a frame fires
+  a burst of `dust-puff`, `spray` or `sparks` from a point of the sticker
+  (`docs/pack-format.md`, the sidecar's `particles`) — a landing kicks up
+  dust every time the lope lands, a ship's touchdown raises a cloud. It
+  fires as the frame first comes on show, wherever the animation plays
+  (an action, an entrance, a move), in the pack's world; stories don't
+  cue it. The frames themselves never draw particles.
 - Older apps skip the trigger (it has no `effect`) with a log line; an
   app that does not know `mode` plays a `hold` whole. No schema change.
 

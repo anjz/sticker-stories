@@ -70,10 +70,32 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// An action that happens in one place: the features it needs (the
     /// woodpecker's tap: the trunks).
     var place: [String]?
+    /// Particle bursts the frames fire as they show (a landing's dust, a
+    /// splash): stickers never draw particles themselves.
+    var particles: [ParticleCue]
+
+    /// One burst: when `frame` first shows, `effect` (`dust-puff`, `spray`,
+    /// `sparks`) from the point `x`, `y` of the sticker's image (fractions,
+    /// top-left origin, like `stickerBox`).
+    struct ParticleCue: Decodable, Equatable {
+        var frame: Int
+        var effect: EffectName
+        var x: Double
+        var y: Double
+        var intensity: Double?
+        var color: String?
+    }
 
     private enum CodingKeys: String, CodingKey {
         case id, sticker, kind, sheet, frame, columns, count, rest, stickerBox, hold, pause, loop, facing, stride, hops,
-            flies, on, place
+            flies, on, place, particles
+    }
+
+    /// A particle cue that decodes or is skipped (an effect this build
+    /// does not know), never failing the animation.
+    private struct LenientCue: Decodable {
+        var cue: ParticleCue?
+        init(from decoder: any Decoder) throws { cue = try? ParticleCue(from: decoder) }
     }
 
     init(from decoder: any Decoder) throws {
@@ -97,6 +119,9 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         flies = try? c.decodeIfPresent(Bool.self, forKey: .flies)
         on = try? c.decodeIfPresent([String].self, forKey: .on)
         place = try? c.decodeIfPresent([String].self, forKey: .place)
+        let cues = (try? c.decodeIfPresent([LenientCue].self, forKey: .particles)) ?? nil
+        let frames = count
+        particles = (cues ?? []).compactMap(\.cue).filter { $0.effect.followsWorld && $0.frame >= 0 && $0.frame < frames }
     }
 
     var key: String { "\(sticker).\(id)" }
@@ -228,19 +253,25 @@ extension StickerNode {
     /// reverse. The frames are a child, so a pinched, turned, mirrored or
     /// effect-driven sticker animates in place. With shadow frames the
     /// drop shadow follows the frames.
-    func showLive(_ loaded: LoadedLiveAnimation, state: LiveFrameState) {
+    /// Returns the frame when it is a new one (it has just come on show),
+    /// for what fires on a frame (`StickerAnimation.particles`).
+    @discardableResult
+    func showLive(_ loaded: LoadedLiveAnimation, state: LiveFrameState) -> Int? {
         if liveKey != loaded.animation.key {
             stopLive()
             beginLive(loaded)
+            liveFrame = nil
         }
-        guard let live = childNode(withName: Self.liveNodeName) as? SKSpriteNode else { return }
+        guard let live = childNode(withName: Self.liveNodeName) as? SKSpriteNode else { return nil }
         let index = min(max(state.frame, 0), loaded.frames.count - 1)
+        defer { liveFrame = index }
         if live.texture !== loaded.frames[index] {
             live.texture = loaded.frames[index]
             if let shadows = loaded.shadowFrames { setLiveShadow(shadows[index]) }
         }
         live.alpha = CGFloat(state.liveAlpha)
         childNode(withName: Self.liveStillName)?.alpha = CGFloat(state.stillAlpha)
+        return index != liveFrame ? index : nil
     }
 
     /// The live frames and the still art under them, while they are on
@@ -296,6 +327,7 @@ extension StickerNode {
     /// it should show now — it may have changed while the frames played).
     func stopLive() {
         liveKey = nil
+        liveFrame = nil
         guard let live = childNode(withName: Self.liveNodeName) else { return }
         live.removeFromParent()
         childNode(withName: Self.liveStillName)?.removeFromParent()

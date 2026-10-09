@@ -1795,7 +1795,9 @@ final class CanvasScene: SKScene {
                 }
             }
             if let (loaded, state) = shown {
-                node.showLive(loaded, state: state)
+                if let frame = node.showLive(loaded, state: state) {
+                    session.emitters.fire(loaded.animation, frame: frame, on: node)
+                }
             } else if node.liveKey != nil {
                 node.stopLive()
             }

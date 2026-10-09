@@ -7,6 +7,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"slices"
 	"strings"
 )
 
@@ -84,7 +85,28 @@ type StickerAnimation struct {
 	// lands it on ({duckling:enter by swim}: the pond), in order of
 	// preference; empty for its stage's. Moves with a loop only.
 	On []string `json:"on,omitempty"`
+	// Particles are bursts the frames fire as they come on show — a
+	// landing's dust, a splash — since stickers never draw particles
+	// themselves (docs/effects.md, "Particles"). Optional.
+	Particles []AnimationParticle `json:"particles,omitempty"`
 }
+
+// AnimationParticle is one burst an animation fires: when Frame (0-based)
+// first shows, the particle effect Effect (dust-puff, spray, sparks) from
+// the point X, Y of the sticker image — fractions with a top-left origin,
+// like StickerBox; a little outside it is fine (a flame's tip) — at its
+// Intensity (0–1, default 0.6) and Color (#RRGGBB, default the effect's).
+type AnimationParticle struct {
+	Frame     int      `json:"frame"`
+	Effect    string   `json:"effect"`
+	X         float64  `json:"x"`
+	Y         float64  `json:"y"`
+	Intensity *float64 `json:"intensity,omitempty"`
+	Color     string   `json:"color,omitempty"`
+}
+
+// ParticleEffects are the effects an animation's frames may fire.
+var ParticleEffects = []string{"dust-puff", "spray", "sparks"}
 
 // Animation kinds.
 const (
@@ -228,6 +250,24 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	for name, b := range map[string]UnitBox{"rest": a.Rest, "stickerBox": a.StickerBox} {
 		if b.Width <= 0 || b.Height <= 0 || b.X < 0 || b.Y < 0 || b.X+b.Width > 1.0001 || b.Y+b.Height > 1.0001 {
 			fail("%s must be a non-empty box inside the unit square, got %+v", name, b)
+		}
+	}
+	for i, p := range a.Particles {
+		field := fmt.Sprintf("particles[%d]", i)
+		if p.Frame < 0 || p.Frame >= a.Count {
+			fail("%s: frame %d is not one of the %d frames (0-based)", field, p.Frame, a.Count)
+		}
+		if !slices.Contains(ParticleEffects, p.Effect) {
+			fail("%s: effect %q must be one of %s", field, p.Effect, strings.Join(ParticleEffects, ", "))
+		}
+		if p.X < -0.5 || p.X > 1.5 || p.Y < -0.5 || p.Y > 1.5 {
+			fail("%s: x and y must be within -0.5–1.5 of the sticker image, got %g, %g", field, p.X, p.Y)
+		}
+		if p.Intensity != nil && (*p.Intensity < 0 || *p.Intensity > 1) {
+			fail("%s: intensity %g must be 0–1", field, *p.Intensity)
+		}
+		if p.Color != "" && !hexColor.MatchString(p.Color) {
+			fail("%s: color %q must be #RRGGBB", field, p.Color)
 		}
 	}
 	return errs

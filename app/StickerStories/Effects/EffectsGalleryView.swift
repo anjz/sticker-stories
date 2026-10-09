@@ -474,7 +474,9 @@ final class EffectsGalleryScene: SKScene {
         guard let sticker else { return }
         if let run = liveRun {
             if let state = run.loaded.timing.state(run.part, at: currentTime - run.start) {
-                sticker.showLive(run.loaded, state: state)
+                if let frame = sticker.showLive(run.loaded, state: state) {
+                    emitters.fire(run.loaded.animation, frame: frame, on: sticker)
+                }
             } else if run.repeating {
                 liveRun?.start = currentTime
             } else {

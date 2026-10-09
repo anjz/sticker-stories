@@ -30,7 +30,10 @@ func validAnimation(t *testing.T, dir string, mutate func(a *StickerAnimation)) 
 func TestAnimationsValidate(t *testing.T) {
 	dir := t.TempDir()
 	m := validManifest(t, dir)
-	m.Stickers[1].Animations = []string{validAnimation(t, dir, nil)}
+	m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) {
+		i := 0.8
+		a.Particles = []AnimationParticle{{Frame: 2, Effect: "dust-puff", X: 0.5, Y: 0.95, Intensity: &i}, {Frame: 3, Effect: "sparks", X: 0.4, Y: -0.1, Color: "#FFCC00"}}
+	})}
 	if errs := m.Validate(dir); len(errs) != 0 {
 		t.Fatalf("valid animation rejected: %v", errs)
 	}
@@ -60,6 +63,15 @@ func TestAnimationsValidate(t *testing.T) {
 		{"loop without facing", func(a *StickerAnimation) { a.Kind, a.Loop, a.Stride = KindMove, &FrameRange{From: 1, To: 6}, 0.5 }, "facing"},
 		{"loop without stride", func(a *StickerAnimation) { a.Kind, a.Loop, a.Facing = KindMove, &FrameRange{From: 1, To: 6}, "right" }, "stride"},
 		{"facing without loop", func(a *StickerAnimation) { a.Kind, a.Facing = KindMove, "right" }, "need a loop"},
+		{"particle on a missing frame", func(a *StickerAnimation) {
+			a.Particles = []AnimationParticle{{Frame: 99, Effect: "dust-puff", X: 0.5, Y: 0.9}}
+		}, "is not one of the"},
+		{"particle that is not a particle", func(a *StickerAnimation) {
+			a.Particles = []AnimationParticle{{Frame: 1, Effect: "hearts", X: 0.5, Y: 0.9}}
+		}, "must be one of dust-puff"},
+		{"particle far outside", func(a *StickerAnimation) {
+			a.Particles = []AnimationParticle{{Frame: 1, Effect: "spray", X: 2, Y: 0.9}}
+		}, "within -0.5–1.5"},
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {

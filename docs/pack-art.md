@@ -54,6 +54,12 @@ moves, moves.
 - Rigid things (machines, spacecraft, buildings) must keep their exact
   outline: only the moving part changes (a hatch, a wheel, an arm). Use
   `restFromSticker: false` for them.
+- **Never draw particles** — no dust, sand, soil, drops, sparks, smoke or
+  debris in any frame (the scaffold prompt forbids them). Where a frame
+  needs them (a landing, a touchdown, a splash, a drill biting), mark it in
+  anim.json's `particles` and the app fires `dust-puff`, `spray` or
+  `sparks` there, in the pack's `world` (gravity, ground colour). Engine
+  flames are part of the vehicle and stay drawn.
 - Draw them **over a scaffold** (`"scaffold": true` in anim.json): the
   model re-poses the sticker cell by cell instead of redrawing it, which
   keeps one size and the same proportions across a sheet. Give an

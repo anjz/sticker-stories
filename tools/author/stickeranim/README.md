@@ -111,6 +111,12 @@ usual, each sheet sized on its first cell — the same pose as the sticker or
 the sheet before. The prompt also asks for small motions that stay close
 to the body, extras (dust, sparks, a flame) small and inside the cell.
 
+- `particles` (per animation): bursts the frames fire as they first show,
+  for what the frames must not draw — `[{"frame": 7, "effect":
+  "dust-puff", "at": "base"}]`, frames 1-based, `at` "base" (the bottom
+  middle of the sticker's drawing: its feet), "centre" or `[x, y]` on the
+  sticker image, optional `intensity` and `color`. Written into the
+  sidecar (free: no new drawing); `docs/effects.md`, "Live animations".
 - `room` (per animation, default 1): each cell is that much bigger than
   the sticker's box, the sticker centred at its size, for an animation
   that must reach past it — a huge ship (drawn at 94 % of its box) with a

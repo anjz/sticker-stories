@@ -499,6 +499,7 @@ Each animation is a sprite sheet plus a sidecar, made by
 | `hops` | moves with a loop, optional: `true` when the loop is a hop drawn in place; the app lifts the character in an arc once per loop |
 | `flies` | moves with a loop, optional: `true` when the loop is a flight; the app glides the character along with a gentle bob and stops it beside others at their height (not with `hops`) |
 | `on` | moves with a loop, optional: feature ids (`features` above) a story that brings the character in this way lands it on, in order of preference — the duckling swimming in lands on the pond; empty for its `stage`'s |
+| `particles` | optional: bursts the frames fire as they first come on show — `[{ "frame": 6, "effect": "dust-puff", "x": 0.5, "y": 0.86, "intensity"?: 0.5, "color"?: "#RRGGBB" }]`: the 0-based frame, a particle effect (`dust-puff`, `spray` or `sparks`, `docs/effects.md`), the point of the **sticker image** it comes from (fractions, top-left origin like `stickerBox`; −0.5–1.5 so a flame's tip can be just outside), and optional intensity (0–1) and colour. A landing's dust, a touchdown, a splash: the frames never draw particles themselves (`docs/pack-art.md`). They follow the pack's `world` ("World") and play wherever the animation plays — an action, an entrance, a move — but not under Reduce Motion or calm mode, where live animations don't play |
 
 The frames are registered on the part that stays still (the feet, the
 shell's base) — a move's frames on the character's body, feet on the
@@ -551,7 +552,8 @@ same device preference.
   `stickers[].stage` and `features` added (additive, no bump); optional
   `features[].wideAreas` added (additive, no bump); size class `huge`
   and optional `stickers[].content` added (additive, no bump); optional
-  `world` added (additive, no bump); the live
+  `world` added (additive, no bump); optional sidecar `particles`
+  added (additive, no bump); the live
   animation sidecar gained optional `kind`, `pause`, `loop`, `facing`,
   `stride` and `hops`, and live triggers an optional `mode` (additive,
   no bump); optional `narrationPacks` added (additive, no bump).

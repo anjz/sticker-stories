@@ -38,6 +38,8 @@ final class EmitterCoordinator {
     var world = PackWorld.defaults(for: .none)
 
     private var live: [EffectHandle: Live] = [:]
+    /// Bursts fired by animation frames, until their particles are gone.
+    private var bursts: [SKEmitterNode] = []
     private var dropped: Set<EffectHandle> = []
     private var lastTime: TimeInterval = -1
     private let budget = Budget.current
@@ -45,6 +47,7 @@ final class EmitterCoordinator {
     func reconcile(_ active: [ActiveEffect], at time: TimeInterval, nodes: [UUID: StickerNode]) {
         let paused = time == lastTime
         lastTime = time
+        for burst in bursts { burst.isPaused = paused }
 
         let wanted = active.filter { $0.name.category == .particle }
         let wantedHandles = Set(wanted.map(\.handle))
@@ -102,6 +105,8 @@ final class EmitterCoordinator {
     /// Stops everything immediately (playback cancelled — P4).
     func clearAll() {
         for entry in live.values { entry.node.removeFromParent() }
+        for burst in bursts { burst.removeFromParent() }
+        bursts.removeAll()
         live.removeAll()
         dropped.removeAll()
     }
@@ -112,8 +117,56 @@ final class EmitterCoordinator {
         guard let name = EmitterSpec.name(for: effect.name), let spec = EmitterSpec.bundled[name],
             let parent = node.parent
         else { return }
+        // Seeking into the middle of an effect starts fresh at reduced
+        // intensity rather than simulating what "should" exist.
+        let seekedIn = time - effect.startTime > Self.rampIn + 0.05
+        let emitter = makeEmitter(effect.name, spec: spec, options: effect.options, on: node)
+        emitter.particleBirthRate = 0  // ramped in by reconcile
+        parent.addChild(emitter)
 
-        let intensity = effect.options.intensity
+        live[effect.handle] = Live(
+            node: emitter, spec: spec, effect: effect,
+            baseBirthRate: spec.birthRate * Self.intensityFactor(effect.options.intensity, damped: seekedIn),
+            anchor: EffectDefinition.definition(for: effect.name).anchor,
+            inFront: spec.inFront)
+    }
+
+    /// One short burst of a particle effect from a point of a sticker (in
+    /// its own space) — fired by an animation's frame, not by a story cue:
+    /// it emits for the effect's default duration where the sticker is now
+    /// and its particles live out their lives in the scene. Within the
+    /// emitter budget; nothing under calm mode's limits is lost, only damped.
+    func burst(_ name: EffectName, options: EffectOptions, on node: StickerNode, at point: CGPoint) {
+        guard let emitterName = EmitterSpec.name(for: name), let spec = EmitterSpec.bundled[emitterName],
+            let parent = node.parent
+        else { return }
+        bursts.removeAll { $0.parent == nil }
+        guard bursts.count + live.values.filter({ !$0.dying }).count < budget.maxEmitters else { return }
+        let emitter = makeEmitter(name, spec: spec, options: options, on: node)
+        emitter.position = node.convert(point, to: parent)
+        emitter.zPosition = node.zPosition + (spec.inFront ? 0.5 : -0.5)
+        emitter.particleBirthRate = CGFloat(spec.birthRate * Self.intensityFactor(options.intensity, damped: false))
+        parent.addChild(emitter)
+        bursts.append(emitter)
+        let duration = options.duration ?? EffectDefinition.definition(for: name).defaultDuration
+        let fade = Double(emitter.particleLifetime + emitter.particleLifetimeRange / 2) + 0.1
+        emitter.run(.sequence([
+            .wait(forDuration: duration),
+            .run { [weak emitter] in emitter?.particleBirthRate = 0 },
+            .wait(forDuration: fade),
+            .removeFromParent(),
+        ]))
+    }
+
+    /// How much of an emitter's birth rate an intensity gives.
+    private static func intensityFactor(_ intensity: Double, damped: Bool) -> Double {
+        (0.3 + 0.7 * intensity) * (damped ? 0.6 : 1)
+    }
+
+    /// An emitter for a particle effect on a sticker, sized on its drawing,
+    /// in the pack's world, not yet emitting or placed.
+    private func makeEmitter(_ name: EffectName, spec: EmitterSpec, options: EffectOptions, on node: StickerNode) -> SKEmitterNode {
+        let intensity = options.intensity
         // Sized on the drawing, not its image's box (a sticker drawn at its size).
         let renderedHeight = node.size.height * node.content.height * CGFloat(node.placement.scale)
         let renderedWidth = node.size.width * node.content.width * CGFloat(node.placement.scale)
@@ -122,10 +175,6 @@ final class EmitterCoordinator {
         let gravity = spec.worldGravity == true ? CGFloat(max(world.gravity, 0.02)) : 1
         let hang = spec.worldGravity == true ? min(2.5, 1 / sqrt(gravity)) : 1
         let sizeFactor = (renderedHeight / Self.referenceHeight).clamped(to: 0.4...2)
-        // Seeking into the middle of an effect starts fresh at reduced
-        // intensity rather than simulating what "should" exist.
-        let seekedIn = time - effect.startTime > Self.rampIn + 0.05
-        let intensityFactor = (0.3 + 0.7 * intensity) * (seekedIn ? 0.6 : 1)
 
         let emitter = SKEmitterNode()
         emitter.particleTexture = EffectTextures.texture(named: spec.texture)
@@ -152,24 +201,29 @@ final class EmitterCoordinator {
             times: [0, NSNumber(value: spec.alpha.peakAt), 1])
         // Dust is the world's ground, a shade lighter so it shows against
         // it, unless the story names a colour.
-        let fallback = effect.name == .dustPuff ? Self.lighter(world.ground) : spec.color
-        let color = effect.name.readsColor ? (effect.options.color ?? fallback) : fallback
+        let fallback = name == .dustPuff ? Self.lighter(world.ground) : spec.color
+        let color = name.readsColor ? (options.color ?? fallback) : fallback
         emitter.particleColor = UIColor(color)
         emitter.particleColorBlendFactor = 1
-        emitter.targetNode = parent  // particles live in scene space, not on the sticker
-        emitter.particleBirthRate = 0  // ramped in by reconcile
-        parent.addChild(emitter)
-
-        live[effect.handle] = Live(
-            node: emitter, spec: spec, effect: effect,
-            baseBirthRate: spec.birthRate * intensityFactor,
-            anchor: EffectDefinition.definition(for: effect.name).anchor,
-            inFront: spec.inFront)
+        emitter.targetNode = node.parent  // particles live in scene space, not on the sticker
+        return emitter
     }
 
     /// A colour 40 % of the way to white: dust against the ground it came from.
     static func lighter(_ c: RGBA) -> RGBA {
         RGBA(red: c.red + (1 - c.red) * 0.4, green: c.green + (1 - c.green) * 0.4, blue: c.blue + (1 - c.blue) * 0.4, alpha: c.alpha)
+    }
+
+    /// The bursts an animation's frame fires as it comes on show: each from
+    /// its point of the sticker's image (`StickerAnimation.ParticleCue`).
+    func fire(_ animation: StickerAnimation, frame: Int, on node: StickerNode) {
+        for cue in animation.particles where cue.frame == frame {
+            var options = EffectOptions(intensity: cue.intensity ?? 0.6)
+            options.color = cue.color.flatMap(RGBA.init(hex:))
+            let w = node.size.width / max(abs(node.xScale), 0.0001), h = node.size.height / max(abs(node.yScale), 0.0001)
+            let pivot = EffectTransformMath.pivot(for: EffectAnchor(x: cue.x, y: cue.y), width: w, height: h)
+            burst(cue.effect, options: options, on: node, at: CGPoint(x: pivot.x, y: pivot.y))
+        }
     }
 
     /// Where an anchor is on a sticker, in its own space: on its drawing

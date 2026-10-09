@@ -188,6 +188,10 @@ final class StickerNode: SKSpriteNode {
         applyShadowPoses(animated: false)
     }
 
+    /// The frame of the live animation on show (`showLive`), to tell a new
+    /// one; nil when none is.
+    var liveFrame: Int?
+
     /// Where the drawing sits in the image, in fractions of it with the
     /// origin at the bottom-left (`StickerDefinition.content`): the whole
     /// image for a pack whose drawings fill their images.

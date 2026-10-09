@@ -153,6 +153,13 @@ type animSpec struct {
 	// generator redrew with slightly other proportions changes smoothly
 	// instead of cutting to the drawing one frame later.
 	RestFromSticker *bool `json:"restFromSticker,omitempty"`
+	// Particles are bursts the frames fire as they first show — a
+	// landing's dust, a touchdown, a splash — since the frames never draw
+	// particles themselves: {"frame": 7, "effect": "dust-puff", "at":
+	// "base"}, frames 1-based, at "base" (the bottom middle of the
+	// sticker's drawing: its feet), "centre", or [x, y] on the sticker
+	// image (fractions, top-left origin); optional intensity and color.
+	Particles []particleSpec `json:"particles,omitempty"`
 	// Room (scaffold only, default 1) is how much bigger than the
 	// sticker's box each cell is: the sticker sits in the middle at its
 	// size and the animation may reach past its box — a rocket's flame
@@ -230,6 +237,41 @@ type sheetSpec struct {
 	// correction after a bad result); it changes only this sheet's
 	// fingerprint.
 	Hint string `json:"hint,omitempty"`
+}
+
+// particleSpec is one burst in anim.json (animSpec.Particles).
+type particleSpec struct {
+	Frame     int             `json:"frame"`
+	Effect    string          `json:"effect"`
+	At        json.RawMessage `json:"at"`
+	Intensity *float64        `json:"intensity,omitempty"`
+	Color     string          `json:"color,omitempty"`
+}
+
+// sidecarParticles resolves the bursts onto the sticker image: "base" is
+// the bottom middle of its drawing, "centre" its middle, [x, y] as given.
+func sidecarParticles(specs []particleSpec, sticker *image.RGBA) ([]manifest.AnimationParticle, error) {
+	box := stickerimg.Bounds(sticker, 8)
+	w, h := float64(sticker.Bounds().Dx()), float64(sticker.Bounds().Dy())
+	var out []manifest.AnimationParticle
+	for _, p := range specs {
+		var x, y float64
+		var named string
+		var xy []float64
+		switch {
+		case json.Unmarshal(p.At, &named) == nil && named == "base":
+			x, y = float64(box.Min.X+box.Max.X)/2/w, float64(box.Max.Y)/h
+		case json.Unmarshal(p.At, &named) == nil && named == "centre":
+			x, y = float64(box.Min.X+box.Max.X)/2/w, float64(box.Min.Y+box.Max.Y)/2/h
+		case json.Unmarshal(p.At, &xy) == nil && len(xy) == 2:
+			x, y = xy[0], xy[1]
+		default:
+			return nil, fmt.Errorf("particle at frame %d: at must be \"base\", \"centre\" or [x, y], got %s", p.Frame, p.At)
+		}
+		out = append(out, manifest.AnimationParticle{Frame: p.Frame - 1, Effect: p.Effect,
+			X: math.Round(x*1e4) / 1e4, Y: math.Round(y*1e4) / 1e4, Intensity: p.Intensity, Color: p.Color})
+	}
+	return out, nil
 }
 
 // room is how much bigger than the sticker's box a scaffold cell is.
@@ -707,6 +749,12 @@ func (r *renderer) animation(a animSpec) error {
 		}
 	}
 	asmFP := hashOf(append([]string{assembleVersion, fmt.Sprint(r.c.cfg.Scaffold, art.fill(a.Sticker), a.room(), scaffoldAssembly), hashFile(stickerPath), hashFile(r.rawPath(a.Sticker)), fmt.Sprint(r.c.cfg.Columns, r.c.cfg.MaxSheet, r.c.cfg.StickerPx, art.StickerSize, art.Border, art.Margin, art.finish(), hold, a.RestFrames, a.normalize(), a.restFromSticker(), a.register(), a.Loop, a.kind(), a.Pause, a.Facing, a.Stride, a.Hops, a.Story)}, genFPs...)...)
+	if len(a.Particles) > 0 {
+		// Only when there are some, so animations without keep their
+		// fingerprints; a change re-writes the sidecar, free.
+		data, _ := json.Marshal(a.Particles)
+		asmFP = hashOf(asmFP, "particles", string(data))
+	}
 	sheetPath, jsonPath := r.out(a.key()+".png"), r.out(a.key()+".json")
 	if !changed && r.upToDate(sheetPath, asmFP) && r.upToDate(jsonPath, asmFP) {
 		r.say("· %s assembled sheet up to date", a.key())
@@ -857,6 +905,9 @@ func (r *renderer) writeAnimation(a animSpec, sheet *stickerimg.AnimSheet, stick
 	out.Frame.Width, out.Frame.Height = sheet.Frame.X, sheet.Frame.Y
 	out.Rest = unit(sheet.Rest, sheet.Frame)
 	out.StickerBox = unit(stickerimg.Bounds(sticker, 0), sticker.Bounds().Size())
+	if out.Particles, err = sidecarParticles(a.Particles, sticker); err != nil {
+		return fmt.Errorf("%s: %w", a.key(), err)
+	}
 
 	png, err := stickerimg.Encode(sheet.Image)
 	if err != nil {
