@@ -447,7 +447,7 @@ public enum StagePlanner {
     static func places(for stage: StickerStage, features: [String: SceneFeature], in scene: Scene) -> [[StageRect]] {
         var out: [[StageRect]] = []
         for id in stage.on {
-            let rects = (features[id]?.areas ?? []).filter(\.isValid).compactMap { visibleRect(for: $0, in: scene) }
+            let rects = (features[id]?.areas ?? []).filter(\.isValidOnWideArt).compactMap { visibleRect(for: $0, in: scene) }
             if !rects.isEmpty { out.append(rects) }
         }
         if let area = stage.area {

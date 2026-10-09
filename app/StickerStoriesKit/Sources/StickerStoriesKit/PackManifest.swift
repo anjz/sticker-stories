@@ -258,12 +258,21 @@ public struct StickerStage: Codable, Equatable, Sendable {
             self.facing = facing
         }
 
-        public var isValid: Bool {
-            func valid(_ span: [Double]) -> Bool {
+        public var isValid: Bool { isValid(xFrom: 0, to: 1) }
+
+        /// How far beyond the base art (in base-art widths) a wide area may
+        /// reach: the side band of art up to 2× the base width.
+        public static let wideMargin = 0.5
+
+        /// Valid on the wide art: x may run into its side bands.
+        public var isValidOnWideArt: Bool { isValid(xFrom: -Self.wideMargin, to: 1 + Self.wideMargin) }
+
+        private func isValid(xFrom low: Double, to high: Double) -> Bool {
+            func valid(_ span: [Double], _ low: Double, _ high: Double) -> Bool {
                 guard span.count == 2 else { return false }
-                return span[0] >= 0 && span[1] <= 1 && span[0] < span[1]
+                return span[0] >= low && span[1] <= high && span[0] < span[1]
             }
-            return valid(x) && valid(y)
+            return valid(x, low, high) && valid(y, 0, 1)
         }
     }
 
@@ -313,11 +322,38 @@ public struct SceneFeature: Codable, Equatable, Sendable {
     /// and whose way of going there does not either — a mouse going to the
     /// pond stops here, the frog hops in (`MotionPlanner`). Optional.
     public var edge: [StickerStage.Area]?
+    /// The place's areas when the wide art is drawn, for a place on a
+    /// foreground element the wide rendition paints at its own edges (a
+    /// habitat's hatch): in base-art fractions like `areas`, so x may run
+    /// into the side bands (`StickerStage.Area.wideMargin`). Optional;
+    /// without them the wide art uses `areas`.
+    public var wideAreas: [StickerStage.Area]?
 
-    public init(description: String, areas: [StickerStage.Area], edge: [StickerStage.Area]? = nil) {
+    public init(
+        description: String, areas: [StickerStage.Area], edge: [StickerStage.Area]? = nil,
+        wideAreas: [StickerStage.Area]? = nil
+    ) {
         self.description = description
         self.areas = areas
         self.edge = edge
+        self.wideAreas = wideAreas
+    }
+
+    /// The place as it is on the art being drawn: on the wide art, its wide
+    /// areas when it has them.
+    public func onArt(_ variant: ArtVariant) -> SceneFeature {
+        guard variant == .wide, let wideAreas else { return self }
+        var feature = self
+        feature.areas = wideAreas
+        feature.wideAreas = nil
+        return feature
+    }
+}
+
+extension Dictionary where Key == String, Value == SceneFeature {
+    /// Every place as it is on the art being drawn (`SceneFeature.onArt`).
+    public func onArt(_ variant: ArtVariant) -> [String: SceneFeature] {
+        mapValues { $0.onArt(variant) }
     }
 }
 
@@ -490,6 +526,14 @@ extension PackManifest {
                 edge.isEmpty || !edge.allSatisfy({ $0.isValid && $0.facing == nil })
             {
                 issues.append("feature \"\(id)\": edge needs areas, each [min, max] on x and y with 0 <= min < max <= 1 and no facing")
+            }
+            if let wide = feature.wideAreas {
+                if backgroundWide == nil {
+                    issues.append("feature \"\(id)\": wideAreas are for the wide art, which the pack does not have")
+                }
+                if wide.isEmpty || !wide.allSatisfy(\.isValidOnWideArt) {
+                    issues.append("feature \"\(id)\": wideAreas need areas, each [min, max] with x within -0.5…1.5 and y within 0…1")
+                }
             }
         }
 

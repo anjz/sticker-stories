@@ -82,6 +82,18 @@ func TestValidManifestPasses(t *testing.T) {
 	}
 }
 
+func TestWideAreasMayReachTheSideBands(t *testing.T) {
+	dir := t.TempDir()
+	m := validManifest(t, dir)
+	m.BackgroundWide, m.ForegroundWide = m.Background, m.Foreground
+	m.Features = map[string]Feature{"hatch": {Description: "The hatch.",
+		Areas:     []StageArea{{X: []float64{0.05, 0.1}, Y: []float64{0.2, 0.3}}},
+		WideAreas: []StageArea{{X: []float64{-0.2, -0.15}, Y: []float64{0.2, 0.3}, Facing: "left"}}}}
+	if errs := m.Validate(dir); len(errs) != 0 {
+		t.Fatalf("wide areas in the side band should pass, got %v", errs)
+	}
+}
+
 func TestDescriptionIsOptionalButComplete(t *testing.T) {
 	dir := t.TempDir()
 	m := validManifest(t, dir)
@@ -224,6 +236,15 @@ func TestValidationFailures(t *testing.T) {
 			m.Features = map[string]Feature{"pond": {Description: "The pond.", Areas: []StageArea{{X: []float64{0.5, 0.7}, Y: []float64{0.3, 0.4}}},
 				Edge: []StageArea{{X: []float64{0.4, 0.45}, Y: []float64{0.3, 1.4}}}}}
 		}, "edge[0].y"},
+		{"feature wide area beyond the wide art", func(m *Manifest) {
+			m.BackgroundWide, m.ForegroundWide = m.Background, m.Foreground
+			m.Features = map[string]Feature{"hatch": {Description: "The hatch.", Areas: []StageArea{{X: []float64{0.05, 0.1}, Y: []float64{0.2, 0.3}}},
+				WideAreas: []StageArea{{X: []float64{-0.7, -0.6}, Y: []float64{0.2, 0.3}}}}}
+		}, "wideAreas[0].x"},
+		{"feature wide areas without wide art", func(m *Manifest) {
+			m.Features = map[string]Feature{"hatch": {Description: "The hatch.", Areas: []StageArea{{X: []float64{0.05, 0.1}, Y: []float64{0.2, 0.3}}},
+				WideAreas: []StageArea{{X: []float64{-0.2, -0.15}, Y: []float64{0.2, 0.3}}}}}
+		}, "does not have"},
 		{"feature edge facing", func(m *Manifest) {
 			m.Features = map[string]Feature{"pond": {Description: "The pond.", Areas: []StageArea{{X: []float64{0.5, 0.7}, Y: []float64{0.3, 0.4}}},
 				Edge: []StageArea{{X: []float64{0.4, 0.45}, Y: []float64{0.3, 0.4}, Facing: "left"}}}}

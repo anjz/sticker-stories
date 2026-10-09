@@ -47,6 +47,22 @@ struct SeededGenerator: RandomNumberGenerator {
         "tree": StickerStage(entrance: .grow, area: .init(x: [0.1, 0.9], y: [0.16, 0.34])),
     ]
 
+    @Test func aWideAreaInTheSideBandIsAPlaceOnTheWideArt() {
+        // The wide art shows a band 250 points wide left of the base frame.
+        let wide = StagePlanner.Scene(
+            world: StageRect(minX: 0, minY: 0, maxX: 1000, maxY: 750),
+            usable: StageRect(minX: -210, minY: 40, maxX: 1210, maxY: 710),
+            visible: StageRect(minX: -250, minY: 0, maxX: 1250, maxY: 750),
+            stickerSize: 120)
+        let hatch = SceneFeature(
+            description: "The hatch.", areas: [.init(x: [0.05, 0.1], y: [0.2, 0.3])],
+            wideAreas: [.init(x: [-0.2, -0.15], y: [0.2, 0.3])])
+        let stage = StickerStage(entrance: .hop, on: ["hatch"])
+        let places = StagePlanner.places(for: stage, features: ["hatch": hatch].onArt(.wide), in: wide)
+        let rect = places.first?.first
+        #expect(rect != nil && rect!.minX < 0 && rect!.maxX <= -150 + 1e-9)
+    }
+
     func plan(
         _ ids: [String], placed: Set<String> = [], obstacles: [StageObstacle] = [], policy: EffectPolicy = .standard,
         seed: UInt64 = 7

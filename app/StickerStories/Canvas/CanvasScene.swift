@@ -68,6 +68,9 @@ final class CanvasScene: SKScene {
     private var baseArtPixelSize: CGSize = .zero
     private var baseArtTextures: (background: SKTexture?, foreground: SKTexture?) = (nil, nil)
     private var wideArtTextures: (background: SKTexture, foreground: SKTexture?)?
+    /// The rendition of the art being drawn (`layoutScene`): places on the
+    /// foreground can sit elsewhere on the wide one (`SceneFeature.onArt`).
+    private var artVariant: ArtVariant = .base
     /// Scrollable row of tray items; `position.x` is the scroll offset
     /// (0 = start, negative = scrolled left to reveal later items).
     private let trayContent = SKNode()
@@ -419,9 +422,11 @@ final class CanvasScene: SKScene {
             ArtVariant.select(viewAspect: viewAspect, baseAspect: baseAspect, wideAspect: wideAspect) == .wide {
             backgroundArt.texture = wide.background
             foregroundArt.texture = wide.foreground
+            artVariant = .wide
         } else {
             backgroundArt.texture = baseArtTextures.background
             foregroundArt.texture = baseArtTextures.foreground
+            artVariant = .base
         }
         // Scale so the *drawn* art covers the view; the base frame is that
         // scale applied to the base art, centred on the drawn art.
@@ -1500,7 +1505,7 @@ final class CanvasScene: SKScene {
         }
         var random = SystemRandomNumberGenerator()
         return MotionPlanner.plan(
-            goes: goes, actors: actors, features: pack.manifest.features, moves: stageMoves,
+            goes: goes, actors: actors, features: pack.manifest.features.onArt(artVariant), moves: stageMoves,
             scene: stageScene(), policy: policy, random: &random)
     }
 
@@ -1532,7 +1537,7 @@ final class CanvasScene: SKScene {
             entrances: entrances.filter { sizes[$0.stickerID] != nil },
             placed: Set(existing.map(\.stickerID)),
             stages: stages,
-            features: pack.manifest.features,
+            features: pack.manifest.features.onArt(artVariant),
             moves: stageMoves,
             scales: visitScales,
             scene: scene, obstacles: obstacles, policy: policy, random: &random)

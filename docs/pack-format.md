@@ -80,6 +80,14 @@ never letterboxes:
   phones use the base art (25 % cropped). Stickers always use the base
   frame, so the same arrangement appears on every device (positions in the
   wide margins fall outside 0…1 and that is fine).
+- **Framing elements at the edges** (a building, a big rock at the side)
+  must not grow on phones: widening the foreground by continuing an
+  element the base art cuts at its edge makes it fill a third of a phone
+  screen. Paint the wide foreground on its own instead, with the same
+  elements at *its* edges at the same size (`stickerart`'s
+  `scene.foregroundWideOwn`; Moon Base's habitat and mast) — the wide
+  foreground is then not the base one widened, and a place on those
+  elements gets its own wide areas (`features[].wideAreas`, "Features").
 - Keep skies, ground lines and anything the child needs inside the central
   **~70 %** of the art's height: that is what survives the largest crop the
   app will make before it switches to a wider rendition, and the sticker
@@ -192,7 +200,7 @@ never letterboxes:
 | `stickers[].animations` | [string] | **Optional**, default none. Pack-relative paths to live-animation sidecars (`.json`, "Live animations" below); each must exist and validate. |
 | `stickers[].expressions` | {expr: string} | **Optional**, default none. Face variants by expression id (`happy`, `sad`, `sleeping`, `surprised`…): pack-relative PNG or WebP images with exactly the sticker's size and outline ("Expressions" below). The sticker's own `image` is the `normal` face. |
 | `narrationPacks` | {lang: string} | **Optional.** Per language, the Apple-hosted asset pack that carries that language's narration audio instead of the pack itself (`docs/asset-delivery.md`): `"<pack>-narration-<language>-<hash>"`, the hash taken over that language's audio, written by `storyaudio install`. Inside the asset pack each file sits at `<asset pack id>/<audio path>`. A language without one keeps its audio in the pack. |
-| `features` | {id: object} | **Optional.** Named places in the art where stickers can land ("Features" below): each has a `description` (for story authors) and `areas`, a non-empty list of `{ "x": [min, max], "y": [min, max] }` in fractions of the base art, each area optionally with `"facing": "left"` or `"right"` — a place a character faces into, the area holding its **front** rather than its centre (a woodpecker's beak on the bark of a trunk) — optionally `words` — how each language's stories name the place (`{ "en-US": ["pond", "water"], "es-ES": ["charca", "agua"] }`, single words; storycheck warns when a sentence puts a character there with no move taking it there; the app ignores them) — optionally `"air": true` for open air (the sky: nothing sits there; story validation keeps flyers from resting in it, the app ignores it) — and optionally `edge`, a non-empty list of areas like `areas` (no `facing`) where a character that does not go into the place stands beside it: the grass at the pond's edge ("Features" below). |
+| `features` | {id: object} | **Optional.** Named places in the art where stickers can land ("Features" below): each has a `description` (for story authors) and `areas`, a non-empty list of `{ "x": [min, max], "y": [min, max] }` in fractions of the base art, each area optionally with `"facing": "left"` or `"right"` — a place a character faces into, the area holding its **front** rather than its centre (a woodpecker's beak on the bark of a trunk) — optionally `words` — how each language's stories name the place (`{ "en-US": ["pond", "water"], "es-ES": ["charca", "agua"] }`, single words; storycheck warns when a sentence puts a character there with no move taking it there; the app ignores them) — optionally `"air": true` for open air (the sky: nothing sits there; story validation keeps flyers from resting in it, the app ignores it) — optionally `edge`, a non-empty list of areas like `areas` (no `facing`) where a character that does not go into the place stands beside it: the grass at the pond's edge — and optionally `wideAreas`, a non-empty list of areas like `areas` used instead of them when the wide art is drawn, with x allowed from −0.5 to 1.5 (the wide side bands, still in fractions of the base art), for a place on a foreground element the wide art paints at its own edge ("Features" below). |
 | `stickers[].stage` | object | **Optional**, default grow in `x` 0.1–0.9, `y` 0.18–0.45. Where the sticker belongs in the scene and how it comes in when a story names it and the child has not placed it ("Stage" below): `entrance` is `hop`, `fly` or `grow`; `on` lists `features` in order of preference; `area` (`{ "x": [min, max], "y": [min, max] }`, fractions of the base art) is where it lands when none of them is on screen. At least one of `on` and `area`. |
 | `stickers[].size` | string | **Optional**, default none. How big the character is next to the others: `big` (a deer, a bear), `medium` (a fox, a rabbit), `small` (a bird, a mouse) or `tiny` (a ladybug, a bee). A story moving it beside another scales it so the two keep the ratio of their classes (relative heights 1, 0.75, 0.55, 0.4; `docs/effects.md`, "Movement"), and a story that invites it (a visitor) brings a big one in at 1.3× a sticker's default size and a tiny one at 0.8× (`docs/effects.md`, "Entrances"); without one it keeps its size. |
 | `stories[].id` | string | Unique within the pack. |
@@ -268,7 +276,9 @@ never letterboxes:
     least one area, each valid like a stage `area`; its `words`, when
     present, are keyed by the pack's languages and are single words; its
     `edge`, when present, is a non-empty list of areas valid like a stage
-    `area`, none with `facing`.
+    `area`, none with `facing`; its `wideAreas`, when present, need the
+    wide art (`backgroundWide`) and are a non-empty list of areas valid
+    like a stage `area` except that x may run from −0.5 to 1.5.
 16. Every `narrationPacks` key is a declared language and every value a
     lowercase `a-z0-9-` ID, one language each. A language with a narration
     pack is exempt from rule 5 for its audio (only the path is checked),
@@ -347,6 +357,17 @@ Measure the edge like the areas: where a character's centre sits so it
 stands at the water, seen whole. Story validation treats every walker
 and flyer as able to be at a place with an edge, so a sentence that puts
 one by the pond needs a move there.
+
+A place on a foreground element that the wide art paints at its own edge
+(Moon Base's habitat hatch, at the left edge of every screen) is
+somewhere else on each rendition, so it carries **`wideAreas`**: the
+areas the app uses instead of `areas` while it draws the wide art, in the
+same base-art fractions — which on the wide art run from about −0.25 to
+1.25, so a hatch at the phone's left edge sits at x ≈ −0.2. Measure them
+on the wide composite the same way (a grid over it, converted to base
+fractions: `x_base = (x_wide × wideWidth − (wideWidth − baseWidth) / 2) /
+baseWidth`). Places in the background (the pad, the crater) are the same
+on both renditions and need none.
 
 ## Expressions
 
@@ -467,7 +488,8 @@ same device preference.
   bump); `setting` values `space` and `underwater` added (no pack has
   shipped, so no bump); optional `description` added (additive, no bump);
   optional `cover` added (additive, no bump); optional
-  `stickers[].stage` and `features` added (additive, no bump); the live
+  `stickers[].stage` and `features` added (additive, no bump); optional
+  `features[].wideAreas` added (additive, no bump); the live
   animation sidecar gained optional `kind`, `pause`, `loop`, `facing`,
   `stride` and `hops`, and live triggers an optional `mode` (additive,
   no bump); optional `narrationPacks` added (additive, no bump).

@@ -191,6 +191,42 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         #expect(makeValidManifest().backgroundWide == nil)
     }
 
+    @Test func wideAreasPlaceAFeatureOnTheWideArt() throws {
+        var manifest = makeValidManifest()
+        manifest.backgroundWide = "art/background-wide.png"
+        manifest.foregroundWide = "art/foreground-wide.png"
+        let hatch = SceneFeature(
+            description: "The hatch.", areas: [.init(x: [0.05, 0.1], y: [0.2, 0.3])],
+            wideAreas: [.init(x: [-0.2, -0.15], y: [0.2, 0.3])])
+        manifest.features = ["hatch": hatch]
+        let dir = try materialize(manifest)
+        #expect(manifest.validationIssues(packDirectory: dir).isEmpty)
+        let decoded = try JSONDecoder().decode(PackManifest.self, from: JSONEncoder().encode(manifest))
+        #expect(decoded.features["hatch"]?.wideAreas?.first?.x == [-0.2, -0.15])
+        // Resolved for the art being drawn.
+        #expect(decoded.features.onArt(.base)["hatch"]?.areas.first?.x == [0.05, 0.1])
+        #expect(decoded.features.onArt(.wide)["hatch"]?.areas.first?.x == [-0.2, -0.15])
+        // A place without wide areas is the same on both.
+        let pond = SceneFeature(description: "Pond.", areas: [.init(x: [0.5, 0.7], y: [0.3, 0.4])])
+        #expect(pond.onArt(.wide) == pond)
+    }
+
+    @Test func wideAreasNeedWideArtAndStayInItsBands() throws {
+        var manifest = makeValidManifest()
+        manifest.features = [
+            "hatch": SceneFeature(
+                description: "The hatch.", areas: [.init(x: [0.05, 0.1], y: [0.2, 0.3])],
+                wideAreas: [.init(x: [-0.2, -0.15], y: [0.2, 0.3])])
+        ]
+        let dir = try materialize(manifest)
+        #expect(manifest.validationIssues(packDirectory: dir).contains { $0.contains("which the pack does not have") })
+        manifest.backgroundWide = "art/background-wide.png"
+        manifest.foregroundWide = "art/foreground-wide.png"
+        manifest.features["hatch"]?.wideAreas = [.init(x: [-0.7, -0.6], y: [0.2, 0.3])]
+        let dir2 = try materialize(manifest)
+        #expect(manifest.validationIssues(packDirectory: dir2).contains { $0.contains("wideAreas") })
+    }
+
     @Test func descriptionIsOptionalAndLocalized() throws {
         #expect(makeValidManifest().description(for: "en-US") == nil)
         var manifest = makeValidManifest()

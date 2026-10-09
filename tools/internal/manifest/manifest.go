@@ -131,7 +131,17 @@ type Feature struct {
 	// stage does not land on the place and whose way of going there does
 	// not either. A mouse going to the pond stops here; the frog hops in.
 	Edge []StageArea `json:"edge,omitempty"`
+	// WideAreas (optional) are the place's areas when the wide art is
+	// drawn, for a place on a foreground element the wide rendition paints
+	// at its own edges (a habitat's hatch): in fractions of the base art
+	// like Areas, so x may run into the wide side bands (WideMargin beyond
+	// 0 and 1). Without them the wide art uses Areas.
+	WideAreas []StageArea `json:"wideAreas,omitempty"`
 }
+
+// WideMargin is how far beyond the base art (in base-art widths) a wide
+// area may reach: the side band of art up to 2× the base width.
+const WideMargin = 0.5
 
 // StageArea is a rectangle in fractions of the base art: X and Y are each
 // [min, max] with 0 <= min < max <= 1.
@@ -352,6 +362,15 @@ func (m *Manifest) Validate(dir string) []error {
 			checkArea(fmt.Sprintf("%s: areas[%d]", field, i), a, fail)
 			if a.Facing != "" && a.Facing != "left" && a.Facing != "right" {
 				fail("%s: areas[%d]: facing must be left or right, got %q", field, i, a.Facing)
+			}
+		}
+		if len(f.WideAreas) > 0 && m.BackgroundWide == "" {
+			fail("%s: wideAreas are for the wide art, which the pack does not have", field)
+		}
+		for i, a := range f.WideAreas {
+			checkAreaWithin(fmt.Sprintf("%s: wideAreas[%d]", field, i), a, -WideMargin, 1+WideMargin, fail)
+			if a.Facing != "" && a.Facing != "left" && a.Facing != "right" {
+				fail("%s: wideAreas[%d]: facing must be left or right, got %q", field, i, a.Facing)
 			}
 		}
 		for i, a := range f.Edge {
@@ -579,12 +598,19 @@ func (m *Manifest) Validate(dir string) []error {
 // checkArea checks that an area is [min, max] on both axes with
 // 0 <= min < max <= 1.
 func checkArea(field string, a StageArea, fail func(string, ...any)) {
+	checkAreaWithin(field, a, 0, 1, fail)
+}
+
+// checkAreaWithin checks an area whose x may run from lo to hi (the wide
+// art's side bands); y is always within the art's height.
+func checkAreaWithin(field string, a StageArea, lo, hi float64, fail func(string, ...any)) {
 	for _, axis := range []struct {
-		name string
-		span []float64
-	}{{"x", a.X}, {"y", a.Y}} {
-		if len(axis.span) != 2 || axis.span[0] < 0 || axis.span[1] > 1 || axis.span[0] >= axis.span[1] {
-			fail("%s.%s must be [min, max] with 0 <= min < max <= 1, got %v", field, axis.name, axis.span)
+		name   string
+		span   []float64
+		lo, hi float64
+	}{{"x", a.X, lo, hi}, {"y", a.Y, 0, 1}} {
+		if len(axis.span) != 2 || axis.span[0] < axis.lo || axis.span[1] > axis.hi || axis.span[0] >= axis.span[1] {
+			fail("%s.%s must be [min, max] with %g <= min < max <= %g, got %v", field, axis.name, axis.lo, axis.hi, axis.span)
 		}
 	}
 }
