@@ -1001,7 +1001,8 @@ func (r *renderer) scaffold(rest, startPose *image.RGBA, sh sheetSpec) ([]byte, 
 // (<key>.qa.json, which the review page shows) and sums it up in the log.
 func (r *renderer) check(a animSpec, sheet *stickerimg.AnimSheet) error {
 	grow := a.kind() == manifest.KindMove && a.Loop == nil
-	qa := stickerimg.MeasureFrames(sheet, 8, grow, a.Flies || a.Hops)
+	// Nothing in the sky or adrift has a ground to keep its bottom on.
+	qa := stickerimg.MeasureFrames(sheet, 8, grow, a.Flies || a.Hops || a.register() == stickerimg.RegisterBody)
 	data, _ := json.MarshalIndent(qa, "", "  ")
 	if err := os.WriteFile(r.out(a.key()+".qa.json"), append(data, '\n'), 0o644); err != nil {
 		return err

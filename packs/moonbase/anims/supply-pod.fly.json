@@ -2,19 +2,19 @@
   "id": "fly",
   "sticker": "supply-pod",
   "kind": "move",
-  "description": "the supply pod flies in on puffs from its thrusters, then sets down on its feet.",
+  "description": "the supply pod descends on small thruster flames, then settles on its legs.",
   "sheet": "anims/supply-pod.fly.webp",
   "frame": {
-    "width": 574,
-    "height": 479
+    "width": 528,
+    "height": 476
   },
   "columns": 6,
   "count": 12,
   "rest": {
-    "x": 0.08362,
-    "y": 0.03967,
-    "width": 0.83972,
-    "height": 0.91023
+    "x": 0.03977,
+    "y": 0.03151,
+    "width": 0.91288,
+    "height": 0.91597
   },
   "stickerBox": {
     "x": 0.13932,
@@ -41,6 +41,15 @@
     "to": 8
   },
   "facing": "left",
-  "stride": 0.9,
-  "flies": true
+  "stride": 0.8,
+  "flies": true,
+  "particles": [
+    {
+      "frame": 10,
+      "effect": "dust-puff",
+      "x": 0.4993,
+      "y": 0.8255,
+      "intensity": 0.7
+    }
+  ]
 }

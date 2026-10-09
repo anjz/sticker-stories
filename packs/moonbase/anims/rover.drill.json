@@ -4,16 +4,16 @@
   "description": "the rover drills into the ground for a sample",
   "sheet": "anims/rover.drill.webp",
   "frame": {
-    "width": 556,
-    "height": 494
+    "width": 588,
+    "height": 499
   },
   "columns": 6,
   "count": 24,
   "rest": {
-    "x": 0.02698,
-    "y": 0.04049,
-    "width": 0.86691,
-    "height": 0.9251
+    "x": 0.03912,
+    "y": 0.0501,
+    "width": 0.81973,
+    "height": 0.91583
   },
   "stickerBox": {
     "x": 0.13932,
@@ -49,6 +49,22 @@
   ],
   "pause": {
     "frame": 11,
-    "shows": "the rover drilling into the ground, dust puffing"
-  }
+    "shows": "the rover drilling into the ground"
+  },
+  "particles": [
+    {
+      "frame": 5,
+      "effect": "dust-puff",
+      "x": 0.3,
+      "y": 0.84,
+      "intensity": 0.6
+    },
+    {
+      "frame": 8,
+      "effect": "dust-puff",
+      "x": 0.3,
+      "y": 0.84,
+      "intensity": 0.5
+    }
+  ]
 }

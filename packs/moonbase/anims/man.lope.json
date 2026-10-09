@@ -1,0 +1,55 @@
+{
+  "id": "lope",
+  "sticker": "man",
+  "kind": "move",
+  "description": "the man astronaut lopes along to the left in low, easy moon-hops, boots close to the ground, then lands and stands.",
+  "sheet": "anims/man.lope.webp",
+  "frame": {
+    "width": 252,
+    "height": 513
+  },
+  "columns": 6,
+  "count": 12,
+  "rest": {
+    "x": 0.0754,
+    "y": 0.02924,
+    "width": 0.8254,
+    "height": 0.93957
+  },
+  "stickerBox": {
+    "x": 0.34115,
+    "y": 0.13932,
+    "width": 0.31771,
+    "height": 0.72005
+  },
+  "hold": [
+    0.1,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.15,
+    0.16,
+    0.45
+  ],
+  "loop": {
+    "from": 1,
+    "to": 8
+  },
+  "facing": "left",
+  "stride": 0.6,
+  "hops": true,
+  "particles": [
+    {
+      "frame": 6,
+      "effect": "dust-puff",
+      "x": 0.5,
+      "y": 0.8594,
+      "intensity": 0.5
+    }
+  ]
+}

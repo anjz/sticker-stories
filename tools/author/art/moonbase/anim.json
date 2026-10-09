@@ -951,408 +951,6 @@
       ]
     },
     {
-      "id": "drill",
-      "sticker": "rover",
-      "kind": "action",
-      "description": "the rover unfolds its arm, lowers its drill to the ground and drills, dust puffing, then lifts the arm and folds it back.",
-      "base": "its wheels",
-      "story": "the rover drills into the ground for a sample",
-      "pause": {
-        "frame": 12,
-        "shows": "the rover drilling into the ground, dust puffing"
-      },
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "The arm starting to unfold.",
-            "The arm reaching forward.",
-            "The arm lowering toward the ground in front of the wheels.",
-            "The drill tip touching the ground at the level of the wheels' bottoms.",
-            "The drill spinning, a small puff of dust.",
-            "Drilling, more dust puffing.",
-            "Drilling deeper, the camera head tilted down, watching.",
-            "Drilling, dust puffing.",
-            "Drilling, dust puffing.",
-            "Drilling, a small cloud of dust.",
-            "The drill down in the ground, spinning, a small cloud of dust puffing up."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "The dust settling, the drill stopping.",
-            "The arm lifting the drill out, a little dust on its tip.",
-            "The arm rising.",
-            "The arm raised, the camera head turning to look at the drill tip.",
-            "The camera head nodding.",
-            "The arm folding back.",
-            "The arm folding further.",
-            "The arm almost in its place.",
-            "The camera head turning forward.",
-            "Nearly the reference pose.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.45,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.7,
-        0.2,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        24
-      ]
-    },
-    {
-      "id": "drive",
-      "sticker": "rover",
-      "kind": "move",
-      "description": "the rover drives along to the left on its six wheels, its mast bobbing gently, then stops.",
-      "base": "its wheels",
-      "loop": {
-        "from": 2,
-        "to": 9
-      },
-      "facing": "left",
-      "stride": 0.5,
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "Driving to the left: the wheels turning, the spokes a little round from the reference.",
-            "The wheels turning further, the body rocking up over a pebble.",
-            "The wheels turning, the body level.",
-            "The wheels turning, the mast bobbing forward.",
-            "The wheels turning, the body rocking the other way.",
-            "The wheels turning, the mast bobbing back.",
-            "The wheels turning, the body level.",
-            "The wheels turning as in frame 2 (leading back into frame 2).",
-            "Slowing to a stop, the mast swaying.",
-            "Stopped, almost the reference pose.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.1,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.15,
-        0.16,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        12
-      ]
-    },
-    {
-      "id": "wheelspin",
-      "sticker": "buggy",
-      "kind": "action",
-      "description": "the moon buggy revs: its wheels spin in place and throw up grey dust, then they stop, the dust settles and it bounces once on its springs.",
-      "base": "its wheels",
-      "story": "the moon buggy's wheels spin in the dust",
-      "pause": {
-        "frame": 12,
-        "shows": "the moon buggy's wheels spinning in a cloud of grey dust"
-      },
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "The buggy rocking back slightly on its springs.",
-            "The wheels starting to spin, a little dust behind them.",
-            "The wheels spinning, dust spraying back.",
-            "The wheels spinning faster, more dust spraying.",
-            "The buggy shaking, dust spraying.",
-            "The wheels spinning, a cloud of dust at the back wheels.",
-            "The wheels spinning, the dust cloud bigger.",
-            "The wheels spinning, the buggy rocking.",
-            "The wheels spinning in the dust.",
-            "The wheels spinning in the dust.",
-            "The wheels spinning in a cloud of grey dust close around them, the buggy shaking."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "The wheels slowing, the dust drifting.",
-            "The wheels stopping, the dust settling slowly.",
-            "The buggy bouncing once on its springs.",
-            "Settling down.",
-            "The dust almost gone.",
-            "The dish antenna wobbling.",
-            "The dish settling.",
-            "Still.",
-            "The last of the dust gone.",
-            "Nearly the reference.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.45,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.7,
-        0.2,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        24
-      ]
-    },
-    {
-      "id": "drive",
-      "sticker": "buggy",
-      "kind": "move",
-      "description": "the moon buggy drives along to the left, bouncing on its springs over the bumps, then stops.",
-      "base": "its wheels",
-      "loop": {
-        "from": 2,
-        "to": 9
-      },
-      "facing": "left",
-      "stride": 0.8,
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "Driving to the left: the wire-mesh wheels turning, the body level.",
-            "The wheels turning, the body bouncing up a little on its springs.",
-            "The wheels turning, the body coming down.",
-            "The wheels turning, a small puff of dust behind.",
-            "The wheels turning, the body bouncing up.",
-            "The wheels turning, the body coming down.",
-            "The wheels turning, the dish antenna wobbling.",
-            "The wheels turning as in frame 2 (leading back into frame 2).",
-            "Slowing to a stop, bouncing once.",
-            "Stopped, almost the reference pose.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.1,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.15,
-        0.16,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        12
-      ]
-    },
-    {
-      "id": "dig",
-      "sticker": "excavator",
-      "kind": "action",
-      "description": "the excavator lowers its front drum to the ground and spins it, scooping up grey dust, then lifts it back up with its load.",
-      "base": "its tracks",
-      "story": "the excavator digs up moon dust with its spinning drum",
-      "pause": {
-        "frame": 12,
-        "shows": "the excavator digging, its front drum spinning in the dust"
-      },
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "The front arm starting to lower.",
-            "The front drum lowering.",
-            "The front drum nearly at the ground.",
-            "The front drum touching the ground at the level of the tracks' bottoms.",
-            "The drum starting to spin, a puff of dust.",
-            "The drum spinning, dust flying.",
-            "Digging, the camera mast tilted down, watching.",
-            "Digging, dust flying.",
-            "Digging, dust flying.",
-            "Digging, a small cloud of dust.",
-            "The front drum spinning in the ground, a small cloud of dust flying."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "The drum slowing.",
-            "The drum stopped, full of grey dust.",
-            "The front arm lifting the drum.",
-            "The drum rising, a trickle of dust falling from it.",
-            "The drum raised.",
-            "The camera mast turning to look at the drum.",
-            "The camera mast nodding.",
-            "The drum almost back in its place.",
-            "The camera mast turning forward.",
-            "Nearly the reference pose.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.45,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.7,
-        0.2,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        24
-      ]
-    },
-    {
-      "id": "trundle",
-      "sticker": "excavator",
-      "kind": "move",
-      "description": "the excavator trundles along to the left on its tracks, then stops.",
-      "base": "its tracks",
-      "loop": {
-        "from": 2,
-        "to": 9
-      },
-      "facing": "left",
-      "stride": 0.35,
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "Rolling to the left on its tracks, the track treads moving.",
-            "The treads moving on, the body level.",
-            "The treads moving, the drums swaying a little.",
-            "The treads moving, the body rocking slightly.",
-            "The treads moving, the body level.",
-            "The treads moving, the drums swaying back.",
-            "The treads moving, the body rocking slightly.",
-            "The treads moving as in frame 2 (leading back into frame 2).",
-            "Slowing to a stop.",
-            "Stopped, almost the reference pose.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.1,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.15,
-        0.16,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        12
-      ]
-    },
-    {
       "id": "photo",
       "sticker": "drone",
       "kind": "action",
@@ -1630,147 +1228,6 @@
       ]
     },
     {
-      "id": "hatch",
-      "sticker": "lander",
-      "kind": "action",
-      "description": "the lander's hatch swings open with a warm light shining out and the little antenna on top turns, then the hatch closes.",
-      "base": "its footpads",
-      "story": "the lander opens its hatch, a warm light shining out",
-      "pause": {
-        "frame": 12,
-        "shows": "the lander with its hatch open, a warm light shining out"
-      },
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "A small light blinking on top.",
-            "The hatch in the crew cabin starting to open.",
-            "The hatch opening wider.",
-            "The hatch half open, a warm light inside.",
-            "The hatch swinging open.",
-            "The hatch wide open, warm light shining out.",
-            "The little antenna on top starting to turn.",
-            "The antenna turning.",
-            "The antenna turned toward us.",
-            "The hatch open, the light shining.",
-            "The lander with its hatch wide open, a warm light shining out."
-          ],
-          "hint": "The lander is rigid: draw it at exactly the size of the reference in every frame, the same height in its cell as in frame 1; only the hatch, the light and the antenna change."
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "The antenna turning back.",
-            "The antenna back in place.",
-            "The hatch starting to close.",
-            "The hatch half closed.",
-            "The hatch nearly closed.",
-            "The hatch closed, the light gone.",
-            "A small light blinking on top.",
-            "Still.",
-            "Still.",
-            "Nearly the reference.",
-            "Exactly as in the reference."
-          ],
-          "hint": "The lander is rigid: draw it at exactly the size of the reference in every frame, the same height in its cell as in frame 1; only the hatch, the light and the antenna change."
-        }
-      ],
-      "hold": [
-        0.45,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.7,
-        0.2,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        24
-      ],
-      "restFromSticker": false
-    },
-    {
-      "id": "fly",
-      "sticker": "lander",
-      "kind": "move",
-      "description": "the lander flies in on the flame of its engine, its legs spread, then settles down on its footpads.",
-      "base": "its body",
-      "register": "body",
-      "loop": {
-        "from": 2,
-        "to": 9
-      },
-      "facing": "left",
-      "stride": 0.8,
-      "flies": true,
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "Flying to the left: tilted a little to the left, a short flame from the engine under it, legs spread.",
-            "The flame flickering.",
-            "Small puffs from little thrusters on its sides.",
-            "The flame flickering.",
-            "Tilted a little more.",
-            "The flame flickering.",
-            "Small puffs from the side thrusters.",
-            "Tilted to the left, the flame, as in frame 2 (leading back into frame 2).",
-            "Leveling out, the flame shorter, the legs reaching down.",
-            "Touching down on its footpads, a puff of dust, the flame going out.",
-            "Exactly as in the reference."
-          ],
-          "hint": "The lander is rigid: exactly the size of frame 1 in every frame, its legs the same length; the flame fits below it inside the cell."
-        }
-      ],
-      "hold": [
-        0.1,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.15,
-        0.16,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        12
-      ],
-      "restFromSticker": false
-    },
-    {
       "id": "cargo",
       "sticker": "shuttle",
       "kind": "action",
@@ -1898,418 +1355,6 @@
         0.09,
         0.09,
         0.09,
-        0.15,
-        0.16,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        12
-      ]
-    },
-    {
-      "id": "open",
-      "sticker": "supply-pod",
-      "kind": "action",
-      "description": "the supply pod's lid pops open with a puff of cold white vapour and a warm glow inside, then closes again.",
-      "base": "its feet",
-      "story": "the supply pod's lid pops open with a puff of cold vapour",
-      "pause": {
-        "frame": 12,
-        "shows": "the supply pod with its lid open, glowing inside"
-      },
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "A small green light blinking on its side.",
-            "The lid unlatching with a tiny jolt.",
-            "The lid lifting a crack, a thin puff of white vapour.",
-            "The lid lifting, more vapour.",
-            "The lid swinging open, a puff of cold white vapour.",
-            "The lid wide open, the vapour rising.",
-            "A warm golden glow inside the open pod.",
-            "The glow, the vapour thinning.",
-            "The glow, a wisp of vapour.",
-            "The pod open, glowing.",
-            "The supply pod with its lid wide open, a warm glow inside."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "The glow fading.",
-            "The lid starting to swing closed.",
-            "The lid half closed.",
-            "The lid nearly closed.",
-            "The lid closed with a little jolt.",
-            "The green light blinking.",
-            "Still.",
-            "Still.",
-            "Still.",
-            "Nearly the reference.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.45,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.7,
-        0.2,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        24
-      ]
-    },
-    {
-      "id": "fly",
-      "sticker": "supply-pod",
-      "kind": "move",
-      "description": "the supply pod flies in on puffs from its thrusters, then sets down on its feet.",
-      "base": "its body",
-      "register": "body",
-      "loop": {
-        "from": 2,
-        "to": 9
-      },
-      "facing": "left",
-      "stride": 0.9,
-      "flies": true,
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "Flying to the left: tilted a little to the left, puffs from the thrusters around its base.",
-            "The puffs bigger.",
-            "The puffs smaller.",
-            "A small bob.",
-            "The puffs bigger.",
-            "The puffs smaller.",
-            "A small bob.",
-            "Tilted to the left, as in frame 2 (leading back into frame 2).",
-            "Leveling out, the feet reaching down.",
-            "Touching down, a puff of dust.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.1,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.15,
-        0.16,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        12
-      ]
-    },
-    {
-      "id": "signal",
-      "sticker": "satellite",
-      "kind": "action",
-      "description": "the satellite turns its dish and sends a signal home: rings of light pulse out from the dish, then it turns back.",
-      "base": "its body",
-      "story": "the satellite sends a signal home, rings of light pulsing from its dish",
-      "register": "body",
-      "pause": {
-        "frame": 12,
-        "shows": "the satellite sending a signal, rings of light pulsing from its dish"
-      },
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "A small light blinking on its body.",
-            "The dish starting to turn.",
-            "The dish turning.",
-            "The dish turned toward the top of the cell.",
-            "A small ring of light leaving the dish.",
-            "The ring growing, a second ring leaving the dish.",
-            "Two rings of light pulsing out.",
-            "Three rings of light pulsing out.",
-            "The rings pulsing.",
-            "The rings pulsing.",
-            "The satellite sending a signal: three rings of light pulsing out from its dish, close to it."
-          ],
-          "hint": "No arrows, no motion lines and no symbols anywhere: only the satellite and, once it sends, the rings of light."
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "The rings fading.",
-            "The last ring fading.",
-            "The dish starting to turn back.",
-            "The dish turning back.",
-            "The dish back in place.",
-            "A small light blinking.",
-            "Still, glinting.",
-            "Still.",
-            "Still.",
-            "Nearly the reference.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.45,
-        0.11,
-        0.11,
-        0.11,
-        0.11,
-        0.11,
-        0.11,
-        0.11,
-        0.11,
-        0.11,
-        0.11,
-        0.7,
-        0.2,
-        0.11,
-        0.11,
-        0.11,
-        0.11,
-        0.11,
-        0.11,
-        0.11,
-        0.11,
-        0.11,
-        0.11,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        24
-      ]
-    },
-    {
-      "id": "drift",
-      "sticker": "satellite",
-      "kind": "move",
-      "description": "the satellite drifts slowly along to the left through space, then comes to rest.",
-      "base": "its body",
-      "register": "body",
-      "loop": {
-        "from": 2,
-        "to": 9
-      },
-      "facing": "left",
-      "stride": 0.6,
-      "flies": true,
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "Drifting to the left, turned very slightly.",
-            "Turned a little more, a glint on the solar panels.",
-            "Turning back.",
-            "Level.",
-            "Turned very slightly the other way.",
-            "A glint on the gold foil.",
-            "Turning back.",
-            "As in frame 2 (leading back into frame 2).",
-            "Slowing, level.",
-            "Almost the reference.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.1,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.15,
-        0.16,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        12
-      ]
-    },
-    {
-      "id": "turn",
-      "sticker": "station",
-      "kind": "action",
-      "description": "the space station's solar wings turn slowly to face the sun, catching the light, and its little lights blink, then the wings turn back.",
-      "base": "its body",
-      "story": "the space station turns its solar wings toward the sun",
-      "register": "body",
-      "pause": {
-        "frame": 12,
-        "shows": "the space station with its solar wings turned toward the sun, lights blinking"
-      },
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "Small lights blinking on the modules.",
-            "The solar wings starting to turn.",
-            "The wings turning.",
-            "The wings turned further, catching the light.",
-            "The wings glinting.",
-            "The wings turned all the way.",
-            "The lights blinking.",
-            "The wings glinting.",
-            "The lights blinking.",
-            "Still, glinting.",
-            "The space station with its solar wings turned toward the sun, glinting, its lights blinking."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "The wings starting to turn back.",
-            "Turning back.",
-            "Turning back.",
-            "The wings almost back.",
-            "The wings back in place.",
-            "The lights blinking.",
-            "Still.",
-            "Still.",
-            "Still.",
-            "Nearly the reference.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.45,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.7,
-        0.2,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        24
-      ]
-    },
-    {
-      "id": "drift",
-      "sticker": "station",
-      "kind": "move",
-      "description": "the space station drifts slowly along to the left through space, then comes to rest.",
-      "base": "its body",
-      "register": "body",
-      "loop": {
-        "from": 2,
-        "to": 9
-      },
-      "facing": "left",
-      "stride": 0.6,
-      "flies": true,
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "Drifting to the left, level.",
-            "A glint on the solar wings.",
-            "A light blinking on a module.",
-            "Level.",
-            "A glint on the radiators.",
-            "A light blinking.",
-            "Level.",
-            "As in frame 2 (leading back into frame 2).",
-            "Slowing.",
-            "Almost the reference.",
-            "Exactly as in the reference."
-          ],
-          "hint": "The space station is rigid: exactly the size of frame 1 in every frame."
-        }
-      ],
-      "hold": [
-        0.1,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
         0.15,
         0.16,
         0.45
@@ -2457,665 +1502,6 @@
       ]
     },
     {
-      "id": "turn",
-      "sticker": "probe",
-      "kind": "action",
-      "description": "the probe turns slowly round in space, glinting in the sunlight, and turns back to face the way it was.",
-      "base": "its body",
-      "story": "the probe turns slowly round in space",
-      "register": "body",
-      "pause": {
-        "frame": 12,
-        "shows": "the probe turned side-on, glinting"
-      },
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "A small light blinking.",
-            "Turning very slightly.",
-            "Turning a little more.",
-            "An eighth of a turn round, glinting.",
-            "Turning further.",
-            "A quarter of a turn round, side-on.",
-            "Side-on, glinting.",
-            "Side-on.",
-            "Side-on, glinting.",
-            "Side-on, still.",
-            "The probe turned side-on, glinting in the sunlight."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "Starting to turn back.",
-            "Turning back.",
-            "An eighth of a turn round.",
-            "Turning back.",
-            "Almost facing as before.",
-            "Facing as before, glinting.",
-            "A small light blinking.",
-            "Still.",
-            "Still.",
-            "Nearly the reference.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.45,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.7,
-        0.2,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        24
-      ]
-    },
-    {
-      "id": "drift",
-      "sticker": "probe",
-      "kind": "move",
-      "description": "the probe drifts slowly along to the left through space, then comes to rest.",
-      "base": "its body",
-      "register": "body",
-      "loop": {
-        "from": 2,
-        "to": 9
-      },
-      "facing": "left",
-      "stride": 0.7,
-      "flies": true,
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "Drifting to the left, level.",
-            "A glint on the dish.",
-            "Tilted very slightly.",
-            "Level.",
-            "A glint on the gold foil.",
-            "Tilted very slightly the other way.",
-            "Level.",
-            "As in frame 2 (leading back into frame 2).",
-            "Slowing.",
-            "Almost the reference.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.1,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.15,
-        0.16,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        12
-      ]
-    },
-    {
-      "id": "tumble",
-      "sticker": "asteroid",
-      "kind": "action",
-      "description": "the asteroid tumbles slowly end over end, all the way round.",
-      "base": "its body",
-      "story": "the asteroid tumbles slowly end over end",
-      "register": "body",
-      "pause": {
-        "frame": 12,
-        "shows": "the asteroid halfway through its tumble, upside down"
-      },
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "Turned a sixteenth of a turn.",
-            "An eighth of a turn round.",
-            "Three sixteenths.",
-            "A quarter of a turn round, standing on its end.",
-            "Five sixteenths.",
-            "Three eighths of a turn round.",
-            "Seven sixteenths.",
-            "Almost half a turn.",
-            "Half a turn round, upside down.",
-            "Upside down, still.",
-            "The asteroid upside down, half a turn round from the reference."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "Five eighths of a turn round.",
-            "Eleven sixteenths.",
-            "Three quarters of a turn round, on its other end.",
-            "Thirteen sixteenths.",
-            "Seven eighths of a turn round.",
-            "Fifteen sixteenths.",
-            "A full turn round, as in the reference.",
-            "Still.",
-            "Still.",
-            "Nearly the reference.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.45,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.7,
-        0.2,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        24
-      ]
-    },
-    {
-      "id": "drift",
-      "sticker": "asteroid",
-      "kind": "move",
-      "description": "the asteroid drifts slowly along to the left through space, then comes to rest.",
-      "base": "its body",
-      "register": "body",
-      "loop": {
-        "from": 2,
-        "to": 9
-      },
-      "facing": "left",
-      "stride": 0.7,
-      "flies": true,
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "Drifting to the left, turned a sixteenth of a turn.",
-            "An eighth of a turn round.",
-            "Three sixteenths.",
-            "A quarter of a turn round.",
-            "Three sixteenths.",
-            "An eighth.",
-            "A sixteenth.",
-            "As in frame 2 (leading back into frame 2).",
-            "Slowing, level.",
-            "Almost the reference.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.1,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.15,
-        0.16,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        12
-      ]
-    },
-    {
-      "id": "reach",
-      "sticker": "seedling",
-      "kind": "action",
-      "description": "the grow-light ring glows violet and the seedling's leaves lift and open wide toward the light, then the light dims and the leaves relax.",
-      "base": "its round base",
-      "story": "the seedling's grow-light glows and its leaves reach up toward it",
-      "pause": {
-        "frame": 12,
-        "shows": "the grow-light glowing violet, the seedling's leaves lifted wide"
-      },
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "The grow-light ring starting to glow.",
-            "The ring glowing soft violet.",
-            "The ring glowing brighter, violet light inside the dome.",
-            "The leaves starting to lift.",
-            "The leaves lifting.",
-            "The leaves opening wider.",
-            "The leaves open wide, reaching up.",
-            "The leaves reaching up, the violet glow.",
-            "Reaching up.",
-            "Reaching up, still.",
-            "The seedling's leaves lifted and open wide toward the violet glow of the grow-light."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "The glow dimming a little.",
-            "The leaves relaxing a little.",
-            "The glow dimming.",
-            "The leaves coming down.",
-            "The glow nearly off.",
-            "The glow off.",
-            "The leaves back as in the reference.",
-            "Still.",
-            "Still.",
-            "Nearly the reference.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.45,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.7,
-        0.2,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        24
-      ]
-    },
-    {
-      "id": "grow",
-      "sticker": "seedling",
-      "kind": "move",
-      "description": "the seedling grows up inside its sealed pod: a green shoot pushes out of the soil and opens its leaves.",
-      "base": "its round base",
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "The pod with only dark soil inside, no sprout.",
-            "A tiny pale green tip poking out of the soil.",
-            "A small green shoot.",
-            "The shoot taller, its leaves still folded.",
-            "The leaves starting to open.",
-            "The leaves half open.",
-            "The leaves opening.",
-            "The leaves nearly open.",
-            "The leaves open.",
-            "Settling into the reference.",
-            "Exactly as in the reference."
-          ],
-          "hint": "The pod stays exactly the same in every frame; only the sprout inside it grows."
-        }
-      ],
-      "hold": [
-        0.1,
-        0.1,
-        0.08,
-        0.08,
-        0.08,
-        0.08,
-        0.08,
-        0.08,
-        0.1,
-        0.1,
-        0.12,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        12
-      ]
-    },
-    {
-      "id": "track",
-      "sticker": "solar-panel",
-      "kind": "action",
-      "description": "the solar panel tilts slowly up to follow the sun, glinting, then tilts back down.",
-      "base": "its feet",
-      "story": "the solar panel tilts up to follow the sun",
-      "pause": {
-        "frame": 12,
-        "shows": "the solar panel tilted up high, glinting"
-      },
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "A small glint on the cells.",
-            "The panel starting to tilt up.",
-            "Tilting up.",
-            "Tilting up further.",
-            "Tilted up, a glint.",
-            "Tilted up high.",
-            "A glint sliding across the cells.",
-            "Tilted up high, glinting.",
-            "Still.",
-            "Still, glinting.",
-            "The solar panel tilted up high toward the sun, glinting."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "Starting to tilt back down.",
-            "Tilting down.",
-            "Tilting down.",
-            "Almost back.",
-            "Back, a small glint.",
-            "Still.",
-            "Still.",
-            "Still.",
-            "Still.",
-            "Nearly the reference.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.45,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.7,
-        0.2,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        24
-      ]
-    },
-    {
-      "id": "unfold",
-      "sticker": "solar-panel",
-      "kind": "move",
-      "description": "the solar panel unfolds where it stands: its tripod legs swing open and the panel flips up.",
-      "base": "its feet",
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "A small folded bundle low on the ground: the panel folded flat on top of its closed legs.",
-            "The legs starting to swing open.",
-            "The legs opening, the bundle rising a little.",
-            "The legs open, the folded panel on top.",
-            "The panel starting to flip up.",
-            "The panel flipping up.",
-            "The panel half up.",
-            "The panel nearly up.",
-            "The panel up, tilted.",
-            "Settling into the reference.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.1,
-        0.1,
-        0.08,
-        0.08,
-        0.08,
-        0.08,
-        0.08,
-        0.08,
-        0.1,
-        0.1,
-        0.12,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        12
-      ]
-    },
-    {
-      "id": "lights",
-      "sticker": "greenhouse",
-      "kind": "action",
-      "description": "the greenhouse's grow lights come on inside, filling the dome with a soft violet-pink glow over the plants, then switch off.",
-      "base": "its base",
-      "story": "the greenhouse's grow lights come on and it glows",
-      "pause": {
-        "frame": 12,
-        "shows": "the greenhouse glowing with its lights on"
-      },
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "A small light blinking by the door.",
-            "One grow light flickering on inside.",
-            "Two lights on inside.",
-            "More lights on, a soft violet-pink glow over the plants.",
-            "The glow spreading through the dome.",
-            "The whole dome glowing softly.",
-            "Glowing.",
-            "Glowing.",
-            "Glowing.",
-            "Glowing, still.",
-            "The greenhouse dome glowing a soft violet-pink with all its lights on."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "The lights starting to dim.",
-            "Dimming.",
-            "Dimming.",
-            "Only a few lights on.",
-            "One light on.",
-            "The lights off.",
-            "The light by the door blinking.",
-            "Still.",
-            "Still.",
-            "Nearly the reference.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.45,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.7,
-        0.2,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        24
-      ]
-    },
-    {
-      "id": "inflate",
-      "sticker": "greenhouse",
-      "kind": "move",
-      "description": "the greenhouse inflates where it stands: a flat folded sheet puffs up into the round dome.",
-      "base": "its base",
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "A flat, folded white sheet lying on the ground with the little door frame beside it.",
-            "The sheet starting to puff up.",
-            "A low, wrinkled bump.",
-            "The bump rising, soft ribs showing.",
-            "Half a dome, still wrinkled.",
-            "The dome rising, the plants inside showing.",
-            "The dome nearly round.",
-            "The dome round, a little wobble.",
-            "Full size, the door in place.",
-            "Settling into the reference.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.1,
-        0.1,
-        0.08,
-        0.08,
-        0.08,
-        0.08,
-        0.08,
-        0.08,
-        0.1,
-        0.1,
-        0.12,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        12
-      ]
-    },
-    {
       "id": "blink",
       "sticker": "beacon",
       "kind": "action",
@@ -3224,136 +1610,6 @@
             "Settling into the reference.",
             "Exactly as in the reference."
           ]
-        }
-      ],
-      "hold": [
-        0.1,
-        0.1,
-        0.08,
-        0.08,
-        0.08,
-        0.08,
-        0.08,
-        0.08,
-        0.1,
-        0.1,
-        0.12,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        12
-      ]
-    },
-    {
-      "id": "frost",
-      "sticker": "ice",
-      "kind": "action",
-      "description": "the ice glints in the sunlight and a thin wisp of frosty vapour curls up off it, then fades.",
-      "base": "its bottom",
-      "story": "the ice glints and a wisp of frosty vapour curls up off it",
-      "pause": {
-        "frame": 12,
-        "shows": "the ice with a wisp of frosty vapour curling up off it"
-      },
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "A small glint on one edge.",
-            "A second glint.",
-            "A faint haze starting on its top.",
-            "A thin wisp of frosty white vapour rising off the top.",
-            "The wisp curling up.",
-            "Two thin wisps curling up.",
-            "The wisps rising, a glint.",
-            "The wisps curling.",
-            "The wisps curling, still close to the ice.",
-            "The wisps rising gently.",
-            "The ice glinting, thin wisps of frosty vapour curling up off it."
-          ],
-          "hint": "Keep the wisps of vapour small, close above the ice, inside the cell."
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "The wisps thinning.",
-            "Thinner.",
-            "One faint wisp.",
-            "The last wisp fading.",
-            "Gone, a glint.",
-            "Still.",
-            "A small glint.",
-            "Still.",
-            "Still.",
-            "Nearly the reference.",
-            "Exactly as in the reference."
-          ]
-        }
-      ],
-      "hold": [
-        0.45,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.7,
-        0.2,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.12,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        24
-      ]
-    },
-    {
-      "id": "surface",
-      "sticker": "ice",
-      "kind": "move",
-      "description": "the ice pushes up out of the moon dust where it lies, grey dust sliding off it.",
-      "base": "its bottom",
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the reference.",
-            "Only the tip of the ice showing at the very bottom of the cell, a little dust around it.",
-            "A little more of the tip, dust sliding off.",
-            "The top of the chunk showing.",
-            "A third of the chunk out, dust sliding off.",
-            "Half of the chunk out.",
-            "Most of the chunk out, a little dust on top.",
-            "Nearly all of it out.",
-            "All of it out, a last trickle of dust.",
-            "A glint.",
-            "Settling into the reference.",
-            "Exactly as in the reference."
-          ],
-          "hint": "Every frame's ice rises from the same spot at the bottom of its cell."
         }
       ],
       "hold": [
@@ -3775,6 +2031,3059 @@
             "The wheels turning as in frame 2 (leading back into frame 2).",
             "Slowing to a stop, the antenna swaying.",
             "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "check",
+      "sticker": "man",
+      "kind": "action",
+      "description": "the man astronaut lifts his left forearm, taps the small display on his wrist, reads it and nods, then lowers his arm.",
+      "base": "his boots",
+      "story": "the man astronaut checks the display on his wrist and nods",
+      "pause": {
+        "frame": 12,
+        "shows": "the man astronaut reading the display on his wrist"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "His left forearm starting to lift.",
+            "His forearm rising in front of his chest.",
+            "His forearm level in front of his chest, the wrist display facing him.",
+            "His right hand coming over to the wrist.",
+            "His right finger touching the display.",
+            "The display lit, his finger lifting away.",
+            "Looking down at the display, curious.",
+            "Looking at the display, eyebrows up a little.",
+            "Reading the display.",
+            "Reading, a small smile.",
+            "Reading the display on his wrist, both hands still."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still reading.",
+            "Looking up from the display.",
+            "A small nod.",
+            "Nodding again, smiling.",
+            "His right hand dropping to his side.",
+            "His left forearm starting to lower.",
+            "His forearm at his waist.",
+            "His arm nearly down.",
+            "His arm down by his side.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "lope",
+      "sticker": "man",
+      "kind": "move",
+      "description": "the man astronaut lopes along to the left in low, easy moon-hops, boots close to the ground, then lands and stands.",
+      "base": "his boots",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.6,
+      "hops": true,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Turned three-quarters toward the left, knees slightly bent, ready to hop.",
+            "Pushing off gently, legs straightening, arms close to his body.",
+            "Both boots just above the ground, body upright, arms relaxed and close.",
+            "Floating low, one knee a little forward.",
+            "Coming down, boots reaching for the ground.",
+            "Landing softly on both boots, knees bending a little.",
+            "Knees bent from the landing, arms close.",
+            "Gathering to push off again, almost as in frame 2 (leading back into frame 2).",
+            "Landing a last time, straightening up.",
+            "Standing, turning back toward us, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "In every cell he keeps exactly the size he has in the scaffold: the same head, helmet and body size. A crouch or tucked knees only bend his legs; the drawing is never smaller."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "particles": [
+        {
+          "frame": 7,
+          "effect": "dust-puff",
+          "at": "base",
+          "intensity": 0.5
+        }
+      ]
+    },
+    {
+      "id": "legs",
+      "sticker": "booster",
+      "kind": "action",
+      "description": "the booster folds its four landing legs up against its body and then unfolds them back down.",
+      "base": "its body",
+      "story": "the booster folds its landing legs up and unfolds them again",
+      "register": "body",
+      "pause": {
+        "frame": 12,
+        "shows": "the booster standing with its landing legs folded up against its body"
+      },
+      "room": 1.15,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The four legs starting to lift.",
+            "The legs a quarter of the way up.",
+            "The legs a third of the way up.",
+            "The legs halfway up.",
+            "The legs two thirds up.",
+            "The legs three quarters up.",
+            "The legs nearly folded.",
+            "The legs folded flat against the body.",
+            "Legs folded, the grid fins at the top turning a little.",
+            "The grid fins back.",
+            "The booster with its four landing legs folded flat against its body, its engines just above where its feet were."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Legs folded, still.",
+            "The legs starting to swing down.",
+            "The legs a quarter of the way down.",
+            "The legs halfway down.",
+            "The legs two thirds down.",
+            "The legs three quarters down.",
+            "The legs nearly down.",
+            "The legs down, the feet touching the ground.",
+            "Settling on its legs.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "In the last cells the four landing legs unfold all the way down and spread exactly as wide as in the scaffold's rest pose."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "restFromSticker": false
+    },
+    {
+      "id": "fly",
+      "sticker": "booster",
+      "kind": "move",
+      "description": "the booster flies in upright on a steady bright engine flame, then throttles down and settles on its landing legs.",
+      "base": "its body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 1.0,
+      "flies": true,
+      "room": 1.35,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Upright, engines firing: a bright flame below the engines, about a quarter of the booster's height long.",
+            "The flame flickering a little longer.",
+            "The flame flickering a little shorter.",
+            "The flame bright, a quarter of its height.",
+            "The flame flickering, the grid fins adjusting slightly.",
+            "The flame a little longer.",
+            "The flame a little shorter.",
+            "The flame as in frame 2 (leading back into frame 2).",
+            "Throttling down: the flame shorter, the landing legs ready.",
+            "Touching down: the flame very small, the landing legs on the ground.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "particles": [
+        {
+          "frame": 11,
+          "effect": "dust-puff",
+          "at": "base",
+          "intensity": 0.9
+        }
+      ]
+    },
+    {
+      "id": "hatch",
+      "sticker": "lander",
+      "kind": "action",
+      "description": "the lander's crew hatch swings open and its ladder slides down to the ground, then the ladder slides back up and the hatch closes.",
+      "base": "its landing legs",
+      "story": "the lander opens its hatch and lowers its ladder to the ground",
+      "pause": {
+        "frame": 12,
+        "shows": "the lander with its hatch open and its ladder down to the ground"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "A thin line of light around the crew hatch.",
+            "The hatch starting to swing open.",
+            "The hatch a quarter open.",
+            "The hatch half open.",
+            "The hatch fully open, a soft light inside.",
+            "The ladder starting to slide down.",
+            "The ladder a third of the way down.",
+            "The ladder halfway down.",
+            "The ladder nearly at the ground.",
+            "The ladder's foot touching the ground.",
+            "The lander with its hatch open and its ladder reaching down to the ground."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still, the light inside glowing.",
+            "The ladder starting to slide up.",
+            "The ladder halfway up.",
+            "The ladder nearly up.",
+            "The ladder stowed.",
+            "The hatch starting to close.",
+            "The hatch half closed.",
+            "The hatch nearly closed.",
+            "The hatch closed.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "fly",
+      "sticker": "lander",
+      "kind": "move",
+      "description": "the lander descends upright on small, steady thruster flames, then settles on its landing legs.",
+      "base": "its body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.8,
+      "flies": true,
+      "room": 1.25,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Upright, small bright flames under its thrusters.",
+            "The flames flickering a little longer.",
+            "The flames a little shorter.",
+            "The flames steady.",
+            "The flames flickering, the legs ready.",
+            "The flames a little longer.",
+            "The flames a little shorter.",
+            "The flames as in frame 2 (leading back into frame 2).",
+            "The flames smaller, the legs reaching down.",
+            "Touching down: the flames tiny, the footpads on the ground.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "particles": [
+        {
+          "frame": 11,
+          "effect": "dust-puff",
+          "at": "base",
+          "intensity": 0.8
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "sticker": "capsule",
+      "kind": "action",
+      "description": "the crew capsule tilts its four solar wings toward the sun and turns slowly a little, then turns back and levels its wings.",
+      "base": "its body",
+      "story": "the crew capsule turns its solar wings toward the sun",
+      "register": "body",
+      "pause": {
+        "frame": 12,
+        "shows": "the crew capsule with its solar wings tilted toward the sun"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The wings starting to tilt.",
+            "The wings tilted a little.",
+            "The wings tilting more.",
+            "The wings tilted, catching the light.",
+            "The capsule starting to turn a little.",
+            "Turned a little, the wings tilted.",
+            "Turned a little more.",
+            "Turned, still.",
+            "The wings shining.",
+            "Turned, the wings bright.",
+            "The crew capsule turned a little, its solar wings tilted toward the sun and shining."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still, the wings shining.",
+            "Starting to turn back.",
+            "Turning back.",
+            "Turned nearly back.",
+            "Back, the wings still tilted.",
+            "The wings tilting back.",
+            "The wings nearly level.",
+            "The wings level.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "drift",
+      "sticker": "capsule",
+      "kind": "move",
+      "description": "the crew capsule drifts slowly along to the left through space, rocking very gently, then comes to rest.",
+      "base": "its body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.6,
+      "flies": true,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Drifting to the left, turned very slightly.",
+            "Turned a little more.",
+            "Turning back.",
+            "Level.",
+            "Rocked very slightly the other way.",
+            "A little more.",
+            "Turning back.",
+            "Level, as in frame 2 (leading back into frame 2).",
+            "Slowing, level.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "open",
+      "sticker": "supply-pod",
+      "kind": "action",
+      "description": "the supply pod's side panels swing open to show the cargo crates inside, then close again.",
+      "base": "its legs",
+      "story": "the supply pod opens its side panels to show its cargo",
+      "pause": {
+        "frame": 12,
+        "shows": "the supply pod with its side panels open, crates of supplies inside"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The panel seams lighting up.",
+            "The side panels starting to open.",
+            "The panels a little open.",
+            "The panels a third open.",
+            "The panels half open, crates showing inside.",
+            "The panels two thirds open.",
+            "The panels nearly open.",
+            "The panels fully open.",
+            "The crates inside clearly visible.",
+            "Open, still.",
+            "The supply pod with its side panels open, neat crates of supplies inside."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Open, still.",
+            "The panels starting to close.",
+            "The panels two thirds open.",
+            "The panels half open.",
+            "The panels a third open.",
+            "The panels nearly closed.",
+            "The panels closed.",
+            "The seams' lights fading.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "fly",
+      "sticker": "supply-pod",
+      "kind": "move",
+      "description": "the supply pod descends on small thruster flames, then settles on its legs.",
+      "base": "its body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.8,
+      "flies": true,
+      "room": 1.25,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Upright, small bright flames under its thrusters.",
+            "The flames a little longer.",
+            "The flames a little shorter.",
+            "The flames steady.",
+            "The flames flickering.",
+            "The flames a little longer.",
+            "The flames a little shorter.",
+            "The flames as in frame 2 (leading back into frame 2).",
+            "The flames smaller, the legs reaching down.",
+            "Touching down: the flames tiny, the legs on the ground.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "particles": [
+        {
+          "frame": 11,
+          "effect": "dust-puff",
+          "at": "base",
+          "intensity": 0.7
+        }
+      ]
+    },
+    {
+      "id": "unfold",
+      "sticker": "cubesat",
+      "kind": "action",
+      "description": "the CubeSat extends its thin antenna and opens its two solar panels wider, then folds them back.",
+      "base": "its body",
+      "story": "the CubeSat opens its solar panels and extends its antenna",
+      "register": "body",
+      "pause": {
+        "frame": 12,
+        "shows": "the CubeSat with its antenna extended and its solar panels wide open"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The antenna starting to extend.",
+            "The antenna a little longer.",
+            "The antenna longer.",
+            "The antenna fully extended.",
+            "The panels starting to open wider.",
+            "The panels a little wider.",
+            "The panels wider.",
+            "The panels wide open.",
+            "A small light blinking on the box.",
+            "The light off.",
+            "The CubeSat with its antenna extended and its solar panels wide open."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still.",
+            "The panels closing a little.",
+            "The panels closing more.",
+            "The panels back as in the rest pose.",
+            "The antenna starting to shorten.",
+            "The antenna shorter.",
+            "The antenna nearly back.",
+            "The antenna back.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The two solar panels always stay attached and fully visible on both sides of the box; folding back only makes them a little less wide, exactly as in the scaffold at the end. They never disappear."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "drift",
+      "sticker": "cubesat",
+      "kind": "move",
+      "description": "the CubeSat drifts slowly along to the left, turning very gently, then comes to rest.",
+      "base": "its body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.6,
+      "flies": true,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Drifting to the left, turned very slightly.",
+            "Turned a little more.",
+            "Turning back.",
+            "Level.",
+            "Turned very slightly the other way.",
+            "A little more.",
+            "Turning back.",
+            "Level, as in frame 2 (leading back into frame 2).",
+            "Slowing.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "signal",
+      "sticker": "satellite",
+      "kind": "action",
+      "description": "the satellite turns its dish toward Earth and tilts its solar panels, a small light blinking, then turns everything back.",
+      "base": "its body",
+      "story": "the satellite turns its dish to send a signal",
+      "register": "body",
+      "pause": {
+        "frame": 12,
+        "shows": "the satellite with its dish turned, a small light glowing"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The dish starting to turn.",
+            "The dish turned a little.",
+            "The dish turned more.",
+            "The dish turned, pointing up and to the side.",
+            "The solar panels starting to tilt.",
+            "The panels tilted a little.",
+            "The panels tilted.",
+            "A small light on the dish glowing.",
+            "The light blinking off.",
+            "The light on again.",
+            "The satellite with its dish turned and its light glowing."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still, the light glowing.",
+            "The light off.",
+            "The panels tilting back.",
+            "The panels nearly level.",
+            "The panels level.",
+            "The dish starting to turn back.",
+            "The dish halfway back.",
+            "The dish nearly back.",
+            "The dish back.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The satellite keeps exactly the orientation it has in the first cell: the dish and the solar panels stay on the same sides, nothing flips or mirrors; only the dish turns back and the panels tilt back."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "drift",
+      "sticker": "satellite",
+      "kind": "move",
+      "description": "the satellite drifts slowly along to the left through space, then comes to rest.",
+      "base": "its body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.6,
+      "flies": true,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Drifting to the left, turned very slightly.",
+            "Turned a little more.",
+            "Turning back.",
+            "Level.",
+            "Turned very slightly the other way.",
+            "A little more.",
+            "Turning back.",
+            "Level, as in frame 2 (leading back into frame 2).",
+            "Slowing, level.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "turn",
+      "sticker": "station",
+      "kind": "action",
+      "description": "the space station slowly turns its big solar arrays toward the sun, then turns them back.",
+      "base": "its body",
+      "story": "the space station turns its solar arrays toward the sun",
+      "register": "body",
+      "pause": {
+        "frame": 12,
+        "shows": "the space station with its solar arrays turned toward the sun"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The arrays starting to turn.",
+            "Turned a little.",
+            "Turned a little more.",
+            "Turning.",
+            "Turned a quarter of the way.",
+            "Turning more.",
+            "Turned nearly fully.",
+            "Turned toward the sun, shining.",
+            "Shining.",
+            "Still, shining.",
+            "The space station with its solar arrays turned toward the sun, shining."
+          ],
+          "hint": "The solar arrays keep exactly their dark blue colour in every cell — never yellow, gold or orange; only their angle changes."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still.",
+            "Starting to turn back.",
+            "Turning back.",
+            "A quarter back.",
+            "Halfway back.",
+            "Turning.",
+            "Nearly back.",
+            "Back.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The solar arrays keep exactly their dark blue colour in every cell — never yellow, gold or orange; only their angle changes."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.7,
+        0.2,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "drift",
+      "sticker": "station",
+      "kind": "move",
+      "description": "the space station drifts slowly along to the left through space, then comes to rest.",
+      "base": "its body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.5,
+      "flies": true,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Drifting to the left, turned very slightly.",
+            "Turned a little more.",
+            "Turning back.",
+            "Level.",
+            "Turned very slightly the other way.",
+            "A little more.",
+            "Turning back.",
+            "Level, as in frame 2 (leading back into frame 2).",
+            "Slowing, level.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "turn",
+      "sticker": "probe",
+      "kind": "action",
+      "description": "the probe swivels its dish and extends its long instrument boom a little, then pulls it back and turns its dish back.",
+      "base": "its body",
+      "story": "the probe turns its dish and reaches out its instrument boom",
+      "register": "body",
+      "pause": {
+        "frame": 12,
+        "shows": "the probe with its dish swivelled and its boom reaching out"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The dish starting to swivel.",
+            "The dish swivelled a little.",
+            "The dish swivelled more.",
+            "The dish swivelled.",
+            "The boom starting to extend.",
+            "The boom a little longer.",
+            "The boom longer.",
+            "The boom extended.",
+            "A small light at the boom's tip glowing.",
+            "The light off.",
+            "The probe with its dish swivelled and its boom reaching out."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still.",
+            "The boom starting to pull back.",
+            "The boom shorter.",
+            "The boom nearly back.",
+            "The boom back.",
+            "The dish starting to swivel back.",
+            "The dish halfway back.",
+            "The dish nearly back.",
+            "The dish back.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "drift",
+      "sticker": "probe",
+      "kind": "move",
+      "description": "the probe drifts slowly along to the left through space, then comes to rest.",
+      "base": "its body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.6,
+      "flies": true,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Drifting to the left, turned very slightly.",
+            "Turned a little more.",
+            "Turning back.",
+            "Level.",
+            "Turned very slightly the other way.",
+            "A little more.",
+            "Turning back.",
+            "Level, as in frame 2 (leading back into frame 2).",
+            "Slowing, level.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "glow",
+      "sticker": "comet",
+      "kind": "action",
+      "description": "the comet's glowing haze brightens and its tail streams out a little longer, then it settles back to its gentle glow.",
+      "base": "its nucleus",
+      "story": "the comet glows brighter, its tail streaming",
+      "register": "body",
+      "pause": {
+        "frame": 12,
+        "shows": "the comet glowing brightly, its tail streaming out longer"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The haze a little brighter.",
+            "Brighter.",
+            "The tail a little longer.",
+            "The tail longer, brighter.",
+            "Brighter still.",
+            "The haze glowing bright.",
+            "The tail streaming.",
+            "The tail rippling softly.",
+            "Bright, the tail long.",
+            "Bright.",
+            "The comet glowing brightly, its tail streaming out longer."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Bright, still.",
+            "The glow softening.",
+            "Softer.",
+            "The tail a little shorter.",
+            "Shorter.",
+            "The haze dimmer.",
+            "Dimmer.",
+            "Nearly its usual glow.",
+            "Its usual glow.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "streak",
+      "sticker": "comet",
+      "kind": "move",
+      "description": "the comet glides along to the left through space, its tail streaming behind it, then slows.",
+      "base": "its nucleus",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 1.0,
+      "flies": true,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Gliding to the left, the tail streaming behind.",
+            "The tail rippling.",
+            "The tail streaming.",
+            "The tail rippling the other way.",
+            "The tail streaming.",
+            "The tail rippling.",
+            "The tail streaming.",
+            "The tail as in frame 2 (leading back into frame 2).",
+            "Slowing, the tail settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "tumble",
+      "sticker": "asteroid",
+      "kind": "action",
+      "description": "the asteroid tumbles slowly end over end, all the way round.",
+      "base": "its body",
+      "story": "the asteroid tumbles slowly end over end",
+      "register": "body",
+      "pause": {
+        "frame": 12,
+        "shows": "the asteroid halfway through its tumble, upside down"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Turned a sixteenth of a turn.",
+            "An eighth of a turn round.",
+            "Three sixteenths.",
+            "A quarter of a turn round.",
+            "Five sixteenths.",
+            "Three eighths.",
+            "Seven sixteenths.",
+            "Nearly half a turn.",
+            "Half a turn round, upside down.",
+            "Upside down, still.",
+            "The asteroid upside down, half a turn round from the rest pose."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Turning on: nine sixteenths.",
+            "Five eighths.",
+            "Eleven sixteenths.",
+            "Three quarters round.",
+            "Thirteen sixteenths.",
+            "Seven eighths.",
+            "Fifteen sixteenths.",
+            "Nearly all the way round.",
+            "All the way round.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.7,
+        0.2,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "drift",
+      "sticker": "asteroid",
+      "kind": "move",
+      "description": "the asteroid drifts slowly along to the left, turning very slowly, then comes to rest.",
+      "base": "its body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.6,
+      "flies": true,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Drifting to the left, turned very slightly.",
+            "Turned a little more.",
+            "Turned more.",
+            "Turned a little further.",
+            "Turning on.",
+            "Turning on.",
+            "Turning back a little.",
+            "As in frame 2 (leading back into frame 2).",
+            "Slowing.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "drill",
+      "sticker": "rover",
+      "kind": "action",
+      "description": "the rover unfolds its arm, lowers its drill to the ground and drills, then lifts the arm and folds it back.",
+      "base": "its wheels",
+      "story": "the rover drills into the ground for a sample",
+      "pause": {
+        "frame": 12,
+        "shows": "the rover drilling into the ground"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The arm starting to unfold.",
+            "The arm reaching forward.",
+            "The arm lowering toward the ground in front of the wheels.",
+            "The drill tip just above the ground.",
+            "The drill tip touching the ground at the level of the wheels' bottoms.",
+            "The drill spinning.",
+            "Drilling.",
+            "Drilling, the camera head tilted down, watching.",
+            "Drilling.",
+            "Drilling deeper.",
+            "The drill down in the ground, spinning, the camera head watching."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Drilling.",
+            "The drill stopping.",
+            "The arm lifting the drill out.",
+            "The arm rising.",
+            "The arm raised, the camera head looking at the drill tip.",
+            "The camera head nodding.",
+            "The arm folding back.",
+            "The arm folding further.",
+            "The arm in its place.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "particles": [
+        {
+          "frame": 6,
+          "effect": "dust-puff",
+          "at": [
+            0.3,
+            0.84
+          ],
+          "intensity": 0.6
+        },
+        {
+          "frame": 9,
+          "effect": "dust-puff",
+          "at": [
+            0.3,
+            0.84
+          ],
+          "intensity": 0.5
+        }
+      ]
+    },
+    {
+      "id": "drive",
+      "sticker": "rover",
+      "kind": "move",
+      "description": "the rover drives along to the left on its six wheels, its mast bobbing gently, then stops.",
+      "base": "its wheels",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.5,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Driving to the left: the wheels turning.",
+            "The wheels turning further, the body rocking up a little over a pebble.",
+            "The wheels turning, the body level.",
+            "The wheels turning, the mast bobbing forward a little.",
+            "The wheels turning, the body rocking a little the other way.",
+            "The wheels turning, the mast bobbing back.",
+            "The wheels turning, the body level.",
+            "The wheels turning as in frame 2 (leading back into frame 2).",
+            "Slowing to a stop, the mast swaying.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "wheelspin",
+      "sticker": "buggy",
+      "kind": "action",
+      "description": "the moon buggy's wheels spin in place, the buggy rocking a little, then stop.",
+      "base": "its wheels",
+      "story": "the moon buggy spins its wheels",
+      "pause": {
+        "frame": 12,
+        "shows": "the moon buggy spinning its wheels"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The wheels starting to turn.",
+            "The wheels turning.",
+            "The wheels turning faster.",
+            "The wheels spinning, the buggy rocking back a little.",
+            "Spinning, rocking forward.",
+            "Spinning, level.",
+            "Spinning, rocking back.",
+            "Spinning, rocking forward.",
+            "Spinning, level.",
+            "Spinning.",
+            "The moon buggy spinning its wheels in place, rocking a little."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Spinning.",
+            "The wheels slowing.",
+            "Slower.",
+            "Slower, level.",
+            "Nearly stopped.",
+            "Stopped, the buggy rocking a little.",
+            "Rocking back.",
+            "Settling.",
+            "Still.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "particles": [
+        {
+          "frame": 5,
+          "effect": "dust-puff",
+          "at": "base",
+          "intensity": 0.6
+        },
+        {
+          "frame": 8,
+          "effect": "dust-puff",
+          "at": "base",
+          "intensity": 0.6
+        },
+        {
+          "frame": 11,
+          "effect": "dust-puff",
+          "at": "base",
+          "intensity": 0.6
+        }
+      ]
+    },
+    {
+      "id": "drive",
+      "sticker": "buggy",
+      "kind": "move",
+      "description": "the moon buggy drives along to the left, bouncing gently on its wheels, then stops.",
+      "base": "its wheels",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.6,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Driving to the left: the wheels turning.",
+            "The wheels turning, a small bounce up.",
+            "The wheels turning, level.",
+            "The wheels turning, the antenna swaying forward.",
+            "The wheels turning, a small bounce.",
+            "The wheels turning, the antenna swaying back.",
+            "The wheels turning, level.",
+            "The wheels turning as in frame 2 (leading back into frame 2).",
+            "Slowing to a stop.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "dig",
+      "sticker": "excavator",
+      "kind": "action",
+      "description": "the excavator lowers its scoop, digs into the ground and lifts up a scoopful of grey moon soil, then lowers it back.",
+      "base": "its tracks",
+      "story": "the excavator digs up a scoopful of moon soil",
+      "pause": {
+        "frame": 12,
+        "shows": "the excavator holding up a full scoop of grey moon soil"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The arm starting to lower.",
+            "The arm lower.",
+            "The scoop near the ground.",
+            "The scoop touching the ground in front of the tracks.",
+            "The scoop pushing in.",
+            "The scoop tilting, digging.",
+            "The scoop curling up, full of grey soil.",
+            "The arm starting to lift.",
+            "The arm lifting the full scoop.",
+            "The arm raised, the full scoop up.",
+            "The excavator holding up a full scoop of grey moon soil."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still, holding the scoop up.",
+            "The arm lowering.",
+            "The scoop near the ground.",
+            "The scoop tilting, the soil going back down in one lump.",
+            "The scoop empty.",
+            "The arm lifting a little.",
+            "The arm coming back.",
+            "The arm nearly in place.",
+            "The arm in place.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "particles": [
+        {
+          "frame": 6,
+          "effect": "dust-puff",
+          "at": [
+            0.22,
+            0.86
+          ],
+          "intensity": 0.7
+        },
+        {
+          "frame": 17,
+          "effect": "dust-puff",
+          "at": [
+            0.22,
+            0.86
+          ],
+          "intensity": 0.6
+        }
+      ]
+    },
+    {
+      "id": "trundle",
+      "sticker": "excavator",
+      "kind": "move",
+      "description": "the excavator trundles along to the left on its tracks, then stops.",
+      "base": "its tracks",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.4,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Trundling to the left: the tracks moving.",
+            "The tracks moving, the body rocking a little.",
+            "The tracks moving, level.",
+            "The tracks moving, the arm swaying a little.",
+            "The tracks moving, rocking the other way.",
+            "The tracks moving.",
+            "The tracks moving, level.",
+            "The tracks moving as in frame 2 (leading back into frame 2).",
+            "Slowing to a stop.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "print",
+      "sticker": "printer",
+      "kind": "action",
+      "description": "the building printer's head runs along the curved wall, laying one more grey layer on top, then moves back.",
+      "base": "its legs",
+      "story": "the building printer prints another layer of the wall",
+      "pause": {
+        "frame": 12,
+        "shows": "the building printer halfway along the wall, laying a new layer"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The print head lowering a little to the wall.",
+            "The head at the start of the wall.",
+            "The head moving along, a new grey layer behind it.",
+            "Moving along, the layer growing.",
+            "A third of the way along.",
+            "Moving along.",
+            "Nearly halfway.",
+            "Halfway along the wall.",
+            "Moving on.",
+            "Moving on, the layer growing.",
+            "The building printer halfway along the wall, laying a new layer."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Moving on.",
+            "Two thirds along.",
+            "Three quarters along.",
+            "Nearly at the end.",
+            "At the end of the wall, the new layer complete.",
+            "The head lifting.",
+            "The head moving back along the gantry.",
+            "Moving back.",
+            "Back at the middle.",
+            "Nearly the rest pose, the wall one layer taller.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "unfold",
+      "sticker": "printer",
+      "kind": "move",
+      "description": "the building printer unfolds where it stands: its legs swing out and its gantry rises.",
+      "base": "its legs",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "A small folded bundle low on the ground: the gantry folded down on its closed legs.",
+            "The legs starting to swing out.",
+            "The legs opening, the bundle rising a little.",
+            "The legs out, the gantry starting to rise.",
+            "The gantry rising.",
+            "The gantry halfway up.",
+            "The gantry nearly up.",
+            "The gantry up, the hopper unfolding.",
+            "Nearly the rest pose.",
+            "Settling into the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.1,
+        0.1,
+        0.12,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "listen",
+      "sticker": "seismometer",
+      "kind": "action",
+      "description": "the seismometer's little light blinks on and the drum gives a tiny wobble as it feels a moonquake, then settles.",
+      "base": "its legs",
+      "story": "the seismometer feels a moonquake, its light blinking",
+      "pause": {
+        "frame": 12,
+        "shows": "the seismometer with its light on, feeling a moonquake"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The light on top starting to glow.",
+            "The light on.",
+            "The drum wobbling very slightly.",
+            "Wobbling the other way.",
+            "Wobbling.",
+            "Wobbling the other way.",
+            "The light blinking.",
+            "The light on, wobbling a little.",
+            "Still, the light on.",
+            "The light glowing.",
+            "The seismometer with its light on, feeling a moonquake."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still.",
+            "A last tiny wobble.",
+            "Still.",
+            "The light blinking.",
+            "The light on.",
+            "The light dimming.",
+            "Dimmer.",
+            "The light off.",
+            "Still.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "unfold",
+      "sticker": "seismometer",
+      "kind": "move",
+      "description": "the seismometer unfolds where it stands: its legs swing out and its solar panel opens.",
+      "base": "its legs",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "A small folded bundle low on the ground.",
+            "The legs starting to swing out.",
+            "The legs opening.",
+            "The drum rising on its legs.",
+            "The drum up.",
+            "The solar panel starting to open.",
+            "The panel half open.",
+            "The panel open.",
+            "Nearly the rest pose.",
+            "Settling into the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.1,
+        0.1,
+        0.12,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "track",
+      "sticker": "solar-panel",
+      "kind": "action",
+      "description": "the solar panel slowly tilts toward the sun, then tilts back.",
+      "base": "its feet",
+      "story": "the solar panel turns to face the sun",
+      "pause": {
+        "frame": 12,
+        "shows": "the solar panel tilted up toward the sun"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The panel starting to tilt.",
+            "Tilted a little.",
+            "Tilted more.",
+            "Tilting.",
+            "Tilted further.",
+            "Tilting.",
+            "Nearly tilted fully.",
+            "Tilted toward the sun.",
+            "Shining.",
+            "Still, shining.",
+            "The solar panel tilted up toward the sun, shining."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still.",
+            "Starting to tilt back.",
+            "Tilting back.",
+            "Tilting back more.",
+            "Halfway back.",
+            "Tilting.",
+            "Nearly back.",
+            "Back.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.7,
+        0.2,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "unfold",
+      "sticker": "solar-panel",
+      "kind": "move",
+      "description": "the solar panel unfolds where it stands: its tripod legs swing open and the panel flips up.",
+      "base": "its feet",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "A small folded bundle low on the ground: the panel folded flat on its closed legs.",
+            "The legs starting to swing open.",
+            "The legs opening, the bundle rising a little.",
+            "The legs open.",
+            "The panel starting to flip up.",
+            "The panel a quarter up.",
+            "The panel halfway up.",
+            "The panel up, tilted.",
+            "Nearly the rest pose.",
+            "Settling into the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.1,
+        0.1,
+        0.12,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "lights",
+      "sticker": "greenhouse",
+      "kind": "action",
+      "description": "the greenhouse's grow lights glow on and the plants inside perk up, then the lights dim again.",
+      "base": "its base",
+      "story": "the greenhouse lights up and its plants perk up",
+      "pause": {
+        "frame": 12,
+        "shows": "the greenhouse with its grow lights on and its plants perked up"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The grow lights starting to glow.",
+            "The lights glowing softly.",
+            "The lights brighter.",
+            "The lights bright.",
+            "The plants starting to lift.",
+            "The plants lifting.",
+            "The plants perked up.",
+            "The plants perked up, bright.",
+            "Glowing.",
+            "Still, glowing.",
+            "The greenhouse with its grow lights on and its plants perked up."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Glowing.",
+            "The lights dimming a little.",
+            "Dimmer.",
+            "The plants relaxing a little.",
+            "Relaxing.",
+            "Dimmer still.",
+            "Nearly off.",
+            "The lights off.",
+            "Still.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "inflate",
+      "sticker": "greenhouse",
+      "kind": "move",
+      "description": "the greenhouse inflates where it stands: its clear dome rises and rounds out over its base.",
+      "base": "its base",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The flat base on the ground, the dome folded flat on it.",
+            "The dome starting to lift.",
+            "The dome a little up, soft.",
+            "The dome rising.",
+            "The dome halfway up.",
+            "The dome rounding out.",
+            "The dome nearly full.",
+            "The dome full, the plants showing inside.",
+            "Nearly the rest pose.",
+            "Settling into the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.1,
+        0.1,
+        0.12,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "reach",
+      "sticker": "seedling",
+      "kind": "action",
+      "description": "the seedling stretches up a little and opens a new tiny leaf, then relaxes.",
+      "base": "its pot",
+      "story": "the seedling stretches up and opens a new leaf",
+      "pause": {
+        "frame": 12,
+        "shows": "the seedling stretched up with a new leaf open"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Starting to stretch.",
+            "Stretching a little.",
+            "Stretching more.",
+            "A tiny new leaf starting to show.",
+            "The new leaf opening.",
+            "The new leaf open.",
+            "Stretching up.",
+            "Stretched up.",
+            "The leaves turning a little to the light.",
+            "Still.",
+            "The seedling stretched up with a new tiny leaf open."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still.",
+            "Relaxing a little.",
+            "Relaxing.",
+            "Relaxing more.",
+            "The new leaf staying.",
+            "Nearly settled.",
+            "Settled.",
+            "Still.",
+            "Still.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "grow",
+      "sticker": "seedling",
+      "kind": "move",
+      "description": "the seedling sprouts where it stands: a tiny shoot rises from its pot and opens its leaves.",
+      "base": "its pot",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The pot with only soil showing.",
+            "A tiny shoot just showing.",
+            "The shoot a little taller.",
+            "The shoot taller.",
+            "The first leaves starting to open.",
+            "The leaves opening.",
+            "The leaves open.",
+            "Nearly full size.",
+            "Nearly the rest pose.",
+            "Settling into the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.1,
+        0.1,
+        0.12,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "turn",
+      "sticker": "flower",
+      "kind": "action",
+      "description": "the grow light in the flower's box pulses brighter and the zinnia turns its bloom toward it, then turns back.",
+      "base": "its box",
+      "story": "the flower turns its bloom toward its grow light",
+      "pause": {
+        "frame": 12,
+        "shows": "the flower with its bloom turned up toward the grow light"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The grow light starting to brighten.",
+            "The light brighter.",
+            "The bloom starting to turn up.",
+            "Turning up.",
+            "Turning.",
+            "Turned up a little more.",
+            "Turned toward the light.",
+            "Turned toward the light, bright.",
+            "The light pulsing.",
+            "Bright, still.",
+            "The flower with its bloom turned up toward the glowing grow light."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still.",
+            "The light softening.",
+            "The bloom starting to turn back.",
+            "Turning back.",
+            "Turning back more.",
+            "Nearly back.",
+            "Back.",
+            "The light at its usual glow.",
+            "Still.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "grow",
+      "sticker": "flower",
+      "kind": "move",
+      "description": "the flower grows in its box: a shoot rises, leaves open, and the bloom opens.",
+      "base": "its box",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The closed box with only soil inside.",
+            "A tiny shoot showing.",
+            "The shoot taller.",
+            "The leaves opening.",
+            "A small closed bud.",
+            "The bud swelling.",
+            "The bud starting to open.",
+            "The bloom half open.",
+            "The bloom open.",
+            "Settling into the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.1,
+        0.1,
+        0.12,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "frost",
+      "sticker": "ice",
+      "kind": "action",
+      "description": "a thin layer of white frost spreads across the ice, then slowly clears.",
+      "base": "its bottom",
+      "story": "frost spreads across the ice and slowly clears",
+      "pause": {
+        "frame": 12,
+        "shows": "the ice covered in white frost"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "A little frost at one corner.",
+            "The frost spreading.",
+            "Spreading more.",
+            "A third frosted.",
+            "Half frosted.",
+            "More frosted.",
+            "Nearly all frosted.",
+            "All frosted.",
+            "Frosted, shining.",
+            "Still.",
+            "The ice covered in a thin layer of white frost."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still.",
+            "The frost starting to clear.",
+            "Clearing.",
+            "Half clear.",
+            "More clear.",
+            "Nearly clear.",
+            "Clear.",
+            "Shining.",
+            "Still.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "surface",
+      "sticker": "ice",
+      "kind": "move",
+      "description": "the ice pushes up out of the ground where it lies.",
+      "base": "its bottom",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Only the tip of the ice showing at the very bottom of the cell.",
+            "A little more of the tip.",
+            "The top of the chunk showing.",
+            "A third of it up.",
+            "Half of it up.",
+            "Most of it up.",
+            "Nearly all of it up.",
+            "All of it up.",
+            "Nearly the rest pose.",
+            "Settling into the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.1,
+        0.1,
+        0.12,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "particles": [
+        {
+          "frame": 3,
+          "effect": "dust-puff",
+          "at": "base",
+          "intensity": 0.6
+        },
+        {
+          "frame": 6,
+          "effect": "dust-puff",
+          "at": "base",
+          "intensity": 0.5
+        }
+      ]
+    },
+    {
+      "id": "glint",
+      "sticker": "moon-rock",
+      "kind": "action",
+      "description": "the moon rock rocks gently to one side and back, its tiny crystals catching the light and twinkling.",
+      "base": "its bottom",
+      "story": "the moon rock rocks gently, its crystals twinkling",
+      "pause": {
+        "frame": 12,
+        "shows": "the moon rock tipped to one side, its crystals twinkling"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Starting to tip a little.",
+            "Tipped a little.",
+            "Tipped more.",
+            "Tipped to one side, crystals catching the light.",
+            "Twinkling.",
+            "Still, twinkling.",
+            "Tipped, bright.",
+            "Twinkling.",
+            "Still.",
+            "Twinkling.",
+            "The moon rock tipped to one side, its crystals twinkling."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still.",
+            "Starting to tip back.",
+            "Tipping back.",
+            "Nearly upright.",
+            "Upright.",
+            "Tipping a little the other way.",
+            "Back.",
+            "Twinkling softly.",
+            "Still.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "roll",
+      "sticker": "moon-rock",
+      "kind": "move",
+      "description": "the moon rock rolls along to the left over the ground, then comes to rest.",
+      "base": "its bottom",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.5,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Rolling to the left: turned an eighth.",
+            "Turned a quarter.",
+            "Three eighths.",
+            "Half a turn.",
+            "Five eighths.",
+            "Three quarters.",
+            "Seven eighths.",
+            "As in frame 2 (leading back into frame 2).",
+            "Slowing, nearly upright.",
+            "Nearly the rest pose.",
             "Exactly as in the scaffold: the rest pose."
           ]
         }

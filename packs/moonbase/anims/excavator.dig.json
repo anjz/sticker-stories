@@ -1,19 +1,19 @@
 {
   "id": "dig",
   "sticker": "excavator",
-  "description": "the excavator digs up moon dust with its spinning drum",
+  "description": "the excavator digs up a scoopful of moon soil",
   "sheet": "anims/excavator.dig.webp",
   "frame": {
-    "width": 527,
-    "height": 453
+    "width": 538,
+    "height": 460
   },
   "columns": 6,
   "count": 24,
   "rest": {
-    "x": 0.05313,
-    "y": 0.05298,
-    "width": 0.91461,
-    "height": 0.9117
+    "x": 0.06877,
+    "y": 0.06739,
+    "width": 0.89591,
+    "height": 0.89565
   },
   "stickerBox": {
     "x": 0.07943,
@@ -49,6 +49,22 @@
   ],
   "pause": {
     "frame": 11,
-    "shows": "the excavator digging, its front drum spinning in the dust"
-  }
+    "shows": "the excavator holding up a full scoop of grey moon soil"
+  },
+  "particles": [
+    {
+      "frame": 5,
+      "effect": "dust-puff",
+      "x": 0.22,
+      "y": 0.86,
+      "intensity": 0.7
+    },
+    {
+      "frame": 16,
+      "effect": "dust-puff",
+      "x": 0.22,
+      "y": 0.86,
+      "intensity": 0.6
+    }
+  ]
 }

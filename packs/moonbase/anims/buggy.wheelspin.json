@@ -1,19 +1,19 @@
 {
   "id": "wheelspin",
   "sticker": "buggy",
-  "description": "the moon buggy's wheels spin in the dust",
+  "description": "the moon buggy spins its wheels",
   "sheet": "anims/buggy.wheelspin.webp",
   "frame": {
-    "width": 571,
-    "height": 502
+    "width": 568,
+    "height": 469
   },
   "columns": 6,
   "count": 24,
   "rest": {
-    "x": 0.02627,
-    "y": 0.09761,
-    "width": 0.84413,
-    "height": 0.86853
+    "x": 0.06162,
+    "y": 0.03198,
+    "width": 0.84859,
+    "height": 0.93177
   },
   "stickerBox": {
     "x": 0.13932,
@@ -49,6 +49,29 @@
   ],
   "pause": {
     "frame": 11,
-    "shows": "the moon buggy's wheels spinning in a cloud of grey dust"
-  }
+    "shows": "the moon buggy spinning its wheels"
+  },
+  "particles": [
+    {
+      "frame": 4,
+      "effect": "dust-puff",
+      "x": 0.4993,
+      "y": 0.8255,
+      "intensity": 0.6
+    },
+    {
+      "frame": 7,
+      "effect": "dust-puff",
+      "x": 0.4993,
+      "y": 0.8255,
+      "intensity": 0.6
+    },
+    {
+      "frame": 10,
+      "effect": "dust-puff",
+      "x": 0.4993,
+      "y": 0.8255,
+      "intensity": 0.6
+    }
+  ]
 }
