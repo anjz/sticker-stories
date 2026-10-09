@@ -87,6 +87,8 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
   alternatives to pick from, prompts in `author/art/app/ui.json`). API keys
   live in `tools/.env` (`ELEVENLABS_API_KEY`, `OPENAI_API_KEY`).
 - `docs/` — deep documentation; reference it, don't duplicate it here.
+  Art rules for every new pack (drawn size, animations that hold their
+  size, slim framing elements): `docs/pack-art.md`.
   Narration ships per language as Apple-hosted asset packs, not in the app:
   `docs/asset-delivery.md`.
 

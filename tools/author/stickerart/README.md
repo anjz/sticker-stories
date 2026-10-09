@@ -38,6 +38,14 @@ go run ./packager validate ../packs/forest
   size rather than fill a third of a phone. Its text is the direction;
   places on those elements then need `wideAreas` (`docs/pack-format.md`,
   "Features").
+- `sizeInArt` (`true` for every new pack — `docs/pack-art.md`): each
+  sticker is drawn at its size class's share of its image (huge 94 % …
+  tiny 50 %), centred, with room around it for its animations; install
+  writes each sticker's `content` into the manifest. Every sticker then
+  needs a `size`. Turning it on for drawn stickers only re-finishes the
+  kept raws (no API calls); re-assemble their animations afterwards
+  (`stickeranim render`, also free) so the frames land on the new
+  drawings.
 - `stickerSize` (768 — `docs/pack-format.md`, "Image formats"), `border`
   (white outline as a fraction of the size, 0.025) and `margin` (0.03).
 - `finish` (optional): the printed-sticker material the post-processing
