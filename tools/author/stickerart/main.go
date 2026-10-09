@@ -230,6 +230,8 @@ func main() {
 		err = runRender(os.Args[2:])
 	case "install":
 		err = runInstall(os.Args[2:])
+	case "pick":
+		err = runPick(os.Args[2:])
 	default:
 		usage()
 	}
@@ -240,7 +242,7 @@ func main() {
 }
 
 func usage() {
-	fmt.Fprintln(os.Stderr, "usage: stickerart init|render|install -pack <pack-dir> [flags]  (see -h on each)")
+	fmt.Fprintln(os.Stderr, "usage: stickerart init|render|pick|install -pack <pack-dir> [flags]  (see -h on each)")
 	os.Exit(2)
 }
 
@@ -341,6 +343,9 @@ type renderOpts struct {
 	force    bool
 	dry      bool
 	parallel int
+	// options > 0 renders that many candidates of each -only sticker into
+	// out/options instead of the sticker itself (pick adopts one).
+	options int
 }
 
 type renderer struct {
@@ -379,12 +384,16 @@ func runRender(args []string) error {
 	parallel := fs.Int("parallel", 4, "stickers rendered concurrently")
 	force := fs.Bool("force", false, "re-render even if nothing changed")
 	dry := fs.Bool("dry-run", false, "list what would be generated; no API calls")
+	options := fs.Int("options", 0, "render this many candidates of each -only sticker into out/options to choose from (stickerart pick adopts one); the stickers themselves are untouched")
 	fs.Parse(args)
 	c, err := load(*packDir, *artDir, true)
 	if err != nil {
 		return err
 	}
-	o := renderOpts{quality: *quality, force: *force, dry: *dry, parallel: *parallel}
+	if *options > 0 && *only == "" {
+		return errors.New("-options needs -only: name the stickers to draw candidates of")
+	}
+	o := renderOpts{quality: *quality, force: *force, dry: *dry, parallel: *parallel, options: *options}
 	if *only != "" {
 		o.only = map[string]bool{}
 		for _, id := range strings.Split(*only, ",") {
@@ -466,6 +475,10 @@ func (r *renderer) run() error {
 		if small, err := downscale(sheet, 768); err == nil {
 			sheet = small
 		}
+	}
+
+	if r.o.options > 0 {
+		return r.stickerOptions(sheet, sheetFP)
 	}
 
 	// 2. Stickers, in parallel.
@@ -590,8 +603,7 @@ func (r *renderer) sticker(s stickerSpec, sheet []byte, sheetFP string) error {
 		}
 		r.say("▶ %s", s.ID)
 		started := time.Now()
-		prompt := fmt.Sprintf("%s\n\nUsing the attached style sheet as the exact reference for style, palette and line, draw one sticker: %s Single subject, centred, filling most of the frame, whole subject visible with nothing cut off, no shadow on the ground, no text, no background — fully transparent background.", cfg.Style, s.Prompt)
-		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: fmt.Sprintf("%dx%d", stickerGenPx, stickerGenPx), Quality: r.o.quality, Background: "transparent", References: [][]byte{sheet}})
+		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: r.stickerPrompt(s), Size: fmt.Sprintf("%dx%d", stickerGenPx, stickerGenPx), Quality: r.o.quality, Background: "transparent", References: [][]byte{sheet}})
 		if err != nil {
 			return err
 		}
@@ -614,6 +626,102 @@ func (r *renderer) sticker(s stickerSpec, sheet []byte, sheetFP string) error {
 		return err
 	}
 	r.say("✓ %s finished", s.ID)
+	return nil
+}
+
+// stickerPrompt is the prompt a sticker's art is drawn from.
+func (r *renderer) stickerPrompt(s stickerSpec) string {
+	return fmt.Sprintf("%s\n\nUsing the attached style sheet as the exact reference for style, palette and line, draw one sticker: %s Single subject, centred, filling most of the frame, whole subject visible with nothing cut off, no shadow on the ground, no text, no background — fully transparent background.", r.c.cfg.Style, s.Prompt)
+}
+
+// optionPath is where candidate k (1-based) of a sticker is kept: the raw
+// and, next to it, its finished preview.
+func (r *renderer) optionPath(id string, k int, raw bool) string {
+	name := fmt.Sprintf("%s.%d.png", id, k)
+	if raw {
+		name = fmt.Sprintf("%s.%d.raw.png", id, k)
+	}
+	return r.out("options", name)
+}
+
+// stickerOptions draws r.o.options candidates of every -only sticker from
+// its prompt — the model draws it differently each time — and finishes
+// each into a preview, leaving the sticker itself alone. Candidates
+// already drawn from the same prompt are kept, so a larger -options adds
+// more.
+func (r *renderer) stickerOptions(sheet []byte, sheetFP string) error {
+	cfg := r.c.cfg
+	os.MkdirAll(r.out("options"), 0o755)
+	type job struct {
+		s stickerSpec
+		k int
+	}
+	var jobs []job
+	for _, s := range cfg.Stickers {
+		if !r.want(s.ID) {
+			continue
+		}
+		for k := 1; k <= r.o.options; k++ {
+			jobs = append(jobs, job{s, k})
+		}
+	}
+	var (
+		wg       sync.WaitGroup
+		queue    = make(chan job)
+		failures []string
+	)
+	workers := max(r.o.parallel, 1)
+	if r.o.dry {
+		workers = 1
+	}
+	for w := 0; w < workers; w++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			for j := range queue {
+				genFP := hashOf(toolVersion, "sticker", sheetFP, cfg.Style, j.s.Prompt, r.o.quality, editModel)
+				raw, preview := r.optionPath(j.s.ID, j.k, true), r.optionPath(j.s.ID, j.k, false)
+				if r.upToDate(raw, genFP) && exists(preview) {
+					continue
+				}
+				if r.o.dry {
+					r.plan(fmt.Sprintf("sticker %s option %d (%dx%d, transparent)", j.s.ID, j.k, stickerGenPx, stickerGenPx))
+					continue
+				}
+				started := time.Now()
+				img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: r.stickerPrompt(j.s), Size: fmt.Sprintf("%dx%d", stickerGenPx, stickerGenPx), Quality: r.o.quality, Background: "transparent", References: [][]byte{sheet}})
+				if err == nil {
+					err = os.WriteFile(raw, img.PNG, 0o644)
+				}
+				if err == nil {
+					r.done(raw, genFP)
+					err = r.finish(fmt.Sprintf("%s.%d", j.s.ID, j.k), raw, preview, "", cfg.fill(j.s))
+				}
+				if err != nil {
+					r.mu.Lock()
+					failures = append(failures, fmt.Sprintf("%s option %d: %v", j.s.ID, j.k, err))
+					r.mu.Unlock()
+					r.say("✗ %s option %d: %v", j.s.ID, j.k, err)
+					continue
+				}
+				r.say("✓ %s option %d (%s, %.0fs)", j.s.ID, j.k, r.charge(img.Usage), time.Since(started).Seconds())
+			}
+		}()
+	}
+	for _, j := range jobs {
+		queue <- j
+	}
+	close(queue)
+	wg.Wait()
+	if r.o.dry {
+		fmt.Printf("\nDry run: %d candidates to draw:\n  %s\n", len(r.planned), strings.Join(r.planned, "\n  "))
+		return nil
+	}
+	r.summary()
+	if len(failures) > 0 {
+		return fmt.Errorf("%d candidate(s) failed:\n  %s", len(failures), strings.Join(failures, "\n  "))
+	}
+	fmt.Printf("Candidates in %s; adopt one with: stickerart pick -pack %s -sticker <id> -option <n>\n", r.out("options"), r.c.packDir)
 	return nil
 }
 
@@ -1186,6 +1294,45 @@ func (r *renderer) summary() {
 }
 
 // ---------- install ----------
+
+// runPick adopts a candidate drawn by render -options as a sticker's art:
+// its raw becomes the sticker's kept raw, with the fingerprint it was drawn
+// under, and everything made from the old raw (the finished sticker, its
+// prop removal, its faces) is marked stale — the next render finishes it
+// and redraws its faces, with no new drawing of the sticker itself.
+func runPick(args []string) error {
+	fs := flag.NewFlagSet("pick", flag.ExitOnError)
+	packDir := fs.String("pack", "", "pack directory")
+	artDir := fs.String("art", "", "art directory (default author/art/<packID>)")
+	id := fs.String("sticker", "", "sticker id")
+	option := fs.Int("option", 0, "candidate number (1-based, as in out/options/<id>.<n>.png)")
+	fs.Parse(args)
+	c, err := load(*packDir, *artDir, true)
+	if err != nil {
+		return err
+	}
+	r := &renderer{c: c, fps: map[string]string{}}
+	if data, err := os.ReadFile(r.out("render.json")); err == nil {
+		json.Unmarshal(data, &r.fps)
+	}
+	src := r.optionPath(*id, *option, true)
+	data, err := os.ReadFile(src)
+	if err != nil {
+		return fmt.Errorf("no candidate %d of %q: %w", *option, *id, err)
+	}
+	raw := r.out("stickers", *id+".raw.png")
+	if err := os.WriteFile(raw, data, 0o644); err != nil {
+		return err
+	}
+	for path := range r.fps {
+		if strings.HasPrefix(filepath.Base(path), *id+".") && filepath.Dir(path) == r.out("stickers") {
+			delete(r.fps, path)
+		}
+	}
+	r.done(raw, r.fps[src])
+	fmt.Printf("✓ %s is now option %d; run stickerart render -pack %s -only %s to finish it (no new drawing)\n", *id, *option, c.packDir, *id)
+	return nil
+}
 
 // drawnContent is where the drawing sits in a finished sticker image, in
 // fractions of it with the origin at the bottom-left (manifest content).

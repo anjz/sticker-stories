@@ -138,6 +138,15 @@ Everything lands in `out/` (gitignored) as lossless PNG, keyed by a
 fingerprint of the prompts, quality and models, so rerunning only
 regenerates what changed. `out/` is the source of truth for the art; the
 pack gets an encoded copy at install.
+**Choosing between drawings.** `render -only rocket,lander -options 3`
+draws three candidates of each named sticker from its prompt (the model
+draws it differently every time) into `out/options/<id>.<n>.png` (finished
+previews, at the sticker's drawn size) and `<id>.<n>.raw.png`, leaving the
+stickers themselves alone; a larger `-options` later adds more, keeping the
+ones already drawn. `stickerart pick -pack … -sticker rocket -option 2`
+adopts a candidate as the sticker's art (its faces and finish are then
+redone on the next render, with no new drawing of the sticker).
+
 `-only fox,duckling`, `-only stylesheet`, `-only scene` narrow a run;
 `-quality medium` is cheaper while iterating on prompts.
 
