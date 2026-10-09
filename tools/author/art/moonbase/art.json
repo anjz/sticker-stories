@@ -455,8 +455,8 @@
   ],
   "scene": {
     "background": "The surface of the Moon seen from a child's height, a wide landscape: grey dusty ground with pebbles and small craters across the lower part, gently rolling; a long, low, jagged ridge of grey mountains along the horizon; on the horizon right of the middle, the small white domes and modules of a distant moon base with a few lit windows; a black sky above with the Earth hanging in it, blue and white and half lit, left of the middle. On the ground left of the middle, a flat hexagonal landing pad of grey metal plates with yellow markings and small lights around its edge, seen in low perspective as a wide, flattened hexagon, empty. On the ground right of the middle, a wide, shallow crater with a raised rim, a flattened oval seen from low down. The middle of the ground stays open where stickers will be placed. No people, no robots, no vehicles, no rockets.",
-    "foreground": "The nearest elements only: at the left edge, the corner of a white-and-orange habitat module close to us, with a round airlock hatch with a porthole and a short ladder down to the ground; at the right edge, a dark rock outcrop with a tall lattice radio mast and a dish on top; along the very bottom, a few grey rocks and dust. The whole centre and the sky stay empty and transparent.",
-    "foregroundWide": "The habitat module on the left is cut off by the left edge of the centre picture: carry it on into the left band as one big module that runs all the way to the image's left edge — its curved white hull, orange bands, rivets and panel lines continuing, standing on the same line of legs on the ground. Never leave it cut with a straight vertical edge. Anything else cut at the centre's edges continues the same way.",
+    "foreground": "The nearest elements only, kept slim so most of the picture shows the landscape behind them: at the very left edge, the end of a white-and-orange habitat module close to us, cut off by the left edge of the picture and taking no more than the left eighth of its width — its curved white hull with orange bands, a round airlock hatch with a porthole facing us, and a short ladder from the hatch down to the ground, standing on short legs; at the very right edge, a narrow outcrop of dark rock with a slim lattice radio mast and a small dish on top, cut off by the right edge and taking no more than the right eighth of the width; along the very bottom, a few grey rocks and some dust. The whole centre and the sky stay empty and transparent.",
+    "foregroundWideOwn": "the habitat module at the very left edge of this wide picture, cut off by its left edge and taking no more than the left eighth of its width, with the airlock hatch, porthole and ladder facing us; the rock outcrop with the radio mast and dish at the very right edge, cut off by its right edge and taking no more than the right eighth of its width; a few grey rocks and dust along the very bottom across the whole width. Nothing else: the rest of the picture stays transparent so the landscape shows.",
     "features": {
       "sky": {
         "description": "the black starry sky above the far ridge, between the habitat and the radio mast",
@@ -465,7 +465,7 @@
           {
             "x": [
               0.22,
-              0.8
+              0.86
             ],
             "y": [
               0.64,
@@ -480,10 +480,10 @@
           {
             "x": [
               0.24,
-              0.82
+              0.76
             ],
             "y": [
-              0.25,
+              0.24,
               0.4
             ]
           }
@@ -574,12 +574,24 @@
         "areas": [
           {
             "x": [
-              0.22,
-              0.27
+              0.21,
+              0.25
             ],
             "y": [
-              0.19,
-              0.25
+              0.18,
+              0.23
+            ]
+          }
+        ],
+        "wideAreas": [
+          {
+            "x": [
+              -0.02,
+              0.02
+            ],
+            "y": [
+              0.18,
+              0.23
             ]
           }
         ]
@@ -601,12 +613,25 @@
         "areas": [
           {
             "x": [
-              0.8,
-              0.84
+              0.87,
+              0.91
             ],
             "y": [
-              0.3,
-              0.35
+              0.32,
+              0.37
+            ],
+            "facing": "right"
+          }
+        ],
+        "wideAreas": [
+          {
+            "x": [
+              1.12,
+              1.16
+            ],
+            "y": [
+              0.32,
+              0.37
             ],
             "facing": "right"
           }
