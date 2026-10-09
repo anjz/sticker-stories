@@ -209,6 +209,68 @@ func (c *Client) SpeechWithTimestamps(ctx context.Context, r SpeechRequest) (*Sp
 	return &Speech{Audio: audio, Alignment: al}, nil
 }
 
+// DialogueInput is one turn of a dialogue: a text and the voice reading it.
+type DialogueInput struct {
+	Text    string `json:"text"`
+	VoiceID string `json:"voice_id"`
+}
+
+// DialogueRequest is the input to DialogueWithTimestamps: turns read in
+// one take, each speaker hearing the others (eleven_v4, eleven_v3).
+// ElevenLabs keeps it reliable up to 2,000 characters in all.
+type DialogueRequest struct {
+	Inputs       []DialogueInput
+	ModelID      string
+	LanguageCode string
+	OutputFormat string
+	Stability    *float64
+	Seed         *int
+}
+
+// DialogueWithTimestamps reads the turns in one take and returns the audio
+// with one alignment over the turns' texts joined end to end (nothing
+// between them), as the endpoint gives it.
+func (c *Client) DialogueWithTimestamps(ctx context.Context, r DialogueRequest) (*Speech, error) {
+	body := map[string]any{"inputs": r.Inputs}
+	if r.ModelID != "" {
+		body["model_id"] = r.ModelID
+	}
+	if r.LanguageCode != "" {
+		body["language_code"] = r.LanguageCode
+	}
+	if r.Stability != nil {
+		body["settings"] = map[string]any{"stability": *r.Stability}
+	}
+	if r.Seed != nil {
+		body["seed"] = *r.Seed
+	}
+	q := url.Values{}
+	if r.OutputFormat != "" {
+		q.Set("output_format", r.OutputFormat)
+	}
+	data, err := c.do(ctx, http.MethodPost, "/v1/text-to-dialogue/with-timestamps", q, body, "application/json")
+	if err != nil {
+		return nil, err
+	}
+	var out struct {
+		AudioBase64         string     `json:"audio_base64"`
+		Alignment           *Alignment `json:"alignment"`
+		NormalizedAlignment *Alignment `json:"normalized_alignment"`
+	}
+	if err := json.Unmarshal(data, &out); err != nil {
+		return nil, fmt.Errorf("decoding dialogue response: %w", err)
+	}
+	audio, err := base64.StdEncoding.DecodeString(out.AudioBase64)
+	if err != nil {
+		return nil, fmt.Errorf("decoding audio: %w", err)
+	}
+	al := out.Alignment
+	if al == nil {
+		al = out.NormalizedAlignment
+	}
+	return &Speech{Audio: audio, Alignment: al}, nil
+}
+
 // SoundModel is the sound-generation model (the only one the endpoint
 // accepts; the one that can loop).
 const SoundModel = "eleven_text_to_sound_v2"

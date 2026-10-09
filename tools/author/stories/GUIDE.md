@@ -557,15 +557,28 @@ performer:
   `[softly]` as it settles, `[happily]` for the ending. Reactions are
   sounds the narrator makes: `[giggles]`, `[gasps]`, `[sighs]`,
   `[laughs]`, `[yawns]` (experimental).
-- **Characters get a voice, the narrator stays the narrator.** For a line
-  a character says, name the speaker *before* the line when the way it is
-  said matters (*Owl yawned and said, "Who's there?"*) — the reader knows
-  how to say it before saying it. For a character worth a voice of their
-  own, `[in a deep, slow voice]`, `[in a tiny, squeaky voice]`: an open
-  tag that must read "in a … voice", right before the line, the same
-  description every time that character speaks in the story, at most two
-  characters per story. Put a narrator direction (`[warmly]`, `[softly]`…)
-  on the narration right after it if the take might stay in character.
+- **Characters can speak in their own voice — when it makes sense.** A
+  sticker with a cast character voice (`character-voices.json` beside the
+  stories; Moon Base: the man and the woman) can say a line itself:
+  `{woman:says} "Look, a comet!"` — the line in quotes is read by her
+  voice, in the same take, and the narrator carries on after the closing
+  quote. It is the same voice in every story, so the child comes to know
+  her. Use it where hearing the character is the point: a greeting, a
+  discovery, a joke, the warm last line. Two to four short lines (under
+  25 words each) in about a third of the stories; at most six; the
+  narrator still tells the story. Introduce the speaker first (*The woman
+  pointed up.*) so the child knows who is talking; a tag for the line goes
+  just inside it (`{woman:says} [excited] "Look!"`). Both languages give
+  the same characters the same lines. A story with lines must stay under
+  2,000 characters per language (they all do at 80–140 words).
+- **The narrator can still do a voice.** For a character without a voice
+  of their own, name the speaker before the line when the way it is said
+  matters (*Owl yawned and said, "Who's there?"*), or give it
+  `[in a deep, slow voice]` / `[in a tiny, squeaky voice]` — an open tag
+  that must read "in a … voice", right before the line, the same
+  description every time that character speaks, at most two such
+  characters per story; put a narrator direction (`[warmly]`…) on the
+  narration after it if the take might stay in character.
 - **Tags direct the voice — never a sound.** v4 performs any tag, and one
   that names a sound (`[applause]`, `[door slams]`, `[light rain]`) makes
   the narrator produce it. Sounds belong in the sounds table, cued

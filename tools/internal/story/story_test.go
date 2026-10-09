@@ -883,3 +883,65 @@ func TestLookupAudioTag(t *testing.T) {
 		t.Fatalf("parse: %v, tags %v", errs, nar.Tags)
 	}
 }
+
+func TestCharacterLines(t *testing.T) {
+	nar, errs := Parse(`The fox looked up. {fox:says} "Who is there?" [softly] Nobody answered. {owl:says} “Only me,” said Owl.`)
+	if len(errs) != 0 {
+		t.Fatal(errs)
+	}
+	if len(nar.Lines) != 2 {
+		t.Fatalf("lines = %+v", nar.Lines)
+	}
+	if l := nar.Lines[0]; l.Speaker != "fox" || strings.Join(nar.Words[l.From:l.To], " ") != `"Who is there?"` {
+		t.Errorf("first line = %+v (%q)", l, strings.Join(nar.Words[l.From:l.To], " "))
+	}
+	if l := nar.Lines[1]; l.Speaker != "owl" || strings.Join(nar.Words[l.From:l.To], " ") != "“Only me,”" {
+		t.Errorf("second line = %+v", l)
+	}
+	for _, c := range nar.Cues {
+		if c.Effect == SaysEffect {
+			t.Errorf("a says cue leaked into the effect cues: %+v", c)
+		}
+	}
+	for text, want := range map[string]string{
+		`{fox:says} Who is there?`:          "must start with a quote",
+		`{fox:says} "Who is there? he said.`: "never closes",
+		`Hello. {fox:says}`:                 "a line follows it",
+		`{all:says} "Hi!"`:                  "one character",
+		`{fox:says x2} "Hi!"`:               "no parameters",
+	} {
+		_, errs := Parse(text)
+		if len(errs) == 0 || !strings.Contains(fmt.Sprint(errs), want) {
+			t.Errorf("Parse(%q) errors %v, want %q", text, errs, want)
+		}
+	}
+}
+
+func TestCharacterLinesAreValidated(t *testing.T) {
+	cat := testCatalog(t)
+	withLine := func(en, es string) *Story {
+		s := goodStory()
+		for lang, line := range map[string]string{"en-US": en, "es-ES": es} {
+			l := s.Languages[lang]
+			l.Text += " " + line
+			s.Languages[lang] = l
+		}
+		return s
+	}
+	if is := Validate(withLine(`{fox:says} "We did it!"`, `{fox:says} «¡Lo logramos!»`), forest, cat); len(is.Errors) != 0 || len(is.Warnings) != 0 {
+		t.Fatalf("expected clean, got errors %v warnings %v", is.Errors, is.Warnings)
+	}
+	for name, c := range map[string]struct {
+		s    *Story
+		want string
+	}{
+		"not in the story": {withLine(`{owl:says} "Hoo!"`, `{owl:says} «¡Uh!»`), "neither featured nor supporting"},
+		"lines differ":     {withLine(`{fox:says} "We did it!"`, `¡Lo logramos!`), "cues differ"},
+		"too long a take":  {withLine(`{fox:says} "`+strings.Repeat("Hop hop hop. ", 160)+`"`, `{fox:says} «Hola.»`), "multi-voice take"},
+	} {
+		is := Validate(c.s, forest, cat)
+		if !strings.Contains(fmt.Sprint(is.Errors, is.Warnings), c.want) {
+			t.Errorf("%s: want %q in errors %v / warnings %v", name, c.want, is.Errors, is.Warnings)
+		}
+	}
+}

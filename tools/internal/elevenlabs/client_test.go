@@ -91,3 +91,31 @@ func TestVoiceAdditionConflictIsRetried(t *testing.T) {
 		t.Error("already_running is transient, not a client error")
 	}
 }
+
+func TestDialogueWithTimestamps(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/v1/text-to-dialogue/with-timestamps" || r.URL.Query().Get("output_format") != "mp3_44100_192" {
+			t.Errorf("request %s?%s", r.URL.Path, r.URL.RawQuery)
+		}
+		var body struct {
+			Inputs   []DialogueInput    `json:"inputs"`
+			Model    string             `json:"model_id"`
+			Settings map[string]float64 `json:"settings"`
+		}
+		json.NewDecoder(r.Body).Decode(&body)
+		if len(body.Inputs) != 2 || body.Inputs[1].VoiceID != "fox" || body.Model != "eleven_v4" || body.Settings["stability"] != 0.5 {
+			t.Errorf("body = %+v", body)
+		}
+		w.Write([]byte(`{"audio_base64":"AAAA","alignment":{"characters":["a","b"],"character_start_times_seconds":[0,0.1],"character_end_times_seconds":[0.1,0.2]},"voice_segments":[]}`))
+	}))
+	defer srv.Close()
+	c := New("k")
+	c.BaseURL = srv.URL
+	st := 0.5
+	sp, err := c.DialogueWithTimestamps(context.Background(), DialogueRequest{
+		Inputs:  []DialogueInput{{"a", "narrator"}, {"b", "fox"}},
+		ModelID: "eleven_v4", OutputFormat: "mp3_44100_192", Stability: &st})
+	if err != nil || len(sp.Audio) != 3 || len(sp.Alignment.Characters) != 2 {
+		t.Fatalf("dialogue = %+v, %v", sp, err)
+	}
+}

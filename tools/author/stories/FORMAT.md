@@ -89,7 +89,9 @@ reads it.
 
 ## Cue grammar
 
-A cue is `{sticker:effect}` with optional parameters separated by spaces:
+A cue is `{sticker:effect}` with optional parameters separated by spaces
+(and `{sticker:says}` gives a character's line its own voice: "Character
+lines" below):
 
 ```
 {fox:wobble x3}          repeat 3 cycles
@@ -205,6 +207,30 @@ The allowed list (anything else is an error):
   `[excited] [whispers]`; a pause may sit beside one), and only where the
   words already carry the feeling — a tag on flat text reads as a tic.
 - Tags may differ between languages; the beats should still match.
+
+### Character lines
+
+A sticker with a character voice (`character-voices.json` beside the
+stories: per sticker, a voice per language) can say a line in it:
+
+```
+The woman pointed up at the sky. {woman:says} [excited] "Look, a comet!" The man laughed.
+La mujer señaló el cielo. {woman:says} [excited] «¡Mira, un cometa!» El hombre se rió.
+```
+
+- `{x:says}` goes right before the line, which opens and closes with
+  quotes: `"…"`, `“…”` or `«…»` (Spanish usually «…»). Everything from the
+  opening to the closing quote — and an audio tag between the cue and the
+  quote — is read by the character's voice; the narrator reads the rest.
+  The whole story is still one take, with every speaker in it.
+- It takes no parameters, names one sticker (never `all`), and that
+  sticker must be featured or supporting and on stage (its entrance
+  before the line). It is not an effect: the app never sees it; pair it
+  with a face or live cue if the sticker should react.
+- At most six lines per language (two to four is right), each under 25
+  words, no solo sound inside one, and the same speakers in both
+  languages. A story with lines holds at most 2,000 characters per
+  language, tags included.
 
 ### Live cues
 

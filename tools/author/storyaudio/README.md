@@ -104,6 +104,30 @@ can edit it. A story uses the first of its tags that has a prompt, so
 bouncy. Each distinct prompt is composed once (60 s) and cached in
 `_cache/music/`. `-music-prompt "…"` forces one prompt for every story.
 
+## Character voices
+
+`{woman:says} "Look, a comet!"` in a story (FORMAT.md, "Character lines")
+has that line read by the sticker's character voice, cast once per pack in
+`<stories>/character-voices.json`:
+
+```json
+{
+  "woman": {
+    "en-US": { "voiceId": "…", "name": "…", "gender": "female", "source": "library" },
+    "es-ES": { "voiceId": "…", "name": "…", "gender": "female", "source": "library" }
+  }
+}
+```
+
+A story with lines is read as one multi-voice take (the text-to-dialogue
+**with timestamps** endpoint, `eleven_v4`): the narration in the story's
+narrator's voice, each line in its speaker's, every speaker hearing the
+others — then cut for solo sounds and aligned like any take. The same
+voice in every story, so a character always sounds like itself. A
+character's voice must not be the story's narrator (the render says which
+story), and the take holds at most 2,000 characters. Changing a character
+voice re-reads only the stories it speaks in.
+
 ## Audition
 
 ```sh

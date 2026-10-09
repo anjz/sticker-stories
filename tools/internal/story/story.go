@@ -256,6 +256,19 @@ const EnterEffect = "enter"
 // {ladybug:go on flower by fly}.
 const GoEffect = "go"
 
+// SaysEffect is the reserved cue that gives a character's line its own
+// voice: {woman:says} right before a quoted line ("Look, a comet!") makes
+// that line read by the sticker's character voice (character-voices.json
+// beside the stories) instead of the narrator, and the narrator carries on
+// after the closing quote. It is not an effect: the app never sees it.
+const SaysEffect = "says"
+
+// Quote marks that open and close a character's line.
+const (
+	openQuotes  = "\"“«"
+	closeQuotes = "\"”»"
+)
+
 // GoBy introduces the move an entrance or a move goes by: {x:go … by fly}.
 const GoBy = "by"
 
@@ -457,6 +470,16 @@ type Narration struct {
 	Cues []Cue
 	// Tags colour Words[WordIndex]; a trailing tag has WordIndex len(Words).
 	Tags []PlacedTag
+	// Lines are the quoted lines read in a character's voice ({x:says}).
+	Lines []Line
+}
+
+// Line is a character's line: Words[From:To], quotes included, read by
+// Speaker's character voice.
+type Line struct {
+	Speaker  string
+	From, To int
+	Raw      string // the says cue as written
 }
 
 // Plain is the narration as prose: the words only, single-spaced. This is
@@ -593,6 +616,10 @@ func Parse(text string) (Narration, []error) {
 		here := len(n.Words) - 1
 		for _, idx := range pendingCues {
 			cues[idx].WordIndex = here
+			if cues[idx].Effect == SaysEffect && cues[idx].Sticker != "" {
+				n.Lines = append(n.Lines, Line{Speaker: cues[idx].Sticker, From: here, Raw: cues[idx].Raw})
+				continue
+			}
 			n.Cues = append(n.Cues, cues[idx])
 		}
 		for _, idx := range pendingTags {
@@ -603,6 +630,10 @@ func Parse(text string) (Narration, []error) {
 	}
 	last := max(len(n.Words)-1, 0)
 	for _, idx := range pendingCues {
+		if cues[idx].Effect == SaysEffect && cues[idx].Sticker != "" {
+			errs = append(errs, fmt.Errorf("cue %s: a line follows it, in quotes", cues[idx].Raw))
+			continue
+		}
 		cues[idx].WordIndex = last
 		n.Cues = append(n.Cues, cues[idx])
 	}
@@ -610,7 +641,47 @@ func Parse(text string) (Narration, []error) {
 		tags[idx].WordIndex = len(n.Words)
 		n.Tags = append(n.Tags, tags[idx])
 	}
+	errs = append(errs, n.closeLines()...)
 	return n, errs
+}
+
+// closeLines finds where each character's line ends: the first word from
+// its start (the opening quote aside) that holds a closing quote. A line
+// must open with a quote, close, and not run into the next one.
+func (n *Narration) closeLines() []error {
+	var errs []error
+	kept := n.Lines[:0]
+	for i, l := range n.Lines {
+		first := n.Words[l.From]
+		r, size := utf8.DecodeRuneInString(first)
+		if !strings.ContainsRune(openQuotes, r) {
+			errs = append(errs, fmt.Errorf("cue %s: the line it gives a voice must start with a quote (\"…\", “…” or «…»), not %q", l.Raw, first))
+			continue
+		}
+		limit := len(n.Words)
+		if i+1 < len(n.Lines) {
+			limit = n.Lines[i+1].From
+		}
+		end := -1
+		for w := l.From; w < limit; w++ {
+			rest := n.Words[w]
+			if w == l.From {
+				rest = rest[size:]
+			}
+			if strings.ContainsAny(rest, closeQuotes) {
+				end = w + 1
+				break
+			}
+		}
+		if end < 0 {
+			errs = append(errs, fmt.Errorf("cue %s: its line never closes its quote", l.Raw))
+			continue
+		}
+		l.To = end
+		kept = append(kept, l)
+	}
+	n.Lines = kept
+	return errs
 }
 
 // ParseCues extracts the cues from a text and returns the plain narration
@@ -713,6 +784,14 @@ func parseCue(inner string) (Cue, error) {
 	}
 	if c.Solo && !c.Sound {
 		return c, fmt.Errorf("solo is for sound cues only")
+	}
+	if c.Effect == SaysEffect && !c.Sound && !c.Canvas {
+		if c.Sticker == AllTarget {
+			return c, fmt.Errorf("a line is said by one character; name it")
+		}
+		if len(fields) > 0 {
+			return c, fmt.Errorf("{%s:%s} takes no parameters", c.Sticker, SaysEffect)
+		}
 	}
 	return c, nil
 }
@@ -1272,6 +1351,10 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		if stickerCues := len(cues) - canvasCues - enterCues - (sounds - len(s.Sound)); stickerCues == 0 {
 			is.errorf("%s: no sticker effect cues (at least one required)", lang)
 		}
+		validateLines(&is, lang, nar, inStory)
+		for _, l := range nar.Lines {
+			shape = append(shape, l.Speaker+":"+SaysEffect)
+		}
 		cueShapes = append(cueShapes, shape)
 		cueLangs = append(cueLangs, lang)
 	}
@@ -1347,6 +1430,51 @@ func validateSoundCue(is *Issues, lang string, c Cue, s *Story, nar Narration) {
 func lastRune(s string) rune {
 	r, _ := utf8.DecodeLastRuneInString(s)
 	return r
+}
+
+// Limits on character lines ({x:says}).
+const (
+	// MaxLines is how many lines a story gives its characters' voices
+	// before the narrator stops being the one telling it (warning).
+	MaxLines = 6
+	// MaxLineWords keeps a line a line, not a speech (warning).
+	MaxLineWords = 25
+	// MaxVoicedChars is the most a story with character lines may hold in
+	// one language, tags included: it is read in one multi-voice take, and
+	// ElevenLabs keeps those reliable up to 2,000 characters.
+	MaxVoicedChars = 2000
+)
+
+// validateLines checks the lines read in a character's voice: by someone
+// in the story who is on stage, short, not split by a solo sound, and few
+// enough — the narrator still tells the story.
+func validateLines(is *Issues, lang string, nar Narration, inStory map[string]bool) {
+	if len(nar.Lines) == 0 {
+		return
+	}
+	if len(nar.Lines) > MaxLines {
+		is.warnf("%s: %d character lines; the narrator tells the story — keep it to %d", lang, len(nar.Lines), MaxLines)
+	}
+	if text, _ := nar.Spoken(0, len(nar.Words)); len([]rune(text)) > MaxVoicedChars {
+		is.errorf("%s: a story with character lines is read in one multi-voice take of at most %d characters; this one has %d", lang, MaxVoicedChars, len([]rune(text)))
+	}
+	for _, l := range nar.Lines {
+		if !inStory[l.Speaker] {
+			is.errorf("%s: cue %s: %s is neither featured nor supporting", lang, l.Raw, l.Speaker)
+			continue
+		}
+		for _, c := range nar.Cues {
+			if c.Sticker == l.Speaker && c.Effect == EnterEffect && c.WordIndex > l.From {
+				is.warnf("%s: cue %s: %s speaks before it enters — name it and bring it in first", lang, l.Raw, l.Speaker)
+			}
+			if c.Sound && c.Solo && c.WordIndex > l.From && c.WordIndex < l.To {
+				is.errorf("%s: cue %s: a solo sound inside %s's line; put it before or after the line", lang, c.Raw, l.Speaker)
+			}
+		}
+		if n := l.To - l.From; n > MaxLineWords {
+			is.warnf("%s: cue %s: %s's line is %d words; keep a character's line under %d", lang, l.Raw, l.Speaker, n, MaxLineWords)
+		}
+	}
 }
 
 // validateTags checks a language's audio tags: few, and never stacked.

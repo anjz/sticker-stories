@@ -220,8 +220,12 @@ exactly per `FORMAT.md`:
   "Audio tags", each right before the words it colours, where the feeling
   genuinely changes — never stacked, never more than six, never a tag that
   names a sound (v4 would make it); a character's line named before it
-  is said, and `[in a … voice]` for at most two characters worth a voice
-  of their own; numbers spelled out;
+  is said; for a sticker with a cast character voice
+  (`character-voices.json`), `{x:says} "…"` lets it say a short line
+  itself (two to four lines in about a third of the stories, never more
+  than six, same speakers in both languages — FORMAT "Character lines");
+  otherwise `[in a … voice]` for at most two characters; numbers spelled
+  out;
 - **sound effects** (GUIDE "Sound effects", FORMAT "Sound cues"): two or
   three per story in a `sounds` table, cued inline — `{sfx:id solo}`
   between sentences where a real sound tells it better than the sound word

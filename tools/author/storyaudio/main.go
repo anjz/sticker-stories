@@ -231,6 +231,30 @@ type voiceSet map[string][]voiceChoice
 
 func voicesPath(c *ctxt) string { return filepath.Join(c.storiesDir, "voices.json") }
 
+// characterVoices is <stories>/character-voices.json: the voice each
+// speaking sticker reads its lines in ({woman:says} "…"), per language —
+// the same voice in every story, so a character always sounds like itself.
+type characterVoices map[string]map[string]voiceChoice
+
+func characterVoicesPath(c *ctxt) string {
+	return filepath.Join(c.storiesDir, "character-voices.json")
+}
+
+func loadCharacterVoices(c *ctxt) (characterVoices, error) {
+	out := characterVoices{}
+	data, err := os.ReadFile(characterVoicesPath(c))
+	if os.IsNotExist(err) {
+		return out, nil
+	}
+	if err != nil {
+		return nil, err
+	}
+	if err := json.Unmarshal(data, &out); err != nil {
+		return nil, fmt.Errorf("%s: %w", characterVoicesPath(c), err)
+	}
+	return out, nil
+}
+
 func loadVoices(c *ctxt) voiceSet {
 	out := voiceSet{}
 	data, err := os.ReadFile(voicesPath(c))
@@ -480,6 +504,8 @@ type renderRecord struct {
 	Voice       string   `json:"voice"`
 	Model       string   `json:"model"`
 	Stability   *float64 `json:"stability,omitempty"`
+	// Characters names the voice each speaking sticker's lines were read in.
+	Characters map[string]string `json:"characters,omitempty"`
 	SampleRate  int      `json:"sampleRate"`
 	Duration    float64  `json:"duration"`
 	Sounds      []string `json:"sounds,omitempty"`
@@ -547,7 +573,11 @@ func runRender(args []string) error {
 	if err != nil {
 		return err
 	}
-	r := &renderer{c: c, el: el, o: o, voices: voices, ctx: ctx}
+	chars, err := loadCharacterVoices(c)
+	if err != nil {
+		return err
+	}
+	r := &renderer{c: c, el: el, o: o, voices: voices, characters: chars, ctx: ctx}
 	return r.run()
 }
 
@@ -556,6 +586,8 @@ type renderer struct {
 	el     *elevenlabs.Client
 	o      renderOpts
 	voices voiceSet
+	// characters are the voices character lines are read in.
+	characters characterVoices
 	ctx    context.Context
 	music  map[string]*audio.Clip // by prompt
 	moods  musicConfig
@@ -708,7 +740,11 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 		musicPrompt, mood = r.musicPromptFor(s)
 	}
 	musicKey := hashOf(musicPrompt, fmt.Sprint(musicSeconds))
-	fp := hashOf(toolVersion, plain, loc.Text, voice.VoiceID, r.o.model, stabilityKey(r.o.stability), fmt.Sprint(r.o.sampleRate),
+	turns, err := r.turns(nar, lang, voice)
+	if err != nil {
+		return false, err
+	}
+	fp := hashOf(toolVersion, plain, loc.Text, voice.VoiceID, turnVoices(turns), r.o.model, stabilityKey(r.o.stability), fmt.Sprint(r.o.sampleRate),
 		strings.Join(notes, ";"), musicKey, fmt.Sprint(r.o.sfxDB, r.o.ambienceDB, r.o.musicDB, r.o.lead, r.o.introDB, r.o.bitrate))
 
 	if !r.o.force && !audition {
@@ -729,12 +765,19 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 		pieces[i].text, pieces[i].starts = nar.Spoken(seg.From, seg.To)
 	}
 	take := takeText(pieces)
-	if n := len([]rune(take)); n > maxTakeChars {
-		return false, fmt.Errorf("narration is %d characters; one take holds %d", n, maxTakeChars)
+	if n := len([]rune(take)); n > maxTakeChars || turns != nil && n > story.MaxVoicedChars {
+		return false, fmt.Errorf("narration is %d characters; one take holds %d (%d with character voices)", n, maxTakeChars, story.MaxVoicedChars)
+	}
+	if turns != nil && joinTurns(turns) != take {
+		return false, errors.New("character lines do not add up to the narration (a bug: tell the tool's author)")
+	}
+	cacheText := take
+	if turns != nil {
+		cacheText += "\x00" + turnVoices(turns)
 	}
 
 	if r.o.dry {
-		if _, cached := r.loadSpeech(take, lang, voice.VoiceID, r.o.sampleRate); !cached {
+		if _, cached := r.loadSpeech(cacheText, lang, voice.VoiceID, r.o.sampleRate); !cached {
 			r.chars[lang] += len([]rune(take))
 		}
 		if !r.o.noSFX {
@@ -766,7 +809,7 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 	// timeline for the cues.
 	rate := r.o.sampleRate
 	model := r.o.model
-	speech, err := r.speak(take, lang, voice.VoiceID)
+	speech, err := r.speak(take, cacheText, turns, lang, voice.VoiceID)
 	if err != nil {
 		return false, err
 	}
@@ -837,7 +880,7 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 	mix.MixAt(voiceClip, r.leadIn(), 1)
 
 	stab := r.o.stability
-	rec := renderRecord{Fingerprint: fp, Music: mood, VoiceID: voice.VoiceID, Voice: voice.Name, Model: model, Stability: &stab, SampleRate: rate, LiveOverlap: liveOverlaps, RenderedAt: time.Now().Format(time.RFC3339)}
+	rec := renderRecord{Fingerprint: fp, Music: mood, VoiceID: voice.VoiceID, Voice: voice.Name, Model: model, Stability: &stab, SampleRate: rate, Characters: r.lineVoices(nar, lang), LiveOverlap: liveOverlaps, RenderedAt: time.Now().Format(time.RFC3339)}
 
 	if !r.o.noSFX {
 		// Legacy hints: a sound on a spoken word.
@@ -1062,27 +1105,125 @@ func quietest(c *audio.Clip, from, to float64) float64 {
 // stabilityKey is the stability as it enters fingerprints and cache keys.
 func stabilityKey(v float64) string { return strconv.FormatFloat(v, 'f', -1, 64) }
 
-// speak reads a story's narration in one take with timestamps, from the
-// cache when it has been read before. The model never changes behind the
-// author's back: a refusal fails the rendition.
-func (r *renderer) speak(text, lang, voiceID string) (*elevenlabs.Speech, error) {
+// turns splits a narration with character lines into the turns of one
+// multi-voice take: narration in the story's narrator's voice, each quoted
+// line in its speaker's character voice. Nil when the story has no lines
+// (it is read by the narrator alone).
+func (r *renderer) turns(nar story.Narration, lang string, narrator voiceChoice) ([]elevenlabs.DialogueInput, error) {
+	if len(nar.Lines) == 0 {
+		return nil, nil
+	}
+	var out []elevenlabs.DialogueInput
+	add := func(from, to int, voiceID string) {
+		// An empty range adds nothing, except at the very end, where
+		// Spoken carries the trailing tags.
+		if text, _ := nar.Spoken(from, to); text != "" {
+			out = append(out, elevenlabs.DialogueInput{Text: text, VoiceID: voiceID})
+		}
+	}
+	at := 0
+	for _, l := range nar.Lines {
+		v, ok := r.characters[l.Speaker][lang]
+		if !ok || v.VoiceID == "" {
+			return nil, fmt.Errorf("%s has a line but no %s voice in %s", l.Speaker, lang, characterVoicesPath(r.c))
+		}
+		if v.VoiceID == narrator.VoiceID {
+			return nil, fmt.Errorf("%s's %s voice is this story's narrator (%s); give the character a voice of its own", l.Speaker, lang, narrator.Name)
+		}
+		add(at, l.From, narrator.VoiceID)
+		add(l.From, l.To, v.VoiceID)
+		at = l.To
+	}
+	add(at, len(nar.Words), narrator.VoiceID)
+	return out, nil
+}
+
+// joinTurns is the take text the turns make: their texts joined by a
+// space, as takeText joins the stretches between solo sounds.
+func joinTurns(turns []elevenlabs.DialogueInput) string {
+	parts := make([]string, len(turns))
+	for i, t := range turns {
+		parts[i] = t.Text
+	}
+	return strings.Join(parts, " ")
+}
+
+// turnVoices is who reads each turn, for fingerprints and cache keys.
+func turnVoices(turns []elevenlabs.DialogueInput) string {
+	ids := make([]string, len(turns))
+	for i, t := range turns {
+		ids[i] = t.VoiceID
+	}
+	return strings.Join(ids, ",")
+}
+
+// lineVoices names the voice each speaking sticker was read in, for the
+// render record.
+func (r *renderer) lineVoices(nar story.Narration, lang string) map[string]string {
+	if len(nar.Lines) == 0 {
+		return nil
+	}
+	out := map[string]string{}
+	for _, l := range nar.Lines {
+		out[l.Speaker] = r.characters[l.Speaker][lang].Name
+	}
+	return out
+}
+
+// spaceTurns turns a dialogue alignment (the turns' texts end to end) into
+// one over joinTurns' text, adding each joining space as a zero-length
+// character where the turn before it ends.
+func spaceTurns(turns []elevenlabs.DialogueInput, al *elevenlabs.Alignment) (*elevenlabs.Alignment, error) {
+	out := &elevenlabs.Alignment{}
+	at := 0
+	for i, t := range turns {
+		n := len([]rune(t.Text))
+		if at+n > len(al.Characters) || len(al.Starts) != len(al.Characters) || len(al.Ends) != len(al.Characters) {
+			return nil, fmt.Errorf("dialogue alignment has %d characters for turns of %d and more", len(al.Characters), at+n)
+		}
+		if i > 0 {
+			end := out.Ends[len(out.Ends)-1]
+			out.Characters = append(out.Characters, " ")
+			out.Starts = append(out.Starts, end)
+			out.Ends = append(out.Ends, end)
+		}
+		out.Characters = append(out.Characters, al.Characters[at:at+n]...)
+		out.Starts = append(out.Starts, al.Starts[at:at+n]...)
+		out.Ends = append(out.Ends, al.Ends[at:at+n]...)
+		at += n
+	}
+	if at != len(al.Characters) {
+		return nil, fmt.Errorf("dialogue alignment has %d characters for turns of %d", len(al.Characters), at)
+	}
+	return out, nil
+}
+
+// speak reads a story's narration in one take with timestamps — by the
+// narrator alone, or, when turns are given, as one multi-voice take with
+// the characters' lines — from the cache (keyed by cacheText) when it has
+// been read before. The model never changes behind the author's back: a
+// refusal fails the rendition.
+func (r *renderer) speak(text, cacheText string, turns []elevenlabs.DialogueInput, lang, voiceID string) (*elevenlabs.Speech, error) {
 	rate := r.o.sampleRate
 	// The synthesis is the expensive part; cache it so mix changes
 	// (levels, music, bitrate) never cost another API call.
 	if !r.o.retake {
-		if sp, ok := r.loadSpeech(text, lang, voiceID, rate); ok {
+		if sp, ok := r.loadSpeech(cacheText, lang, voiceID, rate); ok {
 			return sp, nil
 		}
 	}
 	stability := r.o.stability
-	req := elevenlabs.SpeechRequest{
-		VoiceID: voiceID, Text: text, ModelID: r.o.model, LanguageCode: primary(lang),
-		Settings: &elevenlabs.VoiceSettings{Stability: &stability}}
 	var sp *elevenlabs.Speech
 	pcm, err := r.fetchPCM(rate, func(format string) ([]byte, error) {
-		req.OutputFormat = format
 		var err error
-		sp, err = r.el.SpeechWithTimestamps(r.ctx, req)
+		if turns == nil {
+			sp, err = r.el.SpeechWithTimestamps(r.ctx, elevenlabs.SpeechRequest{
+				VoiceID: voiceID, Text: text, ModelID: r.o.model, LanguageCode: primary(lang), OutputFormat: format,
+				Settings: &elevenlabs.VoiceSettings{Stability: &stability}})
+		} else {
+			sp, err = r.el.DialogueWithTimestamps(r.ctx, elevenlabs.DialogueRequest{
+				Inputs: turns, ModelID: r.o.model, LanguageCode: primary(lang), OutputFormat: format, Stability: &stability})
+		}
 		if err != nil {
 			return nil, err
 		}
@@ -1094,8 +1235,13 @@ func (r *renderer) speak(text, lang, voiceID string) (*elevenlabs.Speech, error)
 	if sp.Alignment == nil {
 		return nil, errors.New("no alignment returned")
 	}
+	if turns != nil {
+		if sp.Alignment, err = spaceTurns(turns, sp.Alignment); err != nil {
+			return nil, err
+		}
+	}
 	sp.Audio = pcm
-	r.saveSpeech(text, lang, voiceID, rate, r.o.model, sp)
+	r.saveSpeech(cacheText, lang, voiceID, rate, r.o.model, sp)
 	return sp, nil
 }
 
@@ -1347,6 +1493,10 @@ func runAudition(args []string) error {
 		stabs = append(stabs, st)
 	}
 	voices := loadVoices(c)
+	chars, err := loadCharacterVoices(c)
+	if err != nil {
+		return err
+	}
 	for _, l := range c.pack.Languages {
 		if len(voices[l]) == 0 {
 			return fmt.Errorf("no voices for %s in %s: run storyaudio render (or voices) first", l, voicesPath(c))
@@ -1393,7 +1543,7 @@ func runAudition(args []string) error {
 				o := renderOpts{model: *model, sampleRate: 44100, noMusic: *noMusic, sfxDB: -12, ambienceDB: -18,
 					musicDB: -14, lead: 3, introDB: -6, stability: st, parallel: 4, force: true, dry: *dry,
 					only: ids, lang: l, bitrate: 64000, outDir: dir, label: label, voice: v}
-				r := &renderer{c: c, el: el, o: o, voices: voices, ctx: context.Background(), mp3: mp3}
+				r := &renderer{c: c, el: el, o: o, voices: voices, characters: chars, ctx: context.Background(), mp3: mp3}
 				err := r.run()
 				mp3 = r.mp3 // the plan does not change between runs
 				if err != nil {

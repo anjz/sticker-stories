@@ -7,6 +7,7 @@ import (
 
 	"stickerstories/tools/internal/audio"
 	"stickerstories/tools/internal/elevenlabs"
+	"stickerstories/tools/internal/story"
 )
 
 // fakeTake builds a take for text at 1000 Hz where every character lasts
@@ -90,5 +91,59 @@ func TestParseStability(t *testing.T) {
 		if _, err := parseStability(in); err == nil {
 			t.Errorf("parseStability(%q): want an error", in)
 		}
+	}
+}
+
+func TestTurnsAndSpacedAlignment(t *testing.T) {
+	nar, errs := story.Parse(`[softly] The fox looked up. {fox:says} [curious] "Who is there?" Nobody answered.`)
+	if len(errs) != 0 {
+		t.Fatal(errs)
+	}
+	narrator := voiceChoice{VoiceID: "n", Name: "Narrator"}
+	r := &renderer{c: &ctxt{storiesDir: t.TempDir()}, characters: characterVoices{"fox": {"en-US": {VoiceID: "f", Name: "Fox"}}}}
+	turns, err := r.turns(nar, "en-US", narrator)
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := []elevenlabs.DialogueInput{{Text: "[softly] The fox looked up.", VoiceID: "n"}, {Text: `[curious] "Who is there?"`, VoiceID: "f"}, {Text: "Nobody answered.", VoiceID: "n"}}
+	if len(turns) != len(want) {
+		t.Fatalf("turns = %+v", turns)
+	}
+	for i := range want {
+		if turns[i] != want[i] {
+			t.Errorf("turn %d = %+v, want %+v", i, turns[i], want[i])
+		}
+	}
+	take, _ := nar.Spoken(0, len(nar.Words))
+	if joinTurns(turns) != take {
+		t.Errorf("turns join to %q, take is %q", joinTurns(turns), take)
+	}
+	// The endpoint's alignment: the turns end to end, one 10 ms step each.
+	var al elevenlabs.Alignment
+	for i, ch := range []rune(turns[0].Text + turns[1].Text + turns[2].Text) {
+		al.Characters = append(al.Characters, string(ch))
+		al.Starts = append(al.Starts, float64(i)*0.01)
+		al.Ends = append(al.Ends, float64(i+1)*0.01)
+	}
+	spaced, err := spaceTurns(turns, &al)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := strings.Join(spaced.Characters, ""); got != take {
+		t.Errorf("spaced alignment reads %q, want %q", got, take)
+	}
+	// The joining space after turn one is zero-length at its end.
+	sp := len([]rune(turns[0].Text))
+	if spaced.Starts[sp] != spaced.Ends[sp] || spaced.Starts[sp] != al.Ends[sp-1] {
+		t.Errorf("joining space at %v–%v, want zero-length at %v", spaced.Starts[sp], spaced.Ends[sp], al.Ends[sp-1])
+	}
+
+	// A character voiced by the story's narrator is refused, as is a
+	// speaker with no voice.
+	if _, err := r.turns(nar, "en-US", voiceChoice{VoiceID: "f", Name: "Fox"}); err == nil {
+		t.Error("want an error when the narrator is the character's voice")
+	}
+	if _, err := r.turns(nar, "es-ES", narrator); err == nil {
+		t.Error("want an error when the character has no voice in the language")
 	}
 }
