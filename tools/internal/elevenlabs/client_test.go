@@ -27,7 +27,7 @@ func TestSpeechWithTimestampsAndRetry(t *testing.T) {
 			}
 			var body map[string]any
 			json.NewDecoder(r.Body).Decode(&body)
-			if body["model_id"] != "eleven_v3" || body["language_code"] != "es" || body["previous_text"] != "Before." || body["next_text"] != nil {
+			if body["model_id"] != "eleven_v4" || body["language_code"] != "es" || body["previous_text"] != "Before." || body["next_text"] != nil {
 				t.Errorf("body = %v", body)
 			}
 			if settings, _ := body["voice_settings"].(map[string]any); settings["stability"] != 0.5 {
@@ -52,9 +52,9 @@ func TestSpeechWithTimestampsAndRetry(t *testing.T) {
 	defer srv.Close()
 	c := New("k")
 	c.BaseURL = srv.URL
-	stability := StabilityNatural
+	stability := 0.5
 	sp, err := c.SpeechWithTimestamps(context.Background(), SpeechRequest{
-		VoiceID: "v1", Text: "hi", ModelID: "eleven_v3", LanguageCode: "es", OutputFormat: "pcm_24000",
+		VoiceID: "v1", Text: "hi", ModelID: "eleven_v4", LanguageCode: "es", OutputFormat: "pcm_24000",
 		Settings: &VoiceSettings{Stability: &stability}, PreviousText: "Before."})
 	if err != nil {
 		t.Fatal(err)

@@ -118,7 +118,9 @@ type Alignment struct {
 	Ends       []float64 `json:"character_end_times_seconds"`
 }
 
-// VoiceSettings tunes a voice; zero values are omitted (server defaults).
+// VoiceSettings tunes a voice; nil fields are omitted (server defaults).
+// eleven_v4 uses only Stability (0–1: lower is more expressive) and
+// SimilarityBoost; it has no style, speed or speaker boost.
 type VoiceSettings struct {
 	Stability       *float64 `json:"stability,omitempty"`
 	SimilarityBoost *float64 `json:"similarity_boost,omitempty"`
@@ -127,29 +129,23 @@ type VoiceSettings struct {
 	UseSpeakerBoost *bool    `json:"use_speaker_boost,omitempty"`
 }
 
-// SpeechRequest is the input to SpeechWithTimestamps. Text may carry
-// Eleven v3 audio tags in square brackets ([whispers], [giggles]); the
-// returned alignment covers every character sent, tags included.
-// PreviousText / NextText give the model the surrounding narration when a
-// story is synthesised in several pieces, so prosody carries across them.
+// SpeechRequest is the input to SpeechWithTimestamps. Text may carry audio
+// tags in square brackets ([whispers], [giggles]) for the models that take
+// them (eleven_v4, eleven_v3); the returned alignment covers every
+// character sent, tags included. PreviousText / NextText give the model
+// the surrounding narration when a text is synthesised in several pieces,
+// so prosody carries across them (eleven_v4 takes them; eleven_v3 never did).
 type SpeechRequest struct {
 	VoiceID      string
 	Text         string
-	ModelID      string // e.g. eleven_v3, eleven_multilingual_v2
+	ModelID      string // e.g. eleven_v4
 	LanguageCode string // ISO 639-1, e.g. "en"
-	OutputFormat string // e.g. pcm_44100
+	OutputFormat string // e.g. pcm_44100, mp3_44100_192
 	Settings     *VoiceSettings
 	Seed         *int
 	PreviousText string
 	NextText     string
 }
-
-// Stability presets for Eleven v3, which accepts exactly these three.
-const (
-	StabilityCreative = 0.0
-	StabilityNatural  = 0.5
-	StabilityRobust   = 1.0
-)
 
 // Speech is synthesised audio plus its alignment.
 type Speech struct {

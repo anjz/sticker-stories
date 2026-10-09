@@ -1,6 +1,7 @@
 // Package audio is a small mono PCM toolkit for the story pipeline: decode
 // 16-bit little-endian PCM, mix layers with gain, fades and ducking,
-// normalise loudness, write WAV, and encode to AAC .m4a with macOS afconvert.
+// normalise loudness, write WAV, and encode to AAC .m4a (or decode MP3)
+// with macOS afconvert.
 // No third-party dependencies.
 package audio
 
@@ -10,6 +11,7 @@ import (
 	"math"
 	"os"
 	"os/exec"
+	"path/filepath"
 )
 
 // Clip is mono float samples in [-1, 1] at Rate Hz.
@@ -132,6 +134,14 @@ func (c *Clip) Cut(seconds, fade float64) *Clip {
 	}
 	c.Samples = c.Samples[:n]
 	return c.Fade(0, fade)
+}
+
+// Slice returns a copy of the clip from seconds from to seconds to,
+// clamped to the clip.
+func (c *Clip) Slice(from, to float64) *Clip {
+	a := min(max(int(math.Round(from*float64(c.Rate))), 0), len(c.Samples))
+	b := min(max(int(math.Round(to*float64(c.Rate))), a), len(c.Samples))
+	return &Clip{Rate: c.Rate, Samples: append([]float32(nil), c.Samples[a:b]...)}
 }
 
 // Fade applies linear fade-in and fade-out of the given lengths.
@@ -277,6 +287,49 @@ func EncodeM4A(wavPath, m4aPath string, bitrate int) error {
 		return fmt.Errorf("afconvert: %w: %s", err, out)
 	}
 	return nil
+}
+
+// DecodeToPCM16 decodes compressed audio (ext names its format: "mp3") to
+// 16-bit little-endian mono PCM at rate, using macOS afconvert.
+func DecodeToPCM16(data []byte, ext string, rate int) ([]byte, error) {
+	dir, err := os.MkdirTemp("", "decode")
+	if err != nil {
+		return nil, err
+	}
+	defer os.RemoveAll(dir)
+	src, dst := filepath.Join(dir, "in."+ext), filepath.Join(dir, "out.wav")
+	if err := os.WriteFile(src, data, 0o644); err != nil {
+		return nil, err
+	}
+	cmd := exec.Command("afconvert", "-f", "WAVE", "-d", fmt.Sprintf("LEI16@%d", rate), "-c", "1", src, dst)
+	if out, err := cmd.CombinedOutput(); err != nil {
+		return nil, fmt.Errorf("afconvert: %w: %s", err, out)
+	}
+	wav, err := os.ReadFile(dst)
+	if err != nil {
+		return nil, err
+	}
+	return wavData(wav)
+}
+
+// wavData returns the samples of a RIFF WAVE file's data chunk, skipping
+// whatever other chunks the writer added (afconvert adds FLLR padding).
+func wavData(wav []byte) ([]byte, error) {
+	if len(wav) < 12 || string(wav[0:4]) != "RIFF" || string(wav[8:12]) != "WAVE" {
+		return nil, fmt.Errorf("not a WAVE file")
+	}
+	for p := 12; p+8 <= len(wav); {
+		id, size := string(wav[p:p+4]), int(binary.LittleEndian.Uint32(wav[p+4:]))
+		body := p + 8
+		if id == "data" {
+			if body+size > len(wav) {
+				size = len(wav) - body
+			}
+			return wav[body : body+size], nil
+		}
+		p = body + size + size%2
+	}
+	return nil, fmt.Errorf("WAVE file has no data chunk")
 }
 
 func clamp(v float32) float32 {

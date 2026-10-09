@@ -18,16 +18,20 @@ go run ./packager validate ../packs/forest
 ## What `render` does, per story and language
 
 1. Takes the text apart (`FORMAT.md`): the spoken words, the effect cues,
-   the Eleven v3 **audio tags** (`[whispers]`, `[giggles]`, …) and the
-   **solo sound cues**. The narration is read in segments — one per stretch
-   between solo sounds — each sent to the text-to-speech **with
-   timestamps** endpoint with its tags kept in (v3 does not yet accept
-   `previous_text` / `next_text`, so each stretch is read on its own —
-   keep them a sentence or two long; the validator warns below 12 words).
-   Model `eleven_v3` at `-stability natural` (creative | natural |
-   robust — v3's three settings; natural follows tags without reading them
-   aloud); if timestamps are refused it falls back to
-   `eleven_multilingual_v2` with the tags stripped (v2 would say them).
+   the **audio tags** (`[whispers]`, `[giggles]`, …) and the **solo sound
+   cues**. The whole narration is read in **one take** — one request to the
+   text-to-speech **with timestamps** endpoint, tags kept in — so the
+   voice, pace and mood carry from the first word to the last. Each solo
+   sound then opens a gap in the take at its place: the take is cut at
+   the quietest moment between the last word before the cue and the first
+   after it (the narrator's own pause; a sentence should end there), and
+   the stretches are laid out with the sound between them. Model
+   `eleven_v4` (`-model`) at `-stability 0.5` (0–1: lower is more
+   expressive and varies more between takes, higher is steadier; v3's
+   names creative / natural / robust still mean 0 / 0.5 / 1). There is no
+   fallback to another model: a rendition the model refuses fails, and
+   the run lists it. A take holds up to 10,000 characters — about ten
+   stories' worth.
 2. Maps each cue's word to the returned character timings — tags are
    characters the model times too, so cues land on the words — and writes
    the effects sidecar (`docs/effects.md`) — sticker triggers, canvas
@@ -58,12 +62,12 @@ go run ./packager validate ../packs/forest
 
 A story is skipped when its text, voice, model, stability, sounds and mix
 settings are unchanged since the last render (`-force` re-mixes anyway).
-The synthesised narration itself is cached in `_cache/tts/` per segment,
-keyed by its text (tags included), its neighbours, voice, model, stability
-and sample rate, so changing levels, music, sounds or bitrate only re-mixes
-and costs nothing; a text, tag, voice or stability change calls the API
-again for the segments it touches. v3 performs a little differently every
-time: `-retake` (with `-only …`) throws the cached take away and asks for
+The synthesised narration itself is cached in `_cache/tts/`, one take per
+story and language, keyed by its text (tags included), voice, model,
+stability and sample rate, so changing levels, music, sounds, bitrate or
+where a solo sound goes only re-mixes and costs nothing; a text, tag, voice
+or stability change reads the story again. The model performs a little
+differently every time: `-retake` (with `-only …`) throws the cached take away and asks for
 another performance of just those stories — the way to shop for the best
 read of a story you are not happy with. `-only id,…` and
 `-lang` narrow a run. Renditions are rendered `-parallel` at a time
@@ -102,9 +106,12 @@ bouncy. Each distinct prompt is composed once (60 s) and cached in
 
 `-sfx-db` (default −12), `-ambience-db` (default −18), `-music-db`
 (default −14), `-intro-db` (default −6), `-lead` (default 3 s),
-`-stability natural`, `-no-sfx`, `-no-music`, `-bitrate 96000`,
-`-rate 44100` (44.1 kHz PCM needs a Pro plan; the tool drops to 24 kHz
-automatically if refused).
+`-stability 0.5`, `-no-sfx`, `-no-music`, `-bitrate 96000`,
+`-rate 44100`. Uncompressed 44.1 kHz audio needs a Pro plan; when the plan
+refuses it (Creator), every request — narration, sounds, music — asks for
+MP3 at 44.1 kHz / 192 kbps instead and decodes it, which keeps the full
+bandwidth (24 kHz PCM would lose the top of the voice). The MP3 decoder
+shifts timing by under 30 ms, well inside a frame.
 
 ## Install
 
@@ -112,7 +119,10 @@ automatically if refused).
 merges story entries into `manifest.json` (replacing entries with the same
 id, `-prune` drops the rest and deletes their audio and sidecars from the
 pack, `-bump` increments the content version), and validates the manifest. Rendered audio in the story folders is gitignored;
-the pack copy is the one that is committed.
+the pack copy is the one that is committed. A pack's narration is one
+recording: `install` refuses to run while any rendition was read by a
+model other than `-model` (default `eleven_v4`), listing them — render them
+again, or pass `-model eleven_v3` to reinstall an older recording as it is.
 
 ## Notes
 

@@ -7,11 +7,11 @@
 // Usage:
 //
 //	storyaudio render  -pack ../packs/forest [-only id,…] [-lang en-US] [-dry-run] [-force] [-retake]
-//	                   [-voice en-US=<id>,es-ES=<id>] [-model eleven_v3] [-rate 44100]
+//	                   [-voice en-US=<id>,es-ES=<id>] [-model eleven_v4] [-stability 0.5] [-rate 44100]
 //	                   [-no-sfx] [-no-music] [-music-prompt "…"] [-sfx-db -12] [-music-db -14]
 //	                   [-lead 3] [-intro-db -6] [-parallel 10]
 //	storyaudio voices  -pack ../packs/forest            # list candidate voices per language
-//	storyaudio install -pack ../packs/forest [-prune] [-bump]
+//	storyaudio install -pack ../packs/forest [-prune] [-bump] [-model eleven_v4]
 //
 // The API key is read from ELEVENLABS_API_KEY, loaded from tools/.env or the
 // repository's .env if present. Nothing here ships with the app.
@@ -30,6 +30,7 @@ import (
 	"path/filepath"
 	"slices"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -44,9 +45,15 @@ import (
 )
 
 const (
-	toolVersion  = "5" // 3: held lights (render.HoldLights); 4: they clear as the next builds; 5: snow holds
-	defaultModel = "eleven_v3"
-	fallbackTTS  = "eleven_multilingual_v2"
+	toolVersion  = "6" // 3: held lights (render.HoldLights); 4: they clear as the next builds; 5: snow holds; 6: one take per story
+	defaultModel = "eleven_v4"
+	// mp3Format is what is asked for when the plan refuses 44.1 kHz PCM
+	// (Creator): decoded here, it keeps the full bandwidth that 24 kHz PCM
+	// would lose, and 192 kbps is far above the 64 kbps AAC the app gets.
+	mp3Format = "mp3_44100_192"
+	// maxTakeChars is the model's limit for one request: a story is read
+	// in one take, so its narration must fit.
+	maxTakeChars = 10000
 	tailOut      = 2.0 // seconds of music after the narrator ends
 	introRamp    = 1.0 // seconds over which the intro settles to the bed level
 	voiceRMSdB   = -20.0
@@ -56,13 +63,25 @@ const (
 	musicSeconds = 60
 )
 
-// stabilityPresets are Eleven v3's three settings (docs: Creative is the
-// most expressive and the most prone to say a tag aloud; Robust the most
-// even and the least responsive to tags).
-var stabilityPresets = map[string]float64{
-	"creative": elevenlabs.StabilityCreative,
-	"natural":  elevenlabs.StabilityNatural,
-	"robust":   elevenlabs.StabilityRobust,
+// stabilityNames are v3's three settings, still accepted as names for
+// their values: lower is more expressive and varies more between takes,
+// higher keeps a steadier read (v4 takes any value from 0 to 1).
+var stabilityNames = map[string]float64{
+	"creative": 0,
+	"natural":  0.5,
+	"robust":   1,
+}
+
+// parseStability reads -stability: a name or a number from 0 to 1.
+func parseStability(s string) (float64, error) {
+	if v, ok := stabilityNames[s]; ok {
+		return v, nil
+	}
+	v, err := strconv.ParseFloat(s, 64)
+	if err != nil || v < 0 || v > 1 {
+		return 0, fmt.Errorf("-stability must be a number from 0 to 1 (or creative, natural, robust), not %q", s)
+	}
+	return v, nil
 }
 
 // musicConfig is <stories>/music.json: one Eleven Music prompt per mood tag
@@ -439,7 +458,7 @@ type renderOpts struct {
 	sfxDB, musicDB float64
 	ambienceDB     float64
 	lead, introDB  float64
-	stability      string
+	stability      float64
 	parallel       int
 	force, dry     bool
 	retake         bool
@@ -453,6 +472,7 @@ type renderRecord struct {
 	VoiceID     string   `json:"voiceId"`
 	Voice       string   `json:"voice"`
 	Model       string   `json:"model"`
+	Stability   *float64 `json:"stability,omitempty"`
 	SampleRate  int      `json:"sampleRate"`
 	Duration    float64  `json:"duration"`
 	Sounds      []string `json:"sounds,omitempty"`
@@ -469,21 +489,21 @@ func runRender(args []string) error {
 	only := fs.String("only", "", "comma-separated story ids to render")
 	lang := fs.String("lang", "", "render only this language")
 	voice := fs.String("voice", "", "lang=id pairs (en-US=…,es-ES=…), several ids per language joined with +; bare ids apply to every language; saved to voices.json")
-	model := fs.String("model", defaultModel, "TTS model (falls back to "+fallbackTTS+" if timestamps are unavailable)")
-	rate := fs.Int("rate", 44100, "PCM sample rate requested from ElevenLabs (44100 needs Pro+; falls back to 24000)")
+	model := fs.String("model", defaultModel, "TTS model; a rendition it cannot read fails (no fallback to another model)")
+	rate := fs.Int("rate", 44100, "sample rate requested from ElevenLabs (44.1 kHz PCM needs Pro+; other plans get "+mp3Format+", decoded)")
 	noSFX := fs.Bool("no-sfx", false, "skip sound-effect hints")
 	noMusic := fs.Bool("no-music", false, "skip background music")
 	musicPrompt := fs.String("music-prompt", "", "one Eleven Music prompt for every story, overriding <stories>/music.json")
 	sfxDB := fs.Float64("sfx-db", -12, "sound effect level relative to narration, dB")
 	ambienceDB := fs.Float64("ambience-db", -18, "looping ambience level under the narration, dB relative to the narrator")
 	musicDB := fs.Float64("music-db", -14, "music level under the narration, dB relative to the narrator")
-	stability := fs.String("stability", "natural", "v3 voice stability: creative | natural | robust (natural follows audio tags without saying them)")
+	stability := fs.String("stability", "0.5", "voice stability, 0–1: lower is more expressive and varies between takes, higher steadier (creative, natural, robust = 0, 0.5, 1)")
 	lead := fs.Float64("lead", 3, "seconds of music alone before the narrator starts")
 	introDB := fs.Float64("intro-db", -6, "music level during the lead-in, dB relative to the narrator (ramps down to -music-db over the last second)")
 	bitrate := fs.Int("bitrate", 64000, "AAC bitrate (64 kbps mono is transparent for narration)")
 	parallel := fs.Int("parallel", 10, "renditions rendered concurrently")
 	force := fs.Bool("force", false, "re-render (re-mix) even if nothing changed; cached narration is reused")
-	retake := fs.Bool("retake", false, "synthesise the narration again even when a cached take exists — v3 varies between runs, so this is how you ask for another performance (implies -force)")
+	retake := fs.Bool("retake", false, "synthesise the narration again even when a cached take exists — every take is a new performance, so this is how you ask for another one (implies -force)")
 	dry := fs.Bool("dry-run", false, "print what would be rendered and the characters that would be synthesised (cached narration excluded); no API calls that cost")
 	fs.Parse(args)
 
@@ -491,14 +511,15 @@ func runRender(args []string) error {
 	if err != nil {
 		return err
 	}
-	if _, ok := stabilityPresets[*stability]; !ok {
-		return fmt.Errorf("-stability must be creative, natural or robust")
+	stab, err := parseStability(*stability)
+	if err != nil {
+		return err
 	}
 	if *lang != "" && !slices.Contains(c.pack.Languages, *lang) {
 		return fmt.Errorf("-lang %q is not one of the pack's languages (%s)", *lang, strings.Join(c.pack.Languages, ", "))
 	}
 	o := renderOpts{model: *model, sampleRate: *rate, noSFX: *noSFX, noMusic: *noMusic, musicPrompt: *musicPrompt,
-		sfxDB: *sfxDB, ambienceDB: *ambienceDB, musicDB: *musicDB, lead: *lead, introDB: *introDB, stability: *stability,
+		sfxDB: *sfxDB, ambienceDB: *ambienceDB, musicDB: *musicDB, lead: *lead, introDB: *introDB, stability: stab,
 		parallel: *parallel, force: *force || *retake, retake: *retake, dry: *dry, lang: *lang, bitrate: *bitrate}
 	if *only != "" {
 		o.only = map[string]bool{}
@@ -531,7 +552,10 @@ type renderer struct {
 	ctx    context.Context
 	music  map[string]*audio.Clip // by prompt
 	moods  musicConfig
-	mu     sync.Mutex // guards music, o.sampleRate, stdout
+	mu     sync.Mutex // guards music, mp3, stdout
+	// mp3 is set once the plan has refused 44.1 kHz PCM: from then on
+	// every request asks for mp3Format and decodes it.
+	mp3 bool
 	locks  sync.Map   // cache key → *sync.Mutex, so one worker generates each asset
 	// dry-run tallies
 	chars      map[string]int
@@ -669,7 +693,7 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 		musicPrompt, mood = r.musicPromptFor(s)
 	}
 	musicKey := hashOf(musicPrompt, fmt.Sprint(musicSeconds))
-	fp := hashOf(toolVersion, plain, loc.Text, voice.VoiceID, r.o.model, r.o.stability, fmt.Sprint(r.o.sampleRate),
+	fp := hashOf(toolVersion, plain, loc.Text, voice.VoiceID, r.o.model, stabilityKey(r.o.stability), fmt.Sprint(r.o.sampleRate),
 		strings.Join(notes, ";"), musicKey, fmt.Sprint(r.o.sfxDB, r.o.ambienceDB, r.o.musicDB, r.o.lead, r.o.introDB, r.o.bitrate))
 
 	if !r.o.force {
@@ -681,24 +705,22 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 		}
 	}
 
-	// The narration is read in segments: a solo sound cue pauses the
-	// narrator, so the text before and after it are synthesised apart and
-	// the sound sits in the gap.
+	// The narration is read in one take, so the voice carries from the
+	// first word to the last; a solo sound cue then opens a gap in it at
+	// its place (the segments are the stretches between solo sounds).
 	segments := nar.Segments()
 	pieces := make([]piece, len(segments))
 	for i, seg := range segments {
 		pieces[i].text, pieces[i].starts = nar.Spoken(seg.From, seg.To)
 	}
+	take := takeText(pieces)
+	if n := len([]rune(take)); n > maxTakeChars {
+		return false, fmt.Errorf("narration is %d characters; one take holds %d", n, maxTakeChars)
+	}
 
 	if r.o.dry {
-		for i, p := range pieces {
-			if p.text == "" {
-				continue
-			}
-			// The same key speak() uses: a take is shaped by its neighbours.
-			if _, _, cached := r.loadSpeech(speechKey(pieces, i), lang, voice.VoiceID, r.o.sampleRate); !cached {
-				r.chars[lang] += len([]rune(p.text))
-			}
+		if _, cached := r.loadSpeech(take, lang, voice.VoiceID, r.o.sampleRate); !cached {
+			r.chars[lang] += len([]rune(take))
 		}
 		if !r.o.noSFX {
 			for _, h := range s.Sound {
@@ -724,13 +746,22 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 	fmt.Printf("▶ %s (%s, %s, music %s)\n", s.ID, lang, voice.Name, orNone(mood))
 	r.mu.Unlock()
 
-	// Synthesise each segment with its neighbours as context, place it on
-	// the clock after any solo sound that precedes it, and assemble one
+	// Read the story in one take, cut it where the solo sounds go, place
+	// each stretch on the clock after the sound before it, and assemble one
 	// timeline for the cues.
-	var voiceClip *audio.Clip
+	rate := r.o.sampleRate
+	model := r.o.model
+	speech, err := r.speak(take, lang, voice.VoiceID)
+	if err != nil {
+		return false, err
+	}
+	whole := audio.FromPCM16(speech.Audio, rate)
+	whole.NormalizeRMS(voiceRMSdB, 0.9)
+	stretches, err := splitTake(pieces, whole, speech.Alignment)
+	if err != nil {
+		return false, err
+	}
 	var parts []*render.Timeline
-	var model string
-	rate := r.rate()
 	soloAt := map[int]float64{} // cue index → when the solo sound starts
 	offset := 0.0
 	type placedPiece struct {
@@ -748,26 +779,15 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 		if pieces[i].text == "" {
 			continue
 		}
-		prev, next := neighbours(pieces, i)
-		speech, usedModel, usedRate, err := r.speak(pieces[i].text, prev, next, lang, voice.VoiceID, log)
+		tl, err := render.NewTimeline(pieces[i].text, pieces[i].starts, stretches[i].alignment)
 		if err != nil {
 			return false, err
 		}
-		if model == "" {
-			model = usedModel
-		}
-		rate = usedRate
-		tl, err := render.NewTimeline(pieces[i].text, pieces[i].starts, speech.Alignment)
-		if err != nil {
-			return false, err
-		}
-		clip := audio.FromPCM16(speech.Audio, rate)
-		clip.NormalizeRMS(voiceRMSdB, 0.9)
-		placed = append(placed, placedPiece{clip, offset})
+		placed = append(placed, placedPiece{stretches[i].clip, offset})
 		parts = append(parts, tl.Shifted(offset))
-		offset += clip.Duration()
+		offset += stretches[i].clip.Duration()
 	}
-	voiceClip = audio.Silence(rate, offset)
+	voiceClip := audio.Silence(rate, offset)
 	for _, p := range placed {
 		voiceClip.MixAt(p.clip, p.at, 1)
 	}
@@ -801,7 +821,8 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 	mix := audio.Silence(rate, r.leadIn()+voiceClip.Duration()+tailOut)
 	mix.MixAt(voiceClip, r.leadIn(), 1)
 
-	rec := renderRecord{Fingerprint: fp, Music: mood, VoiceID: voice.VoiceID, Voice: voice.Name, Model: model, SampleRate: rate, LiveOverlap: liveOverlaps, RenderedAt: time.Now().Format(time.RFC3339)}
+	stab := r.o.stability
+	rec := renderRecord{Fingerprint: fp, Music: mood, VoiceID: voice.VoiceID, Voice: voice.Name, Model: model, Stability: &stab, SampleRate: rate, LiveOverlap: liveOverlaps, RenderedAt: time.Now().Format(time.RFC3339)}
 
 	if !r.o.noSFX {
 		// Legacy hints: a sound on a spoken word.
@@ -920,104 +941,169 @@ func (r *renderer) leadIn() float64 {
 	return r.o.lead
 }
 
-func (r *renderer) rate() int {
-	r.mu.Lock()
-	defer r.mu.Unlock()
-	return r.o.sampleRate
-}
-
 func pcmFormat(rate int) string { return fmt.Sprintf("pcm_%d", rate) }
 
-// piece is one stretch of narration read in one go (between solo sounds):
-// the spoken text and the byte offset of each word in it.
+// piece is one stretch of narration between solo sounds: the spoken text
+// and the byte offset of each word in it.
 type piece struct {
 	text   string
 	starts []int
 }
 
-// speechCacheKey is what a cached take is looked up by: the segment's text
-// and the neighbouring text that shapes its delivery.
-func speechCacheKey(text, previous, next string) string {
-	return text + "\x00" + previous + "\x00" + next
-}
-
-// speechKey is speechCacheKey for pieces[i] of a narration.
-func speechKey(pieces []piece, i int) string {
-	prev, next := neighbours(pieces, i)
-	return speechCacheKey(pieces[i].text, prev, next)
-}
-
-// neighbours returns the spoken text before and after pieces[i] ("" at the ends).
-func neighbours(pieces []piece, i int) (prev, next string) {
-	if i > 0 {
-		prev = pieces[i-1].text
+// takeText is the whole narration as it is read in one take: the stretches
+// between solo sounds, joined by a space.
+func takeText(pieces []piece) string {
+	var parts []string
+	for _, p := range pieces {
+		if p.text != "" {
+			parts = append(parts, p.text)
+		}
 	}
-	if i+1 < len(pieces) {
-		next = pieces[i+1].text
-	}
-	return prev, next
+	return strings.Join(parts, " ")
 }
 
-// speak synthesises with timestamps, falling back to a lower sample rate
-// (tier limit, remembered for the rest of the run) and to the v2 model (no
-// alignment) when needed. Returns the audio, the model used and the rate.
-func (r *renderer) speak(text, previous, next, lang, voiceID string, log *strings.Builder) (*elevenlabs.Speech, string, int, error) {
-	rate := r.rate()
+// stretch is one piece's audio cut out of the take, with its alignment
+// re-timed from the cut.
+type stretch struct {
+	clip      *audio.Clip
+	alignment *elevenlabs.Alignment
+}
+
+// splitTake cuts the one-take narration into the pieces takeText joined:
+// each cut falls at the quietest moment between the last character of one
+// piece and the first of the next (the narrator's pause where a solo sound
+// goes), so no word is clipped. Empty pieces get no stretch.
+func splitTake(pieces []piece, take *audio.Clip, al *elevenlabs.Alignment) ([]stretch, error) {
+	if al == nil || len(al.Starts) != len(al.Characters) || len(al.Ends) != len(al.Characters) {
+		return nil, errors.New("take came back without a usable alignment")
+	}
+	type span struct{ piece, from, to int } // rune range in the take text
+	var spans []span
+	at := 0
+	for i, p := range pieces {
+		if p.text == "" {
+			continue
+		}
+		if len(spans) > 0 {
+			at++ // the joining space
+		}
+		n := len([]rune(p.text))
+		spans = append(spans, span{i, at, at + n})
+		at += n
+	}
+	if at != len(al.Characters) {
+		return nil, fmt.Errorf("alignment has %d characters for a %d-character take", len(al.Characters), at)
+	}
+	out := make([]stretch, len(pieces))
+	cutFrom := 0.0
+	for k, sp := range spans {
+		cutTo := take.Duration()
+		if k+1 < len(spans) {
+			cutTo = quietest(take, al.Ends[sp.to-1], al.Starts[spans[k+1].from])
+		}
+		clip := take.Slice(cutFrom, cutTo).Fade(0.005, 0.005)
+		sub := &elevenlabs.Alignment{Characters: al.Characters[sp.from:sp.to]}
+		for j := sp.from; j < sp.to; j++ {
+			sub.Starts = append(sub.Starts, math.Max(al.Starts[j]-cutFrom, 0))
+			sub.Ends = append(sub.Ends, math.Max(al.Ends[j]-cutFrom, 0))
+		}
+		out[sp.piece] = stretch{clip, sub}
+		cutFrom = cutTo
+	}
+	return out, nil
+}
+
+// quietest returns the middle of the quietest 10 ms of c between from and
+// to (seconds); the middle of the range when it is shorter than that.
+func quietest(c *audio.Clip, from, to float64) float64 {
+	if to < from {
+		from, to = to, from
+	}
+	win := c.Rate / 100
+	a, b := int(from*float64(c.Rate)), int(to*float64(c.Rate))
+	if b > len(c.Samples) {
+		b = len(c.Samples)
+	}
+	if b-a <= win {
+		return (from + to) / 2
+	}
+	best, bestAt := math.Inf(1), a
+	for i := a; i+win <= b; i += win / 4 {
+		e := 0.0
+		for _, v := range c.Samples[i : i+win] {
+			e += float64(v) * float64(v)
+		}
+		if e < best {
+			best, bestAt = e, i
+		}
+	}
+	return float64(bestAt+win/2) / float64(c.Rate)
+}
+
+// stabilityKey is the stability as it enters fingerprints and cache keys.
+func stabilityKey(v float64) string { return strconv.FormatFloat(v, 'f', -1, 64) }
+
+// speak reads a story's narration in one take with timestamps, from the
+// cache when it has been read before. The model never changes behind the
+// author's back: a refusal fails the rendition.
+func (r *renderer) speak(text, lang, voiceID string) (*elevenlabs.Speech, error) {
+	rate := r.o.sampleRate
 	// The synthesis is the expensive part; cache it so mix changes
-	// (levels, music, bitrate) never cost another API call. The cache key
-	// includes the neighbouring text, which shapes the delivery.
-	key := speechCacheKey(text, previous, next)
+	// (levels, music, bitrate) never cost another API call.
 	if !r.o.retake {
-		if sp, model, ok := r.loadSpeech(key, lang, voiceID, rate); ok {
-			return sp, model, rate, nil
+		if sp, ok := r.loadSpeech(text, lang, voiceID, rate); ok {
+			return sp, nil
 		}
 	}
-	stability := stabilityPresets[r.o.stability]
+	stability := r.o.stability
 	req := elevenlabs.SpeechRequest{
-		VoiceID: voiceID, Text: text, ModelID: r.o.model, LanguageCode: primary(lang), OutputFormat: pcmFormat(rate),
+		VoiceID: voiceID, Text: text, ModelID: r.o.model, LanguageCode: primary(lang),
 		Settings: &elevenlabs.VoiceSettings{Stability: &stability}}
-	if r.o.model != defaultModel {
-		// v3 does not take previous_text / next_text yet ("not yet
-		// supported with the 'eleven_v3' model"); v2 does.
-		req.PreviousText, req.NextText = previous, next
-	}
-	sp, err := r.el.SpeechWithTimestamps(r.ctx, req)
-	if err != nil && isRateRefusal(err) && rate == 44100 {
-		fmt.Fprintf(log, "[44.1 kHz PCM refused: %s; using 24 kHz] ", shorten(err))
-		r.mu.Lock()
-		r.o.sampleRate = 24000
-		r.mu.Unlock()
-		rate = 24000
-		req.OutputFormat = pcmFormat(rate)
+	var sp *elevenlabs.Speech
+	pcm, err := r.fetchPCM(rate, func(format string) ([]byte, error) {
+		req.OutputFormat = format
+		var err error
 		sp, err = r.el.SpeechWithTimestamps(r.ctx, req)
-	}
-	model := r.o.model
-	if (err != nil && elevenlabs.IsClientError(err) || err == nil && sp.Alignment == nil) && r.o.model != fallbackTTS {
-		reason := "no alignment"
 		if err != nil {
-			reason = shorten(err)
+			return nil, err
 		}
-		fmt.Fprintf(log, "[%s: %s; retried with %s] ", r.o.model, reason, fallbackTTS)
-		req.ModelID = fallbackTTS
-		model = fallbackTTS
-		// v2 would read the audio tags aloud; it gets the words alone.
-		req.Text = story.StripTags(text)
-		req.PreviousText, req.NextText = story.StripTags(previous), story.StripTags(next)
-		sp, err = r.el.SpeechWithTimestamps(r.ctx, req)
-		if err == nil && sp.Alignment != nil && req.Text != text {
-			// The alignment is for the stripped text; re-express it over
-			// the tagged text so word offsets still line up.
-			sp.Alignment = realign(text, req.Text, sp.Alignment)
-		}
-	}
+		return sp.Audio, nil
+	})
 	if err != nil {
-		return nil, "", 0, err
+		return nil, err
 	}
 	if sp.Alignment == nil {
-		return nil, "", 0, errors.New("no alignment returned")
+		return nil, errors.New("no alignment returned")
 	}
-	r.saveSpeech(key, lang, voiceID, rate, model, sp)
-	return sp, model, rate, nil
+	sp.Audio = pcm
+	r.saveSpeech(text, lang, voiceID, rate, r.o.model, sp)
+	return sp, nil
+}
+
+// fetchPCM makes a request for audio and returns 16-bit PCM at rate: raw
+// PCM when the plan allows it, else (44.1 kHz on a plan below Pro) MP3 at
+// 192 kbps, decoded — remembered for the rest of the run.
+func (r *renderer) fetchPCM(rate int, call func(format string) ([]byte, error)) ([]byte, error) {
+	r.mu.Lock()
+	mp3 := r.mp3
+	r.mu.Unlock()
+	if !mp3 || rate != 44100 {
+		data, err := call(pcmFormat(rate))
+		if err == nil || rate != 44100 || !isRateRefusal(err) {
+			return data, err
+		}
+		r.mu.Lock()
+		if !r.mp3 {
+			fmt.Printf("44.1 kHz PCM refused (%s): asking for %s and decoding it\n", shorten(err), mp3Format)
+		}
+		r.mp3 = true
+		r.mu.Unlock()
+	}
+	data, err := call(mp3Format)
+	if err != nil {
+		return nil, err
+	}
+	return audio.DecodeToPCM16(data, "mp3", rate)
 }
 
 // isRateRefusal reports whether a client error is about the requested
@@ -1032,66 +1118,37 @@ func isRateRefusal(err error) bool {
 	return strings.Contains(body, "output_format") || strings.Contains(body, "44100") || strings.Contains(body, "sample rate")
 }
 
-// realign maps an alignment made for stripped (the text without audio
-// tags) onto tagged (the text as authored): tag characters get the timing
-// of the character after them, so a word's onset is unchanged.
-func realign(tagged, stripped string, al *elevenlabs.Alignment) *elevenlabs.Alignment {
-	out := &elevenlabs.Alignment{}
-	src := []rune(stripped)
-	j := 0 // index into src / al
-	for _, r := range tagged {
-		if j < len(src) && j < len(al.Starts) && r == src[j] {
-			out.Characters = append(out.Characters, string(r))
-			out.Starts = append(out.Starts, al.Starts[j])
-			out.Ends = append(out.Ends, al.Ends[j])
-			j++
-			continue
-		}
-		// A character the stripped text does not have (a tag, or its
-		// surrounding space): zero-length at the next known time.
-		t := 0.0
-		if j < len(al.Starts) {
-			t = al.Starts[j]
-		} else if n := len(al.Ends); n > 0 {
-			t = al.Ends[n-1]
-		}
-		out.Characters = append(out.Characters, string(r))
-		out.Starts = append(out.Starts, t)
-		out.Ends = append(out.Ends, t)
-	}
-	return out
-}
-
 type speechCache struct {
 	Model     string                `json:"model"`
 	Alignment *elevenlabs.Alignment `json:"alignment"`
 }
 
-// speechCachePath keys a take by everything that shapes it: the text and
-// its neighbours, the voice, the model, the stability preset and the rate.
-func (r *renderer) speechCachePath(plain, lang, voiceID string, rate int) string {
-	return filepath.Join(r.cacheDir("tts"), hashOf(plain, lang, voiceID, r.o.model, r.o.stability, fmt.Sprint(rate)))
+// speechCachePath keys a take by everything that shapes it: the text, the
+// voice, the model, the stability and the rate. The audio is kept as PCM
+// at the rate whatever format it came in.
+func (r *renderer) speechCachePath(text, lang, voiceID string, rate int) string {
+	return filepath.Join(r.cacheDir("tts"), hashOf(text, lang, voiceID, r.o.model, stabilityKey(r.o.stability), fmt.Sprint(rate)))
 }
 
-func (r *renderer) loadSpeech(plain, lang, voiceID string, rate int) (*elevenlabs.Speech, string, bool) {
-	base := r.speechCachePath(plain, lang, voiceID, rate)
+func (r *renderer) loadSpeech(text, lang, voiceID string, rate int) (*elevenlabs.Speech, bool) {
+	base := r.speechCachePath(text, lang, voiceID, rate)
 	meta, err := os.ReadFile(base + ".json")
 	if err != nil {
-		return nil, "", false
+		return nil, false
 	}
 	audio, err := os.ReadFile(base + ".pcm")
 	if err != nil {
-		return nil, "", false
+		return nil, false
 	}
 	var sc speechCache
-	if json.Unmarshal(meta, &sc) != nil || sc.Alignment == nil {
-		return nil, "", false
+	if json.Unmarshal(meta, &sc) != nil || sc.Alignment == nil || sc.Model != r.o.model {
+		return nil, false
 	}
-	return &elevenlabs.Speech{Audio: audio, Alignment: sc.Alignment}, sc.Model, true
+	return &elevenlabs.Speech{Audio: audio, Alignment: sc.Alignment}, true
 }
 
-func (r *renderer) saveSpeech(plain, lang, voiceID string, rate int, model string, sp *elevenlabs.Speech) {
-	base := r.speechCachePath(plain, lang, voiceID, rate)
+func (r *renderer) saveSpeech(text, lang, voiceID string, rate int, model string, sp *elevenlabs.Speech) {
+	base := r.speechCachePath(text, lang, voiceID, rate)
 	meta, _ := json.Marshal(speechCache{Model: model, Alignment: sp.Alignment})
 	if writeAtomic(base+".pcm", sp.Audio) == nil {
 		writeAtomic(base+".json", meta)
@@ -1134,7 +1191,9 @@ func (r *renderer) soundEffect(prompt string, seconds float64, loop bool, rate i
 		if loop {
 			style = " (seamless ambience loop, soft and even, for a children's story, no music, no voices)"
 		}
-		return r.el.SoundEffect(r.ctx, elevenlabs.SoundRequest{Prompt: prompt + style, Seconds: seconds, Influence: 0.4, Loop: loop, OutputFormat: pcmFormat(rate)})
+		return r.fetchPCM(rate, func(format string) ([]byte, error) {
+			return r.el.SoundEffect(r.ctx, elevenlabs.SoundRequest{Prompt: prompt + style, Seconds: seconds, Influence: 0.4, Loop: loop, OutputFormat: format})
+		})
 	})
 	if err != nil {
 		return nil, err
@@ -1216,7 +1275,9 @@ func (r *renderer) musicLoop(prompt, mood string, rate int, log *strings.Builder
 	}
 	data, err := r.cached(r.musicCachePath(prompt, rate), func() ([]byte, error) {
 		fmt.Fprintf(log, "[composed %s music] ", mood)
-		return r.el.Music(r.ctx, prompt, musicSeconds*1000, "", pcmFormat(rate))
+		return r.fetchPCM(rate, func(format string) ([]byte, error) {
+			return r.el.Music(r.ctx, prompt, musicSeconds*1000, "", format)
+		})
 	})
 	if err != nil {
 		return nil, err
@@ -1236,10 +1297,30 @@ func runInstall(args []string) error {
 	storiesDir := fs.String("stories", "", "stories directory (default author/stories/<packID>)")
 	prune := fs.Bool("prune", false, "remove manifest stories that are not in the authored set")
 	bump := fs.Bool("bump", false, "increment the pack's content version")
+	model := fs.String("model", defaultModel, "the TTS model every installed rendition must have been read with")
 	fs.Parse(args)
 	c, err := load(*packDir, *storiesDir)
 	if err != nil {
 		return err
+	}
+	// A pack's narration is one recording: every rendition read by the same
+	// model, so an old take never ships beside new ones by accident.
+	var stale []string
+	for _, s := range c.stories {
+		for _, lang := range c.pack.Languages {
+			data, err := os.ReadFile(filepath.Join(s.Dir, "audio", lang+".render.json"))
+			if err != nil {
+				continue // not rendered: skipped below
+			}
+			var rec renderRecord
+			if json.Unmarshal(data, &rec) != nil || rec.Model != *model {
+				stale = append(stale, fmt.Sprintf("%s (%s): %s", s.ID, lang, orNone(rec.Model)))
+			}
+		}
+	}
+	if len(stale) > 0 {
+		return fmt.Errorf("%d rendition(s) were not read with %s; render them again (storyaudio render), or pass -model to install another model's recording:\n  %s",
+			len(stale), *model, strings.Join(stale, "\n  "))
 	}
 	authored := map[string]bool{}
 	installed := 0

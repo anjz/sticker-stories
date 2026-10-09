@@ -1,7 +1,11 @@
 package audio
 
 import (
+	"bytes"
 	"math"
+	"os"
+	"os/exec"
+	"path/filepath"
 	"testing"
 )
 
@@ -98,5 +102,52 @@ func TestCut(t *testing.T) {
 	}
 	if got := len(Silence(100, 0.5).Cut(1, 0.1).Samples); got != 50 {
 		t.Errorf("a shorter clip should be left alone, got %d", got)
+	}
+}
+
+func TestWavDataSkipsOtherChunks(t *testing.T) {
+	c := tone(8000, 0.05, 0.5)
+	dir := t.TempDir()
+	path := filepath.Join(dir, "t.wav")
+	if err := c.WriteWAV(path); err != nil {
+		t.Fatal(err)
+	}
+	wav, _ := os.ReadFile(path)
+	// Splice an odd-sized chunk in front of "data", as afconvert's FLLR.
+	extra := append([]byte("FLLR\x03\x00\x00\x00abc"), 0)
+	spliced := append(append(append([]byte{}, wav[:36]...), extra...), wav[36:]...)
+	data, err := wavData(spliced)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !bytes.Equal(data, c.ToPCM16()) {
+		t.Fatalf("data chunk differs: %d bytes, want %d", len(data), len(c.ToPCM16()))
+	}
+}
+
+func TestDecodeToPCM16(t *testing.T) {
+	if _, err := exec.LookPath("afconvert"); err != nil {
+		t.Skip("afconvert (macOS) not available")
+	}
+	dir := t.TempDir()
+	wav, m4a := filepath.Join(dir, "t.wav"), filepath.Join(dir, "t.m4a")
+	if err := tone(44100, 1, 0.3).WriteWAV(wav); err != nil {
+		t.Fatal(err)
+	}
+	if err := EncodeM4A(wav, m4a, 64000); err != nil {
+		t.Fatal(err)
+	}
+	data, _ := os.ReadFile(m4a)
+	pcm, err := DecodeToPCM16(data, "m4a", 44100)
+	if err != nil {
+		t.Fatal(err)
+	}
+	back := FromPCM16(pcm, 44100)
+	// The codec adds a little padding; length and level must survive.
+	if d := back.Duration(); d < 0.95 || d > 1.1 {
+		t.Errorf("decoded %.3f s, want about 1 s", d)
+	}
+	if rms := back.RMS(); math.Abs(rms-0.3/math.Sqrt2) > 0.03 {
+		t.Errorf("decoded RMS %.3f, want about %.3f", rms, 0.3/math.Sqrt2)
 	}
 }
