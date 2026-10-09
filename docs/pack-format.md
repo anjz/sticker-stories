@@ -194,6 +194,7 @@ never letterboxes:
 | `background` / `foreground` | string | Pack-relative paths to PNG or WebP files that must exist ("Image formats" above). Their frame is the sticker coordinate system ("Art safe area" below). |
 | `backgroundWide` / `foregroundWide` | string | **Optional, together or not at all.** Wider renditions (e.g. 2:1) with the **same pixel height** as the base art and the base art **centred** inside. The app draws whichever rendition lets a landscape window avoid panning with the least crop (tall phones get the wide one; iPads keep the base one). Files must exist. |
 | `cover` | string | **Optional.** Pack-relative path to the pack's cover art (PNG or WebP, must exist): what its tile shows in the main menu and the store. Made with `uiart` (`tools/author/uiart`); without one the app composes the tile from the background and a few stickers. No text in it — the app writes the name. |
+| `world` | object | **Optional.** The physics of the pack's world for particle effects ("World" below): `gravity` (relative to Earth's: 1 on Earth, 0.17 on the Moon; 0–2) and `ground` (`#RRGGBB`, the colour dust is kicked up from). Either may be left out; the app fills it from the `setting`. |
 | `stickers[].id` | string | Lowercase `a-z0-9-`, unique within the pack. `all` is reserved (triggers use it for every sticker). |
 | `stickers[].name` | {lang: string} | Display/accessibility name per language. |
 | `stickers[].image` | string | Pack-relative path to a PNG or WebP file; must exist. |
@@ -286,6 +287,8 @@ never letterboxes:
     pack is exempt from rule 5 for its audio (only the path is checked),
     and the packager checks its ID still matches its audio — a changed
     recording needs a new asset pack (`storyaudio install` names it).
+17. `world`, when present, has a `gravity` from 0 to 2 and a `ground`
+    that is a `#RRGGBB` colour (either may be left out).
 
 ## Stage
 
@@ -402,6 +405,29 @@ to make room (`tools/author/stickeranim`). `stickerart` draws to these
   (`docs/effects.md`, "Entrances").
 
 A pack without `content` keeps the old behaviour throughout.
+
+## World
+
+`world` is what particle effects (`docs/effects.md`, `dust-puff`, `spray`,
+`sparks`) need to know about the place: how strongly things fall and what
+the ground is made of. The same `dust-puff` then hangs and drifts down
+slowly as grey dust on the Moon and settles at once as brown soil in a
+forest.
+
+```json
+"world": { "gravity": 0.17, "ground": "#A9A6A1" }
+```
+
+Left out (or a part of it), it comes from the `setting`:
+
+| `setting` | `gravity` | `ground` |
+|---|---|---|
+| `outdoors`, `none` | 1 | `#9C7B55` (soil) |
+| `indoors` | 1 | `#BDB2A2` (a floor's dust) |
+| `space` | 0.17 (the Moon) | `#A9A6A1` (grey dust) |
+| `underwater` | 0.15 (sinking slowly) | `#D9C9A0` (sand) |
+
+A space pack set in orbit, with no ground at all, sets `gravity` to 0.
 
 ## Expressions
 
@@ -524,7 +550,8 @@ same device preference.
   optional `cover` added (additive, no bump); optional
   `stickers[].stage` and `features` added (additive, no bump); optional
   `features[].wideAreas` added (additive, no bump); size class `huge`
-  and optional `stickers[].content` added (additive, no bump); the live
+  and optional `stickers[].content` added (additive, no bump); optional
+  `world` added (additive, no bump); the live
   animation sidecar gained optional `kind`, `pause`, `loop`, `facing`,
   `stride` and `hops`, and live triggers an optional `mode` (additive,
   no bump); optional `narrationPacks` added (additive, no bump).

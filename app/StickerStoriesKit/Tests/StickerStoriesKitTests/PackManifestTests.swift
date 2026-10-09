@@ -244,6 +244,24 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         #expect(manifest.validationIssues(packDirectory: dir2).contains { $0.contains("content") })
     }
 
+    @Test func worldDefaultsFromTheSettingAndChecksItsValues() throws {
+        var manifest = makeValidManifest()
+        manifest.setting = .space
+        #expect(manifest.effectiveWorld.gravity == 0.17)
+        manifest.world = PackWorld(ground: "#808080")
+        #expect(manifest.effectiveWorld.gravity == 0.17 && manifest.effectiveWorld.ground == RGBA(hex: "#808080"))
+        manifest.setting = .outdoors
+        manifest.world = PackWorld(gravity: 0.5)
+        #expect(manifest.effectiveWorld.gravity == 0.5)
+        let dir = try materialize(manifest)
+        #expect(manifest.validationIssues(packDirectory: dir).isEmpty)
+        let decoded = try JSONDecoder().decode(PackManifest.self, from: JSONEncoder().encode(manifest))
+        #expect(decoded.world == PackWorld(gravity: 0.5))
+        manifest.world = PackWorld(gravity: 3, ground: "grey")
+        let dir2 = try materialize(manifest)
+        #expect(manifest.validationIssues(packDirectory: dir2).contains { $0.hasPrefix("world:") })
+    }
+
     @Test func descriptionIsOptionalAndLocalized() throws {
         #expect(makeValidManifest().description(for: "en-US") == nil)
         var manifest = makeValidManifest()

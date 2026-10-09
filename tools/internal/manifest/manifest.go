@@ -40,6 +40,10 @@ type Manifest struct {
 	Description map[string]string `json:"description,omitempty"`
 	Theme       string            `json:"theme"`
 	Setting     string            `json:"setting,omitempty"` // one of Settings; "" ⇒ "none"
+	// World is the physics of the pack's world for particle effects:
+	// gravity relative to Earth and the ground's colour (optional; the
+	// app fills gaps from Setting).
+	World *World `json:"world,omitempty"`
 	Background  string            `json:"background"`
 	Foreground  string            `json:"foreground"`
 	// Optional wider renditions for wide windows (iPhone): same pixel height
@@ -186,6 +190,15 @@ type StoryLocalization struct {
 	Effects string `json:"effects,omitempty"`
 }
 
+// World is a pack's physics for particle effects (docs/pack-format.md,
+// "World").
+type World struct {
+	// Gravity relative to Earth's (1; the Moon 0.17), 0–2.
+	Gravity *float64 `json:"gravity,omitempty"`
+	// Ground is the ground's colour, #RRGGBB: what dust is made of.
+	Ground string `json:"ground,omitempty"`
+}
+
 // EffectiveSetting returns the pack's setting, defaulting to "none".
 func (m *Manifest) EffectiveSetting() string {
 	if m.Setting == "" {
@@ -208,6 +221,7 @@ func (s Story) IsFallback() bool { return len(s.RequiredStickers) == 0 }
 var (
 	idPattern   = regexp.MustCompile(`^[a-z0-9]+(-[a-z0-9]+)*$`)
 	langPattern = regexp.MustCompile(`^[a-z]{2,3}(-[A-Z]{2})?$`)
+	hexColor    = regexp.MustCompile(`^#[0-9A-Fa-f]{6}$`)
 )
 
 // Load reads and decodes <dir>/manifest.json. It does not validate; call
@@ -247,6 +261,15 @@ func (m *Manifest) Validate(dir string) []error {
 	}
 	if m.Setting != "" && !slices.Contains(Settings, m.Setting) {
 		fail("setting %q must be one of %s", m.Setting, strings.Join(Settings, ", "))
+	}
+	// Rule 17: the world's gravity is 0–2 and its ground a colour.
+	if w := m.World; w != nil {
+		if w.Gravity != nil && (*w.Gravity < 0 || *w.Gravity > 2) {
+			fail("world: gravity %g must be 0–2 (relative to Earth)", *w.Gravity)
+		}
+		if w.Ground != "" && !hexColor.MatchString(w.Ground) {
+			fail("world: ground %q must be a #RRGGBB colour", w.Ground)
+		}
 	}
 
 	// Rule 3: declared languages.

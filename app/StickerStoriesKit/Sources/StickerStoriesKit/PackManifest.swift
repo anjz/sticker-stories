@@ -14,6 +14,51 @@ public enum PackSetting: String, Codable, Sendable, CaseIterable {
     case none
 }
 
+/// The physics of a pack's world for particle effects
+/// (`docs/pack-format.md`, "World"): how strongly things fall, relative to
+/// Earth, and the colour of the ground dust is kicked up from.
+public struct PackWorld: Codable, Equatable, Sendable {
+    /// Gravity relative to Earth's: 1 on Earth, 0.17 on the Moon. 0–2.
+    public var gravity: Double?
+    /// The ground's colour, `#RRGGBB`: what a `dust-puff` is made of.
+    public var ground: String?
+
+    public init(gravity: Double? = nil, ground: String? = nil) {
+        self.gravity = gravity
+        self.ground = ground
+    }
+
+    /// A world with nothing left out.
+    public struct Resolved: Equatable, Sendable {
+        public var gravity: Double
+        public var ground: RGBA
+    }
+
+    /// The setting's world, for what the pack leaves out: Earth's gravity
+    /// and soil outdoors, a floor's dust indoors, the Moon's gravity and
+    /// grey dust in space, slow sinking sand under water.
+    public static func defaults(for setting: PackSetting) -> Resolved {
+        switch setting {
+        case .outdoors, .none: Resolved(gravity: 1, ground: RGBA(hex: "#9C7B55")!)
+        case .indoors: Resolved(gravity: 1, ground: RGBA(hex: "#BDB2A2")!)
+        case .space: Resolved(gravity: 0.17, ground: RGBA(hex: "#A9A6A1")!)
+        case .underwater: Resolved(gravity: 0.15, ground: RGBA(hex: "#D9C9A0")!)
+        }
+    }
+
+    static func resolve(_ world: PackWorld?, setting: PackSetting) -> Resolved {
+        var resolved = defaults(for: setting)
+        if let gravity = world?.gravity, (0...2).contains(gravity) { resolved.gravity = gravity }
+        if let hex = world?.ground, let color = RGBA(hex: hex) { resolved.ground = color }
+        return resolved
+    }
+
+    /// Valid as written (validation rule 17).
+    var isValid: Bool {
+        (gravity.map { (0...2).contains($0) } ?? true) && (ground.map { RGBA(hex: $0) != nil } ?? true)
+    }
+}
+
 /// Decoded `manifest.json` of a sticker pack.
 ///
 /// This is the Swift half of the schema contract in `docs/pack-format.md`;
@@ -57,8 +102,15 @@ public struct PackManifest: Codable, Equatable, Sendable {
     /// language's narration audio (docs/asset-delivery.md); empty when every
     /// language's narration is in the pack itself.
     public var narrationPacks: [String: String]
+    /// The physics of the pack's world for particle effects (`dust-puff`,
+    /// `spray`, `sparks`): its gravity and the colour of its ground.
+    /// Optional; `effectiveWorld` fills what it leaves out from the setting.
+    public var world: PackWorld?
     public var stickers: [StickerDefinition]
     public var stories: [StoryDefinition]
+
+    /// The pack's world with every gap filled from its setting.
+    public var effectiveWorld: PackWorld.Resolved { PackWorld.resolve(world, setting: setting) }
 
     public init(
         schemaVersion: Int, id: String, version: Int, languages: [String],
@@ -67,6 +119,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
         background: String, foreground: String,
         backgroundWide: String? = nil, foregroundWide: String? = nil, cover: String? = nil,
         features: [String: SceneFeature] = [:], narrationPacks: [String: String] = [:],
+        world: PackWorld? = nil,
         stickers: [StickerDefinition], stories: [StoryDefinition]
     ) {
         self.schemaVersion = schemaVersion
@@ -84,13 +137,14 @@ public struct PackManifest: Codable, Equatable, Sendable {
         self.cover = cover
         self.features = features
         self.narrationPacks = narrationPacks
+        self.world = world
         self.stickers = stickers
         self.stories = stories
     }
 
     private enum CodingKeys: String, CodingKey {
         case schemaVersion, id, version, languages, displayName, description, theme, setting
-        case background, foreground, backgroundWide, foregroundWide, cover, features, narrationPacks, stickers, stories
+        case background, foreground, backgroundWide, foregroundWide, cover, features, narrationPacks, world, stickers, stories
     }
 
     public init(from decoder: Decoder) throws {
@@ -119,6 +173,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
         cover = try c.decodeIfPresent(String.self, forKey: .cover)
         features = try c.decodeIfPresent([String: SceneFeature].self, forKey: .features) ?? [:]
         narrationPacks = try c.decodeIfPresent([String: String].self, forKey: .narrationPacks) ?? [:]
+        world = try c.decodeIfPresent(PackWorld.self, forKey: .world)
         stickers = try c.decode([StickerDefinition].self, forKey: .stickers)
         stories = try c.decode([StoryDefinition].self, forKey: .stories)
     }
@@ -624,6 +679,11 @@ extension PackManifest {
                     issues.append("feature \"\(id)\": wideAreas need areas, each [min, max] with x within -0.5…1.5 and y within 0…1")
                 }
             }
+        }
+
+        // Rule 17: the world's gravity is 0–2 and its ground a colour.
+        if let world, !world.isValid {
+            issues.append("world: gravity must be 0–2 (relative to Earth) and ground a #RRGGBB colour")
         }
 
         // Rule 2: sticker IDs well-formed and unique.

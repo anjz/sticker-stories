@@ -82,6 +82,16 @@ func TestValidManifestPasses(t *testing.T) {
 	}
 }
 
+func TestWorldPasses(t *testing.T) {
+	dir := t.TempDir()
+	m := validManifest(t, dir)
+	g := 0.17
+	m.World = &World{Gravity: &g, Ground: "#A9A6A1"}
+	if errs := m.Validate(dir); len(errs) != 0 {
+		t.Fatalf("a Moon world should pass, got %v", errs)
+	}
+}
+
 func TestHugeAndContentPass(t *testing.T) {
 	dir := t.TempDir()
 	m := validManifest(t, dir)
@@ -263,6 +273,8 @@ func TestValidationFailures(t *testing.T) {
 			m.Stickers[1].Content = &StageArea{X: []float64{0.2, 1.1}, Y: []float64{0.1, 0.9}}
 		}, "content.x"},
 		{"unknown size", func(m *Manifest) { m.Stickers[1].Size = "giant" }, "must be one of huge"},
+		{"world gravity out of range", func(m *Manifest) { g := 3.0; m.World = &World{Gravity: &g} }, "world: gravity"},
+		{"world ground not a colour", func(m *Manifest) { m.World = &World{Ground: "grey"} }, "world: ground"},
 		{"duplicate sticker id", func(m *Manifest) { m.Stickers[1].ID = "mushroom" }, "duplicate sticker"},
 		{"bad sticker id", func(m *Manifest) { m.Stickers[0].ID = "Mushroom" }, "must match"},
 		{"duplicate story id", func(m *Manifest) { m.Stories[1].ID = "story-001" }, "duplicate story"},
