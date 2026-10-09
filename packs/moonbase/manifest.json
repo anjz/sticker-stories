@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "moonbase",
-  "version": 7,
+  "version": 8,
   "languages": [
     "en-US",
     "es-ES"
@@ -231,8 +231,8 @@
           0.7995
         ],
         "y": [
-          0.2383,
-          0.763
+          0.2448,
+          0.7565
         ]
       }
     },
@@ -336,6 +336,32 @@
       }
     },
     {
+      "id": "booster",
+      "name": {
+        "en-US": "Booster rocket",
+        "es-ES": "Cohete propulsor"
+      },
+      "image": "stickers/booster.webp",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "pad",
+          "plain"
+        ]
+      },
+      "size": "huge",
+      "content": {
+        "x": [
+          0.1901,
+          0.8099
+        ],
+        "y": [
+          0.0299,
+          0.9701
+        ]
+      }
+    },
+    {
       "id": "buggy",
       "name": {
         "en-US": "Moon buggy",
@@ -361,6 +387,107 @@
         "y": [
           0.1745,
           0.8268
+        ]
+      }
+    },
+    {
+      "id": "capsule",
+      "name": {
+        "en-US": "Crew capsule",
+        "es-ES": "Cápsula"
+      },
+      "image": "stickers/capsule.webp",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.151,
+          0.8477
+        ],
+        "y": [
+          0.1406,
+          0.8607
+        ]
+      }
+    },
+    {
+      "id": "comet",
+      "name": {
+        "en-US": "Comet",
+        "es-ES": "Cometa"
+      },
+      "image": "stickers/comet.webp",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7995
+        ],
+        "y": [
+          0.2474,
+          0.7539
+        ]
+      }
+    },
+    {
+      "id": "crew-rover",
+      "name": {
+        "en-US": "Crew rover",
+        "es-ES": "Rover de tripulación"
+      },
+      "image": "stickers/crew-rover.webp",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain",
+          "crater"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.0794,
+          0.9193
+        ],
+        "y": [
+          0.1315,
+          0.8685
+        ]
+      }
+    },
+    {
+      "id": "cubesat",
+      "name": {
+        "en-US": "CubeSat",
+        "es-ES": "CubeSat"
+      },
+      "image": "stickers/cubesat.webp",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.25,
+          0.75
+        ],
+        "y": [
+          0.2721,
+          0.7279
         ]
       }
     },
@@ -446,15 +573,40 @@
           "crater"
         ]
       },
-      "size": "medium",
+      "size": "big",
       "content": {
         "x": [
-          0.1393,
-          0.8594
+          0.0794,
+          0.9193
         ],
         "y": [
-          0.1914,
-          0.8086
+          0.1406,
+          0.8594
+        ]
+      }
+    },
+    {
+      "id": "flower",
+      "name": {
+        "en-US": "Space flower",
+        "es-ES": "Flor espacial"
+      },
+      "image": "stickers/flower.webp",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.293,
+          0.707
+        ],
+        "y": [
+          0.25,
+          0.75
         ]
       }
     },
@@ -510,15 +662,15 @@
           "plain"
         ]
       },
-      "size": "medium",
+      "size": "big",
       "content": {
         "x": [
-          0.1393,
-          0.8594
+          0.0794,
+          0.9193
         ],
         "y": [
-          0.2526,
-          0.7474
+          0.2135,
+          0.7878
         ]
       }
     },
@@ -570,15 +722,72 @@
           "plain"
         ]
       },
+      "size": "big",
+      "content": {
+        "x": [
+          0.1406,
+          0.8581
+        ],
+        "y": [
+          0.0807,
+          0.9206
+        ]
+      }
+    },
+    {
+      "id": "man",
+      "name": {
+        "en-US": "Man astronaut",
+        "es-ES": "Astronauta (hombre)"
+      },
+      "image": "stickers/man.webp",
+      "expressions": {
+        "happy": "stickers/man.happy.webp",
+        "sad": "stickers/man.sad.webp",
+        "sleeping": "stickers/man.sleeping.webp",
+        "surprised": "stickers/man.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
       "size": "medium",
       "content": {
         "x": [
-          0.1471,
-          0.8516
+          0.3411,
+          0.6589
         ],
         "y": [
           0.1406,
           0.8607
+        ]
+      }
+    },
+    {
+      "id": "moon-rock",
+      "name": {
+        "en-US": "Moon rock",
+        "es-ES": "Roca lunar"
+      },
+      "image": "stickers/moon-rock.webp",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "crater",
+          "plain"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.25,
+          0.75
+        ],
+        "y": [
+          0.276,
+          0.7253
         ]
       }
     },
@@ -614,6 +823,31 @@
         "y": [
           0.1406,
           0.8607
+        ]
+      }
+    },
+    {
+      "id": "printer",
+      "name": {
+        "en-US": "Building printer",
+        "es-ES": "Impresora de edificios"
+      },
+      "image": "stickers/printer.webp",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.0794,
+          0.9193
+        ],
+        "y": [
+          0.0911,
+          0.9089
         ]
       }
     },
@@ -834,6 +1068,57 @@
       }
     },
     {
+      "id": "seismometer",
+      "name": {
+        "en-US": "Seismometer",
+        "es-ES": "Sismómetro"
+      },
+      "image": "stickers/seismometer.webp",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7995
+        ],
+        "y": [
+          0.2813,
+          0.7201
+        ]
+      }
+    },
+    {
+      "id": "ship",
+      "name": {
+        "en-US": "Spaceship",
+        "es-ES": "Nave espacial"
+      },
+      "image": "stickers/ship.webp",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "pad",
+          "plain"
+        ]
+      },
+      "size": "huge",
+      "content": {
+        "x": [
+          0.3125,
+          0.6862
+        ],
+        "y": [
+          0.0299,
+          0.9701
+        ]
+      }
+    },
+    {
       "id": "shuttle",
       "name": {
         "en-US": "Space shuttle",
@@ -938,15 +1223,15 @@
           "plain"
         ]
       },
-      "size": "small",
+      "size": "medium",
       "content": {
         "x": [
-          0.2005,
-          0.7995
+          0.1393,
+          0.8594
         ],
         "y": [
-          0.2279,
-          0.7721
+          0.1745,
+          0.8255
         ]
       }
     },
@@ -976,6 +1261,37 @@
         "y": [
           0.2331,
           0.7669
+        ]
+      }
+    },
+    {
+      "id": "woman",
+      "name": {
+        "en-US": "Woman astronaut",
+        "es-ES": "Astronauta (mujer)"
+      },
+      "image": "stickers/woman.webp",
+      "expressions": {
+        "happy": "stickers/woman.happy.webp",
+        "sad": "stickers/woman.sad.webp",
+        "sleeping": "stickers/woman.sleeping.webp",
+        "surprised": "stickers/woman.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.3333,
+          0.6654
+        ],
+        "y": [
+          0.1406,
+          0.8607
         ]
       }
     }
