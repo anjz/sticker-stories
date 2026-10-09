@@ -169,6 +169,15 @@ struct EffectsGalleryView: View {
                 }
                 scene.playCanvas(groups.filter { !$0.isEmpty })
             }
+            // `-effectDemo dust-puff,spray [-gallerySticker woman]`: loop just
+            // those sticker effects at full strength on that sticker.
+            if let index = arguments.firstIndex(of: "-gallerySticker"), index + 1 < arguments.count {
+                stickerID = arguments[index + 1]
+            }
+            if let index = arguments.firstIndex(of: "-effectDemo"), index + 1 < arguments.count {
+                let effects = arguments[index + 1].split(separator: ",").compactMap { EffectName(rawValue: String($0)) }
+                scene.playEffects(effects)
+            }
             // `-liveDemo [sticker | sticker.animation]`: loop a live animation
             // on its sticker (the first one, the named sticker's first, or
             // the named one); a move travels 3 s each time round.
@@ -272,6 +281,7 @@ final class EffectsGalleryScene: SKScene {
         self.pack = pack
         pendingStickerID = stickerID
         super.init(size: CGSize(width: 700, height: 700))
+        emitters.world = pack.manifest.effectiveWorld
         scaleMode = .resizeFill
         backgroundColor = UIColor(red: 0.49, green: 0.78, blue: 0.91, alpha: 1)
     }
@@ -340,6 +350,9 @@ final class EffectsGalleryScene: SKScene {
             stickerID: stickerID, texture: texture,
             size: CGSize(width: texture.size().width * scale, height: texture.size().height * scale),
             shadow: shadows.shadow(for: stickerID) { image })
+        if let c = definition.content, c.isValid {
+            node.content = CGRect(x: c.x[0], y: c.y[0], width: c.x[1] - c.x[0], height: c.y[1] - c.y[0])
+        }
         node.position = CGPoint(x: size.width / 2, y: size.height / 2)
         node.baseScale = 1.2
         node.setScale(1.2)
@@ -427,6 +440,18 @@ final class EffectsGalleryScene: SKScene {
         }
         let sequence = SKAction.sequence(steps)
         run(repeating ? .repeatForever(sequence) : sequence, withKey: "play-all")
+    }
+
+    /// Loops the given sticker effects at full strength, 2.5 s apart.
+    func playEffects(_ effects: [EffectName]) {
+        guard !effects.isEmpty else { return }
+        stopAll()
+        var steps: [SKAction] = []
+        for effect in effects {
+            steps.append(.run { [weak self] in self?.play(effect, options: EffectOptions(intensity: 1)) })
+            steps.append(.wait(forDuration: 2.5))
+        }
+        run(.repeatForever(.sequence(steps)), withKey: "play-all")
     }
 
     /// Loops the given groups of canvas effects at full strength, 12 s each;

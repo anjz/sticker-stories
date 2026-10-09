@@ -27,7 +27,7 @@ const SupportedSchema = 1
 var Names = []string{
 	"pulse", "wobble", "shake", "hop", "spin", "float",
 	"fade-in", "fade-out", "glow", "tint",
-	"sparkle", "hearts",
+	"sparkle", "hearts", "dust-puff", "spray", "sparks",
 }
 
 // CanvasNames lists every canvas effect (weather and light over the whole
@@ -83,7 +83,7 @@ var CanvasSettings = map[string][]string{
 var (
 	oneWay          = set("fade-in", "fade-out")
 	supportsHold    = set("fade-in", "fade-out", "glow", "tint")
-	readsColor      = set("glow", "tint", "sparkle")
+	readsColor      = set("glow", "tint", "sparkle", "dust-puff", "spray", "sparks")
 	requiresColor   = set("tint")
 	known           = set(Names...)
 	knownCanvas     = set(CanvasNames...)

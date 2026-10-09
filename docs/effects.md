@@ -4,7 +4,7 @@ Small, charming things that happen while a story plays. Two kinds, two
 closed libraries:
 
 - **Sticker effects** — one placed sticker does something: a sparkle, a
-  wobble, a glow, a fade. Twelve of them.
+  wobble, a glow, a fade, a puff of dust at its feet. Fifteen of them.
 - **Canvas effects** — the weather or the light changes over the whole
   scene: fog, rain, sunshine, a rainbow, night falling, the lights going low,
   and their counterparts indoors, in space and under the sea. Each suits
@@ -40,7 +40,7 @@ test. Tooling should read that file rather than parse this one.
    skipped with a log line; a pack authored against a future library plays
    with fewer effects.
 
-## The sticker library (12 effects, closed)
+## The sticker library (15 effects, closed)
 
 `i` is the trigger's `intensity` (default 0.6). At `intensity: 0` every effect
 is visually identical to no effect. Anchors and easing are fixed per effect —
@@ -72,16 +72,32 @@ they are what make a wobble a wobble — and are not authorable.
 |---|---|---|---|---|
 | `sparkle` | A shower of twinkles above the sticker. `color` default warm gold `#FFD166`. | Delight, magic, treasure, a good idea. | 1.0 s | runs at ≤0.4 |
 | `hearts` | A few hearts drift up. | Friendship, a hug, kindness. | 1.2 s | runs at ≤0.4 |
+| `dust-puff` | A puff of dust kicked up from the ground at its feet that settles under the world's gravity. `color` default: the pack's ground, a shade lighter. | A landing, a stamp, a wheel spinning, a rocket touching down, a dig. | 0.4 s | runs at ≤0.4 |
+| `spray` | Water drops thrown up that arc and fall. `color` default `#CFE8FF`. | A splash, a shake of wet fur, a fountain, watering. | 0.4 s | runs at ≤0.4 |
+| `sparks` | A few tiny bright sparks that fly out, fall and fade. `color` default `#FFD27A`. | A tool on metal, a connection made, a machine starting — never fire or danger. | 0.4 s | runs at ≤0.4 |
 
 Particles already born live out their lifetime after the effect ends; that
-is intended. Particle size follows the sticker's rendered size, so sparkles
-on a tiny flower are tiny.
+is intended. Particle size follows the size of the sticker's **drawing**,
+and they come from the drawing (its feet, for dust), not its image's box —
+so sparkles on a tiny flower are tiny.
+
+**The physical particles follow the pack's world** (`docs/pack-format.md`,
+"World"): `dust-puff`, `spray` and `sparks` fall under its gravity and
+hang longer where it is weak — the same puff drifts down slowly as grey
+moon dust in Moon Base and drops at once as brown soil in Forest — and
+dust is the colour of its ground. Stickers and their live animations
+never draw particles themselves (no dust, drops, sparks or smoke in the
+art: `docs/pack-art.md`); these effects do it, cued by stories or fired by
+an animation's frames ("Live animations").
 
 ### Deliberately not in the library
 
 Removed in 2026-09 and not to be reused (older content that names them is
 skipped): `sway` (a slow tilt of trees and flowers — it read as the scenery
 wobbling), `blink` (hard-edged flashing) and `puff` (smoke at the feet).
+`dust-puff` (2026-10) is not `puff` back: that was a fixed smoke cloud;
+this is a physical emitter that follows each pack's gravity and ground,
+added when stickers stopped drawing particles of their own.
 
 Recorded so nobody re-adds them by accident: entrances/exits beyond fade,
 squash and stretch, keyframe authoring, scene shake and parallax,
@@ -111,7 +127,7 @@ system that shares the clock and the trigger file but not this vocabulary
 | `repeat` | no | `1` | `n` cycles (1–50) or `"loop"` until playback ends. Ignored by `fade-in` / `fade-out`. |
 | `duration` | no | per effect | Seconds for **one cycle**, 0.05–30. Total time = `duration × repeat`. |
 | `intensity` | no | `0.6` | 0–1. Scales amplitude (and particle birth rate + size), never speed. |
-| `color` | no | per effect | `"#RRGGBB"`. Read by `glow`, `tint`, `sparkle` only; required by `tint`. |
+| `color` | no | per effect | `"#RRGGBB"`. Read by `glow`, `tint`, `sparkle`, `dust-puff`, `spray`, `sparks` only; required by `tint`. |
 | `hold` | no | `false` | Keep the end state until playback ends. `fade-in`/`fade-out`/`glow`/`tint` only. |
 
 ### Repeat, stop, hold

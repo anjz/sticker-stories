@@ -2,7 +2,8 @@ import SpriteKit
 import StickerStoriesKit
 
 /// The one stateful piece of the sticker effects system: the SpriteKit
-/// emitters behind `sparkle` and `hearts`. Reconciled every frame against
+/// emitters behind the particle effects (`sparkle`, `hearts`, `dust-puff`,
+/// `spray`, `sparks`). Reconciled every frame against
 /// the runner's active effects — emitters are created for new particle
 /// effects, ramped in/out, frozen while the clock is paused, dropped when
 /// their effect is gone, and kept within the device budget.
@@ -31,6 +32,10 @@ final class EmitterCoordinator {
         let inFront: Bool
         var dying = false
     }
+
+    /// The pack's world: the physical particles fall under its gravity, and
+    /// dust is the colour of its ground.
+    var world = PackWorld.defaults(for: .none)
 
     private var live: [EffectHandle: Live] = [:]
     private var dropped: Set<EffectHandle> = []
@@ -68,8 +73,7 @@ final class EmitterCoordinator {
                 retire(handle)
                 continue
             }
-            let pivot = EffectTransformMath.pivot(for: entry.anchor, width: node.size.width, height: node.size.height)
-            entry.node.position = node.convert(CGPoint(x: pivot.x, y: pivot.y), to: parent)
+            entry.node.position = node.convert(Self.point(entry.anchor, on: node), to: parent)
             entry.node.zPosition = node.zPosition + (entry.inFront ? 0.5 : -0.5)
             entry.node.isPaused = paused
             if !entry.dying {
@@ -110,7 +114,13 @@ final class EmitterCoordinator {
         else { return }
 
         let intensity = effect.options.intensity
-        let renderedHeight = node.size.height * CGFloat(node.placement.scale)
+        // Sized on the drawing, not its image's box (a sticker drawn at its size).
+        let renderedHeight = node.size.height * node.content.height * CGFloat(node.placement.scale)
+        let renderedWidth = node.size.width * node.content.width * CGFloat(node.placement.scale)
+        // The physical particles fall under the world's gravity and hang
+        // longer where it is weak (the Moon: a sixth, about 2.4× as long).
+        let gravity = spec.worldGravity == true ? CGFloat(max(world.gravity, 0.02)) : 1
+        let hang = spec.worldGravity == true ? min(2.5, 1 / sqrt(gravity)) : 1
         let sizeFactor = (renderedHeight / Self.referenceHeight).clamped(to: 0.4...2)
         // Seeking into the middle of an effect starts fresh at reduced
         // intensity rather than simulating what "should" exist.
@@ -120,27 +130,30 @@ final class EmitterCoordinator {
         let emitter = SKEmitterNode()
         emitter.particleTexture = EffectTextures.texture(named: spec.texture)
         emitter.particleBlendMode = spec.blend == "add" ? .add : .alpha
-        emitter.particleLifetime = CGFloat(spec.lifetime.value)
-        emitter.particleLifetimeRange = CGFloat(spec.lifetime.variance * 2)
+        emitter.particleLifetime = CGFloat(spec.lifetime.value) * hang
+        emitter.particleLifetimeRange = CGFloat(spec.lifetime.variance * 2) * hang
         emitter.particleSpeed = CGFloat(spec.speed.value) * sizeFactor
         emitter.particleSpeedRange = CGFloat(spec.speed.variance * 2) * sizeFactor
         emitter.emissionAngle = CGFloat(spec.emissionAngle.value) * .pi / 180
         emitter.emissionAngleRange = CGFloat(spec.emissionAngle.range) * .pi / 180
-        emitter.xAcceleration = CGFloat(spec.gravity.first ?? 0) * sizeFactor
-        emitter.yAcceleration = CGFloat(spec.gravity.last ?? 0) * sizeFactor
+        emitter.xAcceleration = CGFloat(spec.gravity.first ?? 0) * sizeFactor * gravity
+        emitter.yAcceleration = CGFloat(spec.gravity.last ?? 0) * sizeFactor * gravity
         emitter.particlePositionRange = CGVector(
-            dx: node.size.width * CGFloat(node.placement.scale) * CGFloat(spec.positionSpread.first ?? 0),
+            dx: renderedWidth * CGFloat(spec.positionSpread.first ?? 0),
             dy: renderedHeight * CGFloat(spec.positionSpread.last ?? 0))
         let particleScale = CGFloat(spec.scale.start) * sizeFactor * CGFloat(0.6 + 0.4 * intensity)
         emitter.particleScale = particleScale
         emitter.particleScaleRange = CGFloat(spec.scale.variance) * sizeFactor
-        emitter.particleScaleSpeed = (CGFloat(spec.scale.end) * sizeFactor * CGFloat(0.6 + 0.4 * intensity) - particleScale) / CGFloat(spec.lifetime.value)
+        emitter.particleScaleSpeed = (CGFloat(spec.scale.end) * sizeFactor * CGFloat(0.6 + 0.4 * intensity) - particleScale) / (CGFloat(spec.lifetime.value) * hang)
         emitter.particleRotationRange = .pi * 2
         emitter.particleRotationSpeed = CGFloat(spec.rotationSpeed)
         emitter.particleAlphaSequence = SKKeyframeSequence(
             keyframeValues: [spec.alpha.start, spec.alpha.peak, spec.alpha.end],
             times: [0, NSNumber(value: spec.alpha.peakAt), 1])
-        let color = effect.name.readsColor ? (effect.options.color ?? spec.color) : spec.color
+        // Dust is the world's ground, a shade lighter so it shows against
+        // it, unless the story names a colour.
+        let fallback = effect.name == .dustPuff ? Self.lighter(world.ground) : spec.color
+        let color = effect.name.readsColor ? (effect.options.color ?? fallback) : fallback
         emitter.particleColor = UIColor(color)
         emitter.particleColorBlendFactor = 1
         emitter.targetNode = parent  // particles live in scene space, not on the sticker
@@ -152,6 +165,22 @@ final class EmitterCoordinator {
             baseBirthRate: spec.birthRate * intensityFactor,
             anchor: EffectDefinition.definition(for: effect.name).anchor,
             inFront: spec.inFront)
+    }
+
+    /// A colour 40 % of the way to white: dust against the ground it came from.
+    static func lighter(_ c: RGBA) -> RGBA {
+        RGBA(red: c.red + (1 - c.red) * 0.4, green: c.green + (1 - c.green) * 0.4, blue: c.blue + (1 - c.blue) * 0.4, alpha: c.alpha)
+    }
+
+    /// Where an anchor is on a sticker, in its own space: on its drawing
+    /// (`StickerNode.content`), so the feet of a sticker drawn at its size
+    /// are its drawing's feet, not its image's bottom edge.
+    static func point(_ anchor: EffectAnchor, on node: StickerNode) -> CGPoint {
+        let c = node.content
+        let onDrawing = EffectAnchor(x: c.minX + anchor.x * c.width, y: (1 - c.maxY) + anchor.y * c.height)
+        let w = node.size.width / max(abs(node.xScale), 0.0001), h = node.size.height / max(abs(node.yScale), 0.0001)
+        let pivot = EffectTransformMath.pivot(for: onDrawing, width: w, height: h)
+        return CGPoint(x: pivot.x, y: pivot.y)
     }
 
     private func retire(_ handle: EffectHandle) {

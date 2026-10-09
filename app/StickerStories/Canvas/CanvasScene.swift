@@ -731,6 +731,13 @@ final class CanvasScene: SKScene {
         return CGSize(width: ts.width * height / ts.height, height: height)
     }
 
+    /// A coordinator for this story's particle effects, in the pack's world.
+    private func emitterCoordinator() -> EmitterCoordinator {
+        let emitters = EmitterCoordinator()
+        emitters.world = pack.manifest.effectiveWorld
+        return emitters
+    }
+
     /// The pack's stickers by id.
     private lazy var definitions: [String: StickerDefinition] = Dictionary(
         pack.manifest.stickers.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
@@ -1465,7 +1472,7 @@ final class CanvasScene: SKScene {
         let canvasRunner = CanvasEffectsRunner(
             triggers: triggers.canvas, setting: pack.manifest.setting, policy: policy)
         playSession = PlaySession(
-            runner: runner, canvasRunner: canvasRunner, applier: applier, emitters: EmitterCoordinator(), clock: clock,
+            runner: runner, canvasRunner: canvasRunner, applier: applier, emitters: emitterCoordinator(), clock: clock,
             live: live, faces: faces, visitors: visitors, motions: motions)
     }
 

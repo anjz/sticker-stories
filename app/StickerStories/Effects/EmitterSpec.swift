@@ -38,6 +38,9 @@ struct EmitterSpec: Decodable {
     var defaultColor: String
     var maxParticles: Int
     var inFront: Bool
+    /// Tuned for Earth: gravity scales with the pack world's and particles
+    /// live longer where it is weak (`PackWorld`).
+    var worldGravity: Bool?
 
     var color: RGBA { RGBA(hex: defaultColor) ?? .white }
 
@@ -46,15 +49,21 @@ struct EmitterSpec: Decodable {
         switch effect {
         case .sparkle: "sparkles"
         case .hearts: "hearts"
+        case .dustPuff: "dust"
+        case .spray: "spray"
+        case .sparks: "sparks"
         default: nil
         }
     }
 
-    /// The shape of `emitters.json`: the two emitters (plus a `_comment`
-    /// that is not decoded).
+    /// The shape of `emitters.json`: the emitters (plus a `_comment` that
+    /// is not decoded).
     private struct File: Decodable {
         var sparkles: EmitterSpec
         var hearts: EmitterSpec
+        var dust: EmitterSpec
+        var spray: EmitterSpec
+        var sparks: EmitterSpec
     }
 
     /// All emitters from the bundled data file, keyed by name.
@@ -67,7 +76,7 @@ struct EmitterSpec: Decodable {
         }
         do {
             let file = try JSONDecoder().decode(File.self, from: data)
-            return ["sparkles": file.sparkles, "hearts": file.hearts]
+            return ["sparkles": file.sparkles, "hearts": file.hearts, "dust": file.dust, "spray": file.spray, "sparks": file.sparks]
         } catch {
             assertionFailure("emitters.json undecodable: \(error)")
             return [:]

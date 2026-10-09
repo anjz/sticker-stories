@@ -191,7 +191,7 @@ the stories.
 
 ## Using sticker effects
 
-The app has exactly 12 sticker effects (`docs/effects/effects.json`,
+The app has exactly 15 sticker effects (`docs/effects/effects.json`,
 `effects`; human reference in `docs/effects.md`) — read the catalogue, not
 this list, for what each means and accepts:
 
@@ -208,9 +208,18 @@ this list, for what each means and accepts:
 | `tint #RRGGBB` | blushing (pink), cold (blue), cross (red); colour required |
 | `sparkle` | delight, magic, treasure, a good idea |
 | `hearts` | friendship, a hug, kindness |
+| `dust-puff` | a cloud of dust the words make: a stamp, a skid, a dig (landings and touchdowns already puff on their own) |
+| `spray` | a splash, a shake of wet fur, water flying |
+| `sparks` | a tool on metal, a machine starting — never fire or danger |
 
 Cue grammar is in `FORMAT.md`.
 
+- **Particles follow the world.** `dust-puff`, `spray` and `sparks` fall
+  under the pack's gravity and dust is its ground's colour, so on the Moon
+  dust drifts slowly and hangs — write "the dust floated down slowly",
+  not "the dust settled at once". Many animations already puff dust on
+  their own frames (a landing, a touchdown, a drill): the words can name
+  it without a cue.
 - **Effects illustrate the words.** Put a cue on the beat it belongs to:
   `hop` on *jump*, `wobble` on *sneeze*, `sparkle` on *magic*, `spin` on
   *tumble*, `tint #…` on *blushed*, `fade-out hold` on *flew away*,

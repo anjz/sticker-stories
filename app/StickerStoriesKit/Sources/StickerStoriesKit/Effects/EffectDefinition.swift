@@ -153,6 +153,23 @@ public struct EffectDefinition: Sendable {
             name: .hearts, defaultDuration: 1.2, anchor: EffectAnchor(x: 0.5, y: 0.2), defaultColor: nil,
             summary: "A few hearts drift up. Affection, a hug, a friend."
         ) { _, _, _ in EffectDelta() },
+
+        // The physical particles fall under the pack's world: their colours
+        // default to it (dust is its ground) or to the emitter's own.
+        EffectDefinition(
+            name: .dustPuff, defaultDuration: 0.4, anchor: .bottomCenter, defaultColor: nil,
+            summary: "A puff of dust kicked up from the ground at its feet, settling under the world's gravity."
+        ) { _, _, _ in EffectDelta() },
+
+        EffectDefinition(
+            name: .spray, defaultDuration: 0.4, anchor: EffectAnchor(x: 0.5, y: 0.85), defaultColor: RGBA(hex: "#CFE8FF"),
+            summary: "A spray of water drops thrown up that arc and fall."
+        ) { _, _, _ in EffectDelta() },
+
+        EffectDefinition(
+            name: .sparks, defaultDuration: 0.4, anchor: .center, defaultColor: RGBA(hex: "#FFD27A"),
+            summary: "A few tiny bright sparks that fly out, fall and fade."
+        ) { _, _, _ in EffectDelta() },
     ]
 }
 

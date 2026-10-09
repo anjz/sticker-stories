@@ -72,7 +72,7 @@ Read, in this order, before writing anything:
    the setting allows does and does not change (snow falls but the meadow
    stays green). If scene.md exists, check it against the art — the art
    may have changed. Every premise and every sentence must fit it.
-4. `docs/effects/effects.json` — the exact library: the 12 sticker effects
+4. `docs/effects/effects.json` — the exact library: the 15 sticker effects
    (`effects`) and the canvas effects (`canvasEffects`), what each means,
    which parameters each accepts, and which `settings` each canvas effect
    suits. Use only these names, exactly as spelled.

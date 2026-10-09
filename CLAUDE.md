@@ -63,7 +63,7 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
   extension (empty: the system does the downloading); the app's
   `Narration/` finds, fetches and tidies each language's narration.
 - `app/StickerStories/Effects/` + `app/StickerStoriesKit/.../Effects/` — play-mode
-  effects: 12 sticker effects + the canvas effects (scene-wide weather/light,
+  effects: 15 sticker effects (incl. world-aware particles) + the canvas effects (scene-wide weather/light,
   gated by the pack `setting`; one painter per effect in
   `Effects/Canvas/`). Authoring reference `docs/effects.md`;
   machine-readable catalogue `docs/effects/effects.json` (pinned to code by

@@ -7,24 +7,113 @@
     "A Kit test asserts this file matches the compiled library (EffectDefinition.library, CanvasEffectDefinition.library); edit both together.",
     "Story tooling should read this file to learn which effects exist, what they mean, which parameters each accepts, and which canvas effects suit a pack's setting."
   ],
-  "settings": ["outdoors", "indoors", "space", "underwater", "none"],
+  "settings": [
+    "outdoors",
+    "indoors",
+    "space",
+    "underwater",
+    "none"
+  ],
   "parameters": {
-    "effect":    { "type": "string",  "required": true,  "description": "One of the effect names below." },
-    "sticker":   { "type": "string",  "required": true,  "description": "Sticker ID from the pack manifest. Every placed instance of it is affected; if none is placed the trigger silently does not fire." },
-    "at":        { "type": "number",  "required": true,  "description": "Seconds into this language's narration at which the effect starts." },
-    "cue":       { "type": "string",  "required": false, "description": "Authoring label only (e.g. the word it lines up with). Never interpreted by the app." },
-    "repeat":    { "type": "integer|\"loop\"", "required": false, "default": 1, "range": [1, 50], "description": "Cycles to run; \"loop\" runs until playback ends. Ignored by one-way effects." },
-    "duration":  { "type": "number",  "required": false, "default": "per effect", "range": [0.05, 30], "description": "Seconds for ONE cycle. Total run time is duration × repeat." },
-    "intensity": { "type": "number",  "required": false, "default": 0.6, "range": [0, 1], "description": "Amplitude, never speed. 0 is visually identical to no effect." },
-    "color":     { "type": "string",  "required": false, "format": "#RRGGBB", "description": "Read by glow, tint and sparkle only. Required by tint." },
-    "hold":      { "type": "boolean", "required": false, "default": false, "description": "Keep the end state until playback ends. Meaningful for fade-in, fade-out, glow, tint only." }
+    "effect": {
+      "type": "string",
+      "required": true,
+      "description": "One of the effect names below."
+    },
+    "sticker": {
+      "type": "string",
+      "required": true,
+      "description": "Sticker ID from the pack manifest. Every placed instance of it is affected; if none is placed the trigger silently does not fire."
+    },
+    "at": {
+      "type": "number",
+      "required": true,
+      "description": "Seconds into this language's narration at which the effect starts."
+    },
+    "cue": {
+      "type": "string",
+      "required": false,
+      "description": "Authoring label only (e.g. the word it lines up with). Never interpreted by the app."
+    },
+    "repeat": {
+      "type": "integer|\"loop\"",
+      "required": false,
+      "default": 1,
+      "range": [
+        1,
+        50
+      ],
+      "description": "Cycles to run; \"loop\" runs until playback ends. Ignored by one-way effects."
+    },
+    "duration": {
+      "type": "number",
+      "required": false,
+      "default": "per effect",
+      "range": [
+        0.05,
+        30
+      ],
+      "description": "Seconds for ONE cycle. Total run time is duration × repeat."
+    },
+    "intensity": {
+      "type": "number",
+      "required": false,
+      "default": 0.6,
+      "range": [
+        0,
+        1
+      ],
+      "description": "Amplitude, never speed. 0 is visually identical to no effect."
+    },
+    "color": {
+      "type": "string",
+      "required": false,
+      "format": "#RRGGBB",
+      "description": "Read by glow, tint and sparkle only. Required by tint."
+    },
+    "hold": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Keep the end state until playback ends. Meaningful for fade-in, fade-out, glow, tint only."
+    }
   },
   "canvasParameters": {
-    "effect":    { "type": "string",  "required": true,  "description": "One of the canvas effect names below. A canvas trigger has no sticker." },
-    "at":        { "type": "number",  "required": true,  "description": "Seconds into this language's narration at which the effect starts building up." },
-    "cue":       { "type": "string",  "required": false, "description": "Authoring label only. Never interpreted by the app." },
-    "intensity": { "type": "number",  "required": false, "default": 0.6, "range": [0, 1], "description": "How strong: denser fog, heavier rain, darker dimlight or night. 0 is visually identical to no effect." },
-    "duration":  { "type": "number",  "required": false, "default": "per effect", "range": [1, 120], "description": "Seconds the effect stays on, ramps included. There is no repeat, colour or hold." }
+    "effect": {
+      "type": "string",
+      "required": true,
+      "description": "One of the canvas effect names below. A canvas trigger has no sticker."
+    },
+    "at": {
+      "type": "number",
+      "required": true,
+      "description": "Seconds into this language's narration at which the effect starts building up."
+    },
+    "cue": {
+      "type": "string",
+      "required": false,
+      "description": "Authoring label only. Never interpreted by the app."
+    },
+    "intensity": {
+      "type": "number",
+      "required": false,
+      "default": 0.6,
+      "range": [
+        0,
+        1
+      ],
+      "description": "How strong: denser fog, heavier rain, darker dimlight or night. 0 is visually identical to no effect."
+    },
+    "duration": {
+      "type": "number",
+      "required": false,
+      "default": "per effect",
+      "range": [
+        1,
+        120
+      ],
+      "description": "Seconds the effect stays on, ramps included. There is no repeat, colour or hold."
+    }
   },
   "reduceMotionValues": {
     "full": "runs unchanged",
@@ -33,52 +122,1098 @@
     "dropped": "does not run"
   },
   "effects": [
-    { "name": "pulse",    "category": "motion", "summary": "One gentle size beat. The universal \"look at this one\".", "use": "Draw attention to the sticker being talked about.", "animates": ["scale"], "defaultDuration": 0.5, "anchor": [0.5, 0.5], "durationRange": [0.05, 30], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "requiresColor": false, "reduceMotion": "damped-0.3" },
-    { "name": "wobble",   "category": "motion", "summary": "Tilts side to side around its base. The default \"this thing is reacting\".", "use": "Reactions: surprise, laughter, a sneeze, being bumped.", "animates": ["rotation"], "defaultDuration": 0.6, "anchor": [0.5, 1.0], "durationRange": [0.05, 30], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "requiresColor": false, "reduceMotion": "damped-0.3" },
-    { "name": "shake",    "category": "motion", "summary": "Fast, small horizontal tremble. Fear, cold, excitement.", "use": "Shivering, nervousness, giggling, an engine.", "animates": ["offsetX"], "defaultDuration": 0.5, "anchor": [0.5, 0.5], "durationRange": [0.05, 30], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "requiresColor": false, "reduceMotion": "dropped" },
-    { "name": "hop",      "category": "motion", "summary": "One small arc up and back down. The most charming one in the list.", "use": "Joy, a jump, saying hello, a heartbeat of excitement. repeat 2–3 for bouncing.", "animates": ["offsetY"], "defaultDuration": 0.6, "anchor": [0.5, 1.0], "durationRange": [0.05, 30], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "requiresColor": false, "reduceMotion": "dropped" },
-    { "name": "spin",     "category": "motion", "summary": "One full clockwise rotation about the centre.", "use": "Twirling, dizziness, a pirouette, a tumble. Intensity does not change the turn (only 0 disables it).", "animates": ["rotation"], "defaultDuration": 0.9, "anchor": [0.5, 0.5], "durationRange": [0.05, 30], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "requiresColor": false, "reduceMotion": "dropped" },
-    { "name": "float",    "category": "motion", "summary": "Very slow vertical bob. Built for loop.", "use": "Anything airborne or afloat: butterflies, bees, birds, clouds, boats. Use repeat \"loop\". The only scenery loop in the library: trees and flowers stay still.", "animates": ["offsetY"], "defaultDuration": 3.0, "anchor": [0.5, 0.5], "durationRange": [0.05, 30], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "requiresColor": false, "reduceMotion": "dropped" },
-    { "name": "fade-in",  "category": "opacity-and-color", "summary": "Appears from nothing. One-way.", "use": "Arrivals, waking up, being noticed. Pair with sparkle for a magical entrance.", "animates": ["opacity"], "defaultDuration": 0.6, "anchor": [0.5, 0.5], "durationRange": [0.05, 30], "parameters": ["duration", "intensity", "hold"], "oneWay": true, "hold": true, "defaultColor": null, "requiresColor": false, "reduceMotion": "full" },
-    { "name": "fade-out", "category": "opacity-and-color", "summary": "Fades away. One-way.", "use": "Leaving, hiding, falling asleep. hold true keeps the sticker gone until the story ends; otherwise it fades back in.", "animates": ["opacity"], "defaultDuration": 0.6, "anchor": [0.5, 0.5], "durationRange": [0.05, 30], "parameters": ["duration", "intensity", "hold"], "oneWay": true, "hold": true, "defaultColor": null, "requiresColor": false, "reduceMotion": "full" },
-    { "name": "glow",     "category": "opacity-and-color", "summary": "A soft bloom rises around the sticker and falls away. Reads as magic.", "use": "Magic, warmth, a wish, the sun coming out. hold true keeps the bloom on.", "animates": ["glow"], "defaultDuration": 1.0, "anchor": [0.5, 0.5], "durationRange": [0.05, 30], "parameters": ["repeat", "duration", "intensity", "color", "hold"], "oneWay": false, "hold": true, "defaultColor": "#FFF3C4", "requiresColor": false, "reduceMotion": "full" },
-    { "name": "tint",     "category": "opacity-and-color", "summary": "A colour washes over the sticker and drains away. White + short duration = a flash.", "use": "Blushing (pink), cold (blue), angry (red), a camera flash (white, duration 0.2). color is required.", "animates": ["tint"], "defaultDuration": 0.8, "anchor": [0.5, 0.5], "durationRange": [0.05, 30], "parameters": ["repeat", "duration", "intensity", "color", "hold"], "oneWay": false, "hold": true, "defaultColor": null, "requiresColor": true, "reduceMotion": "full" },
-    { "name": "sparkle",  "category": "particle", "summary": "A small shower of twinkles above the sticker. The generic magic/delight beat.", "use": "Delight, magic, treasure, a good idea.", "animates": ["particles"], "defaultDuration": 1.0, "anchor": [0.5, 0.35], "durationRange": [0.05, 30], "parameters": ["repeat", "duration", "intensity", "color"], "oneWay": false, "hold": false, "defaultColor": "#FFD166", "requiresColor": false, "reduceMotion": "damped-0.4" },
-    { "name": "hearts",   "category": "particle", "summary": "A few hearts drift up. Affection, a hug, a friend.", "use": "Friendship, love, a hug, kindness.", "animates": ["particles"], "defaultDuration": 1.2, "anchor": [0.5, 0.2], "durationRange": [0.05, 30], "parameters": ["repeat", "duration", "intensity"], "oneWay": false, "hold": false, "defaultColor": null, "requiresColor": false, "reduceMotion": "damped-0.4" }
+    {
+      "name": "pulse",
+      "category": "motion",
+      "summary": "One gentle size beat. The universal \"look at this one\".",
+      "use": "Draw attention to the sticker being talked about.",
+      "animates": [
+        "scale"
+      ],
+      "defaultDuration": 0.5,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "repeat",
+        "duration",
+        "intensity"
+      ],
+      "oneWay": false,
+      "hold": false,
+      "defaultColor": null,
+      "requiresColor": false,
+      "reduceMotion": "damped-0.3"
+    },
+    {
+      "name": "wobble",
+      "category": "motion",
+      "summary": "Tilts side to side around its base. The default \"this thing is reacting\".",
+      "use": "Reactions: surprise, laughter, a sneeze, being bumped.",
+      "animates": [
+        "rotation"
+      ],
+      "defaultDuration": 0.6,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "repeat",
+        "duration",
+        "intensity"
+      ],
+      "oneWay": false,
+      "hold": false,
+      "defaultColor": null,
+      "requiresColor": false,
+      "reduceMotion": "damped-0.3"
+    },
+    {
+      "name": "shake",
+      "category": "motion",
+      "summary": "Fast, small horizontal tremble. Fear, cold, excitement.",
+      "use": "Shivering, nervousness, giggling, an engine.",
+      "animates": [
+        "offsetX"
+      ],
+      "defaultDuration": 0.5,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "repeat",
+        "duration",
+        "intensity"
+      ],
+      "oneWay": false,
+      "hold": false,
+      "defaultColor": null,
+      "requiresColor": false,
+      "reduceMotion": "dropped"
+    },
+    {
+      "name": "hop",
+      "category": "motion",
+      "summary": "One small arc up and back down. The most charming one in the list.",
+      "use": "Joy, a jump, saying hello, a heartbeat of excitement. repeat 2–3 for bouncing.",
+      "animates": [
+        "offsetY"
+      ],
+      "defaultDuration": 0.6,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "repeat",
+        "duration",
+        "intensity"
+      ],
+      "oneWay": false,
+      "hold": false,
+      "defaultColor": null,
+      "requiresColor": false,
+      "reduceMotion": "dropped"
+    },
+    {
+      "name": "spin",
+      "category": "motion",
+      "summary": "One full clockwise rotation about the centre.",
+      "use": "Twirling, dizziness, a pirouette, a tumble. Intensity does not change the turn (only 0 disables it).",
+      "animates": [
+        "rotation"
+      ],
+      "defaultDuration": 0.9,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "repeat",
+        "duration",
+        "intensity"
+      ],
+      "oneWay": false,
+      "hold": false,
+      "defaultColor": null,
+      "requiresColor": false,
+      "reduceMotion": "dropped"
+    },
+    {
+      "name": "float",
+      "category": "motion",
+      "summary": "Very slow vertical bob. Built for loop.",
+      "use": "Anything airborne or afloat: butterflies, bees, birds, clouds, boats. Use repeat \"loop\". The only scenery loop in the library: trees and flowers stay still.",
+      "animates": [
+        "offsetY"
+      ],
+      "defaultDuration": 3.0,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "repeat",
+        "duration",
+        "intensity"
+      ],
+      "oneWay": false,
+      "hold": false,
+      "defaultColor": null,
+      "requiresColor": false,
+      "reduceMotion": "dropped"
+    },
+    {
+      "name": "fade-in",
+      "category": "opacity-and-color",
+      "summary": "Appears from nothing. One-way.",
+      "use": "Arrivals, waking up, being noticed. Pair with sparkle for a magical entrance.",
+      "animates": [
+        "opacity"
+      ],
+      "defaultDuration": 0.6,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "duration",
+        "intensity",
+        "hold"
+      ],
+      "oneWay": true,
+      "hold": true,
+      "defaultColor": null,
+      "requiresColor": false,
+      "reduceMotion": "full"
+    },
+    {
+      "name": "fade-out",
+      "category": "opacity-and-color",
+      "summary": "Fades away. One-way.",
+      "use": "Leaving, hiding, falling asleep. hold true keeps the sticker gone until the story ends; otherwise it fades back in.",
+      "animates": [
+        "opacity"
+      ],
+      "defaultDuration": 0.6,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "duration",
+        "intensity",
+        "hold"
+      ],
+      "oneWay": true,
+      "hold": true,
+      "defaultColor": null,
+      "requiresColor": false,
+      "reduceMotion": "full"
+    },
+    {
+      "name": "glow",
+      "category": "opacity-and-color",
+      "summary": "A soft bloom rises around the sticker and falls away. Reads as magic.",
+      "use": "Magic, warmth, a wish, the sun coming out. hold true keeps the bloom on.",
+      "animates": [
+        "glow"
+      ],
+      "defaultDuration": 1.0,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "repeat",
+        "duration",
+        "intensity",
+        "color",
+        "hold"
+      ],
+      "oneWay": false,
+      "hold": true,
+      "defaultColor": "#FFF3C4",
+      "requiresColor": false,
+      "reduceMotion": "full"
+    },
+    {
+      "name": "tint",
+      "category": "opacity-and-color",
+      "summary": "A colour washes over the sticker and drains away. White + short duration = a flash.",
+      "use": "Blushing (pink), cold (blue), angry (red), a camera flash (white, duration 0.2). color is required.",
+      "animates": [
+        "tint"
+      ],
+      "defaultDuration": 0.8,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "repeat",
+        "duration",
+        "intensity",
+        "color",
+        "hold"
+      ],
+      "oneWay": false,
+      "hold": true,
+      "defaultColor": null,
+      "requiresColor": true,
+      "reduceMotion": "full"
+    },
+    {
+      "name": "sparkle",
+      "category": "particle",
+      "summary": "A small shower of twinkles above the sticker. The generic magic/delight beat.",
+      "use": "Delight, magic, treasure, a good idea.",
+      "animates": [
+        "particles"
+      ],
+      "defaultDuration": 1.0,
+      "anchor": [
+        0.5,
+        0.35
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "repeat",
+        "duration",
+        "intensity",
+        "color"
+      ],
+      "oneWay": false,
+      "hold": false,
+      "defaultColor": "#FFD166",
+      "requiresColor": false,
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "hearts",
+      "category": "particle",
+      "summary": "A few hearts drift up. Affection, a hug, a friend.",
+      "use": "Friendship, love, a hug, kindness.",
+      "animates": [
+        "particles"
+      ],
+      "defaultDuration": 1.2,
+      "anchor": [
+        0.5,
+        0.2
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "repeat",
+        "duration",
+        "intensity"
+      ],
+      "oneWay": false,
+      "hold": false,
+      "defaultColor": null,
+      "requiresColor": false,
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "dust-puff",
+      "category": "particle",
+      "summary": "A puff of dust kicked up from the ground at its feet, settling under the world's gravity.",
+      "use": "A landing, a stamp, a wheel spinning, a rocket touching down, a dig. Grey moon dust that hangs and drifts down on the Moon, a quick puff of soil or sand on Earth (the pack's world). Colour defaults to the pack's ground.",
+      "animates": [
+        "particles"
+      ],
+      "defaultDuration": 0.4,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "repeat",
+        "duration",
+        "intensity",
+        "color"
+      ],
+      "oneWay": false,
+      "hold": false,
+      "defaultColor": null,
+      "requiresColor": false,
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "spray",
+      "category": "particle",
+      "summary": "A spray of water drops thrown up that arc and fall.",
+      "use": "A splash into the pond, a shake of wet fur, a fountain, watering a plant.",
+      "animates": [
+        "particles"
+      ],
+      "defaultDuration": 0.4,
+      "anchor": [
+        0.5,
+        0.85
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "repeat",
+        "duration",
+        "intensity",
+        "color"
+      ],
+      "oneWay": false,
+      "hold": false,
+      "defaultColor": "#CFE8FF",
+      "requiresColor": false,
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "sparks",
+      "category": "particle",
+      "summary": "A few tiny bright sparks that fly out, fall and fade.",
+      "use": "A tool on metal, a connection made, a machine starting. Never fire or danger.",
+      "animates": [
+        "particles"
+      ],
+      "defaultDuration": 0.4,
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "repeat",
+        "duration",
+        "intensity",
+        "color"
+      ],
+      "oneWay": false,
+      "hold": false,
+      "defaultColor": "#FFD27A",
+      "requiresColor": false,
+      "reduceMotion": "damped-0.4"
+    }
   ],
   "canvasEffects": [
-    { "name": "fog",      "settings": ["outdoors"], "summary": "Soft mist drifts slowly across the whole scene.", "use": "Early morning, a mystery, something hidden then found, quiet and hush. Builds up slowly, so cue it a beat early.", "defaultDuration": 12, "durationRange": [1, 120], "rampIn": 2.5, "rampOut": 2.5, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "rain",     "settings": ["outdoors"], "summary": "Rain falls over everything under a grey sky with a few grey clouds; the light cools a little.", "use": "Rain in the story: pitter-patter, puddles, sheltering under a cap. Intensity is drizzle to downpour.", "defaultDuration": 10, "durationRange": [1, 120], "rampIn": 1.2, "rampOut": 1.5, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" },
-    { "name": "sunshine", "settings": ["outdoors"], "summary": "Warm light across the top of the scene, soft shafts drifting down.", "use": "The sun comes out, a warm afternoon, waking up, a happy ending after rain.", "defaultDuration": 8, "durationRange": [1, 120], "rampIn": 1.5, "rampOut": 1.5, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "rainbow",  "settings": ["outdoors"], "summary": "A soft rainbow arcs across the sky behind the scenery.", "use": "The reward after rain, a wish come true, a wonder everyone looks up at. One per story at most.", "defaultDuration": 8, "durationRange": [1, 120], "rampIn": 2.0, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "night",    "settings": ["outdoors"], "summary": "Night falls: the scene darkens and a moon glows in the sky.", "use": "Evening and bedtime outdoors, the moon coming up, stars, a story that settles to sleep. Never darkness as a threat. Builds slowly, so cue it a beat early.", "defaultDuration": 10, "durationRange": [1, 120], "rampIn": 2.0, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "snow",     "settings": ["outdoors"], "summary": "Soft snowflakes drift down over everything; the top of the sky turns white and the light cool and bright. It keeps falling until the sun comes out or rain washes it away, and settles on the ground as a snow cover that stays after the snowfall until sunshine or rain melts it.", "use": "Winter, a snow day, the first flakes, a quiet hush. Intensity is a few flakes to a thick flurry.", "defaultDuration": 12, "durationRange": [1, 120], "rampIn": 2.0, "rampOut": 2.5, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" },
-    { "name": "sunset",   "settings": ["outdoors"], "summary": "A warm orange-pink glow spreads from the horizon while the sky above deepens.", "use": "The end of the day, going home, a calm golden moment. Followed by night it makes a gentle bedtime. Builds slowly, so cue it a beat early.", "defaultDuration": 10, "durationRange": [1, 120], "rampIn": 2.5, "rampOut": 2.5, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "clouds",   "settings": ["outdoors"], "summary": "Big soft clouds drift slowly across the sky behind the scenery; the light dims a little.", "use": "A cloudy day, a cloud shaped like something, the grey before rain, the sun going in.", "defaultDuration": 12, "durationRange": [1, 120], "rampIn": 2.5, "rampOut": 2.5, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "wind",     "settings": ["outdoors"], "summary": "Pale wisps of air sweep across the scene with a few specks tumbling along.", "use": "A windy day, a kite, a hat or a leaf blown away, a whoosh. Intensity is a breeze to a gust.", "defaultDuration": 8, "durationRange": [1, 120], "rampIn": 1.0, "rampOut": 1.5, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" },
-    { "name": "fireflies", "settings": ["outdoors"], "summary": "Tiny warm lights drift and glow softly, mostly low over the ground.", "use": "A summer evening, a little magic in the dark, lighting the way. Lovely over night or sunset.", "defaultDuration": 12, "durationRange": [1, 120], "rampIn": 2.0, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" },
-    { "name": "leaves",   "settings": ["outdoors"], "summary": "Autumn leaves flutter down and drift sideways across the scene.", "use": "Autumn, a gust shaking the trees, change, a leaf pile. Only for packs with trees.", "defaultDuration": 10, "durationRange": [1, 120], "rampIn": 1.5, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" },
-    { "name": "shootingstars", "settings": ["outdoors"], "summary": "Now and then a shooting star streaks across the sky.", "use": "Making a wish on a clear night, wonder, look! Best over night. Intensity is a single one now and then to a meteor shower.", "defaultDuration": 10, "durationRange": [1, 120], "rampIn": 1.0, "rampOut": 1.5, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" },
-    { "name": "dimlight", "settings": ["indoors"], "summary": "The lights go low: the scene darkens toward its edges.", "use": "Bedtime, a lamp switched low, a cosy evening, a whispered secret. Never darkness as a threat.", "defaultDuration": 8, "durationRange": [1, 120], "rampIn": 1.5, "rampOut": 1.5, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "windowlight", "settings": ["indoors"], "summary": "A slanted shaft of sunlight falls across the room, with dust motes turning in it.", "use": "Morning, waking up, a lazy sunny afternoon, the sun coming out while everyone is inside.", "defaultDuration": 10, "durationRange": [1, 120], "rampIn": 2.0, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "firelight", "settings": ["indoors"], "summary": "A warm glow from below flickers slowly and gently while the room around it dims.", "use": "A fireplace, birthday candles, a cosy evening, telling stories together. Never a fire as danger.", "defaultDuration": 10, "durationRange": [1, 120], "rampIn": 2.0, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "rainywindow", "settings": ["indoors"], "summary": "The room turns cool and grey while raindrops trickle down, as if seen through glass.", "use": "A rainy day indoors, waiting for the rain to stop, a quiet day inside.", "defaultDuration": 12, "durationRange": [1, 120], "rampIn": 2.0, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" },
-    { "name": "confetti", "settings": ["outdoors", "indoors"], "summary": "A shower of colourful confetti flutters down over the whole scene.", "use": "A birthday, a party, a hooray, a happy ending. One per story at most.", "defaultDuration": 6, "durationRange": [1, 120], "rampIn": 0.5, "rampOut": 1.5, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" },
-    { "name": "bubbles",  "settings": ["outdoors", "indoors", "underwater"], "summary": "Bubbles float up and wobble gently over the scene.", "use": "Bath time, washing up, blowing bubbles, a party; under the sea, a fish talking or something bubbling up.", "defaultDuration": 8, "durationRange": [1, 120], "rampIn": 1.0, "rampOut": 1.5, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" },
-    { "name": "comet",    "settings": ["space"], "summary": "A comet with a long glowing tail glides slowly across the sky.", "use": "A visitor, following something, a slow moment of wonder.", "defaultDuration": 12, "durationRange": [1, 120], "rampIn": 1.5, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "nightfall", "settings": ["space"], "summary": "The long night comes: the ground darkens to a deep blue-grey and many more stars come out.", "use": "Night at the base, bedtime, waiting out the dark and the cold. Holds until daybreak or the story's end. Never darkness as a threat. Builds slowly, so cue it a beat early.", "defaultDuration": 10, "durationRange": [1, 120], "rampIn": 2.5, "rampOut": 2.5, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "daybreak", "settings": ["space"], "summary": "Stark white sunlight sweeps across the scene from the left, with a soft glare in the top-left corner.", "use": "Morning at the base, the long night over, the sun coming up over the ridge. Ends a nightfall.", "defaultDuration": 8, "durationRange": [1, 120], "rampIn": 1.5, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "eclipse", "settings": ["space"], "summary": "The light turns a deep, dim copper-red for a while, then comes back.", "use": "A rare wonder everyone stops to watch: the Earth passing in front of the Sun. One per story at most.", "defaultDuration": 12, "durationRange": [1, 120], "rampIn": 3.0, "rampOut": 3.0, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "milkyway", "settings": ["space"], "summary": "A pale band of countless stars glows across the black sky.", "use": "Stargazing, a clear dark night, feeling tiny. Lovely over nightfall.", "defaultDuration": 12, "durationRange": [1, 120], "rampIn": 3.0, "rampOut": 3.0, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "satellites", "settings": ["space"], "summary": "A few tiny steady lights glide slowly across the sky, far overhead.", "use": "Something passing high above, waving to someone far away, a quiet look up.", "defaultDuration": 12, "durationRange": [1, 120], "rampIn": 1.5, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "dust", "settings": ["space"], "summary": "A cloud of grey dust sprays up across the lower scene and falls back down.", "use": "A landing or a lift-off, wheels racing, digging, a thump. Short: a few seconds is plenty.", "defaultDuration": 5, "durationRange": [1, 120], "rampIn": 0.8, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" },
-    { "name": "floodlights", "settings": ["space"], "summary": "Floodlights switch on: white beams from the top corners and pools of light on the ground.", "use": "Lights on for the night's work, guiding a landing, finding someone in the dark. Lovely over nightfall.", "defaultDuration": 10, "durationRange": [1, 120], "rampIn": 0.8, "rampOut": 1.5, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "glints", "settings": ["space"], "summary": "The ground sparkles softly here and there, as the light catches tiny beads.", "use": "A discovery, something precious in the dust, a quiet magical beat.", "defaultDuration": 8, "durationRange": [1, 120], "rampIn": 1.5, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" },
-    { "name": "sunrays",  "settings": ["underwater"], "summary": "Shafts of sunlight slant down from the surface and sway slowly.", "use": "A bright, happy day under the sea, swimming up towards the light, the sun coming out above.", "defaultDuration": 10, "durationRange": [1, 120], "rampIn": 2.0, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "ripples",  "settings": ["underwater"], "summary": "A net of rippling light plays over the scene, brightest near the sea floor.", "use": "Shallow water, a sunny lagoon, calm and playful. Layers nicely with sunrays.", "defaultDuration": 12, "durationRange": [1, 120], "rampIn": 2.0, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "deepwater", "settings": ["underwater"], "summary": "The water darkens to a deep blue, most of all at the edges.", "use": "Diving deeper, exploring, bedtime under the sea. Never darkness as a threat. Builds slowly, so cue it a beat early.", "defaultDuration": 12, "durationRange": [1, 120], "rampIn": 2.5, "rampOut": 2.5, "parameters": ["intensity", "duration"], "reduceMotion": "full" },
-    { "name": "glowplankton", "settings": ["underwater"], "summary": "Tiny blue-green lights twinkle and drift through the water.", "use": "A little magic in the dark sea, a night swim. Lovely over deepwater.", "defaultDuration": 12, "durationRange": [1, 120], "rampIn": 2.0, "rampOut": 2.0, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" },
-    { "name": "current",  "settings": ["underwater"], "summary": "A gentle current sweeps specks and bits of green across the scene.", "use": "Swimming along, being carried away, a whoosh under the sea. Intensity is a drift to a strong current.", "defaultDuration": 8, "durationRange": [1, 120], "rampIn": 1.2, "rampOut": 1.5, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" },
-    { "name": "sandcloud", "settings": ["underwater"], "summary": "A cloud of sand swirls up from the sea floor and slowly settles.", "use": "Something stirs, hide and seek, a big fish swishing past, digging in the sand.", "defaultDuration": 6, "durationRange": [1, 120], "rampIn": 1.5, "rampOut": 2.5, "parameters": ["intensity", "duration"], "reduceMotion": "damped-0.4" }
+    {
+      "name": "fog",
+      "settings": [
+        "outdoors"
+      ],
+      "summary": "Soft mist drifts slowly across the whole scene.",
+      "use": "Early morning, a mystery, something hidden then found, quiet and hush. Builds up slowly, so cue it a beat early.",
+      "defaultDuration": 12,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 2.5,
+      "rampOut": 2.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "rain",
+      "settings": [
+        "outdoors"
+      ],
+      "summary": "Rain falls over everything under a grey sky with a few grey clouds; the light cools a little.",
+      "use": "Rain in the story: pitter-patter, puddles, sheltering under a cap. Intensity is drizzle to downpour.",
+      "defaultDuration": 10,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 1.2,
+      "rampOut": 1.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "sunshine",
+      "settings": [
+        "outdoors"
+      ],
+      "summary": "Warm light across the top of the scene, soft shafts drifting down.",
+      "use": "The sun comes out, a warm afternoon, waking up, a happy ending after rain.",
+      "defaultDuration": 8,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 1.5,
+      "rampOut": 1.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "rainbow",
+      "settings": [
+        "outdoors"
+      ],
+      "summary": "A soft rainbow arcs across the sky behind the scenery.",
+      "use": "The reward after rain, a wish come true, a wonder everyone looks up at. One per story at most.",
+      "defaultDuration": 8,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 2.0,
+      "rampOut": 2.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "night",
+      "settings": [
+        "outdoors"
+      ],
+      "summary": "Night falls: the scene darkens and a moon glows in the sky.",
+      "use": "Evening and bedtime outdoors, the moon coming up, stars, a story that settles to sleep. Never darkness as a threat. Builds slowly, so cue it a beat early.",
+      "defaultDuration": 10,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 2.0,
+      "rampOut": 2.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "snow",
+      "settings": [
+        "outdoors"
+      ],
+      "summary": "Soft snowflakes drift down over everything; the top of the sky turns white and the light cool and bright. It keeps falling until the sun comes out or rain washes it away, and settles on the ground as a snow cover that stays after the snowfall until sunshine or rain melts it.",
+      "use": "Winter, a snow day, the first flakes, a quiet hush. Intensity is a few flakes to a thick flurry.",
+      "defaultDuration": 12,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 2.0,
+      "rampOut": 2.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "sunset",
+      "settings": [
+        "outdoors"
+      ],
+      "summary": "A warm orange-pink glow spreads from the horizon while the sky above deepens.",
+      "use": "The end of the day, going home, a calm golden moment. Followed by night it makes a gentle bedtime. Builds slowly, so cue it a beat early.",
+      "defaultDuration": 10,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 2.5,
+      "rampOut": 2.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "clouds",
+      "settings": [
+        "outdoors"
+      ],
+      "summary": "Big soft clouds drift slowly across the sky behind the scenery; the light dims a little.",
+      "use": "A cloudy day, a cloud shaped like something, the grey before rain, the sun going in.",
+      "defaultDuration": 12,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 2.5,
+      "rampOut": 2.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "wind",
+      "settings": [
+        "outdoors"
+      ],
+      "summary": "Pale wisps of air sweep across the scene with a few specks tumbling along.",
+      "use": "A windy day, a kite, a hat or a leaf blown away, a whoosh. Intensity is a breeze to a gust.",
+      "defaultDuration": 8,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 1.0,
+      "rampOut": 1.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "fireflies",
+      "settings": [
+        "outdoors"
+      ],
+      "summary": "Tiny warm lights drift and glow softly, mostly low over the ground.",
+      "use": "A summer evening, a little magic in the dark, lighting the way. Lovely over night or sunset.",
+      "defaultDuration": 12,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 2.0,
+      "rampOut": 2.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "leaves",
+      "settings": [
+        "outdoors"
+      ],
+      "summary": "Autumn leaves flutter down and drift sideways across the scene.",
+      "use": "Autumn, a gust shaking the trees, change, a leaf pile. Only for packs with trees.",
+      "defaultDuration": 10,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 1.5,
+      "rampOut": 2.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "shootingstars",
+      "settings": [
+        "outdoors"
+      ],
+      "summary": "Now and then a shooting star streaks across the sky.",
+      "use": "Making a wish on a clear night, wonder, look! Best over night. Intensity is a single one now and then to a meteor shower.",
+      "defaultDuration": 10,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 1.0,
+      "rampOut": 1.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "dimlight",
+      "settings": [
+        "indoors"
+      ],
+      "summary": "The lights go low: the scene darkens toward its edges.",
+      "use": "Bedtime, a lamp switched low, a cosy evening, a whispered secret. Never darkness as a threat.",
+      "defaultDuration": 8,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 1.5,
+      "rampOut": 1.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "windowlight",
+      "settings": [
+        "indoors"
+      ],
+      "summary": "A slanted shaft of sunlight falls across the room, with dust motes turning in it.",
+      "use": "Morning, waking up, a lazy sunny afternoon, the sun coming out while everyone is inside.",
+      "defaultDuration": 10,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 2.0,
+      "rampOut": 2.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "firelight",
+      "settings": [
+        "indoors"
+      ],
+      "summary": "A warm glow from below flickers slowly and gently while the room around it dims.",
+      "use": "A fireplace, birthday candles, a cosy evening, telling stories together. Never a fire as danger.",
+      "defaultDuration": 10,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 2.0,
+      "rampOut": 2.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "rainywindow",
+      "settings": [
+        "indoors"
+      ],
+      "summary": "The room turns cool and grey while raindrops trickle down, as if seen through glass.",
+      "use": "A rainy day indoors, waiting for the rain to stop, a quiet day inside.",
+      "defaultDuration": 12,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 2.0,
+      "rampOut": 2.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "confetti",
+      "settings": [
+        "outdoors",
+        "indoors"
+      ],
+      "summary": "A shower of colourful confetti flutters down over the whole scene.",
+      "use": "A birthday, a party, a hooray, a happy ending. One per story at most.",
+      "defaultDuration": 6,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 0.5,
+      "rampOut": 1.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "bubbles",
+      "settings": [
+        "outdoors",
+        "indoors",
+        "underwater"
+      ],
+      "summary": "Bubbles float up and wobble gently over the scene.",
+      "use": "Bath time, washing up, blowing bubbles, a party; under the sea, a fish talking or something bubbling up.",
+      "defaultDuration": 8,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 1.0,
+      "rampOut": 1.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "comet",
+      "settings": [
+        "space"
+      ],
+      "summary": "A comet with a long glowing tail glides slowly across the sky.",
+      "use": "A visitor, following something, a slow moment of wonder.",
+      "defaultDuration": 12,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 1.5,
+      "rampOut": 2.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "nightfall",
+      "settings": [
+        "space"
+      ],
+      "summary": "The long night comes: the ground darkens to a deep blue-grey and many more stars come out.",
+      "use": "Night at the base, bedtime, waiting out the dark and the cold. Holds until daybreak or the story's end. Never darkness as a threat. Builds slowly, so cue it a beat early.",
+      "defaultDuration": 10,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 2.5,
+      "rampOut": 2.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "daybreak",
+      "settings": [
+        "space"
+      ],
+      "summary": "Stark white sunlight sweeps across the scene from the left, with a soft glare in the top-left corner.",
+      "use": "Morning at the base, the long night over, the sun coming up over the ridge. Ends a nightfall.",
+      "defaultDuration": 8,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 1.5,
+      "rampOut": 2.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "eclipse",
+      "settings": [
+        "space"
+      ],
+      "summary": "The light turns a deep, dim copper-red for a while, then comes back.",
+      "use": "A rare wonder everyone stops to watch: the Earth passing in front of the Sun. One per story at most.",
+      "defaultDuration": 12,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 3.0,
+      "rampOut": 3.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "milkyway",
+      "settings": [
+        "space"
+      ],
+      "summary": "A pale band of countless stars glows across the black sky.",
+      "use": "Stargazing, a clear dark night, feeling tiny. Lovely over nightfall.",
+      "defaultDuration": 12,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 3.0,
+      "rampOut": 3.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "satellites",
+      "settings": [
+        "space"
+      ],
+      "summary": "A few tiny steady lights glide slowly across the sky, far overhead.",
+      "use": "Something passing high above, waving to someone far away, a quiet look up.",
+      "defaultDuration": 12,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 1.5,
+      "rampOut": 2.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "dust",
+      "settings": [
+        "space"
+      ],
+      "summary": "A cloud of grey dust sprays up across the lower scene and falls back down.",
+      "use": "A landing or a lift-off, wheels racing, digging, a thump. Short: a few seconds is plenty.",
+      "defaultDuration": 5,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 0.8,
+      "rampOut": 2.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "floodlights",
+      "settings": [
+        "space"
+      ],
+      "summary": "Floodlights switch on: white beams from the top corners and pools of light on the ground.",
+      "use": "Lights on for the night's work, guiding a landing, finding someone in the dark. Lovely over nightfall.",
+      "defaultDuration": 10,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 0.8,
+      "rampOut": 1.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "glints",
+      "settings": [
+        "space"
+      ],
+      "summary": "The ground sparkles softly here and there, as the light catches tiny beads.",
+      "use": "A discovery, something precious in the dust, a quiet magical beat.",
+      "defaultDuration": 8,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 1.5,
+      "rampOut": 2.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "sunrays",
+      "settings": [
+        "underwater"
+      ],
+      "summary": "Shafts of sunlight slant down from the surface and sway slowly.",
+      "use": "A bright, happy day under the sea, swimming up towards the light, the sun coming out above.",
+      "defaultDuration": 10,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 2.0,
+      "rampOut": 2.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "ripples",
+      "settings": [
+        "underwater"
+      ],
+      "summary": "A net of rippling light plays over the scene, brightest near the sea floor.",
+      "use": "Shallow water, a sunny lagoon, calm and playful. Layers nicely with sunrays.",
+      "defaultDuration": 12,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 2.0,
+      "rampOut": 2.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "deepwater",
+      "settings": [
+        "underwater"
+      ],
+      "summary": "The water darkens to a deep blue, most of all at the edges.",
+      "use": "Diving deeper, exploring, bedtime under the sea. Never darkness as a threat. Builds slowly, so cue it a beat early.",
+      "defaultDuration": 12,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 2.5,
+      "rampOut": 2.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "full"
+    },
+    {
+      "name": "glowplankton",
+      "settings": [
+        "underwater"
+      ],
+      "summary": "Tiny blue-green lights twinkle and drift through the water.",
+      "use": "A little magic in the dark sea, a night swim. Lovely over deepwater.",
+      "defaultDuration": 12,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 2.0,
+      "rampOut": 2.0,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "current",
+      "settings": [
+        "underwater"
+      ],
+      "summary": "A gentle current sweeps specks and bits of green across the scene.",
+      "use": "Swimming along, being carried away, a whoosh under the sea. Intensity is a drift to a strong current.",
+      "defaultDuration": 8,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 1.2,
+      "rampOut": 1.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "sandcloud",
+      "settings": [
+        "underwater"
+      ],
+      "summary": "A cloud of sand swirls up from the sea floor and slowly settles.",
+      "use": "Something stirs, hide and seek, a big fish swishing past, digging in the sand.",
+      "defaultDuration": 6,
+      "durationRange": [
+        1,
+        120
+      ],
+      "rampIn": 1.5,
+      "rampOut": 2.5,
+      "parameters": [
+        "intensity",
+        "duration"
+      ],
+      "reduceMotion": "damped-0.4"
+    }
   ]
 }

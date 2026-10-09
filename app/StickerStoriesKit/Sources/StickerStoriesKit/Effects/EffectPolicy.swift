@@ -37,7 +37,7 @@ public struct EffectPolicy: Equatable, Sendable {
             result.intensity = min(result.intensity, 0.3)
         case .fadeIn, .fadeOut, .glow, .tint:
             break  // carry story meaning; run at full
-        case .sparkle, .hearts:
+        case .sparkle, .hearts, .dustPuff, .spray, .sparks:
             result.intensity = min(result.intensity, 0.4)
         }
         if calmMode { result.intensity *= calmIntensityMultiplier }
