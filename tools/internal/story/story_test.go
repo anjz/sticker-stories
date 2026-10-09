@@ -904,11 +904,11 @@ func TestCharacterLines(t *testing.T) {
 		}
 	}
 	for text, want := range map[string]string{
-		`{fox:says} Who is there?`:          "must start with a quote",
+		`{fox:says} Who is there?`:           "must start with a quote",
 		`{fox:says} "Who is there? he said.`: "never closes",
-		`Hello. {fox:says}`:                 "a line follows it",
-		`{all:says} "Hi!"`:                  "one character",
-		`{fox:says x2} "Hi!"`:               "no parameters",
+		`Hello. {fox:says}`:                  "a line follows it",
+		`{all:says} "Hi!"`:                   "one character",
+		`{fox:says x2} "Hi!"`:                "no parameters",
 	} {
 		_, errs := Parse(text)
 		if len(errs) == 0 || !strings.Contains(fmt.Sprint(errs), want) {

@@ -51,6 +51,10 @@ type StickerOptions struct {
 	Border    float64 // white border width as a fraction of Size (e.g. 0.02)
 	Margin    float64 // empty margin around the bordered sticker, fraction of Size
 	Threshold uint8   // alpha at or below this counts as transparent
+	// Fill (optional) is the share of Size the bordered drawing's longest
+	// side takes, centred — a sticker drawn at its size class
+	// (manifest.DrawnFill); 0 fills the square up to the Margin.
+	Fill float64
 	// Finish is the printed-sticker material; nil means DefaultFinish and
 	// a zero Finish is flat white with no shading.
 	Finish *Finish
@@ -83,7 +87,7 @@ var stickerWhite = color.RGBA{250, 250, 247, 255}
 
 // Sticker trims the alpha bounding box, adds a white outline with the
 // printed finish, and fits the result into a Size×Size square with a
-// margin. Returns an error if the image is fully transparent.
+// margin (or at Fill of it, centred). Returns an error if the image is fully transparent.
 func Sticker(src *image.RGBA, o StickerOptions) (*image.RGBA, error) {
 	if o.Size <= 0 {
 		o.Size = 1024
@@ -102,6 +106,9 @@ func Sticker(src *image.RGBA, o StickerOptions) (*image.RGBA, error) {
 
 	// Work at a scale where the content fits the inner square, then outline.
 	inner := float64(o.Size) * (1 - 2*o.Margin - 2*o.Border)
+	if o.Fill > 0 {
+		inner = float64(o.Size) * (o.Fill - 2*o.Border)
+	}
 	scale := math.Min(inner/float64(crop.Rect.Dx()), inner/float64(crop.Rect.Dy()))
 	w, h := int(float64(crop.Rect.Dx())*scale+0.5), int(float64(crop.Rect.Dy())*scale+0.5)
 	scaled := Resize(crop, w, h)

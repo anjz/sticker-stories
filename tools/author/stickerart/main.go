@@ -29,6 +29,7 @@ import (
 	"flag"
 	"fmt"
 	"image/color"
+	"math"
 	"os"
 	"path/filepath"
 	"sort"
@@ -93,13 +94,40 @@ type artConfig struct {
 	Margin      float64 `json:"margin"`
 	// Finish is the printed-sticker material (stickerimg.Finish); absent
 	// means stickerimg.DefaultFinish, a glossy die-cut vinyl sticker.
-	Finish   *stickerimg.Finish `json:"finish,omitempty"`
-	Stickers []stickerSpec      `json:"stickers"`
+	Finish *stickerimg.Finish `json:"finish,omitempty"`
+	// SizeInArt draws every sticker at its size class's share of its
+	// image (manifest.DrawnFill), centred, leaving room around it for its
+	// animations, and install writes each sticker's content (where the
+	// drawing sits) into the manifest (docs/pack-format.md, "Drawn size").
+	// Every sticker then needs a size. Off: drawings fill their images.
+	SizeInArt bool          `json:"sizeInArt,omitempty"`
+	Stickers  []stickerSpec `json:"stickers"`
 	// Expressions are the face variants every sticker with a face gets
 	// (the sticker itself is the "normal" one).
 	Expressions []expressionSpec  `json:"expressions,omitempty"`
 	Scene       sceneSpec         `json:"scene"`
 	Notes       map[string]string `json:"notes,omitempty"`
+}
+
+// fill is the share of its image a sticker is drawn at: its size class's
+// when the pack draws at size (SizeInArt), else 0 (fill the image).
+func (c artConfig) fill(s stickerSpec) float64 {
+	if !c.SizeInArt {
+		return 0
+	}
+	if f, ok := manifest.DrawnFill[s.Size]; ok {
+		return f
+	}
+	return manifest.DrawnFill["medium"]
+}
+
+// fillFP adds the drawn size to a finish fingerprint — only when there is
+// one, so packs drawn before it keep their fingerprints.
+func (c artConfig) fillFP(fp string, s stickerSpec) string {
+	if f := c.fill(s); f > 0 {
+		return hashOf(fp, "fill", fmt.Sprint(f))
+	}
+	return fp
 }
 
 func (c artConfig) finish() stickerimg.Finish {
@@ -538,7 +566,7 @@ func (r *renderer) sticker(s stickerSpec, sheet []byte, sheetFP string) error {
 	cfg := r.c.cfg
 	genFP := hashOf(toolVersion, "sticker", sheetFP, cfg.Style, s.Prompt, r.o.quality, editModel)
 	baseFP := r.baseFP(s, genFP)
-	finishFP := hashOf(baseFP, finishVersion, fmt.Sprint(cfg.StickerSize, cfg.Border, cfg.Margin), fmt.Sprint(cfg.finish()))
+	finishFP := cfg.fillFP(hashOf(baseFP, finishVersion, fmt.Sprint(cfg.StickerSize, cfg.Border, cfg.Margin), fmt.Sprint(cfg.finish())), s)
 	raw := r.out("stickers", s.ID+".raw.png")
 	final := r.out("stickers", s.ID+".png")
 	if r.upToDate(final, finishFP) {
@@ -582,7 +610,7 @@ func (r *renderer) sticker(s stickerSpec, sheet []byte, sheetFP string) error {
 		r.plan(fmt.Sprintf("sticker %s (re-finish the kept raw, no API call)", s.ID))
 		return nil
 	}
-	if err := r.finish(s.ID, r.workingRaw(s), final, finishFP); err != nil {
+	if err := r.finish(s.ID, r.workingRaw(s), final, finishFP, cfg.fill(s)); err != nil {
 		return err
 	}
 	r.say("✓ %s finished", s.ID)
@@ -692,7 +720,7 @@ func (r *renderer) removeProp(s stickerSpec, raw, fp, outFP string) error {
 
 // finish turns a kept raw generation into the pack's sticker: trimmed,
 // cleaned, bordered and given the printed finish (stickerimg).
-func (r *renderer) finish(id, raw, final, finishFP string) error {
+func (r *renderer) finish(id, raw, final, finishFP string, fill float64) error {
 	cfg := r.c.cfg
 	data, err := os.ReadFile(raw)
 	if err != nil {
@@ -703,7 +731,7 @@ func (r *renderer) finish(id, raw, final, finishFP string) error {
 		return fmt.Errorf("%s: %w", id, err)
 	}
 	finish := cfg.finish()
-	out, err := stickerimg.Sticker(src, stickerimg.StickerOptions{Size: cfg.StickerSize, Border: cfg.Border, Margin: cfg.Margin, Threshold: 8, Finish: &finish})
+	out, err := stickerimg.Sticker(src, stickerimg.StickerOptions{Size: cfg.StickerSize, Border: cfg.Border, Margin: cfg.Margin, Fill: fill, Threshold: 8, Finish: &finish})
 	if err != nil {
 		return fmt.Errorf("%s: %w", id, err)
 	}
@@ -745,7 +773,7 @@ func (r *renderer) face(s stickerSpec, e expressionSpec) error {
 	genFP := hashOf(toolVersion, "face", faceGenVersion, r.fps[raw], cfg.Style, e.Prompt, fmt.Sprint(*s.Face), s.FaceNote, r.o.quality, editModel)
 	// The composite has its own version: a change there re-composites the
 	// kept generation at no cost.
-	finishFP := hashOf(genFP, faceVersion, finishVersion, fmt.Sprint(cfg.StickerSize, cfg.Border, cfg.Margin), fmt.Sprint(cfg.finish()))
+	finishFP := cfg.fillFP(hashOf(genFP, faceVersion, finishVersion, fmt.Sprint(cfg.StickerSize, cfg.Border, cfg.Margin), fmt.Sprint(cfg.finish())), s)
 	if s.Prop != nil {
 		// The face goes over the art without the prop.
 		finishFP = hashOf(finishFP, r.fps[r.workingRaw(s)])
@@ -825,7 +853,7 @@ func (r *renderer) face(s stickerSpec, e expressionSpec) error {
 	if err := os.WriteFile(comp, png, 0o644); err != nil {
 		return err
 	}
-	return r.finish(key, comp, final, finishFP)
+	return r.finish(key, comp, final, finishFP, cfg.fill(s))
 }
 
 // scene renders each plane as a complete 4:3 picture first (that is what
@@ -1159,6 +1187,29 @@ func (r *renderer) summary() {
 
 // ---------- install ----------
 
+// drawnContent is where the drawing sits in a finished sticker image, in
+// fractions of it with the origin at the bottom-left (manifest content).
+func drawnContent(path string) (*manifest.StageArea, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	img, err := stickerimg.Decode(data)
+	if err != nil {
+		return nil, err
+	}
+	b := stickerimg.Bounds(img, 8)
+	if b.Empty() {
+		return nil, errors.New("sticker image is empty")
+	}
+	w, h := float64(img.Bounds().Dx()), float64(img.Bounds().Dy())
+	round := func(v float64) float64 { return math.Round(v*1e4) / 1e4 }
+	return &manifest.StageArea{
+		X: []float64{round(float64(b.Min.X) / w), round(float64(b.Max.X) / w)},
+		Y: []float64{round(1 - float64(b.Max.Y)/h), round(1 - float64(b.Min.Y)/h)},
+	}, nil
+}
+
 // runInstall encodes the reviewed PNGs in out/ into the pack as WebP
 // (cached in out/render.json by source hash, so an unchanged image is not
 // re-encoded), points the manifest at them and drops the files they
@@ -1220,7 +1271,8 @@ func runInstall(args []string) error {
 				expressions[e.ID] = erel
 			}
 		}
-		if i, ok := byID[s.ID]; ok {
+		i, ok := byID[s.ID]
+		if ok {
 			if old := c.pack.Stickers[i].Image; old != rel {
 				replaced = append(replaced, old)
 			}
@@ -1235,6 +1287,15 @@ func runInstall(args []string) error {
 			c.pack.Stickers[i].Size = s.Size
 		} else {
 			c.pack.Stickers = append(c.pack.Stickers, manifest.Sticker{ID: s.ID, Name: s.Name, Image: rel, Expressions: expressions, Stage: s.Stage, Size: s.Size})
+			i = len(c.pack.Stickers) - 1
+		}
+		c.pack.Stickers[i].Content = nil
+		if c.cfg.SizeInArt {
+			content, err := drawnContent(src)
+			if err != nil {
+				return fmt.Errorf("%s: %w", s.ID, err)
+			}
+			c.pack.Stickers[i].Content = content
 		}
 		installed++
 	}

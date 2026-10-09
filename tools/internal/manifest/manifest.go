@@ -95,6 +95,12 @@ type Sticker struct {
 // Sizes are the size classes a sticker may have, biggest first.
 var Sizes = []string{"huge", "big", "medium", "small", "tiny"}
 
+// DrawnFill is the share of its square image a sticker of each size class
+// is drawn at (the longest side of the drawing, border included) in a pack
+// drawn at its size (docs/pack-format.md, "Drawn size"); the app's
+// StickerSize.drawnFill holds the same numbers.
+var DrawnFill = map[string]float64{"huge": 0.94, "big": 0.84, "medium": 0.72, "small": 0.60, "tiny": 0.50}
+
 // Entrances lists the ways a sticker can come into the scene
 // (docs/pack-format.md, "Stage"): hop in from the nearer side (things that
 // walk), float in from the nearer side (things that fly), or fade in and

@@ -3,6 +3,7 @@ package stickerimg
 import (
 	"image"
 	"image/color"
+	"math"
 	"os"
 	"path/filepath"
 	"testing"
@@ -220,5 +221,28 @@ func TestInstallWebPCaches(t *testing.T) {
 	os.WriteFile(src, data2, 0o644)
 	if did, _ := InstallWebP(src, dst, cache); !did {
 		t.Errorf("a changed source is re-encoded")
+	}
+}
+
+func TestStickerFillDrawsAtItsShare(t *testing.T) {
+	src := image.NewRGBA(image.Rect(0, 0, 200, 100))
+	for y := 0; y < 100; y++ {
+		for x := 0; x < 200; x++ {
+			src.Set(x, y, color.RGBA{200, 50, 50, 255})
+		}
+	}
+	for _, fill := range []float64{0.94, 0.5} {
+		out, err := Sticker(src, StickerOptions{Size: 400, Border: 0.025, Fill: fill, Threshold: 8})
+		if err != nil {
+			t.Fatal(err)
+		}
+		b := Bounds(out, 8)
+		if got := float64(b.Dx()) / 400; math.Abs(got-fill) > 0.01 {
+			t.Errorf("fill %.2f: drawing is %.3f of the image", fill, got)
+		}
+		// Centred.
+		if cx := float64(b.Min.X+b.Max.X) / 2; math.Abs(cx-200) > 1 {
+			t.Errorf("fill %.2f: centre at %.1f", fill, cx)
+		}
 	}
 }

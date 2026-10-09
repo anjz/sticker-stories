@@ -150,10 +150,10 @@ type ctxt struct {
 	declared   map[string]bool
 	// story is the pack as story tools see it (live animations included);
 	// animations the live-animation IDs by sticker, for the sidecar check.
-	story       story.Manifest
-	animations  effects.Animations
+	story      story.Manifest
+	animations effects.Animations
 	// catalog is the effects catalogue (canvas ramps, for held lights).
-	catalog *story.Catalog
+	catalog     *story.Catalog
 	expressions effects.Expressions
 }
 
@@ -505,14 +505,14 @@ type renderRecord struct {
 	Model       string   `json:"model"`
 	Stability   *float64 `json:"stability,omitempty"`
 	// Characters names the voice each speaking sticker's lines were read in.
-	Characters map[string]string `json:"characters,omitempty"`
-	SampleRate  int      `json:"sampleRate"`
-	Duration    float64  `json:"duration"`
-	Sounds      []string `json:"sounds,omitempty"`
-	Music       string   `json:"music,omitempty"`
-	Missing     []string `json:"missingSoundCues,omitempty"`
-	LiveOverlap []string `json:"liveOverlaps,omitempty"`
-	RenderedAt  string   `json:"renderedAt"`
+	Characters  map[string]string `json:"characters,omitempty"`
+	SampleRate  int               `json:"sampleRate"`
+	Duration    float64           `json:"duration"`
+	Sounds      []string          `json:"sounds,omitempty"`
+	Music       string            `json:"music,omitempty"`
+	Missing     []string          `json:"missingSoundCues,omitempty"`
+	LiveOverlap []string          `json:"liveOverlaps,omitempty"`
+	RenderedAt  string            `json:"renderedAt"`
 }
 
 func runRender(args []string) error {
@@ -588,14 +588,14 @@ type renderer struct {
 	voices voiceSet
 	// characters are the voices character lines are read in.
 	characters characterVoices
-	ctx    context.Context
-	music  map[string]*audio.Clip // by prompt
-	moods  musicConfig
-	mu     sync.Mutex // guards music, mp3, stdout
+	ctx        context.Context
+	music      map[string]*audio.Clip // by prompt
+	moods      musicConfig
+	mu         sync.Mutex // guards music, mp3, stdout
 	// mp3 is set once the plan has refused 44.1 kHz PCM: from then on
 	// every request asks for mp3Format and decodes it.
-	mp3 bool
-	locks  sync.Map   // cache key → *sync.Mutex, so one worker generates each asset
+	mp3   bool
+	locks sync.Map // cache key → *sync.Mutex, so one worker generates each asset
 	// dry-run tallies
 	chars      map[string]int
 	sfxToMake  map[string]bool
