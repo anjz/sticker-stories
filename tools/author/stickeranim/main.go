@@ -68,15 +68,34 @@ type artConfig struct {
 	Border      float64            `json:"border"`
 	Margin      float64            `json:"margin"`
 	Finish      *stickerimg.Finish `json:"finish,omitempty"`
-	Stickers    []struct {
+	// SizeInArt: stickers are drawn at their size class's share of their
+	// image (stickerart; manifest.DrawnFill) — the scaffold puts them there.
+	SizeInArt bool `json:"sizeInArt,omitempty"`
+	Stickers  []struct {
 		ID     string `json:"id"`
 		Prompt string `json:"prompt"`
+		Size   string `json:"size,omitempty"`
 		// Prop is what stickerart removed from the sticker (a lily pad): the
 		// frames are drawn without it, from the art without it.
 		Prop *struct {
 			Remove string `json:"remove"`
 		} `json:"prop,omitempty"`
 	} `json:"stickers"`
+}
+
+// fill is the share of its image a sticker is drawn at (0: the margin).
+func (c artConfig) fill(stickerID string) float64 {
+	if !c.SizeInArt {
+		return 0
+	}
+	for _, s := range c.Stickers {
+		if s.ID == stickerID {
+			if f, ok := manifest.DrawnFill[s.Size]; ok {
+				return f
+			}
+		}
+	}
+	return manifest.DrawnFill["medium"]
 }
 
 func (c artConfig) finish() stickerimg.Finish {
@@ -96,7 +115,14 @@ type animConfig struct {
 	// the sticker they would make (the rest frame's art fills a sticker
 	// this big): 512 is plenty for a sticker on screen, and a sheet's
 	// texture memory goes with its square. 0 = the pack's sticker size.
-	StickerPx  int        `json:"stickerPx,omitempty"`
+	StickerPx int `json:"stickerPx,omitempty"`
+	// Scaffold draws every sheet over a scaffold: a sheet whose cells each
+	// hold the sticker exactly as its image has it — at its size, in its
+	// place — which the model re-poses cell by cell, so every frame keeps
+	// the sticker's size and place; the frames are then assembled as drawn,
+	// in their cells (stickerimg.CellAnimation), and each is checked
+	// (<key>.qa.json). Every new pack sets it (docs/pack-art.md).
+	Scaffold   bool       `json:"scaffold,omitempty"`
 	Animations []animSpec `json:"animations"`
 	Notes      any        `json:"notes,omitempty"`
 }
@@ -127,6 +153,11 @@ type animSpec struct {
 	// generator redrew with slightly other proportions changes smoothly
 	// instead of cutting to the drawing one frame later.
 	RestFromSticker *bool `json:"restFromSticker,omitempty"`
+	// Room (scaffold only, default 1) is how much bigger than the
+	// sticker's box each cell is: the sticker sits in the middle at its
+	// size and the animation may reach past its box — a rocket's flame
+	// below a ship that fills its box. 1 keeps everything within the box.
+	Room float64 `json:"room,omitempty"`
 	// Normalize (default false) rescales frames so the base keeps its
 	// width: only for a base object that is the widest thing at the
 	// bottom in every pose (a lily pad, a perch); feet, a curling body or
@@ -201,6 +232,14 @@ type sheetSpec struct {
 	Hint string `json:"hint,omitempty"`
 }
 
+// room is how much bigger than the sticker's box a scaffold cell is.
+func (a animSpec) room() float64 {
+	if a.Room < 1 {
+		return 1
+	}
+	return a.Room
+}
+
 func (a animSpec) frameCount() int {
 	n := 0
 	for _, s := range a.Sheets {
@@ -241,6 +280,8 @@ func main() {
 		err = runRender(os.Args[2:])
 	case "install":
 		err = runInstall(os.Args[2:])
+	case "review":
+		err = runReview(os.Args[2:])
 	default:
 		usage()
 	}
@@ -251,7 +292,7 @@ func main() {
 }
 
 func usage() {
-	fmt.Fprintln(os.Stderr, "usage: stickeranim render|install -pack <pack-dir> [flags]  (see -h on each)")
+	fmt.Fprintln(os.Stderr, "usage: stickeranim render|review|install -pack <pack-dir> [flags]  (see -h on each)")
 	os.Exit(2)
 }
 
@@ -573,22 +614,34 @@ func (r *renderer) animation(a animSpec) error {
 		return err
 	}
 	var (
-		raws    []string
-		genFPs  []string
-		prev    []byte
-		first   = 1
-		total   = a.frameCount()
-		changed = false
+		raws     []string
+		genFPs   []string
+		prev     []byte
+		prevLast *image.RGBA // the previous sheet's last cell (scaffold)
+		first    = 1
+		total    = a.frameCount()
+		changed  = false
+		rest     *image.RGBA
 	)
+	if r.c.cfg.Scaffold {
+		if rest, err = r.restCell(a.Sticker); err != nil {
+			return err
+		}
+	}
 	for i, sh := range a.Sheets {
 		// Every sheet after the first carries on from the previous one, so
 		// the prompt (and the fingerprint) is the same with or without the
 		// reference loaded (dry runs load none).
 		prompt := sheetPrompt(art.Style, r.c.stickerPrompt(a.Sticker), a, sh, first, total, i > 0)
+		sheetRefFP := refFP
+		if r.c.cfg.Scaffold {
+			prompt = scaffoldPrompt(art.Style, r.c.stickerPrompt(a.Sticker), a, sh, first, total, i > 0)
+			sheetRefFP = hashOf(refFP, "scaffold", fmt.Sprint(art.fill(a.Sticker)), fmt.Sprint(a.room()))
+		}
 		// The previous sheet is a reference for this one, but it is not in
 		// the fingerprint: redoing sheet 1 must not throw away a good sheet 2
 		// (-force redoes everything).
-		genFP := hashOf(toolVersion, "sheet", refFP, prompt, sh.Size, r.o.quality, r.o.fidelity, editModel)
+		genFP := hashOf(toolVersion, "sheet", sheetRefFP, prompt, sh.Size, r.o.quality, r.o.fidelity, editModel)
 		raw := r.out(fmt.Sprintf("%s.sheet%d.raw.png", a.key(), i+1))
 		switch {
 		case r.upToDate(raw, genFP):
@@ -602,6 +655,16 @@ func (r *renderer) animation(a animSpec) error {
 			refs := [][]byte{ref}
 			if prev != nil {
 				refs = append(refs, prev)
+			}
+			if r.c.cfg.Scaffold {
+				scaffold, err := r.scaffold(roomy(rest, a.room()), prevLast, sh)
+				if err != nil {
+					return err
+				}
+				refs = [][]byte{scaffold}
+				if prev != nil {
+					refs = append(refs, prev)
+				}
 			}
 			img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: sh.Size, Quality: r.o.quality, Background: "transparent", Fidelity: r.o.fidelity, References: refs})
 			if err != nil {
@@ -621,6 +684,14 @@ func (r *renderer) animation(a animSpec) error {
 			if prev, err = os.ReadFile(raw); err != nil {
 				return err
 			}
+			if r.c.cfg.Scaffold {
+				img, err := stickerimg.Decode(prev)
+				if err != nil {
+					return err
+				}
+				cells := stickerimg.SplitExact(img, sh.Columns, sh.Rows)
+				prevLast = cells[len(sh.Frames)-1]
+			}
 			if small, err := downscale(prev, 1024); err == nil {
 				prev = small
 			}
@@ -635,7 +706,7 @@ func (r *renderer) animation(a animSpec) error {
 			hold[i] = defaultHold
 		}
 	}
-	asmFP := hashOf(append([]string{assembleVersion, hashFile(stickerPath), hashFile(r.rawPath(a.Sticker)), fmt.Sprint(r.c.cfg.Columns, r.c.cfg.MaxSheet, r.c.cfg.StickerPx, art.StickerSize, art.Border, art.Margin, art.finish(), hold, a.RestFrames, a.normalize(), a.restFromSticker(), a.register(), a.Loop, a.kind(), a.Pause, a.Facing, a.Stride, a.Hops, a.Story)}, genFPs...)...)
+	asmFP := hashOf(append([]string{assembleVersion, fmt.Sprint(r.c.cfg.Scaffold, art.fill(a.Sticker), a.room(), scaffoldAssembly), hashFile(stickerPath), hashFile(r.rawPath(a.Sticker)), fmt.Sprint(r.c.cfg.Columns, r.c.cfg.MaxSheet, r.c.cfg.StickerPx, art.StickerSize, art.Border, art.Margin, art.finish(), hold, a.RestFrames, a.normalize(), a.restFromSticker(), a.register(), a.Loop, a.kind(), a.Pause, a.Facing, a.Stride, a.Hops, a.Story)}, genFPs...)...)
 	sheetPath, jsonPath := r.out(a.key()+".png"), r.out(a.key()+".json")
 	if !changed && r.upToDate(sheetPath, asmFP) && r.upToDate(jsonPath, asmFP) {
 		r.say("· %s assembled sheet up to date", a.key())
@@ -698,6 +769,17 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 		if err != nil {
 			return fmt.Errorf("sheet %d: %w", i+1, err)
 		}
+		if r.c.cfg.Scaffold {
+			// Drawn over a scaffold: every drawing stays in its cell, on the
+			// nominal grid, and there are only as many as the sheet has
+			// frames. The generator keeps one size within a sheet but not the
+			// scaffold's own, so the frames are then registered as usual —
+			// each sheet sized on its first cell, a pose it shares with the
+			// sticker or the sheet before.
+			cut := stickerimg.SplitExact(img, a.Sheets[i].Columns, a.Sheets[i].Rows)
+			cells = append(cells, cut[:len(a.Sheets[i].Frames)]...)
+			continue
+		}
 		cells = append(cells, stickerimg.SplitGrid(img, a.Sheets[i].Columns, a.Sheets[i].Rows)...)
 	}
 	finish := art.finish()
@@ -730,6 +812,26 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 	if err != nil {
 		return fmt.Errorf("%s: %w", a.key(), err)
 	}
+	if err := r.writeAnimation(a, sheet, stickerPath, hold, sheetPath, jsonPath); err != nil {
+		return err
+	}
+	if r.c.cfg.Scaffold {
+		return r.check(a, sheet)
+	}
+	scales := make([]string, len(sheet.Scales))
+	for i, s := range sheet.Scales {
+		scales[i] = fmt.Sprintf("%.2f", s)
+	}
+	for _, n := range sheet.Notes {
+		r.say("  %s: %s", a.key(), n)
+	}
+	r.say("✓ %s: %d frames of %dx%d in a %dx%d sheet (frame scales %s)", a.key(), sheet.Count, sheet.Frame.X, sheet.Frame.Y, sheet.Image.Bounds().Dx(), sheet.Image.Bounds().Dy(), strings.Join(scales, " "))
+	return nil
+}
+
+// writeAnimation writes an assembled sheet, its sidecar (the frames'
+// rest box against the sticker's) and its onion skin.
+func (r *renderer) writeAnimation(a animSpec, sheet *stickerimg.AnimSheet, stickerPath string, hold []float64, sheetPath, jsonPath string) error {
 	stickerData, err := os.ReadFile(stickerPath)
 	if err != nil {
 		return err
@@ -770,15 +872,129 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 	if onion, err := stickerimg.Encode(onionSkin(sheet)); err == nil {
 		os.WriteFile(r.out(a.key()+".onion.png"), onion, 0o644)
 	}
-	scales := make([]string, len(sheet.Scales))
-	for i, s := range sheet.Scales {
-		scales[i] = fmt.Sprintf("%.2f", s)
-	}
-	for _, n := range sheet.Notes {
-		r.say("  %s: %s", a.key(), n)
-	}
-	r.say("✓ %s: %d frames of %dx%d in a %dx%d sheet (frame scales %s)", a.key(), sheet.Count, sheet.Frame.X, sheet.Frame.Y, sheet.Image.Bounds().Dx(), sheet.Image.Bounds().Dy(), strings.Join(scales, " "))
 	return nil
+}
+
+// scaffoldAssembly changes whenever the assembly of scaffolded sheets
+// changes: they are re-assembled from the kept sheets, free.
+const scaffoldAssembly = "2"
+
+// restCell is the sticker's raw art exactly where its image has it (its
+// size class's fill, centred, no border): every scaffold cell, and the rest
+// frames of a scaffolded animation.
+func (r *renderer) restCell(stickerID string) (*image.RGBA, error) {
+	art := r.c.art
+	data, err := os.ReadFile(r.rawPath(stickerID))
+	if err != nil {
+		return nil, fmt.Errorf("%s: the scaffold needs stickerart's raw art: %w", stickerID, err)
+	}
+	src, err := stickerimg.Decode(data)
+	if err != nil {
+		return nil, err
+	}
+	return stickerimg.PlaceArt(src, stickerimg.StickerOptions{Size: art.StickerSize, Border: art.Border, Margin: art.Margin, Fill: art.fill(stickerID), Threshold: 8})
+}
+
+// roomy is the rest cell for a scaffold with room: the sticker at its size
+// in the middle of a cell room times its box (shrunk back to the box's
+// pixels: the generator's cells stay the sticker's size).
+func roomy(rest *image.RGBA, room float64) *image.RGBA {
+	if room <= 1 {
+		return rest
+	}
+	n := rest.Bounds().Dx()
+	return stickerimg.Resize(pad(rest, int(math.Round(float64(n)*room))), n, n)
+}
+
+// pad centres img in a transparent size×size square.
+func pad(img *image.RGBA, size int) *image.RGBA {
+	out := image.NewRGBA(image.Rect(0, 0, size, size))
+	b := img.Bounds()
+	off := image.Pt((size-b.Dx())/2, (size-b.Dy())/2)
+	draw.Draw(out, b.Sub(b.Min).Add(off), img, b.Min, draw.Over)
+	return out
+}
+
+// scaffold is the image a sheet is drawn over: every cell the sticker at
+// its size and place — the first one, after the first sheet, the pose the
+// previous sheet ended on — sent at 2048 px (it conveys sizes and places,
+// the sticker's detail is in it too).
+func (r *renderer) scaffold(rest, startPose *image.RGBA, sh sheetSpec) ([]byte, error) {
+	var w, h int
+	if _, err := fmt.Sscanf(sh.Size, "%dx%d", &w, &h); err != nil {
+		return nil, fmt.Errorf("sheet size %q: %w", sh.Size, err)
+	}
+	cell := w / sh.Columns
+	if h/sh.Rows != cell {
+		return nil, fmt.Errorf("sheet size %s does not give square cells for %dx%d", sh.Size, sh.Columns, sh.Rows)
+	}
+	cells := make([]*image.RGBA, len(sh.Frames))
+	for i := range cells {
+		cells[i] = rest
+	}
+	if startPose != nil {
+		cells[0] = startPose
+	}
+	data, err := stickerimg.Encode(stickerimg.Scaffold(cells, sh.Columns, sh.Rows, cell))
+	if err != nil {
+		return nil, err
+	}
+	if small, err := downscale(data, 2048); err == nil {
+		data = small
+	}
+	return data, nil
+}
+
+// check measures every frame of an assembled animation against its rest
+// pose (stickerimg.MeasureFrames), writes the result next to the sheet
+// (<key>.qa.json, which the review page shows) and sums it up in the log.
+func (r *renderer) check(a animSpec, sheet *stickerimg.AnimSheet) error {
+	grow := a.kind() == manifest.KindMove && a.Loop == nil
+	qa := stickerimg.MeasureFrames(sheet, 8, grow, a.Flies || a.Hops)
+	data, _ := json.MarshalIndent(qa, "", "  ")
+	if err := os.WriteFile(r.out(a.key()+".qa.json"), append(data, '\n'), 0o644); err != nil {
+		return err
+	}
+	bad := 0
+	for _, q := range qa {
+		if len(q.Problems) > 0 {
+			bad++
+			r.say("  ⚠ %s frame %d: %s", a.key(), q.Frame, strings.Join(q.Problems, "; "))
+		}
+	}
+	r.say("✓ %s: %d frames of %dx%d, %d flagged (stickeranim review shows them)", a.key(), sheet.Count, sheet.Frame.X, sheet.Frame.Y, bad)
+	return nil
+}
+
+// scaffoldPrompt asks for one sheet drawn over a scaffold: the cells
+// already hold the sticker at its size and place; the model re-poses each.
+func scaffoldPrompt(style, sticker string, a animSpec, sh sheetSpec, first, total int, continued bool) string {
+	var b strings.Builder
+	fmt.Fprintf(&b, "%s\n\n", style)
+	who := strings.TrimSuffix(strings.TrimSpace(sticker), ".")
+	if who != "" {
+		who = strings.ToLower(who[:1]) + who[1:]
+	}
+	fmt.Fprintf(&b, "The first attached image is a sheet of %d cells in a grid of %d columns by %d rows. Every cell shows the same sticker character (%s) at exactly the size and in exactly the place it must keep in that cell", len(sh.Frames), sh.Columns, sh.Rows, who)
+	if continued {
+		b.WriteString(" — except the first cell, which shows the pose the animation has reached")
+	}
+	fmt.Fprintf(&b, ". Redraw the sheet so that each cell shows the pose listed for it, making consecutive moments of one animation: %s", strings.TrimSpace(a.Description))
+	if continued {
+		b.WriteString(" The second attached image is the previous sheet of this same animation; these frames carry straight on from its last frame.")
+	}
+	fmt.Fprintf(&b, "\n\nCells %d–%d of %d (left to right, then top to bottom):\n", first, first+len(sh.Frames)-1, total)
+	for i, f := range sh.Frames {
+		fmt.Fprintf(&b, "%d. %s\n", first+i, strings.TrimSpace(f))
+	}
+	if a.kind() == manifest.KindMove && a.Loop != nil {
+		fmt.Fprintf(&b, "\nCells %d–%d are one seamless cycle: cell %d follows on from cell %d exactly, so they can repeat for ever. The character moves in place, as if on a treadmill: it does not travel across its cell.", a.Loop.From, a.Loop.To, a.Loop.From, a.Loop.To)
+	}
+	fmt.Fprintf(&b, "\nRules: in every cell the character keeps exactly the size, proportions and design it has in the scaffold — the same height, the same head, the same width of body — and %s stays exactly where it is in the cell; change only what the pose moves. Motions are small and gentle: arms, legs, doors and parts move close to the body, nothing reaches far out to the sides, nothing is thrown far. Anything the pose adds (a puff of dust, sparks, a small flame, a pebble) stays small and close, inside the empty space of the cell around the character. Keep every cell exactly where it is in the grid, each drawing well inside its own cell: nothing touches or crosses into another cell. Consecutive cells are close together — each one a small step on from the one before — so the animation plays smoothly. No grid lines, no cell borders, no numbers, no labels, no text, no ground, no shadow, no background — fully transparent everywhere except the drawings.", a.Base)
+	if h := strings.TrimSpace(sh.Hint); h != "" {
+		fmt.Fprintf(&b, " %s", h)
+	}
+	return b.String()
 }
 
 // onionSkin overlays every frame at equal opacity on a white ground.

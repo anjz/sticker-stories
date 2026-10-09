@@ -54,8 +54,16 @@ moves, moves.
 - Rigid things (machines, spacecraft, buildings) must keep their exact
   outline: only the moving part changes (a hatch, a wheel, an arm). Use
   `restFromSticker: false` for them.
+- Draw them **over a scaffold** (`"scaffold": true` in anim.json): the
+  model re-poses the sticker cell by cell instead of redrawing it, which
+  keeps one size and the same proportions across a sheet. Give an
+  animation `room` when it must reach past the sticker's box (a flame
+  under a huge ship). Flights register on their `body`.
 - Every animation is **reviewed by eye** before install, at real speed,
-  with its per-frame size check (`stickeranim`).
+  with its per-frame size check: `stickeranim review` (flagged frames in
+  orange). A flagged frame is either a real defect (redo the sheet, or add
+  a `hint`) or an intended change (a puff of dust, a crouch) — decide by
+  eye, never by number alone.
 
 ## 4. The scene
 

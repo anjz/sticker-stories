@@ -95,6 +95,38 @@ removed (`prop` in art.json) is drawn from its art without it
   - `normalize` (default false, `base` only): rescale every frame so its
     base keeps the first frame's width.
 
+## Scaffold (every new pack)
+
+With `"scaffold": true` in anim.json, each sheet is drawn **over a
+scaffold** instead of from a blank page: an image of the same grid whose
+cells each hold the sticker exactly as its image has it — at its size
+class's share of the box (`sizeInArt`), in its place — and, after the
+first sheet, the pose the previous sheet ended on in its first cell. The
+model re-poses each cell instead of redrawing the character from scratch,
+so every frame of a sheet keeps one size and the character's proportions
+(the old way drew the astronaut at a different height in every frame and
+each sheet at its own scale). The model still picks its own overall scale
+for a sheet (about 1.2× the scaffold), so the frames are then registered as
+usual, each sheet sized on its first cell — the same pose as the sticker or
+the sheet before. The prompt also asks for small motions that stay close
+to the body, extras (dust, sparks, a flame) small and inside the cell.
+
+- `room` (per animation, default 1): each cell is that much bigger than
+  the sticker's box, the sticker centred at its size, for an animation
+  that must reach past it — a huge ship (drawn at 94 % of its box) with a
+  flame below it (`room: 1.35`).
+- Every assembled animation is **checked frame by frame** against its rest
+  pose — solid area, height, a jump in size from the frame before, the
+  bottom or centre moving, the drawing cut at the frame's edge — into
+  `<key>.qa.json`, and flagged frames are listed in the log. A flight's
+  flame or a hop moves the bottom on purpose (`flies`, `hops` skip that
+  check); a growing move (a sprout) skips the size checks.
+- `stickeranim review -pack … [-only …]` writes `out/anims/review.html`:
+  every animation playing at its real timing on the sticker's box, the
+  still sticker beside it, a bar per frame (its size against the sticker,
+  flagged frames in orange) and the problems in words. Review there before
+  installing.
+
 ## What `render` does
 
 1. **Sheets.** Each sheet is one `images/edits` call: the sticker's raw
