@@ -835,6 +835,7 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 		StickerSize: art.StickerSize, Border: art.Border, Margin: art.Margin, Threshold: 8, Finish: &finish,
 		Columns: r.c.cfg.Columns, MaxSheet: r.c.cfg.MaxSheet, Normalize: a.normalize(),
 		Register: a.register(), SheetsContinue: len(a.Sheets) > 1,
+		Grow: a.kind() == manifest.KindMove && a.Loop == nil,
 	}
 	opts.Resolution = r.c.cfg.StickerPx
 	if a.Loop != nil {
@@ -928,7 +929,7 @@ func (r *renderer) writeAnimation(a animSpec, sheet *stickerimg.AnimSheet, stick
 
 // scaffoldAssembly changes whenever the assembly of scaffolded sheets
 // changes: they are re-assembled from the kept sheets, free.
-const scaffoldAssembly = "2"
+const scaffoldAssembly = "3"
 
 // restCell is the sticker's raw art exactly where its image has it (its
 // size class's fill, centred, no border): every scaffold cell, and the rest

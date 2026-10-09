@@ -127,6 +127,10 @@ type AnimOptions struct {
 	// cells' areas — a snail whose body is in its shell has no rest cell
 	// in that sheet to compare. Off: SheetSizes' rest-area method.
 	SheetsContinue bool
+	// Grow says the animation grows into the sticker (a sprout, a panel
+	// unfolding): its first frames look nothing like the rest pose, so
+	// only the frames that end on it are fitted onto it.
+	Grow bool
 	// SheetSizes is how many cells came from each generated sheet, in
 	// order (nil: one sheet). The generator draws each sheet at its own
 	// scale — sheets of one animation came out 10 % apart — while the
@@ -294,7 +298,7 @@ func Animation(cells []*image.RGBA, o AnimOptions) (*AnimSheet, error) {
 				scales[i] = 1
 			}
 		}
-		matchFrames(frames, o.Register == RegisterFeet, o.Loop, o.RestFrames)
+		matchFrames(frames, o.Register == RegisterFeet, o.Loop, o.RestFrames, o.Grow)
 	}
 
 	// Optionally, also even out the drift between single cells against the
@@ -371,7 +375,7 @@ func Animation(cells []*image.RGBA, o AnimOptions) (*AnimSheet, error) {
 // must land exactly where frame 0 is — pulls the frames since the last
 // fixed one along with it, so the model's slow drift in size and place
 // never shows as a pop at the end.
-func matchFrames(frames []registered, feet bool, loop [2]int, rests []int) {
+func matchFrames(frames []registered, feet bool, loop [2]int, rests []int, grow bool) {
 	if len(frames) < 2 {
 		return
 	}
@@ -433,7 +437,18 @@ func matchFrames(frames []registered, feet bool, loop [2]int, rests []int) {
 			at[i].y = ground - float64(frames[i].art.Rect.Dy())*at[i].s
 		}
 	}
-	fitToRest(frames, at, loop, rests, match)
+	fitRests := rests
+	if grow {
+		// A frame that has barely begun to grow is no match for the rest
+		// pose before it: fitting it would lift it off the ground.
+		fitRests = nil
+		for _, r := range rests {
+			if r > 0 {
+				fitRests = append(fitRests, r)
+			}
+		}
+	}
+	fitToRest(frames, at, loop, fitRests, match)
 	for i, p := range at {
 		art := frames[i].art
 		if math.Abs(p.s-1) > 1e-4 {
