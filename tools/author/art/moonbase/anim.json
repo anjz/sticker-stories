@@ -3374,7 +3374,415 @@
         1,
         12
       ]
+    },
+    {
+      "id": "wave",
+      "sticker": "woman",
+      "kind": "action",
+      "description": "the woman astronaut raises one hand beside her helmet and waves hello a few times, then gives a thumbs up and lowers her arm.",
+      "base": "her boots",
+      "story": "the woman astronaut waves hello and gives a thumbs up",
+      "pause": {
+        "frame": 12,
+        "shows": "the woman astronaut waving, her hand raised beside her helmet"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Her right hand starting to lift from her side, elbow bending.",
+            "Her hand at the height of her chest, palm turning out.",
+            "Her hand up beside her helmet, palm out, fingers together, smiling.",
+            "Waving: her hand tilted a little to one side, still beside her helmet.",
+            "Waving: her hand tilted a little to the other side.",
+            "Waving: tilted to the first side again.",
+            "Waving: tilted to the other side again, her smile wider.",
+            "Her hand upright beside her helmet, palm out.",
+            "A small wave to one side.",
+            "A small wave back.",
+            "Her hand raised beside her helmet, palm out, a warm smile: holding the wave."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Her hand tilting a little to one side.",
+            "Her hand tilting back, upright.",
+            "Her hand closing into a fist beside her helmet.",
+            "Thumbs up beside her helmet, a big smile.",
+            "Thumbs up, a small nod.",
+            "Thumbs up, smiling.",
+            "Her hand opening, lowering to her shoulder.",
+            "Her hand at chest height, coming down.",
+            "Her arm almost down by her side.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "lope",
+      "sticker": "woman",
+      "kind": "move",
+      "description": "the woman astronaut lopes along to the left in low, easy moon-hops, boots close to the ground, then lands and stands.",
+      "base": "her boots",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.6,
+      "hops": true,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Turned three-quarters toward the left, knees slightly bent, ready to hop.",
+            "Pushing off gently, legs straightening, arms close to her body.",
+            "Both boots just above the ground, body upright, arms relaxed and close.",
+            "Floating low, one knee a little forward.",
+            "Coming down, boots reaching for the ground.",
+            "Landing softly on both boots, knees bending a little, a tiny puff of dust at her boots.",
+            "Knees bent from the landing, arms close.",
+            "Gathering to push off again, almost as in frame 2 (leading back into frame 2).",
+            "Landing a last time, straightening up.",
+            "Standing, turning back toward us, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "elevator",
+      "sticker": "ship",
+      "kind": "action",
+      "description": "the crew elevator, a small open platform, slides down a rail on the ship's side from the cabin near the top all the way to the ground, waits, then slides back up.",
+      "base": "its landing legs",
+      "story": "the spaceship lowers its crew elevator to the ground and raises it again",
+      "pause": {
+        "frame": 12,
+        "shows": "the spaceship with its crew elevator down at the ground"
+      },
+      "room": 1.15,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "A small door opening on the ship's side near the top, below the windows.",
+            "A small open elevator platform with a railing appearing at the door, on a thin rail down the ship's side.",
+            "The platform a little below the door, sliding down the rail.",
+            "The platform a quarter of the way down.",
+            "The platform a third of the way down.",
+            "The platform halfway down.",
+            "The platform two thirds of the way down.",
+            "The platform three quarters of the way down.",
+            "The platform nearly at the ground.",
+            "The platform touching the ground beside the landing legs.",
+            "The platform resting on the ground at the foot of the rail, a small light on it glowing."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The platform's light blinking.",
+            "The platform lifting off the ground.",
+            "The platform a quarter of the way up.",
+            "The platform halfway up.",
+            "The platform two thirds of the way up.",
+            "The platform three quarters of the way up.",
+            "The platform nearly at the door.",
+            "The platform at the door, sliding in.",
+            "The door closing.",
+            "The door closed, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "fly",
+      "sticker": "ship",
+      "kind": "move",
+      "description": "the spaceship flies in upright on a steady bright engine flame, then throttles down and settles on its landing legs.",
+      "base": "its body",
+      "register": "body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 1.0,
+      "flies": true,
+      "room": 1.35,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Upright, engines firing: a bright flame below the engines, about a quarter of the ship's height long.",
+            "The flame flickering a little longer.",
+            "The flame flickering a little shorter.",
+            "The flame bright, a quarter of the ship's height.",
+            "The flame flickering, small flaps adjusting slightly.",
+            "The flame a little longer.",
+            "The flame a little shorter.",
+            "The flame as in frame 2 (leading back into frame 2).",
+            "Throttling down: the flame shorter, the landing legs ready.",
+            "Touching down: a small flame and a small puff of dust at the legs.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "lights",
+      "sticker": "crew-rover",
+      "kind": "action",
+      "description": "the crew rover switches on: its headlights glow, the roof antenna turns round once and the solar panel tilts up toward the sky, then the panel and the antenna settle and the lights dim.",
+      "base": "its wheels",
+      "story": "the crew rover switches on its lights and turns its antenna",
+      "pause": {
+        "frame": 12,
+        "shows": "the crew rover with its headlights on and its solar panel tilted up"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The headlights starting to glow softly.",
+            "The headlights glowing brighter.",
+            "The roof antenna starting to turn.",
+            "The antenna turned a quarter round.",
+            "The antenna turned halfway round.",
+            "The antenna turned three quarters round.",
+            "The antenna back facing forward.",
+            "The solar panel on the roof starting to tilt up.",
+            "The solar panel tilted up a little more.",
+            "The solar panel tilted up toward the sky.",
+            "Headlights glowing, the solar panel tilted up toward the sky: ready."
+          ]
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The headlights glowing, everything still.",
+            "The solar panel starting to tilt back down.",
+            "The solar panel halfway down.",
+            "The solar panel nearly flat.",
+            "The solar panel flat on the roof as in the rest pose.",
+            "The headlights dimming a little.",
+            "The headlights dimmer.",
+            "The headlights faint.",
+            "The headlights off.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "drive",
+      "sticker": "crew-rover",
+      "kind": "move",
+      "description": "the crew rover drives along to the left on its six wheels, its body rocking gently over small bumps, then stops.",
+      "base": "its wheels",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.5,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Driving to the left: the wheels turning.",
+            "The wheels turning further, the body rocking up a little over a pebble.",
+            "The wheels turning, the body level.",
+            "The wheels turning, the antenna swaying forward a little.",
+            "The wheels turning, the body rocking a little the other way.",
+            "The wheels turning, the antenna swaying back.",
+            "The wheels turning, the body level.",
+            "The wheels turning as in frame 2 (leading back into frame 2).",
+            "Slowing to a stop, the antenna swaying.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
     }
   ],
-  "stickerPx": 512
+  "stickerPx": 512,
+  "scaffold": true
 }

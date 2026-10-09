@@ -447,6 +447,10 @@
         "es-ES": "Rover de tripulación"
       },
       "image": "stickers/crew-rover.webp",
+      "animations": [
+        "anims/crew-rover.lights.json",
+        "anims/crew-rover.drive.json"
+      ],
       "stage": {
         "entrance": "hop",
         "on": [
@@ -1099,6 +1103,10 @@
         "es-ES": "Nave espacial"
       },
       "image": "stickers/ship.webp",
+      "animations": [
+        "anims/ship.elevator.json",
+        "anims/ship.fly.json"
+      ],
       "stage": {
         "entrance": "fly",
         "on": [
@@ -1271,6 +1279,10 @@
         "es-ES": "Astronauta (mujer)"
       },
       "image": "stickers/woman.webp",
+      "animations": [
+        "anims/woman.wave.json",
+        "anims/woman.lope.json"
+      ],
       "expressions": {
         "happy": "stickers/woman.happy.webp",
         "sad": "stickers/woman.sad.webp",
