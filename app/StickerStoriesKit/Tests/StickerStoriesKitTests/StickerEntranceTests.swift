@@ -127,8 +127,31 @@ struct SeededGenerator: RandomNumberGenerator {
         }
     }
 
+    @Test func aHugeVisitorIsBiggerAtTheFrontThanByTheHorizon() {
+        let depth = StickerSize.huge.visitDepth!
+        #expect(depth.scale(atArtY: 0.1) == 1.8 && depth.scale(atArtY: 0.6) == 1.3)
+        #expect(abs(depth.scale(atArtY: 0.325) - 1.55) < 1e-9)
+        #expect(depth.capped(at: 1.5) == VisitDepth(near: 1.5, far: 1.3))
+        #expect(depth.capped(at: 1.2) == VisitDepth(near: 1.2, far: 1.2))
+        #expect(StickerSize.allCases.filter { $0.visitDepth != nil } == [.huge])
+        // A rocket landing low on the ground and one landing high.
+        var stages = Self.stages
+        stages["low"] = StickerStage(entrance: .fly, area: .init(x: [0.4, 0.6], y: [0.2, 0.22]))
+        stages["high"] = StickerStage(entrance: .fly, area: .init(x: [0.4, 0.6], y: [0.46, 0.48]))
+        for seed in UInt64(1)...10 {
+            var random = SeededGenerator(state: seed)
+            let plans = StagePlanner.plan(
+                entrances: ["low", "high"].map { EntranceTrigger(at: 0, stickerID: $0) },
+                placed: [], stages: stages, depths: ["low": depth, "high": depth], scene: Self.scene,
+                obstacles: [], policy: .standard, random: &random)
+            let y = { (p: EntrancePlan) in p.target.y / 750 }
+            #expect(abs(plans[0].scale - depth.scale(atArtY: y(plans[0]))) < 1e-9)
+            #expect(plans[0].scale > 1.6 && plans[1].scale < 1.4, "seed \(seed): \(plans.map(\.scale))")
+        }
+    }
+
     @Test func bigVisitorsComeInBiggerTinyOnesSmaller() {
-        #expect(StickerSize.allCases.map(\.visitScale) == [1.3, 1, 1, 0.8])
+        #expect(StickerSize.allCases.map(\.visitScale) == [1.6, 1.3, 1, 1, 0.8])
         // A deer whose area runs to both edges of the art.
         var stages = Self.stages
         stages["deer"] = StickerStage(entrance: .hop, area: .init(x: [0, 1], y: [0.18, 0.36]))

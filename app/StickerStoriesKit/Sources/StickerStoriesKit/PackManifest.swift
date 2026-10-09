@@ -167,10 +167,17 @@ public struct StickerDefinition: Codable, Equatable, Sendable, Identifiable {
     /// "Stickers"); `nil` (absent or unknown) = it keeps its size when a
     /// story moves it beside another.
     public var size: StickerSize?
+    /// Where the drawing sits in the sticker's image, in fractions of it
+    /// (origin bottom-left): a sticker drawn at its size class's share of
+    /// its box, with room around it for its animations
+    /// (`docs/pack-format.md`, "Drawn size"). `nil` = the drawing fills the
+    /// image (packs drawn before drawn sizes, Forest).
+    public var content: StickerStage.Area?
 
     public init(
         id: String, name: [String: String], image: String, animations: [String] = [],
-        expressions: [String: String] = [:], stage: StickerStage? = nil, size: StickerSize? = nil
+        expressions: [String: String] = [:], stage: StickerStage? = nil, size: StickerSize? = nil,
+        content: StickerStage.Area? = nil
     ) {
         self.id = id
         self.name = name
@@ -179,6 +186,7 @@ public struct StickerDefinition: Codable, Equatable, Sendable, Identifiable {
         self.expressions = expressions
         self.stage = stage
         self.size = size
+        self.content = content
     }
 
     public init(from decoder: Decoder) throws {
@@ -190,6 +198,7 @@ public struct StickerDefinition: Codable, Equatable, Sendable, Identifiable {
         expressions = try c.decodeIfPresent([String: String].self, forKey: .expressions) ?? [:]
         stage = try c.decodeIfPresent(StickerStage.self, forKey: .stage)
         size = (try? c.decodeIfPresent(String.self, forKey: .size)).flatMap { $0.flatMap(StickerSize.init(rawValue:)) }
+        content = try c.decodeIfPresent(StickerStage.Area.self, forKey: .content)
     }
 
     public func name(for language: String, fallbackOrder: [String]) -> String {
@@ -211,16 +220,45 @@ public enum StickerEntrance: String, Codable, Sendable, CaseIterable {
 /// How big a character is next to the others: a story moving it beside
 /// another scales it so the two keep this ratio (`MotionPlanner`).
 public enum StickerSize: String, Codable, Equatable, Sendable, CaseIterable {
-    case big, medium, small, tiny
+    case huge, big, medium, small, tiny
 
-    /// Its height relative to a big character's. Not true to life — a
-    /// ladybug beside a deer would be a speck — but true to the order.
+    /// Its size (the longest side of its drawing) relative to a big
+    /// character's. Not true to life — a ladybug beside a deer would be a
+    /// speck, a rocket beside a person would fill the screen — but true to
+    /// the order.
     public var relativeHeight: Double {
         switch self {
+        case .huge: 1.6
         case .big: 1
         case .medium: 0.75
         case .small: 0.55
         case .tiny: 0.4
+        }
+    }
+
+    /// The share of its box a sticker of this class is drawn at (the
+    /// longest side of the drawing, border included), in packs drawn at
+    /// their size (`StickerDefinition.content`): the room left around it
+    /// is where its animations reach. `stickerart` draws to these.
+    public var drawnFill: Double {
+        switch self {
+        case .huge: 0.94
+        case .big: 0.84
+        case .medium: 0.72
+        case .small: 0.60
+        case .tiny: 0.50
+        }
+    }
+
+    /// The scales a visitor of this class comes in at in a pack drawn at
+    /// its size, from where it lands nearest the viewer to nearest the
+    /// horizon (`VisitDepth`); `nil` = 1 wherever it lands.
+    /// Only the huge: a rocket landing at the front of the scene comes in
+    /// nearly twice its sticker size, by the horizon a third bigger.
+    public var visitDepth: VisitDepth? {
+        switch self {
+        case .huge: VisitDepth(near: 1.8, far: 1.3)
+        default: nil
         }
     }
 
@@ -232,10 +270,61 @@ public enum StickerSize: String, Codable, Equatable, Sendable, CaseIterable {
     /// `relativeHeight` from there (`MotionPlanner`).
     public var visitScale: Double {
         switch self {
+        case .huge: 1.6
         case .big: 1.3
         case .tiny: 0.8
         case .medium, .small: 1
         }
+    }
+}
+
+/// The scale a visitor comes in at by where it lands: `near` at the front
+/// of the scene (low on the art), `far` by the horizon, in between in
+/// proportion — the scene's depth, for a visitor too big to come in at one
+/// size everywhere (`StickerSize.visitDepth`).
+public struct VisitDepth: Equatable, Sendable {
+    public var near: Double
+    public var far: Double
+
+    /// Where the front and the back of a scene's ground are, in fractions
+    /// of the art's height: low enough for any pack's foreground, high
+    /// enough for any horizon in the safe area.
+    public static let nearY = 0.15
+    public static let farY = 0.5
+
+    public init(near: Double, far: Double) {
+        self.near = near
+        self.far = far
+    }
+
+    /// The scale at a height on the art (a fraction, 0 at the bottom).
+    public func scale(atArtY y: Double) -> Double {
+        let t = min(max((y - Self.nearY) / (Self.farY - Self.nearY), 0), 1)
+        return near + (far - near) * t
+    }
+
+    /// The same depth, never bigger than `limit` at the front (so it still
+    /// fits the screen), the back no bigger than the front.
+    public func capped(at limit: Double) -> VisitDepth {
+        let n = min(near, limit)
+        return VisitDepth(near: n, far: min(far, n))
+    }
+}
+
+/// How big stickers are on the canvas: the side of the square box a
+/// sticker's image is fitted into at scale 1, as a fraction of the art's
+/// height. A pack drawn at its size uses a bigger box, so its medium
+/// stickers (drawn at 72 %) come out the size every sticker of an older
+/// pack has (drawn at 94 % of the smaller box).
+public enum StickerBox {
+    /// Packs whose drawings fill their images (Forest).
+    public static let filled = 0.16
+    /// Packs drawn at their size (`StickerDefinition.content`).
+    public static let drawn = 0.21
+
+    /// The box fraction for a sticker.
+    public static func fraction(for sticker: StickerDefinition?) -> Double {
+        sticker?.content == nil ? filled : drawn
     }
 }
 
@@ -550,6 +639,9 @@ extension PackManifest {
                 issues.append("sticker id \"\(sticker.id)\" is reserved (effect triggers use it for every sticker)")
             }
             checkCoverage("sticker \"\(sticker.id)\" name", sticker.name)
+            if let content = sticker.content, !content.isValid || content.facing != nil {
+                issues.append("sticker \"\(sticker.id)\" content: x and y must each be [min, max] with 0 <= min < max <= 1, no facing")
+            }
             checkImage("sticker \"\(sticker.id)\" image", sticker.image)
             // Rule 12: live-animation sidecars exist (the packager validates
             // their content strictly; the app reads them leniently).

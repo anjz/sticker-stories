@@ -188,6 +188,31 @@ final class StickerNode: SKSpriteNode {
         applyShadowPoses(animated: false)
     }
 
+    /// Where the drawing sits in the image, in fractions of it with the
+    /// origin at the bottom-left (`StickerDefinition.content`): the whole
+    /// image for a pack whose drawings fill their images.
+    var content = CGRect(x: 0, y: 0, width: 1, height: 1)
+
+    /// The drawing's size at scale 1 — what the stage and motion planners
+    /// place, rather than the image's box with its room around the art.
+    var drawnUnscaledSize: CGSize {
+        CGSize(width: unscaledSize.width * content.width, height: unscaledSize.height * content.height)
+    }
+
+    /// Whether a touch at `point` (in `scene`'s space) lands on the drawing
+    /// — not on the room around it — with every drawing at least
+    /// `minTarget` points across, so a tiny sticker is still easy to grab.
+    func touchesDrawing(at point: CGPoint, in scene: SKScene, minTarget: CGFloat) -> Bool {
+        let local = convert(point, from: scene)
+        let w = unscaledSize.width, h = unscaledSize.height
+        var rect = CGRect(
+            x: (content.minX - 0.5) * w, y: (content.minY - 0.5) * h,
+            width: content.width * w, height: content.height * h)
+        let minW = minTarget / max(abs(xScale), 0.01), minH = minTarget / max(abs(yScale), 0.01)
+        rect = rect.insetBy(dx: -max(minW - rect.width, 0) / 2, dy: -max(minH - rect.height, 0) / 2)
+        return rect.contains(local)
+    }
+
     /// `size` includes this node's own scale; children inherit that scale,
     /// so anything sized to match the sprite must use the unscaled size or
     /// a pinched sticker's shadow grows by the scale twice.

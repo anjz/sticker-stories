@@ -385,10 +385,13 @@ public enum StagePlanner {
     /// The plans for every entrance whose sticker is not already placed,
     /// in time order; later visitors avoid the earlier ones' spots. Each
     /// comes in at its `scales` entry (its size class's `visitScale`; 1
-    /// when missing) and lands where it is seen whole at that size.
+    /// when missing) and lands where it is seen whole at that size — or,
+    /// with a `depths` entry, lands where it is seen whole at its front
+    /// scale and comes in at the scale of where it landed (`VisitDepth`).
     public static func plan<R: RandomNumberGenerator>(
         entrances: [EntranceTrigger], placed: Set<String>, stages: [String: StickerStage],
         features: [String: SceneFeature] = [:], moves: [String: [StageMove]] = [:], scales: [String: Double] = [:],
+        depths: [String: VisitDepth] = [:],
         scene: Scene, obstacles: [StageObstacle], policy: EffectPolicy, random: inout R
     ) -> [EntrancePlan] {
         var obstacles = obstacles
@@ -405,7 +408,10 @@ public enum StagePlanner {
                 stage.entrance = move.flies ? .fly : .hop
                 if !move.on.isEmpty { stage.on = move.on }
             }
-            let scale = scales[entrance.stickerID] ?? 1
+            // A visitor with depth lands where it fits at its biggest (its
+            // front scale) and takes the scale of where it landed.
+            let depth = depths[entrance.stickerID]
+            let scale = depth?.near ?? scales[entrance.stickerID] ?? 1
             let scene = scene.visiting(entrance.stickerID, at: scale)
             let radius = scene.stickerSize * scale * footprint
             let size = scene.size(of: entrance.stickerID)
@@ -432,7 +438,9 @@ public enum StagePlanner {
             var plan = path(
                 for: entrance, stage: stage, move: policy.allowsLiveAnimations ? move : nil,
                 target: target, area: rect, scene: scene, policy: policy, random: &random)
-            plan.scale = scale
+            plan.scale = depth.map {
+                $0.scale(atArtY: (target.y - scene.world.minY) / max(scene.world.maxY - scene.world.minY, 1))
+            } ?? scale
             plans.append(plan)
         }
         return plans

@@ -245,7 +245,8 @@ public enum MotionPlanner {
         public var stickerID: String
         /// Its placement's centre, in world points.
         public var home: StagePoint
-        /// Its rendered size at its placement, in world points.
+        /// Its drawn size at its placement, in world points: the drawing,
+        /// not the image's box (`StickerDefinition.content`).
         public var size: StageSize
         /// When it is free to move (a visitor once it has come in).
         public var readyAt: TimeInterval
@@ -551,10 +552,13 @@ public enum MotionPlanner {
                 let them = states[other]
                 let tw = them.actor.size.width * them.scale, th = them.actor.size.height * them.scale
                 // Beside it, the size their classes say (a ladybug by a deer
-                // small, by a butterfly as big), within reason.
+                // small, by a butterfly as big), within reason — comparing
+                // the longest sides of the drawings, so a long buggy and a
+                // tall astronaut are measured alike.
                 var scale = 1.0
                 if let mine = me.stature, let theirs = them.actor.stature, theirs > 0 {
-                    scale = min(max(th * mine / theirs / max(me.size.height, 1), MotionPlanner.besideScale.lowerBound),
+                    let theirExtent = max(tw, th), myExtent = max(me.size.width, me.size.height, 1)
+                    scale = min(max(theirExtent * mine / theirs / myExtent, MotionPlanner.besideScale.lowerBound),
                                 MotionPlanner.besideScale.upperBound)
                 }
                 let mw = me.size.width * scale, mh = me.size.height * scale

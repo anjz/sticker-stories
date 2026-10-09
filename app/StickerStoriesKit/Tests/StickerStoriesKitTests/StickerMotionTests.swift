@@ -246,6 +246,24 @@ import Testing
         #expect(plans[bird]!.legs.last!.to.scale == 1)
     }
 
+    @Test func besideAnotherTheLongestSidesKeepTheRatio() {
+        // A long, low buggy (big) going to a tall astronaut (medium), both
+        // drawn at their sizes: their longest sides take the ratio 1 : 0.75.
+        let buggy = UUID(), astronaut = UUID()
+        let actors: [MotionPlanner.Actor] = [
+            .init(id: buggy, stickerID: "buggy", home: StagePoint(x: 200, y: 200), size: StageSize(width: 100, height: 50),
+                  stature: StickerSize.big.relativeHeight),
+            .init(id: astronaut, stickerID: "astronaut", home: StagePoint(x: 700, y: 200),
+                  size: StageSize(width: 40, height: 90), stature: StickerSize.medium.relativeHeight),
+        ]
+        var random = SeededGenerator(state: 3)
+        let plans = MotionPlanner.plan(
+            goes: [GoTrigger(at: 0, stickerID: "buggy", kind: .to, target: "astronaut")],
+            actors: actors, scene: Self.scene, policy: .standard, random: &random)
+        // 90 × 1 / 0.75 = 120 long: 1.2 × its 100.
+        #expect(abs(plans[buggy]!.legs[0].to.scale - 1.2) < 1e-9)
+    }
+
     @Test func aStickerAlreadyThereStays() {
         let pond = ["pond": SceneFeature(description: "Water.", areas: [.init(x: [0.1, 0.3], y: [0.2, 0.35])])]
         func planned(_ go: GoTrigger) -> [UUID: MotionPlan] {

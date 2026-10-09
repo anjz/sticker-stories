@@ -731,6 +731,40 @@ final class CanvasScene: SKScene {
         return CGSize(width: ts.width * height / ts.height, height: height)
     }
 
+    /// The pack's stickers by id.
+    private lazy var definitions: [String: StickerDefinition] = Dictionary(
+        pack.manifest.stickers.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+
+    /// The side of the box a sticker's image is fitted into at scale 1: a
+    /// bigger box for a sticker drawn at its size, so its medium stickers
+    /// come out the size an older pack's do (`StickerBox`).
+    private func stickerSide(for stickerID: String) -> CGFloat {
+        worldSize.height * CGFloat(StickerBox.fraction(for: definitions[stickerID]))
+    }
+
+    /// A sticker at its size, knowing where its drawing sits in its image.
+    private func makeSticker(_ stickerID: String, texture: SKTexture) -> StickerNode {
+        let node = StickerNode(
+            stickerID: stickerID, texture: texture, size: squareFit(texture: texture, side: stickerSide(for: stickerID)),
+            shadow: shadow(for: stickerID))
+        if let c = definitions[stickerID]?.content, c.isValid {
+            node.content = CGRect(x: c.x[0], y: c.y[0], width: c.x[1] - c.x[0], height: c.y[1] - c.y[0])
+        }
+        return node
+    }
+
+    /// The drawing's size of a sticker at scale 1, before it has a node.
+    private func drawnSize(of stickerID: String, texture: SKTexture) -> StageSize {
+        let box = squareFit(texture: texture, side: stickerSide(for: stickerID))
+        guard let c = definitions[stickerID]?.content, c.isValid else {
+            return StageSize(width: box.width, height: box.height)
+        }
+        return StageSize(width: box.width * (c.x[1] - c.x[0]), height: box.height * (c.y[1] - c.y[0]))
+    }
+
+    /// The smallest a sticker's touch target gets, in points.
+    private static let minTouchTarget: CGFloat = 44
+
     private func squareFit(texture: SKTexture?, side: CGFloat) -> CGSize {
         guard let texture, texture.size().width > 0, texture.size().height > 0 else {
             return CGSize(width: side, height: side)
@@ -783,7 +817,7 @@ final class CanvasScene: SKScene {
                 // the world behind it.
                 trayContent.removeAction(forKey: Self.trayHintActionKey)
                 trayScrolls[touch] = TrayScrollInfo(startLocation: location, startOffset: trayContent.position.x)
-            } else if let sticker = topSticker(in: hits) {
+            } else if let sticker = topSticker(at: location) {
                 if activeTransform == nil,
                     let held = drags.first(where: { $0.value.node === sticker }) {
                     // Second finger on an already-held sticker → transform it.
@@ -811,14 +845,18 @@ final class CanvasScene: SKScene {
         }
     }
 
-    /// The sticker closest to the viewer among the hit nodes, comparing
-    /// accumulated z (layer zPosition + node zPosition).
-    private func topSticker(in hits: [SKNode]) -> StickerNode? {
+    /// The sticker closest to the viewer whose drawing is under the touch
+    /// (never the empty room around it; a tiny one at least
+    /// `minTouchTarget` across), comparing accumulated z (layer zPosition +
+    /// node zPosition).
+    private func topSticker(at location: CGPoint) -> StickerNode? {
         var best: StickerNode?
         var bestZ = -CGFloat.infinity
-        for node in hits {
+        for sticker in allStickerNodes() {
             // A hint's sample sticker is only there to be watched.
-            guard let sticker = ancestor(of: node, as: StickerNode.self), !sticker.isVisitor else { continue }
+            guard !sticker.isVisitor,
+                sticker.touchesDrawing(at: location, in: self, minTarget: Self.minTouchTarget)
+            else { continue }
             let z = (sticker.parent?.zPosition ?? 0) + sticker.zPosition
             if z > bestZ {
                 bestZ = z
@@ -945,10 +983,7 @@ final class CanvasScene: SKScene {
         // Captured before the node exists, so undoing a placement removes it
         // entirely rather than reverting to "no sticker at this spot".
         let before = snapshot()
-        let node = StickerNode(
-            stickerID: trayItem.stickerID, texture: texture,
-            size: squareFit(texture: texture, side: stickerBaseSize),
-            shadow: shadow(for: trayItem.stickerID))
+        let node = makeSticker(trayItem.stickerID, texture: texture)
         node.position = location
         node.setScale(0.3)
         foregroundStickers.addChild(node)
@@ -1474,9 +1509,32 @@ final class CanvasScene: SKScene {
     private lazy var statures: [String: Double] = Dictionary(
         uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.size.map { (s.id, $0.relativeHeight) } })
     /// The scale each sticker comes in at when a story invites it (its
-    /// size class: big ones a little bigger, tiny ones a little smaller).
+    /// size class: big ones a little bigger, tiny ones a little smaller) —
+    /// for stickers whose drawings fill their images. One drawn at its
+    /// size already is its size: it comes in as drawn, or by its depth.
     private lazy var visitScales: [String: Double] = Dictionary(
-        uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.size.map { (s.id, $0.visitScale) } })
+        uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in
+            s.content == nil ? s.size.map { (s.id, $0.visitScale) } : nil
+        })
+
+    /// The tallest a visitor drawn at its size may come in, as a share of
+    /// the visible height.
+    private static let maxVisitorHeight = 0.5
+
+    /// The depth each visitor drawn at its size comes in by (the huge:
+    /// bigger at the front of the scene than by the horizon), never so big
+    /// at the front that it cannot be seen whole.
+    private func visitDepths(sizes: [String: StageSize], in scene: StagePlanner.Scene) -> [String: VisitDepth] {
+        var depths: [String: VisitDepth] = [:]
+        for (id, size) in sizes {
+            guard let definition = definitions[id], definition.content != nil,
+                let depth = definition.size?.visitDepth, size.height > 0
+            else { continue }
+            let visibleHeight = scene.visible.maxY - scene.visible.minY
+            depths[id] = depth.capped(at: max(Self.maxVisitorHeight * visibleHeight / size.height, 1))
+        }
+        return depths
+    }
     private lazy var stages: [String: StickerStage] = Dictionary(
         uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.stage.map { (s.id, $0) } })
     /// Each sticker's moves (its walk, flight or sprout), its usual one
@@ -1493,7 +1551,7 @@ final class CanvasScene: SKScene {
         guard !goes.isEmpty else { return [:] }
         let actors = allStickerNodes().map { node -> MotionPlanner.Actor in
             let base = node.effectBase ?? node.placement
-            let unscaled = node.unscaledSize
+            let unscaled = node.drawnUnscaledSize
             let stage = stages[node.stickerID] ?? .default
             let visit = visitors[node.instanceID]
             return MotionPlanner.Actor(
@@ -1521,8 +1579,7 @@ final class CanvasScene: SKScene {
         var sizes: [String: StageSize] = [:]
         for entrance in entrances {
             guard let texture = stickerTextures[entrance.stickerID] else { continue }
-            let size = squareFit(texture: texture, side: stickerBaseSize)
-            sizes[entrance.stickerID] = StageSize(width: size.width, height: size.height)
+            sizes[entrance.stickerID] = drawnSize(of: entrance.stickerID, texture: texture)
         }
         // Where a sticker can be seen whole: the visible part of the art,
         // inset like a drop (`keepOnCanvas`). The tray is hidden in play.
@@ -1530,7 +1587,8 @@ final class CanvasScene: SKScene {
         let obstacles = existing.map { node in
             StageObstacle(
                 center: StagePoint(x: node.placement.x, y: node.placement.y),
-                radius: max(node.size.width, node.size.height) * StagePlanner.footprint)
+                radius: max(node.size.width * node.content.width, node.size.height * node.content.height)
+                    * StagePlanner.footprint)
         }
         var random = SystemRandomNumberGenerator()
         let plans = StagePlanner.plan(
@@ -1540,14 +1598,12 @@ final class CanvasScene: SKScene {
             features: pack.manifest.features.onArt(artVariant),
             moves: stageMoves,
             scales: visitScales,
+            depths: visitDepths(sizes: sizes, in: scene),
             scene: scene, obstacles: obstacles, policy: policy, random: &random)
         var visitors: [UUID: EntrancePlan] = [:]
         for plan in plans {
             guard let texture = stickerTextures[plan.stickerID] else { continue }
-            let node = StickerNode(
-                stickerID: plan.stickerID, texture: texture,
-                size: squareFit(texture: texture, side: stickerBaseSize),
-                shadow: shadow(for: plan.stickerID))
+            let node = makeSticker(plan.stickerID, texture: texture)
             node.isVisitor = true
             node.facing = plan.mirrored ? -1 : 1
             node.position = CGPoint(x: plan.target.x, y: plan.target.y)
@@ -1872,9 +1928,7 @@ final class CanvasScene: SKScene {
         guard let pick = (characters.isEmpty ? pack.manifest.stickers : characters).randomElement(),
             let texture = stickerTextures[pick.id]
         else { return nil }
-        return StickerNode(
-            stickerID: pick.id, texture: texture,
-            size: squareFit(texture: texture, side: stickerBaseSize), shadow: shadow(for: pick.id))
+        return makeSticker(pick.id, texture: texture)
     }
 
     /// Where the sample goes: on screen, clear of the child's stickers,
@@ -1993,10 +2047,7 @@ final class CanvasScene: SKScene {
         foregroundStickers.removeAllChildren()
         for placed in state.stickers {
             guard let texture = stickerTextures[placed.stickerID] else { continue }
-            let node = StickerNode(
-                stickerID: placed.stickerID, texture: texture,
-                size: squareFit(texture: texture, side: stickerBaseSize),
-                shadow: shadow(for: placed.stickerID))
+            let node = makeSticker(placed.stickerID, texture: texture)
             node.position = CGPoint(x: placed.position.x * worldSize.width, y: placed.position.y * worldSize.height)
             node.baseScale = CGFloat(placed.scale)
             node.setScale(node.baseScale)

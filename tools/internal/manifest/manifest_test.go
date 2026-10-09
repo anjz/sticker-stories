@@ -82,6 +82,16 @@ func TestValidManifestPasses(t *testing.T) {
 	}
 }
 
+func TestHugeAndContentPass(t *testing.T) {
+	dir := t.TempDir()
+	m := validManifest(t, dir)
+	m.Stickers[1].Size = "huge"
+	m.Stickers[1].Content = &StageArea{X: []float64{0.2, 0.8}, Y: []float64{0.03, 0.97}}
+	if errs := m.Validate(dir); len(errs) != 0 {
+		t.Fatalf("a huge sticker with its drawn area should pass, got %v", errs)
+	}
+}
+
 func TestWideAreasMayReachTheSideBands(t *testing.T) {
 	dir := t.TempDir()
 	m := validManifest(t, dir)
@@ -249,6 +259,10 @@ func TestValidationFailures(t *testing.T) {
 			m.Features = map[string]Feature{"pond": {Description: "The pond.", Areas: []StageArea{{X: []float64{0.5, 0.7}, Y: []float64{0.3, 0.4}}},
 				Edge: []StageArea{{X: []float64{0.4, 0.45}, Y: []float64{0.3, 0.4}, Facing: "left"}}}}
 		}, "not its edge"},
+		{"content outside the image", func(m *Manifest) {
+			m.Stickers[1].Content = &StageArea{X: []float64{0.2, 1.1}, Y: []float64{0.1, 0.9}}
+		}, "content.x"},
+		{"unknown size", func(m *Manifest) { m.Stickers[1].Size = "giant" }, "must be one of huge"},
 		{"duplicate sticker id", func(m *Manifest) { m.Stickers[1].ID = "mushroom" }, "duplicate sticker"},
 		{"bad sticker id", func(m *Manifest) { m.Stickers[0].ID = "Mushroom" }, "must match"},
 		{"duplicate story id", func(m *Manifest) { m.Stories[1].ID = "story-001" }, "duplicate story"},
@@ -365,8 +379,12 @@ func TestStickerSizes(t *testing.T) {
 		t.Errorf("a tiny sticker rejected: %v", errs)
 	}
 	m.Stickers[0].Size = "huge"
-	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), `size "huge" must be one of big, medium, small, tiny`) {
-		t.Errorf("a huge sticker: %v", errs)
+	if errs := m.Validate(dir); len(errs) != 0 {
+		t.Errorf("a huge sticker rejected: %v", errs)
+	}
+	m.Stickers[0].Size = "giant"
+	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), `size "giant" must be one of huge, big, medium, small, tiny`) {
+		t.Errorf("a giant sticker: %v", errs)
 	}
 }
 

@@ -80,15 +80,20 @@ type Sticker struct {
 	// in when a story names it and the child has not placed it; absent
 	// means the app's default (DefaultStage).
 	Stage *Stage `json:"stage,omitempty"`
-	// Size is how big the character is next to the others — "big" (a
-	// deer, a bear), "medium" (a fox), "small" (a bird) or "tiny" (a
-	// ladybug): a story moving it beside another scales it to their
-	// ratio (docs/effects.md, "Movement"). Absent: it keeps its size.
+	// Size is how big the character is next to the others — "huge" (a
+	// rocket), "big" (a deer, a bear), "medium" (a fox), "small" (a bird)
+	// or "tiny" (a ladybug): a story moving it beside another scales it to
+	// their ratio (docs/effects.md, "Movement"). Absent: it keeps its size.
 	Size string `json:"size,omitempty"`
+	// Content (optional) is where the drawing sits in the sticker's image,
+	// in fractions of it, origin bottom-left: a sticker drawn at its size
+	// class's share of its box, with room around it (docs/pack-format.md,
+	// "Drawn size"). Absent: the drawing fills the image.
+	Content *StageArea `json:"content,omitempty"`
 }
 
 // Sizes are the size classes a sticker may have, biggest first.
-var Sizes = []string{"big", "medium", "small", "tiny"}
+var Sizes = []string{"huge", "big", "medium", "small", "tiny"}
 
 // Entrances lists the ways a sticker can come into the scene
 // (docs/pack-format.md, "Stage"): hop in from the nearer side (things that
@@ -399,6 +404,12 @@ func (m *Manifest) Validate(dir string) []error {
 		}
 		if st.Size != "" && !slices.Contains(Sizes, st.Size) {
 			fail("stickers[%d]: size %q must be one of %s", i, st.Size, strings.Join(Sizes, ", "))
+		}
+		if st.Content != nil {
+			checkArea(fmt.Sprintf("stickers[%d]: content", i), *st.Content, fail)
+			if st.Content.Facing != "" {
+				fail("stickers[%d]: content has no facing", i)
+			}
 		}
 		checkCoverage(fmt.Sprintf("sticker %q name", st.ID), st.Name)
 		checkImage(fmt.Sprintf("sticker %q image", st.ID), st.Image)

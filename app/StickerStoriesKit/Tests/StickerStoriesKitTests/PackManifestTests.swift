@@ -227,6 +227,23 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         #expect(manifest.validationIssues(packDirectory: dir2).contains { $0.contains("wideAreas") })
     }
 
+    @Test func drawnSizeContentAndHugeAreDecodedAndChecked() throws {
+        var manifest = makeValidManifest()
+        manifest.stickers[1].size = .huge
+        manifest.stickers[1].content = .init(x: [0.2, 0.8], y: [0.03, 0.97])
+        let dir = try materialize(manifest)
+        #expect(manifest.validationIssues(packDirectory: dir).isEmpty)
+        let decoded = try JSONDecoder().decode(PackManifest.self, from: JSONEncoder().encode(manifest))
+        #expect(decoded.stickers[1].size == .huge && decoded.stickers[1].content?.y == [0.03, 0.97])
+        #expect(StickerBox.fraction(for: decoded.stickers[1]) == StickerBox.drawn)
+        #expect(StickerBox.fraction(for: decoded.stickers[0]) == StickerBox.filled)
+        // The box grows so a medium drawing comes out an old sticker's size.
+        #expect(abs(StickerBox.drawn * StickerSize.medium.drawnFill - StickerBox.filled * 0.94) < 0.01)
+        manifest.stickers[1].content = .init(x: [0.2, 1.2], y: [0.03, 0.97])
+        let dir2 = try materialize(manifest)
+        #expect(manifest.validationIssues(packDirectory: dir2).contains { $0.contains("content") })
+    }
+
     @Test func descriptionIsOptionalAndLocalized() throws {
         #expect(makeValidManifest().description(for: "en-US") == nil)
         var manifest = makeValidManifest()

@@ -202,7 +202,8 @@ never letterboxes:
 | `narrationPacks` | {lang: string} | **Optional.** Per language, the Apple-hosted asset pack that carries that language's narration audio instead of the pack itself (`docs/asset-delivery.md`): `"<pack>-narration-<language>-<hash>"`, the hash taken over that language's audio, written by `storyaudio install`. Inside the asset pack each file sits at `<asset pack id>/<audio path>`. A language without one keeps its audio in the pack. |
 | `features` | {id: object} | **Optional.** Named places in the art where stickers can land ("Features" below): each has a `description` (for story authors) and `areas`, a non-empty list of `{ "x": [min, max], "y": [min, max] }` in fractions of the base art, each area optionally with `"facing": "left"` or `"right"` — a place a character faces into, the area holding its **front** rather than its centre (a woodpecker's beak on the bark of a trunk) — optionally `words` — how each language's stories name the place (`{ "en-US": ["pond", "water"], "es-ES": ["charca", "agua"] }`, single words; storycheck warns when a sentence puts a character there with no move taking it there; the app ignores them) — optionally `"air": true` for open air (the sky: nothing sits there; story validation keeps flyers from resting in it, the app ignores it) — optionally `edge`, a non-empty list of areas like `areas` (no `facing`) where a character that does not go into the place stands beside it: the grass at the pond's edge — and optionally `wideAreas`, a non-empty list of areas like `areas` used instead of them when the wide art is drawn, with x allowed from −0.5 to 1.5 (the wide side bands, still in fractions of the base art), for a place on a foreground element the wide art paints at its own edge ("Features" below). |
 | `stickers[].stage` | object | **Optional**, default grow in `x` 0.1–0.9, `y` 0.18–0.45. Where the sticker belongs in the scene and how it comes in when a story names it and the child has not placed it ("Stage" below): `entrance` is `hop`, `fly` or `grow`; `on` lists `features` in order of preference; `area` (`{ "x": [min, max], "y": [min, max] }`, fractions of the base art) is where it lands when none of them is on screen. At least one of `on` and `area`. |
-| `stickers[].size` | string | **Optional**, default none. How big the character is next to the others: `big` (a deer, a bear), `medium` (a fox, a rabbit), `small` (a bird, a mouse) or `tiny` (a ladybug, a bee). A story moving it beside another scales it so the two keep the ratio of their classes (relative heights 1, 0.75, 0.55, 0.4; `docs/effects.md`, "Movement"), and a story that invites it (a visitor) brings a big one in at 1.3× a sticker's default size and a tiny one at 0.8× (`docs/effects.md`, "Entrances"); without one it keeps its size. |
+| `stickers[].size` | string | **Optional**, default none. How big the character is next to the others: `huge` (a rocket), `big` (a deer, a bear), `medium` (a fox, a rabbit), `small` (a bird, a mouse) or `tiny` (a ladybug). A story moving it beside another scales it so the two keep the ratio of their classes (relative sizes 1.6, 1, 0.75, 0.55, 0.4, on the longest side of the drawing; `docs/effects.md`, "Movement"), and a story that invites it (a visitor) brings a big one in at 1.3× a sticker's default size and a tiny one at 0.8× — or, for a sticker drawn at its size (`content`), as drawn, a huge one bigger at the front of the scene than by the horizon (`docs/effects.md`, "Entrances"); without one it keeps its size. |
+| `stickers[].content` | object | **Optional.** Where the drawing sits in the sticker's image, `{ "x": [min, max], "y": [min, max] }` in fractions of the image, origin bottom-left — for a sticker **drawn at its size** ("Drawn size" below); written by `stickerart install`. Absent: the drawing fills the image (Forest). |
 | `stories[].id` | string | Unique within the pack. |
 | `stories[].requiredStickers` | [string] | The stickers the story is about: it is a candidate when at most one of them is missing from the canvas (and at least one is present), and preferred when all are. Empty ⇒ fallback story. Every ID must be declared in `stickers`. |
 | `stories[].optionalStickers` | [string] | Sticker IDs that raise the match score when present. Declared in `stickers`; no overlap with `requiredStickers`. |
@@ -268,8 +269,9 @@ never letterboxes:
     `fly` or `grow`, and `on` (declared `features`, no repeats) and/or an
     `area` whose `x` and `y` are each `[min, max]` with
     0 ≤ min < max ≤ 1.
-    A `stickers[].size`, when present, is `big`, `medium`, `small` or
-    `tiny`.
+    A `stickers[].size`, when present, is `huge`, `big`, `medium`,
+    `small` or `tiny`; a `stickers[].content`, when present, is valid like
+    a stage `area` (within 0…1), without `facing`.
 15. Every `features` id is lowercase `a-z0-9-`, differs from every
     sticker id (a move's target, `{frog:go to pond}`, may be either), has a non-empty
     `description` (the packager checks it; the app ignores it) and at
@@ -368,6 +370,38 @@ on the wide composite the same way (a grid over it, converted to base
 fractions: `x_base = (x_wide × wideWidth − (wideWidth − baseWidth) / 2) /
 baseWidth`). Places in the background (the pad, the crater) are the same
 on both renditions and need none.
+
+## Drawn size
+
+A pack drawn from now on draws each sticker **at its size class's share
+of its square image**, centred, with the rest of the image left empty:
+
+| `size` | Longest side of the drawing (border included) |
+|---|---|
+| `huge` | 94 % |
+| `big` | 84 % |
+| `medium` | 72 % |
+| `small` | 60 % |
+| `tiny` | 50 % |
+
+So stickers dropped from the tray already look roughly their size next to
+each other, and the empty room around a drawing is where its animations
+reach — dust, sparks, a raised arm — without the sticker ever shrinking
+to make room (`tools/author/stickeranim`). `stickerart` draws to these
+(`sizeInArt` in `art.json`) and its install writes each sticker's
+`content`; the app then:
+
+- fits the image into a **bigger box** (21 % of the art's height instead
+  of 16 %), so a medium sticker comes out the size every sticker of an
+  older pack has;
+- places, spaces and scales stickers by their **drawings**, not their
+  boxes (feet on the same line, side by side, fitting on screen);
+- takes a touch only **on the drawing** (at least 44 points across, so a
+  tiny one is still easy to grab), never on the room around it;
+- brings visitors in as drawn, a huge one by the scene's depth
+  (`docs/effects.md`, "Entrances").
+
+A pack without `content` keeps the old behaviour throughout.
 
 ## Expressions
 
@@ -489,7 +523,8 @@ same device preference.
   shipped, so no bump); optional `description` added (additive, no bump);
   optional `cover` added (additive, no bump); optional
   `stickers[].stage` and `features` added (additive, no bump); optional
-  `features[].wideAreas` added (additive, no bump); the live
+  `features[].wideAreas` added (additive, no bump); size class `huge`
+  and optional `stickers[].content` added (additive, no bump); the live
   animation sidecar gained optional `kind`, `pause`, `loop`, `facing`,
   `stride` and `hops`, and live triggers an optional `mode` (additive,
   no bump); optional `narrationPacks` added (additive, no bump).

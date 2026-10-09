@@ -407,8 +407,15 @@ one per sticker per story, never `all`.
 - **Its size**: a visitor comes in at its size class's visiting scale
   (manifest `stickers[].size`, `StickerSize.visitScale`): a big one
   1.3× a sticker's default size, a tiny one 0.8×, small and medium as
-  they are — so a fawn walking in is not the size of a ladybug. It lands
-  where it is seen whole at that size, and from then on moves size it as
+  they are — so a fawn walking in is not the size of a ladybug. A sticker
+  drawn at its size (`stickers[].content`, `docs/pack-format.md`, "Drawn
+  size") is its size already and comes in as drawn — except a **huge**
+  one, which comes in by the scene's depth (`StickerSize.visitDepth`):
+  1.8× where it lands at the front of the ground (low on the art, 15 % of
+  its height), 1.3× by the horizon (50 %), in proportion between, and
+  never taller than half the visible height — a rocket landing in front
+  of the child towers, one by the horizon looks far away. It lands
+  where it is seen whole at that size (a huge one at its front size), and from then on moves size it as
   they size any sticker ("Movement": beside another by their classes,
   back to this size for the rest).
 - **Another way in**: a sticker with more than one move comes in its
@@ -487,10 +494,12 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
   the way the sticker last went.
 - **Beside another, the size their classes say**: going `to` a sticker,
   the mover is scaled so the pair keeps the ratio of their manifest
-  `size` classes (`big` 1, `medium` 0.75, `small` 0.55, `tiny` 0.4 of the
-  height; `docs/pack-format.md`), measured on the target as it is then — a
-  bird by a deer ends up about half its height, a ladybug by the
-  butterfly as big as her. Never below 0.45 nor above 1.25 of its own
+  `size` classes (`huge` 1.6, `big` 1, `medium` 0.75, `small` 0.55,
+  `tiny` 0.4 of the longest side of the drawing; `docs/pack-format.md`),
+  measured on the target as it is then, on the drawings (not their
+  images' boxes) — a bird by a deer ends up about half its height, a
+  ladybug by the butterfly as big as her, a long buggy as long as an
+  astronaut is tall and a third more. Never below 0.45 nor above 1.25 of its own
   size, so a sticker never becomes a speck or a giant; either one without
   a class keeps its size. Going anywhere else (a place, away, back) brings
   it back to its own size.
