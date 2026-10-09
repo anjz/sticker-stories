@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"image"
 	"os"
 	"path/filepath"
 	"strings"
@@ -59,12 +60,17 @@ func runReview(args []string) error {
 			Sheet: a.key() + ".png", Sticker: "../stickers/" + a.Sticker + ".png",
 			Columns: side.Columns, Count: side.Count, FrameW: side.Frame.Width, FrameH: side.Frame.Height,
 			Hold: side.Hold, Rest: side.Rest, StickerBox: side.StickerBox, Loop: side.Loop}
-		if q, err := os.ReadFile(r.out(a.key() + ".qa.json")); err == nil {
-			json.Unmarshal(q, &it.QA)
-			for _, f := range it.QA {
-				if len(f.Problems) > 0 {
-					it.Flagged++
-				}
+		// Measured here, on the sheet as it is on disk, so the checks always
+		// match what the page plays.
+		if png, err := os.ReadFile(r.out(a.key() + ".png")); err == nil {
+			if img, err := stickerimg.Decode(png); err == nil {
+				sheet := &stickerimg.AnimSheet{Image: img, Frame: image.Pt(side.Frame.Width, side.Frame.Height), Columns: side.Columns, Count: side.Count}
+				it.QA = stickerimg.MeasureFrames(sheet, 8, a.kind() == manifest.KindMove && a.Loop == nil, a.Flies || a.Hops)
+			}
+		}
+		for _, f := range it.QA {
+			if len(f.Problems) > 0 {
+				it.Flagged++
 			}
 		}
 		items = append(items, it)
