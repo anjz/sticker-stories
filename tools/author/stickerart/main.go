@@ -160,6 +160,15 @@ type sceneSpec struct {
 	// bands. Changing it re-widens the kept 4:3 foreground; nothing else
 	// is repainted.
 	ForegroundWide string `json:"foregroundWide,omitempty"`
+	// ForegroundWideOwn, when set, paints the wide foreground on its own
+	// instead of widening the 4:3 one: the same elements, matched to the
+	// 4:3 foreground (sent as a reference), placed at the wide picture's
+	// own edges — so framing elements (a building at the edge) start at
+	// the edge of every screen at about the same size, rather than the
+	// phone showing more of them. The text is the direction for it. Places
+	// on those elements then need their own wide areas (features[].
+	// wideAreas). ForegroundWide is ignored when this is set.
+	ForegroundWideOwn string `json:"foregroundWideOwn,omitempty"`
 	// Edits are painted into the finished background afterwards, in order:
 	// a feature added to the scene (a pond) without repainting the rest.
 	Edits []sceneEdit `json:"edits,omitempty"`
@@ -872,6 +881,9 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 		fgWideFP = hashOf(fgFP, "wide", hint)
 		fgExtend += " " + hint
 	}
+	if own := strings.TrimSpace(cfg.Scene.ForegroundWideOwn); own != "" {
+		return r.foregroundOwnWide(sheet, fgFP, hashOf(fgFP, "own", own, "1"), fgBase, fgWide, bgBase, bgWide, own, size, wide)
+	}
 	if r.upToDate(fgWide, fgWideFP) && r.upToDate(fgBase, fgFP) {
 		r.say("· foreground up to date")
 		return nil
@@ -907,8 +919,7 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 		bg = small
 	}
 	r.say("▶ foreground")
-	prompt := fmt.Sprintf("%s\n\nThe first attached image is the finished background of a scene at the same framing as the output. Paint only the foreground plane that sits in front of it, matching its style, lighting and perspective exactly: %s Everything that is not a foreground element must be fully transparent. No characters, no animals, no text. %s The nearest trunks and plants may run through the top and bottom bands, but keep their interesting parts (foliage, flowers, anything eye-catching) in the central 70%%.", cfg.Style, cfg.Scene.Foreground, sceneSafeArea)
-	img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: size, Quality: r.o.quality, Background: "transparent", References: [][]byte{bg, sheet}})
+	img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: r.foregroundPrompt(), Size: size, Quality: r.o.quality, Background: "transparent", References: [][]byte{bg, sheet}})
 	if err != nil {
 		return fmt.Errorf("foreground: %w", err)
 	}
@@ -919,6 +930,82 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 	r.done(fgBase, fgFP)
 	r.done(fgWide, fgWideFP)
 	r.say("✓ foreground (%s) + wide", cost)
+	return nil
+}
+
+// foregroundPrompt is the 4:3 foreground's prompt.
+func (r *renderer) foregroundPrompt() string {
+	return fmt.Sprintf("%s\n\nThe first attached image is the finished background of a scene at the same framing as the output. Paint only the foreground plane that sits in front of it, matching its style, lighting and perspective exactly: %s Everything that is not a foreground element must be fully transparent. No characters, no animals, no text. %s The nearest trunks and plants may run through the top and bottom bands, but keep their interesting parts (foliage, flowers, anything eye-catching) in the central 70%%.", r.c.cfg.Style, r.c.cfg.Scene.Foreground, sceneSafeArea)
+}
+
+// foregroundOwnWide paints the two foreground renditions apart (sceneSpec.
+// ForegroundWideOwn): the 4:3 one over the base background, then the wide
+// one over the wide background with the 4:3 foreground as the design to
+// match, its elements at the wide picture's own edges.
+func (r *renderer) foregroundOwnWide(sheet []byte, fgFP, wideFP, fgBase, fgWide, bgBase, bgWide, direction, size, wide string) error {
+	baseOK, wideOK := r.upToDate(fgBase, fgFP), r.upToDate(fgWide, wideFP)
+	if baseOK && wideOK {
+		r.say("· foreground up to date")
+		return nil
+	}
+	if r.o.dry {
+		if !baseOK {
+			r.planned = append(r.planned, "foreground ("+size+", transparent)")
+		}
+		r.planned = append(r.planned, "foreground-wide ("+wide+", painted on its own to match)")
+		return nil
+	}
+	if !baseOK {
+		bg, err := os.ReadFile(bgBase)
+		if err != nil {
+			return errors.New("foreground needs the background first")
+		}
+		if small, err := downscale(bg, 1024); err == nil {
+			bg = small
+		}
+		r.say("▶ foreground")
+		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: r.foregroundPrompt(), Size: size, Quality: r.o.quality, Background: "transparent", References: [][]byte{bg, sheet}})
+		if err != nil {
+			return fmt.Errorf("foreground: %w", err)
+		}
+		if err := os.WriteFile(fgBase, img.PNG, 0o644); err != nil {
+			return err
+		}
+		r.done(fgBase, fgFP)
+		r.say("✓ foreground (%s)", r.charge(img.Usage))
+	}
+	bg, err := os.ReadFile(bgWide)
+	if err != nil {
+		return errors.New("foreground-wide needs the wide background first")
+	}
+	fg, err := os.ReadFile(fgBase)
+	if err != nil {
+		return err
+	}
+	if small, err := downscale(bg, 1024); err == nil {
+		bg = small
+	}
+	if small, err := downscale(fg, 1024); err == nil {
+		fg = small
+	}
+	r.say("▶ foreground-wide")
+	prompt := fmt.Sprintf("%s\n\nThe first attached image is the finished WIDE background of a scene, at the same framing as the output. The second is the foreground plane painted for a narrower, 4:3 view of the same scene. Paint the foreground plane for this wide picture: the same elements as the second image — the same design, colours, details and size relative to the picture's height — but placed at the edges of THIS wider picture: %s Everything that is not a foreground element must be fully transparent. No characters, no animals, no text. %s", r.c.cfg.Style, direction, sceneSafeArea)
+	img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: wide, Quality: r.o.quality, Background: "transparent", References: [][]byte{bg, fg, sheet}})
+	if err != nil {
+		return fmt.Errorf("foreground-wide: %w", err)
+	}
+	out, err := stickerimg.Decode(img.PNG)
+	if err != nil {
+		return err
+	}
+	if out.Bounds().Dx() != wideW || out.Bounds().Dy() != baseH {
+		return fmt.Errorf("foreground-wide came back %v, want %dx%d", out.Bounds().Size(), wideW, baseH)
+	}
+	if err := os.WriteFile(fgWide, img.PNG, 0o644); err != nil {
+		return err
+	}
+	r.done(fgWide, wideFP)
+	r.say("✓ foreground-wide (%s)", r.charge(img.Usage))
 	return nil
 }
 

@@ -30,7 +30,14 @@ go run ./packager validate ../packs/forest
   direction for widening the foreground to 2:1 — an element the 4:3
   picture cuts at its edge that must carry on into the side bands (Moon
   Base's habitat); changing it re-widens the kept 4:3 foreground and
-  repaints nothing else.
+  repaints nothing else. `scene.foregroundWideOwn` (optional, replaces
+  it) paints the wide foreground **on its own** instead: the same
+  elements, matched to the 4:3 foreground sent as a reference, placed at
+  the wide picture's own edges — for framing elements (a building at the
+  edge) that should start at the edge of every screen at about the same
+  size rather than fill a third of a phone. Its text is the direction;
+  places on those elements then need `wideAreas` (`docs/pack-format.md`,
+  "Features").
 - `stickerSize` (768 — `docs/pack-format.md`, "Image formats"), `border`
   (white outline as a fraction of the size, 0.025) and `margin` (0.03).
 - `finish` (optional): the printed-sticker material the post-processing
