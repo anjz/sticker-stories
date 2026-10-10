@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "sandpiper",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "sandpiper",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 5.56,
+      "cue": "down",
+      "sticker": "sandpiper",
+      "effect": "pulse"
+    },
+    {
+      "at": 6.92,
+      "cue": "back",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore",
+      "another": true
+    },
+    {
+      "at": 10.04,
+      "cue": "dog",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 11.24,
+      "cue": "his",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 14.04,
+      "cue": "he",
+      "sticker": "dog",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 21.48,
+      "cue": "dog",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 21.48,
+      "cue": "dog",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 27.96,
+      "cue": "every",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 32.4,
+      "cue": "so",
+      "sticker": "sandpiper",
+      "animation": "peck",
+      "mode": "hold"
+    },
+    {
+      "at": 37,
+      "cue": "oh",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 42.68,
+      "cue": "his",
+      "sticker": "ball",
+      "enter": true
+    },
+    {
+      "at": 43.64,
+      "cue": "and",
+      "sticker": "dog",
+      "go": "to",
+      "target": "ball"
+    },
+    {
+      "at": 43.64,
+      "cue": "and",
+      "sticker": "dog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 47.48,
+      "cue": "the",
+      "sticker": "ball",
+      "animation": "spin"
+    },
+    {
+      "at": 51,
+      "cue": "white",
+      "sticker": "dog",
+      "effect": "hearts"
+    }
+  ]
+}

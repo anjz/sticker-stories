@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "era",
+      "effect": "clouds",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 8.52,
+      "cue": "chuc",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 8.52,
+      "cue": "chuc",
+      "sticker": "fishing-boat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 12.44,
+      "cue": "gaviota",
+      "sticker": "fishing-boat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 12.44,
+      "cue": "gaviota",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 13.96,
+      "cue": "esperando",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 15.72,
+      "cue": "la",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 17.08,
+      "cue": "subió",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 19.64,
+      "cue": "gaviota",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 22.73,
+      "cue": "algas",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 26.92,
+      "cue": "no",
+      "sticker": "seagull",
+      "expression": "sad"
+    },
+    {
+      "at": 27.88,
+      "cue": "alga",
+      "sticker": "seaweed",
+      "enter": true
+    },
+    {
+      "at": 28.2,
+      "cue": "se",
+      "sticker": "seaweed",
+      "expression": "happy"
+    },
+    {
+      "at": 31.24,
+      "cue": "se",
+      "sticker": "seaweed",
+      "animation": "sway"
+    },
+    {
+      "at": 33.48,
+      "cue": "gaviota",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 36.44,
+      "cue": "la",
+      "sticker": "fishing-boat",
+      "effect": "pulse"
+    },
+    {
+      "at": 39.2,
+      "cue": "y",
+      "sticker": "seaweed",
+      "effect": "hearts"
+    }
+  ]
+}

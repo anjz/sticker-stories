@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5,
+      "cue": "sandpiper",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 5,
+      "cue": "sandpiper",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 9.08,
+      "cue": "hermit",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 10.92,
+      "cue": "i'm",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 13.2,
+      "cue": "and",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 17.8,
+      "cue": "ready",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 20.52,
+      "cue": "zip",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore",
+      "by": "run"
+    },
+    {
+      "at": 22.92,
+      "cue": "hermit",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 22.92,
+      "cue": "hermit",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 31.88,
+      "cue": "peck",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 34.6,
+      "cue": "peck",
+      "sticker": "sandpiper",
+      "effect": "hop"
+    },
+    {
+      "at": 39.88,
+      "cue": "and",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 45.08,
+      "cue": "hermit",
+      "sticker": "hermit-crab",
+      "animation": "hide"
+    },
+    {
+      "at": 49.64,
+      "cue": "turtle",
+      "sticker": "turtle",
+      "animation": "peek"
+    },
+    {
+      "at": 54.96,
+      "cue": "along",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "pool",
+      "by": "run"
+    },
+    {
+      "at": 59.88,
+      "cue": "but",
+      "sticker": "sandpiper",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 61.08,
+      "cue": "snacks",
+      "sticker": "hermit-crab",
+      "effect": "hearts"
+    },
+    {
+      "at": 61.08,
+      "cue": "snacks",
+      "sticker": "turtle",
+      "effect": "hearts"
+    }
+  ]
+}

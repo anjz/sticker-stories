@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.08,
+      "cue": "pececito",
+      "sticker": "fish",
+      "enter": true
+    },
+    {
+      "at": 6.76,
+      "cue": "cangrejo",
+      "sticker": "crab",
+      "enter": true
+    },
+    {
+      "at": 7.4,
+      "cue": "pulpo",
+      "sticker": "octopus",
+      "enter": true
+    },
+    {
+      "at": 7.4,
+      "cue": "pulpo",
+      "sticker": "octopus",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 9.4,
+      "cue": "cangrejo",
+      "sticker": "crab",
+      "expression": "happy"
+    },
+    {
+      "at": 17.24,
+      "cue": "y",
+      "sticker": "crab",
+      "effect": "wobble"
+    },
+    {
+      "at": 21.8,
+      "cue": "debajo",
+      "sticker": "fish",
+      "go": "to",
+      "target": "pool",
+      "another": true
+    },
+    {
+      "at": 25,
+      "cue": "almeja",
+      "sticker": "clam",
+      "enter": true
+    },
+    {
+      "at": 25.56,
+      "cue": "se",
+      "sticker": "clam",
+      "animation": "peek"
+    },
+    {
+      "at": 29.56,
+      "cue": "entonces",
+      "sticker": "fish",
+      "expression": "sad"
+    },
+    {
+      "at": 29.56,
+      "cue": "entonces",
+      "sticker": "octopus",
+      "effect": "tint",
+      "duration": 6,
+      "color": "#9C948C"
+    },
+    {
+      "at": 33.56,
+      "cue": "esa",
+      "sticker": "fish",
+      "expression": "surprised"
+    },
+    {
+      "at": 38.32,
+      "cue": "y",
+      "sticker": "octopus",
+      "expression": "happy"
+    },
+    {
+      "at": 46.28,
+      "cue": "movió",
+      "sticker": "octopus",
+      "animation": "wave"
+    },
+    {
+      "at": 48.28,
+      "cue": "cangrejo",
+      "sticker": "crab",
+      "animation": "dance"
+    },
+    {
+      "at": 51.16,
+      "cue": "ahora",
+      "sticker": "fish",
+      "effect": "hearts"
+    }
+  ]
+}

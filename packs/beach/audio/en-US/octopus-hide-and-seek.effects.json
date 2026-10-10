@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.4,
+      "cue": "little",
+      "sticker": "fish",
+      "enter": true
+    },
+    {
+      "at": 7.16,
+      "cue": "crab",
+      "sticker": "crab",
+      "enter": true
+    },
+    {
+      "at": 7.72,
+      "cue": "octopus",
+      "sticker": "octopus",
+      "enter": true
+    },
+    {
+      "at": 7.72,
+      "cue": "octopus",
+      "sticker": "octopus",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 9.56,
+      "cue": "crab",
+      "sticker": "crab",
+      "expression": "happy"
+    },
+    {
+      "at": 15.72,
+      "cue": "now",
+      "sticker": "crab",
+      "effect": "wobble"
+    },
+    {
+      "at": 20.68,
+      "cue": "under",
+      "sticker": "fish",
+      "go": "to",
+      "target": "pool",
+      "another": true
+    },
+    {
+      "at": 23.72,
+      "cue": "clam",
+      "sticker": "clam",
+      "enter": true
+    },
+    {
+      "at": 24.16,
+      "cue": "opened",
+      "sticker": "clam",
+      "animation": "peek"
+    },
+    {
+      "at": 28.44,
+      "cue": "then",
+      "sticker": "fish",
+      "expression": "sad"
+    },
+    {
+      "at": 28.44,
+      "cue": "then",
+      "sticker": "octopus",
+      "effect": "tint",
+      "duration": 6,
+      "color": "#9C948C"
+    },
+    {
+      "at": 31.88,
+      "cue": "that",
+      "sticker": "fish",
+      "expression": "surprised"
+    },
+    {
+      "at": 35.92,
+      "cue": "and",
+      "sticker": "octopus",
+      "expression": "happy"
+    },
+    {
+      "at": 44,
+      "cue": "he",
+      "sticker": "octopus",
+      "animation": "wave"
+    },
+    {
+      "at": 46.12,
+      "cue": "crab",
+      "sticker": "crab",
+      "animation": "dance"
+    },
+    {
+      "at": 48.84,
+      "cue": "my",
+      "sticker": "fish",
+      "effect": "hearts"
+    }
+  ]
+}

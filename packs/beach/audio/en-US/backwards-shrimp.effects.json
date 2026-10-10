@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.24,
+      "cue": "crab",
+      "sticker": "crab",
+      "enter": true
+    },
+    {
+      "at": 6.44,
+      "cue": "claws",
+      "sticker": "crab",
+      "expression": "happy"
+    },
+    {
+      "at": 7.6,
+      "cue": "octopus",
+      "sticker": "octopus",
+      "enter": true
+    },
+    {
+      "at": 11.08,
+      "cue": "shrimp",
+      "sticker": "shrimp",
+      "enter": true
+    },
+    {
+      "at": 12.68,
+      "cue": "ready",
+      "sticker": "shrimp",
+      "effect": "pulse"
+    },
+    {
+      "at": 15.56,
+      "cue": "crab",
+      "sticker": "crab",
+      "go": "to",
+      "target": "pool",
+      "another": true
+    },
+    {
+      "at": 17.64,
+      "cue": "octopus",
+      "sticker": "octopus",
+      "go": "to",
+      "target": "pool",
+      "another": true
+    },
+    {
+      "at": 24.36,
+      "cue": "but",
+      "sticker": "shrimp",
+      "expression": "sad"
+    },
+    {
+      "at": 28.92,
+      "cue": "shrimp",
+      "sticker": "shrimp",
+      "animation": "flick",
+      "mode": "hold"
+    },
+    {
+      "at": 31.6,
+      "cue": "she",
+      "sticker": "shrimp",
+      "animation": "flick",
+      "mode": "resume"
+    },
+    {
+      "at": 38.32,
+      "cue": "backwards",
+      "sticker": "octopus",
+      "expression": "surprised"
+    },
+    {
+      "at": 39.8,
+      "cue": "backwards",
+      "sticker": "crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 42.84,
+      "cue": "shrimp",
+      "sticker": "shrimp",
+      "expression": "happy"
+    },
+    {
+      "at": 42.84,
+      "cue": "shrimp",
+      "sticker": "shrimp",
+      "effect": "sparkle"
+    },
+    {
+      "at": 46.36,
+      "cue": "crab",
+      "sticker": "crab",
+      "animation": "dance"
+    },
+    {
+      "at": 48.84,
+      "cue": "that's",
+      "sticker": "octopus",
+      "effect": "hearts"
+    }
+  ]
+}

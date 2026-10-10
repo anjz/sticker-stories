@@ -1,0 +1,111 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "pelican",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "pelican",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 7.08,
+      "cue": "gull",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 7.08,
+      "cue": "gull",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 7.08,
+      "cue": "gull",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 11.4,
+      "cue": "something",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 11.4,
+      "cue": "something",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 13.72,
+      "cue": "scoop",
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 16.52,
+      "cue": "out",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 21.48,
+      "cue": "gull",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 25.08,
+      "cue": "pelican",
+      "sticker": "pelican",
+      "expression": "surprised"
+    },
+    {
+      "at": 27.72,
+      "cue": "pop",
+      "sticker": "bottle",
+      "animation": "pop"
+    },
+    {
+      "at": 31.72,
+      "cue": "pelican",
+      "sticker": "pelican",
+      "effect": "pulse"
+    },
+    {
+      "at": 41.88,
+      "cue": "somebody",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 41.88,
+      "cue": "somebody",
+      "sticker": "pelican",
+      "effect": "sparkle"
+    },
+    {
+      "at": 44.68,
+      "cue": "then",
+      "sticker": "seagull",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 50.2,
+      "cue": "be",
+      "sticker": "pelican",
+      "effect": "hearts"
+    }
+  ]
+}

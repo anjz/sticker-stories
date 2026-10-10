@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "pelícano",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "pelícano",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 6.52,
+      "cue": "recogió",
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 10.2,
+      "cue": "foca",
+      "sticker": "seal",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 12.33,
+      "cue": "pelícano",
+      "sticker": "seal",
+      "effect": "wobble"
+    },
+    {
+      "at": 14.8,
+      "cue": "pelícano",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 18.36,
+      "cue": "bajó",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "sea",
+      "by": "float"
+    },
+    {
+      "at": 27.87,
+      "cue": "cómo",
+      "sticker": "seal",
+      "effect": "hop"
+    },
+    {
+      "at": 30.76,
+      "cue": "mis",
+      "sticker": "pelican",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 39.32,
+      "cue": "en",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 39.32,
+      "cue": "en",
+      "sticker": "ring",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 42.68,
+      "cue": "giró",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 46.68,
+      "cue": "flotas",
+      "sticker": "seal",
+      "effect": "spin"
+    },
+    {
+      "at": 48.92,
+      "cue": "y",
+      "sticker": "pelican",
+      "effect": "hearts"
+    },
+    {
+      "at": 48.92,
+      "cue": "y",
+      "sticker": "ring",
+      "effect": "pulse"
+    }
+  ]
+}

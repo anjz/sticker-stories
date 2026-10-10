@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "pelican",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "pelican",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 5.16,
+      "cue": "with",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 7.4,
+      "cue": "gull",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 7.4,
+      "cue": "gull",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "pelican"
+    },
+    {
+      "at": 19.48,
+      "cue": "he",
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 23.48,
+      "cue": "then",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 29.96,
+      "cue": "just",
+      "sticker": "pelican",
+      "effect": "spray"
+    },
+    {
+      "at": 30.76,
+      "cue": "the",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 30.76,
+      "cue": "the",
+      "sticker": "ring",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 40.92,
+      "cue": "and",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 43.88,
+      "cue": "gull",
+      "sticker": "seagull",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 43.88,
+      "cue": "gull",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 46.52,
+      "cue": "pelican",
+      "sticker": "pelican",
+      "effect": "wobble"
+    },
+    {
+      "at": 53.16,
+      "cue": "staying",
+      "sticker": "pelican",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "it",
+      "effect": "clouds",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 8.28,
+      "cue": "chug",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 8.28,
+      "cue": "chug",
+      "sticker": "fishing-boat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 12.36,
+      "cue": "gull",
+      "sticker": "fishing-boat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 12.36,
+      "cue": "gull",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 13.72,
+      "cue": "hoping",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 15.72,
+      "cue": "the",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 17.08,
+      "cue": "up",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 19.6,
+      "cue": "gull",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 22.6,
+      "cue": "weed",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 27.68,
+      "cue": "not",
+      "sticker": "seagull",
+      "expression": "sad"
+    },
+    {
+      "at": 28.76,
+      "cue": "seaweed",
+      "sticker": "seaweed",
+      "enter": true
+    },
+    {
+      "at": 29.29,
+      "cue": "giggled",
+      "sticker": "seaweed",
+      "expression": "happy"
+    },
+    {
+      "at": 32.16,
+      "cue": "she",
+      "sticker": "seaweed",
+      "animation": "sway"
+    },
+    {
+      "at": 34.28,
+      "cue": "gull",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 37.96,
+      "cue": "the",
+      "sticker": "fishing-boat",
+      "effect": "pulse"
+    },
+    {
+      "at": 41.6,
+      "cue": "and",
+      "sticker": "seaweed",
+      "effect": "hearts"
+    }
+  ]
+}

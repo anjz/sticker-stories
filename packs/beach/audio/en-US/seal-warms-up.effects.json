@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "seal",
+      "sticker": "seal",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 0,
+      "cue": "seal",
+      "sticker": "seal",
+      "go": "to",
+      "target": "sea",
+      "by": "swim"
+    },
+    {
+      "at": 8.36,
+      "cue": "after",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 10.12,
+      "cue": "flopped",
+      "sticker": "seal",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 13.08,
+      "cue": "right",
+      "effect": "sunshine",
+      "duration": 35,
+      "intensity": 0.7
+    },
+    {
+      "at": 17.96,
+      "cue": "gull",
+      "sticker": "seal",
+      "expression": "sleeping"
+    },
+    {
+      "at": 17.96,
+      "cue": "gull",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 17.96,
+      "cue": "gull",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 20.32,
+      "cue": "gull",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 25.96,
+      "cue": "swimming",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 33,
+      "cue": "gull",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 33,
+      "cue": "gull",
+      "sticker": "seagull",
+      "effect": "wobble"
+    },
+    {
+      "at": 36.8,
+      "cue": "pelican",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 36.8,
+      "cue": "pelican",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 38.72,
+      "cue": "and",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 41.48,
+      "cue": "seal",
+      "sticker": "seal",
+      "animation": "clap"
+    },
+    {
+      "at": 43.78,
+      "cue": "and",
+      "sticker": "seagull",
+      "expression": "sleeping"
+    },
+    {
+      "at": 43.78,
+      "cue": "and",
+      "sticker": "pelican",
+      "expression": "sleeping"
+    },
+    {
+      "at": 49.08,
+      "cue": "all",
+      "sticker": "seal",
+      "effect": "hearts"
+    }
+  ]
+}

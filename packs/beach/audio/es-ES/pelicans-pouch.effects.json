@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "pelícano",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "pelícano",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 4.76,
+      "cue": "con",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 7,
+      "cue": "gaviota",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 7,
+      "cue": "gaviota",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "pelican"
+    },
+    {
+      "at": 19.96,
+      "cue": "lo",
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 24.04,
+      "cue": "luego",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 30.74,
+      "cue": "en",
+      "sticker": "pelican",
+      "effect": "spray"
+    },
+    {
+      "at": 31.76,
+      "cue": "el",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 31.76,
+      "cue": "el",
+      "sticker": "ring",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 42.96,
+      "cue": "y",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 46.44,
+      "cue": "gaviota",
+      "sticker": "seagull",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 46.44,
+      "cue": "gaviota",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 49.08,
+      "cue": "pelícano",
+      "sticker": "pelican",
+      "effect": "wobble"
+    },
+    {
+      "at": 56.92,
+      "cue": "queda",
+      "sticker": "pelican",
+      "effect": "hearts"
+    }
+  ]
+}

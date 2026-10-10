@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "una",
+      "effect": "fog",
+      "duration": 30,
+      "intensity": 0.8
+    },
+    {
+      "at": 9.64,
+      "cue": "correlimos",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 11.4,
+      "cue": "no",
+      "sticker": "sandpiper",
+      "expression": "surprised"
+    },
+    {
+      "at": 20.2,
+      "cue": "una",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 23.48,
+      "cue": "la",
+      "sticker": "fishing-boat",
+      "effect": "pulse"
+    },
+    {
+      "at": 27.8,
+      "cue": "una",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 29.48,
+      "cue": "una",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 32.04,
+      "cue": "correlimos",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "bottle",
+      "by": "run"
+    },
+    {
+      "at": 34.76,
+      "cue": "pop",
+      "sticker": "bottle",
+      "animation": "pop"
+    },
+    {
+      "at": 37.48,
+      "cue": "entonces",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 37.48,
+      "cue": "entonces",
+      "sticker": "sandpiper",
+      "effect": "wobble"
+    },
+    {
+      "at": 38.48,
+      "cue": "poco",
+      "effect": "sunshine",
+      "duration": 25,
+      "intensity": 0.8
+    },
+    {
+      "at": 42.28,
+      "cue": "la",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 43.84,
+      "cue": "y",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 43.84,
+      "cue": "y",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 47,
+      "cue": "correlimos",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 51.56,
+      "cue": "siempre",
+      "sticker": "sandpiper",
+      "effect": "hop"
+    }
+  ]
+}

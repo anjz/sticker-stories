@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "pelican",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "pelican",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 6.36,
+      "cue": "he",
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 9.32,
+      "cue": "seal",
+      "sticker": "seal",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 11,
+      "cue": "pelican",
+      "sticker": "seal",
+      "effect": "wobble"
+    },
+    {
+      "at": 13.16,
+      "cue": "pelican",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 16.52,
+      "cue": "down",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "sea",
+      "by": "float"
+    },
+    {
+      "at": 24.84,
+      "cue": "how",
+      "sticker": "seal",
+      "effect": "hop"
+    },
+    {
+      "at": 27.8,
+      "cue": "my",
+      "sticker": "pelican",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 35.4,
+      "cue": "just",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 35.4,
+      "cue": "just",
+      "sticker": "ring",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 38.52,
+      "cue": "it",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 42.88,
+      "cue": "you",
+      "sticker": "seal",
+      "effect": "spin"
+    },
+    {
+      "at": 45.05,
+      "cue": "and",
+      "sticker": "pelican",
+      "effect": "hearts"
+    },
+    {
+      "at": 45.05,
+      "cue": "and",
+      "sticker": "ring",
+      "effect": "pulse"
+    }
+  ]
+}

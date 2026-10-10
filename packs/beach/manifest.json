@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "beach",
-  "version": 6,
+  "version": 7,
   "languages": [
     "en-US",
     "es-ES"
@@ -227,6 +227,10 @@
       ],
       "air": true
     }
+  },
+  "narrationPacks": {
+    "en-US": "beach-narration-en-a62952b7",
+    "es-ES": "beach-narration-es-cf9e8cbe"
   },
   "stickers": [
     {
@@ -1078,23 +1082,1431 @@
   ],
   "stories": [
     {
-      "id": "beach-welcome",
+      "id": "a-bigger-house",
+      "requiredStickers": [
+        "hermit-crab",
+        "bucket",
+        "castle"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "home",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "A Bigger House",
+          "text": "Hermit Crab came scuttling over the sand, and he sighed. His striped shell felt a little bit tight. It was a borrowed shell, like every hermit crab's: an empty one he had found and moved into. And now he was growing. Time for a bigger one! So Hermit Crab went house hunting. First, the red bucket. He peeked inside. It was enormous! Hello… hello… hello… went the echo. Far too big. Next, the sand castle, with its little red flag. He tried the door. Crumble, crumble. Far too sandy. Then the spade in the bucket went scoop! Hermit Crab was so surprised that he tucked himself right inside his own shell. And inside… it was cosy. Just the right size, for today. He peeked out, and smiled. A bigger house could wait.",
+          "audio": "audio/en-US/a-bigger-house.m4a",
+          "effects": "audio/en-US/a-bigger-house.effects.json"
+        },
+        "es-ES": {
+          "title": "Una casa más grande",
+          "text": "Cangrejo Ermitaño llegó correteando por la arena, y suspiró. Su concha de rayas le quedaba un poquito justa. Era una concha prestada, como las de todos los ermitaños: una vacía que había encontrado para vivir dentro. Y ahora estaba creciendo. ¡Tocaba buscar una más grande! Así que Ermitaño salió a buscar casa. Primero, el cubo rojo. Se asomó dentro. ¡Era enorme! Hola… hola… hola…, contestaba el eco. Demasiado grande. Después, el castillo de arena, con su banderita roja. Probó la puerta. Cruc, cruc, se desmoronaba. Demasiado arenoso. Entonces la pala del cubo hizo ¡zas! Ermitaño se sorprendió tanto que se metió del todo en su propia concha. Y dentro… se estaba de maravilla. Justo de su tamaño, por hoy. Se asomó, y sonrió. La casa grande podía esperar.",
+          "audio": "audio/es-ES/a-bigger-house.m4a",
+          "effects": "audio/es-ES/a-bigger-house.effects.json"
+        }
+      }
+    },
+    {
+      "id": "a-shower-at-the-beach",
       "requiredStickers": [],
       "optionalStickers": [],
       "weight": 1,
       "tags": [
-        "placeholder"
+        "weather",
+        "funny"
       ],
       "localizations": {
         "en-US": {
-          "title": "Welcome to the Beach",
-          "text": "Welcome to the beach! The stories are on their way.",
-          "audio": "audio/en-US/beach-welcome.m4a"
+          "title": "A Shower at the Beach",
+          "text": "What a sunny day for the beach! Everyone is busy playing. And then… plip. What was that? Plip. Plop. Pitter-patter, pitter-patter… a summer shower, right in the middle of a beach day! Everyone wiggles. Some hop. Some splash. Some just tip their faces up to the rain and laugh. The sea doesn't mind one bit. It's wet already! Then the rain slows down… drip… drop… and stops. Look! A rainbow, right over the bay! Red and orange, yellow and green, blue and violet. And everyone agrees: a little rain makes a very good rainbow.",
+          "audio": "audio/en-US/a-shower-at-the-beach.m4a",
+          "effects": "audio/en-US/a-shower-at-the-beach.effects.json"
         },
         "es-ES": {
-          "title": "Bienvenidos a la playa",
-          "text": "¡Bienvenidos a la playa! Los cuentos están en camino.",
-          "audio": "audio/es-ES/beach-welcome.m4a"
+          "title": "Un chaparrón en la playa",
+          "text": "¡Qué día de sol para ir a la playa! Todos están jugando. Y entonces… plic. ¿Qué ha sido eso? Plic. Ploc. Tip-tap, tip-tap… ¡un chaparrón de verano, en plena mañana de playa! Todos se sacuden. Unos saltan. Otros chapotean. Otros levantan la cara hacia la lluvia y se ríen. Al mar no le importa nada. ¡Ya estaba mojado! Luego la lluvia va más despacio… plic… ploc… y para. ¡Mirad! ¡Un arcoíris sobre la bahía! Rojo y naranja, amarillo y verde, azul y violeta. Y todos están de acuerdo: un poco de lluvia trae un arcoíris buenísimo.",
+          "audio": "audio/es-ES/a-shower-at-the-beach.m4a",
+          "effects": "audio/es-ES/a-shower-at-the-beach.effects.json"
+        }
+      }
+    },
+    {
+      "id": "backwards-shrimp",
+      "requiredStickers": [
+        "shrimp",
+        "crab",
+        "octopus"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "race",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Backwards Shrimp",
+          "text": "A race across the rock pool! Crab was ready, claws up. Octopus was ready, all eight arms wiggling. And little Shrimp was ready too. Ready, steady… GO! Crab scuttled off sideways. Octopus whooshed away. Shrimp paddled forwards with her tiny legs, paddle, paddle, paddle… but she was SO slow. Then she had an idea. Shrimp curled up tight, and FLICK! She snapped out her fan tail and zoomed… backwards! Zip, zip, zip! Backwards past Octopus, backwards past Crab, backwards all the way across the pool. Shrimp had won, without even looking where she was going. Crab clicked his claws and danced. That's how shrimps go fastest, said Octopus. Backwards!",
+          "audio": "audio/en-US/backwards-shrimp.m4a",
+          "effects": "audio/en-US/backwards-shrimp.effects.json"
+        },
+        "es-ES": {
+          "title": "La gamba que iba hacia atrás",
+          "text": "¡Una carrera de punta a punta de la charca! Cangrejo estaba listo, con las pinzas en alto. Pulpo estaba listo, con sus ocho brazos meneándose. Y la pequeña Gamba también estaba lista. Preparados, listos… ¡YA! Cangrejo salió de lado. Pulpo salió zumbando. Gamba nadaba hacia delante con sus patitas, chap, chap, chap… pero iba TAN despacio. Entonces tuvo una idea. Gamba se hizo una bolita, y ¡FLIC! Estiró de repente su cola de abanico y salió disparada… ¡hacia atrás! ¡Zis, zis, zis! Hacia atrás, pasó a Pulpo, hacia atrás pasó a Cangrejo, hacia atrás cruzó toda la charca. Gamba había ganado, sin mirar siquiera por dónde iba. Cangrejo chocó las pinzas y bailó. Así es como las gambas van más rápido, dijo Pulpo. ¡Hacia atrás!",
+          "audio": "audio/es-ES/backwards-shrimp.m4a",
+          "effects": "audio/es-ES/backwards-shrimp.effects.json"
+        }
+      }
+    },
+    {
+      "id": "bubbles-in-the-pool",
+      "requiredStickers": [
+        "fish",
+        "clam",
+        "urchin",
+        "seaweed"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Bubbles in the Pool",
+          "text": "Bloop. Bloop. Bloop. Little bubbles were rising in the rock pool. Little Fish swam round and round. Who's making bubbles? Was it Urchin? Urchin wiggled his spines. Not me! Was it Seaweed? Seaweed swayed. Not me! Then Little Fish heard a tiny giggle, right at the bottom. Clam opened up… and closed with a snap, and up came a string of bubbles. Bloop, bloop! It's you, Clam! Clam giggled again, and more bubbles came up. Little Fish wiggled his fins and chased them. And soon everyone was laughing, and everything was full of bubbles.",
+          "audio": "audio/en-US/bubbles-in-the-pool.m4a",
+          "effects": "audio/en-US/bubbles-in-the-pool.effects.json"
+        },
+        "es-ES": {
+          "title": "Burbujas en la charca",
+          "text": "Blup. Blup. Blup. Unas burbujitas subían por la charca. Pececito nadaba en círculos. ¿Quién hace burbujas? ¿Sería Erizo? Erizo meneó sus pinchos. ¡Yo no! ¿Sería Alga? Alga se meció. ¡Yo no! Entonces Pececito oyó una risita, justo en el fondo. Almeja se abrió… y se cerró de golpecito, y subió una ristra de burbujas. ¡Blup, blup! ¡Eres tú, Almeja! Almeja se volvió a reír, y subieron más burbujas. Pececito meneó las aletas y las persiguió. Y al poco, todos se reían, y todo estaba lleno de burbujas.",
+          "audio": "audio/es-ES/bubbles-in-the-pool.m4a",
+          "effects": "audio/es-ES/bubbles-in-the-pool.effects.json"
+        }
+      }
+    },
+    {
+      "id": "chasing-the-waves",
+      "requiredStickers": [
+        "sandpiper",
+        "dog",
+        "ball"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "friendship",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Chasing the Waves",
+          "text": "Sandpiper was running along the shore. Down to the water… back up again. Down… back! Dog watched, his head on one side. A game! He bounded down to join in. Down to the water… SPLASH! A wave washed right over his paws. Dog shook himself dry, shake, shake, shake. It isn't a game, said Sandpiper. Every wave leaves tiny things to eat, just where the water has been. So I run in, peck, peck, peck, and run out before the next one comes! Oh, said Dog. So that's your snack. Then he grinned, and fetched his ball. And THIS, said Dog, is my favourite thing. The ball spun round, red and yellow and blue and white.",
+          "audio": "audio/en-US/chasing-the-waves.m4a",
+          "effects": "audio/en-US/chasing-the-waves.effects.json"
+        },
+        "es-ES": {
+          "title": "Persiguiendo las olas",
+          "text": "Correlimos corría por la orilla. Hasta el agua… y otra vez arriba. ¡Abajo… arriba! Perro lo miraba, con la cabeza ladeada. ¡Un juego! Bajó dando brincos para jugar. Hasta el agua… ¡CHOF! Una ola le mojó las patas. Perro se sacudió, sacude, sacude, sacude. No es un juego, dijo Correlimos. Cada ola deja cositas de comer justo donde ha pasado el agua. ¡Así que entro corriendo, pico, pico, pico, y salgo antes de que llegue la siguiente! Ah, dijo Perro. Así que esa es tu merienda. Entonces sonrió y fue a buscar su pelota. Y ESTO, dijo Perro, es lo que más me gusta. La pelota dio vueltas, roja, amarilla, azul y blanca.",
+          "audio": "audio/es-ES/chasing-the-waves.m4a",
+          "effects": "audio/es-ES/chasing-the-waves.effects.json"
+        }
+      }
+    },
+    {
+      "id": "cloud-shapes",
+      "requiredStickers": [
+        "girl",
+        "surfer",
+        "sailboat"
+      ],
+      "optionalStickers": [
+        "seagull"
+      ],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Cloud Shapes",
+          "text": "Lola and Nico sat side by side, looking up at the clouds. Big fluffy ones drifted by. \"That one looks like a kite!\" Lola held up her own kite to compare. \"That one's a surfboard. A giant one!\" Something white went flapping past. \"Is that a cloud bird?\" \"That's Gull!\" Then Nico pointed. \"Look! A cloud shaped like a sailboat!\" Lola looked up… and then down. And there on the water, right underneath it, sailed the real sailboat, its white sails puffing. A sailboat in the sky, and a sailboat on the sea. And they waved to them both.",
+          "audio": "audio/en-US/cloud-shapes.m4a",
+          "effects": "audio/en-US/cloud-shapes.effects.json"
+        },
+        "es-ES": {
+          "title": "Formas de nubes",
+          "text": "Lola y Nico estaban sentados juntos, mirando las nubes. Pasaban nubes grandes y esponjosas. «¡Esa parece una cometa!» Lola levantó su cometa para comparar. «Esa es una tabla de surf. ¡Una gigante!» Algo blanco pasó aleteando. «¿Es un pájaro de nube?» «¡Es Gaviota!» Entonces Nico señaló. «¡Mira! ¡Una nube con forma de velero!» Lola miró arriba… y luego abajo. Y allí en el agua, justo debajo, navegaba el velero de verdad, con sus velas blancas hinchadas. Un velero en el cielo, y un velero en el mar. Y saludaron a los dos.",
+          "audio": "audio/es-ES/cloud-shapes.m4a",
+          "effects": "audio/es-ES/cloud-shapes.effects.json"
+        }
+      }
+    },
+    {
+      "id": "counting-in-the-pool",
+      "requiredStickers": [
+        "fish",
+        "shrimp",
+        "clam",
+        "urchin"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "counting",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Counting in the Pool",
+          "text": "Little Fish was counting his friends. One… Clam, at the bottom, quiet as a pebble. Two… Urchin, round and purple and wiggly. Three… Shrimp, pink and quick, zipping about. Three? But there were four of us this morning! He counted again. One, two, three. Oh no. One of us is missing! Urchin wiggled his spines. Shrimp giggled. Clam opened up, and closed again. Little Fish, she said, who's doing the counting? Me! said Little Fish… and then he understood. FOUR! I forgot to count ME! He wiggled his tail and fluttered his fins. One, two, three… and four. Everyone was right where they should be.",
+          "audio": "audio/en-US/counting-in-the-pool.m4a",
+          "effects": "audio/en-US/counting-in-the-pool.effects.json"
+        },
+        "es-ES": {
+          "title": "Contando en la charca",
+          "text": "Pececito estaba contando a sus amigos. Uno… Almeja, en el fondo, callada como una piedra. Dos… Erizo, redondo, morado y meneón. Tres… Gamba, rosa y rapidísima, de aquí para allá. ¿Tres? ¡Pero esta mañana éramos cuatro! Volvió a contar. Uno, dos, tres. ¡Ay, no! ¡Falta uno! Erizo meneó sus pinchos. Gamba se rió. Almeja se abrió, y se volvió a cerrar. Pececito, dijo, ¿quién está contando? ¡Yo!, dijo Pececito… y entonces lo entendió. ¡CUATRO! ¡Se me olvidó contarME! Meneó la cola y agitó las aletas. Uno, dos, tres… y cuatro. Todos estaban justo donde tenían que estar.",
+          "audio": "audio/es-ES/counting-in-the-pool.m4a",
+          "effects": "audio/es-ES/counting-in-the-pool.effects.json"
+        }
+      }
+    },
+    {
+      "id": "dig-dig-dig",
+      "requiredStickers": [
+        "dog",
+        "bucket",
+        "clam",
+        "castle"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "friendship",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Dig, Dig, Dig",
+          "text": "Dig, dig, dig! Dog loved digging more than anything. Sand flew everywhere, all round the sand castle. Careful, Dog! Then, bonk. His nose found something hard and round. It was Clam! She opened up to say hello, and closed again with a snap. You like digging? said Clam. Me too! Watch this. She pushed out one strong foot, and wriggle, wriggle, wriggle… she dug herself right down out of sight. Gone! Dog dug and dug. The spade in the bucket dug too, scoop, scoop. Dog shook the sand off his nose. Then, pop! Up came Clam. Found you! said Dog. And they dug together all afternoon: one big paw, and one small, strong foot.",
+          "audio": "audio/en-US/dig-dig-dig.m4a",
+          "effects": "audio/en-US/dig-dig-dig.effects.json"
+        },
+        "es-ES": {
+          "title": "Cava, cava, cava",
+          "text": "¡Cava, cava, cava! A Perro le encantaba cavar más que nada en el mundo. La arena volaba por todas partes, alrededor del castillo de arena. ¡Cuidado, Perro! Entonces, ¡bonc! Su hocico encontró algo duro y redondo. ¡Era Almeja! Se abrió para saludar, y se volvió a cerrar. ¿Te gusta cavar?, dijo Almeja. ¡A mí también! Mira esto. Sacó un pie fuerte, y meneo, meneo, meneo… se enterró hasta desaparecer. ¡Ya no está! Perro cavó y cavó. La pala del cubo cavó también, zas, zas. Perro se sacudió la arena del hocico. Entonces, ¡pop! Salió Almeja. ¡Te encontré!, dijo Perro. Y cavaron juntos toda la tarde: una pata grande, y un pie pequeño y fuerte.",
+          "audio": "audio/es-ES/dig-dig-dig.m4a",
+          "effects": "audio/es-ES/dig-dig-dig.effects.json"
+        }
+      }
+    },
+    {
+      "id": "dog-shakes",
+      "requiredStickers": [
+        "dog",
+        "girl",
+        "umbrella"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Dog Shakes",
+          "text": "Lola was sitting under the umbrella, nice and dry. Dog was not dry. He ran down to the water, splash! And back he came, and SHOOK. \"Dog! I'm all wet!\" Off he went again. Splash… and back, SHAKE! \"Not AGAIN!\" So Lola had a plan. When Dog came back the third time, she spun the umbrella round to face him, like a big red-and-white shield. Shake, shake, shake! Every drop landed on the umbrella. \"Ha! Dry!\" Dog wagged his tail, trotted round the umbrella… and gave her a big, wet lick on the nose. \"Oh, DOG!\"",
+          "audio": "audio/en-US/dog-shakes.m4a",
+          "effects": "audio/en-US/dog-shakes.effects.json"
+        },
+        "es-ES": {
+          "title": "Perro se sacude",
+          "text": "Lola estaba sentada debajo de la sombrilla, sequita. Perro no estaba seco. Bajó corriendo hasta el agua, ¡chof! Y volvió, y se SACUDIÓ. «¡Perro! ¡Me has mojado!» Allá fue otra vez. Chof… y de vuelta, ¡SACUDIDA! «¡OTRA vez no!» Así que Lola tuvo una idea. Cuando Perro volvió por tercera vez, giró la sombrilla hacia él, como un gran escudo rojo y blanco. ¡Sacude, sacude, sacude! Todas las gotas cayeron en la sombrilla. «¡Ja! ¡Seca!» Perro movió la cola, rodeó la sombrilla… y le dio un gran lametón mojado en la nariz. «¡Ay, PERRO!»",
+          "audio": "audio/es-ES/dog-shakes.m4a",
+          "effects": "audio/es-ES/dog-shakes.effects.json"
+        }
+      }
+    },
+    {
+      "id": "eyes-on-the-tips",
+      "requiredStickers": [
+        "starfish",
+        "shrimp",
+        "fish"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Eyes on the Tips",
+          "text": "Hide and seek in the rock pool! Starfish was counting. One, two, three, four, five! Shrimp zipped behind a stone. Little Fish hid right behind Starfish, at her back. She'll never see me here. But Starfish lifted one arm and waved it about. Found you, Little Fish! How? Then she pointed another arm at the stone. And you, Shrimp! Shrimp twitched her feelers and flicked her tail. How do you DO that? Starfish giggled. At the tip of every arm I have a tiny eye. Five arms, five little eyes. They can't see much… but they can see you! My turn to count, said Little Fish. And this time he hid… right in front of her.",
+          "audio": "audio/en-US/eyes-on-the-tips.m4a",
+          "effects": "audio/en-US/eyes-on-the-tips.effects.json"
+        },
+        "es-ES": {
+          "title": "Ojos en las puntas",
+          "text": "¡Al escondite en la charca! Estrella contaba. ¡Uno, dos, tres, cuatro, cinco! Gamba se escondió de un salto detrás de una piedra. Pececito se puso detrás de Estrella, justo a su espalda. Aquí no me ve. Pero Estrella levantó un brazo y lo movió de aquí para allá. ¡Te pillé, Pececito! ¿Cómo? Luego apuntó otro brazo hacia la piedra. ¡Y a ti, Gamba! Gamba movió las antenas y sacudió la cola. ¿Cómo lo HACES? Estrella se rió. En la punta de cada brazo tengo un ojito. Cinco brazos, cinco ojitos. No ven mucho… ¡pero a vosotros sí! Ahora cuento yo, dijo Pececito. Y esta vez se escondió… justo delante de ella.",
+          "audio": "audio/es-ES/eyes-on-the-tips.m4a",
+          "effects": "audio/es-ES/eyes-on-the-tips.effects.json"
+        }
+      }
+    },
+    {
+      "id": "good-morning-beach",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "morning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Good Morning, Beach",
+          "text": "Shhh. The beach is still asleep. Swish… swoosh… the little waves roll in, one after another, as if the sea is breathing. Then the sun comes up over the bay, warm and gold. It touches every shell and every pebble. Far away, a bird calls. Who's that? Eyes blink open. One. Two. Three. Good morning, sand! Good morning, waves! Good morning, lighthouse, keeping watch across the bay! The water sparkles. The sand is warm. And the whole beach, all together, is ready to play.",
+          "audio": "audio/en-US/good-morning-beach.m4a",
+          "effects": "audio/en-US/good-morning-beach.effects.json"
+        },
+        "es-ES": {
+          "title": "Buenos días, playa",
+          "text": "Chist. La playa todavía duerme. Chas… chas… llegan las olas pequeñitas, una detrás de otra, como si el mar respirara. Entonces sale el sol sobre la bahía, cálido y dorado. Toca cada concha y cada piedrecita. A lo lejos, llama un pájaro. ¿Quién será? Los ojos se abren. Uno. Dos. Tres. ¡Buenos días, arena! ¡Buenos días, olas! ¡Buenos días, faro, que vigilas al otro lado de la bahía! El agua brilla. La arena está calentita. Y toda la playa, todos juntos, está lista para jugar.",
+          "audio": "audio/es-ES/good-morning-beach.m4a",
+          "effects": "audio/es-ES/good-morning-beach.effects.json"
+        }
+      }
+    },
+    {
+      "id": "hello-from-far-away",
+      "requiredStickers": [
+        "bottle",
+        "girl",
+        "surfer",
+        "seagull"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "friendship",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Hello From Far Away",
+          "text": "Gull saw it first: something green, bobbing out on the water. She squawked and squawked. A bottle! A wave carried it right up to the water's edge. Lola came running, and Nico too. \"There's a note inside!\" Pop! Out came the cork, and the note peeked out. Lola unrolled it: a drawing of a smiling fish, and three words. \"Hello from far away.\" That bottle had floated a long, long way, for weeks and weeks, over the water, just to say hello. \"Let's say hello back!\" So they drew their own beach, with a castle and a kite, rolled it up, and pushed in the cork. Nico gave the bottle a gentle push, and off it bobbed. Somewhere far away, someone will find it, and smile.",
+          "audio": "audio/en-US/hello-from-far-away.m4a",
+          "effects": "audio/en-US/hello-from-far-away.effects.json"
+        },
+        "es-ES": {
+          "title": "Hola desde muy lejos",
+          "text": "Gaviota lo vio la primera: algo verde que se mecía en el agua. Graznó y graznó. ¡Una botella! Una ola la dejó justo en la orilla. Lola llegó corriendo, y Nico también. «¡Hay una nota dentro!» ¡Pop! Saltó el corcho, y la nota asomó. Lola la desenrolló: un dibujo de un pez sonriente, y unas palabras. «Hola desde muy lejos.» Aquella botella había flotado muchísimo, durante semanas y semanas, sobre el agua, solo para decir hola. «¡Vamos a contestar!» Así que dibujaron su propia playa, con un castillo y una cometa, lo enrollaron y pusieron el corcho. Nico le dio a la botella un empujoncito, y allá se fue, meciéndose. Muy lejos, alguien la encontrará, y sonreirá.",
+          "audio": "audio/es-ES/hello-from-far-away.m4a",
+          "effects": "audio/es-ES/hello-from-far-away.effects.json"
+        }
+      }
+    },
+    {
+      "id": "lolas-kite",
+      "requiredStickers": [
+        "girl",
+        "seagull",
+        "umbrella"
+      ],
+      "optionalStickers": [
+        "dog"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "friendship"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Lola's Kite",
+          "text": "Whoosh! The wind was blowing just right. Lola came skipping along with her kite. \"Up you go!\" Up went the kite, red and yellow, blue and green, its ribbon tail dancing. Even the umbrella popped open in the breeze, and then it spun round and round. Then Gull flew down onto the rocks. She stared. A new bird? A bright diamond bird with a ribbon tail? Gull squawked hello. The kite said nothing. It just looped and swooped. Gull hopped and flapped. \"It's a kite, Gull! But you can fly with it.\" So Gull flew up beside Lola, and danced on the wind. Dog barked and wagged his tail. Lola held the string up high. And that is how Gull made friends with a kite.",
+          "audio": "audio/en-US/lolas-kite.m4a",
+          "effects": "audio/en-US/lolas-kite.effects.json"
+        },
+        "es-ES": {
+          "title": "La cometa de Lola",
+          "text": "¡Fiuuu! El viento soplaba justo como hacía falta. Lola llegó dando saltitos con su cometa. «¡Arriba!» Arriba subió la cometa, roja y amarilla, azul y verde, con su cola de cintas bailando. Hasta la sombrilla se abrió con la brisa, y entonces dio vueltas y más vueltas. Entonces Gaviota bajó volando hasta las rocas. Se quedó mirando. ¿Un pájaro nuevo? ¿Un pájaro de colores, con forma de rombo y cola de cintas? Gaviota graznó para saludar. La cometa no dijo nada. Solo daba vueltas y piruetas. Gaviota saltó y aleteó. «¡Es una cometa, Gaviota! Pero puedes volar con ella.» Así que Gaviota subió volando junto a Lola, y bailó con el viento. Perro ladró y movió la cola. Lola sostuvo el hilo bien alto. Y así fue como Gaviota se hizo amiga de una cometa.",
+          "audio": "audio/es-ES/lolas-kite.m4a",
+          "effects": "audio/es-ES/lolas-kite.effects.json"
+        }
+      }
+    },
+    {
+      "id": "lolas-shell",
+      "requiredStickers": [
+        "girl",
+        "clam",
+        "hermit-crab"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Lola's Shell",
+          "text": "Lola loved collecting shells. \"Ooh, a stripy one! Cream and pink!\" She reached for it. But the shell… shuffled away! Inside, tucked up tight, was Hermit Crab. \"Oh! Sorry. This is your house.\" Hermit Crab peeked out, and waved a tiny claw. Then Lola found another shell, round and ribbed and peachy. She bent down to look. It opened up… and there was Clam, with a shiny pearl inside! \"You live in yours too!\" So Lola didn't take a single shell home. She sat down and drew them all with her finger, big and happy. And the shells stayed right where they belonged, with somebody living inside.",
+          "audio": "audio/en-US/lolas-shell.m4a",
+          "effects": "audio/en-US/lolas-shell.effects.json"
+        },
+        "es-ES": {
+          "title": "La concha de Lola",
+          "text": "A Lola le encantaba coleccionar conchas. «¡Uy, una de rayas! ¡Rosa y blanca!» Alargó la mano. Pero la concha… ¡se fue andando! Dentro, bien escondido, estaba Cangrejo Ermitaño. «¡Ay! Perdona. Es tu casa.» Ermitaño se asomó, y saludó con una pinza diminuta. Luego Lola encontró otra concha, redonda, con rayitas y de color melocotón. Se agachó a mirarla. Se abrió… ¡y allí estaba Almeja, con una perla brillante dentro! «¡Tú también vives en la tuya!» Así que Lola no se llevó ni una sola concha a casa. Se sentó y las dibujó todas con el dedo, grandes y alegres. Y las conchas se quedaron justo donde tenían que estar, con alguien viviendo dentro.",
+          "audio": "audio/es-ES/lolas-shell.m4a",
+          "effects": "audio/es-ES/lolas-shell.effects.json"
+        }
+      }
+    },
+    {
+      "id": "nicos-big-wave",
+      "requiredStickers": [
+        "surfer",
+        "seal",
+        "sailboat"
+      ],
+      "optionalStickers": [
+        "turtle"
+      ],
+      "weight": 1,
+      "tags": [
+        "courage",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Nico's Big Wave",
+          "text": "It was a perfect morning for surfing. Nico came down the beach with his yellow board. \"Today I'm riding the BIGGEST wave!\" Out on the bay, the sailboat bobbed along, its sails puffing in the breeze. Then a wave rose up, tall and white and foamy. Nico stopped. That wave was very big. His knees went wobbly. Seal flopped up onto the rocks. She clapped her flippers. Arf, arf! As if to say: start small. So Nico waited for a little wave. Swoosh! He was up! Turtle swam alongside, smiling. Nico rode the little wave all the way back to the sand. Then another. And another. Nico waved to Seal and held up his board. \"Thanks, Seal! The big one can wait till tomorrow.\"",
+          "audio": "audio/en-US/nicos-big-wave.m4a",
+          "effects": "audio/en-US/nicos-big-wave.effects.json"
+        },
+        "es-ES": {
+          "title": "La gran ola de Nico",
+          "text": "Era una mañana perfecta para hacer surf. Nico bajó por la playa con su tabla amarilla. «¡Hoy voy a coger la ola MÁS GRANDE!» En la bahía, el velero se mecía, con las velas hinchadas por la brisa. Entonces se levantó una ola alta, blanca y llena de espuma. Nico se paró. Aquella ola era muy grande. Le temblaban las rodillas. Foca subió a las rocas dando saltitos. Dio palmadas con las aletas. ¡Arf, arf! Como diciendo: empieza por las pequeñas. Así que Nico esperó una ola pequeñita. ¡Zas! ¡Ya estaba de pie! Tortuga nadaba a su lado, sonriendo. Nico se dejó llevar por la ola hasta la arena. Luego otra. Y otra más. Nico saludó a Foca con la tabla en alto. «¡Gracias, Foca! La grande puede esperar a mañana.»",
+          "audio": "audio/es-ES/nicos-big-wave.m4a",
+          "effects": "audio/es-ES/nicos-big-wave.effects.json"
+        }
+      }
+    },
+    {
+      "id": "octopus-hide-and-seek",
+      "requiredStickers": [
+        "octopus",
+        "crab",
+        "fish"
+      ],
+      "optionalStickers": [
+        "clam"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "curiosity",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Octopus Hide and Seek",
+          "text": "Hide and seek in the rock pool! Little Fish was counting. Crab and Octopus went to hide. Crab hid behind a stone, but his big red claws stuck out. Found you, Crab! Now, where was Octopus? Little Fish looked everywhere. Under the stones. Behind the boulders. Clam opened up to have a look too. No Octopus anywhere. Then one grey stone… blinked. That stone has EYES! The grey turned pinky-orange, and there was Octopus, laughing. I'm an octopus, he said. I can turn the colour of whatever I'm next to! He waved all eight arms. Crab clicked his claws. My turn to hide, said Little Fish. Can you teach me to be a stone?",
+          "audio": "audio/en-US/octopus-hide-and-seek.m4a",
+          "effects": "audio/en-US/octopus-hide-and-seek.effects.json"
+        },
+        "es-ES": {
+          "title": "El escondite del pulpo",
+          "text": "¡Al escondite en la charca! Pececito contaba. Cangrejo y Pulpo se fueron a esconder. Cangrejo se escondió detrás de una piedra, pero sus grandes pinzas rojas asomaban. ¡Te pillé, Cangrejo! ¿Y dónde estaba Pulpo? Pececito buscó por todas partes. Debajo de las piedras. Detrás de los pedruscos. Almeja se abrió para mirar también. Ni rastro de Pulpo. Entonces, una piedra gris… parpadeó. ¡Esa piedra tiene OJOS! El gris se volvió naranja rosado, y allí estaba Pulpo, riéndose. Soy un pulpo, dijo. ¡Puedo ponerme del color de lo que tengo al lado! Movió sus ocho brazos. Cangrejo chocó las pinzas. Ahora me escondo yo, dijo Pececito. ¿Me enseñas a ser una piedra?",
+          "audio": "audio/es-ES/octopus-hide-and-seek.m4a",
+          "effects": "audio/es-ES/octopus-hide-and-seek.effects.json"
+        }
+      }
+    },
+    {
+      "id": "octopus-says-hello",
+      "requiredStickers": [
+        "girl",
+        "octopus",
+        "starfish"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Octopus Says Hello",
+          "text": "Lola knelt at the edge of the rock pool. \"Hello? Is anybody home?\" Out came Octopus, orange and curly. He waved all eight arms. Then he reached out the tip of one arm… and touched Lola's finger. \"That tickles!\" I'm tasting you, said Octopus. I taste things with the little suckers on my arms. \"What do I taste like?\" Octopus thought. Hmm… like salt, and sand, and sandwiches. Starfish, watching nearby, waved one arm hello. \"Can I taste you back?\" Octopus wiggled. I'll just shake your hand, he said. So he did. Eight times.",
+          "audio": "audio/en-US/octopus-says-hello.m4a",
+          "effects": "audio/en-US/octopus-says-hello.effects.json"
+        },
+        "es-ES": {
+          "title": "Pulpo dice hola",
+          "text": "Lola se arrodilló al borde de la charca. «¿Hola? ¿Hay alguien en casa?» Salió Pulpo, naranja y rizado. Saludó con sus ocho brazos. Luego estiró la punta de un brazo… y tocó el dedo de Lola. «¡Me hace cosquillas!» Te estoy probando, dijo Pulpo. Yo saboreo las cosas con las ventosas de mis brazos. «¿Y a qué sé?» Pulpo se lo pensó. Mmm… a sal, a arena y a bocadillo. Estrella, que miraba al lado, saludó con un brazo. «¿Puedo probarte yo a ti?» Pulpo se meneó. Mejor te doy la mano, dijo. Y eso hizo. Ocho veces.",
+          "audio": "audio/es-ES/octopus-says-hello.m4a",
+          "effects": "audio/es-ES/octopus-says-hello.effects.json"
+        }
+      }
+    },
+    {
+      "id": "pelican-floats",
+      "requiredStickers": [
+        "pelican",
+        "ring",
+        "seal"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "gentle",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Pelican Floats",
+          "text": "Pelican stood on the rocks, looking at the water. He scooped up a beakful, and gulped. Seal popped up below. Pelican, can you swim? Pelican smiled. Watch, he said. Down he flapped, and sat on the water, light as a feather. He bobbed. He floated. He didn't sink one bit. How do you DO that? asked Seal. My feathers are full of air, said Pelican. Even my bones have air inside. So I float like a cork! Just then the rubber ring came bobbing past. It turned slowly round. Look! said Seal. You float just like the ring! And there they bobbed, side by side, Pelican and the ring, the two best floaters around.",
+          "audio": "audio/en-US/pelican-floats.m4a",
+          "effects": "audio/en-US/pelican-floats.effects.json"
+        },
+        "es-ES": {
+          "title": "Pelícano flota",
+          "text": "Pelícano estaba en las rocas, mirando el agua. Recogió un buen trago con el pico, y se lo tragó. Foca asomó por debajo. Pelícano, ¿tú sabes nadar? Pelícano sonrió. Mira, dijo. Bajó aleteando, y se sentó en el agua, ligero como una pluma. Se mecía. Flotaba. No se hundía ni un poquito. ¿Cómo lo HACES?, preguntó Foca. Mis plumas están llenas de aire, dijo Pelícano. Hasta mis huesos tienen aire dentro. ¡Por eso floto como un corcho! En ese momento pasó el flotador, meciéndose. Giró despacito. ¡Mira!, dijo Foca. ¡Flotas igual que el flotador! Y allí se quedaron, meciéndose uno al lado del otro, Pelícano y el flotador, los mejores flotadores de por aquí.",
+          "audio": "audio/es-ES/pelican-floats.m4a",
+          "effects": "audio/es-ES/pelican-floats.effects.json"
+        }
+      }
+    },
+    {
+      "id": "pelicans-pouch",
+      "requiredStickers": [
+        "pelican",
+        "seagull",
+        "ring"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "curiosity",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Pelican's Pouch",
+          "text": "Pelican stood at the edge of the water, with his big orange beak. Gull came flapping over. Pelican, why is your beak so BIG? It isn't just a beak, said Pelican. Underneath, there's a pouch, like a stretchy bag. Watch! He dipped it down and scooped up a whole pouchful of water. Then he tipped his head, and the water poured out at the sides. Splish, splash! Just then, the stripy rubber ring came bobbing in on a wave. Pelican scooped again. Up came the water… and the ring! It sat on his beak like a hat, and spun round and round. Gull laughed so much she squawked. Pelican laughed too. Well, said Pelican, the water always drains out. But I think the ring is staying.",
+          "audio": "audio/en-US/pelicans-pouch.m4a",
+          "effects": "audio/en-US/pelicans-pouch.effects.json"
+        },
+        "es-ES": {
+          "title": "El buche de Pelícano",
+          "text": "Pelícano estaba en la orilla, con su gran pico naranja. Gaviota llegó aleteando. Pelícano, ¿por qué tienes un pico tan GRANDE? No es solo un pico, dijo Pelícano. Debajo tengo una bolsa, que se estira como un saco. ¡Mira! Lo metió en el agua y sacó una bolsa entera llena de agua. Luego inclinó la cabeza, y el agua salió a chorros por los lados. ¡Chis, chas! En ese momento, el flotador de rayas llegó flotando con una ola. Pelícano volvió a recoger agua. Salió el agua… ¡y el flotador! Se le quedó en el pico como un sombrero, y daba vueltas y vueltas. Gaviota se rió tanto que graznó. Pelícano también se rió. Bueno, dijo Pelícano, el agua siempre se escurre. Pero me parece que el flotador se queda.",
+          "audio": "audio/es-ES/pelicans-pouch.m4a",
+          "effects": "audio/es-ES/pelicans-pouch.effects.json"
+        }
+      }
+    },
+    {
+      "id": "seal-warms-up",
+      "requiredStickers": [
+        "seal",
+        "seagull",
+        "pelican"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "sunny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Seal Warms Up",
+          "text": "Seal was swimming in the cool blue sea, swish, swish, swish. After a long swim, she flopped out onto the rocks, splosh, right into the sunshine. Ahhh. Gull came flapping down beside her. Gull squawked. Why are you lying about on the rocks, Seal? The sea is for swimming! Swimming makes me chilly, said Seal. So seals climb out to rest, and warm up in the sun. Try it! Gull tried it. Oh! It WAS warm. Pelican came gliding down too, and spread out his big white wings. Seal gave a happy little clap. And for a while, the rocks were the quietest, warmest, sleepiest place of all.",
+          "audio": "audio/en-US/seal-warms-up.m4a",
+          "effects": "audio/en-US/seal-warms-up.effects.json"
+        },
+        "es-ES": {
+          "title": "Foca entra en calor",
+          "text": "Foca nadaba por el mar azul y fresquito, fis, fis, fis. Después de nadar un buen rato, subió a las rocas de un salto, ¡chof!, justo al sol. Aaah. Gaviota bajó aleteando a su lado. Gaviota graznó. ¿Qué haces tumbada en las rocas, Foca? ¡El mar es para nadar! Nadar me da fresquito, dijo Foca. Por eso las focas salen a descansar y a calentarse al sol. ¡Pruébalo! Gaviota lo probó. ¡Anda! Se estaba calentito DE VERDAD. Pelícano bajó planeando también, y extendió sus grandes alas blancas. Foca dio una palmadita feliz. Y durante un rato, las rocas fueron el sitio más tranquilo, calentito y dormilón de todos.",
+          "audio": "audio/es-ES/seal-warms-up.m4a",
+          "effects": "audio/es-ES/seal-warms-up.effects.json"
+        }
+      }
+    },
+    {
+      "id": "seaweed-reaches-up",
+      "requiredStickers": [
+        "seaweed",
+        "shrimp",
+        "clam"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "morning",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Seaweed Reaches Up",
+          "text": "Morning sunshine poured into the rock pool. Seaweed woke up and stretched towards it. Shrimp watched, puzzled. Shells lie down. Pebbles lie down. Even Clam lies down on the bottom, all day long. Seaweed, how do you stand up in the water? Look closely, said Seaweed. See my little round balls? They're full of air, like tiny balloons. They lift me up, up, towards the sun. And she swayed up tall into the light. Shrimp twitched her feelers. Ooh, I want a balloon too! Clam opened up, sleepily, and closed again. I'll stay down here, thank you, she said. The bottom is very comfy. And the three friends spent the whole morning, one tall, one small, one snoozing, in the sun.",
+          "audio": "audio/en-US/seaweed-reaches-up.m4a",
+          "effects": "audio/en-US/seaweed-reaches-up.effects.json"
+        },
+        "es-ES": {
+          "title": "El alga que crece hacia arriba",
+          "text": "El sol de la mañana entraba en la charca. Alga se despertó y se estiró hacia él. Gamba la miraba, extrañada. Las conchas se tumban. Las piedras se tumban. Hasta Almeja se queda tumbada en el fondo todo el día. Alga, ¿cómo te quedas de pie en el agua? Fíjate bien, dijo Alga. ¿Ves mis bolitas redondas? Están llenas de aire, como globitos. Me suben, arriba, arriba, hacia el sol. Y se meció, bien alta, hacia la luz. Gamba movió las antenas. ¡Yo también quiero un globito! Almeja se abrió, medio dormida, y se volvió a cerrar. Yo me quedo aquí abajo, gracias, dijo. El fondo es muy cómodo. Y las tres amigas pasaron toda la mañana, una alta, una pequeña y una dormilona, al sol.",
+          "audio": "audio/es-ES/seaweed-reaches-up.m4a",
+          "effects": "audio/es-ES/seaweed-reaches-up.effects.json"
+        }
+      }
+    },
+    {
+      "id": "shade-for-everyone",
+      "requiredStickers": [
+        "umbrella",
+        "hermit-crab",
+        "sandpiper"
+      ],
+      "optionalStickers": [
+        "crab"
+      ],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "sunny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Shade for Everyone",
+          "text": "It was the hottest day of the summer. Hermit was so hot he hid right inside his shell. Phew. Then he peeked out… and saw the umbrella, red and white, with a cool patch of shade underneath. Ahh. Lovely. Along ran Sandpiper, panting. Hot, hot, hot! Hermit looked at the shade. It was HIS shade. He had found it first. Then he scooted over. There's room for two, he said. Then Crab came scuttling by, red and hot. Room for three! said Hermit. A little breeze came, and the umbrella turned round, fanning them all. And the shade, somehow, was big enough for everyone.",
+          "audio": "audio/en-US/shade-for-everyone.m4a",
+          "effects": "audio/en-US/shade-for-everyone.effects.json"
+        },
+        "es-ES": {
+          "title": "Sombra para todos",
+          "text": "Era el día más caluroso del verano. Cangrejo Ermitaño tenía tanto calor que se metió del todo en su concha. Uf. Luego se asomó… y vio la sombrilla, roja y blanca, con una sombra fresquita debajo. Aaah. Qué gusto. Llegó corriendo Correlimos, jadeando. ¡Qué calor, qué calor! Ermitaño miró la sombra. Era SU sombra. Él la había encontrado primero. Luego se hizo a un lado. Aquí cabemos dos, dijo. Después pasó Cangrejo correteando, rojo y acalorado. ¡Cabemos tres!, dijo Ermitaño. Llegó una brisita, y la sombrilla dio vueltas, abanicándolos a todos. Y la sombra, no se sabe cómo, alcanzó para todos.",
+          "audio": "audio/es-ES/shade-for-everyone.m4a",
+          "effects": "audio/es-ES/shade-for-everyone.effects.json"
+        }
+      }
+    },
+    {
+      "id": "slow-on-sand-fast-in-sea",
+      "requiredStickers": [
+        "turtle",
+        "surfer",
+        "pelican"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "friendship",
+        "race",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Slow on Sand, Fast in Sea",
+          "text": "Turtle was crawling across the sand. Flip… flop… ever so slowly. Nico came by with his yellow board. \"Turtle, you're SO slow!\" Turtle tucked her head in, and peeked out again, smiling. On land, I'm slow, she said. But in the water? Race you! \"You're on!\" Pelican landed on the rocks to watch. Ready, steady… GO! Nico paddled out and stood up on his board. Turtle slid into the water and WHOOSH! She flew through the waves like a bird through the sky. Pelican was so amazed he scooped up a beakful of water. By the time Nico rode a wave back in, Turtle was already waiting. \"Okay, Turtle. You're the fastest swimmer here!\"",
+          "audio": "audio/en-US/slow-on-sand-fast-in-sea.m4a",
+          "effects": "audio/en-US/slow-on-sand-fast-in-sea.effects.json"
+        },
+        "es-ES": {
+          "title": "Lenta en tierra, rápida nadando",
+          "text": "Tortuga cruzaba la arena arrastrándose. Flip… flop… despacito, despacito. Nico pasó con su tabla amarilla. «¡Tortuga, qué LENTA eres!» Tortuga escondió la cabeza y la volvió a asomar, sonriendo. En tierra soy lenta, dijo. ¿Pero en el agua? ¡Te echo una carrera! «¡Vale!» Pelícano se posó en las rocas para mirar. Preparados, listos… ¡YA! Nico remó y se puso de pie en su tabla. Tortuga se deslizó en el agua y ¡FIUUU! Volaba entre las olas como un pájaro por el cielo. Pelícano se quedó tan asombrado que recogió un buen trago de agua. Cuando Nico volvió cogiendo una ola hasta la arena, Tortuga ya lo estaba esperando. «Vale, Tortuga. ¡Eres la que nada más rápido de aquí!»",
+          "audio": "audio/es-ES/slow-on-sand-fast-in-sea.m4a",
+          "effects": "audio/es-ES/slow-on-sand-fast-in-sea.effects.json"
+        }
+      }
+    },
+    {
+      "id": "starfish-and-the-shooting-stars",
+      "requiredStickers": [
+        "starfish",
+        "turtle",
+        "seal"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "wonder"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Starfish and the Shooting Stars",
+          "text": "It was night on the beach, and the moon shone on the water. Starfish couldn't sleep. She was looking up. A star went whizzing across the sky! Then another! Look! My cousins! They're starfish too! Turtle came crawling up, slowly. Those are stars of the sky, little one. Far, far away. And you… you're a star of the sea. Starfish waved all five arms at the sky. Goodnight, cousins! Seal looked up from the rocks. Make a wish, said Seal. So they did, all three. Turtle tucked her head in. Seal closed her eyes. And Starfish, the littlest star of all, fell asleep under the stars of the sky.",
+          "audio": "audio/en-US/starfish-and-the-shooting-stars.m4a",
+          "effects": "audio/en-US/starfish-and-the-shooting-stars.effects.json"
+        },
+        "es-ES": {
+          "title": "Estrella y las estrellas fugaces",
+          "text": "Era de noche en la playa, y la luna brillaba sobre el agua. Estrella no podía dormir. Estaba mirando hacia arriba. ¡Una estrella cruzó el cielo, zas! ¡Y otra! ¡Mirad! ¡Mis primas! ¡Son estrellas de mar, como yo! Tortuga llegó arrastrándose, despacito. Esas son estrellas del cielo, pequeña. Están muy, muy lejos. Y tú… tú eres una estrella del mar. Estrella saludó al cielo con sus cinco brazos. ¡Buenas noches, primas! Foca levantó la vista desde las rocas. Pedid un deseo, dijo Foca. Y eso hicieron, las tres. Tortuga escondió la cabeza. Foca cerró los ojos. Y Estrella, la estrellita más pequeña de todas, se durmió bajo las estrellas del cielo.",
+          "audio": "audio/es-ES/starfish-and-the-shooting-stars.m4a",
+          "effects": "audio/es-ES/starfish-and-the-shooting-stars.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-ball-and-the-seal",
+      "requiredStickers": [
+        "ball",
+        "dog",
+        "seal"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "friendship"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Ball and the Seal",
+          "text": "Dog had a ball, red and yellow and blue and white, and he loved it more than anything. He nudged it with his nose. Boing! Away it rolled, bouncing down to the water's edge. Come back, ball! Dog raced after it. SPLASH! A wave splashed him from his nose to his tail. Dog shook himself, shake, shake, shake! The ball sat bobbing in the foam. Then a grey head popped up. It was Seal. She gave the ball a push with her nose, and it rolled right back to Dog. It spun round, and stopped at his paws. Dog gave it a nudge back. Seal pushed it back again. She clapped her flippers. Arf! And that's how Dog found out that seals are very, very good at ball.",
+          "audio": "audio/en-US/the-ball-and-the-seal.m4a",
+          "effects": "audio/en-US/the-ball-and-the-seal.effects.json"
+        },
+        "es-ES": {
+          "title": "La pelota y la foca",
+          "text": "Perro tenía una pelota, roja, amarilla, azul y blanca, y la quería más que a nada. Le dio un empujoncito con el hocico. ¡Boing! Y allá se fue, botando hasta la orilla. ¡Vuelve, pelota! Perro salió corriendo detrás. ¡CHOF! Una ola lo mojó del hocico a la cola. Perro se sacudió, ¡sacude, sacude, sacude! La pelota se mecía en la espuma. Entonces asomó una cabeza gris. Era Foca. Empujó la pelota con el hocico, y la pelota rodó hasta Perro. Dio vueltas y se paró junto a sus patas. Perro se la devolvió de un empujoncito. Foca se la devolvió otra vez. Dio palmadas con las aletas. ¡Arf! Y así descubrió Perro que las focas juegan a la pelota muy, muy bien.",
+          "audio": "audio/es-ES/the-ball-and-the-seal.m4a",
+          "effects": "audio/es-ES/the-ball-and-the-seal.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-ball-goes-for-a-swim",
+      "requiredStickers": [
+        "ball",
+        "ring",
+        "bottle"
+      ],
+      "optionalStickers": [
+        "pelican"
+      ],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "weather"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Ball Goes for a Swim",
+          "text": "The ball sat all cosy and warm, red and yellow and blue and white, watching the rubber ring and the bottle bobbing out on the water. Bob, bob, bob. It looked like fun. Then, whoosh! A puff of wind came along, and the ball went rolling, bump, bump, bump, all the way to the water's edge. SPLASH! It bobbed in the foam. The ring turned round to say hello. The bottle popped its cork, as if to cheer. Three floaters, bobbing together. Bob, bob, bob! Up on the rocks, Pelican scooped a beakful of water. Then the wind turned, and rolled the ball all the way back again. It spun round, and stopped, just where it had started. A little wet. A little sandy. And very, very happy.",
+          "audio": "audio/en-US/the-ball-goes-for-a-swim.m4a",
+          "effects": "audio/en-US/the-ball-goes-for-a-swim.effects.json"
+        },
+        "es-ES": {
+          "title": "La pelota se va a nadar",
+          "text": "La pelota estaba tan a gusto, roja, amarilla, azul y blanca, mirando cómo el flotador y la botella se mecían en el agua. Arriba, abajo, arriba. Parecía divertido. Entonces, ¡fiuuu! Llegó un soplo de viento, y la pelota salió rodando, bum, bum, bum, hasta el borde del agua. ¡CHOF! Se quedó meciéndose en la espuma. El flotador se giró para saludarla. La botella hizo saltar su corcho, como para aplaudir. Tres flotadores, meciéndose juntos. ¡Arriba, abajo, arriba! En las rocas, Pelícano recogió un buen trago de agua. Luego el viento cambió, y llevó la pelota rodando de vuelta. Dio vueltas y se paró, justo donde había empezado. Un poco mojada. Un poco llena de arena. Y muy, muy contenta.",
+          "audio": "audio/es-ES/the-ball-goes-for-a-swim.m4a",
+          "effects": "audio/es-ES/the-ball-goes-for-a-swim.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-beach-falls-asleep",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Beach Falls Asleep",
+          "text": "The sun is going down over the bay. The sky turns orange, then pink, then gold. The waves slow down. Swish… swish… Everyone has had a big, busy day. So much digging! So much splashing! So much running up and down! Now the sand is cool. The shells are quiet. Night comes softly, and the moon rises over the water. A little shiver… a little yawn… And one by one, everyone closes their eyes. Across the bay, the old lighthouse keeps watch all night long. Sleep well, beach. See you in the morning.",
+          "audio": "audio/en-US/the-beach-falls-asleep.m4a",
+          "effects": "audio/en-US/the-beach-falls-asleep.effects.json"
+        },
+        "es-ES": {
+          "title": "La playa se duerme",
+          "text": "El sol se esconde sobre la bahía. El cielo se pone naranja, luego rosa, luego dorado. Las olas van más despacio. Chas… chas… Todos han tenido un día grande y movido. ¡Cuánto cavar! ¡Cuánto chapotear! ¡Cuánto correr de aquí para allá! Ahora la arena está fresquita. Las conchas, calladas. La noche llega despacito, y la luna sale sobre el agua. Un escalofrío… un bostezo… Y uno a uno, todos cierran los ojos. Al otro lado de la bahía, el viejo faro vigila toda la noche. Que duermas bien, playa. Hasta mañana.",
+          "audio": "audio/es-ES/the-beach-falls-asleep.m4a",
+          "effects": "audio/es-ES/the-beach-falls-asleep.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-boat-comes-home",
+      "requiredStickers": [
+        "fishing-boat",
+        "seagull",
+        "seal"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "gentle",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Boat Comes Home",
+          "text": "The sun was going down, golden and pink. Seal sat on the rocks, looking out at the water. Her friend was late. Then, far away, she saw a white shape flying round and round. It was Gull! Whenever a boat goes fishing, the gulls follow it home, hoping for a snack. So if Gull was here… Chug, chug, chug. Here came the fishing boat, blue and white, with Gull flying right behind. Seal clapped her flippers. Arf! The boat hauled up its net, all wet and dripping, and rocked gently. Gull came down to rest. The sky turned deep blue. The moon came up. Gull tucked her head under her wing. Seal closed her eyes. And the fishing boat, home at last, rocked gently in the dark. Swish… swash…",
+          "audio": "audio/en-US/the-boat-comes-home.m4a",
+          "effects": "audio/en-US/the-boat-comes-home.effects.json"
+        },
+        "es-ES": {
+          "title": "La barca vuelve a casa",
+          "text": "El sol se escondía, dorado y rosa. Foca estaba en las rocas, mirando el agua. Su amiga llegaba tarde. Entonces, a lo lejos, vio una figura blanca que volaba en círculos. ¡Era Gaviota! Cuando un barco sale a pescar, las gaviotas lo siguen hasta casa, por si cae algo de comer. Así que si Gaviota estaba aquí… Chuc, chuc, chuc. Ahí llegaba la barca de pesca, azul y blanca, con Gaviota volando justo detrás. Foca dio palmadas con las aletas. ¡Arf! La barca subió su red, chorreando, y se meció despacio. Gaviota bajó a descansar. El cielo se puso azul oscuro. Salió la luna. Gaviota metió la cabeza bajo el ala. Foca cerró los ojos. Y la barca, por fin en casa, se mecía despacito en la oscuridad. Chis… chas…",
+          "audio": "audio/es-ES/the-boat-comes-home.m4a",
+          "effects": "audio/es-ES/the-boat-comes-home.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-boat-race",
+      "requiredStickers": [
+        "sailboat",
+        "fishing-boat",
+        "surfer"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "friendship",
+        "race"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Boat Race",
+          "text": "Nico stood with his board, looking out at the water. Here came the sailboat. And here came the fishing boat. \"A race! First one to the lighthouse side wins! Ready, steady… GO!\" Chug, chug, chug! Off went the fishing boat, slow and steady. But the sailboat just sat there. No wind. Its sails hung down. \"Come on, sailboat!\" Then, WHOOSH, the wind came. The sails filled up, round and full, and the sailboat zoomed across the water! Chug, chug… whoosh, whoosh… side by side… The fishing boat hauled up its net, to slow down and wait for its friend. And they reached the far side… exactly together. \"A tie! Both of you win!\" Nico waved his board in the air.",
+          "audio": "audio/en-US/the-boat-race.m4a",
+          "effects": "audio/en-US/the-boat-race.effects.json"
+        },
+        "es-ES": {
+          "title": "La carrera de barcos",
+          "text": "Nico estaba con su tabla, mirando el agua. Por ahí llegaba el velero. Y por ahí llegaba la barca de pesca. «¡Una carrera! ¡Gana el primero que llegue al lado del faro! Preparados, listos… ¡YA!» ¡Chuc, chuc, chuc! Allá fue la barca de pesca, despacio pero sin parar. Pero el velero no se movía. Sin viento. Con las velas colgando. «¡Vamos, velero!» Y entonces, FIUUU, llegó el viento. Las velas se llenaron, redondas y gordas, ¡y el velero salió disparado por el agua! Chuc, chuc… fiu, fiu… uno al lado del otro… La barca subió su red, para ir más despacio y esperar a su amigo. Y llegaron al otro lado… exactamente a la vez. «¡Empate! ¡Ganáis los dos!» Nico agitó su tabla en el aire.",
+          "audio": "audio/es-ES/the-boat-race.m4a",
+          "effects": "audio/es-ES/the-boat-race.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-bottle-and-the-pelican",
+      "requiredStickers": [
+        "bottle",
+        "pelican",
+        "seagull"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "surprise"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Bottle and the Pelican",
+          "text": "Pelican was standing at the water's edge, looking for a snack. Gull watched, perched up high. What will he catch? Something green came bobbing in. Scoop! went Pelican's big pouch. Out drained the water… and there in his beak was a bottle! Gull squawked with laughter. That's not a fish! Pelican tipped it this way and that. POP! went the cork, and out peeked a rolled-up note. Pelican opened it with his beak. It was a drawing… of a big white bird, with a big orange beak. It's ME! said Pelican. Somebody far away drew a pelican! Then you're famous! said Gull. And Pelican stood up tall, proud as can be.",
+          "audio": "audio/en-US/the-bottle-and-the-pelican.m4a",
+          "effects": "audio/en-US/the-bottle-and-the-pelican.effects.json"
+        },
+        "es-ES": {
+          "title": "La botella y el pelícano",
+          "text": "Pelícano estaba en la orilla, buscando algo de comer. Gaviota lo miraba desde arriba. ¿Qué pescará? Algo verde llegó flotando. ¡Zas!, hizo el gran buche de Pelícano. Se escurrió el agua… ¡y en su pico había una botella! Gaviota graznó de la risa. ¡Eso no es un pez! Pelícano la giró de un lado a otro. ¡POP!, hizo el corcho, y asomó una nota enrollada. Pelícano la abrió con el pico. Era un dibujo… de un pájaro grande y blanco, con un gran pico naranja. ¡Soy YO!, dijo Pelícano. ¡Alguien muy lejos ha dibujado un pelícano! ¡Entonces eres famoso!, dijo Gaviota. Y Pelícano se puso muy derecho, orgullosísimo.",
+          "audio": "audio/es-ES/the-bottle-and-the-pelican.m4a",
+          "effects": "audio/es-ES/the-bottle-and-the-pelican.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-castle-that-stood",
+      "requiredStickers": [
+        "castle",
+        "bucket",
+        "surfer"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "patience",
+        "building",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Castle That Stood",
+          "text": "Nico wanted to build something amazing. He filled his bucket with soft, dry sand and patted it down. Then he tipped it over… whoosh. It crumbled into a heap. \"Oh no.\" He tried again. Crumble. And again. Crumble! Nico went down to the water to think. A little wave washed over his toes, and where it had been, the ground was dark and firm. \"Wet sand sticks together! That's it!\" He carried wet sand back up the beach. Pat, pat, pat. He tipped it over. It STAYED. One tower. Two towers. Three! And there stood his sand castle, with a little red flag on top. The flag fluttered in the breeze. \"The best sand castle ever.\"",
+          "audio": "audio/en-US/the-castle-that-stood.m4a",
+          "effects": "audio/en-US/the-castle-that-stood.effects.json"
+        },
+        "es-ES": {
+          "title": "El castillo que aguantó",
+          "text": "Nico quería construir algo increíble. Llenó su cubo de arena suave y seca, y la aplastó bien. Luego le dio la vuelta… fsss. Se deshizo en un montón. «Oh, no.» Lo intentó otra vez. Se deshizo. Y otra. ¡Se deshizo! Nico bajó hasta el agua para pensar. Una ola pequeñita le mojó los pies, y donde había pasado, el suelo estaba oscuro y firme. «¡La arena mojada se pega! ¡Eso es!» Subió arena mojada playa arriba. Plas, plas, plas. Le dio la vuelta. Y AGUANTÓ. Una torre. Dos torres. ¡Tres! Y allí estaba su castillo de arena, con una banderita roja arriba. La bandera ondeaba con la brisa. «El mejor castillo del mundo.»",
+          "audio": "audio/es-ES/the-castle-that-stood.m4a",
+          "effects": "audio/es-ES/the-castle-that-stood.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-clams-secret",
+      "requiredStickers": [
+        "clam",
+        "crab",
+        "urchin"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "patience",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Clam's Secret",
+          "text": "Clam lived at the bottom of the rock pool, and she had a secret. Crab scuttled over. What's inside your shell, Clam? Something special, said Clam. But you have to wait. Crab waited. One second. Two seconds. Is it ready YET? Urchin rolled over, slowly. Some things take a long, long time, Crab. Like growing. At last, Clam opened up wide. There, inside, was a little round pearl, softly shining. It started as a tiny speck, said Clam. And very slowly, layer by layer, it grew. For years and years. Crab clicked his claws and danced. And for once, Crab didn't say a word. He just looked, for a long, long time.",
+          "audio": "audio/en-US/the-clams-secret.m4a",
+          "effects": "audio/en-US/the-clams-secret.effects.json"
+        },
+        "es-ES": {
+          "title": "El secreto de Almeja",
+          "text": "Almeja vivía en el fondo de la charca, y tenía un secreto. Cangrejo se acercó correteando. ¿Qué guardas en tu concha, Almeja? Algo especial, dijo Almeja. Pero tienes que esperar. Cangrejo esperó. Un segundo. Dos segundos. ¿YA está? Erizo se dio la vuelta, despacito. Algunas cosas tardan mucho, mucho tiempo, Cangrejo. Como crecer. Por fin, Almeja se abrió de par en par. Allí dentro había una perla pequeña y redonda, brillando suavecito. Empezó siendo una motita, dijo Almeja. Y muy despacio, capa a capa, fue creciendo. Durante años y años. Cangrejo chocó las pinzas y bailó. Y por una vez, Cangrejo no dijo ni una palabra. Solo miró, durante mucho, mucho rato.",
+          "audio": "audio/es-ES/the-clams-secret.m4a",
+          "effects": "audio/es-ES/the-clams-secret.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-curious-sandpiper",
+      "requiredStickers": [
+        "sandpiper",
+        "bottle",
+        "ball"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Curious Sandpiper",
+          "text": "Sandpiper ran along the shore, looking for something new. What's this? A green glass bottle, rolling in the foam. He ran over. Tap, tap went his beak. POP! went the cork. Sandpiper jumped right up in the air! Then he spotted something else: a big round thing, red and yellow and blue and white. He ran over. Tap, tap. And away it rolled! Sandpiper chased it, run, run, run, until it spun to a stop. He gave it one tiny peck. Nothing happened. Good, said Sandpiper. Something that stays still. And off he went to look for tiny things, where everything was much, much smaller.",
+          "audio": "audio/en-US/the-curious-sandpiper.m4a",
+          "effects": "audio/en-US/the-curious-sandpiper.effects.json"
+        },
+        "es-ES": {
+          "title": "El correlimos curioso",
+          "text": "Correlimos corría por la orilla, buscando algo nuevo. ¿Y esto qué es? Una botella de cristal verde, rodando entre la espuma. Fue corriendo. Toc, toc, hizo su pico. ¡POP!, hizo el corcho. ¡Correlimos dio un salto en el aire! Luego vio otra cosa: una cosa grande y redonda, roja, amarilla, azul y blanca. Fue corriendo. Toc, toc. ¡Y se fue rodando! Correlimos corrió detrás, corre, corre, corre, hasta que dio unas vueltas y se paró. Le dio un picotazo diminuto. No pasó nada. Bien, dijo Correlimos. Algo que se queda quieto. Y se fue a buscar cositas pequeñas, donde todo era mucho, mucho más pequeño.",
+          "audio": "audio/es-ES/the-curious-sandpiper.m4a",
+          "effects": "audio/es-ES/the-curious-sandpiper.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-foggy-morning",
+      "requiredStickers": [
+        "fishing-boat",
+        "bottle",
+        "sandpiper"
+      ],
+      "optionalStickers": [
+        "seagull"
+      ],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "weather"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Foggy Morning",
+          "text": "One morning, the beach was hidden in fog, soft and white and grey. Sandpiper peered out. He couldn't see the water. He couldn't see the lighthouse. Where has everything gone? Chug, chug, chug. Something big was out there. A dark shape came slowly through the fog… the fishing boat, coming home. And bobbing along beside it, a little green bottle. A wave rolled it right up to the edge. Sandpiper ran over and gave it a peck. Pop! went the cork. Then, slowly, the sun broke through, and the fog melted away. The fishing boat hauled up its net, and Gull flew out to say good morning. Sandpiper pecked happily at the ground. Everything was right where it had been, all along.",
+          "audio": "audio/en-US/the-foggy-morning.m4a",
+          "effects": "audio/en-US/the-foggy-morning.effects.json"
+        },
+        "es-ES": {
+          "title": "La mañana de niebla",
+          "text": "Una mañana, la playa amaneció escondida en la niebla, suave, blanca y gris. Correlimos se asomó. No veía el agua. No veía el faro. ¿Dónde se ha ido todo? Chuc, chuc, chuc. Algo grande había ahí fuera. Una sombra se acercaba despacio entre la niebla… la barca de pesca, que volvía a casa. Y meciéndose a su lado, una botellita verde. Una ola la llevó rodando hasta el borde. Correlimos fue corriendo y le dio un picotazo. ¡Pop!, hizo el corcho. Entonces, poco a poco, salió el sol, y la niebla se deshizo. La barca subió su red, y Gaviota salió volando a darle los buenos días. Correlimos picoteó el suelo, contento. Todo estaba en su sitio, como siempre.",
+          "audio": "audio/es-ES/the-foggy-morning.m4a",
+          "effects": "audio/es-ES/the-foggy-morning.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-gull-on-the-castle",
+      "requiredStickers": [
+        "castle",
+        "seagull",
+        "bucket"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Gull on the Castle",
+          "text": "There stood a sand castle, with three towers and a little red flag. The flag fluttered in the breeze. Gull saw it from the sky. What a perfect place to sit! Down she swooped, onto the tallest tower. Wobble, wobble. Oh dear… The tower began to crumble. Gull squawked! Then the bucket and spade got busy. Scoop! Pat! Scoop! Pat! More sand for the tower, patted nice and firm. The tower stood straight and strong again. Gull fluffed up her feathers. From the top of the tallest tower, she could see far across the water. And from that day on, Gull was the guard of the sand castle. The very best guard. And the loudest.",
+          "audio": "audio/en-US/the-gull-on-the-castle.m4a",
+          "effects": "audio/en-US/the-gull-on-the-castle.effects.json"
+        },
+        "es-ES": {
+          "title": "La gaviota del castillo",
+          "text": "Allí estaba un castillo de arena, con tres torres y una banderita roja. La bandera ondeaba con la brisa. Gaviota lo vio desde el cielo. ¡Qué sitio perfecto para sentarse! Bajó en picado, hasta la torre más alta. Tambaleo, tambaleo. Ay, madre… La torre empezó a desmoronarse. ¡Gaviota graznó! Entonces el cubo y la pala se pusieron manos a la obra. ¡Zas! ¡Plas! ¡Zas! ¡Plas! Más arena para la torre, bien apretada. La torre volvió a estar derecha y fuerte. Gaviota ahuecó las plumas. Desde lo alto de la torre más alta, veía muy lejos sobre el agua. Y desde aquel día, Gaviota fue la guardiana del castillo. La mejor guardiana. Y la que más gritaba.",
+          "audio": "audio/es-ES/the-gull-on-the-castle.m4a",
+          "effects": "audio/es-ES/the-gull-on-the-castle.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-little-fish-and-the-big-sea",
+      "requiredStickers": [
+        "fish",
+        "seaweed",
+        "turtle"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "home"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Little Fish and the Big Sea",
+          "text": "In the rock pool, beside the swaying fronds of Seaweed, lived Little Fish, yellow with two blue stripes. Seaweed swayed, slow and gentle. The pool was cosy. But Little Fish kept wondering: what's out there? One day a wave came sloshing in over the rocks. And when it went out again, Little Fish went with it! The sea was ENORMOUS. Blue on every side, and no edges at all. He felt very, very small. Then a kind face came gliding up. It was Turtle. Far from home, little one? I'll swim with you. She swam beside him, slow and steady, until he could see the rocks. Then home he swam. Seaweed waved her fronds. Welcome back! Little Fish wiggled his tail and fluttered his fins. The sea was wonderful. But the pool was home.",
+          "audio": "audio/en-US/the-little-fish-and-the-big-sea.m4a",
+          "effects": "audio/en-US/the-little-fish-and-the-big-sea.effects.json"
+        },
+        "es-ES": {
+          "title": "El pececito y el mar grande",
+          "text": "En la charca, junto a las frondas de Alga, vivía Pececito, amarillo con dos rayas azules. Alga se mecía, despacio y suave. La charca era acogedora. Pero Pececito no paraba de preguntarse: ¿qué habrá ahí fuera? Un día, una ola entró chapoteando por encima de las rocas. Y cuando volvió a salir, ¡Pececito se fue con ella! El mar era ENORME. Azul por todas partes, y sin bordes por ningún lado. Se sintió muy, muy pequeño. Entonces se acercó una cara amable, deslizándose. Era Tortuga. ¿Tan lejos de casa, pequeño? Yo nado contigo. Nadó a su lado, despacio y sin parar, hasta que se vieron las rocas. Y entonces Pececito volvió nadando a casa. Alga movió sus frondas. ¡Bienvenido! Pececito meneó la cola y agitó las aletas. El mar era maravilloso. Pero la charca era su casa.",
+          "audio": "audio/es-ES/the-little-fish-and-the-big-sea.m4a",
+          "effects": "audio/es-ES/the-little-fish-and-the-big-sea.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-net-full-of-surprises",
+      "requiredStickers": [
+        "fishing-boat",
+        "seaweed",
+        "seagull"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Net Full of Surprises",
+          "text": "It was a grey, cloudy morning. Soft clouds drifted over the bay. Chug, chug… the fishing boat came out across the water. Gull flew after it, hoping for something tasty. The boat stopped. Up came the net, dripping and heavy. Gull squawked: what's in it? What's in it? Weed. Just a big, wet, green tangle of weed. Not far away, Seaweed giggled. Oh, look! That's my cousin! She swayed hello. Gull laughed so much she forgot all about being hungry. The fishing boat let the weed slip gently back into the water… and Seaweed waved until it was gone.",
+          "audio": "audio/en-US/the-net-full-of-surprises.m4a",
+          "effects": "audio/en-US/the-net-full-of-surprises.effects.json"
+        },
+        "es-ES": {
+          "title": "La red llena de sorpresas",
+          "text": "Era una mañana gris y nublada. Unas nubes suaves pasaban sobre la bahía. Chuc, chuc… la barca de pesca salió por el agua. Gaviota voló detrás, esperando algo rico. La barca se paró. Subió la red, chorreando y pesada. Gaviota graznó: ¿qué hay? ¿Qué hay? Algas. Solo una gran maraña verde de algas. No muy lejos, Alga se rió. ¡Anda, mira! ¡Son mis primas! Se meció para saludar. Gaviota se rió tanto que se le olvidó el hambre. La barca devolvió las algas al agua con cuidado… y Alga las saludó hasta que se perdieron de vista.",
+          "audio": "audio/es-ES/the-net-full-of-surprises.m4a",
+          "effects": "audio/es-ES/the-net-full-of-surprises.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-perfect-wave",
+      "requiredStickers": [
+        "surfer",
+        "sailboat",
+        "fishing-boat"
+      ],
+      "optionalStickers": [
+        "dog"
+      ],
+      "weight": 1,
+      "tags": [
+        "patience",
+        "sunny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Perfect Wave",
+          "text": "Nico wanted to catch the perfect wave. He paddled out and sat on his board, waiting. Up and down. Up and down. A little wave came. \"Too small.\" Another came. \"Too bumpy.\" The sailboat glided past, its sails puffing round and full. The fishing boat chugged by, and hauled up its net. \"Where's MY wave?\" Dog barked from far away, as if to say: be patient. So Nico waited. And watched. And waited. Then, far out, a wave began to rise, smooth and blue and just right. Nico stood up. WHOOSH! He rode it all the way in, smooth as silk. He waved his board at the boats. \"THAT was the perfect wave!\"",
+          "audio": "audio/en-US/the-perfect-wave.m4a",
+          "effects": "audio/en-US/the-perfect-wave.effects.json"
+        },
+        "es-ES": {
+          "title": "La ola perfecta",
+          "text": "Nico quería coger la ola perfecta. Remó mar adentro y se sentó en su tabla, esperando. Arriba y abajo. Arriba y abajo. Llegó una ola pequeña. «Demasiado pequeña.» Llegó otra. «Demasiado movida.» El velero pasó deslizándose, con las velas redondas y llenas. La barca de pesca pasó haciendo chuc, chuc, y subió su red. «¿Dónde está MI ola?» Perro ladró desde lejos, como diciendo: ten paciencia. Así que Nico esperó. Y miró. Y esperó. Entonces, a lo lejos, empezó a levantarse una ola, suave, azul y perfecta. Nico se puso de pie. ¡FIUUU! La cabalgó hasta el final, suave como la seda. Saludó a los barcos con la tabla. «¡ESA sí que era la ola perfecta!»",
+          "audio": "audio/es-ES/the-perfect-wave.m4a",
+          "effects": "audio/es-ES/the-perfect-wave.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-pool-party",
+      "requiredStickers": [
+        "crab",
+        "octopus",
+        "shrimp",
+        "starfish"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "party",
+        "music"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Pool Party",
+          "text": "It was Starfish's birthday, and everyone came to the pool for a party! Crab brought the music. Click-clack, click-clack went his claws. Octopus brought the dancing. With eight arms, he could dance with EVERYONE at once! And Shrimp brought… nothing at all. I didn't bring a present, she whispered. Starfish waved all five arms. You're here, said Starfish. That's the best present. So Shrimp twirled, round and round, the twirliest dancer of all. Hooray! Crab clicked and danced. Octopus hugged everyone at once. And Starfish had the happiest birthday a starfish ever had.",
+          "audio": "audio/en-US/the-pool-party.m4a",
+          "effects": "audio/en-US/the-pool-party.effects.json"
+        },
+        "es-ES": {
+          "title": "La fiesta de la charca",
+          "text": "¡Era el cumpleaños de Estrella, y todos fueron a la charca para hacer una fiesta! Cangrejo trajo la música. Clic-clac, clic-clac, hacían sus pinzas. Pulpo trajo el baile. ¡Con ocho brazos podía bailar con TODOS a la vez! Y Gamba trajo… nada. No he traído regalo, susurró. Estrella movió sus cinco brazos. Has venido, dijo Estrella. Ese es el mejor regalo. Así que Gamba dio vueltas y más vueltas, la bailarina más giratoria de todas. ¡Hurra! Cangrejo chocó las pinzas y bailó. Pulpo abrazó a todos a la vez. Y Estrella tuvo el cumpleaños más feliz que ha tenido nunca una estrella.",
+          "audio": "audio/es-ES/the-pool-party.m4a",
+          "effects": "audio/es-ES/the-pool-party.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-prickly-hug",
+      "requiredStickers": [
+        "urchin",
+        "octopus",
+        "starfish"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "friendship"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Prickly Hug",
+          "text": "Down in the rock pool lived Urchin, round and purple and covered in spines. More than anything, Urchin wanted a hug. But everyone looked at his spines and said, Ooh, prickly! Starfish waved at him from a distance. Waving is nice. But it isn't a hug. Then Octopus came swimming by. Why so sad, Urchin? I'm too prickly to hug, said Urchin. Octopus looked closer. Urchin gave his spines a wiggle. They were soft and round at the tips, like a paintbrush. Not prickly at all, said Octopus. And I've got eight arms. That's plenty of hugging. So he swam right over and wrapped Urchin up in all eight curly arms. Starfish came cartwheeling to join in. Three friends, one big, squishy hug.",
+          "audio": "audio/en-US/the-prickly-hug.m4a",
+          "effects": "audio/en-US/the-prickly-hug.effects.json"
+        },
+        "es-ES": {
+          "title": "El abrazo que pinchaba",
+          "text": "En la charca vivía Erizo, redondo, morado y cubierto de pinchos. Lo que más quería Erizo era un abrazo. Pero todos miraban sus pinchos y decían: ¡Uy, cómo pincha! Estrella lo saludaba de lejos. Saludar está bien. Pero no es un abrazo. Entonces llegó nadando Pulpo. ¿Por qué estás triste, Erizo? Porque pincho demasiado para que me abracen, dijo Erizo. Pulpo miró de cerca. Erizo meneó sus pinchos. Eran suaves y redondos en la punta, como un pincel. No pinchas nada, dijo Pulpo. Y yo tengo ocho brazos. Eso es mucho abrazo. Así que nadó hasta él y lo envolvió con sus ocho brazos rizados. Estrella llegó dando volteretas para unirse. Tres amigos, un abrazo enorme y blandito.",
+          "audio": "audio/es-ES/the-prickly-hug.m4a",
+          "effects": "audio/es-ES/the-prickly-hug.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-quietest-friends",
+      "requiredStickers": [
+        "urchin",
+        "clam",
+        "seaweed"
+      ],
+      "optionalStickers": [
+        "starfish"
+      ],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "gentle"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Quietest Friends",
+          "text": "The sun was going down over the rock pool, gold and pink. Urchin yawned a little purple yawn. He wiggled his soft spines, one last wiggle. Goodnight, Urchin, said Clam. She opened up wide, showed her pearl to the evening sky, and closed again, snug and tight. Seaweed swayed, slow… slow… Night came softly. The moon looked down into the water. Starfish waved one sleepy arm. Goodnight, everyone. Urchin closed his eyes. Clam closed hers. And Seaweed leaned over her quiet little friends, gentle as a blanket. Shhh. The rock pool is sleeping. Goodnight.",
+          "audio": "audio/en-US/the-quietest-friends.m4a",
+          "effects": "audio/en-US/the-quietest-friends.effects.json"
+        },
+        "es-ES": {
+          "title": "Los amigos más callados",
+          "text": "El sol se escondía sobre la charca, dorado y rosa. Erizo bostezó un bostezo pequeñito y morado. Meneó sus pinchos suaves, un último meneo. Buenas noches, Erizo, dijo Almeja. Se abrió de par en par, enseñó su perla al cielo de la tarde, y se volvió a cerrar, bien calentita. Alga se mecía, despacio… despacio… La noche llegó despacito. La luna se asomó al agua. Estrella movió un brazo dormilón. Buenas noches a todos. Erizo cerró los ojos. Almeja cerró los suyos. Y Alga se inclinó sobre sus amigos callados, suave como una manta. Chist. La charca está dormida. Buenas noches.",
+          "audio": "audio/es-ES/the-quietest-friends.m4a",
+          "effects": "audio/es-ES/the-quietest-friends.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-rainy-picnic",
+      "requiredStickers": [
+        "girl",
+        "dog",
+        "umbrella"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "weather",
+        "funny"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Rainy Picnic",
+          "text": "Lola and Dog were having a picnic on the sand. Then… plip. Plop. Pitter-patter! Rain! \"Quick, Dog! Under the umbrella!\" They squeezed in under the big red-and-white umbrella. Tap, tap, tap went the rain on top. Cosy! But Dog couldn't sit still. Out he dashed into the rain, round and round. Then back he came, dripping wet, and SHOOK, right next to Lola. \"Dog! Now I'm wetter than the rain!\" Then the rain stopped. The umbrella gave a little spin, flicking off the last drops. And there, over the bay, was a rainbow. \"Worth getting wet for.\"",
+          "audio": "audio/en-US/the-rainy-picnic.m4a",
+          "effects": "audio/en-US/the-rainy-picnic.effects.json"
+        },
+        "es-ES": {
+          "title": "El picnic con lluvia",
+          "text": "Lola y Perro estaban de picnic en la arena. Entonces… plic. Ploc. ¡Tip-tap! ¡Lluvia! «¡Rápido, Perro! ¡Debajo de la sombrilla!» Se apretujaron bajo la gran sombrilla roja y blanca. Tac, tac, tac, hacía la lluvia encima. ¡Qué a gustito! Pero Perro no podía estarse quieto. Salió corriendo bajo la lluvia, vueltas y más vueltas. Luego volvió, chorreando, y se SACUDIÓ justo al lado de Lola. «¡Perro! ¡Ahora estoy más mojada que la lluvia!» Luego dejó de llover. La sombrilla dio una vueltecita, sacudiéndose las últimas gotas. Y allí, sobre la bahía, apareció un arcoíris. «Ha merecido la pena mojarse.»",
+          "audio": "audio/es-ES/the-rainy-picnic.m4a",
+          "effects": "audio/es-ES/the-rainy-picnic.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-seal-who-wanted-to-surf",
+      "requiredStickers": [
+        "seal",
+        "surfer",
+        "ring"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "friendship"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Seal Who Wanted to Surf",
+          "text": "Nico grabbed his board and paddled out. Whoosh! Up he stood, riding a wave. Seal watched from the rocks. She clapped her flippers. Arf! She wanted to surf too! The rubber ring came bobbing by. Seal swam over to try riding it. The ring spun round, and round, and round… and SPLOSH! Off slid Seal. Nico called from his board. \"Seal! You don't need a board. You can surf all by yourself!\" So Seal tried. She stretched out long and smooth, and when the next wave came… she rode it, whoosh, like a grey, whiskery surfboard! Side by side, they rode the wave all the way in. Nico waved his board in the air. \"Again?\" Arf, arf!",
+          "audio": "audio/en-US/the-seal-who-wanted-to-surf.m4a",
+          "effects": "audio/en-US/the-seal-who-wanted-to-surf.effects.json"
+        },
+        "es-ES": {
+          "title": "La foca que quería hacer surf",
+          "text": "Nico cogió su tabla y remó mar adentro. ¡Fiuuu! Se puso de pie sobre una ola. Foca lo miraba desde las rocas. Dio palmadas con las aletas. ¡Arf! ¡Ella también quería hacer surf! El flotador pasó meciéndose. Foca nadó hasta él para probar a subirse. El flotador dio vueltas, y vueltas, y vueltas… y ¡CHOF! Foca resbaló al agua. Nico la llamó desde su tabla. «¡Foca! No te hace falta tabla. ¡Tú puedes surfear sola!» Así que Foca lo intentó. Se estiró, larga y suave, y cuando llegó la siguiente ola… ¡la cabalgó, fiuuu, como una tabla de surf gris y con bigotes! Juntos, cabalgaron la ola hasta la orilla. Nico agitó su tabla en el aire. «¿Otra vez?» ¡Arf, arf!",
+          "audio": "audio/es-ES/the-seal-who-wanted-to-surf.m4a",
+          "effects": "audio/es-ES/the-seal-who-wanted-to-surf.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-slow-race",
+      "requiredStickers": [
+        "hermit-crab",
+        "turtle",
+        "sandpiper"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "race"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Slow Race",
+          "text": "A race to the rock pool! Sandpiper hopped from foot to foot. I'm the fastest! Hermit Crab sighed. I'm very slow. And I'm… even… slower, said Turtle. Ready, steady… GO! Zip! Off ran Sandpiper. Hermit Crab and Turtle set off, step… by step… But halfway there, Sandpiper spotted something tasty. Peck, peck, peck! Then something else. Peck, peck! Hermit Crab and Turtle just kept going, chatting all the way. And who reached the pool first? Hermit Crab and Turtle, together! Hermit Crab was so surprised he popped into his shell, and peeked out again. Turtle tucked her head in, and peeked out too, smiling. At last, along came Sandpiper, last of all. I lost, he said, but I won the most snacks!",
+          "audio": "audio/en-US/the-slow-race.m4a",
+          "effects": "audio/en-US/the-slow-race.effects.json"
+        },
+        "es-ES": {
+          "title": "La carrera lenta",
+          "text": "¡Una carrera hasta la charca! Correlimos saltaba de una pata a otra. ¡Yo soy el más rápido! Cangrejo Ermitaño suspiró. Yo soy muy lento. Y yo… todavía… más lenta, dijo Tortuga. Preparados, listos… ¡YA! ¡Zas! Allá fue Correlimos. Ermitaño y Tortuga salieron, paso… a paso… Pero a medio camino, Correlimos vio algo rico. ¡Pic, pic, pic! Luego otra cosa. ¡Pic, pic! Ermitaño y Tortuga siguieron andando, charlando todo el rato. ¿Y quién llegó primero a la charca? ¡Ermitaño y Tortuga, a la vez! Ermitaño se sorprendió tanto que se metió en su concha, y volvió a asomarse. Tortuga escondió la cabeza, y también se asomó, sonriendo. Por fin, llegó Correlimos, el último. He perdido, dijo, ¡pero he ganado más meriendas!",
+          "audio": "audio/es-ES/the-slow-race.m4a",
+          "effects": "audio/es-ES/the-slow-race.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-spinning-umbrella",
+      "requiredStickers": [
+        "umbrella",
+        "ball",
+        "crab"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "weather"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Spinning Umbrella",
+          "text": "It was a hot, sunny day. Crab was far too warm. Phew! Then he spotted the umbrella, red and white, with its frilly edge. He scuttled into its shade. Ahh. Lovely and cool. Then, whoosh! Along came the wind. The umbrella spun round and round, its frills flapping. And the ball went bouncing past, off and away with the wind! Crab scuttled after it, sideways, as fast as he could. Click, click, click! At last the wind dropped. Back rolled the ball, and back came Crab, pushing it with his claws. The ball spun round, and stopped. Crab scuttled back into the shade. He did a little clicky dance. And the umbrella stood very, very still.",
+          "audio": "audio/en-US/the-spinning-umbrella.m4a",
+          "effects": "audio/en-US/the-spinning-umbrella.effects.json"
+        },
+        "es-ES": {
+          "title": "La sombrilla que daba vueltas",
+          "text": "Era un día de mucho sol y mucho calor. Cangrejo tenía muchísimo calor. ¡Uf! Entonces vio la sombrilla, roja y blanca, con su borde de volantes. Se metió correteando en su sombra. Aaah. Qué fresquito. Y entonces, ¡fiuuu! Llegó el viento. La sombrilla dio vueltas y vueltas, con los volantes al aire. Y la pelota pasó botando, ¡y se fue con el viento! Cangrejo salió detrás, de lado, todo lo rápido que pudo. ¡Clic, clic, clic! Por fin, el viento paró. La pelota volvió rodando, y Cangrejo volvió detrás, empujándola con las pinzas. La pelota dio vueltas y se paró. Cangrejo se metió otra vez en la sombra. Bailó un bailecito, clic, clic. Y la sombrilla se quedó muy, muy quieta.",
+          "audio": "audio/es-ES/the-spinning-umbrella.m4a",
+          "effects": "audio/es-ES/the-spinning-umbrella.effects.json"
+        }
+      }
+    },
+    {
+      "id": "turtle-comes-back",
+      "requiredStickers": [
+        "turtle",
+        "sandpiper",
+        "starfish"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "home",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Turtle Comes Back",
+          "text": "Slowly, slowly, Turtle came crawling up the sand. Flip… flop… flip… Sandpiper came running to see. Who are you? I've never seen you before! Ah, but I've been here before, said Turtle. Long, long ago, I hatched right here, a teeny-tiny turtle in the warm sand. Then I crawled down to the water and swam away. All the way across the wide sea… and back again. Turtles always come home, she said, to the beach where they were born. Sandpiper pecked at the ground, as if he might find the very spot. Starfish waved hello from the pool, as excited as can be. Turtle tucked her head in, shy for a moment, then peeked out with a smile. Welcome home, said Sandpiper. Then Turtle turned round and swam off, far away. Until next time.",
+          "audio": "audio/en-US/turtle-comes-back.m4a",
+          "effects": "audio/en-US/turtle-comes-back.effects.json"
+        },
+        "es-ES": {
+          "title": "Tortuga vuelve a casa",
+          "text": "Despacito, despacito, Tortuga subió arrastrándose por la arena. Flip… flop… flip… Correlimos vino corriendo a mirar. ¿Quién eres? ¡Nunca te había visto! Ah, pero yo ya he estado aquí, dijo Tortuga. Hace muchísimo tiempo nací justo aquí, una tortuguita diminuta en la arena calentita. Luego bajé hasta el agua y me fui nadando. Crucé todo el ancho mar… y he vuelto. Las tortugas siempre vuelven, dijo, a la playa donde nacieron. Correlimos picoteó el suelo, como si pudiera encontrar el sitio exacto. Estrella saludaba desde la charca, emocionadísima. Tortuga escondió la cabeza, un poco tímida, y luego asomó con una sonrisa. Bienvenida a casa, dijo Correlimos. Después, Tortuga se dio la vuelta y se alejó nadando, muy lejos. Hasta la próxima.",
+          "audio": "audio/es-ES/turtle-comes-back.m4a",
+          "effects": "audio/es-ES/turtle-comes-back.effects.json"
+        }
+      }
+    },
+    {
+      "id": "two-towers",
+      "requiredStickers": [
+        "girl",
+        "surfer",
+        "castle",
+        "bucket"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "friendship",
+        "building"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Two Towers",
+          "text": "Lola and Nico were building something big. \"Let's make a tower, as tall as the lighthouse!\" \"No, a wall! A great big wall!\" Tower. Wall. Tower. WALL. So they each built alone. Lola filled the bucket and piled up a tower… tall, taller… plop. It slumped over. Nico patted out a long wall… but it had nothing to guard. Hmm. They looked at each other. \"What if… a tower, with a wall around it?\" \"And a door! And a flag!\" So they built it together. Pat, pat, scoop. And there it stood, their sand castle, three towers tall. Its little red flag waved. Lola flew her kite high above it, and Nico cheered. One castle, three towers, and two builders.",
+          "audio": "audio/en-US/two-towers.m4a",
+          "effects": "audio/en-US/two-towers.effects.json"
+        },
+        "es-ES": {
+          "title": "Dos torres",
+          "text": "Lola y Nico estaban construyendo algo grande. «¡Hagamos una torre altísima, como el faro!» «¡No, una muralla! ¡Una muralla enorme!» Torre. Muralla. Torre. MURALLA. Así que cada uno construyó solo. Lola llenó el cubo y levantó una torre… alta, más alta… plof. Se desplomó. Nico alisó una muralla larga… pero no tenía nada que proteger. Mmm. Se miraron. «¿Y si… hacemos una torre, con una muralla alrededor?» «¡Y una puerta! ¡Y una bandera!» Así que lo hicieron juntos. Plas, plas, zas. Y allí estaba su castillo de arena, con tres torres. Su banderita roja ondeaba. Lola hizo volar su cometa por encima, y Nico aplaudió. Un castillo, tres torres y dos constructores.",
+          "audio": "audio/es-ES/two-towers.m4a",
+          "effects": "audio/es-ES/two-towers.effects.json"
+        }
+      }
+    },
+    {
+      "id": "waiting-for-the-wind",
+      "requiredStickers": [
+        "sailboat",
+        "girl",
+        "seagull"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "patience",
+        "weather",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Waiting for the Wind",
+          "text": "Not a breath of wind. The sailboat sat still on the flat blue sea, its white sails hanging down. Lola stood holding her kite. The kite hung down too. \"Come on, wind.\" Gull sat on the sand, not even bothering to fly. Then… a ripple. A flutter. Whoosh! Here came the wind! The sails puffed out, round and full. \"Look! The wind's pushing the sail, just like it lifts my kite!\" Lola let out the string, and up went her kite. Gull woke up and flew up beside her. And off went the sailboat across the bay, pushed along by the wind. Wind for the boat, wind for the kite, wind under Gull's wings. Everyone had been waiting for the very same thing.",
+          "audio": "audio/en-US/waiting-for-the-wind.m4a",
+          "effects": "audio/en-US/waiting-for-the-wind.effects.json"
+        },
+        "es-ES": {
+          "title": "Esperando al viento",
+          "text": "Ni una pizca de viento. El velero estaba quieto en el mar azul y liso, con las velas blancas colgando. Lola sujetaba su cometa. La cometa también colgaba. «Venga, viento.» Gaviota estaba sentada en la arena, sin ganas ni de volar. Entonces… una ondita. Un aleteo. ¡Fiuuu! ¡Ya llegaba el viento! Las velas se hincharon, redondas y llenas. «¡Mira! ¡El viento empuja la vela, igual que levanta mi cometa!» Lola soltó hilo, y arriba subió su cometa. Gaviota se despertó y subió volando a su lado. Y el velero cruzó la bahía, empujado por el viento. Viento para el barco, viento para la cometa, viento bajo las alas de Gaviota. Todos estaban esperando lo mismo.",
+          "audio": "audio/es-ES/waiting-for-the-wind.m4a",
+          "effects": "audio/es-ES/waiting-for-the-wind.effects.json"
+        }
+      }
+    },
+    {
+      "id": "why-crab-walks-sideways",
+      "requiredStickers": [
+        "crab",
+        "hermit-crab",
+        "starfish"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Why Crab Walks Sideways",
+          "text": "Crab sat up on the rocks. Down in the pool stood Starfish, on two of her five orange arms. She waved hello. Crab wanted to go and see her the way everybody does: straight ahead. One step forward. Wobble! Two steps forward. Oops! His legs got all in a tangle, and over he went, upside down. Along came Hermit Crab, carrying his striped shell. Why are you walking frontwards? he asked. Crab legs bend sideways. That's the way they're made! So Crab tried it. Click, click, sideways… zip! He was there in a moment. Crab clicked his claws and did a happy sideways dance. And crabs have gone sideways ever since.",
+          "audio": "audio/en-US/why-crab-walks-sideways.m4a",
+          "effects": "audio/en-US/why-crab-walks-sideways.effects.json"
+        },
+        "es-ES": {
+          "title": "Por qué Cangrejo va de lado",
+          "text": "Cangrejo estaba sentado en las rocas. Abajo, en la charca, estaba Estrella, sobre dos de sus cinco brazos naranjas. Ella lo saludó. Cangrejo quería ir a verla como todo el mundo: hacia delante. Un paso adelante. ¡Tambaleo! Dos pasos adelante. ¡Huy! Se le enredaron las patas y se dio la vuelta, boca arriba. Entonces llegó Cangrejo Ermitaño, con su concha de rayas a cuestas. ¿Por qué andas hacia delante?, preguntó. Las patas de los cangrejos se doblan de lado. ¡Están hechas así! Así que Cangrejo lo probó. Clic, clic, de lado… ¡zas! Llegó en un momento. Cangrejo chocó las pinzas y bailó de lado, muy contento. Y desde entonces, los cangrejos van de lado.",
+          "audio": "audio/es-ES/why-crab-walks-sideways.m4a",
+          "effects": "audio/es-ES/why-crab-walks-sideways.effects.json"
+        }
+      }
+    },
+    {
+      "id": "why-the-ring-floats",
+      "requiredStickers": [
+        "ring",
+        "turtle",
+        "fish"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Why the Ring Floats",
+          "text": "The rubber ring was bobbing on the sea, red and white and round. Little Fish swam up underneath it. How does it sit on top of the water like that? he wondered. Pebbles sink. Shells sink. So he pushed it down with his nose. Down it went… and BLOOP! Up it popped again. Turtle crawled down to the water's edge to see. It's full of air inside, said Turtle. And air always wants to go up, so the ring floats. Like a balloon in the water? said Little Fish. Exactly. The ring turned slowly round, as if it was nodding. Turtle tucked her head in, and peeked out again, smiling. And Little Fish wiggled his fins and swam round and round the ring, because now he knew its secret.",
+          "audio": "audio/en-US/why-the-ring-floats.m4a",
+          "effects": "audio/en-US/why-the-ring-floats.effects.json"
+        },
+        "es-ES": {
+          "title": "Por qué flota el flotador",
+          "text": "El flotador se mecía sobre el mar, rojo, blanco y redondo. Pececito nadó hasta ponerse debajo. ¿Cómo puede quedarse ahí encima del agua?, se preguntó. Las piedras se hunden. Las conchas se hunden. Así que lo empujó hacia abajo con el hocico. Abajo se fue… y ¡BLUP! Volvió a subir. Tortuga bajó arrastrándose hasta la orilla para verlo. Está lleno de aire, dijo Tortuga. Y el aire siempre quiere subir, por eso el flotador flota. ¿Como un globo en el agua?, dijo Pececito. Exacto. El flotador giró despacito, como si dijera que sí. Tortuga escondió la cabeza y volvió a asomarla, sonriendo. Y Pececito meneó las aletas y nadó alrededor del flotador una y otra vez, porque ya conocía su secreto.",
+          "audio": "audio/es-ES/why-the-ring-floats.m4a",
+          "effects": "audio/es-ES/why-the-ring-floats.effects.json"
         }
       }
     }

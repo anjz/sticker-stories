@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "era",
+      "sticker": "sailboat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "era",
+      "effect": "sunshine",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 5.76,
+      "cue": "nico",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 5.76,
+      "cue": "nico",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 8.49,
+      "cue": "hoy",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 12.2,
+      "cue": "el",
+      "sticker": "sailboat",
+      "enter": true
+    },
+    {
+      "at": 12.2,
+      "cue": "el",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 13.64,
+      "cue": "con",
+      "sticker": "sailboat",
+      "animation": "sails"
+    },
+    {
+      "at": 24.08,
+      "cue": "nico",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 27.44,
+      "cue": "le",
+      "sticker": "surfer",
+      "effect": "shake"
+    },
+    {
+      "at": 29.59,
+      "cue": "foca",
+      "sticker": "seal",
+      "enter": true
+    },
+    {
+      "at": 29.59,
+      "cue": "foca",
+      "sticker": "seal",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 32.08,
+      "cue": "dio",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 32.08,
+      "cue": "dio",
+      "sticker": "seal",
+      "animation": "clap"
+    },
+    {
+      "at": 34.56,
+      "cue": "como",
+      "sticker": "seal",
+      "effect": "hop"
+    },
+    {
+      "at": 39.92,
+      "cue": "zas",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sea",
+      "by": "surf"
+    },
+    {
+      "at": 42,
+      "cue": "tortuga",
+      "sticker": "turtle",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 43.72,
+      "cue": "sonriendo",
+      "sticker": "turtle",
+      "effect": "hearts"
+    },
+    {
+      "at": 46.56,
+      "cue": "hasta",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand",
+      "by": "surf"
+    },
+    {
+      "at": 47.68,
+      "cue": "luego",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 47.68,
+      "cue": "luego",
+      "sticker": "surfer",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 49.92,
+      "cue": "nico",
+      "sticker": "surfer",
+      "animation": "wave"
+    },
+    {
+      "at": 55.04,
+      "cue": "mañana",
+      "sticker": "seal",
+      "effect": "hearts"
+    }
+  ]
+}

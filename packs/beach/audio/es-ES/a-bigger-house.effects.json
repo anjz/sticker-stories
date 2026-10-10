@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "cangrejo",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "cangrejo",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 6.08,
+      "cue": "y",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 26.28,
+      "cue": "el",
+      "sticker": "bucket",
+      "enter": true
+    },
+    {
+      "at": 27.64,
+      "cue": "se",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "bucket"
+    },
+    {
+      "at": 28.92,
+      "cue": "era",
+      "sticker": "bucket",
+      "effect": "wobble"
+    },
+    {
+      "at": 35.48,
+      "cue": "demasiado",
+      "sticker": "hermit-crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 37.96,
+      "cue": "el",
+      "sticker": "castle",
+      "enter": true
+    },
+    {
+      "at": 41,
+      "cue": "probó",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "castle"
+    },
+    {
+      "at": 42.2,
+      "cue": "cruc",
+      "sticker": "castle",
+      "effect": "shake"
+    },
+    {
+      "at": 45,
+      "cue": "demasiado",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 48.92,
+      "cue": "zas",
+      "sticker": "bucket",
+      "animation": "dig"
+    },
+    {
+      "at": 51.72,
+      "cue": "que",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 60.12,
+      "cue": "se",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 61.05,
+      "cue": "y",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "not",
+      "sticker": "sailboat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 5.4,
+      "cue": "the",
+      "sticker": "sailboat",
+      "enter": true
+    },
+    {
+      "at": 5.4,
+      "cue": "the",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 11.32,
+      "cue": "lola",
+      "sticker": "sailboat",
+      "effect": "pulse"
+    },
+    {
+      "at": 11.32,
+      "cue": "lola",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 13.48,
+      "cue": "the",
+      "sticker": "girl",
+      "expression": "sad"
+    },
+    {
+      "at": 17.72,
+      "cue": "gull",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 17.72,
+      "cue": "gull",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 19.4,
+      "cue": "not",
+      "sticker": "seagull",
+      "expression": "sleeping"
+    },
+    {
+      "at": 25.32,
+      "cue": "whoosh",
+      "effect": "wind",
+      "duration": 25,
+      "intensity": 0.7
+    },
+    {
+      "at": 28.12,
+      "cue": "the",
+      "sticker": "sailboat",
+      "animation": "sails"
+    },
+    {
+      "at": 31.16,
+      "cue": "look",
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 35.56,
+      "cue": "lola",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 35.56,
+      "cue": "lola",
+      "sticker": "girl",
+      "animation": "kite"
+    },
+    {
+      "at": 38.92,
+      "cue": "gull",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 38.92,
+      "cue": "gull",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "girl"
+    },
+    {
+      "at": 41.52,
+      "cue": "and",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "sea",
+      "toward": "right"
+    },
+    {
+      "at": 50.84,
+      "cue": "everyone",
+      "sticker": "girl",
+      "effect": "hearts"
+    }
+  ]
+}

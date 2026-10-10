@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "sandpiper",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "sandpiper",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 6.84,
+      "cue": "what's",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 8.04,
+      "cue": "a",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 8.04,
+      "cue": "a",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 11.24,
+      "cue": "he",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "bottle",
+      "by": "run"
+    },
+    {
+      "at": 14.36,
+      "cue": "pop",
+      "sticker": "bottle",
+      "animation": "pop"
+    },
+    {
+      "at": 16.76,
+      "cue": "sandpiper",
+      "sticker": "sandpiper",
+      "expression": "surprised"
+    },
+    {
+      "at": 16.76,
+      "cue": "sandpiper",
+      "sticker": "sandpiper",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 22.44,
+      "cue": "a",
+      "sticker": "ball",
+      "enter": true
+    },
+    {
+      "at": 27.04,
+      "cue": "he",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "ball",
+      "by": "run"
+    },
+    {
+      "at": 28.16,
+      "cue": "tap",
+      "sticker": "sandpiper",
+      "effect": "pulse"
+    },
+    {
+      "at": 29.04,
+      "cue": "and",
+      "sticker": "ball",
+      "go": "to",
+      "target": "sand",
+      "another": true
+    },
+    {
+      "at": 30.68,
+      "cue": "sandpiper",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "ball",
+      "by": "run"
+    },
+    {
+      "at": 33.76,
+      "cue": "until",
+      "sticker": "ball",
+      "animation": "spin"
+    },
+    {
+      "at": 35.72,
+      "cue": "he",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 35.72,
+      "cue": "he",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 39.32,
+      "cue": "good",
+      "sticker": "sandpiper",
+      "effect": "wobble"
+    },
+    {
+      "at": 43.36,
+      "cue": "and",
+      "sticker": "ball",
+      "effect": "pulse"
+    }
+  ]
+}

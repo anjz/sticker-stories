@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "one",
+      "effect": "fog",
+      "duration": 30,
+      "intensity": 0.8
+    },
+    {
+      "at": 9.4,
+      "cue": "sandpiper",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 11.16,
+      "cue": "he",
+      "sticker": "sandpiper",
+      "expression": "surprised"
+    },
+    {
+      "at": 21,
+      "cue": "a",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 24.08,
+      "cue": "the",
+      "sticker": "fishing-boat",
+      "effect": "pulse"
+    },
+    {
+      "at": 28,
+      "cue": "a",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 29.96,
+      "cue": "a",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 32.44,
+      "cue": "sandpiper",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "bottle",
+      "by": "run"
+    },
+    {
+      "at": 34.92,
+      "cue": "pop",
+      "sticker": "bottle",
+      "animation": "pop"
+    },
+    {
+      "at": 37.4,
+      "cue": "then",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 37.4,
+      "cue": "then",
+      "sticker": "sandpiper",
+      "effect": "wobble"
+    },
+    {
+      "at": 38.04,
+      "cue": "slowly",
+      "effect": "sunshine",
+      "duration": 25,
+      "intensity": 0.8
+    },
+    {
+      "at": 42.52,
+      "cue": "the",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 44.44,
+      "cue": "and",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 44.44,
+      "cue": "and",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 47,
+      "cue": "sandpiper",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 51.56,
+      "cue": "along",
+      "sticker": "sandpiper",
+      "effect": "hop"
+    }
+  ]
+}

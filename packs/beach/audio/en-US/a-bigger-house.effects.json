@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "hermit",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "hermit",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 5.72,
+      "cue": "and",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 22.96,
+      "cue": "the",
+      "sticker": "bucket",
+      "enter": true
+    },
+    {
+      "at": 24.28,
+      "cue": "he",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "bucket"
+    },
+    {
+      "at": 25.64,
+      "cue": "it",
+      "sticker": "bucket",
+      "effect": "wobble"
+    },
+    {
+      "at": 31.96,
+      "cue": "far",
+      "sticker": "hermit-crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 34.2,
+      "cue": "the",
+      "sticker": "castle",
+      "enter": true
+    },
+    {
+      "at": 37.08,
+      "cue": "he",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "castle"
+    },
+    {
+      "at": 38.36,
+      "cue": "crumble",
+      "sticker": "castle",
+      "effect": "shake"
+    },
+    {
+      "at": 40.2,
+      "cue": "far",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 43.8,
+      "cue": "scoop",
+      "sticker": "bucket",
+      "animation": "dig"
+    },
+    {
+      "at": 46.76,
+      "cue": "that",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 54.84,
+      "cue": "he",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 55.72,
+      "cue": "and",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    }
+  ]
+}
