@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "id": "a-rock-from-the-sky",
+  "pack": "moonbase",
+  "featured": [
+    "asteroid",
+    "moon-rock",
+    "rover"
+  ],
+  "supporting": [],
+  "tags": [
+    "curiosity",
+    "learning"
+  ],
+  "premise": "The rover drills up a moon rock whose shiny flecks are metal: a piece of an asteroid that landed here long, long ago — a cousin of the one tumbling overhead.",
+  "inspiration": "Andersen's 'The Ugly Duckling', where the odd one out turns out to belong somewhere else entirely, turned: the odd rock belongs to the sky.",
+  "lesson": "Being different can mean you've come a long way.",
+  "learning": "Some rocks on the Moon came from asteroids, long ago.",
+  "languages": {
+    "en-US": {
+      "title": "A Rock from the Sky",
+      "text": "The little {rover:enter} {rover:go to crater} rover was drilling in the crater for samples. {rover:live} {sfx:drill} Grrrind. Up came grey dust. Grey pebbles. Grey, grey, grey. Then up came something different: a round {moon-rock:enter} moon rock, with shiny flecks all over it. [curious] The rover's camera peered close. {rover:pulse} {moon-rock:live} The rock rocked, and the flecks twinkled. They weren't crystals. They were metal! {rover:shake 0.3} Moon rocks don't usually have bits of metal like that. So where had this one come from? [short pause] High above, a lumpy {asteroid:enter} {asteroid:float loop 0.3} asteroid was tumbling by, far out in space. {asteroid:live} End over end over end, it rolled. {moon-rock:glow 0.4} [in awe] And that was the answer. Long, long ago, a piece of an asteroid like that one had come down right here on the Moon, and stayed. {all:face surprised} {all:wobble} Everyone at the base was amazed. [warmly] {moon-rock:sparkle} The odd little rock had a cousin in the sky. {asteroid:sparkle}"
+    },
+    "es-ES": {
+      "title": "Una roca que vino del cielo",
+      "text": "El pequeño {rover:enter} {rover:go to crater} róver taladraba en el cráter buscando muestras. {rover:live} {sfx:drill} Grrrr. Salió polvo gris. Piedrecitas grises. Gris, gris, gris. Entonces salió algo distinto: una {moon-rock:enter} roca lunar redonda, llena de motitas brillantes. [curious] La cámara del róver miró de cerca. {rover:pulse} {moon-rock:live} La roca se balanceó, y las motitas brillaron. No eran cristales. ¡Eran de metal! {rover:shake 0.3} Las rocas de la Luna no suelen tener trocitos de metal así. ¿De dónde había salido esta? [short pause] Muy alto, un {asteroid:enter} {asteroid:float loop 0.3} asteroide lleno de bultos pasaba dando vueltas, lejos en el espacio. {asteroid:live} Voltereta tras voltereta, rodaba. {moon-rock:glow 0.4} [in awe] Y esa era la respuesta. Hace muchísimo tiempo, un trozo de un asteroide como aquel había bajado justo aquí, a la Luna, y se había quedado. {all:face surprised} {all:wobble} En la base, todos se quedaron asombrados. [warmly] {moon-rock:sparkle} La rara rocita tenía un primo en el cielo. {asteroid:sparkle}"
+    }
+  },
+  "sounds": {
+    "drill": {
+      "prompt": "a small drill grinding steadily into dry gritty soil, muffled, as if heard through the ground",
+      "seconds": 2.0
+    }
+  }
+}
