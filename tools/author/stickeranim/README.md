@@ -203,6 +203,13 @@ writing. `-only` copies in just those animations or stickers (the rest
 keep what the pack has); `-bump` increments the pack version. Encodes
 are cached by source hash in `out/anims/render.json`.
 
+## Local model
+
+`-local` draws with a local model instead of the API
+(`author/localimage/README.md`). It draws a sheet a frame at a time:
+each frame is an edit of the rest pose carrying on from the frame before,
+laid out on the sheet's grid and assembled as usual (`frames.go`).
+
 ## Known limits
 
 - The generator redraws the character: its frames are the same design but

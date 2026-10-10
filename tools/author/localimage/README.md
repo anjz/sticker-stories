@@ -37,6 +37,7 @@ default 8-bit model it holds about 10 GB.
 | `references.maxPixels` | default reference size |
 | `matte` | the plain `background` colour transparent images are drawn on, and the colour `tolerance` of the cut-out |
 | `inpaint` | `feather` of the mask's edge (px at 1024), `minSteps`, and `reference`: what the model sees of the area it repaints (below) |
+| `animation` | `frames` (default) or `sheets` (below) |
 
 Every setting that changes the pictures goes into the fingerprint, as the
 model's ID `local:<name>:<hash>`. That includes the quality's profile, the
@@ -78,13 +79,39 @@ sends (`openai.ImageRequest.Hints`). A request's `local` field can override
 any quality setting, which is handy for experiments:
 `{"steps": 8, "maxPixels": 1638400, "drawLarger": true}`.
 
+## Animations: a frame at a time
+
+FLUX.2 [klein] 4B cannot draw a whole sheet the way the hosted model does,
+twelve poses in order in one picture: it ignores the poses and corrupts
+part of the sheet. So with `"animation": "frames"`, `stickeranim -local`
+draws each frame as its own edit (`stickeranim/frames.go`):
+
+- The rest pose is image 1 (the scaffold's rest cell when the pack has a
+  scaffold), and the frame before is image 2, so the motion carries on.
+- Rest frames take the sticker's own art and cost no call; a later sheet
+  starts on the frame the one before ended on.
+- The prompt keeps the sticker's description, without the clauses that
+  name a removed prop. Without the description, colours drift toward the
+  style's palette along the chain; with "perched on a short branch" in
+  it, the branch comes back.
+- Only the main drawing of each frame is kept, so a second character the
+  model sometimes adds cannot ride the chain.
+- The frames are laid out on the sheet's exact grid and assembled exactly
+  as usual. Each frame is kept (`<key>.sheet<n>.f<k>.raw.png`), so a run
+  that stops part way picks up where it was.
+
+About 11–17 s a frame at 768 px. A 24-frame action takes 4–6 minutes and
+a 12-frame move about 3. Use `"animation": "sheets"` for a model that can
+do whole sheets.
+
 ## The Owl, measured (M5 Pro, 48 GB, 8-bit)
 
 | Step | Time |
 |---|---|
 | a sticker, 1024 px, style sheet as reference | ~23 s |
 | prop removal / a face (masked, 1024 px) | ~30 s |
-| the sticker's whole still art: 4 candidates, prop, 4 faces | ~4.5 min |
+| an animation frame (768 px, 2 references) | ~17 s (~11 s with one) |
+| the whole Owl: 4 candidates, prop, 4 faces, 2 animations | ~14 min |
 
 Settings tried, with what was kept:
 

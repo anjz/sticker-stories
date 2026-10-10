@@ -513,6 +513,9 @@ type renderer struct {
 	spent   openai.Usage
 	calls   int
 	planned []string
+	// frames draws each sheet a frame at a time (frames.go): -local with
+	// localimage's "frames".
+	frames bool
 }
 
 func (r *renderer) say(format string, args ...any) {
@@ -586,6 +589,10 @@ func runRender(args []string) error {
 		}
 		editModel = lc.ModelID(o.quality)
 	}
+	frames := lc != nil && lc.FrameByFrame()
+	if frames {
+		editModel += ":frames" + framesVersion
+	}
 	if !o.dry {
 		if lc != nil {
 			oa, err = lc.Client(context.Background(), func(s string) { fmt.Println(s) })
@@ -596,7 +603,7 @@ func runRender(args []string) error {
 			return err
 		}
 	}
-	r := &renderer{c: c, oa: oa, o: o, ctx: context.Background(), fps: map[string]string{}}
+	r := &renderer{c: c, oa: oa, o: o, ctx: context.Background(), fps: map[string]string{}, frames: frames}
 	if data, err := os.ReadFile(r.out("render.json")); err == nil {
 		json.Unmarshal(data, &r.fps)
 	}
@@ -753,7 +760,12 @@ func (r *renderer) animation(a animSpec) error {
 					refs = append(refs, prev)
 				}
 			}
-			img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: sh.Size, Quality: r.o.quality, Background: "transparent", Fidelity: r.o.fidelity, References: refs})
+			var img *openai.Image
+			if r.frames {
+				img, err = r.frameSheet(a, sh, i, first, total, genFP, rest, prevLast)
+			} else {
+				img, err = r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: sh.Size, Quality: r.o.quality, Background: "transparent", Fidelity: r.o.fidelity, References: refs})
+			}
 			if err != nil {
 				return fmt.Errorf("sheet %d: %w", i+1, err)
 			}
@@ -771,7 +783,7 @@ func (r *renderer) animation(a animSpec) error {
 			if prev, err = os.ReadFile(raw); err != nil {
 				return err
 			}
-			if r.c.cfg.Scaffold {
+			if r.c.cfg.Scaffold || r.frames {
 				img, err := stickerimg.Decode(prev)
 				if err != nil {
 					return err
@@ -794,6 +806,9 @@ func (r *renderer) animation(a animSpec) error {
 		}
 	}
 	asmFP := hashOf(append([]string{assembleVersion, fmt.Sprint(r.c.cfg.Scaffold, art.fill(a.Sticker), a.room(), scaffoldAssembly), hashFile(stickerPath), hashFile(r.rawPath(a.Sticker)), fmt.Sprint(r.c.cfg.Columns, r.c.cfg.MaxSheet, r.c.cfg.StickerPx, art.StickerSize, art.Border, art.Margin, art.finish(), hold, a.RestFrames, a.normalize(), a.restFromSticker(), a.register(), a.Loop, a.kind(), a.Pause, a.Facing, a.Stride, a.Hops, a.Story)}, genFPs...)...)
+	if r.frames {
+		asmFP = hashOf(asmFP, "frames")
+	}
 	if len(a.Particles) > 0 {
 		// Only when there are some, so animations without keep their
 		// fingerprints; a change re-writes the sidecar, free.
@@ -862,8 +877,9 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 		if err != nil {
 			return fmt.Errorf("sheet %d: %w", i+1, err)
 		}
-		if r.c.cfg.Scaffold {
-			// Drawn over a scaffold: every drawing stays in its cell, on the
+		if r.c.cfg.Scaffold || r.frames {
+			// Drawn over a scaffold (or a frame at a time): every drawing
+			// stays in its cell, on the
 			// nominal grid, and there are only as many as the sheet has
 			// frames. The generator keeps one size within a sheet but not the
 			// scaffold's own, so the frames are then registered as usual —
