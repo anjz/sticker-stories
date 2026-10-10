@@ -89,6 +89,21 @@ import Testing
         #expect(abs(mouse.x - 712) > 30, "\(mouse)")
     }
 
+    @Test func movesAreMeasuredInTheImageNotTheNarrowerDrawing() {
+        // The fox drawn half its image's width (a drawn-size pack): the
+        // planner spaces by the drawing, the stage moves by the image.
+        var actors = actors()
+        actors[0].size = StageSize(width: 60, height: 120)
+        actors[0].unit = StageSize(width: 120, height: 120)
+        var random = SeededGenerator(state: 3)
+        let plans = MotionPlanner.plan(
+            goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "rabbit")], actors: actors,
+            scene: Self.scene, policy: .standard, random: &random)
+        let x = 200 + plans[fox]!.delta(at: 30).offsetXSelf * 120
+        // Beside the rabbit (700), a narrow drawing standing close to it.
+        #expect(x < 700 - 60 && x > 700 - 60 - 60, "\(x)")
+    }
+
     @Test func besideSomethingAtTheScreensEdgeItTakesTheSideWithRoom() {
         var actors = actors()
         actors[0].home = StagePoint(x: 20, y: 200)  // the fox, left of the rabbit

@@ -1494,9 +1494,12 @@ final class CanvasScene: SKScene {
     }
 
     /// How far each sticker's drawing reaches below its centre, as a
-    /// fraction of its height (`content`; half when it fills its image).
+    /// fraction of the drawing's height (`content`; half when it fills its
+    /// image).
     private lazy var stickerFeet: [String: Double] = Dictionary(
-        uniqueKeysWithValues: pack.manifest.stickers.map { s in (s.id, s.content.map { 0.5 - $0.y[0] } ?? 0.5) })
+        uniqueKeysWithValues: pack.manifest.stickers.map { s in
+            (s.id, s.content.map { (0.5 - $0.y[0]) / max($0.y[1] - $0.y[0], 0.01) } ?? 0.5)
+        })
     /// Where someone going to each sticker stands (`door`), for those with one.
     private lazy var stickerDoors: [String: StagePoint] = Dictionary(
         uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.door.map { (s.id, $0) } })
@@ -1578,6 +1581,8 @@ final class CanvasScene: SKScene {
             return MotionPlanner.Actor(
                 id: node.instanceID, stickerID: node.stickerID, home: StagePoint(x: base.x, y: base.y),
                 size: StageSize(width: unscaled.width * base.scale, height: unscaled.height * base.scale),
+                unit: StageSize(
+                    width: node.unscaledSize.width * base.scale, height: node.unscaledSize.height * base.scale),
                 readyAt: visit.map { $0.at + $0.duration } ?? 0, facing: Double(node.facing),
                 canMove: stage.entrance != .grow, flies: stage.entrance == .fly,
                 stature: statures[node.stickerID], places: stage.on)

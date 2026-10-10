@@ -248,6 +248,10 @@ public enum MotionPlanner {
         /// Its drawn size at its placement, in world points: the drawing,
         /// not the image's box (`StickerDefinition.content`).
         public var size: StageSize
+        /// Its image's size at its placement, in world points: what the
+        /// stage measures its moves in (`MotionSpot`) and its door in. The
+        /// drawing's `size` when nil (a drawing that fills its image).
+        public var unit: StageSize
         /// When it is free to move (a visitor once it has come in).
         public var readyAt: TimeInterval
         /// The way it faces at the start (a mirrored visitor: -1).
@@ -265,10 +269,11 @@ public enum MotionPlanner {
         public var places: [String]
 
         public init(
-            id: UUID, stickerID: String, home: StagePoint, size: StageSize, readyAt: TimeInterval = 0,
-            facing: Double = 1, canMove: Bool = true, flies: Bool = false, stature: Double? = nil,
-            places: [String] = []
+            id: UUID, stickerID: String, home: StagePoint, size: StageSize, unit: StageSize? = nil,
+            readyAt: TimeInterval = 0, facing: Double = 1, canMove: Bool = true, flies: Bool = false,
+            stature: Double? = nil, places: [String] = []
         ) {
+            self.unit = unit ?? size
             self.stature = stature
             self.places = places
             self.id = id
@@ -572,9 +577,10 @@ public enum MotionPlanner {
                 if !flies, go.toward == nil, let door = scene.doors[them.actor.stickerID],
                     !states.indices.contains(where: { $0 != index && states[$0].at == doorKey })
                 {
-                    let ground = them.center.y + (door.y - 0.5) * th
+                    let uw = them.actor.unit.width * them.scale, uh = them.actor.unit.height * them.scale
+                    let ground = them.center.y + (door.y - 0.5) * uh
                     let point = StagePoint(
-                        x: them.center.x + (door.x - 0.5) * tw * (them.facing < 0 ? -1 : 1),
+                        x: them.center.x + (door.x - 0.5) * uw * (them.facing < 0 ? -1 : 1),
                         y: ground + (scene.feet[me.stickerID] ?? 0.5) * mh)
                     states[index].at = doorKey
                     return (point, scale, true, .onto(them.actor.id), nil)
@@ -698,7 +704,7 @@ public enum MotionPlanner {
             let base = me.home
             let spot = { (p: StagePoint, s: Double, visible: Bool) in
                 MotionSpot(
-                    x: (p.x - base.x) / max(me.size.width, 1), y: -(p.y - base.y) / max(me.size.height, 1),
+                    x: (p.x - base.x) / max(me.unit.width, 1), y: -(p.y - base.y) / max(me.unit.height, 1),
                     scale: s, visible: visible)
             }
             states[index].legs.append(MotionLeg(

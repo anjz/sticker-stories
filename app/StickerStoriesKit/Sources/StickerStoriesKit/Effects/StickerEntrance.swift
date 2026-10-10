@@ -326,9 +326,9 @@ public enum StagePlanner {
         /// on a place that is not open air, the area is where a sticker's
         /// drawing stands, not its centre.
         public var anchorFeet: Bool
-        /// How far each sticker's drawing reaches below its centre, as a
-        /// fraction of its rendered height (its feet); 0.5 when unknown
-        /// (the drawing fills its image).
+        /// How far each sticker's drawing reaches below the sticker's
+        /// centre, as a fraction of the drawing's height (its feet); 0.5
+        /// when unknown — a drawing centred in its image, or filling it.
         public var feet: [String: Double]
         /// Each sticker's door (`StickerDefinition.door`): where someone
         /// going to it stands, in fractions of its image, origin
