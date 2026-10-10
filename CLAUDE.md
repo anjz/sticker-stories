@@ -84,7 +84,10 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
   entrances), spec in `author/art/<pack>/anim.json`; `uiart` =
   the app's own art — menu background, title, pack covers, the canvas
   hints' hand — as
-  alternatives to pick from, prompts in `author/art/app/ui.json`). API keys
+  alternatives to pick from, prompts in `author/art/app/ui.json`;
+  `localimage` = the three art tools' `-local`: the same art from a local
+  model (FLUX.2 [klein] on MLX) instead of OpenAI, config + server in
+  `author/localimage/`). API keys
   live in `tools/.env` (`ELEVENLABS_API_KEY`, `OPENAI_API_KEY`).
 - `docs/` — deep documentation; reference it, don't duplicate it here.
   Art rules for every new pack (drawn size, animations that hold their

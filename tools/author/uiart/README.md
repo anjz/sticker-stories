@@ -5,7 +5,8 @@ screen's **background**, the **"Sticker Stories" title**, the **store
 tile** (the menu's More stories card), every pack's **cover** and the
 **hand** of the canvas's gesture hints — as a
 few alternatives each, and installs the one you choose.
-Dev-time only; needs `OPENAI_API_KEY` in `tools/.env`.
+Dev-time only; needs `OPENAI_API_KEY` in `tools/.env`, or `-local` on
+`render` to draw with a local model (`author/localimage/README.md`).
 
 ```sh
 cd tools

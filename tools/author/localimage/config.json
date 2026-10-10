@@ -1,0 +1,21 @@
+{
+  "listen": "127.0.0.1:7865",
+  "idleMinutes": 15,
+  "cacheLimitGB": 2,
+  "model": {
+    "name": "flux2-klein-4b",
+    "path": "~/MochiDiffusion/models/flux-klein-4b",
+    "quantize": 8,
+    "maxTextTokens": 512
+  },
+  "qualities": {
+    "low":    {"steps": 4, "maxPixels": 786432,  "refMaxPixels": 524288},
+    "medium": {"steps": 4, "maxPixels": 1572864, "refMaxPixels": 786432},
+    "high":   {"steps": 4, "maxPixels": 3145728, "refMaxPixels": 1048576},
+    "xhigh":  {"steps": 6, "maxPixels": 4194304, "refMaxPixels": 1048576},
+    "max":    {"steps": 8, "maxPixels": 4194304, "refMaxPixels": 1572864}
+  },
+  "references": {"maxPixels": 1048576},
+  "matte": {"background": [255, 255, 255], "name": "white", "tolerance": 24},
+  "inpaint": {"feather": 12, "minSteps": 4, "reference": "blank"}
+}

@@ -24,6 +24,9 @@ type Client struct {
 	BaseURL string
 	HTTP    *http.Client
 	Log     func(string)
+	// SendHints sends each request's Hints (as a "local" field): only the
+	// local server (internal/localimage) reads them.
+	SendHints bool
 }
 
 // New returns a client with a generous timeout (large images take a while).
@@ -64,6 +67,11 @@ type ImageRequest struct {
 	References [][]byte // PNG reference/input images, first is the primary
 	Mask       []byte   // PNG with alpha; transparent areas are painted
 	Fidelity   string   // input_fidelity: high | low
+	// Hints are for a local model (sent only with Client.SendHints): what
+	// the hosted model works out for itself, e.g. {"maskReference":
+	// "original"} — keep showing it the masked area (a face to change)
+	// rather than blank it (a prop to remove).
+	Hints map[string]any
 }
 
 // Usage is the token accounting the API returns.
@@ -121,6 +129,9 @@ func (c *Client) Generate(ctx context.Context, r ImageRequest) (*Image, error) {
 	if r.Background != "" {
 		body["background"] = r.Background
 	}
+	if c.SendHints && len(r.Hints) > 0 {
+		body["local"] = r.Hints
+	}
 	payload, _ := json.Marshal(body)
 	return c.do(ctx, "/images/generations", "application/json", bytes.NewReader(payload))
 }
@@ -142,6 +153,10 @@ func (c *Client) Edit(ctx context.Context, r ImageRequest) (*Image, error) {
 	field("quality", r.Quality)
 	field("background", r.Background)
 	field("input_fidelity", r.Fidelity)
+	if c.SendHints && len(r.Hints) > 0 {
+		hints, _ := json.Marshal(r.Hints)
+		field("local", string(hints))
+	}
 	for i, img := range r.References {
 		if err := pngPart(w, "image[]", fmt.Sprintf("ref%d.png", i), img); err != nil {
 			return nil, err

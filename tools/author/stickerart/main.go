@@ -39,15 +39,21 @@ import (
 	"time"
 
 	"stickerstories/tools/internal/dotenv"
+	"stickerstories/tools/internal/localimage"
 	"stickerstories/tools/internal/manifest"
 	"stickerstories/tools/internal/openai"
 	"stickerstories/tools/internal/stickerimg"
 )
 
+// The OpenAI models; -local replaces both with the local model's ID
+// (localimage.Config.ModelID), so what it draws has its own fingerprints.
+var (
+	genModel  = "gpt-image-2.5-flare"
+	editModel = "gpt-image-2.5-sunburst"
+)
+
 const (
 	toolVersion  = "1"
-	genModel     = "gpt-image-2.5-flare"
-	editModel    = "gpt-image-2.5-sunburst"
 	baseW, baseH = 2048, 1536
 	wideW        = 3072
 	sheetSize    = "1536x1024"
@@ -402,6 +408,8 @@ func runRender(args []string) error {
 	force := fs.Bool("force", false, "re-render even if nothing changed")
 	dry := fs.Bool("dry-run", false, "list what would be generated; no API calls")
 	options := fs.Int("options", 0, "render this many candidates of each -only sticker into out/options to choose from (stickerart pick adopts one); the stickers themselves are untouched")
+	local := fs.Bool("local", false, "draw with the local model instead of the OpenAI API (author/localimage)")
+	localConfig := fs.String("local-config", localimage.DefaultConfig, "the local model's config (with -local)")
 	fs.Parse(args)
 	c, err := load(*packDir, *artDir, true)
 	if err != nil {
@@ -417,9 +425,24 @@ func runRender(args []string) error {
 			o.only[strings.TrimSpace(id)] = true
 		}
 	}
-	var oa *openai.Client
+	var (
+		oa *openai.Client
+		lc *localimage.Config
+	)
+	if *local {
+		if lc, err = localimage.Load(*localConfig); err != nil {
+			return err
+		}
+		genModel = lc.ModelID(o.quality)
+		editModel = genModel
+	}
 	if !o.dry {
-		if oa, err = client(); err != nil {
+		if lc != nil {
+			oa, err = lc.Client(context.Background(), func(s string) { fmt.Println(s) })
+		} else {
+			oa, err = client()
+		}
+		if err != nil {
 			return err
 		}
 	}
@@ -817,7 +840,8 @@ func (r *renderer) removeProp(s stickerSpec, raw, fp, outFP string) error {
 		}
 		prompt := fmt.Sprintf("%s\n\nThis is a finished sticker: %s Remove %s completely, so the character stands on its own: inside the masked area, everything that belongs to %s becomes fully transparent background, and the parts of the character there (feet, legs, tail, belly) are drawn whole and complete in the same style, as if nothing were under them.%s The character itself does not move, turn, grow or change: its outline, colours, pose and everything outside the masked area stay exactly as they are. No ground, no shadow, no replacement object. Fully transparent background.", cfg.Style, s.Prompt, s.Prop.Remove, s.Prop.Remove, note)
 		b := base.Bounds()
-		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: fmt.Sprintf("%dx%d", b.Dx(), b.Dy()), Quality: r.o.quality, Background: "transparent", References: [][]byte{rawData}, Mask: maskPNG})
+		// A local model must not see the prop it is asked to remove.
+		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: fmt.Sprintf("%dx%d", b.Dx(), b.Dy()), Quality: r.o.quality, Background: "transparent", References: [][]byte{rawData}, Mask: maskPNG, Hints: map[string]any{"maskReference": "blank"}})
 		if err != nil {
 			return fmt.Errorf("removing %s: %w", s.Prop.Remove, err)
 		}
@@ -940,7 +964,8 @@ func (r *renderer) face(s stickerSpec, e expressionSpec) error {
 			note = " " + s.FaceNote
 		}
 		prompt := fmt.Sprintf("%s\n\nThis is a finished sticker character: %s%s Repaint ONLY its face, inside the masked area, to show this expression: %s The surface the face is drawn on keeps exactly its colour and texture as in the image. The head does not turn, grow or move: its outline, the ears and the fur around the face stay exactly where they are, and the new eyes, brows, nose and mouth sit where the old ones were. Keep the character recognisably the same: the same head shape, fur or skin, colours, outline weight and art style, the eyes in the same places and the same size family, the cheeks, the nose or beak. If it has a beak, keep the beak's shape (it may open a little) and show the feeling through the eyes and brows. Nothing outside the face changes. Friendly and gentle, never scary. Fully transparent background.", cfg.Style, s.Prompt, note, e.Prompt)
-		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: fmt.Sprintf("%dx%d", b.Dx(), b.Dy()), Quality: r.o.quality, Background: "transparent", References: [][]byte{rawData}, Mask: maskPNG})
+		// A local model keeps seeing the old face: its colours and place.
+		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: fmt.Sprintf("%dx%d", b.Dx(), b.Dy()), Quality: r.o.quality, Background: "transparent", References: [][]byte{rawData}, Mask: maskPNG, Hints: map[string]any{"maskReference": "original"}})
 		if err != nil {
 			return err
 		}

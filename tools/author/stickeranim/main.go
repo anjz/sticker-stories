@@ -44,6 +44,7 @@ import (
 	"time"
 
 	"stickerstories/tools/internal/dotenv"
+	"stickerstories/tools/internal/localimage"
 	"stickerstories/tools/internal/manifest"
 	"stickerstories/tools/internal/openai"
 	"stickerstories/tools/internal/stickerimg"
@@ -54,10 +55,13 @@ const (
 	// assembleVersion changes whenever the registration or finishing of
 	// kept raw sheets changes, so they are re-assembled without new calls.
 	assembleVersion = "18"
-	editModel       = "gpt-image-2.5-sunburst"
 	defaultQual     = "high"
 	defaultHold     = 1.0 / 12
 )
+
+// editModel is the OpenAI model; -local replaces it with the local model's
+// ID (localimage.Config.ModelID), so what it draws has its own fingerprints.
+var editModel = "gpt-image-2.5-sunburst"
 
 // artConfig is the part of stickerart's art.json this tool needs: the
 // pack's style and each sticker's description go into every prompt, and
@@ -558,6 +562,8 @@ func runRender(args []string) error {
 	force := fs.Bool("force", false, "re-render even if nothing changed")
 	dry := fs.Bool("dry-run", false, "list what would be generated; no API calls")
 	parallel := fs.Int("parallel", 3, "animations rendered concurrently (each one's sheets stay sequential)")
+	local := fs.Bool("local", false, "draw with the local model instead of the OpenAI API (author/localimage)")
+	localConfig := fs.String("local-config", localimage.DefaultConfig, "the local model's config (with -local)")
 	fs.Parse(args)
 	c, err := load(*packDir, *artDir)
 	if err != nil {
@@ -570,9 +576,23 @@ func runRender(args []string) error {
 			o.only[strings.TrimSpace(id)] = true
 		}
 	}
-	var oa *openai.Client
+	var (
+		oa *openai.Client
+		lc *localimage.Config
+	)
+	if *local {
+		if lc, err = localimage.Load(*localConfig); err != nil {
+			return err
+		}
+		editModel = lc.ModelID(o.quality)
+	}
 	if !o.dry {
-		if oa, err = client(); err != nil {
+		if lc != nil {
+			oa, err = lc.Client(context.Background(), func(s string) { fmt.Println(s) })
+		} else {
+			oa, err = client()
+		}
+		if err != nil {
 			return err
 		}
 	}

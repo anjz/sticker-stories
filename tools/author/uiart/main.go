@@ -32,6 +32,7 @@ import (
 	"time"
 
 	"stickerstories/tools/internal/dotenv"
+	"stickerstories/tools/internal/localimage"
 	"stickerstories/tools/internal/manifest"
 	"stickerstories/tools/internal/openai"
 	"stickerstories/tools/internal/stickerimg"
@@ -152,6 +153,8 @@ func runRender(args []string) error {
 	more := fs.Int("more", 0, "add this many candidates beyond those already there")
 	fresh := fs.Bool("fresh", false, "archive the existing candidates and start a new set")
 	quality := fs.String("quality", "high", "low | medium | high | xhigh | max")
+	local := fs.Bool("local", false, "draw with the local model instead of the OpenAI API (author/localimage)")
+	localConfig := fs.String("local-config", localimage.DefaultConfig, "the local model's config (with -local)")
 	parallel := fs.Int("parallel", 4, "images generated concurrently")
 	dry := fs.Bool("dry-run", false, "list what would be generated; no API calls")
 	fs.Parse(args)
@@ -300,7 +303,15 @@ func runRender(args []string) error {
 	if len(tasks) == 0 {
 		return nil
 	}
-	oa, err := client()
+	var oa *openai.Client
+	if *local {
+		var lc *localimage.Config
+		if lc, err = localimage.Load(*localConfig); err == nil {
+			oa, err = lc.Client(context.Background(), func(s string) { fmt.Println(s) })
+		}
+	} else {
+		oa, err = client()
+	}
 	if err != nil {
 		return err
 	}

@@ -47,3 +47,26 @@ func TestEditMultipartAndRetry(t *testing.T) {
 		t.Errorf("img = %+v calls %d", img, calls)
 	}
 }
+
+func TestHintsOnlyWithSendHints(t *testing.T) {
+	var got []string
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		r.ParseMultipartForm(1 << 20)
+		got = append(got, r.FormValue("local"))
+		json.NewEncoder(w).Encode(map[string]any{"data": []map[string]string{{"b64_json": base64.StdEncoding.EncodeToString([]byte("PNG!"))}}})
+	}))
+	defer srv.Close()
+	c := New("k")
+	c.BaseURL = srv.URL
+	req := ImageRequest{Prompt: "p", References: [][]byte{[]byte("a")}, Hints: map[string]any{"maskReference": "original"}}
+	if _, err := c.Edit(context.Background(), req); err != nil {
+		t.Fatal(err)
+	}
+	c.SendHints = true
+	if _, err := c.Edit(context.Background(), req); err != nil {
+		t.Fatal(err)
+	}
+	if got[0] != "" || got[1] != `{"maskReference":"original"}` {
+		t.Errorf("local fields = %q, want none to the API and the hints to the local server", got)
+	}
+}

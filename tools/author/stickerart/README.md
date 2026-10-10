@@ -158,6 +158,11 @@ redone on the next render, with no new drawing of the sticker).
 `-only fox,duckling`, `-only stylesheet`, `-only scene` narrow a run;
 `-quality medium` is cheaper while iterating on prompts.
 
+`-local` draws with a local model (FLUX.2 [klein] on this Mac) instead of
+the API, at no cost per image: `author/localimage/README.md`. It counts as
+another model in the fingerprints, so use `-only` to add to a pack drawn by
+OpenAI; spell out colours in its prompts.
+
 `scene.edits` (prompt + `area` on the wide background, fractions) paint a
 feature into the finished background afterwards — Forest's pond — without
 repainting the rest: the generated wide background is kept as
