@@ -160,6 +160,30 @@ struct SeededGenerator: RandomNumberGenerator {
         #expect(abs(centred[0].target.y - 300) < 0.2)
     }
 
+    @Test func aVisitorSentToAPlaceAsItArrivesLandsThereOnceItIsFree() {
+        // One small pad, the plain in front of it.
+        let features = [
+            "pad": SceneFeature(description: "pad", areas: [.init(x: [0.45, 0.5], y: [0.5, 0.52])]),
+            "plain": SceneFeature(description: "plain", areas: [.init(x: [0.1, 0.9], y: [0.1, 0.3])]),
+        ]
+        let stages = ["pod": StickerStage(entrance: .fly, on: ["pad", "plain"]),
+                      "lander": StickerStage(entrance: .fly, on: ["plain", "pad"])]
+        let goes = [
+            GoTrigger(at: 1, stickerID: "pod", kind: .to, target: "pad"),
+            GoTrigger(at: 5, stickerID: "pod", kind: .to, target: "plain"),  // steps aside
+            GoTrigger(at: 6, stickerID: "lander", kind: .to, target: "pad"),  // "down onto the pad came the lander"
+        ]
+        for seed in UInt64(1)...10 {
+            var random = SeededGenerator(state: seed)
+            let plans = StagePlanner.plan(
+                entrances: [EntranceTrigger(at: 1, stickerID: "pod"), EntranceTrigger(at: 6, stickerID: "lander")],
+                placed: [], stages: stages, features: features, goes: goes, scene: Self.scene, obstacles: [],
+                policy: .standard, random: &random)
+            let onPad = { (p: EntrancePlan) in p.target.y >= 0.5 * 750 - 1e-9 && p.target.y <= 0.52 * 750 + 1e-9 }
+            #expect(plans.allSatisfy(onPad), "seed \(seed): \(plans.map(\.target))")
+        }
+    }
+
     @Test func aHugeVisitorIsBiggerAtTheFrontThanByTheHorizon() {
         let depth = StickerSize.huge.visitDepth!
         #expect(depth.scale(atArtY: 0.1) == 1.8 && depth.scale(atArtY: 0.6) == 1.3)

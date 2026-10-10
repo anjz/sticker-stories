@@ -1422,7 +1422,7 @@ final class CanvasScene: SKScene {
         // The stickers the story names that the child has not placed come
         // in when they are first named; from here on they are on the stage
         // like any other, so every trigger reaches them.
-        let visitors = addVisitors(for: triggers.entrances, policy: policy)
+        let visitors = addVisitors(for: triggers.entrances, goes: triggers.goes, policy: policy)
         let nodes = allStickerNodes()
         let targets = Dictionary(grouping: nodes, by: \.stickerID).mapValues { $0.map(\.instanceID) }
         let runner = StickerEffectsRunner(triggers: triggers.sticker, targets: targets, policy: policy)
@@ -1599,7 +1599,9 @@ final class CanvasScene: SKScene {
     /// on (a branch, the pond), in order, or else in its area — so its
     /// entrance plays when the story first names it
     /// (`docs/effects.md`, "Entrances").
-    private func addVisitors(for entrances: [EntranceTrigger], policy: EffectPolicy) -> [UUID: EntrancePlan] {
+    private func addVisitors(
+        for entrances: [EntranceTrigger], goes: [GoTrigger], policy: EffectPolicy
+    ) -> [UUID: EntrancePlan] {
         guard !entrances.isEmpty else { return [:] }
         let existing = allStickerNodes()
         var sizes: [String: StageSize] = [:]
@@ -1624,7 +1626,7 @@ final class CanvasScene: SKScene {
             features: pack.manifest.features.onArt(artVariant),
             moves: stageMoves,
             scales: visitScales,
-            depths: visitDepths(sizes: sizes, in: scene),
+            depths: visitDepths(sizes: sizes, in: scene), goes: goes,
             scene: scene, obstacles: obstacles, policy: policy, random: &random)
         var visitors: [UUID: EntrancePlan] = [:]
         for plan in plans {

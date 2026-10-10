@@ -77,10 +77,14 @@ public struct StageSize: Equatable, Sendable {
 public struct StageObstacle: Equatable, Sendable {
     public var center: StagePoint
     public var radius: Double
+    /// When it is no longer there (a visitor the story moves on); nil
+    /// while it stays.
+    public var until: TimeInterval?
 
-    public init(center: StagePoint, radius: Double) {
+    public init(center: StagePoint, radius: Double, until: TimeInterval? = nil) {
         self.center = center
         self.radius = radius
+        self.until = until
     }
 }
 
@@ -406,6 +410,9 @@ public enum StagePlanner {
     /// the art rarely fills its square, so two can stand a little closer
     /// than their squares would say.
     public static let footprint = 0.38
+    /// A move this soon after a visitor's entrance (the same words) is
+    /// where it arrives: it lands there.
+    public static let arrivalMove: TimeInterval = 1
     /// How far a sticker's art reaches from its centre, as a fraction of
     /// its side, when deciding whether it sits under something to avoid.
     public static let reach = 0.45
@@ -419,10 +426,15 @@ public enum StagePlanner {
     /// when missing) and lands where it is seen whole at that size — or,
     /// with a `depths` entry, lands where it is seen whole at its front
     /// scale and comes in at the scale of where it landed (`VisitDepth`).
+    ///
+    /// With the story's moves (`goes`), a visitor sent to a place the
+    /// moment it arrives ("down onto the pad came the lander") lands
+    /// there, and an earlier visitor's spot stops counting once the story
+    /// has moved it on — the pad is free again for the next one to land.
     public static func plan<R: RandomNumberGenerator>(
         entrances: [EntranceTrigger], placed: Set<String>, stages: [String: StickerStage],
         features: [String: SceneFeature] = [:], moves: [String: [StageMove]] = [:], scales: [String: Double] = [:],
-        depths: [String: VisitDepth] = [:],
+        depths: [String: VisitDepth] = [:], goes: [GoTrigger] = [],
         scene: Scene, obstacles: [StageObstacle], policy: EffectPolicy, random: inout R
     ) -> [EntrancePlan] {
         var obstacles = obstacles
@@ -431,6 +443,14 @@ public enum StagePlanner {
         for entrance in entrances.sorted(by: { $0.at < $1.at })
         where !placed.contains(entrance.stickerID) && seen.insert(entrance.stickerID).inserted {
             var stage = stages[entrance.stickerID] ?? .default
+            let itsGoes = goes.filter { $0.stickerID == entrance.stickerID && $0.at >= entrance.at - 0.01 }
+                .sorted { $0.at < $1.at }
+            if let first = itsGoes.first, first.kind == .to, first.at - entrance.at <= arrivalMove,
+                let place = first.target, features[place] != nil
+            {
+                stage.on = [place] + stage.on.filter { $0 != place }
+            }
+            let present = obstacles.filter { ($0.until ?? .infinity) > entrance.at }
             let move = StageMove.pick(moves[entrance.stickerID], by: entrance.by)
             if let move, let by = entrance.by, move.id == by, move.cycle != nil {
                 // Another way in than its usual one: it flies or walks in
@@ -453,7 +473,7 @@ public enum StagePlanner {
             var landing: (point: StagePoint, rect: StageRect)?
             for rects in choices {
                 landing = freeSpot(
-                    in: rects, radius: radius, avoiding: obstacles, random: &random,
+                    in: rects, radius: radius, avoiding: present, random: &random,
                     uncovered: { !scene.isCovered($0, size: size) })
                 if landing != nil { break }
             }
@@ -472,7 +492,8 @@ public enum StagePlanner {
             let artY = { (y: Double) in (y - scene.world.minY) / max(scene.world.maxY - scene.world.minY, 1) }
             let landed = depth.map { $0.scale(atArtY: artY(rect.lift > 0 ? ground : target.y)) } ?? scale
             if rect.lift > 0 { target.y = ground + rect.lift * landed / scale }
-            obstacles.append(StageObstacle(center: target, radius: radius))
+            obstacles.append(StageObstacle(
+                center: target, radius: radius, until: itsGoes.first { $0.at > entrance.at + arrivalMove }?.at))
             var plan = path(
                 for: entrance, stage: stage, move: policy.allowsLiveAnimations ? move : nil,
                 target: target, area: rect, scene: scene, policy: policy, random: &random)
