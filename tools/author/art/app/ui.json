@@ -1,45 +1,52 @@
 {
-  "notes": {
-    "what": "The app's own art (not a pack's): the main screen's background, the Sticker Stories title and every pack's cover. uiart render makes `candidates` alternatives of each in out/<asset>/ with a choices.png to compare; uiart pick <asset> <n> installs one.",
-    "style": "Prepended to every prompt so the pieces belong together; keep it close to the packs' style so the menu and the packs feel like one app.",
-    "background": "Sits behind the title (top) and a row of big pack cards (middle), and is cropped to any screen shape: iPad 4:3 in either orientation, phones up to about 2.2:1. Keep it calm and low in detail so the cards stand out.",
-    "cover": "One per pack, drawn from the pack's own style sheet and scene. The characters are always shown as realistic die-cut vinyl stickers placed on the scene. Shown square-ish in the main menu and wider in the store, so keep what matters in the middle. The app writes the pack's name, so no text in the art.",
-    "store": "The main menu tile that opens the store (More stories): a promise of new worlds to discover — a few big, realistic stickers from different worlds on a calm paper surface, one half-peeled from its sheet. Drawn with a few of the packs' finished stickers as style references. The app writes the label in a banner along the bottom, so no text in the art and a calm bottom band.",
-    "title": "The title is drawn with the installed menu background attached as a reference (uiart does this whenever Art/menu-background.webp exists), so the model can pick colours that contrast with it.",
-    "hand": "The hand the canvas's hints show a child (how to pinch a sticker bigger and turn it, how to tap the layer button). The app points it with the index fingertip, which must be the topmost point of the art; it is drawn over any scene, so a clear outline matters more than detail. Cream-white rather than a skin tone, so it is nobody's hand in particular."
+ "notes": {
+  "what": "The app's own art (not a pack's): the main screen's background, the Sticker Stories title and every pack's cover. uiart render makes `candidates` alternatives of each in out/<asset>/ with a choices.png to compare; uiart pick <asset> <n> installs one.",
+  "style": "Prepended to every prompt so the pieces belong together; keep it close to the packs' style so the menu and the packs feel like one app.",
+  "background": "Sits behind the title (top) and a row of big pack cards (middle), and is cropped to any screen shape: iPad 4:3 in either orientation, phones up to about 2.2:1. Keep it calm and low in detail so the cards stand out.",
+  "cover": "One per pack, drawn from the pack's own style sheet and scene. The characters are always shown as realistic die-cut vinyl stickers placed on the scene. Shown square-ish in the main menu and wider in the store, so keep what matters in the middle. The app writes the pack's name, so no text in the art.",
+  "store": "The main menu tile that opens the store (More stories): a promise of new worlds to discover — a few big, realistic stickers from different worlds on a calm paper surface, one half-peeled from its sheet. Drawn with a few of the packs' finished stickers as style references. The app writes the label in a banner along the bottom, so no text in the art and a calm bottom band.",
+  "title": "The title is drawn with the installed menu background attached as a reference (uiart does this whenever Art/menu-background.webp exists), so the model can pick colours that contrast with it.",
+  "hand": "The hand the canvas's hints show a child (how to pinch a sticker bigger and turn it, how to tap the layer button). The app points it with the index fingertip, which must be the topmost point of the art; it is drawn over any scene, so a clear outline matters more than detail. Cream-white rather than a skin tone, so it is nobody's hand in particular."
+ },
+ "style": "Children's picture-book illustration for ages 4 and up: soft digital gouache with a gentle hand-painted texture, clean rounded shapes, thick-and-thin dark-brown outlines, warm friendly palette (mossy greens, honey yellows, soft browns, sky blue, a touch of berry pink), calm and cheerful, no scary elements, no watermarks.",
+ "candidates": 4,
+ "background": {
+  "size": "3072x1536",
+  "prompt": "The backdrop of a children's story app's home screen: a soft, dreamy sky in gentle blues with a few big fluffy clouds, rolling pastel hills along the very bottom with tiny flowers, and a few scattered little stars, sparkles and paper-cut shapes in the upper corners. Very calm and low in detail in the middle band, where a row of large picture cards will sit, and a clear open area across the top centre for the app's title. Everything important is spread evenly so the picture still works when its left and right edges are cropped away."
+ },
+ "title": {
+  "size": "3072x1536",
+  "text": "Sticker Stories",
+  "prompt": "The logo lettering of a children's story app: chunky, rounded, friendly hand-painted letters. All the letters share one consistent colour treatment — a single colour, or one smooth gradient applied the same way to every letter — never a different colour per letter. Choose that colour for the strongest, most pleasing contrast against the home screen background (a soft blue sky with white clouds), so the logo pops and reads instantly; the letters are as if cut from glossy paper stickers with a thin white die-cut border around the words and a soft drop shadow, with a few small playful decorations tucked around it — a tiny star, a leaf, a little sparkle, a curl of ribbon. Readable at a glance, all on one single line — \"Sticker Stories\" side by side, never stacked — wide and centred, filling the width of the picture. Ultra realistic sticker effect with every letter an individual sticker that could overlap the others a little bit"
+ },
+ "cover": {
+  "size": "1024x1024",
+  "prompt": "A joyful, inviting cover picture: the pack's characters, each one shown as a physical die-cut vinyl sticker — the character's artwork on a glossy sticker with a thick white die-cut border following its outline, a subtle glossy sheen and highlights, the slightly raised edge of real vinyl, and a soft, realistic drop shadow falling onto the scene beneath it, as if real stickers had been pressed onto the painted scenery. The stickers are grouped in the middle, some overlapping a little, in a lively little moment. The sticker effect is ultra realistic, like a photograph of real stickers, while the scene and the art inside each sticker keep the pack's painted style. The group fills the centre square; the outer edges are calm scenery so the picture can be cropped to a wider or taller tile without losing anyone.",
+  "packs": {
+   "moonbase": "The moment: a happy day at the Moon base. In the middle, the two astronauts in their white suits with orange panels and clear round visors: the woman, with warm brown skin and dark hair, exactly like her sticker, in a floaty moon-hop, waving; and the man, with light skin, brown hair and a short brown beard, exactly like his sticker, grinning and giving a thumbs up. Beside them the open two-seat moon buggy with its big mesh wheels, and behind them the tall shiny silver spaceship standing on the hexagonal landing pad. The scene is the pack's own: grey moon dust, the jagged far ridge, the blue-and-white Earth rising over it in a black starry sky. Exciting and bright for kids around ten — a sense of adventure — but friendly, never scary. No logos, no flags, no text.",
+   "beach": "The moment: a sunny, happy day at the cove. In the middle, Lola, the little girl in her yellow sun hat with a red ribbon and blue polka-dot swimsuit, exactly like her sticker, flying her diamond kite (red, yellow, blue and green) high above her; beside her Nico, the boy with dark curly hair and brown skin in his blue-and-orange wetsuit, exactly like his sticker, holding up his yellow surfboard with a red stripe and grinning; at their feet the cheerful red crab with its claws raised, and the orange starfish waving one arm. The scene is the pack's own: golden sand, the turquoise sea with gentle white waves, the round rock pool among pale boulders, and the little red-and-white lighthouse on its green headland across the bay, under a blue sky with round white clouds. Warm, sunny and inviting for children aged four to eight, friendly, never scary. No logos, no text."
   },
-  "style": "Children's picture-book illustration for ages 4 and up: soft digital gouache with a gentle hand-painted texture, clean rounded shapes, thick-and-thin dark-brown outlines, warm friendly palette (mossy greens, honey yellows, soft browns, sky blue, a touch of berry pink), calm and cheerful, no scary elements, no watermarks.",
-  "candidates": 4,
-  "background": {
-    "size": "3072x1536",
-    "prompt": "The backdrop of a children's story app's home screen: a soft, dreamy sky in gentle blues with a few big fluffy clouds, rolling pastel hills along the very bottom with tiny flowers, and a few scattered little stars, sparkles and paper-cut shapes in the upper corners. Very calm and low in detail in the middle band, where a row of large picture cards will sit, and a clear open area across the top centre for the app's title. Everything important is spread evenly so the picture still works when its left and right edges are cropped away."
-  },
-  "title": {
-    "size": "3072x1536",
-    "text": "Sticker Stories",
-    "prompt": "The logo lettering of a children's story app: chunky, rounded, friendly hand-painted letters. All the letters share one consistent colour treatment — a single colour, or one smooth gradient applied the same way to every letter — never a different colour per letter. Choose that colour for the strongest, most pleasing contrast against the home screen background (a soft blue sky with white clouds), so the logo pops and reads instantly; the letters are as if cut from glossy paper stickers with a thin white die-cut border around the words and a soft drop shadow, with a few small playful decorations tucked around it — a tiny star, a leaf, a little sparkle, a curl of ribbon. Readable at a glance, all on one single line — \"Sticker Stories\" side by side, never stacked — wide and centred, filling the width of the picture. Ultra realistic sticker effect with every letter an individual sticker that could overlap the others a little bit"
-  },
-  "cover": {
-    "size": "1024x1024",
-    "prompt": "A joyful, inviting cover picture: the pack's characters, each one shown as a physical die-cut vinyl sticker — the character's artwork on a glossy sticker with a thick white die-cut border following its outline, a subtle glossy sheen and highlights, the slightly raised edge of real vinyl, and a soft, realistic drop shadow falling onto the scene beneath it, as if real stickers had been pressed onto the painted scenery. The stickers are grouped in the middle, some overlapping a little, in a lively little moment. The sticker effect is ultra realistic, like a photograph of real stickers, while the scene and the art inside each sticker keep the pack's painted style. The group fills the centre square; the outer edges are calm scenery so the picture can be cropped to a wider or taller tile without losing anyone.",
-    "packs": {
-      "moonbase": "The moment: a happy day at the Moon base. In the middle, the two astronauts in their white suits with orange panels and clear round visors: the woman, with warm brown skin and dark hair, exactly like her sticker, in a floaty moon-hop, waving; and the man, with light skin, brown hair and a short brown beard, exactly like his sticker, grinning and giving a thumbs up. Beside them the open two-seat moon buggy with its big mesh wheels, and behind them the tall shiny silver spaceship standing on the hexagonal landing pad. The scene is the pack's own: grey moon dust, the jagged far ridge, the blue-and-white Earth rising over it in a black starry sky. Exciting and bright for kids around ten — a sense of adventure — but friendly, never scary. No logos, no flags, no text."
-    },
-    "stickers": {
-      "moonbase": [
-        "woman",
-        "man",
-        "ship",
-        "buggy"
-      ]
-    }
-  },
-  "store": {
-    "size": "1024x1024",
-    "prompt": "A playful promise of new sticker worlds to discover. On a calm, softly lit surface of pale cream paper with a gentle texture, a small stack of sticker sheets with five to seven big die-cut vinyl stickers arranged in a loose, balanced cluster around the centre, each from a different world: one friendly woodland character from the attached stickers, plus a smiling fish, a little rocket with a star, a gentle dinosaur, a happy farm hen, and a sailboat or a small castle. One sticker in front is half-peeled from its backing sheet, its corner curling up to show its white back, as if about to be stuck down, with a few tiny sparkles hinting at something new. The stickers are large and easy to read even small, some overlapping a little, with calm paper showing between them — never a crowded pile. Each sticker has a thick white die-cut border following its outline, a glossy sheen and highlights, a slightly raised vinyl edge and a soft, realistic drop shadow on the paper: the sticker effect is ultra realistic, like a photograph of real stickers, while the art inside each sticker keeps the painted picture-book style. Keep the bottom fifth of the picture calm, plain paper (a label is placed there)."
-  },
-  "hand": {
-    "size": "1024x1024",
-    "prompt": "A friendly cartoon hand for a children's app tutorial, drawn like a white paper cut-out: the whole hand is plain soft white (paper white with the faintest pale-grey shading, NOT a skin colour, no pink or peach anywhere), with a clear dark-brown outline. Seen from the BACK of the hand, the way you see your own right hand when you touch a phone screen: the back of the hand and the row of knuckles face the viewer, the index finger points straight up with its fingernail outlined (white, just a line) on the side facing the viewer, and the other three fingers are folded down and away from the viewer so only their rounded knuckles show — no fingertips and no palm visible. The thumb rests along the side of the folded fingers. A short wrist at the bottom. Simple and chunky, with a thin white sticker border around it."
+  "stickers": {
+   "moonbase": [
+    "woman",
+    "man",
+    "ship",
+    "buggy"
+   ],
+   "beach": [
+    "girl",
+    "surfer",
+    "crab",
+    "starfish"
+   ]
   }
+ },
+ "store": {
+  "size": "1024x1024",
+  "prompt": "A playful promise of new sticker worlds to discover. On a calm, softly lit surface of pale cream paper with a gentle texture, a small stack of sticker sheets with five to seven big die-cut vinyl stickers arranged in a loose, balanced cluster around the centre, each from a different world: one friendly woodland character from the attached stickers, plus a smiling fish, a little rocket with a star, a gentle dinosaur, a happy farm hen, and a sailboat or a small castle. One sticker in front is half-peeled from its backing sheet, its corner curling up to show its white back, as if about to be stuck down, with a few tiny sparkles hinting at something new. The stickers are large and easy to read even small, some overlapping a little, with calm paper showing between them — never a crowded pile. Each sticker has a thick white die-cut border following its outline, a glossy sheen and highlights, a slightly raised vinyl edge and a soft, realistic drop shadow on the paper: the sticker effect is ultra realistic, like a photograph of real stickers, while the art inside each sticker keeps the painted picture-book style. Keep the bottom fifth of the picture calm, plain paper (a label is placed there)."
+ },
+ "hand": {
+  "size": "1024x1024",
+  "prompt": "A friendly cartoon hand for a children's app tutorial, drawn like a white paper cut-out: the whole hand is plain soft white (paper white with the faintest pale-grey shading, NOT a skin colour, no pink or peach anywhere), with a clear dark-brown outline. Seen from the BACK of the hand, the way you see your own right hand when you touch a phone screen: the back of the hand and the row of knuckles face the viewer, the index finger points straight up with its fingernail outlined (white, just a line) on the side facing the viewer, and the other three fingers are folded down and away from the viewer so only their rounded knuckles show — no fingertips and no palm visible. The thumb rests along the side of the folded fingers. A short wrist at the bottom. Simple and chunky, with a thin white sticker border around it."
+ }
 }
