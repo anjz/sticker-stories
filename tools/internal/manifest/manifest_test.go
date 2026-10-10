@@ -266,6 +266,9 @@ func TestValidationFailures(t *testing.T) {
 			m.Features = map[string]Feature{"pond": {Description: "The pond.", Areas: []StageArea{{X: []float64{0.5, 0.7}, Y: []float64{0.3, 0.4}}},
 				Edge: []StageArea{{X: []float64{0.4, 0.45}, Y: []float64{0.3, 1.4}}}}}
 		}, "edge[0].y"},
+		{"feature from a side that is not one", func(m *Manifest) {
+			m.Features = map[string]Feature{"sea": {Description: "The sea.", Areas: []StageArea{{X: []float64{0.1, 0.9}, Y: []float64{0.5, 0.6}}}, From: "north"}}
+		}, "from must be left or right"},
 		{"feature wide area beyond the wide art", func(m *Manifest) {
 			m.BackgroundWide, m.ForegroundWide = m.Background, m.Foreground
 			m.Features = map[string]Feature{"hatch": {Description: "The hatch.", Areas: []StageArea{{X: []float64{0.05, 0.1}, Y: []float64{0.2, 0.3}}},

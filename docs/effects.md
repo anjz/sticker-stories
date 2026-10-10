@@ -427,6 +427,12 @@ one per sticker per story, never `all`.
   and has to come in the other is mirrored for the whole visit. Without a
   move it bounces in as before. Under Reduce Motion or calm mode it
   simply fades in (no frames).
+- **A place that runs on past one side** (`features[].from`: Beach's
+  open sea, whose right end is the beach): whatever comes in onto it —
+  a boat, or the surfer coming in on his board — comes from that side,
+  and whatever goes `away` from it leaves that way, never sliding over
+  the sand. Walkers coming in onto the sand still come from the nearer
+  side.
 - **Its size**: a visitor comes in at its size class's visiting scale
   (manifest `stickers[].size`, `StickerSize.visitScale`): a big one
   1.3× a sticker's default size, a tiny one 0.8×, small and medium as

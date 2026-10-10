@@ -186,6 +186,11 @@ type Feature struct {
 	// like Areas, so x may run into the wide side bands (WideMargin beyond
 	// 0 and 1). Without them the wide art uses Areas.
 	WideAreas []StageArea `json:"wideAreas,omitempty"`
+	// From (optional, "left" or "right") is the side of the screen the
+	// place runs on past — the open sea where the far side is a beach:
+	// whatever comes into it from off screen comes from that side, and
+	// whatever leaves it goes that way.
+	From string `json:"from,omitempty"`
 }
 
 // WideMargin is how far beyond the base art (in base-art widths) a wide
@@ -441,6 +446,9 @@ func (m *Manifest) Validate(dir string) []error {
 					fail("%s: words: %q must be one word", field, w)
 				}
 			}
+		}
+		if f.From != "" && f.From != "left" && f.From != "right" {
+			fail("%s: from must be left or right, got %q", field, f.From)
 		}
 		for i, a := range f.Areas {
 			checkArea(fmt.Sprintf("%s: areas[%d]", field, i), a, fail)

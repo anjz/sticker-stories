@@ -159,6 +159,28 @@ import Testing
         #expect(leg.from.x < 0 && leg.facingTo == 1)
     }
 
+    @Test func leavingAPlaceThatRunsOnPastOneSideGoesThatWay() {
+        // The open sea runs on past the left; the rabbit (at 700, 220) is out on it.
+        let sea = ["sea": SceneFeature(
+            description: "Water.", areas: [.init(x: [0.1, 0.9], y: [0.2, 0.4])], from: .left)]
+        func away(_ id: String) -> MotionLeg? {
+            var random = SeededGenerator(state: 3)
+            let who = actors().first { $0.stickerID == id }!.id
+            return MotionPlanner.plan(
+                goes: [GoTrigger(at: 1, stickerID: id, kind: .away)], actors: actors(), features: sea,
+                scene: Self.scene, policy: .standard, random: &random)[who]?.legs.first
+        }
+        // Nearer the right edge, it still sails out to the left.
+        #expect((away("rabbit")?.to.x ?? 0) < 0)
+        // The mouse (at 820, 200) is just off it, up on the sand: the nearer side as ever.
+        let sand = ["sea": SceneFeature(description: "Water.", areas: [.init(x: [0.1, 0.9], y: [0.6, 0.8])], from: .left)]
+        var random = SeededGenerator(state: 3)
+        let mouse = MotionPlanner.plan(
+            goes: [GoTrigger(at: 1, stickerID: "mouse", kind: .away)], actors: actors(), features: sand,
+            scene: Self.scene, policy: .standard, random: &random)[self.mouse]?.legs.first
+        #expect((mouse?.to.x ?? 0) > 0)
+    }
+
     @Test func calmModeFadesInsteadOfTravelling() {
         let plans = plan([GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "rabbit")], policy: EffectPolicy(calmMode: true))
         let leg = plans[fox]!.legs[0]

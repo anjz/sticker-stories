@@ -45,9 +45,13 @@ public struct StageRect: Equatable, Sendable {
     /// which holds the sticker's centre, sits above the place's ground —
     /// the height of its centre over its feet. 0 when it holds centres.
     public var lift: Double
+    /// The side the place runs on past the screen (`SceneFeature.from`):
+    /// a visitor coming into it comes from there.
+    public var from: StageMove.Facing?
 
     public init(
-        minX: Double, minY: Double, maxX: Double, maxY: Double, facing: StageMove.Facing? = nil, lift: Double = 0
+        minX: Double, minY: Double, maxX: Double, maxY: Double, facing: StageMove.Facing? = nil, lift: Double = 0,
+        from: StageMove.Facing? = nil
     ) {
         self.minX = minX
         self.minY = minY
@@ -55,6 +59,7 @@ public struct StageRect: Equatable, Sendable {
         self.maxY = maxY
         self.facing = facing
         self.lift = lift
+        self.from = from
     }
 
     public var midX: Double { (minX + maxX) / 2 }
@@ -535,7 +540,11 @@ public enum StagePlanner {
         for id in stage.on {
             guard let feature = features[id] else { continue }
             let lift = sticker.map { scene.lift(of: $0, height: height, on: feature) } ?? 0
-            let rects = feature.areas.filter(\.isValidOnWideArt).compactMap { visibleRect(for: $0, in: scene, lift: lift) }
+            let rects = feature.areas.filter(\.isValidOnWideArt).compactMap { area -> StageRect? in
+                var rect = visibleRect(for: area, in: scene, lift: lift)
+                rect?.from = feature.from
+                return rect
+            }
             if !rects.isEmpty { out.append(rects) }
         }
         if let area = stage.area {
@@ -657,8 +666,9 @@ public enum StagePlanner {
         let size = scene.size(of: entrance.stickerID)
         let width = max(size.width, 1), height = max(size.height, 1)
         // From the nearer side — or, onto a place it faces into (a trunk),
-        // from the side that has it arrive facing that way.
-        let nearLeft = area.facing.map { $0 == .right } ?? (target.x < scene.visible.midX)
+        // from the side that has it arrive facing that way; into a place
+        // that runs on past one side (the open sea), from that side.
+        let nearLeft = area.facing.map { $0 == .right } ?? area.from.map { $0 == .left } ?? (target.x < scene.visible.midX)
         // Just out of sight, even at the bigger start size of a walker.
         func startX(_ left: Bool) -> Double {
             left
@@ -688,7 +698,7 @@ public enum StagePlanner {
             // That way passes under the screen's furniture (the story's
             // pill): a few other heights from the nearer side, then from the
             // far one; none clear, the first.
-            let sides = area.facing == nil ? [nearLeft, !nearLeft] : [nearLeft]
+            let sides = area.facing == nil && area.from == nil ? [nearLeft, !nearLeft] : [nearLeft]
             search: for left in sides {
                 for _ in 0..<6 {
                     let y = drawY()

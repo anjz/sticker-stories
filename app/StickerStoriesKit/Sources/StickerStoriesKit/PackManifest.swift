@@ -528,16 +528,22 @@ public struct SceneFeature: Codable, Equatable, Sendable {
     /// Open air (the sky): nothing stands there, so a pack whose places
     /// hold feet (`PackStaging.anchor`) still puts a flyer's centre in it.
     public var air: Bool?
+    /// The side of the screen the place runs on past (the open sea, where
+    /// the far side is a beach): whatever comes into it from off screen
+    /// comes from that side, and whatever leaves it goes that way, so a
+    /// boat never slides in over the sand. Optional.
+    public var from: StageMove.Facing?
 
     public init(
         description: String, areas: [StickerStage.Area], edge: [StickerStage.Area]? = nil,
-        wideAreas: [StickerStage.Area]? = nil, air: Bool? = nil
+        wideAreas: [StickerStage.Area]? = nil, air: Bool? = nil, from: StageMove.Facing? = nil
     ) {
         self.description = description
         self.areas = areas
         self.edge = edge
         self.wideAreas = wideAreas
         self.air = air
+        self.from = from
     }
 
     /// Whether the place is open air.

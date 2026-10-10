@@ -628,7 +628,21 @@ public enum MotionPlanner {
                 states[index].at = key
                 return (point, scale, true, .onto(them.actor.id), nil)
             case .away:
+                // In a place that runs on past one side (a boat on the
+                // open sea): out that way, never over the sand.
+                let runsOn = features.sorted { $0.key < $1.key }.first { name, feature in
+                    guard feature.from != nil else { return false }
+                    let stage = StickerStage(entrance: .hop, on: [name])
+                    let margin = me.size.width * 0.25
+                    return StagePlanner.places(
+                        for: stage, features: [name: feature], in: scene, sticker: me.stickerID, height: me.size.height
+                    ).first?.contains { r in
+                        state.center.x >= r.minX - margin && state.center.x <= r.maxX + margin
+                            && state.center.y >= r.minY - margin && state.center.y <= r.maxY + margin
+                    } == true
+                }?.value.from
                 let side: Double = go.toward.map { $0 == .right ? 1 : -1 }
+                    ?? runsOn.map { $0 == .right ? 1 : -1 }
                     ?? (state.center.x < scene.visible.midX ? -1 : 1)
                 let x = side < 0 ? scene.visible.minX - me.size.width * 0.8 : scene.visible.maxX + me.size.width * 0.8
                 states[index].leftBy = side

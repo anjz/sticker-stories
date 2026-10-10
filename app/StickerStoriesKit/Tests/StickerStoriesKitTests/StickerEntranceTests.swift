@@ -375,6 +375,21 @@ struct SeededGenerator: RandomNumberGenerator {
         }
     }
 
+    @Test func intoAPlaceThatRunsOnPastOneSideItComesFromThatSide() {
+        // The sea runs on past the left; its right end meets the beach.
+        let features = ["sea": SceneFeature(
+            description: "Water.", areas: [.init(x: [0.6, 0.9], y: [0.5, 0.6])], from: .left)]
+        let stages = ["boat": StickerStage(entrance: .hop, on: ["sea"])]
+        for seed in UInt64(1)...6 {
+            var random = SeededGenerator(state: seed)
+            let boat = StagePlanner.plan(
+                entrances: [EntranceTrigger(at: 0, stickerID: "boat")], placed: [], stages: stages,
+                features: features, scene: Self.scene, obstacles: [], policy: .standard, random: &random)[0]
+            // Landing right of the middle, still in from the left.
+            #expect(boat.target.x > 500 && boat.startOffset.x < 0, "seed \(seed)")
+        }
+    }
+
     @Test func comingInIntoItsElementByAWayThatStaysKeepsGoing() {
         let features = ["sea": SceneFeature(description: "Water.", areas: [.init(x: [0.1, 0.9], y: [0.5, 0.6])]),
                         "sand": SceneFeature(description: "Sand.", areas: [.init(x: [0.1, 0.9], y: [0.16, 0.36])])]
