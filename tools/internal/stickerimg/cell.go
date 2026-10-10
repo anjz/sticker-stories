@@ -170,8 +170,9 @@ func Scaffold(cells []*image.RGBA, cols, rows, cell int) *image.RGBA {
 // (0 as drawn, 1 brightest): its brightest parts flare toward white, its
 // colours deepen a little and a soft bloom spreads from the bright core,
 // all within the drawing — a galaxy's centre glowing while its border
-// stays as it is.
-func LightSheet(sticker *image.RGBA, light []float64, columns int) *AnimSheet {
+// stays as it is. opacity (optional, one entry per frame, 0–1) fades the
+// whole sticker: a galaxy appearing where it is.
+func LightSheet(sticker *image.RGBA, light, opacity []float64, columns int) *AnimSheet {
 	box := Bounds(sticker, 0)
 	pad := max(box.Dx(), box.Dy()) / 40
 	box = box.Inset(-pad).Intersect(sticker.Bounds())
@@ -224,6 +225,9 @@ func LightSheet(sticker *image.RGBA, light []float64, columns int) *AnimSheet {
 					c[ch] = math.Min(math.Max(v, 0), 1)
 				}
 				a := alpha[i] * 255
+				if f < len(opacity) {
+					a *= math.Min(math.Max(opacity[f], 0), 1)
+				}
 				out.SetRGBA(ox+x, oy+y, color.RGBA{
 					R: uint8(c[0]*a + 0.5), G: uint8(c[1]*a + 0.5), B: uint8(c[2]*a + 0.5), A: uint8(a + 0.5)})
 			}

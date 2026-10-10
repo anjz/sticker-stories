@@ -215,6 +215,10 @@ type animSpec struct {
 	// sticker itself, so they match it exactly. For a sticker whose
 	// action is only a change of light.
 	Light []float64 `json:"light,omitempty"`
+	// Opacity (with Light, optional) is how much of the sticker each frame
+	// shows, 0–1, one entry per frame: a move that fades it in where it
+	// stands (a galaxy appearing). Absent: every frame whole.
+	Opacity []float64 `json:"opacity,omitempty"`
 }
 
 func (a animSpec) kind() string {
@@ -903,7 +907,10 @@ func (r *renderer) lightAnimation(a animSpec) error {
 			hold[i] = defaultHold
 		}
 	}
-	fp := hashOf("light", "2", hashFile(stickerPath), fmt.Sprint(a.Light, hold, r.c.cfg.Columns, a.kind(), a.Pause, a.Loop, a.Facing, a.Stride, a.Story))
+	if len(a.Opacity) != 0 && len(a.Opacity) != len(a.Light) {
+		return fmt.Errorf("%s: opacity has %d entries for %d frames of light", a.key(), len(a.Opacity), len(a.Light))
+	}
+	fp := hashOf("light", "2", hashFile(stickerPath), fmt.Sprint(a.Light, a.Opacity, hold, r.c.cfg.Columns, a.kind(), a.Pause, a.Loop, a.Facing, a.Stride, a.Story))
 	sheetPath, jsonPath := r.out(a.key()+".png"), r.out(a.key()+".json")
 	if r.upToDate(sheetPath, fp) && r.upToDate(jsonPath, fp) {
 		r.say("· %s up to date", a.key())
@@ -921,7 +928,7 @@ func (r *renderer) lightAnimation(a animSpec) error {
 	if err != nil {
 		return err
 	}
-	sheet := stickerimg.LightSheet(sticker, a.Light, r.c.cfg.Columns)
+	sheet := stickerimg.LightSheet(sticker, a.Light, a.Opacity, r.c.cfg.Columns)
 	if err := r.writeAnimation(a, sheet, stickerPath, hold, sheetPath, jsonPath); err != nil {
 		return err
 	}
