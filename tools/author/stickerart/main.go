@@ -1202,7 +1202,7 @@ func (r *renderer) sceneEdits(bgFP, bgBase, bgWide string) error {
 		}
 		return nil
 	}
-	editFP := hashOf(bgFP, "edits", sceneEditVersion, fmt.Sprint(edits), r.o.quality, editModel)
+	editFP := hashOf(bgFP, "edits", sceneEditVersion, sceneBlendVersion, fmt.Sprint(edits), r.o.quality, editModel)
 	if r.upToDate(bgWide, editFP) && r.upToDate(bgBase, editFP) {
 		r.say("· background edits up to date")
 		return nil
@@ -1250,7 +1250,7 @@ func (r *renderer) sceneEdits(bgFP, bgBase, bgWide string) error {
 			if err != nil {
 				return err
 			}
-			img = stickerimg.Face(img, edited, e.Area)
+			img = stickerimg.Patch(img, edited, e.Area)
 			r.say("· background edit %d kept", i+1)
 			continue
 		}
@@ -1259,7 +1259,7 @@ func (r *renderer) sceneEdits(bgFP, bgBase, bgWide string) error {
 		if err != nil {
 			return err
 		}
-		mask, err := stickerimg.Encode(stickerimg.FaceMask(img, e.Area))
+		mask, err := stickerimg.Encode(stickerimg.PatchMask(img, e.Area))
 		if err != nil {
 			return err
 		}
@@ -1276,7 +1276,7 @@ func (r *renderer) sceneEdits(bgFP, bgBase, bgWide string) error {
 		if err := os.WriteFile(genPath(e), out.PNG, 0o644); err != nil {
 			return err
 		}
-		img = stickerimg.Face(img, edited, e.Area)
+		img = stickerimg.Patch(img, edited, e.Area)
 		r.say("✓ background edit %d (%s)", i+1, r.charge(out.Usage))
 	}
 	wide, err := stickerimg.Encode(img)
@@ -1294,6 +1294,11 @@ func (r *renderer) sceneEdits(bgFP, bgBase, bgWide string) error {
 // sceneEditVersion changes whenever the edit prompt's fixed wording or the
 // blending changes.
 const sceneEditVersion = "1"
+
+// sceneBlendVersion changes when only the laying-over of kept edit
+// drawings changes: the background is re-composited, nothing redrawn.
+// 2: no band kept along the picture's border (stickerimg.Patch).
+const sceneBlendVersion = "2"
 
 // extend outpaints a base plane to the wide width with the centre masked
 // off (the API paints the transparent parts of the mask), then writes the

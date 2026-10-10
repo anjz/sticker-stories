@@ -145,12 +145,53 @@ func faceWeights(base *image.RGBA, f FaceBox) []float64 {
 // finished sticker's size and placement, are exactly the sticker's. The
 // variant can then replace the sticker's texture without moving it.
 func Face(base, gen *image.RGBA, f FaceBox) *image.RGBA {
+	return blendIn(base, gen, faceWeights(base, f))
+}
+
+// Patch lays gen over an opaque picture (a scene's background) inside the
+// feathered ellipse over f, with no band kept along any edge: a picture's
+// border is not a silhouette, so a patch reaching a corner covers it.
+func Patch(base, gen *image.RGBA, f FaceBox) *image.RGBA {
+	return blendIn(base, gen, patchWeights(base, f))
+}
+
+// PatchMask is the edit mask for a Patch: transparent (repainted) over the
+// ellipse grown like a face's, edges included.
+func PatchMask(base *image.RGBA, f FaceBox) *image.RGBA {
+	b := base.Bounds()
+	w, h := b.Dx(), b.Dy()
+	m := image.NewRGBA(image.Rect(0, 0, w, h))
+	for y := 0; y < h; y++ {
+		for x := 0; x < w; x++ {
+			a := uint8(255)
+			if f.faceWeight(float64(x)+0.5, float64(y)+0.5, w, h, faceMaskGrow, 0.001) > 0 {
+				a = 0
+			}
+			m.SetRGBA(x, y, color.RGBA{0, 0, 0, a})
+		}
+	}
+	return m
+}
+
+func patchWeights(base *image.RGBA, f FaceBox) []float64 {
+	b := base.Bounds()
+	w, h := b.Dx(), b.Dy()
+	out := make([]float64, w*h)
+	for y := 0; y < h; y++ {
+		for x := 0; x < w; x++ {
+			out[y*w+x] = f.faceWeight(float64(x)+0.5, float64(y)+0.5, w, h, faceMaskGrow, faceMaskGrow/(1+faceMaskGrow))
+		}
+	}
+	return out
+}
+
+// blendIn mixes gen's colour into base by weights, keeping base's alpha.
+func blendIn(base, gen *image.RGBA, weights []float64) *image.RGBA {
 	b := base.Bounds()
 	w, h := b.Dx(), b.Dy()
 	if gb := gen.Bounds(); gb.Dx() != w || gb.Dy() != h {
 		gen = Resize(gen, w, h)
 	}
-	weights := faceWeights(base, f)
 	out := image.NewRGBA(image.Rect(0, 0, w, h))
 	for y := 0; y < h; y++ {
 		for x := 0; x < w; x++ {
