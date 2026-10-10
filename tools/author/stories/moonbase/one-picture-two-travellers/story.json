@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "id": "one-picture-two-travellers",
+  "pack": "moonbase",
+  "featured": [
+    "asteroid",
+    "comet",
+    "probe"
+  ],
+  "supporting": [],
+  "tags": [
+    "wonder",
+    "patience"
+  ],
+  "premise": "A comet and an asteroid cross paths high above, and the probe can only point its camera one way — so it waits for the moment they line up in a single picture.",
+  "inspiration": "Buridan's donkey, the medieval fable of the donkey stuck between two bales of hay, turned: instead of choosing, the probe waits until it can have both.",
+  "lesson": "Sometimes waiting lets you have both.",
+  "languages": {
+    "en-US": {
+      "title": "Two Travellers, One Picture",
+      "text": "{comet:float loop 0.2} {asteroid:float loop 0.3} {probe:float loop 0.3} Something rare was about to happen. A {comet:enter} comet and an {asteroid:enter} asteroid were going to pass each other in the sky. The little {probe:enter} probe wanted a picture. {probe:pulse} But of which one? {comet:live} The comet glowed brighter and brighter, its long tail streaming. Beautiful. {asteroid:live hold} The asteroid tumbled, and turned upside down, lumpy and grey. Interesting. [curious] The probe turned this way. {probe:shake 0.3} It turned that way. It could only point its camera one way at a time. {probe:live} So it turned its dish, reached out its boom… and waited. [whispers] Closer. Closer… {comet:go to asteroid} The comet swept nearer, until there they were, side by side. {sfx:click} Click! [excited] Both of them, in one picture! Everyone at the base {all:face happy} {all:hop} cheered. {asteroid:live resume} The asteroid tumbled on. {comet:sparkle} The comet sailed away. [warmly] {probe:glow 0.5} And the probe sent home the best picture in the sky."
+    },
+    "es-ES": {
+      "title": "Dos viajeros, una foto",
+      "text": "{comet:float loop 0.2} {asteroid:float loop 0.3} {probe:float loop 0.3} Iba a pasar algo poco común. Un {comet:enter} cometa y un {asteroid:enter} asteroide iban a cruzarse en el cielo. La pequeña {probe:enter} sonda quería una foto. {probe:pulse} Pero ¿de cuál? {comet:live} El cometa brilló cada vez más, con su larga cola al viento. Precioso. {asteroid:live hold} El asteroide dio una voltereta y se quedó boca abajo, gris y lleno de bultos. Interesante. [curious] La sonda se giró hacia aquí. {probe:shake 0.3} Se giró hacia allá. Solo podía apuntar la cámara a un lado cada vez. {probe:live} Así que giró su antena, extendió su brazo… y esperó. [whispers] Más cerca. Más cerca… {comet:go to asteroid} El cometa se acercó, hasta que allí estaban, uno junto al otro. {sfx:click} ¡Clic! [excited] ¡Los dos, en la misma foto! En la base, todos {all:face happy} {all:hop} lo celebraron. {asteroid:live resume} El asteroide siguió dando vueltas. {comet:sparkle} El cometa se alejó. [warmly] {probe:glow 0.5} Y la sonda envió a casa la mejor foto del cielo."
+    }
+  },
+  "sounds": {
+    "click": {
+      "prompt": "a tiny, crisp camera shutter click",
+      "seconds": 0.5
+    }
+  }
+}

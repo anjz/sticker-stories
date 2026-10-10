@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "id": "the-comet-postcard",
+  "pack": "moonbase",
+  "featured": [
+    "comet",
+    "probe",
+    "satellite",
+    "cubesat"
+  ],
+  "supporting": [],
+  "tags": [
+    "wonder",
+    "curiosity",
+    "learning"
+  ],
+  "premise": "The probe flies near the comet, sends its tiny CubeSat even closer, and the satellite carries home the picture: the comet's tail streaming ahead of it — away from the Sun.",
+  "inspiration": "Kipling's 'Just So Stories', with their tales of how the animals got their features, turned: how the comet got its tail, told true.",
+  "lesson": "When something looks backwards, there's usually a reason worth finding.",
+  "learning": "A comet is a ball of ice and dust, and its glowing tail always points away from the Sun.",
+  "languages": {
+    "en-US": {
+      "title": "The Comet Postcard",
+      "text": "{comet:float loop 0.2} {probe:float loop 0.3} {satellite:float loop 0.3} {cubesat:float loop 0.3} A {comet:enter} comet was heading away from the Sun, back out into the cold and the dark. Chasing it came a {probe:enter} probe, with a tiny {cubesat:enter} CubeSat tucked at its side. [curious] {probe:live} The probe turned its dish and reached out its boom. Then it let the CubeSat go. {cubesat:go to comet} Zip! The little CubeSat flew even closer, {sfx:click} and snapped a picture. {cubesat:sparkle} [gasps] Something was strange. The comet was flying away from the Sun… but its tail wasn't trailing behind it. {comet:live} It was streaming out IN FRONT, glowing brighter than ever! A comet is a ball of ice and dust, and sunlight pushes its glowing tail away from the Sun. Always. {probe:pulse} The {satellite:enter} satellite {satellite:live} sent the picture home to Earth. {sfx:beep} {all:face surprised} {all:wobble} Everyone who saw it said: “Wait… the tail's in front?” [warmly] {cubesat:hop} And now you know why."
+    },
+    "es-ES": {
+      "title": "La postal del cometa",
+      "text": "{comet:float loop 0.2} {probe:float loop 0.3} {satellite:float loop 0.3} {cubesat:float loop 0.3} Un {comet:enter} cometa se alejaba del Sol, de vuelta al frío y a la oscuridad. Lo perseguía una {probe:enter} sonda, con un diminuto {cubesat:enter} CubeSat pegadito a su lado. [curious] {probe:live} La sonda giró su antena y extendió su brazo. Luego soltó al CubeSat. {cubesat:go to comet} ¡Zas! El pequeño CubeSat se acercó todavía más, {sfx:click} e hizo una foto. {cubesat:sparkle} [gasps] Pasaba algo raro. El cometa se alejaba del Sol… pero su cola no iba detrás. {comet:live} ¡Iba DELANTE, más brillante que nunca! Un cometa es una bola de hielo y polvo, y la luz del Sol empuja su cola brillante lejos del Sol. Siempre. {probe:pulse} El {satellite:enter} satélite {satellite:live} envió la foto a la Tierra. {sfx:beep} {all:face surprised} {all:wobble} Todos los que la vieron dijeron: «Un momento… ¿la cola va delante?» [warmly] {cubesat:hop} Y ahora tú ya sabes por qué."
+    }
+  },
+  "sounds": {
+    "click": {
+      "prompt": "a tiny, crisp camera shutter click",
+      "seconds": 0.5
+    },
+    "beep": {
+      "prompt": "a single soft electronic radio beep, clean and friendly",
+      "seconds": 0.6
+    }
+  }
+}

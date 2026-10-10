@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "id": "the-other-side-of-the-asteroid",
+  "pack": "moonbase",
+  "featured": [
+    "asteroid",
+    "probe",
+    "cubesat"
+  ],
+  "supporting": [],
+  "tags": [
+    "funny",
+    "curiosity"
+  ],
+  "premise": "The probe and its CubeSat fly past a tumbling asteroid, each seeing a different side — a potato? a peanut? a sock? — until it rolls over and shows them both.",
+  "inspiration": "'The Blind Men and the Elephant' (Indian parable), where each man feels one part and argues, turned: everyone's guess is partly right, and they laugh about it together.",
+  "lesson": "Different views can all be true.",
+  "languages": {
+    "en-US": {
+      "title": "Potato, Peanut or Sock?",
+      "text": "{asteroid:float loop 0.3} {probe:float loop 0.3} {cubesat:float loop 0.3} Out in the dark, a lumpy {asteroid:enter} asteroid was tumbling along. Along came a {probe:enter} probe to take a look, with a tiny {cubesat:enter} CubeSat {cubesat:go to probe} flying at its side. {probe:live hold} The probe turned its dish and reached out its boom, peering. {sfx:click} Click! [curious] “It looks like a potato,” it sent home. On the far side, {cubesat:live} the CubeSat snapped its own picture. Click! “No,” it sent. “A peanut.” {all:face surprised} Down at the base, everyone squinted at the pictures. A potato? A peanut? [playfully] {all:wobble} Somebody said: a sock! [short pause] {asteroid:live} Then, very slowly, the asteroid rolled over, end over end, and showed them everything. {probe:live resume} [laughs] It was a bit of a potato. And a bit of a peanut. {cubesat:hop} {all:face happy} {all:hop} And, if you squinted, the teeniest bit of a sock. [warmly] Everyone had been right. {asteroid:sparkle} They had just been looking from different sides."
+    },
+    "es-ES": {
+      "title": "¿Patata, cacahuete o calcetín?",
+      "text": "{asteroid:float loop 0.3} {probe:float loop 0.3} {cubesat:float loop 0.3} Allá en la oscuridad, un {asteroid:enter} asteroide lleno de bultos iba dando volteretas. Llegó una {probe:enter} sonda a echar un vistazo, con un diminuto {cubesat:enter} CubeSat {cubesat:go to probe} volando a su lado. {probe:live hold} La sonda giró su antena y extendió su brazo, mirando. {sfx:click} ¡Clic! [curious] «Parece una patata», envió a casa. Por el otro lado, {cubesat:live} el CubeSat hizo su propia foto. ¡Clic! «No», envió. «Un cacahuete.» {all:face surprised} Abajo, en la base, todos miraban las fotos con los ojos entornados. ¿Una patata? ¿Un cacahuete? [playfully] {all:wobble} Alguien dijo: ¡un calcetín! [short pause] {asteroid:live} Entonces, muy despacio, el asteroide dio una vuelta completa y lo enseñó todo. {probe:live resume} [laughs] Era un poco patata. Y un poco cacahuete. {cubesat:hop} {all:face happy} {all:hop} Y, mirándolo bien, un poquitín calcetín. [warmly] Todos tenían razón. {asteroid:sparkle} Solo lo miraban desde lados distintos."
+    }
+  },
+  "sounds": {
+    "click": {
+      "prompt": "a tiny, crisp camera shutter click",
+      "seconds": 0.5
+    }
+  }
+}

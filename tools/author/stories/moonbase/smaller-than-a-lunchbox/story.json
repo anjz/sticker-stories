@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "smaller-than-a-lunchbox",
+  "pack": "moonbase",
+  "featured": [
+    "cubesat",
+    "station",
+    "capsule"
+  ],
+  "supporting": [],
+  "tags": [
+    "wonder",
+    "courage",
+    "learning"
+  ],
+  "premise": "The station sets free a CubeSat no bigger than a lunchbox; it unfolds and sends its first message to the school on Earth whose children built it.",
+  "inspiration": "'Tom Thumb' (English folk tale), the tiny hero sent out into the big world, turned: the little one is sent out on purpose, and does exactly its job.",
+  "lesson": "Small things built with care can do big jobs.",
+  "learning": "CubeSats are tiny satellites, some no bigger than a loaf of bread, and some are built by schoolchildren.",
+  "languages": {
+    "en-US": {
+      "title": "Smaller Than a Lunchbox",
+      "text": "{station:float loop 0.3} {capsule:float loop 0.3} {cubesat:float loop 0.3} High above the Moon, the {station:enter} space station had a tiny passenger. It was a {cubesat:enter} CubeSat, no bigger than a lunchbox. And it had been built on Earth, by the children of one small school. [curious] Today was its big day. {station:live} The station turned its arrays to the Sun. {sfx:click} Then, with a gentle click, out floated the little CubeSat into space. {cubesat:spin} [short pause] For a moment it just tumbled. Nearby, a {capsule:enter} capsule waited, as if holding its breath. {cubesat:live hold} Then, snap, snap! Out came its two solar panels, and up went its thin antenna. [excited] {cubesat:sparkle} It worked! {sfx:beep} Beep. Beep. Its first message went down to Earth. {capsule:pulse} In one small school, a whole classroom cheered. {all:face happy} {all:hop x2} And everyone watching from the Moon cheered too. [warmly] {station:glow 0.4} The smallest satellite in the sky. And the proudest."
+    },
+    "es-ES": {
+      "title": "Más pequeño que una fiambrera",
+      "text": "{station:float loop 0.3} {capsule:float loop 0.3} {cubesat:float loop 0.3} Muy por encima de la Luna, la {station:enter} estación espacial llevaba un pasajero diminuto. Era un {cubesat:enter} CubeSat, no más grande que una fiambrera. Y lo habían construido en la Tierra los niños y niñas de un colegio pequeñito. [curious] Hoy era su gran día. {station:live} La estación giró sus paneles hacia el Sol. {sfx:click} Entonces, con un clic suave, el pequeño CubeSat salió flotando al espacio. {cubesat:spin} [short pause] Durante un momento solo daba vueltas. Cerca, una {capsule:enter} cápsula esperaba, como conteniendo el aliento. {cubesat:live hold} Y entonces, ¡clac, clac! Abrió sus dos paneles solares y sacó su fina antena. [excited] {cubesat:sparkle} ¡Funcionaba! {sfx:beep} Bip. Bip. Su primer mensaje bajó hasta la Tierra. {capsule:pulse} En un colegio pequeñito, toda una clase lo celebró. {all:face happy} {all:hop x2} Y todos los que miraban desde la Luna, también. [warmly] {station:glow 0.4} El satélite más pequeño del cielo. Y el más orgulloso."
+    }
+  },
+  "sounds": {
+    "click": {
+      "prompt": "a gentle mechanical click and a soft spring release",
+      "seconds": 0.8
+    },
+    "beep": {
+      "prompt": "two short bright electronic beeps, small and cheerful",
+      "seconds": 0.8
+    }
+  }
+}
