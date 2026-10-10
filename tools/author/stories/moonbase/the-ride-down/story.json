@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "id": "the-ride-down",
+  "pack": "moonbase",
+  "featured": [
+    "lander",
+    "capsule",
+    "crew-rover",
+    "station"
+  ],
+  "supporting": [],
+  "tags": [
+    "adventure",
+    "welcome"
+  ],
+  "premise": "In the long night the lander comes down from the capsule waiting by the station high above, and the crew rover's lights guide it onto the floodlit pad.",
+  "inspiration": "Grimm's 'Rapunzel', where a tower is reached by a ladder of hair, turned: no tower and no hair — a lander going down and up between the sky and the ground.",
+  "lesson": "A light left on is a welcome.",
+  "languages": {
+    "en-US": {
+      "title": "The Ride Down",
+      "text": "{capsule:float loop 0.3} {station:float loop 0.3} {canvas:nightfall} It was the long Moon night, and visitors were coming. High above, the {station:enter} space station had company: a {capsule:enter} capsule, {capsule:go to station} come to rest at its side. But a capsule can't land on the Moon. {capsule:pulse} So the visitors would ride down another way. {canvas:floodlights} Down below, the floodlights blazed on around the landing pad. {sfx:clunk} Out rolled the big {crew-rover:enter} crew rover, slow and steady, across the plain. {crew-rover:live hold} It switched on every light it had, to show the way. [whispers] Then down came the {lander:enter} {lander:go to pad} lander, slowly, carefully, into the pool of light. {canvas:dust 0.5 6s} Its round feet touched the pad. {lander:wobble} Soft as a feather. {lander:live} Its hatch swung open, and its ladder slid down to the ground. {sfx:hiss} [happily] {all:face happy} {all:hop} Everyone at the base waved. Welcome to the Moon! {capsule:live} {station:glow 0.4} [softly] High above, the capsule turned its wings to the Sun, ready to carry them home again one day."
+    },
+    "es-ES": {
+      "title": "El viaje hacia abajo",
+      "text": "{capsule:float loop 0.3} {station:float loop 0.3} {canvas:nightfall} Era la larga noche lunar, y llegaban visitas. Muy alto, la {station:enter} estación espacial tenía compañía: una {capsule:enter} cápsula, {capsule:go to station} detenida a su lado. Pero una cápsula no puede aterrizar en la Luna. {capsule:pulse} Así que las visitas bajarían de otra manera. {canvas:floodlights} Abajo, los focos se encendieron alrededor de la plataforma de aterrizaje. {sfx:clunk} Salió el gran {crew-rover:enter} rover de tripulación, despacio y sin parar, por la llanura. {crew-rover:live hold} Encendió todas sus luces, para marcar el camino. [whispers] Entonces bajó el {lander:enter} {lander:go to pad} módulo lunar, despacio, con cuidado, hasta el charco de luz. {canvas:dust 0.5 6s} Sus patas redondas tocaron la plataforma. {lander:wobble} Suave como una pluma. {lander:live} Se abrió su escotilla y bajó la escalerilla hasta el suelo. {sfx:hiss} [happily] {all:face happy} {all:hop} En la base, todos saludaron. ¡Bienvenidos a la Luna! {capsule:live} {station:glow 0.4} [softly] Muy alto, la cápsula giró sus alas hacia el Sol, lista para llevarlos a casa algún día."
+    }
+  },
+  "sounds": {
+    "clunk": {
+      "prompt": "big lamps switching on with a soft deep clunk, then a faint electric hum",
+      "seconds": 1.2
+    },
+    "hiss": {
+      "prompt": "a soft hiss of air as a spacecraft hatch unseals, then a gentle whir of a ladder sliding down",
+      "seconds": 2.0
+    }
+  }
+}

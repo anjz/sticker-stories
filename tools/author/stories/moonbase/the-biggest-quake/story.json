@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "id": "the-biggest-quake",
+  "pack": "moonbase",
+  "featured": [
+    "seismometer",
+    "lander",
+    "man"
+  ],
+  "supporting": [],
+  "tags": [
+    "funny",
+    "curiosity"
+  ],
+  "premise": "The seismometer blinks the biggest moonquake of the month and Leo whoops — then he sees the lander that just touched down on the pad.",
+  "inspiration": "Aesop's 'The Boy Who Cried Wolf', turned: this time he checks before he shouts, and the joke is a gentle one.",
+  "lesson": "Check before you shout.",
+  "languages": {
+    "en-US": {
+      "title": "The Biggest Quake",
+      "text": "{man:enter} Leo sat by the {seismometer:enter} seismometer, hoping for a moonquake. Any moonquake. Even a teeny one. {man:face happy} All morning: nothing. {man:face sad} [sighs] [short pause] Then {seismometer:live} its little light flashed. And flashed! And FLASHED! {sfx:blip} {man:face surprised} [gasps] {man:live} Leo checked his wrist. The biggest moonquake of the month! {man:hop x2} He was about to tell the whole Moon… when he stopped. Better check first. He turned around. {man:pulse} {canvas:dust 0.5 6s} There on the landing pad, just touching down in a puff of dust, was the {lander:enter} {lander:go to pad} lander. [short pause] {man:face happy} [laughs] The biggest moonquake of the month was a lander, saying hello. {lander:wobble} {seismometer:pulse} [playfully] Leo wrote it down anyway: Biggest quake. One lander. Very polite. {seismometer:sparkle}"
+    },
+    "es-ES": {
+      "title": "El terremoto más grande",
+      "text": "{man:enter} Leo estaba junto al {seismometer:enter} sismómetro, esperando un terremoto lunar. Uno cualquiera. Aunque fuera chiquitito. {man:face happy} Toda la mañana: nada. {man:face sad} [sighs] [short pause] Entonces {seismometer:live} su lucecita destelló. ¡Y destelló! ¡Y DESTELLÓ! {sfx:blip} {man:face surprised} [gasps] {man:live} Leo miró su muñeca. ¡El terremoto lunar más grande del mes! {man:hop x2} Estaba a punto de contárselo a toda la Luna… cuando se paró. Mejor comprobarlo antes. Se dio la vuelta. {man:pulse} {canvas:dust 0.5 6s} Allí, en la plataforma de aterrizaje, posándose entre una nube de polvo, estaba el {lander:enter} {lander:go to pad} módulo lunar. [short pause] {man:face happy} [laughs] El terremoto más grande del mes era un módulo lunar, saludando. {lander:wobble} {seismometer:pulse} [playfully] Leo lo apuntó de todos modos: Terremoto más grande. Un módulo lunar. Muy educado. {seismometer:sparkle}"
+    }
+  },
+  "sounds": {
+    "blip": {
+      "prompt": "a quick run of soft electronic blips getting faster, excited but gentle",
+      "seconds": 1.5
+    }
+  }
+}

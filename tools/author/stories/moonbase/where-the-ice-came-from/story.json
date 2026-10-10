@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "id": "where-the-ice-came-from",
+  "pack": "moonbase",
+  "featured": [
+    "ice",
+    "comet",
+    "rover",
+    "probe"
+  ],
+  "supporting": [],
+  "tags": [
+    "wonder",
+    "curiosity"
+  ],
+  "premise": "While the rover drills the crater's ice, a comet sails overhead and the probe flies off to look at its ice — could the crater's ice have come from a comet, long ago?",
+  "inspiration": "The wandering stranger who leaves a gift, a folk motif, turned: the gift is ice, and it was left so long ago that nobody saw.",
+  "lesson": "Some of the best questions don't have answers yet.",
+  "languages": {
+    "en-US": {
+      "title": "Where the Ice Came From",
+      "text": "Down in the crater, the {rover:enter} rover {rover:go to crater} was drilling into a chunk of {ice:enter} ice. {rover:live} Grrrind. {sfx:drill} {ice:live hold} Frost spread over the ice, white and glittering. {rover:pulse} [curious] Where had all this ice come from? Nobody knew for sure. High above, something glowed. A {comet:enter} {comet:float loop 0.2} comet was sailing by, {comet:live} its long tail streaming. Chasing it came a little {probe:enter} {probe:float loop 0.3} probe, {probe:go to comet} hurrying for a closer look. {sfx:whoosh} {probe:live} It turned its dish and reached out its boom, peering at the comet's icy heart. [in awe] The comet was made of ice and dust too. Just like the ice in the crater. {all:face surprised} Could a comet, long, long ago, have brought ice to the Moon? [softly] Maybe. Nobody knows. Not yet. {ice:live resume} The frost cleared, and the rover went back to work. {rover:shake 0.3} {comet:sparkle} {ice:glow 0.4} And the comet sailed on, as if to say: hello again, old friend."
+    },
+    "es-ES": {
+      "title": "De dónde vino el hielo",
+      "text": "En el cráter, el {rover:enter} róver {rover:go to crater} taladraba un trozo de {ice:enter} hielo. {rover:live} Grrrr. {sfx:drill} {ice:live hold} La escarcha cubrió el hielo, blanca y brillante. {rover:pulse} [curious] ¿De dónde había salido tanto hielo? Nadie lo sabía con certeza. Muy alto, algo brilló. Un {comet:enter} {comet:float loop 0.2} cometa pasaba navegando, {comet:live} con su larga cola al viento. Detrás iba una pequeña {probe:enter} {probe:float loop 0.3} sonda, {probe:go to comet} con prisa por verlo de cerca. {sfx:whoosh} {probe:live} Giró su antena y extendió su brazo, mirando el corazón helado del cometa. [in awe] El cometa también estaba hecho de hielo y polvo. Como el hielo del cráter. {all:face surprised} ¿Habría traído un cometa, hace muchísimo tiempo, hielo a la Luna? [softly] Quizá. Nadie lo sabe. Todavía no. {ice:live resume} La escarcha desapareció, y el róver volvió al trabajo. {rover:shake 0.3} {comet:sparkle} {ice:glow 0.4} Y el cometa siguió su camino, como diciendo: hola otra vez, viejo amigo."
+    }
+  },
+  "sounds": {
+    "drill": {
+      "prompt": "a small drill grinding steadily into hard ice, crunchy, muffled as if heard through the ground",
+      "seconds": 1.8
+    },
+    "whoosh": {
+      "prompt": "a soft airy whoosh sweeping past, smooth and playful",
+      "seconds": 1.2
+    }
+  }
+}
