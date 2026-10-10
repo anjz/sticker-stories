@@ -1,6 +1,7 @@
 # Moon Base — the scene (what the child sees behind the stickers)
 
-Written 2026-09-27 from the pack's art (`packs/moonbase/art/background*.webp`
+Written 2026-09-27 and re-checked 2026-10-10 (smaller habitat, own wide
+foreground) from the pack's art (`packs/moonbase/art/background*.webp`
 and `foreground*.webp`, viewed with a grid). Every story plays over this
 picture, so the words may only put a story in places the picture has.
 Positions are fractions of the base 4:3 picture (what an iPad shows),
@@ -17,14 +18,14 @@ plain.
 | thing | where | notes |
 |---|---|---|
 | **sky** | the top 40 %, above the far ridge | black, with small white unlit stars. No Sun, comet, Milky Way or moving lights painted: the canvas effects add them. Feature id `sky` (the spacecraft fly there). |
-| **the Earth** | rising over the far ridge left of the middle, x .20–.38, y .27–.42 | big and round, blue with white clouds and green-brown land, its left side lit and its right side dark (a half Earth); its bottom hidden behind the ridge. It stays put: stories may look at it, wave at it, call it home. |
+| **the Earth** | rising over the far ridge left of the middle, x .20–.38, y .27–.42 | big and round, blue with white clouds and green-brown land, lit on its left with a dark edge on its right; its bottom hidden behind the ridge. It stays put: stories may look at it, wave at it, call it home. |
 | **far ridge** | along the horizon, all across, y .40–.46 | low, jagged grey mountains, far away. Nothing can climb it or drive to it. |
 | **the distant base** | on the horizon right of the middle, x .64–.94, y .42–.46 | small white domes and modules with lit yellow windows and a thin mast with a red light — the rest of the base, far away. Said in passing only ("the domes far off"); nobody goes there in a story. |
 | **the plain** | the whole lower half, y .45–1 | flat grey moon dust with pebbles and small round craters. Feature id `plain`. |
-| **landing pad** | on the plain left of the middle, x .19–.43, y .50–.59 | a flat hexagon of grey metal plates with yellow markings (a circle and a hexagon) and small amber lights at its corners; its left end is tucked behind the habitat. Feature id `pad`: the rocket, the lander and the supply pod land on it. |
-| **the crater** | on the plain right of the middle, x .69–.93, y .51–.57 | a wide, shallow bowl with a raised rim. Feature id `crater`: the ice sits in it and the rover and the excavator drive into it; anyone else sent there stops on its `edge` (the rim). |
-| **the habitat** | at the left edge, close to us, x 0–.19, y .10–.87 | a big white module with orange bands and rivets, on sturdy legs; a round **airlock hatch** with a round porthole window (x .04–.17, y .38–.62), a small control panel beside it, and a short **ladder** down to the ground (x .06–.23). Feature id `hatch` is the foot of the ladder. |
-| **the radio mast** | at the right edge, x .85–1, y .13–.75 | a tall grey lattice tower with orange joints, a big white **dish** on top (x .85–1, y .13–.32) and a grey box with an orange stripe halfway up, standing on dark rocks. Feature id `mast` is its foot, on the plain in front of the rocks (someone there faces the mast). |
+| **landing pad** | on the plain left of the middle, x .17–.43, y .50–.59 | a flat hexagon of grey metal plates with yellow markings (a circle and a hexagon) and small amber lights at its corners; its left end is tucked behind the habitat. Feature id `pad`: the ship, the booster, the lander and the supply pod land on it. |
+| **the crater** | on the plain right of the middle, x .69–.96, y .50–.57 | a wide, shallow bowl with a raised rim, shadowed inside. Feature id `crater`: the ice and the moon rock sit in it and the rovers and the excavator drive into it; anyone else sent there stops on its edge (the rim). A few small round craters dot the plain too, too small to drive into. |
+| **the habitat** | at the left edge, close to us, x 0–.18, y .33–.88 (on phones the same slim module at the screen's left edge) | the end of a white module with orange bands and rivets, on sturdy legs; a round **airlock hatch** with a round porthole window (x .03–.15, y .46–.70) and a short **ladder** down to the ground (x .05–.18, y .69–.89). Feature id `hatch` is the foot of the ladder. |
+| **the radio mast** | at the right edge, x .88–1, y .21–.74 | a tall grey lattice tower with orange joints, a big white **dish** near the top (x .88–.98, y .26–.39) and a grey box with an orange stripe low down, standing on dark rocks. Feature id `mast` is its foot, on the plain in front of the rocks (someone there faces the mast). |
 | **rocks** | big grey boulders across both bottom corners and up the right side under the mast; pebbles everywhere | a low rise of dust runs across the front of the plain (y .77–.85). |
 
 ## What is not there
@@ -74,7 +75,10 @@ None of them adds a building, a track, water, snow or a new crater.
   never appear on screen: keep them small and brief.
 - The spacecraft are far overhead in the sky or land on the pad; they
   never come down to stand beside the crew on the plain (except the
-  lander, the rocket and the supply pod, which land on the pad).
+  ship, the booster, the lander and the supply pod, which land on the
+  pad). The capsule, the station, the satellite, the CubeSat and the
+  probe circle the Moon or pass it; the comet and the asteroid are far
+  out in space — all of them stay in the sky.
 - Sounds: the Moon has no air, so the soundtrack is what the crew hear
   in their helmets (the radio, their own breathing, a hum through their
   boots) or a storyteller's music — a story about silence plays no clang.
