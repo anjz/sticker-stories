@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "moonbase",
-  "version": 12,
+  "version": 13,
   "languages": [
     "en-US",
     "es-ES"
@@ -190,16 +190,26 @@
       ]
     },
     "sky": {
-      "description": "the black starry sky above the far ridge, between the habitat and the radio mast",
+      "description": "the black starry sky above the far ridge, between the habitat and the radio mast, clear of the Earth",
       "areas": [
         {
           "x": [
-            0.22,
-            0.86
+            0.42,
+            0.84
           ],
           "y": [
-            0.64,
+            0.66,
             0.84
+          ]
+        },
+        {
+          "x": [
+            0.22,
+            0.42
+          ],
+          "y": [
+            0.79,
+            0.85
           ]
         }
       ],
@@ -207,8 +217,8 @@
     }
   },
   "narrationPacks": {
-    "en-US": "moonbase-narration-en-ea598414",
-    "es-ES": "moonbase-narration-es-f0c1370b"
+    "en-US": "moonbase-narration-en-bfedd565",
+    "es-ES": "moonbase-narration-es-acf076be"
   },
   "stickers": [
     {
