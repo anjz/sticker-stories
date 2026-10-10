@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 3.24,
+      "cue": "seismometer",
+      "sticker": "seismometer",
+      "enter": true
+    },
+    {
+      "at": 10.92,
+      "cue": "rover",
+      "sticker": "rover",
+      "enter": true
+    },
+    {
+      "at": 11.36,
+      "cue": "was",
+      "sticker": "rover",
+      "go": "to",
+      "target": "crater"
+    },
+    {
+      "at": 13,
+      "cue": "grrrind",
+      "sticker": "rover",
+      "animation": "drill"
+    },
+    {
+      "at": 16.76,
+      "cue": "ice",
+      "sticker": "ice",
+      "enter": true
+    },
+    {
+      "at": 17.96,
+      "cue": "maya",
+      "sticker": "woman",
+      "enter": true
+    },
+    {
+      "at": 20.44,
+      "cue": "boing",
+      "sticker": "woman",
+      "effect": "hop",
+      "repeat": 3
+    },
+    {
+      "at": 23.24,
+      "cue": "the",
+      "sticker": "seismometer",
+      "effect": "shake",
+      "intensity": 0.5
+    },
+    {
+      "at": 28.64,
+      "cue": "so",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 33.48,
+      "cue": "maya",
+      "sticker": "rover",
+      "effect": "pulse"
+    },
+    {
+      "at": 35.4,
+      "cue": "her",
+      "sticker": "woman",
+      "expression": "surprised"
+    },
+    {
+      "at": 38.28,
+      "cue": "but",
+      "sticker": "woman",
+      "effect": "shake",
+      "intensity": 0.2
+    },
+    {
+      "at": 40.2,
+      "cue": "even",
+      "sticker": "ice",
+      "animation": "frost"
+    },
+    {
+      "at": 49.59,
+      "cue": "then",
+      "sticker": "seismometer",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 59.16,
+      "cue": "the",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 64.52,
+      "cue": "too",
+      "sticker": "seismometer",
+      "effect": "glow",
+      "intensity": 0.4
+    }
+  ]
+}

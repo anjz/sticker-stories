@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 3.32,
+      "cue": "greenhouse",
+      "sticker": "greenhouse",
+      "enter": true
+    },
+    {
+      "at": 6,
+      "cue": "green",
+      "sticker": "greenhouse",
+      "effect": "glow",
+      "intensity": 0.6
+    },
+    {
+      "at": 16.48,
+      "cue": "no",
+      "sticker": "greenhouse",
+      "effect": "wobble"
+    },
+    {
+      "at": 24.4,
+      "cue": "excavator",
+      "sticker": "excavator",
+      "enter": true
+    },
+    {
+      "at": 25.52,
+      "cue": "its",
+      "sticker": "excavator",
+      "animation": "dig"
+    },
+    {
+      "at": 30.68,
+      "cue": "printer",
+      "sticker": "printer",
+      "enter": true
+    },
+    {
+      "at": 32.84,
+      "cue": "got",
+      "sticker": "printer",
+      "effect": "pulse"
+    },
+    {
+      "at": 34.12,
+      "cue": "the",
+      "sticker": "excavator",
+      "go": "to",
+      "target": "printer"
+    },
+    {
+      "at": 38.2,
+      "cue": "back",
+      "sticker": "printer",
+      "animation": "print",
+      "mode": "hold"
+    },
+    {
+      "at": 51.24,
+      "cue": "the",
+      "sticker": "excavator",
+      "effect": "hop"
+    },
+    {
+      "at": 53.45,
+      "cue": "by",
+      "sticker": "printer",
+      "effect": "shake",
+      "intensity": 0.3
+    },
+    {
+      "at": 53.45,
+      "cue": "by",
+      "sticker": "printer",
+      "animation": "print",
+      "mode": "resume"
+    },
+    {
+      "at": 59.72,
+      "cue": "everyone",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 59.72,
+      "cue": "everyone",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 61.32,
+      "cue": "no",
+      "sticker": "greenhouse",
+      "effect": "sparkle"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "maya",
+      "sticker": "woman",
+      "enter": true
+    },
+    {
+      "at": 5.52,
+      "cue": "tipped",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 14.2,
+      "cue": "clapped",
+      "sticker": "woman",
+      "effect": "wobble"
+    },
+    {
+      "at": 17.08,
+      "cue": "leo",
+      "sticker": "man",
+      "enter": true
+    },
+    {
+      "at": 17.08,
+      "cue": "leo",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 18.12,
+      "cue": "to",
+      "sticker": "man",
+      "go": "to",
+      "target": "woman"
+    },
+    {
+      "at": 21.88,
+      "cue": "huge",
+      "sticker": "ship",
+      "enter": true
+    },
+    {
+      "at": 21.88,
+      "cue": "huge",
+      "sticker": "ship",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 26.64,
+      "cue": "dust",
+      "effect": "dust",
+      "duration": 8,
+      "intensity": 0.7
+    },
+    {
+      "at": 31.32,
+      "cue": "no",
+      "sticker": "woman",
+      "expression": "surprised"
+    },
+    {
+      "at": 37.8,
+      "cue": "there's",
+      "sticker": "man",
+      "effect": "pulse"
+    },
+    {
+      "at": 47.58,
+      "cue": "there",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 47.58,
+      "cue": "there",
+      "sticker": "woman",
+      "effect": "shake",
+      "intensity": 0.3
+    },
+    {
+      "at": 53.3,
+      "cue": "without",
+      "sticker": "ship",
+      "animation": "elevator"
+    },
+    {
+      "at": 57.82,
+      "cue": "waved",
+      "sticker": "woman",
+      "animation": "wave"
+    },
+    {
+      "at": 59.82,
+      "cue": "leo",
+      "sticker": "man",
+      "effect": "wobble"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 3.56,
+      "cue": "nave",
+      "sticker": "ship",
+      "enter": true
+    },
+    {
+      "at": 3.56,
+      "cue": "nave",
+      "sticker": "ship",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 8.28,
+      "cue": "hoy",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 12.52,
+      "cue": "bajó",
+      "sticker": "ship",
+      "animation": "elevator",
+      "mode": "hold"
+    },
+    {
+      "at": 20.6,
+      "cue": "qué",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 24.04,
+      "cue": "impresora",
+      "sticker": "printer",
+      "enter": true
+    },
+    {
+      "at": 30.87,
+      "cue": "todos",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 33.04,
+      "cue": "excavadora",
+      "sticker": "excavator",
+      "enter": true
+    },
+    {
+      "at": 34.56,
+      "cue": "para",
+      "sticker": "excavator",
+      "go": "to",
+      "target": "printer"
+    },
+    {
+      "at": 36.56,
+      "cue": "recogió",
+      "sticker": "excavator",
+      "animation": "dig"
+    },
+    {
+      "at": 40.24,
+      "cue": "la",
+      "sticker": "printer",
+      "animation": "print"
+    },
+    {
+      "at": 45.08,
+      "cue": "la",
+      "sticker": "excavator",
+      "effect": "hop"
+    },
+    {
+      "at": 45.08,
+      "cue": "la",
+      "sticker": "ship",
+      "animation": "elevator",
+      "mode": "resume"
+    },
+    {
+      "at": 47.46,
+      "cue": "paquete",
+      "sticker": "ship",
+      "effect": "pulse"
+    },
+    {
+      "at": 47.46,
+      "cue": "paquete",
+      "sticker": "all",
+      "expression": "happy"
+    }
+  ]
+}

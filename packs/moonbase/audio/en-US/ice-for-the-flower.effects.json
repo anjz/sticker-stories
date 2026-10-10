@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5,
+      "cue": "flower",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 9.69,
+      "cue": "the",
+      "sticker": "flower",
+      "effect": "shake",
+      "intensity": 0.3
+    },
+    {
+      "at": 15.28,
+      "cue": "excavator",
+      "sticker": "excavator",
+      "enter": true
+    },
+    {
+      "at": 16.56,
+      "cue": "to",
+      "sticker": "excavator",
+      "go": "to",
+      "target": "crater"
+    },
+    {
+      "at": 23,
+      "cue": "ice",
+      "sticker": "ice",
+      "enter": true
+    },
+    {
+      "at": 26.04,
+      "cue": "frost",
+      "sticker": "ice",
+      "animation": "frost"
+    },
+    {
+      "at": 28.84,
+      "cue": "scoop",
+      "sticker": "excavator",
+      "effect": "pulse"
+    },
+    {
+      "at": 28.84,
+      "cue": "scoop",
+      "sticker": "excavator",
+      "animation": "dig"
+    },
+    {
+      "at": 32.12,
+      "cue": "back",
+      "sticker": "excavator",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 40.57,
+      "cue": "the",
+      "sticker": "flower",
+      "effect": "spray",
+      "intensity": 0.4
+    },
+    {
+      "at": 40.57,
+      "cue": "the",
+      "sticker": "flower",
+      "animation": "turn"
+    },
+    {
+      "at": 46.12,
+      "cue": "everyone",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 46.12,
+      "cue": "everyone",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 47.77,
+      "cue": "and",
+      "sticker": "excavator",
+      "effect": "sparkle"
+    }
+  ]
+}

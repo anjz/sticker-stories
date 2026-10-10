@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "maya",
+      "sticker": "woman",
+      "enter": true
+    },
+    {
+      "at": 5.16,
+      "cue": "impresora",
+      "sticker": "printer",
+      "enter": true
+    },
+    {
+      "at": 8.16,
+      "cue": "buggy",
+      "sticker": "buggy",
+      "enter": true
+    },
+    {
+      "at": 8.76,
+      "cue": "una",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 11.28,
+      "cue": "excavadora",
+      "sticker": "excavator",
+      "enter": true
+    },
+    {
+      "at": 12.52,
+      "cue": "sus",
+      "sticker": "excavator",
+      "animation": "dig"
+    },
+    {
+      "at": 16.6,
+      "cue": "fue",
+      "sticker": "excavator",
+      "go": "to",
+      "target": "buggy"
+    },
+    {
+      "at": 20.04,
+      "cue": "luego",
+      "sticker": "buggy",
+      "effect": "dust-puff"
+    },
+    {
+      "at": 20.04,
+      "cue": "luego",
+      "sticker": "woman",
+      "expression": "surprised"
+    },
+    {
+      "at": 22.04,
+      "cue": "palada",
+      "sticker": "excavator",
+      "animation": "dig"
+    },
+    {
+      "at": 24.2,
+      "cue": "alto",
+      "sticker": "buggy",
+      "effect": "wobble"
+    },
+    {
+      "at": 25.8,
+      "cue": "basta",
+      "sticker": "buggy",
+      "effect": "shake"
+    },
+    {
+      "at": 27,
+      "cue": "la",
+      "sticker": "excavator",
+      "animation": "dig",
+      "mode": "hold"
+    },
+    {
+      "at": 31.4,
+      "cue": "los",
+      "sticker": "buggy",
+      "effect": "dust-puff"
+    },
+    {
+      "at": 35.51,
+      "cue": "suspiró",
+      "sticker": "woman",
+      "expression": "sad"
+    },
+    {
+      "at": 37.16,
+      "cue": "sonrió",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 42.52,
+      "cue": "la",
+      "sticker": "excavator",
+      "animation": "dig",
+      "mode": "resume"
+    },
+    {
+      "at": 46.6,
+      "cue": "y",
+      "sticker": "printer",
+      "animation": "print"
+    },
+    {
+      "at": 46.6,
+      "cue": "y",
+      "sticker": "woman",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

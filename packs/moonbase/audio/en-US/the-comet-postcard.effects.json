@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "a",
+      "sticker": "comet",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 0,
+      "cue": "a",
+      "sticker": "probe",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "a",
+      "sticker": "satellite",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "a",
+      "sticker": "cubesat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 3.24,
+      "cue": "comet",
+      "sticker": "comet",
+      "enter": true
+    },
+    {
+      "at": 9.56,
+      "cue": "probe",
+      "sticker": "probe",
+      "enter": true
+    },
+    {
+      "at": 10.84,
+      "cue": "cubesat",
+      "sticker": "cubesat",
+      "enter": true
+    },
+    {
+      "at": 13.05,
+      "cue": "the",
+      "sticker": "probe",
+      "animation": "turn"
+    },
+    {
+      "at": 18.6,
+      "cue": "zip",
+      "sticker": "cubesat",
+      "go": "to",
+      "target": "comet"
+    },
+    {
+      "at": 22.28,
+      "cue": "it",
+      "sticker": "cubesat",
+      "animation": "unfold"
+    },
+    {
+      "at": 33.36,
+      "cue": "it",
+      "sticker": "comet",
+      "animation": "glow"
+    },
+    {
+      "at": 45,
+      "cue": "the",
+      "sticker": "probe",
+      "effect": "pulse"
+    },
+    {
+      "at": 45.2,
+      "cue": "satellite",
+      "sticker": "satellite",
+      "enter": true
+    },
+    {
+      "at": 45.72,
+      "cue": "sent",
+      "sticker": "satellite",
+      "animation": "signal"
+    },
+    {
+      "at": 47.56,
+      "cue": "everyone",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 50.48,
+      "cue": "in",
+      "sticker": "all",
+      "effect": "wobble"
+    },
+    {
+      "at": 51.56,
+      "cue": "and",
+      "sticker": "cubesat",
+      "effect": "hop"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 3.64,
+      "cue": "róver",
+      "sticker": "rover",
+      "enter": true
+    },
+    {
+      "at": 4,
+      "cue": "bajó",
+      "sticker": "rover",
+      "go": "to",
+      "target": "crater"
+    },
+    {
+      "at": 12.36,
+      "cue": "su",
+      "sticker": "rover",
+      "effect": "pulse"
+    },
+    {
+      "at": 17.88,
+      "cue": "así",
+      "sticker": "rover",
+      "animation": "drill"
+    },
+    {
+      "at": 22.76,
+      "cue": "entonces",
+      "effect": "glints",
+      "duration": 10,
+      "intensity": 0.6
+    },
+    {
+      "at": 27.16,
+      "cue": "hielo",
+      "sticker": "ice",
+      "enter": true
+    },
+    {
+      "at": 33.48,
+      "cue": "la",
+      "sticker": "ice",
+      "animation": "frost",
+      "mode": "hold"
+    },
+    {
+      "at": 36.84,
+      "cue": "hielo",
+      "sticker": "rover",
+      "effect": "hop"
+    },
+    {
+      "at": 38.44,
+      "cue": "derretido",
+      "sticker": "ice",
+      "effect": "sparkle"
+    },
+    {
+      "at": 45.56,
+      "cue": "satélite",
+      "sticker": "satellite",
+      "enter": true
+    },
+    {
+      "at": 45.56,
+      "cue": "satélite",
+      "sticker": "satellite",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 46.12,
+      "cue": "se",
+      "sticker": "satellite",
+      "animation": "signal"
+    },
+    {
+      "at": 49.67,
+      "cue": "todos",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 50.84,
+      "cue": "celebraron",
+      "sticker": "all",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 52.1,
+      "cue": "nada",
+      "sticker": "rover",
+      "effect": "sparkle"
+    }
+  ]
+}

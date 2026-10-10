@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "leo",
+      "sticker": "man",
+      "enter": true
+    },
+    {
+      "at": 9,
+      "cue": "down",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 9.76,
+      "cue": "supply",
+      "sticker": "supply-pod",
+      "enter": true
+    },
+    {
+      "at": 9.76,
+      "cue": "supply",
+      "sticker": "supply-pod",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 12.68,
+      "cue": "buggy",
+      "sticker": "buggy",
+      "enter": true
+    },
+    {
+      "at": 13.08,
+      "cue": "to",
+      "sticker": "buggy",
+      "go": "to",
+      "target": "supply-pod"
+    },
+    {
+      "at": 14.76,
+      "cue": "the",
+      "sticker": "supply-pod",
+      "animation": "open"
+    },
+    {
+      "at": 18.84,
+      "cue": "stared",
+      "sticker": "man",
+      "expression": "surprised"
+    },
+    {
+      "at": 25.32,
+      "cue": "he",
+      "sticker": "man",
+      "effect": "shake",
+      "intensity": 0.4
+    },
+    {
+      "at": 27.96,
+      "cue": "and",
+      "sticker": "buggy",
+      "effect": "wobble"
+    },
+    {
+      "at": 32.68,
+      "cue": "leo",
+      "sticker": "man",
+      "expression": "sad"
+    },
+    {
+      "at": 34.44,
+      "cue": "he",
+      "sticker": "man",
+      "animation": "check",
+      "mode": "hold"
+    },
+    {
+      "at": 44.28,
+      "cue": "leo",
+      "sticker": "man",
+      "animation": "check",
+      "mode": "resume"
+    },
+    {
+      "at": 47.72,
+      "cue": "ninety-nine",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 48.76,
+      "cue": "go",
+      "sticker": "man",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 48.76,
+      "cue": "go",
+      "sticker": "buggy",
+      "animation": "wheelspin"
+    }
+  ]
+}

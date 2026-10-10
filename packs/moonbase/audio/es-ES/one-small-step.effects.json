@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.16,
+      "cue": "módulo",
+      "sticker": "lander",
+      "enter": true
+    },
+    {
+      "at": 5.16,
+      "cue": "módulo",
+      "sticker": "lander",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 9.56,
+      "cue": "se",
+      "sticker": "lander",
+      "animation": "hatch",
+      "mode": "hold"
+    },
+    {
+      "at": 15.72,
+      "cue": "leo",
+      "sticker": "man",
+      "enter": true
+    },
+    {
+      "at": 15.72,
+      "cue": "leo",
+      "sticker": "man",
+      "go": "to",
+      "target": "lander"
+    },
+    {
+      "at": 18.9,
+      "cue": "en",
+      "sticker": "man",
+      "expression": "sad"
+    },
+    {
+      "at": 26.44,
+      "cue": "maya",
+      "sticker": "man",
+      "effect": "shake",
+      "intensity": 0.4
+    },
+    {
+      "at": 26.44,
+      "cue": "maya",
+      "sticker": "woman",
+      "enter": true
+    },
+    {
+      "at": 27.76,
+      "cue": "y",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 32.76,
+      "cue": "leo",
+      "sticker": "man",
+      "effect": "pulse"
+    },
+    {
+      "at": 38.65,
+      "cue": "cada",
+      "sticker": "man",
+      "go": "to",
+      "target": "woman"
+    },
+    {
+      "at": 42.32,
+      "cue": "no",
+      "sticker": "man",
+      "expression": "surprised"
+    },
+    {
+      "at": 44.52,
+      "cue": "estaba",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 50.67,
+      "cue": "y",
+      "sticker": "man",
+      "effect": "hop",
+      "repeat": 3
+    },
+    {
+      "at": 50.67,
+      "cue": "y",
+      "sticker": "woman",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.24,
+      "cue": "supply",
+      "sticker": "supply-pod",
+      "enter": true
+    },
+    {
+      "at": 4.24,
+      "cue": "supply",
+      "sticker": "supply-pod",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 6.68,
+      "cue": "maya",
+      "sticker": "woman",
+      "enter": true
+    },
+    {
+      "at": 8.12,
+      "cue": "to",
+      "sticker": "woman",
+      "go": "to",
+      "target": "supply-pod"
+    },
+    {
+      "at": 8.91,
+      "cue": "the",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 13.64,
+      "cue": "its",
+      "sticker": "supply-pod",
+      "effect": "wobble"
+    },
+    {
+      "at": 13.64,
+      "cue": "its",
+      "sticker": "supply-pod",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 20.12,
+      "cue": "guess",
+      "sticker": "woman",
+      "expression": "sad"
+    },
+    {
+      "at": 22.36,
+      "cue": "plenty",
+      "sticker": "supply-pod",
+      "effect": "shake",
+      "intensity": 0.4
+    },
+    {
+      "at": 26.52,
+      "cue": "at",
+      "sticker": "woman",
+      "effect": "pulse"
+    },
+    {
+      "at": 33.32,
+      "cue": "seedling",
+      "sticker": "seedling",
+      "enter": true
+    },
+    {
+      "at": 35.04,
+      "cue": "maya",
+      "sticker": "woman",
+      "expression": "surprised"
+    },
+    {
+      "at": 38.44,
+      "cue": "the",
+      "sticker": "seedling",
+      "animation": "reach"
+    },
+    {
+      "at": 42.04,
+      "cue": "maya",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 42.04,
+      "cue": "maya",
+      "sticker": "woman",
+      "animation": "wave"
+    },
+    {
+      "at": 44.28,
+      "cue": "chocolate",
+      "sticker": "seedling",
+      "effect": "sparkle"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "en",
+      "effect": "nightfall",
+      "duration": 57.45
+    },
+    {
+      "at": 4.76,
+      "cue": "cápsula",
+      "sticker": "capsule",
+      "enter": true
+    },
+    {
+      "at": 4.76,
+      "cue": "cápsula",
+      "sticker": "capsule",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 9.48,
+      "cue": "leo",
+      "sticker": "man",
+      "enter": true
+    },
+    {
+      "at": 11.71,
+      "cue": "y",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 15,
+      "cue": "rover",
+      "sticker": "crew-rover",
+      "enter": true
+    },
+    {
+      "at": 17.24,
+      "cue": "sus",
+      "sticker": "crew-rover",
+      "animation": "lights",
+      "mode": "hold"
+    },
+    {
+      "at": 22.6,
+      "cue": "invernadero",
+      "sticker": "greenhouse",
+      "enter": true
+    },
+    {
+      "at": 23.64,
+      "cue": "clic",
+      "sticker": "man",
+      "go": "to",
+      "target": "greenhouse"
+    },
+    {
+      "at": 23.64,
+      "cue": "clic",
+      "sticker": "greenhouse",
+      "animation": "lights"
+    },
+    {
+      "at": 29.4,
+      "cue": "dos",
+      "sticker": "man",
+      "effect": "hop"
+    },
+    {
+      "at": 35.64,
+      "cue": "en",
+      "sticker": "crew-rover",
+      "effect": "pulse"
+    },
+    {
+      "at": 35.64,
+      "cue": "en",
+      "sticker": "capsule",
+      "animation": "turn"
+    },
+    {
+      "at": 39.96,
+      "cue": "leo",
+      "sticker": "man",
+      "animation": "check"
+    },
+    {
+      "at": 46.52,
+      "cue": "leo",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 46.52,
+      "cue": "leo",
+      "sticker": "man",
+      "effect": "wobble",
+      "repeat": 2
+    },
+    {
+      "at": 48.6,
+      "cue": "y",
+      "sticker": "greenhouse",
+      "effect": "glow",
+      "intensity": 0.5
+    }
+  ]
+}

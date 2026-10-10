@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "muy",
+      "sticker": "cubesat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "muy",
+      "sticker": "asteroid",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 5.08,
+      "cue": "cubesat",
+      "sticker": "cubesat",
+      "enter": true
+    },
+    {
+      "at": 7.56,
+      "cue": "clic",
+      "sticker": "cubesat",
+      "effect": "pulse"
+    },
+    {
+      "at": 12.44,
+      "cue": "asteroide",
+      "sticker": "asteroid",
+      "enter": true
+    },
+    {
+      "at": 14.92,
+      "cue": "maya",
+      "sticker": "woman",
+      "enter": true
+    },
+    {
+      "at": 16.28,
+      "cue": "se",
+      "sticker": "woman",
+      "expression": "surprised"
+    },
+    {
+      "at": 23.4,
+      "cue": "se",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 26.82,
+      "cue": "pedrusco",
+      "sticker": "woman",
+      "effect": "shake",
+      "intensity": 0.4
+    },
+    {
+      "at": 32.92,
+      "cue": "allá",
+      "sticker": "asteroid",
+      "animation": "tumble"
+    },
+    {
+      "at": 42.92,
+      "cue": "satélite",
+      "sticker": "satellite",
+      "enter": true
+    },
+    {
+      "at": 42.92,
+      "cue": "satélite",
+      "sticker": "satellite",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 43.4,
+      "cue": "se",
+      "sticker": "satellite",
+      "animation": "signal"
+    },
+    {
+      "at": 46.44,
+      "cue": "maya",
+      "sticker": "woman",
+      "animation": "wave"
+    },
+    {
+      "at": 48.52,
+      "cue": "y",
+      "sticker": "asteroid",
+      "effect": "sparkle"
+    }
+  ]
+}

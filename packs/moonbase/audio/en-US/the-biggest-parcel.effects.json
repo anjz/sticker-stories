@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 3.64,
+      "cue": "ship",
+      "sticker": "ship",
+      "enter": true
+    },
+    {
+      "at": 3.64,
+      "cue": "ship",
+      "sticker": "ship",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 7.88,
+      "cue": "today",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 12.08,
+      "cue": "down",
+      "sticker": "ship",
+      "animation": "elevator",
+      "mode": "hold"
+    },
+    {
+      "at": 20.84,
+      "cue": "what",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 24.36,
+      "cue": "building",
+      "sticker": "printer",
+      "enter": true
+    },
+    {
+      "at": 30.04,
+      "cue": "everyone",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 31.8,
+      "cue": "excavator",
+      "sticker": "excavator",
+      "enter": true
+    },
+    {
+      "at": 33.4,
+      "cue": "to",
+      "sticker": "excavator",
+      "go": "to",
+      "target": "printer"
+    },
+    {
+      "at": 35.64,
+      "cue": "it",
+      "sticker": "excavator",
+      "animation": "dig"
+    },
+    {
+      "at": 39.52,
+      "cue": "back",
+      "sticker": "printer",
+      "animation": "print"
+    },
+    {
+      "at": 44.4,
+      "cue": "the",
+      "sticker": "excavator",
+      "effect": "hop"
+    },
+    {
+      "at": 44.4,
+      "cue": "the",
+      "sticker": "ship",
+      "animation": "elevator",
+      "mode": "resume"
+    },
+    {
+      "at": 46.85,
+      "cue": "parcel",
+      "sticker": "ship",
+      "effect": "pulse"
+    },
+    {
+      "at": 46.85,
+      "cue": "parcel",
+      "sticker": "all",
+      "expression": "happy"
+    }
+  ]
+}

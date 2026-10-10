@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 3.72,
+      "cue": "ship",
+      "sticker": "ship",
+      "enter": true
+    },
+    {
+      "at": 3.72,
+      "cue": "ship",
+      "sticker": "ship",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 4.76,
+      "cue": "booster",
+      "sticker": "booster",
+      "enter": true
+    },
+    {
+      "at": 4.76,
+      "cue": "booster",
+      "sticker": "booster",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 10.44,
+      "cue": "and",
+      "sticker": "ship",
+      "effect": "wobble"
+    },
+    {
+      "at": 12.9,
+      "cue": "but",
+      "sticker": "booster",
+      "effect": "wobble"
+    },
+    {
+      "at": 18.84,
+      "cue": "excavator",
+      "sticker": "excavator",
+      "enter": true
+    },
+    {
+      "at": 20.28,
+      "cue": "into",
+      "sticker": "excavator",
+      "go": "to",
+      "target": "crater"
+    },
+    {
+      "at": 24.92,
+      "cue": "ice",
+      "sticker": "ice",
+      "enter": true
+    },
+    {
+      "at": 27.96,
+      "cue": "frost",
+      "sticker": "ice",
+      "animation": "frost"
+    },
+    {
+      "at": 31.64,
+      "cue": "scoop",
+      "sticker": "excavator",
+      "animation": "dig"
+    },
+    {
+      "at": 35.4,
+      "cue": "with",
+      "sticker": "excavator",
+      "go": "to",
+      "target": "ship"
+    },
+    {
+      "at": 43.99,
+      "cue": "into",
+      "sticker": "excavator",
+      "effect": "pulse"
+    },
+    {
+      "at": 45.48,
+      "cue": "enough",
+      "sticker": "ship",
+      "effect": "sparkle"
+    },
+    {
+      "at": 46.8,
+      "cue": "enough",
+      "sticker": "booster",
+      "effect": "sparkle"
+    },
+    {
+      "at": 48.68,
+      "cue": "the",
+      "sticker": "ship",
+      "animation": "elevator",
+      "mode": "hold"
+    },
+    {
+      "at": 52.52,
+      "cue": "everyone",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 52.52,
+      "cue": "everyone",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 54.12,
+      "cue": "fuel",
+      "sticker": "excavator",
+      "effect": "hop"
+    }
+  ]
+}

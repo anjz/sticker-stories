@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "moonbase",
-  "version": 8,
+  "version": 9,
   "languages": [
     "en-US",
     "es-ES"
@@ -201,6 +201,10 @@
       ],
       "air": true
     }
+  },
+  "narrationPacks": {
+    "en-US": "moonbase-narration-en-f5353667",
+    "es-ES": "moonbase-narration-es-a81b0cc1"
   },
   "stickers": [
     {
@@ -952,23 +956,1422 @@
   ],
   "stories": [
     {
-      "id": "moonbase-welcome",
+      "id": "a-bench-for-two",
+      "requiredStickers": [
+        "printer",
+        "woman",
+        "man"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "kindness"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "A Bench for Two",
+          "text": "Maya never sat still. Rocks to collect! Buggies to drive! Panels to clean! Leo watched her bounce past for the hundredth time. He had an idea. He loped over to the printer and tapped in a plan. Whirr… layer. Whirr… layer. All day, the printer worked, while Maya rushed about. By evening there was something new on the plain: a bench made of moon soil, facing the Earth. “Maya! Sit down for one minute.” “Sit? I haven't got time to sit!” But she sat. Just for one minute. And from the bench, there was the Earth, round and blue over the ridge. Her family was down there, somewhere. Maya waved, and kept her hand up for a long, long time. “Told you.” After that, Maya sat on the bench every day. For one minute. Or two.",
+          "audio": "audio/en-US/a-bench-for-two.m4a",
+          "effects": "audio/en-US/a-bench-for-two.effects.json"
+        },
+        "es-ES": {
+          "title": "Un banco para dos",
+          "text": "Maya nunca se estaba quieta. ¡Rocas que recoger! ¡Buggies que conducir! ¡Paneles que limpiar! Leo la vio pasar dando botes por centésima vez. Se le ocurrió una idea. Fue dando saltos hasta la impresora y tecleó un plan. Zzzum… capa. Zzzum… capa. La impresora trabajó todo el día, mientras Maya corría sin parar. Por la tarde había algo nuevo en la llanura: un banco de tierra lunar, mirando a la Tierra. «¡Maya! Siéntate un minuto.» «¿Sentarme? ¡No tengo tiempo de sentarme!» Pero se sentó. Solo un minuto. Y desde el banco se veía la Tierra, redonda y azul sobre las montañas. Su familia estaba allí, en algún sitio. Maya saludó con la mano, y la dejó en alto mucho, mucho rato. «Te lo dije.» Desde entonces, Maya se sentaba en el banco todos los días. Un minuto. O dos.",
+          "audio": "audio/es-ES/a-bench-for-two.m4a",
+          "effects": "audio/es-ES/a-bench-for-two.effects.json"
+        }
+      }
+    },
+    {
+      "id": "a-lantern-for-maya",
+      "requiredStickers": [
+        "greenhouse",
+        "seedling",
+        "man",
+        "woman"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "birthday"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "A Lantern for Maya",
+          "text": "It was Maya's birthday, deep in the long Moon night. Leo had a problem. There are no shops on the Moon. No wrapping paper. No ribbon. Nothing to wrap at all. He checked his wrist. He checked it again. Then he had an idea. The greenhouse sat dark and quiet on the plain. Leo loped over and switched on every grow light at once. Click! The whole dome lit up, glowing green and gold, like a giant lantern. Inside, the seedling woke in its dome and stretched up toward the light. Just then, Maya came loping home across the dark plain. She stopped. And high above, as if it knew, a comet came sailing across the stars. “Leo… did you order a comet too?” “I wish! Happy birthday, Maya.” It was the brightest birthday on the Moon.",
+          "audio": "audio/en-US/a-lantern-for-maya.m4a",
+          "effects": "audio/en-US/a-lantern-for-maya.effects.json"
+        },
+        "es-ES": {
+          "title": "Un farol para Maya",
+          "text": "Era el cumpleaños de Maya, en plena noche lunar. Leo tenía un problema. En la Luna no hay tiendas. Ni papel de regalo. Ni lazos. Nada que envolver. Miró su muñeca. Volvió a mirarla. Y entonces se le ocurrió una idea. El invernadero estaba oscuro y en silencio en la llanura. Leo fue dando saltos y encendió todas las luces a la vez. ¡Clic! La cúpula entera se iluminó, verde y dorada, como un farol gigante. Dentro, el brote se despertó en su cúpula y se estiró hacia la luz. Justo entonces, Maya volvía a casa dando saltos por la llanura oscura. Se paró en seco. Y muy alto, como si lo supiera, un cometa cruzó entre las estrellas. «Leo… ¿también has pedido un cometa?» «¡Ojalá! Feliz cumpleaños, Maya.» Fue el cumpleaños más luminoso de la Luna.",
+          "audio": "audio/es-ES/a-lantern-for-maya.m4a",
+          "effects": "audio/es-ES/a-lantern-for-maya.effects.json"
+        }
+      }
+    },
+    {
+      "id": "a-rock-for-leo",
+      "requiredStickers": [
+        "moon-rock",
+        "seedling",
+        "woman",
+        "man"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "friendship"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "A Rock Garden for Leo",
+          "text": "Leo missed green things. Trees. Grass. Whole gardens of flowers. Here, everything was grey. Everything except his one little seedling, in its dome on the plain. It stretched up and opened a leaf. But it was only one. Maya saw him sigh. She couldn't give him a garden. Or could she? “Come with me.” At the crater's edge, she pointed at a round grey moon rock. Plain. Dusty. Ordinary. Then the sunlight caught it. It tipped in the dust and twinkled all over with tiny crystals. Around it, the dust began to sparkle too, like a garden of lights. “A rock garden. The Moon's own kind.” “It's perfect.” So now Leo had two gardens: one green, and one that twinkled.",
+          "audio": "audio/en-US/a-rock-for-leo.m4a",
+          "effects": "audio/en-US/a-rock-for-leo.effects.json"
+        },
+        "es-ES": {
+          "title": "Un jardín de piedra para Leo",
+          "text": "Leo echaba de menos las cosas verdes. Árboles. Hierba. Jardines enteros de flores. Aquí todo era gris. Todo menos su pequeño brote, en su cúpula en la llanura. Se estiró y abrió una hoja. Pero era solo uno. Maya lo vio suspirar. No podía regalarle un jardín. ¿O sí? «Ven conmigo.» En el borde del cráter, señaló una roca lunar gris y redonda. Sencilla. Polvorienta. Normal. Entonces le dio la luz del sol. Se inclinó en el polvo y brilló entera, llena de cristalitos. A su alrededor, el polvo también empezó a centellear, como un jardín de luces. «Un jardín de piedra. El que tiene la Luna.» «Es perfecto.» Así que ahora Leo tenía dos jardines: uno verde, y otro que brillaba.",
+          "audio": "audio/es-ES/a-rock-for-leo.m4a",
+          "effects": "audio/es-ES/a-rock-for-leo.effects.json"
+        }
+      }
+    },
+    {
+      "id": "a-rock-from-the-sky",
+      "requiredStickers": [
+        "asteroid",
+        "moon-rock",
+        "rover"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "A Rock from the Sky",
+          "text": "The little rover was drilling in the crater for samples. Grrrind. Up came grey dust. Grey pebbles. Grey, grey, grey. Then up came something different: a round moon rock, with shiny flecks all over it. The rover's camera peered close. The rock rocked, and the flecks twinkled. They weren't crystals. They were metal! Moon rocks don't usually have bits of metal like that. So where had this one come from? High above, a lumpy asteroid was tumbling by, far out in space. End over end over end, it rolled. And that was the answer. Long, long ago, a piece of an asteroid like that one had come down right here on the Moon, and stayed. Everyone at the base was amazed. The odd little rock had a cousin in the sky.",
+          "audio": "audio/en-US/a-rock-from-the-sky.m4a",
+          "effects": "audio/en-US/a-rock-from-the-sky.effects.json"
+        },
+        "es-ES": {
+          "title": "Una roca que vino del cielo",
+          "text": "El pequeño róver taladraba en el cráter buscando muestras. Grrrr. Salió polvo gris. Piedrecitas grises. Gris, gris, gris. Entonces salió algo distinto: una roca lunar redonda, llena de motitas brillantes. La cámara del róver miró de cerca. La roca se balanceó, y las motitas brillaron. No eran cristales. ¡Eran de metal! Las rocas de la Luna no suelen tener trocitos de metal así. ¿De dónde había salido esta? Muy alto, un asteroide lleno de bultos pasaba dando vueltas, lejos en el espacio. Voltereta tras voltereta, rodaba. Y esa era la respuesta. Hace muchísimo tiempo, un trozo de un asteroide como aquel había bajado justo aquí, a la Luna, y se había quedado. En la base, todos se quedaron asombrados. La rara rocita tenía un primo en el cielo.",
+          "audio": "audio/es-ES/a-rock-from-the-sky.m4a",
+          "effects": "audio/es-ES/a-rock-from-the-sky.effects.json"
+        }
+      }
+    },
+    {
+      "id": "a-smile-from-orbit",
+      "requiredStickers": [
+        "capsule",
+        "crew-rover",
+        "greenhouse",
+        "man"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "kindness"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "A Smile from Orbit",
+          "text": "In the long Moon night, a capsule was passing high overhead, and its crew wanted a picture of the base. Leo had a funny idea. Why not give them something to smile at? He sent the big crew rover rolling out onto the plain. Its two headlights blazed on, like two bright eyes. Then he loped over to the greenhouse. Click! Its grow lights came on, and the round dome glowed like a wide, happy smile. Two eyes. One smile. From high above, the base looked like a big friendly face. Up in the sky, the capsule turned its wings… and snapped a picture. Leo checked his wrist. A message had come back. Just one word: Smiling! Leo laughed out loud. And down on the Moon, the big bright face kept on smiling back.",
+          "audio": "audio/en-US/a-smile-from-orbit.m4a",
+          "effects": "audio/en-US/a-smile-from-orbit.effects.json"
+        },
+        "es-ES": {
+          "title": "Una sonrisa desde la órbita",
+          "text": "En la larga noche lunar, una cápsula pasaba muy alto, y su tripulación quería una foto de la base. Leo tuvo una idea divertida. ¿Y si les daba algo para sonreír? Mandó al gran rover de tripulación a la llanura. Sus dos faros se encendieron, como dos ojos brillantes. Luego fue dando saltos hasta el invernadero. ¡Clic! Se encendieron sus luces, y la cúpula redonda brilló como una gran sonrisa. Dos ojos. Una sonrisa. Desde allí arriba, la base parecía una cara grande y simpática. En el cielo, la cápsula giró sus alas… e hizo una foto. Leo miró su muñeca. Había llegado un mensaje. Solo una palabra: ¡Sonriendo! Leo se rió a carcajadas. Y aquí abajo, en la Luna, la gran cara luminosa siguió sonriendo.",
+          "audio": "audio/es-ES/a-smile-from-orbit.m4a",
+          "effects": "audio/es-ES/a-smile-from-orbit.effects.json"
+        }
+      }
+    },
+    {
+      "id": "a-wall-made-of-moon",
+      "requiredStickers": [
+        "printer",
+        "excavator",
+        "greenhouse"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "teamwork",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "A Wall Made of Moon",
+          "text": "The greenhouse was the base's little garden, green and glowing. But out on the open plain, it needed a wall. Only… there are no bricks on the Moon. No clay. No wood. No stone. What the Moon has is dust. Lots of grey dust. So along trundled the excavator. Its drums spun round and scooped up a big load of moon soil. Then the printer unfolded its long legs and got ready. The excavator rolled over and tipped the soil into its hopper. Back and forth went the printer, laying the soil down in a neat grey line. Then another, on top. And another. Whirr… layer. Whirr… layer. The excavator brought more. By the end of the day, a strong grey wall curved round, made of the Moon itself. Everyone cheered. No bricks needed. Just dust, and patience.",
+          "audio": "audio/en-US/a-wall-made-of-moon.m4a",
+          "effects": "audio/en-US/a-wall-made-of-moon.effects.json"
+        },
+        "es-ES": {
+          "title": "Un muro hecho de Luna",
+          "text": "El invernadero era el pequeño huerto de la base, verde y luminoso. Pero allí, en plena llanura, necesitaba un muro que lo protegiera. Solo que… en la Luna no hay ladrillos. Ni arcilla. Ni madera. Ni piedra. Lo que la Luna tiene es polvo. Muchísimo polvo gris. Así que llegó la excavadora. Sus tambores giraron y recogieron un buen montón de tierra lunar. Luego la impresora desplegó sus largas patas y se preparó. La excavadora se acercó y echó la tierra en su tolva. La impresora iba y venía, dejando la tierra en una fila gris y ordenada. Y otra encima. Y otra más. Zzzum… capa. Zzzum… capa. La excavadora traía más. Al final del día, un muro gris y fuerte se curvaba, hecho de la propia Luna. Todos lo celebraron. Sin ladrillos. Solo polvo y paciencia.",
+          "audio": "audio/es-ES/a-wall-made-of-moon.m4a",
+          "effects": "audio/es-ES/a-wall-made-of-moon.effects.json"
+        }
+      }
+    },
+    {
+      "id": "always-falling",
+      "requiredStickers": [
+        "station",
+        "capsule",
+        "cubesat",
+        "man"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Always Falling",
+          "text": "Leo lay back in the dust to watch the sky. Over the ridge came the space station, gliding round the Moon. “Wait. It's falling!” He sat bolt upright. Then he remembered, and laughed at himself. The station IS always falling. But it races sideways so fast that it keeps falling past the Moon, round and round, and never comes down. “That's all an orbit is. Falling, and missing.” The station turned its long solar arrays toward the Sun. A capsule glided up to meet it, and the tiny CubeSat went tumbling past, falling too. “Everyone up there is falling. And nobody's worried.” The capsule tilted its four wings to the Sun. Leo lay back down and closed his eyes, while round and round they went, all missing the Moon, just right.",
+          "audio": "audio/en-US/always-falling.m4a",
+          "effects": "audio/en-US/always-falling.effects.json"
+        },
+        "es-ES": {
+          "title": "Siempre cayendo",
+          "text": "Leo se tumbó en el polvo a mirar el cielo. Tras las montañas apareció la estación espacial, dando vueltas a la Luna. «Un momento. ¡Se está cayendo!» Se incorporó de un salto. Luego se acordó y se rió de sí mismo. La estación SIEMPRE está cayendo. Pero va tan deprisa de lado que cae y cae alrededor de la Luna, vuelta tras vuelta, sin llegar nunca abajo. «Eso es una órbita. Caer, y no acertar.» La estación giró sus largos paneles solares hacia el Sol. Una cápsula subió a su encuentro, y el diminuto CubeSat pasó dando volteretas, cayendo también. «Ahí arriba todos están cayendo. Y nadie se preocupa.» La cápsula inclinó sus cuatro alas hacia el Sol. Leo se tumbó y cerró los ojos. Y ellos siguieron dando vueltas, sin acertar nunca a la Luna, como debe ser.",
+          "audio": "audio/es-ES/always-falling.m4a",
+          "effects": "audio/es-ES/always-falling.effects.json"
+        }
+      }
+    },
+    {
+      "id": "fuel-from-ice",
+      "requiredStickers": [
+        "ship",
+        "booster",
+        "ice",
+        "excavator"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "teamwork",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Fuel from Ice",
+          "text": "The huge ship and the tall booster stood side by side on the landing pad. Their tanks were nearly empty. And there's no fuel station on the Moon. But the Moon has something else, hidden in its coldest, darkest craters. The excavator trundled down into the crater, and there, frozen in the dust, was a big chunk of ice. It glittered in the dark. Frost spread over it, white and sparkling. Scoop! Up came the ice, and back trundled the excavator with a full load. Ice is made of water. And water can be split into two gases: the very same ones rockets burn. Into the tanks it went. Enough for the ship. Enough for the booster too! The ship lowered its crew elevator, ready for the trip home. Everyone cheered. Fuel from the Moon itself!",
+          "audio": "audio/en-US/fuel-from-ice.m4a",
+          "effects": "audio/en-US/fuel-from-ice.effects.json"
+        },
+        "es-ES": {
+          "title": "Combustible de hielo",
+          "text": "La enorme nave y el alto cohete propulsor esperaban juntos en la plataforma de aterrizaje. Tenían los depósitos casi vacíos. Y en la Luna no hay gasolineras. Pero la Luna tiene otra cosa, escondida en sus cráteres más fríos y oscuros. La excavadora bajó traqueteando al cráter, y allí, congelado en el polvo, había un gran trozo de hielo. Brillaba en la oscuridad. La escarcha lo cubrió, blanca y reluciente. ¡Palada! Arriba fue el hielo, y la excavadora volvió con la pala llena. El hielo es agua. Y el agua se puede separar en dos gases: justo los que queman los cohetes. Todo fue a los depósitos. Suficiente para la nave. ¡Y para el cohete también! La nave bajó su ascensor, lista para el viaje a casa. Todos lo celebraron. ¡Combustible de la propia Luna!",
+          "audio": "audio/es-ES/fuel-from-ice.m4a",
+          "effects": "audio/es-ES/fuel-from-ice.effects.json"
+        }
+      }
+    },
+    {
+      "id": "glass-in-the-dust",
       "requiredStickers": [],
       "optionalStickers": [],
       "weight": 1,
       "tags": [
-        "placeholder"
+        "wonder",
+        "learning"
       ],
       "localizations": {
         "en-US": {
-          "title": "Welcome to Moon Base",
-          "text": "Welcome to Moon Base! The stories are on their way.",
-          "audio": "audio/en-US/moonbase-welcome.m4a"
+          "title": "Glass in the Dust",
+          "text": "Late in the long Moon day, the sunlight came skimming low across the plain. And all at once, the ground began to twinkle. Here. There. Everywhere! Tiny sparkles, like sugar spilled across the dust. Was it treasure? Diamonds? Not quite. It was glass: tiny beads of it, smaller than grains of sand, millions and millions. Long, long ago, the Moon had volcanoes. They sent up drops of melted rock that cooled into little glass beads, and here they still lie, mixed into the dust. Nobody needed to dig. Nobody needed to collect a single one. The whole plain was a treasure, just lying there, glittering for anyone who stopped to look.",
+          "audio": "audio/en-US/glass-in-the-dust.m4a",
+          "effects": "audio/en-US/glass-in-the-dust.effects.json"
         },
         "es-ES": {
-          "title": "Bienvenidos a la Base Lunar",
-          "text": "¡Bienvenidos a la Base Lunar! Los cuentos están en camino.",
-          "audio": "audio/es-ES/moonbase-welcome.m4a"
+          "title": "Cristal en el polvo",
+          "text": "Al final del largo día lunar, la luz del sol llegaba rasante por la llanura. Y de repente, el suelo empezó a centellear. Aquí. Allí. ¡Por todas partes! Chispitas diminutas, como azúcar derramado sobre el polvo. ¿Era un tesoro? ¿Diamantes? No exactamente. Era cristal: bolitas diminutas, más pequeñas que granos de arena, millones y millones. Hace muchísimo tiempo, la Luna tenía volcanes. Lanzaban gotas de roca fundida que se enfriaban en bolitas de cristal, y aquí siguen, mezcladas con el polvo. Nadie tenía que cavar. Nadie tenía que recoger ni una. La llanura entera era un tesoro, ahí mismo, brillando para quien se parara a mirar.",
+          "audio": "audio/es-ES/glass-in-the-dust.m4a",
+          "effects": "audio/es-ES/glass-in-the-dust.effects.json"
+        }
+      }
+    },
+    {
+      "id": "good-morning-green-things",
+      "requiredStickers": [
+        "solar-panel",
+        "greenhouse",
+        "seedling",
+        "flower"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "morning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Good Morning, Green Things",
+          "text": "For two whole weeks the base had been dark and cold. Everything was waiting. Then, over the far ridge, a stripe of white sunlight came sweeping across the plain. The solar panel felt it first. Slowly, it tilted its sixteen blue cells up to the Sun. Power hummed down the cables to the greenhouse, all the way across the plain. Click, click, click! Its grow lights blinked on, and every plant inside perked up. In its little dome, the seedling had been waiting all night long. It stretched, and opened a brand-new leaf. And in its sealed box, the orange flower had been waiting too. It turned its bloom up toward its lamp. One by one, everything green was awake. Good morning, Moon.",
+          "audio": "audio/en-US/good-morning-green-things.m4a",
+          "effects": "audio/en-US/good-morning-green-things.effects.json"
+        },
+        "es-ES": {
+          "title": "Buenos días, cosas verdes",
+          "text": "Durante dos semanas enteras la base había estado oscura y fría. Todo esperaba. Entonces, por encima de las montañas, una franja de luz blanca recorrió la llanura. El panel solar la notó primero. Despacio, inclinó sus dieciséis celdas azules hacia el Sol. La energía zumbó por los cables hasta el invernadero, al otro lado de la llanura. ¡Clic, clic, clic! Se encendieron sus luces, y todas las plantas de dentro se animaron. En su cúpula, el brote había esperado toda la noche. Se estiró y abrió una hoja nuevecita. Y en su caja sellada, la flor naranja también esperaba. Giró su flor hacia la lámpara. Una a una, todas las cosas verdes se despertaron. Buenos días, Luna.",
+          "audio": "audio/es-ES/good-morning-green-things.m4a",
+          "effects": "audio/es-ES/good-morning-green-things.effects.json"
+        }
+      }
+    },
+    {
+      "id": "hello-earth",
+      "requiredStickers": [
+        "satellite",
+        "woman",
+        "man"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Hello, Earth!",
+          "text": "Maya wanted to say hello to her family on Earth. High above, the satellite turned toward home, a little light glowing. Beep. “Hello, Earth!” Nothing. “Hello?” Nothing at all. “Hello? Hello! HELLO!” Leo loped over, trying very hard not to laugh. “Patience. Even radio needs time to get there.” He tapped his wrist display. A little over a second to reach the Earth. A little over a second to come back. And then, one after another, the answers arrived: “Hello, Maya!” “Hello?” “Hello!” “HELLO!” Maya laughed so hard she had to sit down. Up above, the satellite kept the line open, one patient second at a time.",
+          "audio": "audio/en-US/hello-earth.m4a",
+          "effects": "audio/en-US/hello-earth.effects.json"
+        },
+        "es-ES": {
+          "title": "¡Hola, Tierra!",
+          "text": "Maya quería saludar a su familia en la Tierra. Muy alto, el satélite se giró hacia casa, con una lucecita encendida. Bip. «¡Hola, Tierra!» Nada. «¿Hola?» Nada de nada. «¿Hola? ¡Hola! ¡HOLA!» Leo llegó dando saltos, aguantándose la risa. «Paciencia. Hasta la radio tarda en llegar.» Dio unos toquecitos a la pantalla de su muñeca. Algo más de un segundo hasta la Tierra. Algo más de un segundo de vuelta. Y entonces, una detrás de otra, llegaron las respuestas: «¡Hola, Maya!» «¿Hola?» «¡Hola!» «¡HOLA!» Maya se rió tanto que tuvo que sentarse. Allá arriba, el satélite mantuvo la línea abierta, segundo a segundo, con paciencia.",
+          "audio": "audio/es-ES/hello-earth.m4a",
+          "effects": "audio/es-ES/hello-earth.effects.json"
+        }
+      }
+    },
+    {
+      "id": "ice-for-the-flower",
+      "requiredStickers": [
+        "flower",
+        "ice",
+        "excavator"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "kindness",
+        "gardening"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Ice for the Flower",
+          "text": "In its sealed box, the orange flower had a little water tank. And the tank was nearly empty. The flower needed a drink. But on the Moon, you can't just turn on a tap. So the excavator trundled off to the crater, where the sunlight never reaches. There, frozen into the dust, waited a chunk of ice, as cold as cold can be. Frost spread over it and sparkled. Scoop! Up came the ice, dust and all. Back trundled the excavator, careful not to drop a crumb. Into the melter went the ice. Drip. Drip. Drip. The tank filled up, and the flower turned its bloom up toward its lamp, bright as ever. Everyone came to see. And the excavator was very proud of its delivery: one scoop, carefully.",
+          "audio": "audio/en-US/ice-for-the-flower.m4a",
+          "effects": "audio/en-US/ice-for-the-flower.effects.json"
+        },
+        "es-ES": {
+          "title": "Hielo para la flor",
+          "text": "En su caja sellada, la flor naranja tenía un pequeño depósito de agua. Y el depósito estaba casi vacío. La flor necesitaba beber. Pero en la Luna no basta con abrir un grifo. Así que la excavadora se fue traqueteando hasta el cráter, donde nunca llega el sol. Allí, congelado en el polvo, esperaba un trozo de hielo, más frío que el frío. La escarcha lo cubrió y brilló. ¡Palada! Arriba fue el hielo, con polvo y todo. La excavadora volvió traqueteando, con cuidado de no perder ni una miga. El hielo entró en el derretidor. Gota. Gota. Gota. El depósito se llenó, y la flor giró hacia su lámpara, tan brillante como siempre. Todos fueron a verla. Y la excavadora estaba muy orgullosa de su entrega: una palada, con mucho cuidado.",
+          "audio": "audio/es-ES/ice-for-the-flower.m4a",
+          "effects": "audio/es-ES/ice-for-the-flower.effects.json"
+        }
+      }
+    },
+    {
+      "id": "leos-first-footprint",
+      "requiredStickers": [
+        "man",
+        "woman",
+        "crew-rover",
+        "lander"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Leo's First Footprint",
+          "text": "It was the middle of the long Moon night. Leo and Maya were loping home, and the big crew rover rolled along beside them. It switched on its headlights to light the way. The beams swept across the landing pad, over the lander… and stopped. “Wait! Look at that!” He bounded over. By the lander's foot was a single bootprint, crisp and sharp. “It's mine. My very first step on the Moon.” “But that was months ago!” Leo checked his wrist display and nodded. Months ago, and not one speck had moved. No wind on the Moon. No rain. Nothing to wipe a footprint away. “So it'll still be here when you're a grandpa.” The base's floodlights flicked on to welcome them home, and Leo grinned all the way back.",
+          "audio": "audio/en-US/leos-first-footprint.m4a",
+          "effects": "audio/en-US/leos-first-footprint.effects.json"
+        },
+        "es-ES": {
+          "title": "La primera huella de Leo",
+          "text": "Era la mitad de la larga noche lunar. Leo y Maya volvían a casa dando saltos, y el gran rover de tripulación rodaba a su lado. Encendió los faros para alumbrar el camino. La luz recorrió la plataforma de aterrizaje, pasó por el módulo lunar… y se detuvo. «¡Espera! ¡Mira eso!» Fue dando saltos. Junto a la pata del módulo había una sola huella de bota, nítida y perfecta. «Es mía. Mi primer paso en la Luna.» «¡Pero si eso fue hace meses!» Leo miró la pantalla de su muñeca y asintió. Hacía meses, y no se había movido ni una mota. En la Luna no hay viento. Ni lluvia. Nada que borre una huella. «Así que seguirá aquí cuando seas abuelo.» Los focos de la base se encendieron para recibirlos, y Leo sonrió todo el camino de vuelta.",
+          "audio": "audio/es-ES/leos-first-footprint.m4a",
+          "effects": "audio/es-ES/leos-first-footprint.effects.json"
+        }
+      }
+    },
+    {
+      "id": "lights-off-for-the-comet",
+      "requiredStickers": [
+        "comet",
+        "buggy",
+        "man",
+        "woman"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "wonder",
+        "bedtime"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Lights Off for the Comet",
+          "text": "Deep in the long Moon night, Maya and Leo had a plan: comet-watching. But the lamps around the base were so bright that the sky looked dull and grey. So out across the plain went the buggy, all the way to the crater's edge, far from the lights. They lay back in the dust and waited for their eyes to get used to the dark. Slowly, more stars came out. Then more. Then the pale river of the Milky Way. And there, high over the ridge, hung the comet. It glowed brighter and brighter, its tail stretching out across the stars. “It's so much brighter out here.” “That's the dark, helping.” They watched until their toes got chilly. Then Leo checked his wrist: bedtime. All the way home, nobody said a word. They didn't need to.",
+          "audio": "audio/en-US/lights-off-for-the-comet.m4a",
+          "effects": "audio/en-US/lights-off-for-the-comet.effects.json"
+        },
+        "es-ES": {
+          "title": "Luces fuera para ver el cometa",
+          "text": "En plena noche lunar, Maya y Leo tenían un plan: mirar el cielo. Pero las lámparas de la base brillaban tanto que el cielo parecía apagado y gris. Así que el buggy cruzó la llanura hasta el borde del cráter, lejos de las luces. Se tumbaron en el polvo y esperaron a que sus ojos se acostumbraran a la oscuridad. Poco a poco salieron más estrellas. Y más. Y luego el río pálido de la Vía Láctea. Y allí, muy alto sobre las montañas, estaba el cometa. Brillaba cada vez más, con la cola extendida entre las estrellas. «Aquí fuera brilla muchísimo más.» «Es la oscuridad, que ayuda.» Miraron hasta que se les enfriaron los pies. Luego Leo miró su muñeca: a dormir. En todo el camino de vuelta, nadie dijo nada. No hacía falta.",
+          "audio": "audio/es-ES/lights-off-for-the-comet.m4a",
+          "effects": "audio/es-ES/lights-off-for-the-comet.effects.json"
+        }
+      }
+    },
+    {
+      "id": "lumpy",
+      "requiredStickers": [
+        "asteroid",
+        "woman",
+        "satellite",
+        "cubesat"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "A Name for an Asteroid",
+          "text": "High above the base, the little CubeSat was taking pictures of the stars. Click. And in one picture there was a speck that had never been there before: a brand-new asteroid, tumbling along! Maya read the news and gasped. Whoever spots a new asteroid gets to suggest its name. And she had spotted this one! She bounced about the plain all day, trying out names. “Rocky? Too plain. Sir Tumbles-a-Lot? Too fancy.” Up in the black sky, the asteroid rolled slowly over, lumpy as an old potato. “Lumpy. You're Lumpy.” Far above, the satellite turned toward the Earth and sent the name home. Maya waved up at her asteroid. And Lumpy rolled on through space, with a name at last.",
+          "audio": "audio/en-US/lumpy.m4a",
+          "effects": "audio/en-US/lumpy.effects.json"
+        },
+        "es-ES": {
+          "title": "Un nombre para un asteroide",
+          "text": "Muy por encima de la base, el pequeño CubeSat hacía fotos de las estrellas. Clic. Y en una de las fotos había una motita que nunca había estado allí: ¡un asteroide nuevo, dando volteretas! Maya leyó la noticia y se quedó boquiabierta. Quien descubre un asteroide nuevo puede proponer su nombre. ¡Y este lo había descubierto ella! Se pasó el día dando saltos por la llanura, probando nombres. «¿Pedrusco? Muy soso. ¿Don Voltereta Elegantísima? Demasiado elegante.» Allá arriba, en el cielo negro, el asteroide dio una vuelta lenta, lleno de bultos como una patata vieja. «Patatón. Tú eres Patatón.» Muy alto, el satélite se giró hacia la Tierra y envió el nombre a casa. Maya saludó a su asteroide. Y Patatón siguió rodando por el espacio, con nombre por fin.",
+          "audio": "audio/es-ES/lumpy.m4a",
+          "effects": "audio/es-ES/lumpy.effects.json"
+        }
+      }
+    },
+    {
+      "id": "older-than-everything",
+      "requiredStickers": [
+        "moon-rock",
+        "man",
+        "asteroid"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Older Than Everything",
+          "text": "Leo was tidying the plain, tossing pebbles out of the way. He picked up a round grey rock. Plain. Dusty. Nothing special. He swung back his arm to throw it… and stopped. Something had twinkled. The rock rocked in the dust, crystals glinting. Leo held his wrist reader over it and read the screen. Once. Twice. “You're older than almost any rock on Earth.” Before there were trees, before there were fish, this little rock had already been lying here, waiting. High above, the lumpy asteroid tumbled by. “Maybe as old as you, up there.” Leo set the rock down again, very gently. “Sorry about that. You can stay.”",
+          "audio": "audio/en-US/older-than-everything.m4a",
+          "effects": "audio/en-US/older-than-everything.effects.json"
+        },
+        "es-ES": {
+          "title": "Más antigua que todo",
+          "text": "Leo estaba ordenando la llanura, apartando piedrecitas. Cogió una roca gris y redonda. Sencilla. Polvorienta. Nada especial. Echó el brazo atrás para tirarla… y se paró. Algo había brillado. La roca se balanceó en el polvo, con destellos de cristal. Leo pasó el lector de su muñeca por encima y leyó la pantalla. Una vez. Dos veces. «Eres más antigua que casi cualquier roca de la Tierra.» Antes de que hubiera árboles, antes de que hubiera peces, esta roca ya estaba aquí, esperando. Muy alto, pasó dando vueltas el asteroide, lleno de bultos. «A lo mejor tan antigua como tú, ahí arriba.» Leo volvió a dejar la roca en el suelo, con mucho cuidado. «Perdona. Puedes quedarte.»",
+          "audio": "audio/es-ES/older-than-everything.m4a",
+          "effects": "audio/es-ES/older-than-everything.effects.json"
+        }
+      }
+    },
+    {
+      "id": "one-hand-lift",
+      "requiredStickers": [
+        "supply-pod",
+        "excavator",
+        "woman"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The One-Hand Lift",
+          "text": "The supply pod had landed on the pad, and its biggest crate was a whopper. Its side panels slid open, and there it was: a crate as big as a fridge. The excavator came trundling over to lift it, slow and serious. It dug up a scoop of dust first, just to warm up. But Maya got there first. She bent her knees, gripped the crate… and lifted it. With one hand. The excavator stopped with a clunk. “What? On the Moon, it only weighs a sixth of what it does at home.” On Earth, nobody could lift that crate alone. Here, it was like carrying a big pillow. “Race you to the hatch!” The excavator rumbled after her. It never caught up. But it carried the next eleven crates, all in one go.",
+          "audio": "audio/en-US/one-hand-lift.m4a",
+          "effects": "audio/en-US/one-hand-lift.effects.json"
+        },
+        "es-ES": {
+          "title": "Con una sola mano",
+          "text": "La cápsula de carga había aterrizado en la plataforma, y su caja más grande era enorme. Sus paneles laterales se abrieron, y allí estaba: una caja grande como una nevera. La excavadora llegó traqueteando para levantarla, despacio y muy seria. Primero recogió una palada de polvo, para calentar. Pero Maya llegó antes. Dobló las rodillas, agarró la caja… y la levantó. Con una mano. La excavadora se paró en seco. «¿Qué pasa? En la Luna pesa solo una sexta parte de lo que pesa en casa.» En la Tierra, nadie podría levantar esa caja a solas. Aquí era como llevar un cojín grande. «¡Te echo una carrera hasta la escotilla!» La excavadora fue tras ella, traqueteando. No la alcanzó nunca. Pero llevó las once cajas siguientes de una sola vez.",
+          "audio": "audio/es-ES/one-hand-lift.m4a",
+          "effects": "audio/es-ES/one-hand-lift.effects.json"
+        }
+      }
+    },
+    {
+      "id": "one-pad-four-landings",
+      "requiredStickers": [
+        "booster",
+        "lander",
+        "supply-pod",
+        "ship"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "manners"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "One Pad, Four Landings",
+          "text": "It was the busiest day the landing pad had ever seen. Four spacecraft were coming in, and there was only one pad! First came the supply pod, small and quick. Thump! It opened up to unload its crates, then hopped aside to make room. Next came the lander, on its four round feet. It opened its hatch for a moment, then shuffled aside too. Then the tall booster came down, tail first. It checked its legs, and then stepped politely out of the way. And last of all, the huge ship came down, slow and gentle, onto the empty pad. Nobody bumped. Nobody squeezed. Everybody took turns. And for one day, the Moon had the tidiest landing pad in space.",
+          "audio": "audio/en-US/one-pad-four-landings.m4a",
+          "effects": "audio/en-US/one-pad-four-landings.effects.json"
+        },
+        "es-ES": {
+          "title": "Una plataforma, cuatro aterrizajes",
+          "text": "Era el día de más trabajo de la plataforma de aterrizaje. Llegaban cuatro naves, ¡y solo había una plataforma! Primero llegó la cápsula de carga, pequeña y rápida. ¡Pum! Se abrió para descargar sus cajas, y luego se apartó de un saltito para dejar sitio. Luego llegó el módulo lunar, sobre sus cuatro patas redondas. Abrió la escotilla un momento, y después se apartó también. Después bajó el alto cohete propulsor, de cola. Probó sus patas, y luego se hizo a un lado, muy educado. Y por último, la enorme nave bajó, despacio y suave, hasta la plataforma vacía. Nadie chocó. Nadie se apretujó. Todos esperaron su turno. Y durante un día, la Luna tuvo la plataforma más ordenada del espacio.",
+          "audio": "audio/es-ES/one-pad-four-landings.m4a",
+          "effects": "audio/es-ES/one-pad-four-landings.effects.json"
+        }
+      }
+    },
+    {
+      "id": "one-picture-two-travellers",
+      "requiredStickers": [
+        "asteroid",
+        "comet",
+        "probe"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "wonder",
+        "patience"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Two Travellers, One Picture",
+          "text": "Something rare was about to happen. A comet and an asteroid were going to pass each other in the sky. The little probe wanted a picture. But of which one? The comet glowed brighter and brighter, its long tail streaming. Beautiful. The asteroid tumbled, and turned upside down, lumpy and grey. Interesting. The probe turned this way. It turned that way. It could only point its camera one way at a time. So it turned its dish, reached out its boom… and waited. Closer. Closer… The comet swept nearer, until there they were, side by side. Click! Both of them, in one picture! Everyone at the base cheered. The asteroid tumbled on. The comet sailed away. And the probe sent home the best picture in the sky.",
+          "audio": "audio/en-US/one-picture-two-travellers.m4a",
+          "effects": "audio/en-US/one-picture-two-travellers.effects.json"
+        },
+        "es-ES": {
+          "title": "Dos viajeros, una foto",
+          "text": "Iba a pasar algo poco común. Un cometa y un asteroide iban a cruzarse en el cielo. La pequeña sonda quería una foto. Pero ¿de cuál? El cometa brilló cada vez más, con su larga cola al viento. Precioso. El asteroide dio una voltereta y se quedó boca abajo, gris y lleno de bultos. Interesante. La sonda se giró hacia aquí. Se giró hacia allá. Solo podía apuntar la cámara a un lado cada vez. Así que giró su antena, extendió su brazo… y esperó. Más cerca. Más cerca… El cometa se acercó, hasta que allí estaban, uno junto al otro. ¡Clic! ¡Los dos, en la misma foto! En la base, todos lo celebraron. El asteroide siguió dando vueltas. El cometa se alejó. Y la sonda envió a casa la mejor foto del cielo.",
+          "audio": "audio/es-ES/one-picture-two-travellers.m4a",
+          "effects": "audio/es-ES/one-picture-two-travellers.effects.json"
+        }
+      }
+    },
+    {
+      "id": "one-scoop-please",
+      "requiredStickers": [
+        "excavator",
+        "buggy",
+        "printer",
+        "woman"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "manners"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "One Scoop, Please",
+          "text": "Maya needed moon soil for the printer. Just a little, carried over in the buggy. “One scoop, please!” she told the excavator. Its drums spun round and scooped up a big grey load. It rolled over to the buggy and tipped it into a seat. Then it went back for another. Scoop! “Stop!” Scoop. “Halt!” Scoop. “ENOUGH!” The excavator held up yet another full scoop, ready to go. Both seats were heaped with dust, and Maya sighed. Then she smiled. Maybe it was just waiting to hear that the job was done. “Thank you!” The excavator lowered its scoop and stood still. And the printer had enough soil for a week.",
+          "audio": "audio/en-US/one-scoop-please.m4a",
+          "effects": "audio/en-US/one-scoop-please.effects.json"
+        },
+        "es-ES": {
+          "title": "Una palada, por favor",
+          "text": "Maya necesitaba tierra lunar para la impresora. Solo un poquito, para llevarla en el buggy. «¡Una palada, por favor!», le dijo a la excavadora. Sus tambores giraron y recogieron un buen montón gris. Fue hasta el buggy y lo echó en un asiento. Luego volvió a por otra. ¡Palada! «¡Para!» Palada. «¡Alto!» Palada. «¡BASTA!» La excavadora levantó otra palada llena, lista para seguir. Los dos asientos rebosaban de polvo, y Maya suspiró. Luego sonrió. A lo mejor solo esperaba oír que el trabajo estaba hecho. «¡Gracias!» La excavadora bajó la pala y se quedó quieta. Y la impresora tuvo tierra para toda la semana.",
+          "audio": "audio/es-ES/one-scoop-please.m4a",
+          "effects": "audio/es-ES/one-scoop-please.effects.json"
+        }
+      }
+    },
+    {
+      "id": "one-small-step",
+      "requiredStickers": [
+        "lander",
+        "man",
+        "woman"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "kindness",
+        "courage"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "One Small Step",
+          "text": "Down onto the landing pad came the lander, its feet settling softly in the dust. Its hatch swung open and its ladder slid down to the ground. And down the ladder, very carefully, came Leo. It was his very first day on the Moon. At the bottom rung he stopped. Beyond the pad the grey plain stretched away, silent and strange. Maya came loping up and waved. “It's all right. One step at a time. I'll count.” “One…” Leo stepped off, and his boot sank softly into the dust. “Two… three…” Each step floated a little, like a slow bounce. He didn't sink. He didn't fall. He was walking on the Moon! “Four, five, six, SEVEN!” And from then on, nobody counted.",
+          "audio": "audio/en-US/one-small-step.m4a",
+          "effects": "audio/en-US/one-small-step.effects.json"
+        },
+        "es-ES": {
+          "title": "Un pequeño paso",
+          "text": "Sobre la plataforma de aterrizaje bajó el módulo lunar, y sus patas se posaron suavemente en el polvo. Se abrió su escotilla y bajó la escalerilla hasta el suelo. Y por la escalerilla, con mucho cuidado, bajó Leo. Era su primer día en la Luna. En el último peldaño se paró. Más allá de la plataforma, la llanura gris se extendía, silenciosa y extraña. Maya llegó dando saltos y le saludó. «Tranquilo. Paso a paso. Yo cuento.» «Uno…» Leo bajó, y su bota se hundió suavemente en el polvo. «Dos… tres…» Cada paso flotaba un poco, como un bote lento. No se hundía. No se caía. ¡Estaba caminando por la Luna! «¡Cuatro, cinco, seis, SIETE!» Y desde entonces, nadie volvió a contar.",
+          "audio": "audio/es-ES/one-small-step.m4a",
+          "effects": "audio/es-ES/one-small-step.effects.json"
+        }
+      }
+    },
+    {
+      "id": "quiet-please",
+      "requiredStickers": [
+        "seismometer",
+        "rover",
+        "ice",
+        "woman"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "patience"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Quiet, Please!",
+          "text": "The seismometer was trying to listen to the Moon. But the Moon was NOT quiet today. Down in the crater, the rover was busy drilling. Grrrind! It was drilling into a chunk of ice. And Maya was practising her moon-bounce. Boing! Boing! Boing! The seismometer's light flickered and flickered. Far too much noise! So everyone agreed to play statues. The rover stopped drilling. Maya stopped bouncing. Her nose itched. Her toe wiggled. But she kept still. Even the ice seemed to hold its breath as frost crept over it. Quiet. Quieter. Quietest… Then the little light began to blink. Slowly. Softly. A real moonquake, far, far away. The Moon itself was talking. And Maya, very still, listened too.",
+          "audio": "audio/en-US/quiet-please.m4a",
+          "effects": "audio/en-US/quiet-please.effects.json"
+        },
+        "es-ES": {
+          "title": "¡Silencio, por favor!",
+          "text": "El sismómetro intentaba escuchar la Luna. Pero hoy la Luna NO estaba nada tranquila. En el cráter, el róver estaba ocupado taladrando. ¡Grrrr! Estaba taladrando un trozo de hielo. Y Maya practicaba su bote lunar. ¡Boing! ¡Boing! ¡Boing! La luz del sismómetro parpadeaba sin parar. ¡Demasiado ruido! Así que todos decidieron jugar a las estatuas. El róver dejó de taladrar. Maya dejó de botar. Le picaba la nariz. Se le movía un dedo del pie. Pero se quedó quieta. Hasta el hielo pareció contener el aliento mientras lo cubría la escarcha. Silencio. Más silencio. Silencio total… Entonces la lucecita empezó a parpadear. Despacio. Suave. Un terremoto lunar de verdad, muy, muy lejos. La propia Luna estaba hablando. Y Maya, muy quieta, escuchó también.",
+          "audio": "audio/es-ES/quiet-please.m4a",
+          "effects": "audio/es-ES/quiet-please.effects.json"
+        }
+      }
+    },
+    {
+      "id": "setting-up-camp",
+      "requiredStickers": [
+        "seismometer",
+        "solar-panel",
+        "flower",
+        "woman"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "friendship"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Three Jobs for Maya",
+          "text": "Today, Maya was setting up the newest corner of the base. Three jobs. One astronaut. Job one: the seismometer. It unfolded on its three little feet, its dome shining. Its light blinked once. Listening! Job two: the solar panel. Out opened its folding stand, and its sixteen blue cells. Then it tilted up toward the Sun, and stayed there, soaking up the light. Maya gave it a thumbs up. Two jobs done! Job three was the most important. She'd been saving it for last. A sealed box, with one orange flower inside, under its pink-purple lamp. Even in its box, it looked so bright against all that grey. “There. A listener, a helper… and a friend.” And Maya sat down among them, very pleased with her new corner.",
+          "audio": "audio/en-US/setting-up-camp.m4a",
+          "effects": "audio/en-US/setting-up-camp.effects.json"
+        },
+        "es-ES": {
+          "title": "Tres tareas para Maya",
+          "text": "Hoy, Maya estaba montando el rincón más nuevo de la base. Tres tareas. Una astronauta. Tarea uno: el sismómetro. Se desplegó sobre sus tres patitas, con su cúpula brillante. Su luz parpadeó una vez. ¡Escuchando! Tarea dos: el panel solar. Abrió su soporte plegable y sus dieciséis celdas azules. Luego se inclinó hacia el Sol, y allí se quedó, empapándose de luz. Maya le levantó el pulgar. ¡Dos tareas hechas! La tercera era la más importante. La había guardado para el final. Una caja sellada, con una flor naranja dentro, bajo su lámpara rosa y morada. Incluso en su caja, se veía tan alegre entre tanto gris. «Ya está. Alguien que escucha, alguien que ayuda… y una amiga.» Y Maya se sentó con ellos, muy contenta con su rincón nuevo.",
+          "audio": "audio/es-ES/setting-up-camp.m4a",
+          "effects": "audio/es-ES/setting-up-camp.effects.json"
+        }
+      }
+    },
+    {
+      "id": "silent-touchdown",
+      "requiredStickers": [
+        "ship",
+        "woman",
+        "man"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Silent Landing",
+          "text": "Maya came loping out across the plain and tipped her helmet up to the black sky. Something bright was coming down. “Here it comes! This is going to be SO loud!” She clapped her gloves over the sides of her helmet. Leo loped over to stand beside her. Down, down came the huge silver ship, engines glowing, onto the landing pad. Dust sprayed out around it and drifted slowly back down. No roar. No rumble. Nothing at all. “Leo… is it broken?” “There's no air out here to carry the sound. Feel it through your boots.” Maya stood very, very still. There it was: a deep, soft hum, coming up through her soles. Without a whisper, the ship lowered its crew elevator to the ground, and Maya waved hello. Leo chuckled. She could take her gloves off her helmet now.",
+          "audio": "audio/en-US/silent-touchdown.m4a",
+          "effects": "audio/en-US/silent-touchdown.effects.json"
+        },
+        "es-ES": {
+          "title": "El aterrizaje silencioso",
+          "text": "Maya salió dando saltos por la llanura y levantó el casco hacia el cielo negro. Algo brillante estaba bajando. «¡Ya llega! ¡Esto va a sonar MUCHÍSIMO!» Se tapó los lados del casco con los guantes. Leo llegó a saltos y se puso a su lado. Despacio bajó la enorme nave plateada, con los motores encendidos, hasta la plataforma. El polvo salió volando y volvió a caer, muy despacio. Ni un rugido. Ni un estruendo. Nada de nada. «Leo… ¿se ha roto?» «Aquí no hay aire que lleve el sonido. Siéntelo con las botas.» Maya se quedó muy, muy quieta. Ahí estaba: un zumbido suave y profundo que le subía por las suelas. Sin un susurro, la nave bajó su ascensor hasta el suelo, y Maya saludó con la mano. Leo se rió. Ya podía quitarse los guantes del casco.",
+          "audio": "audio/es-ES/silent-touchdown.m4a",
+          "effects": "audio/es-ES/silent-touchdown.effects.json"
+        }
+      }
+    },
+    {
+      "id": "slow-and-steady",
+      "requiredStickers": [
+        "rover",
+        "buggy",
+        "moon-rock",
+        "woman"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "patience"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Slow and Steady",
+          "text": "Maya wanted the best rock on the Moon, and she wanted it fast. She sent the buggy zooming off across the plain to fetch them. Its wheels spun, and dust flew up behind it in long, lazy arcs. Zip! A pebble. Zoom! Another. By lunchtime its seats were piled high. Grey. Grey. Grey, grey, grey. Meanwhile, the slow rover had trundled down into the crater, to just one spot. And there it drilled. All morning. All afternoon. Maya sorted through her heap. Not one pebble was special. Then the rover lifted its drill, and there in the dust lay a round moon rock. It rocked gently, and crystals twinkled all over it. Maya loped over to the crater's edge. Then she picked her very best grey pebble and set it down by the rover's wheel. A prize, for patience.",
+          "audio": "audio/en-US/slow-and-steady.m4a",
+          "effects": "audio/en-US/slow-and-steady.effects.json"
+        },
+        "es-ES": {
+          "title": "Despacio y sin parar",
+          "text": "Maya quería la mejor roca de la Luna, y la quería ya. Mandó al buggy a toda velocidad por la llanura a buscar piedras. Sus ruedas giraron, y el polvo salió volando detrás en largas curvas perezosas. ¡Zas! Una piedrecita. ¡Zum! Otra. A mediodía tenía los asientos a rebosar. Gris. Gris. Gris, gris, gris. Mientras tanto, el lento róver había bajado al cráter, a un solo sitio. Y allí taladraba. Toda la mañana. Toda la tarde. Maya revisó su montón. Ni una piedrecita era especial. Entonces el róver levantó el taladro, y allí, en el polvo, apareció una roca lunar redonda. Se balanceó suavemente, y unos cristalitos brillaron por todas partes. Maya fue dando saltos hasta el borde del cráter. Luego escogió su mejor piedrecita gris y la dejó junto a la rueda del róver. Un premio, por la paciencia.",
+          "audio": "audio/es-ES/slow-and-steady.m4a",
+          "effects": "audio/es-ES/slow-and-steady.effects.json"
+        }
+      }
+    },
+    {
+      "id": "smaller-than-a-lunchbox",
+      "requiredStickers": [
+        "cubesat",
+        "station",
+        "capsule"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "wonder",
+        "courage",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Smaller Than a Lunchbox",
+          "text": "High above the Moon, the space station had a tiny passenger. It was a CubeSat, no bigger than a lunchbox. And it had been built on Earth, by the children of one small school. Today was its big day. The station turned its arrays to the Sun. Then, with a gentle click, out floated the little CubeSat into space. For a moment it just tumbled. Nearby, a capsule waited, as if holding its breath. Then, snap, snap! Out came its two solar panels, and up went its thin antenna. It worked! Beep. Beep. Its first message went down to Earth. In one small school, a whole classroom cheered. And everyone watching from the Moon cheered too. The smallest satellite in the sky. And the proudest.",
+          "audio": "audio/en-US/smaller-than-a-lunchbox.m4a",
+          "effects": "audio/en-US/smaller-than-a-lunchbox.effects.json"
+        },
+        "es-ES": {
+          "title": "Más pequeño que una fiambrera",
+          "text": "Muy por encima de la Luna, la estación espacial llevaba un pasajero diminuto. Era un CubeSat, no más grande que una fiambrera. Y lo habían construido en la Tierra los niños y niñas de un colegio pequeñito. Hoy era su gran día. La estación giró sus paneles hacia el Sol. Entonces, con un clic suave, el pequeño CubeSat salió flotando al espacio. Durante un momento solo daba vueltas. Cerca, una cápsula esperaba, como conteniendo el aliento. Y entonces, ¡clac, clac! Abrió sus dos paneles solares y sacó su fina antena. ¡Funcionaba! Bip. Bip. Su primer mensaje bajó hasta la Tierra. En un colegio pequeñito, toda una clase lo celebró. Y todos los que miraban desde la Luna, también. El satélite más pequeño del cielo. Y el más orgulloso.",
+          "audio": "audio/es-ES/smaller-than-a-lunchbox.m4a",
+          "effects": "audio/es-ES/smaller-than-a-lunchbox.effects.json"
+        }
+      }
+    },
+    {
+      "id": "socks-not-seeds",
+      "requiredStickers": [
+        "supply-pod",
+        "buggy",
+        "man"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "gardening"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Socks, Not Seeds",
+          "text": "Leo had ordered one hundred seeds from Earth. Tomatoes! Beans! Sunflowers! Down came the supply pod onto the landing pad. Along rolled the buggy to carry the cargo home. The pod's side panels slid open. Leo opened the first crate and stared. Socks. A whole crate of socks! “Socks? I asked for seeds!” He opened the next crate. More socks. And the next. Socks, socks, socks. Leo sat down on a crate. He checked the order list on his wrist. At the very bottom was a note. Seeds packed inside socks, so they travel safely. Love, Earth. Leo shook a sock. Out tumbled a packet of seeds! “Ninety-nine socks to go!”",
+          "audio": "audio/en-US/socks-not-seeds.m4a",
+          "effects": "audio/en-US/socks-not-seeds.effects.json"
+        },
+        "es-ES": {
+          "title": "Calcetines, no semillas",
+          "text": "Leo había pedido cien semillas a la Tierra. ¡Tomates! ¡Judías! ¡Girasoles! Y bajó la cápsula de carga hasta la plataforma de aterrizaje. Llegó rodando el buggy para llevar la carga a casa. Los paneles laterales se abrieron. Leo abrió la primera caja y se quedó mirando. Calcetines. ¡Una caja entera de calcetines! «¿Calcetines? ¡Yo pedí semillas!» Abrió la siguiente caja. Más calcetines. Y la siguiente. Calcetines, calcetines, calcetines. Leo se sentó en una caja. Miró la lista del pedido en su muñeca. Al final del todo había una nota. Semillas guardadas dentro de calcetines, para que viajen seguras. Con cariño, la Tierra. Leo sacudió un calcetín. ¡Y cayó un sobre de semillas! «¡Quedan noventa y nueve calcetines!»",
+          "audio": "audio/es-ES/socks-not-seeds.m4a",
+          "effects": "audio/es-ES/socks-not-seeds.effects.json"
+        }
+      }
+    },
+    {
+      "id": "sticky-dust",
+      "requiredStickers": [
+        "ship",
+        "solar-panel",
+        "woman"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "teamwork"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Sticky Dust",
+          "text": "The huge ship stood on the landing pad, ready to fly home. Maya came loping out to see it off, and waved goodbye. Up it rose, and up rose a great cloud of dust. It hung in the sky… and drifted… slowly… down. All over the solar panel. Its sixteen blue cells were grey. Maya loped over and brushed. Brush, brush. The dust clung on. Moon dust isn't round and smooth like sand on a beach. It's sharp and sticky. She brushed harder. Brush, brush, BRUSH! Still grey. Then the solar panel tilted, slowly, up toward the Sun. And as it tipped, the dust began to slide. A little. Then a lot. Sixteen blue cells, shining again. Teamwork!",
+          "audio": "audio/en-US/sticky-dust.m4a",
+          "effects": "audio/en-US/sticky-dust.effects.json"
+        },
+        "es-ES": {
+          "title": "Polvo pegajoso",
+          "text": "La enorme nave esperaba en la plataforma de aterrizaje, lista para volver a casa. Maya salió dando saltos a despedirla, y le dijo adiós con la mano. La nave subió, y con ella subió una gran nube de polvo. Se quedó flotando… y fue bajando… despacito… Justo encima del panel solar. Sus dieciséis celdas azules estaban grises. Maya fue dando saltos y lo cepilló. Cepilla, cepilla. El polvo seguía pegado. El polvo de la Luna no es redondito y suave como la arena de la playa. Es afilado y pegajoso. Cepilló más fuerte. Cepilla, cepilla, ¡CEPILLA! Seguía gris. Entonces el panel solar se inclinó, despacio, hacia el Sol. Y al inclinarse, el polvo empezó a resbalar. Un poco. Luego mucho. Dieciséis celdas azules, brillando otra vez. ¡Trabajo en equipo!",
+          "audio": "audio/es-ES/sticky-dust.m4a",
+          "effects": "audio/es-ES/sticky-dust.effects.json"
+        }
+      }
+    },
+    {
+      "id": "stretching-legs",
+      "requiredStickers": [
+        "booster",
+        "buggy",
+        "woman"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "morning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Morning Stretches",
+          "text": "Every morning, Maya did her stretches out on the plain. Reach up! Touch your toes! This morning she had company. On the landing pad stood the tall booster, waiting for its next flight. Slowly, it swung its four landing legs halfway up… and held them there. Maya stared. “Are you… stretching?” Well, if a booster could stretch, so could she. Up went one leg. Wobble, wobble. Down came the booster's legs, slow and steady. Down came Maya's. Then the buggy came rolling over to join in. It spun its wheels round and round, right where it stood, as if it were pedalling a bicycle. Maya laughed so hard she sat down in the dust. And that was the very first exercise class on the Moon.",
+          "audio": "audio/en-US/stretching-legs.m4a",
+          "effects": "audio/en-US/stretching-legs.effects.json"
+        },
+        "es-ES": {
+          "title": "Estiramientos de buena mañana",
+          "text": "Cada mañana, Maya hacía sus estiramientos en la llanura. ¡Brazos arriba! ¡Tocarse los pies! Esta mañana tenía compañía. En la plataforma de aterrizaje esperaba el alto cohete propulsor, listo para su próximo vuelo. Despacio, levantó sus cuatro patas hasta la mitad… y las dejó ahí. Maya lo miró. «¿Estás… estirando?» Pues si un cohete podía estirarse, ella también. Arriba una pierna. Tambaleo, tambaleo. Bajaron las patas del cohete, despacio y firmes. Bajaron las de Maya. Entonces llegó el buggy para apuntarse. Giró las ruedas sin moverse del sitio, como si pedaleara en una bicicleta. Maya se rió tanto que se sentó en el polvo. Y esa fue la primera clase de gimnasia de la Luna.",
+          "audio": "audio/es-ES/stretching-legs.m4a",
+          "effects": "audio/es-ES/stretching-legs.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-base-wakes-up",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "morning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Base Wakes Up",
+          "text": "Shhh. It's the end of the long Moon night, and everything is fast asleep. Then, there! A stripe of white light slides over the far ridge. It sweeps across the plain, and every pebble glints. It reaches the landing pad. Ping! Its little lights blink. It reaches the radio mast, and the big dish shines. It reaches the habitat's round window, and the window glows. And then it reaches everyone out on the plain. Stretch! Wiggle! Good morning, Moon. Good morning, everyone. The long day has begun.",
+          "audio": "audio/en-US/the-base-wakes-up.m4a",
+          "effects": "audio/en-US/the-base-wakes-up.effects.json"
+        },
+        "es-ES": {
+          "title": "La base se despierta",
+          "text": "Chsss. Se acaba la noche en la Luna, y todo está profundamente dormido. Y entonces, ¡mira! Una franja de luz blanca asoma por las montañas. Recorre la llanura, y cada piedrecita brilla. Llega a la plataforma de aterrizaje. ¡Ping! Sus lucecitas parpadean. Llega al mástil de la radio, y la gran parabólica reluce. Llega a la ventana redonda del módulo, y la ventana se ilumina. Y por fin llega a todos los que están en la llanura. ¡A estirarse! ¡A menearse! Buenos días, Luna. Buenos días a todos. Ha empezado el largo día.",
+          "audio": "audio/es-ES/the-base-wakes-up.m4a",
+          "effects": "audio/es-ES/the-base-wakes-up.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-biggest-parcel",
+      "requiredStickers": [
+        "ship",
+        "printer",
+        "excavator"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "teamwork"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Biggest Parcel",
+          "text": "The huge ship had landed on the pad, and everyone at the base was waiting. Today it had brought the biggest parcel ever delivered to the Moon. Down came its crew elevator, slow and smooth, all the way to the ground. On it sat a great folded bundle of white and orange metal. What could it be? Then out of the bundle unfolded the building printer: a leg, another leg, a long arm, a hopper on top! Everyone gasped. The excavator came trundling up to say hello the only way it knew. It dug up a big scoop of moon soil and tipped it into the hopper. Back and forth went the printer, laying its very first layer, neat and grey. The ship drew its elevator back up. Parcel delivered. And this parcel could build its own house.",
+          "audio": "audio/en-US/the-biggest-parcel.m4a",
+          "effects": "audio/en-US/the-biggest-parcel.effects.json"
+        },
+        "es-ES": {
+          "title": "El paquete más grande",
+          "text": "La enorme nave había aterrizado en la plataforma, y en la base todos esperaban. Hoy traía el paquete más grande que había llegado nunca a la Luna. Bajó su ascensor, suave y despacio, hasta el suelo. Encima había un gran fardo plegado de metal blanco y naranja. ¿Qué sería? Entonces, del fardo se desplegó la impresora de edificios: una pata, otra pata, un brazo largo, ¡y una tolva encima! Todos se quedaron boquiabiertos. La excavadora llegó traqueteando para saludar como mejor sabía. Recogió una buena palada de tierra lunar y la echó en la tolva. La impresora fue y vino, dejando su primera capa, gris y ordenada. La nave volvió a subir su ascensor. Paquete entregado. Y este paquete podía construirse su propia casa.",
+          "audio": "audio/es-ES/the-biggest-parcel.m4a",
+          "effects": "audio/es-ES/the-biggest-parcel.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-biggest-quake",
+      "requiredStickers": [
+        "seismometer",
+        "lander",
+        "man"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "curiosity"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Biggest Quake",
+          "text": "Leo sat by the seismometer, hoping for a moonquake. Any moonquake. Even a teeny one. All morning: nothing. Then its little light flashed. And flashed! And FLASHED! Leo checked his wrist. The biggest moonquake of the month! He was about to tell the whole Moon… when he stopped. Better check first. He turned around. There on the landing pad, just touching down in a puff of dust, was the lander. The biggest moonquake of the month was a lander, saying hello. Leo wrote it down anyway: Biggest quake. One lander. Very polite.",
+          "audio": "audio/en-US/the-biggest-quake.m4a",
+          "effects": "audio/en-US/the-biggest-quake.effects.json"
+        },
+        "es-ES": {
+          "title": "El terremoto más grande",
+          "text": "Leo estaba junto al sismómetro, esperando un terremoto lunar. Uno cualquiera. Aunque fuera chiquitito. Toda la mañana: nada. Entonces su lucecita destelló. ¡Y destelló! ¡Y DESTELLÓ! Leo miró su muñeca. ¡El terremoto lunar más grande del mes! Estaba a punto de contárselo a toda la Luna… cuando se paró. Mejor comprobarlo antes. Se dio la vuelta. Allí, en la plataforma de aterrizaje, posándose entre una nube de polvo, estaba el módulo lunar. El terremoto más grande del mes era un módulo lunar, saludando. Leo lo apuntó de todos modos: Terremoto más grande. Un módulo lunar. Muy educado.",
+          "audio": "audio/es-ES/the-biggest-quake.m4a",
+          "effects": "audio/es-ES/the-biggest-quake.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-blackest-shadow",
+      "requiredStickers": [
+        "booster",
+        "man",
+        "crew-rover"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Blackest Shadow",
+          "text": "The tall booster stood on the landing pad, with a long black shadow beside it. Leo was tightening a bolt on one of its legs. Just as he finished, the booster lifted its legs and set them down again, testing them. Jolt! The wrench slipped from Leo's glove, floated slowly down… right into the shadow. And vanished. Leo peered in. Nothing. He waved his glove in it. Nothing! It was black as ink. On Earth, air spreads a little light into every shadow. But the Moon has no air, so its shadows are pitch black. Then the big crew rover came rumbling by. It switched on its headlights and swung them into the shadow. There, glinting in the dust, lay the wrench! Leo laughed. And from then on, Leo tied his wrench to his belt.",
+          "audio": "audio/en-US/the-blackest-shadow.m4a",
+          "effects": "audio/en-US/the-blackest-shadow.effects.json"
+        },
+        "es-ES": {
+          "title": "La sombra más negra",
+          "text": "El alto cohete propulsor estaba en la plataforma, con su larga sombra negra al lado. Leo estaba apretando un tornillo de una de sus patas. Justo cuando terminó, el cohete levantó las patas y las volvió a apoyar, para probarlas. ¡Meneo! La llave inglesa se le escapó del guante, bajó flotando despacio… justo dentro de la sombra. Y desapareció. Leo miró dentro. Nada. Movió el guante dentro. ¡Nada! Estaba negra como la tinta. En la Tierra, el aire lleva algo de luz a cada sombra. Pero la Luna no tiene aire, así que sus sombras son negrísimas. Entonces pasó por allí el gran rover de tripulación. Encendió los faros y los giró hacia la sombra. ¡Allí, brillando en el polvo, estaba la llave! Leo se rió. Y desde entonces, Leo se ata la llave al cinturón.",
+          "audio": "audio/es-ES/the-blackest-shadow.m4a",
+          "effects": "audio/es-ES/the-blackest-shadow.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-booster-lands-itself",
+      "requiredStickers": [
+        "booster",
+        "supply-pod",
+        "man",
+        "woman"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Bet",
+          "text": "Leo checked the display on his wrist. “Here it comes. Bet you it needs our help to land.” Maya grinned. “Bet it doesn't. Loser unloads the cargo.” Down came the booster, tail first, engines glowing, straight for the landing pad. Dust sprayed out and floated slowly down. Leo held his breath. The booster rocked once… and stood quite still, on its own four legs. It lifted them a little and set them down again, as if it were checking its knees. “Next week it'll fly again, good as new!” Just then the supply pod set down beside it. Leo looked at the pod. He looked at Maya. “Fine. But you're carrying the heavy crate.”",
+          "audio": "audio/en-US/the-booster-lands-itself.m4a",
+          "effects": "audio/en-US/the-booster-lands-itself.effects.json"
+        },
+        "es-ES": {
+          "title": "La apuesta",
+          "text": "Leo miró la pantalla de su muñeca. «Ahí viene. Te apuesto a que necesita ayuda para aterrizar.» Maya sonrió. «Te apuesto a que no. Quien pierda, lo descarga todo.» Y bajó el cohete propulsor, de cola, con los motores encendidos, derecho a la plataforma. El polvo salió volando y volvió a caer muy despacio. Leo contuvo la respiración. El cohete se balanceó una vez… y se quedó quieto, sobre sus cuatro patas. Las levantó un poquito y las volvió a apoyar, como quien se mira las rodillas. «¡La semana que viene volverá a volar, como nuevo!» Justo entonces, la cápsula de carga se posó a su lado. Leo miró la cápsula. Miró a Maya. «Vale. Pero la caja pesada la llevas tú.»",
+          "audio": "audio/es-ES/the-booster-lands-itself.m4a",
+          "effects": "audio/es-ES/the-booster-lands-itself.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-capsule-waves-back",
+      "requiredStickers": [
+        "capsule",
+        "woman",
+        "station"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "kindness",
+        "bedtime"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Waving at the Capsule",
+          "text": "The long Moon night had begun. The stars stood sharp and still. Maya loped out onto the plain and looked up. Right on time, the capsule came sliding across the sky: a tiny bright X, high above the Moon. Every time it passed, Maya waved. But could anyone up there really see one small astronaut, down here in the dark? She waved anyway. And waited. Then the capsule turned its four wings, and they caught the sunlight, still shining up there above the night. Flash. Flash. Up shot Maya's thumb. They were waving back! Little lights glided by among the stars, and behind the capsule the space station turned its arrays, gleaming too. Maya bounced all the way home. Somebody up there had waved hello.",
+          "audio": "audio/en-US/the-capsule-waves-back.m4a",
+          "effects": "audio/en-US/the-capsule-waves-back.effects.json"
+        },
+        "es-ES": {
+          "title": "Saludos a la cápsula",
+          "text": "Había empezado la larga noche lunar. Las estrellas brillaban quietas y nítidas. Maya salió dando saltos a la llanura y miró hacia arriba. Puntual como siempre, la cápsula cruzaba el cielo: una X diminuta y brillante, muy por encima de la Luna. Cada vez que pasaba, Maya la saludaba. Pero ¿podría alguien ver desde allí a una astronauta tan pequeña, aquí abajo, a oscuras? Saludó de todos modos. Y esperó. Entonces la cápsula giró sus cuatro alas, que atraparon la luz del sol, que allí arriba seguía brillando. Destello. Destello. Maya levantó el pulgar. ¡Le devolvían el saludo! Unas lucecitas cruzaron entre las estrellas, y detrás de la cápsula la estación espacial giró sus paneles, brillando también. Maya volvió a casa dando saltos. Alguien allí arriba la había saludado.",
+          "audio": "audio/es-ES/the-capsule-waves-back.m4a",
+          "effects": "audio/es-ES/the-capsule-waves-back.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-comet-postcard",
+      "requiredStickers": [
+        "comet",
+        "probe",
+        "satellite",
+        "cubesat"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "wonder",
+        "curiosity",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Comet Postcard",
+          "text": "A comet was heading away from the Sun, back out into the cold and the dark. Chasing it came a probe, with a tiny CubeSat tucked at its side. The probe turned its dish and reached out its boom. Then it let the CubeSat go. Zip! The little CubeSat flew even closer. It opened its panels wide and snapped a picture. Something was strange. The comet was flying away from the Sun… but its tail wasn't trailing behind it. It was streaming out IN FRONT, glowing brighter than ever! A comet is a ball of ice and dust, and sunlight pushes its glowing tail away from the Sun. Always. The satellite sent the picture home to Earth. Everyone who saw it said: “Wait… the tail's in front?” And now you know why.",
+          "audio": "audio/en-US/the-comet-postcard.m4a",
+          "effects": "audio/en-US/the-comet-postcard.effects.json"
+        },
+        "es-ES": {
+          "title": "La postal del cometa",
+          "text": "Un cometa se alejaba del Sol, de vuelta al frío y a la oscuridad. Lo perseguía una sonda, con un diminuto CubeSat pegadito a su lado. La sonda giró su antena y extendió su brazo. Luego soltó al CubeSat. ¡Zas! El pequeño CubeSat se acercó todavía más. Abrió bien sus paneles e hizo una foto. Pasaba algo raro. El cometa se alejaba del Sol… pero su cola no iba detrás. ¡Iba DELANTE, más brillante que nunca! Un cometa es una bola de hielo y polvo, y la luz del Sol empuja su cola brillante lejos del Sol. Siempre. El satélite envió la foto a la Tierra. Todos los que la vieron dijeron: «Un momento… ¿la cola va delante?» Y ahora tú ya sabes por qué.",
+          "audio": "audio/es-ES/the-comet-postcard.m4a",
+          "effects": "audio/es-ES/the-comet-postcard.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-dust-race",
+      "requiredStickers": [
+        "buggy",
+        "crew-rover",
+        "woman",
+        "man"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "adventure"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Dust Race",
+          "text": "Maya and Leo had a bet. Which would reach the crater first? Maya picked the speedy buggy. Leo picked the big, steady crew rover. “Ready… steady… GO!” The buggy's wheels spun and away it shot, flinging dust high behind it. The crew rover switched on its lights and rolled off after it, slow and steady. But on the Moon, dust doesn't settle in a hurry. Up it hung, then down it drifted… slowly. The buggy couldn't see where it was going! It had to stop and wait. Rumble, rumble, along came the crew rover. The dust floated down. And there they were, both at the crater's edge, side by side. Maya and Leo laughed. A tie, in slow motion.",
+          "audio": "audio/en-US/the-dust-race.m4a",
+          "effects": "audio/en-US/the-dust-race.effects.json"
+        },
+        "es-ES": {
+          "title": "La carrera del polvo",
+          "text": "Maya y Leo habían hecho una apuesta. ¿Quién llegaría antes al cráter? Maya eligió el veloz buggy. Leo eligió el grande y tranquilo rover de tripulación. «Preparados… listos… ¡YA!» Las ruedas del buggy giraron y salió disparado, lanzando polvo muy alto. El rover encendió sus luces y lo siguió, despacio y sin parar. Pero en la Luna el polvo no tiene prisa por caer. Se quedó flotando, y luego bajó… despacito. ¡El buggy no veía por dónde iba! Tuvo que pararse a esperar. Brum, brum, llegó el rover de tripulación. El polvo bajó flotando. Y allí estaban los dos, en el borde del cráter, uno al lado del otro. Maya y Leo se rieron. Un empate, a cámara lenta.",
+          "audio": "audio/es-ES/the-dust-race.m4a",
+          "effects": "audio/es-ES/the-dust-race.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-earth-stays-put",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Earth Stays Put",
+          "text": "Back on Earth, the Moon rises and sets. Up it comes over the hills, across the sky it goes, and down it sinks again. So everyone at the base wondered: when would the Earth set? They watched it, hanging blue and white just over the far ridge. Little lights crept by among the stars. But the Earth stayed put. An hour went by. Still there. A day went by. Still there. A whole week! STILL there! The Earth wasn't going anywhere. From this side of the Moon, it hangs in almost the same spot, day and night, all month long. So everyone waved good morning to it, and good night, and it was always right there, keeping watch.",
+          "audio": "audio/en-US/the-earth-stays-put.m4a",
+          "effects": "audio/en-US/the-earth-stays-put.effects.json"
+        },
+        "es-ES": {
+          "title": "La Tierra no se mueve",
+          "text": "En la Tierra, la Luna sale y se pone. Asoma por las colinas, cruza el cielo y vuelve a bajar. Así que en la base todos se preguntaban: ¿cuándo se pondría la Tierra? La miraban, azul y blanca, justo encima de las montañas. Unas lucecitas pasaban despacio entre las estrellas. Pero la Tierra no se movía. Pasó una hora. Seguía allí. Pasó un día. Seguía allí. ¡Una semana entera! ¡SEGUÍA allí! La Tierra no pensaba irse a ningún sitio. Desde este lado de la Luna, se queda casi en el mismo lugar, de día y de noche, todo el mes. Así que todos le daban los buenos días, y las buenas noches, y ella siempre estaba allí, vigilando.",
+          "audio": "audio/es-ES/the-earth-stays-put.m4a",
+          "effects": "audio/es-ES/the-earth-stays-put.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-first-flower",
+      "requiredStickers": [
+        "flower",
+        "man",
+        "greenhouse"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "wonder",
+        "gardening",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The First Flower",
+          "text": "Every morning for weeks, Leo had visited one small green bud. It lived in a sealed box of its own, safe from the cold and the empty sky, under a pink-purple lamp. Each day he checked its water, its warmth, its air. And each day… still a bud. The greenhouse was full of lettuce and tomatoes. But Leo wanted a flower. One morning he came loping up… and stopped. The bud had opened and turned up to its light: round, bright orange, petal upon petal. “Oh. Hello, you.” He grabbed his radio. “Come and see, quick! We've got a flower!” Zinnias like this one had bloomed before, on a space station high above the Earth. But this one was theirs. “Welcome to the Moon.”",
+          "audio": "audio/en-US/the-first-flower.m4a",
+          "effects": "audio/en-US/the-first-flower.effects.json"
+        },
+        "es-ES": {
+          "title": "La primera flor",
+          "text": "Cada mañana, durante semanas, Leo había visitado un pequeño capullo verde. Vivía en su propia caja sellada, a salvo del frío y del cielo vacío, bajo una lámpara rosa y morada. Cada día le revisaba el agua, el calor, el aire. Y cada día… seguía siendo un capullo. El invernadero estaba lleno de lechugas y tomates. Pero Leo quería una flor. Una mañana llegó dando saltos… y se paró en seco. El capullo se había abierto y miraba hacia su luz: redondo, naranja brillante, pétalo sobre pétalo. «Vaya. Hola, preciosa.» Agarró la radio. «¡Ven a ver, rápido! ¡Tenemos una flor!» Otras cinias como esta ya habían florecido, en una estación espacial muy por encima de la Tierra. Pero esta era suya. «Bienvenida a la Luna.»",
+          "audio": "audio/es-ES/the-first-flower.m4a",
+          "effects": "audio/es-ES/the-first-flower.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-moon-rings",
+      "requiredStickers": [
+        "seismometer",
+        "man",
+        "moon-rock"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "wonder",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Moon Rings Like a Bell",
+          "text": "Out on the plain, the seismometer sat quietly, listening to the Moon. Leo came loping by with his toolbox. Suddenly its little light began to blink. Blink. Blink. A moonquake! Leo stood very still. He felt… nothing at all. Not a wobble. Even the moon rock by his boot only tipped the tiniest bit. But the seismometer kept listening, and its light kept blinking. One minute. Ten minutes. Longer. Leo checked his wrist. The whole Moon was humming, very softly, like a great bell that had been tapped once and didn't want to stop. Ding… ding… ding… Leo sat down beside the seismometer and listened too, though only it could hear. At last, the light went still. “Good listening,” said Leo.",
+          "audio": "audio/en-US/the-moon-rings.m4a",
+          "effects": "audio/en-US/the-moon-rings.effects.json"
+        },
+        "es-ES": {
+          "title": "La Luna suena como una campana",
+          "text": "En la llanura, el sismómetro escuchaba la Luna, muy tranquilo. Leo pasó dando saltos, con su caja de herramientas. De pronto, su lucecita empezó a parpadear. Parpadeo. Parpadeo. ¡Un terremoto lunar! Leo se quedó muy quieto. No sintió… nada. Ni un temblor. Hasta la roca lunar junto a su bota apenas se inclinó un poquito. Pero el sismómetro seguía escuchando, y su luz seguía parpadeando. Un minuto. Diez minutos. Más. Leo miró su muñeca. La Luna entera vibraba, muy bajito, como una gran campana a la que han tocado una vez y no quiere parar. Din… don… din… Leo se sentó junto al sismómetro y escuchó también, aunque solo él podía oírlo. Por fin, la luz se quedó quieta. —Buen trabajo escuchando —dijo Leo.",
+          "audio": "audio/es-ES/the-moon-rings.m4a",
+          "effects": "audio/es-ES/the-moon-rings.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-night-shift",
+      "requiredStickers": [
+        "printer",
+        "excavator",
+        "seismometer"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "teamwork"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Night Shift",
+          "text": "The long Moon night had come, and the crew were fast asleep. Well, nearly everyone was. Out on the plain, the floodlights clicked on, and the night shift began. The printer unfolded its long legs, and its motors started up. The excavator trundled over with a full scoop. Back and forth, back and forth went the printer, laying the wall one layer at a time. The excavator dug another scoop. And another layer went down. Nearby, the seismometer listened. Its little light blinked in time with the work: whirr… blink… whirr… blink… Like a lullaby, humming through the ground. All night long. Then at last, white sunlight came sweeping over the ridge. There stood a brand-new wall, strong and grey. Everyone cheered. And the night shift? It had a well-earned rest.",
+          "audio": "audio/en-US/the-night-shift.m4a",
+          "effects": "audio/en-US/the-night-shift.effects.json"
+        },
+        "es-ES": {
+          "title": "El turno de noche",
+          "text": "Había llegado la larga noche lunar, y la tripulación dormía profundamente. Bueno, casi todos. En la llanura se encendieron los focos, y empezó el turno de noche. La impresora desplegó sus largas patas, y sus motores arrancaron. La excavadora llegó traqueteando con la pala llena. La impresora iba y venía, iba y venía, levantando el muro capa a capa. La excavadora recogió otra palada. Y bajó otra capa. Cerca de allí, el sismómetro escuchaba. Su lucecita parpadeaba al ritmo del trabajo: zzzum… parpadeo… zzzum… parpadeo… Como una nana, vibrando por el suelo. Toda la noche. Por fin, la luz blanca del sol asomó por las montañas. Allí había un muro nuevo, fuerte y gris. Todos lo celebraron. ¿Y el turno de noche? Se ganó un buen descanso.",
+          "audio": "audio/es-ES/the-night-shift.m4a",
+          "effects": "audio/es-ES/the-night-shift.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-other-side-of-the-asteroid",
+      "requiredStickers": [
+        "asteroid",
+        "probe",
+        "cubesat"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "curiosity"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Potato, Peanut or Sock?",
+          "text": "Out in the dark, a lumpy asteroid was tumbling along. Along came a probe to take a look, with a tiny CubeSat flying at its side. The probe turned its dish and reached out its boom, peering. Click! “It looks like a potato,” it sent home. On the far side, the CubeSat snapped its own picture. Click! “No,” it sent. “A peanut.” Down at the base, everyone squinted at the pictures. A potato? A peanut? Somebody said: a sock! Then, very slowly, the asteroid rolled over, end over end, and showed them everything. It was a bit of a potato. And a bit of a peanut. And, if you squinted, the teeniest bit of a sock. Everyone had been right. They had just been looking from different sides.",
+          "audio": "audio/en-US/the-other-side-of-the-asteroid.m4a",
+          "effects": "audio/en-US/the-other-side-of-the-asteroid.effects.json"
+        },
+        "es-ES": {
+          "title": "¿Patata, cacahuete o calcetín?",
+          "text": "Allá en la oscuridad, un asteroide lleno de bultos iba dando volteretas. Llegó una sonda a echar un vistazo, con un diminuto CubeSat volando a su lado. La sonda giró su antena y extendió su brazo, mirando. ¡Clic! «Parece una patata», envió a casa. Por el otro lado, el CubeSat hizo su propia foto. ¡Clic! «No», envió. «Un cacahuete.» Abajo, en la base, todos miraban las fotos con los ojos entornados. ¿Una patata? ¿Un cacahuete? Alguien dijo: ¡un calcetín! Entonces, muy despacio, el asteroide dio una vuelta completa y lo enseñó todo. Era un poco patata. Y un poco cacahuete. Y, mirándolo bien, un poquitín calcetín. Todos tenían razón. Solo lo miraban desde lados distintos.",
+          "audio": "audio/es-ES/the-other-side-of-the-asteroid.m4a",
+          "effects": "audio/es-ES/the-other-side-of-the-asteroid.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-probe-swings-by",
+      "requiredStickers": [
+        "probe",
+        "satellite",
+        "station",
+        "comet"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "wonder",
+        "adventure",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Probe Swings By",
+          "text": "Far, far away, a comet was glowing. And a little probe was on its long way to meet it. But space is big, and the probe was small. How could it go faster? It did something clever. It aimed straight for the Moon. Whoosh! It swooped close past the Moon and the space station, and the Moon's pull swung it round like a stone in a sling. Faster now, and on a brand-new path! But first, it turned its dish and snapped one picture of the Moon below. The satellite caught the picture and sent it home to Earth. Everyone who saw it smiled: the grey plain, the tiny base, the Earth peeping over the ridge. And the probe sailed off toward its comet, faster than ever.",
+          "audio": "audio/en-US/the-probe-swings-by.m4a",
+          "effects": "audio/en-US/the-probe-swings-by.effects.json"
+        },
+        "es-ES": {
+          "title": "La sonda que pasó de largo",
+          "text": "Muy, muy lejos, brillaba un cometa. Y una pequeña sonda iba de camino a su encuentro. Pero el espacio es enorme, y la sonda era pequeña. ¿Cómo podría ir más deprisa? Hizo algo muy listo. Apuntó directa a la Luna. ¡Fiuuu! Pasó rozando la Luna y la estación espacial, y la fuerza de la Luna la hizo girar como una piedra en una honda. ¡Más rápida, y con un rumbo nuevo! Pero antes, giró su antena e hizo una foto de la Luna. El satélite recogió la foto y la envió a la Tierra. Todos los que la vieron sonrieron: la llanura gris, la base diminuta, la Tierra asomando por las montañas. Y la sonda se fue hacia su cometa, más rápida que nunca.",
+          "audio": "audio/es-ES/the-probe-swings-by.m4a",
+          "effects": "audio/es-ES/the-probe-swings-by.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-red-light",
+      "requiredStickers": [
+        "solar-panel",
+        "man",
+        "flower"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "wonder",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Red Light",
+          "text": "Leo was checking on his flower when the light began to change. Slowly, the bright white sunshine turned a deep, glowing copper-red. Out on the plain, the solar panel tilted and tilted, searching for the Sun. Leo checked his wrist. The panel's power was dropping! “If the power runs low, the flower's lamp goes out!” Then he understood. The Earth was passing right in front of the Sun. And all around the Earth's edge shone a thin ring of red-gold light: every sunset and every new morning on Earth, all at once. “It's an eclipse.” He sat down to watch. The panel waited. The flower waited. At last, the white light came back. “Lamp's still on. And you saw an eclipse.”",
+          "audio": "audio/en-US/the-red-light.m4a",
+          "effects": "audio/en-US/the-red-light.effects.json"
+        },
+        "es-ES": {
+          "title": "La luz roja",
+          "text": "Leo estaba cuidando su flor cuando la luz empezó a cambiar. Poco a poco, el sol blanco y brillante se volvió de un rojo cobrizo, intenso y cálido. En la llanura, el panel solar se inclinó y se inclinó, buscando el Sol. Leo miró su muñeca. ¡La energía del panel estaba bajando! «¡Si baja la energía, se apaga la lámpara de la flor!» Entonces lo entendió. La Tierra estaba pasando justo por delante del Sol. Y alrededor de su borde brillaba un fino anillo de luz rojiza y dorada: todos los amaneceres y atardeceres de la Tierra, a la vez. «Es un eclipse.» Se sentó a mirar. El panel esperó. La flor esperó. Por fin, volvió la luz blanca. «La lámpara sigue encendida. Y has visto un eclipse.»",
+          "audio": "audio/es-ES/the-red-light.m4a",
+          "effects": "audio/es-ES/the-red-light.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-ride-down",
+      "requiredStickers": [
+        "lander",
+        "capsule",
+        "crew-rover",
+        "station"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "welcome"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Ride Down",
+          "text": "It was the long Moon night, and visitors were coming. High above, the space station had company: a capsule, come to rest at its side. But a capsule can't land on the Moon. So the visitors would ride down another way. Down below, the floodlights blazed on around the landing pad. Out rolled the big crew rover, slow and steady, across the plain. It switched on every light it had, to show the way. Then down came the lander, slowly, carefully, into the pool of light. Its round feet touched the pad. Soft as a feather. Its hatch swung open, and its ladder slid down to the ground. Everyone at the base waved. Welcome to the Moon! High above, the capsule turned its wings to the Sun, ready to carry them home again one day.",
+          "audio": "audio/en-US/the-ride-down.m4a",
+          "effects": "audio/en-US/the-ride-down.effects.json"
+        },
+        "es-ES": {
+          "title": "El viaje hacia abajo",
+          "text": "Era la larga noche lunar, y llegaban visitas. Muy alto, la estación espacial tenía compañía: una cápsula, detenida a su lado. Pero una cápsula no puede aterrizar en la Luna. Así que las visitas bajarían de otra manera. Abajo, los focos se encendieron alrededor de la plataforma de aterrizaje. Salió el gran rover de tripulación, despacio y sin parar, por la llanura. Encendió todas sus luces, para marcar el camino. Entonces bajó el módulo lunar, despacio, con cuidado, hasta el charco de luz. Sus patas redondas tocaron la plataforma. Suave como una pluma. Se abrió su escotilla y bajó la escalerilla hasta el suelo. En la base, todos saludaron. ¡Bienvenidos a la Luna! Muy alto, la cápsula giró sus alas hacia el Sol, lista para llevarlos a casa algún día.",
+          "audio": "audio/es-ES/the-ride-down.m4a",
+          "effects": "audio/es-ES/the-ride-down.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-two-week-night",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "wonder",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Two-Week Night",
+          "text": "On the Moon, a day lasts a long, long time. And so does the night. Slowly the light faded from the plain, and the long Moon night began. It would last two whole weeks. Out at the base, everyone got ready. Lamps were checked. Batteries were full. Warm things were tucked in tight. Did anyone mind the dark? Not one bit. For out came the stars, more than anyone could count, and the pale band of the Milky Way stretched across the sky. They didn't twinkle. With no air to make them shimmer, they shone perfectly still. And low over the ridge, the Earth glowed blue and white, like a night-light left on. One by one, everyone settled down. Two weeks of stars. Plenty of time for sweet dreams.",
+          "audio": "audio/en-US/the-two-week-night.m4a",
+          "effects": "audio/en-US/the-two-week-night.effects.json"
+        },
+        "es-ES": {
+          "title": "La noche de dos semanas",
+          "text": "En la Luna, un día dura muchísimo. Y la noche, también. Poco a poco se apagó la luz de la llanura, y empezó la larga noche lunar. Duraría dos semanas enteras. En la base, todos se prepararon. Se revisaron las lámparas. Las baterías estaban llenas. Todo lo calentito, bien arropado. ¿Le importaba a alguien la oscuridad? Ni un poquito. Porque salieron las estrellas, más de las que nadie podría contar, y la franja pálida de la Vía Láctea cruzó el cielo. No titilaban. Sin aire que las hiciera temblar, brillaban completamente quietas. Y sobre las montañas, la Tierra brillaba azul y blanca, como una lamparita encendida. Uno a uno, todos se acomodaron. Dos semanas de estrellas. Tiempo de sobra para dulces sueños.",
+          "audio": "audio/es-ES/the-two-week-night.m4a",
+          "effects": "audio/es-ES/the-two-week-night.effects.json"
+        }
+      }
+    },
+    {
+      "id": "three-guesses",
+      "requiredStickers": [
+        "supply-pod",
+        "seedling",
+        "woman"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "mystery",
+        "kindness",
+        "gardening"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Three Guesses",
+          "text": "Thump! A supply pod set down on the landing pad. Maya came bounding over to see. The label said only: MAYA. GUESS! “Guess one: chocolate!” Its side panels slid open. Crates of food, and tools, and spare parts. But no chocolate. “Guess two: new socks?” Plenty of socks. Not quite it. “Guess three…” At the very back sat a little white pod with a clear dome on top. Inside, in dark soil, was a seedling. Maya hadn't seen anything green and growing for months. The seedling stretched, and opened its brand-new leaf. Maya waved at it. It was better than chocolate.",
+          "audio": "audio/en-US/three-guesses.m4a",
+          "effects": "audio/en-US/three-guesses.effects.json"
+        },
+        "es-ES": {
+          "title": "Tres adivinanzas",
+          "text": "¡Pum! Una cápsula de carga se posó en la plataforma de aterrizaje. Maya llegó dando saltos para verla. La etiqueta solo decía: MAYA. ¡ADIVINA! «Primera adivinanza: ¡chocolate!» Sus paneles laterales se abrieron. Cajas de comida, herramientas y piezas de repuesto. Pero ni rastro de chocolate. «Segunda: ¿calcetines nuevos?» Había muchos. Pero no era eso. «Tercera…» Al fondo del todo había una pequeña cápsula blanca con una cúpula transparente. Dentro, en tierra oscura, había un brote. Maya llevaba meses sin ver nada verde que creciera. El brote se estiró y abrió su hojita nueva. Maya lo saludó con la mano. Era mejor que el chocolate.",
+          "audio": "audio/es-ES/three-guesses.m4a",
+          "effects": "audio/es-ES/three-guesses.effects.json"
+        }
+      }
+    },
+    {
+      "id": "water-in-the-dark",
+      "requiredStickers": [
+        "ice",
+        "rover",
+        "satellite"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "adventure",
+        "discovery",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Water in the Dark",
+          "text": "The little rover trundled down into the crater, into the shadows. It was dark down there, and colder than anywhere on Earth. Its camera peered at the ground. Dust. Dust. More dust. So it drilled. Deeper, and deeper. Then, in its lights, something glittered: a chunk of ice, pushing up out of the dust! Frozen in the dark for ages and ages. Frost spread over it, white and sparkling. Ice on the Moon! Melted, it would be water to drink. Split apart, it would make air to breathe. High above, the satellite turned toward the Earth and sent the news home. Everyone who heard it cheered. Not bad, for a slow little rover in the dark.",
+          "audio": "audio/en-US/water-in-the-dark.m4a",
+          "effects": "audio/en-US/water-in-the-dark.effects.json"
+        },
+        "es-ES": {
+          "title": "Agua en la oscuridad",
+          "text": "El pequeño róver bajó al cráter, hacia las sombras. Allí abajo estaba oscuro, y hacía más frío que en ningún lugar de la Tierra. Su cámara miró el suelo. Polvo. Polvo. Más polvo. Así que taladró. Más hondo, y más hondo. Entonces, a la luz de sus faros, algo brilló: ¡un trozo de hielo, asomando entre el polvo! Congelado en la oscuridad desde hacía muchísimo tiempo. La escarcha lo cubrió, blanca y brillante. ¡Hielo en la Luna! Derretido, sería agua para beber. Separado en partes, daría aire para respirar. Muy alto, el satélite se giró hacia la Tierra y envió la noticia a casa. Todos los que la oyeron lo celebraron. Nada mal, para un róver pequeño y lento en la oscuridad.",
+          "audio": "audio/es-ES/water-in-the-dark.m4a",
+          "effects": "audio/es-ES/water-in-the-dark.effects.json"
+        }
+      }
+    },
+    {
+      "id": "where-the-ice-came-from",
+      "requiredStickers": [
+        "ice",
+        "comet",
+        "rover",
+        "probe"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "wonder",
+        "curiosity"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Where the Ice Came From",
+          "text": "Down in the crater, the rover was drilling into a chunk of ice. Grrrind. Frost spread over the ice, white and glittering. Where had all this ice come from? Nobody knew for sure. High above, something glowed. A comet was sailing by, its long tail streaming. Chasing it came a little probe, hurrying for a closer look. It turned its dish and reached out its boom, peering at the comet's icy heart. The comet was made of ice and dust too. Just like the ice in the crater. Could a comet, long, long ago, have brought ice to the Moon? Maybe. Nobody knows. Not yet. The frost cleared, and the rover went back to work. And the comet sailed on, as if to say: hello again, old friend.",
+          "audio": "audio/en-US/where-the-ice-came-from.m4a",
+          "effects": "audio/en-US/where-the-ice-came-from.effects.json"
+        },
+        "es-ES": {
+          "title": "De dónde vino el hielo",
+          "text": "En el cráter, el róver taladraba un trozo de hielo. Grrrr. La escarcha cubrió el hielo, blanca y brillante. ¿De dónde había salido tanto hielo? Nadie lo sabía con certeza. Muy alto, algo brilló. Un cometa pasaba navegando, con su larga cola al viento. Detrás iba una pequeña sonda, con prisa por verlo de cerca. Giró su antena y extendió su brazo, mirando el corazón helado del cometa. El cometa también estaba hecho de hielo y polvo. Como el hielo del cráter. ¿Habría traído un cometa, hace muchísimo tiempo, hielo a la Luna? Quizá. Nadie lo sabe. Todavía no. La escarcha desapareció, y el róver volvió al trabajo. Y el cometa siguió su camino, como diciendo: hola otra vez, viejo amigo.",
+          "audio": "audio/es-ES/where-the-ice-came-from.m4a",
+          "effects": "audio/es-ES/where-the-ice-came-from.effects.json"
+        }
+      }
+    },
+    {
+      "id": "which-way-is-up",
+      "requiredStickers": [
+        "seedling",
+        "man",
+        "solar-panel"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "gentle",
+        "funny",
+        "gardening"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Which Way Is Up?",
+          "text": "Leo was worried about his little seedling. It was leaning. Not straight up, but over to one side, like a sleepy little tree. Was it poorly? Did it need more water? More warmth? He checked his wrist display. Water: fine. Warmth: fine. Air: fine. Then why was it leaning? Just then he noticed the solar panel nearby. It was leaning too! Tilting, very slowly, toward the Sun. Leo looked from one to the other. The panel was following the sunlight. And so was his seedling. It stretched up and opened a new leaf, right toward the light. Nothing was wrong at all. They were both just doing their jobs. Finding the light. Every single day.",
+          "audio": "audio/en-US/which-way-is-up.m4a",
+          "effects": "audio/en-US/which-way-is-up.effects.json"
+        },
+        "es-ES": {
+          "title": "¿Hacia dónde es arriba?",
+          "text": "Leo estaba preocupado por su pequeño brote. Se inclinaba. No hacia arriba, sino hacia un lado, como un arbolito con sueño. ¿Estaría malito? ¿Necesitaba más agua? ¿Más calor? Miró la pantalla de su muñeca. Agua: bien. Calor: bien. Aire: bien. Entonces, ¿por qué se inclinaba? Justo entonces se fijó en el panel solar de al lado. ¡También se inclinaba! Se giraba, muy despacio, hacia el Sol. Leo miró a uno y a otro. El panel seguía la luz del sol. Y su brote, también. Se estiró y abrió una hoja nueva, directa hacia la luz. No pasaba nada malo. Los dos estaban haciendo su trabajo. Buscar la luz. Todos los días.",
+          "audio": "audio/es-ES/which-way-is-up.m4a",
+          "effects": "audio/es-ES/which-way-is-up.effects.json"
         }
       }
     }

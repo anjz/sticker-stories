@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "in",
+      "effect": "nightfall",
+      "duration": 55.77
+    },
+    {
+      "at": 4.84,
+      "cue": "capsule",
+      "sticker": "capsule",
+      "enter": true
+    },
+    {
+      "at": 4.84,
+      "cue": "capsule",
+      "sticker": "capsule",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 9.48,
+      "cue": "leo",
+      "sticker": "man",
+      "enter": true
+    },
+    {
+      "at": 11.48,
+      "cue": "why",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 15.2,
+      "cue": "crew",
+      "sticker": "crew-rover",
+      "enter": true
+    },
+    {
+      "at": 17.8,
+      "cue": "its",
+      "sticker": "crew-rover",
+      "animation": "lights",
+      "mode": "hold"
+    },
+    {
+      "at": 22.84,
+      "cue": "greenhouse",
+      "sticker": "greenhouse",
+      "enter": true
+    },
+    {
+      "at": 23.93,
+      "cue": "click",
+      "sticker": "man",
+      "go": "to",
+      "target": "greenhouse"
+    },
+    {
+      "at": 23.93,
+      "cue": "click",
+      "sticker": "greenhouse",
+      "animation": "lights"
+    },
+    {
+      "at": 29.48,
+      "cue": "two",
+      "sticker": "man",
+      "effect": "hop"
+    },
+    {
+      "at": 35.4,
+      "cue": "up",
+      "sticker": "crew-rover",
+      "effect": "pulse"
+    },
+    {
+      "at": 35.4,
+      "cue": "up",
+      "sticker": "capsule",
+      "animation": "turn"
+    },
+    {
+      "at": 39.64,
+      "cue": "leo",
+      "sticker": "man",
+      "animation": "check"
+    },
+    {
+      "at": 45.56,
+      "cue": "leo",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 45.56,
+      "cue": "leo",
+      "sticker": "man",
+      "effect": "wobble",
+      "repeat": 2
+    },
+    {
+      "at": 47.37,
+      "cue": "and",
+      "sticker": "greenhouse",
+      "effect": "glow",
+      "intensity": 0.5
+    }
+  ]
+}

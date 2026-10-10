@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "maya",
+      "sticker": "satellite",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "maya",
+      "sticker": "woman",
+      "enter": true
+    },
+    {
+      "at": 7.24,
+      "cue": "satellite",
+      "sticker": "satellite",
+      "enter": true
+    },
+    {
+      "at": 7.72,
+      "cue": "turned",
+      "sticker": "satellite",
+      "animation": "signal",
+      "mode": "hold"
+    },
+    {
+      "at": 11.32,
+      "cue": "hello",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 14.52,
+      "cue": "hello",
+      "sticker": "woman",
+      "expression": "surprised"
+    },
+    {
+      "at": 18.28,
+      "cue": "leo",
+      "sticker": "man",
+      "enter": true
+    },
+    {
+      "at": 19.76,
+      "cue": "trying",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 24.6,
+      "cue": "he",
+      "sticker": "man",
+      "animation": "check"
+    },
+    {
+      "at": 41.18,
+      "cue": "maya",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 41.18,
+      "cue": "maya",
+      "sticker": "woman",
+      "effect": "wobble",
+      "repeat": 2
+    },
+    {
+      "at": 44.1,
+      "cue": "up",
+      "sticker": "satellite",
+      "animation": "signal",
+      "mode": "resume"
+    }
+  ]
+}

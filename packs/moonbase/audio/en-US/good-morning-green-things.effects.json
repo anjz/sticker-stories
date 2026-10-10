@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 7.56,
+      "cue": "everything",
+      "sticker": "all",
+      "expression": "sleeping"
+    },
+    {
+      "at": 9.48,
+      "cue": "then",
+      "effect": "daybreak"
+    },
+    {
+      "at": 15.64,
+      "cue": "solar",
+      "sticker": "solar-panel",
+      "enter": true
+    },
+    {
+      "at": 17.8,
+      "cue": "slowly",
+      "sticker": "solar-panel",
+      "animation": "track"
+    },
+    {
+      "at": 23.96,
+      "cue": "greenhouse",
+      "sticker": "greenhouse",
+      "enter": true
+    },
+    {
+      "at": 26.76,
+      "cue": "click",
+      "sticker": "greenhouse",
+      "animation": "lights"
+    },
+    {
+      "at": 32.76,
+      "cue": "in",
+      "sticker": "solar-panel",
+      "effect": "glow",
+      "intensity": 0.5
+    },
+    {
+      "at": 34.16,
+      "cue": "seedling",
+      "sticker": "seedling",
+      "enter": true
+    },
+    {
+      "at": 36.8,
+      "cue": "it",
+      "sticker": "seedling",
+      "animation": "reach"
+    },
+    {
+      "at": 40.04,
+      "cue": "and",
+      "sticker": "greenhouse",
+      "effect": "sparkle"
+    },
+    {
+      "at": 42.12,
+      "cue": "flower",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 43.88,
+      "cue": "it",
+      "sticker": "flower",
+      "animation": "turn"
+    },
+    {
+      "at": 46.52,
+      "cue": "one",
+      "sticker": "seedling",
+      "effect": "pulse"
+    },
+    {
+      "at": 46.52,
+      "cue": "one",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 48.76,
+      "cue": "awake",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 49.8,
+      "cue": "good",
+      "sticker": "flower",
+      "effect": "glow",
+      "intensity": 0.5
+    }
+  ]
+}

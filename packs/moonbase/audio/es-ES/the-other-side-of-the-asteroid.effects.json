@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "allá",
+      "sticker": "asteroid",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "allá",
+      "sticker": "probe",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "allá",
+      "sticker": "cubesat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 4.84,
+      "cue": "asteroide",
+      "sticker": "asteroid",
+      "enter": true
+    },
+    {
+      "at": 8.92,
+      "cue": "sonda",
+      "sticker": "probe",
+      "enter": true
+    },
+    {
+      "at": 11.48,
+      "cue": "cubesat",
+      "sticker": "cubesat",
+      "enter": true
+    },
+    {
+      "at": 12.12,
+      "cue": "volando",
+      "sticker": "cubesat",
+      "go": "to",
+      "target": "probe"
+    },
+    {
+      "at": 13.72,
+      "cue": "la",
+      "sticker": "probe",
+      "animation": "turn",
+      "mode": "hold"
+    },
+    {
+      "at": 23.08,
+      "cue": "el",
+      "sticker": "cubesat",
+      "animation": "unfold"
+    },
+    {
+      "at": 29.32,
+      "cue": "abajo",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 36.84,
+      "cue": "alguien",
+      "sticker": "all",
+      "effect": "wobble"
+    },
+    {
+      "at": 39.48,
+      "cue": "entonces",
+      "sticker": "asteroid",
+      "animation": "tumble"
+    },
+    {
+      "at": 46.52,
+      "cue": "era",
+      "sticker": "probe",
+      "animation": "turn",
+      "mode": "resume"
+    },
+    {
+      "at": 49.8,
+      "cue": "y",
+      "sticker": "cubesat",
+      "effect": "hop"
+    },
+    {
+      "at": 49.8,
+      "cue": "y",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 49.8,
+      "cue": "y",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 55.16,
+      "cue": "solo",
+      "sticker": "asteroid",
+      "effect": "sparkle"
+    }
+  ]
+}

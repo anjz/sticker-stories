@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "it",
+      "effect": "nightfall",
+      "duration": 53.95
+    },
+    {
+      "at": 5.72,
+      "cue": "leo",
+      "sticker": "man",
+      "enter": true
+    },
+    {
+      "at": 6.2,
+      "cue": "maya",
+      "sticker": "woman",
+      "enter": true
+    },
+    {
+      "at": 8.28,
+      "cue": "crew",
+      "sticker": "crew-rover",
+      "enter": true
+    },
+    {
+      "at": 10.68,
+      "cue": "it",
+      "sticker": "crew-rover",
+      "animation": "lights",
+      "mode": "hold"
+    },
+    {
+      "at": 16.12,
+      "cue": "lander",
+      "sticker": "lander",
+      "enter": true
+    },
+    {
+      "at": 16.12,
+      "cue": "lander",
+      "sticker": "lander",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 18.41,
+      "cue": "wait",
+      "sticker": "man",
+      "expression": "surprised"
+    },
+    {
+      "at": 20.12,
+      "cue": "bounded",
+      "sticker": "man",
+      "go": "to",
+      "target": "lander"
+    },
+    {
+      "at": 25.56,
+      "cue": "it's",
+      "sticker": "lander",
+      "effect": "pulse"
+    },
+    {
+      "at": 29.08,
+      "cue": "but",
+      "sticker": "woman",
+      "expression": "surprised"
+    },
+    {
+      "at": 29.08,
+      "cue": "but",
+      "sticker": "woman",
+      "effect": "wobble"
+    },
+    {
+      "at": 31,
+      "cue": "leo",
+      "sticker": "man",
+      "animation": "check"
+    },
+    {
+      "at": 36.92,
+      "cue": "no",
+      "sticker": "woman",
+      "effect": "shake",
+      "intensity": 0.3
+    },
+    {
+      "at": 41.57,
+      "cue": "so",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 44.44,
+      "cue": "the",
+      "effect": "floodlights"
+    },
+    {
+      "at": 47.4,
+      "cue": "and",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 47.4,
+      "cue": "and",
+      "sticker": "man",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "something",
+      "sticker": "comet",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 0,
+      "cue": "something",
+      "sticker": "asteroid",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "something",
+      "sticker": "probe",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 5.72,
+      "cue": "comet",
+      "sticker": "comet",
+      "enter": true
+    },
+    {
+      "at": 6.52,
+      "cue": "asteroid",
+      "sticker": "asteroid",
+      "enter": true
+    },
+    {
+      "at": 9.88,
+      "cue": "probe",
+      "sticker": "probe",
+      "enter": true
+    },
+    {
+      "at": 11.4,
+      "cue": "but",
+      "sticker": "probe",
+      "effect": "pulse"
+    },
+    {
+      "at": 13,
+      "cue": "the",
+      "sticker": "comet",
+      "animation": "glow"
+    },
+    {
+      "at": 18.84,
+      "cue": "the",
+      "sticker": "asteroid",
+      "animation": "tumble",
+      "mode": "hold"
+    },
+    {
+      "at": 25.96,
+      "cue": "it",
+      "sticker": "probe",
+      "effect": "shake",
+      "intensity": 0.3
+    },
+    {
+      "at": 30.04,
+      "cue": "so",
+      "sticker": "probe",
+      "animation": "turn"
+    },
+    {
+      "at": 36.52,
+      "cue": "the",
+      "sticker": "comet",
+      "go": "to",
+      "target": "asteroid"
+    },
+    {
+      "at": 44.84,
+      "cue": "cheered",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 44.84,
+      "cue": "cheered",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 45.64,
+      "cue": "the",
+      "sticker": "asteroid",
+      "animation": "tumble",
+      "mode": "resume"
+    },
+    {
+      "at": 47.4,
+      "cue": "the",
+      "sticker": "comet",
+      "effect": "sparkle"
+    },
+    {
+      "at": 49.14,
+      "cue": "and",
+      "sticker": "probe",
+      "effect": "glow",
+      "intensity": 0.5
+    }
+  ]
+}

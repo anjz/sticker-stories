@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "high",
+      "sticker": "station",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "high",
+      "sticker": "capsule",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "high",
+      "sticker": "cubesat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 4.68,
+      "cue": "space",
+      "sticker": "station",
+      "enter": true
+    },
+    {
+      "at": 8.2,
+      "cue": "cubesat",
+      "sticker": "cubesat",
+      "enter": true
+    },
+    {
+      "at": 17.96,
+      "cue": "the",
+      "sticker": "station",
+      "animation": "turn"
+    },
+    {
+      "at": 26.1,
+      "cue": "for",
+      "sticker": "cubesat",
+      "effect": "spin"
+    },
+    {
+      "at": 29.48,
+      "cue": "capsule",
+      "sticker": "capsule",
+      "enter": true
+    },
+    {
+      "at": 32.52,
+      "cue": "then",
+      "sticker": "cubesat",
+      "animation": "unfold",
+      "mode": "hold"
+    },
+    {
+      "at": 38.52,
+      "cue": "it",
+      "sticker": "cubesat",
+      "effect": "sparkle"
+    },
+    {
+      "at": 43.84,
+      "cue": "in",
+      "sticker": "capsule",
+      "effect": "pulse"
+    },
+    {
+      "at": 47.44,
+      "cue": "and",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 47.44,
+      "cue": "and",
+      "sticker": "all",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 50.49,
+      "cue": "the",
+      "sticker": "station",
+      "effect": "glow",
+      "intensity": 0.4
+    }
+  ]
+}

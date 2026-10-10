@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "era",
+      "sticker": "capsule",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "era",
+      "sticker": "station",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "era",
+      "effect": "nightfall",
+      "duration": 59.38
+    },
+    {
+      "at": 7.56,
+      "cue": "estación",
+      "sticker": "station",
+      "enter": true
+    },
+    {
+      "at": 10.04,
+      "cue": "cápsula",
+      "sticker": "capsule",
+      "enter": true
+    },
+    {
+      "at": 10.88,
+      "cue": "detenida",
+      "sticker": "capsule",
+      "go": "to",
+      "target": "station"
+    },
+    {
+      "at": 15.24,
+      "cue": "así",
+      "sticker": "capsule",
+      "effect": "pulse"
+    },
+    {
+      "at": 18.28,
+      "cue": "abajo",
+      "effect": "floodlights"
+    },
+    {
+      "at": 23.64,
+      "cue": "rover",
+      "sticker": "crew-rover",
+      "enter": true
+    },
+    {
+      "at": 27.96,
+      "cue": "encendió",
+      "sticker": "crew-rover",
+      "animation": "lights",
+      "mode": "hold"
+    },
+    {
+      "at": 32.28,
+      "cue": "módulo",
+      "sticker": "lander",
+      "enter": true
+    },
+    {
+      "at": 32.28,
+      "cue": "módulo",
+      "sticker": "lander",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 37.4,
+      "cue": "sus",
+      "effect": "dust",
+      "duration": 6,
+      "intensity": 0.5
+    },
+    {
+      "at": 40.12,
+      "cue": "suave",
+      "sticker": "lander",
+      "effect": "wobble"
+    },
+    {
+      "at": 41.96,
+      "cue": "se",
+      "sticker": "lander",
+      "animation": "hatch"
+    },
+    {
+      "at": 45.45,
+      "cue": "en",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 46.6,
+      "cue": "saludaron",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 49.24,
+      "cue": "muy",
+      "sticker": "capsule",
+      "animation": "turn"
+    },
+    {
+      "at": 49.24,
+      "cue": "muy",
+      "sticker": "station",
+      "effect": "glow",
+      "intensity": 0.4
+    }
+  ]
+}

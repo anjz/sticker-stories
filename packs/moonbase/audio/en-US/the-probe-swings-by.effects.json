@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "far",
+      "sticker": "comet",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 0,
+      "cue": "far",
+      "sticker": "probe",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "far",
+      "sticker": "station",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "far",
+      "sticker": "satellite",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 5.08,
+      "cue": "comet",
+      "sticker": "comet",
+      "enter": true
+    },
+    {
+      "at": 7.24,
+      "cue": "probe",
+      "sticker": "probe",
+      "enter": true
+    },
+    {
+      "at": 14.44,
+      "cue": "it",
+      "sticker": "probe",
+      "effect": "pulse"
+    },
+    {
+      "at": 20.88,
+      "cue": "space",
+      "sticker": "station",
+      "enter": true
+    },
+    {
+      "at": 21.76,
+      "cue": "and",
+      "sticker": "probe",
+      "go": "to",
+      "target": "station"
+    },
+    {
+      "at": 25.32,
+      "cue": "faster",
+      "sticker": "probe",
+      "effect": "spin"
+    },
+    {
+      "at": 27.91,
+      "cue": "but",
+      "sticker": "station",
+      "effect": "wobble"
+    },
+    {
+      "at": 28.68,
+      "cue": "it",
+      "sticker": "probe",
+      "animation": "turn"
+    },
+    {
+      "at": 32.32,
+      "cue": "satellite",
+      "sticker": "satellite",
+      "enter": true
+    },
+    {
+      "at": 32.76,
+      "cue": "caught",
+      "sticker": "satellite",
+      "animation": "signal"
+    },
+    {
+      "at": 35.24,
+      "cue": "everyone",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 38.39,
+      "cue": "the",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 41.72,
+      "cue": "and",
+      "sticker": "probe",
+      "go": "away",
+      "toward": "right"
+    },
+    {
+      "at": 44.84,
+      "cue": "ever",
+      "sticker": "comet",
+      "effect": "glow",
+      "intensity": 0.6
+    }
+  ]
+}

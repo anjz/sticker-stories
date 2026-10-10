@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "muy",
+      "sticker": "station",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "muy",
+      "sticker": "capsule",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "muy",
+      "sticker": "cubesat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 4.92,
+      "cue": "estación",
+      "sticker": "station",
+      "enter": true
+    },
+    {
+      "at": 8.76,
+      "cue": "cubesat",
+      "sticker": "cubesat",
+      "enter": true
+    },
+    {
+      "at": 19.16,
+      "cue": "la",
+      "sticker": "station",
+      "animation": "turn"
+    },
+    {
+      "at": 28.1,
+      "cue": "durante",
+      "sticker": "cubesat",
+      "effect": "spin"
+    },
+    {
+      "at": 31.8,
+      "cue": "cápsula",
+      "sticker": "capsule",
+      "enter": true
+    },
+    {
+      "at": 35.08,
+      "cue": "y",
+      "sticker": "cubesat",
+      "animation": "unfold",
+      "mode": "hold"
+    },
+    {
+      "at": 41.16,
+      "cue": "funcionaba",
+      "sticker": "cubesat",
+      "effect": "sparkle"
+    },
+    {
+      "at": 46.76,
+      "cue": "en",
+      "sticker": "capsule",
+      "effect": "pulse"
+    },
+    {
+      "at": 50.12,
+      "cue": "y",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 50.12,
+      "cue": "y",
+      "sticker": "all",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 53.29,
+      "cue": "el",
+      "sticker": "station",
+      "effect": "glow",
+      "intensity": 0.4
+    }
+  ]
+}

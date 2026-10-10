@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.2,
+      "cue": "róver",
+      "sticker": "rover",
+      "enter": true
+    },
+    {
+      "at": 4.52,
+      "cue": "taladraba",
+      "sticker": "rover",
+      "go": "to",
+      "target": "crater"
+    },
+    {
+      "at": 5.64,
+      "cue": "hielo",
+      "sticker": "ice",
+      "enter": true
+    },
+    {
+      "at": 6.28,
+      "cue": "grrrr",
+      "sticker": "rover",
+      "animation": "drill"
+    },
+    {
+      "at": 7.48,
+      "cue": "la",
+      "sticker": "ice",
+      "animation": "frost",
+      "mode": "hold"
+    },
+    {
+      "at": 10.82,
+      "cue": "de",
+      "sticker": "rover",
+      "effect": "pulse"
+    },
+    {
+      "at": 17.32,
+      "cue": "cometa",
+      "sticker": "comet",
+      "enter": true
+    },
+    {
+      "at": 17.32,
+      "cue": "cometa",
+      "sticker": "comet",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 18.92,
+      "cue": "con",
+      "sticker": "comet",
+      "animation": "glow"
+    },
+    {
+      "at": 22.24,
+      "cue": "sonda",
+      "sticker": "probe",
+      "enter": true
+    },
+    {
+      "at": 22.24,
+      "cue": "sonda",
+      "sticker": "probe",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 22.8,
+      "cue": "con",
+      "sticker": "probe",
+      "go": "to",
+      "target": "comet"
+    },
+    {
+      "at": 24.6,
+      "cue": "giró",
+      "sticker": "probe",
+      "animation": "turn"
+    },
+    {
+      "at": 33.96,
+      "cue": "habría",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 41.48,
+      "cue": "la",
+      "sticker": "ice",
+      "animation": "frost",
+      "mode": "resume"
+    },
+    {
+      "at": 44.88,
+      "cue": "y",
+      "sticker": "rover",
+      "effect": "shake",
+      "intensity": 0.3
+    },
+    {
+      "at": 44.88,
+      "cue": "y",
+      "sticker": "comet",
+      "effect": "sparkle"
+    },
+    {
+      "at": 44.88,
+      "cue": "y",
+      "sticker": "ice",
+      "effect": "glow",
+      "intensity": 0.4
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "muy",
+      "sticker": "comet",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 0,
+      "cue": "muy",
+      "sticker": "probe",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "muy",
+      "sticker": "station",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "muy",
+      "sticker": "satellite",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 5.32,
+      "cue": "cometa",
+      "sticker": "comet",
+      "enter": true
+    },
+    {
+      "at": 6.92,
+      "cue": "sonda",
+      "sticker": "probe",
+      "enter": true
+    },
+    {
+      "at": 14.6,
+      "cue": "hizo",
+      "sticker": "probe",
+      "effect": "pulse"
+    },
+    {
+      "at": 21,
+      "cue": "estación",
+      "sticker": "station",
+      "enter": true
+    },
+    {
+      "at": 22.2,
+      "cue": "y",
+      "sticker": "probe",
+      "go": "to",
+      "target": "station"
+    },
+    {
+      "at": 25.8,
+      "cue": "más",
+      "sticker": "probe",
+      "effect": "spin"
+    },
+    {
+      "at": 28.12,
+      "cue": "pero",
+      "sticker": "station",
+      "effect": "wobble"
+    },
+    {
+      "at": 28.92,
+      "cue": "giró",
+      "sticker": "probe",
+      "animation": "turn"
+    },
+    {
+      "at": 31.72,
+      "cue": "satélite",
+      "sticker": "satellite",
+      "enter": true
+    },
+    {
+      "at": 32.28,
+      "cue": "recogió",
+      "sticker": "satellite",
+      "animation": "signal"
+    },
+    {
+      "at": 34.68,
+      "cue": "todos",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 37.84,
+      "cue": "la",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 41.55,
+      "cue": "y",
+      "sticker": "probe",
+      "go": "away",
+      "toward": "right"
+    },
+    {
+      "at": 44.72,
+      "cue": "nunca",
+      "sticker": "comet",
+      "effect": "glow",
+      "intensity": 0.6
+    }
+  ]
+}

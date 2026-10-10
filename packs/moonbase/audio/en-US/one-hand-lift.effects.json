@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 3.36,
+      "cue": "supply",
+      "sticker": "supply-pod",
+      "enter": true
+    },
+    {
+      "at": 3.36,
+      "cue": "supply",
+      "sticker": "supply-pod",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 8,
+      "cue": "its",
+      "sticker": "supply-pod",
+      "animation": "open"
+    },
+    {
+      "at": 13.64,
+      "cue": "excavator",
+      "sticker": "excavator",
+      "enter": true
+    },
+    {
+      "at": 15.24,
+      "cue": "to",
+      "sticker": "excavator",
+      "go": "to",
+      "target": "supply-pod"
+    },
+    {
+      "at": 18.04,
+      "cue": "it",
+      "sticker": "excavator",
+      "animation": "dig"
+    },
+    {
+      "at": 21.32,
+      "cue": "maya",
+      "sticker": "woman",
+      "enter": true
+    },
+    {
+      "at": 23.12,
+      "cue": "she",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 28.2,
+      "cue": "the",
+      "sticker": "woman",
+      "effect": "hop"
+    },
+    {
+      "at": 28.2,
+      "cue": "the",
+      "sticker": "excavator",
+      "effect": "wobble"
+    },
+    {
+      "at": 38.08,
+      "cue": "here",
+      "sticker": "supply-pod",
+      "effect": "pulse"
+    },
+    {
+      "at": 40.43,
+      "cue": "race",
+      "sticker": "woman",
+      "effect": "spin"
+    },
+    {
+      "at": 41.88,
+      "cue": "the",
+      "sticker": "woman",
+      "go": "to",
+      "target": "hatch"
+    },
+    {
+      "at": 41.88,
+      "cue": "the",
+      "sticker": "excavator",
+      "go": "to",
+      "target": "hatch"
+    },
+    {
+      "at": 46.2,
+      "cue": "but",
+      "sticker": "excavator",
+      "effect": "shake",
+      "intensity": 0.3
+    },
+    {
+      "at": 49.48,
+      "cue": "go",
+      "sticker": "excavator",
+      "effect": "sparkle"
+    }
+  ]
+}

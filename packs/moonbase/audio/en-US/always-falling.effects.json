@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "leo",
+      "sticker": "station",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "leo",
+      "sticker": "capsule",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "leo",
+      "sticker": "cubesat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "leo",
+      "sticker": "man",
+      "enter": true
+    },
+    {
+      "at": 7.32,
+      "cue": "space",
+      "sticker": "station",
+      "enter": true
+    },
+    {
+      "at": 10.71,
+      "cue": "wait",
+      "sticker": "man",
+      "expression": "surprised"
+    },
+    {
+      "at": 12.28,
+      "cue": "he",
+      "sticker": "man",
+      "effect": "hop"
+    },
+    {
+      "at": 14.44,
+      "cue": "remembered",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 25.72,
+      "cue": "that's",
+      "sticker": "man",
+      "effect": "pulse"
+    },
+    {
+      "at": 28.92,
+      "cue": "the",
+      "sticker": "station",
+      "animation": "turn"
+    },
+    {
+      "at": 32.84,
+      "cue": "capsule",
+      "sticker": "capsule",
+      "enter": true
+    },
+    {
+      "at": 33.2,
+      "cue": "glided",
+      "sticker": "capsule",
+      "go": "to",
+      "target": "station"
+    },
+    {
+      "at": 35,
+      "cue": "cubesat",
+      "sticker": "cubesat",
+      "enter": true
+    },
+    {
+      "at": 35.56,
+      "cue": "went",
+      "sticker": "cubesat",
+      "effect": "spin"
+    },
+    {
+      "at": 38.11,
+      "cue": "everyone",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 41.24,
+      "cue": "the",
+      "sticker": "capsule",
+      "animation": "turn"
+    },
+    {
+      "at": 44.2,
+      "cue": "leo",
+      "sticker": "man",
+      "expression": "sleeping"
+    }
+  ]
+}

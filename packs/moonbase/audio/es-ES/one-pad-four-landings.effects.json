@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 10.36,
+      "cue": "primero",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 11.24,
+      "cue": "cápsula",
+      "sticker": "supply-pod",
+      "enter": true
+    },
+    {
+      "at": 11.24,
+      "cue": "cápsula",
+      "sticker": "supply-pod",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 14.76,
+      "cue": "se",
+      "sticker": "supply-pod",
+      "animation": "open"
+    },
+    {
+      "at": 17.32,
+      "cue": "se",
+      "sticker": "supply-pod",
+      "go": "to",
+      "target": "plain"
+    },
+    {
+      "at": 21.05,
+      "cue": "módulo",
+      "sticker": "lander",
+      "enter": true
+    },
+    {
+      "at": 21.05,
+      "cue": "módulo",
+      "sticker": "lander",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 24.36,
+      "cue": "abrió",
+      "effect": "dust",
+      "duration": 6,
+      "intensity": 0.5
+    },
+    {
+      "at": 24.36,
+      "cue": "abrió",
+      "sticker": "lander",
+      "animation": "hatch"
+    },
+    {
+      "at": 26.68,
+      "cue": "se",
+      "sticker": "lander",
+      "go": "to",
+      "target": "plain"
+    },
+    {
+      "at": 29.56,
+      "cue": "cohete",
+      "sticker": "booster",
+      "enter": true
+    },
+    {
+      "at": 29.56,
+      "cue": "cohete",
+      "sticker": "booster",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 31.8,
+      "cue": "probó",
+      "sticker": "booster",
+      "effect": "wobble"
+    },
+    {
+      "at": 31.8,
+      "cue": "probó",
+      "sticker": "booster",
+      "animation": "legs"
+    },
+    {
+      "at": 33.32,
+      "cue": "se",
+      "sticker": "booster",
+      "go": "to",
+      "target": "plain"
+    },
+    {
+      "at": 37.56,
+      "cue": "nave",
+      "sticker": "ship",
+      "enter": true
+    },
+    {
+      "at": 37.56,
+      "cue": "nave",
+      "sticker": "ship",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 45.04,
+      "cue": "todos",
+      "sticker": "ship",
+      "effect": "pulse"
+    },
+    {
+      "at": 46.75,
+      "cue": "y",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 46.75,
+      "cue": "y",
+      "sticker": "all",
+      "effect": "hop"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "maya",
+      "sticker": "woman",
+      "enter": true
+    },
+    {
+      "at": 5.56,
+      "cue": "levantó",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 14.12,
+      "cue": "tapó",
+      "sticker": "woman",
+      "effect": "wobble"
+    },
+    {
+      "at": 16.92,
+      "cue": "leo",
+      "sticker": "man",
+      "enter": true
+    },
+    {
+      "at": 16.92,
+      "cue": "leo",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 18.28,
+      "cue": "y",
+      "sticker": "man",
+      "go": "to",
+      "target": "woman"
+    },
+    {
+      "at": 21.2,
+      "cue": "enorme",
+      "sticker": "ship",
+      "enter": true
+    },
+    {
+      "at": 21.2,
+      "cue": "enorme",
+      "sticker": "ship",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 26.32,
+      "cue": "el",
+      "effect": "dust",
+      "duration": 8,
+      "intensity": 0.7
+    },
+    {
+      "at": 31.7,
+      "cue": "ni",
+      "sticker": "woman",
+      "expression": "surprised"
+    },
+    {
+      "at": 38.36,
+      "cue": "aquí",
+      "sticker": "man",
+      "effect": "pulse"
+    },
+    {
+      "at": 47.9,
+      "cue": "ahí",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 47.9,
+      "cue": "ahí",
+      "sticker": "woman",
+      "effect": "shake",
+      "intensity": 0.3
+    },
+    {
+      "at": 53.5,
+      "cue": "sin",
+      "sticker": "ship",
+      "animation": "elevator"
+    },
+    {
+      "at": 58.06,
+      "cue": "saludó",
+      "sticker": "woman",
+      "animation": "wave"
+    },
+    {
+      "at": 60.46,
+      "cue": "leo",
+      "sticker": "man",
+      "effect": "wobble"
+    }
+  ]
+}

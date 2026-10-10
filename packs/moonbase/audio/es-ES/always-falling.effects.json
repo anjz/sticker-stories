@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "leo",
+      "sticker": "station",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "leo",
+      "sticker": "capsule",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "leo",
+      "sticker": "cubesat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "leo",
+      "sticker": "man",
+      "enter": true
+    },
+    {
+      "at": 7.4,
+      "cue": "estación",
+      "sticker": "station",
+      "enter": true
+    },
+    {
+      "at": 10.79,
+      "cue": "un",
+      "sticker": "man",
+      "expression": "surprised"
+    },
+    {
+      "at": 13,
+      "cue": "se",
+      "sticker": "man",
+      "effect": "hop"
+    },
+    {
+      "at": 14.96,
+      "cue": "se",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 26.04,
+      "cue": "eso",
+      "sticker": "man",
+      "effect": "pulse"
+    },
+    {
+      "at": 29.88,
+      "cue": "la",
+      "sticker": "station",
+      "animation": "turn"
+    },
+    {
+      "at": 33.56,
+      "cue": "cápsula",
+      "sticker": "capsule",
+      "enter": true
+    },
+    {
+      "at": 34.08,
+      "cue": "subió",
+      "sticker": "capsule",
+      "go": "to",
+      "target": "station"
+    },
+    {
+      "at": 35.96,
+      "cue": "cubesat",
+      "sticker": "cubesat",
+      "enter": true
+    },
+    {
+      "at": 36.52,
+      "cue": "pasó",
+      "sticker": "cubesat",
+      "effect": "spin"
+    },
+    {
+      "at": 39.07,
+      "cue": "ahí",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 42.84,
+      "cue": "la",
+      "sticker": "capsule",
+      "animation": "turn"
+    },
+    {
+      "at": 45.88,
+      "cue": "leo",
+      "sticker": "man",
+      "expression": "sleeping"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "era",
+      "effect": "nightfall",
+      "duration": 56.17
+    },
+    {
+      "at": 5.64,
+      "cue": "leo",
+      "sticker": "man",
+      "enter": true
+    },
+    {
+      "at": 6.08,
+      "cue": "maya",
+      "sticker": "woman",
+      "enter": true
+    },
+    {
+      "at": 8.76,
+      "cue": "rover",
+      "sticker": "crew-rover",
+      "enter": true
+    },
+    {
+      "at": 11.48,
+      "cue": "encendió",
+      "sticker": "crew-rover",
+      "animation": "lights",
+      "mode": "hold"
+    },
+    {
+      "at": 17.32,
+      "cue": "módulo",
+      "sticker": "lander",
+      "enter": true
+    },
+    {
+      "at": 17.32,
+      "cue": "módulo",
+      "sticker": "lander",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 19.71,
+      "cue": "espera",
+      "sticker": "man",
+      "expression": "surprised"
+    },
+    {
+      "at": 21.64,
+      "cue": "dando",
+      "sticker": "man",
+      "go": "to",
+      "target": "lander"
+    },
+    {
+      "at": 27.88,
+      "cue": "es",
+      "sticker": "lander",
+      "effect": "pulse"
+    },
+    {
+      "at": 31.26,
+      "cue": "pero",
+      "sticker": "woman",
+      "expression": "surprised"
+    },
+    {
+      "at": 31.26,
+      "cue": "pero",
+      "sticker": "woman",
+      "effect": "wobble"
+    },
+    {
+      "at": 33.32,
+      "cue": "leo",
+      "sticker": "man",
+      "animation": "check"
+    },
+    {
+      "at": 39.56,
+      "cue": "en",
+      "sticker": "woman",
+      "effect": "shake",
+      "intensity": 0.3
+    },
+    {
+      "at": 43.8,
+      "cue": "así",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 46.36,
+      "cue": "los",
+      "effect": "floodlights"
+    },
+    {
+      "at": 49.2,
+      "cue": "y",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 49.2,
+      "cue": "y",
+      "sticker": "man",
+      "effect": "hearts"
+    }
+  ]
+}

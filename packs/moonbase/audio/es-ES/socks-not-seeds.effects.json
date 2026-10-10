@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "leo",
+      "sticker": "man",
+      "enter": true
+    },
+    {
+      "at": 8.6,
+      "cue": "y",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 9.08,
+      "cue": "cápsula",
+      "sticker": "supply-pod",
+      "enter": true
+    },
+    {
+      "at": 9.08,
+      "cue": "cápsula",
+      "sticker": "supply-pod",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 12.76,
+      "cue": "buggy",
+      "sticker": "buggy",
+      "enter": true
+    },
+    {
+      "at": 13.08,
+      "cue": "para",
+      "sticker": "buggy",
+      "go": "to",
+      "target": "supply-pod"
+    },
+    {
+      "at": 14.84,
+      "cue": "los",
+      "sticker": "supply-pod",
+      "animation": "open"
+    },
+    {
+      "at": 18.6,
+      "cue": "se",
+      "sticker": "man",
+      "expression": "surprised"
+    },
+    {
+      "at": 26.44,
+      "cue": "abrió",
+      "sticker": "man",
+      "effect": "shake",
+      "intensity": 0.4
+    },
+    {
+      "at": 29.56,
+      "cue": "y",
+      "sticker": "buggy",
+      "effect": "wobble"
+    },
+    {
+      "at": 34.92,
+      "cue": "leo",
+      "sticker": "man",
+      "expression": "sad"
+    },
+    {
+      "at": 36.76,
+      "cue": "miró",
+      "sticker": "man",
+      "animation": "check",
+      "mode": "hold"
+    },
+    {
+      "at": 47.72,
+      "cue": "leo",
+      "sticker": "man",
+      "animation": "check",
+      "mode": "resume"
+    },
+    {
+      "at": 51.21,
+      "cue": "quedan",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 52.44,
+      "cue": "calcetines",
+      "sticker": "man",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 52.44,
+      "cue": "calcetines",
+      "sticker": "buggy",
+      "animation": "wheelspin"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 3.48,
+      "cue": "rover",
+      "sticker": "rover",
+      "enter": true
+    },
+    {
+      "at": 3.48,
+      "cue": "rover",
+      "sticker": "rover",
+      "go": "to",
+      "target": "crater"
+    },
+    {
+      "at": 6.52,
+      "cue": "grrrind",
+      "sticker": "rover",
+      "animation": "drill"
+    },
+    {
+      "at": 17.4,
+      "cue": "moon",
+      "sticker": "moon-rock",
+      "enter": true
+    },
+    {
+      "at": 23.4,
+      "cue": "the",
+      "sticker": "rover",
+      "effect": "pulse"
+    },
+    {
+      "at": 23.4,
+      "cue": "the",
+      "sticker": "moon-rock",
+      "animation": "glint"
+    },
+    {
+      "at": 29.64,
+      "cue": "moon",
+      "sticker": "rover",
+      "effect": "shake",
+      "intensity": 0.3
+    },
+    {
+      "at": 37.08,
+      "cue": "asteroid",
+      "sticker": "asteroid",
+      "enter": true
+    },
+    {
+      "at": 37.08,
+      "cue": "asteroid",
+      "sticker": "asteroid",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 40.84,
+      "cue": "end",
+      "sticker": "asteroid",
+      "animation": "tumble"
+    },
+    {
+      "at": 44.16,
+      "cue": "and",
+      "sticker": "moon-rock",
+      "effect": "glow",
+      "intensity": 0.4
+    },
+    {
+      "at": 53.8,
+      "cue": "everyone",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 53.8,
+      "cue": "everyone",
+      "sticker": "all",
+      "effect": "wobble"
+    },
+    {
+      "at": 56.04,
+      "cue": "the",
+      "sticker": "moon-rock",
+      "effect": "sparkle"
+    },
+    {
+      "at": 58.2,
+      "cue": "sky",
+      "sticker": "asteroid",
+      "effect": "sparkle"
+    }
+  ]
+}

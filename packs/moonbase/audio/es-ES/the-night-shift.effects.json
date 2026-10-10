@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "había",
+      "effect": "nightfall",
+      "duration": 47.74
+    },
+    {
+      "at": 8.2,
+      "cue": "bueno",
+      "sticker": "all",
+      "expression": "sleeping"
+    },
+    {
+      "at": 10.28,
+      "cue": "en",
+      "effect": "floodlights"
+    },
+    {
+      "at": 14.6,
+      "cue": "impresora",
+      "sticker": "printer",
+      "enter": true
+    },
+    {
+      "at": 16.88,
+      "cue": "y",
+      "sticker": "printer",
+      "effect": "sparks",
+      "intensity": 0.4
+    },
+    {
+      "at": 19,
+      "cue": "excavadora",
+      "sticker": "excavator",
+      "enter": true
+    },
+    {
+      "at": 20.52,
+      "cue": "con",
+      "sticker": "excavator",
+      "go": "to",
+      "target": "printer"
+    },
+    {
+      "at": 21.72,
+      "cue": "la",
+      "sticker": "printer",
+      "animation": "print",
+      "mode": "hold"
+    },
+    {
+      "at": 27.24,
+      "cue": "la",
+      "sticker": "excavator",
+      "animation": "dig"
+    },
+    {
+      "at": 29.56,
+      "cue": "y",
+      "sticker": "printer",
+      "effect": "shake",
+      "intensity": 0.3
+    },
+    {
+      "at": 32.36,
+      "cue": "sismómetro",
+      "sticker": "seismometer",
+      "enter": true
+    },
+    {
+      "at": 33.88,
+      "cue": "su",
+      "sticker": "seismometer",
+      "animation": "listen"
+    },
+    {
+      "at": 43.88,
+      "cue": "toda",
+      "sticker": "excavator",
+      "effect": "pulse"
+    },
+    {
+      "at": 45.24,
+      "cue": "por",
+      "effect": "daybreak"
+    },
+    {
+      "at": 48.96,
+      "cue": "allí",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 48.96,
+      "cue": "allí",
+      "sticker": "printer",
+      "animation": "print",
+      "mode": "resume"
+    },
+    {
+      "at": 52.36,
+      "cue": "todos",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 53.63,
+      "cue": "y",
+      "sticker": "printer",
+      "effect": "sparkle"
+    }
+  ]
+}

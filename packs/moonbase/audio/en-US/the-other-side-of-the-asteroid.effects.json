@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "out",
+      "sticker": "asteroid",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "out",
+      "sticker": "probe",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "out",
+      "sticker": "cubesat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 4.92,
+      "cue": "asteroid",
+      "sticker": "asteroid",
+      "enter": true
+    },
+    {
+      "at": 8.4,
+      "cue": "probe",
+      "sticker": "probe",
+      "enter": true
+    },
+    {
+      "at": 10.36,
+      "cue": "cubesat",
+      "sticker": "cubesat",
+      "enter": true
+    },
+    {
+      "at": 11.08,
+      "cue": "flying",
+      "sticker": "cubesat",
+      "go": "to",
+      "target": "probe"
+    },
+    {
+      "at": 12.84,
+      "cue": "the",
+      "sticker": "probe",
+      "animation": "turn",
+      "mode": "hold"
+    },
+    {
+      "at": 22.4,
+      "cue": "the",
+      "sticker": "cubesat",
+      "animation": "unfold"
+    },
+    {
+      "at": 28.44,
+      "cue": "down",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 34.28,
+      "cue": "somebody",
+      "sticker": "all",
+      "effect": "wobble"
+    },
+    {
+      "at": 37.04,
+      "cue": "then",
+      "sticker": "asteroid",
+      "animation": "tumble"
+    },
+    {
+      "at": 45.6,
+      "cue": "it",
+      "sticker": "probe",
+      "animation": "turn",
+      "mode": "resume"
+    },
+    {
+      "at": 49.36,
+      "cue": "and",
+      "sticker": "cubesat",
+      "effect": "hop"
+    },
+    {
+      "at": 49.36,
+      "cue": "and",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 49.36,
+      "cue": "and",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 55.04,
+      "cue": "they",
+      "sticker": "asteroid",
+      "effect": "sparkle"
+    }
+  ]
+}
