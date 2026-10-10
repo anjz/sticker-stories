@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "moonbase",
-  "version": 13,
+  "version": 14,
   "languages": [
     "en-US",
     "es-ES"
@@ -217,8 +217,8 @@
     }
   },
   "narrationPacks": {
-    "en-US": "moonbase-narration-en-bfedd565",
-    "es-ES": "moonbase-narration-es-acf076be"
+    "en-US": "moonbase-narration-en-61f3db68",
+    "es-ES": "moonbase-narration-es-ba0e24ed"
   },
   "stickers": [
     {
@@ -469,10 +469,10 @@
       "image": "stickers/galaxy.webp",
       "animations": [
         "anims/galaxy.glow.json",
-        "anims/galaxy.drift.json"
+        "anims/galaxy.appear.json"
       ],
       "stage": {
-        "entrance": "fly",
+        "entrance": "grow",
         "on": [
           "sky"
         ]
