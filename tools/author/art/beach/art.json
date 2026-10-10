@@ -17,7 +17,7 @@
         "entrance": "hop",
         "on": [
           "rocks",
-          "pools",
+          "pool",
           "sand"
         ]
       },
@@ -41,7 +41,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "pools",
+          "pool",
           "sand"
         ]
       },
@@ -64,7 +64,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "pools"
+          "pool"
         ]
       },
       "size": "tiny",
@@ -86,7 +86,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "pools",
+          "pool",
           "rocks"
         ]
       },
@@ -109,7 +109,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "pools"
+          "pool"
         ]
       },
       "size": "tiny",
@@ -132,7 +132,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "pools",
+          "pool",
           "sea"
         ]
       },
@@ -156,7 +156,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "pools"
+          "pool"
         ]
       },
       "size": "small",
@@ -178,7 +178,7 @@
       "stage": {
         "entrance": "grow",
         "on": [
-          "pools",
+          "pool",
           "rocks"
         ]
       },
@@ -201,7 +201,7 @@
       "stage": {
         "entrance": "grow",
         "on": [
-          "pools",
+          "pool",
           "sand"
         ]
       },
@@ -546,7 +546,7 @@
   "scene": {
     "layout": "layout.jpg",
     "background": "A sunny, sheltered sandy cove seen from a child's height, exactly as laid out in the layout image: soft golden sand across the lower part, a gentle curve of beach, calm turquoise sea with small lapping waves and a line of white foam along the waterline across the middle, the far side of the bay closed by a green headland on the right with a small red-and-white lighthouse and a little white cottage on it, a pale-blue sky with a few round clouds. At the lower left and lower right, two low, wide clusters of dark wet rocks with shallow, clear rock pools among them (turquoise water over pebbles and sand, green and red seaweed, a few shells), each within the outer fifth of the width; the pools' water sits a little higher than in the layout, fully above the bottom eighth of the picture, with sand, pebbles and shells below them. The middle of the sand stays open. No people, no animals (no crabs, fish or starfish in the pools), no boats, no kites, no umbrellas. No trees, no branches and no leaves anywhere in the picture, not even at its edges or corners: the only framing at the sides is the rocks and pools low down, and the sky is open all the way to the edges; on the far side of the bay, low green headlands with bushes.",
-    "foreground": "The nearest elements only, kept very low and slim: in the very bottom-left corner, two or three low flat dark slate stones; in the very bottom-right corner, one or two smooth rounded pale pinkish-grey granite pebbles; a few small pebbles and shells along the very bottom; no seaweed. Each corner takes no more than the bottom twelfth of the height and the outer sixth of the width. The pools' water, the whole centre and the sky stay empty and transparent.",
+    "foreground": "The nearest elements only, close to the viewer: in the very bottom-LEFT corner, one SMALL, shallow rock pool right at our feet — clear pale-turquoise water over a few pebbles, its water running down to the bottom edge and off the left edge of the picture (cut by both edges, nothing in front of it), its far rim a short line of a few low, flat dark grey-brown slate stones with one small tuft of green seaweed and a shell; the whole pool takes no more than the left fifth of the width and the bottom fifth of the height. In the very bottom-RIGHT corner, one or two smooth rounded pale pinkish-grey granite pebbles and a shell, taking no more than the bottom twelfth of the height. Everything else — the middle of the bottom, the sand, the right-hand rock pool, the sea and the sky — stays empty and transparent. The left pool is meant to sit low across the bottom edge: that is intended.",
     "staging": {
       "layer": "background",
       "anchor": "feet"
@@ -643,7 +643,7 @@
         ]
       },
       "sand": {
-        "description": "the open golden sand of the beach, between the two rock pools",
+        "description": "the open golden sand of the beach, between the little pool at the front and the rock pool on the right",
         "words": {
           "en-US": [
             "sand",
@@ -657,11 +657,11 @@
         "areas": [
           {
             "x": [
-              0.44,
+              0.2,
               0.62
             ],
             "y": [
-              0.18,
+              0.24,
               0.36
             ]
           },
@@ -677,89 +677,8 @@
           }
         ]
       },
-      "pools": {
-        "description": "the two rock pools low at the left and right: a small clear one among flat slate ledges at the front left, a round deeper one among pale granite boulders on the right",
-        "words": {
-          "en-US": [
-            "pool",
-            "pools",
-            "rockpool"
-          ],
-          "es-ES": [
-            "charca",
-            "charcas",
-            "poza"
-          ]
-        },
-        "areas": [
-          {
-            "x": [
-              0.02,
-              0.25
-            ],
-            "y": [
-              0.17,
-              0.22
-            ]
-          },
-          {
-            "x": [
-              0.74,
-              0.94
-            ],
-            "y": [
-              0.2,
-              0.27
-            ]
-          }
-        ],
-        "edge": [
-          {
-            "x": [
-              0.43,
-              0.48
-            ],
-            "y": [
-              0.18,
-              0.28
-            ]
-          },
-          {
-            "x": [
-              0.56,
-              0.62
-            ],
-            "y": [
-              0.2,
-              0.3
-            ]
-          }
-        ],
-        "wideAreas": [
-          {
-            "x": [
-              -0.12,
-              0.25
-            ],
-            "y": [
-              0.17,
-              0.22
-            ]
-          },
-          {
-            "x": [
-              0.74,
-              1.1
-            ],
-            "y": [
-              0.2,
-              0.27
-            ]
-          }
-        ]
-      },
       "rocks": {
-        "description": "the low flat slate ledges round the left pool and the big pale granite boulders by the right pool",
+        "description": "the big pale granite boulders round the rock pool on the right",
         "words": {
           "en-US": [
             "rock",
@@ -773,16 +692,6 @@
         "areas": [
           {
             "x": [
-              0.0,
-              0.25
-            ],
-            "y": [
-              0.3,
-              0.33
-            ]
-          },
-          {
-            "x": [
               0.66,
               0.8
             ],
@@ -792,16 +701,65 @@
             ]
           }
         ]
+      },
+      "pool": {
+        "description": "the round rock pool among pale granite boulders on the right of the beach",
+        "words": {
+          "en-US": [
+            "pool",
+            "rockpool"
+          ],
+          "es-ES": [
+            "charca",
+            "poza"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.74,
+              0.94
+            ],
+            "y": [
+              0.2,
+              0.27
+            ]
+          }
+        ],
+        "wideAreas": [
+          {
+            "x": [
+              0.74,
+              1.1
+            ],
+            "y": [
+              0.2,
+              0.27
+            ]
+          }
+        ],
+        "edge": [
+          {
+            "x": [
+              0.56,
+              0.62
+            ],
+            "y": [
+              0.2,
+              0.3
+            ]
+          }
+        ]
       }
     },
     "edits": [
       {
-        "prompt": "Repaint this lower-left corner of the beach: a SMALL, shallow rock pool lying low in the golden sand, close to the viewer — it sits in the lower-left part of this area only, its back rim no higher than the middle of this area, so the upper half of the area is plain open golden sand running up to the beach, and the right third of the area is plain open sand too, blending seamlessly into the beach with nothing cut at the area's edge. The pool: clear pale-turquoise water over smooth sand and a few pebbles, its rim made of LOW, FLAT ledges of dark grey-brown slate only a little higher than the sand — the back rim (towards the sea) a thin, low line of flat stones, never a wall. Just one or two small tufts of green seaweed and a single shell. Same gouache style, outlines and light as the rest of the picture. No animals, no people.",
+        "prompt": "Repaint this lower-left part of the beach as plain, open golden sand running up to the beach: smooth sand with a few scattered small pebbles and two or three little shells, gently lit, nothing tall — no rocks, no rock pool, no seaweed. It continues the sand around it seamlessly, the same colour, texture and light. Same gouache style as the rest of the picture. No animals, no people.",
         "area": {
-          "x": 0.0,
-          "y": 0.5,
-          "width": 0.45,
-          "height": 0.5
+          "x": -0.25,
+          "y": 0.42,
+          "width": 0.78,
+          "height": 0.9
         }
       },
       {
@@ -813,7 +771,8 @@
           "height": 0.48
         }
       }
-    ]
+    ],
+    "foregroundWideOwn": "the same small rock pool at the very bottom-LEFT corner of this wide picture, cut by its bottom and left edges, the same size relative to the picture's height as in the second image (no more than the left seventh of this wider picture's width and the bottom fifth of its height); the granite pebbles and shell at the very bottom-RIGHT corner of this wide picture. Nothing else: the rest of the picture stays transparent so the beach shows."
   },
   "notes": {
     "stickers": "Every character faces slightly left, whole body visible. Living things get faces; nothing inorganic does. Edit prompts freely; a changed prompt re-renders only that sticker."

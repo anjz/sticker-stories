@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "beach",
-  "version": 5,
+  "version": 6,
   "languages": [
     "en-US",
     "es-ES"
@@ -28,19 +28,9 @@
   "backgroundWide": "art/background-wide.webp",
   "foregroundWide": "art/foreground-wide.webp",
   "features": {
-    "pools": {
-      "description": "the two rock pools low at the left and right: a small clear one among flat slate ledges at the front left, a round deeper one among pale granite boulders on the right",
+    "pool": {
+      "description": "the round rock pool among pale granite boulders on the right of the beach",
       "areas": [
-        {
-          "x": [
-            0.02,
-            0.25
-          ],
-          "y": [
-            0.17,
-            0.22
-          ]
-        },
         {
           "x": [
             0.74,
@@ -55,26 +45,14 @@
       "words": {
         "en-US": [
           "pool",
-          "pools",
           "rockpool"
         ],
         "es-ES": [
           "charca",
-          "charcas",
           "poza"
         ]
       },
       "edge": [
-        {
-          "x": [
-            0.43,
-            0.48
-          ],
-          "y": [
-            0.18,
-            0.28
-          ]
-        },
         {
           "x": [
             0.56,
@@ -89,16 +67,6 @@
       "wideAreas": [
         {
           "x": [
-            -0.12,
-            0.25
-          ],
-          "y": [
-            0.17,
-            0.22
-          ]
-        },
-        {
-          "x": [
             0.74,
             1.1
           ],
@@ -110,18 +78,8 @@
       ]
     },
     "rocks": {
-      "description": "the low flat slate ledges round the left pool and the big pale granite boulders by the right pool",
+      "description": "the big pale granite boulders round the rock pool on the right",
       "areas": [
-        {
-          "x": [
-            0,
-            0.25
-          ],
-          "y": [
-            0.3,
-            0.33
-          ]
-        },
         {
           "x": [
             0.66,
@@ -145,15 +103,15 @@
       }
     },
     "sand": {
-      "description": "the open golden sand of the beach, between the two rock pools",
+      "description": "the open golden sand of the beach, between the little pool at the front and the rock pool on the right",
       "areas": [
         {
           "x": [
-            0.44,
+            0.2,
             0.62
           ],
           "y": [
-            0.18,
+            0.24,
             0.36
           ]
         },
@@ -408,7 +366,7 @@
       "stage": {
         "entrance": "grow",
         "on": [
-          "pools",
+          "pool",
           "sand"
         ]
       },
@@ -445,7 +403,7 @@
         "entrance": "hop",
         "on": [
           "rocks",
-          "pools",
+          "pool",
           "sand"
         ]
       },
@@ -516,7 +474,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "pools",
+          "pool",
           "sea"
         ]
       },
@@ -615,7 +573,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "pools",
+          "pool",
           "sand"
         ]
       },
@@ -651,7 +609,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "pools"
+          "pool"
         ]
       },
       "size": "small",
@@ -893,7 +851,7 @@
       "stage": {
         "entrance": "grow",
         "on": [
-          "pools",
+          "pool",
           "rocks"
         ]
       },
@@ -929,7 +887,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "pools"
+          "pool"
         ]
       },
       "size": "tiny",
@@ -964,7 +922,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "pools",
+          "pool",
           "rocks"
         ]
       },
@@ -1102,7 +1060,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "pools"
+          "pool"
         ]
       },
       "size": "tiny",
