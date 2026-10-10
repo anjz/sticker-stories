@@ -23,7 +23,7 @@ public struct EntranceTrigger: Equatable, Sendable {
 
 /// A point or a rectangle in the scene's world points (SpriteKit
 /// convention: origin bottom-left, y up).
-public struct StagePoint: Equatable, Sendable {
+public struct StagePoint: Codable, Equatable, Sendable {
     public var x: Double
     public var y: Double
 
@@ -41,13 +41,20 @@ public struct StageRect: Equatable, Sendable {
     /// A place a character faces into (a trunk's bark): the rect is where
     /// its front goes, and it faces this way (`StickerStage.Area.facing`).
     public var facing: StageMove.Facing?
+    /// A place that holds feet (`PackStaging.anchor`): how far the rect,
+    /// which holds the sticker's centre, sits above the place's ground —
+    /// the height of its centre over its feet. 0 when it holds centres.
+    public var lift: Double
 
-    public init(minX: Double, minY: Double, maxX: Double, maxY: Double, facing: StageMove.Facing? = nil) {
+    public init(
+        minX: Double, minY: Double, maxX: Double, maxY: Double, facing: StageMove.Facing? = nil, lift: Double = 0
+    ) {
         self.minX = minX
         self.minY = minY
         self.maxX = maxX
         self.maxY = maxY
         self.facing = facing
+        self.lift = lift
     }
 
     public var midX: Double { (minX + maxX) / 2 }
@@ -315,10 +322,23 @@ public enum StagePlanner {
         /// is under one, and comes in on a way that does not cross one,
         /// whenever it can.
         public var avoid: [StageRect]
+        /// A pack whose places hold feet (`PackStaging.anchor` `feet`):
+        /// on a place that is not open air, the area is where a sticker's
+        /// drawing stands, not its centre.
+        public var anchorFeet: Bool
+        /// How far each sticker's drawing reaches below its centre, as a
+        /// fraction of its rendered height (its feet); 0.5 when unknown
+        /// (the drawing fills its image).
+        public var feet: [String: Double]
+        /// Each sticker's door (`StickerDefinition.door`): where someone
+        /// going to it stands, in fractions of its image, origin
+        /// bottom-left.
+        public var doors: [String: StagePoint]
 
         public init(
             world: StageRect, usable: StageRect, visible: StageRect, stickerSize: Double,
-            sizes: [String: StageSize] = [:], fronts: [String: Double] = [:], avoid: [StageRect] = []
+            sizes: [String: StageSize] = [:], fronts: [String: Double] = [:], avoid: [StageRect] = [],
+            anchorFeet: Bool = false, feet: [String: Double] = [:], doors: [String: StagePoint] = [:]
         ) {
             self.world = world
             self.usable = usable
@@ -327,6 +347,17 @@ public enum StagePlanner {
             self.sizes = sizes
             self.fronts = fronts
             self.avoid = avoid
+            self.anchorFeet = anchorFeet
+            self.feet = feet
+            self.doors = doors
+        }
+
+        /// How far a sticker `height` tall stands its centre above the
+        /// ground of a place that holds feet: nothing for a pack whose
+        /// places hold centres, or for open air.
+        func lift(of stickerID: String, height: Double, on feature: SceneFeature) -> Double {
+            guard anchorFeet, !feature.isAir else { return 0 }
+            return (feet[stickerID] ?? 0.5) * height
         }
 
         /// Whether a sticker of `size` centred on `point` would sit, even
@@ -415,7 +446,7 @@ public enum StagePlanner {
             let scene = scene.visiting(entrance.stickerID, at: scale)
             let radius = scene.stickerSize * scale * footprint
             let size = scene.size(of: entrance.stickerID)
-            let choices = places(for: stage, features: features, in: scene)
+            let choices = places(for: stage, features: features, in: scene, sticker: entrance.stickerID, height: size.height)
             // The first place in order of preference with a free spot, clear
             // of the screen's furniture; when every one is crowded, anywhere
             // in the first that is still clear of it, else anywhere in it.
@@ -434,13 +465,18 @@ public enum StagePlanner {
                 target = contact(target, facing: facing, width: scene.size(of: entrance.stickerID).width,
                                  front: scene.fronts[entrance.stickerID])
             }
+            // Its depth from where it stands: on a place that holds feet,
+            // the ground under it — and its centre that much above it at
+            // the scale it comes in at.
+            let ground = target.y - rect.lift
+            let artY = { (y: Double) in (y - scene.world.minY) / max(scene.world.maxY - scene.world.minY, 1) }
+            let landed = depth.map { $0.scale(atArtY: artY(rect.lift > 0 ? ground : target.y)) } ?? scale
+            if rect.lift > 0 { target.y = ground + rect.lift * landed / scale }
             obstacles.append(StageObstacle(center: target, radius: radius))
             var plan = path(
                 for: entrance, stage: stage, move: policy.allowsLiveAnimations ? move : nil,
                 target: target, area: rect, scene: scene, policy: policy, random: &random)
-            plan.scale = depth.map {
-                $0.scale(atArtY: (target.y - scene.world.minY) / max(scene.world.maxY - scene.world.minY, 1))
-            } ?? scale
+            plan.scale = landed
             plans.append(plan)
         }
         return plans
@@ -452,10 +488,18 @@ public enum StagePlanner {
     /// always yields a place — when it is off screen on an axis the usable
     /// band stands in on that axis — and a stage with neither lands in the
     /// default area, so the list is never empty.
-    static func places(for stage: StickerStage, features: [String: SceneFeature], in scene: Scene) -> [[StageRect]] {
+    /// On a place that holds feet (`Scene.anchorFeet`), the rects are
+    /// raised by `sticker`'s lift at `height`, so they still hold its
+    /// centre.
+    static func places(
+        for stage: StickerStage, features: [String: SceneFeature], in scene: Scene,
+        sticker: String? = nil, height: Double = 0
+    ) -> [[StageRect]] {
         var out: [[StageRect]] = []
         for id in stage.on {
-            let rects = (features[id]?.areas ?? []).filter(\.isValidOnWideArt).compactMap { visibleRect(for: $0, in: scene) }
+            guard let feature = features[id] else { continue }
+            let lift = sticker.map { scene.lift(of: $0, height: height, on: feature) } ?? 0
+            let rects = feature.areas.filter(\.isValidOnWideArt).compactMap { visibleRect(for: $0, in: scene, lift: lift) }
             if !rects.isEmpty { out.append(rects) }
         }
         if let area = stage.area {
@@ -478,13 +522,15 @@ public enum StagePlanner {
     /// The part of `area` that is on screen, or nil when none of it is. An
     /// area a character faces into holds its front, its centre further in,
     /// so it only has to be on screen, not inset.
-    static func visibleRect(for area: StickerStage.Area, in scene: Scene) -> StageRect? {
+    static func visibleRect(for area: StickerStage.Area, in scene: Scene, lift: Double = 0) -> StageRect? {
         let w = scene.world, width = w.maxX - w.minX, height = w.maxY - w.minY
         let sides = area.facing == nil ? scene.usable : scene.visible
         let r = StageRect(
-            minX: max(w.minX + area.x[0] * width, sides.minX), minY: max(w.minY + area.y[0] * height, scene.usable.minY),
-            maxX: min(w.minX + area.x[1] * width, sides.maxX), maxY: min(w.minY + area.y[1] * height, scene.usable.maxY),
-            facing: area.facing)
+            minX: max(w.minX + area.x[0] * width, sides.minX),
+            minY: max(w.minY + area.y[0] * height + lift, scene.usable.minY),
+            maxX: min(w.minX + area.x[1] * width, sides.maxX),
+            maxY: min(w.minY + area.y[1] * height + lift, scene.usable.maxY),
+            facing: area.facing, lift: lift)
         return r.minX <= r.maxX && r.minY <= r.maxY ? r : nil
     }
 

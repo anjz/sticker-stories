@@ -82,6 +82,16 @@ func TestValidManifestPasses(t *testing.T) {
 	}
 }
 
+func TestStagingAndDoorsPass(t *testing.T) {
+	dir := t.TempDir()
+	m := validManifest(t, dir)
+	m.Staging = &Staging{Layer: "background", Anchor: "feet"}
+	m.Stickers[0].Door = &Point{X: 0.5, Y: 0.1}
+	if errs := m.Validate(dir); len(errs) > 0 {
+		t.Fatalf("background staging with feet and a door should pass, got %v", errs)
+	}
+}
+
 func TestWorldPasses(t *testing.T) {
 	dir := t.TempDir()
 	m := validManifest(t, dir)
@@ -275,6 +285,9 @@ func TestValidationFailures(t *testing.T) {
 		{"unknown size", func(m *Manifest) { m.Stickers[1].Size = "giant" }, "must be one of huge"},
 		{"world gravity out of range", func(m *Manifest) { g := 3.0; m.World = &World{Gravity: &g} }, "world: gravity"},
 		{"world ground not a colour", func(m *Manifest) { m.World = &World{Ground: "grey"} }, "world: ground"},
+		{"staging layer unknown", func(m *Manifest) { m.Staging = &Staging{Layer: "middle"} }, "staging: layer"},
+		{"staging anchor unknown", func(m *Manifest) { m.Staging = &Staging{Anchor: "head"} }, "staging: anchor"},
+		{"door outside the image", func(m *Manifest) { m.Stickers[0].Door = &Point{X: 1.5, Y: 0.1} }, "door must be inside"},
 		{"duplicate sticker id", func(m *Manifest) { m.Stickers[1].ID = "mushroom" }, "duplicate sticker"},
 		{"bad sticker id", func(m *Manifest) { m.Stickers[0].ID = "Mushroom" }, "must match"},
 		{"duplicate story id", func(m *Manifest) { m.Stories[1].ID = "story-001" }, "duplicate story"},

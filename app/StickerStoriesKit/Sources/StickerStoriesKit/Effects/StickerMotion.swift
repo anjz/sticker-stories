@@ -487,9 +487,12 @@ public enum MotionPlanner {
                     let into = (move?.on.isEmpty == false ? move!.on : me.places).contains(name)
                     let edge = feature.edge ?? []
                     let place = SceneFeature(
-                        description: feature.description, areas: into || edge.isEmpty ? feature.areas : edge)
+                        description: feature.description, areas: into || edge.isEmpty ? feature.areas : edge,
+                        air: feature.air)
                     let stage = StickerStage(entrance: flies ? .fly : .hop, on: [name])
-                    var rects = StagePlanner.places(for: stage, features: [name: place], in: scene).first ?? []
+                    var rects = StagePlanner.places(
+                        for: stage, features: [name: place], in: scene, sticker: me.stickerID, height: me.size.height
+                    ).first ?? []
                     if let toward = go.toward {
                         // Only the part of the place at least a width away on
                         // that side of it (the wind carries it right); none
@@ -562,6 +565,20 @@ public enum MotionPlanner {
                                 MotionPlanner.besideScale.upperBound)
                 }
                 let mw = me.size.width * scale, mh = me.size.height * scale
+                // A walker going to something with a door (a lander's
+                // ladder, a ship's elevator) stands at it, in front, while
+                // nobody else does.
+                let doorKey = "door:\(them.actor.id)"
+                if !flies, go.toward == nil, let door = scene.doors[them.actor.stickerID],
+                    !states.indices.contains(where: { $0 != index && states[$0].at == doorKey })
+                {
+                    let ground = them.center.y + (door.y - 0.5) * th
+                    let point = StagePoint(
+                        x: them.center.x + (door.x - 0.5) * tw * (them.facing < 0 ? -1 : 1),
+                        y: ground + (scene.feet[me.stickerID] ?? 0.5) * mh)
+                    states[index].at = doorKey
+                    return (point, scale, true, .onto(them.actor.id), nil)
+                }
                 // Beside it, on the side it comes from, a little overlapping;
                 // the next one to come takes the other side, then further out.
                 let key = "to:\(them.actor.id)"
@@ -572,6 +589,14 @@ public enum MotionPlanner {
                 // on the emptier one.
                 var side: Double = state.center.x <= them.center.x ? -1 : 1
                 if onSide(side) > onSide(-side) { side = -side }
+                // A side the screen has no room on (one squeezed in at an
+                // edge) would push it back behind the other: the other side.
+                let visible = scene.visible, center = them.center.x
+                let room = { (side: Double) -> Bool in
+                    let x = center + side * (tw / 2 + mw / 2) * 0.72
+                    return side < 0 ? x - mw / 2 >= visible.minX : x + mw / 2 <= visible.maxX
+                }
+                if !room(side), room(-side) { side = -side }
                 if let toward = go.toward { side = toward == .right ? 1 : -1 }
                 let already = onSide(side) * 2
                 let feetLevel = them.center.y - th / 2 + mh / 2  // feet on the same line

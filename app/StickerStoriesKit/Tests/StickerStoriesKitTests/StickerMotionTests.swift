@@ -72,6 +72,35 @@ import Testing
         )
     }
 
+    @Test func aWalkerGoingToSomethingWithADoorStandsAtItInFront() {
+        var scene = Self.scene
+        scene.doors = ["rabbit": StagePoint(x: 0.6, y: 0.1)]
+        scene.feet = ["fox": 0.4]
+        let go = { (who: String, at: Double) in GoTrigger(at: at, stickerID: who, kind: .to, target: "rabbit") }
+        var random = SeededGenerator(state: 3)
+        let plans = MotionPlanner.plan(
+            goes: [go("fox", 1), go("mouse", 2)], actors: actors(), scene: scene, policy: .standard, random: &random)
+        // The rabbit (120 square at 700, 220): its door at x 712, ground 172.
+        let fox = place(self.fox, plans, at: 30)
+        #expect(abs(fox.x - 712) < 1e-6 && abs(fox.y - (172 + 0.4 * 120)) < 1e-6, "\(fox)")
+        #expect(plans[self.fox]!.legs.last!.stacking == .onto(rabbit))
+        // The door is taken: the mouse goes beside.
+        let mouse = place(self.mouse, plans, at: 30)
+        #expect(abs(mouse.x - 712) > 30, "\(mouse)")
+    }
+
+    @Test func besideSomethingAtTheScreensEdgeItTakesTheSideWithRoom() {
+        var actors = actors()
+        actors[0].home = StagePoint(x: 20, y: 200)  // the fox, left of the rabbit
+        actors[1].home = StagePoint(x: 70, y: 220)  // the rabbit, squeezed in at the left edge
+        var random = SeededGenerator(state: 3)
+        let plans = MotionPlanner.plan(
+            goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "rabbit")], actors: actors,
+            scene: Self.scene, policy: .standard, random: &random)
+        let d = plans[fox]!.delta(at: 30)
+        #expect(20 + d.offsetXSelf * 120 > 70 + 60, "the fox should stand right of the rabbit, not behind it")
+    }
+
     @Test func walksBesideAnotherStickerFacingIt() {
         let plans = plan([GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "rabbit")])
         let leg = plans[fox]!.legs[0]

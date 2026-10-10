@@ -1489,7 +1489,21 @@ final class CanvasScene: SKScene {
                 maxX: visible.maxX - margin, maxY: visible.maxY - margin),
             visible: StageRect(minX: visible.minX, minY: visible.minY, maxX: visible.maxX, maxY: visible.maxY),
             stickerSize: stickerBaseSize, sizes: sizes, fronts: stickerFronts,
-            avoid: playbackPillRect.map { [StageRect(minX: $0.minX, minY: $0.minY, maxX: $0.maxX, maxY: $0.maxY)] } ?? [])
+            avoid: playbackPillRect.map { [StageRect(minX: $0.minX, minY: $0.minY, maxX: $0.maxX, maxY: $0.maxY)] } ?? [],
+            anchorFeet: pack.manifest.staging?.standsOnFeet ?? false, feet: stickerFeet, doors: stickerDoors)
+    }
+
+    /// How far each sticker's drawing reaches below its centre, as a
+    /// fraction of its height (`content`; half when it fills its image).
+    private lazy var stickerFeet: [String: Double] = Dictionary(
+        uniqueKeysWithValues: pack.manifest.stickers.map { s in (s.id, s.content.map { 0.5 - $0.y[0] } ?? 0.5) })
+    /// Where someone going to each sticker stands (`door`), for those with one.
+    private lazy var stickerDoors: [String: StagePoint] = Dictionary(
+        uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.door.map { (s.id, $0) } })
+    /// The sticker layer visitors and movers play in (`staging.layer`):
+    /// the front one unless the pack keeps them behind its foreground art.
+    private var stagingLayer: SKNode {
+        pack.manifest.staging?.inBackground == true ? backgroundStickers : foregroundStickers
     }
 
     /// The actions that happen in one place (`place`), by animation.
@@ -1621,7 +1635,7 @@ final class CanvasScene: SKScene {
             node.setScale(node.baseScale)
             node.effectBase = StickerPlacement(x: plan.target.x, y: plan.target.y, rotation: 0, scale: plan.scale)
             node.alpha = 0
-            foregroundStickers.addChild(node)
+            stagingLayer.addChild(node)
             bringToFront(node)
             visitors[node.instanceID] = plan
         }
@@ -1729,9 +1743,14 @@ final class CanvasScene: SKScene {
             case (.shuffle, _):
                 break
             case (_, .fly):
-                if node.parent !== foregroundStickers { node.move(toParent: foregroundStickers) }
+                if node.parent !== stagingLayer { node.move(toParent: stagingLayer) }
                 bringToFront(node)
             default:
+                // A pack that keeps moves behind its foreground art takes a
+                // child's front-layer sticker back there while it moves.
+                if pack.manifest.staging?.inBackground == true, node.parent !== backgroundStickers {
+                    node.move(toParent: backgroundStickers)
+                }
                 sendToBack(node)
             }
         }
@@ -1747,7 +1766,8 @@ final class CanvasScene: SKScene {
                 .intersects(target.calculateAccumulatedFrame())
             else { return }
             arrivedLegs.insert(key)
-            let front = node.parent === foregroundStickers || target.parent === foregroundStickers
+            let front = pack.manifest.staging?.inBackground != true
+                && (node.parent === foregroundStickers || target.parent === foregroundStickers)
             let layer = front ? foregroundStickers : backgroundStickers
             if node.parent !== layer { node.move(toParent: layer) }
             bringToFront(node)

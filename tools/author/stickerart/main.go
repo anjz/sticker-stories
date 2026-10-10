@@ -160,6 +160,9 @@ type stickerSpec struct {
 	// Size is how big the character is next to the others (big, medium,
 	// small, tiny); copied into the manifest on install.
 	Size string `json:"size,omitempty"`
+	// Door is where someone going to the sticker stands (docs/pack-format.md,
+	// "Stickers"); copied into the manifest on install.
+	Door *manifest.Point `json:"door,omitempty"`
 }
 
 // propSpec is a prop to remove: what it is, where it is on the raw art
@@ -206,6 +209,10 @@ type sceneSpec struct {
 	// in (docs/pack-format.md, "Features"); copied into the manifest on
 	// install. Changing them re-renders nothing.
 	Features map[string]manifest.Feature `json:"features,omitempty"`
+	// Staging is how the pack's stories stage visitors and moves
+	// (docs/pack-format.md, "Staging"); copied into the manifest on
+	// install.
+	Staging *manifest.Staging `json:"staging,omitempty"`
 }
 
 // sceneEdit is one thing painted into the background: what, and where on
@@ -1432,8 +1439,9 @@ func runInstall(args []string) error {
 				c.pack.Stickers[i].Stage = s.Stage
 			}
 			c.pack.Stickers[i].Size = s.Size
+			c.pack.Stickers[i].Door = s.Door
 		} else {
-			c.pack.Stickers = append(c.pack.Stickers, manifest.Sticker{ID: s.ID, Name: s.Name, Image: rel, Expressions: expressions, Stage: s.Stage, Size: s.Size})
+			c.pack.Stickers = append(c.pack.Stickers, manifest.Sticker{ID: s.ID, Name: s.Name, Image: rel, Expressions: expressions, Stage: s.Stage, Size: s.Size, Door: s.Door})
 			i = len(c.pack.Stickers) - 1
 		}
 		c.pack.Stickers[i].Content = nil
@@ -1448,6 +1456,9 @@ func runInstall(args []string) error {
 	}
 	if len(c.cfg.Scene.Features) > 0 {
 		c.pack.Features = c.cfg.Scene.Features
+	}
+	if c.cfg.Scene.Staging != nil {
+		c.pack.Staging = c.cfg.Scene.Staging
 	}
 	planes := map[string]*string{"background": &c.pack.Background, "foreground": &c.pack.Foreground, "background-wide": &c.pack.BackgroundWide, "foreground-wide": &c.pack.ForegroundWide}
 	names := []string{"background", "foreground", "background-wide", "foreground-wide"}

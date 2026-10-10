@@ -44,8 +44,12 @@ type Manifest struct {
 	// gravity relative to Earth and the ground's colour (optional; the
 	// app fills gaps from Setting).
 	World *World `json:"world,omitempty"`
-	Background  string            `json:"background"`
-	Foreground  string            `json:"foreground"`
+	// Staging is how stories stage the stickers they bring in and move:
+	// which sticker layer they play in and what a place's areas hold
+	// (optional; docs/pack-format.md, "Staging").
+	Staging    *Staging `json:"staging,omitempty"`
+	Background string   `json:"background"`
+	Foreground string   `json:"foreground"`
 	// Optional wider renditions for wide windows (iPhone): same pixel height
 	// as the base art, base art centred inside; declared together or not at all.
 	BackgroundWide string `json:"backgroundWide,omitempty"`
@@ -94,7 +98,37 @@ type Sticker struct {
 	// class's share of its box, with room around it (docs/pack-format.md,
 	// "Drawn size"). Absent: the drawing fills the image.
 	Content *StageArea `json:"content,omitempty"`
+	// Door (optional) is where someone going to the sticker stands — the
+	// foot of a lander's ladder, a ship's elevator — in fractions of its
+	// image, origin bottom-left: a walker a story sends to it stands
+	// there, in front of it. Absent: beside it.
+	Door *Point `json:"door,omitempty"`
 }
+
+// Point is a point in fractions of an image, origin bottom-left.
+type Point struct {
+	X float64 `json:"x"`
+	Y float64 `json:"y"`
+}
+
+// Staging is how a pack's stories stage visitors and moves
+// (docs/pack-format.md, "Staging").
+type Staging struct {
+	// Layer is "foreground" (the default: in front of the foreground art)
+	// or "background" (behind it, so the scene's near elements pass in
+	// front of whatever comes in or moves).
+	Layer string `json:"layer,omitempty"`
+	// Anchor is "centre" (the default: a place's areas hold a sticker's
+	// centre) or "feet" (on a place that is not open air, they hold the
+	// bottom of its drawing, where it stands).
+	Anchor string `json:"anchor,omitempty"`
+}
+
+// StagingLayers and StagingAnchors are Staging's allowed values.
+var (
+	StagingLayers  = []string{"foreground", "background"}
+	StagingAnchors = []string{"centre", "feet"}
+)
 
 // Sizes are the size classes a sticker may have, biggest first.
 var Sizes = []string{"huge", "big", "medium", "small", "tiny"}
@@ -269,6 +303,22 @@ func (m *Manifest) Validate(dir string) []error {
 		}
 		if w.Ground != "" && !hexColor.MatchString(w.Ground) {
 			fail("world: ground %q must be a #RRGGBB colour", w.Ground)
+		}
+	}
+
+	// Rule 18: staging names a known layer and anchor; a door is inside
+	// its sticker's image.
+	if st := m.Staging; st != nil {
+		if st.Layer != "" && !slices.Contains(StagingLayers, st.Layer) {
+			fail("staging: layer %q must be one of %s", st.Layer, strings.Join(StagingLayers, ", "))
+		}
+		if st.Anchor != "" && !slices.Contains(StagingAnchors, st.Anchor) {
+			fail("staging: anchor %q must be one of %s", st.Anchor, strings.Join(StagingAnchors, ", "))
+		}
+	}
+	for _, s := range m.Stickers {
+		if d := s.Door; d != nil && (d.X < 0 || d.X > 1 || d.Y < 0 || d.Y > 1) {
+			fail("sticker %q: door must be inside its image, x and y 0–1", s.ID)
 		}
 	}
 

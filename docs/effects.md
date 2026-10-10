@@ -468,8 +468,8 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
 
 | `go` | `target` | where it goes |
 |---|---|---|
-| `to` | a sticker | beside it, on the side it comes from, a little overlapping, feet on the same line (a flyer hovers beside it) |
-| `to` | a feature | the freest spot on screen in that place of the scene (`docs/pack-format.md`, "Features": the pond, the branches) — in it when the sticker belongs there (its stage lands on it, or the move it goes by does: the frog, the duckling `by swim`), else at its `edge` when it has one (a mouse or the waddling duckling stops at the water's edge); never under the playing story's pill while the place has room elsewhere |
+| `to` | a sticker | beside it, on the side it comes from (the other side when the screen has no room there), a little overlapping, feet on the same line (a flyer hovers beside it); a walker going to a sticker with a `door` (a lander's ladder, a ship's elevator; `docs/pack-format.md`) stands at it, in front, while nobody else does |
+| `to` | a feature | the freest spot on screen in that place of the scene (`docs/pack-format.md`, "Features": the pond, the branches; in a pack whose places hold feet, standing on it) — in it when the sticker belongs there (its stage lands on it, or the move it goes by does: the frog, the duckling `by swim`), else at its `edge` when it has one (a mouse or the waddling duckling stops at the water's edge); never under the playing story's pill while the place has room elsewhere |
 | `on` | a sticker | on top of it: a bee on the flower's head |
 | `under` | a sticker | under it, in front of its base: a mouse under the mushroom's cap |
 | `away` | — | off the canvas by the nearer side; it is gone until it comes back |
@@ -553,7 +553,12 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
   its own layer and place in the stack; off the canvas or to a place in
   the scene it stays behind; a friend shuffling over to make room keeps
   its place (`MotionLeg.Stacking`). The layers and order the child made
-  come back when the story ends.
+  come back when the story ends. A pack whose `staging` keeps them
+  behind its foreground art (`docs/pack-format.md`, "Staging": Moon
+  Base) plays all of this in the back sticker layer instead: visitors
+  come in there, a flyer takes off there, and a mover from the front
+  layer goes back there while it moves, so the habitat and the rocks in
+  front pass in front of them.
 - It moves every instance of that sticker on the stage; `to`, `on` and
   `under` go to the nearest instance of the target. A target that is not
   on the stage (never placed, never entered) is skipped, and so is the

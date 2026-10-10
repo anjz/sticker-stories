@@ -195,6 +195,7 @@ never letterboxes:
 | `backgroundWide` / `foregroundWide` | string | **Optional, together or not at all.** Wider renditions (e.g. 2:1) with the **same pixel height** as the base art and the base art **centred** inside. The app draws whichever rendition lets a landscape window avoid panning with the least crop (tall phones get the wide one; iPads keep the base one). Files must exist. |
 | `cover` | string | **Optional.** Pack-relative path to the pack's cover art (PNG or WebP, must exist): what its tile shows in the main menu and the store. Made with `uiart` (`tools/author/uiart`); without one the app composes the tile from the background and a few stickers. No text in it — the app writes the name. |
 | `world` | object | **Optional.** The physics of the pack's world for particle effects ("World" below): `gravity` (relative to Earth's: 1 on Earth, 0.17 on the Moon; 0–2) and `ground` (`#RRGGBB`, the colour dust is kicked up from). Either may be left out; the app fills it from the `setting`. |
+| `staging` | object | **Optional.** How stories stage the stickers they bring in and move ("Staging" below): `layer` (`foreground`, the default, or `background`) and `anchor` (`centre`, the default, or `feet`). |
 | `stickers[].id` | string | Lowercase `a-z0-9-`, unique within the pack. `all` is reserved (triggers use it for every sticker). |
 | `stickers[].name` | {lang: string} | Display/accessibility name per language. |
 | `stickers[].image` | string | Pack-relative path to a PNG or WebP file; must exist. |
@@ -205,6 +206,7 @@ never letterboxes:
 | `stickers[].stage` | object | **Optional**, default grow in `x` 0.1–0.9, `y` 0.18–0.45. Where the sticker belongs in the scene and how it comes in when a story names it and the child has not placed it ("Stage" below): `entrance` is `hop`, `fly` or `grow`; `on` lists `features` in order of preference; `area` (`{ "x": [min, max], "y": [min, max] }`, fractions of the base art) is where it lands when none of them is on screen. At least one of `on` and `area`. |
 | `stickers[].size` | string | **Optional**, default none. How big the character is next to the others: `huge` (a rocket), `big` (a deer, a bear), `medium` (a fox, a rabbit), `small` (a bird, a mouse) or `tiny` (a ladybug). A story moving it beside another scales it so the two keep the ratio of their classes (relative sizes 1.6, 1, 0.75, 0.55, 0.4, on the longest side of the drawing; `docs/effects.md`, "Movement"), and a story that invites it (a visitor) brings a big one in at 1.3× a sticker's default size and a tiny one at 0.8× — or, for a sticker drawn at its size (`content`), as drawn, a huge one bigger at the front of the scene than by the horizon (`docs/effects.md`, "Entrances"); without one it keeps its size. |
 | `stickers[].content` | object | **Optional.** Where the drawing sits in the sticker's image, `{ "x": [min, max], "y": [min, max] }` in fractions of the image, origin bottom-left — for a sticker **drawn at its size** ("Drawn size" below); written by `stickerart install`. Absent: the drawing fills the image (Forest). |
+| `stickers[].door` | object | **Optional.** Where someone going to the sticker stands — the foot of a lander's ladder, a ship's elevator, a rover's door — `{ "x", "y" }` in fractions of the image, origin bottom-left: a walker a story sends to it (`{man:go to lander}`) stands there, its feet on that point, in front of it; the next one goes beside. Absent: everyone goes beside. Copied from `art.json` by `stickerart install`. |
 | `stories[].id` | string | Unique within the pack. |
 | `stories[].requiredStickers` | [string] | The stickers the story is about: it is a candidate when at most one of them is missing from the canvas (and at least one is present), and preferred when all are. Empty ⇒ fallback story. Every ID must be declared in `stickers`. |
 | `stories[].optionalStickers` | [string] | Sticker IDs that raise the match score when present. Declared in `stickers`; no overlap with `requiredStickers`. |
@@ -289,6 +291,9 @@ never letterboxes:
     recording needs a new asset pack (`storyaudio install` names it).
 17. `world`, when present, has a `gravity` from 0 to 2 and a `ground`
     that is a `#RRGGBB` colour (either may be left out).
+18. `staging`, when present, has a `layer` of `foreground` or `background`
+    and an `anchor` of `centre` or `feet` (either may be left out); a
+    sticker's `door` has `x` and `y` from 0 to 1.
 
 ## Stage
 
@@ -429,6 +434,32 @@ Left out (or a part of it), it comes from the `setting`:
 
 A space pack set in orbit, with no ground at all, sets `gravity` to 0.
 
+## Staging
+
+`staging` says how the pack's stories put on stage the stickers they
+bring in (entrances) and move (`docs/effects.md`, "Movement"):
+
+```json
+"staging": { "layer": "background", "anchor": "feet" }
+```
+
+- **`layer`** — `foreground` (the default, Forest): visitors and movers
+  play in the sticker layer in front of the foreground art, and a flyer
+  goes in front of everyone as it takes off. `background` (Moon Base):
+  they come in, travel and land in the layer **behind** the foreground
+  art, so the scene's near elements — a habitat, the rocks in front —
+  pass in front of a lander on the pad or a rover crossing the plain, as
+  they would. A sticker the child put in the front layer goes back there
+  while it moves, and returns to its own layer when the story ends.
+- **`anchor`** — `centre` (the default): a feature's areas hold a
+  sticker's centre ("Features"). `feet`: on every feature that is not
+  open air (`air`), the areas hold the **bottom of the drawing** — where
+  it stands — so a lander, a supply pod and an astronaut sent to the
+  same pad all stand on it, whatever their size; open air still holds
+  centres. Measure such areas as ground lines: where feet go. It needs
+  the stickers' `content` ("Drawn size") to know where each drawing's
+  feet are; without it, the bottom of the image.
+
 ## Expressions
 
 A sticker with a face can carry **face variants**: the same sticker with
@@ -556,7 +587,9 @@ same device preference.
   added (additive, no bump); the live
   animation sidecar gained optional `kind`, `pause`, `loop`, `facing`,
   `stride` and `hops`, and live triggers an optional `mode` (additive,
-  no bump); optional `narrationPacks` added (additive, no bump).
+  no bump); optional `narrationPacks` added (additive, no bump);
+  2026-10: optional `staging` and `stickers[].door` added (additive, no
+  bump).
 - Any schema change must update this document, the Go validator
   (`tools/internal/manifest`), and the Swift decoder in the **same commit**.
 - `version` (pack content revision) is bumped whenever any asset or story in a

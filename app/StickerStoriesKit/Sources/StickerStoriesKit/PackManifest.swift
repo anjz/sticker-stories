@@ -59,6 +59,40 @@ public struct PackWorld: Codable, Equatable, Sendable {
     }
 }
 
+/// How a pack's stories stage the stickers they bring in and move
+/// (`docs/pack-format.md`, "Staging"): which sticker layer visitors and
+/// movers play in, and what a place's areas hold — a sticker's centre or
+/// its feet.
+public struct PackStaging: Codable, Equatable, Sendable {
+    /// `foreground` (the default): visitors and movers play in front of the
+    /// foreground art; `background`: behind it, so the scene's near
+    /// elements (a habitat, rocks) pass in front of them.
+    public var layer: String?
+    /// `centre` (the default): a place's areas hold a sticker's centre;
+    /// `feet`: on a place that is not open air, they hold the bottom of its
+    /// drawing — where it stands — so big and small things stand on the
+    /// same ground.
+    public var anchor: String?
+
+    public init(layer: String? = nil, anchor: String? = nil) {
+        self.layer = layer
+        self.anchor = anchor
+    }
+
+    public static let layers = ["foreground", "background"]
+    public static let anchors = ["centre", "feet"]
+
+    /// Visitors and movers play behind the foreground art.
+    public var inBackground: Bool { layer == "background" }
+    /// Places hold the feet of what stands on them.
+    public var standsOnFeet: Bool { anchor == "feet" }
+
+    /// Valid as written (validation rule 18).
+    var isValid: Bool {
+        (layer.map(Self.layers.contains) ?? true) && (anchor.map(Self.anchors.contains) ?? true)
+    }
+}
+
 /// Decoded `manifest.json` of a sticker pack.
 ///
 /// This is the Swift half of the schema contract in `docs/pack-format.md`;
@@ -106,6 +140,8 @@ public struct PackManifest: Codable, Equatable, Sendable {
     /// `spray`, `sparks`): its gravity and the colour of its ground.
     /// Optional; `effectiveWorld` fills what it leaves out from the setting.
     public var world: PackWorld?
+    /// How stories stage visitors and moves (`PackStaging`). Optional.
+    public var staging: PackStaging?
     public var stickers: [StickerDefinition]
     public var stories: [StoryDefinition]
 
@@ -119,7 +155,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
         background: String, foreground: String,
         backgroundWide: String? = nil, foregroundWide: String? = nil, cover: String? = nil,
         features: [String: SceneFeature] = [:], narrationPacks: [String: String] = [:],
-        world: PackWorld? = nil,
+        world: PackWorld? = nil, staging: PackStaging? = nil,
         stickers: [StickerDefinition], stories: [StoryDefinition]
     ) {
         self.schemaVersion = schemaVersion
@@ -138,13 +174,14 @@ public struct PackManifest: Codable, Equatable, Sendable {
         self.features = features
         self.narrationPacks = narrationPacks
         self.world = world
+        self.staging = staging
         self.stickers = stickers
         self.stories = stories
     }
 
     private enum CodingKeys: String, CodingKey {
         case schemaVersion, id, version, languages, displayName, description, theme, setting
-        case background, foreground, backgroundWide, foregroundWide, cover, features, narrationPacks, world, stickers, stories
+        case background, foreground, backgroundWide, foregroundWide, cover, features, narrationPacks, world, staging, stickers, stories
     }
 
     public init(from decoder: Decoder) throws {
@@ -174,6 +211,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
         features = try c.decodeIfPresent([String: SceneFeature].self, forKey: .features) ?? [:]
         narrationPacks = try c.decodeIfPresent([String: String].self, forKey: .narrationPacks) ?? [:]
         world = try c.decodeIfPresent(PackWorld.self, forKey: .world)
+        staging = try c.decodeIfPresent(PackStaging.self, forKey: .staging)
         stickers = try c.decode([StickerDefinition].self, forKey: .stickers)
         stories = try c.decode([StoryDefinition].self, forKey: .stories)
     }
@@ -228,11 +266,16 @@ public struct StickerDefinition: Codable, Equatable, Sendable, Identifiable {
     /// (`docs/pack-format.md`, "Drawn size"). `nil` = the drawing fills the
     /// image (packs drawn before drawn sizes, Forest).
     public var content: StickerStage.Area?
+    /// Where someone going to the sticker stands — the foot of a lander's
+    /// ladder, a ship's elevator, a rover's door — in fractions of its
+    /// image, origin bottom-left: a walker sent to it stands there, in
+    /// front of it (`docs/pack-format.md`, "Stickers"). `nil` = beside it.
+    public var door: StagePoint?
 
     public init(
         id: String, name: [String: String], image: String, animations: [String] = [],
         expressions: [String: String] = [:], stage: StickerStage? = nil, size: StickerSize? = nil,
-        content: StickerStage.Area? = nil
+        content: StickerStage.Area? = nil, door: StagePoint? = nil
     ) {
         self.id = id
         self.name = name
@@ -242,6 +285,7 @@ public struct StickerDefinition: Codable, Equatable, Sendable, Identifiable {
         self.stage = stage
         self.size = size
         self.content = content
+        self.door = door
     }
 
     public init(from decoder: Decoder) throws {
@@ -254,6 +298,7 @@ public struct StickerDefinition: Codable, Equatable, Sendable, Identifiable {
         stage = try c.decodeIfPresent(StickerStage.self, forKey: .stage)
         size = (try? c.decodeIfPresent(String.self, forKey: .size)).flatMap { $0.flatMap(StickerSize.init(rawValue:)) }
         content = try c.decodeIfPresent(StickerStage.Area.self, forKey: .content)
+        door = try c.decodeIfPresent(StagePoint.self, forKey: .door)
     }
 
     public func name(for language: String, fallbackOrder: [String]) -> String {
@@ -472,16 +517,23 @@ public struct SceneFeature: Codable, Equatable, Sendable {
     /// into the side bands (`StickerStage.Area.wideMargin`). Optional;
     /// without them the wide art uses `areas`.
     public var wideAreas: [StickerStage.Area]?
+    /// Open air (the sky): nothing stands there, so a pack whose places
+    /// hold feet (`PackStaging.anchor`) still puts a flyer's centre in it.
+    public var air: Bool?
 
     public init(
         description: String, areas: [StickerStage.Area], edge: [StickerStage.Area]? = nil,
-        wideAreas: [StickerStage.Area]? = nil
+        wideAreas: [StickerStage.Area]? = nil, air: Bool? = nil
     ) {
         self.description = description
         self.areas = areas
         self.edge = edge
         self.wideAreas = wideAreas
+        self.air = air
     }
+
+    /// Whether the place is open air.
+    public var isAir: Bool { air == true }
 
     /// The place as it is on the art being drawn: on the wide art, its wide
     /// areas when it has them.
@@ -684,6 +736,17 @@ extension PackManifest {
         // Rule 17: the world's gravity is 0–2 and its ground a colour.
         if let world, !world.isValid {
             issues.append("world: gravity must be 0–2 (relative to Earth) and ground a #RRGGBB colour")
+        }
+
+        // Rule 18: staging names a known layer and anchor; a door is inside
+        // its sticker's image.
+        if let staging, !staging.isValid {
+            issues.append("staging: layer must be one of \(PackStaging.layers) and anchor one of \(PackStaging.anchors)")
+        }
+        for sticker in stickers {
+            if let door = sticker.door, !((0...1).contains(door.x) && (0...1).contains(door.y)) {
+                issues.append("sticker \"\(sticker.id)\": door must be inside its image, x and y 0–1")
+            }
         }
 
         // Rule 2: sticker IDs well-formed and unique.

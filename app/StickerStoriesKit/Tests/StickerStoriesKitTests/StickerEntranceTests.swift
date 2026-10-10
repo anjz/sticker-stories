@@ -127,6 +127,39 @@ struct SeededGenerator: RandomNumberGenerator {
         }
     }
 
+    @Test func aPlaceThatHoldsFeetStandsBigAndSmallOnTheSameGround() {
+        // A pad whose ground is the line y = 300, and the sky above it.
+        let features = [
+            "pad": SceneFeature(description: "pad", areas: [.init(x: [0.45, 0.55], y: [0.4, 0.4001])]),
+            "sky": SceneFeature(description: "sky", areas: [.init(x: [0.45, 0.55], y: [0.8, 0.8001])], air: true),
+        ]
+        var scene = Self.scene
+        scene.anchorFeet = true
+        scene.feet = ["lander": 0.4, "pod": 0.3]
+        scene.sizes = ["lander": StageSize(width: 150, height: 200), "pod": StageSize(width: 100, height: 100)]
+        let stages: [String: StickerStage] = [
+            "lander": StickerStage(entrance: .fly, on: ["pad"]), "pod": StickerStage(entrance: .fly, on: ["pad"]),
+            "probe": StickerStage(entrance: .fly, on: ["sky"]),
+        ]
+        var random = SeededGenerator(state: 2)
+        let plans = StagePlanner.plan(
+            entrances: ["lander", "pod", "probe"].map { EntranceTrigger(at: 0, stickerID: $0) },
+            placed: [], stages: stages, features: features, scene: scene, obstacles: [], policy: .standard,
+            random: &random)
+        let at = Dictionary(uniqueKeysWithValues: plans.map { ($0.stickerID, $0.target) })
+        // Each drawing's feet on the pad's ground; the sky holds a centre.
+        #expect(abs(at["lander"]!.y - 0.4 * 200 - 300) < 0.2, "\(at)")
+        #expect(abs(at["pod"]!.y - 0.3 * 100 - 300) < 0.2, "\(at)")
+        #expect(abs(at["probe"]!.y - 600) < 0.2, "\(at)")
+        // Without the anchor the pad holds centres, as it always did.
+        scene.anchorFeet = false
+        random = SeededGenerator(state: 2)
+        let centred = StagePlanner.plan(
+            entrances: [EntranceTrigger(at: 0, stickerID: "lander")], placed: [], stages: stages,
+            features: features, scene: scene, obstacles: [], policy: .standard, random: &random)
+        #expect(abs(centred[0].target.y - 300) < 0.2)
+    }
+
     @Test func aHugeVisitorIsBiggerAtTheFrontThanByTheHorizon() {
         let depth = StickerSize.huge.visitDepth!
         #expect(depth.scale(atArtY: 0.1) == 1.8 && depth.scale(atArtY: 0.6) == 1.3)

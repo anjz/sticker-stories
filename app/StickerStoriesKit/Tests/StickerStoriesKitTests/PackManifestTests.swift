@@ -262,6 +262,23 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         #expect(manifest.validationIssues(packDirectory: dir2).contains { $0.hasPrefix("world:") })
     }
 
+    @Test func stagingAndDoorsRoundTripAndAreChecked() throws {
+        var manifest = makeValidManifest()
+        manifest.staging = PackStaging(layer: "background", anchor: "feet")
+        manifest.stickers[0].door = StagePoint(x: 0.5, y: 0.1)
+        let dir = try materialize(manifest)
+        #expect(manifest.validationIssues(packDirectory: dir).isEmpty)
+        let decoded = try JSONDecoder().decode(PackManifest.self, from: JSONEncoder().encode(manifest))
+        #expect(decoded.staging == manifest.staging && decoded.stickers[0].door == StagePoint(x: 0.5, y: 0.1))
+        #expect(decoded.staging!.inBackground && decoded.staging!.standsOnFeet)
+        #expect(makeValidManifest().staging == nil)
+        manifest.staging = PackStaging(layer: "middle")
+        manifest.stickers[0].door = StagePoint(x: 1.5, y: 0.1)
+        let dir2 = try materialize(manifest)
+        let issues = manifest.validationIssues(packDirectory: dir2)
+        #expect(issues.contains { $0.hasPrefix("staging:") } && issues.contains { $0.contains("door") })
+    }
+
     @Test func descriptionIsOptionalAndLocalized() throws {
         #expect(makeValidManifest().description(for: "en-US") == nil)
         var manifest = makeValidManifest()
