@@ -1,0 +1,48 @@
+{
+  "id": "chug",
+  "sticker": "fishing-boat",
+  "kind": "move",
+  "description": "the fishing boat chugs along to the left over the waves, bobbing gently, then stops.",
+  "sheet": "anims/fishing-boat.chug.webp",
+  "frame": {
+    "width": 516,
+    "height": 442
+  },
+  "columns": 6,
+  "count": 12,
+  "rest": {
+    "x": 0.03101,
+    "y": 0.03394,
+    "width": 0.93411,
+    "height": 0.91855
+  },
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.14583,
+    "width": 0.83984,
+    "height": 0.70833
+  },
+  "hold": [
+    0.1,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.15,
+    0.16,
+    0.45
+  ],
+  "loop": {
+    "from": 1,
+    "to": 8
+  },
+  "facing": "left",
+  "stride": 0.5,
+  "on": [
+    "sea"
+  ]
+}

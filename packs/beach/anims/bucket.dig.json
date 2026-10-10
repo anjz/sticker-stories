@@ -1,0 +1,70 @@
+{
+  "id": "dig",
+  "sticker": "bucket",
+  "description": "the spade digs and fills the bucket",
+  "sheet": "anims/bucket.dig.webp",
+  "frame": {
+    "width": 564,
+    "height": 611
+  },
+  "columns": 6,
+  "count": 24,
+  "rest": {
+    "x": 0.03901,
+    "y": 0.20949,
+    "width": 0.66312,
+    "height": 0.76268
+  },
+  "stickerBox": {
+    "x": 0.25911,
+    "y": 0.20052,
+    "width": 0.48047,
+    "height": 0.59896
+  },
+  "hold": [
+    0.45,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.7,
+    0.2,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.1,
+    0.45
+  ],
+  "pause": {
+    "frame": 11,
+    "shows": "the spade lifted up above the bucket, tipping a scoop into it"
+  },
+  "particles": [
+    {
+      "frame": 5,
+      "effect": "dust-puff",
+      "x": 0.4993,
+      "y": 0.7995,
+      "intensity": 0.4
+    },
+    {
+      "frame": 15,
+      "effect": "dust-puff",
+      "x": 0.4993,
+      "y": 0.7995,
+      "intensity": 0.4
+    }
+  ]
+}

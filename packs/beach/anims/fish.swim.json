@@ -1,0 +1,49 @@
+{
+  "id": "swim",
+  "sticker": "fish",
+  "kind": "move",
+  "description": "the little fish swims along to the right, swishing its tail, then stops.",
+  "sheet": "anims/fish.swim.webp",
+  "frame": {
+    "width": 480,
+    "height": 417
+  },
+  "columns": 6,
+  "count": 12,
+  "rest": {
+    "x": 0.05833,
+    "y": 0.04556,
+    "width": 0.89583,
+    "height": 0.91127
+  },
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27734,
+    "width": 0.5,
+    "height": 0.44401
+  },
+  "hold": [
+    0.1,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.15,
+    0.16,
+    0.45
+  ],
+  "loop": {
+    "from": 1,
+    "to": 8
+  },
+  "facing": "right",
+  "stride": 0.7,
+  "on": [
+    "pools",
+    "sea"
+  ]
+}

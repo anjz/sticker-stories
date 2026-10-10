@@ -1,0 +1,50 @@
+{
+  "id": "hop",
+  "sticker": "seagull",
+  "kind": "move",
+  "description": "the seagull hops along to the left on both feet, wings folded, then stops.",
+  "sheet": "anims/seagull.hop.webp",
+  "frame": {
+    "width": 461,
+    "height": 515
+  },
+  "columns": 6,
+  "count": 12,
+  "rest": {
+    "x": 0.12798,
+    "y": 0.02913,
+    "width": 0.77874,
+    "height": 0.93592
+  },
+  "stickerBox": {
+    "x": 0.27474,
+    "y": 0.20052,
+    "width": 0.45052,
+    "height": 0.59896
+  },
+  "hold": [
+    0.1,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.15,
+    0.16,
+    0.45
+  ],
+  "loop": {
+    "from": 1,
+    "to": 8
+  },
+  "facing": "left",
+  "stride": 0.45,
+  "hops": true,
+  "on": [
+    "sand",
+    "rocks"
+  ]
+}

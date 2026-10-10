@@ -1,0 +1,45 @@
+{
+  "id": "creep",
+  "sticker": "urchin",
+  "kind": "move",
+  "description": "the sea urchin creeps slowly along to the left on its tiny tube feet, its spines swaying, then stops.",
+  "sheet": "anims/urchin.creep.webp",
+  "frame": {
+    "width": 512,
+    "height": 428
+  },
+  "columns": 6,
+  "count": 12,
+  "rest": {
+    "x": 0.08203,
+    "y": 0.03271,
+    "width": 0.85156,
+    "height": 0.93458
+  },
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26953,
+    "width": 0.5,
+    "height": 0.45964
+  },
+  "hold": [
+    0.1,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.15,
+    0.16,
+    0.45
+  ],
+  "loop": {
+    "from": 1,
+    "to": 8
+  },
+  "facing": "left",
+  "stride": 0.25
+}

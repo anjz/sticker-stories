@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "beach",
-  "version": 1,
+  "version": 2,
   "languages": [
     "en-US",
     "es-ES"
@@ -245,6 +245,10 @@
         "es-ES": "Pelota de playa"
       },
       "image": "stickers/ball.webp",
+      "animations": [
+        "anims/ball.spin.json",
+        "anims/ball.roll.json"
+      ],
       "stage": {
         "entrance": "hop",
         "on": [
@@ -270,6 +274,10 @@
         "es-ES": "Mensaje en una botella"
       },
       "image": "stickers/bottle.webp",
+      "animations": [
+        "anims/bottle.pop.json",
+        "anims/bottle.bob.json"
+      ],
       "stage": {
         "entrance": "hop",
         "on": [
@@ -296,6 +304,10 @@
         "es-ES": "Cubo y pala"
       },
       "image": "stickers/bucket.webp",
+      "animations": [
+        "anims/bucket.dig.json",
+        "anims/bucket.plonk.json"
+      ],
       "stage": {
         "entrance": "grow",
         "on": [
@@ -321,6 +333,10 @@
         "es-ES": "Castillo de arena"
       },
       "image": "stickers/castle.webp",
+      "animations": [
+        "anims/castle.flag.json",
+        "anims/castle.build.json"
+      ],
       "stage": {
         "entrance": "grow",
         "on": [
@@ -346,6 +362,10 @@
         "es-ES": "Almeja"
       },
       "image": "stickers/clam.webp",
+      "animations": [
+        "anims/clam.peek.json",
+        "anims/clam.dig-up.json"
+      ],
       "expressions": {
         "happy": "stickers/clam.happy.webp",
         "sad": "stickers/clam.sad.webp",
@@ -378,6 +398,10 @@
         "es-ES": "Cangrejo"
       },
       "image": "stickers/crab.webp",
+      "animations": [
+        "anims/crab.dance.json",
+        "anims/crab.scuttle.json"
+      ],
       "expressions": {
         "happy": "stickers/crab.happy.webp",
         "sad": "stickers/crab.sad.webp",
@@ -411,6 +435,10 @@
         "es-ES": "Perro"
       },
       "image": "stickers/dog.webp",
+      "animations": [
+        "anims/dog.shake.json",
+        "anims/dog.run.json"
+      ],
       "expressions": {
         "happy": "stickers/dog.happy.webp",
         "sad": "stickers/dog.sad.webp",
@@ -442,6 +470,10 @@
         "es-ES": "Pececito"
       },
       "image": "stickers/fish.webp",
+      "animations": [
+        "anims/fish.wiggle.json",
+        "anims/fish.swim.json"
+      ],
       "expressions": {
         "happy": "stickers/fish.happy.webp",
         "sad": "stickers/fish.sad.webp",
@@ -474,6 +506,10 @@
         "es-ES": "Barca de pesca"
       },
       "image": "stickers/fishing-boat.webp",
+      "animations": [
+        "anims/fishing-boat.net.json",
+        "anims/fishing-boat.chug.json"
+      ],
       "stage": {
         "entrance": "hop",
         "on": [
@@ -499,6 +535,10 @@
         "es-ES": "Niña"
       },
       "image": "stickers/girl.webp",
+      "animations": [
+        "anims/girl.kite.json",
+        "anims/girl.skip.json"
+      ],
       "expressions": {
         "happy": "stickers/girl.happy.webp",
         "sad": "stickers/girl.sad.webp",
@@ -529,6 +569,10 @@
         "es-ES": "Cangrejo ermitaño"
       },
       "image": "stickers/hermit-crab.webp",
+      "animations": [
+        "anims/hermit-crab.hide.json",
+        "anims/hermit-crab.scuttle.json"
+      ],
       "expressions": {
         "happy": "stickers/hermit-crab.happy.webp",
         "sad": "stickers/hermit-crab.sad.webp",
@@ -561,6 +605,10 @@
         "es-ES": "Pulpo"
       },
       "image": "stickers/octopus.webp",
+      "animations": [
+        "anims/octopus.wave.json",
+        "anims/octopus.swim.json"
+      ],
       "expressions": {
         "happy": "stickers/octopus.happy.webp",
         "sad": "stickers/octopus.sad.webp",
@@ -592,6 +640,11 @@
         "es-ES": "Pelícano"
       },
       "image": "stickers/pelican.webp",
+      "animations": [
+        "anims/pelican.scoop.json",
+        "anims/pelican.fly.json",
+        "anims/pelican.float.json"
+      ],
       "expressions": {
         "happy": "stickers/pelican.happy.webp",
         "sad": "stickers/pelican.sad.webp",
@@ -624,6 +677,10 @@
         "es-ES": "Flotador"
       },
       "image": "stickers/ring.webp",
+      "animations": [
+        "anims/ring.spin.json",
+        "anims/ring.bob.json"
+      ],
       "stage": {
         "entrance": "hop",
         "on": [
@@ -650,6 +707,10 @@
         "es-ES": "Velero"
       },
       "image": "stickers/sailboat.webp",
+      "animations": [
+        "anims/sailboat.sails.json",
+        "anims/sailboat.sail.json"
+      ],
       "stage": {
         "entrance": "hop",
         "on": [
@@ -675,6 +736,11 @@
         "es-ES": "Correlimos"
       },
       "image": "stickers/sandpiper.webp",
+      "animations": [
+        "anims/sandpiper.peck.json",
+        "anims/sandpiper.fly.json",
+        "anims/sandpiper.run.json"
+      ],
       "expressions": {
         "happy": "stickers/sandpiper.happy.webp",
         "sad": "stickers/sandpiper.sad.webp",
@@ -707,6 +773,11 @@
         "es-ES": "Gaviota"
       },
       "image": "stickers/seagull.webp",
+      "animations": [
+        "anims/seagull.squawk.json",
+        "anims/seagull.fly.json",
+        "anims/seagull.hop.json"
+      ],
       "expressions": {
         "happy": "stickers/seagull.happy.webp",
         "sad": "stickers/seagull.sad.webp",
@@ -739,6 +810,11 @@
         "es-ES": "Foca"
       },
       "image": "stickers/seal.webp",
+      "animations": [
+        "anims/seal.clap.json",
+        "anims/seal.flop.json",
+        "anims/seal.swim.json"
+      ],
       "expressions": {
         "happy": "stickers/seal.happy.webp",
         "sad": "stickers/seal.sad.webp",
@@ -771,6 +847,10 @@
         "es-ES": "Alga"
       },
       "image": "stickers/seaweed.webp",
+      "animations": [
+        "anims/seaweed.sway.json",
+        "anims/seaweed.sprout.json"
+      ],
       "expressions": {
         "happy": "stickers/seaweed.happy.webp",
         "sad": "stickers/seaweed.sad.webp",
@@ -803,6 +883,10 @@
         "es-ES": "Gamba"
       },
       "image": "stickers/shrimp.webp",
+      "animations": [
+        "anims/shrimp.flick.json",
+        "anims/shrimp.swim.json"
+      ],
       "expressions": {
         "happy": "stickers/shrimp.happy.webp",
         "sad": "stickers/shrimp.sad.webp",
@@ -834,6 +918,10 @@
         "es-ES": "Estrella de mar"
       },
       "image": "stickers/starfish.webp",
+      "animations": [
+        "anims/starfish.wave.json",
+        "anims/starfish.cartwheel.json"
+      ],
       "expressions": {
         "happy": "stickers/starfish.happy.webp",
         "sad": "stickers/starfish.sad.webp",
@@ -866,6 +954,11 @@
         "es-ES": "Surfista"
       },
       "image": "stickers/surfer.webp",
+      "animations": [
+        "anims/surfer.wave.json",
+        "anims/surfer.walk.json",
+        "anims/surfer.surf.json"
+      ],
       "expressions": {
         "happy": "stickers/surfer.happy.webp",
         "sad": "stickers/surfer.sad.webp",
@@ -897,6 +990,11 @@
         "es-ES": "Tortuga marina"
       },
       "image": "stickers/turtle.webp",
+      "animations": [
+        "anims/turtle.peek.json",
+        "anims/turtle.crawl.json",
+        "anims/turtle.swim.json"
+      ],
       "expressions": {
         "happy": "stickers/turtle.happy.webp",
         "sad": "stickers/turtle.sad.webp",
@@ -929,6 +1027,10 @@
         "es-ES": "Sombrilla"
       },
       "image": "stickers/umbrella.webp",
+      "animations": [
+        "anims/umbrella.spin.json",
+        "anims/umbrella.open.json"
+      ],
       "stage": {
         "entrance": "grow",
         "on": [
@@ -954,6 +1056,10 @@
         "es-ES": "Erizo de mar"
       },
       "image": "stickers/urchin.webp",
+      "animations": [
+        "anims/urchin.wiggle.json",
+        "anims/urchin.creep.json"
+      ],
       "expressions": {
         "happy": "stickers/urchin.happy.webp",
         "sad": "stickers/urchin.sad.webp",

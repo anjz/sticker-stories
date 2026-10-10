@@ -1,0 +1,3879 @@
+{
+  "columns": 6,
+  "maxSheet": 4096,
+  "notes": {
+    "kinds": "Every sticker has one action (a moment stories cue: {snail:live}, held on its pause frame with {snail:live hold} and carried on with {snail:live resume}) and one move (its walk, hop, crawl, flight or sprout; entrances and go cues play it). A sticker that gets about more than one way has a second move after its usual one (the ladybug crawls, and flies: {ladybug:go on flower by fly}); flies marks a flight, on where a story that brings it in that way lands it.",
+    "sheets": "Each sheet is one API call drawing a grid of frames; the previous sheet is passed back as a reference so the next one continues it. 12 frames per 3072x2304 sheet (4x3) gives 768 px cells; an action is two sheets (24 frames), a move one.",
+    "smooth": "About 10-12 frames a second: 0.08-0.1 s per frame while something moves, longer holds only on the poses the eye should rest on. Each frame a small step on from the one before.",
+    "hold": "Seconds per frame, one entry per frame across all sheets (an action's first and last frames are the dissolve from and back to the still sticker; a move's frame 1 is the rest pose it never plays).",
+    "pause": "An action's pause frame (1-based) is a still pose worth staying in (hidden in the shell, asleep, watching the fly): it ends sheet 1 and sheet 2 starts from it, so both sheets have a rest pose or a shared pose for scale.",
+    "motion": "Gentle by design: nothing fast, nothing that reaches far from the sticker. A move is drawn in place, as on a treadmill; the app slides it across the scene at stride sticker widths per loop.",
+    "register": "base (actions; feet or shell planted), feet (walks: bottom on one ground line, matched sideways), body (flights, or an action whose base changes shape — the snail's shell alone once the body is in)."
+  },
+  "stickerPx": 512,
+  "scaffold": true,
+  "animations": [
+    {
+      "id": "kite",
+      "sticker": "girl",
+      "kind": "action",
+      "description": "the girl tugs the kite string and the kite swoops in a small loop above her, its ribbon tail fluttering, then settles back as she laughs.",
+      "base": "her bare feet",
+      "story": "the girl flies her kite: it swoops and loops above her",
+      "pause": {
+        "frame": 12,
+        "shows": "the girl holding the string up high, the kite riding high above her, its tail fluttering"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "She lifts the hand holding the string a little; the kite tilts to one side.",
+            "She gives the string a gentle tug; the kite dips a little toward the left.",
+            "The kite swoops down a little to the left, its tail curving.",
+            "The kite at the bottom of a small loop, still close above her, tail swinging.",
+            "The kite swooping back up on the other side of its loop.",
+            "The kite near the top of the loop, tilted, the tail streaming.",
+            "The kite back where it started, upright, tail fluttering; she smiles up at it.",
+            "She raises the string hand higher; the kite climbs a little.",
+            "The kite a little higher, tail fluttering, her face delighted.",
+            "Her hand high, the kite riding steady, tail fluttering the other way.",
+            "She holds the string up high, the kite riding high above her, its tail fluttering, a happy smile."
+          ],
+          "hint": "The kite stays small and close above her — never far from her and never outside the cell; the string is a thin line from her hand to the kite. She stays exactly the size she is in the scaffold."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The kite's tail fluttering, the kite steady.",
+            "The kite's tail fluttering the other way.",
+            "She lowers her hand a little; the kite drifts lower.",
+            "The kite tilting gently.",
+            "The kite tilting back, upright.",
+            "She laughs, looking up at it.",
+            "Her hand coming down to its place.",
+            "The kite settling into its place above her.",
+            "The tail fluttering a little.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ]
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "skip",
+      "sticker": "girl",
+      "kind": "move",
+      "description": "the girl skips along to the right across the sand, the kite bobbing behind her on its string, then stops and stands.",
+      "base": "her bare feet",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.55,
+      "hops": true,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Turned three-quarters toward the right, one knee lifting for a skip, the kite trailing behind her on its string.",
+            "Her front foot pushing off, the other knee up, arms swinging, the kite bobbing up a little.",
+            "Both feet just off the ground in a small skip, the kite bobbing.",
+            "Landing on her front foot, the kite dipping a little.",
+            "The other knee lifting for the next skip.",
+            "Pushing off, arms swinging.",
+            "Both feet just off the ground, the kite bobbing up.",
+            "Landing, almost as in frame 2 (leading back into frame 2).",
+            "Slowing down, both feet on the ground, the kite settling.",
+            "Standing, turning back toward us, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "In every cell she keeps exactly the size she has in the scaffold. The kite stays small and close behind and above her on its string, never far from her."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "particles": [
+        {
+          "frame": 5,
+          "effect": "dust-puff",
+          "at": "base",
+          "intensity": 0.3
+        }
+      ]
+    },
+    {
+      "id": "dance",
+      "sticker": "crab",
+      "kind": "action",
+      "description": "the crab clicks its claws open and shut and sways from side to side in a happy little dance, then settles.",
+      "base": "its legs",
+      "story": "the crab does a happy dance, clicking its claws",
+      "pause": {
+        "frame": 12,
+        "shows": "the crab with both claws raised wide open, mid-dance, grinning"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Both claws opening a little.",
+            "Both claws snapping shut: click.",
+            "Swaying a little to the left, claws opening.",
+            "Swayed left, claws shut: click.",
+            "Swaying back to the middle, claws opening.",
+            "Swaying a little to the right, claws shut: click.",
+            "Swayed right, claws open.",
+            "Back to the middle, claws shut: click.",
+            "Claws rising a little higher, opening.",
+            "Claws up, wide open.",
+            "Both claws raised wide open, mid-dance, a big grin."
+          ],
+          "hint": "Its legs stay planted on the same ground line. The claws move a LOT: clearly wide open (the two pincer halves far apart) or clearly snapped shut, and raised high or low; the whole body sways clearly from side to side. Same size in every cell."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Claws snapping shut: click.",
+            "Claws opening.",
+            "Swaying a little to the left.",
+            "Back to the middle, claws shut: click.",
+            "Swaying a little to the right.",
+            "Back to the middle, claws opening.",
+            "Claws lowering a little.",
+            "Claws coming back to their place.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Its legs stay planted on the same ground line. The claws move a LOT: clearly wide open (the two pincer halves far apart) or clearly snapped shut, and raised high or low; the whole body sways clearly from side to side. Same size in every cell."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "scuttle",
+      "sticker": "crab",
+      "kind": "move",
+      "description": "the crab scuttles sideways to the left on its eight legs, claws up, then stops.",
+      "base": "its legs",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.45,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Scuttling sideways to the left: the left legs reaching out, the right legs pushing.",
+            "Legs stepping: alternate legs lifted a little.",
+            "Legs stepping: the other legs lifted a little.",
+            "Legs stepping, the body bobbing up a tiny bit.",
+            "Legs stepping as in frame 3.",
+            "Legs stepping as in frame 4.",
+            "Legs stepping, the body bobbing down a tiny bit.",
+            "Legs stepping as in frame 2 (leading back into frame 2).",
+            "Slowing down, legs settling.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place, as on a treadmill: the crab stays in the middle of its cell, facing us, moving sideways only in the way its legs step. Same size in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "sails",
+      "sticker": "sailboat",
+      "kind": "action",
+      "description": "a breeze fills the sailboat's sails, the pennant flutters and the boat rocks gently on the water, then the wind drops and the sails relax.",
+      "base": "its hull",
+      "story": "the wind fills the sailboat's sails and it rocks gently",
+      "pause": {
+        "frame": 12,
+        "shows": "the sailboat with both sails full of wind, its pennant streaming"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The pennant starting to flutter.",
+            "The sails beginning to curve as the breeze arrives.",
+            "The sails filling, curving out.",
+            "The sails fuller, the boat rocking a little to one side.",
+            "The boat rocking back, the pennant streaming.",
+            "The sails full and round.",
+            "The boat rocking a little to one side.",
+            "The boat rocking back, upright.",
+            "The pennant fluttering.",
+            "The sails full, the pennant streaming.",
+            "The sailboat with both sails full of wind and curved, its pennant streaming."
+          ],
+          "hint": "The hull keeps exactly its shape and size. The sails change clearly: flat and slack at rest, then billowing out into big round curves full of wind; the pennant streams straight out; the whole boat rocks clearly from side to side. No water, no waves, no spray."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The pennant fluttering.",
+            "The sails still full.",
+            "The breeze dropping, the sails a little less round.",
+            "The sails relaxing.",
+            "The boat rocking a little to one side.",
+            "The boat rocking back, upright.",
+            "The sails nearly flat again.",
+            "The pennant drooping a little.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The hull keeps exactly its shape and size. The sails change clearly: flat and slack at rest, then billowing out into big round curves full of wind; the pennant streams straight out; the whole boat rocks clearly from side to side. No water, no waves, no spray."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "sail",
+      "sticker": "sailboat",
+      "kind": "move",
+      "description": "the sailboat sails along to the left with its sails full, bobbing gently over the waves, then slows and stops.",
+      "base": "its hull",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.6,
+      "on": [
+        "sea"
+      ],
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Sailing to the left: the sails full, the pennant streaming.",
+            "The bow lifting a little over a wave.",
+            "Level, the sails full.",
+            "The bow dipping a little.",
+            "Level, the pennant streaming.",
+            "The bow lifting a little.",
+            "Level.",
+            "As in frame 2 (leading back into frame 2).",
+            "Slowing, the sails relaxing.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place, as on a treadmill. The hull keeps exactly its shape and size in every cell. No water, no waves, no spray."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "hide",
+      "sticker": "hermit-crab",
+      "kind": "action",
+      "description": "the hermit crab pulls itself right inside its spiral shell, stays hidden a moment, then peeks out and comes back out with a smile.",
+      "base": "the spiral shell",
+      "story": "the hermit crab hides inside its shell, then peeks out",
+      "pause": {
+        "frame": 12,
+        "shows": "only the spiral shell, the hermit crab hidden right inside it, the shell's opening dark"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Its eyes looking around, a little shy.",
+            "Its claws drawing in toward the shell's opening.",
+            "Its legs tucking in.",
+            "Half of its body inside the shell.",
+            "Only its head and claws showing at the opening.",
+            "Only its eyes and claw tips showing.",
+            "Only the tips of its claws showing.",
+            "Almost all the way in.",
+            "All the way in: just the shell.",
+            "The empty-looking shell, still.",
+            "Only the spiral shell, the hermit crab hidden right inside it, the shell's opening dark."
+          ],
+          "hint": "The shell keeps exactly its shape, size and place in every cell; only the crab moves in and out of its opening."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still, hidden.",
+            "Two eyes peeking out of the opening.",
+            "Its eyes and claw tips out, looking around.",
+            "Its head out.",
+            "Its claws out.",
+            "Its legs coming out.",
+            "Nearly all the way out, a shy smile.",
+            "All the way out, smiling.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The shell keeps exactly its shape, size and place in every cell; only the crab moves in and out of its opening."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "register": "body"
+    },
+    {
+      "id": "scuttle",
+      "sticker": "hermit-crab",
+      "kind": "move",
+      "description": "the hermit crab scuttles along to the right on its little legs, carrying its shell, then stops.",
+      "base": "its legs",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.4,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Scuttling to the right: front legs reaching, the shell carried on its back.",
+            "Legs stepping, the shell bobbing up a tiny bit.",
+            "Legs stepping the other way.",
+            "Legs stepping, the shell bobbing down a tiny bit.",
+            "As frame 3.",
+            "As frame 4.",
+            "Legs stepping, the shell level.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing down, legs settling.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place, as on a treadmill. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "wiggle",
+      "sticker": "urchin",
+      "kind": "action",
+      "description": "the sea urchin wiggles its soft spines in a ripple, like a happy shiver, then settles.",
+      "base": "its round body",
+      "story": "the sea urchin wiggles its soft spines",
+      "pause": {
+        "frame": 12,
+        "shows": "the sea urchin with all its soft spines fanned out wide, smiling"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Its spines starting to ripple at the top.",
+            "A ripple running round its spines.",
+            "The ripple running further round.",
+            "Its spines swaying to one side.",
+            "Its spines swaying to the other side.",
+            "A ripple running round again.",
+            "Its spines standing up a little more.",
+            "Its spines fanning out.",
+            "Its spines fanned out more, a big smile.",
+            "Its spines fanned out wide.",
+            "The sea urchin with all its soft spines fanned out wide, smiling."
+          ],
+          "hint": "The round body keeps exactly its size and place; only the soft blunt spines sway and ripple."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Its spines rippling softly.",
+            "Its spines settling down a little.",
+            "A small ripple.",
+            "Its spines swaying to one side.",
+            "Its spines swaying back.",
+            "Its spines settling.",
+            "Its spines nearly back in place.",
+            "Still.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The round body keeps exactly its size and place; only the soft blunt spines sway and ripple."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "creep",
+      "sticker": "urchin",
+      "kind": "move",
+      "description": "the sea urchin creeps slowly along to the left on its tiny tube feet, its spines swaying, then stops.",
+      "base": "its round body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.25,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Creeping to the left: its spines leaning a little to the left.",
+            "Its spines swaying, the body level.",
+            "Its spines leaning back a little.",
+            "Its spines swaying.",
+            "As frame 3.",
+            "As frame 4.",
+            "Its spines leaning left again.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing, its spines settling.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place, as on a treadmill. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "wave",
+      "sticker": "starfish",
+      "kind": "action",
+      "description": "the starfish waves one arm hello, then does a happy wiggle with all five arms.",
+      "base": "its two bottom arms",
+      "story": "the starfish waves hello and wiggles its arms",
+      "pause": {
+        "frame": 12,
+        "shows": "the starfish waving its raised arm high, smiling"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Its raised arm starting to wave.",
+            "Its arm waving to one side.",
+            "Its arm waving back.",
+            "Its arm waving to the side again.",
+            "Its arm waving back.",
+            "A big smile, the arm raised.",
+            "Its arm waving to one side.",
+            "Its arm waving back.",
+            "Its arm raised high.",
+            "Its arm high, still waving.",
+            "The starfish waving its raised arm high, smiling."
+          ],
+          "hint": "It stands on its two bottom arms in the same place in every cell; only its upper arms move. Same size as the scaffold in every cell."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Its other top arm lifting a little.",
+            "All its arms wiggling happily.",
+            "Its arms wiggling the other way.",
+            "Its arms wiggling.",
+            "Its arms wiggling the other way.",
+            "Its arms settling.",
+            "Its waving arm coming down.",
+            "Its arm nearly back in place.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "It stands on its two bottom arms in the same place in every cell; only its upper arms move. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "cartwheel",
+      "sticker": "starfish",
+      "kind": "move",
+      "description": "the starfish cartwheels along to the left, turning over and over on its arm tips, then stops upright.",
+      "base": "its body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.8,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Cartwheeling to the left: tipped a fifth of a turn to the left.",
+            "Two fifths of a turn round.",
+            "Three fifths of a turn round.",
+            "Four fifths of a turn round.",
+            "A full turn round, upright.",
+            "A fifth of a turn round again.",
+            "Two fifths round.",
+            "Three fifths round (leading back into frame 2).",
+            "Rocking to a stop.",
+            "Upright, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Turning in place around its own middle, as on a treadmill. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "register": "body"
+    },
+    {
+      "id": "flick",
+      "sticker": "shrimp",
+      "kind": "action",
+      "description": "the shrimp twitches its long feelers, flicks its fan tail and curls up, then uncurls.",
+      "base": "its body",
+      "story": "the shrimp twitches its feelers and flicks its tail",
+      "pause": {
+        "frame": 12,
+        "shows": "the shrimp curled up tight, its fan tail tucked under"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Its feelers twitching.",
+            "Its feelers twitching the other way.",
+            "Its little legs paddling.",
+            "Its tail starting to curl under.",
+            "Its tail flicking under.",
+            "Curling up a little.",
+            "Its feelers waving.",
+            "Curling up more.",
+            "Curled up, its tail tucked.",
+            "Curled up tight.",
+            "The shrimp curled up tight, its fan tail tucked under."
+          ],
+          "hint": "No water, waves or splashes drawn: only the creature. Same size as the scaffold in every cell."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still, curled up.",
+            "Starting to uncurl.",
+            "Uncurling.",
+            "Its tail fanning out.",
+            "Its tail flicking out.",
+            "Its feelers twitching.",
+            "Its legs paddling.",
+            "Nearly uncurled.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "No water, waves or splashes drawn: only the creature. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "register": "body"
+    },
+    {
+      "id": "swim",
+      "sticker": "shrimp",
+      "kind": "move",
+      "description": "the shrimp swims along to the left, its little legs paddling and its tail flicking, then stops.",
+      "base": "its body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.5,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Swimming to the left: its legs paddling, its feelers streaming back.",
+            "Its tail flicking.",
+            "Its legs paddling the other way.",
+            "Its tail fanning.",
+            "As frame 3.",
+            "As frame 4.",
+            "Its legs paddling.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing, its feelers drifting.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place, as on a treadmill. No water, waves or splashes drawn: only the creature. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "register": "body",
+      "on": [
+        "pools"
+      ]
+    },
+    {
+      "id": "wiggle",
+      "sticker": "fish",
+      "kind": "action",
+      "description": "the little fish flutters its fins, wiggles its tail and opens and closes its mouth, then settles.",
+      "base": "its body",
+      "story": "the little fish wiggles its tail and flutters its fins",
+      "pause": {
+        "frame": 12,
+        "shows": "the fish with its fins spread wide and its tail fanned, smiling"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Its fins starting to flutter.",
+            "Its tail swishing to one side.",
+            "Its tail swishing back.",
+            "Its mouth opening a little.",
+            "Its mouth closing, its fins fluttering.",
+            "Its tail swishing.",
+            "Its tail swishing back.",
+            "Its mouth opening and closing.",
+            "Its fins spreading.",
+            "Its fins spread wide.",
+            "The fish with its fins spread wide and its tail fanned, smiling."
+          ],
+          "hint": "No water, waves or splashes drawn: only the creature. Same size as the scaffold in every cell."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Its tail swishing.",
+            "Its tail swishing back.",
+            "Its fins fluttering.",
+            "Its mouth opening a little.",
+            "Its mouth closing.",
+            "Its tail swishing.",
+            "Its fins folding a little.",
+            "Its tail settling.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "No water, waves or splashes drawn: only the creature. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "register": "body"
+    },
+    {
+      "id": "swim",
+      "sticker": "fish",
+      "kind": "move",
+      "description": "the little fish swims along to the right, swishing its tail, then stops.",
+      "base": "its body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.7,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Swimming to the right: its tail swishing to one side.",
+            "Its tail swishing back.",
+            "Its tail swishing to the other side, the body bending a little.",
+            "Its tail swishing back, its fins fluttering.",
+            "As frame 3.",
+            "As frame 4.",
+            "Its tail swishing.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing, its fins spreading.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place, as on a treadmill. No water, waves or splashes drawn: only the creature. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "register": "body",
+      "on": [
+        "pools",
+        "sea"
+      ]
+    },
+    {
+      "id": "wave",
+      "sticker": "octopus",
+      "kind": "action",
+      "description": "the octopus curls its arms up and waves them all, then settles them back down.",
+      "base": "its head",
+      "story": "the octopus waves all its arms",
+      "pause": {
+        "frame": 12,
+        "shows": "the octopus with its arms curled up high around it, waving, smiling"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Two arms starting to lift.",
+            "Those arms waving.",
+            "More arms lifting.",
+            "Arms waving to one side.",
+            "Arms waving to the other side.",
+            "Arms curling up.",
+            "Arms curling up higher.",
+            "Arms waving.",
+            "Arms up high, curling.",
+            "Arms up high, waving.",
+            "The octopus with its arms curled up high around it, waving, smiling."
+          ],
+          "hint": "Its round head keeps exactly its size and place; only the arms move. No water, waves or splashes drawn: only the creature."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Arms waving to one side.",
+            "Arms waving to the other side.",
+            "Arms coming down a little.",
+            "Arms curling.",
+            "Arms coming down more.",
+            "Arms settling.",
+            "Arms nearly back.",
+            "Arms curling softly.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Its round head keeps exactly its size and place; only the arms move. No water, waves or splashes drawn: only the creature."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "register": "body"
+    },
+    {
+      "id": "swim",
+      "sticker": "octopus",
+      "kind": "move",
+      "description": "the octopus swims along to the left, its arms pulsing together and streaming out behind, then stops.",
+      "base": "its head",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.6,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Swimming to the left: its arms drawn together under it.",
+            "Its arms pushing out and back.",
+            "Its arms streaming behind.",
+            "Its arms drawing together again.",
+            "As frame 3.",
+            "As frame 4.",
+            "Its arms streaming.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing, its arms spreading.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place, as on a treadmill. No water, waves or splashes drawn: only the creature. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "register": "body",
+      "on": [
+        "pools"
+      ]
+    },
+    {
+      "id": "sway",
+      "sticker": "seaweed",
+      "kind": "action",
+      "description": "the seaweed sways gently from side to side, its fronds curling like in a current, then settles.",
+      "base": "its holdfast",
+      "story": "the seaweed sways gently",
+      "pause": {
+        "frame": 12,
+        "shows": "the seaweed swayed to one side, its fronds curling"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Its fronds starting to lean.",
+            "Leaning a little to one side.",
+            "Leaning more.",
+            "Swaying back.",
+            "Upright.",
+            "Leaning to the other side.",
+            "Leaning more.",
+            "Swaying back.",
+            "Leaning to the first side.",
+            "Swayed to one side, fronds curling.",
+            "The seaweed swayed to one side, its fronds curling."
+          ],
+          "hint": "The holdfast at the bottom keeps exactly its place and size; only the fronds sway. No water, waves or splashes drawn: only the creature."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Swaying back.",
+            "Upright.",
+            "Leaning a little the other way.",
+            "Swaying back.",
+            "Upright, fronds curling.",
+            "Leaning a little.",
+            "Swaying back.",
+            "Fronds settling.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The holdfast at the bottom keeps exactly its place and size; only the fronds sway. No water, waves or splashes drawn: only the creature."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "sprout",
+      "sticker": "seaweed",
+      "kind": "move",
+      "description": "the seaweed sprouts: little fronds grow up from its holdfast and unfurl.",
+      "base": "its holdfast",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Only the small round holdfast.",
+            "A few tiny fronds peeking up.",
+            "The fronds taller.",
+            "The fronds taller, curling.",
+            "The fronds half grown, the face appearing.",
+            "The fronds growing taller.",
+            "The air bladders appearing.",
+            "Nearly full size.",
+            "Full size, swaying once.",
+            "Settling into the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Every frame grows up from the holdfast in the same spot at the bottom of its cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.1,
+        0.1,
+        0.12,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "peek",
+      "sticker": "clam",
+      "kind": "action",
+      "description": "the clam opens wide to show a little pearl, then snaps shut, then opens again to its rest.",
+      "base": "its lower shell",
+      "story": "the clam opens wide to show its pearl, then snaps shut",
+      "pause": {
+        "frame": 12,
+        "shows": "the clam open wide, a little shiny pearl showing inside"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Its top shell lifting a little.",
+            "Opening wider.",
+            "Opening wider, a glint inside.",
+            "A little pearl showing inside.",
+            "Open wide, the pearl shining.",
+            "Open wide, smiling.",
+            "Still open wide.",
+            "The pearl shining.",
+            "Open wide.",
+            "Open wide, a little shiny pearl inside.",
+            "The clam open wide, a little shiny pearl showing inside."
+          ],
+          "hint": "The lower shell keeps exactly its shape, size and place; only the top shell opens and closes."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The top shell starting to close.",
+            "Closing.",
+            "Snapped shut: click.",
+            "Shut, smiling.",
+            "Shut.",
+            "Opening a crack.",
+            "Opening a little.",
+            "Opening more.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The lower shell keeps exactly its shape, size and place; only the top shell opens and closes."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "dig-up",
+      "sticker": "clam",
+      "kind": "move",
+      "description": "the clam wiggles up out of the sand and opens a little.",
+      "base": "its lower shell",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Only the top edge of the closed shell.",
+            "A little more of the closed shell.",
+            "Half of the closed shell.",
+            "Most of the closed shell, wiggling.",
+            "The whole closed shell.",
+            "The shell wiggling.",
+            "Opening a crack.",
+            "Opening a little, the face showing.",
+            "Opening to its rest pose.",
+            "Settling into the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "It rises from one spot at the bottom of its cell; no sand drawn."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.1,
+        0.1,
+        0.12,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "wave",
+      "sticker": "surfer",
+      "kind": "action",
+      "description": "the surfer boy waves hello, lifts his surfboard up beside him and grins, then puts it back down.",
+      "base": "his bare feet",
+      "story": "the surfer boy waves and lifts his surfboard",
+      "pause": {
+        "frame": 12,
+        "shows": "the surfer boy holding his surfboard a little off the ground, waving, grinning"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "His waving hand starting to move.",
+            "Waving to one side.",
+            "Waving back.",
+            "Waving to one side again.",
+            "Waving back, a big grin.",
+            "His other hand gripping the board.",
+            "Lifting the board a little.",
+            "The board lifted a little off the ground.",
+            "Waving with the board lifted.",
+            "Waving, the board lifted.",
+            "The surfer boy holding his surfboard a little off the ground, waving, grinning."
+          ],
+          "hint": "He keeps exactly his size in every cell; the board stays the same size."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Waving to one side.",
+            "Waving back.",
+            "Lowering the board.",
+            "The board back on the ground.",
+            "His waving hand coming down a little.",
+            "Waving once more.",
+            "His hand coming down.",
+            "Nearly the rest pose.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "He keeps exactly his size in every cell; the board stays the same size."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "walk",
+      "sticker": "surfer",
+      "kind": "move",
+      "description": "the surfer boy walks along to the left, carrying his surfboard under his arm, then stops.",
+      "base": "his bare feet",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.45,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Walking to the left, turned three-quarters, the board under his arm.",
+            "Stepping, his other leg forward.",
+            "Mid-step.",
+            "Stepping, the first leg forward.",
+            "As frame 3.",
+            "As frame 4.",
+            "Mid-step.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing, both feet down.",
+            "Turning back toward us, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place, as on a treadmill. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "surf",
+      "sticker": "surfer",
+      "kind": "move",
+      "description": "the surfer boy rides his surfboard along to the left, crouched with his arms out for balance, bobbing over the waves.",
+      "base": "his surfboard",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.9,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Standing on his surfboard lying flat, crouched, arms out for balance, riding to the left.",
+            "Bobbing up a little, leaning forward.",
+            "Level, arms out.",
+            "Bobbing down a little, leaning back.",
+            "As frame 3.",
+            "As frame 4.",
+            "Level, grinning.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing, standing up on the board.",
+            "Stepping off, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place. On the board he keeps exactly his size. No water, waves or splashes drawn: only the creature."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "on": [
+        "sea"
+      ],
+      "register": "body",
+      "particles": [
+        {
+          "frame": 4,
+          "effect": "spray",
+          "at": "base",
+          "intensity": 0.4
+        }
+      ]
+    },
+    {
+      "id": "shake",
+      "sticker": "dog",
+      "kind": "action",
+      "description": "the dog shakes itself dry from nose to tail, ears flapping, then gives a happy pant.",
+      "base": "its paws",
+      "story": "the dog shakes itself dry",
+      "pause": {
+        "frame": 12,
+        "shows": "the dog mid-shake, its ears flapping out and its fur fluffed"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Bracing on its four paws.",
+            "Its head starting to shake.",
+            "Its head shaking, ears flapping out.",
+            "Its head shaking the other way.",
+            "The shake moving to its shoulders.",
+            "Its body twisting a little, fur fluffing.",
+            "Twisting the other way.",
+            "Its tail end shaking.",
+            "Its whole body shaking, ears out.",
+            "Mid-shake, ears flapping out, fur fluffed.",
+            "The dog mid-shake, its ears flapping out and its fur fluffed."
+          ],
+          "hint": "Its paws stay planted; it keeps exactly its size. No water drops drawn."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Shaking the other way.",
+            "Shaking slower.",
+            "Its fur settling a little fluffy.",
+            "Its ears flopping down.",
+            "Standing still, a little fluffy.",
+            "A happy pant, tongue out.",
+            "Its tail wagging.",
+            "Its tail wagging the other way.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Its paws stay planted; it keeps exactly its size. No water drops drawn."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "particles": [
+        {
+          "frame": 4,
+          "effect": "spray",
+          "at": "centre",
+          "intensity": 0.6
+        },
+        {
+          "frame": 8,
+          "effect": "spray",
+          "at": "centre",
+          "intensity": 0.5
+        }
+      ]
+    },
+    {
+      "id": "run",
+      "sticker": "dog",
+      "kind": "move",
+      "description": "the dog runs along to the right, ears bouncing and tail up, then stops.",
+      "base": "its paws",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.7,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Running to the right: front paws reaching forward, back paws pushing.",
+            "All paws gathered under its body.",
+            "Front paws reaching, ears bouncing up.",
+            "Stretched out, tail up.",
+            "As frame 3.",
+            "As frame 4.",
+            "Paws gathered.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing to a trot.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place, as on a treadmill. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "particles": [
+        {
+          "frame": 5,
+          "effect": "dust-puff",
+          "at": "base",
+          "intensity": 0.3
+        }
+      ]
+    },
+    {
+      "id": "clap",
+      "sticker": "seal",
+      "kind": "action",
+      "description": "the seal claps its front flippers together and barks happily, then settles.",
+      "base": "its belly",
+      "story": "the seal claps its flippers and barks",
+      "pause": {
+        "frame": 12,
+        "shows": "the seal with its front flippers together mid-clap, mouth open in a happy bark"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Lifting its front flippers.",
+            "Its flippers apart.",
+            "Clap: flippers together.",
+            "Flippers apart, its head up.",
+            "Clap.",
+            "Flippers apart, a happy bark, mouth open.",
+            "Clap.",
+            "Flippers apart.",
+            "Clap, its whiskers twitching.",
+            "Flippers together mid-clap, barking happily.",
+            "The seal with its front flippers together mid-clap, mouth open in a happy bark."
+          ],
+          "hint": "Its belly stays on the same ground line; it keeps exactly its size."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Flippers apart.",
+            "Clap.",
+            "Flippers apart.",
+            "Its flippers coming down.",
+            "Its head tilting.",
+            "Its tail flippers waving.",
+            "Its head back.",
+            "Its flippers on the ground.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Its belly stays on the same ground line; it keeps exactly its size."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "flop",
+      "sticker": "seal",
+      "kind": "move",
+      "description": "the seal flops along to the left on its belly, humping forward, then stops.",
+      "base": "its belly",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.4,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Flopping to the left: its front flippers pushing.",
+            "Its back humping up a little.",
+            "Its body stretching forward.",
+            "Its belly flat.",
+            "As frame 3.",
+            "As frame 4.",
+            "Its back humping.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place, as on a treadmill. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "swim",
+      "sticker": "seal",
+      "kind": "move",
+      "description": "the seal swims along to the left, its head up and its flippers paddling, then stops.",
+      "base": "its body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.7,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Swimming to the left: body low and level, head up, flippers paddling.",
+            "Its tail flippers sweeping.",
+            "Its body bobbing up a touch.",
+            "Its front flippers paddling.",
+            "As frame 3.",
+            "As frame 4.",
+            "Its tail flippers sweeping.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing, head up.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place. No water, waves or splashes drawn: only the creature. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "register": "body",
+      "on": [
+        "sea"
+      ]
+    },
+    {
+      "id": "peek",
+      "sticker": "turtle",
+      "kind": "action",
+      "description": "the sea turtle tucks its head into its shell, stays hidden a moment, then peeks out and smiles.",
+      "base": "its shell",
+      "story": "the turtle hides its head in its shell, then peeks out",
+      "pause": {
+        "frame": 12,
+        "shows": "the turtle with its head tucked inside its shell"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Its eyes looking around.",
+            "Its head starting to pull back.",
+            "Its head halfway in.",
+            "Its head nearly in.",
+            "Its head tucked in, its flippers pulling in a little.",
+            "Tucked in.",
+            "Still.",
+            "Still.",
+            "Still, tucked in.",
+            "Tucked in.",
+            "The turtle with its head tucked inside its shell."
+          ],
+          "hint": "The shell keeps exactly its shape, size and place in every cell; only the head and flippers move."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Still.",
+            "Its eyes peeking out.",
+            "Its head halfway out.",
+            "Its head out, looking around.",
+            "Its head out, smiling.",
+            "Its flippers stretching.",
+            "Smiling.",
+            "Nearly the rest pose.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The shell keeps exactly its shape, size and place in every cell; only the head and flippers move."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "register": "body"
+    },
+    {
+      "id": "crawl",
+      "sticker": "turtle",
+      "kind": "move",
+      "description": "the sea turtle crawls along to the right on its flippers, slow and steady, then stops.",
+      "base": "its flippers",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.35,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Crawling to the right: its front flippers pushing.",
+            "Its shell lifting a little.",
+            "Its back flippers pushing.",
+            "Its shell level.",
+            "As frame 3.",
+            "As frame 4.",
+            "Its front flippers reaching.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place, as on a treadmill. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "swim",
+      "sticker": "turtle",
+      "kind": "move",
+      "description": "the sea turtle swims along to the right, its front flippers sweeping like wings, then stops.",
+      "base": "its shell",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.7,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Swimming to the right: front flippers sweeping up.",
+            "Front flippers sweeping down.",
+            "Front flippers back.",
+            "Front flippers coming up.",
+            "As frame 3.",
+            "As frame 4.",
+            "Front flippers sweeping.",
+            "As frame 2 (leading back into frame 2).",
+            "Gliding.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place. No water, waves or splashes drawn: only the creature. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "register": "body",
+      "on": [
+        "sea"
+      ]
+    },
+    {
+      "id": "scoop",
+      "sticker": "pelican",
+      "kind": "action",
+      "description": "the pelican dips its big beak, scoops up a pouchful of water, tips its head back and gulps, then smacks its beak happily.",
+      "base": "its feet",
+      "story": "the pelican scoops with its big pouch and gulps",
+      "pause": {
+        "frame": 12,
+        "shows": "the pelican with its pouch full and round, its head tipped back"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Its head turning down.",
+            "Its beak dipping low.",
+            "Its beak scooping low, the pouch opening.",
+            "The pouch filling, round.",
+            "Its head coming up, the pouch full.",
+            "Its head up, the pouch full and round.",
+            "Its head tipping back.",
+            "Tipped back, the pouch full.",
+            "Tipped back more.",
+            "The pouch full and round, its head tipped back.",
+            "The pelican with its pouch full and round, its head tipped back."
+          ],
+          "hint": "Its feet stay planted; it keeps exactly its size. No water or fish drawn."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Gulp: the pouch emptying.",
+            "The pouch slim again.",
+            "Its head coming forward.",
+            "Its beak smacking shut.",
+            "A pleased look.",
+            "Its wings ruffling.",
+            "Its wings settling.",
+            "Its head back in place.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Its feet stay planted; it keeps exactly its size. No water or fish drawn."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "particles": [
+        {
+          "frame": 4,
+          "effect": "spray",
+          "at": "centre",
+          "intensity": 0.4
+        }
+      ]
+    },
+    {
+      "id": "fly",
+      "sticker": "pelican",
+      "kind": "move",
+      "description": "the pelican flies along to the left on big slow wingbeats, then glides down and lands.",
+      "base": "its body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 1.1,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Flying to the left: wings raised high, feet tucked, beak forward.",
+            "Wings coming down.",
+            "Wings level, spread wide.",
+            "Wings down low.",
+            "Wings coming up.",
+            "Wings level, rising.",
+            "Wings raised high.",
+            "Wings at the top (leading back into frame 2).",
+            "Gliding, wings spread, feet reaching down.",
+            "Landed, folding its wings.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Wings stay inside the cell. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "register": "body",
+      "flies": true
+    },
+    {
+      "id": "float",
+      "sticker": "pelican",
+      "kind": "move",
+      "description": "the pelican floats along to the left on the sea, paddling gently, then stops.",
+      "base": "its body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.4,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Floating to the left: sitting low and level, wings folded (no water drawn).",
+            "Bobbing up a touch.",
+            "Level.",
+            "Bobbing down a touch.",
+            "As frame 3.",
+            "As frame 4.",
+            "Level, its head turning a little.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Floating: sitting low and level, legs tucked under. No water, waves or splashes drawn: only the creature. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "register": "body",
+      "on": [
+        "sea"
+      ]
+    },
+    {
+      "id": "squawk",
+      "sticker": "seagull",
+      "kind": "action",
+      "description": "the seagull stretches up, opens its beak wide and squawks, wings half open, then settles.",
+      "base": "its feet",
+      "story": "the seagull squawks loudly",
+      "pause": {
+        "frame": 12,
+        "shows": "the seagull squawking, its beak wide open and its wings half open"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Stretching its neck up.",
+            "Its beak opening.",
+            "Squawk: beak wide open.",
+            "Its beak closing a little.",
+            "Squawk again, wings lifting a little.",
+            "Wings half open.",
+            "Squawking, wings half open.",
+            "Beak closing.",
+            "Squawking again.",
+            "Squawking, beak wide open, wings half open.",
+            "The seagull squawking, its beak wide open and its wings half open."
+          ],
+          "hint": "Its feet stay planted; it keeps exactly its size."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Beak closing.",
+            "Wings folding.",
+            "Its head tilting.",
+            "A small squawk.",
+            "Beak closing.",
+            "Its head tilting the other way.",
+            "Wings settling.",
+            "Its neck coming down.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Its feet stay planted; it keeps exactly its size."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "fly",
+      "sticker": "seagull",
+      "kind": "move",
+      "description": "the seagull flies along to the left flapping its long wings, then glides down and lands.",
+      "base": "its body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 1.2,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Flying to the left: wings raised high, feet tucked.",
+            "Wings coming down.",
+            "Wings level, spread wide.",
+            "Wings down low.",
+            "Wings coming up.",
+            "Wings level.",
+            "Wings raised high.",
+            "Wings at the top (leading back into frame 2).",
+            "Gliding, feet reaching down.",
+            "Landed, folding its wings.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Wings stay inside the cell. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "register": "body",
+      "flies": true
+    },
+    {
+      "id": "hop",
+      "sticker": "seagull",
+      "kind": "move",
+      "description": "the seagull hops along to the left on both feet, wings folded, then stops.",
+      "base": "its feet",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.45,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Turned to the left, crouching a little, about to hop.",
+            "Springing up, both feet pushing off.",
+            "In the air, feet tucked.",
+            "Feet reaching down.",
+            "Landing on both feet.",
+            "Landed, a little squashed.",
+            "Upright, a bob of the head.",
+            "Crouching again (leading back into frame 2).",
+            "Stopping.",
+            "Settling into the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "hops": true,
+      "on": [
+        "sand",
+        "rocks"
+      ]
+    },
+    {
+      "id": "peck",
+      "sticker": "sandpiper",
+      "kind": "action",
+      "description": "the sandpiper pecks quickly at the wet sand, peck peck peck, then looks up.",
+      "base": "its feet",
+      "story": "the sandpiper pecks at the wet sand",
+      "pause": {
+        "frame": 12,
+        "shows": "the sandpiper with its beak down to the ground, pecking"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Looking down.",
+            "Its head lowering.",
+            "Peck: beak to the ground.",
+            "Head up a little.",
+            "Peck.",
+            "Head up a little.",
+            "Peck.",
+            "Head up, looking around.",
+            "Head lowering.",
+            "Beak down to the ground, pecking.",
+            "The sandpiper with its beak down to the ground, pecking."
+          ],
+          "hint": "Its feet stay planted; it keeps exactly its size. No sand drawn."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Head up a little.",
+            "Peck.",
+            "Head up.",
+            "Looking around.",
+            "Head tilting.",
+            "Head tilting the other way.",
+            "Looking ahead.",
+            "Nearly upright.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Its feet stay planted; it keeps exactly its size. No sand drawn."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ]
+    },
+    {
+      "id": "fly",
+      "sticker": "sandpiper",
+      "kind": "move",
+      "description": "the sandpiper flies along to the right on quick little wingbeats, then lands.",
+      "base": "its body",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 1.2,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Flying to the right: wings raised, feet tucked.",
+            "Wings coming down.",
+            "Wings down.",
+            "Wings up.",
+            "As frame 3.",
+            "As frame 4.",
+            "Wings raised.",
+            "As frame 2 (leading back into frame 2).",
+            "Gliding, feet reaching down.",
+            "Landed, folding its wings.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Wings stay inside the cell. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "register": "body",
+      "flies": true
+    },
+    {
+      "id": "run",
+      "sticker": "sandpiper",
+      "kind": "move",
+      "description": "the sandpiper runs along to the right on its quick little legs, then stops.",
+      "base": "its feet",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.5,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Running to the right: one leg forward.",
+            "Legs passing.",
+            "The other leg forward.",
+            "Legs passing.",
+            "As frame 3.",
+            "As frame 4.",
+            "Legs passing.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place, as on a treadmill. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "on": [
+        "shore",
+        "sand"
+      ]
+    },
+    {
+      "id": "flag",
+      "sticker": "castle",
+      "kind": "action",
+      "description": "the breeze catches the sand castle's little red flag and it flutters, then droops.",
+      "base": "its sandy base",
+      "story": "the flag on the sand castle flutters in the breeze",
+      "pause": {
+        "frame": 12,
+        "shows": "the sand castle with its little flag streaming out in the breeze"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The flag starting to lift.",
+            "The flag fluttering.",
+            "The flag fluttering the other way.",
+            "The flag streaming out.",
+            "The flag rippling.",
+            "The flag streaming out.",
+            "The flag rippling.",
+            "The flag streaming.",
+            "The flag rippling.",
+            "The flag streaming out.",
+            "The sand castle with its little flag streaming out in the breeze."
+          ],
+          "hint": "The castle keeps exactly its shape, size and place in every cell; only the little flag moves."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The flag rippling.",
+            "The flag streaming.",
+            "The flag drooping a little.",
+            "The flag fluttering.",
+            "The flag drooping.",
+            "The flag lifting a little.",
+            "The flag drooping.",
+            "The flag hanging.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The castle keeps exactly its shape, size and place in every cell; only the little flag moves."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "restFromSticker": false
+    },
+    {
+      "id": "build",
+      "sticker": "castle",
+      "kind": "move",
+      "description": "the sand castle builds itself up from the sand: the base, then the walls, the towers and the flag.",
+      "base": "its sandy base",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Only a low mound of sand.",
+            "The mound taller.",
+            "The walls rising.",
+            "The walls with the doorway.",
+            "The side towers rising.",
+            "The middle tower rising.",
+            "The towers' notched tops.",
+            "The shells appearing on the walls.",
+            "The flag popping up.",
+            "Settling into the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "It builds up from the same spot at the bottom of its cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.1,
+        0.1,
+        0.12,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "dig",
+      "sticker": "bucket",
+      "kind": "action",
+      "description": "the spade lifts out of the bucket, digs into the sand beside it and tips a scoop into the bucket, then stands back in it.",
+      "base": "the bucket",
+      "story": "the spade digs and fills the bucket",
+      "pause": {
+        "frame": 12,
+        "shows": "the spade lifted up above the bucket, tipping a scoop into it"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The spade starting to lift.",
+            "The spade lifting out of the bucket.",
+            "The spade out, beside the bucket.",
+            "The spade dipping down beside the bucket.",
+            "The spade digging in.",
+            "The spade coming up with a scoop.",
+            "The spade rising.",
+            "The spade above the bucket.",
+            "The spade tipping.",
+            "The spade above the bucket, tipping a scoop in.",
+            "The spade lifted up above the bucket, tipping a scoop into it."
+          ],
+          "hint": "The bucket and the mould keep exactly their shape, size and place in every cell; only the spade moves. No sand drawn."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The spade tipping more.",
+            "The spade lifting.",
+            "The spade dipping beside the bucket again.",
+            "The spade digging in.",
+            "The spade coming up.",
+            "The spade above the bucket.",
+            "The spade tipping.",
+            "The spade lowering into the bucket.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The bucket and the mould keep exactly their shape, size and place in every cell; only the spade moves. No sand drawn."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "restFromSticker": false,
+      "particles": [
+        {
+          "frame": 6,
+          "effect": "dust-puff",
+          "at": "base",
+          "intensity": 0.4
+        },
+        {
+          "frame": 16,
+          "effect": "dust-puff",
+          "at": "base",
+          "intensity": 0.4
+        }
+      ]
+    },
+    {
+      "id": "plonk",
+      "sticker": "bucket",
+      "kind": "move",
+      "description": "the bucket and spade are set down on the sand: they wobble and settle.",
+      "base": "the bucket",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Tilted a little to one side, just above its place.",
+            "Tilted, lower.",
+            "Landing on one edge.",
+            "Rocking upright.",
+            "Rocking a little the other way.",
+            "Rocking back.",
+            "Nearly upright.",
+            "Upright, the spade wobbling.",
+            "The spade settling.",
+            "Settling into the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Same size in every cell, the bucket's bottom near the bottom of the cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.1,
+        0.1,
+        0.12,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "restFromSticker": false,
+      "particles": [
+        {
+          "frame": 4,
+          "effect": "dust-puff",
+          "at": "base",
+          "intensity": 0.4
+        }
+      ]
+    },
+    {
+      "id": "spin",
+      "sticker": "ball",
+      "kind": "action",
+      "description": "the beach ball spins round on the spot, its stripes turning, then wobbles to a stop.",
+      "base": "the ball",
+      "story": "the beach ball spins round",
+      "pause": {
+        "frame": 12,
+        "shows": "the beach ball turned half round, its stripes swapped"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Starting to turn.",
+            "Turned a little, the stripes moving.",
+            "Turned more.",
+            "A quarter turn round.",
+            "Turning on.",
+            "Three eighths round.",
+            "Turning.",
+            "Nearly half round.",
+            "Turning.",
+            "Turned half round, its stripes in other places.",
+            "The beach ball turned half round, its stripes swapped."
+          ],
+          "hint": "The ball keeps exactly its round outline, size and place in every cell; only its stripes turn."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Turning on.",
+            "Five eighths round.",
+            "Turning.",
+            "Three quarters round.",
+            "Turning.",
+            "Seven eighths round.",
+            "Nearly round.",
+            "Wobbling.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The ball keeps exactly its round outline, size and place in every cell; only its stripes turn."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "restFromSticker": false
+    },
+    {
+      "id": "roll",
+      "sticker": "ball",
+      "kind": "move",
+      "description": "the beach ball rolls along to the left, turning over and over, then rocks to a stop.",
+      "base": "the ball",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.9,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Rolling to the left: tipped an eighth of a turn.",
+            "A quarter turn round.",
+            "Three eighths round.",
+            "Half a turn round.",
+            "Five eighths round.",
+            "Three quarters round.",
+            "Seven eighths round.",
+            "A full turn round (leading back into frame 2).",
+            "Rocking to a stop.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Turning in place around its middle, as on a treadmill. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "register": "body"
+    },
+    {
+      "id": "spin",
+      "sticker": "umbrella",
+      "kind": "action",
+      "description": "the beach umbrella's canopy turns round in the breeze, its frill fluttering, then stops.",
+      "base": "its pole",
+      "story": "the beach umbrella spins in the breeze",
+      "pause": {
+        "frame": 12,
+        "shows": "the beach umbrella with its canopy turned and its frill fluttering"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The frill starting to flutter.",
+            "The canopy turning a little, the stripes moving.",
+            "Turning more.",
+            "The frill fluttering.",
+            "Turning.",
+            "The stripes moving round.",
+            "Turning.",
+            "The frill fluttering.",
+            "Turning.",
+            "The canopy turned, its frill fluttering.",
+            "The beach umbrella with its canopy turned and its frill fluttering."
+          ],
+          "hint": "The pole and the canopy keep exactly their shape, size and place in every cell; only the stripes turn and the frill flutters."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Turning on.",
+            "The stripes moving.",
+            "Turning slower.",
+            "The frill fluttering.",
+            "Turning slower.",
+            "Nearly stopped.",
+            "The frill settling.",
+            "Still.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The pole and the canopy keep exactly their shape, size and place in every cell; only the stripes turn and the frill flutters."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "restFromSticker": false
+    },
+    {
+      "id": "open",
+      "sticker": "umbrella",
+      "kind": "move",
+      "description": "the beach umbrella pops open: the closed canopy slides up its pole and spreads out.",
+      "base": "its pole",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The umbrella closed, its canopy folded tight round the pole.",
+            "Still closed, the canopy starting to slide up.",
+            "The canopy loosening.",
+            "The canopy spreading a little.",
+            "Half open.",
+            "Opening more.",
+            "Nearly open.",
+            "Open, bouncing a little.",
+            "Open, the frill fluttering.",
+            "Settling into the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The pole stands in the same place in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.1,
+        0.1,
+        0.12,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "spin",
+      "sticker": "ring",
+      "kind": "action",
+      "description": "the rubber ring turns slowly round on the spot, wobbling a little, then stops.",
+      "base": "the ring",
+      "story": "the rubber ring turns round slowly",
+      "pause": {
+        "frame": 12,
+        "shows": "the rubber ring turned, its stripes in other places"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Starting to turn.",
+            "The stripes moving round.",
+            "Turning.",
+            "Wobbling a little.",
+            "Turning.",
+            "The stripes moving.",
+            "Turning.",
+            "Wobbling.",
+            "Turning.",
+            "Turned, its stripes in other places.",
+            "The rubber ring turned, its stripes in other places."
+          ],
+          "hint": "The ring keeps exactly its outline, size and place in every cell; only its stripes move round. No water, waves or splashes drawn: only the creature."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Turning on.",
+            "Turning slower.",
+            "Wobbling.",
+            "Turning slower.",
+            "Nearly stopped.",
+            "Wobbling.",
+            "Still.",
+            "Still.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The ring keeps exactly its outline, size and place in every cell; only its stripes move round. No water, waves or splashes drawn: only the creature."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "restFromSticker": false
+    },
+    {
+      "id": "bob",
+      "sticker": "ring",
+      "kind": "move",
+      "description": "the rubber ring bobs along to the left on the waves, then stops.",
+      "base": "the ring",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.4,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Floating to the left, tilting a little forward.",
+            "Bobbing up a touch.",
+            "Level.",
+            "Tilting back.",
+            "As frame 3.",
+            "As frame 4.",
+            "Level.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place. No water, waves or splashes drawn: only the creature. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "register": "body",
+      "on": [
+        "sea"
+      ]
+    },
+    {
+      "id": "pop",
+      "sticker": "bottle",
+      "kind": "action",
+      "description": "the cork pops up, the rolled note peeks out of the bottle's neck, then slides back in and the cork closes.",
+      "base": "the bottle",
+      "story": "the cork pops and the message peeks out of the bottle",
+      "pause": {
+        "frame": 12,
+        "shows": "the bottle with its cork popped up and the rolled note peeking out of its neck"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The cork wiggling.",
+            "The cork lifting a little.",
+            "Pop: the cork up above the neck.",
+            "The cork up, the note moving inside.",
+            "The note sliding toward the neck.",
+            "The note at the neck.",
+            "The note peeking out a little.",
+            "The note peeking out more.",
+            "The note peeking out.",
+            "The cork popped up, the rolled note peeking out of the neck.",
+            "The bottle with its cork popped up and the rolled note peeking out of its neck."
+          ],
+          "hint": "The glass bottle keeps exactly its shape, size and place in every cell; only the cork and the note move."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The note wiggling.",
+            "The note sliding back in.",
+            "The note inside.",
+            "The cork coming down.",
+            "The cork back in.",
+            "The cork wiggling.",
+            "Still.",
+            "A little rock.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The glass bottle keeps exactly its shape, size and place in every cell; only the cork and the note move."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "restFromSticker": false
+    },
+    {
+      "id": "bob",
+      "sticker": "bottle",
+      "kind": "move",
+      "description": "the bottle bobs along to the right on the waves, then stops.",
+      "base": "the bottle",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "right",
+      "stride": 0.35,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Floating to the right, tilting a little.",
+            "Bobbing up a touch.",
+            "Level.",
+            "Tilting the other way.",
+            "As frame 3.",
+            "As frame 4.",
+            "Level.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place. No water, waves or splashes drawn: only the creature. Same size as the scaffold in every cell."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "register": "body",
+      "on": [
+        "sea"
+      ]
+    },
+    {
+      "id": "net",
+      "sticker": "fishing-boat",
+      "kind": "action",
+      "description": "the fishing boat's little mast swings its net up out of the water, the net dripping, then lowers it back.",
+      "base": "its hull",
+      "story": "the fishing boat hauls up its net",
+      "pause": {
+        "frame": 12,
+        "shows": "the fishing boat with its net hauled up high on the mast"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The net rope tightening.",
+            "The net starting to rise.",
+            "The net rising.",
+            "The net halfway up.",
+            "The net higher.",
+            "The net up, swinging a little.",
+            "The net high.",
+            "The net swinging.",
+            "The net high, the floats bobbing.",
+            "The net hauled up high on its mast.",
+            "The fishing boat with its net hauled up high on the mast."
+          ],
+          "hint": "The hull and the wheelhouse keep exactly their shape, size and place in every cell; only the net and its rope move. No water, waves or splashes drawn: only the creature."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "The net swinging.",
+            "The net high.",
+            "The net lowering.",
+            "The net lower.",
+            "The net halfway down.",
+            "The net lower.",
+            "The net nearly down.",
+            "The net bundled.",
+            "Settling.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The hull and the wheelhouse keep exactly their shape, size and place in every cell; only the net and its rope move. No water, waves or splashes drawn: only the creature."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "restFromSticker": false,
+      "particles": [
+        {
+          "frame": 5,
+          "effect": "spray",
+          "at": "centre",
+          "intensity": 0.4
+        }
+      ]
+    },
+    {
+      "id": "chug",
+      "sticker": "fishing-boat",
+      "kind": "move",
+      "description": "the fishing boat chugs along to the left over the waves, bobbing gently, then stops.",
+      "base": "its hull",
+      "loop": {
+        "from": 2,
+        "to": 9
+      },
+      "facing": "left",
+      "stride": 0.5,
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "Chugging to the left, level.",
+            "The bow lifting a little.",
+            "Level.",
+            "The bow dipping a little.",
+            "As frame 3.",
+            "As frame 4.",
+            "Level.",
+            "As frame 2 (leading back into frame 2).",
+            "Slowing.",
+            "Stopped, nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "Drawn in place. The hull keeps exactly its shape and size. No water, waves or splashes drawn: only the creature."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.15,
+        0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ],
+      "on": [
+        "sea"
+      ]
+    }
+  ]
+}

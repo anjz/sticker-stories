@@ -1,0 +1,48 @@
+{
+  "id": "float",
+  "sticker": "pelican",
+  "kind": "move",
+  "description": "the pelican floats along to the left on the sea, paddling gently, then stops.",
+  "sheet": "anims/pelican.float.webp",
+  "frame": {
+    "width": 485,
+    "height": 541
+  },
+  "columns": 6,
+  "count": 12,
+  "rest": {
+    "x": 0.04536,
+    "y": 0.07394,
+    "width": 0.8701,
+    "height": 0.89094
+  },
+  "stickerBox": {
+    "x": 0.18359,
+    "y": 0.13932,
+    "width": 0.63281,
+    "height": 0.72005
+  },
+  "hold": [
+    0.1,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.15,
+    0.16,
+    0.45
+  ],
+  "loop": {
+    "from": 1,
+    "to": 8
+  },
+  "facing": "left",
+  "stride": 0.4,
+  "on": [
+    "sea"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "run",
+  "sticker": "sandpiper",
+  "kind": "move",
+  "description": "the sandpiper runs along to the right on its quick little legs, then stops.",
+  "sheet": "anims/sandpiper.run.webp",
+  "frame": {
+    "width": 500,
+    "height": 466
+  },
+  "columns": 6,
+  "count": 12,
+  "rest": {
+    "x": 0.034,
+    "y": 0.03219,
+    "width": 0.92,
+    "height": 0.93348
+  },
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26302,
+    "width": 0.5,
+    "height": 0.47266
+  },
+  "hold": [
+    0.1,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.15,
+    0.16,
+    0.45
+  ],
+  "loop": {
+    "from": 1,
+    "to": 8
+  },
+  "facing": "right",
+  "stride": 0.5,
+  "on": [
+    "shore",
+    "sand"
+  ]
+}
