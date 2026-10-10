@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "the-capsule-waves-back",
+  "pack": "moonbase",
+  "featured": [
+    "capsule",
+    "woman",
+    "station"
+  ],
+  "supporting": [],
+  "tags": [
+    "gentle",
+    "kindness",
+    "bedtime"
+  ],
+  "premise": "In the long night Maya waves whenever the capsule passes over; tonight its four solar wings turn and flash in the sunlight high above — waving back.",
+  "inspiration": "The lighthouse lamp answered across the dark, a folk motif, turned: the answer is sunlight flashing on four wings.",
+  "lesson": "A small hello can reach a long way.",
+  "languages": {
+    "en-US": {
+      "title": "Waving at the Capsule",
+      "text": "{sfx:suit} {capsule:float loop 0.3} {station:float loop 0.3} {canvas:nightfall} The long Moon night had begun. The stars stood sharp and still. {woman:enter} Maya loped out onto the plain and {woman:face happy} looked up. Right on time, the {capsule:enter} capsule came sliding across the sky: a tiny bright X, high above the Moon. {woman:pulse} Every time it passed, Maya waved. {woman:face sad} [softly] But could anyone up there really see one small astronaut, down here in the dark? {woman:live hold} She waved anyway. And waited. [short pause] {capsule:live} Then the capsule turned its four wings, and they caught the sunlight, still shining up there above the night. {sfx:twinkle} Flash. Flash. {woman:live resume} [gasps] Up shot Maya's thumb. They were waving back! {canvas:satellites 0.6 12s} Little lights glided by among the stars, and behind the capsule the {station:enter} space station {station:live} turned its arrays, gleaming too. {woman:face happy} {woman:hop x2} [happily] Maya bounced all the way home. Somebody up there had waved hello."
+    },
+    "es-ES": {
+      "title": "Saludos a la cápsula",
+      "text": "{sfx:suit} {capsule:float loop 0.3} {station:float loop 0.3} {canvas:nightfall} Había empezado la larga noche lunar. Las estrellas brillaban quietas y nítidas. {woman:enter} Maya salió dando saltos a la llanura y {woman:face happy} miró hacia arriba. Puntual como siempre, la {capsule:enter} cápsula cruzaba el cielo: una X diminuta y brillante, muy por encima de la Luna. {woman:pulse} Cada vez que pasaba, Maya la saludaba. {woman:face sad} [softly] Pero ¿podría alguien ver desde allí a una astronauta tan pequeña, aquí abajo, a oscuras? {woman:live hold} Saludó de todos modos. Y esperó. [short pause] {capsule:live} Entonces la cápsula giró sus cuatro alas, que atraparon la luz del sol, que allí arriba seguía brillando. {sfx:twinkle} Destello. Destello. {woman:live resume} [gasps] Maya levantó el pulgar. ¡Le devolvían el saludo! {canvas:satellites 0.6 12s} Unas lucecitas cruzaron entre las estrellas, y detrás de la cápsula la {station:enter} estación espacial {station:live} giró sus paneles, brillando también. {woman:face happy} {woman:hop x2} [happily] Maya volvió a casa dando saltos. Alguien allí arriba la había saludado."
+    }
+  },
+  "sounds": {
+    "suit": {
+      "prompt": "the soft steady whir of a spacesuit's air fan heard from inside a helmet, quiet, calm and even",
+      "seconds": 24,
+      "loop": true
+    },
+    "twinkle": {
+      "prompt": "two soft high twinkling chimes, gentle and magical",
+      "seconds": 1.2
+    }
+  }
+}

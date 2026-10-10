@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "silent-touchdown",
+  "pack": "moonbase",
+  "featured": [
+    "ship",
+    "woman",
+    "man"
+  ],
+  "supporting": [],
+  "tags": [
+    "adventure",
+    "funny",
+    "learning"
+  ],
+  "premise": "Maya braces for the roar of the huge ship landing on the pad, but not a sound comes — until Leo tells her to feel it through her boots.",
+  "inspiration": "Andersen's 'The Princess and the Pea', turned: what she feels through her thick boots is not a pea but a landing.",
+  "lesson": "Sometimes you notice the most by keeping still.",
+  "learning": "Sound can't travel without air: on the Moon you feel a landing through the ground instead of hearing it.",
+  "languages": {
+    "en-US": {
+      "title": "The Silent Landing",
+      "text": "{woman:enter} Maya came loping out across the plain and {woman:face happy} tipped her helmet up to the black sky. Something bright was coming down. {woman:says} [excited] “Here it comes! This is going to be SO loud!” She {woman:wobble} {sfx:pat} clapped her gloves over the sides of her helmet. {man:enter} {man:face happy} Leo loped over {man:go to woman} to stand beside her. Down, down came the {ship:enter} {ship:go to pad} huge silver ship, engines glowing, onto the landing pad. {canvas:dust 0.7 8s} Dust sprayed out around it and drifted slowly back down. [short pause] {woman:face surprised} No roar. No rumble. Nothing at all. {woman:says} [whispers] “Leo… is it broken?” {man:pulse} {man:says} “There's no air out here to carry the sound. Feel it through your boots.” Maya stood very, very still. {sfx:hum solo} {woman:face happy} {woman:shake 0.3} There it was: a deep, soft hum, coming up through her soles. {ship:live} Without a whisper, the ship lowered its crew elevator to the ground, and Maya {woman:live} waved hello. [laughs] {man:wobble} Leo chuckled. She could take her gloves off her helmet now."
+    },
+    "es-ES": {
+      "title": "El aterrizaje silencioso",
+      "text": "{woman:enter} Maya salió dando saltos por la llanura y {woman:face happy} levantó el casco hacia el cielo negro. Algo brillante estaba bajando. {woman:says} [excited] «¡Ya llega! ¡Esto va a sonar MUCHÍSIMO!» Se {woman:wobble} {sfx:pat} tapó los lados del casco con los guantes. {man:enter} {man:face happy} Leo llegó a saltos {man:go to woman} y se puso a su lado. Despacio bajó la {ship:enter} {ship:go to pad} enorme nave plateada, con los motores encendidos, hasta la plataforma. {canvas:dust 0.7 8s} El polvo salió volando y volvió a caer, muy despacio. [short pause] {woman:face surprised} Ni un rugido. Ni un estruendo. Nada de nada. {woman:says} [whispers] «Leo… ¿se ha roto?» {man:pulse} {man:says} «Aquí no hay aire que lleve el sonido. Siéntelo con las botas.» Maya se quedó muy, muy quieta. {sfx:hum solo} {woman:face happy} {woman:shake 0.3} Ahí estaba: un zumbido suave y profundo que le subía por las suelas. {ship:live} Sin un susurro, la nave bajó su ascensor hasta el suelo, y Maya {woman:live} saludó con la mano. [laughs] {man:wobble} Leo se rió. Ya podía quitarse los guantes del casco."
+    }
+  },
+  "sounds": {
+    "pat": {
+      "prompt": "two soft muffled pats of thick gloves on the outside of a hard plastic helmet, heard from inside the helmet",
+      "seconds": 0.8
+    },
+    "hum": {
+      "prompt": "a deep, soft, low rumble felt through the ground, like a distant engine heard through thick boots, muffled and steady",
+      "seconds": 2.0
+    }
+  }
+}

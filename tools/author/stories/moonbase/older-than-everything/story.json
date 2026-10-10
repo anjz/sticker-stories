@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "id": "older-than-everything",
+  "pack": "moonbase",
+  "featured": [
+    "moon-rock",
+    "man",
+    "asteroid"
+  ],
+  "supporting": [],
+  "tags": [
+    "curiosity",
+    "funny",
+    "learning"
+  ],
+  "premise": "Leo nearly tosses away a plain grey pebble, until his wrist reader says it's older than almost any rock on Earth — perhaps as old as the asteroid tumbling overhead.",
+  "inspiration": "Aesop's 'The Cock and the Jewel', where the rooster tosses aside a gem, turned: this time the plain thing is the jewel, and he notices just in time.",
+  "lesson": "Plain on the outside can be precious on the inside.",
+  "learning": "Moon rocks are older than almost any rock on Earth.",
+  "languages": {
+    "en-US": {
+      "title": "Older Than Everything",
+      "text": "{asteroid:float loop 0.3} {man:enter} Leo was tidying the plain, tossing pebbles out of the way. He picked up a round grey {moon-rock:enter} rock. Plain. Dusty. Nothing special. {man:shake 0.3} He swung back his arm to throw it… and stopped. {man:face surprised} [curious] Something had twinkled. {moon-rock:live} The rock rocked in the dust, crystals glinting. {man:live hold} Leo held his wrist reader over it and read the screen. Once. Twice. {sfx:beep} {man:says} [in awe] “You're older than almost any rock on Earth.” Before there were trees, before there were fish, this little rock had already been lying here, waiting. {moon-rock:glow 0.5} High above, the lumpy {asteroid:enter} asteroid tumbled by. {asteroid:spin} {man:says} “Maybe as old as you, up there.” {man:live resume} Leo set the rock down again, very gently. {man:face happy} {moon-rock:sparkle} {man:says} [warmly] “Sorry about that. You can stay.”"
+    },
+    "es-ES": {
+      "title": "Más antigua que todo",
+      "text": "{asteroid:float loop 0.3} {man:enter} Leo estaba ordenando la llanura, apartando piedrecitas. Cogió una {moon-rock:enter} roca gris y redonda. Sencilla. Polvorienta. Nada especial. {man:shake 0.3} Echó el brazo atrás para tirarla… y se paró. {man:face surprised} [curious] Algo había brillado. {moon-rock:live} La roca se balanceó en el polvo, con destellos de cristal. {man:live hold} Leo pasó el lector de su muñeca por encima y leyó la pantalla. Una vez. Dos veces. {sfx:beep} {man:says} [in awe] «Eres más antigua que casi cualquier roca de la Tierra.» Antes de que hubiera árboles, antes de que hubiera peces, esta roca ya estaba aquí, esperando. {moon-rock:glow 0.5} Muy alto, pasó dando vueltas el {asteroid:enter} asteroide, lleno de bultos. {asteroid:spin} {man:says} «A lo mejor tan antigua como tú, ahí arriba.» {man:live resume} Leo volvió a dejar la roca en el suelo, con mucho cuidado. {man:face happy} {moon-rock:sparkle} {man:says} [warmly] «Perdona. Puedes quedarte.»"
+    }
+  },
+  "sounds": {
+    "beep": {
+      "prompt": "a soft electronic scanner chirp, rising, from a small wrist device",
+      "seconds": 0.8
+    }
+  }
+}

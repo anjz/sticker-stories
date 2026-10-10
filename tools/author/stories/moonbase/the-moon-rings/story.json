@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "the-moon-rings",
+  "pack": "moonbase",
+  "featured": [
+    "seismometer",
+    "man",
+    "moon-rock"
+  ],
+  "supporting": [],
+  "tags": [
+    "curiosity",
+    "wonder",
+    "learning"
+  ],
+  "premise": "The seismometer's light blinks: a moonquake! Leo feels nothing and the moon rock barely rocks, but the little instrument listens as the Moon hums on and on like a bell.",
+  "inspiration": "Aesop's 'The Mountain in Labour', turned: the tiny tremor is not a letdown but the wonder.",
+  "lesson": "Some of the biggest things are heard by the best listeners.",
+  "learning": "The Moon has small moonquakes, and afterwards it can go on ringing for a long time, like a bell.",
+  "languages": {
+    "en-US": {
+      "title": "The Moon Rings Like a Bell",
+      "text": "Out on the plain, the {seismometer:enter} seismometer sat quietly, listening to the Moon. {man:enter} Leo came loping by {man:face happy} with his toolbox. {seismometer:live hold} {sfx:blip} Suddenly its little light began to blink. Blink. Blink. {man:face surprised} [gasps] A moonquake! {man:pulse} Leo stood very still. He felt… nothing at all. Not a wobble. Even the {moon-rock:enter} moon rock by his boot {moon-rock:live} only tipped the tiniest bit. [curious] But the seismometer kept listening, {seismometer:glow 0.5} and its light kept blinking. One minute. Ten minutes. Longer. {man:live} Leo checked his wrist. The whole Moon was humming, very softly, like a great bell that had been tapped once and didn't want to stop. {man:face happy} [in awe] {sfx:bell} Ding… ding… ding… [softly] Leo {man:go to seismometer} sat down beside the {seismometer:pulse 0.5} seismometer and listened too, though only it could hear. {seismometer:live resume} At last, the light went still. {man:hearts} [whispers] “Good listening,” said Leo."
+    },
+    "es-ES": {
+      "title": "La Luna suena como una campana",
+      "text": "En la llanura, el {seismometer:enter} sismómetro escuchaba la Luna, muy tranquilo. {man:enter} Leo pasó dando saltos, {man:face happy} con su caja de herramientas. {seismometer:live hold} {sfx:blip} De pronto, su lucecita empezó a parpadear. Parpadeo. Parpadeo. {man:face surprised} [gasps] ¡Un terremoto lunar! {man:pulse} Leo se quedó muy quieto. No sintió… nada. Ni un temblor. Hasta la {moon-rock:enter} roca lunar junto a su bota {moon-rock:live} apenas se inclinó un poquito. [curious] Pero el sismómetro seguía escuchando, {seismometer:glow 0.5} y su luz seguía parpadeando. Un minuto. Diez minutos. Más. {man:live} Leo miró su muñeca. La Luna entera vibraba, muy bajito, como una gran campana a la que han tocado una vez y no quiere parar. {man:face happy} [in awe] {sfx:bell} Din… don… din… [softly] Leo {man:go to seismometer} se sentó junto al {seismometer:pulse 0.5} sismómetro y escuchó también, aunque solo él podía oírlo. {seismometer:live resume} Por fin, la luz se quedó quieta. {man:hearts} [whispers] —Buen trabajo escuchando —dijo Leo."
+    }
+  },
+  "sounds": {
+    "blip": {
+      "prompt": "a soft, slow electronic blip repeating three times, calm",
+      "seconds": 1.5
+    },
+    "bell": {
+      "prompt": "a very soft, deep bell tone, gently tapped once and slowly fading away, peaceful",
+      "seconds": 3.0
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "id": "always-falling",
+  "pack": "moonbase",
+  "featured": [
+    "station",
+    "capsule",
+    "cubesat",
+    "man"
+  ],
+  "supporting": [],
+  "tags": [
+    "curiosity",
+    "funny",
+    "learning"
+  ],
+  "premise": "Leo gasps that the station is falling — then remembers it always is: it moves sideways so fast that it keeps missing the Moon, as the capsule glides up to meet it.",
+  "inspiration": "Aesop's 'The Astronomer', who falls into a well while gazing at the stars, turned: the one falling is the station, and it never lands.",
+  "lesson": "A scary-sounding word can hide a wonderful idea.",
+  "learning": "A station in orbit is always falling, but it moves sideways so fast that it keeps missing the Moon.",
+  "languages": {
+    "en-US": {
+      "title": "Always Falling",
+      "text": "{station:float loop 0.3} {capsule:float loop 0.3} {cubesat:float loop 0.3} {man:enter} Leo lay back in the dust to watch the sky. Over the ridge came the {station:enter} space station, gliding round the Moon. {man:face surprised} [gasps] {man:says} “Wait. It's falling!” {man:hop} He sat bolt upright. Then he {man:face happy} remembered, and laughed at himself. The station IS always falling. But it races sideways so fast that it keeps falling past the Moon, round and round, and never comes down. {man:pulse} {man:says} “That's all an orbit is. Falling, and missing.” {station:live} The station turned its long solar arrays toward the Sun. A {capsule:enter} capsule {capsule:go to station} glided up to meet it, and the tiny {cubesat:enter} CubeSat {cubesat:spin} went tumbling past, falling too. [playfully] {man:face happy} {man:says} “Everyone up there is falling. And nobody's worried.” {capsule:live} The capsule tilted its four wings to the Sun. [softly] {man:face sleeping} Leo lay back down and closed his eyes, while round and round they went, all missing the Moon, just right."
+    },
+    "es-ES": {
+      "title": "Siempre cayendo",
+      "text": "{station:float loop 0.3} {capsule:float loop 0.3} {cubesat:float loop 0.3} {man:enter} Leo se tumbó en el polvo a mirar el cielo. Tras las montañas apareció la {station:enter} estación espacial, dando vueltas a la Luna. {man:face surprised} [gasps] {man:says} «Un momento. ¡Se está cayendo!» {man:hop} Se incorporó de un salto. Luego {man:face happy} se acordó y se rió de sí mismo. La estación SIEMPRE está cayendo. Pero va tan deprisa de lado que cae y cae alrededor de la Luna, vuelta tras vuelta, sin llegar nunca abajo. {man:pulse} {man:says} «Eso es una órbita. Caer, y no acertar.» {station:live} La estación giró sus largos paneles solares hacia el Sol. Una {capsule:enter} cápsula {capsule:go to station} subió a su encuentro, y el diminuto {cubesat:enter} CubeSat {cubesat:spin} pasó dando volteretas, cayendo también. [playfully] {man:face happy} {man:says} «Ahí arriba todos están cayendo. Y nadie se preocupa.» {capsule:live} La cápsula inclinó sus cuatro alas hacia el Sol. [softly] {man:face sleeping} Leo se tumbó y cerró los ojos. Y ellos siguieron dando vueltas, sin acertar nunca a la Luna, como debe ser."
+    }
+  }
+}

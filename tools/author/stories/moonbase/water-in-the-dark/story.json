@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "water-in-the-dark",
+  "pack": "moonbase",
+  "featured": [
+    "ice",
+    "rover",
+    "satellite"
+  ],
+  "supporting": [],
+  "tags": [
+    "adventure",
+    "discovery",
+    "learning"
+  ],
+  "premise": "In the crater's shadow the rover's drill strikes ice, and the satellite beams the news home: water to drink and air to breathe.",
+  "inspiration": "Grimm's 'The Water of Life', where princes search far and wide for a magic water, turned: the water of life is hiding in a crater, and a patient rover finds it.",
+  "lesson": "Treasure is often found by whoever keeps looking.",
+  "learning": "Ice hidden in the shadows of craters can be turned into water to drink and air to breathe.",
+  "languages": {
+    "en-US": {
+      "title": "Water in the Dark",
+      "text": "The little {rover:enter} rover {rover:go to crater} trundled down into the crater, into the shadows. [curious] It was dark down there, and colder than anywhere on Earth. {rover:pulse} Its camera peered at the ground. Dust. Dust. More dust. {rover:live} So it drilled. Deeper, and deeper. {sfx:drill} {canvas:glints 0.6 10s} [gasps] Then, in its lights, something glittered: a chunk of {ice:enter} ice, pushing up out of the dust! Frozen in the dark for ages and ages. {ice:live hold} Frost spread over it, white and sparkling. {rover:hop} Ice on the Moon! {ice:sparkle} Melted, it would be water to drink. Split apart, it would make air to breathe. High above, the {satellite:enter} {satellite:float loop 0.3} satellite {satellite:live} turned toward the Earth and sent the news home. {sfx:beep} [excited] {all:face happy} {all:hop x2} Everyone who heard it cheered. {rover:sparkle} [proudly] Not bad, for a slow little rover in the dark."
+    },
+    "es-ES": {
+      "title": "Agua en la oscuridad",
+      "text": "El pequeño {rover:enter} róver {rover:go to crater} bajó al cráter, hacia las sombras. [curious] Allí abajo estaba oscuro, y hacía más frío que en ningún lugar de la Tierra. {rover:pulse} Su cámara miró el suelo. Polvo. Polvo. Más polvo. {rover:live} Así que taladró. Más hondo, y más hondo. {sfx:drill} {canvas:glints 0.6 10s} [gasps] Entonces, a la luz de sus faros, algo brilló: ¡un trozo de {ice:enter} hielo, asomando entre el polvo! Congelado en la oscuridad desde hacía muchísimo tiempo. {ice:live hold} La escarcha lo cubrió, blanca y brillante. {rover:hop} ¡Hielo en la Luna! {ice:sparkle} Derretido, sería agua para beber. Separado en partes, daría aire para respirar. Muy alto, el {satellite:enter} {satellite:float loop 0.3} satélite {satellite:live} se giró hacia la Tierra y envió la noticia a casa. {sfx:beep} [excited] {all:face happy} {all:hop x2} Todos los que la oyeron lo celebraron. {rover:sparkle} [proudly] Nada mal, para un róver pequeño y lento en la oscuridad."
+    }
+  },
+  "sounds": {
+    "drill": {
+      "prompt": "a small drill grinding steadily into dry gritty soil, muffled, as if heard through the ground",
+      "seconds": 2.0
+    },
+    "beep": {
+      "prompt": "a single soft electronic radio beep, clean and friendly",
+      "seconds": 0.6
+    }
+  }
+}

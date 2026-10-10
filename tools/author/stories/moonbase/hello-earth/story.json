@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "id": "hello-earth",
+  "pack": "moonbase",
+  "featured": [
+    "satellite",
+    "woman",
+    "man"
+  ],
+  "supporting": [],
+  "tags": [
+    "funny",
+    "learning"
+  ],
+  "premise": "Maya radios hello to Earth through the satellite and hears only silence, so she says it again and again — and every hello comes back, one after another, just a little late.",
+  "inspiration": "Ovid's Echo, turned: the echo is family a long way off, and it answers every single hello.",
+  "lesson": "Patience: some answers are worth the wait.",
+  "learning": "A radio message takes a little over a second to travel between the Moon and the Earth.",
+  "languages": {
+    "en-US": {
+      "title": "Hello, Earth!",
+      "text": "{satellite:float loop 0.3} {woman:enter} Maya wanted to say hello to her family on Earth. High above, the {satellite:enter} satellite {satellite:live hold} turned toward home, a little light glowing. {sfx:beep} Beep. {woman:face happy} {woman:says} “Hello, Earth!” [short pause] Nothing. {woman:face surprised} {woman:says} “Hello?” Nothing at all. {woman:says} [rushed] “Hello? Hello! HELLO!” {man:enter} Leo loped over, {man:face happy} trying very hard not to laugh. {man:says} “Patience. Even radio needs time to get there.” {man:live} He tapped his wrist display. A little over a second to reach the Earth. A little over a second to come back. {sfx:crackle solo} And then, one after another, the answers arrived: “Hello, Maya!” “Hello?” “Hello!” “HELLO!” [laughs] {woman:face happy} {woman:wobble x2} Maya laughed so hard she had to sit down. {satellite:live resume} Up above, the satellite kept the line open, one patient second at a time."
+    },
+    "es-ES": {
+      "title": "¡Hola, Tierra!",
+      "text": "{satellite:float loop 0.3} {woman:enter} Maya quería saludar a su familia en la Tierra. Muy alto, el {satellite:enter} satélite {satellite:live hold} se giró hacia casa, con una lucecita encendida. {sfx:beep} Bip. {woman:face happy} {woman:says} «¡Hola, Tierra!» [short pause] Nada. {woman:face surprised} {woman:says} «¿Hola?» Nada de nada. {woman:says} [rushed] «¿Hola? ¡Hola! ¡HOLA!» {man:enter} Leo llegó dando saltos, {man:face happy} aguantándose la risa. {man:says} «Paciencia. Hasta la radio tarda en llegar.» {man:live} Dio unos toquecitos a la pantalla de su muñeca. Algo más de un segundo hasta la Tierra. Algo más de un segundo de vuelta. {sfx:crackle solo} Y entonces, una detrás de otra, llegaron las respuestas: «¡Hola, Maya!» «¿Hola?» «¡Hola!» «¡HOLA!» [laughs] {woman:face happy} {woman:wobble x2} Maya se rió tanto que tuvo que sentarse. {satellite:live resume} Allá arriba, el satélite mantuvo la línea abierta, segundo a segundo, con paciencia."
+    }
+  },
+  "sounds": {
+    "beep": {
+      "prompt": "a single soft electronic radio beep, clean and friendly",
+      "seconds": 0.6
+    },
+    "crackle": {
+      "prompt": "a short soft crackle of a radio channel opening, gentle static fading in and out",
+      "seconds": 1.4
+    }
+  }
+}

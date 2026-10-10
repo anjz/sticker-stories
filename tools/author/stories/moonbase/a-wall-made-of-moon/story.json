@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "id": "a-wall-made-of-moon",
+  "pack": "moonbase",
+  "featured": [
+    "printer",
+    "excavator",
+    "greenhouse"
+  ],
+  "supporting": [],
+  "tags": [
+    "teamwork",
+    "learning"
+  ],
+  "premise": "The greenhouse needs a sheltering wall but there are no bricks on the Moon, so the excavator digs moon soil and the printer lays it down, layer on layer.",
+  "inspiration": "'The Three Little Pigs' (English folk tale), turned: there is no wolf, and the strongest bricks of all turn out to be the ground itself.",
+  "lesson": "Use what you have.",
+  "learning": "Builders can print walls from moon soil, layer by layer, instead of bringing bricks from Earth.",
+  "languages": {
+    "en-US": {
+      "title": "A Wall Made of Moon",
+      "text": "The {greenhouse:enter} greenhouse was the base's little garden, {greenhouse:glow 0.6} green and glowing. But out on the open plain, it needed a wall. [curious] Only… there are no bricks on the Moon. No clay. No wood. {greenhouse:wobble} No stone. What the Moon has is dust. Lots of grey dust. So along trundled the {excavator:enter} excavator. {excavator:live} Its drums spun round and scooped up a big load of moon soil. Then the {printer:enter} printer unfolded its long legs and {printer:pulse} got ready. {excavator:go to printer} The excavator rolled over and tipped the soil into its hopper. {sfx:pour} {printer:live hold} Back and forth went the printer, laying the soil down in a neat grey line. Then another, on top. And another. {sfx:whirr} Whirr… layer. Whirr… layer. {excavator:hop} The excavator brought more. {printer:shake 0.3} [proudly] {printer:live resume} By the end of the day, a strong grey wall curved round, made of the Moon itself. {all:face happy} {all:hop} Everyone cheered. {greenhouse:sparkle} No bricks needed. Just dust, and patience."
+    },
+    "es-ES": {
+      "title": "Un muro hecho de Luna",
+      "text": "El {greenhouse:enter} invernadero era el pequeño huerto de la base, {greenhouse:glow 0.6} verde y luminoso. Pero allí, en plena llanura, necesitaba un muro que lo protegiera. [curious] Solo que… en la Luna no hay ladrillos. Ni arcilla. Ni madera. {greenhouse:wobble} Ni piedra. Lo que la Luna tiene es polvo. Muchísimo polvo gris. Así que llegó la {excavator:enter} excavadora. {excavator:live} Sus tambores giraron y recogieron un buen montón de tierra lunar. Luego la {printer:enter} impresora desplegó sus largas patas y {printer:pulse} se preparó. {excavator:go to printer} La excavadora se acercó y echó la tierra en su tolva. {sfx:pour} {printer:live hold} La impresora iba y venía, dejando la tierra en una fila gris y ordenada. Y otra encima. Y otra más. {sfx:whirr} Zzzum… capa. Zzzum… capa. {excavator:hop} La excavadora traía más. {printer:shake 0.3} [proudly] {printer:live resume} Al final del día, un muro gris y fuerte se curvaba, hecho de la propia Luna. {all:face happy} {all:hop} Todos lo celebraron. {greenhouse:sparkle} Sin ladrillos. Solo polvo y paciencia."
+    }
+  },
+  "sounds": {
+    "pour": {
+      "prompt": "dry gritty soil pouring into a metal hopper, a soft rushing hiss",
+      "seconds": 1.5
+    },
+    "whirr": {
+      "prompt": "a small machine's motor whirring smoothly back and forth, gentle and steady",
+      "seconds": 2.0
+    }
+  }
+}

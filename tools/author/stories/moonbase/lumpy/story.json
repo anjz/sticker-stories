@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "id": "lumpy",
+  "pack": "moonbase",
+  "featured": [
+    "asteroid",
+    "woman",
+    "satellite",
+    "cubesat"
+  ],
+  "supporting": [],
+  "tags": [
+    "funny",
+    "learning"
+  ],
+  "premise": "The CubeSat's camera catches a new asteroid tumbling past; whoever finds one gets to suggest its name, so Maya spends the whole day choosing.",
+  "inspiration": "Grimm's 'Rumpelstiltskin', turned: the name isn't guessed but chosen, and nothing hangs on it but fun.",
+  "lesson": "The best name is the one that fits.",
+  "learning": "Whoever discovers an asteroid gets to suggest its name.",
+  "languages": {
+    "en-US": {
+      "title": "A Name for an Asteroid",
+      "text": "{cubesat:float loop 0.3} {asteroid:float loop 0.3} High above the base, the little {cubesat:enter} CubeSat was taking pictures of the stars. {cubesat:pulse} {sfx:click} Click. And in one picture there was a speck that had never been there before: a brand-new {asteroid:enter} asteroid, tumbling along! {woman:enter} Maya read the news and {woman:face surprised} gasped. Whoever spots a new asteroid gets to suggest its name. And she had spotted this one! {woman:face happy} [excited] She bounced about the plain all day, trying out names. {woman:shake 0.4} {woman:says} “Rocky? Too plain. Sir Tumbles-a-Lot? Too fancy.” {asteroid:live} Up in the black sky, the asteroid rolled slowly over, lumpy as an old potato. [short pause] {woman:says} [warmly] “Lumpy. You're Lumpy.” Far above, the {satellite:enter} {satellite:float loop 0.3} satellite {satellite:live} turned toward the Earth and sent the name home. {woman:live} Maya waved up at her asteroid. {asteroid:sparkle} And Lumpy rolled on through space, with a name at last."
+    },
+    "es-ES": {
+      "title": "Un nombre para un asteroide",
+      "text": "{cubesat:float loop 0.3} {asteroid:float loop 0.3} Muy por encima de la base, el pequeño {cubesat:enter} CubeSat hacía fotos de las estrellas. {cubesat:pulse} {sfx:click} Clic. Y en una de las fotos había una motita que nunca había estado allí: ¡un {asteroid:enter} asteroide nuevo, dando volteretas! {woman:enter} Maya leyó la noticia y {woman:face surprised} se quedó boquiabierta. Quien descubre un asteroide nuevo puede proponer su nombre. ¡Y este lo había descubierto ella! {woman:face happy} [excited] Se pasó el día dando saltos por la llanura, probando nombres. {woman:shake 0.4} {woman:says} «¿Pedrusco? Muy soso. ¿Don Voltereta Elegantísima? Demasiado elegante.» {asteroid:live} Allá arriba, en el cielo negro, el asteroide dio una vuelta lenta, lleno de bultos como una patata vieja. [short pause] {woman:says} [warmly] «Patatón. Tú eres Patatón.» Muy alto, el {satellite:enter} {satellite:float loop 0.3} satélite {satellite:live} se giró hacia la Tierra y envió el nombre a casa. {woman:live} Maya saludó a su asteroide. {asteroid:sparkle} Y Patatón siguió rodando por el espacio, con nombre por fin."
+    }
+  },
+  "sounds": {
+    "click": {
+      "prompt": "a tiny, crisp camera shutter click",
+      "seconds": 0.5
+    }
+  }
+}
