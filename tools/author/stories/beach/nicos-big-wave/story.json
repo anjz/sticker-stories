@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "nicos-big-wave",
+  "pack": "beach",
+  "featured": [
+    "surfer",
+    "seal",
+    "sailboat"
+  ],
+  "supporting": [
+    "turtle"
+  ],
+  "tags": [
+    "courage",
+    "gentle"
+  ],
+  "premise": "Nico wants to ride the biggest wave, but the first big one makes his knees wobble; Seal claps him on to start small, and he rides little wave after little wave.",
+  "inspiration": "The boast-undone fable (the frog who would be as big as the ox), turned gentle: the boast becomes a plan, and the small steps are the brave part.",
+  "lesson": "Big things start small.",
+  "languages": {
+    "en-US": {
+      "title": "Nico's Big Wave",
+      "text": "[excited] {sailboat:float loop 0.3} {canvas:sunshine 0.6 30s} It was a perfect morning for surfing. {surfer:enter} {surfer:go to sand} Nico came down the beach with his yellow board. {surfer:face happy} {surfer:says} [proudly] \"Today I'm riding the BIGGEST wave!\" Out on the bay, {sailboat:enter} {sailboat:go to sea} the sailboat bobbed along, {sailboat:live} its sails puffing in the breeze. Then a wave rose up, tall and white and foamy. {sfx:bigwave solo} {surfer:face surprised} [nervously] Nico stopped. That wave was very big. {surfer:shake} His knees went wobbly. [short pause] {seal:enter} {seal:go to rocks} Seal flopped up onto the rocks. {seal:face happy} {seal:live} She clapped her flippers. {sfx:bark} Arf, arf! {seal:hop} As if to say: start small. So Nico waited for a little wave. {surfer:go to sea by surf} Swoosh! He was up! {turtle:enter by swim} Turtle swam alongside, {turtle:hearts} smiling. Nico rode the little wave {surfer:go to sand by surf} all the way back to the sand. {surfer:face happy} {surfer:hop x2} Then another. And another. {surfer:live} Nico waved to Seal and held up his board. {surfer:says} [happily] \"Thanks, Seal! The big one can wait till tomorrow.\" {seal:hearts}"
+    },
+    "es-ES": {
+      "title": "La gran ola de Nico",
+      "text": "[excited] {sailboat:float loop 0.3} {canvas:sunshine 0.6 30s} Era una mañana perfecta para hacer surf. {surfer:enter} {surfer:go to sand} Nico bajó por la playa con su tabla amarilla. {surfer:face happy} {surfer:says} [proudly] «¡Hoy voy a coger la ola MÁS GRANDE!» En la bahía, {sailboat:enter} {sailboat:go to sea} el velero se mecía, {sailboat:live} con las velas hinchadas por la brisa. Entonces se levantó una ola alta, blanca y llena de espuma. {sfx:bigwave solo} {surfer:face surprised} [nervously] Nico se paró. Aquella ola era muy grande. {surfer:shake} Le temblaban las rodillas. [short pause] {seal:enter} {seal:go to rocks} Foca subió a las rocas dando saltitos. {seal:face happy} {seal:live} Dio palmadas con las aletas. {sfx:bark} ¡Arf, arf! {seal:hop} Como diciendo: empieza por las pequeñas. Así que Nico esperó una ola pequeñita. {surfer:go to sea by surf} ¡Zas! ¡Ya estaba de pie! {turtle:enter by swim} Tortuga nadaba a su lado, {turtle:hearts} sonriendo. Nico se dejó llevar por la ola {surfer:go to sand by surf} hasta la arena. {surfer:face happy} {surfer:hop x2} Luego otra. Y otra más. {surfer:live} Nico saludó a Foca con la tabla en alto. {surfer:says} [happily] «¡Gracias, Foca! La grande puede esperar a mañana.» {seal:hearts}"
+    }
+  },
+  "sounds": {
+    "bigwave": {
+      "prompt": "a big ocean wave rising and breaking into white foam on a beach, realistic field recording",
+      "seconds": 2.5
+    },
+    "bark": {
+      "prompt": "a happy harbour seal barking twice, realistic field recording",
+      "seconds": 1.5
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "id": "waiting-for-the-wind",
+  "pack": "beach",
+  "featured": [
+    "sailboat",
+    "girl",
+    "seagull"
+  ],
+  "supporting": [],
+  "tags": [
+    "patience",
+    "weather",
+    "learning"
+  ],
+  "premise": "There isn't a breath of wind: the sailboat can't sail, Lola's kite won't fly, and Gull won't bother; when the wind comes it fills the sails and lifts the kite.",
+  "inspiration": "Aesop's North Wind fable seen from the other side: everyone waits for the wind, and it gives each of them what they need.",
+  "lesson": "Good things can be worth waiting for.",
+  "learning": "A sail catches the wind, and the wind pushes the boat along.",
+  "languages": {
+    "en-US": {
+      "title": "Waiting for the Wind",
+      "text": "{sailboat:float loop 0.2} Not a breath of wind. {sailboat:enter} {sailboat:go to sea} The sailboat sat still on the flat blue sea, its white sails hanging down. {sailboat:pulse} {girl:enter} Lola stood holding her kite. {girl:face sad} The kite hung down too. {girl:says} [sad] \"Come on, wind.\" {seagull:enter} {seagull:go to sand} Gull sat on the sand, {seagull:face sleeping} not even bothering to fly. [short pause] Then… a ripple. A flutter. {canvas:wind 0.7 25s} {sfx:breeze} Whoosh! Here came the wind! {sailboat:live} The sails puffed out, round and full. {girl:face surprised} {girl:says} [excited] \"Look! The wind's pushing the sail, just like it lifts my kite!\" {girl:face happy} {girl:live} Lola let out the string, and up went her kite. {seagull:face happy} {seagull:go to girl} Gull woke up and flew up beside her. {sailboat:go to sea right} And off went the sailboat across the bay, pushed along by the wind. [happily] Wind for the boat, wind for the kite, wind under Gull's wings. {girl:hearts} Everyone had been waiting for the very same thing."
+    },
+    "es-ES": {
+      "title": "Esperando al viento",
+      "text": "{sailboat:float loop 0.2} Ni una pizca de viento. {sailboat:enter} {sailboat:go to sea} El velero estaba quieto en el mar azul y liso, con las velas blancas colgando. {sailboat:pulse} {girl:enter} Lola sujetaba su cometa. {girl:face sad} La cometa también colgaba. {girl:says} [sad] «Venga, viento.» {seagull:enter} {seagull:go to sand} Gaviota estaba sentada en la arena, {seagull:face sleeping} sin ganas ni de volar. [short pause] Entonces… una ondita. Un aleteo. {canvas:wind 0.7 25s} {sfx:breeze} ¡Fiuuu! ¡Ya llegaba el viento! {sailboat:live} Las velas se hincharon, redondas y llenas. {girl:face surprised} {girl:says} [excited] «¡Mira! ¡El viento empuja la vela, igual que levanta mi cometa!» {girl:face happy} {girl:live} Lola soltó hilo, y arriba subió su cometa. {seagull:face happy} {seagull:go to girl} Gaviota se despertó y subió volando a su lado. {sailboat:go to sea right} Y el velero cruzó la bahía, empujado por el viento. [happily] Viento para el barco, viento para la cometa, viento bajo las alas de Gaviota. {girl:hearts} Todos estaban esperando lo mismo."
+    }
+  },
+  "sounds": {
+    "breeze": {
+      "prompt": "a sea breeze rising and filling sails, cloth flapping and snapping taut, realistic field recording",
+      "seconds": 2.5
+    }
+  }
+}

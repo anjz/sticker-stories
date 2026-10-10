@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "the-foggy-morning",
+  "pack": "beach",
+  "featured": [
+    "fishing-boat",
+    "bottle",
+    "sandpiper"
+  ],
+  "supporting": [
+    "seagull"
+  ],
+  "tags": [
+    "gentle",
+    "weather"
+  ],
+  "premise": "On a foggy morning Sandpiper can't see anything; a chugging shape turns out to be the fishing boat coming home, a bottle rolls up to his feet, and the sun melts the fog away.",
+  "inspiration": "The fog-and-reveal of sea tales (the ship out of the mist), told with no danger: what was hidden was there all along, and friendly.",
+  "lesson": "What you can't see is often still there, safe.",
+  "languages": {
+    "en-US": {
+      "title": "The Foggy Morning",
+      "text": "{canvas:fog 0.8 30s} [softly] One morning, the beach was hidden in fog, soft and white and grey. {sandpiper:enter} Sandpiper peered out. {sandpiper:face surprised} He couldn't see the water. He couldn't see the lighthouse. [whispers] Where has everything gone? [short pause] {sfx:chug} Chug, chug, chug. Something big was out there. {fishing-boat:enter} A dark shape came slowly through the fog… {fishing-boat:pulse} the fishing boat, coming home. And bobbing along beside it, {bottle:enter} a little green bottle. {bottle:go to shore} A wave rolled it right up to the edge. {sandpiper:go to bottle by run} Sandpiper ran over and gave it a peck. {bottle:live} Pop! went the cork. {sandpiper:face happy} {sandpiper:wobble} [laughs] Then, {canvas:sunshine 0.8 25s} slowly, the sun broke through, and the fog melted away. {fishing-boat:live} The fishing boat hauled up its net, {seagull:enter} {seagull:go to fishing-boat} and Gull flew out to say good morning. {sandpiper:live} Sandpiper pecked happily at the ground. [happily] Everything was right where it had been, all along. {sandpiper:hop}"
+    },
+    "es-ES": {
+      "title": "La mañana de niebla",
+      "text": "{canvas:fog 0.8 30s} [softly] Una mañana, la playa amaneció escondida en la niebla, suave, blanca y gris. {sandpiper:enter} Correlimos se asomó. {sandpiper:face surprised} No veía el agua. No veía el faro. [whispers] ¿Dónde se ha ido todo? [short pause] {sfx:chug} Chuc, chuc, chuc. Algo grande había ahí fuera. {fishing-boat:enter} Una sombra se acercaba despacio entre la niebla… {fishing-boat:pulse} la barca de pesca, que volvía a casa. Y meciéndose a su lado, {bottle:enter} una botellita verde. {bottle:go to shore} Una ola la llevó rodando hasta el borde. {sandpiper:go to bottle by run} Correlimos fue corriendo y le dio un picotazo. {bottle:live} ¡Pop!, hizo el corcho. {sandpiper:face happy} {sandpiper:wobble} [laughs] Entonces, {canvas:sunshine 0.8 25s} poco a poco, salió el sol, y la niebla se deshizo. {fishing-boat:live} La barca subió su red, {seagull:enter} {seagull:go to fishing-boat} y Gaviota salió volando a darle los buenos días. {sandpiper:live} Correlimos picoteó el suelo, contento. [happily] Todo estaba en su sitio, como siempre. {sandpiper:hop}"
+    }
+  },
+  "sounds": {
+    "chug": {
+      "prompt": "a small fishing boat's old engine chugging slowly across calm water, distant, realistic",
+      "seconds": 2.5
+    },
+    "pop": {
+      "prompt": "a cork popping out of a glass bottle, a gentle pop",
+      "seconds": 1
+    }
+  }
+}
