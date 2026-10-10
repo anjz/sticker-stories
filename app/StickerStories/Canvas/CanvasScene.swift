@@ -1425,7 +1425,8 @@ final class CanvasScene: SKScene {
         let visitors = addVisitors(for: triggers.entrances, goes: triggers.goes, policy: policy)
         let nodes = allStickerNodes()
         let targets = Dictionary(grouping: nodes, by: \.stickerID).mapValues { $0.map(\.instanceID) }
-        let runner = StickerEffectsRunner(triggers: triggers.sticker, targets: targets, policy: policy)
+        let runner = StickerEffectsRunner(
+            triggers: triggers.sticker, targets: targets, everyone: pack.manifest.characters, policy: policy)
         livePolicy = policy
         let placed = Set(nodes.map(\.stickerID))
         let faces = ExpressionTimeline(triggers: triggers.faces)

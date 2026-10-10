@@ -31,6 +31,7 @@ public final class StickerEffectsRunner: StickerEffects {
 
     private let triggers: [EffectTrigger]
     private let targets: [String: [UUID]]
+    private let everyone: Set<String>?
     private var firedTriggers: Set<Int> = []
     private var sequence = 0
     private var flashStarts: [TimeInterval] = []
@@ -42,14 +43,17 @@ public final class StickerEffectsRunner: StickerEffects {
     ///   - triggers: declarative triggers for this story (already decoded).
     ///   - targets: sticker ID → placed instance IDs. Triggers whose sticker
     ///     has no instances simply never fire (that is normal, not a fault).
+    ///   - everyone: the stickers `all` reaches — the ones that can feel
+    ///     something (`PackManifest.characters`); nil reaches every sticker.
     ///   - policy: Reduce Motion / calm mode.
     ///   - log: where non-fatal content problems go; defaults to os_log.
     public init(
-        triggers: [EffectTrigger] = [], targets: [String: [UUID]] = [:],
+        triggers: [EffectTrigger] = [], targets: [String: [UUID]] = [:], everyone: Set<String>? = nil,
         policy: EffectPolicy = .standard, log: ((String) -> Void)? = nil
     ) {
         self.triggers = triggers
         self.targets = targets
+        self.everyone = everyone
         self.policy = policy
         self.log = log ?? { Self.logger.notice("\($0, privacy: .public)") }
     }
@@ -84,7 +88,8 @@ public final class StickerEffectsRunner: StickerEffects {
         for (index, trigger) in triggers.enumerated() where !firedTriggers.contains(index) && trigger.at <= currentTime {
             firedTriggers.insert(index)
             let instances = trigger.stickerID == EffectTrigger.allStickers
-                ? targets.keys.sorted().flatMap { targets[$0] ?? [] } : targets[trigger.stickerID] ?? []
+                ? targets.keys.sorted().filter { everyone?.contains($0) ?? true }.flatMap { targets[$0] ?? [] }
+                : targets[trigger.stickerID] ?? []
             for instance in instances {
                 start(trigger.effect, on: instance, options: trigger.options, at: trigger.at)
             }

@@ -145,6 +145,14 @@ public struct PackManifest: Codable, Equatable, Sendable {
     public var stickers: [StickerDefinition]
     public var stories: [StoryDefinition]
 
+    /// The stickers that can feel something — the ones with faces (animals,
+    /// people, robots): what a story's `all` ("everyone cheered") reaches.
+    /// A pack without faces anywhere gives nil: `all` reaches every sticker.
+    public var characters: Set<String>? {
+        let faces = Set(stickers.filter { !$0.expressions.isEmpty }.map(\.id))
+        return faces.isEmpty ? nil : faces
+    }
+
     /// The pack's world with every gap filled from its setting.
     public var effectiveWorld: PackWorld.Resolved { PackWorld.resolve(world, setting: setting) }
 

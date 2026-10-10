@@ -14,6 +14,25 @@ struct EffectRunnerTests {
         StickerEffectsRunner(triggers: triggers, targets: targets, policy: policy, log: log)
     }
 
+    @Test func everyoneMeansTheStickersThatCanFeelSomething() {
+        let hop = EffectTrigger(at: 1, stickerID: EffectTrigger.allStickers, effect: .hop)
+        // Only the fox has a face: the tree does not cheer.
+        let r = StickerEffectsRunner(triggers: [hop], targets: targets, everyone: ["fox"])
+        let d = r.tick(1.2)
+        #expect(d[fox] != nil && d[fox2] != nil && d[tree] == nil)
+        // Without faces anywhere, everyone is every sticker.
+        #expect(runner([hop]).tick(1.2)[tree] != nil)
+        var manifest = PackManifest(
+            schemaVersion: 2, id: "p", version: 1, languages: ["en-US"], displayName: ["en-US": "P"], theme: "t",
+            background: "b.png", foreground: "f.png",
+            stickers: [StickerDefinition(id: "fox", name: [:], image: "f.png", expressions: ["happy": "h.png"]),
+                       StickerDefinition(id: "tree", name: [:], image: "t.png")],
+            stories: [])
+        #expect(manifest.characters == ["fox"])
+        manifest.stickers[0].expressions = [:]
+        #expect(manifest.characters == nil)
+    }
+
     @Test func playThenTickProducesDeltasAndRetires() {
         let r = runner()
         r.tick(1.0)

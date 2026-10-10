@@ -283,6 +283,14 @@ laughed*, *and the whole forest {all:face sleeping} fell asleep*, *they
 {all:hop x2} cheered*. It is what makes the fallback stories (no featured
 stickers) come alive with whatever is on the canvas.
 
+- **Everyone is everyone who can feel something**: `all` reaches the
+  stickers with faces — animals, people, robots — and leaves the rest
+  alone (a rover does not cheer, a rock does not hop). In Forest that is
+  every sticker; in Moon Base only Maya and Leo. So in a pack of
+  machines, a fallback story's `{all:…}` comes alive only when an
+  astronaut is on the canvas: write its words so they still read right
+  over a canvas of machines, and let the machines' own beats carry the
+  stories that feature them. (A pack with no faces at all: everyone.)
 - Only when the sentence really means everyone: it reaches stickers the
   story never names.
 - Not for live animations (each is one sticker's move): name the sticker.

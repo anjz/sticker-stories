@@ -401,7 +401,9 @@ Along came {fox:enter} Fox, hop, hop, hop.
 
 ### Everyone: `all`
 
-The reserved target `all` means every sticker on the canvas: `{all:hop}`,
+The reserved target `all` means every sticker on the canvas that can feel
+something — every one with faces (`stickers[].expressions`), or every
+sticker when the pack has no faces at all: `{all:hop}`,
 `{all:hearts}`, `{all:face happy}`. Any sticker effect or a face; not a
 live animation. Use it on words about everyone ("everyone laughed", "they
 all fell asleep"); it is how fallback stories reach whatever the child

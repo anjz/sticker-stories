@@ -121,7 +121,7 @@ system that shares the clock and the trigger file but not this vocabulary
 | Key | Required | Default | Meaning |
 |---|---|---|---|
 | `effect` | yes | | One of the 12 names above. |
-| `sticker` | yes | | Sticker ID from the manifest, or `all` for every sticker on the canvas. Every placed instance is affected. |
+| `sticker` | yes | | Sticker ID from the manifest, or `all` for every sticker on the canvas that can feel something — those with faces (`expressions`), or every sticker in a pack without faces (`PackManifest.characters`). Every placed instance is affected. |
 | `at` | yes | | Seconds into **this language's** narration when the effect starts. |
 | `cue` | no | | Free label for authoring traceability (the word it lines up with). The app ignores it. |
 | `repeat` | no | `1` | `n` cycles (1–50) or `"loop"` until playback ends. Ignored by `fade-in` / `fade-out`. |
