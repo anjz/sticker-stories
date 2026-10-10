@@ -561,6 +561,29 @@ func TestWeatherWordsWantTheirCanvasEffect(t *testing.T) {
 	}
 }
 
+func TestAStickersNameIsNotTheWeather(t *testing.T) {
+	cat := testCatalog(t)
+	space := forest
+	space.Setting = "space"
+	s := goodStory()
+	for lang, extra := range map[string]string{"en-US": " The comet glowed.", "es-ES": " El cometa brilló."} {
+		l := s.Languages[lang]
+		l.Text += extra
+		s.Languages[lang] = l
+	}
+	if w := strings.Join(Validate(s, space, cat).Warnings, "\n"); !strings.Contains(w, `the text mentions "comet"`) {
+		t.Fatalf("a comet nobody in the story is called should want {canvas:comet}: %v", w)
+	}
+	space.Names = map[string]map[string]string{}
+	for id, names := range forest.Names {
+		space.Names[id] = names
+	}
+	space.Names["fox"] = map[string]string{"en-US": "Comet", "es-ES": "Cometa"}
+	if w := strings.Join(Validate(s, space, cat).Warnings, "\n"); strings.Contains(w, "mentions") {
+		t.Errorf("a comet that is the story's own sticker is not the canvas comet: %v", w)
+	}
+}
+
 func TestFaceAndAllCues(t *testing.T) {
 	cat := testCatalog(t)
 	pack := forest

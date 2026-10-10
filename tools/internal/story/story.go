@@ -1340,7 +1340,7 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		if canvasCues > MaxCanvasCues {
 			is.warnf("%s: %d canvas cues; keep it to the %d biggest changes of weather or light", lang, canvasCues, MaxCanvasCues)
 		}
-		validateCanvasMentions(&is, lang, nar, m, cat)
+		validateCanvasMentions(&is, lang, nar, m, cat, inStory)
 		validatePlaceMentions(&is, lang, nar, m, inStory)
 		if canvasCues > 0 && canvasCues == len(cues) {
 			is.warnf("%s: only canvas cues — the stickers should react too", lang)
@@ -1532,7 +1532,9 @@ var canvasWords = map[string]map[string]*regexp.Regexp{
 // validateCanvasMentions warns when the words put weather or light into the
 // scene that a canvas effect for the pack's setting can show, and the story
 // never cues it: the child should see the snow the narrator talks about.
-func validateCanvasMentions(is *Issues, lang string, nar Narration, m Manifest, cat *Catalog) {
+// A word that names one of the story's stickers (Moon Base's comet) is that
+// sticker, not the weather.
+func validateCanvasMentions(is *Issues, lang string, nar Narration, m Manifest, cat *Catalog, inStory map[string]bool) {
 	cued := map[string]bool{}
 	for _, c := range nar.Cues {
 		if c.Canvas {
@@ -1551,7 +1553,11 @@ func validateCanvasMentions(is *Issues, lang string, nar Narration, m Manifest, 
 			continue
 		}
 		if re := canvasWords[name][primarySubtag(lang)]; re != nil {
-			if word := re.FindString(plain); word != "" {
+			namesSticker := false
+			for id := range inStory {
+				namesSticker = namesSticker || re.MatchString(strings.ToLower(m.Names[id][lang]))
+			}
+			if word := re.FindString(plain); word != "" && !namesSticker {
 				is.warnf("%s: the text mentions %q but never cues {%s:%s} — cue it a beat before those words", lang, word, CanvasTarget, name)
 			}
 		}
