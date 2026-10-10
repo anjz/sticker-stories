@@ -405,6 +405,57 @@ import Testing
         #expect(calm[surfer]?.legs.last?.stays == false)
     }
 
+    @Test func aWaterWayIsOnlyForTheWaterAndBoatsNeverLeaveIt() {
+        // The sea up top (y 450–600) with the shore along its near edge; sand below.
+        let features = [
+            "sea": SceneFeature(
+                description: "Water.", areas: [.init(x: [0.1, 0.9], y: [0.6, 0.8])],
+                edge: [.init(x: [0.1, 0.9], y: [0.52, 0.56])]),
+            "sand": SceneFeature(description: "Sand.", areas: [.init(x: [0.1, 0.9], y: [0.1, 0.4])]),
+        ]
+        let surfer = UUID(), boat = UUID()
+        let actors = actors() + [
+            .init(id: surfer, stickerID: "surfer", home: StagePoint(x: 500, y: 200), size: Self.size, places: ["sand"]),
+            .init(id: boat, stickerID: "boat", home: StagePoint(x: 300, y: 520), size: Self.size, places: ["sea"]),
+        ]
+        let moves = [
+            "surfer": [StageMove(id: "walk", cycle: 0.8, stride: 0.4, facing: .left),
+                       StageMove(id: "surf", cycle: 0.8, stride: 0.9, on: ["sea"], stays: true, facing: .left)],
+            "boat": [StageMove(id: "sail", cycle: 0.8, stride: 0.6, on: ["sea"], facing: .left)],
+        ]
+        func legs(_ goes: [GoTrigger], _ id: UUID) -> [MotionLeg] {
+            var random = SeededGenerator(state: 2)
+            return MotionPlanner.plan(
+                goes: goes, actors: actors, features: features, moves: moves, scene: Self.scene, policy: .standard,
+                random: &random)[id]?.legs ?? []
+        }
+        // From the sand out onto the sea and back: he walks to the waterline and
+        // paddles out; riding in, he surfs to the shore and walks up the sand.
+        let ride = legs([GoTrigger(at: 0, stickerID: "surfer", kind: .to, target: "sea", by: "surf"),
+                         GoTrigger(at: 10, stickerID: "surfer", kind: .to, target: "sand", by: "surf")], surfer)
+        #expect(ride.map(\.move) == ["walk", "surf", "surf", "walk"])
+        #expect(!ride[0].stays && ride[1].stays && !ride[2].stays)
+        let shoreY = 750 * 0.54, landY = 750 * 0.25
+        let at = { (home: Double, leg: MotionLeg) in home - leg.to.y * Self.size.height }
+        #expect(abs(at(200, ride[0]) - shoreY) < 60 && abs(at(200, ride[2]) - shoreY) < 60 && at(200, ride[3]) < 750 * 0.45)
+        // On land, "by surf" is no way to go anywhere: he walks.
+        let walk = legs([GoTrigger(at: 0, stickerID: "surfer", kind: .to, target: "fox", by: "surf")], surfer)
+        #expect(walk.map(\.move) == ["walk"])
+        _ = landY
+        // At sea, swimming over to someone also at sea is all swimming.
+        let ring = UUID()
+        let withRing = actors + [.init(id: ring, stickerID: "ring", home: StagePoint(x: 750, y: 520), size: Self.size)]
+        var random = SeededGenerator(state: 2)
+        let over = MotionPlanner.plan(
+            goes: [GoTrigger(at: 0, stickerID: "surfer", kind: .to, target: "sea", by: "surf"),
+                   GoTrigger(at: 10, stickerID: "surfer", kind: .to, target: "ring", by: "surf")],
+            actors: withRing, features: features, moves: moves, scene: Self.scene, policy: .standard, random: &random)[surfer]?.legs ?? []
+        #expect(over.map(\.move) == ["walk", "surf", "surf"])
+        // A boat sent to the fox on the land stops in the water, as near as it gets.
+        let sail = legs([GoTrigger(at: 0, stickerID: "boat", kind: .to, target: "fox")], boat)
+        #expect(sail.count == 1 && at(520, sail[0]) >= 750 * 0.6 - 1)
+    }
+
     @Test func aPlaceSpotIsNeverUnderThePill() {
         var scene = Self.scene
         scene.avoid = [StageRect(minX: 700, minY: 0, maxX: 1000, maxY: 260)]

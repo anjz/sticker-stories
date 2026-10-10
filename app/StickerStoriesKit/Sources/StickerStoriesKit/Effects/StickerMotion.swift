@@ -378,18 +378,54 @@ public enum MotionPlanner {
                 if state.center.x < states[other].center.x { members.insert(index, at: 0) } else { members.append(index) }
                 groups[key] = members
                 relayout(key, start: start, mover: index)
-            } else if let destination = destination(go, for: index, random: &random) {
+            } else if var destination = destination(go, for: index, random: &random) {
                 // Already there (a visitor that came in onto the pond, then
                 // "went to the pond"): it stays, unless the story asks for
                 // another part of the place.
                 if !go.another, arrived(index, at: destination.point, facing: destination.face) { return }
+                var begin = start
+                // A way that belongs to the water (a swim, a surf, a float)
+                // is only for going about in it. Somewhere else: one that
+                // only ever gets about that way stays in the water, as close
+                // as it can get; any other rides that way out to the water's
+                // edge, if it is in the water, and goes on its usual way.
+                let element = way(index).move?.on.filter { features[$0] != nil } ?? []
+                // Into it: to one of its places, or to someone who is in it
+                // (a seal swimming over to the ring out on the sea).
+                let waterRects = rects(of: element, for: index)
+                let intoElement = go.kind == .to
+                    && (go.target.map { element.contains($0) } == true || contains(waterRects, destination.point))
+                if !element.isEmpty, !intoElement, destination.visible {
+                    if onlyGetsAboutIn(index) {
+                        destination.point = nearest(in: waterRects, to: destination.point)
+                            ?? destination.point
+                    } else {
+                        if inside(index, waterRects),
+                            let exit = nearest(in: edgeRects(of: element, for: index), to: destination.point)
+                        {
+                            leg(index, to: exit, scale: states[index].scale, visible: true, start: begin)
+                            begin = max(begin, states[index].busyUntil)
+                        }
+                        states[index].by = nil
+                    }
+                } else if intoElement, !onlyGetsAboutIn(index), !inside(index, waterRects),
+                    let entry = nearest(in: edgeRects(of: element, for: index), to: states[index].center)
+                {
+                    // Into the water from the land: down to its edge its usual
+                    // way first (the surfer walks to the waterline), then in.
+                    let by = states[index].by
+                    states[index].by = nil
+                    leg(index, to: entry, scale: states[index].scale, visible: true, start: begin)
+                    begin = max(begin, states[index].busyUntil)
+                    states[index].by = by
+                }
                 // Into its element by a way that stays there (the surfer
                 // out onto the waves): its loop goes on once it is there.
                 let move = way(index).move
                 let stays = go.kind == .to && move?.stays == true
                     && go.target.map { features[$0] != nil && move!.on.contains($0) } == true
                 leg(
-                    index, to: destination.point, scale: destination.scale, visible: destination.visible, start: start,
+                    index, to: destination.point, scale: destination.scale, visible: destination.visible, start: begin,
                     stacking: destination.stacking, face: destination.face, stays: stays)
             }
             if let left, left != groupKey(of: index) { relayout(left, start: start, mover: nil) }
@@ -403,6 +439,62 @@ public enum MotionPlanner {
             guard let key = groupKey(of: index) else { return nil }
             groups[key]?.removeAll { $0 == index }
             return key
+        }
+
+        /// Whether every way the sticker gets about belongs to the water
+        /// (boats, a fish): it never leaves it.
+        func onlyGetsAboutIn(_ index: Int) -> Bool {
+            guard let all = moves[states[index].actor.stickerID], !all.isEmpty else { return false }
+            return all.allSatisfy { !$0.on.isEmpty }
+        }
+
+        /// Where the sticker's centre can be in those places, on screen.
+        func rects(of names: [String], for index: Int) -> [StageRect] {
+            let me = states[index].actor
+            return names.flatMap { name -> [StageRect] in
+                guard let feature = features[name] else { return [] }
+                return StagePlanner.places(
+                    for: StickerStage(entrance: .hop, on: [name]), features: [name: feature], in: scene,
+                    sticker: me.stickerID, height: me.size.height
+                ).first ?? []
+            }
+        }
+
+        /// The places' edges (the shore along the sea), where a sticker
+        /// steps out of them; their own areas when they have none.
+        func edgeRects(of names: [String], for index: Int) -> [StageRect] {
+            let me = states[index].actor
+            return names.flatMap { name -> [StageRect] in
+                guard let feature = features[name] else { return [] }
+                let place = SceneFeature(
+                    description: feature.description, areas: feature.edge ?? feature.areas, air: feature.air)
+                return StagePlanner.places(
+                    for: StickerStage(entrance: .hop, on: [name]), features: [name: place], in: scene,
+                    sticker: me.stickerID, height: me.size.height
+                ).first ?? []
+            }
+        }
+
+        /// Whether the sticker is in one of those rects now.
+        func inside(_ index: Int, _ rects: [StageRect]) -> Bool {
+            let state = states[index]
+            let margin = state.actor.size.width * 0.25
+            return rects.contains { r in
+                state.center.x >= r.minX - margin && state.center.x <= r.maxX + margin
+                    && state.center.y >= r.minY - margin && state.center.y <= r.maxY + margin
+            }
+        }
+
+        /// Whether a point is in one of those rects.
+        func contains(_ rects: [StageRect], _ p: StagePoint) -> Bool {
+            rects.contains { p.x >= $0.minX && p.x <= $0.maxX && p.y >= $0.minY && p.y <= $0.maxY }
+        }
+
+        /// The point of those rects nearest to `point`.
+        func nearest(in rects: [StageRect], to point: StagePoint) -> StagePoint? {
+            rects.map { r in
+                StagePoint(x: min(max(point.x, r.minX), r.maxX), y: min(max(point.y, r.minY), r.maxY))
+            }.min { distance($0, point) < distance($1, point) }
         }
 
         /// The nearest instance of that sticker on the canvas now.

@@ -521,6 +521,17 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
   The next move goes the usual way again unless it names one too (so
   `{ladybug:go back by fly}` to fly home); a shuffle to make room goes
   the way the sticker last went.
+- **A water way is for the water**: a move with `on` places (a swim, a
+  surf, a float, a boat's sail) only takes a sticker about in those
+  places. Into them from the land, a sticker that also walks goes its
+  usual way to their edge first and then that way in (the surfer walks
+  to the waterline and paddles out); out of them to the land, it rides
+  that way to the edge and walks the rest (he surfs in to the shore and
+  walks up the sand); to someone who is in the water it keeps that way.
+  A sticker whose every move is a water way (a boat, a fish) never
+  leaves the water: sent to someone on the sand, it stops in the water
+  as near as it gets. A `by` on a water way the words use loosely ("he
+  rode a wave back to the sand") is therefore always safe.
 - **Staying in its element**: a move marked `stays` (`docs/pack-format.md`,
   "Live animations") that takes a sticker into one of its `on` places —
   `{surfer:go to sea by surf}`, or `{surfer:enter by surf}` — keeps its
