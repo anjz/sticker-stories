@@ -3,6 +3,7 @@ package stickerimg
 import (
 	"fmt"
 	"image"
+	"image/color"
 	"image/draw"
 	"math"
 )
@@ -162,4 +163,121 @@ func Scaffold(cells []*image.RGBA, cols, rows, cell int) *image.RGBA {
 		draw.Draw(out, image.Rect(col*cell, row*cell, (col+1)*cell, (row+1)*cell), c, c.Bounds().Min, draw.Over)
 	}
 	return out
+}
+
+// LightSheet is an animation of light alone: every frame the sticker's
+// finished image (trimmed to its art), lit by that frame's entry of light
+// (0 as drawn, 1 brightest): its brightest parts flare toward white, its
+// colours deepen a little and a soft bloom spreads from the bright core,
+// all within the drawing — a galaxy's centre glowing while its border
+// stays as it is.
+func LightSheet(sticker *image.RGBA, light []float64, columns int) *AnimSheet {
+	box := Bounds(sticker, 0)
+	pad := max(box.Dx(), box.Dy()) / 40
+	box = box.Inset(-pad).Intersect(sticker.Bounds())
+	w, h := box.Dx(), box.Dy()
+	if columns <= 0 {
+		columns = 4
+	}
+	columns = min(columns, len(light))
+	rows := (len(light) + columns - 1) / columns
+
+	// The drawing un-premultiplied, its luminance, and the bloom: the
+	// bright core, blurred.
+	n := w * h
+	rgb := make([][3]float64, n)
+	alpha := make([]float64, n)
+	lum := make([]float64, n)
+	bright := make([][3]float64, n)
+	for y := 0; y < h; y++ {
+		for x := 0; x < w; x++ {
+			i := y*w + x
+			c := sticker.RGBAAt(box.Min.X+x, box.Min.Y+y)
+			if c.A == 0 {
+				continue
+			}
+			a := float64(c.A)
+			alpha[i] = a / 255
+			rgb[i] = [3]float64{float64(c.R) / a, float64(c.G) / a, float64(c.B) / a}
+			lum[i] = 0.3*rgb[i][0] + 0.59*rgb[i][1] + 0.11*rgb[i][2]
+			k := math.Max(lum[i]-0.6, 0) / 0.4 * alpha[i]
+			bright[i] = [3]float64{rgb[i][0] * k, rgb[i][1] * k, rgb[i][2] * k}
+		}
+	}
+	bloom := boxBlur3(bright, w, h, max(w, h)/30)
+
+	out := image.NewRGBA(image.Rect(0, 0, columns*w, rows*h))
+	for f, amount := range light {
+		ox, oy := (f%columns)*w, (f/columns)*h
+		for y := 0; y < h; y++ {
+			for x := 0; x < w; x++ {
+				i := y*w + x
+				if alpha[i] == 0 {
+					continue
+				}
+				var c [3]float64
+				k := math.Min(amount*math.Pow(lum[i], 2.5)*1.3, 1)
+				for ch := 0; ch < 3; ch++ {
+					v := rgb[i][ch] + (rgb[i][ch]-lum[i])*amount*0.35 // a little more colour
+					v += (1 - v) * k                                  // the bright parts flare
+					v += bloom[i][ch] * amount * 0.8                  // the core's glow spreading
+					c[ch] = math.Min(math.Max(v, 0), 1)
+				}
+				a := alpha[i] * 255
+				out.SetRGBA(ox+x, oy+y, color.RGBA{
+					R: uint8(c[0]*a + 0.5), G: uint8(c[1]*a + 0.5), B: uint8(c[2]*a + 0.5), A: uint8(a + 0.5)})
+			}
+		}
+	}
+	rest := Bounds(sticker, 0).Sub(box.Min)
+	return &AnimSheet{Image: out, Frame: image.Pt(w, h), Columns: columns, Count: len(light), Rest: rest}
+}
+
+// boxBlur3 blurs a w×h field of colours with three box passes of radius r
+// each way, close to a Gaussian.
+func boxBlur3(field [][3]float64, w, h, r int) [][3]float64 {
+	if r < 1 {
+		return field
+	}
+	cur := field
+	for pass := 0; pass < 3; pass++ {
+		for _, horizontal := range []bool{true, false} {
+			next := make([][3]float64, len(cur))
+			length, lines := w, h
+			if !horizontal {
+				length, lines = h, w
+			}
+			at := func(line, pos int) int {
+				if horizontal {
+					return line*w + pos
+				}
+				return pos*w + line
+			}
+			for line := 0; line < lines; line++ {
+				var sum [3]float64
+				count := 0
+				for pos := -r; pos < length+r; pos++ {
+					if in := pos + r; in < length {
+						for ch := range sum {
+							sum[ch] += cur[at(line, in)][ch]
+						}
+						count++
+					}
+					if out := pos - r - 1; out >= 0 {
+						for ch := range sum {
+							sum[ch] -= cur[at(line, out)][ch]
+						}
+						count--
+					}
+					if pos >= 0 && pos < length && count > 0 {
+						for ch := range sum {
+							next[at(line, pos)][ch] = sum[ch] / float64(count)
+						}
+					}
+				}
+			}
+			cur = next
+		}
+	}
+	return cur
 }

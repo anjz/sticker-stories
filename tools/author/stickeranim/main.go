@@ -208,6 +208,13 @@ type animSpec struct {
 	// a flight, or the snail whose body goes into its shell) or "base"
 	// (on the base row, without matching: the old way, for a lily pad).
 	Register string `json:"register,omitempty"`
+	// Light (optional) makes an animation of light alone, without the
+	// generator: one entry per frame, how much brighter the sticker's own
+	// finished image is (0 as drawn, 1 its brightest), its bright parts
+	// most — a galaxy's centre glowing. No sheets; the frames are the
+	// sticker itself, so they match it exactly. For a sticker whose
+	// action is only a change of light.
+	Light []float64 `json:"light,omitempty"`
 }
 
 func (a animSpec) kind() string {
@@ -283,6 +290,9 @@ func (a animSpec) room() float64 {
 }
 
 func (a animSpec) frameCount() int {
+	if len(a.Light) > 0 {
+		return len(a.Light)
+	}
 	n := 0
 	for _, s := range a.Sheets {
 		n += len(s.Frames)
@@ -380,8 +390,8 @@ func load(packDir, artDir string) (*ctxt, error) {
 		c.cfg.MaxSheet = 4096
 	}
 	for _, a := range c.cfg.Animations {
-		if a.ID == "" || a.Sticker == "" || len(a.Sheets) == 0 {
-			return nil, fmt.Errorf("anim.json: every animation needs id, sticker and sheets")
+		if a.ID == "" || a.Sticker == "" || (len(a.Sheets) == 0) == (len(a.Light) == 0) {
+			return nil, fmt.Errorf("anim.json: every animation needs id, sticker and either sheets or light")
 		}
 		if c.stickerImage(a.Sticker) == "" {
 			return nil, fmt.Errorf("anim.json: %s: sticker %q is not in the manifest", a.key(), a.Sticker)
@@ -650,6 +660,9 @@ func (r *renderer) reference(stickerID string) ([]byte, string, error) {
 // animation renders every sheet that is out of date, then assembles the
 // animation if any input changed.
 func (r *renderer) animation(a animSpec) error {
+	if len(a.Light) > 0 {
+		return r.lightAnimation(a)
+	}
 	art := r.c.art
 	ref, refFP, err := r.reference(a.Sticker)
 	if err != nil {
@@ -875,6 +888,46 @@ func (r *renderer) assemble(a animSpec, raws []string, stickerPath string, hold 
 		r.say("  %s: %s", a.key(), n)
 	}
 	r.say("✓ %s: %d frames of %dx%d in a %dx%d sheet (frame scales %s)", a.key(), sheet.Count, sheet.Frame.X, sheet.Frame.Y, sheet.Image.Bounds().Dx(), sheet.Image.Bounds().Dy(), strings.Join(scales, " "))
+	return nil
+}
+
+// lightAnimation makes an animation of light alone (animSpec.Light) from
+// the sticker's finished image: every frame the sticker, brightened by its
+// entry. No API call; re-made whenever the sticker or the light changes.
+func (r *renderer) lightAnimation(a animSpec) error {
+	stickerPath := r.c.stickerImage(a.Sticker)
+	hold := a.Hold
+	if len(hold) == 0 {
+		hold = make([]float64, len(a.Light))
+		for i := range hold {
+			hold[i] = defaultHold
+		}
+	}
+	fp := hashOf("light", "2", hashFile(stickerPath), fmt.Sprint(a.Light, hold, r.c.cfg.Columns, a.kind(), a.Pause, a.Loop, a.Facing, a.Stride, a.Story))
+	sheetPath, jsonPath := r.out(a.key()+".png"), r.out(a.key()+".json")
+	if r.upToDate(sheetPath, fp) && r.upToDate(jsonPath, fp) {
+		r.say("· %s up to date", a.key())
+		return nil
+	}
+	if r.o.dry {
+		r.planned = append(r.planned, fmt.Sprintf("%s: %d frames of light (no API call)", a.key(), len(a.Light)))
+		return nil
+	}
+	data, err := os.ReadFile(stickerPath)
+	if err != nil {
+		return err
+	}
+	sticker, err := stickerimg.Decode(data)
+	if err != nil {
+		return err
+	}
+	sheet := stickerimg.LightSheet(sticker, a.Light, r.c.cfg.Columns)
+	if err := r.writeAnimation(a, sheet, stickerPath, hold, sheetPath, jsonPath); err != nil {
+		return err
+	}
+	r.done(sheetPath, fp)
+	r.done(jsonPath, fp)
+	r.say("✓ %s: %d frames of light from the sticker", a.key(), sheet.Count)
 	return nil
 }
 
