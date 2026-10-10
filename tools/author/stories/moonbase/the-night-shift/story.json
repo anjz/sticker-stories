@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "id": "the-night-shift",
+  "pack": "moonbase",
+  "featured": [
+    "printer",
+    "excavator",
+    "seismometer"
+  ],
+  "supporting": [],
+  "tags": [
+    "bedtime",
+    "teamwork"
+  ],
+  "premise": "Through the long night the printer works on under the floodlights while the base sleeps, the excavator brings soil and the seismometer listens to the steady hum — and at daybreak there's a new wall.",
+  "inspiration": "Grimm's 'The Elves and the Shoemaker', where helpers work by night while everyone sleeps, turned: the night workers are machines, and the wall is for everyone.",
+  "lesson": "Steady work, a little at a time, builds big things.",
+  "languages": {
+    "en-US": {
+      "title": "The Night Shift",
+      "text": "{canvas:nightfall} The long Moon night had come, and the crew were fast asleep. {all:face sleeping} Well, nearly everyone was. {canvas:floodlights} Out on the plain, the floodlights clicked on, and the night shift began. {sfx:clunk} The {printer:enter} printer unfolded its long legs. The {excavator:enter} excavator trundled over {excavator:go to printer} with a full scoop. {printer:live hold} Back and forth, back and forth went the printer, laying the wall one layer at a time. {sfx:whirr} {excavator:live} The excavator dug another scoop. {printer:shake 0.3} And another layer went down. Nearby, the {seismometer:enter} seismometer listened. {seismometer:live} Its little light blinked in time with the work: whirr… blink… whirr… blink… [softly] Like a lullaby, humming through the ground. {excavator:pulse} All night long. {canvas:daybreak} Then at last, white sunlight came sweeping over the ridge. {all:face happy} {printer:live resume} There stood a brand-new wall, strong and grey. {all:hop} Everyone cheered. [playfully] {printer:sparkle} And the night shift? It had a well-earned rest."
+    },
+    "es-ES": {
+      "title": "El turno de noche",
+      "text": "{canvas:nightfall} Había llegado la larga noche lunar, y la tripulación dormía profundamente. {all:face sleeping} Bueno, casi todos. {canvas:floodlights} En la llanura se encendieron los focos, y empezó el turno de noche. {sfx:clunk} La {printer:enter} impresora desplegó sus largas patas. La {excavator:enter} excavadora llegó traqueteando {excavator:go to printer} con la pala llena. {printer:live hold} La impresora iba y venía, iba y venía, levantando el muro capa a capa. {sfx:whirr} {excavator:live} La excavadora recogió otra palada. {printer:shake 0.3} Y bajó otra capa. Cerca de allí, el {seismometer:enter} sismómetro escuchaba. {seismometer:live} Su lucecita parpadeaba al ritmo del trabajo: zzzum… parpadeo… zzzum… parpadeo… [softly] Como una nana, vibrando por el suelo. {excavator:pulse} Toda la noche. {canvas:daybreak} Por fin, la luz blanca del sol asomó por las montañas. {all:face happy} {printer:live resume} Allí había un muro nuevo, fuerte y gris. {all:hop} Todos lo celebraron. [playfully] {printer:sparkle} ¿Y el turno de noche? Se ganó un buen descanso."
+    }
+  },
+  "sounds": {
+    "clunk": {
+      "prompt": "big lamps switching on with a soft deep clunk, then a faint electric hum",
+      "seconds": 1.2
+    },
+    "whirr": {
+      "prompt": "a small machine's motor whirring smoothly back and forth, gentle, slow and steady, like a lullaby",
+      "seconds": 2.5
+    }
+  }
+}

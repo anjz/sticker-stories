@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "id": "quiet-please",
+  "pack": "moonbase",
+  "featured": [
+    "seismometer",
+    "rover",
+    "ice",
+    "woman"
+  ],
+  "supporting": [],
+  "tags": [
+    "funny",
+    "patience"
+  ],
+  "premise": "The seismometer needs perfect stillness to listen: the rover stops drilling the ice, Maya stops wriggling — and the light blinks: a tiny moonquake, the Moon itself talking.",
+  "inspiration": "The children's game of statues, turned: the winner isn't the stillest — it's the one who gets to hear something wonderful.",
+  "lesson": "Be still, and you hear more.",
+  "languages": {
+    "en-US": {
+      "title": "Quiet, Please!",
+      "text": "The {seismometer:enter} seismometer was trying to listen to the Moon. But the Moon was NOT quiet today. Down in the crater, the {rover:enter} rover {rover:go to crater} was busy drilling. {rover:live} Grrrind! {sfx:drill} It was drilling into a chunk of {ice:enter} ice. And {woman:enter} Maya was practising her moon-bounce. {woman:hop x3} Boing! Boing! Boing! {seismometer:shake 0.5} The seismometer's light flickered and flickered. Far too much noise! [playfully] {woman:face happy} So everyone agreed to play statues. The rover stopped drilling. {rover:pulse} Maya stopped bouncing. {woman:face surprised} Her nose itched. Her toe wiggled. {woman:shake 0.2} But she kept still. {ice:live} Even the ice seemed to hold its breath as frost crept over it. [whispers] Quiet. Quieter. Quietest… [short pause] {seismometer:live hold} Then the little light began to blink. Slowly. Softly. [in awe] A real moonquake, far, far away. {woman:face happy} The Moon itself was talking. [whispers] And Maya, very still, listened too. {seismometer:glow 0.4}"
+    },
+    "es-ES": {
+      "title": "¡Silencio, por favor!",
+      "text": "El {seismometer:enter} sismómetro intentaba escuchar la Luna. Pero hoy la Luna NO estaba nada tranquila. En el cráter, el {rover:enter} róver {rover:go to crater} estaba ocupado taladrando. {rover:live} ¡Grrrr! {sfx:drill} Estaba taladrando un trozo de {ice:enter} hielo. Y {woman:enter} Maya practicaba su bote lunar. {woman:hop x3} ¡Boing! ¡Boing! ¡Boing! {seismometer:shake 0.5} La luz del sismómetro parpadeaba sin parar. ¡Demasiado ruido! [playfully] {woman:face happy} Así que todos decidieron jugar a las estatuas. El róver dejó de taladrar. {rover:pulse} Maya dejó de botar. {woman:face surprised} Le picaba la nariz. Se le movía un dedo del pie. {woman:shake 0.2} Pero se quedó quieta. {ice:live} Hasta el hielo pareció contener el aliento mientras lo cubría la escarcha. [whispers] Silencio. Más silencio. Silencio total… [short pause] {seismometer:live hold} Entonces la lucecita empezó a parpadear. Despacio. Suave. [in awe] Un terremoto lunar de verdad, muy, muy lejos. {woman:face happy} La propia Luna estaba hablando. [whispers] Y Maya, muy quieta, escuchó también. {seismometer:glow 0.4}"
+    }
+  },
+  "sounds": {
+    "drill": {
+      "prompt": "a small drill grinding steadily into hard ice, crunchy, muffled as if heard through the ground",
+      "seconds": 1.8
+    }
+  }
+}
