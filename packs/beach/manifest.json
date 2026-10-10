@@ -1,0 +1,1005 @@
+{
+  "schemaVersion": 2,
+  "id": "beach",
+  "version": 1,
+  "languages": [
+    "en-US",
+    "es-ES"
+  ],
+  "displayName": {
+    "en-US": "Beach",
+    "es-ES": "Playa"
+  },
+  "description": {
+    "en-US": "A day at the beach: rock pools, boats, kites and sand castles.",
+    "es-ES": "Un día de playa: charcas, barcos, cometas y castillos de arena."
+  },
+  "theme": "beach",
+  "setting": "outdoors",
+  "world": {
+    "ground": "#E3C68F"
+  },
+  "staging": {
+    "layer": "background",
+    "anchor": "feet"
+  },
+  "background": "art/background.webp",
+  "foreground": "art/foreground.webp",
+  "backgroundWide": "art/background-wide.webp",
+  "foregroundWide": "art/foreground-wide.webp",
+  "features": {
+    "pools": {
+      "description": "the two clear rock pools among the seaweedy rocks, low at the left and right",
+      "areas": [
+        {
+          "x": [
+            0.07,
+            0.22
+          ],
+          "y": [
+            0.19,
+            0.25
+          ]
+        },
+        {
+          "x": [
+            0.78,
+            0.93
+          ],
+          "y": [
+            0.18,
+            0.24
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "pool",
+          "pools",
+          "rockpool"
+        ],
+        "es-ES": [
+          "charca",
+          "charcas",
+          "poza"
+        ]
+      },
+      "edge": [
+        {
+          "x": [
+            0.26,
+            0.3
+          ],
+          "y": [
+            0.2,
+            0.28
+          ]
+        },
+        {
+          "x": [
+            0.66,
+            0.7
+          ],
+          "y": [
+            0.2,
+            0.28
+          ]
+        }
+      ]
+    },
+    "rocks": {
+      "description": "the tops of the dark seaweedy rocks around the pools",
+      "areas": [
+        {
+          "x": [
+            0.03,
+            0.2
+          ],
+          "y": [
+            0.33,
+            0.37
+          ]
+        },
+        {
+          "x": [
+            0.82,
+            0.97
+          ],
+          "y": [
+            0.31,
+            0.35
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "rock",
+          "rocks"
+        ],
+        "es-ES": [
+          "roca",
+          "rocas"
+        ]
+      }
+    },
+    "sand": {
+      "description": "the open golden sand of the beach, between the two rock pools",
+      "areas": [
+        {
+          "x": [
+            0.32,
+            0.68
+          ],
+          "y": [
+            0.2,
+            0.38
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "sand",
+          "beach"
+        ],
+        "es-ES": [
+          "arena",
+          "playa"
+        ]
+      }
+    },
+    "sea": {
+      "description": "the open sea of the bay, between the horizon and the waves",
+      "areas": [
+        {
+          "x": [
+            0.08,
+            0.92
+          ],
+          "y": [
+            0.5,
+            0.6
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "sea",
+          "waves",
+          "bay"
+        ],
+        "es-ES": [
+          "mar",
+          "olas",
+          "bahía"
+        ]
+      },
+      "edge": [
+        {
+          "x": [
+            0.25,
+            0.75
+          ],
+          "y": [
+            0.42,
+            0.45
+          ]
+        }
+      ]
+    },
+    "shore": {
+      "description": "the wet sand along the waterline, where the waves wash in",
+      "areas": [
+        {
+          "x": [
+            0.1,
+            0.9
+          ],
+          "y": [
+            0.42,
+            0.45
+          ]
+        }
+      ],
+      "words": {
+        "en-US": [
+          "shore",
+          "waterline"
+        ],
+        "es-ES": [
+          "orilla"
+        ]
+      }
+    },
+    "sky": {
+      "description": "the open sky above the sea, left of the lighthouse headland",
+      "areas": [
+        {
+          "x": [
+            0.08,
+            0.62
+          ],
+          "y": [
+            0.7,
+            0.84
+          ]
+        },
+        {
+          "x": [
+            0.62,
+            0.92
+          ],
+          "y": [
+            0.76,
+            0.84
+          ]
+        }
+      ],
+      "air": true
+    }
+  },
+  "stickers": [
+    {
+      "id": "ball",
+      "name": {
+        "en-US": "Beach ball",
+        "es-ES": "Pelota de playa"
+      },
+      "image": "stickers/ball.webp",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sand"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7982
+        ],
+        "y": [
+          0.2005,
+          0.7995
+        ]
+      }
+    },
+    {
+      "id": "bottle",
+      "name": {
+        "en-US": "Message in a bottle",
+        "es-ES": "Mensaje en una botella"
+      },
+      "image": "stickers/bottle.webp",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sea",
+          "shore"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.25,
+          0.75
+        ],
+        "y": [
+          0.2943,
+          0.707
+        ]
+      }
+    },
+    {
+      "id": "bucket",
+      "name": {
+        "en-US": "Bucket and spade",
+        "es-ES": "Cubo y pala"
+      },
+      "image": "stickers/bucket.webp",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "sand"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2591,
+          0.7396
+        ],
+        "y": [
+          0.2005,
+          0.7995
+        ]
+      }
+    },
+    {
+      "id": "castle",
+      "name": {
+        "en-US": "Sand castle",
+        "es-ES": "Castillo de arena"
+      },
+      "image": "stickers/castle.webp",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "sand"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1393,
+          0.8594
+        ],
+        "y": [
+          0.1497,
+          0.8503
+        ]
+      }
+    },
+    {
+      "id": "clam",
+      "name": {
+        "en-US": "Clam",
+        "es-ES": "Almeja"
+      },
+      "image": "stickers/clam.webp",
+      "expressions": {
+        "happy": "stickers/clam.happy.webp",
+        "sad": "stickers/clam.sad.webp",
+        "sleeping": "stickers/clam.sleeping.webp",
+        "surprised": "stickers/clam.surprised.webp"
+      },
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "pools",
+          "sand"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.2552,
+          0.7448
+        ],
+        "y": [
+          0.25,
+          0.75
+        ]
+      }
+    },
+    {
+      "id": "crab",
+      "name": {
+        "en-US": "Crab",
+        "es-ES": "Cangrejo"
+      },
+      "image": "stickers/crab.webp",
+      "expressions": {
+        "happy": "stickers/crab.happy.webp",
+        "sad": "stickers/crab.sad.webp",
+        "sleeping": "stickers/crab.sleeping.webp",
+        "surprised": "stickers/crab.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "rocks",
+          "pools",
+          "sand"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7995
+        ],
+        "y": [
+          0.2174,
+          0.7826
+        ]
+      }
+    },
+    {
+      "id": "dog",
+      "name": {
+        "en-US": "Dog",
+        "es-ES": "Perro"
+      },
+      "image": "stickers/dog.webp",
+      "expressions": {
+        "happy": "stickers/dog.happy.webp",
+        "sad": "stickers/dog.sad.webp",
+        "sleeping": "stickers/dog.sleeping.webp",
+        "surprised": "stickers/dog.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sand"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.168,
+          0.832
+        ],
+        "y": [
+          0.1406,
+          0.8607
+        ]
+      }
+    },
+    {
+      "id": "fish",
+      "name": {
+        "en-US": "Little fish",
+        "es-ES": "Pececito"
+      },
+      "image": "stickers/fish.webp",
+      "expressions": {
+        "happy": "stickers/fish.happy.webp",
+        "sad": "stickers/fish.sad.webp",
+        "sleeping": "stickers/fish.sleeping.webp",
+        "surprised": "stickers/fish.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "pools",
+          "sea"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.25,
+          0.75
+        ],
+        "y": [
+          0.2786,
+          0.7227
+        ]
+      }
+    },
+    {
+      "id": "fishing-boat",
+      "name": {
+        "en-US": "Fishing boat",
+        "es-ES": "Barca de pesca"
+      },
+      "image": "stickers/fishing-boat.webp",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sea"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.0794,
+          0.9193
+        ],
+        "y": [
+          0.1458,
+          0.8542
+        ]
+      }
+    },
+    {
+      "id": "girl",
+      "name": {
+        "en-US": "Girl",
+        "es-ES": "Niña"
+      },
+      "image": "stickers/girl.webp",
+      "expressions": {
+        "happy": "stickers/girl.happy.webp",
+        "sad": "stickers/girl.sad.webp",
+        "surprised": "stickers/girl.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sand"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.237,
+          0.763
+        ],
+        "y": [
+          0.1406,
+          0.8607
+        ]
+      }
+    },
+    {
+      "id": "hermit-crab",
+      "name": {
+        "en-US": "Hermit crab",
+        "es-ES": "Cangrejo ermitaño"
+      },
+      "image": "stickers/hermit-crab.webp",
+      "expressions": {
+        "happy": "stickers/hermit-crab.happy.webp",
+        "sad": "stickers/hermit-crab.sad.webp",
+        "sleeping": "stickers/hermit-crab.sleeping.webp",
+        "surprised": "stickers/hermit-crab.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "pools",
+          "sand"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.25,
+          0.75
+        ],
+        "y": [
+          0.3047,
+          0.6953
+        ]
+      }
+    },
+    {
+      "id": "octopus",
+      "name": {
+        "en-US": "Octopus",
+        "es-ES": "Pulpo"
+      },
+      "image": "stickers/octopus.webp",
+      "expressions": {
+        "happy": "stickers/octopus.happy.webp",
+        "sad": "stickers/octopus.sad.webp",
+        "sleeping": "stickers/octopus.sleeping.webp",
+        "surprised": "stickers/octopus.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "pools"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7995
+        ],
+        "y": [
+          0.2305,
+          0.7695
+        ]
+      }
+    },
+    {
+      "id": "pelican",
+      "name": {
+        "en-US": "Pelican",
+        "es-ES": "Pelícano"
+      },
+      "image": "stickers/pelican.webp",
+      "expressions": {
+        "happy": "stickers/pelican.happy.webp",
+        "sad": "stickers/pelican.sad.webp",
+        "sleeping": "stickers/pelican.sleeping.webp",
+        "surprised": "stickers/pelican.surprised.webp"
+      },
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "rocks",
+          "sea"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1836,
+          0.8164
+        ],
+        "y": [
+          0.1406,
+          0.8607
+        ]
+      }
+    },
+    {
+      "id": "ring",
+      "name": {
+        "en-US": "Rubber ring",
+        "es-ES": "Flotador"
+      },
+      "image": "stickers/ring.webp",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sea",
+          "sand"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7995
+        ],
+        "y": [
+          0.2422,
+          0.7591
+        ]
+      }
+    },
+    {
+      "id": "sailboat",
+      "name": {
+        "en-US": "Sailboat",
+        "es-ES": "Velero"
+      },
+      "image": "stickers/sailboat.webp",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sea"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.1172,
+          0.8828
+        ],
+        "y": [
+          0.0807,
+          0.9206
+        ]
+      }
+    },
+    {
+      "id": "sandpiper",
+      "name": {
+        "en-US": "Sandpiper",
+        "es-ES": "Correlimos"
+      },
+      "image": "stickers/sandpiper.webp",
+      "expressions": {
+        "happy": "stickers/sandpiper.happy.webp",
+        "sad": "stickers/sandpiper.sad.webp",
+        "sleeping": "stickers/sandpiper.sleeping.webp",
+        "surprised": "stickers/sandpiper.surprised.webp"
+      },
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "shore",
+          "sand"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.25,
+          0.75
+        ],
+        "y": [
+          0.2643,
+          0.737
+        ]
+      }
+    },
+    {
+      "id": "seagull",
+      "name": {
+        "en-US": "Seagull",
+        "es-ES": "Gaviota"
+      },
+      "image": "stickers/seagull.webp",
+      "expressions": {
+        "happy": "stickers/seagull.happy.webp",
+        "sad": "stickers/seagull.sad.webp",
+        "sleeping": "stickers/seagull.sleeping.webp",
+        "surprised": "stickers/seagull.surprised.webp"
+      },
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "rocks",
+          "sand"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2747,
+          0.7253
+        ],
+        "y": [
+          0.2005,
+          0.7995
+        ]
+      }
+    },
+    {
+      "id": "seal",
+      "name": {
+        "en-US": "Seal",
+        "es-ES": "Foca"
+      },
+      "image": "stickers/seal.webp",
+      "expressions": {
+        "happy": "stickers/seal.happy.webp",
+        "sad": "stickers/seal.sad.webp",
+        "sleeping": "stickers/seal.sleeping.webp",
+        "surprised": "stickers/seal.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "rocks",
+          "sand"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1393,
+          0.8594
+        ],
+        "y": [
+          0.2122,
+          0.7891
+        ]
+      }
+    },
+    {
+      "id": "seaweed",
+      "name": {
+        "en-US": "Seaweed",
+        "es-ES": "Alga"
+      },
+      "image": "stickers/seaweed.webp",
+      "expressions": {
+        "happy": "stickers/seaweed.happy.webp",
+        "sad": "stickers/seaweed.sad.webp",
+        "sleeping": "stickers/seaweed.sleeping.webp",
+        "surprised": "stickers/seaweed.surprised.webp"
+      },
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "pools",
+          "rocks"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2578,
+          0.7422
+        ],
+        "y": [
+          0.2005,
+          0.7995
+        ]
+      }
+    },
+    {
+      "id": "shrimp",
+      "name": {
+        "en-US": "Shrimp",
+        "es-ES": "Gamba"
+      },
+      "image": "stickers/shrimp.webp",
+      "expressions": {
+        "happy": "stickers/shrimp.happy.webp",
+        "sad": "stickers/shrimp.sad.webp",
+        "sleeping": "stickers/shrimp.sleeping.webp",
+        "surprised": "stickers/shrimp.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "pools"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.2565,
+          0.7422
+        ],
+        "y": [
+          0.25,
+          0.75
+        ]
+      }
+    },
+    {
+      "id": "starfish",
+      "name": {
+        "en-US": "Starfish",
+        "es-ES": "Estrella de mar"
+      },
+      "image": "stickers/starfish.webp",
+      "expressions": {
+        "happy": "stickers/starfish.happy.webp",
+        "sad": "stickers/starfish.sad.webp",
+        "sleeping": "stickers/starfish.sleeping.webp",
+        "surprised": "stickers/starfish.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "pools",
+          "rocks"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2031,
+          0.7969
+        ],
+        "y": [
+          0.2005,
+          0.7995
+        ]
+      }
+    },
+    {
+      "id": "surfer",
+      "name": {
+        "en-US": "Surfer",
+        "es-ES": "Surfista"
+      },
+      "image": "stickers/surfer.webp",
+      "expressions": {
+        "happy": "stickers/surfer.happy.webp",
+        "sad": "stickers/surfer.sad.webp",
+        "surprised": "stickers/surfer.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sand",
+          "sea"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.2461,
+          0.7526
+        ],
+        "y": [
+          0.1406,
+          0.8607
+        ]
+      }
+    },
+    {
+      "id": "turtle",
+      "name": {
+        "en-US": "Sea turtle",
+        "es-ES": "Tortuga marina"
+      },
+      "image": "stickers/turtle.webp",
+      "expressions": {
+        "happy": "stickers/turtle.happy.webp",
+        "sad": "stickers/turtle.sad.webp",
+        "sleeping": "stickers/turtle.sleeping.webp",
+        "surprised": "stickers/turtle.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sand",
+          "sea"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7995
+        ],
+        "y": [
+          0.276,
+          0.724
+        ]
+      }
+    },
+    {
+      "id": "umbrella",
+      "name": {
+        "en-US": "Beach umbrella",
+        "es-ES": "Sombrilla"
+      },
+      "image": "stickers/umbrella.webp",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "sand"
+        ]
+      },
+      "size": "big",
+      "content": {
+        "x": [
+          0.082,
+          0.918
+        ],
+        "y": [
+          0.0807,
+          0.9206
+        ]
+      }
+    },
+    {
+      "id": "urchin",
+      "name": {
+        "en-US": "Sea urchin",
+        "es-ES": "Erizo de mar"
+      },
+      "image": "stickers/urchin.webp",
+      "expressions": {
+        "happy": "stickers/urchin.happy.webp",
+        "sad": "stickers/urchin.sad.webp",
+        "sleeping": "stickers/urchin.sleeping.webp",
+        "surprised": "stickers/urchin.surprised.webp"
+      },
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "pools"
+        ]
+      },
+      "size": "tiny",
+      "content": {
+        "x": [
+          0.25,
+          0.75
+        ],
+        "y": [
+          0.2708,
+          0.7305
+        ]
+      }
+    }
+  ],
+  "stories": [
+    {
+      "id": "beach-welcome",
+      "requiredStickers": [],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "placeholder"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Welcome to the Beach",
+          "text": "Welcome to the beach! The stories are on their way.",
+          "audio": "audio/en-US/beach-welcome.m4a"
+        },
+        "es-ES": {
+          "title": "Bienvenidos a la playa",
+          "text": "¡Bienvenidos a la playa! Los cuentos están en camino.",
+          "audio": "audio/es-ES/beach-welcome.m4a"
+        }
+      }
+    }
+  ]
+}

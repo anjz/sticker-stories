@@ -1,0 +1,768 @@
+{
+  "style": "Children's picture-book illustration for ages 4 and up: soft digital gouache with a gentle hand-painted texture, clean rounded shapes, thick-and-thin dark-brown outlines, warm friendly palette (sandy yellows, sea blues and turquoise, coral reds, soft browns), simple big eyes with a small highlight, rosy cheeks, calm smiling expressions, no sharp teeth or claws, no scary elements, no text, no watermarks.",
+  "styleSheet": "A style sheet on a plain white background, four sticker subjects standing side by side, all facing slightly to the left, whole bodies visible and not overlapping: a friendly red beach crab with its claws raised, a little girl of about six in a sun hat and swimsuit holding the string of a colourful diamond kite flying above her, a small wooden sailboat with a white sail and a red hull, and a white-and-grey seagull standing. Plus a small swatch of beach scenery in the bottom corner: a rock with seaweed beside a little clear rock pool, sand and a shell. Consistent style, palette and line weight across everything. No text.",
+  "stickerSize": 768,
+  "border": 0.025,
+  "margin": 0.03,
+  "sizeInArt": true,
+  "stickers": [
+    {
+      "id": "crab",
+      "name": {
+        "en-US": "Crab",
+        "es-ES": "Cangrejo"
+      },
+      "prompt": "A small round red-orange shore crab with two big rounded claws held up happily, eight short legs, two eyes on short stalks, a big friendly smile and rosy cheeks, standing sideways-on, cheerful.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "rocks",
+          "pools",
+          "sand"
+        ]
+      },
+      "size": "small",
+      "face": {
+        "x": 0.32,
+        "y": 0.25,
+        "width": 0.38,
+        "height": 0.38,
+        "edge": 0.005
+      },
+      "faceNote": "Its two eyes sit on top of two short orange stalks that rise from its body: each eye is a white eyeball set in a thick ORANGE rim (the cup at the top of the stalk), exactly as in the original — keep the orange rims and the stalks, the same size and colour; only what is inside the white eyeballs changes. Each eyeball keeps one single dark outline: no doubled rings, no second eyeball. Both eyes always show the same expression together: happy = both closed in upward-curved smiling arcs; sad = pupils looking down with little brows tilted up inside the top of each eyeball; sleeping = both closed as soft downward-curved lines; surprised = both wide open with small round pupils. The mouth and the rosy cheeks are on the front of the orange body, a small mouth that stays well inside the face area; its spots and the cream belly stay."
+    },
+    {
+      "id": "hermit-crab",
+      "name": {
+        "en-US": "Hermit crab",
+        "es-ES": "Cangrejo ermitaño"
+      },
+      "prompt": "A tiny hermit crab carrying a spiral cream-and-pink sea-snail shell on its back, its orange head, two small claws and little legs peeking out of the shell's opening at the front, big round curious eyes and a small smile.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "pools",
+          "sand"
+        ]
+      },
+      "size": "tiny",
+      "face": {
+        "x": 0.55,
+        "y": 0.4,
+        "width": 0.27,
+        "height": 0.25
+      },
+      "faceNote": "Its little orange face peeks out of the opening of the spiral cream-and-pink shell: the shell stays exactly as it is; only the eyes, brows, mouth and cheeks change."
+    },
+    {
+      "id": "urchin",
+      "name": {
+        "en-US": "Sea urchin",
+        "es-ES": "Erizo de mar"
+      },
+      "prompt": "A small round purple sea urchin covered in short, soft-looking spines with rounded tips (blunt, never sharp), a sweet face with big eyes, rosy cheeks and a tiny smile on the front of its round body, sitting.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "pools"
+        ]
+      },
+      "size": "tiny",
+      "face": {
+        "x": 0.24,
+        "y": 0.4,
+        "width": 0.5,
+        "height": 0.28
+      },
+      "faceNote": "The face is on the round purple body among its soft spines: the spines and the purple colour stay; only the eyes, brows, mouth and cheeks change."
+    },
+    {
+      "id": "starfish",
+      "name": {
+        "en-US": "Starfish",
+        "es-ES": "Estrella de mar"
+      },
+      "prompt": "A five-armed orange starfish with little bumpy dots, standing up on two of its arms like legs, one arm waving hello, a happy face with big eyes in the middle of its body.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "pools",
+          "rocks"
+        ]
+      },
+      "size": "small",
+      "face": {
+        "x": 0.33,
+        "y": 0.3,
+        "width": 0.42,
+        "height": 0.3
+      },
+      "faceNote": "The face is in the middle of the orange starfish body with its little dots: the body stays orange and dotted; only the eyes, brows, mouth and cheeks change."
+    },
+    {
+      "id": "shrimp",
+      "name": {
+        "en-US": "Shrimp",
+        "es-ES": "Gamba"
+      },
+      "prompt": "A small pink-and-coral shrimp seen from the side, with a gently curved segmented body, a fan-shaped tail, two long thin feelers, little legs underneath, big shiny eyes and a cheerful smile.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "pools"
+        ]
+      },
+      "size": "tiny",
+      "face": {
+        "x": 0.22,
+        "y": 0.29,
+        "width": 0.32,
+        "height": 0.27,
+        "edge": 0.01
+      },
+      "faceNote": "Its two eyes sit on top of its head near the outline: keep both, with the long thin feelers untouched. Only the eyes, brows, mouth and cheeks change."
+    },
+    {
+      "id": "fish",
+      "name": {
+        "en-US": "Little fish",
+        "es-ES": "Pececito"
+      },
+      "prompt": "A little round fish seen from the side, bright yellow with two soft blue stripes, rounded fins spread, a fan tail, a big friendly eye and a small smile, swimming.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "pools",
+          "sea"
+        ]
+      },
+      "size": "tiny",
+      "face": {
+        "x": 0.66,
+        "y": 0.35,
+        "width": 0.28,
+        "height": 0.25,
+        "edge": 0.01
+      },
+      "faceNote": "One eye shows, near the front of its yellow head, and the small mouth is at the tip of its head: the yellow and the blue stripe stay; only the eye, its brow, the mouth and the cheek change."
+    },
+    {
+      "id": "octopus",
+      "name": {
+        "en-US": "Octopus",
+        "es-ES": "Pulpo"
+      },
+      "prompt": "A small soft orange-pink octopus with a round head, eight curly arms with pale little suckers spreading out around it, big gentle eyes, rosy cheeks and a friendly smile.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "pools"
+        ]
+      },
+      "size": "small",
+      "face": {
+        "x": 0.28,
+        "y": 0.2,
+        "width": 0.42,
+        "height": 0.32
+      },
+      "faceNote": "The face is on the front of its round orange head: the head keeps its colour and dots; only the eyes, brows, mouth and cheeks change."
+    },
+    {
+      "id": "seaweed",
+      "name": {
+        "en-US": "Seaweed",
+        "es-ES": "Alga"
+      },
+      "prompt": "A clump of wavy green and olive seaweed fronds growing up from a small round holdfast, with a few little round air bladders, the fronds curling gently; a sweet, calm face with big eyes and a small smile on the broadest frond, low down.",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "pools",
+          "rocks"
+        ]
+      },
+      "size": "small",
+      "face": {
+        "x": 0.29,
+        "y": 0.47,
+        "width": 0.24,
+        "height": 0.2
+      },
+      "faceNote": "The face is drawn on a green seaweed frond: the frond stays green and leaf-shaped; only the eyes, brows, mouth and cheeks change."
+    },
+    {
+      "id": "clam",
+      "name": {
+        "en-US": "Clam",
+        "es-ES": "Almeja"
+      },
+      "prompt": "A small ribbed clam shell in cream and peach, slightly open, sitting upright on its hinge, with a friendly face with big eyes, rosy cheeks and a small smile on the front of its lower shell.",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "pools",
+          "sand"
+        ]
+      },
+      "size": "tiny",
+      "face": {
+        "x": 0.25,
+        "y": 0.6,
+        "width": 0.5,
+        "height": 0.24
+      },
+      "faceNote": "The face is on the front of the clam's lower shell: the shell keeps its peach ribs and colour; only the eyes, brows, mouth and cheeks change."
+    },
+    {
+      "id": "girl",
+      "name": {
+        "en-US": "Girl",
+        "es-ES": "Niña"
+      },
+      "prompt": "A girl of about six with brown hair in two bunches, a yellow sun hat with a red ribbon and a blue polka-dot swimsuit, barefoot, standing, holding the string of a colourful diamond kite with a short ribbon tail that flies just above and behind her head on a short string, looking up at it with a big smile.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sand"
+        ]
+      },
+      "size": "medium",
+      "face": {
+        "x": 0.42,
+        "y": 0.31,
+        "width": 0.26,
+        "height": 0.2
+      },
+      "noExpressions": [
+        "sleeping"
+      ]
+    },
+    {
+      "id": "surfer",
+      "name": {
+        "en-US": "Surfer",
+        "es-ES": "Surfista"
+      },
+      "prompt": "A boy of about eight with dark curly hair and brown skin in a short blue-and-orange wetsuit, barefoot, standing and waving with one hand, the other arm holding a yellow surfboard with a red stripe upright at his side (the board about as tall as he is), a big grin.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sand",
+          "sea"
+        ]
+      },
+      "size": "medium",
+      "face": {
+        "x": 0.35,
+        "y": 0.12,
+        "width": 0.22,
+        "height": 0.2
+      },
+      "noExpressions": [
+        "sleeping"
+      ]
+    },
+    {
+      "id": "dog",
+      "name": {
+        "en-US": "Dog",
+        "es-ES": "Perro"
+      },
+      "prompt": "A scruffy, friendly brown-and-white beach dog with floppy ears, a red collar, tongue out in a happy pant and a wagging tail, standing on four legs.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sand"
+        ]
+      },
+      "size": "medium",
+      "face": {
+        "x": 0.5,
+        "y": 0.12,
+        "width": 0.32,
+        "height": 0.34
+      },
+      "faceNote": "A dog's face: the fur keeps its brown and white patches and the nose stays black; the red collar below is untouched. When the dog is happy its tongue may show."
+    },
+    {
+      "id": "seal",
+      "name": {
+        "en-US": "Seal",
+        "es-ES": "Foca"
+      },
+      "prompt": "A plump grey harbour seal with soft darker speckles, lying on its belly and propped up on its front flippers, its round head raised, big dark gentle eyes, whiskers and a happy smile, tail flippers up behind it.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "rocks",
+          "sand"
+        ]
+      },
+      "size": "medium",
+      "face": {
+        "x": 0.12,
+        "y": 0.17,
+        "width": 0.38,
+        "height": 0.25
+      },
+      "faceNote": "A seal's face with a small dark nose and long whiskers: keep the whiskers and the grey speckled fur; only the eyes, brows, mouth and cheeks change."
+    },
+    {
+      "id": "turtle",
+      "name": {
+        "en-US": "Sea turtle",
+        "es-ES": "Tortuga marina"
+      },
+      "prompt": "A small green sea turtle with a rounded shell patterned in brown and green, four flippers, a gentle smile and big kind eyes, crawling forward.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sand",
+          "sea"
+        ]
+      },
+      "size": "small",
+      "face": {
+        "x": 0.58,
+        "y": 0.2,
+        "width": 0.36,
+        "height": 0.27,
+        "edge": 0.01
+      },
+      "faceNote": "The face is on its green spotted head: the head keeps its colour and spots and the shell is untouched; only the eyes, brows, mouth and cheeks change."
+    },
+    {
+      "id": "pelican",
+      "name": {
+        "en-US": "Pelican",
+        "es-ES": "Pelícano"
+      },
+      "prompt": "A white pelican with a big orange-yellow beak and a soft throat pouch, wings folded with grey tips, standing on orange webbed feet, friendly eyes and a pleased look.",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "rocks",
+          "sea"
+        ]
+      },
+      "size": "medium",
+      "face": {
+        "x": 0.4,
+        "y": 0.09,
+        "width": 0.22,
+        "height": 0.16
+      },
+      "faceNote": "Only one eye shows: the big orange beak and its pouch stay exactly as they are, bird-shaped (no lips, no teeth). Show the feeling with the eye, a small brow above it and the rosy cheek."
+    },
+    {
+      "id": "seagull",
+      "name": {
+        "en-US": "Seagull",
+        "es-ES": "Gaviota"
+      },
+      "prompt": "A white-and-grey seagull with a yellow beak, standing on orange webbed feet, head tilted with a cheeky, friendly look.",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "rocks",
+          "sand"
+        ]
+      },
+      "size": "small",
+      "face": {
+        "x": 0.28,
+        "y": 0.08,
+        "width": 0.32,
+        "height": 0.24
+      },
+      "faceNote": "It has two eyes, one on each side of its yellow beak, and both always show the expression together. The beak stays yellow and bird-shaped (no lips, no teeth)."
+    },
+    {
+      "id": "sandpiper",
+      "name": {
+        "en-US": "Sandpiper",
+        "es-ES": "Correlimos"
+      },
+      "prompt": "A tiny round sandpiper shorebird with a speckled brown-grey back, a white belly, a thin dark beak and quick little legs, mid-step, bright eyes.",
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "shore",
+          "sand"
+        ]
+      },
+      "size": "tiny",
+      "face": {
+        "x": 0.57,
+        "y": 0.165,
+        "width": 0.28,
+        "height": 0.155,
+        "edge": 0.005
+      },
+      "faceNote": "It has TWO eyes and both always show the expression together: the big near eye on the cream side of its face, with a rosy cheek below it, and the small far eye at the very edge of its head just above the base of the beak, with a little cheek beside it. Never remove either eye. The thin dark beak stays exactly as it is (no lips, no teeth, no mouth drawn). Show the feeling with both eyes and a small dark brow above each: happy = both eyes closed in upward-curved smiling arcs, cheeks lifted; sad = both eyes half-lidded looking down, brows tilted up at the inner ends; sleeping = both eyes closed as soft downward-curved lines; surprised = both eyes a little bigger and perfectly round with bright highlights, brows raised high — and the beak stays CLOSED, exactly as drawn: a bird shows surprise with its eyes and brows only, never an open beak or a mouth."
+    },
+    {
+      "id": "castle",
+      "name": {
+        "en-US": "Sand castle",
+        "es-ES": "Castillo de arena"
+      },
+      "prompt": "A sand castle of golden sand on its own little sandy base: three round towers with notched tops, a little arched doorway, a few shells pressed into the walls and a small red flag on the tallest tower.",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "sand"
+        ]
+      },
+      "size": "medium"
+    },
+    {
+      "id": "bucket",
+      "name": {
+        "en-US": "Bucket and spade",
+        "es-ES": "Cubo y pala"
+      },
+      "prompt": "A red plastic beach bucket with a yellow handle, a blue plastic spade standing in it, and a small green starfish-shaped sand mould leaning against its side.",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "sand"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "ball",
+      "name": {
+        "en-US": "Beach ball",
+        "es-ES": "Pelota de playa"
+      },
+      "prompt": "A classic inflatable beach ball with red, yellow, blue and white segments and a small shine.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sand"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "umbrella",
+      "name": {
+        "en-US": "Beach umbrella",
+        "es-ES": "Sombrilla"
+      },
+      "prompt": "An open beach umbrella with a red-and-white striped canopy and a frilled edge, on a straight wooden pole standing upright, the tip of the pole pushed a little into the ground.",
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "sand"
+        ]
+      },
+      "size": "big"
+    },
+    {
+      "id": "ring",
+      "name": {
+        "en-US": "Rubber ring",
+        "es-ES": "Flotador"
+      },
+      "prompt": "An inflatable swim ring with red and white stripes and a small shine, tilted a little towards us so its round hole shows.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sea",
+          "sand"
+        ]
+      },
+      "size": "small"
+    },
+    {
+      "id": "bottle",
+      "name": {
+        "en-US": "Message in a bottle",
+        "es-ES": "Mensaje en una botella"
+      },
+      "prompt": "A small green glass bottle with a cork, lying at a slight tilt, a rolled paper note tied with string visible inside.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sea",
+          "shore"
+        ]
+      },
+      "size": "tiny"
+    },
+    {
+      "id": "sailboat",
+      "name": {
+        "en-US": "Sailboat",
+        "es-ES": "Velero"
+      },
+      "prompt": "A small sailing boat seen from the side with a red wooden hull, a white triangular mainsail and a small jib, and a little red pennant at the top of the mast, upright and sailing. Only the boat: no water.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sea"
+        ]
+      },
+      "size": "big"
+    },
+    {
+      "id": "fishing-boat",
+      "name": {
+        "en-US": "Fishing boat",
+        "es-ES": "Barca de pesca"
+      },
+      "prompt": "A small blue-and-white wooden fishing boat seen from the side, with a little white wheelhouse with round windows, a short mast with a bundled net and two orange floats, no people. Only the boat: no water.",
+      "stage": {
+        "entrance": "hop",
+        "on": [
+          "sea"
+        ]
+      },
+      "size": "big"
+    }
+  ],
+  "expressions": [
+    {
+      "id": "happy",
+      "prompt": "happy — a big, warm, open smile, the eyes smiling (curved upward, crinkled with joy), cheeks lifted and rosy."
+    },
+    {
+      "id": "sad",
+      "prompt": "a little sad — eyebrows tilted up in the middle, eyes soft and a bit droopy, a small downturned mouth. Gentle, not crying, no tears."
+    },
+    {
+      "id": "sleeping",
+      "prompt": "fast asleep — both eyes peacefully closed as soft curved lines, a small relaxed mouth, calm and cosy."
+    },
+    {
+      "id": "surprised",
+      "prompt": "delighted surprise — eyes wide open and round, eyebrows raised high, a small round open \"o\" mouth. Amazed and happy, never scared."
+    }
+  ],
+  "scene": {
+    "layout": "layout.jpg",
+    "background": "A sunny, sheltered sandy cove seen from a child's height, exactly as laid out in the layout image: soft golden sand across the lower part, a gentle curve of beach, calm turquoise sea with small lapping waves and a line of white foam along the waterline across the middle, the far side of the bay closed by a green headland on the right with a small red-and-white lighthouse and a little white cottage on it, a pale-blue sky with a few round clouds. At the lower left and lower right, two low, wide clusters of dark wet rocks with shallow, clear rock pools among them (turquoise water over pebbles and sand, green and red seaweed, a few shells), each within the outer fifth of the width; the pools' water sits a little higher than in the layout, fully above the bottom eighth of the picture, with sand, pebbles and shells below them. The middle of the sand stays open. No people, no animals (no crabs, fish or starfish in the pools), no boats, no kites, no umbrellas. No trees, no branches and no leaves anywhere in the picture, not even at its edges or corners: the only framing at the sides is the rocks and pools low down, and the sky is open all the way to the edges; on the far side of the bay, low green headlands with bushes.",
+    "foreground": "The nearest elements only, kept low and slim: in the very bottom-left and bottom-right corners, a few dark wet rocks with green and red seaweed close to us, in front of the near rim of each rock pool, taking no more than the bottom tenth of the height and the outer sixth of the width; a few pebbles and shells along the very bottom. The pools' water, the whole centre and the sky stay empty and transparent.",
+    "staging": {
+      "layer": "background",
+      "anchor": "feet"
+    },
+    "features": {
+      "sky": {
+        "description": "the open sky above the sea, left of the lighthouse headland",
+        "air": true,
+        "areas": [
+          {
+            "x": [
+              0.08,
+              0.62
+            ],
+            "y": [
+              0.7,
+              0.84
+            ]
+          },
+          {
+            "x": [
+              0.62,
+              0.92
+            ],
+            "y": [
+              0.76,
+              0.84
+            ]
+          }
+        ]
+      },
+      "sea": {
+        "description": "the open sea of the bay, between the horizon and the waves",
+        "words": {
+          "en-US": [
+            "sea",
+            "waves",
+            "bay"
+          ],
+          "es-ES": [
+            "mar",
+            "olas",
+            "bahía"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.08,
+              0.92
+            ],
+            "y": [
+              0.5,
+              0.6
+            ]
+          }
+        ],
+        "edge": [
+          {
+            "x": [
+              0.25,
+              0.75
+            ],
+            "y": [
+              0.42,
+              0.45
+            ]
+          }
+        ]
+      },
+      "shore": {
+        "description": "the wet sand along the waterline, where the waves wash in",
+        "words": {
+          "en-US": [
+            "shore",
+            "waterline"
+          ],
+          "es-ES": [
+            "orilla"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.1,
+              0.9
+            ],
+            "y": [
+              0.42,
+              0.45
+            ]
+          }
+        ]
+      },
+      "sand": {
+        "description": "the open golden sand of the beach, between the two rock pools",
+        "words": {
+          "en-US": [
+            "sand",
+            "beach"
+          ],
+          "es-ES": [
+            "arena",
+            "playa"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.32,
+              0.68
+            ],
+            "y": [
+              0.2,
+              0.38
+            ]
+          }
+        ]
+      },
+      "pools": {
+        "description": "the two clear rock pools among the seaweedy rocks, low at the left and right",
+        "words": {
+          "en-US": [
+            "pool",
+            "pools",
+            "rockpool"
+          ],
+          "es-ES": [
+            "charca",
+            "charcas",
+            "poza"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.07,
+              0.22
+            ],
+            "y": [
+              0.19,
+              0.25
+            ]
+          },
+          {
+            "x": [
+              0.78,
+              0.93
+            ],
+            "y": [
+              0.18,
+              0.24
+            ]
+          }
+        ],
+        "edge": [
+          {
+            "x": [
+              0.26,
+              0.3
+            ],
+            "y": [
+              0.2,
+              0.28
+            ]
+          },
+          {
+            "x": [
+              0.66,
+              0.7
+            ],
+            "y": [
+              0.2,
+              0.28
+            ]
+          }
+        ]
+      },
+      "rocks": {
+        "description": "the tops of the dark seaweedy rocks around the pools",
+        "words": {
+          "en-US": [
+            "rock",
+            "rocks"
+          ],
+          "es-ES": [
+            "roca",
+            "rocas"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.03,
+              0.2
+            ],
+            "y": [
+              0.33,
+              0.37
+            ]
+          },
+          {
+            "x": [
+              0.82,
+              0.97
+            ],
+            "y": [
+              0.31,
+              0.35
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "notes": {
+    "stickers": "Every character faces slightly left, whole body visible. Living things get faces; nothing inorganic does. Edit prompts freely; a changed prompt re-renders only that sticker."
+  }
+}
