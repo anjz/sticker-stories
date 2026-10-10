@@ -203,6 +203,11 @@ type sceneSpec struct {
 	// Edits are painted into the finished background afterwards, in order:
 	// a feature added to the scene (a pond) without repainting the rest.
 	Edits []sceneEdit `json:"edits,omitempty"`
+	// Layout is an image (a path relative to the art directory) whose
+	// composition the background follows — a concept the user picked —
+	// repainted in the style sheet's style. Its content is part of the
+	// background's fingerprint.
+	Layout string `json:"layout,omitempty"`
 	// Features are named places in the finished art (the pond, the
 	// trees' branches), in fractions of the BASE art with the origin at
 	// the bottom-left, where stickers can land when a story brings them
@@ -987,6 +992,21 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 	}
 
 	bgFP := hashOf(toolVersion, "background", sheetFP, cfg.Style, cfg.Scene.Background, r.o.quality, "4")
+	bgRefs := [][]byte{sheet}
+	bgLead := "Using the attached style sheet as the exact style reference, paint the scene background:"
+	if cfg.Scene.Layout != "" {
+		layout, err := os.ReadFile(filepath.Join(r.c.artDir, cfg.Scene.Layout))
+		if err != nil {
+			return fmt.Errorf("scene.layout: %w", err)
+		}
+		sum := sha256.Sum256(layout)
+		bgFP = hashOf(bgFP, "layout", hex.EncodeToString(sum[:]))
+		if small, err := downscale(layout, 1024); err == nil {
+			layout = small
+		}
+		bgRefs = append(bgRefs, layout)
+		bgLead = "The first attached image is the style sheet: the exact style reference (medium, outlines, palette, texture). The second is the layout to follow: keep its composition — where the horizon, the land, the water and every element sit, and their sizes — but paint it entirely in the style sheet's style, not the layout's. Paint the scene background:"
+	}
 	bgBase, bgWide := r.out("art", "background.png"), r.out("art", "background-wide.png")
 	// An edited background is still this background: its unedited original
 	// carries the fingerprint (sceneEdits).
@@ -996,8 +1016,8 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 		r.planned = append(r.planned, "background ("+size+")", "background-wide ("+wide+", outpaint around the masked centre)")
 	} else {
 		r.say("▶ background")
-		prompt := fmt.Sprintf("%s\n\nUsing the attached style sheet as the exact style reference, paint the scene background: %s No characters, no animals, no text. %s", cfg.Style, cfg.Scene.Background, framing)
-		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: size, Quality: r.o.quality, Background: "opaque", References: [][]byte{sheet}})
+		prompt := fmt.Sprintf("%s\n\n%s %s No characters, no animals, no text. %s", cfg.Style, bgLead, cfg.Scene.Background, framing)
+		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: size, Quality: r.o.quality, Background: "opaque", References: bgRefs})
 		if err != nil {
 			return fmt.Errorf("background: %w", err)
 		}

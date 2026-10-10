@@ -38,6 +38,11 @@ go run ./packager validate ../packs/forest
   size rather than fill a third of a phone. Its text is the direction;
   places on those elements then need `wideAreas` (`docs/pack-format.md`,
   "Features").
+- `scene.layout` (optional): an image, relative to the art directory, whose
+  composition the background follows — a concept picked from rough
+  layouts (Beach's cove) — repainted in the style sheet's style. Sent as
+  a second reference with the style sheet; its content is part of the
+  background's fingerprint, so a new layout repaints the background.
 - `sizeInArt` (`true` for every new pack — `docs/pack-art.md`): each
   sticker is drawn at its size class's share of its image (huge 94 % …
   tiny 50 %), centred, with room around it for its animations; install
