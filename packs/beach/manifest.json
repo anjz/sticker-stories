@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "beach",
-  "version": 3,
+  "version": 4,
   "languages": [
     "en-US",
     "es-ES"
@@ -29,26 +29,26 @@
   "foregroundWide": "art/foreground-wide.webp",
   "features": {
     "pools": {
-      "description": "the two clear rock pools among the seaweedy rocks, low at the left and right",
+      "description": "the two rock pools low at the left and right: a long clear one among flat slate ledges on the left, a round deeper one among pale granite boulders on the right",
       "areas": [
         {
           "x": [
-            0.07,
-            0.22
+            0.06,
+            0.3
           ],
           "y": [
-            0.19,
-            0.25
+            0.2,
+            0.27
           ]
         },
         {
           "x": [
-            0.78,
-            0.93
+            0.74,
+            0.94
           ],
           "y": [
-            0.18,
-            0.24
+            0.2,
+            0.27
           ]
         }
       ],
@@ -67,47 +67,69 @@
       "edge": [
         {
           "x": [
-            0.26,
-            0.3
+            0.4,
+            0.45
           ],
           "y": [
             0.2,
-            0.28
+            0.3
           ]
         },
         {
           "x": [
-            0.66,
-            0.7
+            0.56,
+            0.62
           ],
           "y": [
             0.2,
-            0.28
+            0.3
+          ]
+        }
+      ],
+      "wideAreas": [
+        {
+          "x": [
+            -0.12,
+            0.3
+          ],
+          "y": [
+            0.2,
+            0.27
+          ]
+        },
+        {
+          "x": [
+            0.74,
+            1.1
+          ],
+          "y": [
+            0.2,
+            0.27
           ]
         }
       ]
     },
     "rocks": {
-      "description": "the tops of the dark seaweedy rocks around the pools",
+      "description": "the low flat slate ledges round the left pool and the big pale granite boulders by the right pool",
       "areas": [
         {
           "x": [
-            0.03,
-            0.2
+            0.02,
+            0.34
           ],
           "y": [
-            0.33,
-            0.37
+            0.36,
+            0.39
           ]
         },
         {
           "x": [
-            0.82,
-            0.97
+            0.66,
+            0.8
           ],
           "y": [
-            0.31,
-            0.35
+            0.34,
+            0.37
           ]
         }
       ],
@@ -127,12 +149,22 @@
       "areas": [
         {
           "x": [
-            0.32,
-            0.68
+            0.4,
+            0.62
           ],
           "y": [
+            0.18,
+            0.36
+          ]
+        },
+        {
+          "x": [
             0.2,
-            0.38
+            0.8
+          ],
+          "y": [
+            0.37,
+            0.4
           ]
         }
       ],
@@ -184,7 +216,8 @@
             0.45
           ]
         }
-      ]
+      ],
+      "from": "left"
     },
     "shore": {
       "description": "the wet sand along the waterline, where the waves wash in",

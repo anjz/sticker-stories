@@ -546,7 +546,7 @@
   "scene": {
     "layout": "layout.jpg",
     "background": "A sunny, sheltered sandy cove seen from a child's height, exactly as laid out in the layout image: soft golden sand across the lower part, a gentle curve of beach, calm turquoise sea with small lapping waves and a line of white foam along the waterline across the middle, the far side of the bay closed by a green headland on the right with a small red-and-white lighthouse and a little white cottage on it, a pale-blue sky with a few round clouds. At the lower left and lower right, two low, wide clusters of dark wet rocks with shallow, clear rock pools among them (turquoise water over pebbles and sand, green and red seaweed, a few shells), each within the outer fifth of the width; the pools' water sits a little higher than in the layout, fully above the bottom eighth of the picture, with sand, pebbles and shells below them. The middle of the sand stays open. No people, no animals (no crabs, fish or starfish in the pools), no boats, no kites, no umbrellas. No trees, no branches and no leaves anywhere in the picture, not even at its edges or corners: the only framing at the sides is the rocks and pools low down, and the sky is open all the way to the edges; on the far side of the bay, low green headlands with bushes.",
-    "foreground": "The nearest elements only, kept low and slim: in the very bottom-left and bottom-right corners, a few dark wet rocks with green and red seaweed close to us, in front of the near rim of each rock pool, taking no more than the bottom tenth of the height and the outer sixth of the width; a few pebbles and shells along the very bottom. The pools' water, the whole centre and the sky stay empty and transparent.",
+    "foreground": "The nearest elements only, kept very low and slim: in the very bottom-left corner, two or three low flat dark slate stones; in the very bottom-right corner, one or two smooth rounded pale pinkish-grey granite pebbles; a few small pebbles and shells along the very bottom; no seaweed. Each corner takes no more than the bottom twelfth of the height and the outer sixth of the width. The pools' water, the whole centre and the sky stay empty and transparent.",
     "staging": {
       "layer": "background",
       "anchor": "feet"
@@ -615,7 +615,8 @@
               0.45
             ]
           }
-        ]
+        ],
+        "from": "left"
       },
       "shore": {
         "description": "the wet sand along the waterline, where the waves wash in",
@@ -656,18 +657,28 @@
         "areas": [
           {
             "x": [
-              0.32,
-              0.68
+              0.4,
+              0.62
             ],
             "y": [
+              0.18,
+              0.36
+            ]
+          },
+          {
+            "x": [
               0.2,
-              0.38
+              0.8
+            ],
+            "y": [
+              0.37,
+              0.4
             ]
           }
         ]
       },
       "pools": {
-        "description": "the two clear rock pools among the seaweedy rocks, low at the left and right",
+        "description": "the two rock pools low at the left and right: a long clear one among flat slate ledges on the left, a round deeper one among pale granite boulders on the right",
         "words": {
           "en-US": [
             "pool",
@@ -683,50 +694,72 @@
         "areas": [
           {
             "x": [
-              0.07,
-              0.22
+              0.06,
+              0.3
             ],
             "y": [
-              0.19,
-              0.25
+              0.2,
+              0.27
             ]
           },
           {
             "x": [
-              0.78,
-              0.93
+              0.74,
+              0.94
             ],
             "y": [
-              0.18,
-              0.24
+              0.2,
+              0.27
             ]
           }
         ],
         "edge": [
           {
             "x": [
-              0.26,
-              0.3
+              0.4,
+              0.45
             ],
             "y": [
               0.2,
-              0.28
+              0.3
             ]
           },
           {
             "x": [
-              0.66,
-              0.7
+              0.56,
+              0.62
             ],
             "y": [
               0.2,
-              0.28
+              0.3
+            ]
+          }
+        ],
+        "wideAreas": [
+          {
+            "x": [
+              -0.12,
+              0.3
+            ],
+            "y": [
+              0.2,
+              0.27
+            ]
+          },
+          {
+            "x": [
+              0.74,
+              1.1
+            ],
+            "y": [
+              0.2,
+              0.27
             ]
           }
         ]
       },
       "rocks": {
-        "description": "the tops of the dark seaweedy rocks around the pools",
+        "description": "the low flat slate ledges round the left pool and the big pale granite boulders by the right pool",
         "words": {
           "en-US": [
             "rock",
@@ -740,27 +773,47 @@
         "areas": [
           {
             "x": [
-              0.03,
-              0.2
+              0.02,
+              0.34
             ],
             "y": [
-              0.33,
-              0.37
+              0.36,
+              0.39
             ]
           },
           {
             "x": [
-              0.82,
-              0.97
+              0.66,
+              0.8
             ],
             "y": [
-              0.31,
-              0.35
+              0.34,
+              0.37
             ]
           }
         ]
       }
-    }
+    },
+    "edits": [
+      {
+        "prompt": "Repaint this lower-left corner of the beach: a modest, long, shallow rock pool lying low in the golden sand, taking only the LEFT TWO THIRDS of this area — the right third of the area, towards the middle of the beach, is plain open golden sand that blends seamlessly into the beach, with nothing cut at the area's edge. The pool: clear pale-turquoise water over smooth sand and a few pebbles, its rim made of LOW, FLAT ledges of dark grey-brown slate only a little higher than the sand — especially the back rim (the side towards the sea), which is a thin, low line of flat stones, never a wall of big boulders. Just two or three small tufts of green seaweed and a single shell; lots of clear water. Same gouache style, outlines and light as the rest of the picture; the sand around blends in seamlessly. No animals, no people.",
+        "area": {
+          "x": 0.0,
+          "y": 0.5,
+          "width": 0.45,
+          "height": 0.5
+        }
+      },
+      {
+        "prompt": "Repaint this lower-right corner of the beach with a rock pool different from the one on the left, taking only the RIGHT TWO THIRDS of this area — the left third of the area, towards the middle of the beach, is plain open golden sand that blends seamlessly into the beach, with nothing cut at the area's edge. The pool: a modest ROUND, deeper pool of blue-green water among a few big smooth ROUNDED boulders of pale pinkish-grey granite with little white barnacles, on the outer side and the front; its back rim (the side towards the sea) is low — a couple of small flat stones level with the sand, never a wall. Only a little pink coral weed on one boulder, no other seaweed. Same gouache style, outlines and light as the rest of the picture; the sand around blends in seamlessly. No animals, no people.",
+        "area": {
+          "x": 0.58,
+          "y": 0.52,
+          "width": 0.42,
+          "height": 0.48
+        }
+      }
+    ]
   },
   "notes": {
     "stickers": "Every character faces slightly left, whole body visible. Living things get faces; nothing inorganic does. Edit prompts freely; a changed prompt re-renders only that sticker."
