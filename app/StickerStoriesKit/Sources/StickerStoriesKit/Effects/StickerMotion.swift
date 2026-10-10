@@ -779,8 +779,8 @@ public enum MotionPlanner {
             if visible {
                 // Always wholly on screen: pushed in from any edge it would cross.
                 let w = me.size.width * scale / 2, h = me.size.height * scale / 2
-                let v = scene.visible
-                target.x = min(max(target.x, v.minX + w), max(v.maxX - w, v.minX + w))
+                let v = scene.visible, c = scene.clear
+                target.x = min(max(target.x, c.minX + w), max(c.maxX - w, c.minX + w))
                 target.y = min(max(target.y, v.minY + h), max(v.maxY - h, v.minY + h))
             }
             // Coming back onto the canvas: from just off the side it left by.

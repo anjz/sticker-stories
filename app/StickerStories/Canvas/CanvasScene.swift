@@ -1491,7 +1491,19 @@ final class CanvasScene: SKScene {
             visible: StageRect(minX: visible.minX, minY: visible.minY, maxX: visible.maxX, maxY: visible.maxY),
             stickerSize: stickerBaseSize, sizes: sizes, fronts: stickerFronts,
             avoid: playbackPillRect.map { [StageRect(minX: $0.minX, minY: $0.minY, maxX: $0.maxX, maxY: $0.maxY)] } ?? [],
-            anchorFeet: pack.manifest.staging?.standsOnFeet ?? false, feet: stickerFeet, doors: stickerDoors)
+            anchorFeet: pack.manifest.staging?.standsOnFeet ?? false, feet: stickerFeet, doors: stickerDoors,
+            clear: clearStageRect(visible))
+    }
+
+    /// The visible stage less what the device covers (a phone's camera
+    /// cutout and rounded corners, the home indicator): stickers come to
+    /// rest wholly inside it. The scene's points are the view's.
+    private func clearStageRect(_ visible: CGRect) -> StageRect {
+        let insets = view?.safeAreaInsets ?? .zero
+        let pad = 4.0
+        return StageRect(
+            minX: visible.minX + insets.left + pad, minY: visible.minY + insets.bottom,
+            maxX: visible.maxX - insets.right - pad, maxY: visible.maxY - insets.top)
     }
 
     /// How far each sticker's drawing reaches below its centre, as a

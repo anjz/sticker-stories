@@ -352,12 +352,18 @@ public enum StagePlanner {
         /// going to it stands, in fractions of its image, origin
         /// bottom-left.
         public var doors: [String: StagePoint]
+        /// The part of the visible stage nothing on the device covers (a
+        /// phone's camera cutout and rounded corners): a sticker that comes
+        /// to rest stays wholly inside it. Defaults to `visible`.
+        public var clear: StageRect
 
         public init(
             world: StageRect, usable: StageRect, visible: StageRect, stickerSize: Double,
             sizes: [String: StageSize] = [:], fronts: [String: Double] = [:], avoid: [StageRect] = [],
-            anchorFeet: Bool = false, feet: [String: Double] = [:], doors: [String: StagePoint] = [:]
+            anchorFeet: Bool = false, feet: [String: Double] = [:], doors: [String: StagePoint] = [:],
+            clear: StageRect? = nil
         ) {
+            self.clear = clear ?? visible
             self.world = world
             self.usable = usable
             self.visible = visible
@@ -506,6 +512,14 @@ public enum StagePlanner {
             let artY = { (y: Double) in (y - scene.world.minY) / max(scene.world.maxY - scene.world.minY, 1) }
             let landed = depth.map { $0.scale(atArtY: artY(rect.lift > 0 ? ground : target.y)) } ?? scale
             if rect.lift > 0 { target.y = ground + rect.lift * landed / scale }
+            // Wholly on screen at the size it lands at, clear of the
+            // device's cutouts: a big visitor (a sailboat) near an edge of
+            // its place is pushed in rather than left half off it.
+            if rect.facing == nil {
+                let half = size.width * landed / 2
+                let c = scene.clear
+                target.x = min(max(target.x, c.minX + half), max(c.maxX - half, c.minX + half))
+            }
             obstacles.append(StageObstacle(
                 center: target, radius: radius, until: itsGoes.first { $0.at > entrance.at + arrivalMove }?.at))
             var plan = path(

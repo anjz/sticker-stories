@@ -427,6 +427,11 @@ one per sticker per story, never `all`.
   and has to come in the other is mirrored for the whole visit. Without a
   move it bounces in as before. Under Reduce Motion or calm mode it
   simply fades in (no frames).
+- **Wholly on screen**: wherever a visitor lands or a move takes a
+  sticker, it ends up entirely on the screen at the size it is then,
+  clear of what the device covers (a phone's camera cutout and rounded
+  corners, the home indicator) — a big sailboat near the edge of its
+  place is pushed in, never left half off it.
 - **A place that runs on past one side** (`features[].from`: Beach's
   open sea, whose right end is the beach): whatever comes in onto it —
   a boat, or the surfer coming in on his board — comes from that side,
