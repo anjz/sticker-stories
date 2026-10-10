@@ -132,6 +132,9 @@ public struct EntrancePlan: Equatable, Sendable {
     public var mirrored: Bool
     /// The id of the move whose frames play on the way in; nil for none.
     public var move: String?
+    /// It came in into its element by a move that stays there
+    /// (`StageMove.stays`): the move's loop goes on after it lands.
+    public var stays = false
     /// Its size for the whole visit, as a placement scale: what its size
     /// class says a visitor comes in at (`StickerSize.visitScale`), 1 for
     /// most. The entrance's own scaling (`startScale`) is relative to it.
@@ -159,7 +162,7 @@ public struct EntrancePlan: Equatable, Sendable {
         a.stickerID == b.stickerID && a.at == b.at && a.motion == b.motion && a.target == b.target
             && a.startOffset.x == b.startOffset.x && a.startOffset.y == b.startOffset.y
             && a.startScale == b.startScale && a.duration == b.duration && a.gait == b.gait
-            && a.mirrored == b.mirrored && a.move == b.move && a.scale == b.scale
+            && a.mirrored == b.mirrored && a.move == b.move && a.scale == b.scale && a.stays == b.stays
     }
 
     /// How long the sticker travels, for its move frames: they loop this
@@ -265,12 +268,17 @@ public struct StageMove: Equatable, Sendable {
     /// Features it comes in on when a story brings it in this way (a
     /// duckling swimming in: the pond); empty for the sticker's stage.
     public var on: [String]
+    /// Once this way has taken it into one of `on` (the surfer out on the
+    /// waves, a pelican afloat), it keeps the loop going where it is
+    /// instead of settling into its sticker pose, which would stand it on
+    /// the water.
+    public var stays: Bool
     public var facing: Facing?
     public var seconds: TimeInterval
 
     public init(
         id: String = "", cycle: TimeInterval? = nil, stride: Double = 0, hops: Bool = false, flies: Bool = false,
-        on: [String] = [], facing: Facing? = nil, seconds: TimeInterval = 0
+        on: [String] = [], stays: Bool = false, facing: Facing? = nil, seconds: TimeInterval = 0
     ) {
         self.id = id
         self.cycle = cycle
@@ -278,6 +286,7 @@ public struct StageMove: Equatable, Sendable {
         self.hops = hops
         self.flies = flies
         self.on = on
+        self.stays = stays
         self.facing = facing
         self.seconds = seconds
     }
@@ -498,6 +507,12 @@ public enum StagePlanner {
                 for: entrance, stage: stage, move: policy.allowsLiveAnimations ? move : nil,
                 target: target, area: rect, scene: scene, policy: policy, random: &random)
             plan.scale = landed
+            // Into its element by a way that stays there: it keeps going.
+            if let move, move.stays, plan.move == move.id, plan.travel > 0, !move.on.isEmpty,
+                Set(stage.on).isSubset(of: move.on)
+            {
+                plan.stays = true
+            }
             plans.append(plan)
         }
         return plans

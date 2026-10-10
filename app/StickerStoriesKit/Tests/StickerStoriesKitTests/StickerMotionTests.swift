@@ -355,6 +355,34 @@ import Testing
         }
     }
 
+    @Test func aWayThatStaysKeepsGoingOnlyOnceItIsInItsElement() {
+        let sea = ["sea": SceneFeature(description: "Water.", areas: [.init(x: [0.5, 0.7], y: [0.3, 0.4])])]
+        let surfer = UUID()
+        let actors = actors() + [
+            .init(id: surfer, stickerID: "surfer", home: StagePoint(x: 150, y: 150), size: Self.size, places: ["meadow"]),
+        ]
+        let moves = ["surfer": [StageMove(id: "walk", cycle: 0.8, stride: 0.4, facing: .left),
+                                StageMove(id: "surf", cycle: 0.8, stride: 0.9, on: ["sea"], stays: true, facing: .left)]]
+        func leg(_ go: GoTrigger) -> MotionLeg? {
+            var random = SeededGenerator(state: 1)
+            return MotionPlanner.plan(
+                goes: [go], actors: actors, features: sea, moves: moves, scene: Self.scene, policy: .standard,
+                random: &random)[surfer]?.legs.last
+        }
+        // Surfing out to the sea: the surf loop stays on once it is there.
+        let out = leg(GoTrigger(at: 0, stickerID: "surfer", kind: .to, target: "sea", by: "surf"))
+        #expect(out?.move == "surf" && out?.stays == true)
+        // Walking there, or surfing to someone rather than into the sea: it settles as ever.
+        #expect(leg(GoTrigger(at: 0, stickerID: "surfer", kind: .to, target: "sea"))?.stays == false)
+        #expect(leg(GoTrigger(at: 0, stickerID: "surfer", kind: .to, target: "fox", by: "surf"))?.stays == false)
+        // Calm mode fades it there: nothing loops.
+        var random = SeededGenerator(state: 1)
+        let calm = MotionPlanner.plan(
+            goes: [GoTrigger(at: 0, stickerID: "surfer", kind: .to, target: "sea", by: "surf")], actors: actors,
+            features: sea, moves: moves, scene: Self.scene, policy: EffectPolicy(reduceMotion: true), random: &random)
+        #expect(calm[surfer]?.legs.last?.stays == false)
+    }
+
     @Test func aPlaceSpotIsNeverUnderThePill() {
         var scene = Self.scene
         scene.avoid = [StageRect(minX: 700, minY: 0, maxX: 1000, maxY: 260)]

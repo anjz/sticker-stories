@@ -196,6 +196,9 @@ type animSpec struct {
 	// install writes them into the sidecar.
 	Flies bool     `json:"flies,omitempty"`
 	On    []string `json:"on,omitempty"`
+	// Stays (moves with On): once there, the loop keeps going instead of
+	// settling (the surfer out on the waves). Written at install too.
+	Stays bool `json:"stays,omitempty"`
 	// Perched (actions) says the character sits on something in it: a
 	// story lands a flyer before it plays it. Written at install too.
 	Perched bool `json:"perched,omitempty"`
@@ -415,8 +418,8 @@ func load(packDir, artDir string) (*ctxt, error) {
 		}
 		switch a.kind() {
 		case manifest.KindAction:
-			if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || len(a.On) > 0 {
-				return nil, fmt.Errorf("anim.json: %s: loop, facing, stride, hops, flies and on are for moves", a.key())
+			if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || len(a.On) > 0 || a.Stays {
+				return nil, fmt.Errorf("anim.json: %s: loop, facing, stride, hops, flies, on and stays are for moves", a.key())
 			}
 			if a.Pause != nil && (a.Pause.Frame < 2 || a.Pause.Frame > a.frameCount()-1 || strings.TrimSpace(a.Pause.Shows) == "") {
 				return nil, fmt.Errorf("anim.json: %s: pause needs a middle frame (2–%d) and what it shows", a.key(), a.frameCount()-1)
@@ -954,7 +957,7 @@ func (r *renderer) writeAnimation(a animSpec, sheet *stickerimg.AnimSheet, stick
 		out.Kind = manifest.KindMove
 		if a.Loop != nil {
 			out.Loop = &manifest.FrameRange{From: a.Loop.From - 1, To: a.Loop.To - 1}
-			out.Facing, out.Stride, out.Hops, out.Flies, out.On = a.Facing, a.Stride, a.Hops, a.Flies, a.On
+			out.Facing, out.Stride, out.Hops, out.Flies, out.On, out.Stays = a.Facing, a.Stride, a.Hops, a.Flies, a.On, a.Stays
 		}
 	}
 	if a.kind() == manifest.KindAction {
@@ -1227,7 +1230,7 @@ func runInstall(args []string) error {
 			return fmt.Errorf("%s: %w", a.key(), err)
 		}
 		if a.kind() == manifest.KindMove && a.Loop != nil {
-			side.Flies, side.On = a.Flies, a.On
+			side.Flies, side.On, side.Stays = a.Flies, a.On, a.Stays
 		}
 		if a.kind() == manifest.KindAction {
 			side.Perched, side.Place = a.Perched, a.Place

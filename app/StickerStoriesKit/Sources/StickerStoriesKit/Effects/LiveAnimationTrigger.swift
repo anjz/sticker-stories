@@ -57,8 +57,10 @@ public enum LivePart: Equatable, Sendable {
     /// A move: its loop over and over for `travel` seconds (while the
     /// character comes into the scene), then the frames after the loop,
     /// which bring it to rest. A move without a loop (a sprout) plays its
-    /// frames once and ignores `travel`.
-    case move(travel: TimeInterval)
+    /// frames once and ignores `travel`. `stays`: it has arrived in its
+    /// element (the surfer out on the waves) and keeps its loop going where
+    /// it is instead of settling, for as long as it is asked for.
+    case move(travel: TimeInterval, stays: Bool = false)
 }
 
 /// What a live animation shows at one moment: a frame, and how opaque the
@@ -116,7 +118,8 @@ public struct LiveFrames: Equatable, Sendable {
         case .fromPause(let held):
             guard let pause, pause < n else { return nil }
             return (Array(pause..<n), !held, true, false)
-        case .move:
+        case .move(_, let stays):
+            if stays, loop != nil { return ([], false, false, true) }
             let first = min(loop.map { $0.upperBound + 1 } ?? Self.moveStart, n)
             return (Array(first..<n), false, true, false)
         }
@@ -127,7 +130,7 @@ public struct LiveFrames: Equatable, Sendable {
         guard let plan = plan(part) else { return 0 }
         if plan.stays { return nil }
         let rest = plan.frames.reduce(0) { $0 + holds[$1] }
-        if case .move(let travel) = part, loop != nil { return max(travel, 0) + rest }
+        if case .move(let travel, _) = part, loop != nil { return max(travel, 0) + rest }
         return rest
     }
 
@@ -143,9 +146,9 @@ public struct LiveFrames: Equatable, Sendable {
         guard elapsed >= 0, let plan = plan(part) else { return nil }
         var t = elapsed
         // A move's loop comes first, for as long as the character travels.
-        if case .move(let travel) = part, let loop, loop.upperBound < holds.count {
+        if case .move(let travel, let stays) = part, let loop, loop.upperBound < holds.count {
             let cycle = loopDuration
-            if t < travel, cycle > 0 {
+            if t < travel || stays, cycle > 0 {
                 var inCycle = t.truncatingRemainder(dividingBy: cycle)
                 for frame in loop {
                     if inCycle < holds[frame] { return LiveFrameState(frame: frame, liveAlpha: 1, stillAlpha: 0) }

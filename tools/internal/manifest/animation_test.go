@@ -63,6 +63,10 @@ func TestAnimationsValidate(t *testing.T) {
 		{"loop without facing", func(a *StickerAnimation) { a.Kind, a.Loop, a.Stride = KindMove, &FrameRange{From: 1, To: 6}, 0.5 }, "facing"},
 		{"loop without stride", func(a *StickerAnimation) { a.Kind, a.Loop, a.Facing = KindMove, &FrameRange{From: 1, To: 6}, "right" }, "stride"},
 		{"facing without loop", func(a *StickerAnimation) { a.Kind, a.Facing = KindMove, "right" }, "need a loop"},
+		{"stays on an action", func(a *StickerAnimation) { a.Stays = true }, "belong to a move"},
+		{"stays without on", func(a *StickerAnimation) {
+			a.Kind, a.Loop, a.Facing, a.Stride, a.Stays = KindMove, &FrameRange{From: 1, To: 6}, "left", 0.5, true
+		}, "stays needs on"},
 		{"particle on a missing frame", func(a *StickerAnimation) {
 			a.Particles = []AnimationParticle{{Frame: 99, Effect: "dust-puff", X: 0.5, Y: 0.9}}
 		}, "is not one of the"},

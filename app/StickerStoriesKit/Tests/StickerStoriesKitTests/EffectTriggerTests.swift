@@ -165,6 +165,18 @@ struct EffectTriggerTests {
         #expect(sprout.duration(.move(travel: 5)).map { abs($0 - 0.7) < 1e-9 } == true)
     }
 
+    @Test func aMoveThatStaysKeepsLoopingOnceItIsThere() {
+        // The surfer out on the waves: the loop goes on after the travel,
+        // never settling to the standing pose, for as long as it is asked.
+        let surf = LiveFrames(holds: [0.1, 0.1, 0.1, 0.1, 0.1, 0.4], loop: 1...4)
+        #expect(surf.duration(.move(travel: 2, stays: true)) == nil)
+        #expect(surf.state(.move(travel: 2, stays: true), at: 2.05) == LiveFrameState(frame: 1, liveAlpha: 1, stillAlpha: 0))
+        #expect(surf.state(.move(travel: 2, stays: true), at: 60.35) == LiveFrameState(frame: 4, liveAlpha: 1, stillAlpha: 0))
+        // A sprout has no loop to keep going: it plays once as ever.
+        let sprout = LiveFrames(holds: [0.1, 0.2, 0.2, 0.3])
+        #expect(sprout.duration(.move(travel: 5, stays: true)).map { abs($0 - 0.7) < 1e-9 } == true)
+    }
+
     @Test func timelineFollowsTheLastTriggerForEachSticker() {
         let timeline = LiveTimeline(triggers: [
             LiveAnimationTrigger(at: 10, stickerID: "snail", animationID: "hide", mode: .resume),

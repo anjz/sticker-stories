@@ -131,10 +131,14 @@ public struct MotionLeg: Equatable, Sendable {
     public var facingTo: Double
     /// The id of the move whose frames play along; nil for none.
     public var move: String?
+    /// It goes into its element by a move that stays there
+    /// (`StageMove.stays`): the move's loop goes on after it arrives.
+    public var stays: Bool
 
     public init(
         at: TimeInterval, duration: TimeInterval, from: MotionSpot, to: MotionSpot, gait: Gait,
-        facingFrom: Double = 1, facingTo: Double = 1, move: String? = nil, stacking: Stacking = .behind
+        facingFrom: Double = 1, facingTo: Double = 1, move: String? = nil, stacking: Stacking = .behind,
+        stays: Bool = false
     ) {
         self.at = at
         self.duration = duration
@@ -145,6 +149,7 @@ public struct MotionLeg: Equatable, Sendable {
         self.facingTo = facingTo
         self.move = move
         self.stacking = stacking
+        self.stays = stays
     }
 
     /// Whether its move frames play along (not while fading).
@@ -222,10 +227,11 @@ public struct MotionPlan: Equatable, Sendable {
     }
 
     /// The move in progress at `time` whose frames should play (its start,
-    /// how long it travels and which move), if any.
-    public func travel(at time: TimeInterval) -> (at: TimeInterval, duration: TimeInterval, move: String?)? {
+    /// how long it travels, which move and whether its loop stays on once
+    /// it is there), if any.
+    public func travel(at time: TimeInterval) -> (at: TimeInterval, duration: TimeInterval, move: String?, stays: Bool)? {
         guard let leg = leg(at: time), leg.travels else { return nil }
-        return (leg.at, leg.duration, leg.move)
+        return (leg.at, leg.duration, leg.move, leg.stays)
     }
 
     static func mix(_ a: MotionSpot, _ b: MotionSpot, _ k: Double) -> MotionSpot {
@@ -377,9 +383,14 @@ public enum MotionPlanner {
                 // "went to the pond"): it stays, unless the story asks for
                 // another part of the place.
                 if !go.another, arrived(index, at: destination.point, facing: destination.face) { return }
+                // Into its element by a way that stays there (the surfer
+                // out onto the waves): its loop goes on once it is there.
+                let move = way(index).move
+                let stays = go.kind == .to && move?.stays == true
+                    && go.target.map { features[$0] != nil && move!.on.contains($0) } == true
                 leg(
                     index, to: destination.point, scale: destination.scale, visible: destination.visible, start: start,
-                    stacking: destination.stacking, face: destination.face)
+                    stacking: destination.stacking, face: destination.face, stays: stays)
             }
             if let left, left != groupKey(of: index) { relayout(left, start: start, mover: nil) }
         }
@@ -654,7 +665,7 @@ public enum MotionPlanner {
         /// goes (not for a little shuffle to make room).
         mutating func leg(
             _ index: Int, to point: StagePoint, scale: Double, visible: Bool, start: TimeInterval, shuffle: Bool = false,
-            stacking: MotionLeg.Stacking = .behind, face: StageMove.Facing? = nil
+            stacking: MotionLeg.Stacking = .behind, face: StageMove.Facing? = nil, stays: Bool = false
         ) {
             let state = states[index]
             let me = state.actor
@@ -709,7 +720,8 @@ public enum MotionPlanner {
             }
             states[index].legs.append(MotionLeg(
                 at: start, duration: duration, from: spot(from, state.scale, true), to: spot(target, scale, visible),
-                gait: gait, facingFrom: state.facing, facingTo: facing, move: move?.id, stacking: stacking))
+                gait: gait, facingFrom: state.facing, facingTo: facing, move: move?.id, stacking: stacking,
+                stays: stays && gait != .fade && move?.cycle != nil))
             states[index].center = target
             states[index].scale = scale
             states[index].visible = visible

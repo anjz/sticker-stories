@@ -1804,16 +1804,16 @@ final class CanvasScene: SKScene {
             if allowed {
                 let action = session.live.current(for: node.stickerID, at: time, frames: timing)
                 // The latest travel in progress: its entrance, or a move.
-                var travel: (at: TimeInterval, duration: TimeInterval, move: String?)?
+                var travel: (at: TimeInterval, duration: TimeInterval, move: String?, stays: Bool)?
                 if let plan = session.visitors[node.instanceID], time >= plan.at {
-                    travel = (plan.at, plan.travel, plan.move)
+                    travel = (plan.at, plan.travel, plan.move, plan.stays)
                 }
                 if let move = session.motions[node.instanceID]?.travel(at: time), move.at >= (travel?.at ?? -1) {
                     travel = move
                 }
                 if let travel, action.map({ $0.since < travel.at }) ?? true, let id = travel.move,
                     let move = liveLoaded[LiveAnimationKey(stickerID: node.stickerID, animationID: id)],
-                    let state = move.timing.state(.move(travel: travel.duration), at: time - travel.at)
+                    let state = move.timing.state(.move(travel: travel.duration, stays: travel.stays), at: time - travel.at)
                 {
                     shown = (move, state)
                 } else if let action, let loaded = liveLoaded[action.key],

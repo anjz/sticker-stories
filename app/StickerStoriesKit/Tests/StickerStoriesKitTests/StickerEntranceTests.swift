@@ -375,6 +375,26 @@ struct SeededGenerator: RandomNumberGenerator {
         }
     }
 
+    @Test func comingInIntoItsElementByAWayThatStaysKeepsGoing() {
+        let features = ["sea": SceneFeature(description: "Water.", areas: [.init(x: [0.1, 0.9], y: [0.5, 0.6])]),
+                        "sand": SceneFeature(description: "Sand.", areas: [.init(x: [0.1, 0.9], y: [0.16, 0.36])])]
+        let moves: [String: [StageMove]] = ["surfer": [
+            StageMove(id: "walk", cycle: 0.8, stride: 0.4, facing: .left),
+            StageMove(id: "surf", cycle: 0.8, stride: 0.9, on: ["sea"], stays: true, facing: .left),
+        ]]
+        let stages = ["surfer": StickerStage(entrance: .hop, on: ["sand"])]
+        func plan(by: String?) -> EntrancePlan {
+            var random = SeededGenerator(state: 3)
+            return StagePlanner.plan(
+                entrances: [EntranceTrigger(at: 0, stickerID: "surfer", by: by)], placed: [], stages: stages,
+                features: features, moves: moves, scene: Self.scene, obstacles: [], policy: .standard, random: &random)[0]
+        }
+        let surfing = plan(by: "surf")
+        #expect(surfing.move == "surf" && surfing.stays && (0.5 * 750...0.6 * 750).contains(surfing.target.y))
+        // Walking in onto the sand, it settles.
+        #expect(plan(by: nil).move == "walk" && !plan(by: nil).stays)
+    }
+
     @Test func calmModeJustFadesIn() {
         let plans = plan(["fox", "owl", "tree"], policy: EffectPolicy(reduceMotion: true))
         #expect(plans.allSatisfy { $0.motion == .fade && $0.startScale == 1 })

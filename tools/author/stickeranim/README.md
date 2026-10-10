@@ -39,8 +39,9 @@ removed (`prop` in art.json) is drawn from its art without it
   way it gets about that stories name with `by` — the ladybug's `fly`
   besides its `crawl`; a move may say `flies` (its loop is a flight) and
   `on` (the features a story that brings it in that way lands it on:
-  the duckling's `swim`, the pond); install writes both into the sidecar
-  without re-assembling), a one-line `description` of the whole
+  the duckling's `swim`, the pond) and `stays` (once there, its loop
+  keeps going instead of settling: Beach's surfer out on the waves);
+  install writes them into the sidecar without re-assembling), a one-line `description` of the whole
   animation (it also goes into the pack sidecar, where story authors read
   what the animation shows; add `story` with a plain version when the
   description carries drawing instructions), `base` — what stays put

@@ -85,6 +85,10 @@ type StickerAnimation struct {
 	// lands it on ({duckling:enter by swim}: the pond), in order of
 	// preference; empty for its stage's. Moves with a loop only.
 	On []string `json:"on,omitempty"`
+	// Stays says that once this way has taken the character into one of
+	// On (the surfer out on the waves), the loop keeps going where it is
+	// instead of settling into the sticker pose. Needs On.
+	Stays bool `json:"stays,omitempty"`
 	// Particles are bursts the frames fire as they come on show — a
 	// landing's dust, a splash — since stickers never draw particles
 	// themselves (docs/effects.md, "Particles"). Optional.
@@ -213,8 +217,8 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	}
 	switch a.EffectiveKind() {
 	case KindAction:
-		if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || len(a.On) > 0 {
-			fail("loop, facing, stride, hops, flies and on belong to a move, not an action")
+		if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || len(a.On) > 0 || a.Stays {
+			fail("loop, facing, stride, hops, flies, on and stays belong to a move, not an action")
 		}
 		if p := a.Pause; p != nil {
 			if p.Frame < 1 || p.Frame > a.Count-2 {
@@ -241,8 +245,11 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 			if a.Hops && a.Flies {
 				fail("a move hops or flies, not both")
 			}
-		} else if a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || len(a.On) > 0 {
-			fail("facing, stride, hops, flies and on need a loop")
+			if a.Stays && len(a.On) == 0 {
+				fail("stays needs on: the places where the move keeps going")
+			}
+		} else if a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || len(a.On) > 0 || a.Stays {
+			fail("facing, stride, hops, flies, on and stays need a loop")
 		}
 	default:
 		fail("kind %q must be action or move", a.Kind)

@@ -515,6 +515,14 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
   The next move goes the usual way again unless it names one too (so
   `{ladybug:go back by fly}` to fly home); a shuffle to make room goes
   the way the sticker last went.
+- **Staying in its element**: a move marked `stays` (`docs/pack-format.md`,
+  "Live animations") that takes a sticker into one of its `on` places —
+  `{surfer:go to sea by surf}`, or `{surfer:enter by surf}` — keeps its
+  loop going where it is once it gets there instead of settling into the
+  sticker pose: the surfer rides the waves, a pelican bobs afloat, rather
+  than standing on the water. It lasts until its next move or the
+  story's end; an action cued meanwhile plays and then it goes back to
+  its loop. Going to someone, or the usual way, it settles as ever.
 - **Beside another, the size their classes say**: going `to` a sticker,
   the mover is scaled so the pair keeps the ratio of their manifest
   `size` classes (`huge` 1.6, `big` 1, `medium` 0.75, `small` 0.55,

@@ -59,14 +59,16 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// An action's pause frame (`{snail:live hold}`).
     var pause: Pause?
     /// A move's loop, the way its frames travel, how far one loop carries
-    /// it (sticker widths), whether the loop hops or flies, and where it
-    /// comes in when a story brings it in this way.
+    /// it (sticker widths), whether the loop hops or flies, where it
+    /// comes in when a story brings it in this way, and whether it keeps
+    /// going once it is there (the surfer out on the waves).
     var loop: FrameRange?
     var facing: StageMove.Facing?
     var stride: Double?
     var hops: Bool?
     var flies: Bool?
     var on: [String]?
+    var stays: Bool?
     /// An action that happens in one place: the features it needs (the
     /// woodpecker's tap: the trunks).
     var place: [String]?
@@ -88,7 +90,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
 
     private enum CodingKeys: String, CodingKey {
         case id, sticker, kind, sheet, frame, columns, count, rest, stickerBox, hold, pause, loop, facing, stride, hops,
-            flies, on, place, particles
+            flies, on, stays, place, particles
     }
 
     /// A particle cue that decodes or is skipped (an effect this build
@@ -118,6 +120,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         hops = try? c.decodeIfPresent(Bool.self, forKey: .hops)
         flies = try? c.decodeIfPresent(Bool.self, forKey: .flies)
         on = try? c.decodeIfPresent([String].self, forKey: .on)
+        stays = try? c.decodeIfPresent(Bool.self, forKey: .stays)
         place = try? c.decodeIfPresent([String].self, forKey: .place)
         let cues = (try? c.decodeIfPresent([LenientCue].self, forKey: .particles)) ?? nil
         let frames = count
@@ -144,7 +147,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
             guard let stride, stride > 0 else { return nil }
             return StageMove(
                 id: id, cycle: timing.loopDuration, stride: stride, hops: hops ?? false, flies: flies ?? false,
-                on: on ?? [], facing: facing)
+                on: on ?? [], stays: stays ?? false, facing: facing)
         }
         return StageMove(id: id, seconds: timing.duration(.move(travel: 0)) ?? 0)
     }
