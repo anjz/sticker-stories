@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "beach",
-  "version": 8,
+  "version": 9,
   "languages": [
     "en-US",
     "es-ES"
@@ -139,15 +139,25 @@
       }
     },
     "sea": {
-      "description": "the open sea of the bay, between the horizon and the waves",
+      "description": "the open sea of the bay, between the horizon and the waves; it runs on past the left edge, and on the right the beach curves round to the lighthouse headland",
       "areas": [
         {
           "x": [
-            0.08,
-            0.92
+            0.04,
+            0.7
           ],
           "y": [
             0.5,
+            0.6
+          ]
+        },
+        {
+          "x": [
+            0.7,
+            0.8
+          ],
+          "y": [
+            0.53,
             0.6
           ]
         }
@@ -167,12 +177,44 @@
       "edge": [
         {
           "x": [
-            0.25,
-            0.75
+            0.04,
+            0.7
           ],
           "y": [
-            0.42,
-            0.45
+            0.43,
+            0.46
+          ]
+        },
+        {
+          "x": [
+            0.7,
+            0.82
+          ],
+          "y": [
+            0.47,
+            0.5
+          ]
+        }
+      ],
+      "wideAreas": [
+        {
+          "x": [
+            -0.45,
+            0.7
+          ],
+          "y": [
+            0.5,
+            0.6
+          ]
+        },
+        {
+          "x": [
+            0.7,
+            0.8
+          ],
+          "y": [
+            0.53,
+            0.6
           ]
         }
       ],
@@ -183,12 +225,22 @@
       "areas": [
         {
           "x": [
-            0.1,
-            0.9
+            0.04,
+            0.7
           ],
           "y": [
-            0.42,
-            0.45
+            0.43,
+            0.46
+          ]
+        },
+        {
+          "x": [
+            0.7,
+            0.82
+          ],
+          "y": [
+            0.47,
+            0.5
           ]
         }
       ],
@@ -200,7 +252,29 @@
         "es-ES": [
           "orilla"
         ]
-      }
+      },
+      "wideAreas": [
+        {
+          "x": [
+            -0.45,
+            0.7
+          ],
+          "y": [
+            0.43,
+            0.46
+          ]
+        },
+        {
+          "x": [
+            0.7,
+            0.82
+          ],
+          "y": [
+            0.47,
+            0.5
+          ]
+        }
+      ]
     },
     "sky": {
       "description": "the open sky above the sea, left of the lighthouse headland",

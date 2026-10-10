@@ -156,7 +156,8 @@
           "at": "base",
           "intensity": 0.3
         }
-      ]
+      ],
+      "steps": true
     },
     {
       "id": "dance",
@@ -293,7 +294,8 @@
       "restFrames": [
         1,
         12
-      ]
+      ],
+      "steps": true
     },
     {
       "id": "sails",
@@ -571,7 +573,8 @@
       "restFrames": [
         1,
         12
-      ]
+      ],
+      "steps": true
     },
     {
       "id": "wiggle",
@@ -1625,7 +1628,7 @@
       "id": "walk",
       "sticker": "surfer",
       "kind": "move",
-      "description": "the surfer boy walks along to the left, carrying his surfboard under his arm, then stops.",
+      "description": "the surfer boy walks along to the left with his surfboard under one arm, legs swinging step by step, then stops.",
       "base": "his bare feet",
       "loop": {
         "from": 2,
@@ -1640,19 +1643,19 @@
           "size": "3072x2304",
           "frames": [
             "Exactly as in the scaffold: the rest pose.",
-            "Walking to the left, turned three-quarters, the board under his arm.",
-            "Stepping, his other leg forward.",
-            "Mid-step.",
-            "Stepping, the first leg forward.",
-            "As frame 3.",
-            "As frame 4.",
-            "Mid-step.",
-            "As frame 2 (leading back into frame 2).",
-            "Slowing, both feet down.",
-            "Turning back toward us, nearly the rest pose.",
+            "Walking to the left, turned three-quarters to the left, the board tucked under his far arm: CONTACT — his near (front) leg stretched far forward, heel touching the ground; his far leg stretched far back, toes pushing off; his free arm swinging back.",
+            "DOWN — his front foot flat on the ground, knee bent a little, his back leg lifting off the ground behind him; his body a touch lower.",
+            "PASSING — his weight on the near leg, straight under him; his far leg bent at the knee, its foot lifted and swinging forward past the near leg; arm at his side.",
+            "UP — rising on the near foot; his far leg swinging out in front of him, knee bent, foot off the ground; body a touch higher.",
+            "CONTACT, the other side — his far leg now stretched far forward, heel touching the ground; his near leg stretched far back, toes pushing off; his free arm swinging forward.",
+            "DOWN — his far foot flat on the ground, knee bent a little; his near leg lifting off the ground behind him.",
+            "PASSING — his weight on the far leg; his near leg bent at the knee, foot lifted and swinging forward past the far leg.",
+            "UP — rising on the far foot; his near leg swinging out in front, foot off the ground, about to land (leading back into frame 2).",
+            "Slowing down: both feet coming together on the ground, the board still under his arm.",
+            "Standing, turning back towards us, nearly the rest pose.",
             "Exactly as in the scaffold: the rest pose."
           ],
-          "hint": "Drawn in place, as on a treadmill. Same size as the scaffold in every cell."
+          "hint": "A real walk cycle: in EVERY frame from 2 to 9 the legs are in a clearly different position from the frame before — one leg forward and the other back, then passing, then the other leg forward — never the same stride drawn twice. Feet and knees change visibly; the free arm swings opposite to the front leg. Drawn in place, as on a treadmill, the same size as the scaffold in every cell; the board stays the same size under his arm."
         }
       ],
       "hold": [
@@ -1672,7 +1675,8 @@
       "restFrames": [
         1,
         12
-      ]
+      ],
+      "steps": true
     },
     {
       "id": "surf",
@@ -1897,7 +1901,8 @@
           "at": "base",
           "intensity": 0.3
         }
-      ]
+      ],
+      "steps": true
     },
     {
       "id": "clap",
@@ -2034,7 +2039,8 @@
       "restFrames": [
         1,
         12
-      ]
+      ],
+      "steps": true
     },
     {
       "id": "swim",
@@ -2230,7 +2236,8 @@
       "restFrames": [
         1,
         12
-      ]
+      ],
+      "steps": true
     },
     {
       "id": "swim",
@@ -2690,7 +2697,8 @@
       "on": [
         "sand",
         "rocks"
-      ]
+      ],
+      "steps": true
     },
     {
       "id": "peck",
@@ -2886,7 +2894,8 @@
       "on": [
         "shore",
         "sand"
-      ]
+      ],
+      "steps": true
     },
     {
       "id": "flag",
