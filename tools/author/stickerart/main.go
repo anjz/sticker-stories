@@ -1220,9 +1220,19 @@ func (r *renderer) sceneEdits(bgFP, bgBase, bgWide string) error {
 		}
 		r.done(orig, bgFP)
 	}
+	// Each edit's drawing is kept, keyed by its own prompt and area, so
+	// changing one edit redraws only that one: the others are laid over
+	// the background again from their kept drawings.
+	genPath := func(e sceneEdit) string {
+		return r.out("art", "edit-"+hashOf(bgFP, "edit", sceneEditVersion, e.Prompt, fmt.Sprint(e.Area), r.o.quality, editModel)+".gen.png")
+	}
 	if r.o.dry {
 		for _, e := range edits {
-			r.planned = append(r.planned, "background edit: "+e.Prompt)
+			if exists(genPath(e)) {
+				r.planned = append(r.planned, "background edit (kept drawing, no API call): "+genPath(e))
+			} else {
+				r.planned = append(r.planned, "background edit → "+genPath(e)+": "+e.Prompt)
+			}
 		}
 		return nil
 	}
@@ -1235,6 +1245,15 @@ func (r *renderer) sceneEdits(bgFP, bgBase, bgWide string) error {
 		return err
 	}
 	for i, e := range edits {
+		if kept, err := os.ReadFile(genPath(e)); err == nil {
+			edited, err := stickerimg.Decode(kept)
+			if err != nil {
+				return err
+			}
+			img = stickerimg.Face(img, edited, e.Area)
+			r.say("· background edit %d kept", i+1)
+			continue
+		}
 		r.say("▶ background edit %d", i+1)
 		canvas, err := stickerimg.Encode(img)
 		if err != nil {
@@ -1252,6 +1271,9 @@ func (r *renderer) sceneEdits(bgFP, bgBase, bgWide string) error {
 		}
 		edited, err := stickerimg.Decode(out.PNG)
 		if err != nil {
+			return err
+		}
+		if err := os.WriteFile(genPath(e), out.PNG, 0o644); err != nil {
 			return err
 		}
 		img = stickerimg.Face(img, edited, e.Area)
