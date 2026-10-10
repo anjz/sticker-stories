@@ -2,89 +2,101 @@
   "schema": 1,
   "triggers": [
     {
-      "at": 4.68,
+      "at": 4.6,
       "cue": "flor",
       "sticker": "flower",
       "enter": true
     },
     {
-      "at": 10.92,
+      "at": 10.76,
       "cue": "la",
       "sticker": "flower",
       "effect": "shake",
       "intensity": 0.3
     },
     {
-      "at": 16.36,
+      "at": 15.64,
       "cue": "excavadora",
       "sticker": "excavator",
       "enter": true
     },
     {
-      "at": 18.08,
+      "at": 17.4,
       "cue": "hasta",
       "sticker": "excavator",
       "go": "to",
       "target": "crater"
     },
     {
-      "at": 24.6,
+      "at": 24,
       "cue": "hielo",
       "sticker": "ice",
       "enter": true
     },
     {
-      "at": 27.48,
+      "at": 26.84,
       "cue": "la",
       "sticker": "ice",
       "animation": "frost"
     },
     {
-      "at": 30.12,
+      "at": 29.48,
       "cue": "palada",
       "sticker": "excavator",
       "effect": "pulse"
     },
     {
-      "at": 30.12,
+      "at": 29.48,
       "cue": "palada",
       "sticker": "excavator",
       "animation": "dig"
     },
     {
-      "at": 34.36,
+      "at": 38.6,
+      "cue": "planta",
+      "sticker": "oxygen-plant",
+      "enter": true
+    },
+    {
+      "at": 40.04,
       "cue": "la",
       "sticker": "excavator",
       "go": "to",
-      "target": "flower"
+      "target": "oxygen-plant"
     },
     {
-      "at": 44.84,
+      "at": 40.04,
+      "cue": "la",
+      "sticker": "oxygen-plant",
+      "animation": "make"
+    },
+    {
+      "at": 45.32,
       "cue": "el",
       "sticker": "flower",
       "effect": "spray",
       "intensity": 0.4
     },
     {
-      "at": 44.84,
+      "at": 45.32,
       "cue": "el",
       "sticker": "flower",
       "animation": "turn"
     },
     {
-      "at": 50.44,
+      "at": 50.92,
       "cue": "todos",
       "sticker": "all",
       "expression": "happy"
     },
     {
-      "at": 50.44,
+      "at": 50.92,
       "cue": "todos",
       "sticker": "all",
       "effect": "hop"
     },
     {
-      "at": 52.11,
+      "at": 52.59,
       "cue": "y",
       "sticker": "excavator",
       "effect": "sparkle"

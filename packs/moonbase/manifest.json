@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "moonbase",
-  "version": 14,
+  "version": 15,
   "languages": [
     "en-US",
     "es-ES"
@@ -217,8 +217,8 @@
     }
   },
   "narrationPacks": {
-    "en-US": "moonbase-narration-en-61f3db68",
-    "es-ES": "moonbase-narration-es-ba0e24ed"
+    "en-US": "moonbase-narration-en-1899f584",
+    "es-ES": "moonbase-narration-es-2671fae8"
   },
   "stickers": [
     {
@@ -247,36 +247,6 @@
         "y": [
           0.2448,
           0.7565
-        ]
-      }
-    },
-    {
-      "id": "booster",
-      "name": {
-        "en-US": "Booster rocket",
-        "es-ES": "Cohete propulsor"
-      },
-      "image": "stickers/booster.webp",
-      "animations": [
-        "anims/booster.legs.json",
-        "anims/booster.fly.json"
-      ],
-      "stage": {
-        "entrance": "fly",
-        "on": [
-          "pad",
-          "plain"
-        ]
-      },
-      "size": "huge",
-      "content": {
-        "x": [
-          0.1901,
-          0.8099
-        ],
-        "y": [
-          0.0299,
-          0.9701
         ]
       }
     },
@@ -540,15 +510,15 @@
           "plain"
         ]
       },
-      "size": "small",
+      "size": "tiny",
       "content": {
         "x": [
-          0.2005,
-          0.7995
+          0.25,
+          0.75
         ],
         "y": [
-          0.2318,
-          0.7695
+          0.276,
+          0.7253
         ]
       }
     },
@@ -648,6 +618,35 @@
         "y": [
           0.276,
           0.7253
+        ]
+      }
+    },
+    {
+      "id": "oxygen-plant",
+      "name": {
+        "en-US": "Oxygen plant",
+        "es-ES": "Planta de oxígeno"
+      },
+      "image": "stickers/oxygen-plant.webp",
+      "animations": [
+        "anims/oxygen-plant.make.json",
+        "anims/oxygen-plant.unfold.json"
+      ],
+      "stage": {
+        "entrance": "grow",
+        "on": [
+          "plain"
+        ]
+      },
+      "size": "medium",
+      "content": {
+        "x": [
+          0.1393,
+          0.8594
+        ],
+        "y": [
+          0.1641,
+          0.8372
         ]
       }
     },
@@ -1185,6 +1184,35 @@
       }
     },
     {
+      "id": "air-from-a-rock",
+      "requiredStickers": [
+        "oxygen-plant",
+        "supply-pod",
+        "man",
+        "woman"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Air from a Rock",
+          "text": "Maya held up a plain grey pebble. “Bet you there's air in this rock.” Leo laughed. “Air? In a rock? Bet there isn't. Loser does the washing-up.” Thump! Down onto the landing pad came the supply pod. Its side panels slid open. Inside was a box marked AIR. Out on the plain, the box unfolded into a brand-new oxygen plant. Maya tipped her pebble into its hopper. Its oven glowed orange, its gauges swung up, and its tanks began to fill. Leo checked his wrist. Oxygen! Fresh air to breathe! Moon rock is nearly half oxygen, locked inside. Bake it hot enough, and out it comes. “Fine. I'll do the washing-up.” And Maya took a deep breath of brand-new air.",
+          "audio": "audio/en-US/air-from-a-rock.m4a",
+          "effects": "audio/en-US/air-from-a-rock.effects.json"
+        },
+        "es-ES": {
+          "title": "Aire de una roca",
+          "text": "Maya levantó una piedrecita gris, de lo más normal. «Te apuesto a que esta roca tiene aire dentro.» Leo se rió. «¿Aire? ¿En una roca? Te apuesto a que no. Quien pierda, friega los platos.» ¡Pum! Sobre la plataforma de aterrizaje bajó la cápsula de carga. Sus paneles se abrieron. Dentro había una caja que decía AIRE. En la llanura, la caja se desplegó y se convirtió en una flamante planta de oxígeno. Maya echó su piedrecita en la tolva. Su horno brilló naranja, sus agujas subieron y sus depósitos empezaron a llenarse. Leo miró su muñeca. ¡Oxígeno! ¡Aire fresco para respirar! La roca de la Luna es casi la mitad oxígeno, encerrado dentro. Si la calientas lo bastante, sale. «Vale. Friego yo los platos.» Y Maya respiró hondo aquel aire recién hecho.",
+          "audio": "audio/es-ES/air-from-a-rock.m4a",
+          "effects": "audio/es-ES/air-from-a-rock.effects.json"
+        }
+      }
+    },
+    {
       "id": "always-falling",
       "requiredStickers": [
         "station",
@@ -1247,7 +1275,7 @@
       "id": "fuel-from-ice",
       "requiredStickers": [
         "ship",
-        "booster",
+        "oxygen-plant",
         "ice",
         "excavator"
       ],
@@ -1261,13 +1289,13 @@
       "localizations": {
         "en-US": {
           "title": "Fuel from Ice",
-          "text": "The huge ship and the tall booster stood side by side on the landing pad. Their tanks were nearly empty. And there's no fuel station on the Moon. But the Moon has something else, hidden in its coldest, darkest craters. The excavator trundled down into the crater, and there, frozen in the dust, was a big chunk of ice. It glittered in the dark. Frost spread over it, white and sparkling. Scoop! Up came the ice, and back trundled the excavator with a full load. Ice is made of water. And water can be split into two gases: the very same ones rockets burn. Into the tanks it went. Enough for the ship. Enough for the booster too! The ship lowered its crew elevator, ready for the trip home. Everyone cheered. Fuel from the Moon itself!",
+          "text": "The huge ship stood on the landing pad, ready to fly home. But its tanks were nearly empty. And there's no fuel station on the Moon. The Moon has something else, though, hidden in its coldest, darkest craters. The excavator trundled down into the crater, and there, frozen in the dust, was a chunk of ice. It glittered in the dark. Frost spread over it, white and sparkling. Scoop! Up came the ice, and the excavator carried it to the oxygen plant. Ice is made of water. And the plant split the water into two gases: the very same ones rockets burn. Into the ship's tanks they went. The ship lowered its crew elevator, ready for the trip home. Everyone cheered. Fuel from the Moon itself!",
           "audio": "audio/en-US/fuel-from-ice.m4a",
           "effects": "audio/en-US/fuel-from-ice.effects.json"
         },
         "es-ES": {
           "title": "Combustible de hielo",
-          "text": "La enorme nave y el alto cohete propulsor esperaban juntos en la plataforma de aterrizaje. Tenían los depósitos casi vacíos. Y en la Luna no hay gasolineras. Pero la Luna tiene otra cosa, escondida en sus cráteres más fríos y oscuros. La excavadora bajó traqueteando al cráter, y allí, congelado en el polvo, había un gran trozo de hielo. Brillaba en la oscuridad. La escarcha lo cubrió, blanca y reluciente. ¡Palada! Arriba fue el hielo, y la excavadora volvió con la pala llena. El hielo es agua. Y el agua se puede separar en dos gases: justo los que queman los cohetes. Todo fue a los depósitos. Suficiente para la nave. ¡Y para el cohete también! La nave bajó su ascensor, lista para el viaje a casa. Todos lo celebraron. ¡Combustible de la propia Luna!",
+          "text": "La enorme nave esperaba en la plataforma de aterrizaje, lista para volver a casa. Pero tenía los depósitos casi vacíos. Y en la Luna no hay gasolineras. Aunque la Luna tiene otra cosa, escondida en sus cráteres más fríos y oscuros. La excavadora bajó traqueteando al cráter, y allí, congelado en el polvo, había un trozo de hielo. Brillaba en la oscuridad. La escarcha lo cubrió, blanca y reluciente. ¡Palada! Arriba fue el hielo, y la excavadora lo llevó a la planta de oxígeno. El hielo es agua. Y la planta separó el agua en dos gases: justo los que queman los cohetes. Fueron a los depósitos de la nave. La nave bajó su ascensor, lista para el viaje a casa. Todos lo celebraron. ¡Combustible de la propia Luna!",
           "audio": "audio/es-ES/fuel-from-ice.m4a",
           "effects": "audio/es-ES/fuel-from-ice.effects.json"
         }
@@ -1359,7 +1387,8 @@
       "requiredStickers": [
         "flower",
         "ice",
-        "excavator"
+        "excavator",
+        "oxygen-plant"
       ],
       "optionalStickers": [],
       "weight": 1,
@@ -1370,13 +1399,13 @@
       "localizations": {
         "en-US": {
           "title": "Ice for the Flower",
-          "text": "In its sealed box, the orange flower had a little water tank. And the tank was nearly empty. The flower needed a drink. But on the Moon, you can't just turn on a tap. So the excavator trundled off to the crater, where the sunlight never reaches. There, frozen into the dust, waited a chunk of ice, as cold as cold can be. Frost spread over it and sparkled. Scoop! Up came the ice, dust and all. Back trundled the excavator, careful not to drop a crumb. Into the melter went the ice. Drip. Drip. Drip. The tank filled up, and the flower turned its bloom up toward its lamp, bright as ever. Everyone came to see. And the excavator was very proud of its delivery: one scoop, carefully.",
+          "text": "In its sealed box, the orange flower had a little water tank. And the tank was nearly empty. The flower needed a drink. But on the Moon, you can't just turn on a tap. So the excavator trundled off to the crater, where the sunlight never reaches. There, frozen into the dust, waited a chunk of ice, as cold as cold can be. Frost spread over it and sparkled. Scoop! Up came the ice, dust and all. Back trundled the excavator, careful not to drop a crumb. Into the oxygen plant went the ice. It melted it down: drip, drip, drip, into the flower's tank. The tank filled up, and the flower turned its bloom up toward its lamp, bright as ever. Everyone came to see. And the excavator was very proud of its delivery: one scoop, carefully.",
           "audio": "audio/en-US/ice-for-the-flower.m4a",
           "effects": "audio/en-US/ice-for-the-flower.effects.json"
         },
         "es-ES": {
           "title": "Hielo para la flor",
-          "text": "En su caja sellada, la flor naranja tenía un pequeño depósito de agua. Y el depósito estaba casi vacío. La flor necesitaba beber. Pero en la Luna no basta con abrir un grifo. Así que la excavadora se fue traqueteando hasta el cráter, donde nunca llega el sol. Allí, congelado en el polvo, esperaba un trozo de hielo, más frío que el frío. La escarcha lo cubrió y brilló. ¡Palada! Arriba fue el hielo, con polvo y todo. La excavadora volvió traqueteando, con cuidado de no perder ni una miga. El hielo entró en el derretidor. Gota. Gota. Gota. El depósito se llenó, y la flor giró hacia su lámpara, tan brillante como siempre. Todos fueron a verla. Y la excavadora estaba muy orgullosa de su entrega: una palada, con mucho cuidado.",
+          "text": "En su caja sellada, la flor naranja tenía un pequeño depósito de agua. Y el depósito estaba casi vacío. La flor necesitaba beber. Pero en la Luna no hay grifos. Así que la excavadora se fue traqueteando hasta el cráter, donde nunca llega el sol. Allí, congelado en el polvo, esperaba un trozo de hielo, más frío que el frío. La escarcha lo cubrió y brilló. ¡Palada! Arriba fue el hielo, con polvo y todo. La excavadora volvió con cuidado de no perder ni una miga. El hielo entró en la planta de oxígeno. La fundió: gota, gota, gota, hasta el depósito de la flor. El depósito se llenó, y la flor giró hacia su lámpara, tan brillante como siempre. Todos fueron a verla. Y la excavadora estaba muy orgullosa de su entrega: una palada, con mucho cuidado.",
           "audio": "audio/es-ES/ice-for-the-flower.m4a",
           "effects": "audio/es-ES/ice-for-the-flower.effects.json"
         }
@@ -1527,9 +1556,8 @@
       }
     },
     {
-      "id": "one-pad-four-landings",
+      "id": "one-pad-three-landings",
       "requiredStickers": [
-        "booster",
         "lander",
         "supply-pod",
         "ship"
@@ -1542,16 +1570,16 @@
       ],
       "localizations": {
         "en-US": {
-          "title": "One Pad, Four Landings",
-          "text": "It was the busiest day the landing pad had ever seen. Four spacecraft were coming in, and there was only one pad! First came the supply pod, small and quick. Thump! It opened up to unload its crates, then hopped aside to make room. Next came the lander, on its four round feet. It opened its hatch for a moment, then shuffled aside too. Then the tall booster came down, tail first. It checked its legs, and then stepped politely out of the way. And last of all, the huge ship came down, slow and gentle, onto the empty pad. Nobody bumped. Nobody squeezed. Everybody took turns. And for one day, the Moon had the tidiest landing pad in space.",
-          "audio": "audio/en-US/one-pad-four-landings.m4a",
-          "effects": "audio/en-US/one-pad-four-landings.effects.json"
+          "title": "One Pad, Three Landings",
+          "text": "It was the busiest day the landing pad had ever seen. Three spacecraft were coming in, and there was only one pad! First came the supply pod, small and quick. Thump! It opened up to unload its crates, then hopped aside to make room. Next came the lander, on its four round feet. It opened its hatch for a moment, then shuffled aside too. And last of all, the huge ship came down, slow and gentle, onto the empty pad. Nobody bumped. Nobody squeezed. Everybody took turns. The ship lowered its crew elevator to say thank you. And for one day, the Moon had the tidiest landing pad in space.",
+          "audio": "audio/en-US/one-pad-three-landings.m4a",
+          "effects": "audio/en-US/one-pad-three-landings.effects.json"
         },
         "es-ES": {
-          "title": "Una plataforma, cuatro aterrizajes",
-          "text": "Era el día de más trabajo de la plataforma de aterrizaje. Llegaban cuatro naves, ¡y solo había una plataforma! Primero llegó la cápsula de carga, pequeña y rápida. ¡Pum! Se abrió para descargar sus cajas, y luego se apartó de un saltito para dejar sitio. Luego llegó el módulo lunar, sobre sus cuatro patas redondas. Abrió la escotilla un momento, y después se apartó también. Después bajó el alto cohete propulsor, de cola. Probó sus patas, y luego se hizo a un lado, muy educado. Y por último, la enorme nave bajó, despacio y suave, hasta la plataforma vacía. Nadie chocó. Nadie se apretujó. Todos esperaron su turno. Y durante un día, la Luna tuvo la plataforma más ordenada del espacio.",
-          "audio": "audio/es-ES/one-pad-four-landings.m4a",
-          "effects": "audio/es-ES/one-pad-four-landings.effects.json"
+          "title": "Una plataforma, tres aterrizajes",
+          "text": "Era el día de más trabajo de la plataforma de aterrizaje. Llegaban tres naves, ¡y solo había una plataforma! Primero llegó la cápsula de carga, pequeña y rápida. ¡Pum! Se abrió para descargar sus cajas, y luego se apartó de un saltito para dejar sitio. Después llegó el módulo lunar, sobre sus cuatro patas redondas. Abrió la escotilla un momento, y después se apartó también. Y por último, la enorme nave bajó, despacio y suave, hasta la plataforma vacía. Nadie chocó. Nadie se apretujó. Todos esperaron su turno. La nave bajó su ascensor para dar las gracias. Y durante un día, la Luna tuvo la plataforma más ordenada del espacio.",
+          "audio": "audio/es-ES/one-pad-three-landings.m4a",
+          "effects": "audio/es-ES/one-pad-three-landings.effects.json"
         }
       }
     },
@@ -1760,7 +1788,7 @@
     {
       "id": "stretching-legs",
       "requiredStickers": [
-        "booster",
+        "oxygen-plant",
         "buggy",
         "woman"
       ],
@@ -1773,13 +1801,13 @@
       "localizations": {
         "en-US": {
           "title": "Morning Stretches",
-          "text": "Every morning, Maya did her stretches out on the plain. Reach up! Touch your toes! This morning she had company. On the landing pad stood the tall booster, waiting for its next flight. Slowly, it swung its four landing legs halfway up… and held them there. Maya stared. “Are you… stretching?” Well, if a booster could stretch, so could she. Up went one leg. Wobble, wobble. Down came the booster's legs, slow and steady. Down came Maya's. Then the buggy came rolling over to join in. It spun its wheels round and round, right where it stood, as if it were pedalling a bicycle. Maya laughed so hard she sat down in the dust. And that was the very first exercise class on the Moon.",
+          "text": "Every morning, Maya did her stretches out on the plain. Reach up! Touch your toes! This morning she had company: the oxygen plant, busy making air for the base. “Breathe in!” Maya took a big, deep breath. The plant's oven glowed, and its gauges swung up, as if it were breathing in too! “And… breathe out.” Slowly, its gauges swung back down. Then the buggy came rolling over to join in. It spun its wheels round and round, right where it stood, as if it were pedalling a bicycle. Maya laughed so hard she sat down in the dust. And that was the very first exercise class on the Moon.",
           "audio": "audio/en-US/stretching-legs.m4a",
           "effects": "audio/en-US/stretching-legs.effects.json"
         },
         "es-ES": {
           "title": "Estiramientos de buena mañana",
-          "text": "Cada mañana, Maya hacía sus estiramientos en la llanura. ¡Brazos arriba! ¡Tocarse los pies! Esta mañana tenía compañía. En la plataforma de aterrizaje esperaba el alto cohete propulsor, listo para su próximo vuelo. Despacio, levantó sus cuatro patas hasta la mitad… y las dejó ahí. Maya lo miró. «¿Estás… estirando?» Pues si un cohete podía estirarse, ella también. Arriba una pierna. Tambaleo, tambaleo. Bajaron las patas del cohete, despacio y firmes. Bajaron las de Maya. Entonces llegó el buggy para apuntarse. Giró las ruedas sin moverse del sitio, como si pedaleara en una bicicleta. Maya se rió tanto que se sentó en el polvo. Y esa fue la primera clase de gimnasia de la Luna.",
+          "text": "Cada mañana, Maya hacía sus estiramientos en la llanura. ¡Brazos arriba! ¡Tocarse los pies! Esta mañana tenía compañía: la planta de oxígeno, ocupada fabricando aire para la base. «¡Inspira!» Maya tomó aire, muy hondo. El horno de la planta brilló y sus agujas subieron, ¡como si ella también inspirara! «Y… espira.» Despacio, sus agujas volvieron a bajar. Entonces llegó el buggy para apuntarse. Giró las ruedas sin moverse del sitio, como si pedaleara en una bicicleta. Maya se rió tanto que se sentó en el polvo. Y esa fue la primera clase de gimnasia de la Luna.",
           "audio": "audio/es-ES/stretching-legs.m4a",
           "effects": "audio/es-ES/stretching-legs.effects.json"
         }
@@ -1868,7 +1896,7 @@
     {
       "id": "the-blackest-shadow",
       "requiredStickers": [
-        "booster",
+        "lander",
         "man",
         "crew-rover"
       ],
@@ -1881,44 +1909,15 @@
       "localizations": {
         "en-US": {
           "title": "The Blackest Shadow",
-          "text": "The tall booster stood on the landing pad, with a long black shadow beside it. Leo was tightening a bolt on one of its legs. Just as he finished, the booster lifted its legs and set them down again, testing them. Jolt! The wrench slipped from Leo's glove, floated slowly down… right into the shadow. And vanished. Leo peered in. Nothing. He waved his glove in it. Nothing! It was black as ink. On Earth, air spreads a little light into every shadow. But the Moon has no air, so its shadows are pitch black. Then the big crew rover came rumbling by. It switched on its headlights and swung them into the shadow. There, glinting in the dust, lay the wrench! Leo laughed. And from then on, Leo tied his wrench to his belt.",
+          "text": "The lander stood on the landing pad, with a long black shadow beside it. Leo was tightening a bolt on one of its legs. Just as he finished, the lander's hatch swung open and its ladder clanked down. Jolt! The wrench slipped from Leo's glove, floated slowly down… right into the shadow. And vanished. Leo peered in. Nothing. He waved his glove in it. Nothing! It was black as ink. On Earth, air spreads a little light into every shadow. But the Moon has no air, so its shadows are pitch black. Then the big crew rover came rumbling by. It switched on its headlights and swung them into the shadow. There, glinting in the dust, lay the wrench! Leo laughed. And from then on, Leo tied his wrench to his belt.",
           "audio": "audio/en-US/the-blackest-shadow.m4a",
           "effects": "audio/en-US/the-blackest-shadow.effects.json"
         },
         "es-ES": {
           "title": "La sombra más negra",
-          "text": "El alto cohete propulsor estaba en la plataforma, con su larga sombra negra al lado. Leo estaba apretando un tornillo de una de sus patas. Justo cuando terminó, el cohete levantó las patas y las volvió a apoyar, para probarlas. ¡Meneo! La llave inglesa se le escapó del guante, bajó flotando despacio… justo dentro de la sombra. Y desapareció. Leo miró dentro. Nada. Movió el guante dentro. ¡Nada! Estaba negra como la tinta. En la Tierra, el aire lleva algo de luz a cada sombra. Pero la Luna no tiene aire, así que sus sombras son negrísimas. Entonces pasó por allí el gran rover de tripulación. Encendió los faros y los giró hacia la sombra. ¡Allí, brillando en el polvo, estaba la llave! Leo se rió. Y desde entonces, Leo se ata la llave al cinturón.",
+          "text": "El módulo lunar estaba en la plataforma, con su larga sombra negra al lado. Leo estaba apretando un tornillo de una de sus patas. Justo cuando terminó, la escotilla del módulo se abrió y su escalerilla bajó con un clonc. ¡Meneo! La llave inglesa se le escapó del guante, bajó flotando despacio… justo dentro de la sombra. Y desapareció. Leo miró dentro. Nada. Movió el guante dentro. ¡Nada! Estaba negra como la tinta. En la Tierra, el aire lleva algo de luz a cada sombra. Pero la Luna no tiene aire, así que sus sombras son negrísimas. Entonces pasó por allí el gran rover de tripulación. Encendió los faros y los giró hacia la sombra. ¡Allí, brillando en el polvo, estaba la llave! Leo se rió. Y desde entonces, Leo se ata la llave al cinturón.",
           "audio": "audio/es-ES/the-blackest-shadow.m4a",
           "effects": "audio/es-ES/the-blackest-shadow.effects.json"
-        }
-      }
-    },
-    {
-      "id": "the-booster-lands-itself",
-      "requiredStickers": [
-        "booster",
-        "supply-pod",
-        "man",
-        "woman"
-      ],
-      "optionalStickers": [],
-      "weight": 1,
-      "tags": [
-        "funny",
-        "learning"
-      ],
-      "localizations": {
-        "en-US": {
-          "title": "The Bet",
-          "text": "Leo checked the display on his wrist. “Here it comes. Bet you it needs our help to land.” Maya grinned. “Bet it doesn't. Loser unloads the cargo.” Down came the booster, tail first, engines glowing, straight for the landing pad. Dust sprayed out and floated slowly down. Leo held his breath. The booster rocked once… and stood quite still, on its own four legs. It lifted them a little and set them down again, as if it were checking its knees. “Next week it'll fly again, good as new!” Just then the supply pod set down beside it. Leo looked at the pod. He looked at Maya. “Fine. But you're carrying the heavy crate.”",
-          "audio": "audio/en-US/the-booster-lands-itself.m4a",
-          "effects": "audio/en-US/the-booster-lands-itself.effects.json"
-        },
-        "es-ES": {
-          "title": "La apuesta",
-          "text": "Leo miró la pantalla de su muñeca. «Ahí viene. Te apuesto a que necesita ayuda para aterrizar.» Maya sonrió. «Te apuesto a que no. Quien pierda, lo descarga todo.» Y bajó el cohete propulsor, de cola, con los motores encendidos, derecho a la plataforma. El polvo salió volando y volvió a caer muy despacio. Leo contuvo la respiración. El cohete se balanceó una vez… y se quedó quieto, sobre sus cuatro patas. Las levantó un poquito y las volvió a apoyar, como quien se mira las rodillas. «¡La semana que viene volverá a volar, como nuevo!» Justo entonces, la cápsula de carga se posó a su lado. Leo miró la cápsula. Miró a Maya. «Vale. Pero la caja pesada la llevas tú.»",
-          "audio": "audio/es-ES/the-booster-lands-itself.m4a",
-          "effects": "audio/es-ES/the-booster-lands-itself.effects.json"
         }
       }
     },
@@ -2323,7 +2322,8 @@
       "requiredStickers": [
         "ice",
         "rover",
-        "satellite"
+        "satellite",
+        "oxygen-plant"
       ],
       "optionalStickers": [],
       "weight": 1,
@@ -2335,13 +2335,13 @@
       "localizations": {
         "en-US": {
           "title": "Water in the Dark",
-          "text": "The little rover trundled down into the crater, into the shadows. It was dark down there, and colder than anywhere on Earth. Its camera peered at the ground. Dust. Dust. More dust. So it drilled. Deeper, and deeper. Then, in its lights, something glittered: a chunk of ice, pushing up out of the dust! Frozen in the dark for ages and ages. Frost spread over it, white and sparkling. Ice on the Moon! Melted, it would be water to drink. Split apart, it would make air to breathe. High above, the satellite turned toward the Earth and sent the news home. Everyone who heard it cheered. Not bad, for a slow little rover in the dark.",
+          "text": "The little rover trundled down into the crater, into the shadows. It was dark down there, and colder than anywhere on Earth. Its camera peered at the ground. Dust. Dust. More dust. So it drilled. Deeper, and deeper. Then, in its lights, something glittered: a chunk of ice, pushing up out of the dust! Frozen in the dark for ages and ages. Frost spread over it, white and sparkling. Ice on the Moon! Melted, it would be water to drink. And the base's oxygen plant could split it into air to breathe. High above, the satellite turned toward the Earth and sent the news home. Everyone who heard it cheered. Not bad, for a slow little rover in the dark.",
           "audio": "audio/en-US/water-in-the-dark.m4a",
           "effects": "audio/en-US/water-in-the-dark.effects.json"
         },
         "es-ES": {
           "title": "Agua en la oscuridad",
-          "text": "El pequeño róver bajó al cráter, hacia las sombras. Allí abajo estaba oscuro, y hacía más frío que en ningún lugar de la Tierra. Su cámara miró el suelo. Polvo. Polvo. Más polvo. Así que taladró. Más hondo, y más hondo. Entonces, a la luz de sus faros, algo brilló: ¡un trozo de hielo, asomando entre el polvo! Congelado en la oscuridad desde hacía muchísimo tiempo. La escarcha lo cubrió, blanca y brillante. ¡Hielo en la Luna! Derretido, sería agua para beber. Separado en partes, daría aire para respirar. Muy alto, el satélite se giró hacia la Tierra y envió la noticia a casa. Todos los que la oyeron lo celebraron. Nada mal, para un róver pequeño y lento en la oscuridad.",
+          "text": "El pequeño róver bajó al cráter, hacia las sombras. Allí abajo estaba oscuro, y hacía más frío que en ningún lugar de la Tierra. Su cámara miró el suelo. Polvo. Polvo. Más polvo. Así que taladró. Más hondo, y más hondo. Entonces, a la luz de sus faros, algo brilló: ¡un trozo de hielo, asomando entre el polvo! Congelado en la oscuridad desde hacía muchísimo tiempo. La escarcha lo cubrió, blanca y brillante. ¡Hielo en la Luna! Derretido, sería agua para beber. Y la planta de oxígeno de la base podría convertirlo en aire para respirar. Muy alto, el satélite se giró hacia la Tierra y envió la noticia a casa. Todos los que la oyeron lo celebraron. Nada mal, para un róver pequeño y lento en la oscuridad.",
           "audio": "audio/es-ES/water-in-the-dark.m4a",
           "effects": "audio/es-ES/water-in-the-dark.effects.json"
         }

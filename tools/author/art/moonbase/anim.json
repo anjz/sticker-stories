@@ -580,156 +580,6 @@
       ]
     },
     {
-      "id": "legs",
-      "sticker": "booster",
-      "kind": "action",
-      "description": "the booster swings its four landing legs halfway up toward its body and then lowers them back down.",
-      "base": "its body",
-      "story": "the booster lifts its landing legs and lowers them again",
-      "register": "body",
-      "pause": {
-        "frame": 12,
-        "shows": "the booster with its landing legs swung halfway up"
-      },
-      "room": 1.15,
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the scaffold: the rest pose.",
-            "The four legs starting to lift.",
-            "The legs lifting a little.",
-            "The legs lifting more.",
-            "The legs a quarter of the way up.",
-            "The legs lifting further.",
-            "The legs a third of the way up.",
-            "The legs nearly halfway up.",
-            "The legs halfway up.",
-            "Legs halfway up, the grid fins at the top turning a little.",
-            "The grid fins back.",
-            "The booster with its four landing legs swung halfway up toward its body."
-          ],
-          "hint": "The legs only ever swing halfway up — never folded flat — so the booster's outline stays nearly as wide as in the scaffold."
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "Legs halfway up, still.",
-            "The legs starting to lower.",
-            "The legs a third of the way up.",
-            "The legs a quarter of the way up.",
-            "Lowering.",
-            "Lowering more.",
-            "Nearly down.",
-            "The legs down, the feet touching the ground.",
-            "Settling on its legs.",
-            "Nearly the rest pose.",
-            "Exactly as in the scaffold: the rest pose."
-          ],
-          "hint": "The legs only ever swing halfway up — never folded flat — so the booster's outline stays nearly as wide as in the scaffold. In the last cells the legs unfold all the way down and spread exactly as wide as in the scaffold's rest pose."
-        }
-      ],
-      "hold": [
-        0.45,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.7,
-        0.2,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.1,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        24
-      ],
-      "restFromSticker": false
-    },
-    {
-      "id": "fly",
-      "sticker": "booster",
-      "kind": "move",
-      "description": "the booster flies in upright on a steady bright engine flame, then throttles down and settles on its landing legs.",
-      "base": "its body",
-      "register": "body",
-      "loop": {
-        "from": 2,
-        "to": 9
-      },
-      "facing": "left",
-      "stride": 1.0,
-      "flies": true,
-      "room": 1.35,
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the scaffold: the rest pose.",
-            "Upright, engines firing: a bright flame below the engines, about a quarter of the booster's height long.",
-            "The flame flickering a little longer.",
-            "The flame flickering a little shorter.",
-            "The flame bright, a quarter of its height.",
-            "The flame flickering, the grid fins adjusting slightly.",
-            "The flame a little longer.",
-            "The flame a little shorter.",
-            "The flame as in frame 2 (leading back into frame 2).",
-            "Throttling down: the flame shorter, the landing legs ready.",
-            "Touching down: the flame very small, the landing legs on the ground.",
-            "Exactly as in the scaffold: the rest pose."
-          ]
-        }
-      ],
-      "hold": [
-        0.1,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.15,
-        0.16,
-        0.45
-      ],
-      "restFrames": [
-        1,
-        12
-      ],
-      "particles": [
-        {
-          "frame": 11,
-          "effect": "dust-puff",
-          "at": "base",
-          "intensity": 0.9
-        }
-      ]
-    },
-    {
       "id": "hatch",
       "sticker": "lander",
       "kind": "action",
@@ -3200,46 +3050,6 @@
         "frame": 12,
         "shows": "the ice covered in white frost"
       },
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the scaffold: the rest pose.",
-            "A little frost at one corner.",
-            "The frost spreading.",
-            "Spreading more.",
-            "A third frosted.",
-            "Half frosted.",
-            "More frosted.",
-            "Nearly all frosted.",
-            "All frosted.",
-            "Frosted, shining.",
-            "Still.",
-            "The ice covered in a thin layer of white frost."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "Still.",
-            "The frost starting to clear.",
-            "Clearing.",
-            "Half clear.",
-            "More clear.",
-            "Nearly clear.",
-            "Clear.",
-            "Shining.",
-            "Still.",
-            "Nearly the rest pose.",
-            "Exactly as in the scaffold: the rest pose."
-          ]
-        }
-      ],
       "hold": [
         0.45,
         0.1,
@@ -3266,9 +3076,31 @@
         0.1,
         0.45
       ],
-      "restFrames": [
-        1,
-        24
+      "light": [
+        0,
+        0.07,
+        0.14,
+        0.21,
+        0.28,
+        0.35,
+        0.42,
+        0.49,
+        0.56,
+        0.63,
+        0.7,
+        0.78,
+        0.78,
+        0.7,
+        0.63,
+        0.56,
+        0.49,
+        0.42,
+        0.35,
+        0.28,
+        0.21,
+        0.14,
+        0.07,
+        0
       ]
     },
     {
@@ -3460,6 +3292,138 @@
         0.09,
         0.15,
         0.16,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        12
+      ]
+    },
+    {
+      "id": "make",
+      "sticker": "oxygen-plant",
+      "kind": "action",
+      "description": "the oxygen plant gets to work: its oven window glows brighter orange, the needles on its two gauges swing up and the tanks along its side fill, then it settles back.",
+      "base": "its legs",
+      "story": "the oxygen plant makes air, its oven glowing and its gauges swinging up",
+      "pause": {
+        "frame": 12,
+        "shows": "the oxygen plant working, its oven glowing bright and its gauges up"
+      },
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "The oven window glowing a little brighter.",
+            "Brighter.",
+            "The gauge needles starting to swing up.",
+            "The needles rising.",
+            "The needles higher.",
+            "The oven glowing bright orange.",
+            "The tanks filling: a soft light on the first tank.",
+            "A light on the second tank.",
+            "A light on the third tank.",
+            "All working, bright.",
+            "The oxygen plant working, its oven glowing bright and its gauges up."
+          ],
+          "hint": "The machine keeps exactly its shape, size and outline in every cell: only its lights, the oven glow and the gauge needles change. No smoke, steam, gas or sparks anywhere."
+        },
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly the same pose as the last frame of the previous sheet.",
+            "Working, still.",
+            "The oven glow softening.",
+            "Softer.",
+            "The needles swinging back down.",
+            "Lower.",
+            "The tank lights fading.",
+            "Fading.",
+            "The oven at its usual glow.",
+            "The needles at rest.",
+            "Nearly the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The machine keeps exactly its shape, size and outline in every cell: only its lights, the oven glow and the gauge needles change. No smoke, steam, gas or sparks anywhere."
+        }
+      ],
+      "hold": [
+        0.45,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.7,
+        0.2,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.45
+      ],
+      "restFrames": [
+        1,
+        24
+      ],
+      "restFromSticker": false
+    },
+    {
+      "id": "unfold",
+      "sticker": "oxygen-plant",
+      "kind": "move",
+      "description": "the oxygen plant unfolds where it stands: its legs swing out, its body rises and its hopper opens on top.",
+      "base": "its legs",
+      "sheets": [
+        {
+          "columns": 4,
+          "rows": 3,
+          "size": "3072x2304",
+          "frames": [
+            "Exactly as in the scaffold: the rest pose.",
+            "A small folded bundle low on the ground, exactly where the machine stands.",
+            "The legs starting to swing out.",
+            "The legs opening.",
+            "The body rising on its legs.",
+            "The body up.",
+            "The hopper on top starting to open.",
+            "The hopper half open.",
+            "The hopper open, the tanks unfolding at its side.",
+            "Nearly the rest pose.",
+            "Settling into the rest pose.",
+            "Exactly as in the scaffold: the rest pose."
+          ],
+          "hint": "The folded bundle sits on the ground line where the machine's feet are in the scaffold, centred. No smoke, steam or sparks."
+        }
+      ],
+      "hold": [
+        0.1,
+        0.1,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.08,
+        0.1,
+        0.1,
+        0.12,
         0.45
       ],
       "restFrames": [

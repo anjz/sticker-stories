@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "maya",
+      "sticker": "woman",
+      "enter": true
+    },
+    {
+      "at": 6.71,
+      "cue": "te",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 10.04,
+      "cue": "leo",
+      "sticker": "man",
+      "enter": true
+    },
+    {
+      "at": 10.52,
+      "cue": "se",
+      "sticker": "man",
+      "effect": "wobble"
+    },
+    {
+      "at": 20.12,
+      "cue": "cápsula",
+      "sticker": "supply-pod",
+      "enter": true
+    },
+    {
+      "at": 20.12,
+      "cue": "cápsula",
+      "sticker": "supply-pod",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 21.64,
+      "cue": "sus",
+      "sticker": "supply-pod",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 26.92,
+      "cue": "en",
+      "sticker": "man",
+      "expression": "surprised"
+    },
+    {
+      "at": 31.08,
+      "cue": "planta",
+      "sticker": "oxygen-plant",
+      "enter": true
+    },
+    {
+      "at": 33.24,
+      "cue": "echó",
+      "sticker": "woman",
+      "go": "to",
+      "target": "oxygen-plant"
+    },
+    {
+      "at": 35.4,
+      "cue": "su",
+      "sticker": "woman",
+      "effect": "pulse"
+    },
+    {
+      "at": 35.4,
+      "cue": "su",
+      "sticker": "oxygen-plant",
+      "animation": "make",
+      "mode": "hold"
+    },
+    {
+      "at": 42.36,
+      "cue": "leo",
+      "sticker": "man",
+      "animation": "check"
+    },
+    {
+      "at": 54.71,
+      "cue": "vale",
+      "sticker": "oxygen-plant",
+      "effect": "sparkle"
+    },
+    {
+      "at": 54.71,
+      "cue": "vale",
+      "sticker": "man",
+      "expression": "sad"
+    },
+    {
+      "at": 57.72,
+      "cue": "y",
+      "sticker": "woman",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

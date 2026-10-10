@@ -2,130 +2,117 @@
   "schema": 1,
   "triggers": [
     {
-      "at": 10.84,
-      "cue": "first",
-      "sticker": "all",
-      "expression": "surprised"
-    },
-    {
-      "at": 11.68,
+      "at": 11.16,
       "cue": "supply",
       "sticker": "supply-pod",
       "enter": true
     },
     {
-      "at": 11.68,
+      "at": 11.16,
       "cue": "supply",
       "sticker": "supply-pod",
       "go": "to",
       "target": "pad"
     },
     {
-      "at": 14.84,
+      "at": 14.4,
+      "cue": "it",
+      "sticker": "supply-pod",
+      "effect": "wobble"
+    },
+    {
+      "at": 14.4,
       "cue": "it",
       "sticker": "supply-pod",
       "animation": "open"
     },
     {
-      "at": 17.72,
+      "at": 17.08,
       "cue": "to",
       "sticker": "supply-pod",
       "go": "to",
       "target": "plain"
     },
     {
-      "at": 19.92,
+      "at": 19.24,
       "cue": "lander",
       "sticker": "lander",
       "enter": true
     },
     {
-      "at": 19.92,
+      "at": 19.24,
       "cue": "lander",
       "sticker": "lander",
       "go": "to",
       "target": "pad"
     },
     {
-      "at": 22.2,
+      "at": 21.4,
       "cue": "it",
       "effect": "dust",
       "duration": 6,
       "intensity": 0.5
     },
     {
-      "at": 22.2,
+      "at": 21.4,
       "cue": "it",
       "sticker": "lander",
       "animation": "hatch"
     },
     {
-      "at": 25.04,
+      "at": 24,
       "cue": "too",
       "sticker": "lander",
       "go": "to",
       "target": "plain"
     },
     {
-      "at": 26.92,
-      "cue": "booster",
-      "sticker": "booster",
-      "enter": true
-    },
-    {
-      "at": 26.92,
-      "cue": "booster",
-      "sticker": "booster",
-      "go": "to",
-      "target": "pad"
-    },
-    {
-      "at": 29.4,
-      "cue": "it",
-      "sticker": "booster",
-      "effect": "wobble"
-    },
-    {
-      "at": 29.4,
-      "cue": "it",
-      "sticker": "booster",
-      "animation": "legs"
-    },
-    {
-      "at": 31.8,
-      "cue": "out",
-      "sticker": "booster",
-      "go": "to",
-      "target": "plain"
-    },
-    {
-      "at": 34.92,
+      "at": 26.36,
       "cue": "ship",
       "sticker": "ship",
       "enter": true
     },
     {
-      "at": 34.92,
+      "at": 26.36,
       "cue": "ship",
       "sticker": "ship",
       "go": "to",
       "target": "pad"
     },
     {
-      "at": 41.8,
+      "at": 31.88,
+      "cue": "nobody",
+      "sticker": "supply-pod",
+      "effect": "shake",
+      "intensity": 0.3
+    },
+    {
+      "at": 33.08,
       "cue": "everybody",
       "sticker": "ship",
       "effect": "pulse"
     },
     {
-      "at": 43.62,
-      "cue": "and",
+      "at": 34.8,
+      "cue": "the",
+      "sticker": "lander",
+      "effect": "pulse"
+    },
+    {
+      "at": 34.8,
+      "cue": "the",
+      "sticker": "ship",
+      "animation": "elevator"
+    },
+    {
+      "at": 41.16,
+      "cue": "space",
       "sticker": "all",
       "expression": "happy"
     },
     {
-      "at": 43.62,
-      "cue": "and",
+      "at": 41.16,
+      "cue": "space",
       "sticker": "all",
       "effect": "hop"
     }

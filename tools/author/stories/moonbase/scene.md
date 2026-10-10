@@ -22,7 +22,7 @@ plain.
 | **far ridge** | along the horizon, all across, y .40–.46 | low, jagged grey mountains, far away. Nothing can climb it or drive to it. |
 | **the distant base** | on the horizon right of the middle, x .64–.94, y .42–.46 | small white domes and modules with lit yellow windows and a thin mast with a red light — the rest of the base, far away. Said in passing only ("the domes far off"); nobody goes there in a story. |
 | **the plain** | the whole lower half, y .45–1 | flat grey moon dust with pebbles and small round craters. Feature id `plain`. |
-| **landing pad** | on the plain left of the middle, x .17–.43, y .50–.59 | a flat hexagon of grey metal plates with yellow markings (a circle and a hexagon) and small amber lights at its corners; its left end is tucked behind the habitat. Feature id `pad`: the ship, the booster, the lander and the supply pod land on it. |
+| **landing pad** | on the plain left of the middle, x .17–.43, y .50–.59 | a flat hexagon of grey metal plates with yellow markings (a circle and a hexagon) and small amber lights at its corners; its left end is tucked behind the habitat. Feature id `pad`: the ship, the lander and the supply pod land on it. |
 | **the crater** | on the plain right of the middle, x .69–.96, y .50–.57 | a wide, shallow bowl with a raised rim, shadowed inside. Feature id `crater`: the ice and the moon rock sit in it and the rovers and the excavator drive into it; anyone else sent there stops on its edge (the rim). A few small round craters dot the plain too, too small to drive into. |
 | **the habitat** | at the left edge, close to us, x 0–.18, y .33–.88 (on phones the same slim module at the screen's left edge) | the end of a white module with orange bands and rivets, on sturdy legs; a round **airlock hatch** with a round porthole window (x .03–.15, y .46–.70) and a short **ladder** down to the ground (x .05–.18, y .69–.89). Feature id `hatch` is the foot of the ladder. |
 | **the radio mast** | at the right edge, x .88–1, y .21–.74 | a tall grey lattice tower with orange joints, a big white **dish** near the top (x .88–.98, y .26–.39) and a grey box with an orange stripe low down, standing on dark rocks. Feature id `mast` is its foot, on the plain in front of the rocks (someone there faces the mast). |
@@ -75,7 +75,7 @@ None of them adds a building, a track, water, snow or a new crater.
   never appear on screen: keep them small and brief.
 - The spacecraft are far overhead in the sky or land on the pad; they
   never come down to stand beside the crew on the plain (except the
-  ship, the booster, the lander and the supply pod, which land on the
+  ship, the lander and the supply pod, which land on the
   pad). The capsule, the station, the satellite, the CubeSat and the
   probe circle the Moon or pass it; the comet and the asteroid are far
   out in space — all of them stay in the sky.

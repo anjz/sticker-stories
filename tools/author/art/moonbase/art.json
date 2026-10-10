@@ -71,20 +71,19 @@
       }
     },
     {
-      "id": "booster",
+      "id": "oxygen-plant",
       "name": {
-        "en-US": "Booster rocket",
-        "es-ES": "Cohete propulsor"
+        "en-US": "Oxygen plant",
+        "es-ES": "Planta de oxígeno"
       },
-      "prompt": "A tall, slim, modern reusable rocket booster that lands upright by itself: a white cylinder with a black band near the top, four grid fins at the top folded out, four long landing legs unfolded at the base, a ring of engine bells under it, a little soot near the bottom. Realistic and modern; no logos, no flags, no text.",
+      "prompt": "A compact lunar oxygen plant: a sturdy white and orange machine on short legs, with a small hopper for moon soil on top, a row of round green-and-blue gas tanks along its side joined by neat silver pipes, a little round window glowing faintly orange where the soil is baked, and two small round gauges. Realistic, clean and modern, like real space hardware; no logos, no text, no smoke or steam.",
       "stage": {
-        "entrance": "fly",
+        "entrance": "grow",
         "on": [
-          "pad",
           "plain"
         ]
       },
-      "size": "huge"
+      "size": "medium"
     },
     {
       "id": "lander",
@@ -402,7 +401,7 @@
           "plain"
         ]
       },
-      "size": "small"
+      "size": "tiny"
     },
     {
       "id": "moon-rock",

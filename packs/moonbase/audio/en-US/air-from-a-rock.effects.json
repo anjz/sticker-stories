@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "maya",
+      "sticker": "woman",
+      "enter": true
+    },
+    {
+      "at": 5.71,
+      "cue": "bet",
+      "sticker": "woman",
+      "expression": "happy"
+    },
+    {
+      "at": 7.64,
+      "cue": "leo",
+      "sticker": "man",
+      "enter": true
+    },
+    {
+      "at": 8.12,
+      "cue": "laughed",
+      "sticker": "man",
+      "effect": "wobble"
+    },
+    {
+      "at": 16.04,
+      "cue": "supply",
+      "sticker": "supply-pod",
+      "enter": true
+    },
+    {
+      "at": 16.04,
+      "cue": "supply",
+      "sticker": "supply-pod",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 17.32,
+      "cue": "its",
+      "sticker": "supply-pod",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 22.52,
+      "cue": "out",
+      "sticker": "man",
+      "expression": "surprised"
+    },
+    {
+      "at": 25.96,
+      "cue": "oxygen",
+      "sticker": "oxygen-plant",
+      "enter": true
+    },
+    {
+      "at": 27.76,
+      "cue": "tipped",
+      "sticker": "woman",
+      "go": "to",
+      "target": "oxygen-plant"
+    },
+    {
+      "at": 29.96,
+      "cue": "its",
+      "sticker": "woman",
+      "effect": "pulse"
+    },
+    {
+      "at": 29.96,
+      "cue": "its",
+      "sticker": "oxygen-plant",
+      "animation": "make",
+      "mode": "hold"
+    },
+    {
+      "at": 35.96,
+      "cue": "leo",
+      "sticker": "man",
+      "animation": "check"
+    },
+    {
+      "at": 47.59,
+      "cue": "fine",
+      "sticker": "oxygen-plant",
+      "effect": "sparkle"
+    },
+    {
+      "at": 47.59,
+      "cue": "fine",
+      "sticker": "man",
+      "expression": "sad"
+    },
+    {
+      "at": 50.76,
+      "cue": "and",
+      "sticker": "woman",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}
