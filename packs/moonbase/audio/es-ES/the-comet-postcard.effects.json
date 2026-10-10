@@ -4,14 +4,6 @@
     {
       "at": 0,
       "cue": "un",
-      "sticker": "comet",
-      "effect": "float",
-      "repeat": "loop",
-      "intensity": 0.2
-    },
-    {
-      "at": 0,
-      "cue": "un",
       "sticker": "probe",
       "effect": "float",
       "repeat": "loop",
@@ -34,10 +26,11 @@
       "intensity": 0.3
     },
     {
-      "at": 3.24,
-      "cue": "cometa",
-      "sticker": "comet",
-      "enter": true
+      "at": 0,
+      "cue": "un",
+      "effect": "comet",
+      "duration": 40,
+      "intensity": 0.9
     },
     {
       "at": 8.8,
@@ -62,7 +55,8 @@
       "cue": "zas",
       "sticker": "cubesat",
       "go": "to",
-      "target": "comet"
+      "target": "sky",
+      "another": true
     },
     {
       "at": 22.12,
@@ -73,8 +67,8 @@
     {
       "at": 32.04,
       "cue": "iba",
-      "sticker": "comet",
-      "animation": "glow"
+      "sticker": "probe",
+      "effect": "wobble"
     },
     {
       "at": 43.32,

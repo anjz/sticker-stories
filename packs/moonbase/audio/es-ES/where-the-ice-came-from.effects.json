@@ -40,24 +40,11 @@
       "effect": "pulse"
     },
     {
-      "at": 17.32,
-      "cue": "cometa",
-      "sticker": "comet",
-      "enter": true
-    },
-    {
-      "at": 17.32,
-      "cue": "cometa",
-      "sticker": "comet",
-      "effect": "float",
-      "repeat": "loop",
-      "intensity": 0.2
-    },
-    {
-      "at": 18.92,
-      "cue": "con",
-      "sticker": "comet",
-      "animation": "glow"
+      "at": 15.16,
+      "cue": "muy",
+      "effect": "comet",
+      "duration": 30,
+      "intensity": 0.8
     },
     {
       "at": 22.24,
@@ -78,7 +65,8 @@
       "cue": "con",
       "sticker": "probe",
       "go": "to",
-      "target": "comet"
+      "target": "sky",
+      "another": true
     },
     {
       "at": 24.6,
@@ -105,12 +93,6 @@
       "sticker": "rover",
       "effect": "shake",
       "intensity": 0.3
-    },
-    {
-      "at": 44.88,
-      "cue": "y",
-      "sticker": "comet",
-      "effect": "sparkle"
     },
     {
       "at": 44.88,

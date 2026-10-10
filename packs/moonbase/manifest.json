@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "moonbase",
-  "version": 11,
+  "version": 12,
   "languages": [
     "en-US",
     "es-ES"
@@ -207,8 +207,8 @@
     }
   },
   "narrationPacks": {
-    "en-US": "moonbase-narration-en-f5353667",
-    "es-ES": "moonbase-narration-es-a81b0cc1"
+    "en-US": "moonbase-narration-en-ea598414",
+    "es-ES": "moonbase-narration-es-f0c1370b"
   },
   "stickers": [
     {
@@ -325,35 +325,6 @@
         "y": [
           0.1406,
           0.8607
-        ]
-      }
-    },
-    {
-      "id": "comet",
-      "name": {
-        "en-US": "Comet",
-        "es-ES": "Cometa"
-      },
-      "image": "stickers/comet.webp",
-      "animations": [
-        "anims/comet.glow.json",
-        "anims/comet.streak.json"
-      ],
-      "stage": {
-        "entrance": "fly",
-        "on": [
-          "sky"
-        ]
-      },
-      "size": "small",
-      "content": {
-        "x": [
-          0.2005,
-          0.7995
-        ],
-        "y": [
-          0.2474,
-          0.7539
         ]
       }
     },
@@ -476,6 +447,35 @@
         "y": [
           0.25,
           0.75
+        ]
+      }
+    },
+    {
+      "id": "galaxy",
+      "name": {
+        "en-US": "Galaxy",
+        "es-ES": "Galaxia"
+      },
+      "image": "stickers/galaxy.webp",
+      "animations": [
+        "anims/galaxy.glow.json",
+        "anims/galaxy.drift.json"
+      ],
+      "stage": {
+        "entrance": "fly",
+        "on": [
+          "sky"
+        ]
+      },
+      "size": "small",
+      "content": {
+        "x": [
+          0.2005,
+          0.7995
+        ],
+        "y": [
+          0.293,
+          0.707
         ]
       }
     },
@@ -1033,6 +1033,34 @@
       }
     },
     {
+      "id": "a-picture-with-a-galaxy",
+      "requiredStickers": [
+        "asteroid",
+        "galaxy",
+        "probe"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "wonder",
+        "patience"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "A Picture with a Galaxy",
+          "text": "Far out in space, a lumpy asteroid was tumbling along. And far, far beyond it glowed a galaxy: a soft swirl of more stars than anyone could count. The little probe had an idea. A picture of both of them, together! But the asteroid wouldn't keep still. It tumbled, and turned upside down. Too high! The probe turned its dish, reached out its boom… and waited. The galaxy glowed, patient as ever. It had been shining for a very, very long time. It could wait a little longer. Closer. Closer… The asteroid rolled on, right in front of the glowing swirl. Click! A lumpy rock and a whole galaxy, in one picture! Everyone at the base cheered. And the probe sent home the best picture in the sky.",
+          "audio": "audio/en-US/a-picture-with-a-galaxy.m4a",
+          "effects": "audio/en-US/a-picture-with-a-galaxy.effects.json"
+        },
+        "es-ES": {
+          "title": "Una foto con una galaxia",
+          "text": "Allá en el espacio, un asteroide lleno de bultos iba dando volteretas. Y muy, muy lejos, detrás de él, brillaba una galaxia: un remolino suave de más estrellas de las que nadie podría contar. La pequeña sonda tuvo una idea. ¡Una foto de los dos, juntos! Pero el asteroide no se estaba quieto. Dio una voltereta y se quedó boca abajo. ¡Demasiado alto! La sonda giró su antena, extendió su brazo… y esperó. La galaxia brillaba, paciente como siempre. Llevaba muchísimo tiempo brillando. Podía esperar un poco más. Más cerca. Más cerca… El asteroide siguió rodando, justo delante del remolino de luz. ¡Clic! ¡Una roca llena de bultos y toda una galaxia, en la misma foto! En la base, todos lo celebraron. Y la sonda envió a casa la mejor foto del cielo.",
+          "audio": "audio/es-ES/a-picture-with-a-galaxy.m4a",
+          "effects": "audio/es-ES/a-picture-with-a-galaxy.effects.json"
+        }
+      }
+    },
+    {
       "id": "a-rock-for-leo",
       "requiredStickers": [
         "moon-rock",
@@ -1173,6 +1201,35 @@
           "text": "Leo se tumbó en el polvo a mirar el cielo. Tras las montañas apareció la estación espacial, dando vueltas a la Luna. «Un momento. ¡Se está cayendo!» Se incorporó de un salto. Luego se acordó y se rió de sí mismo. La estación SIEMPRE está cayendo. Pero va tan deprisa de lado que cae y cae alrededor de la Luna, vuelta tras vuelta, sin llegar nunca abajo. «Eso es una órbita. Caer, y no acertar.» La estación giró sus largos paneles solares hacia el Sol. Una cápsula subió a su encuentro, y el diminuto CubeSat pasó dando volteretas, cayendo también. «Ahí arriba todos están cayendo. Y nadie se preocupa.» La cápsula inclinó sus cuatro alas hacia el Sol. Leo se tumbó y cerró los ojos. Y ellos siguieron dando vueltas, sin acertar nunca a la Luna, como debe ser.",
           "audio": "audio/es-ES/always-falling.m4a",
           "effects": "audio/es-ES/always-falling.effects.json"
+        }
+      }
+    },
+    {
+      "id": "first-light",
+      "requiredStickers": [
+        "galaxy",
+        "supply-pod",
+        "man"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "wonder",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "First Light",
+          "text": "Leo had waited months for this parcel. Thump! Down onto the landing pad came the supply pod. Its side panels slid open, and there, in a crate marked LEO, was a small telescope. He waited for the long Moon night. Then he pointed it up, past the ridge, at a faint smudge of light. It was a galaxy! A soft swirl of more stars than anyone could ever count. It glowed in the dark, so still, so far away. Leo checked his wrist. That light had been travelling for millions of years, since long before there were any people at all. “You've come such a long way. Hello.” The supply pod closed its panels, its job done. “Best parcel ever.”",
+          "audio": "audio/en-US/first-light.m4a",
+          "effects": "audio/en-US/first-light.effects.json"
+        },
+        "es-ES": {
+          "title": "Primera luz",
+          "text": "Leo llevaba meses esperando este paquete. ¡Pum! Sobre la plataforma de aterrizaje bajó la cápsula de carga. Sus paneles se abrieron y allí, en una caja que decía LEO, había un pequeño telescopio. Esperó a la larga noche lunar. Luego lo apuntó hacia arriba, por encima de las montañas, a una manchita de luz. ¡Era una galaxia! Un remolino suave de más estrellas de las que nadie podría contar. Brillaba en la oscuridad, tan quieta, tan lejana. Leo miró su muñeca. Esa luz llevaba millones de años viajando, desde mucho antes de que hubiera personas. «Has venido desde muy lejos. Hola.» La cápsula de carga cerró sus paneles, con el trabajo hecho. «El mejor paquete del mundo.»",
+          "audio": "audio/es-ES/first-light.m4a",
+          "effects": "audio/es-ES/first-light.effects.json"
         }
       }
     },
@@ -1345,9 +1402,9 @@
       }
     },
     {
-      "id": "lights-off-for-the-comet",
+      "id": "lights-off-for-the-galaxy",
       "requiredStickers": [
-        "comet",
+        "galaxy",
         "buggy",
         "man",
         "woman"
@@ -1360,16 +1417,16 @@
       ],
       "localizations": {
         "en-US": {
-          "title": "Lights Off for the Comet",
-          "text": "Deep in the long Moon night, Maya and Leo had a plan: comet-watching. But the lamps around the base were so bright that the sky looked dull and grey. So out across the plain went the buggy, all the way to the crater's edge, far from the lights. They lay back in the dust and waited for their eyes to get used to the dark. Slowly, more stars came out. Then more. Then the pale river of the Milky Way. And there, high over the ridge, hung the comet. It glowed brighter and brighter, its tail stretching out across the stars. “It's so much brighter out here.” “That's the dark, helping.” They watched until their toes got chilly. Then Leo checked his wrist: bedtime. All the way home, nobody said a word. They didn't need to.",
-          "audio": "audio/en-US/lights-off-for-the-comet.m4a",
-          "effects": "audio/en-US/lights-off-for-the-comet.effects.json"
+          "title": "Lights Off for the Galaxy",
+          "text": "Deep in the long Moon night, Maya and Leo had a plan: stargazing. But the lamps around the base were so bright that the sky looked dull and grey. So out across the plain went the buggy, all the way to the crater's edge, far from the lights. They lay back and let their eyes get used to the dark. Slowly, more stars came out. Then more. Then the pale river of the Milky Way. And high over the ridge glowed a soft little swirl: a whole galaxy. It glowed, faint and far, made of more stars than anyone could count. “You can only see it in the dark.” “That's the dark, helping.” They watched until their toes got chilly. Then Leo checked his wrist: bedtime. All the way home, nobody said a word. They didn't need to.",
+          "audio": "audio/en-US/lights-off-for-the-galaxy.m4a",
+          "effects": "audio/en-US/lights-off-for-the-galaxy.effects.json"
         },
         "es-ES": {
-          "title": "Luces fuera para ver el cometa",
-          "text": "En plena noche lunar, Maya y Leo tenían un plan: mirar el cielo. Pero las lámparas de la base brillaban tanto que el cielo parecía apagado y gris. Así que el buggy cruzó la llanura hasta el borde del cráter, lejos de las luces. Se tumbaron en el polvo y esperaron a que sus ojos se acostumbraran a la oscuridad. Poco a poco salieron más estrellas. Y más. Y luego el río pálido de la Vía Láctea. Y allí, muy alto sobre las montañas, estaba el cometa. Brillaba cada vez más, con la cola extendida entre las estrellas. «Aquí fuera brilla muchísimo más.» «Es la oscuridad, que ayuda.» Miraron hasta que se les enfriaron los pies. Luego Leo miró su muñeca: a dormir. En todo el camino de vuelta, nadie dijo nada. No hacía falta.",
-          "audio": "audio/es-ES/lights-off-for-the-comet.m4a",
-          "effects": "audio/es-ES/lights-off-for-the-comet.effects.json"
+          "title": "Luces fuera para ver la galaxia",
+          "text": "En plena noche lunar, Maya y Leo tenían un plan: mirar las estrellas. Pero las lámparas de la base brillaban tanto que el cielo parecía apagado y gris. Así que el buggy cruzó la llanura hasta el borde del cráter, lejos de las luces. Se tumbaron y dejaron que sus ojos se acostumbraran a la oscuridad. Poco a poco salieron más estrellas. Y más. Y luego el río pálido de la Vía Láctea. Y sobre las montañas brillaba un remolino suave: toda una galaxia. Brillaba, débil y lejana, hecha de más estrellas de las que nadie podría contar. «Solo se ve en la oscuridad.» «Es la oscuridad, que ayuda.» Miraron hasta que se les enfriaron los pies. Luego Leo miró su muñeca: a dormir. En todo el camino de vuelta, nadie dijo nada. No hacía falta.",
+          "audio": "audio/es-ES/lights-off-for-the-galaxy.m4a",
+          "effects": "audio/es-ES/lights-off-for-the-galaxy.effects.json"
         }
       }
     },
@@ -1489,34 +1546,6 @@
       }
     },
     {
-      "id": "one-picture-two-travellers",
-      "requiredStickers": [
-        "asteroid",
-        "comet",
-        "probe"
-      ],
-      "optionalStickers": [],
-      "weight": 1,
-      "tags": [
-        "wonder",
-        "patience"
-      ],
-      "localizations": {
-        "en-US": {
-          "title": "Two Travellers, One Picture",
-          "text": "Something rare was about to happen. A comet and an asteroid were going to pass each other in the sky. The little probe wanted a picture. But of which one? The comet glowed brighter and brighter, its long tail streaming. Beautiful. The asteroid tumbled, and turned upside down, lumpy and grey. Interesting. The probe turned this way. It turned that way. It could only point its camera one way at a time. So it turned its dish, reached out its boom… and waited. Closer. Closer… The comet swept nearer, until there they were, side by side. Click! Both of them, in one picture! Everyone at the base cheered. The asteroid tumbled on. The comet sailed away. And the probe sent home the best picture in the sky.",
-          "audio": "audio/en-US/one-picture-two-travellers.m4a",
-          "effects": "audio/en-US/one-picture-two-travellers.effects.json"
-        },
-        "es-ES": {
-          "title": "Dos viajeros, una foto",
-          "text": "Iba a pasar algo poco común. Un cometa y un asteroide iban a cruzarse en el cielo. La pequeña sonda quería una foto. Pero ¿de cuál? El cometa brilló cada vez más, con su larga cola al viento. Precioso. El asteroide dio una voltereta y se quedó boca abajo, gris y lleno de bultos. Interesante. La sonda se giró hacia aquí. Se giró hacia allá. Solo podía apuntar la cámara a un lado cada vez. Así que giró su antena, extendió su brazo… y esperó. Más cerca. Más cerca… El cometa se acercó, hasta que allí estaban, uno junto al otro. ¡Clic! ¡Los dos, en la misma foto! En la base, todos lo celebraron. El asteroide siguió dando vueltas. El cometa se alejó. Y la sonda envió a casa la mejor foto del cielo.",
-          "audio": "audio/es-ES/one-picture-two-travellers.m4a",
-          "effects": "audio/es-ES/one-picture-two-travellers.effects.json"
-        }
-      }
-    },
-    {
       "id": "one-scoop-please",
       "requiredStickers": [
         "excavator",
@@ -1571,35 +1600,6 @@
           "text": "Sobre la plataforma de aterrizaje bajó el módulo lunar, y sus patas se posaron suavemente en el polvo. Se abrió su escotilla y bajó la escalerilla hasta el suelo. Y por la escalerilla, con mucho cuidado, bajó Leo. Era su primer día en la Luna. En el último peldaño se paró. Más allá de la plataforma, la llanura gris se extendía, silenciosa y extraña. Maya llegó dando saltos y le saludó. «Tranquilo. Paso a paso. Yo cuento.» «Uno…» Leo bajó, y su bota se hundió suavemente en el polvo. «Dos… tres…» Cada paso flotaba un poco, como un bote lento. No se hundía. No se caía. ¡Estaba caminando por la Luna! «¡Cuatro, cinco, seis, SIETE!» Y desde entonces, nadie volvió a contar.",
           "audio": "audio/es-ES/one-small-step.m4a",
           "effects": "audio/es-ES/one-small-step.effects.json"
-        }
-      }
-    },
-    {
-      "id": "quiet-please",
-      "requiredStickers": [
-        "seismometer",
-        "rover",
-        "ice",
-        "woman"
-      ],
-      "optionalStickers": [],
-      "weight": 1,
-      "tags": [
-        "funny",
-        "patience"
-      ],
-      "localizations": {
-        "en-US": {
-          "title": "Quiet, Please!",
-          "text": "The seismometer was trying to listen to the Moon. But the Moon was NOT quiet today. Down in the crater, the rover was busy drilling. Grrrind! It was drilling into a chunk of ice. And Maya was practising her moon-bounce. Boing! Boing! Boing! The seismometer's light flickered and flickered. Far too much noise! So everyone agreed to play statues. The rover stopped drilling. Maya stopped bouncing. Her nose itched. Her toe wiggled. But she kept still. Even the ice seemed to hold its breath as frost crept over it. Quiet. Quieter. Quietest… Then the little light began to blink. Slowly. Softly. A real moonquake, far, far away. The Moon itself was talking. And Maya, very still, listened too.",
-          "audio": "audio/en-US/quiet-please.m4a",
-          "effects": "audio/en-US/quiet-please.effects.json"
-        },
-        "es-ES": {
-          "title": "¡Silencio, por favor!",
-          "text": "El sismómetro intentaba escuchar la Luna. Pero hoy la Luna NO estaba nada tranquila. En el cráter, el róver estaba ocupado taladrando. ¡Grrrr! Estaba taladrando un trozo de hielo. Y Maya practicaba su bote lunar. ¡Boing! ¡Boing! ¡Boing! La luz del sismómetro parpadeaba sin parar. ¡Demasiado ruido! Así que todos decidieron jugar a las estatuas. El róver dejó de taladrar. Maya dejó de botar. Le picaba la nariz. Se le movía un dedo del pie. Pero se quedó quieta. Hasta el hielo pareció contener el aliento mientras lo cubría la escarcha. Silencio. Más silencio. Silencio total… Entonces la lucecita empezó a parpadear. Despacio. Suave. Un terremoto lunar de verdad, muy, muy lejos. La propia Luna estaba hablando. Y Maya, muy quieta, escuchó también.",
-          "audio": "audio/es-ES/quiet-please.m4a",
-          "effects": "audio/es-ES/quiet-please.effects.json"
         }
       }
     },
@@ -1716,34 +1716,6 @@
           "text": "Muy por encima de la Luna, la estación espacial llevaba un pasajero diminuto. Era un CubeSat, no más grande que una fiambrera. Y lo habían construido en la Tierra los niños y niñas de un colegio pequeñito. Hoy era su gran día. La estación giró sus paneles hacia el Sol. Entonces, con un clic suave, el pequeño CubeSat salió flotando al espacio. Durante un momento solo daba vueltas. Cerca, una cápsula esperaba, como conteniendo el aliento. Y entonces, ¡clac, clac! Abrió sus dos paneles solares y sacó su fina antena. ¡Funcionaba! Bip. Bip. Su primer mensaje bajó hasta la Tierra. En un colegio pequeñito, toda una clase lo celebró. Y todos los que miraban desde la Luna, también. El satélite más pequeño del cielo. Y el más orgulloso.",
           "audio": "audio/es-ES/smaller-than-a-lunchbox.m4a",
           "effects": "audio/es-ES/smaller-than-a-lunchbox.effects.json"
-        }
-      }
-    },
-    {
-      "id": "socks-not-seeds",
-      "requiredStickers": [
-        "supply-pod",
-        "buggy",
-        "man"
-      ],
-      "optionalStickers": [],
-      "weight": 1,
-      "tags": [
-        "funny",
-        "gardening"
-      ],
-      "localizations": {
-        "en-US": {
-          "title": "Socks, Not Seeds",
-          "text": "Leo had ordered one hundred seeds from Earth. Tomatoes! Beans! Sunflowers! Down came the supply pod onto the landing pad. Along rolled the buggy to carry the cargo home. The pod's side panels slid open. Leo opened the first crate and stared. Socks. A whole crate of socks! “Socks? I asked for seeds!” He opened the next crate. More socks. And the next. Socks, socks, socks. Leo sat down on a crate. He checked the order list on his wrist. At the very bottom was a note. Seeds packed inside socks, so they travel safely. Love, Earth. Leo shook a sock. Out tumbled a packet of seeds! “Ninety-nine socks to go!”",
-          "audio": "audio/en-US/socks-not-seeds.m4a",
-          "effects": "audio/en-US/socks-not-seeds.effects.json"
-        },
-        "es-ES": {
-          "title": "Calcetines, no semillas",
-          "text": "Leo había pedido cien semillas a la Tierra. ¡Tomates! ¡Judías! ¡Girasoles! Y bajó la cápsula de carga hasta la plataforma de aterrizaje. Llegó rodando el buggy para llevar la carga a casa. Los paneles laterales se abrieron. Leo abrió la primera caja y se quedó mirando. Calcetines. ¡Una caja entera de calcetines! «¿Calcetines? ¡Yo pedí semillas!» Abrió la siguiente caja. Más calcetines. Y la siguiente. Calcetines, calcetines, calcetines. Leo se sentó en una caja. Miró la lista del pedido en su muñeca. Al final del todo había una nota. Semillas guardadas dentro de calcetines, para que viajen seguras. Con cariño, la Tierra. Leo sacudió un calcetín. ¡Y cayó un sobre de semillas! «¡Quedan noventa y nueve calcetines!»",
-          "audio": "audio/es-ES/socks-not-seeds.m4a",
-          "effects": "audio/es-ES/socks-not-seeds.effects.json"
         }
       }
     },
@@ -1945,7 +1917,8 @@
       "requiredStickers": [
         "capsule",
         "woman",
-        "station"
+        "station",
+        "galaxy"
       ],
       "optionalStickers": [],
       "weight": 1,
@@ -1957,13 +1930,13 @@
       "localizations": {
         "en-US": {
           "title": "Waving at the Capsule",
-          "text": "The long Moon night had begun. The stars stood sharp and still. Maya loped out onto the plain and looked up. Right on time, the capsule came sliding across the sky: a tiny bright X, high above the Moon. Every time it passed, Maya waved. But could anyone up there really see one small astronaut, down here in the dark? She waved anyway. And waited. Then the capsule turned its four wings, and they caught the sunlight, still shining up there above the night. Flash. Flash. Up shot Maya's thumb. They were waving back! Little lights glided by among the stars, and behind the capsule the space station turned its arrays, gleaming too. Maya bounced all the way home. Somebody up there had waved hello.",
+          "text": "The long Moon night had begun. The stars stood sharp and still, and among them glowed a faint little galaxy. Maya loped out onto the plain and looked up. The capsule came sliding across the sky: a tiny bright X. Every time it passed, Maya waved. But could anyone up there see one small astronaut in the dark? If the light of a whole galaxy could reach her from so far away, maybe a wave could reach the capsule. She waved anyway. And waited. Then the capsule turned its four wings, and they caught the sunlight. Flash. Flash. Up shot Maya's thumb. They were waving back! Little lights glided by among the stars, and behind the capsule the space station turned its arrays, gleaming too. Maya bounced all the way home. Somebody up there had waved hello.",
           "audio": "audio/en-US/the-capsule-waves-back.m4a",
           "effects": "audio/en-US/the-capsule-waves-back.effects.json"
         },
         "es-ES": {
           "title": "Saludos a la cápsula",
-          "text": "Había empezado la larga noche lunar. Las estrellas brillaban quietas y nítidas. Maya salió dando saltos a la llanura y miró hacia arriba. Puntual como siempre, la cápsula cruzaba el cielo: una X diminuta y brillante, muy por encima de la Luna. Cada vez que pasaba, Maya la saludaba. Pero ¿podría alguien ver desde allí a una astronauta tan pequeña, aquí abajo, a oscuras? Saludó de todos modos. Y esperó. Entonces la cápsula giró sus cuatro alas, que atraparon la luz del sol, que allí arriba seguía brillando. Destello. Destello. Maya levantó el pulgar. ¡Le devolvían el saludo! Unas lucecitas cruzaron entre las estrellas, y detrás de la cápsula la estación espacial giró sus paneles, brillando también. Maya volvió a casa dando saltos. Alguien allí arriba la había saludado.",
+          "text": "Había empezado la larga noche lunar. Las estrellas brillaban quietas y nítidas, y entre ellas, una pequeña galaxia. Maya salió dando saltos a la llanura y miró hacia arriba. La cápsula cruzaba el cielo: una X diminuta y brillante. Cada vez que pasaba, Maya la saludaba. Pero ¿podría alguien ver desde allí a una astronauta tan pequeña, a oscuras? Si la luz de una galaxia llegaba hasta ella desde tan lejos, quizá un saludo llegara a la cápsula. Saludó de todos modos. Y esperó. Entonces la cápsula giró sus cuatro alas, que atraparon la luz del sol. Destello. Destello. Maya levantó el pulgar. ¡Le devolvían el saludo! Unas lucecitas cruzaron entre las estrellas, y detrás de la cápsula la estación espacial giró sus paneles, brillando también. Maya volvió a casa dando saltos. Alguien allí arriba la había saludado.",
           "audio": "audio/es-ES/the-capsule-waves-back.m4a",
           "effects": "audio/es-ES/the-capsule-waves-back.effects.json"
         }
@@ -1972,7 +1945,6 @@
     {
       "id": "the-comet-postcard",
       "requiredStickers": [
-        "comet",
         "probe",
         "satellite",
         "cubesat"
@@ -2172,8 +2144,7 @@
       "requiredStickers": [
         "probe",
         "satellite",
-        "station",
-        "comet"
+        "station"
       ],
       "optionalStickers": [],
       "weight": 1,
@@ -2194,6 +2165,35 @@
           "text": "Muy, muy lejos, brillaba un cometa. Y una pequeña sonda iba de camino a su encuentro. Pero el espacio es enorme, y la sonda era pequeña. ¿Cómo podría ir más deprisa? Hizo algo muy listo. Apuntó directa a la Luna. ¡Fiuuu! Pasó rozando la Luna y la estación espacial, y la fuerza de la Luna la hizo girar como una piedra en una honda. ¡Más rápida, y con un rumbo nuevo! Pero antes, giró su antena e hizo una foto de la Luna. El satélite recogió la foto y la envió a la Tierra. Todos los que la vieron sonrieron: la llanura gris, la base diminuta, la Tierra asomando por las montañas. Y la sonda se fue hacia su cometa, más rápida que nunca.",
           "audio": "audio/es-ES/the-probe-swings-by.m4a",
           "effects": "audio/es-ES/the-probe-swings-by.effects.json"
+        }
+      }
+    },
+    {
+      "id": "the-quietest-night",
+      "requiredStickers": [
+        "galaxy",
+        "rover",
+        "ice",
+        "seismometer"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "bedtime",
+        "wonder"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "The Quietest Night",
+          "text": "It was the quietest night the Moon had ever had. Down in the crater, the rover drilled one last time into a chunk of ice. Grrrind… and then it stopped. Frost crept slowly over the ice, white and glittering. Out on the plain, the seismometer listened for moonquakes. Its little light blinked once… and then not again. Nothing was shaking. Not one speck of dust. And high above the ridge, a faraway galaxy began to glow. Its light had come a very, very long way, just to shine on the Moon tonight. The rover rested. The ice glittered. The seismometer listened to the silence. Goodnight, rover. Goodnight, ice. Goodnight, faraway galaxy.",
+          "audio": "audio/en-US/the-quietest-night.m4a",
+          "effects": "audio/en-US/the-quietest-night.effects.json"
+        },
+        "es-ES": {
+          "title": "La noche más tranquila",
+          "text": "Era la noche más tranquila que la Luna había tenido nunca. En el cráter, el róver taladró por última vez un trozo de hielo. Grrrr… y se paró. La escarcha cubrió el hielo despacio, blanca y brillante. En la llanura, el sismómetro escuchaba por si había terremotos lunares. Su lucecita parpadeó una vez… y ya no más. Nada temblaba. Ni una mota de polvo. Y muy alto, sobre las montañas, una galaxia lejana empezó a brillar. Su luz había viajado muchísimo, solo para brillar sobre la Luna esta noche. El róver descansaba. El hielo brillaba. El sismómetro escuchaba el silencio. Buenas noches, róver. Buenas noches, hielo. Buenas noches, galaxia lejana.",
+          "audio": "audio/es-ES/the-quietest-night.m4a",
+          "effects": "audio/es-ES/the-quietest-night.effects.json"
         }
       }
     },
@@ -2341,7 +2341,6 @@
       "id": "where-the-ice-came-from",
       "requiredStickers": [
         "ice",
-        "comet",
         "rover",
         "probe"
       ],

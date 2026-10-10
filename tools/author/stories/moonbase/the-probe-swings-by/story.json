@@ -5,8 +5,7 @@
   "featured": [
     "probe",
     "satellite",
-    "station",
-    "comet"
+    "station"
   ],
   "supporting": [],
   "tags": [
@@ -21,11 +20,11 @@
   "languages": {
     "en-US": {
       "title": "The Probe Swings By",
-      "text": "{comet:float loop 0.2} {probe:float loop 0.3} {station:float loop 0.3} {satellite:float loop 0.3} Far, far away, a {comet:enter} comet was glowing. And a little {probe:enter} probe was on its long way to meet it. [curious] But space is big, and the probe was small. How could it go faster? {probe:pulse} It did something clever. It aimed straight for the Moon. {sfx:whoosh} Whoosh! It swooped close past the Moon and the {station:enter} space station, {probe:go to station} and the Moon's pull swung it round like a stone in a sling. {probe:spin} [excited] Faster now, and on a brand-new path! {station:wobble} But first, {probe:live} it turned its dish and snapped one picture of the Moon below. The {satellite:enter} satellite {satellite:live} caught the picture and sent it home to Earth. {sfx:beep} {all:face happy} Everyone who saw it smiled: the grey plain, {all:hop} the tiny base, the Earth peeping over the ridge. [softly] {probe:go away right} And the probe sailed off toward its comet, faster than ever. {comet:glow 0.6}"
+      "text": "{probe:float loop 0.3} {station:float loop 0.3} {satellite:float loop 0.3} {canvas:comet 0.6 12s} Far, far away, a comet was glowing. And a little {probe:enter} probe was on its long way to meet it. [curious] But space is big, and the probe was small. How could it go faster? {probe:pulse} It did something clever. It aimed straight for the Moon. {sfx:whoosh} Whoosh! It swooped close past the Moon and the {station:enter} space station, {probe:go to station} and the Moon's pull swung it round like a stone in a sling. {probe:spin} [excited] Faster now, and on a brand-new path! {station:wobble} But first, {probe:live} it turned its dish and snapped one picture of the Moon below. The {satellite:enter} satellite {satellite:live} caught the picture and sent it home to Earth. {sfx:beep} {all:face happy} Everyone who saw it smiled: the grey plain, {all:hop} the tiny base, the Earth peeping over the ridge. [softly] {probe:go away right} And the probe sailed off toward its comet, faster than ever."
     },
     "es-ES": {
       "title": "La sonda que pasó de largo",
-      "text": "{comet:float loop 0.2} {probe:float loop 0.3} {station:float loop 0.3} {satellite:float loop 0.3} Muy, muy lejos, brillaba un {comet:enter} cometa. Y una pequeña {probe:enter} sonda iba de camino a su encuentro. [curious] Pero el espacio es enorme, y la sonda era pequeña. ¿Cómo podría ir más deprisa? {probe:pulse} Hizo algo muy listo. Apuntó directa a la Luna. {sfx:whoosh} ¡Fiuuu! Pasó rozando la Luna y la {station:enter} estación espacial, {probe:go to station} y la fuerza de la Luna la hizo girar como una piedra en una honda. {probe:spin} [excited] ¡Más rápida, y con un rumbo nuevo! {station:wobble} Pero antes, {probe:live} giró su antena e hizo una foto de la Luna. El {satellite:enter} satélite {satellite:live} recogió la foto y la envió a la Tierra. {sfx:beep} {all:face happy} Todos los que la vieron sonrieron: la llanura gris, {all:hop} la base diminuta, la Tierra asomando por las montañas. [softly] {probe:go away right} Y la sonda se fue hacia su cometa, más rápida que nunca. {comet:glow 0.6}"
+      "text": "{probe:float loop 0.3} {station:float loop 0.3} {satellite:float loop 0.3} {canvas:comet 0.6 12s} Muy, muy lejos, brillaba un cometa. Y una pequeña {probe:enter} sonda iba de camino a su encuentro. [curious] Pero el espacio es enorme, y la sonda era pequeña. ¿Cómo podría ir más deprisa? {probe:pulse} Hizo algo muy listo. Apuntó directa a la Luna. {sfx:whoosh} ¡Fiuuu! Pasó rozando la Luna y la {station:enter} estación espacial, {probe:go to station} y la fuerza de la Luna la hizo girar como una piedra en una honda. {probe:spin} [excited] ¡Más rápida, y con un rumbo nuevo! {station:wobble} Pero antes, {probe:live} giró su antena e hizo una foto de la Luna. El {satellite:enter} satélite {satellite:live} recogió la foto y la envió a la Tierra. {sfx:beep} {all:face happy} Todos los que la vieron sonrieron: la llanura gris, {all:hop} la base diminuta, la Tierra asomando por las montañas. [softly] {probe:go away right} Y la sonda se fue hacia su cometa, más rápida que nunca."
     }
   },
   "sounds": {

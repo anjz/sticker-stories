@@ -1711,56 +1711,15 @@
     },
     {
       "id": "glow",
-      "sticker": "comet",
+      "sticker": "galaxy",
       "kind": "action",
-      "description": "the comet's glowing haze brightens and its tail streams out a little longer, then it settles back to its gentle glow.",
-      "base": "its nucleus",
-      "story": "the comet glows brighter, its tail streaming",
-      "register": "body",
+      "description": "the galaxy's glowing centre brightens and its spiral arms shimmer a little brighter, then it settles back to its soft glow.",
+      "base": "its centre",
+      "story": "the galaxy glows brighter",
       "pause": {
         "frame": 12,
-        "shows": "the comet glowing brightly, its tail streaming out longer"
+        "shows": "the galaxy glowing brightly, its arms shimmering"
       },
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the scaffold: the rest pose.",
-            "The haze a little brighter.",
-            "Brighter.",
-            "The tail a little longer.",
-            "The tail longer, brighter.",
-            "Brighter still.",
-            "The haze glowing bright.",
-            "The tail streaming.",
-            "The tail rippling softly.",
-            "Bright, the tail long.",
-            "Bright.",
-            "The comet glowing brightly, its tail streaming out longer."
-          ]
-        },
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly the same pose as the last frame of the previous sheet.",
-            "Bright, still.",
-            "The glow softening.",
-            "Softer.",
-            "The tail a little shorter.",
-            "Shorter.",
-            "The haze dimmer.",
-            "Dimmer.",
-            "Nearly its usual glow.",
-            "Its usual glow.",
-            "Nearly the rest pose.",
-            "Exactly as in the scaffold: the rest pose."
-          ]
-        }
-      ],
       "hold": [
         0.45,
         0.1,
@@ -1787,63 +1746,73 @@
         0.1,
         0.45
       ],
-      "restFrames": [
-        1,
-        24
+      "light": [
+        0,
+        0.08,
+        0.16,
+        0.25,
+        0.33,
+        0.42,
+        0.5,
+        0.58,
+        0.66,
+        0.74,
+        0.82,
+        0.9,
+        0.9,
+        0.82,
+        0.74,
+        0.66,
+        0.58,
+        0.5,
+        0.42,
+        0.33,
+        0.25,
+        0.16,
+        0.08,
+        0
       ]
     },
     {
-      "id": "streak",
-      "sticker": "comet",
+      "id": "drift",
+      "sticker": "galaxy",
       "kind": "move",
-      "description": "the comet glides along to the left through space, its tail streaming behind it, then slows.",
-      "base": "its nucleus",
-      "register": "body",
+      "description": "the galaxy drifts slowly along to the left, its light glimmering softly, then comes to rest.",
+      "base": "its centre",
       "loop": {
         "from": 2,
         "to": 9
       },
       "facing": "left",
-      "stride": 1.0,
+      "stride": 0.6,
       "flies": true,
-      "sheets": [
-        {
-          "columns": 4,
-          "rows": 3,
-          "size": "3072x2304",
-          "frames": [
-            "Exactly as in the scaffold: the rest pose.",
-            "Gliding to the left, the tail streaming behind.",
-            "The tail rippling.",
-            "The tail streaming.",
-            "The tail rippling the other way.",
-            "The tail streaming.",
-            "The tail rippling.",
-            "The tail streaming.",
-            "The tail as in frame 2 (leading back into frame 2).",
-            "Slowing, the tail settling.",
-            "Nearly the rest pose.",
-            "Exactly as in the scaffold: the rest pose."
-          ]
-        }
-      ],
       "hold": [
         0.1,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
-        0.09,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
         0.15,
         0.16,
         0.45
       ],
-      "restFrames": [
-        1,
-        12
+      "light": [
+        0,
+        0.05,
+        0.1,
+        0.15,
+        0.1,
+        0.05,
+        0.1,
+        0.15,
+        0.05,
+        0.03,
+        0.01,
+        0
       ]
     },
     {

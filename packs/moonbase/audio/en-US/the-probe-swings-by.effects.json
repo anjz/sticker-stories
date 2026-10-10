@@ -4,14 +4,6 @@
     {
       "at": 0,
       "cue": "far",
-      "sticker": "comet",
-      "effect": "float",
-      "repeat": "loop",
-      "intensity": 0.2
-    },
-    {
-      "at": 0,
-      "cue": "far",
       "sticker": "probe",
       "effect": "float",
       "repeat": "loop",
@@ -34,10 +26,11 @@
       "intensity": 0.3
     },
     {
-      "at": 5.08,
-      "cue": "comet",
-      "sticker": "comet",
-      "enter": true
+      "at": 0,
+      "cue": "far",
+      "effect": "comet",
+      "duration": 12,
+      "intensity": 0.6
     },
     {
       "at": 7.24,
@@ -112,13 +105,6 @@
       "sticker": "probe",
       "go": "away",
       "toward": "right"
-    },
-    {
-      "at": 44.84,
-      "cue": "ever",
-      "sticker": "comet",
-      "effect": "glow",
-      "intensity": 0.6
     }
   ]
 }

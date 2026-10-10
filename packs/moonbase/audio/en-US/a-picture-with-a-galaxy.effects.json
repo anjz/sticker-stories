@@ -3,116 +3,109 @@
   "triggers": [
     {
       "at": 0,
-      "cue": "something",
-      "sticker": "comet",
+      "cue": "far",
+      "sticker": "asteroid",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "far",
+      "sticker": "galaxy",
       "effect": "float",
       "repeat": "loop",
       "intensity": 0.2
     },
     {
       "at": 0,
-      "cue": "something",
-      "sticker": "asteroid",
-      "effect": "float",
-      "repeat": "loop",
-      "intensity": 0.3
-    },
-    {
-      "at": 0,
-      "cue": "something",
+      "cue": "far",
       "sticker": "probe",
       "effect": "float",
       "repeat": "loop",
       "intensity": 0.3
     },
     {
-      "at": 5.72,
-      "cue": "comet",
-      "sticker": "comet",
-      "enter": true
-    },
-    {
-      "at": 6.52,
+      "at": 5.16,
       "cue": "asteroid",
       "sticker": "asteroid",
       "enter": true
     },
     {
-      "at": 9.88,
+      "at": 9.72,
+      "cue": "galaxy",
+      "sticker": "galaxy",
+      "enter": true
+    },
+    {
+      "at": 14.84,
       "cue": "probe",
       "sticker": "probe",
       "enter": true
     },
     {
-      "at": 11.4,
-      "cue": "but",
+      "at": 16.44,
+      "cue": "a",
       "sticker": "probe",
       "effect": "pulse"
     },
     {
-      "at": 13,
-      "cue": "the",
-      "sticker": "comet",
-      "animation": "glow"
-    },
-    {
-      "at": 18.84,
-      "cue": "the",
+      "at": 21.08,
+      "cue": "it",
       "sticker": "asteroid",
       "animation": "tumble",
       "mode": "hold"
     },
     {
-      "at": 25.96,
-      "cue": "it",
-      "sticker": "probe",
+      "at": 24.9,
+      "cue": "the",
+      "sticker": "asteroid",
       "effect": "shake",
       "intensity": 0.3
     },
     {
-      "at": 30.04,
-      "cue": "so",
+      "at": 24.9,
+      "cue": "the",
       "sticker": "probe",
       "animation": "turn"
     },
     {
-      "at": 36.52,
+      "at": 29.16,
       "cue": "the",
-      "sticker": "comet",
-      "go": "to",
-      "target": "asteroid"
+      "sticker": "galaxy",
+      "animation": "glow"
     },
     {
-      "at": 44.84,
-      "cue": "cheered",
-      "sticker": "all",
-      "expression": "happy"
-    },
-    {
-      "at": 44.84,
-      "cue": "cheered",
-      "sticker": "all",
-      "effect": "hop"
-    },
-    {
-      "at": 45.64,
+      "at": 39,
       "cue": "the",
       "sticker": "asteroid",
       "animation": "tumble",
       "mode": "resume"
     },
     {
-      "at": 47.4,
-      "cue": "the",
-      "sticker": "comet",
-      "effect": "sparkle"
+      "at": 48.2,
+      "cue": "cheered",
+      "sticker": "all",
+      "expression": "happy"
     },
     {
-      "at": 49.14,
+      "at": 48.2,
+      "cue": "cheered",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 48.99,
       "cue": "and",
       "sticker": "probe",
       "effect": "glow",
       "intensity": 0.5
+    },
+    {
+      "at": 51.32,
+      "cue": "sky",
+      "sticker": "galaxy",
+      "effect": "sparkle"
     }
   ]
 }

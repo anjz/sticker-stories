@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "era",
+      "effect": "nightfall",
+      "duration": 52.59
+    },
+    {
+      "at": 7.96,
+      "cue": "róver",
+      "sticker": "rover",
+      "enter": true
+    },
+    {
+      "at": 8.28,
+      "cue": "taladró",
+      "sticker": "rover",
+      "go": "to",
+      "target": "crater"
+    },
+    {
+      "at": 9.96,
+      "cue": "hielo",
+      "sticker": "ice",
+      "enter": true
+    },
+    {
+      "at": 10.84,
+      "cue": "grrrr",
+      "sticker": "rover",
+      "animation": "drill"
+    },
+    {
+      "at": 13.24,
+      "cue": "la",
+      "sticker": "ice",
+      "animation": "frost",
+      "mode": "hold"
+    },
+    {
+      "at": 17.24,
+      "cue": "en",
+      "sticker": "rover",
+      "effect": "pulse"
+    },
+    {
+      "at": 18.28,
+      "cue": "sismómetro",
+      "sticker": "seismometer",
+      "enter": true
+    },
+    {
+      "at": 21.4,
+      "cue": "su",
+      "sticker": "seismometer",
+      "animation": "listen"
+    },
+    {
+      "at": 27.71,
+      "cue": "y",
+      "sticker": "ice",
+      "effect": "glow",
+      "intensity": 0.3
+    },
+    {
+      "at": 30.68,
+      "cue": "galaxia",
+      "sticker": "galaxy",
+      "enter": true
+    },
+    {
+      "at": 30.68,
+      "cue": "galaxia",
+      "sticker": "galaxy",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 32.92,
+      "cue": "su",
+      "sticker": "galaxy",
+      "animation": "glow"
+    },
+    {
+      "at": 37.72,
+      "cue": "el",
+      "sticker": "seismometer",
+      "effect": "glow",
+      "intensity": 0.3
+    },
+    {
+      "at": 43.24,
+      "cue": "buenas",
+      "sticker": "all",
+      "expression": "sleeping"
+    },
+    {
+      "at": 43.24,
+      "cue": "buenas",
+      "sticker": "galaxy",
+      "effect": "sparkle",
+      "intensity": 0.4
+    }
+  ]
+}

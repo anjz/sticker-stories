@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "leo",
+      "sticker": "man",
+      "enter": true
+    },
+    {
+      "at": 5.96,
+      "cue": "thump",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 8.52,
+      "cue": "supply",
+      "sticker": "supply-pod",
+      "enter": true
+    },
+    {
+      "at": 8.52,
+      "cue": "supply",
+      "sticker": "supply-pod",
+      "go": "to",
+      "target": "pad"
+    },
+    {
+      "at": 9.72,
+      "cue": "its",
+      "sticker": "supply-pod",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 15.88,
+      "cue": "he",
+      "sticker": "man",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 15.88,
+      "cue": "he",
+      "effect": "nightfall",
+      "duration": 38.61
+    },
+    {
+      "at": 23.76,
+      "cue": "it",
+      "sticker": "man",
+      "expression": "surprised"
+    },
+    {
+      "at": 24.2,
+      "cue": "galaxy",
+      "sticker": "galaxy",
+      "enter": true
+    },
+    {
+      "at": 24.2,
+      "cue": "galaxy",
+      "sticker": "galaxy",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 29.4,
+      "cue": "it",
+      "sticker": "galaxy",
+      "animation": "glow",
+      "mode": "hold"
+    },
+    {
+      "at": 33.72,
+      "cue": "leo",
+      "sticker": "man",
+      "animation": "check"
+    },
+    {
+      "at": 44.68,
+      "cue": "the",
+      "sticker": "supply-pod",
+      "animation": "open",
+      "mode": "resume"
+    },
+    {
+      "at": 48.33,
+      "cue": "best",
+      "sticker": "man",
+      "expression": "happy"
+    },
+    {
+      "at": 48.33,
+      "cue": "best",
+      "sticker": "man",
+      "effect": "hearts"
+    }
+  ]
+}

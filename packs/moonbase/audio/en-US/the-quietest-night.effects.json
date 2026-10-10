@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "it",
+      "effect": "nightfall",
+      "duration": 52.9
+    },
+    {
+      "at": 7.8,
+      "cue": "rover",
+      "sticker": "rover",
+      "enter": true
+    },
+    {
+      "at": 8.16,
+      "cue": "drilled",
+      "sticker": "rover",
+      "go": "to",
+      "target": "crater"
+    },
+    {
+      "at": 10.36,
+      "cue": "ice",
+      "sticker": "ice",
+      "enter": true
+    },
+    {
+      "at": 11.24,
+      "cue": "grrrind",
+      "sticker": "rover",
+      "animation": "drill"
+    },
+    {
+      "at": 14.34,
+      "cue": "frost",
+      "sticker": "ice",
+      "animation": "frost",
+      "mode": "hold"
+    },
+    {
+      "at": 18.68,
+      "cue": "out",
+      "sticker": "rover",
+      "effect": "pulse"
+    },
+    {
+      "at": 19.8,
+      "cue": "seismometer",
+      "sticker": "seismometer",
+      "enter": true
+    },
+    {
+      "at": 22.32,
+      "cue": "its",
+      "sticker": "seismometer",
+      "animation": "listen"
+    },
+    {
+      "at": 29.16,
+      "cue": "and",
+      "sticker": "ice",
+      "effect": "glow",
+      "intensity": 0.3
+    },
+    {
+      "at": 31.6,
+      "cue": "galaxy",
+      "sticker": "galaxy",
+      "enter": true
+    },
+    {
+      "at": 31.6,
+      "cue": "galaxy",
+      "sticker": "galaxy",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 33.52,
+      "cue": "its",
+      "sticker": "galaxy",
+      "animation": "glow"
+    },
+    {
+      "at": 38.68,
+      "cue": "the",
+      "sticker": "seismometer",
+      "effect": "glow",
+      "intensity": 0.3
+    },
+    {
+      "at": 44.12,
+      "cue": "goodnight",
+      "sticker": "all",
+      "expression": "sleeping"
+    },
+    {
+      "at": 44.12,
+      "cue": "goodnight",
+      "sticker": "galaxy",
+      "effect": "sparkle",
+      "intensity": 0.4
+    }
+  ]
+}
