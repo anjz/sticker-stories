@@ -162,7 +162,7 @@ redone on the next render, with no new drawing of the sticker).
 feature into the finished background afterwards — Forest's pond — without
 repainting the rest: the generated wide background is kept as
 `background-wide.orig.png`, each edit is a masked edit blended in over its
-area, and the base is re-cut from the edited wide so the two still match.
+area, and the base is re-cut from the edited wide so the two still match. Each edit's drawing is kept (`out/art/edit-<hash>.gen.png`, keyed by its own prompt and area), so changing one edit redraws only that one; the others are laid back from their drawings.
 
 ## Install
 
