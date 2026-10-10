@@ -99,7 +99,10 @@ go run ./packager validate ../packs/forest
    (fractions of its raw art; add a `faceNote` when the face is drawn on
    something that must keep its colour — the flower's brown seed disc).
    The kept raw is sent to the edits model with a mask over the face and
-   the expression's prompt; only the face of the result, inside a
+   the expression's prompt (a sticker's `noExpressions` lists the pack's
+   expressions it never shows — Beach's kids stand all day, so they have
+   no `sleeping` — which are neither drawn nor installed); only the face
+   of the result, inside a
    feathered ellipse and with the raw's own alpha, is laid back over the
    raw (`stickerimg.Face`), and that is finished exactly like the sticker.
    So every variant has the sticker's exact outline and size and the app

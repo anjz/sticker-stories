@@ -32,6 +32,7 @@ import (
 	"math"
 	"os"
 	"path/filepath"
+	"slices"
 	"sort"
 	"strings"
 	"sync"
@@ -147,6 +148,10 @@ type stickerSpec struct {
 	// FaceNote says what the face is drawn on when that is not obvious
 	// ("the round brown speckled seed centre"), so an expression keeps it.
 	FaceNote string `json:"faceNote,omitempty"`
+	// NoExpressions are pack expressions this sticker never shows (the
+	// beach kids stand all day, so no sleeping face): not drawn, not
+	// installed.
+	NoExpressions []string `json:"noExpressions,omitempty"`
 	// Prop is something the character was drawn on (a lily pad, a branch)
 	// that the sticker no longer carries: removed from the kept raw by a
 	// masked edit over its area, the character's own pixels kept outside
@@ -551,6 +556,9 @@ func (r *renderer) run() error {
 			continue
 		}
 		for _, e := range cfg.Expressions {
+			if slices.Contains(s.NoExpressions, e.ID) {
+				continue
+			}
 			if r.o.only == nil || r.want(s.ID) || r.want("faces") || r.want(s.ID+"."+e.ID) {
 				faces <- faceJob{s, e}
 			}
@@ -1428,7 +1436,7 @@ func runInstall(args []string) error {
 		if s.Face != nil {
 			for _, e := range c.cfg.Expressions {
 				esrc := filepath.Join(outDir, "stickers", s.ID+"."+e.ID+".png")
-				if !exists(esrc) {
+				if !exists(esrc) || slices.Contains(s.NoExpressions, e.ID) {
 					continue
 				}
 				erel := "stickers/" + s.ID + "." + e.ID + ".webp"
