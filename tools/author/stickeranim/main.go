@@ -190,6 +190,11 @@ type animSpec struct {
 	Facing string  `json:"facing,omitempty"`
 	Stride float64 `json:"stride,omitempty"`
 	Hops   bool    `json:"hops,omitempty"`
+	// Steps (moves with a loop) says the loop walks, runs or crawls on
+	// legs or flippers: the check flags a loop whose lower half barely
+	// changes from frame to frame (stickerimg.LoopMotion), a still pose
+	// the app would slide along.
+	Steps bool `json:"steps,omitempty"`
 	// Flies (moves) says the loop is a flight; On lists the features a
 	// story that brings the sticker in this way lands it on (a second
 	// move: the duckling's swim, the pond). Neither changes the frames:
@@ -1067,6 +1072,12 @@ func (r *renderer) check(a animSpec, sheet *stickerimg.AnimSheet) error {
 	grow := a.kind() == manifest.KindMove && a.Loop == nil
 	// Nothing in the sky or adrift has a ground to keep its bottom on.
 	qa := stickerimg.MeasureFrames(sheet, 8, grow, a.Flies || a.Hops || a.register() == stickerimg.RegisterBody)
+	if problem := frozenLoop(a, sheet); problem != "" {
+		r.say("  ⚠ %s: %s", a.key(), problem)
+		for i := a.Loop.From - 1; i <= a.Loop.To-1 && i < len(qa); i++ {
+			qa[i].Problems = append(qa[i].Problems, problem)
+		}
+	}
 	data, _ := json.MarshalIndent(qa, "", "  ")
 	if err := os.WriteFile(r.out(a.key()+".qa.json"), append(data, '\n'), 0o644); err != nil {
 		return err
@@ -1080,6 +1091,24 @@ func (r *renderer) check(a animSpec, sheet *stickerimg.AnimSheet) error {
 	}
 	r.say("✓ %s: %d frames of %dx%d, %d flagged (stickeranim review shows them)", a.key(), sheet.Count, sheet.Frame.X, sheet.Frame.Y, bad)
 	return nil
+}
+
+// minStepMotion is the least a stepping loop's lower half must change
+// between frames (stickerimg.LoopMotion): measured across Forest, Moon
+// Base and Beach, real walks run 0.08–0.37, the frozen ones 0.05–0.066.
+const minStepMotion = 0.07
+
+// frozenLoop says what is wrong with a stepping loop that barely moves,
+// or "" when it moves enough (or is not a stepping loop).
+func frozenLoop(a animSpec, sheet *stickerimg.AnimSheet) string {
+	if !a.Steps || a.Loop == nil {
+		return ""
+	}
+	_, lower := stickerimg.LoopMotion(sheet, a.Loop.From-1, a.Loop.To-1, 8)
+	if lower >= minStepMotion {
+		return ""
+	}
+	return fmt.Sprintf("frozen loop: the legs change only %.1f%% between frames (want ≥ %.0f%%) — it will slide along in one pose", lower*100, minStepMotion*100)
 }
 
 // scaffoldPrompt asks for one sheet drawn over a scaffold: the cells

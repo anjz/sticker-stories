@@ -51,6 +51,15 @@ moves, moves.
   the rest pose is a defect, not a style.
 - **Motions stay small** — nothing reaches far from the sticker; travel
   is the app's job (moves are drawn in place, "on a treadmill").
+- **A walk is a real walk cycle.** The app slides a walker along while
+  its loop plays, so a loop whose legs barely change reads as a statue
+  gliding (Beach's first surfer walk). Write every walk, run, crawl and
+  scuttle frame by frame as contact → down → passing → up, then the same
+  with the other leg, each frame's legs clearly different from the one
+  before, the free arm swinging against the front leg — and mark the
+  move `"steps": true` in anim.json: the check then flags a loop whose
+  lower half changes less than 7 % a frame (`frozen loop`). Things that
+  glide (a snail, an urchin on its tube feet) leave it off.
 - Rigid things (machines, spacecraft, buildings) must keep their exact
   outline: only the moving part changes (a hatch, a wheel, an arm). Use
   `restFromSticker: false` for them.

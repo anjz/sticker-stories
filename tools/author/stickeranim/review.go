@@ -66,6 +66,11 @@ func runReview(args []string) error {
 			if img, err := stickerimg.Decode(png); err == nil {
 				sheet := &stickerimg.AnimSheet{Image: img, Frame: image.Pt(side.Frame.Width, side.Frame.Height), Columns: side.Columns, Count: side.Count}
 				it.QA = stickerimg.MeasureFrames(sheet, 8, a.kind() == manifest.KindMove && a.Loop == nil, a.Flies || a.Hops || a.register() == stickerimg.RegisterBody)
+				if problem := frozenLoop(a, sheet); problem != "" {
+					for i := a.Loop.From - 1; i <= a.Loop.To-1 && i < len(it.QA); i++ {
+						it.QA[i].Problems = append(it.QA[i].Problems, problem)
+					}
+				}
 			}
 		}
 		for _, f := range it.QA {

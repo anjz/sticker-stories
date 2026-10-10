@@ -87,6 +87,12 @@ removed (`prop` in art.json) is drawn from its art without it
     once: frame 1 is the rest pose (the anchor), frames 2… grow to it.
     The prompt asks for moves drawn in place, as on a treadmill, and
     small in their cells so a stretched leap stays inside.
+  - `steps` (moves with a loop): the loop walks, runs, crawls or
+    scuttles on legs or flippers. The frame check measures how much the
+    drawing's lower half changes from one loop frame to the next
+    (`stickerimg.LoopMotion`) and flags the loop as **frozen** below 7 %
+    — a still pose the app would slide along. Across Forest, Moon Base
+    and Beach real walks measure 8–37 %.
   - `register`: how frames are laid on each other — `feet` (the default:
     each frame matched on the one before, its bottom kept on one ground
     line), `body` (matched both ways: a flight, or the snail whose body

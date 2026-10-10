@@ -285,3 +285,65 @@ func boxBlur3(field [][3]float64, w, h, r int) [][3]float64 {
 	}
 	return cur
 }
+
+// LoopMotion is how much a move's loop actually moves: for each step of
+// the loop (frame from…to, 0-based, and back round to from), the share of
+// the drawing's solid pixels that change between one frame and the next —
+// over the whole drawing and over its lower half alone (the legs, the
+// flippers). A walk whose legs never swap reads as a still pose sliding
+// along; both numbers are the mean over the loop's steps.
+func LoopMotion(s *AnimSheet, from, to int, threshold uint8) (all, lower float64) {
+	if from < 0 || to >= s.Count || to <= from {
+		return 0, 0
+	}
+	frame := func(i int) *image.RGBA {
+		col, row := i%s.Columns, i/s.Columns
+		out := image.NewRGBA(image.Rect(0, 0, s.Frame.X, s.Frame.Y))
+		draw.Draw(out, out.Bounds(), s.Image, image.Pt(col*s.Frame.X, row*s.Frame.Y), draw.Src)
+		return out
+	}
+	solid := func(img *image.RGBA, x, y int) bool { return img.Pix[img.PixOffset(x, y)+3] >= threshold*16 }
+	n := 0
+	for i := from; i <= to; i++ {
+		j := i + 1
+		if j > to {
+			j = from
+		}
+		a, b := frame(i), frame(j)
+		box := Bounds(a, threshold).Union(Bounds(b, threshold))
+		if box.Empty() {
+			continue
+		}
+		mid := box.Min.Y + box.Dy()/2
+		var diff, union, ldiff, lunion float64
+		for y := box.Min.Y; y < box.Max.Y; y++ {
+			for x := box.Min.X; x < box.Max.X; x++ {
+				sa, sb := solid(a, x, y), solid(b, x, y)
+				if !sa && !sb {
+					continue
+				}
+				union++
+				if y >= mid {
+					lunion++
+				}
+				if sa != sb {
+					diff++
+					if y >= mid {
+						ldiff++
+					}
+				}
+			}
+		}
+		if union > 0 {
+			all += diff / union
+		}
+		if lunion > 0 {
+			lower += ldiff / lunion
+		}
+		n++
+	}
+	if n == 0 {
+		return 0, 0
+	}
+	return round3(all / float64(n)), round3(lower / float64(n))
+}
