@@ -87,7 +87,10 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
   alternatives to pick from, prompts in `author/art/app/ui.json`;
   `localimage` = the three art tools' `-local`: the same art from a local
   model (FLUX.2 [klein] on MLX) instead of OpenAI, config + server in
-  `author/localimage/`). API keys
+  `author/localimage/`; `stickerrig` = puppets: a sticker cut into
+  parts on a skeleton (two OpenAI sheets), its animations as keyframes
+  the app poses instead of sprite sheets, spec in
+  `author/art/<pack>/rig.json`, skill `/puppet`). API keys
   live in `tools/.env` (`ELEVENLABS_API_KEY`, `OPENAI_API_KEY`).
 - `docs/` — deep documentation; reference it, don't duplicate it here.
   Art rules for every new pack (drawn size, animations that hold their

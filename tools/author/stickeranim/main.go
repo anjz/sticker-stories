@@ -1300,6 +1300,10 @@ func runInstall(args []string) error {
 		if a.kind() == manifest.KindAction {
 			side.Perched, side.Place = a.Perched, a.Place
 		}
+		// A puppet stickerrig put into the pack's sidecar stays with it.
+		if old, err := manifest.LoadStickerAnimation(dst + ".json"); err == nil {
+			side.Puppet = old.Puppet
+		}
 		data, _ := json.MarshalIndent(side, "", "  ")
 		if err := os.WriteFile(dst+".json", append(data, '\n'), 0o644); err != nil {
 			return err
