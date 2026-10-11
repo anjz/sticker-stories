@@ -1,0 +1,970 @@
+{
+  "rigs": [
+    {
+      "sticker": "owl",
+      "sheets": [
+        {
+          "id": "parts",
+          "size": "1536x1024",
+          "prompt": "Image 1 is a sticker of an owl character. Draw this exact owl as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, feather texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the body: the round chubby body with its cream speckled belly and brown sides, facing the viewer as in image 1, with no head, no wings and no feet. Its top is a plain rounded dome (it will be hidden under the head).\n2. the head: the round head with its ear tufts and its pale facial disc, facing the viewer as in image 1, with a completely blank face — no eyes, no eyelids, no beak, no brows; keep the rosy cheeks. Its bottom edge is a full, smooth, rounded edge.\n3. the folded wing: the owl's right wing folded at rest, as it lies against the body on the right of image 1, drawn whole, including the top part normally hidden under the head, with a rounded shoulder at the top.\n4. the open wing: the same wing fully spread out as in flight, long flight feathers fanned out, the wide rounded shoulder at its base, seen from the front.\n5. one foot: a yellow foot with three toes spread, as in image 1, with a short feathered leg stub on top.\n\nNo text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+        },
+        {
+          "id": "face",
+          "size": "1536x1024",
+          "references": [
+            "parts"
+          ],
+          "prompt": "Image 1 is a sticker of an owl character; image 2 shows the same owl cut into puppet parts, with its head drawn with a blank face. Draw the owl's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the owl in image 1, so it fits the blank head in image 2.\n\nDraw each piece on its own, spread out in two tidy rows with wide empty gaps between them, nothing touching:\n1. the owl's left eye (on the right of image 1) as it is in image 1: calm and sleepy, a dark brown eye with a white sparkle under a heavy, half-closed tan eyelid, with its thin dark lashes and the small curved brow above it.\n2. the same eye wide open and alert: a big round dark eye with a white sparkle, no eyelid over it, the same brow raised a little.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes on a tan eyelid, the same brow.\n4. the same eye closed in a happy smile: an upward-curving arc, the same brow.\n5. the same eye sad: a big round dark eye looking down, its brow tilted up in the middle.\n6. the beak, closed, as in image 1: small, yellow-orange, pointing down.\n7. the beak wide open in a big yawn: the upper and lower beak wide apart, the inside of the mouth pink.\n8. the beak a little open in a soft round 'hoo'.\n\nNo text, no labels, no numbers, no shadows, no face around the pieces. Fully transparent background."
+        }
+      ],
+      "parts": {
+        "head": {
+          "sheet": "parts",
+          "at": [
+            429,
+            269
+          ]
+        },
+        "body": {
+          "sheet": "parts",
+          "at": [
+            1111,
+            297
+          ]
+        },
+        "wingFolded": {
+          "sheet": "parts",
+          "at": [
+            248,
+            762
+          ]
+        },
+        "wingOpen": {
+          "sheet": "parts",
+          "at": [
+            883,
+            747
+          ]
+        },
+        "foot": {
+          "sheet": "parts",
+          "at": [
+            1337,
+            850
+          ]
+        },
+        "brow": {
+          "sheet": "face",
+          "at": [
+            186,
+            226
+          ]
+        },
+        "browSad": {
+          "sheet": "face",
+          "at": [
+            1388,
+            246
+          ]
+        },
+        "eyeCalm": {
+          "sheet": "face",
+          "at": [
+            163,
+            378
+          ]
+        },
+        "eyeWide": {
+          "sheet": "face",
+          "at": [
+            467,
+            379
+          ]
+        },
+        "eyeClosed": {
+          "sheet": "face",
+          "at": [
+            782,
+            386
+          ]
+        },
+        "eyeHappy": {
+          "sheet": "face",
+          "at": [
+            1090,
+            379
+          ]
+        },
+        "eyeSad": {
+          "sheet": "face",
+          "at": [
+            1375,
+            385
+          ]
+        },
+        "beak": {
+          "sheet": "face",
+          "at": [
+            406,
+            741
+          ]
+        },
+        "beakYawn": {
+          "sheet": "face",
+          "at": [
+            782,
+            740
+          ]
+        },
+        "beakHoo": {
+          "sheet": "face",
+          "at": [
+            1132,
+            744
+          ]
+        }
+      },
+      "bones": [
+        {
+          "id": "root",
+          "x": 380,
+          "y": 712
+        },
+        {
+          "id": "body",
+          "parent": "root",
+          "x": 375,
+          "y": 650
+        },
+        {
+          "id": "belly",
+          "parent": "body",
+          "x": 375,
+          "y": 650
+        },
+        {
+          "id": "head",
+          "parent": "body",
+          "x": 380,
+          "y": 360
+        },
+        {
+          "id": "face",
+          "parent": "head",
+          "x": 380,
+          "y": 255
+        },
+        {
+          "id": "eyeL",
+          "parent": "face",
+          "x": 310,
+          "y": 232
+        },
+        {
+          "id": "eyeR",
+          "parent": "face",
+          "x": 455,
+          "y": 268
+        },
+        {
+          "id": "browL",
+          "parent": "face",
+          "x": 330,
+          "y": 174
+        },
+        {
+          "id": "browR",
+          "parent": "face",
+          "x": 466,
+          "y": 213
+        },
+        {
+          "id": "beak",
+          "parent": "face",
+          "x": 370,
+          "y": 262
+        },
+        {
+          "id": "wingR",
+          "parent": "body",
+          "x": 448,
+          "y": 405
+        },
+        {
+          "id": "wingL",
+          "parent": "body",
+          "x": 262,
+          "y": 405
+        },
+        {
+          "id": "footL",
+          "parent": "root",
+          "x": 295,
+          "y": 655
+        },
+        {
+          "id": "footR",
+          "parent": "root",
+          "x": 455,
+          "y": 665
+        }
+      ],
+      "slots": [
+        {
+          "id": "wingL",
+          "bone": "wingL",
+          "default": "none",
+          "attachments": {
+            "open": {
+              "part": "wingOpen",
+              "x": 125.5,
+              "y": 456.5,
+              "scale": 0.48,
+              "flip": true,
+              "shade": 0.18
+            }
+          }
+        },
+        {
+          "id": "footL",
+          "bone": "footL",
+          "default": "foot",
+          "attachments": {
+            "foot": {
+              "part": "foot",
+              "x": 292,
+              "y": 653,
+              "scale": 0.62,
+              "flip": true
+            }
+          }
+        },
+        {
+          "id": "footR",
+          "bone": "footR",
+          "default": "foot",
+          "attachments": {
+            "foot": {
+              "part": "foot",
+              "x": 457,
+              "y": 663,
+              "scale": 0.62
+            }
+          }
+        },
+        {
+          "id": "body",
+          "bone": "belly",
+          "default": "body",
+          "attachments": {
+            "body": {
+              "part": "body",
+              "x": 355,
+              "y": 467,
+              "scale": 0.78
+            }
+          }
+        },
+        {
+          "id": "wingR",
+          "bone": "wingR",
+          "default": "folded",
+          "attachments": {
+            "folded": {
+              "part": "wingFolded",
+              "x": 524,
+              "y": 532,
+              "scale": 0.63,
+              "rotate": -20
+            },
+            "open": {
+              "part": "wingOpen",
+              "x": 584.5,
+              "y": 456.5,
+              "scale": 0.48
+            }
+          }
+        },
+        {
+          "id": "head",
+          "bone": "head",
+          "default": "head",
+          "attachments": {
+            "head": {
+              "part": "head",
+              "x": 379,
+              "y": 227,
+              "scale": 0.71,
+              "rotate": 4
+            }
+          }
+        },
+        {
+          "id": "eyeL",
+          "bone": "eyeL",
+          "default": "calm",
+          "attachments": {
+            "calm": {
+              "part": "eyeCalm",
+              "x": 310,
+              "y": 232,
+              "scale": 0.336,
+              "rotate": 10
+            },
+            "wide": {
+              "part": "eyeWide",
+              "x": 310,
+              "y": 232,
+              "scale": 0.336,
+              "rotate": 10
+            },
+            "closed": {
+              "part": "eyeClosed",
+              "x": 310,
+              "y": 232,
+              "scale": 0.336,
+              "rotate": 10,
+              "flip": true
+            },
+            "happy": {
+              "part": "eyeHappy",
+              "x": 310,
+              "y": 232,
+              "scale": 0.336,
+              "rotate": 10,
+              "flip": true
+            },
+            "sad": {
+              "part": "eyeSad",
+              "x": 310,
+              "y": 232,
+              "scale": 0.336,
+              "rotate": 10,
+              "flip": true
+            }
+          }
+        },
+        {
+          "id": "eyeR",
+          "bone": "eyeR",
+          "default": "calm",
+          "attachments": {
+            "calm": {
+              "part": "eyeCalm",
+              "x": 455,
+              "y": 268,
+              "scale": 0.336,
+              "rotate": 10,
+              "flip": true
+            },
+            "wide": {
+              "part": "eyeWide",
+              "x": 455,
+              "y": 268,
+              "scale": 0.336,
+              "rotate": 10,
+              "flip": true
+            },
+            "closed": {
+              "part": "eyeClosed",
+              "x": 455,
+              "y": 268,
+              "scale": 0.336,
+              "rotate": 10
+            },
+            "happy": {
+              "part": "eyeHappy",
+              "x": 455,
+              "y": 268,
+              "scale": 0.336,
+              "rotate": 10
+            },
+            "sad": {
+              "part": "eyeSad",
+              "x": 455,
+              "y": 268,
+              "scale": 0.336,
+              "rotate": 10
+            }
+          }
+        },
+        {
+          "id": "browL",
+          "bone": "browL",
+          "default": "brow",
+          "attachments": {
+            "brow": {
+              "part": "brow",
+              "x": 330,
+              "y": 174,
+              "scale": 0.25,
+              "rotate": 10
+            },
+            "sad": {
+              "part": "browSad",
+              "x": 330,
+              "y": 170,
+              "scale": 0.25,
+              "rotate": 10
+            }
+          }
+        },
+        {
+          "id": "browR",
+          "bone": "browR",
+          "default": "brow",
+          "attachments": {
+            "brow": {
+              "part": "brow",
+              "x": 466,
+              "y": 213,
+              "scale": 0.25,
+              "rotate": 10,
+              "flip": true
+            },
+            "sad": {
+              "part": "browSad",
+              "x": 466,
+              "y": 209,
+              "scale": 0.25,
+              "rotate": 10,
+              "flip": true
+            }
+          }
+        },
+        {
+          "id": "beak",
+          "bone": "beak",
+          "default": "closed",
+          "attachments": {
+            "closed": {
+              "part": "beak",
+              "x": 370,
+              "y": 288,
+              "scale": 0.31,
+              "rotate": 8
+            },
+            "yawn": {
+              "part": "beakYawn",
+              "x": 370,
+              "y": 298,
+              "scale": 0.31,
+              "rotate": 8
+            },
+            "hoo": {
+              "part": "beakHoo",
+              "x": 370,
+              "y": 290,
+              "scale": 0.31,
+              "rotate": 8
+            }
+          }
+        }
+      ],
+      "faces": {
+        "happy": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        },
+        "sad": {
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "browL": "sad",
+          "browR": "sad"
+        },
+        "sleeping": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        },
+        "surprised": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "beak": "hoo"
+        }
+      },
+      "idle": {
+        "breathe": "belly",
+        "blink": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      "animations": [
+        {
+          "id": "doze",
+          "keys": [
+            {
+              "hold": 0.3
+            },
+            {
+              "hold": 0.1,
+              "slots": {
+                "eyeL": "closed",
+                "eyeR": "closed"
+              }
+            },
+            {
+              "hold": 0.3
+            },
+            {
+              "hold": 0.25,
+              "bones": {
+                "head": {
+                  "r": -7,
+                  "x": -3
+                },
+                "face": {
+                  "x": -16,
+                  "y": 2
+                }
+              }
+            },
+            {
+              "hold": 0.4,
+              "bones": {
+                "head": {
+                  "r": -7,
+                  "x": -3
+                },
+                "face": {
+                  "x": -16,
+                  "y": 2
+                }
+              }
+            },
+            {
+              "hold": 0.25,
+              "bones": {
+                "head": {
+                  "r": 8,
+                  "x": 3
+                },
+                "face": {
+                  "x": 16,
+                  "y": 3
+                }
+              }
+            },
+            {
+              "hold": 0.3,
+              "bones": {
+                "head": {
+                  "r": 8,
+                  "x": 3
+                },
+                "face": {
+                  "x": 16,
+                  "y": 3
+                }
+              }
+            },
+            {
+              "hold": 0.15
+            },
+            {
+              "hold": 0.5,
+              "bones": {
+                "head": {
+                  "r": -3,
+                  "y": -8
+                },
+                "belly": {
+                  "sx": 0.98,
+                  "sy": 1.04
+                },
+                "wingR": {
+                  "r": -8
+                },
+                "browL": {
+                  "y": -4
+                },
+                "browR": {
+                  "y": -4
+                }
+              },
+              "slots": {
+                "beak": "yawn",
+                "eyeL": "happy",
+                "eyeR": "happy"
+              }
+            },
+            {
+              "hold": 0.3,
+              "bones": {
+                "head": {
+                  "r": -5,
+                  "y": -14
+                },
+                "belly": {
+                  "sx": 0.97,
+                  "sy": 1.06
+                },
+                "wingR": {
+                  "r": -12
+                },
+                "browL": {
+                  "y": -6
+                },
+                "browR": {
+                  "y": -6
+                }
+              },
+              "slots": {
+                "beak": "yawn",
+                "eyeL": "happy",
+                "eyeR": "happy"
+              }
+            },
+            {
+              "hold": 0.5,
+              "bones": {
+                "head": {
+                  "r": 4,
+                  "y": 6
+                },
+                "belly": {
+                  "sx": 1.03,
+                  "sy": 0.975
+                },
+                "wingR": {
+                  "r": 2
+                }
+              },
+              "slots": {
+                "eyeL": "closed",
+                "eyeR": "closed"
+              }
+            },
+            {
+              "hold": 0.8,
+              "bones": {
+                "head": {
+                  "r": 6,
+                  "y": 12
+                },
+                "face": {
+                  "y": 2
+                },
+                "belly": {
+                  "sx": 1.05,
+                  "sy": 0.955
+                },
+                "wingR": {
+                  "r": 3,
+                  "y": 3
+                }
+              },
+              "slots": {
+                "eyeL": "closed",
+                "eyeR": "closed"
+              }
+            },
+            {
+              "hold": 0.5,
+              "bones": {
+                "head": {
+                  "r": 6,
+                  "y": 9
+                },
+                "face": {
+                  "y": 2
+                },
+                "belly": {
+                  "sx": 1.04,
+                  "sy": 0.965
+                },
+                "wingR": {
+                  "r": 3,
+                  "y": 2
+                }
+              },
+              "slots": {
+                "eyeL": "closed",
+                "eyeR": "closed"
+              }
+            },
+            {
+              "hold": 0.35,
+              "bones": {
+                "head": {
+                  "r": 3,
+                  "y": 6
+                },
+                "belly": {
+                  "sx": 1.02,
+                  "sy": 0.98
+                }
+              },
+              "slots": {
+                "eyeL": "closed",
+                "eyeR": "calm"
+              }
+            },
+            {
+              "hold": 0.3,
+              "bones": {
+                "head": {
+                  "r": 2,
+                  "y": 4
+                },
+                "browR": {
+                  "y": -3
+                }
+              },
+              "slots": {
+                "eyeL": "closed",
+                "eyeR": "wide"
+              }
+            },
+            {
+              "hold": 0.3,
+              "bones": {
+                "browL": {
+                  "y": -4
+                },
+                "browR": {
+                  "y": -4
+                }
+              },
+              "slots": {
+                "eyeL": "wide",
+                "eyeR": "wide"
+              }
+            },
+            {
+              "hold": 0.25,
+              "bones": {
+                "head": {
+                  "y": -8
+                },
+                "belly": {
+                  "sy": 1.03,
+                  "sx": 0.99
+                }
+              },
+              "slots": {
+                "beak": "hoo"
+              }
+            },
+            {
+              "hold": 0.2
+            },
+            {
+              "hold": 0.25,
+              "bones": {
+                "head": {
+                  "y": -6
+                },
+                "belly": {
+                  "sy": 1.02,
+                  "sx": 0.99
+                }
+              },
+              "slots": {
+                "beak": "hoo"
+              }
+            },
+            {
+              "hold": 0.45
+            }
+          ],
+          "pause": 11
+        },
+        {
+          "id": "fly",
+          "keys": [
+            {
+              "hold": 0.1
+            },
+            {
+              "hold": 0.18,
+              "bones": {
+                "wingR": {
+                  "r": -38
+                },
+                "wingL": {
+                  "r": 38
+                },
+                "body": {
+                  "r": 6,
+                  "y": -4
+                },
+                "footL": {
+                  "y": -30,
+                  "r": 12
+                },
+                "footR": {
+                  "y": -30,
+                  "r": -12
+                },
+                "head": {
+                  "y": 3
+                }
+              },
+              "slots": {
+                "wingR": "open",
+                "wingL": "open"
+              }
+            },
+            {
+              "hold": 0.18,
+              "bones": {
+                "wingR": {
+                  "r": 0
+                },
+                "wingL": {
+                  "r": 0
+                },
+                "body": {
+                  "r": 6,
+                  "y": 0
+                },
+                "footL": {
+                  "y": -30,
+                  "r": 12
+                },
+                "footR": {
+                  "y": -30,
+                  "r": -12
+                }
+              },
+              "slots": {
+                "wingR": "open",
+                "wingL": "open"
+              }
+            },
+            {
+              "hold": 0.18,
+              "bones": {
+                "wingR": {
+                  "r": 32
+                },
+                "wingL": {
+                  "r": -32
+                },
+                "body": {
+                  "r": 6,
+                  "y": -14
+                },
+                "footL": {
+                  "y": -30,
+                  "r": 12
+                },
+                "footR": {
+                  "y": -30,
+                  "r": -12
+                },
+                "belly": {
+                  "sy": 0.98
+                },
+                "head": {
+                  "y": -2
+                }
+              },
+              "slots": {
+                "wingR": "open",
+                "wingL": "open"
+              }
+            },
+            {
+              "hold": 0.18,
+              "bones": {
+                "wingR": {
+                  "r": 0
+                },
+                "wingL": {
+                  "r": 0
+                },
+                "body": {
+                  "r": 6,
+                  "y": -9
+                },
+                "footL": {
+                  "y": -30,
+                  "r": 12
+                },
+                "footR": {
+                  "y": -30,
+                  "r": -12
+                }
+              },
+              "slots": {
+                "wingR": "open",
+                "wingL": "open"
+              }
+            },
+            {
+              "hold": 0.25,
+              "bones": {
+                "wingR": {
+                  "r": -14
+                },
+                "wingL": {
+                  "r": 14
+                },
+                "body": {
+                  "r": 2,
+                  "y": -6
+                },
+                "footL": {
+                  "y": -14,
+                  "r": 6
+                },
+                "footR": {
+                  "y": -14,
+                  "r": -6
+                }
+              },
+              "slots": {
+                "wingR": "open",
+                "wingL": "open"
+              }
+            },
+            {
+              "hold": 0.2,
+              "bones": {
+                "wingR": {
+                  "r": -50
+                },
+                "wingL": {
+                  "r": 50
+                },
+                "body": {
+                  "r": -4,
+                  "y": -2
+                }
+              },
+              "slots": {
+                "wingR": "open",
+                "wingL": "open"
+              }
+            },
+            {
+              "hold": 0.16,
+              "bones": {
+                "body": {
+                  "y": 2
+                },
+                "belly": {
+                  "sx": 1.05,
+                  "sy": 0.94
+                },
+                "head": {
+                  "y": 7
+                }
+              }
+            },
+            {
+              "hold": 0.45
+            }
+          ],
+          "loop": {
+            "from": 1,
+            "to": 4
+          },
+          "stride": 1.2
+        }
+      ]
+    }
+  ]
+}

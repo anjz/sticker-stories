@@ -51,5 +51,285 @@
     "frame": 11,
     "shows": "the owl fast asleep, fluffed up round, eyes shut"
   },
-  "perched": true
+  "perched": true,
+  "puppet": {
+    "rig": "anims/owl.rig.json",
+    "keys": [
+      {
+        "hold": 0.3
+      },
+      {
+        "hold": 0.1,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "face": {
+            "x": -16,
+            "y": 2
+          },
+          "head": {
+            "r": -7,
+            "x": -3
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "face": {
+            "x": -16,
+            "y": 2
+          },
+          "head": {
+            "r": -7,
+            "x": -3
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "face": {
+            "x": 16,
+            "y": 3
+          },
+          "head": {
+            "r": 8,
+            "x": 3
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "face": {
+            "x": 16,
+            "y": 3
+          },
+          "head": {
+            "r": 8,
+            "x": 3
+          }
+        }
+      },
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.04
+          },
+          "browL": {
+            "y": -4
+          },
+          "browR": {
+            "y": -4
+          },
+          "head": {
+            "r": -3,
+            "y": -8
+          },
+          "wingR": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "beak": "yawn",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.06
+          },
+          "browL": {
+            "y": -6
+          },
+          "browR": {
+            "y": -6
+          },
+          "head": {
+            "r": -5,
+            "y": -14
+          },
+          "wingR": {
+            "r": -12
+          }
+        },
+        "slots": {
+          "beak": "yawn",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.975
+          },
+          "head": {
+            "r": 4,
+            "y": 6
+          },
+          "wingR": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.955
+          },
+          "face": {
+            "y": 2
+          },
+          "head": {
+            "r": 6,
+            "y": 12
+          },
+          "wingR": {
+            "r": 3,
+            "y": 3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.965
+          },
+          "face": {
+            "y": 2
+          },
+          "head": {
+            "r": 6,
+            "y": 9
+          },
+          "wingR": {
+            "r": 3,
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "head": {
+            "r": 3,
+            "y": 6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "calm"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "browR": {
+            "y": -3
+          },
+          "head": {
+            "r": 2,
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "browL": {
+            "y": -4
+          },
+          "browR": {
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sx": 0.99,
+            "sy": 1.03
+          },
+          "head": {
+            "y": -8
+          }
+        },
+        "slots": {
+          "beak": "hoo"
+        }
+      },
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sx": 0.99,
+            "sy": 1.02
+          },
+          "head": {
+            "y": -6
+          }
+        },
+        "slots": {
+          "beak": "hoo"
+        }
+      },
+      {
+        "hold": 0.45
+      }
+    ],
+    "pause": 11
+  }
 }

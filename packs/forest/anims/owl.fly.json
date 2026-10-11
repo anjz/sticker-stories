@@ -42,5 +42,190 @@
   },
   "facing": "right",
   "stride": 1.2,
-  "flies": true
+  "flies": true,
+  "puppet": {
+    "rig": "anims/owl.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 6,
+            "y": -4
+          },
+          "footL": {
+            "r": 12,
+            "y": -30
+          },
+          "footR": {
+            "r": -12,
+            "y": -30
+          },
+          "head": {
+            "y": 3
+          },
+          "wingL": {
+            "r": 38
+          },
+          "wingR": {
+            "r": -38
+          }
+        },
+        "slots": {
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 6
+          },
+          "footL": {
+            "r": 12,
+            "y": -30
+          },
+          "footR": {
+            "r": -12,
+            "y": -30
+          },
+          "wingL": {},
+          "wingR": {}
+        },
+        "slots": {
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "body": {
+            "r": 6,
+            "y": -14
+          },
+          "footL": {
+            "r": 12,
+            "y": -30
+          },
+          "footR": {
+            "r": -12,
+            "y": -30
+          },
+          "head": {
+            "y": -2
+          },
+          "wingL": {
+            "r": -32
+          },
+          "wingR": {
+            "r": 32
+          }
+        },
+        "slots": {
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 6,
+            "y": -9
+          },
+          "footL": {
+            "r": 12,
+            "y": -30
+          },
+          "footR": {
+            "r": -12,
+            "y": -30
+          },
+          "wingL": {},
+          "wingR": {}
+        },
+        "slots": {
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": 2,
+            "y": -6
+          },
+          "footL": {
+            "r": 6,
+            "y": -14
+          },
+          "footR": {
+            "r": -6,
+            "y": -14
+          },
+          "wingL": {
+            "r": 14
+          },
+          "wingR": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -4,
+            "y": -2
+          },
+          "wingL": {
+            "r": 50
+          },
+          "wingR": {
+            "r": -50
+          }
+        },
+        "slots": {
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.94
+          },
+          "body": {
+            "y": 2
+          },
+          "head": {
+            "y": 7
+          }
+        }
+      },
+      {
+        "hold": 0.45
+      }
+    ],
+    "loop": {
+      "from": 1,
+      "to": 4
+    },
+    "stride": 1.2
+  }
 }
