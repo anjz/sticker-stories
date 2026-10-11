@@ -93,6 +93,11 @@ type StickerAnimation struct {
 	// landing's dust, a splash — since stickers never draw particles
 	// themselves (docs/effects.md, "Particles"). Optional.
 	Particles []AnimationParticle `json:"particles,omitempty"`
+	// Puppet is the same animation played on the sticker's puppet
+	// (docs/pack-format.md, "Puppets"): keyframes the app poses its parts
+	// with, instead of the sheet's frames. Optional; written by
+	// stickerrig.
+	Puppet *AnimationPuppet `json:"puppet,omitempty"`
 }
 
 // AnimationParticle is one burst an animation fires: when Frame (0-based)
@@ -258,6 +263,9 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 		if b.Width <= 0 || b.Height <= 0 || b.X < 0 || b.Y < 0 || b.X+b.Width > 1.0001 || b.Y+b.Height > 1.0001 {
 			fail("%s must be a non-empty box inside the unit square, got %+v", name, b)
 		}
+	}
+	if a.Puppet != nil {
+		errs = append(errs, a.validatePuppet(dir)...)
 	}
 	for i, p := range a.Particles {
 		field := fmt.Sprintf("particles[%d]", i)

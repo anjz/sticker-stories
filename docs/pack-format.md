@@ -25,6 +25,8 @@ picks the best match for the device (see "Language resolution" below).
   anims/
     <stickerID>.<animID>.webp  # live animation: sprite sheet ("Live animations" below)
     <stickerID>.<animID>.json  # its sidecar, declared in stickers[].animations
+    <stickerID>.rig.json   # optional puppet: its rig ("Puppets" below)
+    <stickerID>.rig.webp   # the puppet's parts (atlas)
   audio/
     <lang>/<storyID>.m4a           # pre-rendered narration, AAC, one folder per language
     <lang>/<storyID>.effects.json  # optional triggers (sticker, canvas, live, face) for that narration
@@ -264,7 +266,14 @@ never letterboxes:
     `flies`, `stays` without `on`, an `on` naming no feature are
     errors); the app checks the file exists and reads it **leniently**
     (an undecodable sidecar is skipped with a log, never fatal; a pause
-    or loop it cannot use is dropped).
+    or loop it cannot use is dropped). A `puppet` is checked against its
+    rig, which is read strictly too ("Puppets": the atlas exists, every
+    bone comes after its parent, slots hang on bones and show the rig's
+    parts, faces and the idle blink name real attachments; keys are at
+    least two, with holds in 0.02–5 s, known eases, bones and attachments
+    of the rig, stretches above 0 and at most 4; its `pause` and `loop`
+    match the sidecar's); an undecodable puppet is ignored by the app,
+    which plays the sheet.
 13. Every `stickers[].expressions` key is lowercase `a-z0-9-` and not
     `normal`; every value is an image inside the pack (`.png` or `.webp`)
     that exists. No sticker is called `all`.
@@ -533,6 +542,7 @@ Each animation is a sprite sheet plus a sidecar, made by
 | `on` | moves with a loop, optional: feature ids (`features` above) a story that brings the character in this way lands it on, in order of preference — the duckling swimming in lands on the pond; empty for its `stage`'s |
 | `stays` | moves with a loop and `on`, optional: `true` when the character stays in its element once this way has taken it into one of `on` — the surfer out on the waves, a pelican afloat: the app keeps the loop going where it is instead of settling into the sticker pose, which would stand it on the water (`docs/effects.md`, "Movement") |
 | `particles` | optional: bursts the frames fire as they first come on show — `[{ "frame": 6, "effect": "dust-puff", "x": 0.5, "y": 0.86, "intensity"?: 0.5, "color"?: "#RRGGBB" }]`: the 0-based frame, a particle effect (`dust-puff`, `spray` or `sparks`, `docs/effects.md`), the point of the **sticker image** it comes from (fractions, top-left origin like `stickerBox`; −0.5–1.5 so a flame's tip can be just outside), and optional intensity (0–1) and colour. A landing's dust, a touchdown, a splash: the frames never draw particles themselves (`docs/pack-art.md`). They follow the pack's `world` ("World") and play wherever the animation plays — an action, an entrance, a move — but not under Reduce Motion or calm mode, where live animations don't play |
+| `puppet` | optional: the same animation as keyframes for the sticker's puppet ("Puppets" below) — `{ "rig": "anims/owl.rig.json", "keys": [...], "pause"?: 11, "loop"?: { "from": 1, "to": 4 }, "stride"?: 1.2 }`. `pause` is given exactly when the sidecar has one and `loop` exactly when it has one, with the same meaning, counted in keys |
 
 The frames are registered on the part that stays still (the feet, the
 shell's base) — a move's frames on the character's body, feet on the
@@ -554,6 +564,48 @@ unless the cue names another (`{ladybug:go on flower by fly}` becomes
 `"by": "fly"`, checked against the sticker's moves). The developer effects gallery plays any. A sheet decodes to width
 × height × 4 bytes of texture whatever its file size — keep that in mind
 before adding frames; a story loads only the sheets it plays.
+
+## Puppets
+
+A sticker can also carry a **puppet**: its drawing cut into parts —
+body, head, wings, feet, eyes, beak — hanging on a skeleton, so the app
+moves the parts instead of showing drawn frames. An animation is then a
+handful of keyframes (data), and a new one costs no image generation.
+`tools/author/stickerrig` makes it from two sheets the image model draws
+from the sticker's own art (the parts, the face pieces), and the puppet
+plays the sticker's existing animations: each sidecar gets a `puppet`
+beside its sheet, with the same id, kind, pause and loop, so stories cue
+it exactly as before. The app plays the puppet where a sidecar has one
+(a developer switch in debug builds turns it off, for comparison) and
+the sheet otherwise; an older build ignores it.
+
+The rig (`anims/<stickerID>.rig.json`):
+
+| Key | Meaning |
+|---|---|
+| `sticker`, `atlas` | the sticker it belongs to; the pack-relative image (PNG or WebP) every part is cut from |
+| `size` | the side of the square the coordinates are in: the sticker image's, so the puppet scales with the placed sticker. Coordinates are its pixels, top-left origin, y down; turns are degrees clockwise |
+| `parts` | `{ name: { "rect": [x, y, w, h], "border": [x, y, w, h], "pad": n } }`: where each part's art is in the atlas, and its **border silhouette** — the part grown by the sticker's die-cut border, white, `pad` px larger on every side. All the borders are drawn under all the art, which gives the posed puppet the sticker's border (the union of the grown parts is the grown union) |
+| `bones` | `[{ "id", "parent"?, "x", "y" }]`: the skeleton, each bone after its parent (the first is the root), at its joint at rest |
+| `slots` | `[{ "id", "bone", "default", "attachments": { name: { "part", "x", "y", "w", "h", "rotate"?, "flip"?, "shade"? } } }]`, back to front: what each bone carries and the art it can show — a box at rest (turned `rotate` about its centre), mirrored with `flip`, darkened by `shade` 0–1 (the far wing). The attachment `none` shows nothing |
+| `faces` | optional: the sticker's expressions as attachments, `{ "sleeping": { "eyeL": "closed", "eyeR": "closed" } }`, so a face cue changes the puppet's face |
+| `idle` | optional: `{ "breathe": bone, "blink": { slot: attachment } }` — how it keeps alive between animations (a slow swell of that bone; a blink every few seconds when the face does not set those slots) |
+
+A key (`puppet.keys[]`) is `{ "hold", "ease"?, "bones"?, "slots"? }`:
+each named bone's change from rest — `r` (turn), `x`, `y` (shift), `sx`,
+`sy` (stretch, 1 when absent) — while bones not named stay at rest; the
+attachments slots show from this key on (a slot not named shows the
+face's, then its default); `hold`, the seconds from this pose to the next
+(0.02–5); and `ease`, how it gets there: `inOut` (the default), `in`,
+`out`, `linear` or `step`. Turns, shifts and stretches ease between keys;
+attachments swap on their key. A move's loop goes round from its last
+key back to its first.
+
+Once a story has the puppet take over from the still sticker (dissolving
+in over it, like frames), it stays on show — idling between animations,
+showing the story's faces — until the story ends, so the still art and
+the puppet hand over once rather than at every cue. The drop shadow is
+the puppet's own, posed with it.
 
 ## Language resolution (app behaviour)
 
@@ -592,6 +644,7 @@ same device preference.
   `stride` and `hops`, and live triggers an optional `mode` (additive,
   no bump); optional `narrationPacks` added (additive, no bump);
   2026-10: optional `staging` and `stickers[].door` added (additive, no
+  bump); optional sidecar `puppet` and puppet rigs added (additive, no
   bump).
 - Any schema change must update this document, the Go validator
   (`tools/internal/manifest`), and the Swift decoder in the **same commit**.

@@ -106,7 +106,7 @@ public struct LiveFrames: Equatable, Sendable {
 
     /// The frames a part plays, in order, whether it dissolves in from the
     /// still sticker and out to it, and whether its last frame stays.
-    private func plan(_ part: LivePart) -> (frames: [Int], fadeIn: Bool, fadeOut: Bool, stays: Bool)? {
+    fileprivate func plan(_ part: LivePart) -> (frames: [Int], fadeIn: Bool, fadeOut: Bool, stays: Bool)? {
         let n = holds.count
         guard n > 0 else { return nil }
         switch part {
@@ -187,6 +187,62 @@ public struct LiveFrames: Equatable, Sendable {
                 if local > hold - fade { live = min(live, max(0, (hold - local) / max(fade, 1e-6))) }
             }
             return LiveFrameState(frame: frame, liveAlpha: live, stillAlpha: still)
+        }
+        return nil
+    }
+}
+
+/// Where a keyframed animation (a puppet's, `PuppetPose`) is at one
+/// moment: the key on show, the key it is on its way to, and how far
+/// along (0…1). Frames hold; keys move on.
+public struct LiveTween: Equatable, Sendable {
+    public var frame: Int
+    public var next: Int
+    public var progress: Double
+
+    public init(frame: Int, next: Int, progress: Double) {
+        self.frame = frame
+        self.next = next
+        self.progress = progress
+    }
+}
+
+extension LiveFrames {
+    /// What the part shows `elapsed` seconds after it started, read as
+    /// keys: the same key as `state` (each key's hold is the time from it
+    /// to the next), plus the next one in play order — round a move's loop
+    /// and back to its start — and how far towards it. A key that stays
+    /// (a hold's pause, a move that stays) does not move on.
+    public func tween(_ part: LivePart, at elapsed: TimeInterval) -> LiveTween? {
+        guard elapsed >= 0, let plan = plan(part) else { return nil }
+        var t = elapsed
+        if case .move(let travel, let stays) = part, let loop, loop.upperBound < holds.count {
+            let cycle = loopDuration
+            if t < travel || stays, cycle > 0 {
+                var inCycle = t.truncatingRemainder(dividingBy: cycle)
+                for frame in loop {
+                    let next = frame == loop.upperBound ? loop.lowerBound : frame + 1
+                    if inCycle < holds[frame] { return LiveTween(frame: frame, next: next, progress: inCycle / holds[frame]) }
+                    inCycle -= holds[frame]
+                }
+                return LiveTween(frame: loop.upperBound, next: loop.lowerBound, progress: 1)
+            }
+            t -= max(travel, 0)
+            if plan.frames.isEmpty {
+                return t < Self.fade ? LiveTween(frame: loop.upperBound, next: loop.upperBound, progress: 0) : nil
+            }
+        }
+        var start: TimeInterval = 0
+        for (index, frame) in plan.frames.enumerated() {
+            let hold = holds[frame]
+            let isLast = index == plan.frames.count - 1
+            if isLast && plan.stays { return LiveTween(frame: frame, next: frame, progress: 0) }
+            guard t < start + hold else {
+                start += hold
+                continue
+            }
+            let next = isLast ? frame : plan.frames[index + 1]
+            return LiveTween(frame: frame, next: next, progress: hold > 0 ? (t - start) / hold : 0)
         }
         return nil
     }
