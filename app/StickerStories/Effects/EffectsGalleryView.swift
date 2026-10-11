@@ -372,6 +372,14 @@ final class EffectsGalleryScene: SKScene {
             pendingLive = (animation, part, repeating)
             return
         }
+        if animation.usesPuppet {
+            Task { @MainActor [weak self, pack] in
+                let loaded = await LiveAnimationLoader.load([animation.liveKey], from: [animation], pack: pack)
+                guard let self, let puppet = loaded[animation.liveKey] else { return }
+                self.liveRun = (puppet, part, self.sceneTime, repeating)
+            }
+            return
+        }
         let sheet: SKTexture
         var image: UIImage?
         if let cached = sheets[animation.key] {
@@ -474,7 +482,8 @@ final class EffectsGalleryScene: SKScene {
         guard let sticker else { return }
         if let run = liveRun {
             if let state = run.loaded.timing.state(run.part, at: currentTime - run.start) {
-                if let frame = sticker.showLive(run.loaded, state: state) {
+                let tween = run.loaded.puppet.flatMap { _ in run.loaded.timing.tween(run.part, at: currentTime - run.start) }
+                if let frame = sticker.showLive(run.loaded, state: state, tween: tween) {
                     emitters.fire(run.loaded.animation, frame: frame, on: sticker)
                 }
             } else if run.repeating {

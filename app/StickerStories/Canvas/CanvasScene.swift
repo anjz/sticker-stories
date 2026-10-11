@@ -1812,7 +1812,7 @@ final class CanvasScene: SKScene {
         let allowed = livePolicy.allowsLiveAnimations
         let timing: (LiveAnimationKey) -> LiveFrames? = { [liveLoaded] in liveLoaded[$0]?.timing }
         for node in allStickerNodes() {
-            var shown: (LoadedLiveAnimation, LiveFrameState)?
+            var shown: (LoadedLiveAnimation, LiveFrameState, LiveTween?)?
             if allowed {
                 let action = session.live.current(for: node.stickerID, at: time, frames: timing)
                 // The latest travel in progress: its entrance, or a move.
@@ -1827,19 +1827,23 @@ final class CanvasScene: SKScene {
                     let move = liveLoaded[LiveAnimationKey(stickerID: node.stickerID, animationID: id)],
                     let state = move.timing.state(.move(travel: travel.duration, stays: travel.stays), at: time - travel.at)
                 {
-                    shown = (move, state)
+                    // A puppet moves between its keys; frames only show.
+                    let tween = move.puppet.flatMap { _ in
+                        move.timing.tween(.move(travel: travel.duration, stays: travel.stays), at: time - travel.at)
+                    }
+                    shown = (move, state, tween)
                 } else if let action, let loaded = liveLoaded[action.key],
                     let state = loaded.timing.state(action.part, at: action.elapsed)
                 {
-                    shown = (loaded, state)
+                    shown = (loaded, state, loaded.puppet.flatMap { _ in loaded.timing.tween(action.part, at: action.elapsed) })
                 }
             }
-            if let (loaded, state) = shown {
-                if let frame = node.showLive(loaded, state: state) {
+            if let (loaded, state, tween) = shown {
+                if let frame = node.showLive(loaded, state: state, tween: tween) {
                     session.emitters.fire(loaded.animation, frame: frame, on: node)
                 }
-            } else if node.liveKey != nil {
-                node.stopLive()
+            } else if node.liveKey != nil || node.puppetNode != nil {
+                node.parkLive()
             }
         }
     }

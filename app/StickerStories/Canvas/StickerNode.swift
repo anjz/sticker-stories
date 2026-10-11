@@ -178,6 +178,34 @@ final class StickerNode: SKSpriteNode {
         castShadow.texture = texture
     }
 
+    /// Hands the shadows to a puppet (`PuppetNode`): each shadow layer
+    /// shows a shadow puppet in place of its silhouette, keeping its
+    /// offset, alpha and scale.
+    func beginPuppetShadow(_ contact: PuppetNode, _ cast: PuppetNode) {
+        liveShadowSize = .zero
+        liveShadowAnchor = .zero
+        layoutShadows()
+        applyShadowPoses(animated: false)
+        for (layer, puppet) in [(contactShadow, contact), (castShadow, cast)] {
+            layer.texture = nil
+            layer.color = .clear
+            layer.addChild(puppet)
+        }
+    }
+
+    /// The shadow puppets on show, posed with the puppet.
+    var puppetShadows: [PuppetNode] {
+        [contactShadow, castShadow].compactMap { $0.children.first as? PuppetNode }
+    }
+
+    func endPuppetShadow() {
+        for layer in [contactShadow, castShadow] {
+            layer.removeAllChildren()
+            layer.color = .black
+        }
+        endLiveShadow()
+    }
+
     /// The still art's own shadow again.
     func endLiveShadow() {
         liveShadowSize = nil
@@ -268,6 +296,7 @@ final class StickerNode: SKSpriteNode {
     /// art underneath instead. With no tint, every colour goes back to
     /// clear, never left over from an earlier tint.
     private func setTint(_ tint: RGBA?, amount: CGFloat) {
+        (childNode(withName: Self.liveNodeName) as? PuppetNode)?.setTint(tint.map(UIColor.init), amount: amount)
         let live = liveSprites
         let targets: [SKSpriteNode] = texture == nil ? live : [self]
         for sprite in [self] + live {

@@ -75,6 +75,25 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// Particle bursts the frames fire as they show (a landing's dust, a
     /// splash): stickers never draw particles themselves.
     var particles: [ParticleCue]
+    /// The same animation as keyframes for the sticker's puppet
+    /// (`docs/pack-format.md`, "Puppets"). When puppets are on and it
+    /// decodes, `available(in:)` takes its timing for the animation's and
+    /// the loader poses the puppet instead of cutting the sheet.
+    var puppet: Puppet?
+
+    struct Puppet: Decodable, Sendable {
+        var rig: String
+        var keys: [PuppetKey]
+        var pause: Int?
+        var loop: FrameRange?
+        var stride: Double?
+    }
+
+    /// Whether stories play the puppets where the pack has them (a
+    /// developer switch in Settings, on by default; `-developer.puppets NO`).
+    static var puppetsEnabled: Bool {
+        UserDefaults.standard.object(forKey: "developer.puppets") as? Bool ?? true
+    }
 
     /// One burst: when `frame` first shows, `effect` (`dust-puff`, `spray`,
     /// `sparks`) from the point `x`, `y` of the sticker's image (fractions,
@@ -90,7 +109,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
 
     private enum CodingKeys: String, CodingKey {
         case id, sticker, kind, sheet, frame, columns, count, rest, stickerBox, hold, pause, loop, facing, stride, hops,
-            flies, on, stays, place, particles
+            flies, on, stays, place, particles, puppet
     }
 
     /// A particle cue that decodes or is skipped (an effect this build
@@ -125,7 +144,27 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         let cues = (try? c.decodeIfPresent([LenientCue].self, forKey: .particles)) ?? nil
         let frames = count
         particles = (cues ?? []).compactMap(\.cue).filter { $0.effect.followsWorld && $0.frame >= 0 && $0.frame < frames }
+        puppet = try? c.decodeIfPresent(Puppet.self, forKey: .puppet)
     }
+
+    /// The animation as its puppet plays it: the keys' timing in place of
+    /// the frames' (each key's hold is the time to the next), its pause,
+    /// loop and stride. Particles fire on frames, so they stay with the
+    /// sheet.
+    func playedByPuppet() -> StickerAnimation? {
+        guard let puppet, puppet.keys.count >= 2 else { return nil }
+        var copy = self
+        copy.count = puppet.keys.count
+        copy.hold = puppet.keys.map(\.hold)
+        copy.pause = puppet.pause.map { Pause(frame: $0) }
+        copy.loop = puppet.loop
+        copy.stride = puppet.stride ?? stride
+        copy.particles = []
+        return copy
+    }
+
+    /// Whether the puppet plays it (`available(in:)` keeps `puppet` only then).
+    var usesPuppet: Bool { puppet != nil }
 
     var key: String { "\(sticker).\(id)" }
     var liveKey: LiveAnimationKey { LiveAnimationKey(stickerID: sticker, animationID: id) }
@@ -158,13 +197,17 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         return pack.manifest.stickers.flatMap { sticker in
             sticker.animations.compactMap { path -> StickerAnimation? in
                 guard let data = try? Data(contentsOf: pack.url(forAssetPath: path)),
-                    let animation = try? decoder.decode(StickerAnimation.self, from: data),
+                    var animation = try? decoder.decode(StickerAnimation.self, from: data),
                     animation.sticker == sticker.id, animation.count > 0, animation.columns > 0,
                     animation.hold.count == animation.count
                 else {
                     print("StickerAnimation: skipping \(path) (undecodable or not \(sticker.id)'s)")
                     return nil
                 }
+                if puppetsEnabled, let played = animation.playedByPuppet() {
+                    return played
+                }
+                animation.puppet = nil
                 return animation
             }
         }
@@ -189,12 +232,23 @@ struct LoadedLiveAnimation {
     let timing: LiveFrames
     let frames: [SKTexture]
     let shadowFrames: [SKTexture]?
+    /// The puppet that plays it instead of frames (`usesPuppet`).
+    let puppet: LoadedPuppet?
 
     init(animation: StickerAnimation, sheet: SKTexture, shadowSheet: SKTexture?) {
         self.animation = animation
         timing = animation.frames
         frames = animation.frameTextures(from: sheet)
         shadowFrames = shadowSheet.map { animation.frameTextures(from: $0) }
+        puppet = nil
+    }
+
+    init(animation: StickerAnimation, puppet: LoadedPuppet) {
+        self.animation = animation
+        timing = animation.frames
+        frames = []
+        shadowFrames = nil
+        self.puppet = puppet
     }
 }
 
@@ -208,7 +262,8 @@ enum LiveAnimationLoader {
     static func load(
         _ keys: Set<LiveAnimationKey>, from available: [StickerAnimation], pack: LoadedPack
     ) async -> [LiveAnimationKey: LoadedLiveAnimation] {
-        let wanted = available.filter { keys.contains($0.liveKey) }
+        let wanted = available.filter { keys.contains($0.liveKey) && !$0.usesPuppet }
+        var loaded = await loadPuppets(available.filter { keys.contains($0.liveKey) && $0.usesPuppet }, pack: pack)
         let decoded = await withTaskGroup(of: (StickerAnimation, CGImage?, CGImage?).self) { group in
             for animation in wanted {
                 let url = pack.url(forAssetPath: animation.sheet)
@@ -221,7 +276,6 @@ enum LiveAnimationLoader {
             for await result in group { results.append(result) }
             return results
         }
-        var loaded: [LiveAnimationKey: LoadedLiveAnimation] = [:]
         var textures: [SKTexture] = []
         for (animation, sheet, shadow) in decoded {
             guard let sheet else {
@@ -240,11 +294,45 @@ enum LiveAnimationLoader {
         }
         return loaded
     }
+
+    /// The puppets that play some of the animations: each rig and its
+    /// atlas read once, however many of its animations the story plays.
+    @MainActor
+    private static func loadPuppets(_ wanted: [StickerAnimation], pack: LoadedPack) async -> [LiveAnimationKey: LoadedLiveAnimation] {
+        let rigPaths = Set(wanted.compactMap { $0.puppet?.rig })
+        let rigs = await withTaskGroup(of: (String, PuppetRig?, CGImage?).self) { group in
+            for path in rigPaths {
+                let url = pack.url(forAssetPath: path)
+                group.addTask {
+                    guard let data = try? Data(contentsOf: url),
+                        let rig = try? JSONDecoder().decode(PuppetRig.self, from: data), rig.isWellFormed
+                    else { return (path, nil, nil) }
+                    return (path, rig, PackTextureLoader.decode(pack.url(forAssetPath: rig.atlas)))
+                }
+            }
+            var results: [String: (PuppetRig, CGImage)] = [:]
+            for await (path, rig, atlas) in group {
+                if let rig, let atlas { results[path] = (rig, atlas) } else { print("LiveAnimationLoader: could not load the puppet \(path)") }
+            }
+            return results
+        }
+        let atlases = rigs.mapValues { SKTexture(cgImage: $0.1) }
+        await withCheckedContinuation { continuation in
+            SKTexture.preload(Array(atlases.values)) { continuation.resume() }
+        }
+        var loaded: [LiveAnimationKey: LoadedLiveAnimation] = [:]
+        for animation in wanted {
+            guard let puppet = animation.puppet, let (rig, _) = rigs[puppet.rig], let atlas = atlases[puppet.rig] else { continue }
+            loaded[animation.liveKey] = LoadedLiveAnimation(
+                animation: animation, puppet: LoadedPuppet(rig: rig, keys: puppet.keys, atlas: atlas))
+        }
+        return loaded
+    }
 }
 
 extension StickerNode {
-    private static let liveNodeName = "live-animation"
-    private static let liveStillName = "live-still"
+    static let liveNodeName = "live-animation"
+    static let liveStillName = "live-still"
 
     /// Shows one moment of a live animation over this sticker
     /// (`LiveFrames.state`): its frame, and how opaque the frames and the
@@ -259,11 +347,14 @@ extension StickerNode {
     /// Returns the frame when it is a new one (it has just come on show),
     /// for what fires on a frame (`StickerAnimation.particles`).
     @discardableResult
-    func showLive(_ loaded: LoadedLiveAnimation, state: LiveFrameState) -> Int? {
-        if liveKey != loaded.animation.key {
+    func showLive(_ loaded: LoadedLiveAnimation, state: LiveFrameState, tween: LiveTween? = nil) -> Int? {
+        if liveKey != loaded.animation.key, !continuePuppet(loaded) {
             stopLive()
             beginLive(loaded)
             liveFrame = nil
+        }
+        if loaded.puppet != nil {
+            return showPuppet(state: state, tween: tween)
         }
         guard let live = childNode(withName: Self.liveNodeName) as? SKSpriteNode else { return nil }
         let index = min(max(state.frame, 0), loaded.frames.count - 1)
@@ -284,6 +375,9 @@ extension StickerNode {
     }
 
     private func beginLive(_ loaded: LoadedLiveAnimation) {
+        if let puppet = loaded.puppet {
+            return beginPuppet(puppet, key: loaded.animation.key)
+        }
         let animation = loaded.animation
         guard let first = loaded.frames.first, let stillTexture = texture else { return }
         // Scale the frame so the rest art is as wide as the sticker's art,
@@ -331,6 +425,7 @@ extension StickerNode {
     func stopLive() {
         liveKey = nil
         liveFrame = nil
+        if stopPuppet() { return }
         guard let live = childNode(withName: Self.liveNodeName) else { return }
         live.removeFromParent()
         childNode(withName: Self.liveStillName)?.removeFromParent()
