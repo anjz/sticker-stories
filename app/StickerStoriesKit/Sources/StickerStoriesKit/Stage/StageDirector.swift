@@ -54,33 +54,50 @@ public enum StageDirector {
     /// Two sharing a spot overlap by this much of the narrower one.
     static let sharedOverlap = 0.25
 
+    /// - Parameter cast: the stickers the story uses (names, moves, cues
+    ///   on); the child's other stickers that stand in its way move aside to
+    ///   the back and the sides as it starts. Nil: nobody moves aside.
     public static func plan<R: RandomNumberGenerator>(
         world: StageWorld, screen: StageScreen, actors: [StageActor], entrances: [EntranceTrigger],
-        goes: [GoTrigger], policy: EffectPolicy, random: inout R
+        goes: [GoTrigger], policy: EffectPolicy, cast: Set<String>? = nil, random: inout R
     ) -> [UUID: StagePlan] {
         var director = Director(world: world, screen: screen, policy: policy, actors: actors)
         director.settleThePlaced()
-        var entered = Set<String>()
-        for entrance in entrances.sorted(by: { $0.at < $1.at }) where entered.insert(entrance.stickerID).inserted {
-            for index in director.states.indices
-            where director.states[index].actor.stickerID == entrance.stickerID && director.states[index].actor.placed == nil {
-                director.enter(index, entrance, goes: goes, random: &random)
-            }
+        if let cast {
+            // Where the story's cast will be and pass, from a first run;
+            // then whoever is in its way steps aside, and the story is
+            // planned again round them.
+            var dry = director
+            var dryRandom = SplitMix(seed: 1)
+            dry.run(entrances: entrances, goes: goes, random: &dryRandom)
+            director.parkExtras(cast: cast, around: dry, random: &random)
         }
-        for go in goes.sorted(by: { $0.at < $1.at }) {
-            for index in director.states.indices
-            where director.states[index].actor.stickerID == go.stickerID && director.states[index].actor.canMove
-                && director.states[index].hasEntered
-            {
-                director.apply(go, to: index, random: &random)
-            }
-        }
+        director.run(entrances: entrances, goes: goes, random: &random)
         var plans: [UUID: StagePlan] = [:]
         for state in director.states {
             plans[state.actor.id] = StagePlan(
                 start: state.start, startsVisible: state.startsVisible, legs: state.legs, size: state.actor.size)
         }
         return plans
+    }
+
+    /// The stickers a story uses: those it brings in, moves, sends someone
+    /// to, or cues an action, a face or an effect on (`all` reaches
+    /// everyone, so it names no one).
+    public static func cast(
+        entrances: [EntranceTrigger], goes: [GoTrigger], live: [LiveAnimationTrigger],
+        faces: [ExpressionTrigger], effects: [EffectTrigger]
+    ) -> Set<String> {
+        var cast = Set(entrances.map(\.stickerID))
+        for go in goes {
+            cast.insert(go.stickerID)
+            if let target = go.target { cast.insert(target) }
+        }
+        cast.formUnion(live.map(\.stickerID))
+        cast.formUnion(faces.map(\.stickerID))
+        cast.formUnion(effects.map(\.stickerID))
+        cast.remove(EffectTrigger.allStickers)
+        return cast
     }
 
     /// The live triggers with every action that has a place held back until
@@ -139,6 +156,83 @@ public enum StageDirector {
                 return State(
                     actor: actor, start: pose, startsVisible: actor.placed != nil, pose: pose, home: pose,
                     visible: actor.placed != nil, hasEntered: actor.placed != nil)
+            }
+        }
+
+        /// Plans the story's entrances and moves, in time order.
+        mutating func run<R: RandomNumberGenerator>(entrances: [EntranceTrigger], goes: [GoTrigger], random: inout R) {
+            var entered = Set<String>()
+            for entrance in entrances.sorted(by: { $0.at < $1.at }) where entered.insert(entrance.stickerID).inserted {
+                for i in states.indices where states[i].actor.stickerID == entrance.stickerID && states[i].actor.placed == nil {
+                    enter(i, entrance, goes: goes, random: &random)
+                }
+            }
+            for go in goes.sorted(by: { $0.at < $1.at }) {
+                for i in states.indices
+                where states[i].actor.stickerID == go.stickerID && states[i].actor.canMove && states[i].hasEntered {
+                    apply(go, to: i, random: &random)
+                }
+            }
+        }
+
+        // MARK: Out of the story's way
+
+        /// The child's stickers the story does not use and that stand where
+        /// its cast will be or pass step aside as it starts: to the freest
+        /// land on screen away from the cast, the further back and the
+        /// nearer the sides the better, not far from where they were.
+        mutating func parkExtras<R: RandomNumberGenerator>(cast: Set<String>, around dry: Director, random: inout R) {
+            let end = (dry.states.flatMap(\.legs).map(\.end).max() ?? 0) + 0.5
+            var taken: [StageRect] = []
+            for state in dry.states where cast.contains(state.actor.stickerID) {
+                let plan = StagePlan(start: state.start, startsVisible: state.startsVisible, legs: state.legs, size: state.actor.size)
+                var t = 0.0
+                while t <= end {
+                    let s = plan.sample(at: t)
+                    if s.opacity > 0.5 {
+                        taken.append(world.drawing(at: s.position, size: state.actor.size, ratio: state.actor.ratio))
+                    }
+                    t += 0.25
+                }
+            }
+            guard !taken.isEmpty else { return }
+            func overlap(_ r: StageRect) -> Double {
+                let area = max((r.maxX - r.minX) * (r.maxY - r.minY), 1)
+                return taken.map { t in
+                    max(0, min(r.maxX, t.maxX) - max(r.minX, t.minX)) * max(0, min(r.maxY, t.maxY) - max(r.minY, t.minY))
+                }.max().map { $0 / area } ?? 0
+            }
+            let lands = world.grounds.filter { !$0.water }.map(\.place)
+            for i in states.indices where states[i].actor.placed != nil && !cast.contains(states[i].actor.stickerID) {
+                guard overlap(drawing(i, at: states[i].home.position)) > 0.15 else {
+                    taken.append(drawing(i, at: states[i].home.position))
+                    continue
+                }
+                let home = states[i].home.position
+                let back = world.space.back
+                let candidates = lands.flatMap { spots($0, for: i, move: way(i).move) }
+                    .filter { onScreen(i, at: $0.position) && !covered(i, at: $0.position) && overlap(drawing(i, at: $0.position)) < 0.02 }
+                let best = candidates.max { a, b in
+                    score(a) < score(b)
+                }
+                func score(_ pose: StagePose) -> Double {
+                    let p = pose.position
+                    let side = abs(world.project(p).u - 0.5) * 2
+                    return p.z / back + side * 0.6 - (p - home).length * 0.15
+                }
+                guard let spot = best else { continue }
+                // From where the child had it, as the story starts.
+                states[i].legs.removeAll()
+                states[i].pose = states[i].start
+                states[i].busyUntil = 0
+                travel(i, to: spot, begin: 0, kind: states[i].actor.canMove ? .settle : .settle)
+                if !states[i].actor.canMove, var leg = states[i].legs.last {
+                    leg.gait = .fade
+                    leg.move = nil
+                    states[i].legs[states[i].legs.count - 1] = leg
+                }
+                states[i].home = states[i].pose
+                taken.append(drawing(i, at: spot.position))
             }
         }
 
@@ -796,11 +890,21 @@ public enum StageDirector {
                 top.y = max(from.y, target.position.y) + min(max(span * 0.25, me.size * 0.5), 1.2)
                 path = span < me.size * 0.3 ? [from, target.position] : [from, top, target.position]
             } else {
-                let bounds = groundBounds(from.ground, target.position.ground)
+                // Standing where it cannot (a child's sticker in the pond):
+                // out to the nearest land first, then on round.
+                var start = from.ground
+                var lead: [Vec2] = []
+                if !world.canStand(at: start, belongsIn: belongs), !offstage(start),
+                    let land = world.nearestStand(to: start, belongsIn: belongs)
+                {
+                    lead = [start]
+                    start = land
+                }
+                let bounds = groundBounds(start, target.position.ground)
                 let ground = GroundPaths.path(
-                    from: from.ground, to: target.position.ground,
+                    from: start, to: target.position.ground,
                     walkable: { [world] p in world.canStand(at: p, belongsIn: belongs) || offstage(p) }, bounds: bounds)
-                path = ground.map(\.onGround)
+                path = (lead + ground).map(\.onGround)
                 if from.y > 0.01 { path.insert(from, at: 0) }
                 if target.position.y > 0.01 { path.append(target.position) }
             }
@@ -856,5 +960,21 @@ public enum StageDirector {
             }
             return (Vec2(lo.x - 0.5, max(lo.z - 0.2, 0.3)), Vec2(hi.x + 0.5, hi.z + 0.2))
         }
+    }
+}
+
+/// A small seeded generator (SplitMix64): the director's first run, which
+/// only finds where the cast goes, is the same every time.
+struct SplitMix: RandomNumberGenerator {
+    var state: UInt64
+
+    init(seed: UInt64) { state = seed }
+
+    mutating func next() -> UInt64 {
+        state &+= 0x9E37_79B9_7F4A_7C15
+        var z = state
+        z = (z ^ (z >> 30)) &* 0xBF58_476D_1CE4_E5B9
+        z = (z ^ (z >> 27)) &* 0x94D0_49BB_1331_11EB
+        return z ^ (z >> 31)
     }
 }

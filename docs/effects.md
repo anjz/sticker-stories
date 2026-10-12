@@ -475,6 +475,11 @@ one per sticker per story, never `all`.
 
 ## Movement
 
+A pack with a `space` plans entrances and moves in 3D instead
+(`docs/stage3d.md`): the same triggers and the same words, with every
+pose, path and size in the scene's space. What follows is how packs
+without one stage them.
+
 A story can move any sticker that walks or flies (its manifest `stage`
 entrance is `hop` or `fly`; things that grow — a flower, a mushroom — stay
 put), placed by the child or visiting, when the words say it goes

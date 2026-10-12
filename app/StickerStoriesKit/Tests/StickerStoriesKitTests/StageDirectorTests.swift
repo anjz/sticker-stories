@@ -98,6 +98,27 @@ import Testing
         #expect(back.opacity == 1 && (back.position.ground - home).length < 1e-6)
     }
 
+    /// A sticker the story does not use, standing where the cast will
+    /// walk, steps aside as the story starts; one out of the way stays.
+    @Test func extrasInTheWayStepAside() throws {
+        let bear = UUID(), deer = UUID()
+        var random = SeededGenerator(state: 3)
+        let plans = StageDirector.plan(
+            world: world, screen: screen,
+            actors: [actor(fox, "fox", at: .init(0.2, 0.12), moves: trot),
+                     actor(rabbit, "rabbit", at: .init(0.8, 0.12), moves: trot),
+                     actor(bear, "bear", at: .init(0.5, 0.12), moves: trot),
+                     actor(deer, "fox", at: .init(0.9, 0.38), moves: trot)],
+            entrances: [], goes: [GoTrigger(at: 2, stickerID: "fox", kind: .to, target: "rabbit")],
+            policy: .standard, cast: ["fox", "rabbit"], random: &random)
+        let moved = try #require(plans[bear])
+        #expect(moved.legs.first?.kind == .settle && moved.legs.first?.at == 0)
+        let start = world.groundPoint(.init(0.5, 0.12))
+        #expect((moved.sample(at: 30).position.ground - start).length > 0.3)
+        // The far "fox" is the same sticker as the cast's: it is cast too.
+        #expect(plans[deer]?.legs.allSatisfy { $0.kind != .settle } ?? true)
+    }
+
     @Test func theWoodpeckerFacesTheBark() throws {
         let plans = plan(
             [actor(woodpecker, "woodpecker", at: .init(0.5, 0.15), stage: StickerStage(entrance: .fly, on: ["trunks"]),
@@ -177,7 +198,8 @@ import Testing
                 // The story's cast as visitors; on the crowded canvas the
                 // child has placed its stickers (and a few more) here and there.
                 var actors: [StageActor] = []
-                let placed: [String] = crowded ? Array(Set(story.requiredStickers + story.optionalStickers + ["bear", "deer"])).sorted() : []
+                let placed: [String] = crowded
+                    ? Array(Set(story.requiredStickers + story.optionalStickers + ["bear", "deer", "mushroom", "hedgehog"])).sorted() : []
                 for (k, id) in placed.enumerated() {
                     guard let s = stickers[id] else { continue }
                     let feet = SceneSpace.Point(0.08 + 0.84 * Double((k * 37) % 11) / 10, 0.1 + 0.4 * Double((k * 53) % 7) / 6)
@@ -192,9 +214,12 @@ import Testing
                         stage: s.stage ?? .default, moves: pack.moves[s.id] ?? []))
                 }
                 let goes = file.goTriggers + PlacementPlanner.goes(live: file.liveTriggers, places: pack.places, goes: file.goTriggers)
+                let cast = StageDirector.cast(
+                    entrances: file.entranceTriggers, goes: file.goTriggers, live: file.liveTriggers,
+                    faces: file.expressionTriggers, effects: file.triggers)
                 let plans = StageDirector.plan(
                     world: world, screen: screen, actors: actors, entrances: file.entranceTriggers, goes: goes,
-                    policy: .standard, random: &random)
+                    policy: .standard, cast: cast, random: &random)
                 let end = (plans.values.flatMap(\.legs).map(\.end).max() ?? 0) + 1
                 for a in actors {
                     guard let plan = plans[a.id] else { continue }
@@ -206,7 +231,9 @@ import Testing
                         guard s.opacity > 0.5 else { continue }
                         let tag = "\(story.id)\(crowded ? " (crowded)" : "") \(a.stickerID)"
                         let onFoot = s.position.y < 0.01 && t >= StageDirector.settle
-                        if land, onFoot, let water = world.water(at: s.position.ground) {
+                        // A child's sticker left in the water wades out as the story starts.
+                        let settling = plan.legs.contains { $0.kind == .settle && $0.at <= t && t < $0.end }
+                        if land, onFoot, !settling, let water = world.water(at: s.position.ground) {
                             problems.append("\(tag): in the \(water) at \(String(format: "%.1f", t))")
                         }
                         let moving = plan.legs.contains { $0.at <= t && t < $0.end }

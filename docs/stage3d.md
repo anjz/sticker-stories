@@ -63,6 +63,12 @@ Plans the whole story at once, from the cast and the story's triggers:
    world and the sticker's gait.
 4. **Actions in their place** (the woodpecker on the bark) go there first,
    as before (`PlacementPlanner`).
+5. **Out of the story's way.** The director plans the story once to see
+   where its cast — every sticker it names, moves, sends someone to or
+   cues anything on — will be and pass; a child's sticker the story does
+   not use that stands in the way walks (or fades) to the freest land on
+   screen away from the cast, the further back and nearer the sides the
+   better, as the story starts; then the story is planned again round it.
 
 ## Rendering
 

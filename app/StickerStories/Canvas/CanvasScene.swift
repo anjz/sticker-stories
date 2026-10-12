@@ -1494,8 +1494,11 @@ final class CanvasScene: SKScene {
         // those actions wait for it to get there.
         let placing = PlacementPlanner.goes(live: triggers.live, places: actionPlaces, goes: triggers.goes)
         let stickerOf = Dictionary(uniqueKeysWithValues: nodes.map { ($0.instanceID, $0.stickerID) })
+        let cast = StageDirector.cast(
+            entrances: triggers.entrances, goes: triggers.goes, live: triggers.live, faces: triggers.faces,
+            effects: triggers.sticker)
         let stage = pack.manifest.space.map {
-            planStage($0, entrances: triggers.entrances, goes: triggers.goes + placing, policy: policy)
+            planStage($0, entrances: triggers.entrances, goes: triggers.goes + placing, cast: cast, policy: policy)
         }
         let motions = stage == nil ? planMotions(triggers.goes + placing, visitors: visitors, policy: policy) : [:]
         let live = LiveTimeline(triggers: stage.map {
@@ -1556,7 +1559,7 @@ final class CanvasScene: SKScene {
     /// Plans the story in space (`StageDirector`): the stage as the window
     /// shows it, every sticker on it, the story's entrances and moves.
     private func planStage(
-        _ space: SceneSpace, entrances: [EntranceTrigger], goes: [GoTrigger], policy: EffectPolicy
+        _ space: SceneSpace, entrances: [EntranceTrigger], goes: [GoTrigger], cast: Set<String>, policy: EffectPolicy
     ) -> StoryStage {
         let aspect = baseArtPixelSize.height > 0 ? Double(baseArtPixelSize.width / baseArtPixelSize.height) : 4.0 / 3
         let world = StageWorld(
@@ -1573,7 +1576,8 @@ final class CanvasScene: SKScene {
             nodes, space: space, world: world, stages: stages, moves: stageMoves, fronts: stickerFronts, drawing: drawing)
         var random = SystemRandomNumberGenerator()
         let plans = StageDirector.plan(
-            world: world, screen: screen, actors: actors, entrances: entrances, goes: goes, policy: policy, random: &random)
+            world: world, screen: screen, actors: actors, entrances: entrances, goes: goes, policy: policy, cast: cast,
+            random: &random)
         return StoryStage(world: world, plans: plans, nodes: nodes, drawing: drawing)
     }
 
