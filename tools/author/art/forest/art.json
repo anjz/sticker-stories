@@ -641,8 +641,8 @@
     }
   ],
   "scene": {
-    "background": "A bright forest clearing in soft daylight, seen from a child's height: soft grassy ground in the lower third, a gentle line of distant trees and ferns in the middle, a warm pale-blue sky with a few round clouds above (no sun in the sky); open space in the centre where stickers will be placed.",
-    "foreground": "The nearest elements only: two large tree trunks with a little foliage at the left and right edges, a few tall ferns and grass tufts along the very bottom. The whole centre and the sky stay empty and transparent.",
+    "background": "A bright forest clearing in soft daylight, seen from a child's height: a soft grassy meadow filling the lower half of the picture and running right to the left and right edges, a gentle line of distant trees, bushes and ferns where the meadow ends in the middle, a warm pale-blue sky with a few round clouds above (no sun in the sky); open space in the centre where stickers will be placed. No big trees close to the viewer.",
+    "foreground": "The nearest elements only: low bushes, tall ferns, grass tufts and a few flowers and red berries along the very bottom edge of the picture, rising a little higher in the two bottom corners. No trees and no trunks. The whole centre and everything above the bottom quarter stay empty and transparent.",
     "edits": [
       {
         "prompt": "A small, calm forest pond lying flat in the meadow grass, seen from a child's height so it is a wide, flattened oval: clear blue-green water reflecting a little of the sky, three or four round green lily pads (one with a small white flower), a few soft reeds and cattails at its back edge and a thin rim of darker grass and pebbles around it. Gentle and inviting, no frogs or animals.",
@@ -652,6 +652,13 @@
           "width": 0.15,
           "height": 0.13
         }
+      }
+    ],
+    "layers": [
+      {
+        "id": "trees",
+        "prompt": "Two big, full trees standing in the meadow, one near the left edge and one near the right edge of the picture: the whole tree — roots on the grass about a third of the way up the picture, a thick trunk, and a leafy crown that spreads out of the top of the picture with a few sturdy side branches reaching in over the sky. Each trunk stands fully inside the picture, a little in from its edge, and both trees stand at about the same distance from the viewer. Everything between and around the two trees stays fully transparent: no ground, no grass, no bushes, no sky.",
+        "wide": "Add nothing new in the side bands: only continue the leaves of a crown that the edge cuts; the rest of the bands stays fully transparent."
       }
     ],
     "features": {

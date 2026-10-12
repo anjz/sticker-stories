@@ -14,6 +14,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"slices"
 
 	"github.com/gen2brain/webp"
 
@@ -147,14 +148,17 @@ func runServe(args []string) error {
 	packDir := fs.String("pack", "", "pack directory")
 	artDir := fs.String("art", "", "art directory (default author/art/<packID>)")
 	addr := fs.String("addr", "127.0.0.1:8737", "address to serve on (local only)")
+	fromOut := fs.Bool("out", false, "show the scene planes rendered in <art>/out/art (stickerart, before install) instead of the pack's")
 	fs.Parse(args)
-	if _, err := load(*packDir, *artDir); err != nil {
+	first, err := load(*packDir, *artDir)
+	if err != nil {
 		return err
 	}
 	site, _ := subFS(web, "web")
 	mux := http.NewServeMux()
 	mux.Handle("/", http.FileServerFS(site))
 	mux.Handle("/pack/", http.StripPrefix("/pack/", http.FileServer(http.Dir(*packDir))))
+	mux.Handle("/out/", http.StripPrefix("/out/", http.FileServer(http.Dir(filepath.Join(first.artDir, "out", "art")))))
 	// The space is read again on every request, so an edit to space.json
 	// shows on a reload.
 	mux.HandleFunc("/api/scene", func(w http.ResponseWriter, r *http.Request) {
@@ -184,11 +188,38 @@ func runServe(args []string) error {
 			}
 			stickers = append(stickers, st)
 		}
+		// Each plane's image (base and wide) by name: background,
+		// foreground and the layers between.
+		type plane struct {
+			Base string `json:"base"`
+			Wide string `json:"wide,omitempty"`
+		}
+		planes := map[string]plane{}
+		names := []string{"background", "foreground"}
+		for _, l := range p.space.Layers {
+			if !slices.Contains(names, l.Plane()) {
+				names = append(names, l.Plane())
+			}
+		}
+		for _, n := range names {
+			file := n
+			if n != "background" && n != "foreground" {
+				file = "layer-" + n
+			}
+			switch {
+			case *fromOut:
+				planes[n] = plane{"/out/" + file + ".png", "/out/" + file + "-wide.png"}
+			case n == "background":
+				planes[n] = plane{"/pack/" + p.m.Background, "/pack/" + p.m.BackgroundWide}
+			case n == "foreground":
+				planes[n] = plane{"/pack/" + p.m.Foreground, "/pack/" + p.m.ForegroundWide}
+			default:
+				planes[n] = plane{"/pack/art/" + file + ".webp", "/pack/art/" + file + "-wide.webp"}
+			}
+		}
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(map[string]any{
-			"pack": p.m.ID, "aspect": p.aspect, "wide": p.wide,
-			"background": p.m.Background, "foreground": p.m.Foreground,
-			"backgroundWide": p.m.BackgroundWide, "foregroundWide": p.m.ForegroundWide,
+			"pack": p.m.ID, "aspect": p.aspect, "wide": p.wide, "planes": planes,
 			"stickers": stickers, "space": p.space, "problems": problems,
 		})
 	})

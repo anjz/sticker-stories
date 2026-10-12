@@ -11,6 +11,7 @@ itself, and turning around shows where everything is.
 cd tools
 go run ./author/scenespace check -pack ../packs/forest   # validate, print depths and sizes
 go run ./author/scenespace serve -pack ../packs/forest   # http://127.0.0.1:8737 (three.js from jsDelivr)
+go run ./author/scenespace serve -pack ../packs/forest -out   # the planes stickerart rendered, before install
 ```
 
 The page reads `space.json` again on every reload. Buttons (and keys):
@@ -38,7 +39,7 @@ ground:
 | `back` | depth of the backdrop, where the ground ends (Forest: the far bushes) |
 | `stand` | depths stickers may stand at |
 | `floor` | smallest drawn height, so tiny stickers stay visible far away |
-| `layers` | the foreground cut into pieces at their depths: `mask` (art polygon; one layer has none — the rest), `footprint` (ground nothing walks on), `wide` (the same on the wide art) |
+| `layers` | the planes in front of the background at their depths: `art` (`foreground`, the default, or an art.json `scene.layers` id such as `trees`), `mask` (an art polygon cutting a piece of the plane; per plane one layer may have none — the rest), `footprint` (ground nothing walks on), `wide` (the same on the wide art) |
 | `places` | the pack's features in space: `ground` (feet polygon; `water`), `air` (`area` + `depth` range), or `lines` / `wideLines` on a layer (a branch, the bark, with `facing`) |
 | `sizes` | stickers' drawn heights at depth 1 |
 | `preview` | what the viewer shows: `at`, `path` (feet points), `perch` (a place with lines), `fly` + `depth` |

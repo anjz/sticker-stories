@@ -40,9 +40,8 @@ function rendition(wide) {
     wide, k,
     texScale: 1 / k, texOffset: (k - 1) / (2 * k),   // base u → texture u
     halfWidth: (A / 2) * k,                          // half the view's width at depth 1
-    bg: wide ? data.backgroundWide : data.background,
-    fg: wide ? data.foregroundWide : data.foreground,
-    layers: S.layers.map(l => wide && l.wide ? { ...l, ...l.wide } : l),
+    image: plane => wide ? data.planes[plane].wide : data.planes[plane].base,
+    layers: S.layers.map(l => ({ ...l, plane: l.art || 'foreground', ...(wide && l.wide ? l.wide : {}) })),
     lines: place => (wide && place.wideLines) || place.lines || [],
   };
 }
@@ -81,7 +80,7 @@ const textures = {};
 const loader = new THREE.TextureLoader();
 async function texture(path) {
   if (!textures[path]) {
-    textures[path] = await loader.loadAsync('/pack/' + path);
+    textures[path] = await loader.loadAsync(path);
     textures[path].anisotropy = renderer.capabilities.getMaxAnisotropy();
   }
   return textures[path];
@@ -128,8 +127,9 @@ function projected(r, map, { mask = null, cutout = false, tint = null } = {}) {
   });
 }
 
-// A layer's piece of the foreground, as a texture in the rendition's
-// texture space: its mask, or for the rest everything no other mask takes.
+// A layer's piece of its plane, as a texture in the rendition's texture
+// space: its mask, or for the rest everything no other mask of the plane
+// takes.
 function maskTexture(r, layer) {
   const W = 1024, H = Math.round(W / (A * r.k));
   const c = document.createElement('canvas');
@@ -150,7 +150,7 @@ function maskTexture(r, layer) {
   } else {
     g.fillStyle = '#fff'; g.fillRect(0, 0, W, H);
     g.fillStyle = '#000';
-    r.layers.filter(l => l.mask).forEach(l => poly(l.mask));
+    r.layers.filter(l => l.mask && l.plane === layer.plane).forEach(l => poly(l.mask));
   }
   return new THREE.CanvasTexture(c);
 }
@@ -169,7 +169,7 @@ async function build() {
   const art = new THREE.Group(), places = new THREE.Group(), cast = new THREE.Group();
   root.add(art, places, cast);
   const artMaterials = [];
-  const bg = await texture(r.bg), fg = await texture(r.fg);
+  const bg = await texture(r.image('background'));
   const far = S.back, width = 2 * r.halfWidth * far * 1.15;
 
   // The ground, out to the backdrop.
@@ -187,19 +187,20 @@ async function build() {
   art.add(backdrop);
   artMaterials.push(backdrop.material);
 
-  // The foreground's layers, each at its depth.
+  // The planes in front, each (or each piece) at its depth.
   const legend = [];
-  r.layers.forEach((l, i) => {
+  for (const [i, l] of r.layers.entries()) {
+    const image = await texture(r.image(l.plane));
     const z = l.depth, w = 2 * r.halfWidth * z * 1.05, lo = eye - S.horizon * z, hi = eye + (1 - S.horizon) * z;
     const tint = new THREE.Color(layerTints[i % layerTints.length]);
-    const m = projected(r, fg, { mask: maskTexture(r, l), cutout: true, tint: new THREE.Vector4(tint.r, tint.g, tint.b, ui.layers ? 0.45 : 0) });
+    const m = projected(r, image, { mask: maskTexture(r, l), cutout: true, tint: new THREE.Vector4(tint.r, tint.g, tint.b, ui.layers ? 0.45 : 0) });
     m.userData.tint = tint;
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(w, hi - lo), m);
     mesh.position.set(0, (hi + lo) / 2, -z);
     art.add(mesh);
     artMaterials.push(m);
     legend.push(`<span><i style="background:#${tint.getHexString()}"></i>${l.id} ${z}</span>`);
-  });
+  }
   document.getElementById('legend').innerHTML = ui.layers ? legend.join('') : '';
 
   buildPlaces(r, places);
@@ -291,7 +292,7 @@ function buildPlaces(r, group) {
 const imageCache = {};
 async function stickerArt(id) {
   if (imageCache[id]) return imageCache[id];
-  const tex = await texture(stickerByID[id].image);
+  const tex = await texture('/pack/' + stickerByID[id].image);
   const img = tex.image;
   // The drawing's box inside the image: feet on the ground, not the
   // image's empty margin.

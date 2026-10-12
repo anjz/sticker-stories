@@ -31,9 +31,12 @@ type Space struct {
 	// Floor is the smallest drawn height a sticker shrinks to with depth,
 	// in art heights, so a tiny one far away stays easy to see.
 	Floor float64 `json:"floor,omitempty"`
-	// Layers cut the foreground art into pieces at their own depths: a
-	// tree whose roots stand in the meadow is behind what stands in front
-	// of them. Exactly one has no mask: the rest of the foreground.
+	// Layers put the scene's planes in front of the background at their
+	// depths: the foreground, and the planes painted between (art.json
+	// scene.layers: the trees). A plane can be cut into pieces at their
+	// own depths with masks (a tree whose roots stand in the meadow is
+	// behind what stands in front of them); per plane, at most one layer
+	// has no mask: the rest of it.
 	Layers []Layer `json:"layers"`
 	// Places are the pack's features (the same ids) as parts of the space.
 	Places map[string]Place `json:"places"`
@@ -51,12 +54,15 @@ type Range struct {
 // Polygon is a list of art points ([u, v] fractions of the base art).
 type Polygon [][2]float64
 
-// Layer is a piece of the foreground art at one depth.
+// Layer is a scene plane, or a piece of one, at one depth.
 type Layer struct {
-	ID    string  `json:"id"`
+	ID string `json:"id"`
+	// Art is the plane it shows: "foreground" (the default) or the id of
+	// one of the scene's layers in art.json.
+	Art   string  `json:"art,omitempty"`
 	Depth float64 `json:"depth"`
-	// Mask is the part of the foreground art that is this layer; absent on
-	// the one layer that is the rest.
+	// Mask is the part of the plane that is this layer; absent on the
+	// layer that is the rest of it.
 	Mask Polygon `json:"mask,omitempty"`
 	// Footprint is the ground it stands on, where nothing can walk
 	// (a trunk's roots), as feet positions.
@@ -104,6 +110,14 @@ type PreviewSticker struct {
 	Perch   string      `json:"perch,omitempty"`
 	Fly     Polygon     `json:"fly,omitempty"`
 	Depth   float64     `json:"depth,omitempty"`
+}
+
+// Plane is the scene plane the layer shows.
+func (l Layer) Plane() string {
+	if l.Art == "" {
+		return "foreground"
+	}
+	return l.Art
 }
 
 func LoadSpace(path string) (*Space, error) {
@@ -180,7 +194,7 @@ func (s *Space) Validate(stickers, features map[string]bool) []error {
 		}
 	}
 	layers := map[string]bool{}
-	rest := 0
+	rest := map[string]int{}
 	for i, l := range s.Layers {
 		field := fmt.Sprintf("layers[%d] %q", i, l.ID)
 		if l.ID == "" || layers[l.ID] {
@@ -191,7 +205,7 @@ func (s *Space) Validate(stickers, features map[string]bool) []error {
 			fail("%s: depth %v must be in (0, back]", field, l.Depth)
 		}
 		if l.Mask == nil {
-			rest++
+			rest[l.Plane()]++
 			if l.Wide != nil && l.Wide.Mask != nil {
 				fail("%s: the rest has no mask, wide or not", field)
 			}
@@ -213,8 +227,10 @@ func (s *Space) Validate(stickers, features map[string]bool) []error {
 			}
 		}
 	}
-	if rest != 1 {
-		fail("layers: exactly one layer must have no mask (the rest of the foreground), found %d", rest)
+	for plane, n := range rest {
+		if n > 1 {
+			fail("layers: %d layers show all of %s; cut it with masks, one may be the rest", n, plane)
+		}
 	}
 	for id, p := range s.Places {
 		field := "places." + id

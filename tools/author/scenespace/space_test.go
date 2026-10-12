@@ -49,6 +49,10 @@ func TestValidate(t *testing.T) {
 	if errs := s.Validate(nil, map[string]bool{"meadow": true}); len(errs) != 3 {
 		t.Errorf("want 3 problems (not a feature, above horizon, two rests), got %v", errs)
 	}
+	s.Layers[1].Art = "trees"
+	if errs := s.Validate(nil, map[string]bool{"meadow": true}); len(errs) != 2 {
+		t.Errorf("a whole plane of its own is fine: want 2 problems, got %v", errs)
+	}
 }
 
 func TestForestSpaceIsValid(t *testing.T) {
