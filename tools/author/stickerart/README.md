@@ -53,8 +53,10 @@ go run ./packager validate ../packs/forest
   the model does not keep a small element's size or place when it paints
   a whole plane. Its drawing is kept (`out/art/layer-<id>.element.png`),
   so moving the area costs nothing. With layers the background is only the far part of the
-  scene, with no framing elements. The app cannot draw layers yet, so
-  `install` leaves a layered scene's planes out of the pack.
+  scene, with no framing elements. `install` copies them to
+  `art/layer-<id>.webp` (and `-wide`) and lists them in the manifest's
+  `layers`; it also copies `space.json` (`author/scenespace`), without the
+  tools' preview and line-up, into the manifest's `space`.
 - `scene.layout` (optional): an image, relative to the art directory, whose
   composition the background follows — a concept picked from rough
   layouts (Beach's cove) — repainted in the style sheet's style. Sent as

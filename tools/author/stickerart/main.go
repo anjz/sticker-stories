@@ -1799,12 +1799,6 @@ func runInstall(args []string) error {
 	planes := map[string]*string{"background": &c.pack.Background, "foreground": &c.pack.Foreground, "background-wide": &c.pack.BackgroundWide, "foreground-wide": &c.pack.ForegroundWide}
 	names := []string{"background", "foreground", "background-wide", "foreground-wide"}
 	scene := 0
-	if len(c.cfg.Scene.Layers) > 0 {
-		// The app does not draw layers yet: a background and foreground
-		// painted to go with them would lose what the layers hold.
-		fmt.Println("  scene planes not installed: the scene has layers, which the app cannot draw yet (tools/author/scenespace)")
-		names = nil
-	}
 	for _, n := range names {
 		src := filepath.Join(outDir, "art", n+".png")
 		if !exists(src) {
@@ -1823,6 +1817,53 @@ func runInstall(args []string) error {
 		}
 		*planes[n] = rel
 		scene++
+	}
+	// The scene's layers, far to near, each with its wide rendition when
+	// the pack has wide art.
+	if len(c.cfg.Scene.Layers) > 0 || len(c.pack.Layers) > 0 {
+		var layers []manifest.SceneLayer
+		for _, l := range c.cfg.Scene.Layers {
+			layer := manifest.SceneLayer{ID: l.ID}
+			for _, v := range []struct {
+				suffix string
+				path   *string
+			}{{"", &layer.Image}, {"-wide", &layer.ImageWide}} {
+				src := filepath.Join(outDir, "art", "layer-"+l.ID+v.suffix+".png")
+				if v.suffix != "" && c.pack.BackgroundWide == "" {
+					continue
+				}
+				if !exists(src) {
+					return fmt.Errorf("layer %s: %s is not rendered yet", l.ID, src)
+				}
+				rel := "art/layer-" + l.ID + v.suffix + ".webp"
+				did, err := stickerimg.InstallWebP(src, filepath.Join(c.packDir, rel), cache)
+				if err != nil {
+					return err
+				}
+				if did {
+					encoded++
+				}
+				*v.path = rel
+				scene++
+			}
+			layers = append(layers, layer)
+		}
+		for _, old := range c.pack.Layers {
+			if !slices.ContainsFunc(layers, func(l manifest.SceneLayer) bool { return l.ID == old.ID }) {
+				replaced = append(replaced, old.Image)
+				if old.ImageWide != "" {
+					replaced = append(replaced, old.ImageWide)
+				}
+			}
+		}
+		c.pack.Layers = layers
+	}
+	// The scene with depth (tools/author/scenespace), without the tools'
+	// own keys.
+	if space, err := manifest.LoadSpace(filepath.Join(c.artDir, "space.json")); err == nil {
+		c.pack.Space = space
+	} else if !errors.Is(err, os.ErrNotExist) {
+		return fmt.Errorf("space.json: %w", err)
 	}
 	if data, err := json.MarshalIndent(cache, "", "  "); err == nil {
 		os.WriteFile(filepath.Join(outDir, "render.json"), append(data, '\n'), 0o644)
