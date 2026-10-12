@@ -643,11 +643,32 @@
   "scene": {
     "background": "A bright forest clearing in soft daylight, seen from a child's height: a soft grassy meadow filling the lower half of the picture and running right to the left and right edges, a gentle line of distant trees, bushes and ferns where the meadow ends in the middle, a warm pale-blue sky with a few round clouds above (no sun in the sky); open space in the centre where stickers will be placed. No big trees close to the viewer. Right of the middle, about a third of the way up the picture, a small natural forest pond lies flat in the meadow, part of the ground: an irregular, softly wavy outline (wider on its right side, never a circle or a clean oval), clear blue-green water reflecting a little of the sky, two or three round lily pads and one white water lily; a strip of damp brown soil with a few grey pebbles and two or three rounded mossy rocks along its near edge, a clump of tall reeds and cattails at its back-left edge, and longer grass leaning over the water on its right.",
     "foreground": "The nearest elements only: low bushes, tall ferns, grass tufts and a few flowers and red berries along the very bottom edge of the picture, rising a little higher in the two bottom corners. No trees and no trunks. The whole centre and everything above the bottom quarter stay empty and transparent.",
+    "edits": [
+      {
+        "prompt": "Remove the clump of tall reeds and cattails at the back-left edge of the pond completely. In their place, continue exactly what is around and behind them: the pond's far bank of damp brown soil, pebbles and short grass, the edge of the water, and behind it the meadow grass and the line of far bushes. No reeds, no cattails, no tall plants or leaves standing there.",
+        "area": {
+          "x": 0.515,
+          "y": 0.37,
+          "width": 0.135,
+          "height": 0.19
+        }
+      }
+    ],
     "layers": [
       {
         "id": "trees",
         "prompt": "Two different trees standing in the meadow at the far left and far right edges of the picture — not a matching pair. On the left, an old oak: a broad, gnarled, slightly leaning trunk with knots and twisting roots, and a wide, dense crown. On the right, a taller, slimmer tree of another kind with smoother pale bark, a narrower and airier crown in a lighter green, standing a little further away than the oak (its roots a little higher in the picture). Keep both at the very sides, but with their whole trunks inside the picture: each trunk stands between a thirtieth and an eighth of the picture's width in from its edge, never cut by the edge; their crowns spread out of the top and reach in only along the top fifth of the picture, so the sky in the middle stays open. Everything between and around the two trees stays fully transparent: no ground, no grass, no bushes, no sky.",
         "wide": "Add nothing new in the side bands: only continue the leaves of a crown that the edge cuts; the rest of the bands stays fully transparent."
+      },
+      {
+        "id": "reeds",
+        "prompt": "a clump of pond reeds growing from the water's edge: several tall green reed blades and long, broad leaves, three or four brown cattails on slim stems at different heights, a couple of stems leaning out to one side; a little taller than wide, its base a narrow tuft where the stems meet.",
+        "area": {
+          "x": 0.567,
+          "y": 0.4,
+          "width": 0.107,
+          "height": 0.13
+        }
       }
     ],
     "features": {
