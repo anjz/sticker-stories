@@ -1,6 +1,6 @@
 {
   "horizon": 0.7,
-  "ground": 0.0,
+  "ground": 0,
   "back": 4.1,
   "stand": {
     "near": 1.15,
@@ -53,6 +53,24 @@
     }
   ],
   "places": {
+    "branches": {
+      "lines": [
+        {
+          "layer": "oak",
+          "points": [
+            [0.2, 0.73],
+            [0.36, 0.76]
+          ]
+        },
+        {
+          "layer": "birch",
+          "points": [
+            [0.93, 0.8],
+            [1, 0.74]
+          ]
+        }
+      ]
+    },
     "meadow": {
       "ground": [
         [0.15, 0.12],
@@ -101,24 +119,6 @@
         "depth": [2, 3.8]
       }
     },
-    "branches": {
-      "lines": [
-        {
-          "layer": "oak",
-          "points": [
-            [0.2, 0.73],
-            [0.36, 0.76]
-          ]
-        },
-        {
-          "layer": "birch",
-          "points": [
-            [0.93, 0.8],
-            [1.0, 0.74]
-          ]
-        }
-      ]
-    },
     "trunks": {
       "lines": [
         {
@@ -141,13 +141,31 @@
     }
   },
   "sizes": {
-    "bear": 0.42,
-    "deer": 0.6,
-    "fox": 0.22,
-    "rabbit": 0.16,
-    "duckling": 0.09,
-    "bird": 0.08,
-    "butterfly": 0.06
+    "acorn": 0.112,
+    "badger": 0.225,
+    "bear": 0.416,
+    "beaver": 0.205,
+    "bee": 0.067,
+    "bird": 0.132,
+    "butterfly": 0.088,
+    "caterpillar": 0.077,
+    "deer": 0.416,
+    "duckling": 0.175,
+    "firefly": 0.095,
+    "flower": 0.181,
+    "fox": 0.283,
+    "frog": 0.141,
+    "hedgehog": 0.154,
+    "ladybug": 0.078,
+    "mouse": 0.152,
+    "mushroom": 0.177,
+    "owl": 0.212,
+    "pinecone": 0.111,
+    "rabbit": 0.219,
+    "raccoon": 0.274,
+    "snail": 0.091,
+    "squirrel": 0.17,
+    "woodpecker": 0.187
   },
   "preview": [
     {
@@ -197,6 +215,108 @@
         [0.4, 0.72]
       ],
       "depth": 2.5
+    }
+  ],
+  "lineup": [
+    {
+      "sticker": "acorn",
+      "at": [0.405, 0.446]
+    },
+    {
+      "sticker": "badger",
+      "at": [0.508, 0.382]
+    },
+    {
+      "sticker": "bear",
+      "at": [0.257, 0.393]
+    },
+    {
+      "sticker": "bee",
+      "at": [0.375, 0.393]
+    },
+    {
+      "sticker": "bird",
+      "at": [0.34, 0.392]
+    },
+    {
+      "sticker": "butterfly",
+      "at": [0.306, 0.392]
+    },
+    {
+      "sticker": "caterpillar",
+      "at": [0.551, 0.393]
+    },
+    {
+      "sticker": "deer",
+      "at": [0.165, 0.386]
+    },
+    {
+      "sticker": "duckling",
+      "at": [0.592, 0.392]
+    },
+    {
+      "sticker": "firefly",
+      "at": [0.64, 0.392]
+    },
+    {
+      "sticker": "flower",
+      "at": [0.683, 0.386]
+    },
+    {
+      "sticker": "fox",
+      "at": [0.729, 0.377]
+    },
+    {
+      "sticker": "frog",
+      "at": [0.791, 0.382]
+    },
+    {
+      "sticker": "hedgehog",
+      "at": [0.848, 0.387]
+    },
+    {
+      "sticker": "ladybug",
+      "at": [0.424, 0.394]
+    },
+    {
+      "sticker": "mouse",
+      "at": [0.328, 0.22]
+    },
+    {
+      "sticker": "mushroom",
+      "at": [0.417, 0.22]
+    },
+    {
+      "sticker": "owl",
+      "at": [0.386, 0.39]
+    },
+    {
+      "sticker": "pinecone",
+      "at": [0.563, 0.282]
+    },
+    {
+      "sticker": "rabbit",
+      "at": [0.635, 0.205]
+    },
+    {
+      "sticker": "raccoon",
+      "at": [0.231, 0.222]
+    },
+    {
+      "sticker": "snail",
+      "at": [0.536, 0.181]
+    },
+    {
+      "sticker": "squirrel",
+      "at": [0.719, 0.199]
+    },
+    {
+      "sticker": "woodpecker",
+      "at": [0.483, 0.48]
+    },
+    {
+      "sticker": "beaver",
+      "at": [0.617, 0.38]
     }
   ]
 }
