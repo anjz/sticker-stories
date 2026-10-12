@@ -1596,7 +1596,30 @@ final class CanvasScene: SKScene {
             stickerSize: stickerBaseSize, sizes: sizes, fronts: stickerFronts,
             avoid: playbackPillRect.map { [StageRect(minX: $0.minX, minY: $0.minY, maxX: $0.maxX, maxY: $0.maxY)] } ?? [],
             anchorFeet: pack.manifest.staging?.standsOnFeet ?? false, feet: stickerFeet, doors: stickerDoors,
-            clear: clearStageRect(visible))
+            clear: clearStageRect(visible), water: spaceWater, blocked: spaceFootprints)
+    }
+
+    /// The space's water, by place, in world points: feet stay out of it
+    /// unless they belong there.
+    private var spaceWater: [String: [StagePoint]] {
+        guard let space = pack.manifest.space else { return [:] }
+        return space.places.compactMapValues { place in
+            place.water == true ? place.ground.map { $0.map(worldPoint) } : nil
+        }
+    }
+
+    /// The ground the scene's planes stand on (a tree's roots), on the art
+    /// drawn, in world points: no one stands there.
+    private var spaceFootprints: [[StagePoint]] {
+        guard let space = pack.manifest.space else { return [] }
+        let wide = artVariant == .wide
+        return space.layers.compactMap { layer in
+            ((wide ? layer.wide?.footprint : nil) ?? layer.footprint)?.map(worldPoint)
+        }
+    }
+
+    private func worldPoint(_ p: SceneSpace.Point) -> StagePoint {
+        StagePoint(x: p.u * worldSize.width, y: p.v * worldSize.height)
     }
 
     /// The visible stage less what the device covers (a phone's camera
@@ -1611,12 +1634,22 @@ final class CanvasScene: SKScene {
     }
 
     /// How far each sticker's drawing reaches below its centre, as a
-    /// fraction of the drawing's height (`content`; half when it fills its
-    /// image).
-    private lazy var stickerFeet: [String: Double] = Dictionary(
-        uniqueKeysWithValues: pack.manifest.stickers.map { s in
-            (s.id, s.content.map { (0.5 - $0.y[0]) / max($0.y[1] - $0.y[0], 0.01) } ?? 0.5)
-        })
+    /// fraction of the drawing's height (`content`), or of its image's
+    /// height where the drawing was measured (`PackTextures.drawings`);
+    /// half otherwise.
+    private lazy var stickerFeet: [String: Double] = {
+        var feet: [String: Double] = [:]
+        for s in pack.manifest.stickers {
+            if let c = s.content {
+                feet[s.id] = (0.5 - c.y[0]) / max(c.y[1] - c.y[0], 0.01)
+            } else if let measured = textures.drawings[s.id] {
+                feet[s.id] = 0.5 - Double(measured.minY)
+            } else {
+                feet[s.id] = 0.5
+            }
+        }
+        return feet
+    }()
     /// Where someone going to each sticker stands (`door`), for those with one.
     private lazy var stickerDoors: [String: StagePoint] = Dictionary(
         uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.door.map { (s.id, $0) } })

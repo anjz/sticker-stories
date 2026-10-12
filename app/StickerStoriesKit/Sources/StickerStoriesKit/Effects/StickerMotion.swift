@@ -694,7 +694,12 @@ public enum MotionPlanner {
                     // Never under the screen's furniture (the story's pill)
                     // while the place has room elsewhere.
                     let stageScene = scene, size = me.size
-                    let uncovered = { (p: StagePoint) in !stageScene.isCovered(p, size: size) }
+                    // On land unless it belongs in the water (or flies).
+                    let belongs = (way(index).move?.on ?? []) + me.places
+                    let uncovered = { (p: StagePoint) in
+                        !stageScene.isCovered(p, size: size)
+                            && (flies || stageScene.standsOnLand(p, size: size, sticker: me.stickerID, belongsIn: belongs))
+                    }
                     let point = (StagePlanner.freeSpot(
                         in: rects, radius: radius, avoiding: obstacles, random: &random, uncovered: uncovered)
                         ?? StagePlanner.freeSpot(in: rects, radius: 0, avoiding: [], random: &random, uncovered: uncovered)
@@ -760,7 +765,17 @@ public enum MotionPlanner {
                         : them.actor.flies && feetLevel > state.center.y + mh
                             ? state.center.y : feetLevel)
                 states[index].at = key
-                return (point, scale, true, .onto(them.actor.id), nil)
+                // Beside someone in the water (or at a tree's roots), a
+                // walker that does not belong there stands on the nearest
+                // land.
+                var land = point
+                if !flies {
+                    let belongs = (way(index).move?.on ?? []) + me.places
+                    land = scene.nearestLand(
+                        to: point, size: StageSize(width: mw, height: mh), sticker: me.stickerID, belongsIn: belongs)
+                        ?? point
+                }
+                return (land, scale, true, .onto(them.actor.id), nil)
             case .away:
                 // In a place that runs on past one side (a boat on the
                 // open sea): out that way, never over the sand.

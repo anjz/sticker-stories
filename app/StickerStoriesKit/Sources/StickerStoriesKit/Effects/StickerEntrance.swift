@@ -356,14 +356,23 @@ public enum StagePlanner {
         /// phone's camera cutout and rounded corners): a sticker that comes
         /// to rest stays wholly inside it. Defaults to `visible`.
         public var clear: StageRect
+        /// The scene's water, as polygons of feet positions (world points),
+        /// by the place it is (`SceneSpace` places with `water`): no one's
+        /// feet end up in it but those of a sticker that belongs there (its
+        /// stage lands on that place, or the way it goes does).
+        public var water: [String: [StagePoint]]
+        /// Ground nothing stands on (a tree's roots; `SceneSpace` footprints).
+        public var blocked: [[StagePoint]]
 
         public init(
             world: StageRect, usable: StageRect, visible: StageRect, stickerSize: Double,
             sizes: [String: StageSize] = [:], fronts: [String: Double] = [:], avoid: [StageRect] = [],
             anchorFeet: Bool = false, feet: [String: Double] = [:], doors: [String: StagePoint] = [:],
-            clear: StageRect? = nil
+            clear: StageRect? = nil, water: [String: [StagePoint]] = [:], blocked: [[StagePoint]] = []
         ) {
             self.clear = clear ?? visible
+            self.water = water
+            self.blocked = blocked
             self.world = world
             self.usable = usable
             self.visible = visible
@@ -391,6 +400,51 @@ public enum StagePlanner {
             return avoid.contains { r in
                 point.x + rx > r.minX && point.x - rx < r.maxX && point.y + ry > r.minY && point.y - ry < r.maxY
             }
+        }
+
+        /// Whether a sticker of `size` centred on `point` stands on ground it
+        /// may stand on: its feet in no water but that of the places it
+        /// belongs in (`water`), and on no tree's roots (`blocked`).
+        func standsOnLand(_ point: StagePoint, size: StageSize, sticker: String, belongsIn places: [String]) -> Bool {
+            guard !water.isEmpty || !blocked.isEmpty else { return true }
+            let feet = StagePoint(x: point.x, y: point.y - (self.feet[sticker] ?? 0.5) * size.height)
+            if blocked.contains(where: { Self.contains($0, feet) }) { return false }
+            return !water.contains { name, polygon in !places.contains(name) && Self.contains(polygon, feet) }
+        }
+
+        /// The spot nearest `point` where a sticker of `size` stands on land
+        /// (`standsOnLand`): `point` itself when it does, else the first in
+        /// rings around it, nearer the viewer first; nil when none is near.
+        func nearestLand(to point: StagePoint, size: StageSize, sticker: String, belongsIn places: [String]) -> StagePoint? {
+            if standsOnLand(point, size: size, sticker: sticker, belongsIn: places) { return point }
+            let step = max(size.width, size.height) * 0.25
+            for ring in 1...12 {
+                let r = step * Double(ring)
+                let count = 8 * ring
+                // Down the picture (toward the viewer) first, then round.
+                let spots = (0..<count).map { i -> StagePoint in
+                    let a = -Double.pi / 2 + 2 * Double.pi * Double(i) / Double(count)
+                    return StagePoint(x: point.x + r * cos(a), y: point.y + r * sin(a))
+                }.sorted { $0.y < $1.y }
+                if let land = spots.first(where: {
+                    $0.x >= usable.minX && $0.x <= usable.maxX && $0.y >= usable.minY && $0.y <= usable.maxY
+                        && standsOnLand($0, size: size, sticker: sticker, belongsIn: places)
+                }) {
+                    return land
+                }
+            }
+            return nil
+        }
+
+        static func contains(_ polygon: [StagePoint], _ p: StagePoint) -> Bool {
+            var inside = false
+            var j = polygon.count - 1
+            for i in polygon.indices {
+                let a = polygon[i], b = polygon[j]
+                if (a.y > p.y) != (b.y > p.y), p.x < (b.x - a.x) * (p.y - a.y) / (b.y - a.y) + a.x { inside.toggle() }
+                j = i
+            }
+            return inside
         }
 
         /// Whether a sticker of `size` going straight from `start` to
@@ -491,13 +545,21 @@ public enum StagePlanner {
             // of the screen's furniture; when every one is crowded, anywhere
             // in the first that is still clear of it, else anywhere in it.
             var landing: (point: StagePoint, rect: StageRect)?
+            // On land, unless it belongs in the water there (or flies in).
+            let belongs = stage.on + (move?.on ?? [])
+            let flies = stage.entrance == .fly
+            let onLand = { (p: StagePoint) in
+                flies || scene.standsOnLand(p, size: size, sticker: entrance.stickerID, belongsIn: belongs)
+            }
             for rects in choices {
                 landing = freeSpot(
                     in: rects, radius: radius, avoiding: present, random: &random,
-                    uncovered: { !scene.isCovered($0, size: size) })
+                    uncovered: { !scene.isCovered($0, size: size) && onLand($0) })
                 if landing != nil { break }
             }
             var (target, rect) = landing
+                ?? freeSpot(in: choices[0], radius: 0, avoiding: [], random: &random,
+                            uncovered: { !scene.isCovered($0, size: size) && onLand($0) })
                 ?? freeSpot(in: choices[0], radius: 0, avoiding: [], random: &random,
                             uncovered: { !scene.isCovered($0, size: size) })
                 ?? randomSpot(in: choices[0], random: &random)
