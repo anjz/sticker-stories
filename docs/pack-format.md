@@ -273,7 +273,7 @@ never letterboxes:
     bone comes after its parent, slots hang on bones and show the rig's
     parts, faces and the idle blink name real attachments; keys are at
     least two, with holds in 0.02–5 s, known eases, bones and attachments
-    of the rig, stretches above 0 and at most 4; beside a sheet its
+    of the rig, stretches not 0 and at most 4 either way; beside a sheet its
     `pause` and `loop` match the sidecar's, and without one it has none:
     the sidecar's `pause`, `loop` and `particles` count its keys, and a
     loop starts after key 0); an undecodable puppet is ignored by the
@@ -605,7 +605,7 @@ The rig (`anims/<stickerID>.rig.json`):
 
 A key (`puppet.keys[]`) is `{ "hold", "ease"?, "bones"?, "slots"? }`:
 each named bone's change from rest — `r` (turn), `x`, `y` (shift), `sx`,
-`sy` (stretch, 1 when absent) — while bones not named stay at rest; the
+`sy` (stretch, 1 when absent; negative mirrors the bone, so the root going from `sx` 1 to −1 turns the character round like a card) — while bones not named stay at rest; the
 attachments slots show from this key on (a slot not named shows the
 face's, then its default); `hold`, the seconds from this pose to the next
 (0.02–5); and `ease`, how it gets there: `inOut` (the default), `in`,

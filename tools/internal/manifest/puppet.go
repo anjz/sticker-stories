@@ -271,8 +271,10 @@ func (a *StickerAnimation) validatePuppet(dir string) []error {
 				fail("keys[%d]: bone %q is not in the rig", i, id)
 			}
 			for _, s := range []*float64{b.SX, b.SY} {
-				if s != nil && (*s <= 0 || *s > 4) {
-					fail("keys[%d]: bone %q stretch %g must be above 0 and at most 4", i, id, *s)
+				// A negative stretch mirrors the bone (a turn round);
+				// passing 0 between keys is the paper edge-on.
+				if s != nil && (*s == 0 || math.Abs(*s) > 4) {
+					fail("keys[%d]: bone %q stretch %g must not be 0 and at most 4 either way", i, id, *s)
 				}
 			}
 			if math.Abs(b.R) > 720 {

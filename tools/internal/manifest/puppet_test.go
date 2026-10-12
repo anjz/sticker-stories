@@ -62,6 +62,10 @@ func TestPuppetsValidate(t *testing.T) {
 			zero := 0.0
 			a.Puppet.Keys[1].Bones = map[string]BonePose{"head": {SY: &zero}}
 		}, "stretch"},
+		{"turned round", nil, func(a *StickerAnimation) {
+			back := -1.0
+			a.Puppet.Keys[2].Bones = map[string]BonePose{"root": {SX: &back}}
+		}, ""},
 		{"key of no attachment", nil, func(a *StickerAnimation) { a.Puppet.Keys[2].Slots = map[string]string{"eye": "wink"} }, `"wink"`},
 		{"unknown ease", nil, func(a *StickerAnimation) { a.Puppet.Keys[0].Ease = "bounce" }, "ease"},
 		{"pause without the sheet's", nil, func(a *StickerAnimation) { p := 2; a.Puppet.Pause = &p }, "pause"},
