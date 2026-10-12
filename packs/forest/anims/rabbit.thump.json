@@ -1,0 +1,185 @@
+{
+  "id": "thump",
+  "sticker": "rabbit",
+  "kind": "action",
+  "description": "the rabbit thumps its big back foot on the ground, thump, thump, ears up — a warning to its friends.",
+  "stickerBox": {
+    "x": 0.21875,
+    "y": 0.02995,
+    "width": 0.5612,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/rabbit.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "earL": {
+            "r": -8
+          },
+          "earR": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.12,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": 4
+          },
+          "earL": {
+            "r": -8
+          },
+          "earR": {
+            "r": -14
+          },
+          "legR": {
+            "r": 22,
+            "y": -26
+          },
+          "root": {
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sy": 0.96
+          },
+          "earL": {
+            "r": -8
+          },
+          "earR": {
+            "r": -14
+          },
+          "root": {
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.12,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": 4
+          },
+          "earL": {
+            "r": -8
+          },
+          "earR": {
+            "r": -14
+          },
+          "legR": {
+            "r": 22,
+            "y": -26
+          },
+          "root": {
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sy": 0.96
+          },
+          "earL": {
+            "r": -8
+          },
+          "earR": {
+            "r": -14
+          },
+          "root": {
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.12,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": 4
+          },
+          "earL": {
+            "r": -8
+          },
+          "earR": {
+            "r": -14
+          },
+          "legR": {
+            "r": 22,
+            "y": -26
+          },
+          "root": {
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sy": 0.96
+          },
+          "earL": {
+            "r": -8
+          },
+          "earR": {
+            "r": -14
+          },
+          "root": {
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

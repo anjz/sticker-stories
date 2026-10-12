@@ -1,0 +1,133 @@
+{
+  "id": "talk",
+  "sticker": "raccoon",
+  "kind": "action",
+  "description": "the raccoon talks, its mouth moving, its head bobbing a little.",
+  "stickerBox": {
+    "x": 0.11328,
+    "y": 0.02995,
+    "width": 0.77344,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/raccoon.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

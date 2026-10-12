@@ -1,54 +1,326 @@
 {
   "id": "wings",
   "sticker": "ladybug",
+  "kind": "action",
   "description": "the ladybug lifts its red spotted wing cases, spreads the thin clear wings underneath and flutters them, then folds everything away and takes a little bow.",
-  "sheet": "anims/ladybug.wings.webp",
-  "frame": {
-    "width": 649,
-    "height": 464
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.10169,
-    "y": 0.03664,
-    "width": 0.74268,
-    "height": 0.92672
-  },
   "stickerBox": {
     "x": 0.02995,
     "y": 0.08073,
     "width": 0.9401,
     "height": 0.83724
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.6,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.12,
-    0.2,
-    0.15,
-    0.15,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 9,
     "shows": "the ladybug with its wing cases lifted and its thin wings spread, ready to fly"
+  },
+  "puppet": {
+    "rig": "anims/ladybug.rig.json",
+    "keys": [
+      {
+        "hold": 0.3
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "shell": {
+            "r": 14,
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "shell": {
+            "r": 24,
+            "y": -4
+          },
+          "wingL": {
+            "sx": 0.25
+          },
+          "wingR": {
+            "sx": 0.25
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "shell": {
+            "r": 24,
+            "y": -4
+          },
+          "wingL": {
+            "r": -4.800000000000001,
+            "sx": 1
+          },
+          "wingR": {
+            "r": -6,
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.08,
+        "ease": "linear",
+        "bones": {
+          "shell": {
+            "r": 24,
+            "y": -4
+          },
+          "wingL": {
+            "r": 6.4,
+            "sx": 1
+          },
+          "wingR": {
+            "r": 8,
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.08,
+        "ease": "linear",
+        "bones": {
+          "shell": {
+            "r": 24,
+            "y": -4
+          },
+          "wingL": {
+            "r": -8,
+            "sx": 1
+          },
+          "wingR": {
+            "r": -10,
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.08,
+        "ease": "linear",
+        "bones": {
+          "shell": {
+            "r": 24,
+            "y": -4
+          },
+          "wingL": {
+            "r": 6.4,
+            "sx": 1
+          },
+          "wingR": {
+            "r": 8,
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.08,
+        "ease": "linear",
+        "bones": {
+          "shell": {
+            "r": 24,
+            "y": -4
+          },
+          "wingL": {
+            "r": -8,
+            "sx": 1
+          },
+          "wingR": {
+            "r": -10,
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.08,
+        "ease": "linear",
+        "bones": {
+          "shell": {
+            "r": 24,
+            "y": -4
+          },
+          "wingL": {
+            "r": 4.800000000000001,
+            "sx": 1
+          },
+          "wingR": {
+            "r": 6,
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "shell": {
+            "r": 24,
+            "y": -4
+          },
+          "wingL": {
+            "r": -3.2,
+            "sx": 1
+          },
+          "wingR": {
+            "r": -4,
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "shell": {
+            "r": 24,
+            "y": -4
+          },
+          "wingL": {
+            "sx": 0.3
+          },
+          "wingR": {
+            "sx": 0.3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "shell": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "shell": {
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": 7
+          },
+          "head": {
+            "r": 8,
+            "y": 6
+          },
+          "legL1": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": 7
+          },
+          "head": {
+            "r": 8,
+            "y": 6
+          },
+          "legL1": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
   }
 }

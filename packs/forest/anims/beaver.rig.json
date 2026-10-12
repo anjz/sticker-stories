@@ -1,0 +1,665 @@
+{
+  "sticker": "beaver",
+  "atlas": "anims/beaver.rig.webp",
+  "size": 768,
+  "parts": {
+    "arm": {
+      "rect": [
+        930,
+        455,
+        142,
+        149
+      ],
+      "border": [
+        1074,
+        455,
+        182,
+        189
+      ],
+      "pad": 20
+    },
+    "body": {
+      "rect": [
+        0,
+        0,
+        472,
+        413
+      ],
+      "border": [
+        474,
+        0,
+        512,
+        453
+      ],
+      "pad": 20
+    },
+    "eye": {
+      "rect": [
+        419,
+        773,
+        63,
+        66
+      ],
+      "border": [
+        484,
+        773,
+        103,
+        106
+      ],
+      "pad": 20
+    },
+    "eyeClosed": {
+      "rect": [
+        1449,
+        773,
+        72,
+        41
+      ],
+      "border": [
+        1523,
+        773,
+        112,
+        81
+      ],
+      "pad": 20
+    },
+    "eyeHappy": {
+      "rect": [
+        1637,
+        773,
+        72,
+        33
+      ],
+      "border": [
+        1711,
+        773,
+        112,
+        73
+      ],
+      "pad": 20
+    },
+    "eyeSad": {
+      "rect": [
+        1055,
+        773,
+        65,
+        63
+      ],
+      "border": [
+        1122,
+        773,
+        105,
+        103
+      ],
+      "pad": 20
+    },
+    "eyeWide": {
+      "rect": [
+        1912,
+        455,
+        73,
+        80
+      ],
+      "border": [
+        0,
+        773,
+        113,
+        120
+      ],
+      "pad": 20
+    },
+    "foot": {
+      "rect": [
+        1546,
+        455,
+        161,
+        83
+      ],
+      "border": [
+        1709,
+        455,
+        201,
+        123
+      ],
+      "pad": 20
+    },
+    "head": {
+      "rect": [
+        988,
+        0,
+        424,
+        326
+      ],
+      "border": [
+        1414,
+        0,
+        464,
+        366
+      ],
+      "pad": 20
+    },
+    "mouth": {
+      "rect": [
+        115,
+        773,
+        130,
+        72
+      ],
+      "border": [
+        247,
+        773,
+        170,
+        112
+      ],
+      "pad": 20
+    },
+    "mouthGnaw": {
+      "rect": [
+        589,
+        773,
+        117,
+        64
+      ],
+      "border": [
+        708,
+        773,
+        157,
+        104
+      ],
+      "pad": 20
+    },
+    "mouthLaugh": {
+      "rect": [
+        1258,
+        455,
+        122,
+        90
+      ],
+      "border": [
+        1382,
+        455,
+        162,
+        130
+      ],
+      "pad": 20
+    },
+    "mouthO": {
+      "rect": [
+        867,
+        773,
+        72,
+        64
+      ],
+      "border": [
+        941,
+        773,
+        112,
+        104
+      ],
+      "pad": 20
+    },
+    "mouthSad": {
+      "rect": [
+        1229,
+        773,
+        88,
+        49
+      ],
+      "border": [
+        1319,
+        773,
+        128,
+        89
+      ],
+      "pad": 20
+    },
+    "stick": {
+      "rect": [
+        0,
+        455,
+        207,
+        276
+      ],
+      "border": [
+        209,
+        455,
+        247,
+        316
+      ],
+      "pad": 20
+    },
+    "tail": {
+      "rect": [
+        458,
+        455,
+        214,
+        178
+      ],
+      "border": [
+        674,
+        455,
+        254,
+        218
+      ],
+      "pad": 20
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 330,
+      "y": 700
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 330,
+      "y": 690
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 330,
+      "y": 690
+    },
+    {
+      "id": "head",
+      "parent": "body",
+      "x": 290,
+      "y": 345
+    },
+    {
+      "id": "face",
+      "parent": "head",
+      "x": 275,
+      "y": 215
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 222,
+      "y": 176
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 346,
+      "y": 211
+    },
+    {
+      "id": "browL",
+      "parent": "face",
+      "x": 243,
+      "y": 121
+    },
+    {
+      "id": "browR",
+      "parent": "face",
+      "x": 368,
+      "y": 148
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 237,
+      "y": 262
+    },
+    {
+      "id": "armL",
+      "parent": "body",
+      "x": 127,
+      "y": 377
+    },
+    {
+      "id": "armR",
+      "parent": "body",
+      "x": 375,
+      "y": 458
+    },
+    {
+      "id": "stick",
+      "parent": "armL",
+      "x": 240,
+      "y": 450
+    },
+    {
+      "id": "footL",
+      "parent": "root",
+      "x": 150,
+      "y": 650
+    },
+    {
+      "id": "footR",
+      "parent": "root",
+      "x": 390,
+      "y": 670
+    },
+    {
+      "id": "tail",
+      "parent": "root",
+      "x": 535,
+      "y": 615
+    }
+  ],
+  "slots": [
+    {
+      "id": "tail",
+      "bone": "tail",
+      "default": "tail",
+      "attachments": {
+        "tail": {
+          "part": "tail",
+          "x": 509.28,
+          "y": 511.35,
+          "w": 213.44,
+          "h": 177.3
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "body",
+          "x": 100.37,
+          "y": 293.86,
+          "w": 471.27,
+          "h": 412.29
+        }
+      }
+    },
+    {
+      "id": "footL",
+      "bone": "footL",
+      "default": "foot",
+      "attachments": {
+        "foot": {
+          "part": "foot",
+          "x": 41.89,
+          "y": 596.84,
+          "w": 160.23,
+          "h": 82.32
+        }
+      }
+    },
+    {
+      "id": "footR",
+      "bone": "footR",
+      "default": "foot",
+      "attachments": {
+        "foot": {
+          "part": "foot",
+          "x": 301.79,
+          "y": 623.36,
+          "w": 150.42,
+          "h": 77.28
+        }
+      }
+    },
+    {
+      "id": "head",
+      "bone": "head",
+      "default": "head",
+      "attachments": {
+        "head": {
+          "part": "head",
+          "x": 92.23,
+          "y": 39.12,
+          "w": 423.55,
+          "h": 325.76
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 198.24,
+          "y": 151.03,
+          "w": 47.52,
+          "h": 49.95
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 194.73,
+          "y": 166.48,
+          "w": 54.54,
+          "h": 31.05
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 194.73,
+          "y": 165.58,
+          "w": 54.54,
+          "h": 24.84
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 197.3,
+          "y": 153.1,
+          "w": 49.41,
+          "h": 47.79
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 194.5,
+          "y": 142.67,
+          "w": 55,
+          "h": 60.67
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 314.76,
+          "y": 178.16,
+          "w": 62.48,
+          "h": 65.68
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 310.15,
+          "y": 196.59,
+          "w": 71.71,
+          "h": 40.82
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 310.15,
+          "y": 196.67,
+          "w": 71.71,
+          "h": 32.66
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 313.52,
+          "y": 180.58,
+          "w": 64.97,
+          "h": 62.83
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 309.84,
+          "y": 168.12,
+          "w": 72.31,
+          "h": 79.77
+        }
+      }
+    },
+    {
+      "id": "browL",
+      "bone": "browL",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "eyeHappy",
+          "x": 230.88,
+          "y": 115.48,
+          "w": 24.24,
+          "h": 11.04,
+          "rotate": -10
+        },
+        "sad": {
+          "part": "eyeHappy",
+          "x": 230.88,
+          "y": 112.48,
+          "w": 24.24,
+          "h": 11.04,
+          "rotate": -30
+        }
+      }
+    },
+    {
+      "id": "browR",
+      "bone": "browR",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "eyeHappy",
+          "x": 349.82,
+          "y": 139.72,
+          "w": 36.36,
+          "h": 16.56,
+          "rotate": 10
+        },
+        "sad": {
+          "part": "eyeHappy",
+          "x": 347.82,
+          "y": 135.72,
+          "w": 36.36,
+          "h": 16.56,
+          "rotate": 30
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "gnaw": {
+          "part": "mouthGnaw",
+          "x": 175.32,
+          "y": 245.28,
+          "w": 116.96,
+          "h": 63.64
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 202.21,
+          "y": 253.1,
+          "w": 71.38,
+          "h": 63.21
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 176.76,
+          "y": 247.48,
+          "w": 121.69,
+          "h": 89.44
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 192.74,
+          "y": 253.32,
+          "w": 87.72,
+          "h": 48.16
+        },
+        "smile": {
+          "part": "mouth",
+          "x": 172.27,
+          "y": 237.8,
+          "w": 129.86,
+          "h": 71.81
+        }
+      }
+    },
+    {
+      "id": "stick",
+      "bone": "stick",
+      "default": "stick",
+      "attachments": {
+        "stick": {
+          "part": "stick",
+          "x": 93.68,
+          "y": 292.12,
+          "w": 206.64,
+          "h": 275.76,
+          "rotate": -3
+        }
+      }
+    },
+    {
+      "id": "armL",
+      "bone": "armL",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "arm",
+          "x": 104.4,
+          "y": 355.6,
+          "w": 123.2,
+          "h": 128.8,
+          "rotate": -38,
+          "shade": 0.12
+        }
+      }
+    },
+    {
+      "id": "armR",
+      "bone": "armR",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "arm",
+          "x": 246.16,
+          "y": 413.94,
+          "w": 141.68,
+          "h": 148.12,
+          "rotate": 60,
+          "flip": true
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "browL": "sad",
+      "browR": "sad",
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "id": "wave",
+  "sticker": "snail",
+  "kind": "action",
+  "description": "the snail waves hello with one of its eye stalks.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.08984,
+    "width": 0.9401,
+    "height": 0.81901
+  },
+  "puppet": {
+    "rig": "anims/snail.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "stalkL": {},
+          "stalkR": {
+            "r": 28
+          }
+        },
+        "slots": {
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "stalkL": {},
+          "stalkR": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "stalkL": {},
+          "stalkR": {
+            "r": 28
+          }
+        },
+        "slots": {
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "stalkL": {},
+          "stalkR": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "stalkL": {},
+          "stalkR": {
+            "r": 28
+          }
+        },
+        "slots": {
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

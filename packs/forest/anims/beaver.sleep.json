@@ -1,0 +1,151 @@
+{
+  "id": "sleep",
+  "sticker": "beaver",
+  "kind": "action",
+  "description": "the beaver gives a big yawn, closes its eyes and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.04427,
+    "width": 0.9401,
+    "height": 0.91016
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the beaver fast asleep, eyes shut, head drooped"
+  },
+  "puppet": {
+    "rig": "anims/beaver.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": -30
+          },
+          "armR": {
+            "r": 35
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -4,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -30
+          },
+          "armR": {
+            "r": 35
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -4,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -8
+          },
+          "armR": {
+            "r": 8
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "face": {
+            "y": 4
+          },
+          "head": {
+            "r": 6,
+            "y": 9
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "armL": {
+            "r": -8
+          },
+          "armR": {
+            "r": 8
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "face": {
+            "y": 4
+          },
+          "head": {
+            "r": 6,
+            "y": 9
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

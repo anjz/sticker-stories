@@ -1,0 +1,115 @@
+{
+  "id": "wave",
+  "sticker": "mouse",
+  "kind": "action",
+  "description": "the mouse waves hello with one little pink paw.",
+  "stickerBox": {
+    "x": 0.13151,
+    "y": 0.02995,
+    "width": 0.73698,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/mouse.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.28,
+        "bones": {
+          "armR": {
+            "r": 100,
+            "x": 25,
+            "y": -30
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "armR": {
+            "r": 128,
+            "x": 25,
+            "y": -30
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "armR": {
+            "r": 95,
+            "x": 25,
+            "y": -30
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "armR": {
+            "r": 128,
+            "x": 25,
+            "y": -30
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "armR": {
+            "r": 95,
+            "x": 25,
+            "y": -30
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

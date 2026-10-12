@@ -1,0 +1,214 @@
+{
+  "id": "sleep",
+  "sticker": "badger",
+  "kind": "action",
+  "description": "the badger gives a big yawn, lies down with its legs tucked under it and falls asleep, then wakes up and gets up with a smile.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.16667,
+    "width": 0.9401,
+    "height": 0.66667
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the badger lying down fast asleep, its legs tucked under it"
+  },
+  "puppet": {
+    "rig": "anims/badger.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "head": {
+            "r": 10,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "r": 10,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.96
+          },
+          "body": {
+            "y": 52
+          },
+          "head": {
+            "r": 4,
+            "y": -18
+          },
+          "legBF": {
+            "sy": 0.5
+          },
+          "legBN": {
+            "sy": 0.5
+          },
+          "legFF": {
+            "sy": 0.5
+          },
+          "legFN": {
+            "sy": 0.5
+          },
+          "tail": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.96
+          },
+          "body": {
+            "y": 52
+          },
+          "head": {
+            "r": 8,
+            "y": -26
+          },
+          "legBF": {
+            "sy": 0.5
+          },
+          "legBN": {
+            "sy": 0.5
+          },
+          "legFF": {
+            "sy": 0.5
+          },
+          "legFN": {
+            "sy": 0.5
+          },
+          "tail": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.94
+          },
+          "body": {
+            "y": 52
+          },
+          "head": {
+            "r": 8,
+            "y": -26
+          },
+          "legBF": {
+            "sy": 0.5
+          },
+          "legBN": {
+            "sy": 0.5
+          },
+          "legFF": {
+            "sy": 0.5
+          },
+          "legFN": {
+            "sy": 0.5
+          },
+          "tail": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.96
+          },
+          "body": {
+            "y": 52
+          },
+          "head": {
+            "r": 8,
+            "y": -26
+          },
+          "legBF": {
+            "sy": 0.5
+          },
+          "legBN": {
+            "sy": 0.5
+          },
+          "legFF": {
+            "sy": 0.5
+          },
+          "legFN": {
+            "sy": 0.5
+          },
+          "tail": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

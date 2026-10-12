@@ -1,0 +1,1847 @@
+{
+  "sticker": "duckling",
+  "skeleton": "duckling waddling, facing right: root at the feet; body (with its tail fluff) with belly squash; head on the body, face with eye and beak; wing (folded / open) at the shoulder; footL/footR on the root.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a duckling character. Draw this exact duckling as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the body: the fluffy yellow body with its tail fluff, facing right as in image 1, without head, without feet and WITHOUT ANY WING: where the near wing lies against the body in image 1, draw only plain fluffy yellow body feathers, no wing shape and no wing outline on it; its top, normally under the head, rounded.\n2. the head: the round fluffy yellow head, facing right as in image 1, with a completely blank face — no eye, no beak — keep the rosy cheek; its bottom edge rounded.\n3. the wing: the small fluffy near wing folded as in image 1, with a rounded shoulder.\n4. the open wing: the same small wing spread out, flapping, with a rounded shoulder.\n5. one foot: an orange webbed foot with its short leg.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a duckling character; image 2 shows the same duckling cut into puppet parts, with a blank face. Draw the duckling's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the duckling in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the duckling's eye as it is in image 1: a dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the beak as it is in image 1: the flat orange beak, closed.\n7. the beak wide open, quacking.\n8. the beak a little open.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "wingFolded": {
+      "sheet": "parts",
+      "at": [
+        262,
+        299
+      ]
+    },
+    "wingOpen": {
+      "sheet": "parts",
+      "at": [
+        684,
+        285
+      ]
+    },
+    "head": {
+      "sheet": "parts",
+      "at": [
+        1189,
+        332
+      ]
+    },
+    "body": {
+      "sheet": "parts",
+      "at": [
+        515,
+        722
+      ]
+    },
+    "foot": {
+      "sheet": "parts",
+      "at": [
+        1229,
+        834
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        167,
+        305
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        470,
+        294
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        777,
+        331
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        1062,
+        309
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1378,
+        315
+      ]
+    },
+    "beak": {
+      "sheet": "face",
+      "at": [
+        269,
+        698
+      ]
+    },
+    "beakOpen": {
+      "sheet": "face",
+      "at": [
+        793,
+        715
+      ]
+    },
+    "beakLittle": {
+      "sheet": "face",
+      "at": [
+        1281,
+        698
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 450,
+      "y": 700
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 400,
+      "y": 625
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 400,
+      "y": 625
+    },
+    {
+      "id": "head",
+      "parent": "body",
+      "x": 420,
+      "y": 375
+    },
+    {
+      "id": "face",
+      "parent": "head",
+      "x": 450,
+      "y": 240
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 390,
+      "y": 242
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 513,
+      "y": 197
+    },
+    {
+      "id": "beak",
+      "parent": "face",
+      "x": 445,
+      "y": 268
+    },
+    {
+      "id": "wingL",
+      "parent": "body",
+      "x": 385,
+      "y": 415
+    },
+    {
+      "id": "wingR",
+      "parent": "body",
+      "x": 550,
+      "y": 420
+    },
+    {
+      "id": "footL",
+      "parent": "root",
+      "x": 300,
+      "y": 625
+    },
+    {
+      "id": "footR",
+      "parent": "root",
+      "x": 470,
+      "y": 615
+    }
+  ],
+  "slots": [
+    {
+      "id": "wingR",
+      "bone": "wingR",
+      "default": "folded",
+      "attachments": {
+        "folded": {
+          "part": "wingFolded",
+          "x": 568,
+          "y": 472,
+          "scale": 0.43,
+          "flip": true,
+          "rotate": 55,
+          "shade": 0.06
+        },
+        "open": {
+          "part": "wingOpen",
+          "x": 631,
+          "y": 460,
+          "scale": 0.54,
+          "flip": true,
+          "shade": 0.06
+        }
+      }
+    },
+    {
+      "id": "footL",
+      "bone": "footL",
+      "default": "foot",
+      "attachments": {
+        "foot": {
+          "part": "foot",
+          "x": 294,
+          "y": 681,
+          "scale": 0.38
+        }
+      }
+    },
+    {
+      "id": "footR",
+      "bone": "footR",
+      "default": "foot",
+      "attachments": {
+        "foot": {
+          "part": "foot",
+          "x": 521,
+          "y": 653,
+          "scale": 0.4,
+          "rotate": -36
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "body",
+          "x": 363,
+          "y": 508,
+          "scale": 0.54,
+          "rotate": 4
+        }
+      }
+    },
+    {
+      "id": "wingL",
+      "bone": "wingL",
+      "default": "folded",
+      "attachments": {
+        "folded": {
+          "part": "wingFolded",
+          "x": 300,
+          "y": 467,
+          "scale": 0.56
+        },
+        "open": {
+          "part": "wingOpen",
+          "x": 296,
+          "y": 445,
+          "scale": 0.6
+        }
+      }
+    },
+    {
+      "id": "head",
+      "bone": "head",
+      "default": "head",
+      "attachments": {
+        "head": {
+          "part": "head",
+          "x": 413,
+          "y": 220,
+          "scale": 0.58
+        }
+      }
+    },
+    {
+      "id": "wingOpen",
+      "bone": "wingL",
+      "default": "none",
+      "attachments": {
+        "open": {
+          "part": "wingOpen",
+          "x": 296,
+          "y": 445,
+          "scale": 0.6
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "default",
+      "attachments": {
+        "default": {
+          "part": "eye",
+          "x": 513,
+          "y": 197,
+          "scale": 0.27
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 513,
+          "y": 195,
+          "scale": 0.27
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 513,
+          "y": 207,
+          "scale": 0.27
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 513,
+          "y": 201,
+          "scale": 0.27
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 513,
+          "y": 197,
+          "scale": 0.27
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "default",
+      "attachments": {
+        "default": {
+          "part": "eye",
+          "x": 390,
+          "y": 242,
+          "scale": 0.36
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 390,
+          "y": 240,
+          "scale": 0.36
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 390,
+          "y": 252,
+          "scale": 0.36
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 390,
+          "y": 246,
+          "scale": 0.36
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 390,
+          "y": 242,
+          "scale": 0.36
+        }
+      }
+    },
+    {
+      "id": "beak",
+      "bone": "beak",
+      "default": "closed",
+      "attachments": {
+        "closed": {
+          "part": "beak",
+          "x": 485,
+          "y": 270,
+          "scale": 0.39
+        },
+        "open": {
+          "part": "beakOpen",
+          "x": 490,
+          "y": 275,
+          "scale": 0.39
+        },
+        "little": {
+          "part": "beakLittle",
+          "x": 487,
+          "y": 270,
+          "scale": 0.39
+        }
+      }
+    },
+    {
+      "id": "tuck",
+      "bone": "wingL",
+      "default": "none",
+      "attachments": {
+        "tuck": {
+          "part": "wingFolded",
+          "x": 345,
+          "y": 330,
+          "scale": 0.6,
+          "rotate": -25
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "beak": "little"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "nap",
+      "description": "the duckling fluffs up and tucks its head under its wing for a nap, then pops its head out, shakes its feathers and gives a happy quack.",
+      "pause": {
+        "frame": 5,
+        "shows": "the duckling asleep with its head tucked under its wing"
+      },
+      "keys": [
+        {
+          "hold": 0.3
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "belly": {
+              "sx": 1.06,
+              "sy": 1.03
+            },
+            "wingL": {
+              "r": 10
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "inOut",
+          "bones": {
+            "head": {
+              "sx": -1
+            },
+            "belly": {
+              "sx": 1.06,
+              "sy": 1.02
+            },
+            "wingL": {
+              "r": 12
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "sx": -1,
+              "x": -30,
+              "y": 70,
+              "r": -10
+            },
+            "belly": {
+              "sx": 1.06,
+              "sy": 1.0
+            },
+            "wingL": {
+              "r": 18
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "sx": -1,
+              "x": -30,
+              "y": 70,
+              "r": -10
+            },
+            "belly": {
+              "sx": 1.06,
+              "sy": 1.0
+            }
+          },
+          "slots": {
+            "eyeL": "none",
+            "eyeR": "none",
+            "beak": "none",
+            "tuck": "tuck"
+          }
+        },
+        {
+          "hold": 0.8,
+          "bones": {
+            "head": {
+              "sx": -1,
+              "x": -30,
+              "y": 70,
+              "r": -10
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "none",
+            "eyeR": "none",
+            "beak": "none",
+            "tuck": "tuck"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "head": {
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.07,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 4
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            },
+            "head": {
+              "r": 5
+            },
+            "wingL": {
+              "r": 14
+            },
+            "wingR": {
+              "r": -2
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.07,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -4
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            },
+            "head": {
+              "r": -5
+            },
+            "wingL": {
+              "r": 2
+            },
+            "wingR": {
+              "r": -14
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.07,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 4
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            },
+            "head": {
+              "r": 5
+            },
+            "wingL": {
+              "r": 14
+            },
+            "wingR": {
+              "r": -2
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.07,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -4
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            },
+            "head": {
+              "r": -5
+            },
+            "wingL": {
+              "r": 2
+            },
+            "wingR": {
+              "r": -14
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.07,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 4
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            },
+            "head": {
+              "r": 5
+            },
+            "wingL": {
+              "r": 14
+            },
+            "wingR": {
+              "r": -2
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.07,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -4
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            },
+            "head": {
+              "r": -5
+            },
+            "wingL": {
+              "r": 2
+            },
+            "wingR": {
+              "r": -14
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 3,
+              "y": 3
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "r": -6,
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "waddle",
+      "kind": "move",
+      "description": "the duckling waddles along to the right on its orange feet, wiggling its tail, then stops.",
+      "facing": "right",
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "stride": 0.4,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "footR": {
+              "x": 10,
+              "y": -14,
+              "r": -12
+            },
+            "footL": {
+              "x": -4
+            },
+            "body": {
+              "r": 5
+            },
+            "root": {
+              "y": -4
+            },
+            "wingL": {
+              "r": 6
+            },
+            "wingR": {
+              "r": -6
+            },
+            "head": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "footR": {
+              "x": 10
+            },
+            "body": {
+              "r": 1
+            },
+            "root": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "footL": {
+              "x": 16,
+              "y": -14,
+              "r": -12
+            },
+            "footR": {
+              "x": -4
+            },
+            "body": {
+              "r": -5
+            },
+            "root": {
+              "y": -4
+            },
+            "wingL": {
+              "r": 6
+            },
+            "wingR": {
+              "r": -6
+            },
+            "head": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "footL": {
+              "x": 16
+            },
+            "body": {
+              "r": -1
+            },
+            "root": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.45
+        }
+      ]
+    },
+    {
+      "id": "swim",
+      "kind": "move",
+      "description": "the duckling paddles along to the right, floating low with its orange feet kicking underneath, then stops.",
+      "facing": "right",
+      "on": [
+        "pond"
+      ],
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "stride": 0.5,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 16
+            },
+            "body": {
+              "r": -3
+            },
+            "footL": {
+              "r": 25,
+              "x": -8,
+              "y": -6
+            },
+            "footR": {
+              "r": -20,
+              "x": 6,
+              "y": -12
+            },
+            "head": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 20
+            },
+            "body": {
+              "r": -2
+            },
+            "footL": {
+              "r": 5,
+              "y": -8
+            },
+            "footR": {
+              "r": 5,
+              "y": -10
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 16
+            },
+            "body": {
+              "r": -3
+            },
+            "footL": {
+              "r": -20,
+              "x": 8,
+              "y": -12
+            },
+            "footR": {
+              "r": 25,
+              "x": -6,
+              "y": -6
+            },
+            "head": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 20
+            },
+            "body": {
+              "r": -2
+            },
+            "footL": {
+              "r": 5,
+              "y": -8
+            },
+            "footR": {
+              "r": 5,
+              "y": -10
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 8
+            },
+            "body": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.45
+        }
+      ]
+    },
+    {
+      "id": "quack",
+      "description": "the duckling stretches up its neck and gives two big quacks, its little wings lifting with each one.",
+      "pause": {
+        "frame": 2,
+        "shows": "the duckling quacking, beak wide open"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": 4,
+              "y": 4
+            },
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "r": -7,
+              "y": -10
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "wingL": {
+              "r": 18
+            },
+            "wingR": {
+              "r": -18
+            }
+          },
+          "slots": {
+            "beak": "open",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "head": {
+              "r": 2,
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "r": -7,
+              "y": -10
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "wingL": {
+              "r": 18
+            },
+            "wingR": {
+              "r": -18
+            }
+          },
+          "slots": {
+            "beak": "open",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "flap",
+      "description": "the duckling spreads its little wings and flaps them as fast as it can, bouncing on its feet.",
+      "pause": {
+        "frame": 2,
+        "shows": "the duckling with its little wings spread out"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "wingL": {
+              "r": 20
+            },
+            "wingR": {
+              "r": -25
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "wingL": {
+              "r": 35
+            },
+            "wingR": {
+              "r": -35
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "wingL": {
+              "r": -5
+            },
+            "wingR": {
+              "r": 0
+            },
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "wingL": {
+              "r": 45
+            },
+            "wingR": {
+              "r": -50
+            },
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "wingL": {
+              "r": -5
+            },
+            "wingR": {
+              "r": 0
+            },
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "wingL": {
+              "r": 45
+            },
+            "wingR": {
+              "r": -50
+            },
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "wingL": {
+              "r": -5
+            },
+            "wingR": {
+              "r": 0
+            },
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "wingL": {
+              "r": 45
+            },
+            "wingR": {
+              "r": -50
+            },
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingL": {
+              "r": 10
+            },
+            "wingR": {
+              "r": -10
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "shake-feathers",
+      "description": "the duckling fluffs itself up round and shakes out all its feathers, then smooths them down neatly.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "belly": {
+              "sx": 1.07,
+              "sy": 1.0
+            },
+            "head": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.07,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 4
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            },
+            "head": {
+              "r": 5
+            },
+            "wingL": {
+              "r": 14
+            },
+            "wingR": {
+              "r": -2
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.07,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -4
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            },
+            "head": {
+              "r": -5
+            },
+            "wingL": {
+              "r": 2
+            },
+            "wingR": {
+              "r": -14
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.07,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 4
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            },
+            "head": {
+              "r": 5
+            },
+            "wingL": {
+              "r": 14
+            },
+            "wingR": {
+              "r": -2
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.07,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -4
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            },
+            "head": {
+              "r": -5
+            },
+            "wingL": {
+              "r": 2
+            },
+            "wingR": {
+              "r": -14
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.07,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 4
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            },
+            "head": {
+              "r": 5
+            },
+            "wingL": {
+              "r": 14
+            },
+            "wingR": {
+              "r": -2
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.07,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -4
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            },
+            "head": {
+              "r": -5
+            },
+            "wingL": {
+              "r": 2
+            },
+            "wingR": {
+              "r": -14
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.07,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 4
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            },
+            "head": {
+              "r": 5
+            },
+            "wingL": {
+              "r": 14
+            },
+            "wingR": {
+              "r": -2
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.07,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -4
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            },
+            "head": {
+              "r": -5
+            },
+            "wingL": {
+              "r": 2
+            },
+            "wingR": {
+              "r": -14
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.99
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "description": "the duckling crouches, jumps up high for joy and lands with a little squash.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 8
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.9
+            },
+            "head": {
+              "y": 6
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -78
+            },
+            "belly": {
+              "sx": 0.96,
+              "sy": 1.06
+            },
+            "footL": {
+              "r": 14,
+              "y": -8
+            },
+            "footR": {
+              "r": -14,
+              "y": -8
+            },
+            "wingL": {
+              "r": 25
+            },
+            "wingR": {
+              "r": -25
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "beak": "open",
+            "wingL": "none",
+            "wingR": "open",
+            "wingOpen": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -84
+            },
+            "belly": {
+              "sx": 0.96,
+              "sy": 1.06
+            },
+            "footL": {
+              "r": 14,
+              "y": -8
+            },
+            "footR": {
+              "r": -14,
+              "y": -8
+            },
+            "wingL": {
+              "r": 25
+            },
+            "wingR": {
+              "r": -25
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "beak": "open",
+            "wingL": "none",
+            "wingR": "open",
+            "wingOpen": "open"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "root": {
+              "y": 5
+            },
+            "belly": {
+              "sx": 1.08,
+              "sy": 0.88
+            },
+            "head": {
+              "y": 6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "template": "common.nod"
+    },
+    {
+      "id": "shake-head",
+      "template": "common.shake-head"
+    },
+    {
+      "id": "look-around",
+      "template": "common.look-around"
+    },
+    {
+      "id": "laugh",
+      "template": "common.laugh"
+    },
+    {
+      "id": "dance",
+      "template": "common.dance"
+    },
+    {
+      "id": "talk",
+      "template": "common.talk"
+    },
+    {
+      "id": "shiver",
+      "template": "common.shiver"
+    },
+    {
+      "id": "cry",
+      "template": "common.cry"
+    },
+    {
+      "id": "wave",
+      "description": "the duckling lifts its little wing and waves hello.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "wingL": {
+              "r": 50
+            },
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingL": {
+              "r": 65
+            },
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingL": {
+              "r": 40
+            },
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingL": {
+              "r": 65
+            },
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingL": {
+              "r": 40
+            },
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "wingL": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

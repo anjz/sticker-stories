@@ -1,0 +1,182 @@
+{
+  "id": "bounce",
+  "sticker": "mushroom",
+  "kind": "action",
+  "description": "the mushroom bounces up and down on the spot, squashing and stretching with joy.",
+  "stickerBox": {
+    "x": 0.07031,
+    "y": 0.02995,
+    "width": 0.85807,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/mushroom.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.9
+          },
+          "cap": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.24,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.05
+          },
+          "cap": {
+            "r": -3,
+            "y": -6
+          },
+          "root": {
+            "y": -42
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.04
+          },
+          "cap": {
+            "r": -3,
+            "y": -8
+          },
+          "root": {
+            "y": -46
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.88
+          },
+          "cap": {
+            "y": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.9
+          },
+          "cap": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.24,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.05
+          },
+          "cap": {
+            "r": -3,
+            "y": -6
+          },
+          "root": {
+            "y": -42
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.04
+          },
+          "cap": {
+            "r": -3,
+            "y": -8
+          },
+          "root": {
+            "y": -46
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.88
+          },
+          "cap": {
+            "y": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

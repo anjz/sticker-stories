@@ -1,0 +1,1749 @@
+{
+  "sticker": "woodpecker",
+  "skeleton": "woodpecker clinging upright as on a trunk, facing left: root at the feet (the grip); body with belly squash; head on the body, face with the eye and the beak (the beak on its own bone so it can tap); wing (folded / open) at the shoulder, far wing only open in flight; stiff tail at the bottom; feet on the root.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a woodpecker character. Draw this exact woodpecker as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the body: the black-and-white spotted body with its cream chest, clinging upright as in image 1, without head, wing, tail or feet; its top, normally under the head, rounded.\n2. the head: the head with its red crest, facing left as in image 1, with a completely blank face — no eye, no beak — keep the rosy cheek; its bottom edge rounded.\n3. the folded wing: the black wing with white spots folded at rest, as in image 1, with a rounded shoulder.\n4. the open wing: the same wing spread out as in flight, with a rounded shoulder.\n5. the tail: the stiff black tail feathers, with a rounded base.\n6. one foot: a grey clinging foot with its curved claws.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a woodpecker character; image 2 shows the same woodpecker cut into puppet parts, with a blank face. Draw the woodpecker's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the woodpecker in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the woodpecker's eye as it is in image 1: a dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the beak as it is in image 1: long, pointed and grey, closed.\n7. the same beak a little open, chirping.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "head": {
+      "sheet": "parts",
+      "at": [
+        298,
+        249
+      ]
+    },
+    "body": {
+      "sheet": "parts",
+      "at": [
+        729,
+        425
+      ]
+    },
+    "wingFolded": {
+      "sheet": "parts",
+      "at": [
+        1127,
+        284
+      ]
+    },
+    "foot": {
+      "sheet": "parts",
+      "at": [
+        312,
+        747
+      ]
+    },
+    "tail": {
+      "sheet": "parts",
+      "at": [
+        733,
+        824
+      ]
+    },
+    "wingOpen": {
+      "sheet": "parts",
+      "at": [
+        1268,
+        716
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        166,
+        362
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        429,
+        357
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        754,
+        388
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        1073,
+        347
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1377,
+        363
+      ]
+    },
+    "beak": {
+      "sheet": "face",
+      "at": [
+        433,
+        729
+      ]
+    },
+    "beakOpen": {
+      "sheet": "face",
+      "at": [
+        1074,
+        726
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 325,
+      "y": 400
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 430,
+      "y": 560
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 430,
+      "y": 560
+    },
+    {
+      "id": "head",
+      "parent": "body",
+      "x": 425,
+      "y": 255
+    },
+    {
+      "id": "face",
+      "parent": "head",
+      "x": 380,
+      "y": 165
+    },
+    {
+      "id": "eye",
+      "parent": "face",
+      "x": 403,
+      "y": 168
+    },
+    {
+      "id": "beak",
+      "parent": "face",
+      "x": 348,
+      "y": 160
+    },
+    {
+      "id": "wingR",
+      "parent": "body",
+      "x": 420,
+      "y": 290
+    },
+    {
+      "id": "wingL",
+      "parent": "body",
+      "x": 440,
+      "y": 285
+    },
+    {
+      "id": "tail",
+      "parent": "body",
+      "x": 432,
+      "y": 520
+    },
+    {
+      "id": "footL",
+      "parent": "root",
+      "x": 322,
+      "y": 340
+    },
+    {
+      "id": "footR",
+      "parent": "root",
+      "x": 345,
+      "y": 455
+    }
+  ],
+  "slots": [
+    {
+      "id": "wingL",
+      "bone": "wingL",
+      "default": "none",
+      "attachments": {
+        "open": {
+          "part": "wingOpen",
+          "x": 575,
+          "y": 345,
+          "scale": 0.62,
+          "shade": 0.2
+        }
+      }
+    },
+    {
+      "id": "footL",
+      "bone": "footL",
+      "default": "foot",
+      "attachments": {
+        "foot": {
+          "part": "foot",
+          "x": 298,
+          "y": 329,
+          "scale": 0.5
+        }
+      }
+    },
+    {
+      "id": "footR",
+      "bone": "footR",
+      "default": "foot",
+      "attachments": {
+        "foot": {
+          "part": "foot",
+          "x": 324,
+          "y": 455,
+          "scale": 0.5
+        }
+      }
+    },
+    {
+      "id": "tail",
+      "bone": "tail",
+      "default": "tail",
+      "attachments": {
+        "tail": {
+          "part": "tail",
+          "x": 413,
+          "y": 610,
+          "scale": 0.66,
+          "rotate": 14
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "body",
+          "x": 432,
+          "y": 405,
+          "scale": 0.7
+        }
+      }
+    },
+    {
+      "id": "wingR",
+      "bone": "wingR",
+      "default": "folded",
+      "attachments": {
+        "folded": {
+          "part": "wingFolded",
+          "x": 471,
+          "y": 434,
+          "scale": 0.72,
+          "rotate": -5
+        },
+        "open": {
+          "part": "wingOpen",
+          "x": 559,
+          "y": 354,
+          "scale": 0.67
+        }
+      }
+    },
+    {
+      "id": "head",
+      "bone": "head",
+      "default": "head",
+      "attachments": {
+        "head": {
+          "part": "head",
+          "x": 430,
+          "y": 158,
+          "scale": 0.64
+        }
+      }
+    },
+    {
+      "id": "eye",
+      "bone": "eye",
+      "default": "default",
+      "attachments": {
+        "default": {
+          "part": "eye",
+          "x": 403,
+          "y": 170,
+          "scale": 0.33
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 403,
+          "y": 166,
+          "scale": 0.33
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 403,
+          "y": 174,
+          "scale": 0.33
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 403,
+          "y": 170,
+          "scale": 0.33
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 403,
+          "y": 166,
+          "scale": 0.33
+        }
+      }
+    },
+    {
+      "id": "beak",
+      "bone": "beak",
+      "default": "closed",
+      "attachments": {
+        "closed": {
+          "part": "beak",
+          "x": 283,
+          "y": 158,
+          "scale": 0.32
+        },
+        "open": {
+          "part": "beakOpen",
+          "x": 283,
+          "y": 166,
+          "scale": 0.32
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eye": "happy"
+    },
+    "sad": {
+      "eye": "sad"
+    },
+    "sleeping": {
+      "eye": "closed"
+    },
+    "surprised": {
+      "eye": "wide",
+      "beak": "open"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eye": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "tap",
+      "description": "the woodpecker taps its beak against the bark, tap-tap-tap, with little wood chips flying, then presses its eye close to listen for bugs, then taps once more and chirps happily.",
+      "pause": {
+        "frame": 9,
+        "shows": "the woodpecker listening, head tilted, one eye close to where it tapped"
+      },
+      "place": [
+        "trunks"
+      ],
+      "particles": [
+        {
+          "frame": 2,
+          "effect": "dust-puff",
+          "x": 0.27,
+          "y": 0.21,
+          "intensity": 0.3,
+          "color": "#B98A55"
+        },
+        {
+          "frame": 4,
+          "effect": "dust-puff",
+          "x": 0.27,
+          "y": 0.21,
+          "intensity": 0.3,
+          "color": "#B98A55"
+        },
+        {
+          "frame": 6,
+          "effect": "dust-puff",
+          "x": 0.27,
+          "y": 0.21,
+          "intensity": 0.3,
+          "color": "#B98A55"
+        },
+        {
+          "frame": 12,
+          "effect": "dust-puff",
+          "x": 0.27,
+          "y": 0.21,
+          "intensity": 0.3,
+          "color": "#B98A55"
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.3
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "x": 8,
+              "r": 5
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.08,
+          "bones": {
+            "head": {
+              "x": -9,
+              "r": -3
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.08,
+          "bones": {
+            "head": {
+              "x": 8,
+              "r": 5
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.08,
+          "bones": {
+            "head": {
+              "x": -9,
+              "r": -3
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.08,
+          "bones": {
+            "head": {
+              "x": 8,
+              "r": 5
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.08,
+          "bones": {
+            "head": {
+              "x": -9,
+              "r": -3
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "head": {
+              "x": 2
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "x": -10,
+              "r": -16,
+              "y": 4
+            },
+            "body": {
+              "r": -3
+            },
+            "face": {
+              "y": 2
+            }
+          },
+          "slots": {
+            "eye": "wide"
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "head": {
+              "x": -10,
+              "r": -16,
+              "y": 4
+            },
+            "body": {
+              "r": -3
+            },
+            "face": {
+              "y": 2
+            }
+          },
+          "slots": {
+            "eye": "wide"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "x": 2
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "head": {
+              "x": 8,
+              "r": 5
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "head": {
+              "x": -9,
+              "r": -3
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "head": {
+              "x": 2
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": 4,
+              "y": -3
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.1,
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "head": {
+              "r": 4,
+              "y": -3
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "fly",
+      "kind": "move",
+      "description": "the woodpecker flies along to the left with bouncy wingbeats, then lands clinging upright.",
+      "facing": "left",
+      "flies": true,
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "stride": 1.2,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "r": -28
+            },
+            "tail": {
+              "r": 12
+            },
+            "footL": {
+              "r": -40,
+              "y": 10,
+              "x": 20
+            },
+            "footR": {
+              "r": -40,
+              "y": -10,
+              "x": 10
+            },
+            "head": {
+              "r": 10
+            },
+            "wingR": {
+              "r": -40
+            },
+            "wingL": {
+              "r": -50
+            },
+            "root": {
+              "y": -10
+            }
+          },
+          "slots": {
+            "wingL": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "r": -28
+            },
+            "tail": {
+              "r": 12
+            },
+            "footL": {
+              "r": -40,
+              "y": 10,
+              "x": 20
+            },
+            "footR": {
+              "r": -40,
+              "y": -10,
+              "x": 10
+            },
+            "head": {
+              "r": 10
+            },
+            "wingR": {
+              "r": 10
+            },
+            "wingL": {
+              "r": 0
+            },
+            "root": {
+              "y": -4
+            }
+          },
+          "slots": {
+            "wingL": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "r": -28
+            },
+            "tail": {
+              "r": 12
+            },
+            "footL": {
+              "r": -40,
+              "y": 10,
+              "x": 20
+            },
+            "footR": {
+              "r": -40,
+              "y": -10,
+              "x": 10
+            },
+            "head": {
+              "r": 10
+            },
+            "wingR": {
+              "r": 45
+            },
+            "wingL": {
+              "r": 35
+            },
+            "root": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.97
+            }
+          },
+          "slots": {
+            "wingL": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "r": -28
+            },
+            "tail": {
+              "r": 12
+            },
+            "footL": {
+              "r": -40,
+              "y": 10,
+              "x": 20
+            },
+            "footR": {
+              "r": -40,
+              "y": -10,
+              "x": 10
+            },
+            "head": {
+              "r": 10
+            },
+            "wingR": {
+              "r": 5
+            },
+            "wingL": {
+              "r": -5
+            },
+            "root": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "wingL": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": -10
+            },
+            "wingR": {
+              "r": -55
+            },
+            "wingL": {
+              "r": -60
+            },
+            "head": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "wingL": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "r": 3
+            },
+            "belly": {
+              "sx": 1.04,
+              "sy": 0.95
+            },
+            "head": {
+              "y": 5
+            },
+            "tail": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.45
+        }
+      ]
+    },
+    {
+      "id": "drum",
+      "description": "the woodpecker drums on the tree trunk, rat-a-tat-tat, very fast, then leans back proudly with its eye closed happily.",
+      "place": [
+        "trunks"
+      ],
+      "keys": [
+        {
+          "hold": 0.25
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "x": 8,
+              "r": 5
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "head": {
+              "x": -8,
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "head": {
+              "x": 3,
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "head": {
+              "x": -8,
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "head": {
+              "x": 3,
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "head": {
+              "x": -8,
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "head": {
+              "x": 3,
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "head": {
+              "x": -8,
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "head": {
+              "x": 3,
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "head": {
+              "x": -8,
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "head": {
+              "x": 3,
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "head": {
+              "x": -8,
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "head": {
+              "x": 3,
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "x": 6,
+              "r": 6,
+              "y": -4
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "x": 6,
+              "r": 6,
+              "y": -4
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ],
+      "particles": [
+        {
+          "frame": 2,
+          "effect": "dust-puff",
+          "x": 0.27,
+          "y": 0.21,
+          "intensity": 0.3,
+          "color": "#B98A55"
+        },
+        {
+          "frame": 6,
+          "effect": "dust-puff",
+          "x": 0.27,
+          "y": 0.21,
+          "intensity": 0.3,
+          "color": "#B98A55"
+        },
+        {
+          "frame": 10,
+          "effect": "dust-puff",
+          "x": 0.27,
+          "y": 0.21,
+          "intensity": 0.3,
+          "color": "#B98A55"
+        }
+      ]
+    },
+    {
+      "id": "flap",
+      "description": "the woodpecker opens its wings and flaps them, still holding on to the bark with its feet.",
+      "pause": {
+        "frame": 2,
+        "shows": "the woodpecker with its wings spread wide"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "wingR": {
+              "r": -15
+            },
+            "wingL": {
+              "r": -25
+            }
+          },
+          "slots": {
+            "wingL": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "wingR": {
+              "r": -25
+            },
+            "wingL": {
+              "r": -35
+            }
+          },
+          "slots": {
+            "wingL": "open",
+            "wingR": "open",
+            "eye": "wide"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "wingR": {
+              "r": 30
+            },
+            "wingL": {
+              "r": 20
+            }
+          },
+          "slots": {
+            "wingL": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "wingR": {
+              "r": -45
+            },
+            "wingL": {
+              "r": -55
+            }
+          },
+          "slots": {
+            "wingL": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "wingR": {
+              "r": 30
+            },
+            "wingL": {
+              "r": 20
+            }
+          },
+          "slots": {
+            "wingL": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "wingR": {
+              "r": -45
+            },
+            "wingL": {
+              "r": -55
+            }
+          },
+          "slots": {
+            "wingL": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "wingR": {
+              "r": 30
+            },
+            "wingL": {
+              "r": 20
+            }
+          },
+          "slots": {
+            "wingL": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingR": {
+              "r": -10
+            },
+            "wingL": {
+              "r": -20
+            }
+          },
+          "slots": {
+            "wingL": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "look-around",
+      "description": "the woodpecker peeks up the trunk, then turns its head to look behind it, then looks ahead again.",
+      "pause": {
+        "frame": 4,
+        "shows": "the woodpecker looking back over its shoulder"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "r": 10,
+              "y": -4
+            }
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "head": {
+              "r": 10,
+              "y": -4
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "inOut",
+          "bones": {
+            "head": {
+              "sx": -1,
+              "x": 10,
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "head": {
+              "sx": -1,
+              "x": 10,
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "inOut",
+          "bones": {
+            "head": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "description": "the woodpecker crouches against the bark, hops up the trunk with its wings out and grips on again with a little squash.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 8
+            },
+            "belly": {
+              "sx": 1.05,
+              "sy": 0.92
+            },
+            "head": {
+              "y": 6
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -70
+            },
+            "belly": {
+              "sx": 0.97,
+              "sy": 1.05
+            },
+            "wingR": {
+              "r": -30
+            },
+            "wingL": {
+              "r": -40
+            },
+            "tail": {
+              "r": 6
+            },
+            "footL": {
+              "r": -15,
+              "x": 6
+            },
+            "footR": {
+              "r": -15,
+              "x": 6
+            }
+          },
+          "slots": {
+            "wingL": "open",
+            "wingR": "open",
+            "eye": "happy",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -76
+            },
+            "belly": {
+              "sx": 0.97,
+              "sy": 1.05
+            },
+            "wingR": {
+              "r": -10
+            },
+            "wingL": {
+              "r": -20
+            },
+            "tail": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "wingL": "open",
+            "wingR": "open",
+            "eye": "happy",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "root": {
+              "y": 4
+            },
+            "belly": {
+              "sx": 1.06,
+              "sy": 0.9
+            },
+            "head": {
+              "y": 6
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "description": "the woodpecker lifts its wing and waves hello.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "wingR": {
+              "r": -50
+            },
+            "head": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingR": {
+              "r": -65
+            },
+            "head": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingR": {
+              "r": -40
+            },
+            "head": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingR": {
+              "r": -65
+            },
+            "head": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingR": {
+              "r": -40
+            },
+            "head": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "wingR": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "template": "common.nod"
+    },
+    {
+      "id": "shake-head",
+      "template": "common.shake-head"
+    },
+    {
+      "id": "laugh",
+      "template": "common.laugh"
+    },
+    {
+      "id": "dance",
+      "description": "the woodpecker does a happy little dance, swaying from side to side.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "head": {
+              "r": 6
+            },
+            "tail": {
+              "r": -15
+            },
+            "wingL": {
+              "r": 15
+            },
+            "wingR": {
+              "r": -15
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "head": {
+              "r": -6
+            },
+            "tail": {
+              "r": 15
+            },
+            "wingL": {
+              "r": 15
+            },
+            "wingR": {
+              "r": -15
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "head": {
+              "r": 6
+            },
+            "tail": {
+              "r": -15
+            },
+            "wingL": {
+              "r": 15
+            },
+            "wingR": {
+              "r": -15
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "head": {
+              "r": -6
+            },
+            "tail": {
+              "r": 15
+            },
+            "wingL": {
+              "r": 15
+            },
+            "wingR": {
+              "r": -15
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "head": {
+              "r": 6
+            },
+            "tail": {
+              "r": -15
+            },
+            "wingL": {
+              "r": 15
+            },
+            "wingR": {
+              "r": -15
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "head": {
+              "r": -6
+            },
+            "tail": {
+              "r": 15
+            },
+            "wingL": {
+              "r": 15
+            },
+            "wingR": {
+              "r": -15
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "template": "common.talk"
+    },
+    {
+      "id": "shiver",
+      "template": "common.shiver"
+    },
+    {
+      "id": "cry",
+      "template": "common.cry"
+    },
+    {
+      "id": "sleep",
+      "description": "the woodpecker gives a big yawn, closes its eyes and falls asleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the woodpecker fast asleep, eyes shut, head drooped"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "r": -4,
+              "y": -4
+            },
+            "belly": {
+              "sy": 1.05
+            },
+            "wingL": {
+              "r": 20
+            },
+            "wingR": {
+              "r": -20
+            }
+          },
+          "slots": {
+            "eye": "closed",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "head": {
+              "r": -4,
+              "y": -4
+            },
+            "belly": {
+              "sy": 1.05
+            },
+            "wingL": {
+              "r": 20
+            },
+            "wingR": {
+              "r": -20
+            }
+          },
+          "slots": {
+            "eye": "closed",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "head": {
+              "y": 9,
+              "r": 6
+            },
+            "face": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "head": {
+              "y": 9,
+              "r": 6
+            },
+            "face": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "eye": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

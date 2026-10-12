@@ -1,54 +1,245 @@
 {
   "id": "catch-fly",
   "sticker": "frog",
+  "kind": "action",
   "description": "a little fly buzzes up above the frog, who watches it very still; then its long tongue flicks out, catches the fly, and it gulps and grins.",
-  "sheet": "anims/frog.catch-fly.webp",
-  "frame": {
-    "width": 528,
-    "height": 565
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.0303,
-    "y": 0.14867,
-    "width": 0.91288,
-    "height": 0.82124
-  },
   "stickerBox": {
     "x": 0.02995,
     "y": 0.04688,
     "width": 0.9401,
     "height": 0.90625
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.15,
-    0.15,
-    0.6,
-    0.06,
-    0.05,
-    0.08,
-    0.06,
-    0.06,
-    0.3,
-    0.2,
-    0.3,
-    0.15,
-    0.15,
-    0.2,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 9,
+    "frame": 4,
     "shows": "the frog perfectly still, eyes locked on a little fly buzzing just above it"
+  },
+  "puppet": {
+    "rig": "anims/frog.rig.json",
+    "keys": [
+      {
+        "hold": 0.3
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "face": {
+            "x": 8,
+            "y": -2
+          },
+          "fly": {
+            "x": 170,
+            "y": -30
+          }
+        },
+        "slots": {
+          "fly": "fly"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "face": {
+            "x": 10,
+            "y": -4
+          },
+          "fly": {
+            "x": 70,
+            "y": 40
+          }
+        },
+        "slots": {
+          "fly": "fly"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "face": {
+            "x": -2,
+            "y": -8
+          },
+          "fly": {
+            "x": -90,
+            "y": -10
+          }
+        },
+        "slots": {
+          "fly": "fly"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "face": {
+            "x": 8,
+            "y": -8
+          },
+          "fly": {}
+        },
+        "slots": {
+          "fly": "fly",
+          "mouth": "closed"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.96
+          },
+          "face": {
+            "x": 8,
+            "y": -8
+          },
+          "fly": {
+            "x": 4,
+            "y": -4
+          }
+        },
+        "slots": {
+          "fly": "fly",
+          "mouth": "closed"
+        }
+      },
+      {
+        "hold": 0.08,
+        "ease": "out",
+        "bones": {
+          "face": {
+            "x": 8,
+            "y": -8
+          },
+          "fly": {
+            "x": 4,
+            "y": -4
+          },
+          "tongue": {
+            "r": -58,
+            "sx": 0.12
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "fly": "fly",
+          "mouth": "open",
+          "tongue": "tongue"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "face": {
+            "x": 8,
+            "y": -8
+          },
+          "fly": {
+            "x": 4,
+            "y": -4
+          },
+          "tongue": {
+            "r": -58,
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "fly": "fly",
+          "mouth": "open",
+          "tongue": "tongue"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "fly": {
+            "x": -150,
+            "y": 250
+          },
+          "tongue": {
+            "r": -58,
+            "sx": 0.12
+          }
+        },
+        "slots": {
+          "fly": "fly",
+          "mouth": "open",
+          "tongue": "tongue"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.95
+          },
+          "fly": {
+            "x": -150,
+            "y": 250
+          },
+          "tongue": {
+            "r": -58,
+            "sx": 0.1
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.97
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "root": {
+            "y": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
   }
 }

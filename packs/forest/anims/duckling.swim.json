@@ -3,46 +3,135 @@
   "sticker": "duckling",
   "kind": "move",
   "description": "the duckling paddles along to the right, floating low with its orange feet kicking underneath, then stops.",
-  "sheet": "anims/duckling.swim.webp",
-  "frame": {
-    "width": 432,
-    "height": 513
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.12037,
-    "y": 0.02924,
-    "width": 0.77778,
-    "height": 0.93957
-  },
   "stickerBox": {
     "x": 0.17188,
     "y": 0.02995,
     "width": 0.65625,
     "height": 0.9401
   },
-  "hold": [
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "right",
   "stride": 0.5,
   "on": [
     "pond"
-  ]
+  ],
+  "puppet": {
+    "rig": "anims/duckling.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "footL": {
+            "r": 25,
+            "x": -8,
+            "y": -6
+          },
+          "footR": {
+            "r": -20,
+            "x": 6,
+            "y": -12
+          },
+          "head": {
+            "r": -2
+          },
+          "root": {
+            "y": 16
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "r": -2
+          },
+          "footL": {
+            "r": 5,
+            "y": -8
+          },
+          "footR": {
+            "r": 5,
+            "y": -10
+          },
+          "root": {
+            "y": 20
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "footL": {
+            "r": -20,
+            "x": 8,
+            "y": -12
+          },
+          "footR": {
+            "r": 25,
+            "x": -6,
+            "y": -6
+          },
+          "head": {
+            "r": -2
+          },
+          "root": {
+            "y": 16
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "r": -2
+          },
+          "footL": {
+            "r": 5,
+            "y": -8
+          },
+          "footR": {
+            "r": 5,
+            "y": -10
+          },
+          "root": {
+            "y": 20
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "root": {
+            "y": 8
+          }
+        }
+      },
+      {
+        "hold": 0.45
+      }
+    ]
+  }
 }

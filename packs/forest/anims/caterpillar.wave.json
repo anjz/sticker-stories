@@ -1,0 +1,105 @@
+{
+  "id": "wave",
+  "sticker": "caterpillar",
+  "kind": "action",
+  "description": "the caterpillar waves hello with one of its antennae.",
+  "stickerBox": {
+    "x": 0.04036,
+    "y": 0.02995,
+    "width": 0.91797,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/caterpillar.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "antennaR": {
+            "r": 32
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "antennaR": {
+            "r": -14
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "antennaR": {
+            "r": 32
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "antennaR": {
+            "r": -14
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "antennaR": {
+            "r": 32
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

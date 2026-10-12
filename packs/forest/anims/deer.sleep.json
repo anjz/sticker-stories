@@ -1,0 +1,139 @@
+{
+  "id": "sleep",
+  "sticker": "deer",
+  "kind": "action",
+  "description": "the fawn gives a big yawn, closes its eyes and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.22005,
+    "y": 0.02995,
+    "width": 0.5599,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the fawn fast asleep, eyes shut, head drooped"
+  },
+  "puppet": {
+    "rig": "anims/deer.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -4,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -4,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "earL": {
+            "r": 8
+          },
+          "earR": {
+            "r": -8
+          },
+          "face": {
+            "y": 4
+          },
+          "head": {
+            "r": 6,
+            "y": 9
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "earL": {
+            "r": 8
+          },
+          "earR": {
+            "r": -8
+          },
+          "face": {
+            "y": 4
+          },
+          "head": {
+            "r": 6,
+            "y": 9
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,1613 @@
+{
+  "sticker": "squirrel",
+  "skeleton": "squirrel sitting up, three-quarter view facing left: root at the seat; body with belly squash; head on the body, face with eyes and mouth; armL/armR at the shoulders holding the nut (its own bone in the paws, so it can go behind the back); legL/legR at the hips; the big tail at the rump (waves, flicks).",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a squirrel character holding a hazelnut. Draw this exact squirrel as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the body: the orange sitting body with its cream tummy, without head, arms, hind legs or tail; its top, normally under the head, rounded.\n2. the head: the squirrel's head with its tufted pointed ears and black nose, facing left as in image 1, with a completely blank face — no eyes, no mouth — keep the nose and the rosy cheek; its bottom edge rounded.\n3. one arm: a front leg with its paw, bent at the chest, with a rounded shoulder.\n4. the hazelnut, alone.\n5. one hind leg: the sitting hind leg with its dark foot, with a rounded hip.\n6. the tail: the big bushy curled tail, with a rounded base.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a squirrel character holding a hazelnut; image 2 shows the same squirrel cut into puppet parts, with a blank face. Draw the squirrel's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the squirrel in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the squirrel's left eye (on the right of image 1) as it is in image 1: a dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a small happy smile.\n7. the mouth nibbling, two little front teeth showing.\n8. the mouth wide open in a big happy laugh, the inside pink.\n9. the mouth open in a small round 'o'.\n10. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "head": {
+      "sheet": "parts",
+      "at": [
+        266,
+        267
+      ]
+    },
+    "arm": {
+      "sheet": "parts",
+      "at": [
+        640,
+        355
+      ]
+    },
+    "nut": {
+      "sheet": "parts",
+      "at": [
+        891,
+        270
+      ]
+    },
+    "body": {
+      "sheet": "parts",
+      "at": [
+        298,
+        754
+      ]
+    },
+    "leg": {
+      "sheet": "parts",
+      "at": [
+        768,
+        781
+      ]
+    },
+    "tail": {
+      "sheet": "parts",
+      "at": [
+        1243,
+        558
+      ]
+    },
+    "brow": {
+      "sheet": "face",
+      "at": [
+        166,
+        249
+      ]
+    },
+    "browUp": {
+      "sheet": "face",
+      "at": [
+        469,
+        207
+      ]
+    },
+    "browClosed": {
+      "sheet": "face",
+      "at": [
+        731,
+        271
+      ]
+    },
+    "browHappy": {
+      "sheet": "face",
+      "at": [
+        1064,
+        280
+      ]
+    },
+    "browSad": {
+      "sheet": "face",
+      "at": [
+        1375,
+        248
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        147,
+        376
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        448,
+        367
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        751,
+        424
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        1064,
+        381
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1378,
+        379
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        161,
+        737
+      ]
+    },
+    "mouthNibble": {
+      "sheet": "face",
+      "at": [
+        462,
+        737
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        763,
+        743
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        1061,
+        738
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1369,
+        732
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 300,
+      "y": 710
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 300,
+      "y": 700
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 300,
+      "y": 700
+    },
+    {
+      "id": "head",
+      "parent": "body",
+      "x": 225,
+      "y": 385
+    },
+    {
+      "id": "face",
+      "parent": "head",
+      "x": 185,
+      "y": 290
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 139,
+      "y": 271
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 249,
+      "y": 299
+    },
+    {
+      "id": "browL",
+      "parent": "face",
+      "x": 157,
+      "y": 217
+    },
+    {
+      "id": "browR",
+      "parent": "face",
+      "x": 270,
+      "y": 243
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 150,
+      "y": 330
+    },
+    {
+      "id": "armL",
+      "parent": "body",
+      "x": 185,
+      "y": 445
+    },
+    {
+      "id": "armR",
+      "parent": "body",
+      "x": 295,
+      "y": 440
+    },
+    {
+      "id": "nut",
+      "parent": "armR",
+      "x": 240,
+      "y": 465
+    },
+    {
+      "id": "legL",
+      "parent": "root",
+      "x": 200,
+      "y": 640
+    },
+    {
+      "id": "legR",
+      "parent": "root",
+      "x": 380,
+      "y": 640
+    },
+    {
+      "id": "tail",
+      "parent": "root",
+      "x": 430,
+      "y": 640
+    }
+  ],
+  "slots": [
+    {
+      "id": "tail",
+      "bone": "tail",
+      "default": "tail",
+      "attachments": {
+        "tail": {
+          "part": "tail",
+          "x": 516,
+          "y": 372,
+          "scale": 0.735,
+          "rotate": -8
+        }
+      }
+    },
+    {
+      "id": "legL",
+      "bone": "legL",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 206,
+          "y": 605,
+          "scale": 0.55,
+          "shade": 0.18
+        }
+      }
+    },
+    {
+      "id": "armRBack",
+      "bone": "armR",
+      "default": "none",
+      "attachments": {
+        "arm": {
+          "part": "arm",
+          "x": 268,
+          "y": 477,
+          "scale": 0.43,
+          "rotate": 16,
+          "shade": 0.15
+        }
+      }
+    },
+    {
+      "id": "nutBack",
+      "bone": "nut",
+      "default": "none",
+      "attachments": {
+        "nut": {
+          "part": "nut",
+          "x": 183,
+          "y": 446,
+          "scale": 0.65,
+          "rotate": -6
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "body",
+          "x": 295,
+          "y": 548,
+          "scale": 0.73
+        }
+      }
+    },
+    {
+      "id": "legR",
+      "bone": "legR",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 378,
+          "y": 625,
+          "scale": 0.6
+        }
+      }
+    },
+    {
+      "id": "head",
+      "bone": "head",
+      "default": "head",
+      "attachments": {
+        "head": {
+          "part": "head",
+          "x": 244,
+          "y": 230,
+          "scale": 0.735,
+          "rotate": -4
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 139,
+          "y": 271,
+          "scale": 0.24,
+          "scaleY": 1.22
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 139,
+          "y": 268,
+          "scale": 0.264,
+          "scaleY": 1.22
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 139,
+          "y": 277,
+          "scale": 0.24,
+          "scaleY": 1.22
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 139,
+          "y": 273,
+          "scale": 0.24,
+          "scaleY": 1.22
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 139,
+          "y": 272,
+          "scale": 0.24,
+          "scaleY": 1.22
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 249,
+          "y": 299,
+          "scale": 0.35
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 249,
+          "y": 296,
+          "scale": 0.385
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 249,
+          "y": 305,
+          "scale": 0.35
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 249,
+          "y": 301,
+          "scale": 0.35
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 249,
+          "y": 300,
+          "scale": 0.35
+        }
+      }
+    },
+    {
+      "id": "browL",
+      "bone": "browL",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "brow",
+          "x": 157,
+          "y": 217,
+          "scale": 0.18
+        },
+        "up": {
+          "part": "browUp",
+          "x": 157,
+          "y": 209,
+          "scale": 0.18
+        },
+        "sad": {
+          "part": "browSad",
+          "x": 157,
+          "y": 215,
+          "scale": 0.18,
+          "rotate": -10
+        }
+      }
+    },
+    {
+      "id": "browR",
+      "bone": "browR",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "brow",
+          "x": 270,
+          "y": 243,
+          "scale": 0.26
+        },
+        "up": {
+          "part": "browUp",
+          "x": 270,
+          "y": 235,
+          "scale": 0.26
+        },
+        "sad": {
+          "part": "browSad",
+          "x": 270,
+          "y": 241,
+          "scale": 0.26,
+          "rotate": -10
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 151.2,
+          "y": 329.5,
+          "scale": 0.29
+        },
+        "nibble": {
+          "part": "mouthNibble",
+          "x": 152.2,
+          "y": 328.3,
+          "scale": 0.29
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 149.6,
+          "y": 333.3,
+          "scale": 0.29
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 147.7,
+          "y": 331.8,
+          "scale": 0.29
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 148.6,
+          "y": 327.6,
+          "scale": 0.29
+        }
+      }
+    },
+    {
+      "id": "armL",
+      "bone": "armL",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "arm",
+          "x": 150,
+          "y": 458,
+          "scale": 0.42,
+          "shade": 0.1
+        }
+      }
+    },
+    {
+      "id": "nut",
+      "bone": "nut",
+      "default": "nut",
+      "attachments": {
+        "nut": {
+          "part": "nut",
+          "x": 183,
+          "y": 446,
+          "scale": 0.65,
+          "rotate": -6
+        }
+      }
+    },
+    {
+      "id": "armR",
+      "bone": "armR",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "arm",
+          "x": 268,
+          "y": 477,
+          "scale": 0.43,
+          "rotate": 16
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad",
+      "browL": "sad",
+      "browR": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o",
+      "browL": "up",
+      "browR": "up"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "hide-nut",
+      "kind": "action",
+      "description": "the squirrel nibbles its hazelnut, looks left and right to check nobody is watching, hides the nut behind its back with an innocent look, then brings it out and hugs it.",
+      "pause": {
+        "frame": 10,
+        "shows": "the squirrel with the nut hidden behind its back, looking innocent"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "armR": {
+              "x": -8,
+              "y": -36
+            },
+            "armL": {
+              "x": -8,
+              "y": -36
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "armR": {
+              "x": -8,
+              "y": -36
+            },
+            "armL": {
+              "x": -8,
+              "y": -36
+            },
+            "head": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "mouth": "nibble",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "armR": {
+              "x": -8,
+              "y": -36
+            },
+            "armL": {
+              "x": -8,
+              "y": -36
+            }
+          },
+          "slots": {
+            "mouth": "nibble",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "armR": {
+              "x": -8,
+              "y": -36
+            },
+            "armL": {
+              "x": -8,
+              "y": -36
+            },
+            "head": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "mouth": "nibble",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "face": {
+              "x": -12
+            },
+            "head": {
+              "r": -5
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "face": {
+              "x": -12
+            },
+            "head": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "browL": "up",
+            "browR": "up"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "face": {
+              "x": 10
+            },
+            "head": {
+              "r": 5
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "face": {
+              "x": 10
+            },
+            "head": {
+              "r": 5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "browL": "up",
+            "browR": "up"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "armR": {
+              "x": 40,
+              "y": 8,
+              "r": -10
+            },
+            "armL": {
+              "x": 30,
+              "y": 10
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.8,
+          "bones": {
+            "armR": {
+              "x": 75,
+              "y": 12,
+              "r": -15
+            },
+            "body": {
+              "r": 2
+            },
+            "head": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "armR": "none",
+            "armRBack": "arm",
+            "armL": "none",
+            "nut": "none",
+            "nutBack": "nut",
+            "browL": "up",
+            "browR": "up"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "armR": {
+              "x": 75,
+              "y": 12,
+              "r": -15
+            },
+            "body": {
+              "r": -1
+            },
+            "head": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "armR": "none",
+            "armRBack": "arm",
+            "armL": "none",
+            "nut": "none",
+            "nutBack": "nut",
+            "browL": "up",
+            "browR": "up"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o",
+            "browL": "up",
+            "browR": "up"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "armR": {
+              "x": -6,
+              "y": -8
+            },
+            "armL": {
+              "x": 8,
+              "y": -8
+            },
+            "body": {
+              "r": -3
+            },
+            "head": {
+              "r": -4
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "armR": {
+              "x": -6,
+              "y": -8
+            },
+            "armL": {
+              "x": 8,
+              "y": -8
+            },
+            "body": {
+              "r": 3
+            },
+            "head": {
+              "r": 3
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "scamper",
+      "kind": "move",
+      "description": "the squirrel bounds along to the left, its big bushy tail waving, then sits up with its nut.",
+      "loop": {
+        "from": 1,
+        "to": 3
+      },
+      "facing": "left",
+      "stride": 0.8,
+      "hops": true,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.19,
+          "bones": {
+            "root": {
+              "y": 5
+            },
+            "belly": {
+              "sx": 1.05,
+              "sy": 0.93
+            },
+            "head": {
+              "y": 6
+            },
+            "tail": {
+              "r": 6
+            }
+          }
+        },
+        {
+          "hold": 0.19,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -46
+            },
+            "body": {
+              "r": -8
+            },
+            "head": {
+              "r": -3
+            },
+            "legL": {
+              "r": 18,
+              "x": 10
+            },
+            "legR": {
+              "r": 18,
+              "x": 10
+            },
+            "armL": {
+              "r": -12
+            },
+            "armR": {
+              "r": -12
+            },
+            "tail": {
+              "r": -10
+            },
+            "belly": {
+              "sy": 1.04
+            }
+          }
+        },
+        {
+          "hold": 0.19,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "body": {
+              "r": -3
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "tail": {
+              "r": 8
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "belly": {
+              "sy": 0.97
+            },
+            "tail": {
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "nibble",
+      "kind": "action",
+      "description": "the squirrel nibbles its hazelnut, nibble, nibble, nibble.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "armR": {
+              "x": -8,
+              "y": -36
+            },
+            "armL": {
+              "x": -8,
+              "y": -36
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "armR": {
+              "x": -8,
+              "y": -36
+            },
+            "armL": {
+              "x": -8,
+              "y": -36
+            },
+            "head": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "mouth": "nibble",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "armR": {
+              "x": -8,
+              "y": -36
+            },
+            "armL": {
+              "x": -8,
+              "y": -36
+            }
+          },
+          "slots": {
+            "mouth": "nibble",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "armR": {
+              "x": -8,
+              "y": -36
+            },
+            "armL": {
+              "x": -8,
+              "y": -36
+            },
+            "head": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "mouth": "nibble",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "armR": {
+              "x": -8,
+              "y": -36
+            },
+            "armL": {
+              "x": -8,
+              "y": -36
+            }
+          },
+          "slots": {
+            "mouth": "nibble",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "armR": {
+              "x": -8,
+              "y": -36
+            },
+            "armL": {
+              "x": -8,
+              "y": -36
+            },
+            "head": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "mouth": "nibble",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "armR": {
+              "x": -8,
+              "y": -36
+            },
+            "armL": {
+              "x": -8,
+              "y": -36
+            }
+          },
+          "slots": {
+            "mouth": "nibble",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "tail-flick",
+      "kind": "action",
+      "description": "the squirrel flicks its big bushy tail, swish, swish!",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "tail": {
+              "r": -7
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "tail": {
+              "r": 6,
+              "sy": 0.97
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "tail": {
+              "r": -7
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "tail": {
+              "r": 6,
+              "sy": 0.97
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "tail": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sniff",
+      "kind": "action",
+      "description": "the squirrel lifts its nose and sniffs the air, twitch, twitch.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": 5,
+              "y": -5
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 6,
+              "y": -7
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 5,
+              "y": -5
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 6,
+              "y": -7
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 5,
+              "y": -5
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "browL": "up",
+            "browR": "up"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "kind": "action",
+      "description": "the squirrel waves hello with one little paw, holding its nut in the other.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "armL": {
+              "r": 75,
+              "y": -6
+            },
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "armL": {
+              "r": 95,
+              "y": -6
+            },
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "armL": {
+              "r": 70,
+              "y": -6
+            },
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "armL": {
+              "r": 95,
+              "y": -6
+            },
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "armL": {
+              "r": 70,
+              "y": -6
+            },
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "template": "common.jump"
+    },
+    {
+      "id": "nod",
+      "template": "common.nod"
+    },
+    {
+      "id": "shake-head",
+      "template": "common.shake-head"
+    },
+    {
+      "id": "look-around",
+      "template": "common.look-around"
+    },
+    {
+      "id": "laugh",
+      "template": "common.laugh"
+    },
+    {
+      "id": "dance",
+      "template": "common.dance"
+    },
+    {
+      "id": "talk",
+      "template": "common.talk"
+    },
+    {
+      "id": "shiver",
+      "template": "common.shiver"
+    },
+    {
+      "id": "cry",
+      "template": "common.cry"
+    },
+    {
+      "id": "sleep",
+      "kind": "action",
+      "description": "{the} gives a big yawn, closes its eyes and falls asleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "{the} fast asleep, eyes shut, head drooped"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "r": -4,
+              "y": -4
+            },
+            "belly": {
+              "sy": 1.05
+            },
+            "armL": {
+              "r": 30
+            },
+            "armR": {
+              "r": 25
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "head": {
+              "r": -4,
+              "y": -4
+            },
+            "belly": {
+              "sy": 1.05
+            },
+            "armL": {
+              "r": 30
+            },
+            "armR": {
+              "r": 25
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "head": {
+              "y": 9,
+              "r": 6
+            },
+            "face": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            },
+            "armL": {
+              "r": -8
+            },
+            "armR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "head": {
+              "y": 9,
+              "r": 6
+            },
+            "face": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            },
+            "armL": {
+              "r": -8
+            },
+            "armR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "browL": "up",
+            "browR": "up"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "sniff",
+  "sticker": "fox",
+  "kind": "action",
+  "description": "the fox stretches its nose forward and sniffs, sniffs, sniffs the air.",
+  "stickerBox": {
+    "x": 0.06901,
+    "y": 0.02995,
+    "width": 0.86198,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/fox.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "earL": {
+            "r": 10,
+            "sy": 1.06
+          },
+          "earR": {
+            "r": -10,
+            "sy": 1.06
+          },
+          "head": {
+            "r": -6,
+            "x": 6
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": -7,
+            "x": 9
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": -6,
+            "x": 6
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": -7,
+            "x": 9
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": -6,
+            "x": 6
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

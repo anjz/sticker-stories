@@ -1,0 +1,169 @@
+{
+  "id": "sleep",
+  "sticker": "ladybug",
+  "kind": "action",
+  "description": "the ladybug gives a big yawn, tucks its head down, closes its eyes and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.08073,
+    "width": 0.9401,
+    "height": 0.83724
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the ladybug fast asleep, eyes shut, head drooped"
+  },
+  "puppet": {
+    "rig": "anims/ladybug.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -4,
+            "y": -4
+          },
+          "legL1": {
+            "r": -60
+          },
+          "legL3": {
+            "r": 60
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -4,
+            "y": -4
+          },
+          "legL1": {
+            "r": -60
+          },
+          "legL3": {
+            "r": 60
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "antennaL": {
+            "r": 12
+          },
+          "antennaR": {
+            "r": 14
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "body": {
+            "y": 4
+          },
+          "face": {
+            "y": 4
+          },
+          "head": {
+            "r": 6,
+            "y": 9
+          },
+          "legL1": {
+            "r": 8
+          },
+          "legL3": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "antennaL": {
+            "r": 12
+          },
+          "antennaR": {
+            "r": 14
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "body": {
+            "y": 4
+          },
+          "face": {
+            "y": 4
+          },
+          "head": {
+            "r": 6,
+            "y": 9
+          },
+          "legL1": {
+            "r": 8
+          },
+          "legL3": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

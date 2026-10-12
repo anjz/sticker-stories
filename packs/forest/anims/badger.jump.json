@@ -1,0 +1,142 @@
+{
+  "id": "jump",
+  "sticker": "badger",
+  "kind": "action",
+  "description": "the badger crouches, jumps up high for joy and lands with a little squash.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.16667,
+    "width": 0.9401,
+    "height": 0.66667
+  },
+  "puppet": {
+    "rig": "anims/badger.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.92
+          },
+          "body": {
+            "y": 4
+          },
+          "head": {
+            "y": 4
+          },
+          "root": {
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.04
+          },
+          "body": {
+            "r": 5
+          },
+          "head": {
+            "r": 4
+          },
+          "legBF": {
+            "r": -18
+          },
+          "legBN": {
+            "r": -22
+          },
+          "legFF": {
+            "r": 18
+          },
+          "legFN": {
+            "r": 24
+          },
+          "root": {
+            "y": -70
+          },
+          "tail": {
+            "r": -18
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.04
+          },
+          "body": {
+            "r": 2
+          },
+          "legBF": {
+            "r": -12
+          },
+          "legBN": {
+            "r": -14
+          },
+          "legFF": {
+            "r": 12
+          },
+          "legFN": {
+            "r": 16
+          },
+          "root": {
+            "y": -76
+          },
+          "tail": {
+            "r": -12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.9
+          },
+          "head": {
+            "y": 5
+          },
+          "root": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

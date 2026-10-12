@@ -1,0 +1,87 @@
+{
+  "id": "sniff",
+  "sticker": "deer",
+  "kind": "action",
+  "description": "the fawn stretches its nose forward and sniffs, sniffs, sniffs.",
+  "stickerBox": {
+    "x": 0.22005,
+    "y": 0.02995,
+    "width": 0.5599,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/deer.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "earL": {
+            "r": -6
+          },
+          "earR": {
+            "r": 6
+          },
+          "head": {
+            "r": -10,
+            "x": -6
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": -12,
+            "x": -9
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": -10,
+            "x": -6
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": -12,
+            "x": -9
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": -10,
+            "x": -6
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": -12,
+            "x": -9
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

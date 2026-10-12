@@ -1,0 +1,112 @@
+{
+  "id": "stretch",
+  "sticker": "snail",
+  "kind": "action",
+  "description": "the snail stretches its neck up tall with a big yawn, then settles back down.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.08984,
+    "width": 0.9401,
+    "height": 0.81901
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the snail stretched up tall, yawning"
+  },
+  "puppet": {
+    "rig": "anims/snail.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.06
+          },
+          "stalkL": {
+            "sy": 1.05
+          },
+          "stalkR": {
+            "sy": 1.05
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.14
+          },
+          "shell": {
+            "y": -6
+          },
+          "stalkL": {
+            "r": -8,
+            "sy": 1.12
+          },
+          "stalkR": {
+            "r": 8,
+            "sy": 1.12
+          }
+        },
+        "slots": {
+          "mouth": "open",
+          "stalkL": "closed",
+          "stalkR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.15
+          },
+          "shell": {
+            "y": -6
+          },
+          "stalkL": {
+            "r": -10,
+            "sy": 1.14
+          },
+          "stalkR": {
+            "r": 10,
+            "sy": 1.14
+          }
+        },
+        "slots": {
+          "mouth": "o",
+          "stalkL": "closed",
+          "stalkR": "closed"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.96
+          }
+        },
+        "slots": {
+          "stalkL": "closed",
+          "stalkR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

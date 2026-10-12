@@ -1,0 +1,67 @@
+{
+  "id": "shake-head",
+  "sticker": "pinecone",
+  "kind": "action",
+  "description": "the pinecone shakes its head no.",
+  "stickerBox": {
+    "x": 0.03516,
+    "y": 0.02995,
+    "width": 0.92969,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/pinecone.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "x": -12
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "face": {
+            "x": 12
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "x": -12
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "face": {
+            "x": 12
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "id": "wave",
+  "sticker": "duckling",
+  "description": "the duckling lifts its little wing and waves hello.",
+  "stickerBox": {
+    "x": 0.17188,
+    "y": 0.02995,
+    "width": 0.65625,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/duckling.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": -3
+          },
+          "wingL": {
+            "r": 50
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": -3
+          },
+          "wingL": {
+            "r": 65
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": -3
+          },
+          "wingL": {
+            "r": 40
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": -3
+          },
+          "wingL": {
+            "r": 65
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": -3
+          },
+          "wingL": {
+            "r": 40
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "wingL": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

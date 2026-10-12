@@ -1,0 +1,2306 @@
+{
+  "sticker": "snail",
+  "skeleton": "snail seen from the side facing right: root on the ground; body (the slimy foot with the head rising at the right) with squash, a neck bone so the head can rise or tuck into the shell; shell on the body's back; stalkL/stalkR on the head with the eye balls at their tips (face pieces); mouth on the head.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a snail character. Draw this exact snail as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the shell: the spiral brown shell, alone.\n2. the body: the pale green slimy body and foot with its head rising up on the right as in image 1, with a completely blank face — no mouth — keep the rosy cheek; without the eye stalks.\n3. one eye stalk: a thin green stalk with no eye ball on its tip, both ends rounded.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a snail character; image 2 shows the same snail cut into puppet parts, with a blank face. Draw the snail's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the snail in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. one of the snail's eye balls on its stalk tip as it is in image 1: a round white eye ball with a dark pupil and a sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its lid drooping.\n6. the mouth as it is in image 1: a small calm smile.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "shell": {
+      "sheet": "parts",
+      "at": [
+        409,
+        388
+      ]
+    },
+    "body": {
+      "sheet": "parts",
+      "at": [
+        854,
+        741
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        166,
+        370
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        471,
+        355
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        790,
+        376
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        1090,
+        376
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1374,
+        368
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        207,
+        823
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        590,
+        813
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        970,
+        803
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1342,
+        794
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 380,
+      "y": 668
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 300,
+      "y": 560
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 560,
+      "y": 668
+    },
+    {
+      "id": "head",
+      "parent": "belly",
+      "x": 610,
+      "y": 330
+    },
+    {
+      "id": "stalkL",
+      "parent": "head",
+      "x": 568,
+      "y": 292
+    },
+    {
+      "id": "stalkR",
+      "parent": "head",
+      "x": 638,
+      "y": 296
+    },
+    {
+      "id": "mouth",
+      "parent": "head",
+      "x": 632,
+      "y": 355
+    },
+    {
+      "id": "shell",
+      "parent": "root",
+      "x": 290,
+      "y": 590
+    }
+  ],
+  "slots": [
+    {
+      "id": "stalkL",
+      "bone": "stalkL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 527,
+          "y": 190,
+          "scale": 0.42,
+          "scaleY": 1.15,
+          "rotate": -1
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 527,
+          "y": 190,
+          "scale": 0.42,
+          "scaleY": 1.15,
+          "rotate": -1
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 527,
+          "y": 190,
+          "scale": 0.42,
+          "scaleY": 1.15,
+          "rotate": -1
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 527,
+          "y": 190,
+          "scale": 0.42,
+          "scaleY": 1.15,
+          "rotate": -1
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 527,
+          "y": 190,
+          "scale": 0.42,
+          "scaleY": 1.15,
+          "rotate": -1
+        }
+      }
+    },
+    {
+      "id": "stalkR",
+      "bone": "stalkR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 655,
+          "y": 212,
+          "scale": 0.42,
+          "scaleY": 1.15,
+          "rotate": 24
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 655,
+          "y": 212,
+          "scale": 0.42,
+          "scaleY": 1.15,
+          "rotate": 24
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 655,
+          "y": 212,
+          "scale": 0.42,
+          "scaleY": 1.15,
+          "rotate": 24
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 655,
+          "y": 212,
+          "scale": 0.42,
+          "scaleY": 1.15,
+          "rotate": 24
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 655,
+          "y": 212,
+          "scale": 0.42,
+          "scaleY": 1.15,
+          "rotate": 24
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "body",
+          "x": 370,
+          "y": 487,
+          "scale": 0.615,
+          "rotate": -2
+        }
+      }
+    },
+    {
+      "id": "shell",
+      "bone": "shell",
+      "default": "shell",
+      "attachments": {
+        "shell": {
+          "part": "shell",
+          "x": 284,
+          "y": 380,
+          "scale": 0.61
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 632,
+          "y": 355,
+          "scale": 0.24
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 632,
+          "y": 362,
+          "scale": 0.2
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 632,
+          "y": 360,
+          "scale": 0.2
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 632,
+          "y": 360,
+          "scale": 0.22
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "stalkL": "happy",
+      "stalkR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "stalkL": "sad",
+      "stalkR": "sad",
+      "mouth": "sad"
+    },
+    "sleeping": {
+      "stalkL": "closed",
+      "stalkR": "closed",
+      "mouth": "smile"
+    },
+    "surprised": {
+      "stalkL": "wide",
+      "stalkR": "wide",
+      "mouth": "o"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "stalkL": "closed",
+      "stalkR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "hide",
+      "kind": "action",
+      "description": "the snail pulls its head and eye stalks into its shell, waits there, then slowly peeks out again and looks around.",
+      "pause": {
+        "frame": 4,
+        "shows": "the snail hidden inside its shell: only the shell shows"
+      },
+      "keys": [
+        {
+          "hold": 0.4
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "stalkL": {
+              "sy": 0.85,
+              "y": 15,
+              "r": -6
+            },
+            "stalkR": {
+              "sy": 0.85,
+              "y": 15,
+              "r": -6
+            },
+            "belly": {
+              "sy": 0.97
+            }
+          },
+          "slots": {
+            "stalkL": "wide",
+            "stalkR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "body": {
+              "sx": 0.8,
+              "sy": 0.88
+            },
+            "stalkL": {
+              "sy": 0.6,
+              "y": 60
+            },
+            "stalkR": {
+              "sy": 0.6,
+              "y": 60
+            },
+            "shell": {
+              "y": 20
+            }
+          },
+          "slots": {
+            "stalkL": "closed",
+            "stalkR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "body": {
+              "sx": 0.4,
+              "sy": 0.42,
+              "x": -30
+            },
+            "stalkL": {
+              "sy": 0.3,
+              "y": 80
+            },
+            "stalkR": {
+              "sy": 0.3,
+              "y": 80
+            },
+            "shell": {
+              "y": 58
+            }
+          },
+          "slots": {
+            "stalkL": "closed",
+            "stalkR": "closed",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.9,
+          "bones": {
+            "body": {
+              "sx": 0.4,
+              "sy": 0.42,
+              "x": -30
+            },
+            "stalkL": {
+              "sy": 0.3,
+              "y": 80
+            },
+            "stalkR": {
+              "sy": 0.3,
+              "y": 80
+            },
+            "shell": {
+              "y": 58
+            }
+          },
+          "slots": {
+            "stalkL": "closed",
+            "stalkR": "closed",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "sx": 0.4,
+              "sy": 0.42,
+              "x": -30
+            },
+            "stalkL": {
+              "sy": 0.3,
+              "y": 80
+            },
+            "stalkR": {
+              "sy": 0.3,
+              "y": 80
+            },
+            "shell": {
+              "y": 58,
+              "r": -2
+            }
+          },
+          "slots": {
+            "stalkL": "closed",
+            "stalkR": "closed",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "body": {
+              "sx": 0.72,
+              "sy": 0.8
+            },
+            "stalkL": {
+              "sy": 0.6,
+              "y": 45
+            },
+            "stalkR": {
+              "sy": 0.6,
+              "y": 45
+            },
+            "shell": {
+              "y": 32
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "body": {
+              "sx": 0.92,
+              "sy": 0.96
+            },
+            "stalkL": {
+              "sy": 0.85
+            },
+            "stalkR": {
+              "sy": 0.85
+            },
+            "shell": {
+              "y": 8
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "stalkL": {
+              "r": -22
+            },
+            "stalkR": {
+              "r": -16
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "stalkL": {
+              "r": 14
+            },
+            "stalkR": {
+              "r": 20
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "crawl",
+      "kind": "move",
+      "description": "the snail glides along on its foot, eye stalks bobbing, and settles.",
+      "facing": "right",
+      "stride": 0.35,
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "belly": {
+              "sx": 1.04,
+              "sy": 0.98
+            },
+            "stalkL": {
+              "r": 7
+            },
+            "stalkR": {
+              "r": -4
+            },
+            "shell": {
+              "y": -3,
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "belly": {
+              "sx": 1.01,
+              "sy": 1.01
+            },
+            "stalkL": {
+              "r": -3
+            },
+            "stalkR": {
+              "r": 5
+            },
+            "head": {
+              "y": -2
+            },
+            "shell": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "belly": {
+              "sx": 0.97,
+              "sy": 1.02
+            },
+            "stalkL": {
+              "r": -6
+            },
+            "stalkR": {
+              "r": 3
+            },
+            "shell": {
+              "y": -3,
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "belly": {
+              "sx": 1.0
+            },
+            "stalkL": {
+              "r": 3
+            },
+            "stalkR": {
+              "r": -5
+            },
+            "head": {
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "stalkL": {
+              "r": 2
+            },
+            "stalkR": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "look-around",
+      "kind": "action",
+      "description": "the snail turns its eye stalks one way, then the other, then back.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "stalkL": {
+              "r": -24
+            },
+            "stalkR": {
+              "r": -18
+            },
+            "belly": {
+              "sx": 0.99
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "stalkL": {
+              "r": -26
+            },
+            "stalkR": {
+              "r": -20
+            },
+            "belly": {
+              "sx": 0.99
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "stalkL": {
+              "r": 16
+            },
+            "stalkR": {
+              "r": 24
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "stalkL": {
+              "r": 18
+            },
+            "stalkR": {
+              "r": 26
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "wiggle",
+      "kind": "action",
+      "description": "the snail wiggles its eye stalks this way and that, very pleased with itself.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "stalkL": {
+              "r": -18
+            },
+            "stalkR": {
+              "r": 18
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "stalkL": {
+              "r": 14
+            },
+            "stalkR": {
+              "r": -14
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "stalkL": {
+              "r": -18
+            },
+            "stalkR": {
+              "r": 18
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "stalkL": {
+              "r": 14
+            },
+            "stalkR": {
+              "r": -14
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "stalkL": {
+              "r": -18
+            },
+            "stalkR": {
+              "r": 18
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "stalkL": {
+              "r": 14
+            },
+            "stalkR": {
+              "r": -14
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "stretch",
+      "kind": "action",
+      "description": "the snail stretches its neck up tall with a big yawn, then settles back down.",
+      "pause": {
+        "frame": 3,
+        "shows": "the snail stretched up tall, yawning"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "belly": {
+              "sy": 1.06,
+              "sx": 0.98
+            },
+            "stalkL": {
+              "sy": 1.05
+            },
+            "stalkR": {
+              "sy": 1.05
+            }
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "belly": {
+              "sy": 1.14,
+              "sx": 0.96
+            },
+            "stalkL": {
+              "sy": 1.12,
+              "r": -8
+            },
+            "stalkR": {
+              "sy": 1.12,
+              "r": 8
+            },
+            "shell": {
+              "y": -6
+            }
+          },
+          "slots": {
+            "stalkL": "closed",
+            "stalkR": "closed",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "belly": {
+              "sy": 1.15,
+              "sx": 0.96
+            },
+            "stalkL": {
+              "sy": 1.14,
+              "r": -10
+            },
+            "stalkR": {
+              "sy": 1.14,
+              "r": 10
+            },
+            "shell": {
+              "y": -6
+            }
+          },
+          "slots": {
+            "stalkL": "closed",
+            "stalkR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "stalkL": "closed",
+            "stalkR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "kind": "action",
+      "description": "the snail waves hello with one of its eye stalks.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "stalkL": {
+              "r": 0
+            },
+            "stalkR": {
+              "r": 28
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": 0
+            },
+            "stalkR": {
+              "r": -6
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": 0
+            },
+            "stalkR": {
+              "r": 28
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": 0
+            },
+            "stalkR": {
+              "r": -6
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": 0
+            },
+            "stalkR": {
+              "r": 28
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "kind": "action",
+      "description": "the snail nods yes, twice.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": 14
+            },
+            "stalkR": {
+              "r": 14
+            },
+            "belly": {
+              "sy": 0.97
+            },
+            "head": {
+              "y": 3
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -3
+            },
+            "stalkR": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": 14
+            },
+            "stalkR": {
+              "r": 14
+            },
+            "belly": {
+              "sy": 0.97
+            },
+            "head": {
+              "y": 3
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -2
+            },
+            "stalkR": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "shake-head",
+      "kind": "action",
+      "description": "the snail shakes its head no, eye stalks swinging.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "stalkL": {
+              "r": -14
+            },
+            "stalkR": {
+              "r": -14
+            },
+            "belly": {
+              "sx": 0.99
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "stalkL": {
+              "r": 14
+            },
+            "stalkR": {
+              "r": 14
+            },
+            "belly": {
+              "sx": 0.99
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "stalkL": {
+              "r": -14
+            },
+            "stalkR": {
+              "r": -14
+            },
+            "belly": {
+              "sx": 0.99
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "stalkL": {
+              "r": 12
+            },
+            "stalkR": {
+              "r": 12
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "laugh",
+      "kind": "action",
+      "description": "the snail laughs and laughs, bouncing with giggles.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "root": {
+              "y": -5
+            },
+            "stalkL": {
+              "r": -8
+            },
+            "stalkR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "stalkL": {
+              "r": 3
+            },
+            "stalkR": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "root": {
+              "y": -5
+            },
+            "stalkL": {
+              "r": -8
+            },
+            "stalkR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "stalkL": {
+              "r": 3
+            },
+            "stalkR": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "root": {
+              "y": -5
+            },
+            "stalkL": {
+              "r": -8
+            },
+            "stalkR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "stalkL": {
+              "r": 3
+            },
+            "stalkR": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "root": {
+              "y": -5
+            },
+            "stalkL": {
+              "r": -8
+            },
+            "stalkR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "stalkL": {
+              "r": 3
+            },
+            "stalkR": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "kind": "action",
+      "description": "the snail talks, its mouth moving, its head bobbing a little.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "head": {
+              "y": -3,
+              "r": -2
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "head": {
+              "y": 1,
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "head": {
+              "y": -3,
+              "r": -2
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "head": {
+              "y": 1,
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "head": {
+              "y": -3,
+              "r": -2
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "head": {
+              "y": 1,
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "head": {
+              "y": -3,
+              "r": -2
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "head": {
+              "y": 1,
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "head": {
+              "y": -3,
+              "r": -2
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "head": {
+              "y": 1,
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shiver",
+      "kind": "action",
+      "description": "the snail shivers and trembles, cold or scared.",
+      "keys": [
+        {
+          "hold": 0.1,
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "cry",
+      "kind": "action",
+      "description": "the snail cries, eye stalks drooping, its body shaking with little sobs.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "stalkL": {
+              "r": -22,
+              "sy": 0.9
+            },
+            "stalkR": {
+              "r": 16,
+              "sy": 0.9
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "shell": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "stalkL": "sad",
+            "stalkR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -22,
+              "sy": 0.9
+            },
+            "stalkR": {
+              "r": 16,
+              "sy": 0.9
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "shell": {
+              "y": 2
+            }
+          },
+          "slots": {
+            "stalkL": "sad",
+            "stalkR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -22,
+              "sy": 0.9
+            },
+            "stalkR": {
+              "r": 16,
+              "sy": 0.9
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "shell": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "stalkL": "sad",
+            "stalkR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -22,
+              "sy": 0.9
+            },
+            "stalkR": {
+              "r": 16,
+              "sy": 0.9
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "shell": {
+              "y": 2
+            }
+          },
+          "slots": {
+            "stalkL": "sad",
+            "stalkR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -22,
+              "sy": 0.9
+            },
+            "stalkR": {
+              "r": 16,
+              "sy": 0.9
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "shell": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "stalkL": "sad",
+            "stalkR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -22,
+              "sy": 0.9
+            },
+            "stalkR": {
+              "r": 16,
+              "sy": 0.9
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "shell": {
+              "y": 2
+            }
+          },
+          "slots": {
+            "stalkL": "sad",
+            "stalkR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -22,
+              "sy": 0.9
+            },
+            "stalkR": {
+              "r": 16,
+              "sy": 0.9
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "shell": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "stalkL": "sad",
+            "stalkR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -22,
+              "sy": 0.9
+            },
+            "stalkR": {
+              "r": 16,
+              "sy": 0.9
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "shell": {
+              "y": 2
+            }
+          },
+          "slots": {
+            "stalkL": "sad",
+            "stalkR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "stalkL": "sad",
+            "stalkR": "sad"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "kind": "action",
+      "description": "the snail gives a big yawn, lets its eye stalks droop and falls asleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the snail fast asleep, eye stalks drooping, eyes shut"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            },
+            "stalkL": {
+              "r": -6,
+              "sy": 1.05
+            },
+            "stalkR": {
+              "r": 6,
+              "sy": 1.05
+            }
+          },
+          "slots": {
+            "stalkL": "closed",
+            "stalkR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            },
+            "stalkL": {
+              "r": -6,
+              "sy": 1.05
+            },
+            "stalkR": {
+              "r": 6,
+              "sy": 1.05
+            }
+          },
+          "slots": {
+            "stalkL": "closed",
+            "stalkR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            },
+            "stalkL": {
+              "r": 20,
+              "sy": 0.85
+            },
+            "stalkR": {
+              "r": 36,
+              "sy": 0.85
+            },
+            "shell": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "stalkL": "closed",
+            "stalkR": "closed"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            },
+            "stalkL": {
+              "r": 22,
+              "sy": 0.85
+            },
+            "stalkR": {
+              "r": 38,
+              "sy": 0.85
+            },
+            "shell": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "stalkL": "closed",
+            "stalkR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "stalkL": {
+              "r": 0
+            },
+            "stalkR": {
+              "r": 0
+            }
+          },
+          "slots": {
+            "stalkL": "wide",
+            "stalkR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "stalkL": "closed",
+            "stalkR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "kind": "action",
+      "description": "the snail gives a happy little hop and lands with a squash.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 4.0
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.9
+            },
+            "head": {
+              "y": 6
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -39.0
+            },
+            "belly": {
+              "sx": 0.96,
+              "sy": 1.06
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -42.0
+            },
+            "belly": {
+              "sx": 0.96,
+              "sy": 1.06
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "root": {
+              "y": 2.5
+            },
+            "belly": {
+              "sx": 1.08,
+              "sy": 0.88
+            },
+            "head": {
+              "y": 6
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "dance",
+      "kind": "action",
+      "description": "the snail does a happy little dance, swaying from side to side.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "root": {
+              "x": -10,
+              "y": 0
+            },
+            "shell": {
+              "r": -5
+            },
+            "belly": {
+              "sx": 0.98
+            },
+            "stalkL": {
+              "r": -14
+            },
+            "stalkR": {
+              "r": -14
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "root": {
+              "x": 10,
+              "y": -8
+            },
+            "shell": {
+              "r": 5
+            },
+            "belly": {
+              "sx": 1.02
+            },
+            "stalkL": {
+              "r": 14
+            },
+            "stalkR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "root": {
+              "x": -10,
+              "y": 0
+            },
+            "shell": {
+              "r": -5
+            },
+            "belly": {
+              "sx": 0.98
+            },
+            "stalkL": {
+              "r": -14
+            },
+            "stalkR": {
+              "r": -14
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "root": {
+              "x": 10,
+              "y": -8
+            },
+            "shell": {
+              "r": 5
+            },
+            "belly": {
+              "sx": 1.02
+            },
+            "stalkL": {
+              "r": 14
+            },
+            "stalkR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "root": {
+              "x": -10,
+              "y": 0
+            },
+            "shell": {
+              "r": -5
+            },
+            "belly": {
+              "sx": 0.98
+            },
+            "stalkL": {
+              "r": -14
+            },
+            "stalkR": {
+              "r": -14
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "root": {
+              "x": 10,
+              "y": -8
+            },
+            "shell": {
+              "r": 5
+            },
+            "belly": {
+              "sx": 1.02
+            },
+            "stalkL": {
+              "r": 14
+            },
+            "stalkR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "stalkL": "happy",
+            "stalkR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

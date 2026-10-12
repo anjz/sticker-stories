@@ -1,0 +1,264 @@
+{
+  "id": "shake-off",
+  "sticker": "badger",
+  "kind": "action",
+  "description": "the badger shakes itself off from nose to tail, like a dog after a swim.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.16667,
+    "width": 0.9401,
+    "height": 0.66667
+  },
+  "puppet": {
+    "rig": "anims/badger.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.96
+          },
+          "root": {
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.02
+          },
+          "body": {
+            "r": 2.5
+          },
+          "head": {
+            "r": -7
+          },
+          "root": {
+            "x": 3
+          },
+          "tail": {
+            "r": 22
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.02
+          },
+          "body": {
+            "r": -2.5
+          },
+          "head": {
+            "r": 7
+          },
+          "root": {
+            "x": -3
+          },
+          "tail": {
+            "r": -22
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.02
+          },
+          "body": {
+            "r": 2.5
+          },
+          "head": {
+            "r": -7
+          },
+          "root": {
+            "x": 3
+          },
+          "tail": {
+            "r": 22
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.02
+          },
+          "body": {
+            "r": -2.5
+          },
+          "head": {
+            "r": 7
+          },
+          "root": {
+            "x": -3
+          },
+          "tail": {
+            "r": -22
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.02
+          },
+          "body": {
+            "r": 2.5
+          },
+          "head": {
+            "r": -7
+          },
+          "root": {
+            "x": 3
+          },
+          "tail": {
+            "r": 22
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.02
+          },
+          "body": {
+            "r": -2.5
+          },
+          "head": {
+            "r": 7
+          },
+          "root": {
+            "x": -3
+          },
+          "tail": {
+            "r": -22
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.02
+          },
+          "body": {
+            "r": 2.5
+          },
+          "head": {
+            "r": -7
+          },
+          "root": {
+            "x": 3
+          },
+          "tail": {
+            "r": 22
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.02
+          },
+          "body": {
+            "r": -2.5
+          },
+          "head": {
+            "r": 7
+          },
+          "root": {
+            "x": -3
+          },
+          "tail": {
+            "r": -22
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

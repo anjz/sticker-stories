@@ -1,0 +1,93 @@
+{
+  "id": "twirl",
+  "sticker": "firefly",
+  "kind": "action",
+  "description": "the firefly twirls right round on the spot.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.10677,
+    "width": 0.9401,
+    "height": 0.78646
+  },
+  "puppet": {
+    "rig": "anims/firefly.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sy": 0.94
+          },
+          "root": {
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "legL1": {
+            "r": 35
+          },
+          "legL3": {
+            "r": -35
+          },
+          "root": {
+            "y": -26,
+            "sx": -1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "legL1": {
+            "r": 35
+          },
+          "legL3": {
+            "r": -35
+          },
+          "root": {
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.94
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

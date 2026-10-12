@@ -1,0 +1,79 @@
+{
+  "id": "shake-head",
+  "sticker": "mushroom",
+  "kind": "action",
+  "description": "the mushroom shakes its head no.",
+  "stickerBox": {
+    "x": 0.07031,
+    "y": 0.02995,
+    "width": 0.85807,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/mushroom.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "cap": {
+            "r": -5
+          },
+          "face": {
+            "x": -10
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "cap": {
+            "r": 5
+          },
+          "face": {
+            "x": 10
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "cap": {
+            "r": -5
+          },
+          "face": {
+            "x": -10
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "cap": {
+            "r": 5
+          },
+          "face": {
+            "x": 10
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

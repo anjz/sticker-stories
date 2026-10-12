@@ -1,0 +1,67 @@
+{
+  "id": "nod",
+  "sticker": "pinecone",
+  "kind": "action",
+  "description": "the pinecone nods yes, twice.",
+  "stickerBox": {
+    "x": 0.03516,
+    "y": 0.02995,
+    "width": 0.92969,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/pinecone.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "y": 10
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "y": 10
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

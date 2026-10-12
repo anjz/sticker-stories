@@ -1,54 +1,373 @@
 {
   "id": "listen",
   "sticker": "rabbit",
+  "kind": "action",
   "description": "the rabbit's ears shoot up as it listens very still, then it relaxes, finds a little clover leaf and nibbles it happily.",
-  "sheet": "anims/rabbit.listen.webp",
-  "frame": {
-    "width": 390,
-    "height": 529
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.15897,
-    "y": 0.05671,
-    "width": 0.73846,
-    "height": 0.91115
-  },
   "stickerBox": {
     "x": 0.21875,
     "y": 0.02995,
     "width": 0.5612,
     "height": 0.9401
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.12,
-    0.15,
-    0.2,
-    0.15,
-    0.15,
-    0.2,
-    0.15,
-    0.2,
-    0.2,
-    0.7,
-    0.15,
-    0.15,
-    0.12,
-    0.12,
-    0.12,
-    0.12,
-    0.15,
-    0.2,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 5,
     "shows": "the rabbit listening very still, ears standing straight up"
+  },
+  "puppet": {
+    "rig": "anims/rabbit.rig.json",
+    "keys": [
+      {
+        "hold": 0.45
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "head": {
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "body": {
+            "y": -6
+          },
+          "earL": {
+            "r": -10,
+            "sy": 1.06
+          },
+          "earR": {
+            "r": -22,
+            "sy": 1.06
+          },
+          "head": {
+            "r": 3,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "body": {
+            "y": -6
+          },
+          "earL": {
+            "r": -10,
+            "sy": 1.06
+          },
+          "earR": {
+            "r": -22,
+            "sy": 1.06
+          },
+          "face": {
+            "x": -6
+          },
+          "head": {
+            "r": 3,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "body": {
+            "y": -6
+          },
+          "earL": {
+            "r": -10,
+            "sy": 1.06
+          },
+          "earR": {
+            "r": -22,
+            "sy": 1.06
+          },
+          "face": {
+            "x": 4
+          },
+          "head": {
+            "r": 3,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "body": {
+            "y": -6
+          },
+          "earL": {
+            "r": -10,
+            "sy": 1.06
+          },
+          "earR": {
+            "r": -22,
+            "sy": 1.06
+          },
+          "head": {
+            "r": 3,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.3
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": 25
+          },
+          "armR": {
+            "r": -40
+          },
+          "body": {
+            "r": -18
+          },
+          "head": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "r": 25
+          },
+          "armR": {
+            "r": -46
+          },
+          "body": {
+            "r": -18
+          },
+          "head": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "clover": "clover",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": -40,
+            "x": 18,
+            "y": -28
+          },
+          "armR": {
+            "r": 62,
+            "x": -6,
+            "y": -30
+          },
+          "head": {
+            "r": -3,
+            "y": 4
+          }
+        },
+        "slots": {
+          "clover": "clover",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "armL": {
+            "r": -40,
+            "x": 18,
+            "y": -28
+          },
+          "armR": {
+            "r": 62,
+            "x": -6,
+            "y": -30
+          },
+          "head": {
+            "r": -5,
+            "y": 4
+          }
+        },
+        "slots": {
+          "clover": "clover",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "nibble"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "armL": {
+            "r": -40,
+            "x": 18,
+            "y": -28
+          },
+          "armR": {
+            "r": 62,
+            "x": -6,
+            "y": -30
+          },
+          "head": {
+            "r": -3,
+            "y": 4
+          }
+        },
+        "slots": {
+          "clover": "clover",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "armL": {
+            "r": -40,
+            "x": 18,
+            "y": -28
+          },
+          "armR": {
+            "r": 62,
+            "x": -6,
+            "y": -30
+          },
+          "head": {
+            "r": -5,
+            "y": 4
+          }
+        },
+        "slots": {
+          "clover": "clover",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "nibble"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "armL": {
+            "r": -40,
+            "x": 18,
+            "y": -28
+          },
+          "armR": {
+            "r": 62,
+            "x": -6,
+            "y": -30
+          },
+          "head": {
+            "r": -3,
+            "y": 4
+          }
+        },
+        "slots": {
+          "clover": "clover",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "armL": {
+            "r": -40,
+            "x": 18,
+            "y": -28
+          },
+          "armR": {
+            "r": 62,
+            "x": -6,
+            "y": -30
+          },
+          "head": {
+            "r": -5,
+            "y": 4
+          }
+        },
+        "slots": {
+          "clover": "clover",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "nibble"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": -40,
+            "x": 18,
+            "y": -28
+          },
+          "armR": {
+            "r": 62,
+            "x": -6,
+            "y": -30
+          },
+          "head": {
+            "r": -3,
+            "y": 4
+          }
+        },
+        "slots": {
+          "clover": "clover",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
   }
 }

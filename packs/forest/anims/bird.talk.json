@@ -1,0 +1,141 @@
+{
+  "id": "talk",
+  "sticker": "bird",
+  "description": "the bird chirps and chatters, its beak opening and closing, its head bobbing a little.",
+  "stickerBox": {
+    "x": 0.07031,
+    "y": 0.02995,
+    "width": 0.85938,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/bird.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "beak": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          }
+        },
+        "slots": {
+          "beak": "closed"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          }
+        },
+        "slots": {
+          "beak": "closed"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "beak": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          }
+        },
+        "slots": {
+          "beak": "closed"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          }
+        },
+        "slots": {
+          "beak": "closed"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "beak": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          }
+        },
+        "slots": {
+          "beak": "closed"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

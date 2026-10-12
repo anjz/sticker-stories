@@ -1,0 +1,92 @@
+{
+  "id": "tip-cap",
+  "sticker": "acorn",
+  "description": "the acorn's cap hops up off its head like a hat being tipped, and settles back down.",
+  "stickerBox": {
+    "x": 0.0638,
+    "y": 0.02995,
+    "width": 0.8724,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/acorn.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sy": 0.95
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "cap": {
+            "r": -18,
+            "y": -55
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "cap": {
+            "r": -22,
+            "y": -60
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "in",
+        "bones": {
+          "cap": {}
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.08,
+        "bones": {
+          "belly": {
+            "sy": 0.96
+          },
+          "cap": {
+            "y": 4
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15
+      }
+    ]
+  }
+}

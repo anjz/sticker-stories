@@ -1,0 +1,120 @@
+{
+  "id": "croak",
+  "sticker": "frog",
+  "kind": "action",
+  "description": "the frog puffs out its throat and croaks, ribbit, ribbit, ribbit.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.04688,
+    "width": 0.9401,
+    "height": 0.90625
+  },
+  "puppet": {
+    "rig": "anims/frog.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 1.09,
+            "sy": 0.96
+          },
+          "face": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sx": 0.99,
+            "sy": 1.01
+          }
+        },
+        "slots": {
+          "mouth": "closed"
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 1.09,
+            "sy": 0.96
+          },
+          "face": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sx": 0.99,
+            "sy": 1.01
+          }
+        },
+        "slots": {
+          "mouth": "closed"
+        }
+      },
+      {
+        "hold": 0.26,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 1.09,
+            "sy": 0.96
+          },
+          "face": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sx": 0.99,
+            "sy": 1.01
+          }
+        },
+        "slots": {
+          "mouth": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

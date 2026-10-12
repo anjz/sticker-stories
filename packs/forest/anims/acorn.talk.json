@@ -1,0 +1,78 @@
+{
+  "id": "talk",
+  "sticker": "acorn",
+  "kind": "action",
+  "description": "the acorn talks, its mouth moving, its head bobbing a little.",
+  "stickerBox": {
+    "x": 0.0638,
+    "y": 0.02995,
+    "width": 0.8724,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/acorn.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step"
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step"
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step"
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step"
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step"
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "id": "nod",
+  "sticker": "mushroom",
+  "kind": "action",
+  "description": "the mushroom nods yes, twice.",
+  "stickerBox": {
+    "x": 0.07031,
+    "y": 0.02995,
+    "width": 0.85807,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/mushroom.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "cap": {
+            "r": 2,
+            "y": 6
+          },
+          "face": {
+            "y": 9
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "cap": {
+            "y": -2
+          },
+          "face": {
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "cap": {
+            "r": 2,
+            "y": 6
+          },
+          "face": {
+            "y": 9
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "cap": {
+            "y": -1
+          },
+          "face": {
+            "y": -1
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

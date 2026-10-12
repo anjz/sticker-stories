@@ -1,0 +1,499 @@
+{
+  "id": "jump",
+  "sticker": "bee",
+  "kind": "action",
+  "description": "the bee zips up high for joy and bobs back down with a happy wiggle.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.03646,
+    "width": 0.9401,
+    "height": 0.92708
+  },
+  "puppet": {
+    "rig": "anims/bee.rig.json",
+    "keys": [
+      {
+        "hold": 0.06,
+        "ease": "linear"
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.035,
+            "sy": 0.95
+          },
+          "head": {
+            "y": 3
+          },
+          "legL1": {
+            "r": -6
+          },
+          "legL3": {
+            "r": 6
+          },
+          "root": {
+            "y": 4
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        }
+      },
+      {
+        "hold": 0.053,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.9
+          },
+          "head": {
+            "y": 6
+          },
+          "legL1": {
+            "r": -12
+          },
+          "legL3": {
+            "r": 12
+          },
+          "root": {
+            "y": 8
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        }
+      },
+      {
+        "hold": 0.053,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -2.593
+          },
+          "antennaR": {
+            "r": 2.593
+          },
+          "belly": {
+            "sx": 1.041,
+            "sy": 0.941
+          },
+          "head": {
+            "y": 4.444
+          },
+          "legL1": {
+            "r": 1.481
+          },
+          "legL3": {
+            "r": -1.481
+          },
+          "root": {
+            "y": -14.296
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        }
+      },
+      {
+        "hold": 0.053,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -7.407
+          },
+          "antennaR": {
+            "r": 7.407
+          },
+          "belly": {
+            "sx": 0.989,
+            "sy": 1.019
+          },
+          "head": {
+            "y": 1.556
+          },
+          "legL1": {
+            "r": 26.519
+          },
+          "legL3": {
+            "r": -26.519
+          },
+          "root": {
+            "y": -55.704
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        }
+      },
+      {
+        "hold": 0.055,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -10
+          },
+          "antennaR": {
+            "r": 10
+          },
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "legL1": {
+            "r": 40
+          },
+          "legL3": {
+            "r": -40
+          },
+          "root": {
+            "y": -78
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.055,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -10
+          },
+          "antennaR": {
+            "r": 10
+          },
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "legL1": {
+            "r": 40
+          },
+          "legL3": {
+            "r": -40
+          },
+          "root": {
+            "y": -80.625
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.055,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -10
+          },
+          "antennaR": {
+            "r": 10
+          },
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "legL1": {
+            "r": 40
+          },
+          "legL3": {
+            "r": -40
+          },
+          "root": {
+            "y": -82.5
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.055,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -10
+          },
+          "antennaR": {
+            "r": 10
+          },
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "legL1": {
+            "r": 40
+          },
+          "legL3": {
+            "r": -40
+          },
+          "root": {
+            "y": -83.625
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -10
+          },
+          "antennaR": {
+            "r": 10
+          },
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "legL1": {
+            "r": 40
+          },
+          "legL3": {
+            "r": -40
+          },
+          "root": {
+            "y": -84
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -7.5
+          },
+          "antennaR": {
+            "r": 7.5
+          },
+          "belly": {
+            "sx": 0.99,
+            "sy": 1.015
+          },
+          "head": {
+            "y": 1.5
+          },
+          "legL1": {
+            "r": 30
+          },
+          "legL3": {
+            "r": -30
+          },
+          "root": {
+            "y": -61.75
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.08,
+            "sy": 0.88
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 5
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.94
+          },
+          "head": {
+            "y": 3
+          },
+          "root": {
+            "y": 2.5
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

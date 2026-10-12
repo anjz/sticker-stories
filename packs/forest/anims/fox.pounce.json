@@ -1,0 +1,237 @@
+{
+  "id": "pounce",
+  "sticker": "fox",
+  "kind": "action",
+  "description": "the fox crouches low with its tail up, wiggles, then pounces forward onto its front paws and pops back up with a grin.",
+  "stickerBox": {
+    "x": 0.06901,
+    "y": 0.02995,
+    "width": 0.86198,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the fox crouched low, ready to pounce"
+  },
+  "puppet": {
+    "rig": "anims/fox.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": 30
+          },
+          "armR": {
+            "r": 30
+          },
+          "belly": {
+            "sy": 0.94
+          },
+          "body": {
+            "r": 22,
+            "y": 18
+          },
+          "head": {
+            "r": -14
+          },
+          "tail": {
+            "r": 16
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "armL": {
+            "r": 30
+          },
+          "armR": {
+            "r": 30
+          },
+          "belly": {
+            "sy": 0.94
+          },
+          "body": {
+            "r": 22,
+            "y": 18
+          },
+          "head": {
+            "r": -14
+          },
+          "root": {
+            "x": -4
+          },
+          "tail": {
+            "r": 22
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "armL": {
+            "r": 30
+          },
+          "armR": {
+            "r": 30
+          },
+          "belly": {
+            "sy": 0.94
+          },
+          "body": {
+            "r": 22,
+            "y": 18
+          },
+          "head": {
+            "r": -14
+          },
+          "root": {
+            "x": 4
+          },
+          "tail": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": -20
+          },
+          "armR": {
+            "r": -25
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "body": {
+            "r": 18
+          },
+          "legL": {
+            "r": 20
+          },
+          "legR": {
+            "r": 25
+          },
+          "root": {
+            "x": 50,
+            "y": -60
+          },
+          "tail": {
+            "r": -20
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": 55
+          },
+          "armR": {
+            "r": 55
+          },
+          "belly": {
+            "sy": 0.95
+          },
+          "body": {
+            "r": 40
+          },
+          "head": {
+            "r": -24
+          },
+          "root": {
+            "x": 80
+          },
+          "tail": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 55
+          },
+          "armR": {
+            "r": 55
+          },
+          "body": {
+            "r": 38
+          },
+          "head": {
+            "r": -20
+          },
+          "root": {
+            "x": 80
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": 8
+          },
+          "root": {
+            "x": 40
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "id": "sleep",
+  "sticker": "butterfly",
+  "kind": "action",
+  "description": "the butterfly gives a big yawn, folds its wings up and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.07943,
+    "width": 0.9401,
+    "height": 0.84115
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the butterfly fast asleep, eyes shut, wings folded up"
+  },
+  "puppet": {
+    "rig": "anims/butterfly.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -4,
+            "y": -4
+          },
+          "wingL": {
+            "r": 20
+          },
+          "wingR": {
+            "r": -20
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -4,
+            "y": -4
+          },
+          "wingL": {
+            "r": 24,
+            "sx": 0.6
+          },
+          "wingL2": {
+            "sy": 0.72
+          },
+          "wingR": {
+            "r": -24,
+            "sx": 0.6
+          },
+          "wingR2": {
+            "sy": 0.72
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "face": {
+            "y": 4
+          },
+          "head": {
+            "r": 6,
+            "y": 9
+          },
+          "wingL": {
+            "r": 7,
+            "sx": 0.2
+          },
+          "wingL2": {
+            "sy": 0.4
+          },
+          "wingR": {
+            "r": -7,
+            "sx": 0.2
+          },
+          "wingR2": {
+            "sy": 0.4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "face": {
+            "y": 4
+          },
+          "head": {
+            "r": 6,
+            "y": 9
+          },
+          "wingL": {
+            "r": 7,
+            "sx": 0.2
+          },
+          "wingL2": {
+            "sy": 0.4
+          },
+          "wingR": {
+            "r": -7,
+            "sx": 0.2
+          },
+          "wingR2": {
+            "sy": 0.4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "y": -2
+          },
+          "wingL": {
+            "r": 4,
+            "sx": 0.6
+          },
+          "wingL2": {
+            "sy": 0.72
+          },
+          "wingR": {
+            "r": -4,
+            "sx": 0.6
+          },
+          "wingR2": {
+            "sy": 0.72
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

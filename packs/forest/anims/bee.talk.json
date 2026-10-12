@@ -1,0 +1,380 @@
+{
+  "id": "talk",
+  "sticker": "bee",
+  "kind": "action",
+  "description": "the bee talks, its mouth moving, its head bobbing a little.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.03646,
+    "width": 0.9401,
+    "height": 0.92708
+  },
+  "puppet": {
+    "rig": "anims/bee.rig.json",
+    "keys": [
+      {
+        "hold": 0.05,
+        "ease": "linear"
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": -1,
+            "y": -1.5
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "y": 1
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "y": 1
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "y": 1
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "y": 1
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "y": 1
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        }
+      },
+      {
+        "hold": 0.07,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

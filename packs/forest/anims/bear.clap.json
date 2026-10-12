@@ -1,0 +1,129 @@
+{
+  "id": "clap",
+  "sticker": "bear",
+  "kind": "action",
+  "description": "the bear cub claps its paws together happily.",
+  "stickerBox": {
+    "x": 0.14323,
+    "y": 0.02995,
+    "width": 0.71224,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/bear.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "r": -30
+          },
+          "armR": {
+            "r": 18
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "armL": {
+            "r": -48
+          },
+          "armR": {
+            "r": 34
+          },
+          "head": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "armL": {
+            "r": -30
+          },
+          "armR": {
+            "r": 18
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "armL": {
+            "r": -48
+          },
+          "armR": {
+            "r": 34
+          },
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "armL": {
+            "r": -30
+          },
+          "armR": {
+            "r": 18
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "armL": {
+            "r": -48
+          },
+          "armR": {
+            "r": 34
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

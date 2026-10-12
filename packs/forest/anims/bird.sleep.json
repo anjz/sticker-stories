@@ -1,0 +1,141 @@
+{
+  "id": "sleep",
+  "sticker": "bird",
+  "description": "the bird gives a big yawn, closes its eyes and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.07031,
+    "y": 0.02995,
+    "width": 0.85938,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the bird fast asleep, eyes shut, head drooped"
+  },
+  "puppet": {
+    "rig": "anims/bird.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -4,
+            "y": -4
+          },
+          "wingL": {
+            "r": 20
+          },
+          "wingR": {
+            "r": 20
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -4,
+            "y": -4
+          },
+          "wingL": {
+            "r": 20
+          },
+          "wingR": {
+            "r": 20
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "face": {
+            "y": 4
+          },
+          "head": {
+            "r": 6,
+            "y": 9
+          }
+        },
+        "slots": {
+          "beak": "closed",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "face": {
+            "y": 4
+          },
+          "head": {
+            "r": 6,
+            "y": 9
+          }
+        },
+        "slots": {
+          "beak": "closed",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "beak": "closed",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

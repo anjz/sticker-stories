@@ -1,0 +1,88 @@
+{
+  "id": "jump",
+  "sticker": "snail",
+  "kind": "action",
+  "description": "the snail gives a happy little hop and lands with a squash.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.08984,
+    "width": 0.9401,
+    "height": 0.81901
+  },
+  "puppet": {
+    "rig": "anims/snail.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.9
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 4
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "root": {
+            "y": -39
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "root": {
+            "y": -42
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.08,
+            "sy": 0.88
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 2.5
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

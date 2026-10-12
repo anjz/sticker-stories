@@ -1,0 +1,71 @@
+{
+  "id": "nod",
+  "sticker": "raccoon",
+  "kind": "action",
+  "description": "the raccoon nods yes, twice.",
+  "stickerBox": {
+    "x": 0.11328,
+    "y": 0.02995,
+    "width": 0.77344,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/raccoon.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": 8
+          },
+          "head": {
+            "r": -6,
+            "y": 9,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -3
+          },
+          "head": {
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": 8
+          },
+          "head": {
+            "r": -6,
+            "y": 9,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -2
+          },
+          "head": {
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "id": "twirl",
+  "sticker": "frog",
+  "kind": "action",
+  "description": "the frog twirls right round on the spot.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.04688,
+    "width": 0.9401,
+    "height": 0.90625
+  },
+  "puppet": {
+    "rig": "anims/frog.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sy": 0.94
+          },
+          "root": {
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "armL": {
+            "r": 35
+          },
+          "armR": {
+            "r": -35
+          },
+          "root": {
+            "y": -26,
+            "sx": -1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "armL": {
+            "r": 35
+          },
+          "armR": {
+            "r": -35
+          },
+          "root": {
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.94
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

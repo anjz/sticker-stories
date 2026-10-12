@@ -1,0 +1,133 @@
+{
+  "id": "talk",
+  "sticker": "mushroom",
+  "kind": "action",
+  "description": "the mushroom talks, its mouth moving, its cap bobbing a little.",
+  "stickerBox": {
+    "x": 0.07031,
+    "y": 0.02995,
+    "width": 0.85807,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/mushroom.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "cap": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "cap": {}
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "cap": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "cap": {}
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "cap": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "cap": {}
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "cap": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "cap": {}
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "cap": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "cap": {}
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

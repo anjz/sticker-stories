@@ -3,43 +3,173 @@
   "sticker": "pinecone",
   "kind": "move",
   "description": "the pinecone rolls along to the right, tumbling over and over, then rocks to a stop upright.",
-  "sheet": "anims/pinecone.roll.webp",
-  "frame": {
-    "width": 517,
-    "height": 516
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.03095,
-    "y": 0.03295,
-    "width": 0.92263,
-    "height": 0.93411
-  },
   "stickerBox": {
     "x": 0.03516,
     "y": 0.02995,
     "width": 0.92969,
     "height": 0.9401
   },
-  "hold": [
-    0.1,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.18,
-    0.2,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 6
   },
   "facing": "right",
-  "stride": 0.9
+  "stride": 0.9,
+  "puppet": {
+    "rig": "anims/pinecone.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "spin": {}
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": 65
+          },
+          "spin": {
+            "r": 60
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": -23
+          },
+          "spin": {
+            "r": 120
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": 32
+          },
+          "spin": {
+            "r": 180
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": 56
+          },
+          "spin": {
+            "r": 240
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": -26
+          },
+          "spin": {
+            "r": 300
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "out",
+        "bones": {
+          "spin": {
+            "r": 360
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "body": {
+            "r": 7
+          },
+          "spin": {
+            "r": 360
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -4
+          },
+          "spin": {
+            "r": 360
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "spin": {
+            "r": 360
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "spin": {
+            "r": 360
+          }
+        }
+      }
+    ]
+  }
 }

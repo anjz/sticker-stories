@@ -1,0 +1,1726 @@
+{
+  "sticker": "caterpillar",
+  "skeleton": "caterpillar seen from the side, head raised on the left: a chain of bones from the tail segment (root, on the ground at the right) through the body segments to the head, so it can ripple, rear up and curl; antennaL/antennaR on the head; face with eyes and mouth.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a caterpillar character. Draw this exact caterpillar as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the head: the big round green-and-yellow head, facing left as in image 1, with a completely blank face — no eyes, no mouth — keep the rosy cheeks; no antennae.\n2. one antenna: a green antenna with its round tip.\n3. the first body segment behind the head: pale yellow in front and green behind, with its little legs below.\n4. the second body segment, with its spots and little feet.\n5. the third body segment, with its spots and little feet.\n6. the last tail segment, with its spots and little feet.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a caterpillar character; image 2 shows the same caterpillar cut into puppet parts, with a blank face. Draw the caterpillar's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the caterpillar in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the caterpillar's left eye (on the right of image 1) as it is in image 1: a big dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a small happy smile.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "head": {
+      "sheet": "parts",
+      "at": [
+        385,
+        306
+      ]
+    },
+    "antenna": {
+      "sheet": "parts",
+      "at": [
+        1097,
+        295
+      ]
+    },
+    "seg1": {
+      "sheet": "parts",
+      "at": [
+        233,
+        764
+      ]
+    },
+    "seg2": {
+      "sheet": "parts",
+      "at": [
+        631,
+        765
+      ]
+    },
+    "seg3": {
+      "sheet": "parts",
+      "at": [
+        1014,
+        766
+      ]
+    },
+    "seg4": {
+      "sheet": "parts",
+      "at": [
+        1365,
+        772
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        139,
+        354
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        437,
+        343
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        770,
+        376
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        1081,
+        330
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1399,
+        359
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        258,
+        715
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        601,
+        705
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        936,
+        703
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1293,
+        691
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 655,
+      "y": 712
+    },
+    {
+      "id": "seg4",
+      "parent": "root",
+      "x": 640,
+      "y": 700
+    },
+    {
+      "id": "seg3",
+      "parent": "seg4",
+      "x": 598,
+      "y": 692
+    },
+    {
+      "id": "seg2",
+      "parent": "seg3",
+      "x": 492,
+      "y": 692
+    },
+    {
+      "id": "body",
+      "parent": "seg2",
+      "x": 372,
+      "y": 688
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 300,
+      "y": 660
+    },
+    {
+      "id": "head",
+      "parent": "body",
+      "x": 285,
+      "y": 478
+    },
+    {
+      "id": "face",
+      "parent": "head",
+      "x": 220,
+      "y": 330
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 152,
+      "y": 300
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 282,
+      "y": 350
+    },
+    {
+      "id": "browL",
+      "parent": "face",
+      "x": 195,
+      "y": 228
+    },
+    {
+      "id": "browR",
+      "parent": "face",
+      "x": 326,
+      "y": 270
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 183,
+      "y": 362
+    },
+    {
+      "id": "antennaL",
+      "parent": "head",
+      "x": 288,
+      "y": 198
+    },
+    {
+      "id": "antennaR",
+      "parent": "head",
+      "x": 350,
+      "y": 222
+    }
+  ],
+  "slots": [
+    {
+      "id": "seg4",
+      "bone": "seg4",
+      "default": "seg",
+      "attachments": {
+        "seg": {
+          "part": "seg4",
+          "x": 650,
+          "y": 642,
+          "scale": 0.55
+        }
+      }
+    },
+    {
+      "id": "seg3",
+      "bone": "seg3",
+      "default": "seg",
+      "attachments": {
+        "seg": {
+          "part": "seg3",
+          "x": 530,
+          "y": 616,
+          "scale": 0.68
+        }
+      }
+    },
+    {
+      "id": "seg2",
+      "bone": "seg2",
+      "default": "seg",
+      "attachments": {
+        "seg": {
+          "part": "seg2",
+          "x": 408,
+          "y": 576,
+          "scale": 0.83
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "seg",
+      "attachments": {
+        "seg": {
+          "part": "seg1",
+          "x": 278,
+          "y": 582,
+          "scale": 0.72,
+          "rotate": 30
+        }
+      }
+    },
+    {
+      "id": "antennaL",
+      "bone": "antennaL",
+      "default": "antenna",
+      "attachments": {
+        "antenna": {
+          "part": "antenna",
+          "x": 276,
+          "y": 124,
+          "scale": 0.6,
+          "flip": true,
+          "rotate": 20
+        }
+      }
+    },
+    {
+      "id": "antennaR",
+      "bone": "antennaR",
+      "default": "antenna",
+      "attachments": {
+        "antenna": {
+          "part": "antenna",
+          "x": 416,
+          "y": 176,
+          "scale": 0.56,
+          "rotate": 25
+        }
+      }
+    },
+    {
+      "id": "head",
+      "bone": "head",
+      "default": "head",
+      "attachments": {
+        "head": {
+          "part": "head",
+          "x": 242,
+          "y": 340,
+          "scale": 0.73,
+          "scaleY": 0.95
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 152,
+          "y": 300,
+          "scale": 0.36,
+          "rotate": 0
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 152,
+          "y": 300,
+          "scale": 0.36,
+          "rotate": 0
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 152,
+          "y": 306,
+          "scale": 0.36,
+          "rotate": 0
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 152,
+          "y": 300,
+          "scale": 0.36,
+          "rotate": 0
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 152,
+          "y": 304,
+          "scale": 0.36,
+          "rotate": 0
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 282,
+          "y": 350,
+          "scale": 0.46,
+          "rotate": 0
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 282,
+          "y": 350,
+          "scale": 0.46,
+          "rotate": 0
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 282,
+          "y": 356,
+          "scale": 0.46,
+          "rotate": 0
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 282,
+          "y": 350,
+          "scale": 0.46,
+          "rotate": 0
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 282,
+          "y": 354,
+          "scale": 0.46,
+          "rotate": 0
+        }
+      }
+    },
+    {
+      "id": "browL",
+      "bone": "browL",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "mouth",
+          "x": 195,
+          "y": 228,
+          "scale": 0.2,
+          "rotate": 180
+        },
+        "sad": {
+          "part": "mouth",
+          "x": 195,
+          "y": 226,
+          "scale": 0.2,
+          "rotate": 205
+        }
+      }
+    },
+    {
+      "id": "browR",
+      "bone": "browR",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "mouth",
+          "x": 326,
+          "y": 270,
+          "scale": 0.22,
+          "rotate": 195
+        },
+        "sad": {
+          "part": "mouth",
+          "x": 326,
+          "y": 268,
+          "scale": 0.22,
+          "rotate": 160
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 183,
+          "y": 362,
+          "scale": 0.32,
+          "rotate": 10
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 185,
+          "y": 368,
+          "scale": 0.3,
+          "rotate": 10
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 185,
+          "y": 366,
+          "scale": 0.3
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 185,
+          "y": 368,
+          "scale": 0.3,
+          "rotate": 5
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad",
+      "browL": "sad",
+      "browR": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed",
+      "mouth": "smile"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "look-up",
+      "kind": "action",
+      "description": "the caterpillar rears up tall on the back of its body, sways and gazes up at the sky, then lowers itself down again and wiggles happily.",
+      "pause": {
+        "frame": 4,
+        "shows": "the caterpillar reared up tall, gazing up at the sky"
+      },
+      "keys": [
+        {
+          "hold": 0.4
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "seg2": {
+              "r": 7
+            },
+            "body": {
+              "r": 5
+            },
+            "head": {
+              "r": -2
+            },
+            "belly": {
+              "sy": 1.02
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "seg2": {
+              "r": 17
+            },
+            "body": {
+              "r": 12
+            },
+            "head": {
+              "r": -5
+            },
+            "face": {
+              "x": -4,
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "seg2": {
+              "r": 13
+            },
+            "body": {
+              "r": 18
+            },
+            "head": {
+              "r": -9
+            },
+            "face": {
+              "x": -4,
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "seg2": {
+              "r": 20
+            },
+            "body": {
+              "r": 16
+            },
+            "head": {
+              "r": -10
+            },
+            "face": {
+              "x": -4,
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "seg2": {
+              "r": 5
+            },
+            "body": {
+              "r": 3
+            },
+            "belly": {
+              "sy": 1.01
+            }
+          }
+        },
+        {
+          "hold": 0.18
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "seg3": {
+              "y": -8
+            },
+            "seg2": {
+              "y": 8,
+              "r": -3
+            },
+            "body": {
+              "r": 4
+            },
+            "head": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "seg2": {
+              "y": -8,
+              "r": 3
+            },
+            "body": {
+              "y": 8,
+              "r": -4
+            },
+            "head": {
+              "r": 5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "seg3": {
+              "y": -8
+            },
+            "seg2": {
+              "y": 8,
+              "r": -3
+            },
+            "body": {
+              "r": 4
+            },
+            "head": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "seg2": {
+              "y": -8,
+              "r": 3
+            },
+            "body": {
+              "y": 8,
+              "r": -4
+            },
+            "head": {
+              "r": 5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "crawl",
+      "kind": "move",
+      "description": "the caterpillar crawls along to the left, a hump rippling through its body, then stops.",
+      "facing": "left",
+      "stride": 0.35,
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "seg4": {
+              "y": -22,
+              "r": -6
+            },
+            "seg3": {
+              "y": 22,
+              "r": 6
+            },
+            "head": {
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "seg3": {
+              "y": -24
+            },
+            "seg2": {
+              "y": 24
+            },
+            "seg4": {
+              "x": -4
+            },
+            "head": {
+              "y": 2
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "seg2": {
+              "y": -24
+            },
+            "body": {
+              "y": 24
+            },
+            "seg4": {
+              "x": -8
+            },
+            "head": {
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "y": -16,
+              "r": 3
+            },
+            "head": {
+              "y": -4,
+              "r": -3
+            },
+            "seg4": {
+              "x": -4
+            },
+            "belly": {
+              "sx": 1.03
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "wiggle",
+      "kind": "action",
+      "description": "the caterpillar wiggles happily from head to tail, a little wave running along its body.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "seg4": {
+              "y": -10,
+              "r": -5
+            },
+            "seg3": {
+              "y": 10,
+              "r": 5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "seg3": {
+              "y": -12,
+              "r": -4
+            },
+            "seg2": {
+              "y": 12,
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "seg2": {
+              "y": -12,
+              "r": -4
+            },
+            "body": {
+              "y": 12,
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "y": -10,
+              "r": -4
+            },
+            "head": {
+              "r": 8,
+              "y": -4
+            },
+            "antennaL": {
+              "r": -10
+            },
+            "antennaR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "seg4": {
+              "y": -10,
+              "r": -5
+            },
+            "seg3": {
+              "y": 10,
+              "r": 5
+            },
+            "head": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "seg3": {
+              "y": -12,
+              "r": -4
+            },
+            "seg2": {
+              "y": 12,
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "seg2": {
+              "y": -12,
+              "r": -4
+            },
+            "body": {
+              "y": 12,
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "y": -10,
+              "r": -4
+            },
+            "head": {
+              "r": 8,
+              "y": -4
+            },
+            "antennaL": {
+              "r": -10
+            },
+            "antennaR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "stretch",
+      "kind": "action",
+      "description": "the caterpillar stretches out long and tall with a big yawn, then settles back down.",
+      "pause": {
+        "frame": 3,
+        "shows": "the caterpillar stretched out long, yawning"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "seg4": {
+              "x": 10
+            },
+            "seg3": {
+              "x": 6
+            },
+            "seg2": {
+              "x": -6,
+              "r": 4
+            },
+            "body": {
+              "x": -10,
+              "r": 6
+            },
+            "head": {
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "seg4": {
+              "x": 16
+            },
+            "seg3": {
+              "x": 12
+            },
+            "seg2": {
+              "x": -10,
+              "r": 8
+            },
+            "body": {
+              "x": -16,
+              "r": 10,
+              "y": -6
+            },
+            "head": {
+              "r": 10
+            },
+            "belly": {
+              "sy": 1.08,
+              "sx": 0.96
+            },
+            "antennaL": {
+              "r": -12
+            },
+            "antennaR": {
+              "r": 12
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "seg4": {
+              "x": 16
+            },
+            "seg3": {
+              "x": 12
+            },
+            "seg2": {
+              "x": -10,
+              "r": 8
+            },
+            "body": {
+              "x": -16,
+              "r": 10,
+              "y": -6
+            },
+            "head": {
+              "r": 12
+            },
+            "belly": {
+              "sy": 1.08,
+              "sx": 0.96
+            },
+            "antennaL": {
+              "r": -14
+            },
+            "antennaR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "head": {
+              "y": 4
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "kind": "action",
+      "description": "the caterpillar waves hello with one of its antennae.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "antennaR": {
+              "r": 32
+            },
+            "head": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "antennaR": {
+              "r": -14
+            },
+            "head": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "antennaR": {
+              "r": 32
+            },
+            "head": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "antennaR": {
+              "r": -14
+            },
+            "head": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "antennaR": {
+              "r": 32
+            },
+            "head": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "munch",
+      "kind": "action",
+      "description": "the caterpillar munches and munches, its head bobbing as it chews.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -6,
+              "y": 4
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -2
+            },
+            "body": {
+              "r": -1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -6,
+              "y": 4
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -2
+            },
+            "body": {
+              "r": -1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -6,
+              "y": 4
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -2
+            },
+            "body": {
+              "r": -1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -6,
+              "y": 4
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "template": "common.jump"
+    },
+    {
+      "id": "nod",
+      "template": "common.nod"
+    },
+    {
+      "id": "shake-head",
+      "template": "common.shake-head"
+    },
+    {
+      "id": "look-around",
+      "template": "common.look-around"
+    },
+    {
+      "id": "laugh",
+      "template": "common.laugh"
+    },
+    {
+      "id": "dance",
+      "template": "common.dance"
+    },
+    {
+      "id": "talk",
+      "template": "common.talk"
+    },
+    {
+      "id": "shiver",
+      "template": "common.shiver"
+    },
+    {
+      "id": "cry",
+      "kind": "action",
+      "description": "the caterpillar cries, head down, its body shaking with little sobs.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "y": 10,
+              "r": -3
+            },
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "y": 9,
+              "r": -3
+            },
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "y": 12,
+              "r": -3
+            },
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "y": 9,
+              "r": -3
+            },
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "y": 12,
+              "r": -3
+            },
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "y": 9,
+              "r": -3
+            },
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "y": 12,
+              "r": -3
+            },
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "y": 9,
+              "r": -3
+            },
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "y": 12,
+              "r": -3
+            },
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "kind": "action",
+      "description": "the caterpillar gives a big yawn, closes its eyes and falls asleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the caterpillar fast asleep, eyes shut, head drooped"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "r": 4,
+              "y": -4
+            },
+            "belly": {
+              "sy": 1.05
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "head": {
+              "r": 4,
+              "y": -4
+            },
+            "belly": {
+              "sy": 1.05
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "head": {
+              "y": 9,
+              "r": -6
+            },
+            "face": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "head": {
+              "y": 9,
+              "r": -6
+            },
+            "face": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

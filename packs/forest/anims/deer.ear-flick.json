@@ -1,0 +1,82 @@
+{
+  "id": "ear-flick",
+  "sticker": "deer",
+  "kind": "action",
+  "description": "the fawn flicks one big ear, then the other, listening.",
+  "stickerBox": {
+    "x": 0.22005,
+    "y": 0.02995,
+    "width": 0.5599,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/deer.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "earR": {
+            "r": -22
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "earR": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "earR": {
+            "r": -20
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "earL": {
+            "r": 18
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "earL": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "earL": {
+            "r": 16
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

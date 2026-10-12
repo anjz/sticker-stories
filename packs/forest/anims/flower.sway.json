@@ -1,0 +1,115 @@
+{
+  "id": "sway",
+  "sticker": "flower",
+  "kind": "action",
+  "description": "the flower sways gently from side to side in the breeze, smiling.",
+  "stickerBox": {
+    "x": 0.15365,
+    "y": 0.02995,
+    "width": 0.69271,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/flower.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.65,
+        "bones": {
+          "body": {
+            "r": -5
+          },
+          "head": {
+            "r": 3
+          },
+          "leafL": {
+            "r": 6
+          },
+          "leafR": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.65,
+        "bones": {
+          "body": {
+            "r": 5
+          },
+          "head": {
+            "r": -3
+          },
+          "leafL": {
+            "r": -5
+          },
+          "leafR": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.65,
+        "bones": {
+          "body": {
+            "r": -5
+          },
+          "head": {
+            "r": 3
+          },
+          "leafL": {
+            "r": 6
+          },
+          "leafR": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.65,
+        "bones": {
+          "body": {
+            "r": 4
+          },
+          "head": {
+            "r": -3
+          },
+          "leafL": {
+            "r": -5
+          },
+          "leafR": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

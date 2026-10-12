@@ -1,0 +1,122 @@
+{
+  "id": "squeak",
+  "sticker": "mouse",
+  "kind": "action",
+  "description": "the mouse gives a little squeak, ears up and its mouth a small round 'o'.",
+  "stickerBox": {
+    "x": 0.13151,
+    "y": 0.02995,
+    "width": 0.73698,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the mouse squeaking, ears up, its mouth a small 'o'"
+  },
+  "puppet": {
+    "rig": "anims/mouse.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.95
+          },
+          "head": {
+            "y": 4
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": -15
+          },
+          "armR": {
+            "r": 18
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "earL": {
+            "r": 10
+          },
+          "earR": {
+            "r": -10
+          },
+          "head": {
+            "r": 7
+          },
+          "root": {
+            "y": -12
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -15
+          },
+          "armR": {
+            "r": 18
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "earL": {
+            "r": 10
+          },
+          "earR": {
+            "r": -10
+          },
+          "head": {
+            "r": 7
+          },
+          "root": {
+            "y": -8
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "root": {}
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

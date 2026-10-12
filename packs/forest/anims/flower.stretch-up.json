@@ -1,0 +1,117 @@
+{
+  "id": "stretch-up",
+  "sticker": "flower",
+  "kind": "action",
+  "description": "the flower stretches up tall towards the sun, its leaves reaching up, and beams.",
+  "stickerBox": {
+    "x": 0.15365,
+    "y": 0.02995,
+    "width": 0.69271,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the flower stretched up tall, reaching for the sun"
+  },
+  "puppet": {
+    "rig": "anims/flower.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "y": 8
+          },
+          "leafL": {
+            "r": -4
+          },
+          "leafR": {
+            "r": 4
+          },
+          "stem": {
+            "sy": 0.97
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "ease": "out",
+        "bones": {
+          "head": {
+            "y": -34
+          },
+          "leafL": {
+            "r": 18,
+            "y": -10
+          },
+          "leafR": {
+            "r": -18,
+            "y": -10
+          },
+          "stem": {
+            "sy": 1.12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -36
+          },
+          "leafL": {
+            "r": 18,
+            "y": -10
+          },
+          "leafR": {
+            "r": -18,
+            "y": -10
+          },
+          "stem": {
+            "sy": 1.12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "head": {
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

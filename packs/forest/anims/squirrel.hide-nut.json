@@ -1,54 +1,295 @@
 {
   "id": "hide-nut",
   "sticker": "squirrel",
+  "kind": "action",
   "description": "the squirrel nibbles its hazelnut, looks left and right to check nobody is watching, hides the nut behind its back with an innocent look, then brings it out and hugs it.",
-  "sheet": "anims/squirrel.hide-nut.webp",
-  "frame": {
-    "width": 515,
-    "height": 519
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.07184,
-    "y": 0.03854,
-    "width": 0.8932,
-    "height": 0.92871
-  },
   "stickerBox": {
     "x": 0.05078,
     "y": 0.02995,
     "width": 0.89714,
     "height": 0.9401
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.12,
-    0.2,
-    0.2,
-    0.2,
-    0.1,
-    0.15,
-    0.25,
-    0.2,
-    0.7,
-    0.15,
-    0.1,
-    0.12,
-    0.2,
-    0.15,
-    0.15,
-    0.15,
-    0.12,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 10,
     "shows": "the squirrel with the nut hidden behind its back, looking innocent"
+  },
+  "puppet": {
+    "rig": "anims/squirrel.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "x": -8,
+            "y": -36
+          },
+          "armR": {
+            "x": -8,
+            "y": -36
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armL": {
+            "x": -8,
+            "y": -36
+          },
+          "armR": {
+            "x": -8,
+            "y": -36
+          },
+          "head": {
+            "y": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "nibble"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armL": {
+            "x": -8,
+            "y": -36
+          },
+          "armR": {
+            "x": -8,
+            "y": -36
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "nibble"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armL": {
+            "x": -8,
+            "y": -36
+          },
+          "armR": {
+            "x": -8,
+            "y": -36
+          },
+          "head": {
+            "y": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "nibble"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "face": {
+            "x": -12
+          },
+          "head": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "face": {
+            "x": -12
+          },
+          "head": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "browL": "up",
+          "browR": "up",
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "face": {
+            "x": 10
+          },
+          "head": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "face": {
+            "x": 10
+          },
+          "head": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "browL": "up",
+          "browR": "up",
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "x": 30,
+            "y": 10
+          },
+          "armR": {
+            "r": -10,
+            "x": 40,
+            "y": 8
+          },
+          "body": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "armR": {
+            "r": -15,
+            "x": 75,
+            "y": 12
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armR": "none",
+          "armRBack": "arm",
+          "browL": "up",
+          "browR": "up",
+          "nut": "none",
+          "nutBack": "nut"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armR": {
+            "r": -15,
+            "x": 75,
+            "y": 12
+          },
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armR": "none",
+          "armRBack": "arm",
+          "browL": "up",
+          "browR": "up",
+          "nut": "none",
+          "nutBack": "nut"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "browL": "up",
+          "browR": "up",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "x": 8,
+            "y": -8
+          },
+          "armR": {
+            "x": -6,
+            "y": -8
+          },
+          "belly": {
+            "sx": 0.97
+          },
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "x": 8,
+            "y": -8
+          },
+          "armR": {
+            "x": -6,
+            "y": -8
+          },
+          "belly": {
+            "sx": 0.97
+          },
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
   }
 }

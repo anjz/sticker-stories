@@ -1,0 +1,479 @@
+{
+  "id": "sleep",
+  "sticker": "bee",
+  "kind": "action",
+  "description": "the bee gives a big yawn, closes her eyes and dozes as she hovers, wings slowing to a lazy flutter, then wakes up with a start and smiles.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.03646,
+    "width": 0.9401,
+    "height": 0.92708
+  },
+  "pause": {
+    "frame": 8,
+    "shows": "the bee asleep in the air, eyes shut, head drooped, wings fluttering lazily"
+  },
+  "puppet": {
+    "rig": "anims/bee.rig.json",
+    "keys": [
+      {
+        "hold": 0.2,
+        "ease": "linear"
+      },
+      {
+        "hold": 0.2,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -5,
+            "y": -4
+          },
+          "legL1": {
+            "r": 25
+          },
+          "wingL": {
+            "r": -6
+          },
+          "wingR": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -5,
+            "y": -4
+          },
+          "legL1": {
+            "r": 25
+          },
+          "wingL": {
+            "r": 3
+          },
+          "wingR": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -5,
+            "y": -4
+          },
+          "legL1": {
+            "r": 25
+          },
+          "wingL": {
+            "r": -6
+          },
+          "wingR": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -7
+          },
+          "antennaR": {
+            "r": 6
+          },
+          "belly": {
+            "sx": 1.01,
+            "sy": 1.01
+          },
+          "face": {
+            "y": 1.5
+          },
+          "head": {
+            "r": 1,
+            "y": 2
+          },
+          "legL1": {
+            "r": 12.5
+          },
+          "root": {
+            "y": 7
+          },
+          "wingL": {
+            "r": 3
+          },
+          "wingR": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -14
+          },
+          "antennaR": {
+            "r": 12
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": 7,
+            "y": 8
+          },
+          "root": {
+            "y": 14
+          },
+          "wingL": {
+            "r": -6
+          },
+          "wingR": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -14.519
+          },
+          "antennaR": {
+            "r": 12.519
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.973
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": 7.259,
+            "y": 8.259
+          },
+          "root": {
+            "y": 15.037
+          },
+          "wingL": {
+            "r": 3
+          },
+          "wingR": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -15.481
+          },
+          "antennaR": {
+            "r": 13.481
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.977
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": 7.741,
+            "y": 8.741
+          },
+          "root": {
+            "y": 16.963
+          },
+          "wingL": {
+            "r": -6
+          },
+          "wingR": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -16
+          },
+          "antennaR": {
+            "r": 14
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": 8,
+            "y": 9
+          },
+          "root": {
+            "y": 18
+          },
+          "wingL": {
+            "r": 3
+          },
+          "wingR": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -13.5
+          },
+          "antennaR": {
+            "r": 11.812
+          },
+          "belly": {
+            "sx": 1.017,
+            "sy": 0.983
+          },
+          "face": {
+            "y": 2.531
+          },
+          "head": {
+            "r": 6.75,
+            "y": 7.125
+          },
+          "root": {
+            "y": 14.25
+          },
+          "wingL": {
+            "r": -6
+          },
+          "wingR": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -8
+          },
+          "antennaR": {
+            "r": 7
+          },
+          "belly": {
+            "sx": 1.01,
+            "sy": 0.99
+          },
+          "face": {
+            "y": 1.5
+          },
+          "head": {
+            "r": 4,
+            "y": 3
+          },
+          "root": {
+            "y": 6
+          },
+          "wingL": {
+            "r": 3
+          },
+          "wingR": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -2.5
+          },
+          "antennaR": {
+            "r": 2.188
+          },
+          "belly": {
+            "sx": 1.003,
+            "sy": 0.997
+          },
+          "face": {
+            "y": 0.469
+          },
+          "head": {
+            "r": 1.25,
+            "y": -1.125
+          },
+          "root": {
+            "y": -2.25
+          },
+          "wingL": {
+            "r": -6
+          },
+          "wingR": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "y": -3
+          },
+          "root": {
+            "y": -6
+          },
+          "wingL": {
+            "r": 3
+          },
+          "wingR": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": -6
+          },
+          "wingR": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.175,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": 3
+          },
+          "wingR": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.175,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": -6
+          },
+          "wingR": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

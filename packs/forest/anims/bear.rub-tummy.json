@@ -1,0 +1,148 @@
+{
+  "id": "rub-tummy",
+  "sticker": "bear",
+  "kind": "action",
+  "description": "the bear cub rubs its round tummy in little circles. Yum!",
+  "stickerBox": {
+    "x": 0.14323,
+    "y": 0.02995,
+    "width": 0.71224,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/bear.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": -10,
+            "y": -6
+          },
+          "armR": {
+            "r": 6,
+            "y": 4
+          },
+          "belly": {
+            "sx": 1.03
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": -2,
+            "x": 4,
+            "y": 2
+          },
+          "armR": {
+            "r": 10,
+            "x": -4,
+            "y": -6
+          },
+          "belly": {
+            "sx": 1.03
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": -10,
+            "y": -6
+          },
+          "armR": {
+            "r": 6,
+            "y": 4
+          },
+          "belly": {
+            "sx": 1.03
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": -2,
+            "x": 4,
+            "y": 2
+          },
+          "armR": {
+            "r": 10,
+            "x": -4,
+            "y": -6
+          },
+          "belly": {
+            "sx": 1.03
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": -10,
+            "y": -6
+          },
+          "armR": {
+            "r": 6,
+            "y": 4
+          },
+          "belly": {
+            "sx": 1.03
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

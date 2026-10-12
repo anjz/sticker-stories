@@ -3,44 +3,146 @@
   "sticker": "rabbit",
   "kind": "move",
   "description": "the rabbit hops along to the left, leap after leap, then sits back up.",
-  "sheet": "anims/rabbit.hop.webp",
-  "frame": {
-    "width": 472,
-    "height": 523
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.16949,
-    "y": 0.0478,
-    "width": 0.61017,
-    "height": 0.92161
-  },
   "stickerBox": {
     "x": 0.21875,
     "y": 0.02995,
     "width": 0.5612,
     "height": 0.9401
   },
-  "hold": [
-    0.1,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "left",
   "stride": 0.9,
-  "hops": true
+  "hops": true,
+  "puppet": {
+    "rig": "anims/rabbit.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.93
+          },
+          "body": {
+            "r": -6
+          },
+          "head": {
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 25
+          },
+          "armR": {
+            "r": -25
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "body": {
+            "r": -14
+          },
+          "earL": {
+            "r": -14
+          },
+          "earR": {
+            "r": -10
+          },
+          "head": {
+            "r": 8
+          },
+          "legL": {
+            "r": -35,
+            "x": 12
+          },
+          "legR": {
+            "r": -35,
+            "x": 12
+          },
+          "root": {
+            "y": -55
+          },
+          "tail": {
+            "r": 10
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": 25
+          },
+          "armR": {
+            "r": -25
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "body": {
+            "r": -14
+          },
+          "earL": {
+            "r": -14
+          },
+          "earR": {
+            "r": -10
+          },
+          "head": {
+            "r": 8
+          },
+          "legL": {
+            "r": 15
+          },
+          "legR": {
+            "r": 15
+          },
+          "root": {
+            "y": -40
+          },
+          "tail": {
+            "r": 10
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.9
+          },
+          "body": {
+            "r": -6
+          },
+          "head": {
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          }
+        }
+      },
+      {
+        "hold": 0.35
+      }
+    ]
+  }
 }

@@ -3,46 +3,188 @@
   "sticker": "firefly",
   "kind": "move",
   "description": "the firefly walks along to the left on its six little legs, wings folded and tail glowing softly, then stops.",
-  "sheet": "anims/firefly.walk.webp",
-  "frame": {
-    "width": 519,
-    "height": 435
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.03854,
-    "y": 0.03448,
-    "width": 0.92871,
-    "height": 0.92644
-  },
   "stickerBox": {
     "x": 0.02995,
     "y": 0.10677,
     "width": 0.9401,
     "height": 0.78646
   },
-  "hold": [
-    0.1,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.14,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "left",
   "stride": 0.3,
   "on": [
     "meadow"
-  ]
+  ],
+  "puppet": {
+    "rig": "anims/firefly.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "antennaL": {
+            "r": 4
+          },
+          "antennaR": {
+            "r": 4
+          },
+          "body": {
+            "r": 1,
+            "y": -3
+          },
+          "head": {
+            "r": -1
+          },
+          "legL1": {
+            "r": 10,
+            "x": -12,
+            "y": -12
+          },
+          "legL2": {
+            "r": -6,
+            "x": 8
+          },
+          "legL3": {
+            "r": 10,
+            "x": -12,
+            "y": -12
+          },
+          "legR1": {
+            "r": -6,
+            "x": 8
+          },
+          "legR2": {
+            "r": 10,
+            "x": -12,
+            "y": -12
+          },
+          "legR3": {
+            "r": -6,
+            "x": 8
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {},
+          "legL1": {
+            "r": 10,
+            "x": -12
+          },
+          "legL2": {
+            "r": -6,
+            "x": 8
+          },
+          "legL3": {
+            "r": 10,
+            "x": -12
+          },
+          "legR1": {
+            "r": -6,
+            "x": 8
+          },
+          "legR2": {
+            "r": 10,
+            "x": -12
+          },
+          "legR3": {
+            "r": -6,
+            "x": 8
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "antennaL": {
+            "r": -3
+          },
+          "antennaR": {
+            "r": -3
+          },
+          "body": {
+            "r": -1,
+            "y": -3
+          },
+          "head": {
+            "r": 1
+          },
+          "legL1": {
+            "r": -6,
+            "x": 8
+          },
+          "legL2": {
+            "r": 10,
+            "x": -12,
+            "y": -12
+          },
+          "legL3": {
+            "r": -6,
+            "x": 8
+          },
+          "legR1": {
+            "r": 10,
+            "x": -12,
+            "y": -12
+          },
+          "legR2": {
+            "r": -6,
+            "x": 8
+          },
+          "legR3": {
+            "r": 10,
+            "x": -12,
+            "y": -12
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {},
+          "legL1": {
+            "r": -6,
+            "x": 8
+          },
+          "legL2": {
+            "r": 10,
+            "x": -12
+          },
+          "legL3": {
+            "r": -6,
+            "x": 8
+          },
+          "legR1": {
+            "r": 10,
+            "x": -12
+          },
+          "legR2": {
+            "r": -6,
+            "x": 8
+          },
+          "legR3": {
+            "r": 10,
+            "x": -12
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
 }

@@ -2,44 +2,139 @@
   "id": "scamper",
   "sticker": "mouse",
   "kind": "move",
-  "description": "the mouse scampers along to the left on all fours, its tail curling behind, then stops and sits up.",
-  "sheet": "anims/mouse.scamper.webp",
-  "frame": {
-    "width": 497,
-    "height": 513
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.04427,
-    "y": 0.02924,
-    "width": 0.76056,
-    "height": 0.93957
-  },
+  "description": "the mouse scampers along to the left on its quick little feet, leaning forward with its paws tucked in and its tail curling behind, then stops and sits up.",
   "stickerBox": {
     "x": 0.13151,
     "y": 0.02995,
     "width": 0.73698,
     "height": 0.9401
   },
-  "hold": [
-    0.1,
-    0.06,
-    0.06,
-    0.06,
-    0.06,
-    0.06,
-    0.06,
-    0.06,
-    0.06,
-    0.14,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "left",
-  "stride": 0.5
+  "stride": 0.5,
+  "puppet": {
+    "rig": "anims/mouse.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.13,
+        "bones": {
+          "armL": {
+            "r": -20
+          },
+          "armR": {
+            "r": 25
+          },
+          "body": {
+            "r": -14
+          },
+          "head": {
+            "r": 8
+          },
+          "legL": {
+            "r": 22
+          },
+          "legR": {
+            "r": -18
+          },
+          "root": {
+            "y": -10
+          },
+          "tail": {
+            "r": -10
+          }
+        }
+      },
+      {
+        "hold": 0.13,
+        "bones": {
+          "armL": {
+            "r": -20
+          },
+          "armR": {
+            "r": 25
+          },
+          "body": {
+            "r": -14
+          },
+          "head": {
+            "r": 8
+          },
+          "root": {},
+          "tail": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.13,
+        "bones": {
+          "armL": {
+            "r": -20
+          },
+          "armR": {
+            "r": 25
+          },
+          "body": {
+            "r": -14
+          },
+          "head": {
+            "r": 8
+          },
+          "legL": {
+            "r": -18
+          },
+          "legR": {
+            "r": 22
+          },
+          "root": {
+            "y": -10
+          },
+          "tail": {
+            "r": -10
+          }
+        }
+      },
+      {
+        "hold": 0.13,
+        "bones": {
+          "armL": {
+            "r": -20
+          },
+          "armR": {
+            "r": 25
+          },
+          "body": {
+            "r": -14
+          },
+          "head": {
+            "r": 8
+          },
+          "root": {},
+          "tail": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "body": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.35
+      }
+    ]
+  }
 }

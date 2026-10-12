@@ -1,0 +1,119 @@
+{
+  "id": "stretch",
+  "sticker": "bear",
+  "kind": "action",
+  "description": "the bear cub stretches its arms up high, then lets them flop down with a happy sigh.",
+  "stickerBox": {
+    "x": 0.14323,
+    "y": 0.02995,
+    "width": 0.71224,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the bear cub stretching its arms up high"
+  },
+  "puppet": {
+    "rig": "anims/bear.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "armL": {
+            "r": 195,
+            "x": -12,
+            "y": -34
+          },
+          "armR": {
+            "r": -205,
+            "x": 12,
+            "y": -34
+          },
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.05
+          },
+          "head": {
+            "r": -4,
+            "y": -6
+          },
+          "root": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "armL": {
+            "r": 200,
+            "x": -14,
+            "y": -40
+          },
+          "armR": {
+            "r": -210,
+            "x": 14,
+            "y": -40
+          },
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.07
+          },
+          "head": {
+            "r": -5,
+            "y": -8
+          },
+          "root": {
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.18,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": -6
+          },
+          "armR": {
+            "r": 6
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.95
+          },
+          "head": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

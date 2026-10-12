@@ -2,53 +2,184 @@
   "id": "close",
   "sticker": "flower",
   "description": "the flower slowly folds its yellow petals up and closes over its face like a bud for the night, then opens them wide again to the sun and smiles.",
-  "sheet": "anims/flower.close.webp",
-  "frame": {
-    "width": 411,
-    "height": 513
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.06326,
-    "y": 0.02924,
-    "width": 0.86618,
-    "height": 0.93957
-  },
   "stickerBox": {
     "x": 0.15365,
     "y": 0.02995,
     "width": 0.69271,
     "height": 0.9401
   },
-  "hold": [
-    0.45,
-    0.15,
-    0.15,
-    0.15,
-    0.15,
-    0.15,
-    0.2,
-    0.2,
-    0.2,
-    0.2,
-    0.2,
-    0.8,
-    0.15,
-    0.15,
-    0.12,
-    0.12,
-    0.15,
-    0.15,
-    0.12,
-    0.12,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 5,
     "shows": "the flower closed for the night, a bud with its petals folded over its face"
+  },
+  "puppet": {
+    "rig": "anims/flower.rig.json",
+    "keys": [
+      {
+        "hold": 0.35
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "sx": 0.95,
+            "sy": 0.93
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "ease": "in",
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "sx": 0.74,
+            "sy": 0.7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "head": {
+            "sx": 0.75,
+            "sy": 0.75
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "bud": "bud",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "head": {
+            "sx": 0.84,
+            "sy": 0.84
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "bud": "bud",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "head": {
+            "sx": 0.84,
+            "sy": 0.82
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "bud": "bud",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "in",
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "head": {
+            "sx": 0.84,
+            "sy": 0.88
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "bud": "bud",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "head": {
+            "sx": 0.72,
+            "sy": 0.72
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "y": -6,
+            "sx": 1.06,
+            "sy": 1.06
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "sx": 1,
+            "sy": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
   }
 }

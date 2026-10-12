@@ -1,0 +1,133 @@
+{
+  "id": "talk",
+  "sticker": "owl",
+  "kind": "action",
+  "description": "the owl talks, its mouth moving, its head bobbing a little.",
+  "stickerBox": {
+    "x": 0.16276,
+    "y": 0.02995,
+    "width": 0.67448,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/owl.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "beak": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "beak": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "beak": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "beak": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "r": -2,
+            "y": -3
+          }
+        },
+        "slots": {
+          "beak": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "head": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

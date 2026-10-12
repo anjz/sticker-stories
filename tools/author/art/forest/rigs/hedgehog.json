@@ -1,0 +1,1336 @@
+{
+  "sticker": "hedgehog",
+  "skeleton": "hedgehog standing, three-quarter view facing left: root on the ground; body (the spiny back) with belly squash; head (the cream face and snout) at the front-left, face with eyes and mouth; four little feet under the body; a curled-up ball piece swaps in for everything when it curls.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a hedgehog character. Draw this exact hedgehog as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the body: the round body covered in brown spines with its cream tummy below, drawn whole including the part behind the head, without head or feet.\n2. the head: the cream face and snout with its black nose and small round ear, facing left as in image 1, with a completely blank face — no eyes, no mouth — keep the nose, the cheek and the ear; without spines; its back edge rounded.\n3. one foot: a small cream foot with a short leg.\n4. the hedgehog curled up into a round ball of brown spines, no face showing.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a hedgehog character; image 2 shows the same hedgehog cut into puppet parts, with a blank face. Draw the hedgehog's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the hedgehog in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the hedgehog's left eye (on the right of image 1) as it is in image 1: a dark round eye with a white sparkle and a slightly worried brow.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a small smile.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "head": {
+      "sheet": "parts",
+      "at": [
+        338,
+        286
+      ]
+    },
+    "body": {
+      "sheet": "parts",
+      "at": [
+        915,
+        303
+      ]
+    },
+    "foot": {
+      "sheet": "parts",
+      "at": [
+        385,
+        768
+      ]
+    },
+    "ball": {
+      "sheet": "parts",
+      "at": [
+        1205,
+        775
+      ]
+    },
+    "brow": {
+      "sheet": "face",
+      "at": [
+        167,
+        247
+      ]
+    },
+    "browUp": {
+      "sheet": "face",
+      "at": [
+        479,
+        223
+      ]
+    },
+    "browSad": {
+      "sheet": "face",
+      "at": [
+        1388,
+        285
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        167,
+        386
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        450,
+        372
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        761,
+        407
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        1077,
+        362
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1374,
+        396
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        245,
+        737
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        589,
+        727
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        937,
+        734
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1279,
+        736
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 410,
+      "y": 702
+    },
+    {
+      "id": "legFF",
+      "parent": "root",
+      "x": 236,
+      "y": 620
+    },
+    {
+      "id": "legBF",
+      "parent": "root",
+      "x": 520,
+      "y": 600
+    },
+    {
+      "id": "legBN",
+      "parent": "root",
+      "x": 560,
+      "y": 620
+    },
+    {
+      "id": "legFN",
+      "parent": "root",
+      "x": 350,
+      "y": 630
+    },
+    {
+      "id": "ball",
+      "parent": "root",
+      "x": 415,
+      "y": 472
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 410,
+      "y": 640
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 410,
+      "y": 640
+    },
+    {
+      "id": "head",
+      "parent": "body",
+      "x": 250,
+      "y": 470
+    },
+    {
+      "id": "face",
+      "parent": "head",
+      "x": 190,
+      "y": 360
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 131,
+      "y": 335
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 261,
+      "y": 372
+    },
+    {
+      "id": "browL",
+      "parent": "face",
+      "x": 154,
+      "y": 269
+    },
+    {
+      "id": "browR",
+      "parent": "face",
+      "x": 284,
+      "y": 302
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 170,
+      "y": 421
+    }
+  ],
+  "slots": [
+    {
+      "id": "legBF",
+      "bone": "legBF",
+      "default": "foot",
+      "attachments": {
+        "foot": {
+          "part": "foot",
+          "x": 520,
+          "y": 615,
+          "scale": 0.55,
+          "shade": 0.2
+        }
+      }
+    },
+    {
+      "id": "legFF",
+      "bone": "legFF",
+      "default": "foot",
+      "attachments": {
+        "foot": {
+          "part": "foot",
+          "x": 232,
+          "y": 648,
+          "scale": 0.55,
+          "shade": 0.12
+        }
+      }
+    },
+    {
+      "id": "legBN",
+      "bone": "legBN",
+      "default": "foot",
+      "attachments": {
+        "foot": {
+          "part": "foot",
+          "x": 560,
+          "y": 650,
+          "scale": 0.55
+        }
+      }
+    },
+    {
+      "id": "legFN",
+      "bone": "legFN",
+      "default": "foot",
+      "attachments": {
+        "foot": {
+          "part": "foot",
+          "x": 352,
+          "y": 660,
+          "scale": 0.55
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "body",
+          "x": 438,
+          "y": 356,
+          "scale": 1.03,
+          "scaleY": 1.06,
+          "rotate": 4
+        }
+      }
+    },
+    {
+      "id": "head",
+      "bone": "head",
+      "default": "head",
+      "attachments": {
+        "head": {
+          "part": "head",
+          "x": 240,
+          "y": 335,
+          "scale": 0.9,
+          "rotate": -10
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 131,
+          "y": 335,
+          "scale": 0.36
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 131,
+          "y": 333,
+          "scale": 0.32
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 131,
+          "y": 343,
+          "scale": 0.272
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 131,
+          "y": 339,
+          "scale": 0.258
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 131,
+          "y": 337,
+          "scale": 0.34
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 261,
+          "y": 372,
+          "scale": 0.53,
+          "scaleY": 0.87
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 261,
+          "y": 370,
+          "scale": 0.47,
+          "scaleY": 0.87
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 261,
+          "y": 380,
+          "scale": 0.4
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 261,
+          "y": 376,
+          "scale": 0.38
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 261,
+          "y": 374,
+          "scale": 0.5,
+          "scaleY": 0.87
+        }
+      }
+    },
+    {
+      "id": "browL",
+      "bone": "browL",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "brow",
+          "x": 154,
+          "y": 269,
+          "scale": 0.4
+        },
+        "up": {
+          "part": "browUp",
+          "x": 152,
+          "y": 262,
+          "scale": 0.4,
+          "flip": true
+        },
+        "sad": {
+          "part": "browSad",
+          "x": 154,
+          "y": 266,
+          "scale": 0.42,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "browR",
+      "bone": "browR",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "brow",
+          "x": 284,
+          "y": 302,
+          "scale": 0.42,
+          "flip": true
+        },
+        "up": {
+          "part": "browUp",
+          "x": 286,
+          "y": 294,
+          "scale": 0.42
+        },
+        "sad": {
+          "part": "browSad",
+          "x": 284,
+          "y": 298,
+          "scale": 0.45
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 170,
+          "y": 421,
+          "scale": 0.3,
+          "rotate": -14
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 170,
+          "y": 428,
+          "scale": 0.27,
+          "rotate": -8
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 170,
+          "y": 428,
+          "scale": 0.27
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 170,
+          "y": 424,
+          "scale": 0.3,
+          "rotate": -8
+        }
+      }
+    },
+    {
+      "id": "ball",
+      "bone": "ball",
+      "default": "none",
+      "attachments": {
+        "ball": {
+          "part": "ball",
+          "x": 415,
+          "y": 472,
+          "scale": 0.98
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad",
+      "browL": "sad",
+      "browR": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o",
+      "browL": "up",
+      "browR": "up"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "curl",
+      "kind": "action",
+      "description": "the hedgehog tucks in its nose and curls up into a round spiny ball, then slowly uncurls, peeks out and sniffs.",
+      "pause": {
+        "frame": 6,
+        "shows": "the hedgehog curled up into a round spiny ball"
+      },
+      "keys": [
+        {
+          "hold": 0.35
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "head": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "browL": "up",
+            "browR": "up",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": -10.8,
+              "x": 13.2,
+              "y": 20.4
+            },
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.928
+            },
+            "legFF": {
+              "x": 8.4,
+              "y": -14.4
+            },
+            "legFN": {
+              "x": 4.8,
+              "y": -14.4
+            },
+            "legBN": {
+              "x": -6.0,
+              "y": -14.4
+            },
+            "legBF": {
+              "y": -12.0
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": -18.0,
+              "x": 22.0,
+              "y": 34.0
+            },
+            "belly": {
+              "sx": 1.05,
+              "sy": 0.88
+            },
+            "legFF": {
+              "x": 14.0,
+              "y": -24.0
+            },
+            "legFN": {
+              "x": 8.0,
+              "y": -24.0
+            },
+            "legBN": {
+              "x": -10.0,
+              "y": -24.0
+            },
+            "legBF": {
+              "y": -20.0
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "ball": {
+              "sx": 1.07,
+              "sy": 0.92
+            }
+          },
+          "slots": {
+            "legBF": "none",
+            "legFF": "none",
+            "legBN": "none",
+            "legFN": "none",
+            "body": "none",
+            "head": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none",
+            "ball": "ball"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "ball": {
+              "sx": 0.98,
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "legBF": "none",
+            "legFF": "none",
+            "legBN": "none",
+            "legFN": "none",
+            "body": "none",
+            "head": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none",
+            "ball": "ball"
+          }
+        },
+        {
+          "hold": 0.8,
+          "slots": {
+            "legBF": "none",
+            "legFF": "none",
+            "legBN": "none",
+            "legFN": "none",
+            "body": "none",
+            "head": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none",
+            "ball": "ball"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "ball": {
+              "sx": 1.02,
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "legBF": "none",
+            "legFF": "none",
+            "legBN": "none",
+            "legFN": "none",
+            "body": "none",
+            "head": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none",
+            "ball": "ball"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "ball": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "legBF": "none",
+            "legFF": "none",
+            "legBN": "none",
+            "legFN": "none",
+            "body": "none",
+            "head": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none",
+            "ball": "ball"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "ball": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "legBF": "none",
+            "legFF": "none",
+            "legBN": "none",
+            "legFN": "none",
+            "body": "none",
+            "head": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none",
+            "ball": "ball"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "head": {
+              "r": -18.0,
+              "x": 22.0,
+              "y": 34.0
+            },
+            "belly": {
+              "sx": 1.05,
+              "sy": 0.88
+            },
+            "legFF": {
+              "x": 14.0,
+              "y": -24.0
+            },
+            "legFN": {
+              "x": 8.0,
+              "y": -24.0
+            },
+            "legBN": {
+              "x": -10.0,
+              "y": -24.0
+            },
+            "legBF": {
+              "y": -20.0
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": -9.0,
+              "x": 11.0,
+              "y": 17.0
+            },
+            "belly": {
+              "sx": 1.025,
+              "sy": 0.94
+            },
+            "legFF": {
+              "x": 7.0,
+              "y": -12.0
+            },
+            "legFN": {
+              "x": 4.0,
+              "y": -12.0
+            },
+            "legBN": {
+              "x": -5.0,
+              "y": -12.0
+            },
+            "legBF": {
+              "y": -10.0
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "head": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 4,
+              "x": -4
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 4,
+              "x": -4
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "scurry",
+      "kind": "move",
+      "description": "the hedgehog scurries along to the left on its tiny feet, then stops.",
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "facing": "left",
+      "stride": 0.4,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "legFN": {
+              "x": -14,
+              "y": -10
+            },
+            "legBF": {
+              "x": -12,
+              "y": -8
+            },
+            "legFF": {
+              "x": 8
+            },
+            "legBN": {
+              "x": 8
+            },
+            "body": {
+              "y": -6,
+              "r": -1
+            },
+            "head": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "body": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "legFF": {
+              "x": -14,
+              "y": -10
+            },
+            "legBN": {
+              "x": -12,
+              "y": -10
+            },
+            "legFN": {
+              "x": 8
+            },
+            "legBF": {
+              "x": 8
+            },
+            "body": {
+              "y": -6,
+              "r": 1
+            },
+            "head": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "body": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            }
+          }
+        },
+        {
+          "hold": 0.45
+        }
+      ]
+    },
+    {
+      "id": "sniff",
+      "kind": "action",
+      "description": "the hedgehog lifts its little nose and sniffs, sniffs, sniffs the air.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": 6,
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 8,
+              "x": -4,
+              "y": -4
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 6,
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 8,
+              "x": -4,
+              "y": -4
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 6,
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 8,
+              "x": -4,
+              "y": -4
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "roll",
+      "kind": "action",
+      "description": "the hedgehog curls up into a spiny ball, rolls a little way and rolls back, then uncurls with a grin.",
+      "pause": {
+        "frame": 4,
+        "shows": "the hedgehog curled up in a spiny ball, mid-roll"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "head": {
+              "r": -18.0,
+              "x": 22.0,
+              "y": 34.0
+            },
+            "belly": {
+              "sx": 1.05,
+              "sy": 0.88
+            },
+            "legFF": {
+              "x": 14.0,
+              "y": -24.0
+            },
+            "legFN": {
+              "x": 8.0,
+              "y": -24.0
+            },
+            "legBN": {
+              "x": -10.0,
+              "y": -24.0
+            },
+            "legBF": {
+              "y": -20.0
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "ball": {
+              "sx": 1.05,
+              "sy": 0.94
+            }
+          },
+          "slots": {
+            "legBF": "none",
+            "legFF": "none",
+            "legBN": "none",
+            "legFN": "none",
+            "body": "none",
+            "head": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none",
+            "ball": "ball"
+          }
+        },
+        {
+          "hold": 0.7,
+          "ease": "inOut",
+          "bones": {
+            "ball": {
+              "r": -40
+            },
+            "root": {
+              "x": -140
+            }
+          },
+          "slots": {
+            "legBF": "none",
+            "legFF": "none",
+            "legBN": "none",
+            "legFN": "none",
+            "body": "none",
+            "head": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none",
+            "ball": "ball"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "ball": {
+              "r": -40
+            },
+            "root": {
+              "x": -140
+            }
+          },
+          "slots": {
+            "legBF": "none",
+            "legFF": "none",
+            "legBN": "none",
+            "legFN": "none",
+            "body": "none",
+            "head": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none",
+            "ball": "ball"
+          }
+        },
+        {
+          "hold": 0.7,
+          "ease": "inOut",
+          "bones": {
+            "ball": {
+              "r": 0
+            },
+            "root": {
+              "x": 0
+            }
+          },
+          "slots": {
+            "legBF": "none",
+            "legFF": "none",
+            "legBN": "none",
+            "legFN": "none",
+            "body": "none",
+            "head": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none",
+            "ball": "ball"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "ball": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "legBF": "none",
+            "legFF": "none",
+            "legBN": "none",
+            "legFN": "none",
+            "body": "none",
+            "head": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none",
+            "ball": "ball"
+          }
+        },
+        {
+          "hold": 0.2,
+          "slots": {
+            "legBF": "none",
+            "legFF": "none",
+            "legBN": "none",
+            "legFN": "none",
+            "body": "none",
+            "head": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none",
+            "ball": "ball"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "head": {
+              "r": -18.0,
+              "x": 22.0,
+              "y": 34.0
+            },
+            "belly": {
+              "sx": 1.05,
+              "sy": 0.88
+            },
+            "legFF": {
+              "x": 14.0,
+              "y": -24.0
+            },
+            "legFN": {
+              "x": 8.0,
+              "y": -24.0
+            },
+            "legBN": {
+              "x": -10.0,
+              "y": -24.0
+            },
+            "legBF": {
+              "y": -20.0
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": -7.2,
+              "x": 8.8,
+              "y": 13.6
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.952
+            },
+            "legFF": {
+              "x": 5.6,
+              "y": -9.6
+            },
+            "legFN": {
+              "x": 3.2,
+              "y": -9.6
+            },
+            "legBN": {
+              "x": -4.0,
+              "y": -9.6
+            },
+            "legBF": {
+              "y": -8.0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shiver",
+      "template": "common.shiver"
+    },
+    {
+      "id": "nod",
+      "template": "common.nod"
+    },
+    {
+      "id": "shake-head",
+      "template": "common.shake-head"
+    },
+    {
+      "id": "look-around",
+      "template": "common.look-around"
+    },
+    {
+      "id": "laugh",
+      "template": "common.laugh"
+    },
+    {
+      "id": "talk",
+      "template": "common.talk"
+    },
+    {
+      "id": "cry",
+      "template": "common.cry"
+    },
+    {
+      "id": "sleep",
+      "template": "common.sleep"
+    },
+    {
+      "id": "jump",
+      "template": "common.jump"
+    },
+    {
+      "id": "dance",
+      "template": "common.dance"
+    },
+    {
+      "id": "twirl",
+      "template": "common.twirl"
+    }
+  ]
+}

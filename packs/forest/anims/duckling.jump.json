@@ -1,0 +1,133 @@
+{
+  "id": "jump",
+  "sticker": "duckling",
+  "description": "the duckling crouches, jumps up high for joy and lands with a little squash.",
+  "stickerBox": {
+    "x": 0.17188,
+    "y": 0.02995,
+    "width": 0.65625,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/duckling.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.9
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 8
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "footL": {
+            "r": 14,
+            "y": -8
+          },
+          "footR": {
+            "r": -14,
+            "y": -8
+          },
+          "root": {
+            "y": -78
+          },
+          "wingL": {
+            "r": 25
+          },
+          "wingR": {
+            "r": -25
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "footL": {
+            "r": 14,
+            "y": -8
+          },
+          "footR": {
+            "r": -14,
+            "y": -8
+          },
+          "root": {
+            "y": -84
+          },
+          "wingL": {
+            "r": 25
+          },
+          "wingR": {
+            "r": -25
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.08,
+            "sy": 0.88
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

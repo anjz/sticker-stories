@@ -1,0 +1,204 @@
+{
+  "id": "flap",
+  "sticker": "butterfly",
+  "kind": "action",
+  "description": "the butterfly flaps its bright wings slowly, up and down, lifting a little off its perch.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.07943,
+    "width": 0.9401,
+    "height": 0.84115
+  },
+  "puppet": {
+    "rig": "anims/butterfly.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "antennaL": {
+            "r": -4
+          },
+          "antennaR": {
+            "r": 4
+          },
+          "root": {
+            "y": -4
+          },
+          "wingL": {
+            "r": 12,
+            "sx": 0.45
+          },
+          "wingL2": {
+            "sy": 0.6
+          },
+          "wingR": {
+            "r": -12,
+            "sx": 0.45
+          },
+          "wingR2": {
+            "sy": 0.6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "antennaL": {
+            "r": 2
+          },
+          "antennaR": {
+            "r": -2
+          },
+          "root": {
+            "y": -12
+          },
+          "wingL": {
+            "r": -3,
+            "sx": 1.03
+          },
+          "wingR": {
+            "r": 3,
+            "sx": 1.03
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "antennaL": {
+            "r": -4
+          },
+          "antennaR": {
+            "r": 4
+          },
+          "root": {
+            "y": -18
+          },
+          "wingL": {
+            "r": 12,
+            "sx": 0.45
+          },
+          "wingL2": {
+            "sy": 0.6
+          },
+          "wingR": {
+            "r": -12,
+            "sx": 0.45
+          },
+          "wingR2": {
+            "sy": 0.6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "antennaL": {
+            "r": 2
+          },
+          "antennaR": {
+            "r": -2
+          },
+          "root": {
+            "y": -14
+          },
+          "wingL": {
+            "r": -3,
+            "sx": 1.03
+          },
+          "wingR": {
+            "r": 3,
+            "sx": 1.03
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "antennaL": {
+            "r": -4
+          },
+          "antennaR": {
+            "r": 4
+          },
+          "root": {
+            "y": -10
+          },
+          "wingL": {
+            "r": 12,
+            "sx": 0.45
+          },
+          "wingL2": {
+            "sy": 0.6
+          },
+          "wingR": {
+            "r": -12,
+            "sx": 0.45
+          },
+          "wingR2": {
+            "sy": 0.6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "antennaL": {
+            "r": 2
+          },
+          "antennaR": {
+            "r": -2
+          },
+          "root": {
+            "y": -4
+          },
+          "wingL": {
+            "r": -3,
+            "sx": 1.03
+          },
+          "wingR": {
+            "r": 3,
+            "sx": 1.03
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

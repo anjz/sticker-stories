@@ -1,0 +1,69 @@
+{
+  "id": "nod",
+  "sticker": "squirrel",
+  "kind": "action",
+  "description": "the squirrel nods yes, twice.",
+  "stickerBox": {
+    "x": 0.05078,
+    "y": 0.02995,
+    "width": 0.89714,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/squirrel.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": 8
+          },
+          "head": {
+            "y": 9,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -3
+          },
+          "head": {
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": 8
+          },
+          "head": {
+            "y": 9,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -2
+          },
+          "head": {
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

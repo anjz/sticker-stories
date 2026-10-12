@@ -1,0 +1,79 @@
+{
+  "id": "nod",
+  "sticker": "snail",
+  "kind": "action",
+  "description": "the snail nods yes, twice.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.08984,
+    "width": 0.9401,
+    "height": 0.81901
+  },
+  "puppet": {
+    "rig": "anims/snail.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "head": {
+            "y": 3
+          },
+          "stalkL": {
+            "r": 14
+          },
+          "stalkR": {
+            "r": 14
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "stalkL": {
+            "r": -3
+          },
+          "stalkR": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "head": {
+            "y": 3
+          },
+          "stalkL": {
+            "r": 14
+          },
+          "stalkR": {
+            "r": 14
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "stalkL": {
+            "r": -2
+          },
+          "stalkR": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

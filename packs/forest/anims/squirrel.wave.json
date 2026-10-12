@@ -1,0 +1,110 @@
+{
+  "id": "wave",
+  "sticker": "squirrel",
+  "kind": "action",
+  "description": "the squirrel waves hello with one little paw, holding its nut in the other.",
+  "stickerBox": {
+    "x": 0.05078,
+    "y": 0.02995,
+    "width": 0.89714,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/squirrel.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": 75,
+            "y": -6
+          },
+          "head": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": 95,
+            "y": -6
+          },
+          "head": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": 70,
+            "y": -6
+          },
+          "head": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": 95,
+            "y": -6
+          },
+          "head": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "r": 70,
+            "y": -6
+          },
+          "head": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

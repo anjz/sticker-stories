@@ -1,0 +1,1538 @@
+{
+  "sticker": "mushroom",
+  "skeleton": "mushroom: root at the stem's foot (in the ground); stem bone with squash (the face is on it: eyes, mouth); cap on top of the stem (tips, bounces, lifts).",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a mushroom character. Draw this exact mushroom as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the cap: the red cap with its white spots and the cream gills underneath, alone, tilted a little as in image 1.\n2. the stem: the plump cream stem with a completely blank face — no eyes, no mouth — keep the rosy cheeks; its top, normally under the cap, rounded.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a mushroom character; image 2 shows the same mushroom cut into puppet parts, with a blank face. Draw the mushroom's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the mushroom in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the mushroom's left eye (on the right of image 1) as it is in image 1: a small dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the same eye scrunched shut tight, about to sneeze.\n7. the mouth as it is in image 1: a small shy smile.\n8. the mouth pressed tight with puffed cheeks, holding a sneeze.\n9. the mouth wide open in a big happy laugh, the inside pink.\n10. the mouth open in a small round 'o'.\n11. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "cap": {
+      "sheet": "parts",
+      "at": [
+        574,
+        383
+      ]
+    },
+    "stem": {
+      "sheet": "parts",
+      "at": [
+        1274,
+        702
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        132,
+        331
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        383,
+        328
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        650,
+        362
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        895,
+        329
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1177,
+        339
+      ]
+    },
+    "eyeScrunch": {
+      "sheet": "face",
+      "at": [
+        1413,
+        339
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        149,
+        687
+      ]
+    },
+    "mouthPuff": {
+      "sheet": "face",
+      "at": [
+        488,
+        672
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        811,
+        683
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        1089,
+        688
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1373,
+        677
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 378,
+      "y": 722
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 378,
+      "y": 720
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 378,
+      "y": 720
+    },
+    {
+      "id": "cap",
+      "parent": "belly",
+      "x": 380,
+      "y": 320
+    },
+    {
+      "id": "face",
+      "parent": "belly",
+      "x": 362,
+      "y": 400
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 312,
+      "y": 382
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 416,
+      "y": 416
+    },
+    {
+      "id": "browL",
+      "parent": "face",
+      "x": 335,
+      "y": 335
+    },
+    {
+      "id": "browR",
+      "parent": "face",
+      "x": 434,
+      "y": 372
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 351,
+      "y": 437
+    }
+  ],
+  "slots": [
+    {
+      "id": "stem",
+      "bone": "belly",
+      "default": "stem",
+      "attachments": {
+        "stem": {
+          "part": "stem",
+          "x": 375,
+          "y": 518,
+          "scale": 0.64,
+          "scaleY": 1.13
+        }
+      }
+    },
+    {
+      "id": "cap",
+      "bone": "cap",
+      "default": "cap",
+      "attachments": {
+        "cap": {
+          "part": "cap",
+          "x": 383,
+          "y": 267,
+          "scale": 0.618,
+          "scaleY": 1.02
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 312,
+          "y": 382,
+          "scale": 0.34
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 312,
+          "y": 382,
+          "scale": 0.32
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 312,
+          "y": 390,
+          "scale": 0.3,
+          "flip": true
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 312,
+          "y": 386,
+          "scale": 0.3
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 312,
+          "y": 384,
+          "scale": 0.34,
+          "flip": true
+        },
+        "scrunch": {
+          "part": "eyeScrunch",
+          "x": 312,
+          "y": 384,
+          "scale": 0.32,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 416,
+          "y": 416,
+          "scale": 0.34
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 416,
+          "y": 416,
+          "scale": 0.32
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 416,
+          "y": 424,
+          "scale": 0.3
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 416,
+          "y": 420,
+          "scale": 0.3
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 416,
+          "y": 418,
+          "scale": 0.34
+        },
+        "scrunch": {
+          "part": "eyeScrunch",
+          "x": 416,
+          "y": 418,
+          "scale": 0.32
+        }
+      }
+    },
+    {
+      "id": "browL",
+      "bone": "browL",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "mouthSad",
+          "x": 335,
+          "y": 335,
+          "scale": 0.2,
+          "rotate": 4
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 335,
+          "y": 331,
+          "scale": 0.2,
+          "rotate": -18
+        }
+      }
+    },
+    {
+      "id": "browR",
+      "bone": "browR",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "mouthSad",
+          "x": 434,
+          "y": 372,
+          "scale": 0.2,
+          "rotate": 35
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 434,
+          "y": 368,
+          "scale": 0.2,
+          "rotate": 55
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 351,
+          "y": 437,
+          "scale": 0.22,
+          "rotate": 8
+        },
+        "puff": {
+          "part": "mouthPuff",
+          "x": 362,
+          "y": 445,
+          "scale": 0.55,
+          "rotate": 8
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 352,
+          "y": 444,
+          "scale": 0.24,
+          "rotate": 6
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 352,
+          "y": 442,
+          "scale": 0.24
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 352,
+          "y": 442,
+          "scale": 0.24,
+          "rotate": 6
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad",
+      "browL": "sad",
+      "browR": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "sneeze",
+      "kind": "action",
+      "description": "the mushroom scrunches up its face and holds its breath — ah… ah… — then sneezes a little puff of glittery spores from under its cap and smiles.",
+      "pause": {
+        "frame": 6,
+        "shows": "the mushroom about to sneeze, eyes scrunched and cheeks puffed — ah… ah…"
+      },
+      "particles": [
+        {
+          "frame": 7,
+          "effect": "sparks",
+          "x": 0.52,
+          "y": 0.56,
+          "intensity": 0.7,
+          "color": "#FFF2B0"
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.35
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "face": {
+              "y": -2
+            },
+            "cap": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "belly": {
+              "sy": 1.03,
+              "sx": 0.97
+            },
+            "body": {
+              "r": -3
+            },
+            "cap": {
+              "y": -4,
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "scrunch",
+            "eyeR": "scrunch",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "belly": {
+              "sy": 1.02,
+              "sx": 0.98
+            },
+            "body": {
+              "r": -1
+            },
+            "cap": {
+              "y": -2,
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "scrunch",
+            "eyeR": "scrunch",
+            "mouth": "puff"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "belly": {
+              "sy": 1.05,
+              "sx": 0.95
+            },
+            "body": {
+              "r": -4
+            },
+            "cap": {
+              "y": -6,
+              "r": -5
+            }
+          },
+          "slots": {
+            "eyeL": "scrunch",
+            "eyeR": "scrunch",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "belly": {
+              "sy": 1.06,
+              "sx": 0.94
+            },
+            "body": {
+              "r": -5
+            },
+            "cap": {
+              "y": -8,
+              "r": -6
+            }
+          },
+          "slots": {
+            "eyeL": "scrunch",
+            "eyeR": "scrunch",
+            "mouth": "puff"
+          }
+        },
+        {
+          "hold": 0.7,
+          "ease": "in",
+          "bones": {
+            "belly": {
+              "sy": 1.065,
+              "sx": 0.935
+            },
+            "body": {
+              "r": -5
+            },
+            "cap": {
+              "y": -9,
+              "r": -6
+            }
+          },
+          "slots": {
+            "eyeL": "scrunch",
+            "eyeR": "scrunch",
+            "mouth": "puff"
+          }
+        },
+        {
+          "hold": 0.12,
+          "ease": "out",
+          "bones": {
+            "belly": {
+              "sy": 0.9,
+              "sx": 1.06
+            },
+            "body": {
+              "r": 4
+            },
+            "cap": {
+              "y": -55,
+              "r": 9
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "in",
+          "bones": {
+            "belly": {
+              "sy": 1.02
+            },
+            "body": {
+              "r": 2
+            },
+            "cap": {
+              "y": -60,
+              "r": 7
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "cap": {
+              "y": 0,
+              "r": 0
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "belly": {
+              "sy": 0.99
+            },
+            "cap": {
+              "y": 2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.4,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sprout",
+      "kind": "move",
+      "description": "the mushroom pops up out of the ground: a little round button grows up, its stem stretches and its spotted cap unfurls.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "belly": {
+              "sx": 0.1,
+              "sy": 0.06
+            },
+            "cap": {
+              "sx": 1.5,
+              "sy": 2.5
+            }
+          },
+          "slots": {
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "linear",
+          "bones": {
+            "belly": {
+              "sx": 0.45,
+              "sy": 0.35
+            },
+            "cap": {
+              "sx": 0.9,
+              "sy": 1.15
+            }
+          },
+          "slots": {
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "belly": {
+              "sx": 0.9,
+              "sy": 1.05
+            },
+            "cap": {
+              "sx": 0.83,
+              "sy": 0.67
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "belly": {
+              "sy": 0.97
+            },
+            "cap": {
+              "sx": 1.08,
+              "sy": 1.0
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "belly": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "bounce",
+      "kind": "action",
+      "description": "the mushroom bounces up and down on the spot, squashing and stretching with joy.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 0.9,
+              "sx": 1.06
+            },
+            "cap": {
+              "y": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.24,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -42
+            },
+            "belly": {
+              "sy": 1.05,
+              "sx": 0.97
+            },
+            "cap": {
+              "y": -6,
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -46
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.97
+            },
+            "cap": {
+              "y": -8,
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "belly": {
+              "sy": 0.88,
+              "sx": 1.07
+            },
+            "cap": {
+              "y": 6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 0.9,
+              "sx": 1.06
+            },
+            "cap": {
+              "y": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.24,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -42
+            },
+            "belly": {
+              "sy": 1.05,
+              "sx": 0.97
+            },
+            "cap": {
+              "y": -6,
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -46
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.97
+            },
+            "cap": {
+              "y": -8,
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "belly": {
+              "sy": 0.88,
+              "sx": 1.07
+            },
+            "cap": {
+              "y": 6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "tip-cap",
+      "kind": "action",
+      "description": "the mushroom lifts its spotted cap and tips it like a hat, then pops it back on.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "belly": {
+              "sy": 0.96
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "cap": {
+              "y": -42,
+              "r": -22
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "cap": {
+              "y": -46,
+              "r": -27
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "ease": "in",
+          "bones": {
+            "cap": {
+              "y": 0,
+              "r": 0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.08,
+          "bones": {
+            "cap": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.97
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.15
+        }
+      ]
+    },
+    {
+      "id": "wiggle",
+      "kind": "action",
+      "description": "the mushroom wiggles from side to side, giggling.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.98
+            },
+            "cap": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.98
+            },
+            "cap": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.98
+            },
+            "cap": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.98
+            },
+            "cap": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.98
+            },
+            "cap": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.98
+            },
+            "cap": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "kind": "action",
+      "description": "the mushroom nods yes, twice.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 9
+            },
+            "cap": {
+              "y": 6,
+              "r": 2
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": -2
+            },
+            "cap": {
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 9
+            },
+            "cap": {
+              "y": 6,
+              "r": 2
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": -1
+            },
+            "cap": {
+              "y": -1
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "shake-head",
+      "kind": "action",
+      "description": "the mushroom shakes its head no.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "x": -10
+            },
+            "cap": {
+              "r": -5
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "x": 10
+            },
+            "cap": {
+              "r": 5
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "x": -10
+            },
+            "cap": {
+              "r": -5
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "x": 10
+            },
+            "cap": {
+              "r": 5
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "laugh",
+      "template": "common.laugh"
+    },
+    {
+      "id": "shiver",
+      "template": "common.shiver"
+    },
+    {
+      "id": "talk",
+      "kind": "action",
+      "description": "the mushroom talks, its mouth moving, its cap bobbing a little.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "belly": {
+              "sy": 1.02
+            },
+            "cap": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "cap": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "belly": {
+              "sy": 1.02
+            },
+            "cap": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "cap": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "belly": {
+              "sy": 1.02
+            },
+            "cap": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "cap": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "belly": {
+              "sy": 1.02
+            },
+            "cap": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "cap": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "belly": {
+              "sy": 1.02
+            },
+            "cap": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "cap": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "kind": "action",
+      "description": "the mushroom gives a big yawn, closes its eyes and falls asleep under its cap, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the mushroom fast asleep, eyes shut, its cap tipped down"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            },
+            "cap": {
+              "y": -6,
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            },
+            "cap": {
+              "y": -6,
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "body": {
+              "r": 3
+            },
+            "cap": {
+              "y": 8,
+              "r": 6
+            },
+            "face": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.98,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "body": {
+              "r": 3
+            },
+            "cap": {
+              "y": 9,
+              "r": 7
+            },
+            "face": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.98,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "cap": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

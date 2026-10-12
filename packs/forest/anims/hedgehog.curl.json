@@ -1,54 +1,341 @@
 {
   "id": "curl",
   "sticker": "hedgehog",
+  "kind": "action",
   "description": "the hedgehog tucks in its nose and curls up into a round spiny ball, then slowly uncurls, peeks out and sniffs.",
-  "sheet": "anims/hedgehog.curl.webp",
-  "frame": {
-    "width": 541,
-    "height": 511
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.05545,
-    "y": 0.03327,
-    "width": 0.89094,
-    "height": 0.93346
-  },
   "stickerBox": {
     "x": 0.02995,
     "y": 0.03385,
     "width": 0.9401,
     "height": 0.93099
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.2,
-    0.2,
-    0.2,
-    0.2,
-    0.8,
-    0.15,
-    0.2,
-    0.2,
-    0.15,
-    0.1,
-    0.1,
-    0.15,
-    0.15,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 6,
     "shows": "the hedgehog curled up into a round spiny ball"
+  },
+  "puppet": {
+    "rig": "anims/hedgehog.rig.json",
+    "keys": [
+      {
+        "hold": 0.35
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "browL": "up",
+          "browR": "up",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.928
+          },
+          "head": {
+            "r": -10.8,
+            "x": 13.2,
+            "y": 20.4
+          },
+          "legBF": {
+            "y": -12
+          },
+          "legBN": {
+            "x": -6,
+            "y": -14.4
+          },
+          "legFF": {
+            "x": 8.4,
+            "y": -14.4
+          },
+          "legFN": {
+            "x": 4.8,
+            "y": -14.4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.88
+          },
+          "head": {
+            "r": -18,
+            "x": 22,
+            "y": 34
+          },
+          "legBF": {
+            "y": -20
+          },
+          "legBN": {
+            "x": -10,
+            "y": -24
+          },
+          "legFF": {
+            "x": 14,
+            "y": -24
+          },
+          "legFN": {
+            "x": 8,
+            "y": -24
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "ball": {
+            "sx": 1.07,
+            "sy": 0.92
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "body": "none",
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "none",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "ball": {
+            "sx": 0.98,
+            "sy": 1.03
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "body": "none",
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "none",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.8,
+        "slots": {
+          "ball": "ball",
+          "body": "none",
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "none",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "ball": {
+            "sx": 1.02,
+            "sy": 0.98
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "body": "none",
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "none",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "ball": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "body": "none",
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "none",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "ball": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "body": "none",
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "none",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.88
+          },
+          "head": {
+            "r": -18,
+            "x": 22,
+            "y": 34
+          },
+          "legBF": {
+            "y": -20
+          },
+          "legBN": {
+            "x": -10,
+            "y": -24
+          },
+          "legFF": {
+            "x": 14,
+            "y": -24
+          },
+          "legFN": {
+            "x": 8,
+            "y": -24
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.025,
+            "sy": 0.94
+          },
+          "head": {
+            "r": -9,
+            "x": 11,
+            "y": 17
+          },
+          "legBF": {
+            "y": -10
+          },
+          "legBN": {
+            "x": -5,
+            "y": -12
+          },
+          "legFF": {
+            "x": 7,
+            "y": -12
+          },
+          "legFN": {
+            "x": 4,
+            "y": -12
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": 4,
+            "x": -4
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": 4,
+            "x": -4
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
   }
 }

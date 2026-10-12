@@ -1,0 +1,67 @@
+{
+  "id": "look-around",
+  "sticker": "frog",
+  "kind": "action",
+  "description": "the frog looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.04688,
+    "width": 0.9401,
+    "height": 0.90625
+  },
+  "puppet": {
+    "rig": "anims/frog.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -16
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -16
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 16
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 16
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "id": "wave",
+  "sticker": "beaver",
+  "kind": "action",
+  "description": "the beaver waves hello with its free paw, holding its stick in the other.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.04427,
+    "width": 0.9401,
+    "height": 0.91016
+  },
+  "puppet": {
+    "rig": "anims/beaver.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armR": {
+            "r": 80,
+            "x": 12,
+            "y": -10
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armR": {
+            "r": 100,
+            "x": 12,
+            "y": -10
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armR": {
+            "r": 75,
+            "x": 12,
+            "y": -10
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armR": {
+            "r": 100,
+            "x": 12,
+            "y": -10
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armR": {
+            "r": 75,
+            "x": 12,
+            "y": -10
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "id": "stretch",
+  "sticker": "caterpillar",
+  "kind": "action",
+  "description": "the caterpillar stretches out long and tall with a big yawn, then settles back down.",
+  "stickerBox": {
+    "x": 0.04036,
+    "y": 0.02995,
+    "width": 0.91797,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the caterpillar stretched out long, yawning"
+  },
+  "puppet": {
+    "rig": "anims/caterpillar.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": 6,
+            "x": -10
+          },
+          "head": {
+            "r": 4
+          },
+          "seg2": {
+            "r": 4,
+            "x": -6
+          },
+          "seg3": {
+            "x": 6
+          },
+          "seg4": {
+            "x": 10
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "antennaL": {
+            "r": -12
+          },
+          "antennaR": {
+            "r": 12
+          },
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.08
+          },
+          "body": {
+            "r": 10,
+            "x": -16,
+            "y": -6
+          },
+          "head": {
+            "r": 10
+          },
+          "seg2": {
+            "r": 8,
+            "x": -10
+          },
+          "seg3": {
+            "x": 12
+          },
+          "seg4": {
+            "x": 16
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "antennaL": {
+            "r": -14
+          },
+          "antennaR": {
+            "r": 14
+          },
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.08
+          },
+          "body": {
+            "r": 10,
+            "x": -16,
+            "y": -6
+          },
+          "head": {
+            "r": 12
+          },
+          "seg2": {
+            "r": 8,
+            "x": -10
+          },
+          "seg3": {
+            "x": 12
+          },
+          "seg4": {
+            "x": 16
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.96
+          },
+          "head": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

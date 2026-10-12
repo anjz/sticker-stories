@@ -1,0 +1,61 @@
+{
+  "id": "nod",
+  "sticker": "frog",
+  "kind": "action",
+  "description": "the frog nods yes, twice.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.04688,
+    "width": 0.9401,
+    "height": 0.90625
+  },
+  "puppet": {
+    "rig": "anims/frog.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "face": {
+            "y": 10
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "face": {
+            "y": 10
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

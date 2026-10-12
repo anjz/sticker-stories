@@ -1,0 +1,71 @@
+{
+  "id": "nod",
+  "sticker": "rabbit",
+  "kind": "action",
+  "description": "the rabbit nods yes, twice.",
+  "stickerBox": {
+    "x": 0.21875,
+    "y": 0.02995,
+    "width": 0.5612,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/rabbit.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": 8
+          },
+          "head": {
+            "r": -6,
+            "y": 9,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -3
+          },
+          "head": {
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": 8
+          },
+          "head": {
+            "r": -6,
+            "y": 9,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -2
+          },
+          "head": {
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

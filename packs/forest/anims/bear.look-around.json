@@ -1,0 +1,79 @@
+{
+  "id": "look-around",
+  "sticker": "bear",
+  "kind": "action",
+  "description": "the bear cub looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.14323,
+    "y": 0.02995,
+    "width": 0.71224,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/bear.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -16
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -16
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 16
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 16
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

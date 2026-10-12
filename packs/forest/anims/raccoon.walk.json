@@ -2,44 +2,135 @@
   "id": "walk",
   "sticker": "raccoon",
   "kind": "move",
-  "description": "the raccoon walks along to the right on all fours, its ringed tail swaying, then sits up.",
-  "sheet": "anims/raccoon.walk.webp",
-  "frame": {
-    "width": 552,
-    "height": 517
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.24638,
-    "y": 0.03482,
-    "width": 0.7192,
-    "height": 0.9323
-  },
+  "description": "the raccoon walks along on its hind legs, leaning forward, its ringed tail swaying, then stops.",
   "stickerBox": {
     "x": 0.11328,
     "y": 0.02995,
     "width": 0.77344,
     "height": 0.9401
   },
-  "hold": [
-    0.1,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.14,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
-  "facing": "right",
-  "stride": 0.55
+  "facing": "left",
+  "stride": 0.55,
+  "puppet": {
+    "rig": "anims/raccoon.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.17,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": -10
+          },
+          "body": {
+            "r": -10
+          },
+          "head": {
+            "r": 6
+          },
+          "legL": {
+            "r": 20
+          },
+          "legR": {
+            "r": -16
+          },
+          "root": {
+            "y": -8
+          },
+          "tail": {
+            "r": -8
+          }
+        }
+      },
+      {
+        "hold": 0.17,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": -10
+          },
+          "body": {
+            "r": -8
+          },
+          "head": {
+            "r": 6
+          },
+          "root": {},
+          "tail": {}
+        }
+      },
+      {
+        "hold": 0.17,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": -10
+          },
+          "body": {
+            "r": -10
+          },
+          "head": {
+            "r": 6
+          },
+          "legL": {
+            "r": -16
+          },
+          "legR": {
+            "r": 20
+          },
+          "root": {
+            "y": -8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.17,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": -10
+          },
+          "body": {
+            "r": -8
+          },
+          "head": {
+            "r": 6
+          },
+          "root": {},
+          "tail": {}
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
 }

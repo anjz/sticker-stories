@@ -3,44 +3,109 @@
   "sticker": "squirrel",
   "kind": "move",
   "description": "the squirrel bounds along to the left, its big bushy tail waving, then sits up with its nut.",
-  "sheet": "anims/squirrel.scamper.webp",
-  "frame": {
-    "width": 610,
-    "height": 516
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.13115,
-    "y": 0.03295,
-    "width": 0.7541,
-    "height": 0.93411
-  },
   "stickerBox": {
     "x": 0.05078,
     "y": 0.02995,
     "width": 0.89714,
     "height": 0.9401
   },
-  "hold": [
-    0.1,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.07,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 3
   },
   "facing": "left",
   "stride": 0.8,
-  "hops": true
+  "hops": true,
+  "puppet": {
+    "rig": "anims/squirrel.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.19,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.93
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 5
+          },
+          "tail": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.19,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": -12
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "body": {
+            "r": -8
+          },
+          "head": {
+            "r": -3
+          },
+          "legL": {
+            "r": 18,
+            "x": 10
+          },
+          "legR": {
+            "r": 18,
+            "x": 10
+          },
+          "root": {
+            "y": -46
+          },
+          "tail": {
+            "r": -10
+          }
+        }
+      },
+      {
+        "hold": 0.19,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.95
+          },
+          "body": {
+            "r": -3
+          },
+          "root": {},
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "tail": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
 }

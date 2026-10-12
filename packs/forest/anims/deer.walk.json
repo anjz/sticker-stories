@@ -3,43 +3,121 @@
   "sticker": "deer",
   "kind": "move",
   "description": "the fawn walks along to the left on its slender legs, then stops.",
-  "sheet": "anims/deer.walk.webp",
-  "frame": {
-    "width": 369,
-    "height": 513
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.11382,
-    "y": 0.02924,
-    "width": 0.77778,
-    "height": 0.93957
-  },
   "stickerBox": {
     "x": 0.22005,
     "y": 0.02995,
     "width": 0.5599,
     "height": 0.9401
   },
-  "hold": [
-    0.1,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.14,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "left",
-  "stride": 0.55
+  "stride": 0.55,
+  "puppet": {
+    "rig": "anims/deer.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "head": {
+            "r": 2
+          },
+          "legBF": {
+            "r": 14
+          },
+          "legBN": {
+            "r": -14
+          },
+          "legFF": {
+            "r": -14
+          },
+          "legFN": {
+            "r": 16
+          },
+          "root": {
+            "y": -5
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "head": {
+            "r": -1
+          },
+          "legBF": {},
+          "legBN": {
+            "y": -10
+          },
+          "legFF": {
+            "y": -10
+          },
+          "legFN": {},
+          "root": {}
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "head": {
+            "r": 2
+          },
+          "legBF": {
+            "r": -14
+          },
+          "legBN": {
+            "r": 14
+          },
+          "legFF": {
+            "r": 16
+          },
+          "legFN": {
+            "r": -14
+          },
+          "root": {
+            "y": -5
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "head": {
+            "r": -1
+          },
+          "legBF": {
+            "y": -10
+          },
+          "legBN": {},
+          "legFF": {},
+          "legFN": {
+            "y": -10
+          },
+          "root": {}
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "head": {
+            "r": -1
+          },
+          "root": {
+            "y": 2
+          }
+        }
+      },
+      {
+        "hold": 0.45
+      }
+    ]
+  }
 }

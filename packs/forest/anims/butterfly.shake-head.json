@@ -1,0 +1,67 @@
+{
+  "id": "shake-head",
+  "sticker": "butterfly",
+  "kind": "action",
+  "description": "the butterfly shakes its head no.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.07943,
+    "width": 0.9401,
+    "height": 0.84115
+  },
+  "puppet": {
+    "rig": "anims/butterfly.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "face": {
+            "x": -12
+          },
+          "head": {
+            "r": -7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": 12
+          },
+          "head": {
+            "r": 7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": -12
+          },
+          "head": {
+            "r": -7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": 10
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

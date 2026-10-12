@@ -1,0 +1,128 @@
+{
+  "id": "hoot",
+  "sticker": "owl",
+  "description": "the owl puffs itself up round and hoots softly, ‘hoo, hoo’, its beak opening on each note.",
+  "stickerBox": {
+    "x": 0.16276,
+    "y": 0.02995,
+    "width": 0.67448,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the owl puffed up round, beak open in a soft hoo"
+  },
+  "puppet": {
+    "rig": "anims/owl.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 1.03
+          },
+          "head": {
+            "y": -5
+          },
+          "wingR": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 1.035
+          },
+          "head": {
+            "y": -7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "belly": {
+            "sx": 1.08,
+            "sy": 1.04
+          },
+          "browL": {
+            "y": -3
+          },
+          "browR": {
+            "y": -3
+          },
+          "head": {
+            "y": -8
+          }
+        },
+        "slots": {
+          "beak": "hoo",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 1.02
+          },
+          "head": {
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "belly": {
+            "sx": 1.08,
+            "sy": 1.04
+          },
+          "browL": {
+            "y": -3
+          },
+          "browR": {
+            "y": -3
+          },
+          "head": {
+            "y": -8
+          }
+        },
+        "slots": {
+          "beak": "hoo",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 1.01
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

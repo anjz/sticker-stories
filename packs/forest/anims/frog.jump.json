@@ -1,0 +1,143 @@
+{
+  "id": "jump",
+  "sticker": "frog",
+  "kind": "action",
+  "description": "the frog crouches low, then leaps high up into the air, legs stretched out, and lands with a squash.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.04688,
+    "width": 0.9401,
+    "height": 0.90625
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the frog high in the air, legs stretched out"
+  },
+  "puppet": {
+    "rig": "anims/frog.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "r": -6
+          },
+          "armR": {
+            "r": 6
+          },
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.88
+          },
+          "face": {
+            "y": 6
+          },
+          "root": {
+            "y": 10
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 30
+          },
+          "armR": {
+            "r": -30
+          },
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "legL": {
+            "r": 30,
+            "y": 40
+          },
+          "legR": {
+            "r": -30,
+            "y": 40
+          },
+          "root": {
+            "y": -150
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": 32
+          },
+          "armR": {
+            "r": -32
+          },
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "legL": {
+            "r": 32,
+            "y": 42
+          },
+          "legR": {
+            "r": -32,
+            "y": 42
+          },
+          "root": {
+            "y": -165
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.9
+          },
+          "face": {
+            "y": 6
+          },
+          "root": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

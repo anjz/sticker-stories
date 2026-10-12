@@ -1,0 +1,142 @@
+{
+  "id": "sleep",
+  "sticker": "snail",
+  "kind": "action",
+  "description": "the snail gives a big yawn, lets its eye stalks droop and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.08984,
+    "width": 0.9401,
+    "height": 0.81901
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the snail fast asleep, eye stalks drooping, eyes shut"
+  },
+  "puppet": {
+    "rig": "anims/snail.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "stalkL": {
+            "r": -6,
+            "sy": 1.05
+          },
+          "stalkR": {
+            "r": 6,
+            "sy": 1.05
+          }
+        },
+        "slots": {
+          "mouth": "o",
+          "stalkL": "closed",
+          "stalkR": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "stalkL": {
+            "r": -6,
+            "sy": 1.05
+          },
+          "stalkR": {
+            "r": 6,
+            "sy": 1.05
+          }
+        },
+        "slots": {
+          "mouth": "o",
+          "stalkL": "closed",
+          "stalkR": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "shell": {
+            "y": 3
+          },
+          "stalkL": {
+            "r": 20,
+            "sy": 0.85
+          },
+          "stalkR": {
+            "r": 36,
+            "sy": 0.85
+          }
+        },
+        "slots": {
+          "stalkL": "closed",
+          "stalkR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "shell": {
+            "y": 3
+          },
+          "stalkL": {
+            "r": 22,
+            "sy": 0.85
+          },
+          "stalkR": {
+            "r": 38,
+            "sy": 0.85
+          }
+        },
+        "slots": {
+          "stalkL": "closed",
+          "stalkR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "stalkL": {},
+          "stalkR": {}
+        },
+        "slots": {
+          "stalkL": "wide",
+          "stalkR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "stalkL": "closed",
+          "stalkR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

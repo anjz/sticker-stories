@@ -3,44 +3,180 @@
   "sticker": "butterfly",
   "kind": "move",
   "description": "the butterfly flutters along to the right, wings opening and closing softly, then settles with its wings open.",
-  "sheet": "anims/butterfly.flutter.webp",
-  "frame": {
-    "width": 513,
-    "height": 485
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.02924,
-    "y": 0.06392,
-    "width": 0.93957,
-    "height": 0.89072
-  },
   "stickerBox": {
     "x": 0.02995,
     "y": 0.07943,
     "width": 0.9401,
     "height": 0.84115
   },
-  "hold": [
-    0.1,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "right",
   "stride": 0.9,
-  "flies": true
+  "flies": true,
+  "puppet": {
+    "rig": "anims/butterfly.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "antennaL": {
+            "r": 6
+          },
+          "antennaR": {
+            "r": 6
+          },
+          "body": {
+            "r": 4
+          },
+          "root": {
+            "y": -10
+          },
+          "wingL": {
+            "r": 10,
+            "sx": 0.75
+          },
+          "wingL2": {
+            "sy": 0.84
+          },
+          "wingR": {
+            "r": -10,
+            "sx": 0.75
+          },
+          "wingR2": {
+            "sy": 0.84
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "antennaL": {
+            "r": 8
+          },
+          "antennaR": {
+            "r": 8
+          },
+          "body": {
+            "r": 4
+          },
+          "root": {
+            "y": -18
+          },
+          "wingL": {
+            "r": 14,
+            "sx": 0.35
+          },
+          "wingL2": {
+            "sy": 0.52
+          },
+          "wingR": {
+            "r": -14,
+            "sx": 0.35
+          },
+          "wingR2": {
+            "sy": 0.52
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "antennaL": {
+            "r": 4
+          },
+          "antennaR": {
+            "r": 4
+          },
+          "body": {
+            "r": 4
+          },
+          "root": {
+            "y": -8
+          },
+          "wingL": {
+            "r": 4,
+            "sx": 0.7
+          },
+          "wingL2": {
+            "sy": 0.8
+          },
+          "wingR": {
+            "r": -4,
+            "sx": 0.7
+          },
+          "wingR2": {
+            "sy": 0.8
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "root": {},
+          "wingL": {
+            "r": -4,
+            "sx": 1
+          },
+          "wingR": {
+            "r": 4,
+            "sx": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "root": {
+            "y": -6
+          },
+          "wingL": {
+            "r": 6,
+            "sx": 0.6
+          },
+          "wingL2": {
+            "sy": 0.72
+          },
+          "wingR": {
+            "r": -6,
+            "sx": 0.6
+          },
+          "wingR2": {
+            "sy": 0.72
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "root": {
+            "y": 2
+          },
+          "wingL": {
+            "sx": 1.03
+          },
+          "wingR": {
+            "sx": 1.03
+          }
+        }
+      },
+      {
+        "hold": 0.35
+      }
+    ]
+  }
 }

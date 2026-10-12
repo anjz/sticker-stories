@@ -1,0 +1,156 @@
+{
+  "id": "flap",
+  "sticker": "woodpecker",
+  "description": "the woodpecker opens its wings and flaps them, still holding on to the bark with its feet.",
+  "stickerBox": {
+    "x": 0.2487,
+    "y": 0.02995,
+    "width": 0.5013,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the woodpecker with its wings spread wide"
+  },
+  "puppet": {
+    "rig": "anims/woodpecker.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "wingL": {
+            "r": -25
+          },
+          "wingR": {
+            "r": -15
+          }
+        },
+        "slots": {
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "wingL": {
+            "r": -35
+          },
+          "wingR": {
+            "r": -25
+          }
+        },
+        "slots": {
+          "eye": "wide",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "wingL": {
+            "r": 20
+          },
+          "wingR": {
+            "r": 30
+          }
+        },
+        "slots": {
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "wingL": {
+            "r": -55
+          },
+          "wingR": {
+            "r": -45
+          }
+        },
+        "slots": {
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "wingL": {
+            "r": 20
+          },
+          "wingR": {
+            "r": 30
+          }
+        },
+        "slots": {
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "wingL": {
+            "r": -55
+          },
+          "wingR": {
+            "r": -45
+          }
+        },
+        "slots": {
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "wingL": {
+            "r": 20
+          },
+          "wingR": {
+            "r": 30
+          }
+        },
+        "slots": {
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "wingL": {
+            "r": -20
+          },
+          "wingR": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

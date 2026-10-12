@@ -2,56 +2,252 @@
   "id": "tap",
   "sticker": "woodpecker",
   "description": "the woodpecker taps its beak against the bark, tap-tap-tap, with little wood chips flying, then presses its eye close to listen for bugs, then taps once more and chirps happily.",
-  "sheet": "anims/woodpecker.tap.webp",
-  "frame": {
-    "width": 399,
-    "height": 513
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.19048,
-    "y": 0.02924,
-    "width": 0.64411,
-    "height": 0.93957
-  },
   "stickerBox": {
     "x": 0.2487,
     "y": 0.02995,
     "width": 0.5013,
     "height": 0.9401
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.07,
-    0.1,
-    0.07,
-    0.1,
-    0.07,
-    0.15,
-    0.12,
-    0.2,
-    0.2,
-    0.7,
-    0.2,
-    0.1,
-    0.07,
-    0.15,
-    0.12,
-    0.25,
-    0.12,
-    0.12,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 9,
     "shows": "the woodpecker listening, head tilted, one eye close to where it tapped"
   },
   "place": [
     "trunks"
-  ]
+  ],
+  "particles": [
+    {
+      "frame": 2,
+      "effect": "dust-puff",
+      "x": 0.27,
+      "y": 0.21,
+      "intensity": 0.3,
+      "color": "#B98A55"
+    },
+    {
+      "frame": 4,
+      "effect": "dust-puff",
+      "x": 0.27,
+      "y": 0.21,
+      "intensity": 0.3,
+      "color": "#B98A55"
+    },
+    {
+      "frame": 6,
+      "effect": "dust-puff",
+      "x": 0.27,
+      "y": 0.21,
+      "intensity": 0.3,
+      "color": "#B98A55"
+    },
+    {
+      "frame": 12,
+      "effect": "dust-puff",
+      "x": 0.27,
+      "y": 0.21,
+      "intensity": 0.3,
+      "color": "#B98A55"
+    }
+  ],
+  "puppet": {
+    "rig": "anims/woodpecker.rig.json",
+    "keys": [
+      {
+        "hold": 0.3
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 5,
+            "x": 8
+          }
+        }
+      },
+      {
+        "hold": 0.08,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -3,
+            "x": -9
+          }
+        }
+      },
+      {
+        "hold": 0.08,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 5,
+            "x": 8
+          }
+        }
+      },
+      {
+        "hold": 0.08,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -3,
+            "x": -9
+          }
+        }
+      },
+      {
+        "hold": 0.08,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 5,
+            "x": 8
+          }
+        }
+      },
+      {
+        "hold": 0.08,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -3,
+            "x": -9
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "x": 2
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "y": 2
+          },
+          "head": {
+            "r": -16,
+            "x": -10,
+            "y": 4
+          }
+        },
+        "slots": {
+          "eye": "wide"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "y": 2
+          },
+          "head": {
+            "r": -16,
+            "x": -10,
+            "y": 4
+          }
+        },
+        "slots": {
+          "eye": "wide"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "x": 2
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 5,
+            "x": 8
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -3,
+            "x": -9
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "head": {
+            "x": 2
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 4,
+            "y": -3
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.1,
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "r": 4,
+            "y": -3
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
 }

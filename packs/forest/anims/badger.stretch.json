@@ -1,0 +1,144 @@
+{
+  "id": "stretch",
+  "sticker": "badger",
+  "kind": "action",
+  "description": "the badger stretches its front legs far forward with its bottom in the air, gives a yawn, then stretches its back legs.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.16667,
+    "width": 0.9401,
+    "height": 0.66667
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the badger mid-stretch, front legs out and bottom in the air"
+  },
+  "puppet": {
+    "rig": "anims/badger.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "body": {
+            "r": -7,
+            "x": -6
+          },
+          "head": {
+            "r": 10,
+            "y": 6
+          },
+          "legBF": {
+            "r": 7
+          },
+          "legBN": {
+            "r": 7
+          },
+          "legFF": {
+            "r": 36,
+            "y": -4
+          },
+          "legFN": {
+            "r": 40,
+            "y": -4
+          },
+          "tail": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -8,
+            "x": -8
+          },
+          "head": {
+            "r": 12,
+            "y": 7
+          },
+          "legBF": {
+            "r": 8
+          },
+          "legBN": {
+            "r": 8
+          },
+          "legFF": {
+            "r": 40,
+            "y": -6
+          },
+          "legFN": {
+            "r": 44,
+            "y": -6
+          },
+          "tail": {
+            "r": -18
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "body": {
+            "r": 3,
+            "x": 4
+          },
+          "head": {
+            "r": 4
+          },
+          "legBF": {
+            "r": -30,
+            "y": -4
+          },
+          "legBN": {
+            "r": -34,
+            "y": -4
+          },
+          "legFF": {
+            "r": -6
+          },
+          "legFN": {
+            "r": -6
+          },
+          "tail": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -3,43 +3,172 @@
   "sticker": "fox",
   "kind": "move",
   "description": "the fox trots along to the right on all four legs, its big tail streaming behind, then stops.",
-  "sheet": "anims/fox.trot.webp",
-  "frame": {
-    "width": 523,
-    "height": 516
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.09369,
-    "y": 0.03488,
-    "width": 0.84704,
-    "height": 0.93411
-  },
   "stickerBox": {
     "x": 0.06901,
     "y": 0.02995,
     "width": 0.86198,
     "height": 0.9401
   },
-  "hold": [
-    0.1,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.14,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "right",
-  "stride": 0.6
+  "stride": 0.6,
+  "puppet": {
+    "rig": "anims/fox.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "armL": {
+            "r": 48
+          },
+          "armR": {
+            "r": 22
+          },
+          "body": {
+            "r": 50,
+            "y": -10
+          },
+          "head": {
+            "r": -32
+          },
+          "legL": {
+            "r": -36
+          },
+          "legR": {
+            "r": -68
+          },
+          "root": {
+            "y": 16
+          },
+          "tail": {
+            "r": -30
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "armL": {
+            "r": 36
+          },
+          "armR": {
+            "r": 36
+          },
+          "body": {
+            "r": 50
+          },
+          "head": {
+            "r": -32
+          },
+          "legL": {
+            "r": -50,
+            "y": -8
+          },
+          "legR": {
+            "r": -50,
+            "y": -8
+          },
+          "root": {
+            "y": 26
+          },
+          "tail": {
+            "r": -26
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "armL": {
+            "r": 22
+          },
+          "armR": {
+            "r": 48
+          },
+          "body": {
+            "r": 50,
+            "y": -10
+          },
+          "head": {
+            "r": -32
+          },
+          "legL": {
+            "r": -68
+          },
+          "legR": {
+            "r": -36
+          },
+          "root": {
+            "y": 16
+          },
+          "tail": {
+            "r": -30
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "armL": {
+            "r": 36
+          },
+          "armR": {
+            "r": 36
+          },
+          "body": {
+            "r": 50
+          },
+          "head": {
+            "r": -32
+          },
+          "legL": {
+            "r": -50,
+            "y": -8
+          },
+          "legR": {
+            "r": -50,
+            "y": -8
+          },
+          "root": {
+            "y": 26
+          },
+          "tail": {
+            "r": -26
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "body": {
+            "r": 10
+          },
+          "head": {
+            "r": -6
+          },
+          "legL": {
+            "r": -10
+          },
+          "legR": {
+            "r": -10
+          },
+          "tail": {
+            "r": -8
+          }
+        }
+      },
+      {
+        "hold": 0.45
+      }
+    ]
+  }
 }

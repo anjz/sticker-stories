@@ -1,0 +1,91 @@
+{
+  "id": "tail-flick",
+  "sticker": "squirrel",
+  "kind": "action",
+  "description": "the squirrel flicks its big bushy tail, swish, swish!",
+  "stickerBox": {
+    "x": 0.05078,
+    "y": 0.02995,
+    "width": 0.89714,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/squirrel.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "tail": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "tail": {
+            "r": 6,
+            "sy": 0.97
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "tail": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "tail": {
+            "r": 6,
+            "sy": 0.97
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "tail": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

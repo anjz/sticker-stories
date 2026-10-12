@@ -1,0 +1,94 @@
+{
+  "id": "jump",
+  "sticker": "pinecone",
+  "kind": "action",
+  "description": "the pinecone crouches, jumps up high for joy and lands with a little squash.",
+  "stickerBox": {
+    "x": 0.03516,
+    "y": 0.02995,
+    "width": 0.92969,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/pinecone.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.9
+          },
+          "root": {
+            "y": 8
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "root": {
+            "y": -78
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "root": {
+            "y": -84
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.08,
+            "sy": 0.88
+          },
+          "root": {
+            "y": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "id": "hug",
+  "sticker": "bear",
+  "kind": "action",
+  "description": "the bear cub gives itself a big cosy hug, swaying happily from side to side.",
+  "stickerBox": {
+    "x": 0.14323,
+    "y": 0.02995,
+    "width": 0.71224,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the bear cub hugging itself tight, eyes shut happily"
+  },
+  "puppet": {
+    "rig": "anims/bear.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": -16,
+            "x": 8
+          },
+          "armR": {
+            "r": 12,
+            "x": -8
+          },
+          "belly": {
+            "sx": 0.97
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": -18,
+            "x": 10
+          },
+          "armR": {
+            "r": 14,
+            "x": -10
+          },
+          "belly": {
+            "sx": 0.96
+          },
+          "body": {
+            "r": -5
+          },
+          "head": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": -18,
+            "x": 10
+          },
+          "armR": {
+            "r": 14,
+            "x": -10
+          },
+          "belly": {
+            "sx": 0.96
+          },
+          "body": {
+            "r": 5
+          },
+          "head": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": -18,
+            "x": 10
+          },
+          "armR": {
+            "r": 14,
+            "x": -10
+          },
+          "belly": {
+            "sx": 0.96
+          },
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": -14,
+            "x": 6
+          },
+          "armR": {
+            "r": 10,
+            "x": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

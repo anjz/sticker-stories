@@ -1,0 +1,79 @@
+{
+  "id": "look-around",
+  "sticker": "owl",
+  "kind": "action",
+  "description": "the owl looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.16276,
+    "y": 0.02995,
+    "width": 0.67448,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/owl.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -16
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -16
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 16
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 16
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

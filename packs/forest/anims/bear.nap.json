@@ -1,54 +1,251 @@
 {
   "id": "nap",
   "sticker": "bear",
+  "kind": "action",
   "description": "the bear cub gives a big yawn and stretches its arms up, rubs its eyes and nods off to sleep sitting up, then wakes with a little start, blinks and smiles.",
-  "sheet": "anims/bear.nap.webp",
-  "frame": {
-    "width": 489,
-    "height": 515
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.13497,
-    "y": 0.03301,
-    "width": 0.74642,
-    "height": 0.93592
-  },
   "stickerBox": {
     "x": 0.14323,
     "y": 0.02995,
     "width": 0.71224,
     "height": 0.9401
   },
-  "hold": [
-    0.45,
-    0.12,
-    0.15,
-    0.3,
-    0.12,
-    0.2,
-    0.2,
-    0.15,
-    0.15,
-    0.2,
-    0.2,
-    0.8,
-    0.15,
-    0.15,
-    0.2,
-    0.2,
-    0.15,
-    0.2,
-    0.2,
-    0.15,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 6,
     "shows": "the bear cub fast asleep sitting up, eyes shut, head drooped"
+  },
+  "puppet": {
+    "rig": "anims/bear.rig.json",
+    "keys": [
+      {
+        "hold": 0.25
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "armL": {
+            "r": 150
+          },
+          "armR": {
+            "r": -160
+          },
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": -3,
+            "y": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.55,
+        "bones": {
+          "armL": {
+            "r": 195,
+            "x": -12,
+            "y": -34
+          },
+          "armR": {
+            "r": -205,
+            "x": 12,
+            "y": -34
+          },
+          "belly": {
+            "sy": 1.06
+          },
+          "head": {
+            "r": -5,
+            "y": -8
+          },
+          "root": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "yawn"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armR": {
+            "r": 82,
+            "x": -18,
+            "y": -22
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armR": {
+            "r": 74,
+            "x": -12,
+            "y": -16
+          },
+          "head": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": -4
+          },
+          "armR": {
+            "r": 4
+          },
+          "belly": {
+            "sy": 0.99
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": 5,
+            "y": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "armL": {
+            "r": -6
+          },
+          "armR": {
+            "r": 6
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "y": 5
+          },
+          "head": {
+            "r": 8,
+            "y": 14
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -6
+          },
+          "armR": {
+            "r": 6
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "body": {
+            "r": 3
+          },
+          "face": {
+            "y": 6
+          },
+          "head": {
+            "r": 10,
+            "y": 18
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 22
+          },
+          "armR": {
+            "r": -22
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": -2,
+            "y": -4
+          },
+          "root": {
+            "y": -12
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "root": {}
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "head": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
   }
 }

@@ -1,0 +1,125 @@
+{
+  "id": "jump",
+  "sticker": "woodpecker",
+  "description": "the woodpecker crouches against the bark, hops up the trunk with its wings out and grips on again with a little squash.",
+  "stickerBox": {
+    "x": 0.2487,
+    "y": 0.02995,
+    "width": 0.5013,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/woodpecker.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.92
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 8
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.05
+          },
+          "footL": {
+            "r": -15,
+            "x": 6
+          },
+          "footR": {
+            "r": -15,
+            "x": 6
+          },
+          "root": {
+            "y": -70
+          },
+          "tail": {
+            "r": 6
+          },
+          "wingL": {
+            "r": -40
+          },
+          "wingR": {
+            "r": -30
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eye": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.05
+          },
+          "root": {
+            "y": -76
+          },
+          "tail": {
+            "r": 6
+          },
+          "wingL": {
+            "r": -20
+          },
+          "wingR": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eye": "happy",
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.9
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

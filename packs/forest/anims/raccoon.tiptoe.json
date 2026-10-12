@@ -1,0 +1,264 @@
+{
+  "id": "tiptoe",
+  "sticker": "raccoon",
+  "kind": "action",
+  "description": "the raccoon creeps along on tiptoe, paws held up, very quiet and sneaky, then stops and grins.",
+  "stickerBox": {
+    "x": 0.11328,
+    "y": 0.02995,
+    "width": 0.77344,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 5,
+    "shows": "the raccoon frozen on tiptoe, paws up, being very sneaky"
+  },
+  "puppet": {
+    "rig": "anims/raccoon.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "ease": "inOut",
+        "bones": {
+          "armL": {
+            "r": -25,
+            "y": -10
+          },
+          "armR": {
+            "r": 25,
+            "y": -10
+          },
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": 3
+          },
+          "legL": {
+            "r": 14,
+            "y": -14
+          },
+          "root": {
+            "x": -10,
+            "y": -10
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": -25,
+            "y": -10
+          },
+          "armR": {
+            "r": 25,
+            "y": -10
+          },
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": 3
+          },
+          "root": {
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "inOut",
+        "bones": {
+          "armL": {
+            "r": -25,
+            "y": -10
+          },
+          "armR": {
+            "r": 25,
+            "y": -10
+          },
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": 3
+          },
+          "legR": {
+            "r": -14,
+            "y": -14
+          },
+          "root": {
+            "x": 10,
+            "y": -10
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": -25,
+            "y": -10
+          },
+          "armR": {
+            "r": 25,
+            "y": -10
+          },
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": 3
+          },
+          "root": {
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "armL": {
+            "r": -25,
+            "y": -10
+          },
+          "armR": {
+            "r": 25,
+            "y": -10
+          },
+          "body": {
+            "r": -4
+          },
+          "face": {
+            "x": -6
+          },
+          "head": {
+            "r": 3
+          },
+          "root": {
+            "y": -8
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "inOut",
+        "bones": {
+          "armL": {
+            "r": -25,
+            "y": -10
+          },
+          "armR": {
+            "r": 25,
+            "y": -10
+          },
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": 3
+          },
+          "legL": {
+            "r": 14,
+            "y": -14
+          },
+          "root": {
+            "x": -10,
+            "y": -10
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": -25,
+            "y": -10
+          },
+          "armR": {
+            "r": 25,
+            "y": -10
+          },
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": 3
+          },
+          "root": {
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "inOut",
+        "bones": {
+          "armL": {
+            "r": -25,
+            "y": -10
+          },
+          "armR": {
+            "r": 25,
+            "y": -10
+          },
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": 3
+          },
+          "legR": {
+            "r": -14,
+            "y": -14
+          },
+          "root": {
+            "x": 10,
+            "y": -10
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": -25,
+            "y": -10
+          },
+          "armR": {
+            "r": 25,
+            "y": -10
+          },
+          "body": {
+            "r": -4
+          },
+          "head": {
+            "r": 3
+          },
+          "root": {
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

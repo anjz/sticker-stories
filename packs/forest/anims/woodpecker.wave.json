@@ -1,0 +1,103 @@
+{
+  "id": "wave",
+  "sticker": "woodpecker",
+  "description": "the woodpecker lifts its wing and waves hello.",
+  "stickerBox": {
+    "x": 0.2487,
+    "y": 0.02995,
+    "width": 0.5013,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/woodpecker.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": -4
+          },
+          "wingR": {
+            "r": -50
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": -4
+          },
+          "wingR": {
+            "r": -65
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": -4
+          },
+          "wingR": {
+            "r": -40
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": -4
+          },
+          "wingR": {
+            "r": -65
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": -4
+          },
+          "wingR": {
+            "r": -40
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "wingR": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

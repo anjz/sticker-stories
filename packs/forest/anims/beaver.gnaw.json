@@ -1,54 +1,323 @@
 {
   "id": "gnaw",
   "sticker": "beaver",
+  "kind": "action",
   "description": "the beaver lifts its stick and gnaws along it with its big front teeth so little wood chips fly, then holds up the pointy stick to admire it and pats it proudly.",
-  "sheet": "anims/beaver.gnaw.webp",
-  "frame": {
-    "width": 534,
-    "height": 507
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.06554,
-    "y": 0.04734,
-    "width": 0.90262,
-    "height": 0.91913
-  },
   "stickerBox": {
     "x": 0.02995,
     "y": 0.04427,
     "width": 0.9401,
     "height": 0.91016
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.12,
-    0.15,
-    0.2,
-    0.2,
-    0.6,
-    0.15,
-    0.12,
-    0.12,
-    0.15,
-    0.2,
-    0.12,
-    0.12,
-    0.12,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 8,
     "shows": "the beaver holding up its freshly gnawed pointy stick, admiring it"
+  },
+  "particles": [
+    {
+      "frame": 2,
+      "effect": "dust-puff",
+      "x": 0.33,
+      "y": 0.37,
+      "intensity": 0.3,
+      "color": "#B98A55"
+    },
+    {
+      "frame": 4,
+      "effect": "dust-puff",
+      "x": 0.33,
+      "y": 0.37,
+      "intensity": 0.3,
+      "color": "#B98A55"
+    },
+    {
+      "frame": 6,
+      "effect": "dust-puff",
+      "x": 0.33,
+      "y": 0.37,
+      "intensity": 0.3,
+      "color": "#B98A55"
+    }
+  ],
+  "puppet": {
+    "rig": "anims/beaver.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "x": 11,
+            "y": -39
+          },
+          "armR": {
+            "x": -14,
+            "y": -24
+          },
+          "head": {
+            "r": -3,
+            "y": 2
+          },
+          "stick": {
+            "r": 25,
+            "x": -11,
+            "y": 30
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armL": {
+            "x": 5,
+            "y": -39
+          },
+          "armR": {
+            "x": -20,
+            "y": -24
+          },
+          "head": {
+            "r": -3,
+            "y": 4
+          },
+          "stick": {
+            "r": 25,
+            "x": -11,
+            "y": 30
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "gnaw"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armL": {
+            "x": 17,
+            "y": -39
+          },
+          "armR": {
+            "x": -8,
+            "y": -24
+          },
+          "head": {
+            "r": -3,
+            "y": 2
+          },
+          "stick": {
+            "r": 25,
+            "x": -11,
+            "y": 30
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "gnaw"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armL": {
+            "x": 5,
+            "y": -39
+          },
+          "armR": {
+            "x": -20,
+            "y": -24
+          },
+          "head": {
+            "r": -3,
+            "y": 4
+          },
+          "stick": {
+            "r": 25,
+            "x": -11,
+            "y": 30
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "gnaw"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armL": {
+            "x": 17,
+            "y": -39
+          },
+          "armR": {
+            "x": -8,
+            "y": -24
+          },
+          "head": {
+            "r": -3,
+            "y": 2
+          },
+          "stick": {
+            "r": 25,
+            "x": -11,
+            "y": 30
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "gnaw"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armL": {
+            "x": 5,
+            "y": -39
+          },
+          "armR": {
+            "x": -20,
+            "y": -24
+          },
+          "head": {
+            "r": -3,
+            "y": 4
+          },
+          "stick": {
+            "r": 25,
+            "x": -11,
+            "y": 30
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "gnaw"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "x": -38,
+            "y": -52
+          },
+          "armR": {
+            "r": 16
+          },
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -5
+          },
+          "stick": {
+            "r": -20
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "armL": {
+            "x": -38,
+            "y": -52
+          },
+          "armR": {
+            "r": 16
+          },
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -6
+          },
+          "stick": {
+            "r": -20
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armR": {
+            "r": 22,
+            "y": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armR": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armR": {
+            "r": 22,
+            "y": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armR": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.4,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
   }
 }

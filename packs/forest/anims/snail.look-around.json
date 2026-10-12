@@ -1,0 +1,73 @@
+{
+  "id": "look-around",
+  "sticker": "snail",
+  "kind": "action",
+  "description": "the snail turns its eye stalks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.08984,
+    "width": 0.9401,
+    "height": 0.81901
+  },
+  "puppet": {
+    "rig": "anims/snail.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 0.99
+          },
+          "stalkL": {
+            "r": -24
+          },
+          "stalkR": {
+            "r": -18
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 0.99
+          },
+          "stalkL": {
+            "r": -26
+          },
+          "stalkR": {
+            "r": -20
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "stalkL": {
+            "r": 16
+          },
+          "stalkR": {
+            "r": 24
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "stalkL": {
+            "r": 18
+          },
+          "stalkR": {
+            "r": 26
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

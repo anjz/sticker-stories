@@ -3,47 +3,133 @@
   "sticker": "bird",
   "kind": "move",
   "description": "the bird hops along the ground to the right on both little feet, hop after hop, wings folded, then stops.",
-  "sheet": "anims/bird.hop.webp",
-  "frame": {
-    "width": 507,
-    "height": 516
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.02959,
-    "y": 0.03295,
-    "width": 0.86982,
-    "height": 0.93411
-  },
   "stickerBox": {
     "x": 0.07031,
     "y": 0.02995,
     "width": 0.85938,
     "height": 0.9401
   },
-  "hold": [
-    0.1,
-    0.08,
-    0.07,
-    0.08,
-    0.08,
-    0.07,
-    0.07,
-    0.08,
-    0.08,
-    0.15,
-    0.15,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "right",
   "stride": 0.5,
   "hops": true,
   "on": [
     "meadow"
-  ]
+  ],
+  "puppet": {
+    "rig": "anims/bird.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.93
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 4
+          },
+          "tail": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.05
+          },
+          "footL": {
+            "r": 18,
+            "y": -8
+          },
+          "footR": {
+            "r": 18,
+            "y": -8
+          },
+          "head": {
+            "y": -3
+          },
+          "root": {
+            "y": -6
+          },
+          "tail": {
+            "r": -8
+          },
+          "wingL": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.03
+          },
+          "footL": {
+            "r": 10,
+            "y": -4
+          },
+          "footR": {
+            "r": 10,
+            "y": -4
+          },
+          "root": {
+            "y": -6
+          },
+          "tail": {
+            "r": -4
+          },
+          "wingL": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.95
+          },
+          "head": {
+            "y": 4
+          },
+          "root": {
+            "y": 2
+          },
+          "tail": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          }
+        }
+      },
+      {
+        "hold": 0.45
+      }
+    ]
+  }
 }

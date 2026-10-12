@@ -1,0 +1,163 @@
+{
+  "id": "sleep",
+  "sticker": "mouse",
+  "kind": "action",
+  "description": "the mouse gives a big yawn, closes its eyes and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.13151,
+    "y": 0.02995,
+    "width": 0.73698,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the mouse fast asleep, eyes shut, head drooped"
+  },
+  "puppet": {
+    "rig": "anims/mouse.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": -60
+          },
+          "armR": {
+            "r": 60
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": 7,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -60
+          },
+          "armR": {
+            "r": 60
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": 7,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "armR": {
+            "r": -8
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "earL": {
+            "r": -8
+          },
+          "earR": {
+            "r": 8
+          },
+          "face": {
+            "y": 4
+          },
+          "head": {
+            "r": -7,
+            "y": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "armR": {
+            "r": -8
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "earL": {
+            "r": -8
+          },
+          "earR": {
+            "r": 8
+          },
+          "face": {
+            "y": 4
+          },
+          "head": {
+            "r": -7,
+            "y": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

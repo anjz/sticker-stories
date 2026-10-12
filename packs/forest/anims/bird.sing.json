@@ -2,53 +2,233 @@
   "id": "sing",
   "sticker": "bird",
   "description": "the bird puffs up its chest, tips its head back and sings a long happy song with its eyes closed, then flutters its wings, flicks its tail and chirps.",
-  "sheet": "anims/bird.sing.webp",
-  "frame": {
-    "width": 539,
-    "height": 544
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.04082,
-    "y": 0.08272,
-    "width": 0.81818,
-    "height": 0.88603
-  },
   "stickerBox": {
     "x": 0.07031,
     "y": 0.02995,
     "width": 0.85938,
     "height": 0.9401
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.15,
-    0.2,
-    0.2,
-    0.2,
-    0.15,
-    0.6,
-    0.2,
-    0.1,
-    0.1,
-    0.08,
-    0.08,
-    0.1,
-    0.08,
-    0.1,
-    0.3,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 5,
     "shows": "the bird singing a long note, head tipped back, beak wide open, eyes closed"
+  },
+  "puppet": {
+    "rig": "anims/bird.rig.json",
+    "keys": [
+      {
+        "hold": 0.3
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 1.04
+          },
+          "head": {
+            "r": -4,
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 1.05
+          },
+          "head": {
+            "r": -12,
+            "y": -7
+          },
+          "tail": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 1.05
+          },
+          "head": {
+            "r": -15,
+            "y": -9
+          },
+          "tail": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 1.06
+          },
+          "head": {
+            "r": -17,
+            "y": -10
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 1.06
+          },
+          "head": {
+            "r": -17,
+            "y": -10
+          },
+          "tail": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 1.03
+          },
+          "head": {
+            "r": -10,
+            "y": -6
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "wingL": {
+            "r": 24
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "wingL": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "wingL": {
+            "r": 24
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "tail": {
+            "r": 14
+          },
+          "wingL": {}
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "tail": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "head": {
+            "y": 2
+          }
+        },
+        "slots": {
+          "beak": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": -5,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
   }
 }

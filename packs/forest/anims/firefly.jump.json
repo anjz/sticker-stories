@@ -1,0 +1,184 @@
+{
+  "id": "jump",
+  "sticker": "firefly",
+  "kind": "action",
+  "description": "the firefly crouches, jumps up high for joy with a buzz of its wings, and lands with a little squash.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.10677,
+    "width": 0.9401,
+    "height": 0.78646
+  },
+  "puppet": {
+    "rig": "anims/firefly.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.9
+          },
+          "head": {
+            "y": 6
+          },
+          "legL1": {
+            "r": -12
+          },
+          "legL3": {
+            "r": 12
+          },
+          "root": {
+            "y": 8
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "antennaL": {
+            "r": -10
+          },
+          "antennaR": {
+            "r": 10
+          },
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "legL1": {
+            "r": 58,
+            "y": -6
+          },
+          "legL2": {
+            "r": 10,
+            "y": -8
+          },
+          "legL3": {
+            "r": -52,
+            "y": -8
+          },
+          "legR1": {
+            "r": 14,
+            "y": -6
+          },
+          "legR2": {
+            "r": 6,
+            "y": -8
+          },
+          "legR3": {
+            "r": -10,
+            "y": -8
+          },
+          "root": {
+            "y": -78
+          },
+          "tail": {
+            "r": -18
+          },
+          "wingL": {
+            "r": -35
+          },
+          "wingR": {
+            "r": -25
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "antennaL": {
+            "r": -10
+          },
+          "antennaR": {
+            "r": 10
+          },
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "legL1": {
+            "r": 58,
+            "y": -6
+          },
+          "legL2": {
+            "r": 10,
+            "y": -8
+          },
+          "legL3": {
+            "r": -52,
+            "y": -8
+          },
+          "legR1": {
+            "r": 14,
+            "y": -6
+          },
+          "legR2": {
+            "r": 6,
+            "y": -8
+          },
+          "legR3": {
+            "r": -10,
+            "y": -8
+          },
+          "root": {
+            "y": -84
+          },
+          "tail": {
+            "r": -18
+          },
+          "wingL": {
+            "r": -35
+          },
+          "wingR": {
+            "r": -25
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.08,
+            "sy": 0.88
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "id": "sniff",
+  "sticker": "hedgehog",
+  "kind": "action",
+  "description": "the hedgehog lifts its little nose and sniffs, sniffs, sniffs the air.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.03385,
+    "width": 0.9401,
+    "height": 0.93099
+  },
+  "puppet": {
+    "rig": "anims/hedgehog.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 6,
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": 8,
+            "x": -4,
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": 6,
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": 8,
+            "x": -4,
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": 6,
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": 8,
+            "x": -4,
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

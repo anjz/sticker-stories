@@ -1,55 +1,274 @@
 {
   "id": "rest",
   "sticker": "butterfly",
-  "description": "the butterfly turns sideways and closes its wings together upright above its back, resting, then opens them again, turns back to the front and flutters them happily.",
-  "sheet": "anims/butterfly.rest.webp",
-  "frame": {
-    "width": 535,
-    "height": 576
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.03551,
-    "y": 0.17361,
-    "width": 0.90093,
-    "height": 0.75
-  },
+  "kind": "action",
+  "description": "the butterfly closes its wings together upright above its back, resting, then opens them again and flutters them happily.",
   "stickerBox": {
     "x": 0.02995,
     "y": 0.07943,
     "width": 0.9401,
     "height": 0.84115
   },
-  "hold": [
-    0.45,
-    0.12,
-    0.12,
-    0.12,
-    0.12,
-    0.15,
-    0.2,
-    0.2,
-    0.2,
-    0.2,
-    0.2,
-    0.8,
-    0.15,
-    0.12,
-    0.12,
-    0.12,
-    0.15,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
-    "shows": "the butterfly resting side-on, its wings pressed together upright above its back"
+    "frame": 4,
+    "shows": "the butterfly resting, its wings pressed together upright above its back"
   },
-  "perched": true
+  "perched": true,
+  "puppet": {
+    "rig": "anims/butterfly.rig.json",
+    "keys": [
+      {
+        "hold": 0.3
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "wingL": {
+            "r": 3,
+            "sx": 0.65
+          },
+          "wingL2": {
+            "sy": 0.76
+          },
+          "wingR": {
+            "r": -3,
+            "sx": 0.65
+          },
+          "wingR2": {
+            "sy": 0.76
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "y": 2
+          },
+          "wingL": {
+            "r": 6,
+            "sx": 0.3
+          },
+          "wingL2": {
+            "sy": 0.48
+          },
+          "wingR": {
+            "r": -6,
+            "sx": 0.3
+          },
+          "wingR2": {
+            "sy": 0.48
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "antennaL": {
+            "r": -6
+          },
+          "antennaR": {
+            "r": 6
+          },
+          "belly": {
+            "sy": 0.98
+          },
+          "wingL": {
+            "r": 7,
+            "sx": 0.2
+          },
+          "wingL2": {
+            "sy": 0.4
+          },
+          "wingR": {
+            "r": -7,
+            "sx": 0.2
+          },
+          "wingR2": {
+            "sy": 0.4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "antennaL": {
+            "r": -8
+          },
+          "antennaR": {
+            "r": 8
+          },
+          "belly": {
+            "sy": 0.98
+          },
+          "head": {
+            "y": 3
+          },
+          "wingL": {
+            "r": 7,
+            "sx": 0.2
+          },
+          "wingL2": {
+            "sy": 0.4
+          },
+          "wingR": {
+            "r": -7,
+            "sx": 0.2
+          },
+          "wingR2": {
+            "sy": 0.4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "wingL": {
+            "r": 4,
+            "sx": 0.5
+          },
+          "wingL2": {
+            "sy": 0.64
+          },
+          "wingR": {
+            "r": -4,
+            "sx": 0.5
+          },
+          "wingR2": {
+            "sy": 0.64
+          }
+        },
+        "slots": {
+          "eyeL": "calm",
+          "eyeR": "calm"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "wingL": {
+            "sx": 1.04
+          },
+          "wingR": {
+            "sx": 1.04
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "root": {
+            "y": -4
+          },
+          "wingL": {
+            "r": 4,
+            "sx": 0.55
+          },
+          "wingL2": {
+            "sy": 0.68
+          },
+          "wingR": {
+            "r": -4,
+            "sx": 0.55
+          },
+          "wingR2": {
+            "sy": 0.68
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "root": {},
+          "wingL": {
+            "sx": 1.02
+          },
+          "wingR": {
+            "sx": 1.02
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "root": {
+            "y": -4
+          },
+          "wingL": {
+            "r": 4,
+            "sx": 0.55
+          },
+          "wingL2": {
+            "sy": 0.68
+          },
+          "wingR": {
+            "r": -4,
+            "sx": 0.55
+          },
+          "wingR2": {
+            "sy": 0.68
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "wingL": {
+            "sx": 1.02
+          },
+          "wingR": {
+            "sx": 1.02
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
 }

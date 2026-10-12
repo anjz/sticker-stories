@@ -1,0 +1,131 @@
+{
+  "id": "sleep",
+  "sticker": "woodpecker",
+  "description": "the woodpecker gives a big yawn, closes its eyes and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.2487,
+    "y": 0.02995,
+    "width": 0.5013,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the woodpecker fast asleep, eyes shut, head drooped"
+  },
+  "puppet": {
+    "rig": "anims/woodpecker.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -4,
+            "y": -4
+          },
+          "wingL": {
+            "r": 20
+          },
+          "wingR": {
+            "r": -20
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -4,
+            "y": -4
+          },
+          "wingL": {
+            "r": 20
+          },
+          "wingR": {
+            "r": -20
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "face": {
+            "y": 4
+          },
+          "head": {
+            "r": 6,
+            "y": 9
+          }
+        },
+        "slots": {
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "face": {
+            "y": 4
+          },
+          "head": {
+            "r": 6,
+            "y": 9
+          }
+        },
+        "slots": {
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eye": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

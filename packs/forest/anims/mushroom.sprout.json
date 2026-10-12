@@ -3,37 +3,110 @@
   "sticker": "mushroom",
   "kind": "move",
   "description": "the mushroom pops up out of the ground: a little round button grows up, its stem stretches and its spotted cap unfurls.",
-  "sheet": "anims/mushroom.sprout.webp",
-  "frame": {
-    "width": 497,
-    "height": 522
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.06237,
-    "y": 0.04406,
-    "width": 0.88531,
-    "height": 0.92337
-  },
   "stickerBox": {
     "x": 0.07031,
     "y": 0.02995,
     "width": 0.85807,
     "height": 0.9401
   },
-  "hold": [
-    0.1,
-    0.1,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.1,
-    0.1,
-    0.12,
-    0.45
-  ]
+  "puppet": {
+    "rig": "anims/mushroom.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.25,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.1,
+            "sy": 0.06
+          },
+          "cap": {
+            "sx": 1.5,
+            "sy": 2.5
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 0.45,
+            "sy": 0.35
+          },
+          "cap": {
+            "sx": 0.9,
+            "sy": 1.15
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sx": 0.9,
+            "sy": 1.05
+          },
+          "cap": {
+            "sx": 0.83,
+            "sy": 0.67
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "cap": {
+            "sx": 1.08,
+            "sy": 1
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
 }

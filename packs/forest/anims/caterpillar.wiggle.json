@@ -1,0 +1,188 @@
+{
+  "id": "wiggle",
+  "sticker": "caterpillar",
+  "kind": "action",
+  "description": "the caterpillar wiggles happily from head to tail, a little wave running along its body.",
+  "stickerBox": {
+    "x": 0.04036,
+    "y": 0.02995,
+    "width": 0.91797,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/caterpillar.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "seg3": {
+            "r": 5,
+            "y": 10
+          },
+          "seg4": {
+            "r": -5,
+            "y": -10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "seg2": {
+            "r": 4,
+            "y": 12
+          },
+          "seg3": {
+            "r": -4,
+            "y": -12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 4,
+            "y": 12
+          },
+          "seg2": {
+            "r": -4,
+            "y": -12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "antennaL": {
+            "r": -10
+          },
+          "antennaR": {
+            "r": 10
+          },
+          "body": {
+            "r": -4,
+            "y": -10
+          },
+          "head": {
+            "r": 8,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "head": {
+            "r": -4
+          },
+          "seg3": {
+            "r": 5,
+            "y": 10
+          },
+          "seg4": {
+            "r": -5,
+            "y": -10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "seg2": {
+            "r": 4,
+            "y": 12
+          },
+          "seg3": {
+            "r": -4,
+            "y": -12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 4,
+            "y": 12
+          },
+          "seg2": {
+            "r": -4,
+            "y": -12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "antennaL": {
+            "r": -10
+          },
+          "antennaR": {
+            "r": 10
+          },
+          "body": {
+            "r": -4,
+            "y": -10
+          },
+          "head": {
+            "r": 8,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "id": "bounce",
+  "sticker": "pinecone",
+  "kind": "action",
+  "description": "the pinecone bounces up and down on the spot, squashing and stretching with joy.",
+  "stickerBox": {
+    "x": 0.03516,
+    "y": 0.02995,
+    "width": 0.92969,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/pinecone.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.9
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.24,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.05
+          },
+          "body": {
+            "r": -3
+          },
+          "root": {
+            "y": -44
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.04
+          },
+          "body": {
+            "r": -3
+          },
+          "root": {
+            "y": -48
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.88
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.9
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.24,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.05
+          },
+          "body": {
+            "r": -3
+          },
+          "root": {
+            "y": -44
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.04
+          },
+          "body": {
+            "r": -3
+          },
+          "root": {
+            "y": -48
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.88
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

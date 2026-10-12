@@ -1,0 +1,2513 @@
+{
+  "sticker": "frog",
+  "skeleton": "frog sitting facing the viewer: root at the seat; body (head and body are one) with belly squash and a throat/chin to puff; eyes in the two domes on top, mouth below; front legs at the shoulders; folded back legs at the hips; tongue (hidden until it flicks out from the mouth, stretching) and a little fly on its own bone for the catch-fly.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a frog character. Draw this exact frog as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the body: the round green spotted frog with its cream belly, sitting and facing the viewer as in image 1, with the two big eye domes on top, without front legs or back legs, and with a completely blank face — the eye domes empty and green with no eyes in them, no mouth — keep the rosy cheeks.\n2. one front leg: the front leg on the right of image 1 with its spread webbed toes, with a rounded shoulder.\n3. one back leg: the folded back leg on the right of image 1 with its long webbed foot, with a rounded hip.\n4. the tongue: a long pink tongue, straight, on its own, with a rounded tip.\n5. a little fly: a tiny cute fly with clear wings.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a frog character; image 2 shows the same frog cut into puppet parts, with a blank face. Draw the frog's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the frog in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the frog's left eye (on the right of image 1) as it is in image 1: a big dark round eye with a white sparkle, filling its eye dome.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a wide-open happy smile, the inside pink.\n7. the mouth closed in a wide calm smile.\n8. the mouth wide open in a big happy laugh, the inside pink.\n9. the mouth open in a small round 'o'.\n10. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "body": {
+      "sheet": "parts",
+      "at": [
+        461,
+        436
+      ]
+    },
+    "arm": {
+      "sheet": "parts",
+      "at": [
+        1036,
+        392
+      ]
+    },
+    "leg": {
+      "sheet": "parts",
+      "at": [
+        1371,
+        442
+      ]
+    },
+    "tongue": {
+      "sheet": "parts",
+      "at": [
+        590,
+        907
+      ]
+    },
+    "fly": {
+      "sheet": "parts",
+      "at": [
+        1292,
+        852
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        153,
+        320
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        459,
+        315
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        771,
+        361
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        1094,
+        302
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1390,
+        322
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        202,
+        715
+      ]
+    },
+    "mouthClosed": {
+      "sheet": "face",
+      "at": [
+        551,
+        721
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        875,
+        695
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        1151,
+        714
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1376,
+        699
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 385,
+      "y": 682
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 385,
+      "y": 650
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 385,
+      "y": 650
+    },
+    {
+      "id": "legL",
+      "parent": "body",
+      "x": 140,
+      "y": 452
+    },
+    {
+      "id": "legR",
+      "parent": "body",
+      "x": 640,
+      "y": 482
+    },
+    {
+      "id": "face",
+      "parent": "belly",
+      "x": 400,
+      "y": 240
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 292,
+      "y": 145
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 557,
+      "y": 210
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 385,
+      "y": 305
+    },
+    {
+      "id": "tongue",
+      "parent": "face",
+      "x": 385,
+      "y": 318
+    },
+    {
+      "id": "armL",
+      "parent": "body",
+      "x": 238,
+      "y": 440
+    },
+    {
+      "id": "armR",
+      "parent": "body",
+      "x": 552,
+      "y": 446
+    },
+    {
+      "id": "fly",
+      "parent": "root",
+      "x": 560,
+      "y": 40
+    }
+  ],
+  "slots": [
+    {
+      "id": "legL",
+      "bone": "legL",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 120,
+          "y": 542,
+          "scale": 0.55,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "legR",
+      "bone": "legR",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 652,
+          "y": 568,
+          "scale": 0.52
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "body",
+          "x": 384,
+          "y": 354,
+          "scale": 0.69,
+          "rotate": 10
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 292,
+          "y": 145,
+          "scale": 0.48
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 292,
+          "y": 145,
+          "scale": 0.48
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 292,
+          "y": 153,
+          "scale": 0.48
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 292,
+          "y": 149,
+          "scale": 0.48
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 292,
+          "y": 147,
+          "scale": 0.48,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 557,
+          "y": 210,
+          "scale": 0.5,
+          "flip": true
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 557,
+          "y": 210,
+          "scale": 0.5,
+          "flip": true
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 557,
+          "y": 218,
+          "scale": 0.5,
+          "flip": true
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 557,
+          "y": 214,
+          "scale": 0.5,
+          "flip": true
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 557,
+          "y": 212,
+          "scale": 0.5
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 385,
+          "y": 305,
+          "scale": 0.78,
+          "rotate": 12
+        },
+        "closed": {
+          "part": "mouthClosed",
+          "x": 385,
+          "y": 290,
+          "scale": 0.7,
+          "rotate": 12
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 385,
+          "y": 315,
+          "scale": 0.7,
+          "rotate": 12
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 390,
+          "y": 305,
+          "scale": 0.55,
+          "rotate": 8
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 385,
+          "y": 300,
+          "scale": 0.8,
+          "rotate": 12
+        }
+      }
+    },
+    {
+      "id": "tongue",
+      "bone": "tongue",
+      "default": "none",
+      "attachments": {
+        "tongue": {
+          "part": "tongue",
+          "x": 545,
+          "y": 318,
+          "scale": 0.35
+        }
+      }
+    },
+    {
+      "id": "armL",
+      "bone": "armL",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "arm",
+          "x": 262,
+          "y": 570,
+          "scale": 0.62,
+          "flip": true,
+          "rotate": -16
+        }
+      }
+    },
+    {
+      "id": "armR",
+      "bone": "armR",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "arm",
+          "x": 528,
+          "y": 572,
+          "scale": 0.62,
+          "rotate": 16
+        }
+      }
+    },
+    {
+      "id": "fly",
+      "bone": "fly",
+      "default": "none",
+      "attachments": {
+        "fly": {
+          "part": "fly",
+          "x": 560,
+          "y": 40,
+          "scale": 0.5
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed",
+      "mouth": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "catch-fly",
+      "kind": "action",
+      "description": "a little fly buzzes up above the frog, who watches it very still; then its long tongue flicks out, catches the fly, and it gulps and grins.",
+      "pause": {
+        "frame": 4,
+        "shows": "the frog perfectly still, eyes locked on a little fly buzzing just above it"
+      },
+      "keys": [
+        {
+          "hold": 0.3
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "fly": {
+              "x": 170,
+              "y": -30
+            },
+            "face": {
+              "x": 8,
+              "y": -2
+            }
+          },
+          "slots": {
+            "fly": "fly"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "fly": {
+              "x": 70,
+              "y": 40
+            },
+            "face": {
+              "x": 10,
+              "y": -4
+            }
+          },
+          "slots": {
+            "fly": "fly"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "fly": {
+              "x": -90,
+              "y": -10
+            },
+            "face": {
+              "x": -2,
+              "y": -8
+            }
+          },
+          "slots": {
+            "fly": "fly"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "fly": {
+              "x": 0,
+              "y": 0
+            },
+            "face": {
+              "x": 8,
+              "y": -8
+            }
+          },
+          "slots": {
+            "fly": "fly",
+            "mouth": "closed"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "fly": {
+              "x": 4,
+              "y": -4
+            },
+            "face": {
+              "x": 8,
+              "y": -8
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "fly": "fly",
+            "mouth": "closed"
+          }
+        },
+        {
+          "hold": 0.08,
+          "ease": "out",
+          "bones": {
+            "fly": {
+              "x": 4,
+              "y": -4
+            },
+            "face": {
+              "x": 8,
+              "y": -8
+            },
+            "tongue": {
+              "r": -58,
+              "sx": 0.12
+            }
+          },
+          "slots": {
+            "fly": "fly",
+            "mouth": "open",
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "tongue": "tongue"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "in",
+          "bones": {
+            "fly": {
+              "x": 4,
+              "y": -4
+            },
+            "face": {
+              "x": 8,
+              "y": -8
+            },
+            "tongue": {
+              "r": -58,
+              "sx": 1.0
+            }
+          },
+          "slots": {
+            "fly": "fly",
+            "mouth": "open",
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "tongue": "tongue"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "fly": {
+              "x": -150,
+              "y": 250
+            },
+            "tongue": {
+              "r": -58,
+              "sx": 0.12
+            }
+          },
+          "slots": {
+            "fly": "fly",
+            "mouth": "open",
+            "tongue": "tongue"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "tongue": {
+              "r": -58,
+              "sx": 0.1
+            },
+            "fly": {
+              "x": -150,
+              "y": 250
+            }
+          },
+          "slots": {
+            "mouth": "closed",
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "belly": {
+              "sx": 1.05,
+              "sy": 0.97
+            }
+          },
+          "slots": {
+            "mouth": "closed",
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "root": {
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "hop",
+      "kind": "move",
+      "description": "the frog hops along to the right, leap after leap, then lands and sits back down.",
+      "facing": "right",
+      "stride": 0.9,
+      "hops": true,
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.92,
+              "sx": 1.05
+            },
+            "face": {
+              "y": 6
+            },
+            "armL": {
+              "r": -6
+            },
+            "armR": {
+              "r": 6
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -80,
+              "r": 6
+            },
+            "belly": {
+              "sy": 1.06,
+              "sx": 0.96
+            },
+            "legL": {
+              "r": 22,
+              "y": 28
+            },
+            "legR": {
+              "r": -22,
+              "y": 28
+            },
+            "armL": {
+              "r": 12,
+              "y": 8
+            },
+            "armR": {
+              "r": -12,
+              "y": 8
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -92,
+              "r": 2
+            },
+            "belly": {
+              "sy": 1.06,
+              "sx": 0.96
+            },
+            "legL": {
+              "r": 22,
+              "y": 28
+            },
+            "legR": {
+              "r": -22,
+              "y": 28
+            },
+            "armL": {
+              "r": 12,
+              "y": 8
+            },
+            "armR": {
+              "r": -12,
+              "y": 8
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.9,
+              "sx": 1.07
+            },
+            "face": {
+              "y": 6
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "belly": {
+              "sy": 1.02
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "croak",
+      "kind": "action",
+      "description": "the frog puffs out its throat and croaks, ribbit, ribbit, ribbit.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "belly": {
+              "sx": 1.09,
+              "sy": 0.96
+            },
+            "face": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "mouth": "o",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "belly": {
+              "sx": 0.99,
+              "sy": 1.01
+            }
+          },
+          "slots": {
+            "mouth": "closed"
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "belly": {
+              "sx": 1.09,
+              "sy": 0.96
+            },
+            "face": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "mouth": "o",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "belly": {
+              "sx": 0.99,
+              "sy": 1.01
+            }
+          },
+          "slots": {
+            "mouth": "closed"
+          }
+        },
+        {
+          "hold": 0.26,
+          "ease": "out",
+          "bones": {
+            "belly": {
+              "sx": 1.09,
+              "sy": 0.96
+            },
+            "face": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "mouth": "o",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "belly": {
+              "sx": 0.99,
+              "sy": 1.01
+            }
+          },
+          "slots": {
+            "mouth": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "kind": "action",
+      "description": "the frog crouches low, then leaps high up into the air, legs stretched out, and lands with a squash.",
+      "pause": {
+        "frame": 3,
+        "shows": "the frog high in the air, legs stretched out"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "root": {
+              "y": 10
+            },
+            "belly": {
+              "sy": 0.88,
+              "sx": 1.07
+            },
+            "face": {
+              "y": 6
+            },
+            "armL": {
+              "r": -6
+            },
+            "armR": {
+              "r": 6
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -150,
+              "r": 0
+            },
+            "belly": {
+              "sy": 1.06,
+              "sx": 0.96
+            },
+            "legL": {
+              "r": 30,
+              "y": 40
+            },
+            "legR": {
+              "r": -30,
+              "y": 40
+            },
+            "armL": {
+              "r": 30
+            },
+            "armR": {
+              "r": -30
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -165,
+              "r": 0
+            },
+            "belly": {
+              "sy": 1.06,
+              "sx": 0.96
+            },
+            "legL": {
+              "r": 32,
+              "y": 42
+            },
+            "legR": {
+              "r": -32,
+              "y": 42
+            },
+            "armL": {
+              "r": 32
+            },
+            "armR": {
+              "r": -32
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.9,
+              "sx": 1.07
+            },
+            "face": {
+              "y": 6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "belly": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "kind": "action",
+      "description": "the frog nods yes, twice.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 10
+            },
+            "belly": {
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 10
+            },
+            "belly": {
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "shake-head",
+      "kind": "action",
+      "description": "the frog shakes its head no.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "face": {
+              "x": -12
+            },
+            "body": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "x": 12
+            },
+            "body": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "x": -12
+            },
+            "body": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "x": 10
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "look-around",
+      "kind": "action",
+      "description": "the frog looks one way, then the other, then back.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "face": {
+              "x": -16
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "face": {
+              "x": -16
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "face": {
+              "x": 16
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "face": {
+              "x": 16
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "laugh",
+      "kind": "action",
+      "description": "the frog laughs and laughs, bouncing with giggles.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "root": {
+              "y": -6
+            },
+            "armL": {
+              "r": -10
+            },
+            "armR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "root": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "root": {
+              "y": -6
+            },
+            "armL": {
+              "r": -10
+            },
+            "armR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "root": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "root": {
+              "y": -6
+            },
+            "armL": {
+              "r": -10
+            },
+            "armR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "root": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "root": {
+              "y": -6
+            },
+            "armL": {
+              "r": -10
+            },
+            "armR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "root": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "dance",
+      "kind": "action",
+      "description": "the frog does a happy little dance, swaying from side to side.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "root": {
+              "x": -12,
+              "y": 0
+            },
+            "armL": {
+              "r": 45
+            },
+            "armR": {
+              "r": -10
+            },
+            "legL": {
+              "r": -8
+            },
+            "legR": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "root": {
+              "x": 12,
+              "y": -10
+            },
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -45
+            },
+            "legL": {
+              "r": 8
+            },
+            "legR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "root": {
+              "x": -12,
+              "y": 0
+            },
+            "armL": {
+              "r": 45
+            },
+            "armR": {
+              "r": -10
+            },
+            "legL": {
+              "r": -8
+            },
+            "legR": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "root": {
+              "x": 12,
+              "y": -10
+            },
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -45
+            },
+            "legL": {
+              "r": 8
+            },
+            "legR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "root": {
+              "x": -12,
+              "y": 0
+            },
+            "armL": {
+              "r": 45
+            },
+            "armR": {
+              "r": -10
+            },
+            "legL": {
+              "r": -8
+            },
+            "legR": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "root": {
+              "x": 12,
+              "y": -10
+            },
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -45
+            },
+            "legL": {
+              "r": 8
+            },
+            "legR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "kind": "action",
+      "description": "the frog talks, its mouth moving, its head bobbing a little.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step"
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step"
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step"
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step"
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step"
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shiver",
+      "kind": "action",
+      "description": "the frog shivers and trembles, cold or scared.",
+      "keys": [
+        {
+          "hold": 0.1,
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "cry",
+      "kind": "action",
+      "description": "the frog cries, head down, shoulders shaking with little sobs.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "armL": {
+              "r": -15
+            },
+            "armR": {
+              "r": 15
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "armL": {
+              "r": -15
+            },
+            "armR": {
+              "r": 15
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "armL": {
+              "r": -15
+            },
+            "armR": {
+              "r": 15
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "armL": {
+              "r": -15
+            },
+            "armR": {
+              "r": 15
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "armL": {
+              "r": -15
+            },
+            "armR": {
+              "r": 15
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "armL": {
+              "r": -15
+            },
+            "armR": {
+              "r": 15
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "armL": {
+              "r": -15
+            },
+            "armR": {
+              "r": 15
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "armL": {
+              "r": -15
+            },
+            "armR": {
+              "r": 15
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "armL": {
+              "r": -15
+            },
+            "armR": {
+              "r": 15
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "kind": "action",
+      "description": "the frog gives a big yawn, closes its eyes and falls asleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the frog fast asleep, eyes shut, head drooped"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            },
+            "armL": {
+              "r": 60
+            },
+            "armR": {
+              "r": -60
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            },
+            "armL": {
+              "r": 60
+            },
+            "armR": {
+              "r": -60
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "face": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            },
+            "armL": {
+              "r": -8
+            },
+            "armR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "closed"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "face": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            },
+            "armL": {
+              "r": -8
+            },
+            "armR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "kind": "action",
+      "description": "the frog waves hello.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "armR": {
+              "r": -95
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "armR": {
+              "r": -80
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "armR": {
+              "r": -110
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "armR": {
+              "r": -80
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "armR": {
+              "r": -110
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "twirl",
+      "kind": "action",
+      "description": "the frog twirls right round on the spot.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.94
+            }
+          }
+        },
+        {
+          "hold": 0.32,
+          "ease": "inOut",
+          "bones": {
+            "root": {
+              "sx": -1,
+              "y": -26
+            },
+            "armL": {
+              "r": 35
+            },
+            "armR": {
+              "r": -35
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.32,
+          "ease": "inOut",
+          "bones": {
+            "root": {
+              "sx": 1,
+              "y": 0
+            },
+            "armL": {
+              "r": 35
+            },
+            "armR": {
+              "r": -35
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "belly": {
+              "sy": 0.94,
+              "sx": 1.04
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

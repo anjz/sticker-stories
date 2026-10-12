@@ -1,0 +1,987 @@
+{
+  "sticker": "acorn",
+  "skeleton": "object character facing the viewer, arms out: root at the feet; body (the nut) with a belly bone for squash; cap on the body (tips like a hat); face on the body with eyes and mouth; armL/armR at the nut's sides (a clasped-hands piece swaps in for both arms for the wish); footL/footR on the root.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a cheerful little acorn character. Draw this exact acorn as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the nut body: the round tan nut with its rosy cheeks and a completely blank face — no eyes, no mouth — without arms or feet; its top, normally under the cap, a plain rounded dome.\n2. the cap: the brown scaly cap with its little curly stem, drawn whole, its bottom rim a smooth edge.\n3. one arm: the little stubby arm on the right of image 1, held out with its small open hand, with a rounded shoulder end.\n4. the two little hands clasped together in front, as when making a wish: both small hands pressed palm to palm, with short wrists.\n5. one foot: a little rounded foot as in image 1, with a short leg stub on top.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a cheerful little acorn character; image 2 shows the same acorn cut into puppet parts, with a blank face. Draw the acorn's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the acorn in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the acorn's left eye (on the right of image 1) as it is in image 1: closed in a happy upward arc.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the same eye open and calm: a round dark eye with a white sparkle.\n7. the mouth as it is in image 1: open in a happy smile, the inside pink.\n8. the mouth closed in a small calm smile.\n9. the mouth wide open in a big happy laugh, the inside pink.\n10. the mouth open in a small round 'o'.\n11. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "body": {
+      "sheet": "parts",
+      "at": [
+        380,
+        549
+      ]
+    },
+    "cap": {
+      "sheet": "parts",
+      "at": [
+        1135,
+        301
+      ]
+    },
+    "arm": {
+      "sheet": "parts",
+      "at": [
+        1159,
+        600
+      ]
+    },
+    "hands": {
+      "sheet": "parts",
+      "at": [
+        880,
+        841
+      ]
+    },
+    "foot": {
+      "sheet": "parts",
+      "at": [
+        1339,
+        854
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        145,
+        333
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        397,
+        332
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        657,
+        357
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        925,
+        340
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1175,
+        333
+      ]
+    },
+    "eyeOpen": {
+      "sheet": "face",
+      "at": [
+        1414,
+        334
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        173,
+        709
+      ]
+    },
+    "mouthClosed": {
+      "sheet": "face",
+      "at": [
+        467,
+        710
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        787,
+        699
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        1083,
+        712
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1390,
+        690
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 365,
+      "y": 700
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 360,
+      "y": 650
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 360,
+      "y": 650
+    },
+    {
+      "id": "cap",
+      "parent": "body",
+      "x": 390,
+      "y": 300
+    },
+    {
+      "id": "face",
+      "parent": "body",
+      "x": 365,
+      "y": 400
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 282,
+      "y": 372
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 448,
+      "y": 396
+    },
+    {
+      "id": "browL",
+      "parent": "face",
+      "x": 292,
+      "y": 300
+    },
+    {
+      "id": "browR",
+      "parent": "face",
+      "x": 478,
+      "y": 350
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 362,
+      "y": 442
+    },
+    {
+      "id": "armL",
+      "parent": "body",
+      "x": 185,
+      "y": 445
+    },
+    {
+      "id": "armR",
+      "parent": "body",
+      "x": 556,
+      "y": 505
+    },
+    {
+      "id": "hands",
+      "parent": "body",
+      "x": 362,
+      "y": 520
+    },
+    {
+      "id": "footL",
+      "parent": "root",
+      "x": 270,
+      "y": 640
+    },
+    {
+      "id": "footR",
+      "parent": "root",
+      "x": 452,
+      "y": 672
+    }
+  ],
+  "slots": [
+    {
+      "id": "footL",
+      "bone": "footL",
+      "default": "foot",
+      "attachments": {
+        "foot": {
+          "part": "foot",
+          "x": 270,
+          "y": 652,
+          "scale": 0.42,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "footR",
+      "bone": "footR",
+      "default": "foot",
+      "attachments": {
+        "foot": {
+          "part": "foot",
+          "x": 452,
+          "y": 688,
+          "scale": 0.42
+        }
+      }
+    },
+    {
+      "id": "armL",
+      "bone": "armL",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "arm",
+          "x": 130,
+          "y": 418,
+          "scale": 0.48,
+          "flip": true,
+          "rotate": -8
+        }
+      }
+    },
+    {
+      "id": "armR",
+      "bone": "armR",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "arm",
+          "x": 612,
+          "y": 488,
+          "scale": 0.48,
+          "rotate": 4
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "body",
+          "x": 366,
+          "y": 452,
+          "scale": 0.64,
+          "rotate": 8
+        }
+      }
+    },
+    {
+      "id": "cap",
+      "bone": "cap",
+      "default": "cap",
+      "attachments": {
+        "cap": {
+          "part": "cap",
+          "x": 390,
+          "y": 222,
+          "scale": 0.7,
+          "scaleY": 0.78,
+          "rotate": 5
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 282,
+          "y": 372,
+          "scale": 0.31,
+          "rotate": -4
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 282,
+          "y": 376,
+          "scale": 0.3,
+          "rotate": -4
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 282,
+          "y": 378,
+          "scale": 0.31,
+          "rotate": -4
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 282,
+          "y": 372,
+          "scale": 0.3,
+          "rotate": -4
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 282,
+          "y": 374,
+          "scale": 0.31,
+          "rotate": -4
+        },
+        "open": {
+          "part": "eyeOpen",
+          "x": 282,
+          "y": 374,
+          "scale": 0.28,
+          "rotate": -4
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 448,
+          "y": 396,
+          "scale": 0.31,
+          "rotate": 6
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 448,
+          "y": 400,
+          "scale": 0.3,
+          "rotate": 6
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 448,
+          "y": 402,
+          "scale": 0.31,
+          "rotate": 6
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 448,
+          "y": 396,
+          "scale": 0.3,
+          "rotate": 6
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 448,
+          "y": 398,
+          "scale": 0.31,
+          "rotate": 6
+        },
+        "open": {
+          "part": "eyeOpen",
+          "x": 448,
+          "y": 398,
+          "scale": 0.28,
+          "rotate": 6
+        }
+      }
+    },
+    {
+      "id": "browL",
+      "bone": "browL",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "mouthClosed",
+          "x": 292,
+          "y": 300,
+          "scale": 0.24,
+          "rotate": 176
+        },
+        "sad": {
+          "part": "mouthClosed",
+          "x": 290,
+          "y": 296,
+          "scale": 0.24,
+          "rotate": 200
+        }
+      }
+    },
+    {
+      "id": "browR",
+      "bone": "browR",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "mouthClosed",
+          "x": 478,
+          "y": 350,
+          "scale": 0.24,
+          "rotate": 186
+        },
+        "sad": {
+          "part": "mouthClosed",
+          "x": 480,
+          "y": 346,
+          "scale": 0.24,
+          "rotate": 162
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 362,
+          "y": 442,
+          "scale": 0.39
+        },
+        "closed": {
+          "part": "mouthClosed",
+          "x": 362,
+          "y": 440,
+          "scale": 0.36
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 362,
+          "y": 448,
+          "scale": 0.4
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 362,
+          "y": 446,
+          "scale": 0.36
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 362,
+          "y": 448,
+          "scale": 0.33
+        }
+      }
+    },
+    {
+      "id": "hands",
+      "bone": "hands",
+      "default": "none",
+      "attachments": {
+        "hands": {
+          "part": "hands",
+          "x": 362,
+          "y": 520,
+          "scale": 0.42
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad",
+      "browL": "sad",
+      "browR": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed",
+      "mouth": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "wish",
+      "kind": "action",
+      "description": "the acorn clasps its little hands, shuts its eyes tight and makes a wish, then opens its eyes, throws its arms up and does a happy little bounce.",
+      "pause": {
+        "frame": 4,
+        "shows": "the acorn with its eyes shut tight and its hands clasped, making a wish"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "armL": {
+              "r": -30
+            },
+            "armR": {
+              "r": 30
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "closed",
+            "armL": "none",
+            "armR": "none",
+            "hands": "hands"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "body": {
+              "r": -3
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "closed",
+            "armL": "none",
+            "armR": "none",
+            "hands": "hands"
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "body": {
+              "r": 3
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "closed",
+            "armL": "none",
+            "armR": "none",
+            "hands": "hands"
+          }
+        },
+        {
+          "hold": 0.2,
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o",
+            "armL": "none",
+            "armR": "none",
+            "hands": "hands"
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -42
+            },
+            "armL": {
+              "r": 38
+            },
+            "armR": {
+              "r": -38
+            },
+            "belly": {
+              "sy": 1.05
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 0.9,
+              "sx": 1.06
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.35,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "walk",
+      "kind": "move",
+      "description": "the acorn toddles along to the right on its little feet, swinging its arms, then stops and faces front.",
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "facing": "right",
+      "stride": 0.45,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "footL": {
+              "x": 14,
+              "y": -12,
+              "r": -10
+            },
+            "footR": {
+              "x": -8
+            },
+            "body": {
+              "r": 4
+            },
+            "root": {
+              "y": -6
+            },
+            "armL": {
+              "r": 12
+            },
+            "armR": {
+              "r": -12
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "footR": {
+              "x": 14,
+              "y": -12,
+              "r": -10
+            },
+            "footL": {
+              "x": -8
+            },
+            "body": {
+              "r": -4
+            },
+            "root": {
+              "y": -6
+            },
+            "armL": {
+              "r": -12
+            },
+            "armR": {
+              "r": 12
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "template": "common.jump"
+    },
+    {
+      "id": "dance",
+      "template": "common.dance"
+    },
+    {
+      "id": "laugh",
+      "template": "common.laugh"
+    },
+    {
+      "id": "wave",
+      "description": "the acorn waves hello with one little hand.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "armR": {
+              "r": -55
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "armR": {
+              "r": -70
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "armR": {
+              "r": -35
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "armR": {
+              "r": -70
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "armR": {
+              "r": -35
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "tip-cap",
+      "description": "the acorn's cap hops up off its head like a hat being tipped, and settles back down.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "belly": {
+              "sy": 0.95
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "cap": {
+              "y": -55,
+              "r": -18
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "cap": {
+              "y": -60,
+              "r": -22
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "ease": "in",
+          "bones": {
+            "cap": {
+              "y": 0,
+              "r": 0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.08,
+          "bones": {
+            "cap": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.96
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.15
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "template": "common.nod"
+    },
+    {
+      "id": "shake-head",
+      "template": "common.shake-head"
+    },
+    {
+      "id": "look-around",
+      "template": "common.look-around"
+    },
+    {
+      "id": "talk",
+      "template": "common.talk"
+    },
+    {
+      "id": "shiver",
+      "template": "common.shiver"
+    },
+    {
+      "id": "cry",
+      "template": "common.cry"
+    },
+    {
+      "id": "sleep",
+      "template": "common.sleep"
+    },
+    {
+      "id": "twirl",
+      "template": "common.twirl"
+    }
+  ]
+}

@@ -431,11 +431,9 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         #expect(pack.manifest.languages == ["en-US", "es-ES"])
         #expect(pack.manifest.setting == .outdoors)
         #expect(pack.manifest.stickers.count == 25)
-        // Every sticker carries an action and a move (docs/pack-format.md,
-        // "Live animations"); a few a second move, another way to go.
-        #expect(pack.manifest.stickers.allSatisfy { (2...3).contains($0.animations.count) })
-        #expect(pack.manifest.stickers.filter { $0.animations.count == 3 }.map(\.id).sorted()
-            == ["bird", "duckling", "firefly", "ladybug"])
+        // Every sticker carries an action and a move at least
+        // (docs/pack-format.md, "Live animations"); a puppet many actions.
+        #expect(pack.manifest.stickers.allSatisfy { $0.animations.count >= 2 })
         // Every character has a size class, for moves beside another.
         #expect(pack.manifest.stickers.allSatisfy { $0.size != nil })
         #expect(pack.manifest.stories.count >= 10)

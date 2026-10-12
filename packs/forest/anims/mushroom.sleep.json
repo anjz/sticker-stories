@@ -1,0 +1,133 @@
+{
+  "id": "sleep",
+  "sticker": "mushroom",
+  "kind": "action",
+  "description": "the mushroom gives a big yawn, closes its eyes and falls asleep under its cap, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.07031,
+    "y": 0.02995,
+    "width": 0.85807,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the mushroom fast asleep, eyes shut, its cap tipped down"
+  },
+  "puppet": {
+    "rig": "anims/mushroom.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "cap": {
+            "r": -3,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "cap": {
+            "r": -3,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "r": 3
+          },
+          "cap": {
+            "r": 6,
+            "y": 8
+          },
+          "face": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "r": 3
+          },
+          "cap": {
+            "r": 7,
+            "y": 9
+          },
+          "face": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "cap": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

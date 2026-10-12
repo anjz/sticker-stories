@@ -1,0 +1,1904 @@
+{
+  "sticker": "badger",
+  "skeleton": "four-legged, side view walking left, head low: root on the ground under the body; body (long) with belly squash; head at the shoulders (front-left), face with eye(s) and mouth; four legs at hips and shoulders (near legs in front of the body, far legs behind it, shaded); tail at the rump.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a badger character. Draw this exact badger as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the body: the long round grey furry body with its dark underside, seen from the side as in image 1, without head, legs or tail; its front end, normally under the head, rounded.\n2. the head: the black-and-white striped head with its two small rounded ears and black nose, facing left and a little down as in image 1, with a completely blank face — no eyes, no mouth — keep the nose and the rosy cheek; its neck end rounded.\n3. one front leg: the near front leg, short and dark with little claws, as in image 1, with a rounded shoulder at the top.\n4. one back leg: the near back leg, as in image 1, with a rounded hip at the top.\n5. the tail: the short fluffy grey tail, with a rounded base.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a badger character; image 2 shows the same badger cut into puppet parts, with a blank face. Draw the badger's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the badger in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the badger's eye (draw it once: it serves for both eyes) as it is in image 1: a dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a small happy smile under the nose.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "body": {
+      "sheet": "parts",
+      "at": [
+        932,
+        315
+      ]
+    },
+    "head": {
+      "sheet": "parts",
+      "at": [
+        291,
+        712
+      ]
+    },
+    "frontLeg": {
+      "sheet": "parts",
+      "at": [
+        721,
+        803
+      ]
+    },
+    "backLeg": {
+      "sheet": "parts",
+      "at": [
+        1060,
+        780
+      ]
+    },
+    "tail": {
+      "sheet": "parts",
+      "at": [
+        1377,
+        786
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        153,
+        357
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        448,
+        346
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        759,
+        380
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        1097,
+        360
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1390,
+        369
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        234,
+        755
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        635,
+        727
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        1009,
+        716
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1348,
+        700
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 430,
+      "y": 612
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 430,
+      "y": 540
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 430,
+      "y": 540
+    },
+    {
+      "id": "legFF",
+      "parent": "body",
+      "x": 272,
+      "y": 455
+    },
+    {
+      "id": "legBF",
+      "parent": "body",
+      "x": 500,
+      "y": 420
+    },
+    {
+      "id": "tail",
+      "parent": "body",
+      "x": 668,
+      "y": 410
+    },
+    {
+      "id": "legBN",
+      "parent": "body",
+      "x": 590,
+      "y": 452
+    },
+    {
+      "id": "legFN",
+      "parent": "body",
+      "x": 392,
+      "y": 458
+    },
+    {
+      "id": "head",
+      "parent": "body",
+      "x": 300,
+      "y": 470
+    },
+    {
+      "id": "face",
+      "parent": "head",
+      "x": 150,
+      "y": 490
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 93,
+      "y": 470
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 199,
+      "y": 479
+    },
+    {
+      "id": "browL",
+      "parent": "face",
+      "x": 95,
+      "y": 412
+    },
+    {
+      "id": "browR",
+      "parent": "face",
+      "x": 206,
+      "y": 430
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 168,
+      "y": 553
+    }
+  ],
+  "slots": [
+    {
+      "id": "legFF",
+      "bone": "legFF",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "frontLeg",
+          "x": 265,
+          "y": 524,
+          "scale": 0.48,
+          "shade": 0.22
+        }
+      }
+    },
+    {
+      "id": "legBF",
+      "bone": "legBF",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "backLeg",
+          "x": 490,
+          "y": 480,
+          "scale": 0.45,
+          "shade": 0.22
+        }
+      }
+    },
+    {
+      "id": "tail",
+      "bone": "tail",
+      "default": "tail",
+      "attachments": {
+        "tail": {
+          "part": "tail",
+          "x": 672,
+          "y": 472,
+          "scale": 0.56,
+          "rotate": 26
+        }
+      }
+    },
+    {
+      "id": "legBN",
+      "bone": "legBN",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "backLeg",
+          "x": 584,
+          "y": 512,
+          "scale": 0.45
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "body",
+          "x": 408,
+          "y": 345,
+          "scale": 0.605,
+          "scaleY": 1.14,
+          "rotate": -6
+        }
+      }
+    },
+    {
+      "id": "legFN",
+      "bone": "legFN",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "frontLeg",
+          "x": 380,
+          "y": 536,
+          "scale": 0.48
+        }
+      }
+    },
+    {
+      "id": "head",
+      "bone": "head",
+      "default": "head",
+      "attachments": {
+        "head": {
+          "part": "head",
+          "x": 220,
+          "y": 437,
+          "scale": 0.645
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 93,
+          "y": 470,
+          "scale": 0.18,
+          "scaleY": 1.26
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 93,
+          "y": 468,
+          "scale": 0.18,
+          "scaleY": 1.26
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 93,
+          "y": 476,
+          "scale": 0.162,
+          "scaleY": 1.0
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 93,
+          "y": 472,
+          "scale": 0.168,
+          "scaleY": 1.0
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 93,
+          "y": 472,
+          "scale": 0.186,
+          "scaleY": 1.26
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 199,
+          "y": 479,
+          "scale": 0.3
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 199,
+          "y": 477,
+          "scale": 0.3
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 199,
+          "y": 485,
+          "scale": 0.27
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 199,
+          "y": 481,
+          "scale": 0.28
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 199,
+          "y": 481,
+          "scale": 0.31
+        }
+      }
+    },
+    {
+      "id": "browL",
+      "bone": "browL",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "mouthSad",
+          "x": 95,
+          "y": 412,
+          "scale": 0.15
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 95,
+          "y": 408,
+          "scale": 0.15,
+          "rotate": -18
+        }
+      }
+    },
+    {
+      "id": "browR",
+      "bone": "browR",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "mouthSad",
+          "x": 206,
+          "y": 430,
+          "scale": 0.2,
+          "rotate": 8
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 206,
+          "y": 426,
+          "scale": 0.2,
+          "rotate": 24
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 168,
+          "y": 552,
+          "scale": 0.17,
+          "rotate": -12
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 165,
+          "y": 556,
+          "scale": 0.2,
+          "rotate": -8
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 168,
+          "y": 556,
+          "scale": 0.17
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 168,
+          "y": 556,
+          "scale": 0.17,
+          "rotate": -8
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad",
+      "browL": "sad",
+      "browR": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "dig",
+      "kind": "action",
+      "description": "the badger sniffs the ground, digs with its front paws so little clumps of earth fly, pushes its nose down into the hole, then pops its head up and grins.",
+      "pause": {
+        "frame": 8,
+        "shows": "the badger with its nose down in a little hole it dug, sniffing"
+      },
+      "particles": [
+        {
+          "frame": 4,
+          "effect": "dust-puff",
+          "x": 0.47,
+          "y": 0.79,
+          "intensity": 0.45,
+          "color": "#8A6A4C"
+        },
+        {
+          "frame": 5,
+          "effect": "dust-puff",
+          "x": 0.33,
+          "y": 0.79,
+          "intensity": 0.45,
+          "color": "#8A6A4C"
+        },
+        {
+          "frame": 6,
+          "effect": "dust-puff",
+          "x": 0.47,
+          "y": 0.79,
+          "intensity": 0.45,
+          "color": "#8A6A4C"
+        },
+        {
+          "frame": 7,
+          "effect": "dust-puff",
+          "x": 0.33,
+          "y": 0.79,
+          "intensity": 0.45,
+          "color": "#8A6A4C"
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.3
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "head": {
+              "r": -9,
+              "y": 4
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": -6,
+              "y": 2
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "r": -4
+            },
+            "head": {
+              "r": -12,
+              "y": 6
+            },
+            "legFN": {
+              "r": 28,
+              "y": -14
+            },
+            "legFF": {
+              "r": -8
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "r": -4
+            },
+            "head": {
+              "r": -12,
+              "y": 6
+            },
+            "legFN": {
+              "r": -28,
+              "y": -2
+            },
+            "legFF": {
+              "r": 24,
+              "y": -14
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "r": -4
+            },
+            "head": {
+              "r": -12,
+              "y": 6
+            },
+            "legFN": {
+              "r": 28,
+              "y": -14
+            },
+            "legFF": {
+              "r": -10
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "r": -4
+            },
+            "head": {
+              "r": -12,
+              "y": 6
+            },
+            "legFN": {
+              "r": -28,
+              "y": -2
+            },
+            "legFF": {
+              "r": 24,
+              "y": -14
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "head": {
+              "r": -22,
+              "y": 14
+            },
+            "legFN": {
+              "r": 6
+            },
+            "legFF": {
+              "r": 6
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "head": {
+              "r": -23,
+              "y": 16
+            },
+            "legFN": {
+              "r": 6
+            },
+            "legFF": {
+              "r": 6
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "head": {
+              "r": -20,
+              "y": 13,
+              "x": -3
+            },
+            "legFN": {
+              "r": 6
+            },
+            "legFF": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "head": {
+              "r": 7,
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "head": {
+              "r": 3,
+              "y": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "trot",
+      "kind": "move",
+      "description": "the badger trots along to the left on its short legs, then stops.",
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "facing": "left",
+      "stride": 0.55,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "legFN": {
+              "r": 18
+            },
+            "legBF": {
+              "r": 14
+            },
+            "legFF": {
+              "r": -16
+            },
+            "legBN": {
+              "r": -14
+            },
+            "root": {
+              "y": -6
+            },
+            "head": {
+              "r": 2
+            },
+            "tail": {
+              "r": -6
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "legFN": {
+              "r": 0
+            },
+            "legBF": {
+              "r": 0
+            },
+            "legFF": {
+              "r": 0,
+              "y": -8
+            },
+            "legBN": {
+              "r": 0,
+              "y": -8
+            },
+            "root": {
+              "y": 0
+            },
+            "head": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "legFN": {
+              "r": -16
+            },
+            "legBF": {
+              "r": -14
+            },
+            "legFF": {
+              "r": 18
+            },
+            "legBN": {
+              "r": 14
+            },
+            "root": {
+              "y": -6
+            },
+            "head": {
+              "r": 2
+            },
+            "tail": {
+              "r": 6
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "legFN": {
+              "r": 0,
+              "y": -8
+            },
+            "legBF": {
+              "r": 0,
+              "y": -8
+            },
+            "legFF": {
+              "r": 0
+            },
+            "legBN": {
+              "r": 0
+            },
+            "root": {
+              "y": 0
+            },
+            "head": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 2
+            },
+            "belly": {
+              "sy": 0.97
+            },
+            "head": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.45
+        }
+      ]
+    },
+    {
+      "id": "sniff",
+      "kind": "action",
+      "description": "the badger puts its nose to the ground and sniffs, then lifts it and sniffs the air.",
+      "pause": {
+        "frame": 2,
+        "shows": "the badger with its nose to the ground, sniffing"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": -10,
+              "y": 5
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": -9,
+              "y": 4,
+              "x": -3
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": -11,
+              "y": 5
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": -9,
+              "y": 4,
+              "x": -3
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "r": -11,
+              "y": 5
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 7,
+              "y": -3
+            },
+            "body": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 9,
+              "y": -4,
+              "x": -3
+            },
+            "body": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 7,
+              "y": -3
+            },
+            "body": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "r": 9,
+              "y": -4,
+              "x": -3
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shake-off",
+      "kind": "action",
+      "description": "the badger shakes itself off from nose to tail, like a dog after a swim.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "root": {
+              "y": 3
+            }
+          }
+        },
+        {
+          "hold": 0.09,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "body": {
+              "r": 2.5
+            },
+            "head": {
+              "r": -7
+            },
+            "tail": {
+              "r": 22
+            },
+            "belly": {
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.09,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "body": {
+              "r": -2.5
+            },
+            "head": {
+              "r": 7
+            },
+            "tail": {
+              "r": -22
+            },
+            "belly": {
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.09,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "body": {
+              "r": 2.5
+            },
+            "head": {
+              "r": -7
+            },
+            "tail": {
+              "r": 22
+            },
+            "belly": {
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.09,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "body": {
+              "r": -2.5
+            },
+            "head": {
+              "r": 7
+            },
+            "tail": {
+              "r": -22
+            },
+            "belly": {
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.09,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "body": {
+              "r": 2.5
+            },
+            "head": {
+              "r": -7
+            },
+            "tail": {
+              "r": 22
+            },
+            "belly": {
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.09,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "body": {
+              "r": -2.5
+            },
+            "head": {
+              "r": 7
+            },
+            "tail": {
+              "r": -22
+            },
+            "belly": {
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.09,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "body": {
+              "r": 2.5
+            },
+            "head": {
+              "r": -7
+            },
+            "tail": {
+              "r": 22
+            },
+            "belly": {
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.09,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "body": {
+              "r": -2.5
+            },
+            "head": {
+              "r": 7
+            },
+            "tail": {
+              "r": -22
+            },
+            "belly": {
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "head": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "kind": "action",
+      "description": "the badger gives a big yawn, lies down with its legs tucked under it and falls asleep, then wakes up and gets up with a smile.",
+      "pause": {
+        "frame": 4,
+        "shows": "the badger lying down fast asleep, its legs tucked under it"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "head": {
+              "r": 10,
+              "y": -4
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "r": 10,
+              "y": -4
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "body": {
+              "y": 52
+            },
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.96
+            },
+            "head": {
+              "r": 4,
+              "y": -18
+            },
+            "legFN": {
+              "sy": 0.5
+            },
+            "legFF": {
+              "sy": 0.5
+            },
+            "legBN": {
+              "sy": 0.5
+            },
+            "legBF": {
+              "sy": 0.5
+            },
+            "tail": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.8,
+          "bones": {
+            "body": {
+              "y": 52
+            },
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.96
+            },
+            "head": {
+              "r": 8,
+              "y": -26
+            },
+            "legFN": {
+              "sy": 0.5
+            },
+            "legFF": {
+              "sy": 0.5
+            },
+            "legBN": {
+              "sy": 0.5
+            },
+            "legBF": {
+              "sy": 0.5
+            },
+            "tail": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "body": {
+              "y": 52
+            },
+            "belly": {
+              "sx": 1.04,
+              "sy": 0.94
+            },
+            "head": {
+              "r": 8,
+              "y": -26
+            },
+            "legFN": {
+              "sy": 0.5
+            },
+            "legFF": {
+              "sy": 0.5
+            },
+            "legBN": {
+              "sy": 0.5
+            },
+            "legBF": {
+              "sy": 0.5
+            },
+            "tail": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "y": 52
+            },
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.96
+            },
+            "head": {
+              "r": 8,
+              "y": -26
+            },
+            "legFN": {
+              "sy": 0.5
+            },
+            "legFF": {
+              "sy": 0.5
+            },
+            "legBN": {
+              "sy": 0.5
+            },
+            "legBF": {
+              "sy": 0.5
+            },
+            "tail": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "head": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "kind": "action",
+      "description": "the badger crouches, jumps up high for joy and lands with a little squash.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 6
+            },
+            "belly": {
+              "sx": 1.05,
+              "sy": 0.92
+            },
+            "body": {
+              "y": 4
+            },
+            "head": {
+              "y": 4
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -70
+            },
+            "body": {
+              "r": 5
+            },
+            "belly": {
+              "sx": 0.97,
+              "sy": 1.04
+            },
+            "legFN": {
+              "r": 24
+            },
+            "legFF": {
+              "r": 18
+            },
+            "legBN": {
+              "r": -22
+            },
+            "legBF": {
+              "r": -18
+            },
+            "tail": {
+              "r": -18
+            },
+            "head": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -76
+            },
+            "body": {
+              "r": 2
+            },
+            "belly": {
+              "sx": 0.97,
+              "sy": 1.04
+            },
+            "legFN": {
+              "r": 16
+            },
+            "legFF": {
+              "r": 12
+            },
+            "legBN": {
+              "r": -14
+            },
+            "legBF": {
+              "r": -12
+            },
+            "tail": {
+              "r": -12
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "root": {
+              "y": 4
+            },
+            "belly": {
+              "sx": 1.06,
+              "sy": 0.9
+            },
+            "head": {
+              "y": 5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wag-tail",
+      "kind": "action",
+      "description": "the badger wags its short fluffy tail happily.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "tail": {
+              "r": 22
+            },
+            "body": {
+              "r": -0.8
+            },
+            "head": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "tail": {
+              "r": -22
+            },
+            "body": {
+              "r": 0.8
+            },
+            "head": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "tail": {
+              "r": 22
+            },
+            "body": {
+              "r": -0.8
+            },
+            "head": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "tail": {
+              "r": -22
+            },
+            "body": {
+              "r": 0.8
+            },
+            "head": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "tail": {
+              "r": 22
+            },
+            "body": {
+              "r": -0.8
+            },
+            "head": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "tail": {
+              "r": -22
+            },
+            "body": {
+              "r": 0.8
+            },
+            "head": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "stretch",
+      "kind": "action",
+      "description": "the badger stretches its front legs far forward with its bottom in the air, gives a yawn, then stretches its back legs.",
+      "pause": {
+        "frame": 2,
+        "shows": "the badger mid-stretch, front legs out and bottom in the air"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "body": {
+              "r": -7,
+              "x": -6
+            },
+            "legFN": {
+              "r": 40,
+              "y": -4
+            },
+            "legFF": {
+              "r": 36,
+              "y": -4
+            },
+            "legBN": {
+              "r": 7
+            },
+            "legBF": {
+              "r": 7
+            },
+            "head": {
+              "r": 10,
+              "y": 6
+            },
+            "tail": {
+              "r": -14
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "body": {
+              "r": -8,
+              "x": -8
+            },
+            "legFN": {
+              "r": 44,
+              "y": -6
+            },
+            "legFF": {
+              "r": 40,
+              "y": -6
+            },
+            "legBN": {
+              "r": 8
+            },
+            "legBF": {
+              "r": 8
+            },
+            "head": {
+              "r": 12,
+              "y": 7
+            },
+            "tail": {
+              "r": -18
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.35,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "body": {
+              "r": 3,
+              "x": 4
+            },
+            "legBN": {
+              "r": -34,
+              "y": -4
+            },
+            "legBF": {
+              "r": -30,
+              "y": -4
+            },
+            "legFN": {
+              "r": -6
+            },
+            "legFF": {
+              "r": -6
+            },
+            "head": {
+              "r": 4
+            },
+            "tail": {
+              "r": 12
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "template": "common.nod"
+    },
+    {
+      "id": "shake-head",
+      "template": "common.shake-head"
+    },
+    {
+      "id": "look-around",
+      "template": "common.look-around"
+    },
+    {
+      "id": "laugh",
+      "template": "common.laugh"
+    },
+    {
+      "id": "talk",
+      "template": "common.talk"
+    },
+    {
+      "id": "shiver",
+      "template": "common.shiver"
+    },
+    {
+      "id": "cry",
+      "template": "common.cry"
+    },
+    {
+      "id": "twirl",
+      "template": "common.twirl"
+    }
+  ]
+}

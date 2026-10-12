@@ -1,0 +1,81 @@
+{
+  "id": "twirl",
+  "sticker": "hedgehog",
+  "kind": "action",
+  "description": "the hedgehog twirls right round on the spot.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.03385,
+    "width": 0.9401,
+    "height": 0.93099
+  },
+  "puppet": {
+    "rig": "anims/hedgehog.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sy": 0.94
+          },
+          "root": {
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "root": {
+            "y": -26,
+            "sx": -1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "root": {
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.94
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

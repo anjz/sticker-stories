@@ -1,0 +1,55 @@
+{
+  "id": "nod",
+  "sticker": "acorn",
+  "kind": "action",
+  "description": "the acorn nods yes, twice.",
+  "stickerBox": {
+    "x": 0.0638,
+    "y": 0.02995,
+    "width": 0.8724,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/acorn.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": 8
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": 8
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

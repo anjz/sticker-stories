@@ -3,43 +3,116 @@
   "sticker": "duckling",
   "kind": "move",
   "description": "the duckling waddles along to the right on its orange feet, wiggling its tail, then stops.",
-  "sheet": "anims/duckling.waddle.webp",
-  "frame": {
-    "width": 379,
-    "height": 519
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.04749,
-    "y": 0.04046,
-    "width": 0.88654,
-    "height": 0.92871
-  },
   "stickerBox": {
     "x": 0.17188,
     "y": 0.02995,
     "width": 0.65625,
     "height": 0.9401
   },
-  "hold": [
-    0.1,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.14,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "right",
-  "stride": 0.4
+  "stride": 0.4,
+  "puppet": {
+    "rig": "anims/duckling.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 5
+          },
+          "footL": {
+            "x": -4
+          },
+          "footR": {
+            "r": -12,
+            "x": 10,
+            "y": -14
+          },
+          "head": {
+            "r": -3
+          },
+          "root": {
+            "y": -4
+          },
+          "wingL": {
+            "r": 6
+          },
+          "wingR": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "footR": {
+            "x": 10
+          },
+          "root": {}
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -5
+          },
+          "footL": {
+            "r": -12,
+            "x": 16,
+            "y": -14
+          },
+          "footR": {
+            "x": -4
+          },
+          "head": {
+            "r": 3
+          },
+          "root": {
+            "y": -4
+          },
+          "wingL": {
+            "r": 6
+          },
+          "wingR": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -1
+          },
+          "footL": {
+            "x": 16
+          },
+          "root": {}
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.45
+      }
+    ]
+  }
 }

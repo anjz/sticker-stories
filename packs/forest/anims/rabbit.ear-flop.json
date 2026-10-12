@@ -1,0 +1,149 @@
+{
+  "id": "ear-flop",
+  "sticker": "rabbit",
+  "kind": "action",
+  "description": "one long ear flops down to the side, the rabbit peeks at it in surprise, then perks it back up and laughs.",
+  "stickerBox": {
+    "x": 0.21875,
+    "y": 0.02995,
+    "width": 0.5612,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the rabbit with one long ear flopped down to the side"
+  },
+  "puppet": {
+    "rig": "anims/rabbit.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "earR": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "earR": {
+            "r": 78
+          },
+          "head": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "earR": {
+            "r": 78
+          },
+          "face": {
+            "x": 6,
+            "y": -2
+          },
+          "head": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sy": 0.96
+          },
+          "earR": {
+            "r": 78
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "earL": {
+            "r": -4
+          },
+          "earR": {
+            "r": -8
+          },
+          "root": {
+            "y": -10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "head": {
+            "r": -3,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "head": {
+            "r": -3,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

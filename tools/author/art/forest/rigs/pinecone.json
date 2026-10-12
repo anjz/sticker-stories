@@ -1,0 +1,1204 @@
+{
+  "sticker": "pinecone",
+  "skeleton": "pinecone with no limbs: root at its foot; body (the whole cone) with squash; face on the body with eyes and mouth; an open-scales piece swaps in for the body when it opens.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a pinecone character. Draw this exact pinecone as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the pinecone: the whole pinecone with its scales closed, as in image 1, with a completely blank face — the face area smooth with no eyes and no mouth — keep the rosy cheeks.\n2. the open pinecone: the same pinecone with its scales spread wide open like a flower, its face area just as blank.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a pinecone character; image 2 shows the same pinecone cut into puppet parts, with a blank face. Draw the pinecone's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the pinecone in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the pinecone's left eye (on the right of image 1) as it is in image 1: a dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a small happy smile.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "cone": {
+      "sheet": "parts",
+      "at": [
+        344,
+        501
+      ]
+    },
+    "coneOpen": {
+      "sheet": "parts",
+      "at": [
+        1106,
+        507
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        170,
+        351
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        459,
+        348
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        775,
+        376
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        1074,
+        343
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1368,
+        363
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        273,
+        721
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        610,
+        726
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        939,
+        713
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1255,
+        707
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 340,
+      "y": 715
+    },
+    {
+      "id": "spin",
+      "parent": "root",
+      "x": 400,
+      "y": 380
+    },
+    {
+      "id": "body",
+      "parent": "spin",
+      "x": 340,
+      "y": 712
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 340,
+      "y": 712
+    },
+    {
+      "id": "face",
+      "parent": "belly",
+      "x": 470,
+      "y": 275
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 420,
+      "y": 238
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 537,
+      "y": 296
+    },
+    {
+      "id": "browL",
+      "parent": "face",
+      "x": 446,
+      "y": 181
+    },
+    {
+      "id": "browR",
+      "parent": "face",
+      "x": 570,
+      "y": 247
+    },
+    {
+      "id": "nose",
+      "parent": "face",
+      "x": 461,
+      "y": 292
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 455,
+      "y": 320
+    }
+  ],
+  "slots": [
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "cone",
+      "attachments": {
+        "cone": {
+          "part": "cone",
+          "x": 391,
+          "y": 380,
+          "scale": 0.955,
+          "scaleY": 1.04,
+          "rotate": 17
+        },
+        "open": {
+          "part": "coneOpen",
+          "x": 442,
+          "y": 340,
+          "scale": 0.95,
+          "rotate": 15
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 420,
+          "y": 238,
+          "scale": 0.3
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 420,
+          "y": 238,
+          "scale": 0.3
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 420,
+          "y": 246,
+          "scale": 0.27,
+          "flip": true
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 420,
+          "y": 242,
+          "scale": 0.29
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 420,
+          "y": 240,
+          "scale": 0.31
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 537,
+          "y": 296,
+          "scale": 0.3
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 537,
+          "y": 296,
+          "scale": 0.3
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 537,
+          "y": 304,
+          "scale": 0.27
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 537,
+          "y": 300,
+          "scale": 0.29
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 537,
+          "y": 298,
+          "scale": 0.31,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "browL",
+      "bone": "browL",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "mouthSad",
+          "x": 446,
+          "y": 181,
+          "scale": 0.19,
+          "rotate": 2
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 446,
+          "y": 177,
+          "scale": 0.19,
+          "rotate": -18
+        }
+      }
+    },
+    {
+      "id": "browR",
+      "bone": "browR",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "mouthSad",
+          "x": 570,
+          "y": 247,
+          "scale": 0.19,
+          "rotate": 45
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 568,
+          "y": 243,
+          "scale": 0.19,
+          "rotate": 62
+        }
+      }
+    },
+    {
+      "id": "nose",
+      "bone": "nose",
+      "default": "nose",
+      "attachments": {
+        "nose": {
+          "part": "mouthO",
+          "x": 461,
+          "y": 292,
+          "scale": 0.27,
+          "scaleY": 0.8,
+          "shade": 0.5
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 455,
+          "y": 320,
+          "scale": 0.31,
+          "rotate": 4
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 455,
+          "y": 328,
+          "scale": 0.28,
+          "rotate": 4
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 455,
+          "y": 326,
+          "scale": 0.25
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 455,
+          "y": 326,
+          "scale": 0.28,
+          "rotate": 4
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad",
+      "browL": "sad",
+      "browR": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "open",
+      "kind": "action",
+      "description": "the pinecone slowly opens its scales outward like a flower in the sun, then gently closes them up snug again and smiles.",
+      "pause": {
+        "frame": 5,
+        "shows": "the pinecone with its scales wide open like a flower in the sun"
+      },
+      "keys": [
+        {
+          "hold": 0.35
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "belly": {
+              "sx": 1.02,
+              "sy": 1.03
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.5,
+          "ease": "in",
+          "bones": {
+            "belly": {
+              "sx": 1.06,
+              "sy": 1.06
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "out",
+          "bones": {
+            "belly": {
+              "sx": 0.93,
+              "sy": 0.93
+            },
+            "face": {
+              "x": -14,
+              "y": 18
+            }
+          },
+          "slots": {
+            "body": "open",
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "belly": {
+              "sx": 0.98,
+              "sy": 0.98
+            },
+            "face": {
+              "x": -14,
+              "y": 18
+            }
+          },
+          "slots": {
+            "body": "open",
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.9,
+          "bones": {
+            "belly": {
+              "sx": 0.97,
+              "sy": 0.97
+            },
+            "face": {
+              "x": -14,
+              "y": 18
+            }
+          },
+          "slots": {
+            "body": "open",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "in",
+          "bones": {
+            "belly": {
+              "sx": 0.94,
+              "sy": 0.94
+            },
+            "face": {
+              "x": -14,
+              "y": 18
+            }
+          },
+          "slots": {
+            "body": "open",
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "belly": {
+              "sx": 1.04,
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "belly": {
+              "sx": 0.97,
+              "sy": 1.0
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.4,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "roll",
+      "kind": "move",
+      "description": "the pinecone rolls along to the right, tumbling over and over, then rocks to a stop upright.",
+      "loop": {
+        "from": 1,
+        "to": 6
+      },
+      "facing": "right",
+      "stride": 0.9,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.1,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": 0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.1,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": 60
+            },
+            "root": {
+              "y": 65
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.1,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": 120
+            },
+            "root": {
+              "y": -23
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.1,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": 180
+            },
+            "root": {
+              "y": 32
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.1,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": 240
+            },
+            "root": {
+              "y": 56
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.1,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": 300
+            },
+            "root": {
+              "y": -26
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "spin": {
+              "r": 360
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "spin": {
+              "r": 360
+            },
+            "body": {
+              "r": 7
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "spin": {
+              "r": 360
+            },
+            "body": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "spin": {
+              "r": 360
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "spin": {
+              "r": 360
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "bounce",
+      "kind": "action",
+      "description": "the pinecone bounces up and down on the spot, squashing and stretching with joy.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 0.9,
+              "sx": 1.06
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.24,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -44
+            },
+            "belly": {
+              "sy": 1.05,
+              "sx": 0.97
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -48
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.97
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "belly": {
+              "sy": 0.88,
+              "sx": 1.07
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "belly": {
+              "sy": 0.9,
+              "sx": 1.06
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.24,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -44
+            },
+            "belly": {
+              "sy": 1.05,
+              "sx": 0.97
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -48
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.97
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "belly": {
+              "sy": 0.88,
+              "sx": 1.07
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "rock",
+      "kind": "action",
+      "description": "the pinecone rocks gently back and forth on its round bottom.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "face": {
+              "x": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "face": {
+              "x": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "face": {
+              "x": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "face": {
+              "x": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "template": "common.jump"
+    },
+    {
+      "id": "laugh",
+      "template": "common.laugh"
+    },
+    {
+      "id": "dance",
+      "template": "common.dance"
+    },
+    {
+      "id": "nod",
+      "kind": "action",
+      "description": "the pinecone nods yes, twice.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 10
+            },
+            "body": {
+              "r": 2
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 10
+            },
+            "body": {
+              "r": 2
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "shake-head",
+      "kind": "action",
+      "description": "the pinecone shakes its head no.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "x": -12
+            },
+            "body": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "x": 12
+            },
+            "body": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "x": -12
+            },
+            "body": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "x": 12
+            },
+            "body": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "shiver",
+      "template": "common.shiver"
+    },
+    {
+      "id": "sleep",
+      "kind": "action",
+      "description": "the pinecone gives a big yawn, closes its eyes and falls asleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the pinecone fast asleep, eyes shut, leaning to one side"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "belly": {
+              "sy": 1.05,
+              "sx": 0.98
+            },
+            "face": {
+              "y": -4
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "belly": {
+              "sy": 1.05,
+              "sx": 0.98
+            },
+            "face": {
+              "y": -4
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "body": {
+              "r": -5
+            },
+            "face": {
+              "y": 6,
+              "x": -3
+            },
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "face": {
+              "y": 6,
+              "x": -3
+            },
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "face": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

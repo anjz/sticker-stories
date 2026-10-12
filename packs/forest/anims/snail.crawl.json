@@ -3,43 +3,112 @@
   "sticker": "snail",
   "kind": "move",
   "description": "the snail glides along on its foot, eye stalks bobbing, and settles.",
-  "sheet": "anims/snail.crawl.webp",
-  "frame": {
-    "width": 543,
-    "height": 460
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.03683,
-    "y": 0.05217,
-    "width": 0.88766,
-    "height": 0.91087
-  },
   "stickerBox": {
     "x": 0.02995,
     "y": 0.08984,
     "width": 0.9401,
     "height": 0.81901
   },
-  "hold": [
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.12,
-    0.15,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "right",
-  "stride": 0.35
+  "stride": 0.35,
+  "puppet": {
+    "rig": "anims/snail.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.98
+          },
+          "shell": {
+            "r": 1,
+            "y": -3
+          },
+          "stalkL": {
+            "r": 7
+          },
+          "stalkR": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 1.01,
+            "sy": 1.01
+          },
+          "head": {
+            "y": -2
+          },
+          "shell": {},
+          "stalkL": {
+            "r": -3
+          },
+          "stalkR": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.02
+          },
+          "shell": {
+            "r": -1,
+            "y": -3
+          },
+          "stalkL": {
+            "r": -6
+          },
+          "stalkR": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 1
+          },
+          "head": {
+            "y": -2
+          },
+          "stalkL": {
+            "r": 3
+          },
+          "stalkR": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "stalkL": {
+            "r": 2
+          },
+          "stalkR": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
 }

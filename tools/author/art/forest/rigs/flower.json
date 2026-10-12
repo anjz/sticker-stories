@@ -1,0 +1,1712 @@
+{
+  "sticker": "flower",
+  "skeleton": "flower facing the viewer: root at the stem's foot (in the ground); stem bone(s) up the stem so it can sway and droop; head (petals and disc) at the top of the stem, face on the disc with eyes and mouth; a closed-bud piece swaps in for the head; leafL/leafR on the stem (wave).",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a smiling flower character. Draw this exact flower as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the flower head: the round flower with its ring of yellow petals and brown seed disc, facing the viewer as in image 1, with a completely blank face on the disc — no eyes, no mouth — keep the rosy cheeks; without the stem.\n2. the closed flower: the same flower closed for the night, its yellow petals folded up together over its face like a bud.\n3. the stem: the green stem alone, without leaves, both ends rounded.\n4. one leaf: the leaf on the right of image 1, with a rounded base.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a smiling flower character; image 2 shows the same flower cut into puppet parts, with a blank face. Draw the flower's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the flower in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the flower's left eye (on the right of image 1) as it is in image 1: a dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a small happy smile.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "head": {
+      "sheet": "parts",
+      "at": [
+        453,
+        398
+      ]
+    },
+    "bud": {
+      "sheet": "parts",
+      "at": [
+        1186,
+        347
+      ]
+    },
+    "stem": {
+      "sheet": "parts",
+      "at": [
+        888,
+        775
+      ]
+    },
+    "leaf": {
+      "sheet": "parts",
+      "at": [
+        1285,
+        791
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        154,
+        329
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        448,
+        332
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        777,
+        357
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        1070,
+        315
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1381,
+        337
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        215,
+        737
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        593,
+        703
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        968,
+        709
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1313,
+        686
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 380,
+      "y": 722
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 380,
+      "y": 720
+    },
+    {
+      "id": "stem",
+      "parent": "body",
+      "x": 380,
+      "y": 720
+    },
+    {
+      "id": "leafL",
+      "parent": "body",
+      "x": 362,
+      "y": 640
+    },
+    {
+      "id": "leafR",
+      "parent": "body",
+      "x": 396,
+      "y": 648
+    },
+    {
+      "id": "head",
+      "parent": "body",
+      "x": 404,
+      "y": 445
+    },
+    {
+      "id": "face",
+      "parent": "head",
+      "x": 377,
+      "y": 285
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 320,
+      "y": 269
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 417,
+      "y": 290
+    },
+    {
+      "id": "browL",
+      "parent": "face",
+      "x": 334,
+      "y": 222
+    },
+    {
+      "id": "browR",
+      "parent": "face",
+      "x": 430,
+      "y": 245
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 360,
+      "y": 314
+    }
+  ],
+  "slots": [
+    {
+      "id": "leafL",
+      "bone": "leafL",
+      "default": "leaf",
+      "attachments": {
+        "leaf": {
+          "part": "leaf",
+          "x": 276,
+          "y": 553,
+          "scale": 0.53,
+          "rotate": 6,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "leafR",
+      "bone": "leafR",
+      "default": "leaf",
+      "attachments": {
+        "leaf": {
+          "part": "leaf",
+          "x": 490,
+          "y": 577,
+          "scale": 0.555
+        }
+      }
+    },
+    {
+      "id": "stem",
+      "bone": "stem",
+      "default": "stem",
+      "attachments": {
+        "stem": {
+          "part": "stem",
+          "x": 394,
+          "y": 584,
+          "scale": 0.5,
+          "scaleY": 1.4,
+          "rotate": 5.6
+        }
+      }
+    },
+    {
+      "id": "head",
+      "bone": "head",
+      "default": "head",
+      "attachments": {
+        "head": {
+          "part": "head",
+          "x": 385,
+          "y": 270,
+          "scale": 0.61,
+          "rotate": 3
+        }
+      }
+    },
+    {
+      "id": "bud",
+      "bone": "head",
+      "default": "none",
+      "attachments": {
+        "bud": {
+          "part": "bud",
+          "x": 404,
+          "y": 262,
+          "scale": 0.8
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 320,
+          "y": 269,
+          "scale": 0.255,
+          "rotate": -3
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 320,
+          "y": 269,
+          "scale": 0.25,
+          "rotate": -3
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 320,
+          "y": 275,
+          "scale": 0.21,
+          "rotate": -3,
+          "flip": true
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 320,
+          "y": 271,
+          "scale": 0.22,
+          "rotate": -3
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 320,
+          "y": 271,
+          "scale": 0.25,
+          "rotate": -3,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 417,
+          "y": 290,
+          "scale": 0.255,
+          "rotate": 3,
+          "flip": true
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 417,
+          "y": 290,
+          "scale": 0.25,
+          "rotate": 3,
+          "flip": true
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 417,
+          "y": 296,
+          "scale": 0.21,
+          "rotate": 3
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 417,
+          "y": 292,
+          "scale": 0.22,
+          "rotate": 3
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 417,
+          "y": 292,
+          "scale": 0.25,
+          "rotate": 3
+        }
+      }
+    },
+    {
+      "id": "browL",
+      "bone": "browL",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "mouthSad",
+          "x": 334,
+          "y": 222,
+          "scale": 0.12,
+          "rotate": -4
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 334,
+          "y": 218,
+          "scale": 0.12,
+          "rotate": -24
+        }
+      }
+    },
+    {
+      "id": "browR",
+      "bone": "browR",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "mouthSad",
+          "x": 430,
+          "y": 245,
+          "scale": 0.12,
+          "rotate": 25
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 430,
+          "y": 241,
+          "scale": 0.12,
+          "rotate": 45
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 360,
+          "y": 314,
+          "scale": 0.2
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 360,
+          "y": 320,
+          "scale": 0.2
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 360,
+          "y": 318,
+          "scale": 0.2
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 360,
+          "y": 318,
+          "scale": 0.2
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad",
+      "browL": "sad",
+      "browR": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o"
+    }
+  },
+  "idle": {
+    "breathe": "head",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "close",
+      "description": "the flower slowly folds its yellow petals up and closes over its face like a bud for the night, then opens them wide again to the sun and smiles.",
+      "pause": {
+        "frame": 5,
+        "shows": "the flower closed for the night, a bud with its petals folded over its face"
+      },
+      "keys": [
+        {
+          "hold": 0.35
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "head": {
+              "sx": 0.95,
+              "sy": 0.93
+            },
+            "body": {
+              "r": -1
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.5,
+          "ease": "in",
+          "bones": {
+            "head": {
+              "sx": 0.74,
+              "sy": 0.7
+            },
+            "body": {
+              "r": -1
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "out",
+          "bones": {
+            "head": {
+              "sx": 0.75,
+              "sy": 0.75
+            },
+            "body": {
+              "r": -1
+            }
+          },
+          "slots": {
+            "head": "none",
+            "bud": "bud",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "head": {
+              "sx": 0.84,
+              "sy": 0.84
+            }
+          },
+          "slots": {
+            "head": "none",
+            "bud": "bud",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.9,
+          "bones": {
+            "head": {
+              "sx": 0.84,
+              "sy": 0.82
+            }
+          },
+          "slots": {
+            "head": "none",
+            "bud": "bud",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "in",
+          "bones": {
+            "head": {
+              "sx": 0.84,
+              "sy": 0.88
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "head": "none",
+            "bud": "bud",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "head": {
+              "sx": 0.72,
+              "sy": 0.72
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "sx": 1.06,
+              "sy": 1.06,
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "sx": 1.0,
+              "sy": 1.0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "sprout",
+      "kind": "move",
+      "description": "the flower sprouts: a tiny shoot pushes up, the stem grows and unfolds its leaves, a bud forms and opens into the smiling flower.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "stem": {
+              "sx": 0.6,
+              "sy": 0.06
+            },
+            "head": {
+              "y": 260,
+              "sx": 0.12,
+              "sy": 0.12
+            },
+            "leafL": {
+              "sx": 0.05,
+              "sy": 0.05,
+              "y": 76,
+              "r": 40
+            },
+            "leafR": {
+              "sx": 0.05,
+              "sy": 0.05,
+              "y": 68,
+              "r": -40
+            }
+          },
+          "slots": {
+            "head": "none",
+            "bud": "bud",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "linear",
+          "bones": {
+            "stem": {
+              "sx": 0.85,
+              "sy": 0.5
+            },
+            "head": {
+              "y": 138,
+              "sx": 0.32,
+              "sy": 0.32
+            },
+            "leafL": {
+              "sx": 0.4,
+              "sy": 0.4,
+              "y": 40,
+              "r": 30
+            },
+            "leafR": {
+              "sx": 0.4,
+              "sy": 0.4,
+              "y": 36,
+              "r": -30
+            }
+          },
+          "slots": {
+            "head": "none",
+            "bud": "bud",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "stem": {
+              "sx": 1,
+              "sy": 1.0
+            },
+            "head": {
+              "y": 0,
+              "sx": 0.66,
+              "sy": 0.66
+            },
+            "leafL": {
+              "sx": 1,
+              "sy": 1,
+              "r": 4
+            },
+            "leafR": {
+              "sx": 1,
+              "sy": 1,
+              "r": -4
+            }
+          },
+          "slots": {
+            "head": "none",
+            "bud": "bud",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "head": {
+              "sx": 0.76,
+              "sy": 0.8
+            }
+          },
+          "slots": {
+            "head": "none",
+            "bud": "bud",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "head": {
+              "sx": 0.7,
+              "sy": 0.7
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "head": {
+              "sx": 1.05,
+              "sy": 1.05
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.15,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sway",
+      "kind": "action",
+      "description": "the flower sways gently from side to side in the breeze, smiling.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.65,
+          "bones": {
+            "body": {
+              "r": -5
+            },
+            "head": {
+              "r": 3
+            },
+            "leafL": {
+              "r": 6
+            },
+            "leafR": {
+              "r": 5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.65,
+          "bones": {
+            "body": {
+              "r": 5
+            },
+            "head": {
+              "r": -3
+            },
+            "leafL": {
+              "r": -5
+            },
+            "leafR": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.65,
+          "bones": {
+            "body": {
+              "r": -5
+            },
+            "head": {
+              "r": 3
+            },
+            "leafL": {
+              "r": 6
+            },
+            "leafR": {
+              "r": 5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.65,
+          "bones": {
+            "body": {
+              "r": 4
+            },
+            "head": {
+              "r": -3
+            },
+            "leafL": {
+              "r": -5
+            },
+            "leafR": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "body": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "droop",
+      "kind": "action",
+      "description": "the flower droops sadly, its head hanging and its leaves sagging, then slowly lifts itself up again.",
+      "pause": {
+        "frame": 3,
+        "shows": "the flower drooping sadly, its head hanging down"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "body": {
+              "r": 3
+            },
+            "head": {
+              "r": 10,
+              "y": 4
+            },
+            "face": {
+              "y": 4
+            },
+            "leafL": {
+              "r": -5
+            },
+            "leafR": {
+              "r": 5
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "body": {
+              "r": 7
+            },
+            "head": {
+              "r": 24,
+              "y": 10
+            },
+            "face": {
+              "y": 8
+            },
+            "leafL": {
+              "r": -14
+            },
+            "leafR": {
+              "r": 12
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 1.0,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "head": {
+              "r": 27,
+              "y": 11
+            },
+            "face": {
+              "y": 8
+            },
+            "leafL": {
+              "r": -14
+            },
+            "leafR": {
+              "r": 12
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "body": {
+              "r": 2
+            },
+            "head": {
+              "r": 6,
+              "y": 2
+            }
+          },
+          "slots": {
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "stretch-up",
+      "kind": "action",
+      "description": "the flower stretches up tall towards the sun, its leaves reaching up, and beams.",
+      "pause": {
+        "frame": 3,
+        "shows": "the flower stretched up tall, reaching for the sun"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "stem": {
+              "sy": 0.97
+            },
+            "head": {
+              "y": 8
+            },
+            "leafL": {
+              "r": -4
+            },
+            "leafR": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.5,
+          "ease": "out",
+          "bones": {
+            "stem": {
+              "sy": 1.12
+            },
+            "head": {
+              "y": -34
+            },
+            "leafL": {
+              "r": 18,
+              "y": -10
+            },
+            "leafR": {
+              "r": -18,
+              "y": -10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.9,
+          "bones": {
+            "stem": {
+              "sy": 1.12
+            },
+            "head": {
+              "y": -36,
+              "r": -2
+            },
+            "leafL": {
+              "r": 18,
+              "y": -10
+            },
+            "leafR": {
+              "r": -18,
+              "y": -10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "head": {
+              "y": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "kind": "action",
+      "description": "the flower waves hello with one of its leaves.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "leafR": {
+              "r": 10
+            },
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "leafR": {
+              "r": 16
+            },
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "leafR": {
+              "r": -10
+            },
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "leafR": {
+              "r": 16
+            },
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "leafR": {
+              "r": -10
+            },
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "template": "common.nod"
+    },
+    {
+      "id": "shake-head",
+      "template": "common.shake-head"
+    },
+    {
+      "id": "laugh",
+      "kind": "action",
+      "description": "the flower laughs and laughs, its head bobbing with giggles.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": -5,
+              "y": -4
+            },
+            "body": {
+              "r": -2
+            },
+            "leafL": {
+              "r": 8
+            },
+            "leafR": {
+              "r": -10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": 3,
+              "y": 2
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": -5,
+              "y": -4
+            },
+            "body": {
+              "r": -2
+            },
+            "leafL": {
+              "r": 8
+            },
+            "leafR": {
+              "r": -10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": 3,
+              "y": 2
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": -5,
+              "y": -4
+            },
+            "body": {
+              "r": -2
+            },
+            "leafL": {
+              "r": 8
+            },
+            "leafR": {
+              "r": -10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": 3,
+              "y": 2
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": -5,
+              "y": -4
+            },
+            "body": {
+              "r": -2
+            },
+            "leafL": {
+              "r": 8
+            },
+            "leafR": {
+              "r": -10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": 3,
+              "y": 2
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "dance",
+      "kind": "action",
+      "description": "the flower does a happy little dance, swaying from side to side and swinging its leaves.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "head": {
+              "r": 6
+            },
+            "leafL": {
+              "r": 12
+            },
+            "leafR": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "head": {
+              "r": -6,
+              "y": -6
+            },
+            "leafL": {
+              "r": -2
+            },
+            "leafR": {
+              "r": -12
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "head": {
+              "r": 6
+            },
+            "leafL": {
+              "r": 12
+            },
+            "leafR": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "head": {
+              "r": -6,
+              "y": -6
+            },
+            "leafL": {
+              "r": -2
+            },
+            "leafR": {
+              "r": -12
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "head": {
+              "r": 6
+            },
+            "leafL": {
+              "r": 12
+            },
+            "leafR": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "head": {
+              "r": -6,
+              "y": -6
+            },
+            "leafL": {
+              "r": -2
+            },
+            "leafR": {
+              "r": -12
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "template": "common.talk"
+    },
+    {
+      "id": "sleep",
+      "kind": "action",
+      "description": "the flower gives a big yawn, closes its eyes and nods off to sleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the flower fast asleep, eyes shut, its head nodding to one side"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "r": -3,
+              "y": -5
+            },
+            "leafL": {
+              "r": 15
+            },
+            "leafR": {
+              "r": -15
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "head": {
+              "r": -3,
+              "y": -5
+            },
+            "leafL": {
+              "r": 15
+            },
+            "leafR": {
+              "r": -15
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "body": {
+              "r": 3
+            },
+            "head": {
+              "r": 14,
+              "y": 6
+            },
+            "face": {
+              "y": 4
+            },
+            "leafL": {
+              "r": -6
+            },
+            "leafR": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.8,
+          "bones": {
+            "body": {
+              "r": 3
+            },
+            "head": {
+              "r": 15,
+              "y": 7
+            },
+            "face": {
+              "y": 4
+            },
+            "leafL": {
+              "r": -6
+            },
+            "leafR": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

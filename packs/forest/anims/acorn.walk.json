@@ -3,43 +3,92 @@
   "sticker": "acorn",
   "kind": "move",
   "description": "the acorn toddles along to the right on its little feet, swinging its arms, then stops and faces front.",
-  "sheet": "anims/acorn.walk.webp",
-  "frame": {
-    "width": 482,
-    "height": 523
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.03112,
-    "y": 0.0478,
-    "width": 0.92946,
-    "height": 0.92161
-  },
   "stickerBox": {
     "x": 0.0638,
     "y": 0.02995,
     "width": 0.8724,
     "height": 0.9401
   },
-  "hold": [
-    0.1,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.14,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "right",
-  "stride": 0.45
+  "stride": 0.45,
+  "puppet": {
+    "rig": "anims/acorn.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "armL": {
+            "r": 12
+          },
+          "armR": {
+            "r": -12
+          },
+          "body": {
+            "r": 4
+          },
+          "footL": {
+            "r": -10,
+            "x": 14,
+            "y": -12
+          },
+          "footR": {
+            "x": -8
+          },
+          "root": {
+            "y": -6
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "root": {}
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "body": {
+            "r": -4
+          },
+          "footL": {
+            "x": -8
+          },
+          "footR": {
+            "r": -10,
+            "x": 14,
+            "y": -12
+          },
+          "root": {
+            "y": -6
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "root": {}
+        }
+      },
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
 }

@@ -1,0 +1,179 @@
+{
+  "id": "peck",
+  "sticker": "bird",
+  "description": "the bird bends down and pecks at the ground, peck-peck-peck, then looks up with a happy chirp.",
+  "stickerBox": {
+    "x": 0.07031,
+    "y": 0.02995,
+    "width": 0.85938,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the bird bent forward, beak down to the ground"
+  },
+  "puppet": {
+    "rig": "anims/bird.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": 20
+          },
+          "head": {
+            "r": 38,
+            "y": 8
+          },
+          "tail": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "beak": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": 20
+          },
+          "head": {
+            "r": 38,
+            "y": 8
+          },
+          "tail": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "beak": "closed"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": 24
+          },
+          "head": {
+            "r": 46,
+            "y": 12
+          },
+          "tail": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "beak": "closed"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": 20
+          },
+          "head": {
+            "r": 38,
+            "y": 8
+          },
+          "tail": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "beak": "closed"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": 24
+          },
+          "head": {
+            "r": 46,
+            "y": 12
+          },
+          "tail": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "beak": "closed"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": 20
+          },
+          "head": {
+            "r": 38,
+            "y": 8
+          },
+          "tail": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "beak": "closed"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": 24
+          },
+          "head": {
+            "r": 46,
+            "y": 12
+          },
+          "tail": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "beak": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": 4
+          },
+          "head": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "beak": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": -6,
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

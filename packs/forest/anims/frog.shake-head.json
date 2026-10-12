@@ -1,0 +1,67 @@
+{
+  "id": "shake-head",
+  "sticker": "frog",
+  "kind": "action",
+  "description": "the frog shakes its head no.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.04688,
+    "width": 0.9401,
+    "height": 0.90625
+  },
+  "puppet": {
+    "rig": "anims/frog.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "x": -12
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "face": {
+            "x": 12
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "x": -12
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 10
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

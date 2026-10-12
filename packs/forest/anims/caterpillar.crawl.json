@@ -3,43 +3,99 @@
   "sticker": "caterpillar",
   "kind": "move",
   "description": "the caterpillar crawls along to the left, a hump rippling through its body, then stops.",
-  "sheet": "anims/caterpillar.crawl.webp",
-  "frame": {
-    "width": 591,
-    "height": 513
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.10829,
-    "y": 0.02924,
-    "width": 0.79695,
-    "height": 0.93957
-  },
   "stickerBox": {
     "x": 0.04036,
     "y": 0.02995,
     "width": 0.91797,
     "height": 0.9401
   },
-  "hold": [
-    0.1,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.14,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "left",
-  "stride": 0.35
+  "stride": 0.35,
+  "puppet": {
+    "rig": "anims/caterpillar.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "head": {
+            "y": -2
+          },
+          "seg3": {
+            "r": 6,
+            "y": 22
+          },
+          "seg4": {
+            "r": -6,
+            "y": -22
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "head": {
+            "y": 2
+          },
+          "seg2": {
+            "y": 24
+          },
+          "seg3": {
+            "y": -24
+          },
+          "seg4": {
+            "x": -4
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "y": 24
+          },
+          "head": {
+            "y": -2
+          },
+          "seg2": {
+            "y": -24
+          },
+          "seg4": {
+            "x": -8
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.03
+          },
+          "body": {
+            "r": 3,
+            "y": -16
+          },
+          "head": {
+            "r": -3,
+            "y": -4
+          },
+          "seg4": {
+            "x": -4
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
 }

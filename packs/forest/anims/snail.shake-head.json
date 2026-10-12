@@ -1,0 +1,76 @@
+{
+  "id": "shake-head",
+  "sticker": "snail",
+  "kind": "action",
+  "description": "the snail shakes its head no, eye stalks swinging.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.08984,
+    "width": 0.9401,
+    "height": 0.81901
+  },
+  "puppet": {
+    "rig": "anims/snail.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 0.99
+          },
+          "stalkL": {
+            "r": -14
+          },
+          "stalkR": {
+            "r": -14
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 0.99
+          },
+          "stalkL": {
+            "r": 14
+          },
+          "stalkR": {
+            "r": 14
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 0.99
+          },
+          "stalkL": {
+            "r": -14
+          },
+          "stalkR": {
+            "r": -14
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "stalkL": {
+            "r": 12
+          },
+          "stalkR": {
+            "r": 12
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

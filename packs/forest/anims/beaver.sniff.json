@@ -1,0 +1,125 @@
+{
+  "id": "sniff",
+  "sticker": "beaver",
+  "kind": "action",
+  "description": "the beaver lifts its nose and sniffs the air, its whiskers twitching.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.04427,
+    "width": 0.9401,
+    "height": 0.91016
+  },
+  "puppet": {
+    "rig": "anims/beaver.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 4,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 5,
+            "y": -8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 4,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 5,
+            "y": -8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 4,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": 2,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

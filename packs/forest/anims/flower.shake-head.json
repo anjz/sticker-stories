@@ -1,0 +1,67 @@
+{
+  "id": "shake-head",
+  "sticker": "flower",
+  "kind": "action",
+  "description": "the flower shakes its head no.",
+  "stickerBox": {
+    "x": 0.15365,
+    "y": 0.02995,
+    "width": 0.69271,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/flower.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "face": {
+            "x": -12
+          },
+          "head": {
+            "r": -7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": 12
+          },
+          "head": {
+            "r": 7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": -12
+          },
+          "head": {
+            "r": -7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": 10
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

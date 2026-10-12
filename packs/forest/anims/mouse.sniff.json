@@ -1,54 +1,318 @@
 {
   "id": "sniff",
   "sticker": "mouse",
+  "kind": "action",
   "description": "the mouse sniffs the air with its whiskers twitching, rises up on tiptoes to look and listen, then drops down and washes its face with its paws.",
-  "sheet": "anims/mouse.sniff.webp",
-  "frame": {
-    "width": 454,
-    "height": 521
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.09692,
-    "y": 0.04223,
-    "width": 0.8326,
-    "height": 0.92514
-  },
   "stickerBox": {
     "x": 0.13151,
     "y": 0.02995,
     "width": 0.73698,
     "height": 0.9401
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.12,
-    0.12,
-    0.2,
-    0.2,
-    0.2,
-    0.2,
-    0.2,
-    0.2,
-    0.7,
-    0.12,
-    0.12,
-    0.1,
-    0.1,
-    0.1,
-    0.12,
-    0.2,
-    0.12,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 8,
     "shows": "the mouse up on tiptoes, ears wide, looking and listening"
+  },
+  "puppet": {
+    "rig": "anims/mouse.rig.json",
+    "keys": [
+      {
+        "hold": 0.3
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "head": {
+            "r": 5,
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "face": {
+            "x": -2
+          },
+          "head": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "head": {
+            "r": 6,
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "body": {
+            "y": -16
+          },
+          "earL": {
+            "r": -12,
+            "sx": 1.08,
+            "sy": 1.08
+          },
+          "earR": {
+            "r": 12,
+            "sx": 1.08,
+            "sy": 1.08
+          },
+          "head": {
+            "r": 4
+          },
+          "legL": {
+            "r": -6
+          },
+          "legR": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "body": {
+            "y": -16
+          },
+          "earL": {
+            "r": -12,
+            "sx": 1.08,
+            "sy": 1.08
+          },
+          "earR": {
+            "r": 12,
+            "sx": 1.08,
+            "sy": 1.08
+          },
+          "face": {
+            "x": -8
+          },
+          "head": {
+            "r": 3
+          },
+          "legL": {
+            "r": -6
+          },
+          "legR": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "body": {
+            "y": -16
+          },
+          "earL": {
+            "r": -12,
+            "sx": 1.08,
+            "sy": 1.08
+          },
+          "earR": {
+            "r": 12,
+            "sx": 1.08,
+            "sy": 1.08
+          },
+          "face": {
+            "x": 2
+          },
+          "head": {
+            "r": 3
+          },
+          "legL": {
+            "r": -6
+          },
+          "legR": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "body": {
+            "y": -16
+          },
+          "earL": {
+            "r": -12,
+            "sx": 1.08,
+            "sy": 1.08
+          },
+          "earR": {
+            "r": 12,
+            "sx": 1.08,
+            "sy": 1.08
+          },
+          "face": {},
+          "head": {
+            "r": 4
+          },
+          "legL": {
+            "r": -6
+          },
+          "legR": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.95
+          },
+          "body": {
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "r": -45,
+            "x": 12,
+            "y": -38
+          },
+          "armR": {
+            "r": 55,
+            "x": -8,
+            "y": -46
+          },
+          "head": {
+            "r": -6,
+            "y": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": -58,
+            "x": 12,
+            "y": -38
+          },
+          "armR": {
+            "r": 68,
+            "x": -8,
+            "y": -46
+          },
+          "head": {
+            "r": -3,
+            "y": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": -42,
+            "x": 12,
+            "y": -38
+          },
+          "armR": {
+            "r": 52,
+            "x": -8,
+            "y": -46
+          },
+          "head": {
+            "r": -7,
+            "y": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": -58,
+            "x": 12,
+            "y": -38
+          },
+          "armR": {
+            "r": 68,
+            "x": -8,
+            "y": -46
+          },
+          "head": {
+            "r": -3,
+            "y": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
   }
 }

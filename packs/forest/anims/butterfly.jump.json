@@ -1,0 +1,124 @@
+{
+  "id": "jump",
+  "sticker": "butterfly",
+  "kind": "action",
+  "description": "the butterfly springs up high for joy, wings wide, and floats back down.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.07943,
+    "width": 0.9401,
+    "height": 0.84115
+  },
+  "puppet": {
+    "rig": "anims/butterfly.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.9
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 8
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "antennaL": {
+            "r": -10
+          },
+          "antennaR": {
+            "r": 10
+          },
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "root": {
+            "y": -78
+          },
+          "wingL": {
+            "r": 25
+          },
+          "wingR": {
+            "r": -25
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "antennaL": {
+            "r": -10
+          },
+          "antennaR": {
+            "r": 10
+          },
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.06
+          },
+          "root": {
+            "y": -84
+          },
+          "wingL": {
+            "r": 25
+          },
+          "wingR": {
+            "r": -25
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.08,
+            "sy": 0.88
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

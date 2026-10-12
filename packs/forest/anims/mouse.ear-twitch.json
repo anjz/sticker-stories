@@ -1,0 +1,124 @@
+{
+  "id": "ear-twitch",
+  "sticker": "mouse",
+  "kind": "action",
+  "description": "the mouse twitches one big ear, then the other, listening to a little sound.",
+  "stickerBox": {
+    "x": 0.13151,
+    "y": 0.02995,
+    "width": 0.73698,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/mouse.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "earR": {
+            "r": 12
+          },
+          "head": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "earR": {
+            "r": -3
+          },
+          "head": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "earR": {
+            "r": 12
+          },
+          "head": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "earL": {
+            "r": -12
+          },
+          "face": {
+            "x": -4
+          },
+          "head": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "earL": {
+            "r": 3
+          },
+          "face": {
+            "x": -4
+          },
+          "head": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "earL": {
+            "r": -12
+          },
+          "face": {
+            "x": -4
+          },
+          "head": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "earL": {
+            "r": -6
+          },
+          "earR": {
+            "r": 6
+          },
+          "face": {
+            "x": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

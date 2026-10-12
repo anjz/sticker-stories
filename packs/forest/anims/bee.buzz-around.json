@@ -1,0 +1,1075 @@
+{
+  "id": "buzz-around",
+  "sticker": "bee",
+  "kind": "action",
+  "description": "the bee zooms round in a little loop-the-loop, turns round to look the other way, turns back and buzzes happily.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.03646,
+    "width": 0.9401,
+    "height": 0.92708
+  },
+  "puppet": {
+    "rig": "anims/bee.rig.json",
+    "keys": [
+      {
+        "hold": 0.075,
+        "ease": "linear"
+      },
+      {
+        "hold": 0.075,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 45,
+            "x": -35,
+            "y": -35
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 90,
+            "x": -70,
+            "y": -70
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 108,
+            "x": -56,
+            "y": -84
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 126,
+            "x": -42,
+            "y": -98
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 144,
+            "x": -28,
+            "y": -112
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 162,
+            "x": -14,
+            "y": -126
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 180,
+            "y": -140
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 198,
+            "x": 14,
+            "y": -126
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 216,
+            "x": 28,
+            "y": -112
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 234,
+            "x": 42,
+            "y": -98
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 252,
+            "x": 56,
+            "y": -84
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 270,
+            "x": 70,
+            "y": -70
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 288,
+            "x": 56,
+            "y": -56
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 306,
+            "x": 42,
+            "y": -42
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 324,
+            "x": 28,
+            "y": -28
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 342,
+            "x": 14,
+            "y": -14
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 360
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 360
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 360
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 360
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "r": 360
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.02,
+        "ease": "step",
+        "bones": {
+          "root": {
+            "r": 360
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": -1.04,
+            "sx": 0.792
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": -3.52,
+            "sx": 0.296
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": -6.48,
+            "sx": -0.296
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": -8.96,
+            "sx": -0.792
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.058,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": -10,
+            "sx": -1
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.058,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": 0.222
+          },
+          "root": {
+            "y": -10,
+            "sx": -1
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.058,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": 0.778
+          },
+          "root": {
+            "y": -10,
+            "sx": -1
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.058,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": 1.5
+          },
+          "root": {
+            "y": -10,
+            "sx": -1
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.058,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": 2.222
+          },
+          "root": {
+            "y": -10,
+            "sx": -1
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.058,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": 2.778
+          },
+          "root": {
+            "y": -10,
+            "sx": -1
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.056,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": 3
+          },
+          "root": {
+            "y": -10,
+            "sx": -1
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.056,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": 2.871
+          },
+          "root": {
+            "y": -9.57,
+            "sx": -0.914
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.056,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": 2.531
+          },
+          "root": {
+            "y": -8.438,
+            "sx": -0.688
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.056,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": 2.051
+          },
+          "root": {
+            "y": -6.836,
+            "sx": -0.367
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.056,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": 1.5
+          },
+          "root": {
+            "y": -5,
+            "sx": -0.05
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.056,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": 0.949
+          },
+          "root": {
+            "y": -3.164,
+            "sx": 0.367
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.056,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": 0.469
+          },
+          "root": {
+            "y": -1.562,
+            "sx": 0.688
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.056,
+        "ease": "linear",
+        "bones": {
+          "head": {
+            "r": 0.129
+          },
+          "root": {
+            "y": -0.43,
+            "sx": 0.914
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.058,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.058,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.058,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.058,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.058,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.058,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.06,
+        "ease": "linear",
+        "bones": {
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

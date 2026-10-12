@@ -1,0 +1,143 @@
+{
+  "id": "sniff",
+  "sticker": "badger",
+  "kind": "action",
+  "description": "the badger puts its nose to the ground and sniffs, then lifts it and sniffs the air.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.16667,
+    "width": 0.9401,
+    "height": 0.66667
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the badger with its nose to the ground, sniffing"
+  },
+  "puppet": {
+    "rig": "anims/badger.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -10,
+            "y": 5
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -9,
+            "x": -3,
+            "y": 4
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -11,
+            "y": 5
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -9,
+            "x": -3,
+            "y": 4
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -11,
+            "y": 5
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "head": {
+            "r": 7,
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "head": {
+            "r": 9,
+            "x": -3,
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "head": {
+            "r": 7,
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "head": {
+            "r": 9,
+            "x": -3,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

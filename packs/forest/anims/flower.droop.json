@@ -1,0 +1,139 @@
+{
+  "id": "droop",
+  "sticker": "flower",
+  "kind": "action",
+  "description": "the flower droops sadly, its head hanging and its leaves sagging, then slowly lifts itself up again.",
+  "stickerBox": {
+    "x": 0.15365,
+    "y": 0.02995,
+    "width": 0.69271,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the flower drooping sadly, its head hanging down"
+  },
+  "puppet": {
+    "rig": "anims/flower.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "face": {
+            "y": 4
+          },
+          "head": {
+            "r": 10,
+            "y": 4
+          },
+          "leafL": {
+            "r": -5
+          },
+          "leafR": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": 7
+          },
+          "face": {
+            "y": 8
+          },
+          "head": {
+            "r": 24,
+            "y": 10
+          },
+          "leafL": {
+            "r": -14
+          },
+          "leafR": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "body": {
+            "r": 8
+          },
+          "face": {
+            "y": 8
+          },
+          "head": {
+            "r": 27,
+            "y": 11
+          },
+          "leafL": {
+            "r": -14
+          },
+          "leafR": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 6,
+            "y": 2
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

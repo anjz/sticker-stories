@@ -1,0 +1,100 @@
+{
+  "id": "quack",
+  "sticker": "duckling",
+  "description": "the duckling stretches up its neck and gives two big quacks, its little wings lifting with each one.",
+  "stickerBox": {
+    "x": 0.17188,
+    "y": 0.02995,
+    "width": 0.65625,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the duckling quacking, beak wide open"
+  },
+  "puppet": {
+    "rig": "anims/duckling.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.97
+          },
+          "head": {
+            "r": 4,
+            "y": 4
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": -7,
+            "y": -10
+          },
+          "wingL": {
+            "r": 18
+          },
+          "wingR": {
+            "r": -18
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": -7,
+            "y": -10
+          },
+          "wingL": {
+            "r": 18
+          },
+          "wingR": {
+            "r": -18
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

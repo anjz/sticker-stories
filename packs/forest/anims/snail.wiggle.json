@@ -1,0 +1,123 @@
+{
+  "id": "wiggle",
+  "sticker": "snail",
+  "kind": "action",
+  "description": "the snail wiggles its eye stalks this way and that, very pleased with itself.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.08984,
+    "width": 0.9401,
+    "height": 0.81901
+  },
+  "puppet": {
+    "rig": "anims/snail.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "stalkL": {
+            "r": -18
+          },
+          "stalkR": {
+            "r": 18
+          }
+        },
+        "slots": {
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "stalkL": {
+            "r": 14
+          },
+          "stalkR": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "stalkL": {
+            "r": -18
+          },
+          "stalkR": {
+            "r": 18
+          }
+        },
+        "slots": {
+          "mouth": "open",
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "stalkL": {
+            "r": 14
+          },
+          "stalkR": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "mouth": "open",
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "stalkL": {
+            "r": -18
+          },
+          "stalkR": {
+            "r": 18
+          }
+        },
+        "slots": {
+          "mouth": "open",
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "stalkL": {
+            "r": 14
+          },
+          "stalkR": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "id": "look-around",
+  "sticker": "beaver",
+  "kind": "action",
+  "description": "the beaver looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.04427,
+    "width": 0.9401,
+    "height": 0.91016
+  },
+  "puppet": {
+    "rig": "anims/beaver.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -16
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -16
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 16
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 16
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}
