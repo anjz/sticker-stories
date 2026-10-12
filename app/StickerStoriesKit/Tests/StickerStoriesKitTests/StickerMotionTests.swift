@@ -62,6 +62,21 @@ import Testing
             scene: Self.scene, policy: policy, random: &random)
     }
 
+    /// Every leg says where the sticker rests once it is there, for the
+    /// scene's depth: with whom it went to, on or under; at the place;
+    /// off the canvas; back home.
+    @Test func legsSayWhereTheyRest() throws {
+        let plans = plan([
+            GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "rabbit"),
+            GoTrigger(at: 10, stickerID: "fox", kind: .away),
+            GoTrigger(at: 20, stickerID: "fox", kind: .back),
+            GoTrigger(at: 1, stickerID: "bee", kind: .on, target: "flower"),
+        ])
+        let fox = try #require(plans[fox]).legs.map(\.rest)
+        #expect(fox == [.with(rabbit), .off, .home])
+        #expect(try #require(plans[bee]).legs.last?.rest == .with(flower))
+    }
+
     /// Where the sticker's centre is at `time`, and its size, from its plan.
     func place(_ id: UUID, _ plans: [UUID: MotionPlan], at time: Double) -> (x: Double, y: Double, scale: Double, alpha: Double) {
         let actor = actors().first { $0.id == id }!

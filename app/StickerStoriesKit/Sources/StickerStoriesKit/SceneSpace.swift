@@ -237,6 +237,87 @@ public struct SceneSpace: Codable, Equatable, Sendable {
         return EditSize(height: middle, scales: (back / middle)...(front / middle))
     }
 
+    // MARK: Depth on the stage
+
+    /// Whether feet at art y `v` stand on the ground (in front of the
+    /// backdrop), rather than up in a tree or the sky.
+    public func isGround(artY v: Double) -> Bool {
+        v < horizon && groundDepth(atArtY: v) <= back + 1e-9
+    }
+
+    /// The depth of whatever stands at art point `feet`: the ground's there,
+    /// or, up off the ground, the depth of the place it is at (`elevated`).
+    public func depth(atFeet feet: Point, wide: Bool = false) -> Double {
+        isGround(artY: feet.v) ? max(groundDepth(atArtY: feet.v), 0.05) : elevated(at: feet, wide: wide)
+    }
+
+    /// The depth of something up off the ground at art point `feet`: just
+    /// in front of the layer of the nearest branch or bark it is at (a line
+    /// of a place, within `reach`), else in the open air it is in (the
+    /// middle of its depths), else in the first open air, else at the front
+    /// of where stickers stand.
+    public func elevated(at feet: Point, wide: Bool = false, reach: Double = 0.08) -> Double {
+        var best: (distance: Double, depth: Double)?
+        for (_, place) in places.sorted(by: { $0.key < $1.key }) {
+            let lines = (wide ? place.wideLines : nil) ?? place.lines ?? []
+            for line in lines {
+                guard let depth = layerDepth(line.layer, wide: wide) else { continue }
+                let d = Self.distance(feet, toPolyline: line.points)
+                if d <= reach, d < (best?.distance ?? .infinity) { best = (d, depth - Self.inFront) }
+            }
+        }
+        if let best { return best.depth }
+        let airs = places.sorted(by: { $0.key < $1.key }).compactMap(\.value.air).filter { $0.depth.count == 2 }
+        if let air = airs.first(where: { Self.contains($0.area, feet) }) ?? airs.first {
+            return (air.depth[0] + air.depth[1]) / 2
+        }
+        return stand.near
+    }
+
+    /// The depth of the space's layer `id` on the art drawn.
+    public func layerDepth(_ id: String, wide: Bool = false) -> Double? {
+        layers.first { $0.id == id }.map { wide ? ($0.wide?.depth ?? $0.depth) : $0.depth }
+    }
+
+    /// The depth a scene plane is drawn at: its nearest piece's.
+    public func planeDepth(_ plane: String, wide: Bool = false) -> Double? {
+        layers.filter { $0.plane == plane }.map { wide ? ($0.wide?.depth ?? $0.depth) : $0.depth }.min()
+    }
+
+    /// The depth `along` the way from `a` to `b` (0…1), as the screen moves
+    /// there: evenly in 1 / depth, the way a point on the ground rises up
+    /// the picture.
+    public static func mix(_ a: Double, _ b: Double, along k: Double) -> Double {
+        1 / (1 / a + (1 / b - 1 / a) * min(max(k, 0), 1))
+    }
+
+    /// How much nearer than what it is with (or the tree it perches on) a
+    /// sticker is, so it is drawn in front of it.
+    public static let inFront = 0.02
+
+    static func distance(_ p: Point, toPolyline points: [Point]) -> Double {
+        guard let first = points.first else { return .infinity }
+        guard points.count > 1 else { return hypot(p.u - first.u, p.v - first.v) }
+        var best = Double.infinity
+        for (a, b) in zip(points, points.dropFirst()) {
+            let dx = b.u - a.u, dy = b.v - a.v
+            let t = dx == 0 && dy == 0 ? 0 : min(max(((p.u - a.u) * dx + (p.v - a.v) * dy) / (dx * dx + dy * dy), 0), 1)
+            best = min(best, hypot(p.u - (a.u + t * dx), p.v - (a.v + t * dy)))
+        }
+        return best
+    }
+
+    static func contains(_ polygon: [Point], _ p: Point) -> Bool {
+        var inside = false
+        var j = polygon.count - 1
+        for i in polygon.indices {
+            let a = polygon[i], b = polygon[j]
+            if (a.v > p.v) != (b.v > p.v), p.u < (b.u - a.u) * (p.v - a.v) / (b.v - a.v) + a.u { inside.toggle() }
+            j = i
+        }
+        return inside
+    }
+
     // MARK: Validation (rule 20)
 
     /// Every problem with the space. `planes` are the pack's scene layer

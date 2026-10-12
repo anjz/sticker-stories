@@ -229,6 +229,8 @@ final class CanvasScene: SKScene {
         let visitors: [UUID: EntrancePlan]
         /// How the story moves stickers about, by node (`MotionPlanner`).
         let motions: [UUID: MotionPlan]
+        /// Depth, in a pack with a space (`DepthStage`).
+        let depth: DepthStage?
     }
     private var playSession: PlaySession?
     /// Every live animation the pack declares (`StickerAnimation`), read
@@ -1466,7 +1468,8 @@ final class CanvasScene: SKScene {
         // The stickers the story names that the child has not placed come
         // in when they are first named; from here on they are on the stage
         // like any other, so every trigger reaches them.
-        let visitors = addVisitors(for: triggers.entrances, goes: triggers.goes, policy: policy)
+        var visitors = addVisitors(for: triggers.entrances, goes: triggers.goes, policy: policy)
+        let depth = beginDepth(visitors: &visitors)
         let nodes = allStickerNodes()
         let targets = Dictionary(grouping: nodes, by: \.stickerID).mapValues { $0.map(\.instanceID) }
         let runner = StickerEffectsRunner(
@@ -1492,7 +1495,7 @@ final class CanvasScene: SKScene {
             places: Set(actionPlaces.keys)))
         // The actions the story cues on stickers on the stage, and the
         // moves of the ones it brings in.
-        if !motions.isEmpty {
+        if !motions.isEmpty || depth != nil {
             for node in nodes where !node.isVisitor {
                 if let parent = node.parent { stackBeforeMotion[node.instanceID] = (parent, node.zPosition) }
             }
@@ -1518,7 +1521,64 @@ final class CanvasScene: SKScene {
             triggers: triggers.canvas, setting: pack.manifest.setting, policy: policy)
         playSession = PlaySession(
             runner: runner, canvasRunner: canvasRunner, applier: applier, emitters: emitterCoordinator(), clock: clock,
-            live: live, faces: faces, visitors: visitors, motions: motions)
+            live: live, faces: faces, visitors: visitors, motions: motions, depth: depth)
+        if let depth { orderByDepth(depth) }
+    }
+
+    /// In a pack with a space, the story plays in depth (`DepthStage`):
+    /// every sticker's depth at its spot is taken, and each visitor comes in
+    /// at the size of where it lands, its feet where they were planned
+    /// (no entrance scaling of its own).
+    private func beginDepth(visitors: inout [UUID: EntrancePlan]) -> DepthStage? {
+        guard let space = pack.manifest.space else { return nil }
+        let depth = DepthStage(space: space, wide: artVariant == .wide, world: worldSize) { [weak self] id in
+            self?.drawingBox(of: id) ?? CGRect(x: 0, y: 0, width: 1, height: 1)
+        }
+        depth.begin(allStickerNodes())
+        for node in allStickerNodes() where node.isVisitor {
+            guard var base = node.effectBase else { continue }
+            let k = depth.visitorScale(node)
+            let feet = (drawingBox(of: node.stickerID).minY - 0.5) * node.unscaledSize.height
+            base.y += feet * base.scale * (1 - k)
+            base.scale *= k
+            node.effectBase = base
+            node.baseScale = CGFloat(base.scale)
+            node.setScale(node.baseScale)
+            node.position = CGPoint(x: base.x, y: base.y)
+            visitors[node.instanceID]?.startScale = 1
+        }
+        return depth
+    }
+
+    /// Where each sticker's drawing sits in its image (fractions, origin
+    /// bottom-left): measured, or the manifest's `content`, or all of it.
+    private func drawingBox(of stickerID: String) -> CGRect {
+        if let measured = textures.drawings[stickerID] { return measured }
+        if let c = definitions[stickerID]?.content, c.isValid {
+            return CGRect(x: c.x[0], y: c.y[0], width: c.x[1] - c.x[0], height: c.y[1] - c.y[0])
+        }
+        return CGRect(x: 0, y: 0, width: 1, height: 1)
+    }
+
+    /// Puts the scene's planes at their depths for the story: the stickers
+    /// are sorted in among them every frame (`update`).
+    private func orderByDepth(_ depth: DepthStage) {
+        for layer in [sceneLayers, backgroundStickers, foregroundStickers] { layer.zPosition = 0 }
+        for case let sprite as SKSpriteNode in sceneLayers.children {
+            sprite.zPosition = depth.zPosition(forDepth: depth.space.planeDepth(sprite.name ?? "", wide: depth.wide) ?? depth.space.back)
+        }
+        foregroundArt.zPosition = depth.zPosition(forDepth: depth.space.planeDepth(SceneSpace.Layer.foreground, wide: depth.wide) ?? 1)
+        foregroundShadowBlur.zPosition = foregroundArt.zPosition - 0.5
+    }
+
+    /// The editing order back: the planes and the two sticker layers.
+    private func orderByLayers() {
+        sceneLayers.zPosition = 50
+        backgroundStickers.zPosition = 100
+        foregroundShadowBlur.zPosition = 150
+        foregroundArt.zPosition = 200
+        foregroundStickers.zPosition = 300
+        for (index, sprite) in sceneLayers.children.enumerated() { sprite.zPosition = CGFloat(index) }
     }
 
     /// The scene as the stage and motion planners see it, in world points:
@@ -1643,7 +1703,8 @@ final class CanvasScene: SKScene {
                     width: node.unscaledSize.width * base.scale, height: node.unscaledSize.height * base.scale),
                 readyAt: visit.map { $0.at + $0.duration } ?? 0, facing: Double(node.facing),
                 canMove: stage.entrance != .grow, flies: stage.entrance == .fly,
-                stature: statures[node.stickerID], places: stage.on)
+                // With a space, depth sizes it beside another (`DepthStage`).
+                stature: pack.manifest.space == nil ? statures[node.stickerID] : nil, places: stage.on)
         }
         var random = SystemRandomNumberGenerator()
         return MotionPlanner.plan(
@@ -1724,6 +1785,7 @@ final class CanvasScene: SKScene {
                 node.move(toParent: leavingVisitors)
                 node.run(.sequence([.fadeOut(withDuration: 0.3), .removeFromParent()]))
             }
+            if session.depth != nil { orderByLayers() }
             for node in allStickerNodes() where !node.isVisitor {
                 guard let prior = stackBeforeMotion[node.instanceID] else { continue }
                 if node.parent !== prior.parent { node.move(toParent: prior.parent) }
@@ -1772,12 +1834,24 @@ final class CanvasScene: SKScene {
             deltas[id] = plan.delta(at: time).combined(with: deltas[id] ?? .identity)
             if let node = nodes[id] {
                 node.facing = CGFloat(plan.facing(at: time))
-                stackForMotion(node, plan: plan, at: time, nodes: nodes)
+                if session.depth == nil { stackForMotion(node, plan: plan, at: time, nodes: nodes) }
             }
         }
         for (id, plan) in session.visitors {
             // The entrance under whatever the story's effects do to it.
             deltas[id] = plan.delta(at: time).combined(with: deltas[id] ?? .identity)
+        }
+        if let depth = session.depth {
+            // Each sticker at its depth: as big as that makes it, about its
+            // feet, and in front of whatever is further away.
+            for (id, node) in nodes {
+                let plan = session.motions[id]
+                let z = depth.depth(of: node, plan: plan, at: time)
+                let k = depth.growth(of: node, at: z, time: time)
+                if abs(k - 1) > 1e-4 { deltas[id] = depth.grow(deltas[id] ?? .identity, by: k, stickerID: node.stickerID) }
+                node.zPosition = depth.zPosition(
+                    of: node, depth: z, plan: plan, arrivedAt: arrival(of: id, in: session, at: time), at: time)
+            }
         }
         session.applier.apply(deltas, to: nodes)
         session.emitters.reconcile(session.runner.active, at: time, nodes: nodes)
@@ -1785,6 +1859,17 @@ final class CanvasScene: SKScene {
         canvasEffects.applySnowCover(session.canvasRunner.snowCover)
         applyLive(session, at: time)
         applyFaces(session.faces, at: time)
+    }
+
+    /// When a sticker last got where it is: the end of its latest move or
+    /// of its entrance, 0 for one that has stayed put.
+    private func arrival(of id: UUID, in session: PlaySession, at time: TimeInterval) -> TimeInterval {
+        var latest: TimeInterval = 0
+        if let plan = session.visitors[id], time >= plan.at + plan.duration { latest = plan.at + plan.duration }
+        for leg in session.motions[id]?.legs ?? [] where time >= leg.at + leg.duration {
+            latest = max(latest, leg.at + leg.duration)
+        }
+        return latest
     }
 
     /// A sticker that sets off on a move goes behind the others in its

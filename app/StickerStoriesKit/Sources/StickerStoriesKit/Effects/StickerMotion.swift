@@ -119,12 +119,26 @@ public struct MotionLeg: Equatable, Sendable {
         case shuffle
     }
 
+    /// Where it is once it gets there, for the scene's depth
+    /// (`SceneSpace`): on the ground where its feet are, with another
+    /// sticker (beside it, on it, under it: at its depth), at a place of
+    /// the scene (a branch, the sky: that place's depth), off the canvas,
+    /// or back home.
+    public enum Rest: Equatable, Sendable {
+        case ground
+        case with(UUID)
+        case place(String)
+        case off
+        case home
+    }
+
     public var at: TimeInterval
     public var duration: TimeInterval
     public var from: MotionSpot
     public var to: MotionSpot
     public var gait: Gait
     public var stacking: Stacking
+    public var rest: Rest
     /// The way it faces (+1 its art's own way, -1 mirrored) before and
     /// after: it turns at the start to face where it goes.
     public var facingFrom: Double
@@ -138,8 +152,9 @@ public struct MotionLeg: Equatable, Sendable {
     public init(
         at: TimeInterval, duration: TimeInterval, from: MotionSpot, to: MotionSpot, gait: Gait,
         facingFrom: Double = 1, facingTo: Double = 1, move: String? = nil, stacking: Stacking = .behind,
-        stays: Bool = false
+        stays: Bool = false, rest: Rest = .ground
     ) {
+        self.rest = rest
         self.at = at
         self.duration = duration
         self.from = from
@@ -177,6 +192,21 @@ public struct MotionPlan: Equatable, Sendable {
     /// The last leg started by `time`, if any.
     public func leg(at time: TimeInterval) -> MotionLeg? {
         legs.last { $0.at <= time }
+    }
+
+    /// The last leg started by `time` (its index) and how far along its way
+    /// the sticker is, 0…1, eased as its gait moves it — without the hops'
+    /// arcs and the flight's bob: where it is over the ground.
+    public func progress(at time: TimeInterval) -> (index: Int, along: Double)? {
+        guard let index = legs.lastIndex(where: { $0.at <= time }) else { return nil }
+        let leg = legs[index]
+        let p = leg.duration > 0 ? min(max((time - leg.at) / leg.duration, 0), 1) : 1
+        switch leg.gait {
+        case .fade: return (index, p < 0.5 ? 0 : 1)
+        case .fly: return (index, p * p * (3 - 2 * p))
+        case .bounce: return (index, 1 - (1 - p) * (1 - p))
+        case .walk, .hops: return (index, p)
+        }
     }
 
     /// What the moves add to the sticker's placement at `time`.
@@ -424,9 +454,21 @@ public enum MotionPlanner {
                 let move = way(index).move
                 let stays = go.kind == .to && move?.stays == true
                     && go.target.map { features[$0] != nil && move!.on.contains($0) } == true
+                // Where it rests once there: with whom it goes to, at the
+                // place, back home, or on the ground.
+                let rest: MotionLeg.Rest
+                switch destination.stacking {
+                case .onto(let id): rest = .with(id)
+                case .home: rest = .home
+                default:
+                    let toPlace = go.kind == .to && go.target.map { name in
+                        features[name] != nil && !states.contains { $0.actor.stickerID == name }
+                    } == true
+                    rest = toPlace ? .place(go.target!) : .ground
+                }
                 leg(
                     index, to: destination.point, scale: destination.scale, visible: destination.visible, start: begin,
-                    stacking: destination.stacking, face: destination.face, stays: stays)
+                    stacking: destination.stacking, face: destination.face, stays: stays, rest: rest)
             }
             if let left, left != groupKey(of: index) { relayout(left, start: start, mover: nil) }
         }
@@ -542,7 +584,7 @@ public enum MotionPlanner {
                 let begin = slot.index == mover ? start : max(start, states[slot.index].busyUntil)
                 leg(
                     slot.index, to: point, scale: slot.scale, visible: true, start: begin, shuffle: slot.index != mover,
-                    stacking: slot.index == mover ? .onto(them.actor.id) : .shuffle)
+                    stacking: slot.index == mover ? .onto(them.actor.id) : .shuffle, rest: .with(them.actor.id))
             }
         }
 
@@ -771,7 +813,8 @@ public enum MotionPlanner {
         /// goes (not for a little shuffle to make room).
         mutating func leg(
             _ index: Int, to point: StagePoint, scale: Double, visible: Bool, start: TimeInterval, shuffle: Bool = false,
-            stacking: MotionLeg.Stacking = .behind, face: StageMove.Facing? = nil, stays: Bool = false
+            stacking: MotionLeg.Stacking = .behind, face: StageMove.Facing? = nil, stays: Bool = false,
+            rest: MotionLeg.Rest = .ground
         ) {
             let state = states[index]
             let me = state.actor
@@ -827,7 +870,7 @@ public enum MotionPlanner {
             states[index].legs.append(MotionLeg(
                 at: start, duration: duration, from: spot(from, state.scale, true), to: spot(target, scale, visible),
                 gait: gait, facingFrom: state.facing, facingTo: facing, move: move?.id, stacking: stacking,
-                stays: stays && gait != .fade && move?.cycle != nil))
+                stays: stays && gait != .fade && move?.cycle != nil, rest: visible ? rest : .off))
             states[index].center = target
             states[index].scale = scale
             states[index].visible = visible

@@ -125,3 +125,46 @@ import Testing
         #expect(OpaqueBounds.of(empty) == nil)
     }
 }
+
+@Suite struct StageDepthTests {
+    let space = SceneSpace(
+        horizon: 0.5, ground: 0, back: 5, stand: .init(near: 1.1, far: 4),
+        layers: [.init(id: "oak", art: "trees", depth: 2), .init(id: "front", depth: 1)],
+        places: [
+            "branches": .init(lines: [.init(layer: "oak", points: [.init(0.1, 0.8), .init(0.3, 0.85)])]),
+            "sky": .init(air: .init(area: [.init(0.4, 0.6), .init(0.9, 0.6), .init(0.9, 0.9), .init(0.4, 0.9)], depth: [2, 4])),
+        ],
+        sizes: [:])
+
+    @Test func feetOnTheGroundTakeItsDepth() {
+        #expect(abs(space.depth(atFeet: .init(0.5, 0.25)) - 2) < 1e-12)
+        #expect(space.isGround(artY: 0.35) && !space.isGround(artY: 0.45))  // 0.45 is at depth 10, past the back
+    }
+
+    @Test func upOffTheGroundItIsAtItsPlace() {
+        // On the oak's branch: just in front of the oak.
+        #expect(abs(space.depth(atFeet: .init(0.2, 0.83)) - (2 - SceneSpace.inFront)) < 1e-12)
+        // In the sky: the middle of its depths.
+        #expect(space.depth(atFeet: .init(0.6, 0.7)) == 3)
+        #expect(space.planeDepth("trees") == 2 && space.planeDepth("foreground") == 1)
+    }
+
+    @Test func depthMovesAsTheScreenDoes() {
+        // Halfway up the picture between depth 1 and 2 is 1 / mean(1, 1/2).
+        #expect(abs(SceneSpace.mix(1, 2, along: 0.5) - 4.0 / 3) < 1e-12)
+        #expect(SceneSpace.mix(1, 2, along: 0) == 1 && SceneSpace.mix(1, 2, along: 1) == 2)
+    }
+
+    @Test func aPlanSaysHowFarAlongALegItIs() throws {
+        let plan = MotionPlan(legs: [
+            MotionLeg(at: 1, duration: 2, from: .home, to: MotionSpot(x: 1), gait: .hops(cycle: 0.5), rest: .place("pond")),
+            MotionLeg(at: 4, duration: 2, from: MotionSpot(x: 1), to: .home, gait: .fly, rest: .home),
+        ])
+        #expect(plan.progress(at: 0.5) == nil)
+        let hop = try #require(plan.progress(at: 2))
+        #expect(hop.index == 0 && abs(hop.along - 0.5) < 1e-12)  // no arc in it
+        let fly = try #require(plan.progress(at: 4.5))
+        #expect(fly.index == 1 && abs(fly.along - 0.15625) < 1e-12)  // smoothstep(0.25)
+        #expect(plan.legs[0].rest == .place("pond"))
+    }
+}
