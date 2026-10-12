@@ -58,8 +58,8 @@ Plans the whole story at once, from the cast and the story's triggers:
    its shore for one that does not belong in its water), off the stage,
    back home. Walkers follow a path on the ground around water and roots
    (A* on a grid of the ground plane, then straightened); a way that
-   belongs to the water walks to its edge and swims the rest; flyers fly
-   straight through the air. Every leg's time follows the distance in the
+   belongs to the water walks to its edge and swims the rest; flyers arc
+   up through the air and down. Every leg's time follows the distance in the
    world and the sticker's gait.
 4. **Actions in their place** (the woodpecker on the bark) go there first,
    as before (`PlacementPlanner`).
