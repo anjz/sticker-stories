@@ -678,12 +678,12 @@
         "areas": [
           {
             "x": [
-              0.15,
-              0.85
+              0.35,
+              0.75
             ],
             "y": [
-              0.55,
-              0.85
+              0.62,
+              0.84
             ]
           }
         ]
@@ -693,18 +693,18 @@
         "areas": [
           {
             "x": [
-              0.1,
-              0.9
+              0.12,
+              0.88
             ],
             "y": [
-              0.16,
-              0.36
+              0.2,
+              0.46
             ]
           }
         ]
       },
       "pond": {
-        "description": "the small pond with lily pads and a water lily, right of the middle of the meadow",
+        "description": "the small pond with reeds, rocks and a water lily, right of the middle at the back of the meadow",
         "words": {
           "en-US": [
             "pond",
@@ -722,50 +722,40 @@
         "areas": [
           {
             "x": [
-              0.57,
-              0.74
+              0.68,
+              0.9
             ],
             "y": [
-              0.3,
-              0.37
+              0.42,
+              0.5
             ]
           }
         ],
         "edge": [
           {
             "x": [
-              0.47,
-              0.51
+              0.54,
+              0.6
             ],
             "y": [
-              0.33,
-              0.37
+              0.44,
+              0.5
             ]
           },
           {
             "x": [
-              0.79,
-              0.83
+              0.72,
+              0.86
             ],
             "y": [
-              0.33,
-              0.37
-            ]
-          },
-          {
-            "x": [
-              0.58,
-              0.72
-            ],
-            "y": [
-              0.22,
-              0.26
+              0.35,
+              0.39
             ]
           }
         ]
       },
       "branches": {
-        "description": "the side branches of the two big trees at the edges, high up under the leaves",
+        "description": "the branches of the old oak on the left and the birch on the right, high up under the leaves",
         "words": {
           "en-US": [
             "branch",
@@ -779,28 +769,28 @@
         "areas": [
           {
             "x": [
-              0.1,
-              0.19
+              0.22,
+              0.34
             ],
             "y": [
-              0.84,
-              0.9
+              0.78,
+              0.83
             ]
           },
           {
             "x": [
-              0.82,
-              0.9
+              0.9,
+              0.97
             ],
             "y": [
-              0.86,
-              0.92
+              0.8,
+              0.86
             ]
           }
         ]
       },
       "trunks": {
-        "description": "the bark of the two big trees' trunks at the left and right edges: a woodpecker there faces the bark, its beak on it",
+        "description": "the bark of the old oak's trunk on the left (and, on wide screens, the birch's on the right): a woodpecker there faces the bark, its beak on it",
         "words": {
           "en-US": [
             "trunk",
@@ -816,23 +806,36 @@
         "areas": [
           {
             "x": [
-              0.055,
-              0.065
+              0.095,
+              0.105
             ],
             "y": [
-              0.5,
-              0.72
+              0.42,
+              0.58
+            ],
+            "facing": "left"
+          }
+        ],
+        "wideAreas": [
+          {
+            "x": [
+              0.095,
+              0.105
+            ],
+            "y": [
+              0.42,
+              0.58
             ],
             "facing": "left"
           },
           {
             "x": [
-              0.955,
-              0.965
+              1.025,
+              1.035
             ],
             "y": [
-              0.45,
-              0.72
+              0.4,
+              0.6
             ],
             "facing": "right"
           }

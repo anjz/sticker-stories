@@ -442,6 +442,9 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
         // Every Forest sticker says where it belongs and how it comes in.
         #expect(pack.manifest.stickers.allSatisfy { $0.stage != nil })
         #expect(pack.manifest.features["branches"] != nil && pack.manifest.features["pond"] != nil)
+        // The scene with depth: its layers and a size for every sticker.
+        #expect(pack.manifest.layers.map(\.id) == ["trees", "reeds"])
+        #expect(pack.manifest.space.map { space in pack.manifest.stickers.allSatisfy { space.sizes[$0.id] != nil } } == true)
     }
 }
 
