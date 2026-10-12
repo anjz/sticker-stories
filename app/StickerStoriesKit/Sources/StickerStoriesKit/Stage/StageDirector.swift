@@ -1,0 +1,860 @@
+import Foundation
+
+/// A sticker on the stage, as the director plans it (`docs/stage3d.md`).
+public struct StageActor: Sendable {
+    public var id: UUID
+    public var stickerID: String
+    /// Its drawing's height at depth 1 (`SceneSpace.sizes`).
+    public var size: Double
+    /// Its drawing's width over its height.
+    public var ratio: Double
+    public var stage: StickerStage
+    /// Its moves, its usual one first (`StageMove`).
+    public var moves: [StageMove]
+    /// How far its art reaches in front of its centre (its beak), as a
+    /// fraction of its width: puts its front, not its centre, on bark.
+    public var front: Double
+    /// Where the child put its feet (art points); nil for a visitor.
+    public var placed: SceneSpace.Point?
+    public var facing: Double
+
+    public init(
+        id: UUID, stickerID: String, size: Double, ratio: Double, stage: StickerStage = .default,
+        moves: [StageMove] = [], front: Double = 0.4, placed: SceneSpace.Point? = nil, facing: Double = 1
+    ) {
+        self.id = id
+        self.stickerID = stickerID
+        self.size = size
+        self.ratio = ratio
+        self.stage = stage
+        self.moves = moves
+        self.front = front
+        self.placed = placed
+        self.facing = facing
+    }
+
+    public var width: Double { size * ratio }
+    public var canMove: Bool { stage.entrance != .grow }
+}
+
+/// Plans a whole story on the stage, in space (`docs/stage3d.md`): where
+/// the child's stickers start, where visitors come in and how, and every
+/// move the story asks for — beside someone, on or under them, at a place,
+/// away, back — along paths on the ground around the water and the trees'
+/// roots, or through the air. Pure and seeded.
+public enum StageDirector {
+    /// How long the child's stickers take, as a story starts, to get to
+    /// where they can be and to the size their depth makes them.
+    public static let settle: TimeInterval = 1.2
+    static let minTravel: TimeInterval = 0.8
+    static let maxTravel: TimeInterval = 6
+    static let fadeTime: TimeInterval = 0.8
+    /// How far in front of whom it is with a sticker stands, in depth.
+    static let inFront = SceneSpace.inFront
+    /// Two sharing a spot overlap by this much of the narrower one.
+    static let sharedOverlap = 0.25
+
+    public static func plan<R: RandomNumberGenerator>(
+        world: StageWorld, screen: StageScreen, actors: [StageActor], entrances: [EntranceTrigger],
+        goes: [GoTrigger], policy: EffectPolicy, random: inout R
+    ) -> [UUID: StagePlan] {
+        var director = Director(world: world, screen: screen, policy: policy, actors: actors)
+        director.settleThePlaced()
+        var entered = Set<String>()
+        for entrance in entrances.sorted(by: { $0.at < $1.at }) where entered.insert(entrance.stickerID).inserted {
+            for index in director.states.indices
+            where director.states[index].actor.stickerID == entrance.stickerID && director.states[index].actor.placed == nil {
+                director.enter(index, entrance, goes: goes, random: &random)
+            }
+        }
+        for go in goes.sorted(by: { $0.at < $1.at }) {
+            for index in director.states.indices
+            where director.states[index].actor.stickerID == go.stickerID && director.states[index].actor.canMove
+                && director.states[index].hasEntered
+            {
+                director.apply(go, to: index, random: &random)
+            }
+        }
+        var plans: [UUID: StagePlan] = [:]
+        for state in director.states {
+            plans[state.actor.id] = StagePlan(
+                start: state.start, startsVisible: state.startsVisible, legs: state.legs, size: state.actor.size)
+        }
+        return plans
+    }
+
+    /// The live triggers with every action that has a place held back until
+    /// its sticker has got there (`PlacementPlanner.delayed`, for plans in
+    /// space).
+    public static func delayed(
+        _ live: [LiveAnimationTrigger], plans: [UUID: StagePlan], stickers: [UUID: String], places: Set<LiveAnimationKey>
+    ) -> [LiveAnimationTrigger] {
+        live.map { trigger in
+            let key = LiveAnimationKey(stickerID: trigger.stickerID, animationID: trigger.animationID)
+            guard trigger.mode != .resume, places.contains(key) else { return trigger }
+            var start = trigger.at
+            for (id, plan) in plans where stickers[id] == trigger.stickerID {
+                for leg in plan.legs where leg.travels && leg.at <= trigger.at && trigger.at < leg.end {
+                    start = max(start, leg.end)
+                }
+            }
+            var moved = trigger
+            moved.at = start
+            return moved
+        }
+    }
+
+    struct State {
+        var actor: StageActor
+        var start: StagePose
+        var startsVisible: Bool
+        var pose: StagePose
+        var home: StagePose
+        var visible: Bool
+        var busyUntil: TimeInterval = 0
+        var legs: [StageLeg] = []
+        /// The way the story last named (`by`); nil for its usual one.
+        var by: String?
+        /// Whom it stands beside, if anyone ("beside:<id>").
+        var beside: String?
+        /// The side it went off by (−1 left, 1 right).
+        var leftBy: Double = 1
+        var hasEntered: Bool
+    }
+
+    struct Director {
+        let world: StageWorld
+        let screen: StageScreen
+        let policy: EffectPolicy
+        var states: [State]
+        /// Who shares a spot on or under a sticker ("on:<id>"), left to right.
+        var groups: [String: [Int]] = [:]
+
+        init(world: StageWorld, screen: StageScreen, policy: EffectPolicy, actors: [StageActor]) {
+            self.world = world
+            self.screen = screen
+            self.policy = policy
+            states = actors.map { actor in
+                let pose = StagePose(position: Vec3(0, 0, world.space.stand.near), support: .off, facing: actor.facing)
+                return State(
+                    actor: actor, start: pose, startsVisible: actor.placed != nil, pose: pose, home: pose,
+                    visible: actor.placed != nil, hasEntered: actor.placed != nil)
+            }
+        }
+
+        // MARK: Ways and belonging
+
+        /// The move it goes by now and whether that way flies.
+        func way(_ i: Int) -> (move: StageMove?, flies: Bool) {
+            let me = states[i].actor
+            let by = states[i].by
+            let move = StageMove.pick(me.moves, by: by)
+            if let move, by != nil, move.id == by { return (move, move.flies) }
+            return (move, me.stage.entrance == .fly || move?.flies == true)
+        }
+
+        /// The places it belongs in going this way: its stage's, and the
+        /// way's own (a duckling swimming: the pond).
+        func belongs(_ i: Int, _ move: StageMove?) -> Set<String> {
+            Set(states[i].actor.stage.on + (move?.on ?? []))
+        }
+
+        /// Whether every way it gets about belongs to the water (a fish).
+        func onlyGetsAboutInWater(_ i: Int) -> Bool {
+            let moves = states[i].actor.moves
+            return !moves.isEmpty && moves.allSatisfy { !$0.on.isEmpty }
+        }
+
+        // MARK: Screen
+
+        func drawing(_ i: Int, at p: Vec3) -> StageRect {
+            world.drawing(at: p, size: states[i].actor.size, ratio: states[i].actor.ratio)
+        }
+
+        func onScreen(_ i: Int, at p: Vec3) -> Bool {
+            let r = drawing(i, at: p), c = screen.clear
+            return r.minX >= c.minX && r.maxX <= c.maxX && r.minY >= c.minY && r.maxY <= c.maxY
+        }
+
+        func covered(_ i: Int, at p: Vec3) -> Bool {
+            let r = drawing(i, at: p)
+            return screen.avoid.contains { a in r.minX < a.maxX && r.maxX > a.minX && r.minY < a.maxY && r.maxY > a.minY }
+        }
+
+        /// Off the visible art at the sides: where entrances start and the
+        /// ones going away end, walkable for anyone.
+        func offstage(_ p: Vec2) -> Bool {
+            let u = 0.5 + p.x / (world.aspect * max(p.z, 0.05))
+            return u * world.frame.width < screen.visible.minX || u * world.frame.width > screen.visible.maxX
+        }
+
+        /// Pushed in from the screen's sides at its depth so it is wholly on
+        /// screen (only across: its depth is its place).
+        func pushedOnScreen(_ i: Int, _ p: Vec3) -> Vec3 {
+            let r = drawing(i, at: p), c = screen.clear
+            var dx = 0.0
+            if r.minX < c.minX { dx = c.minX - r.minX } else if r.maxX > c.maxX { dx = c.maxX - r.maxX }
+            guard dx != 0 else { return p }
+            var q = p
+            q.x += dx / world.frame.width * world.aspect * max(p.z, 0.05)
+            return q
+        }
+
+        /// The side of the screen nearer a point (−1 left, 1 right).
+        func nearerSide(_ p: Vec3) -> Double {
+            world.screen(p).x < (screen.visible.minX + screen.visible.maxX) / 2 ? -1 : 1
+        }
+
+        /// Just off the visible art on `side`, at `p`'s depth.
+        func offstagePoint(_ i: Int, side: Double, at p: Vec3) -> Vec3 {
+            let z = max(p.z, 0.05)
+            let edge = (side < 0 ? screen.visible.minX : screen.visible.maxX) / world.frame.width
+            let x = (edge - 0.5) * world.aspect * z + side * states[i].actor.width * 0.8
+            return Vec3(x, p.y, z)
+        }
+
+        // MARK: The cast's start
+
+        /// Each child's sticker starts where its feet are — on the ground,
+        /// a perch, in the air — and, standing where it cannot, gets to the
+        /// nearest place it can as the story starts.
+        mutating func settleThePlaced() {
+            for i in states.indices {
+                guard let feet = states[i].actor.placed else { continue }
+                let (from, valid) = placedPose(i, feet)
+                states[i].start = from
+                states[i].pose = from
+                states[i].home = valid
+                if (valid.position - from.position).length > 0.01 || valid.support != from.support {
+                    let me = states[i].actor
+                    let gait: StageLeg.Gait = !me.canMove || policy.isCalm ? .fade : way(i).flies ? .fly : .walk
+                    states[i].legs.append(StageLeg(
+                        at: 0, duration: StageDirector.settle, path: [from.position, valid.position], gait: gait,
+                        kind: .settle, move: gait == .fade ? nil : way(i).move?.id,
+                        facingFrom: from.facing, facingTo: from.facing, support: valid.support))
+                    states[i].busyUntil = StageDirector.settle
+                }
+                states[i].pose = valid
+            }
+        }
+
+        /// Where a child's sticker is, by its feet on the art, and where it
+        /// can be.
+        func placedPose(_ i: Int, _ feet: SceneSpace.Point) -> (StagePose, StagePose) {
+            let me = states[i].actor
+            let space = world.space
+            let belongs = self.belongs(i, way(i).move)
+            let facing = me.facing
+            let accept = { (g: Vec2) in onScreen(i, at: g.onGround) }
+            if space.isGround(artY: feet.v) {
+                let g = world.groundPoint(feet)
+                let here = StagePose(position: g.onGround, support: .ground, facing: facing)
+                if world.canStand(at: g, belongsIn: belongs) { return (here, here) }
+                let land = world.nearestStand(to: g, belongsIn: belongs, accept: accept) ?? g
+                return (here, StagePose(position: land.onGround, support: .ground, facing: facing))
+            }
+            // Up off the ground: on the branch it is at, in the air it
+            // flies in, else down to the ground.
+            if let perch = nearestPerch(i, to: feet, within: 0.08) { return (perch, perch) }
+            let flies = way(i).flies || me.moves.contains { $0.flies }
+            if flies, let air = world.airs.first(where: { SceneSpace.contains($0.area, feet) }) ?? world.airs.first {
+                let p = world.point(feet, atDepth: (air.near + air.far) / 2)
+                let pose = StagePose(position: p, support: .air(air.place), facing: facing)
+                return (pose, pose)
+            }
+            let z = space.stand.far
+            let up = world.point(feet, atDepth: z)
+            let below = Vec2(up.x, z)
+            let land = world.nearestStand(to: below, belongsIn: belongs, reach: 4, accept: accept) ?? below
+            return (StagePose(position: up, support: .air(""), facing: facing),
+                    StagePose(position: land.onGround, support: .ground, facing: facing))
+        }
+
+        /// The perch spot nearest an art point, if one is within `within`
+        /// (art fractions).
+        func nearestPerch(_ i: Int, to feet: SceneSpace.Point, within: Double) -> StagePose? {
+            var best: (d: Double, pose: StagePose)?
+            for perch in world.perches {
+                let art = perch.points.map(world.project)
+                let d = SceneSpace.distance(feet, toPolyline: art)
+                guard d <= within, d < (best?.d ?? .infinity) else { continue }
+                // The nearest point of the line, in space.
+                var nearest = perch.points[0], nd = Double.infinity
+                for k in 0...20 {
+                    let p = StagePlan.along(perch.points, Double(k) / 20)
+                    let pd = hypot(world.project(p).u - feet.u, world.project(p).v - feet.v)
+                    if pd < nd { (nearest, nd) = (p, pd) }
+                }
+                best = (d, perchPose(i, perch, at: nearest))
+            }
+            return best?.pose
+        }
+
+        /// A sticker on a perch at `p`: feet on a branch; on bark, its front
+        /// on it, facing it.
+        func perchPose(_ i: Int, _ perch: StageWorld.Perch, at p: Vec3) -> StagePose {
+            let me = states[i].actor
+            var position = Vec3(p.x, p.y, perch.depth - StageDirector.inFront)
+            var facing = states[i].pose.facing
+            if let face = perch.facing {
+                // Its centre behind the bark by its reach; its centre at the
+                // line's height.
+                position.x += (face == .left ? 1 : -1) * me.front * me.width
+                position.y -= me.size / 2
+                if let sign = sign(face, for: i) { facing = sign }
+            }
+            return StagePose(position: position, support: .perch(perch.place), facing: facing)
+        }
+
+        /// Which way it faces (+1 / −1) to face `face`, from the way its
+        /// usual move travels.
+        func sign(_ face: StageMove.Facing, for i: Int) -> Double? {
+            guard let art = states[i].actor.moves.first?.facing else { return nil }
+            return art == face ? 1 : -1
+        }
+
+        // MARK: Spots in places
+
+        /// Where in a place it can be: ground inside the place (or on its
+        /// shore, for one that does not belong in its water), points along
+        /// its lines, points in its air.
+        func spots(_ name: String, for i: Int, move: StageMove?) -> [StagePose] {
+            let me = states[i].actor
+            let belongs = self.belongs(i, move)
+            if let ground = world.grounds.first(where: { $0.place == name }),
+                let art = world.space.places[name]?.ground
+            {
+                let into = !ground.water || belongs.contains(name)
+                let us = art.map(\.u), vs = art.map(\.v)
+                let pad = into ? 0.0 : 0.08
+                let lo = SceneSpace.Point((us.min() ?? 0) - pad, max((vs.min() ?? 0) - pad, 0))
+                let hi = SceneSpace.Point((us.max() ?? 1) + pad, min((vs.max() ?? 1) + pad / 2, world.space.horizon - 0.01))
+                var out: [StagePose] = []
+                for c in 0...15 {
+                    for r in 0...9 {
+                        let p = SceneSpace.Point(lo.u + (hi.u - lo.u) * Double(c) / 15, lo.v + (hi.v - lo.v) * Double(r) / 9)
+                        guard world.space.isGround(artY: p.v) else { continue }
+                        let g = world.groundPoint(p)
+                        guard world.canStand(at: g, belongsIn: belongs) else { continue }
+                        if into {
+                            guard ground.polygon.contains(g) else { continue }
+                        } else {
+                            guard !ground.polygon.contains(g), ground.polygon.distance(to: g) < me.width * 0.9 + 0.1 else { continue }
+                        }
+                        out.append(StagePose(position: g.onGround, support: .ground, facing: states[i].pose.facing))
+                    }
+                }
+                return out
+            }
+            let perches = world.perches.filter { $0.place == name }
+            if !perches.isEmpty {
+                return perches.flatMap { perch in
+                    (0...10).map { k in perchPose(i, perch, at: StagePlan.along(perch.points, Double(k) / 10)) }
+                }
+            }
+            if let air = world.airs.first(where: { $0.place == name }) {
+                let us = air.area.map(\.u), vs = air.area.map(\.v)
+                var out: [StagePose] = []
+                for c in 0...8 {
+                    for r in 0...4 {
+                        let p = SceneSpace.Point(
+                            (us.min() ?? 0) + ((us.max() ?? 1) - (us.min() ?? 0)) * Double(c) / 8,
+                            (vs.min() ?? 0) + ((vs.max() ?? 1) - (vs.min() ?? 0)) * Double(r) / 4)
+                        guard SceneSpace.contains(air.area, p) else { continue }
+                        // The area holds centres.
+                        var centre = world.point(p, atDepth: (air.near + air.far) / 2)
+                        centre.y -= me.size / 2
+                        out.append(StagePose(position: centre, support: .air(name), facing: states[i].pose.facing))
+                    }
+                }
+                return out
+            }
+            return []
+        }
+
+        /// The freest of `spots` on screen at `time` — farthest from the
+        /// others there, a little random among the roomiest, a little
+        /// nearer preferred — clear of the screen's furniture when it can.
+        func choose<R: RandomNumberGenerator>(
+            _ spots: [StagePose], for i: Int, at time: TimeInterval, near: Vec3?, random: inout R
+        ) -> StagePose? {
+            let visible = spots.filter { onScreen(i, at: $0.position) }
+            guard !visible.isEmpty else { return nil }
+            let me = states[i].actor
+            let others = states.indices.filter { $0 != i && states[$0].visible && states[$0].hasEntered }
+            func clearance(_ p: Vec3) -> Double {
+                others.map { o -> Double in
+                    let q = states[o].pose.position
+                    let reach = (me.width + states[o].actor.width) / 2 * 0.8
+                    return (p - q).length - reach
+                }.min() ?? 10
+            }
+            let uncovered = visible.filter { !covered(i, at: $0.position) }
+            let pool = uncovered.isEmpty ? visible : uncovered
+            let scored = pool.map { pose -> (StagePose, Double) in
+                let c = clearance(pose.position)
+                let d = near.map { (pose.position - $0).length } ?? 0
+                return (pose, min(c, me.width * 2) - d * 0.05)
+            }
+            let best = scored.map(\.1).max() ?? 0
+            let roomy = scored.filter { $0.1 >= best - me.width * 0.3 }
+            return roomy[Int.random(in: 0..<roomy.count, using: &random)].0
+        }
+
+        // MARK: Entrances
+
+        /// A visitor comes in: onto the first place of its stage with room
+        /// on screen, from the nearer side along the ground (or through the
+        /// air), or growing where it stands.
+        mutating func enter<R: RandomNumberGenerator>(
+            _ i: Int, _ entrance: EntranceTrigger, goes: [GoTrigger], random: inout R
+        ) {
+            var stage = states[i].actor.stage
+            let itsGoes = goes.filter { $0.stickerID == entrance.stickerID && $0.at >= entrance.at - 0.01 }
+                .sorted { $0.at < $1.at }
+            if let first = itsGoes.first, first.kind == .to, first.at - entrance.at <= StagePlanner.arrivalMove,
+                let place = first.target, world.space.places[place] != nil
+            {
+                stage.on = [place] + stage.on.filter { $0 != place }
+            }
+            states[i].by = entrance.by
+            let move = StageMove.pick(states[i].actor.moves, by: entrance.by)
+            if let move, let by = entrance.by, move.id == by, move.cycle != nil {
+                stage.entrance = move.flies ? .fly : .hop
+                if !move.on.isEmpty { stage.on = move.on }
+            }
+            var landing: StagePose?
+            for place in stage.on {
+                landing = choose(spots(place, for: i, move: move), for: i, at: entrance.at, near: nil, random: &random)
+                if landing != nil { break }
+            }
+            if landing == nil {
+                // Nowhere of its own: any land on screen.
+                let land = world.grounds.filter { !$0.water }.map(\.place)
+                for place in land {
+                    landing = choose(spots(place, for: i, move: move), for: i, at: entrance.at, near: nil, random: &random)
+                    if landing != nil { break }
+                }
+            }
+            let target = landing ?? StagePose(
+                position: Vec3(0, 0, (world.space.stand.near + world.space.stand.far) / 2), support: .ground)
+            states[i].hasEntered = true
+            states[i].home = target
+            let gait: StageLeg.Gait
+            var path: [Vec3]
+            var duration: TimeInterval
+            var moveID: String? = nil
+            var facing = target.facing
+            if policy.isCalm {
+                gait = .fade
+                path = [target.position, target.position]
+                duration = StageDirector.fadeTime
+            } else if stage.entrance == .grow || !states[i].actor.canMove {
+                gait = .grow
+                path = [target.position]
+                let sprout = states[i].actor.moves.first { $0.cycle == nil && $0.seconds > 0 }
+                moveID = policy.allowsLiveAnimations ? sprout?.id : nil
+                duration = max(sprout?.seconds ?? 0, 0.7)
+            } else {
+                // From the nearer side — the other when that way would pass
+                // under the story's pill.
+                var side = nearerSide(target.position)
+                let director = self, size = states[i].actor.size, flies = stage.entrance == .fly
+                let start = { (side: Double) -> Vec3 in
+                    var s = director.offstagePoint(i, side: side, at: target.position)
+                    s.y = flies ? target.position.y + 0.25 * size + 0.2 : 0
+                    return s
+                }
+                if crossesAvoid(i, from: start(side), to: target.position), !crossesAvoid(i, from: start(-side), to: target.position) {
+                    side = -side
+                }
+                states[i].pose = StagePose(position: start(side), support: .off, facing: states[i].pose.facing)
+                states[i].visible = true
+                states[i].start = states[i].pose
+                states[i].startsVisible = false
+                if stage.entrance == .fly {
+                    states[i].by = move?.flies == true ? move?.id : states[i].by
+                }
+                let leg = makeLeg(i, to: target, start: entrance.at, kind: .entrance, forceFly: stage.entrance == .fly)
+                states[i].legs.append(leg)
+                states[i].pose = target
+                states[i].busyUntil = leg.end
+                states[i].pose.facing = leg.facingTo
+                // Into its element by a way that stays there: it keeps going.
+                if let move, move.stays, leg.move == move.id, case .ground = target.support,
+                    let water = world.water(at: target.position.ground), move.on.contains(water)
+                {
+                    states[i].legs[states[i].legs.count - 1].stays = true
+                }
+                return
+            }
+            states[i].start = StagePose(position: target.position, support: .off, facing: facing)
+            states[i].startsVisible = false
+            facing = target.facing
+            states[i].legs.append(StageLeg(
+                at: entrance.at, duration: duration, path: path, gait: gait, kind: .entrance, move: moveID,
+                facingFrom: facing, facingTo: facing, support: target.support))
+            states[i].pose = target
+            states[i].visible = true
+            states[i].busyUntil = entrance.at + duration
+        }
+
+        func crossesAvoid(_ i: Int, from a: Vec3, to b: Vec3) -> Bool {
+            guard !screen.avoid.isEmpty else { return false }
+            return (0...16).contains { k in covered(i, at: a.lerp(to: b, Double(k) / 16)) }
+        }
+
+        // MARK: Moves
+
+        mutating func apply<R: RandomNumberGenerator>(_ go: GoTrigger, to i: Int, random: inout R) {
+            let begin = max(go.at, states[i].busyUntil)
+            let left = leaveGroup(i)
+            let wasBeside = states[i].beside
+            states[i].beside = nil
+            states[i].by = go.by
+            let me = states[i].actor
+
+            switch go.kind {
+            case .on, .under:
+                guard let name = go.target, let j = nearest(name, to: i) else { break }
+                let key = "\(go.kind.rawValue):\(states[j].actor.id)"
+                var members = groups[key] ?? []
+                if states[i].pose.position.x < states[j].pose.position.x { members.insert(i, at: 0) } else { members.append(i) }
+                groups[key] = members
+                relayout(key, start: begin, mover: i)
+            case .to:
+                guard let name = go.target else { break }
+                if world.space.places[name] != nil, !states.contains(where: { $0.actor.stickerID == name }) {
+                    goToPlace(name, i, go: go, begin: begin, random: &random)
+                } else if let j = nearest(name, to: i) {
+                    let key = "beside:\(states[j].actor.id)"
+                    if wasBeside == key, go.toward == nil {
+                        states[i].beside = key
+                        break
+                    }
+                    let spot = besideSpot(i, j, toward: go.toward)
+                    states[i].beside = key
+                    goWalking(i, to: spot, begin: begin)
+                }
+            case .away:
+                let side = go.toward.map { $0 == .right ? 1.0 : -1.0 } ?? nearerSide(states[i].pose.position)
+                var out = offstagePoint(i, side: side, at: states[i].pose.position)
+                if !way(i).flies { out.y = 0 }
+                states[i].leftBy = side
+                travel(i, to: StagePose(position: out, support: .off, facing: states[i].pose.facing), begin: begin)
+            case .back:
+                if !states[i].visible {
+                    states[i].pose.position = offstagePoint(i, side: states[i].leftBy, at: states[i].home.position)
+                    if !way(i).flies { states[i].pose.position.y = 0 }
+                    states[i].visible = true
+                }
+                goWalking(i, to: states[i].home, begin: begin)
+            }
+            if let left, left != groupKey(of: i) { relayout(left, start: begin, mover: nil) }
+            _ = me
+        }
+
+        /// To a place: in it for one that belongs there, on its shore for
+        /// one that does not belong in its water; on its lines; in its air.
+        mutating func goToPlace<R: RandomNumberGenerator>(_ name: String, _ i: Int, go: GoTrigger, begin: TimeInterval, random: inout R) {
+            let move = way(i).move
+            let here = states[i].pose
+            // There already: it stays (or, asked for another part of it,
+            // goes on to one).
+            var spots = spots(name, for: i, move: move)
+            let threshold = states[i].actor.width * 0.6
+            let atPlace = isAt(name, i)
+            if atPlace, !go.another {
+                // A story sending it to the bark it is at: the next tree.
+                let facingPlace = world.perches.contains { $0.place == name && $0.facing != nil }
+                if !facingPlace || go.unlessThere { return }
+            }
+            if atPlace || go.another {
+                // Another part of it on screen; none: it stays where it is.
+                let elsewhere = spots.filter {
+                    ($0.position - here.position).length > max(threshold, 0.3) && onScreen(i, at: $0.position)
+                }
+                if elsewhere.isEmpty { return }
+                spots = elsewhere
+            }
+            if let toward = go.toward {
+                let x = here.position.x + (toward == .right ? 1 : -1) * states[i].actor.width
+                let side = spots.filter { toward == .right ? $0.position.x >= x : $0.position.x <= x }
+                if !side.isEmpty {
+                    spots = side
+                } else if let far = (toward == .right ? spots.max { $0.position.x < $1.position.x }
+                                                     : spots.min { $0.position.x < $1.position.x }) {
+                    spots = [far]
+                }
+            }
+            // A place it faces into (bark): the nearest spot. Elsewhere: the
+            // freest, a little nearer preferred.
+            let facing = world.perches.contains { $0.place == name && $0.facing != nil }
+            let chosen: StagePose?
+            if facing {
+                chosen = spots.filter { onScreen(i, at: $0.position) }.min {
+                    ($0.position - here.position).length < ($1.position - here.position).length
+                } ?? spots.first
+            } else {
+                chosen = choose(spots, for: i, at: begin, near: here.position, random: &random)
+            }
+            guard let target = chosen else { return }
+            goWalking(i, to: target, begin: begin, stays: move?.stays == true && move?.on.contains(name) == true)
+        }
+
+        func isAt(_ name: String, _ i: Int) -> Bool {
+            let pose = states[i].pose
+            switch pose.support {
+            case .perch(let place), .air(let place): return place == name
+            case .ground:
+                guard let ground = world.grounds.first(where: { $0.place == name }) else { return false }
+                let g = pose.position.ground
+                if ground.polygon.contains(g) {
+                    // In it: where it belongs, or where it went for the spot.
+                    return !ground.water || belongs(i, way(i).move).contains(name)
+                }
+                // On its shore, for one that does not go in.
+                return ground.water && !belongs(i, way(i).move).contains(name)
+                    && ground.polygon.distance(to: g) < states[i].actor.width * 0.9 + 0.1
+            default: return false
+            }
+        }
+
+        /// Beside another sticker, at its depth: on the side it comes from
+        /// (the other when that is taken or off screen), a little
+        /// overlapping; a flyer hovers by it; a walker by someone up a tree
+        /// or in water it does not belong in stands on the nearest land.
+        func besideSpot(_ i: Int, _ j: Int, toward: GoTrigger.Side?) -> StagePose {
+            let me = states[i].actor, them = states[j].actor
+            let t = states[j].pose.position
+            let key = "beside:\(them.id)"
+            let xs = states.indices.filter { $0 != i && states[$0].beside == key }.map { states[$0].pose.position.x - t.x }
+            let onSide = { (side: Double) in xs.filter { $0 * side > 0 }.count }
+            var side: Double = states[i].pose.position.x <= t.x ? -1 : 1
+            if onSide(side) > onSide(-side) { side = -side }
+            let spacing = (them.width / 2 + me.width / 2) * 0.72
+            let room = { (side: Double) -> Bool in
+                onScreen(i, at: Vec3(t.x + side * spacing, 0, t.z))
+            }
+            if !room(side), room(-side) { side = -side }
+            if let toward { side = toward == .right ? 1 : -1 }
+            let already = Double(onSide(side) / 2 * 2)
+            let x = t.x + side * spacing * (1 + 0.85 * already / 2)
+            let z = max(t.z - StageDirector.inFront, 0.1)
+            if way(i).flies {
+                let hover = pushedOnScreen(i, Vec3(x, t.y + them.size * 0.15, z))
+                return StagePose(position: hover, support: .beside(them.id), facing: states[i].pose.facing)
+            }
+            let belongs = self.belongs(i, way(i).move)
+            let ground = Vec2(x, z)
+            let land = world.nearestStand(to: ground, belongsIn: belongs, accept: { onScreen(i, at: $0.onGround) }) ?? ground
+            return StagePose(position: pushedOnScreen(i, land.onGround), support: .beside(them.id), facing: states[i].pose.facing)
+        }
+
+        /// The instance of `name` nearest to it on the stage.
+        func nearest(_ name: String, to i: Int) -> Int? {
+            states.indices.filter { $0 != i && states[$0].actor.stickerID == name && states[$0].visible && states[$0].hasEntered }
+                .min { (states[$0].pose.position - states[i].pose.position).length < (states[$1].pose.position - states[i].pose.position).length }
+        }
+
+        func groupKey(of i: Int) -> String? { groups.first { $0.value.contains(i) }?.key }
+
+        mutating func leaveGroup(_ i: Int) -> String? {
+            guard let key = groupKey(of: i) else { return nil }
+            groups[key]?.removeAll { $0 == i }
+            return key
+        }
+
+        /// Everyone on (or under) a sticker in one row centred on it, each
+        /// overlapping the next by a quarter of the narrower: the newcomer
+        /// goes there, the others shuffle over to make room or close up.
+        mutating func relayout(_ key: String, start: TimeInterval, mover: Int?) {
+            guard let members = groups[key], !members.isEmpty,
+                let id = UUID(uuidString: String(key.split(separator: ":")[1])),
+                let j = states.firstIndex(where: { $0.actor.id == id })
+            else { return }
+            let on = key.hasPrefix("on:")
+            let t = states[j].pose.position
+            let them = states[j].actor
+            let widths = members.map { states[$0].actor.width }
+            var total = widths.reduce(0, +)
+            for (a, b) in zip(widths, widths.dropFirst()) { total -= min(a, b) * StageDirector.sharedOverlap }
+            var x = t.x - total / 2
+            for (k, m) in members.enumerated() {
+                let w = widths[k]
+                let centre = x + w / 2
+                x += w - (k + 1 < widths.count ? min(w, widths[k + 1]) * StageDirector.sharedOverlap : 0)
+                let y = on ? t.y + them.size * 0.8 : t.y
+                let z = max(t.z - StageDirector.inFront * (on ? 1 : 2), 0.1)
+                let target = StagePose(
+                    position: pushedOnScreen(m, Vec3(centre, y, z)),
+                    support: on ? .on(them.id) : .under(them.id), facing: states[m].pose.facing)
+                if m == mover {
+                    goWalking(m, to: target, begin: start)
+                } else if (target.position - states[m].pose.position).length > 0.01 {
+                    travel(m, to: target, begin: max(start, states[m].busyUntil), kind: .shuffle)
+                }
+            }
+        }
+
+        /// Goes to `target` its way — through the water ways' rules: a way
+        /// that belongs to the water only takes it about in it, walking the
+        /// rest; a sticker that only gets about in water stays in it.
+        mutating func goWalking(_ i: Int, to target: StagePose, begin: TimeInterval, stays: Bool = false) {
+            var target = target
+            var begin = begin
+            let flies = way(i).flies
+            let element = (way(i).move?.on ?? []).filter { name in world.grounds.contains { $0.place == name && $0.water } }
+            if !element.isEmpty, !flies {
+                let world = self.world
+                let waterAt = { (p: Vec3) -> String? in world.water(at: p.ground).flatMap { element.contains($0) ? $0 : nil } }
+                let intoElement = waterAt(target.position) != nil
+                let inElement = waterAt(states[i].pose.position) != nil
+                if !intoElement {
+                    if onlyGetsAboutInWater(i) {
+                        if let water = world.nearestStand(to: target.position.ground, belongsIn: Set(element), reach: 4, accept: {
+                            world.water(at: $0) != nil && onScreen(i, at: $0.onGround)
+                        }) {
+                            target.position = water.onGround
+                        }
+                    } else {
+                        if inElement, let exit = shore(of: element, near: target.position.ground, from: states[i].pose.position.ground) {
+                            // Out of the water its water way, then on foot.
+                            travel(i, to: StagePose(position: exit.onGround, support: .ground, facing: states[i].pose.facing), begin: begin)
+                            begin = max(begin, states[i].busyUntil)
+                        }
+                        states[i].by = nil
+                    }
+                } else if !inElement, !onlyGetsAboutInWater(i),
+                    let entry = shore(of: element, near: states[i].pose.position.ground, from: target.position.ground)
+                {
+                    // Into the water from the land: to its edge its usual way
+                    // first, then in.
+                    let by = states[i].by
+                    states[i].by = nil
+                    travel(i, to: StagePose(position: entry.onGround, support: .ground, facing: states[i].pose.facing), begin: begin)
+                    begin = max(begin, states[i].busyUntil)
+                    states[i].by = by
+                }
+            }
+            travel(i, to: target, begin: begin, stays: stays)
+        }
+
+        /// The point of the water's edge nearest `near` (a little on the
+        /// land side), heading for `from`.
+        func shore(of element: [String], near p: Vec2, from q: Vec2) -> Vec2? {
+            let polygons = world.grounds.filter { element.contains($0.place) }.map(\.polygon)
+            var best: (Vec2, Double)?
+            for polygon in polygons {
+                for (k, a) in polygon.points.enumerated() {
+                    let b = polygon.points[(k + 1) % polygon.points.count]
+                    for s in 0...8 {
+                        let e = a + (b - a) * (Double(s) / 8)
+                        let d = e.distance(to: p) + 0.3 * e.distance(to: q)
+                        if d < (best?.1 ?? .infinity) { best = (e, d) }
+                    }
+                }
+            }
+            return best?.0
+        }
+
+        /// Adds the leg that takes it to `target` and moves it there.
+        mutating func travel(
+            _ i: Int, to target: StagePose, begin: TimeInterval, kind: StageLeg.Kind = .move, stays: Bool = false
+        ) {
+            let from = states[i].pose
+            let turns = target.facing != from.facing
+            guard (target.position - from.position).length > 0.005 || target.support != from.support || turns
+                || states[i].visible != (target.support != .off)
+            else { return }
+            var leg = makeLeg(i, to: target, start: begin, kind: kind)
+            leg.stays = stays && leg.gait != .fade && leg.move != nil
+            states[i].legs.append(leg)
+            states[i].pose = target
+            states[i].pose.facing = leg.facingTo
+            states[i].visible = target.support != .off
+            states[i].busyUntil = leg.end
+        }
+
+        /// The leg from where it is to `target`: the path (round the water
+        /// and roots on foot, straight through the air), its gait and its
+        /// time from the distance and the way it gets about.
+        func makeLeg(_ i: Int, to target: StagePose, start: TimeInterval, kind: StageLeg.Kind, forceFly: Bool = false) -> StageLeg {
+            let me = states[i].actor
+            let from = states[i].pose.position
+            let (move, wayFlies) = way(i)
+            let flies = forceFly || wayFlies
+            let belongs = self.belongs(i, move)
+            var path: [Vec3]
+            if policy.isCalm {
+                path = [from, target.position]
+            } else if flies {
+                // Up through the air and down: an arc over whatever lies
+                // between (never skimming the pond).
+                let span = (target.position - from).length
+                var top = from.lerp(to: target.position, 0.5)
+                top.y = max(from.y, target.position.y) + min(max(span * 0.25, me.size * 0.5), 1.2)
+                path = span < me.size * 0.3 ? [from, target.position] : [from, top, target.position]
+            } else {
+                let bounds = groundBounds(from.ground, target.position.ground)
+                let ground = GroundPaths.path(
+                    from: from.ground, to: target.position.ground,
+                    walkable: { [world] p in world.canStand(at: p, belongsIn: belongs) || offstage(p) }, bounds: bounds)
+                path = ground.map(\.onGround)
+                if from.y > 0.01 { path.insert(from, at: 0) }
+                if target.position.y > 0.01 { path.append(target.position) }
+            }
+            let length = zip(path, path.dropFirst()).reduce(0) { $0 + ($1.1 - $1.0).length }
+            let widths = length / max(me.width, 0.01)
+            let shuffle = kind == .shuffle
+            var gait: StageLeg.Gait
+            var duration: TimeInterval
+            var moveID = move?.id
+            if policy.isCalm {
+                gait = .fade
+                duration = StageDirector.fadeTime
+                moveID = nil
+            } else if flies {
+                gait = .fly
+                duration = min(max(widths * 0.3 + 0.6, shuffle ? 0.6 : 1.2), 3.4)
+                if !(move?.flies ?? false) { moveID = me.moves.first { $0.flies }?.id ?? move?.id }
+            } else if let move, let cycle = move.cycle, cycle > 0, move.stride > 0, policy.allowsLiveAnimations {
+                gait = move.hops ? .hops(cycle: cycle) : .walk
+                let speed = move.stride * me.width / cycle
+                duration = min(max(length / max(speed, 0.01), shuffle ? 0.5 : StageDirector.minTravel), StageDirector.maxTravel)
+            } else {
+                gait = .bounce
+                duration = min(max(widths * 0.35, shuffle ? 0.5 : StageDirector.minTravel), 3.2)
+                moveID = nil
+            }
+            if !policy.allowsLiveAnimations { moveID = nil }
+            var facing = states[i].pose.facing
+            let dx = world.screen(target.position).x - world.screen(from).x
+            let widthPoints = world.drawnHeight(size: me.size, atDepth: from.z) * me.ratio
+            if !shuffle, gait != .fade, abs(dx) > widthPoints * 0.1 {
+                let travels = StageMove.pick(me.moves, by: moveID).flatMap(\.facing) ?? me.moves.first?.facing
+                if let travels { facing = (travels == .right) == (dx > 0) ? 1 : -1 }
+            }
+            // Onto bark: facing it when it gets there.
+            if case .perch(let place) = target.support,
+                let perch = world.perches.first(where: { $0.place == place && $0.facing != nil }),
+                let face = perch.facing, let sign = sign(face, for: i)
+            {
+                facing = sign
+            }
+            return StageLeg(
+                at: start, duration: duration, path: path, gait: gait, kind: kind, move: moveID,
+                facingFrom: states[i].pose.facing, facingTo: facing, support: target.support)
+        }
+
+        func groundBounds(_ a: Vec2, _ b: Vec2) -> (min: Vec2, max: Vec2) {
+            var lo = Vec2(min(a.x, b.x), min(a.z, b.z)), hi = Vec2(max(a.x, b.x), max(a.z, b.z))
+            for g in world.grounds {
+                let bb = g.polygon.bounds
+                lo = Vec2(min(lo.x, bb.min.x), min(lo.z, bb.min.z))
+                hi = Vec2(max(hi.x, bb.max.x), max(hi.z, bb.max.z))
+            }
+            return (Vec2(lo.x - 0.5, max(lo.z - 0.2, 0.3)), Vec2(hi.x + 0.5, hi.z + 0.2))
+        }
+    }
+}
