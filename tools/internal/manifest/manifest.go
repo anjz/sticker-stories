@@ -54,6 +54,13 @@ type Manifest struct {
 	// as the base art, base art centred inside; declared together or not at all.
 	BackgroundWide string `json:"backgroundWide,omitempty"`
 	ForegroundWide string `json:"foregroundWide,omitempty"`
+	// Layers are the scene's planes between the background and the
+	// foreground, far to near (docs/pack-format.md, "Layers"). Optional.
+	Layers []SceneLayer `json:"layers,omitempty"`
+	// Space is the scene as a place with depth: where everything stands
+	// and how big each sticker is there (docs/pack-format.md, "Space").
+	// Optional.
+	Space *Space `json:"space,omitempty"`
 	// Optional cover art for the pack's tile in the menu and the store
 	// (made with uiart); without one the app composes the tile itself.
 	Cover string `json:"cover,omitempty"`
@@ -406,6 +413,23 @@ func (m *Manifest) Validate(dir string) []error {
 	if m.Cover != "" {
 		checkImage("cover", m.Cover)
 	}
+	// Rule 19: layers have unique ids and images (wide ones exactly when
+	// the pack has wide art).
+	planes := map[string]bool{}
+	for i, l := range m.Layers {
+		field := fmt.Sprintf("layers[%d] %q", i, l.ID)
+		if !idPattern.MatchString(l.ID) || l.ID == "background" || l.ID == "foreground" || planes[l.ID] {
+			fail("%s: id must match %s, be unique and not background or foreground", field, idPattern)
+		}
+		planes[l.ID] = true
+		checkImage(field+" image", l.Image)
+		if l.ImageWide != "" {
+			checkImage(field+" imageWide", l.ImageWide)
+		}
+		if (l.ImageWide == "") != (m.BackgroundWide == "") {
+			fail("%s: imageWide is needed exactly when the pack has wide art", field)
+		}
+	}
 
 	// Rule 15: features have a well-formed id, a description and areas
 	// inside the art.
@@ -687,6 +711,15 @@ func (m *Manifest) Validate(dir string) []error {
 		packIDs[id] = lang
 		if want, err := m.NarrationPackID(dir, lang); err == nil && want != id {
 			fail("%s: %q is stale — the %s narration now makes %q (storyaudio install writes it)", field, id, lang, want)
+		}
+	}
+
+	// Rule 20: the space is consistent and covers the pack: its layers put
+	// every plane at a depth, its places are features, every sticker has a
+	// size.
+	if m.Space != nil {
+		for _, err := range m.Space.Validate(planes, stickerIDs, featureSet) {
+			fail("%v", err)
 		}
 	}
 

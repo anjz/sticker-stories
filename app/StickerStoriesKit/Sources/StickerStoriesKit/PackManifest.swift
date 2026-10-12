@@ -125,6 +125,11 @@ public struct PackManifest: Codable, Equatable, Sendable {
     /// base art's frame stays the sticker coordinate system. Both or neither.
     public var backgroundWide: String?
     public var foregroundWide: String?
+    /// The scene's planes between the background and the foreground, far to
+    /// near (`SceneLayer`); empty when the pack has none.
+    public var layers: [SceneLayer]
+    /// The scene as a place with depth (`SceneSpace`). Optional.
+    public var space: SceneSpace?
     /// Optional cover art for the pack's tile in the menu and the store;
     /// without one the app composes the tile from the background and a few
     /// stickers.
@@ -161,7 +166,8 @@ public struct PackManifest: Codable, Equatable, Sendable {
         displayName: [String: String], description: [String: String]? = nil,
         theme: String, setting: PackSetting = .none,
         background: String, foreground: String,
-        backgroundWide: String? = nil, foregroundWide: String? = nil, cover: String? = nil,
+        backgroundWide: String? = nil, foregroundWide: String? = nil,
+        layers: [SceneLayer] = [], space: SceneSpace? = nil, cover: String? = nil,
         features: [String: SceneFeature] = [:], narrationPacks: [String: String] = [:],
         world: PackWorld? = nil, staging: PackStaging? = nil,
         stickers: [StickerDefinition], stories: [StoryDefinition]
@@ -178,6 +184,8 @@ public struct PackManifest: Codable, Equatable, Sendable {
         self.foreground = foreground
         self.backgroundWide = backgroundWide
         self.foregroundWide = foregroundWide
+        self.layers = layers
+        self.space = space
         self.cover = cover
         self.features = features
         self.narrationPacks = narrationPacks
@@ -189,7 +197,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
 
     private enum CodingKeys: String, CodingKey {
         case schemaVersion, id, version, languages, displayName, description, theme, setting
-        case background, foreground, backgroundWide, foregroundWide, cover, features, narrationPacks, world, staging, stickers, stories
+        case background, foreground, backgroundWide, foregroundWide, layers, space, cover, features, narrationPacks, world, staging, stickers, stories
     }
 
     public init(from decoder: Decoder) throws {
@@ -215,6 +223,8 @@ public struct PackManifest: Codable, Equatable, Sendable {
         foreground = try c.decode(String.self, forKey: .foreground)
         backgroundWide = try c.decodeIfPresent(String.self, forKey: .backgroundWide)
         foregroundWide = try c.decodeIfPresent(String.self, forKey: .foregroundWide)
+        layers = try c.decodeIfPresent([SceneLayer].self, forKey: .layers) ?? []
+        space = try c.decodeIfPresent(SceneSpace.self, forKey: .space)
         cover = try c.decodeIfPresent(String.self, forKey: .cover)
         features = try c.decodeIfPresent([String: SceneFeature].self, forKey: .features) ?? [:]
         narrationPacks = try c.decodeIfPresent([String: String].self, forKey: .narrationPacks) ?? [:]
@@ -723,6 +733,22 @@ extension PackManifest {
             issues.append("backgroundWide and foregroundWide must be declared together")
         }
         if let cover { checkImage("cover", cover) }
+        // Rule 19: layers have unique ids and images (wide ones exactly
+        // when the pack has wide art).
+        var planes = Set<String>()
+        for (index, layer) in layers.enumerated() {
+            let field = "layers[\(index)] \"\(layer.id)\""
+            if !Self.isWellFormedID(layer.id) || layer.id == "background" || layer.id == SceneSpace.Layer.foreground
+                || !planes.insert(layer.id).inserted
+            {
+                issues.append("\(field): id must be lowercase a-z0-9, unique and not background or foreground")
+            }
+            checkImage("\(field) image", layer.image)
+            if let imageWide = layer.imageWide { checkImage("\(field) imageWide", imageWide) }
+            if (layer.imageWide == nil) != (backgroundWide == nil) {
+                issues.append("\(field): imageWide is needed exactly when the pack has wide art")
+            }
+        }
 
         // Rule 15: features have a well-formed id and areas inside the art.
         for (id, feature) in features.sorted(by: { $0.key < $1.key }) {
@@ -879,6 +905,11 @@ extension PackManifest {
         }
         if stories.isEmpty { issues.append("pack must contain at least one story") }
         if stickers.isEmpty { issues.append("pack must contain at least one sticker") }
+
+        // Rule 20: the space is consistent and covers the pack.
+        if let space {
+            issues += space.issues(planes: planes, stickers: stickerIDs, features: Set(features.keys))
+        }
 
         // Rule 16: narration packs are named for declared languages, one
         // well-formed ID each (the packager also checks each still matches
