@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>scenespace</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #2b2f36; color: #eee; font: 13px -apple-system, system-ui, sans-serif; overflow: hidden; }
+  #view { position: fixed; inset: 0; }
+  #panel { position: fixed; top: 10px; left: 10px; background: rgba(20, 22, 26, 0.85); padding: 10px 12px; border-radius: 8px; max-width: 300px; }
+  #panel h1 { font-size: 14px; margin: 0 0 8px; }
+  #panel button { font: inherit; margin: 2px 2px 2px 0; padding: 4px 8px; border-radius: 5px; border: 1px solid #555; background: #3a3f48; color: #eee; cursor: pointer; }
+  #panel button.on { background: #4b7bd6; border-color: #4b7bd6; }
+  #panel .row { margin: 4px 0; }
+  #legend span { display: inline-block; margin-right: 8px; }
+  #legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+  #info { position: fixed; bottom: 10px; left: 10px; background: rgba(20, 22, 26, 0.85); padding: 6px 10px; border-radius: 6px; font-variant-numeric: tabular-nums; }
+  .hidden { display: none; }
+  #problems { position: fixed; top: 10px; right: 10px; background: #8a2b2b; padding: 8px 12px; border-radius: 8px; max-width: 420px; display: none; }
+  #problems ul { margin: 4px 0 0; padding-left: 18px; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="view"></div>
+<div id="panel">
+  <h1 id="title">scenespace</h1>
+  <div class="row">
+    <button id="pov" class="on" title="C">Camera view</button>
+    <button id="orbit" title="C">Turn around</button>
+  </div>
+  <div class="row">
+    <button id="base" class="on" title="W">Base art</button>
+    <button id="wide" title="W">Wide art</button>
+  </div>
+  <div class="row">
+    <button id="art" class="on" title="A">Art</button>
+    <button id="places" title="P">Places</button>
+    <button id="layers" title="L">Layers</button>
+    <button id="cast" class="on" title="S">Stickers</button>
+    <button id="walk" class="on" title="Space">Walk</button>
+  </div>
+  <div class="row" id="legend"></div>
+  <div class="row" style="color:#999">H hides this · drag to turn, scroll to zoom</div>
+</div>
+<div id="info">move the pointer over the ground</div>
+<div id="problems"><b>space.json problems</b><ul></ul></div>
+<script type="module" src="viewer.js"></script>
+</body>
+</html>

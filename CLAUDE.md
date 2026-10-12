@@ -92,7 +92,10 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
   alternatives to pick from, prompts in `author/art/app/ui.json`;
   `localimage` = the art tools' `-local`: the same art from a local
   model (FLUX.2 [klein] on MLX) instead of OpenAI, config + server in
-  `author/localimage/`). API keys
+  `author/localimage/`; `scenespace` = the scene with depth — a camera
+  and ground fitted to the art, the foreground cut into layers at their
+  depths, places and sticker sizes in space — in
+  `author/art/<pack>/space.json`, with a 3D viewer). API keys
   live in `tools/.env` (`ELEVENLABS_API_KEY`, `OPENAI_API_KEY`).
 - `docs/` — deep documentation; reference it, don't duplicate it here.
   Art rules for every new pack (drawn size, animations that hold their
