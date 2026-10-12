@@ -4,13 +4,13 @@
   "kind": "action",
   "description": "the bear cub gives a big yawn and stretches its arms up, rubs its eyes and nods off to sleep sitting up, then wakes with a little start, blinks and smiles.",
   "stickerBox": {
-    "x": 0.14323,
+    "x": 0.20964,
     "y": 0.02995,
-    "width": 0.71224,
+    "width": 0.58073,
     "height": 0.9401
   },
   "pause": {
-    "frame": 6,
+    "frame": 7,
     "shows": "the bear cub fast asleep sitting up, eyes shut, head drooped"
   },
   "puppet": {
@@ -23,10 +23,10 @@
         "hold": 0.45,
         "bones": {
           "armL": {
-            "r": 150
+            "r": 60
           },
           "armR": {
-            "r": -160
+            "r": -60
           },
           "belly": {
             "sy": 1.03
@@ -46,14 +46,11 @@
         "hold": 0.55,
         "bones": {
           "armL": {
-            "r": 195,
-            "x": -12,
-            "y": -34
+            "r": 95
           },
           "armR": {
-            "r": -205,
-            "x": 12,
-            "y": -34
+            "r": -92,
+            "x": 6
           },
           "belly": {
             "sy": 1.06
@@ -63,7 +60,7 @@
             "y": -8
           },
           "root": {
-            "y": -3
+            "y": -4
           }
         },
         "slots": {
@@ -73,18 +70,15 @@
         }
       },
       {
-        "hold": 0.3,
+        "hold": 0.25,
         "bones": {
-          "armR": {
-            "r": 82,
-            "x": -18,
-            "y": -22
-          },
-          "head": {
-            "r": 3
+          "armL": {
+            "r": 80
           }
         },
         "slots": {
+          "armL": "none",
+          "armLf": "arm",
           "eyeL": "closed",
           "eyeR": "closed"
         }
@@ -92,22 +86,43 @@
       {
         "hold": 0.3,
         "bones": {
-          "armR": {
-            "r": 74,
-            "x": -12,
-            "y": -16
+          "armL": {
+            "r": 112,
+            "x": 8
           },
           "head": {
-            "r": 5
+            "r": -2
           }
         },
         "slots": {
+          "armL": "none",
+          "armLf": "arm",
           "eyeL": "closed",
           "eyeR": "closed"
         }
       },
       {
-        "hold": 0.4,
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": 106,
+            "x": 8,
+            "y": 3
+          },
+          "head": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLf": "arm",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "in",
         "bones": {
           "armL": {
             "r": -4
@@ -116,14 +131,11 @@
             "r": 4
           },
           "belly": {
-            "sy": 0.99
+            "sx": 1.02,
+            "sy": 0.97
           },
-          "face": {
-            "y": 3
-          },
-          "head": {
-            "r": 5,
-            "y": 8
+          "body": {
+            "y": 68
           }
         },
         "slots": {
@@ -145,19 +157,27 @@
             "sy": 0.97
           },
           "body": {
-            "r": 2
+            "r": 2,
+            "y": 95
           },
           "face": {
-            "y": 5
+            "y": 4
           },
           "head": {
             "r": 8,
-            "y": 14
+            "y": 12
+          },
+          "mouth": {
+            "y": -4
           }
         },
         "slots": {
           "eyeL": "closed",
-          "eyeR": "closed"
+          "eyeR": "closed",
+          "legL": "none",
+          "legR": "none",
+          "sitL": "sit",
+          "sitR": "sit"
         }
       },
       {
@@ -170,23 +190,31 @@
             "r": 6
           },
           "belly": {
-            "sx": 1.02,
-            "sy": 0.97
+            "sx": 1.03,
+            "sy": 0.96
           },
           "body": {
-            "r": 3
+            "r": 3,
+            "y": 95
           },
           "face": {
-            "y": 6
+            "y": 5
           },
           "head": {
             "r": 10,
-            "y": 18
+            "y": 16
+          },
+          "mouth": {
+            "y": -5
           }
         },
         "slots": {
           "eyeL": "closed",
-          "eyeR": "closed"
+          "eyeR": "closed",
+          "legL": "none",
+          "legR": "none",
+          "sitL": "sit",
+          "sitR": "sit"
         }
       },
       {
@@ -202,40 +230,81 @@
           "belly": {
             "sy": 1.04
           },
+          "body": {
+            "y": 81
+          },
           "head": {
             "r": -2,
             "y": -4
-          },
-          "root": {
-            "y": -12
           }
         },
         "slots": {
-          "browL": "none",
-          "browR": "none",
           "eyeL": "wide",
           "eyeR": "wide",
-          "mouth": "o"
+          "legL": "none",
+          "legR": "none",
+          "mouth": "o",
+          "sitL": "sit",
+          "sitR": "sit"
         }
       },
       {
         "hold": 0.15,
         "bones": {
-          "root": {}
+          "body": {
+            "y": 95
+          }
         },
         "slots": {
           "eyeL": "closed",
-          "eyeR": "closed"
+          "eyeR": "closed",
+          "legL": "none",
+          "legR": "none",
+          "sitL": "sit",
+          "sitR": "sit"
         }
       },
       {
-        "hold": 0.2
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "y": 95
+          }
+        },
+        "slots": {
+          "legL": "none",
+          "legR": "none",
+          "sitL": "sit",
+          "sitR": "sit"
+        }
       },
       {
-        "hold": 0.45,
+        "hold": 0.4,
         "bones": {
+          "body": {
+            "y": 95
+          },
           "head": {
             "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "sitL": "sit",
+          "sitR": "sit"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "y": 68
+          },
+          "head": {
+            "r": 2
           }
         },
         "slots": {
@@ -244,7 +313,22 @@
         }
       },
       {
-        "hold": 0.3
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
       }
     ]
   }

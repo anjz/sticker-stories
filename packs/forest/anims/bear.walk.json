@@ -2,18 +2,18 @@
   "id": "walk",
   "sticker": "bear",
   "kind": "move",
-  "description": "the bear cub toddles along to the right on its hind legs, swaying, then sits back down.",
+  "description": "the bear cub toddles along on its hind legs, swaying from side to side, then stops.",
   "stickerBox": {
-    "x": 0.14323,
+    "x": 0.20964,
     "y": 0.02995,
-    "width": 0.71224,
+    "width": 0.58073,
     "height": 0.9401
   },
   "loop": {
     "from": 1,
     "to": 4
   },
-  "facing": "right",
+  "facing": "left",
   "stride": 0.45,
   "puppet": {
     "rig": "anims/bear.rig.json",
@@ -25,30 +25,27 @@
         "hold": 0.17,
         "bones": {
           "armL": {
-            "r": 14
-          },
-          "armR": {
             "r": -8
           },
+          "armR": {
+            "r": -12
+          },
           "belly": {
-            "sy": 1.03
+            "sy": 1.02
           },
           "body": {
-            "r": 6
+            "r": 4,
+            "y": -5
           },
           "head": {
             "r": -3
           },
           "legL": {
-            "r": -12,
-            "x": 6,
-            "y": -16
+            "r": 10,
+            "y": -20
           },
           "legR": {
-            "r": 4
-          },
-          "root": {
-            "y": -16
+            "r": -3
           }
         }
       },
@@ -56,10 +53,18 @@
         "hold": 0.17,
         "bones": {
           "belly": {
-            "sy": 1.01
+            "sx": 1.01,
+            "sy": 0.98
           },
-          "root": {
-            "y": -8
+          "body": {
+            "y": 2
+          },
+          "legL": {
+            "r": 4,
+            "y": -3
+          },
+          "legR": {
+            "r": -2
           }
         }
       },
@@ -67,30 +72,27 @@
         "hold": 0.17,
         "bones": {
           "armL": {
-            "r": 8
+            "r": 12
           },
           "armR": {
-            "r": -14
+            "r": 8
           },
           "belly": {
-            "sy": 1.03
+            "sy": 1.02
           },
           "body": {
-            "r": -6
+            "r": -4,
+            "y": -5
           },
           "head": {
             "r": 3
           },
           "legL": {
-            "r": -4
+            "r": -3
           },
           "legR": {
-            "r": 12,
-            "x": -6,
-            "y": -16
-          },
-          "root": {
-            "y": -16
+            "r": 10,
+            "y": -20
           }
         }
       },
@@ -98,10 +100,18 @@
         "hold": 0.17,
         "bones": {
           "belly": {
-            "sy": 1.01
+            "sx": 1.01,
+            "sy": 0.98
           },
-          "root": {
-            "y": -8
+          "body": {
+            "y": 2
+          },
+          "legL": {
+            "r": -2
+          },
+          "legR": {
+            "r": 4,
+            "y": -3
           }
         }
       },
@@ -109,11 +119,8 @@
         "hold": 0.2,
         "bones": {
           "belly": {
-            "sx": 1.03,
-            "sy": 0.95
-          },
-          "root": {
-            "y": 3
+            "sx": 1.02,
+            "sy": 0.97
           }
         }
       },
