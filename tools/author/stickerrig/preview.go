@@ -156,13 +156,17 @@ const ease = { inOut: t => t*t*(3-2*t), "": t => t*t*(3-2*t), in: t => t*t, out:
 
 // A pose: per bone {r, x, y, sx, sy}, per slot the attachment shown.
 function poseAt(keys, i, t, face) {
-  const a = keys[i], b = keys[i2(keys, i)] || a;
+  const n = i2(keys, i), a = keys[i], b = keys[n] || a;
   const e = ease[a.ease || ""](t);
   const out = { bones: {}, slots: {} };
   for (const id in bones) {
     const p = (a.bones||{})[id] || {}, q = (b.bones||{})[id] || {};
     const l = (k, d) => (p[k] ?? d) + ((q[k] ?? d) - (p[k] ?? d)) * e;
-    out.bones[id] = { r: l("r", 0), x: l("x", 0), y: l("y", 0), sx: l("sx", 1), sy: l("sy", 1) };
+    // Round a loop's end back to its start, a whole turn is no turn: a
+    // roll keeps rolling on (as the app does).
+    const wrap = n < i ? 360 * Math.round(((p.r ?? 0) - (q.r ?? 0)) / 360) : 0;
+    const r = (p.r ?? 0) + ((q.r ?? 0) + wrap - (p.r ?? 0)) * e;
+    out.bones[id] = { r, x: l("x", 0), y: l("y", 0), sx: l("sx", 1), sy: l("sy", 1) };
   }
   const faceSlots = (rig.faces || {})[face] || {};
   rig.slots.forEach(s => out.slots[s.id] = (a.slots||{})[s.id] ?? faceSlots[s.id] ?? s.default);

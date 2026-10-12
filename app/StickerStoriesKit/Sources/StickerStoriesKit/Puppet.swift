@@ -196,14 +196,18 @@ public struct PuppetPose: Equatable, Sendable {
 
     /// The pose between two keys (`LiveTween`): bones eased from one to the
     /// other, slots as the first says — a swap happens on its key — then
-    /// the face's, then each slot's default.
+    /// the face's, then each slot's default. `wrapping`: `to` is a loop's
+    /// start after its end, where whole turns count for nothing, so a roll
+    /// (0°, 120°, 240°, round again) keeps rolling on instead of unwinding.
     public static func between(
-        _ from: PuppetKey, _ to: PuppetKey, progress: Double, face: String, rig: PuppetRig
+        _ from: PuppetKey, _ to: PuppetKey, progress: Double, face: String, rig: PuppetRig, wrapping: Bool = false
     ) -> PuppetPose {
         let t = from.ease.apply(progress)
         var bones: [String: BonePose] = [:]
         for bone in rig.bones {
-            let a = from.bones[bone.id] ?? .rest, b = to.bones[bone.id] ?? .rest
+            let a = from.bones[bone.id] ?? .rest
+            var b = to.bones[bone.id] ?? .rest
+            if wrapping { b.r += 360 * ((a.r - b.r) / 360).rounded() }
             bones[bone.id] = a.mixed(with: b, t)
         }
         return PuppetPose(bones: bones, slots: slots(for: from, face: face, rig: rig))

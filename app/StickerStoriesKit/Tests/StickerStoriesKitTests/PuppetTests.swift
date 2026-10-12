@@ -99,4 +99,16 @@ import Testing
         #expect(fly.tween(.move(travel: 1), at: 1.75) == LiveTween(frame: 4, next: 4, progress: 0.5))
         #expect(fly.tween(.move(travel: 1, stays: true), at: 5.1)?.frame == 1)
     }
+
+    @Test func aRollKeepsRollingRoundItsLoop() {
+        let rig = Self.rig
+        let bone = rig.bones[0].id
+        let last = PuppetKey(hold: 0.25, ease: .linear, bones: [bone: BonePose(r: 240)])
+        let first = PuppetKey(hold: 0.25, ease: .linear, bones: [bone: BonePose(r: 0)])
+        // Round the loop from 240° to its start: on to 300°, not back to 120°.
+        let on = PuppetPose.between(last, first, progress: 0.5, face: "normal", rig: rig, wrapping: true)
+        #expect(on.bones[bone]?.r == 300)
+        let back = PuppetPose.between(last, first, progress: 0.5, face: "normal", rig: rig)
+        #expect(back.bones[bone]?.r == 120)
+    }
 }

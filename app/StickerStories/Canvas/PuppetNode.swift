@@ -32,7 +32,8 @@ struct LoadedPuppet {
     func pose(_ tween: LiveTween, face: String) -> PuppetPose {
         guard keys.indices.contains(tween.frame) else { return .rest(face: face, rig: rig) }
         let next = keys.indices.contains(tween.next) ? tween.next : tween.frame
-        return .between(keys[tween.frame], keys[next], progress: tween.progress, face: face, rig: rig)
+        return .between(
+            keys[tween.frame], keys[next], progress: tween.progress, face: face, rig: rig, wrapping: next < tween.frame)
     }
 }
 
