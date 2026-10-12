@@ -78,19 +78,21 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
   the OpenAI Images API, plus each sticker's face variants (happy, sad…)
   and prop removal (the frog loses its lily pad, keeping its pixels),
   prompts in `author/art/<pack>/art.json`;
-  `stickeranim` = live-sticker sprite sheets — each sticker's action
-  (stories cue it with `{sticker:live}`, or `hold` it on its pause pose
-  and `resume` it) and its move (walk/hop/flight/sprout, played by
-  entrances), spec in `author/art/<pack>/anim.json`; `uiart` =
+  `stickerrig` = how stickers animate: puppets — a sticker cut into
+  parts on a skeleton (a parts sheet and a face sheet drawn from the
+  still), every animation a sidecar of keyframes: many actions per
+  sticker (stories cue `{fox:live jump}`, or `hold` one on its pause pose
+  and `resume` it) and its moves (walk/hop/flight/sprout, played by
+  entrances); a rig file per sticker in `author/art/<pack>/rigs/`,
+  shared actions in `stickerrig/templates/`, skill `/puppet`;
+  `stickeranim` = the older live-sticker sprite sheets (Beach, Moon
+  Base), spec in `author/art/<pack>/anim.json`; `uiart` =
   the app's own art — menu background, title, pack covers, the canvas
   hints' hand — as
   alternatives to pick from, prompts in `author/art/app/ui.json`;
-  `localimage` = the three art tools' `-local`: the same art from a local
+  `localimage` = the art tools' `-local`: the same art from a local
   model (FLUX.2 [klein] on MLX) instead of OpenAI, config + server in
-  `author/localimage/`; `stickerrig` = puppets: a sticker cut into
-  parts on a skeleton (two OpenAI sheets), its animations as keyframes
-  the app poses instead of sprite sheets, spec in
-  `author/art/<pack>/rig.json`, skill `/puppet`). API keys
+  `author/localimage/`). API keys
   live in `tools/.env` (`ELEVENLABS_API_KEY`, `OPENAI_API_KEY`).
 - `docs/` — deep documentation; reference it, don't duplicate it here.
   Art rules for every new pack (drawn size, animations that hold their

@@ -331,12 +331,13 @@ app never parses text.
 
 ## Live animations
 
-Every sticker carries a **live action**: a short frame sequence drawn from
-its own art — the snail hides in its shell, the frog catches a fly, the
-bear cub yawns and nods off (`docs/pack-format.md`, "Live animations") —
-and a **move** that entrances play ("Entrances" below). Each action's
-sidecar says what it shows (`description`), how long it plays (`hold`s,
-2–4 s) and, for most, the frame it can pause on (`pause.shows`: "the
+Every sticker carries **live actions** — its puppet's keyframes (older
+packs: frames drawn from its art): the snail hides in its shell, the frog
+catches a fly, the bear cub yawns and nods off, and most characters also
+jump, nod, laugh, wave… (`docs/pack-format.md`, "Live animations",
+"Puppets") — and a **move** that entrances play ("Entrances" below). Each
+action's sidecar says what it shows (`description`), how long it plays
+(1–5 s) and, for many, the key it can pause on (`pause.shows`: "the
 snail tucked inside its shell"); `storycheck` lists them.
 
 - Not an effect: no parameters, no repeat. The trigger is
@@ -356,10 +357,12 @@ snail tucked inside its shell"); `storycheck` lists them.
   fight it; `storyaudio` warns about them. While it is held on its pause
   frame, effects are fine; a face change waits underneath and shows when
   it resumes (`storycheck` warns).
-- A story loads only the sheets its triggers name for stickers on the
-  canvas, and the moves of the stickers it brings in, off the main thread
-  as play starts, and drops them when it ends. A trigger whose sheet is
-  not in yet shows the still sticker until it is.
+- A story loads only the animations its triggers name for stickers on
+  the canvas (a puppet's rig and atlas once, however many of its
+  animations play; a sheet each), and the moves of the stickers it brings
+  in, off the main thread as play starts, and drops them when it ends. A
+  trigger whose animation is not in yet shows the still sticker until it
+  is.
 - **Particles from frames**: an animation's sidecar can say a frame fires
   a burst of `dust-puff`, `spray` or `sparks` from a point of the sticker
   (`docs/pack-format.md`, the sidecar's `particles`) — a landing kicks up

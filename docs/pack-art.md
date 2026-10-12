@@ -3,11 +3,12 @@
 What every sticker pack's art must get right, collected from building Forest
 and Moon Base. The tools enforce what they can; the rest is on the author.
 How the tools work: `tools/author/stickerart/README.md` (stickers, faces,
-scene) and `tools/author/stickeranim/README.md` (live animations). The
-format: `docs/pack-format.md`. The effects: `docs/effects.md`.
+scene) and `tools/author/stickerrig/README.md` (puppets: how stickers
+animate; Beach and Moon Base still use `tools/author/stickeranim`'s sprite
+sheets). The format: `docs/pack-format.md`. The effects: `docs/effects.md`.
 
-A pack has **25 stickers**, every one with a size class, a stage, one
-action and one move.
+A pack has **25 stickers**, every one with a size class, a stage, a
+puppet with many actions, and its moves.
 
 ## 1. Stickers are drawn at their size
 
@@ -40,7 +41,28 @@ action and one move.
 - Adding any field to the face box changes every fingerprint and re-renders
   every variant (~$6 a pack): decide the boxes before rendering.
 
-## 3. Animations hold their size
+## 3. Puppets
+
+Stickers animate as puppets (`/puppet` skill): each one's drawing cut
+into parts on a skeleton, every animation keyframes. What the art needs:
+
+- **Draw each still once and use it**, and draw it in a pose that rigs
+  well: the whole body in view, limbs clear of the body where it can be,
+  a front or three-quarter view; props the character uses (a stick, a
+  nut) apart from its paws where possible.
+- **Design the skeleton before the sheets**: the joints, which parts
+  turn on them, and the poses a turn cannot make (a wing open, hands
+  clasped, a curled-up ball) — each one a piece on the parts sheet.
+- **One parts sheet and one face sheet**, drawn from the still, every
+  piece apart with rounded joint ends; redraw only what is broken.
+- **Many actions**: they cost nothing, so every living character gets
+  the shared ones its body can do (jump, nod, laugh, wave…) and its own.
+- **Motions stay small and unhurried**, start and end at rest, and never
+  show a limb's joint end. Travel is the app's job, as below.
+- The puppet lies on the still at rest (the preview's mismatch view):
+  the app hands over from one to the other once per story.
+
+## 3b. Sprite sheets hold their size (Beach, Moon Base)
 
 The rule: **the sticker is the same size in every frame**, and only what
 moves, moves.
@@ -106,7 +128,8 @@ moves, moves.
 2. Cast (25) with size classes and stages in `art.json` → render → review
    all together on the scene (a contact sheet at their drawn sizes).
 3. Faces → review.
-4. Animations: pilot two or three stickers → review → the rest → review.
+4. Puppets: skeletons and sheets for all → pilot two or three stickers
+   → review → the rest → review.
 5. Scene and features → measure → install → check on an iPhone and an
    iPad simulator.
 6. Only then stories (`/author-stories`) and narration (`storyaudio`).
