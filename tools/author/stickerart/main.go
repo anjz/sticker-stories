@@ -256,6 +256,13 @@ type sceneLayer struct {
 	// Wide is extra direction for widening it to the 2:1 rendition
 	// (optional), like ForegroundWide.
 	Wide string `json:"wide,omitempty"`
+	// Area (optional) places a small element — the reeds at a pond's far
+	// edge — instead of painting the whole plane: it is painted on its own
+	// as a cut-out, like a sticker, and laid into this box on the wide
+	// picture (fractions, origin top-left, like an edit's area), its base
+	// on the box's bottom edge, as big as fits. The model does not keep a
+	// small element's size or place in a whole picture.
+	Area *stickerimg.FaceBox `json:"area,omitempty"`
 }
 
 func main() {
@@ -1171,6 +1178,10 @@ func (r *renderer) sceneLayer(l sceneLayer, behindFP string, behind []string, sh
 	wideFP := hashOf(fp, "wide", l.Wide)
 	base, wideOut := r.out("art", "layer-"+l.ID+".png"), r.out("art", "layer-"+l.ID+"-wide.png")
 	name := "layer " + l.ID
+	if l.Area != nil {
+		fp = hashOf(behindFP, "placed layer", placedLayerVersion, l.ID, l.Prompt, r.o.quality)
+		return fp, r.placedLayer(l, fp, base, wideOut, sheet)
+	}
 	if r.upToDate(base, fp) && r.upToDate(wideOut, wideFP) {
 		r.say("· %s up to date", name)
 		return fp, nil
@@ -1221,6 +1232,106 @@ func (r *renderer) sceneLayer(l sceneLayer, behindFP string, behind []string, sh
 	r.say("✓ %s + wide", name)
 	return fp, nil
 }
+
+// placedLayer paints a layer's element on its own and lays it into its
+// area (sceneLayer.Area). The element's drawing is kept, keyed by its
+// prompt, so moving the area only lays it again.
+func (r *renderer) placedLayer(l sceneLayer, fp, base, wideOut string, sheet []byte) error {
+	name := "layer " + l.ID
+	placedFP := hashOf(fp, "area", fmt.Sprint(*l.Area))
+	if r.upToDate(base, placedFP) && r.upToDate(wideOut, placedFP) {
+		r.say("· %s up to date", name)
+		return nil
+	}
+	drawing := r.out("art", "layer-"+l.ID+".element.png")
+	if !r.upToDate(drawing, fp) {
+		if r.o.dry {
+			r.planned = append(r.planned, fmt.Sprintf("%s element (%dx%d, transparent), laid into its area", name, stickerGenPx, stickerGenPx))
+			return nil
+		}
+		r.say("▶ %s", name)
+		prompt := fmt.Sprintf("%s\n\nUsing the attached style sheet as the exact reference for style, palette and line, paint one element of a scene's background, to be laid into the scene: %s Single element, centred, filling most of the frame, whole and not cut off, its base at the bottom; no ground or water around it beyond its own base, no shadow, no text — a fully transparent background.", r.c.cfg.Style, l.Prompt)
+		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: fmt.Sprintf("%dx%d", stickerGenPx, stickerGenPx), Quality: r.o.quality, Background: "transparent", References: [][]byte{sheet}})
+		if err != nil {
+			return fmt.Errorf("%s: %w", name, err)
+		}
+		if err := os.WriteFile(drawing, img.PNG, 0o644); err != nil {
+			return err
+		}
+		r.done(drawing, fp)
+		r.say("  … %s (%s)", name, r.charge(img.Usage))
+	} else if r.o.dry {
+		r.planned = append(r.planned, name+" (kept element laid into its area, no API call)")
+		return nil
+	}
+	data, err := os.ReadFile(drawing)
+	if err != nil {
+		return err
+	}
+	element, err := stickerimg.Decode(data)
+	if err != nil {
+		return err
+	}
+	wide, err := layInto(element, *l.Area, wideW, baseH)
+	if err != nil {
+		return fmt.Errorf("%s: %w", name, err)
+	}
+	if err := r.splitWideImage(wide, base, wideOut); err != nil {
+		return err
+	}
+	r.done(base, placedFP)
+	r.done(wideOut, placedFP)
+	r.say("✓ %s laid into its area", name)
+	return nil
+}
+
+// layInto lays the element's drawing (its opaque part) into the box on a
+// transparent w×h picture: as big as fits, centred across, its base on the
+// box's bottom edge.
+func layInto(element *image.RGBA, box stickerimg.FaceBox, w, h int) (*image.RGBA, error) {
+	eb := element.Bounds()
+	x0, y0, x1, y1 := eb.Max.X, eb.Max.Y, eb.Min.X, eb.Min.Y
+	for y := eb.Min.Y; y < eb.Max.Y; y++ {
+		for x := eb.Min.X; x < eb.Max.X; x++ {
+			if element.RGBAAt(x, y).A >= 16 {
+				x0, y0, x1, y1 = min(x0, x), min(y0, y), max(x1, x+1), max(y1, y+1)
+			}
+		}
+	}
+	if x1 <= x0 || y1 <= y0 {
+		return nil, errors.New("the element came back empty")
+	}
+	drawn := element.SubImage(image.Rect(x0, y0, x1, y1)).(*image.RGBA)
+	bw, bh := box.Width*float64(w), box.Height*float64(h)
+	k := math.Min(bw/float64(x1-x0), bh/float64(y1-y0))
+	sw, sh := int(math.Round(float64(x1-x0)*k)), int(math.Round(float64(y1-y0)*k))
+	scaled := stickerimg.Centre(drawn, drawn.Bounds().Dx())
+	// Halve first while it is more than twice as big: one bilinear step
+	// over a large shrink would skip pixels and leave jagged edges.
+	for scaled.Bounds().Dx() >= 2*sw && scaled.Bounds().Dy() >= 2*sh {
+		scaled = stickerimg.Resize(scaled, scaled.Bounds().Dx()/2, scaled.Bounds().Dy()/2)
+	}
+	scaled = stickerimg.Resize(scaled, sw, sh)
+	out := image.NewRGBA(image.Rect(0, 0, w, h))
+	left := int(math.Round(box.X*float64(w) + (bw-float64(sw))/2))
+	top := int(math.Round((box.Y+box.Height)*float64(h))) - sh
+	draw.Draw(out, image.Rect(left, top, left+sw, top+sh), scaled, image.Point{}, draw.Over)
+	return out, nil
+}
+
+// splitWideImage writes a transparent wide plane and the base cut from its
+// centre.
+func (r *renderer) splitWideImage(wide *image.RGBA, basePath, widePath string) error {
+	data, err := stickerimg.Encode(wide)
+	if err != nil {
+		return err
+	}
+	return r.splitWide(data, basePath, widePath, true)
+}
+
+// placedLayerVersion changes whenever a placed layer's prompt wording or
+// laying changes.
+const placedLayerVersion = "1"
 
 // layerVersion changes whenever a layer's fixed prompt wording changes.
 // 2: a cut-out — the scene is a guide, not to be copied.

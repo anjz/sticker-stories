@@ -46,7 +46,13 @@ go run ./packager validate ../packs/forest
   back more than 70 % opaque fails, render it again), widened like the
   foreground (`wide` is extra direction for that), and written to
   `out/art/layer-<id>.png` / `-wide.png`; the foreground is then painted
-  over them all. With layers the background is only the far part of the
+  over them all. A small element (Forest's reeds at the pond's far
+  edge) takes an `area` instead (on the wide picture, fractions, origin
+  top-left, like an edit's): it is painted on its own as a cut-out, like
+  a sticker, and laid into that box, its base on the box's bottom edge —
+  the model does not keep a small element's size or place when it paints
+  a whole plane. Its drawing is kept (`out/art/layer-<id>.element.png`),
+  so moving the area costs nothing. With layers the background is only the far part of the
   scene, with no framing elements. The app cannot draw layers yet, so
   `install` leaves a layered scene's planes out of the pack.
 - `scene.layout` (optional): an image, relative to the art directory, whose
