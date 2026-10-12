@@ -245,35 +245,6 @@ public struct SceneSpace: Codable, Equatable, Sendable {
         v < horizon && groundDepth(atArtY: v) <= back + 1e-9
     }
 
-    /// The depth of whatever stands at art point `feet`: the ground's there,
-    /// or, up off the ground, the depth of the place it is at (`elevated`).
-    public func depth(atFeet feet: Point, wide: Bool = false) -> Double {
-        isGround(artY: feet.v) ? max(groundDepth(atArtY: feet.v), 0.05) : elevated(at: feet, wide: wide)
-    }
-
-    /// The depth of something up off the ground at art point `feet`: just
-    /// in front of the layer of the nearest branch or bark it is at (a line
-    /// of a place, within `reach`), else in the open air it is in (the
-    /// middle of its depths), else in the first open air, else at the front
-    /// of where stickers stand.
-    public func elevated(at feet: Point, wide: Bool = false, reach: Double = 0.08) -> Double {
-        var best: (distance: Double, depth: Double)?
-        for (_, place) in places.sorted(by: { $0.key < $1.key }) {
-            let lines = (wide ? place.wideLines : nil) ?? place.lines ?? []
-            for line in lines {
-                guard let depth = layerDepth(line.layer, wide: wide) else { continue }
-                let d = Self.distance(feet, toPolyline: line.points)
-                if d <= reach, d < (best?.distance ?? .infinity) { best = (d, depth - Self.inFront) }
-            }
-        }
-        if let best { return best.depth }
-        let airs = places.sorted(by: { $0.key < $1.key }).compactMap(\.value.air).filter { $0.depth.count == 2 }
-        if let air = airs.first(where: { Self.contains($0.area, feet) }) ?? airs.first {
-            return (air.depth[0] + air.depth[1]) / 2
-        }
-        return stand.near
-    }
-
     /// The depth of the space's layer `id` on the art drawn.
     public func layerDepth(_ id: String, wide: Bool = false) -> Double? {
         layers.first { $0.id == id }.map { wide ? ($0.wide?.depth ?? $0.depth) : $0.depth }
@@ -282,13 +253,6 @@ public struct SceneSpace: Codable, Equatable, Sendable {
     /// The depth a scene plane is drawn at: its nearest piece's.
     public func planeDepth(_ plane: String, wide: Bool = false) -> Double? {
         layers.filter { $0.plane == plane }.map { wide ? ($0.wide?.depth ?? $0.depth) : $0.depth }.min()
-    }
-
-    /// The depth `along` the way from `a` to `b` (0…1), as the screen moves
-    /// there: evenly in 1 / depth, the way a point on the ground rises up
-    /// the picture.
-    public static func mix(_ a: Double, _ b: Double, along k: Double) -> Double {
-        1 / (1 / a + (1 / b - 1 / a) * min(max(k, 0), 1))
     }
 
     /// How much nearer than what it is with (or the tree it perches on) a

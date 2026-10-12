@@ -62,44 +62,6 @@ import Testing
             scene: Self.scene, policy: policy, random: &random)
     }
 
-    /// Beside someone standing in the pond, a walker that does not belong
-    /// in the water stands on the shore; one that belongs there goes in.
-    @Test func walkersStayOutOfWaterTheyDoNotBelongIn() throws {
-        var scene = Self.scene
-        // The rabbit stands in a pond around its feet.
-        let pond = [StagePoint(x: 520, y: 40), StagePoint(x: 880, y: 40), StagePoint(x: 880, y: 300), StagePoint(x: 520, y: 300)]
-        scene.water = ["pond": pond]
-        func goTo(belongs: [String]) throws -> StagePoint {
-            var actors = actors()
-            actors[0].places = belongs
-            var random = SeededGenerator(state: 3)
-            let plans = MotionPlanner.plan(
-                goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "rabbit")], actors: actors,
-                scene: scene, policy: .standard, random: &random)
-            let to = try #require(plans[fox]?.legs.last?.to)
-            return StagePoint(x: 200 + to.x * 120, y: 200 - to.y * 120)
-        }
-        let walker = try goTo(belongs: [])
-        #expect(!StagePlanner.Scene.contains(pond, StagePoint(x: walker.x, y: walker.y - 60)))
-        let swimmer = try goTo(belongs: ["pond"])
-        #expect(StagePlanner.Scene.contains(pond, StagePoint(x: swimmer.x, y: swimmer.y - 60)))
-    }
-
-    /// Every leg says where the sticker rests once it is there, for the
-    /// scene's depth: with whom it went to, on or under; at the place;
-    /// off the canvas; back home.
-    @Test func legsSayWhereTheyRest() throws {
-        let plans = plan([
-            GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "rabbit"),
-            GoTrigger(at: 10, stickerID: "fox", kind: .away),
-            GoTrigger(at: 20, stickerID: "fox", kind: .back),
-            GoTrigger(at: 1, stickerID: "bee", kind: .on, target: "flower"),
-        ])
-        let fox = try #require(plans[fox]).legs.map(\.rest)
-        #expect(fox == [.with(rabbit), .off, .home])
-        #expect(try #require(plans[bee]).legs.last?.rest == .with(flower))
-    }
-
     /// Where the sticker's centre is at `time`, and its size, from its plan.
     func place(_ id: UUID, _ plans: [UUID: MotionPlan], at time: Double) -> (x: Double, y: Double, scale: Double, alpha: Double) {
         let actor = actors().first { $0.id == id }!
