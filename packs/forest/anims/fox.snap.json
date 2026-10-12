@@ -1,0 +1,232 @@
+{
+  "id": "snap",
+  "sticker": "fox",
+  "kind": "action",
+  "description": "the fox looks up, springs up and snaps its jaws at something just overhead, twice, then lands with a grin.",
+  "stickerBox": {
+    "x": 0.06901,
+    "y": 0.02995,
+    "width": 0.86198,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/fox.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.93
+          },
+          "earL": {
+            "r": 6
+          },
+          "earR": {
+            "r": -6
+          },
+          "head": {
+            "r": -12
+          },
+          "root": {
+            "y": 8
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": -40
+          },
+          "armR": {
+            "r": -40
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -22
+          },
+          "legL": {
+            "r": 14
+          },
+          "legR": {
+            "r": 16
+          },
+          "root": {
+            "y": -62
+          },
+          "tail": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": -40
+          },
+          "armR": {
+            "r": -40
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -20
+          },
+          "legL": {
+            "r": 14
+          },
+          "legR": {
+            "r": 16
+          },
+          "root": {
+            "y": -66
+          },
+          "tail": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.92
+          },
+          "head": {
+            "r": -12
+          },
+          "root": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": -34
+          },
+          "armR": {
+            "r": -34
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": -24
+          },
+          "legL": {
+            "r": 10
+          },
+          "legR": {
+            "r": 12
+          },
+          "root": {
+            "y": -44
+          },
+          "tail": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": -34
+          },
+          "armR": {
+            "r": -34
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": -22
+          },
+          "legL": {
+            "r": 10
+          },
+          "legR": {
+            "r": 12
+          },
+          "root": {
+            "y": -46
+          },
+          "tail": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.94
+          },
+          "root": {
+            "y": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.45,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

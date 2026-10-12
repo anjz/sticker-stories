@@ -1,0 +1,181 @@
+{
+  "id": "scratch-head",
+  "sticker": "badger",
+  "kind": "action",
+  "description": "the badger tips its head and scratches it with a front paw, puzzled.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.16667,
+    "width": 0.9401,
+    "height": 0.66667
+  },
+  "pause": {
+    "frame": 6,
+    "shows": "the badger scratching its head with a front paw, puzzled"
+  },
+  "puppet": {
+    "rig": "anims/badger.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 6
+          },
+          "head": {
+            "r": 8,
+            "y": -4
+          },
+          "legFF": {
+            "r": 136,
+            "x": -40,
+            "y": -140
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 6
+          },
+          "head": {
+            "r": 9,
+            "y": -4
+          },
+          "legFF": {
+            "r": 128,
+            "x": -40,
+            "y": -140
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 6
+          },
+          "head": {
+            "r": 8,
+            "y": -4
+          },
+          "legFF": {
+            "r": 142,
+            "x": -40,
+            "y": -140
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 6
+          },
+          "head": {
+            "r": 9,
+            "y": -4
+          },
+          "legFF": {
+            "r": 128,
+            "x": -40,
+            "y": -140
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 6
+          },
+          "head": {
+            "r": 8,
+            "y": -4
+          },
+          "legFF": {
+            "r": 142,
+            "x": -40,
+            "y": -140
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 6
+          },
+          "head": {
+            "r": 10,
+            "y": -4
+          },
+          "legFF": {
+            "r": 136,
+            "x": -40,
+            "y": -140
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "inOut",
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

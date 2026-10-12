@@ -1836,6 +1836,541 @@
     {
       "id": "twirl",
       "template": "common.twirl"
+    },
+    {
+      "id": "tap-hoof",
+      "kind": "action",
+      "description": "the fawn lifts a front hoof and taps the ground with it, tap, tap.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.4,
+          "ease": "inOut",
+          "bones": {
+            "legFN": {
+              "r": 24,
+              "y": -16,
+              "sy": 0.96
+            },
+            "head": {
+              "r": -6
+            },
+            "body": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "ease": "in",
+          "bones": {
+            "legFN": {
+              "r": 8,
+              "y": -2
+            },
+            "head": {
+              "r": -8
+            },
+            "belly": {
+              "sy": 0.99
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "legFN": {
+              "r": 24,
+              "y": -16,
+              "sy": 0.96
+            },
+            "head": {
+              "r": -6
+            },
+            "body": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "ease": "in",
+          "bones": {
+            "legFN": {
+              "r": 8,
+              "y": -2
+            },
+            "head": {
+              "r": -8
+            },
+            "belly": {
+              "sy": 0.99
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "legFN": {
+              "r": 18,
+              "y": -10
+            },
+            "head": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "inOut",
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "look-up",
+      "kind": "action",
+      "description": "the fawn lifts its head high and gazes up at the sky, then looks back down with a smile.",
+      "pause": {
+        "frame": 3,
+        "shows": "the fawn with its head lifted high, gazing up at the sky"
+      },
+      "keys": [
+        {
+          "hold": 0.25
+        },
+        {
+          "hold": 0.6,
+          "ease": "inOut",
+          "bones": {
+            "head": {
+              "r": 22,
+              "y": -4
+            },
+            "face": {
+              "y": -4
+            },
+            "body": {
+              "r": 2
+            },
+            "earL": {
+              "r": -10
+            },
+            "earR": {
+              "r": 10
+            },
+            "tail": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "browL": "up",
+            "browR": "up"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "r": 24,
+              "y": -5
+            },
+            "face": {
+              "y": -4
+            },
+            "body": {
+              "r": 2
+            },
+            "earL": {
+              "r": -10
+            },
+            "earR": {
+              "r": 10
+            },
+            "tail": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "browL": "up",
+            "browR": "up"
+          }
+        },
+        {
+          "hold": 0.9,
+          "bones": {
+            "head": {
+              "r": 24,
+              "y": -5
+            },
+            "face": {
+              "y": -4
+            },
+            "body": {
+              "r": 2
+            },
+            "earL": {
+              "r": -10
+            },
+            "earR": {
+              "r": 10
+            },
+            "tail": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "mouth": "o",
+            "browL": "up",
+            "browR": "up"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "head": {
+              "r": 22,
+              "y": -4
+            },
+            "face": {
+              "y": -4
+            },
+            "body": {
+              "r": 2
+            },
+            "earL": {
+              "r": -10
+            },
+            "earR": {
+              "r": 10
+            },
+            "tail": {
+              "r": -8
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "ease": "inOut",
+          "bones": {
+            "head": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "stamp",
+      "kind": "action",
+      "description": "the fawn frowns and stamps a front hoof crossly on the ground, stamp, stamp.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "browL": {
+              "r": 22,
+              "y": 4
+            },
+            "browR": {
+              "r": -22,
+              "y": 4
+            },
+            "head": {
+              "r": -6
+            },
+            "earL": {
+              "r": 10
+            },
+            "earR": {
+              "r": -10
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "browL": {
+              "r": 22,
+              "y": 4
+            },
+            "browR": {
+              "r": -22,
+              "y": 4
+            },
+            "legFN": {
+              "r": 30,
+              "y": -24,
+              "sy": 0.94
+            },
+            "head": {
+              "r": -8,
+              "x": -2
+            },
+            "body": {
+              "r": 1
+            },
+            "earL": {
+              "r": 14
+            },
+            "earR": {
+              "r": -14
+            },
+            "tail": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.1,
+          "ease": "in",
+          "bones": {
+            "browL": {
+              "r": 22,
+              "y": 4
+            },
+            "browR": {
+              "r": -22,
+              "y": 4
+            },
+            "legFN": {
+              "r": 0,
+              "y": 2
+            },
+            "root": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.02
+            },
+            "head": {
+              "r": -10,
+              "y": 4
+            },
+            "earL": {
+              "r": 18
+            },
+            "earR": {
+              "r": -18
+            },
+            "tail": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "browL": {
+              "r": 22,
+              "y": 4
+            },
+            "browR": {
+              "r": -22,
+              "y": 4
+            },
+            "legFN": {
+              "r": 0,
+              "y": 2
+            },
+            "root": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.02
+            },
+            "head": {
+              "r": -10,
+              "y": 4
+            },
+            "earL": {
+              "r": 18
+            },
+            "earR": {
+              "r": -18
+            },
+            "tail": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "browL": {
+              "r": 22,
+              "y": 4
+            },
+            "browR": {
+              "r": -22,
+              "y": 4
+            },
+            "legFN": {
+              "r": 30,
+              "y": -24,
+              "sy": 0.94
+            },
+            "head": {
+              "r": -8,
+              "x": -2
+            },
+            "body": {
+              "r": 1
+            },
+            "earL": {
+              "r": 14
+            },
+            "earR": {
+              "r": -14
+            },
+            "tail": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.1,
+          "ease": "in",
+          "bones": {
+            "browL": {
+              "r": 22,
+              "y": 4
+            },
+            "browR": {
+              "r": -22,
+              "y": 4
+            },
+            "legFN": {
+              "r": 0,
+              "y": 2
+            },
+            "root": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.02
+            },
+            "head": {
+              "r": -10,
+              "y": 4
+            },
+            "earL": {
+              "r": 18
+            },
+            "earR": {
+              "r": -18
+            },
+            "tail": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "browL": {
+              "r": 22,
+              "y": 4
+            },
+            "browR": {
+              "r": -22,
+              "y": 4
+            },
+            "legFN": {
+              "r": 0,
+              "y": 2
+            },
+            "root": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.02
+            },
+            "head": {
+              "r": -10,
+              "y": 4
+            },
+            "earL": {
+              "r": 18
+            },
+            "earR": {
+              "r": -18
+            },
+            "tail": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.4,
+          "ease": "inOut",
+          "bones": {
+            "head": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
     }
   ]
 }

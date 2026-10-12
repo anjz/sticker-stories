@@ -1842,6 +1842,525 @@
           "hold": 0.2
         }
       ]
+    },
+    {
+      "id": "scoop",
+      "kind": "action",
+      "description": "the duckling dips its beak down into the water and flicks it up, splish, then does it again and gives a happy shake of its head.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.4,
+          "ease": "inOut",
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "head": {
+              "r": 16,
+              "x": 14,
+              "y": 36
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "body": {
+              "r": 10
+            },
+            "head": {
+              "r": 26,
+              "x": 28,
+              "y": 80
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.18,
+          "ease": "out",
+          "bones": {
+            "body": {
+              "r": -2
+            },
+            "head": {
+              "r": -16,
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "wingL": {
+              "r": 12
+            },
+            "wingR": {
+              "r": -12
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "inOut",
+          "bones": {
+            "body": {
+              "r": 10
+            },
+            "head": {
+              "r": 26,
+              "x": 28,
+              "y": 80
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.18,
+          "ease": "out",
+          "bones": {
+            "body": {
+              "r": -2
+            },
+            "head": {
+              "r": -16,
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "wingL": {
+              "r": 12
+            },
+            "wingR": {
+              "r": -12
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": 5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "head": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ],
+      "particles": [
+        {
+          "frame": 3,
+          "effect": "spray",
+          "x": 0.8,
+          "y": 0.6,
+          "intensity": 0.35
+        },
+        {
+          "frame": 6,
+          "effect": "spray",
+          "x": 0.8,
+          "y": 0.6,
+          "intensity": 0.35
+        }
+      ]
+    },
+    {
+      "id": "dip-foot",
+      "kind": "action",
+      "description": "the duckling carefully stretches one foot forward and dips it down, then the other, testing, before it stands happily on both feet.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.4,
+          "ease": "inOut",
+          "bones": {
+            "body": {
+              "r": -4
+            },
+            "footR": {
+              "x": 34,
+              "y": -30,
+              "r": -14
+            },
+            "head": {
+              "r": 6,
+              "y": 2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "r": -3
+            },
+            "footR": {
+              "x": 42,
+              "y": -6,
+              "r": 8
+            },
+            "head": {
+              "r": 10,
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "beak": "little"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "body": {
+              "r": -4
+            },
+            "footR": {
+              "x": 34,
+              "y": -30,
+              "r": -14
+            },
+            "head": {
+              "r": 6,
+              "y": 2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "ease": "inOut",
+          "bones": {
+            "body": {
+              "r": 4
+            },
+            "footL": {
+              "x": 30,
+              "y": -40,
+              "r": -18
+            },
+            "head": {
+              "r": 6,
+              "y": 2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "r": 4
+            },
+            "footL": {
+              "x": 36,
+              "y": -4,
+              "r": 6
+            },
+            "head": {
+              "r": 10,
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "beak": "little"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "body": {
+              "r": 4
+            },
+            "footL": {
+              "x": 30,
+              "y": -40,
+              "r": -18
+            },
+            "head": {
+              "r": 6,
+              "y": 2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.97
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ],
+      "particles": [
+        {
+          "frame": 2,
+          "effect": "spray",
+          "x": 0.78,
+          "y": 0.87,
+          "intensity": 0.2
+        },
+        {
+          "frame": 6,
+          "effect": "spray",
+          "x": 0.48,
+          "y": 0.89,
+          "intensity": 0.2
+        }
+      ]
+    },
+    {
+      "id": "peck",
+      "kind": "action",
+      "description": "the duckling bends down and nibbles at the grass with its beak, peck, peck, peck, then looks up happily.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.45,
+          "ease": "inOut",
+          "bones": {
+            "body": {
+              "r": 12
+            },
+            "head": {
+              "r": 30,
+              "x": 34,
+              "y": 125
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "body": {
+              "r": 13
+            },
+            "head": {
+              "r": 42,
+              "x": 34,
+              "y": 137
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "beak": "little"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "body": {
+              "r": 13
+            },
+            "head": {
+              "r": 30,
+              "x": 34,
+              "y": 125
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "body": {
+              "r": 13
+            },
+            "head": {
+              "r": 42,
+              "x": 34,
+              "y": 137
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "beak": "little"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "body": {
+              "r": 13
+            },
+            "head": {
+              "r": 30,
+              "x": 34,
+              "y": 125
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "body": {
+              "r": 13
+            },
+            "head": {
+              "r": 42,
+              "x": 34,
+              "y": 137
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "beak": "little"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "r": 13
+            },
+            "head": {
+              "r": 30,
+              "x": 34,
+              "y": 125
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "ease": "inOut",
+          "bones": {
+            "head": {
+              "r": -5,
+              "y": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.25
+        }
+      ]
     }
   ]
 }

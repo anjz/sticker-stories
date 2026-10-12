@@ -1,0 +1,187 @@
+{
+  "id": "wipe-nose",
+  "sticker": "badger",
+  "kind": "action",
+  "description": "the badger lifts its head and rubs the earth off its nose with a front paw, then grins.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.16667,
+    "width": 0.9401,
+    "height": 0.66667
+  },
+  "puppet": {
+    "rig": "anims/badger.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 18,
+            "y": -16
+          },
+          "legBF": {
+            "r": -3
+          },
+          "legBN": {
+            "r": -3
+          },
+          "legFN": {
+            "r": 72,
+            "x": -165,
+            "y": 70
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 18,
+            "y": -16
+          },
+          "legBF": {
+            "r": -3
+          },
+          "legBN": {
+            "r": -3
+          },
+          "legFN": {
+            "r": 80,
+            "x": -192,
+            "y": 70
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 18,
+            "y": -16
+          },
+          "legBF": {
+            "r": -3
+          },
+          "legBN": {
+            "r": -3
+          },
+          "legFN": {
+            "r": 68,
+            "x": -155,
+            "y": 70
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 18,
+            "y": -16
+          },
+          "legBF": {
+            "r": -3
+          },
+          "legBN": {
+            "r": -3
+          },
+          "legFN": {
+            "r": 80,
+            "x": -192,
+            "y": 70
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 18,
+            "y": -16
+          },
+          "legBF": {
+            "r": -3
+          },
+          "legBN": {
+            "r": -3
+          },
+          "legFN": {
+            "r": 68,
+            "x": -155,
+            "y": 70
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "inOut",
+        "bones": {
+          "head": {
+            "r": 4,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.4,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

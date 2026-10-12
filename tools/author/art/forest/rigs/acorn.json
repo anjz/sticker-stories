@@ -982,6 +982,653 @@
     {
       "id": "twirl",
       "template": "common.twirl"
+    },
+    {
+      "id": "flap-arms",
+      "kind": "action",
+      "description": "the acorn flaps her little arms up and down fast, lifting onto her toes as if she could fly, then lands with a little bump and laughs.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "armL": {
+              "r": -15
+            },
+            "armR": {
+              "r": 15
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "armL": {
+              "r": 30,
+              "y": -6
+            },
+            "armR": {
+              "r": -30,
+              "y": -6
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": -4
+            },
+            "belly": {
+              "sy": 1.02
+            },
+            "armL": {
+              "r": -38
+            },
+            "armR": {
+              "r": 38
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": -14
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "armL": {
+              "r": 30,
+              "y": -6
+            },
+            "armR": {
+              "r": -30,
+              "y": -6
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": -10
+            },
+            "belly": {
+              "sy": 1.02
+            },
+            "armL": {
+              "r": -38
+            },
+            "armR": {
+              "r": 38
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": -18
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "armL": {
+              "r": 30,
+              "y": -6
+            },
+            "armR": {
+              "r": -30,
+              "y": -6
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": -14
+            },
+            "belly": {
+              "sy": 1.02
+            },
+            "armL": {
+              "r": -38
+            },
+            "armR": {
+              "r": 38
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": -22
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "armL": {
+              "r": 30,
+              "y": -6
+            },
+            "armR": {
+              "r": -30,
+              "y": -6
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": -18
+            },
+            "belly": {
+              "sy": 1.02
+            },
+            "armL": {
+              "r": -38
+            },
+            "armR": {
+              "r": 38
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": -24
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "armL": {
+              "r": 30,
+              "y": -6
+            },
+            "armR": {
+              "r": -30,
+              "y": -6
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": -20
+            },
+            "belly": {
+              "sy": 1.02
+            },
+            "armL": {
+              "r": -38
+            },
+            "armR": {
+              "r": 38
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": -24
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "armL": {
+              "r": 30,
+              "y": -6
+            },
+            "armR": {
+              "r": -30,
+              "y": -6
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": -20
+            },
+            "belly": {
+              "sy": 1.02
+            },
+            "armL": {
+              "r": -38
+            },
+            "armR": {
+              "r": 38
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": 2
+            },
+            "belly": {
+              "sy": 0.92,
+              "sx": 1.05
+            },
+            "armL": {
+              "r": -12
+            },
+            "armR": {
+              "r": 12
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "belly": {
+              "sy": 0.99
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "hold-cap",
+      "kind": "action",
+      "description": "the acorn holds her cap on with both hands and leans into the wind, squinting, while the cap wobbles, then lets go and smiles.",
+      "pause": {
+        "frame": 5,
+        "shows": "the acorn leaning into the wind, squinting, both hands up holding her cap on"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "body": {
+              "r": -3
+            },
+            "armL": {
+              "r": 45,
+              "y": -10
+            },
+            "armR": {
+              "r": -45,
+              "y": -14
+            },
+            "cap": {
+              "r": 4,
+              "x": 4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "r": -7
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "armL": {
+              "r": 40,
+              "x": 5,
+              "y": -15
+            },
+            "armR": {
+              "r": -42,
+              "x": -5,
+              "y": -30
+            },
+            "cap": {
+              "r": 3,
+              "x": 4
+            },
+            "face": {
+              "x": -4
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "r": -7
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "armL": {
+              "r": 40,
+              "x": 5,
+              "y": -15
+            },
+            "armR": {
+              "r": -42,
+              "x": -5,
+              "y": -30
+            },
+            "cap": {
+              "r": -2,
+              "x": 2
+            },
+            "face": {
+              "x": -4
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "r": -7
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "armL": {
+              "r": 40,
+              "x": 5,
+              "y": -15
+            },
+            "armR": {
+              "r": -42,
+              "x": -5,
+              "y": -30
+            },
+            "cap": {
+              "r": 3,
+              "x": 5
+            },
+            "face": {
+              "x": -4
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.8,
+          "bones": {
+            "body": {
+              "r": -7
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "armL": {
+              "r": 40,
+              "x": 5,
+              "y": -15
+            },
+            "armR": {
+              "r": -42,
+              "x": -5,
+              "y": -30
+            },
+            "cap": {
+              "r": -1,
+              "x": 3
+            },
+            "face": {
+              "x": -4
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "r": -7
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "armL": {
+              "r": 40,
+              "x": 5,
+              "y": -15
+            },
+            "armR": {
+              "r": -42,
+              "x": -5,
+              "y": -30
+            },
+            "cap": {
+              "r": 3,
+              "x": 5
+            },
+            "face": {
+              "x": -4
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "body": {
+              "r": -7
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "armL": {
+              "r": 40,
+              "x": 5,
+              "y": -15
+            },
+            "armR": {
+              "r": -42,
+              "x": -5,
+              "y": -30
+            },
+            "cap": {
+              "r": -1,
+              "x": 3
+            },
+            "face": {
+              "x": -4
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "body": {
+              "r": -2
+            },
+            "armL": {
+              "r": 20
+            },
+            "armR": {
+              "r": -20
+            }
+          },
+          "slots": {
+            "eyeL": "calm",
+            "eyeR": "calm"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
     }
   ]
 }

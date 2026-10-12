@@ -1,0 +1,157 @@
+{
+  "id": "twitch-whiskers",
+  "sticker": "badger",
+  "kind": "action",
+  "description": "the badger twitches its snout this way and that, quick little twitches, trying out its whiskers.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.16667,
+    "width": 0.9401,
+    "height": 0.66667
+  },
+  "puppet": {
+    "rig": "anims/badger.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "r": 4,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "head": {
+            "r": 6,
+            "x": -3,
+            "y": -3
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "head": {
+            "r": 3,
+            "x": 1,
+            "y": -1
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "head": {
+            "r": 6,
+            "x": -3,
+            "y": -3
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "head": {
+            "r": 3,
+            "x": 1,
+            "y": -1
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "face": {
+            "x": -4
+          },
+          "head": {
+            "r": 4,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "head": {
+            "r": 1,
+            "x": -3,
+            "y": 1
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "head": {
+            "r": 4,
+            "x": 1,
+            "y": -1
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "head": {
+            "r": 1,
+            "x": -3,
+            "y": 1
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "head": {
+            "r": 4,
+            "x": 1,
+            "y": -1
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

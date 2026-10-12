@@ -1,0 +1,214 @@
+{
+  "id": "tuck-in",
+  "sticker": "firefly",
+  "kind": "action",
+  "description": "the firefly crouches low with its wings folded flat and its feelers laid down flat and keeps very still, peeking round, trying not to be seen, then pops back up with a smile.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.10677,
+    "width": 0.9401,
+    "height": 0.78646
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the firefly crouched low with its wings folded flat, keeping very still so no one sees it"
+  },
+  "puppet": {
+    "rig": "anims/firefly.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "ease": "inOut",
+        "bones": {
+          "antennaL": {
+            "r": -20
+          },
+          "antennaR": {
+            "r": -35
+          },
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.9
+          },
+          "body": {
+            "y": 24
+          },
+          "head": {
+            "r": -4,
+            "x": 10,
+            "y": 26
+          },
+          "wingL": {
+            "r": 16
+          },
+          "wingR": {
+            "r": 16
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "antennaL": {
+            "r": -20
+          },
+          "antennaR": {
+            "r": -35
+          },
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.9
+          },
+          "body": {
+            "y": 24
+          },
+          "head": {
+            "r": -4,
+            "x": 10,
+            "y": 26
+          },
+          "wingL": {
+            "r": 16
+          },
+          "wingR": {
+            "r": 16
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "inOut",
+        "bones": {
+          "antennaL": {
+            "r": -20
+          },
+          "antennaR": {
+            "r": -35
+          },
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.9
+          },
+          "body": {
+            "y": 24
+          },
+          "face": {
+            "x": -5
+          },
+          "head": {
+            "r": -4,
+            "x": 10,
+            "y": 26
+          },
+          "wingL": {
+            "r": 16
+          },
+          "wingR": {
+            "r": 16
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "inOut",
+        "bones": {
+          "antennaL": {
+            "r": -20
+          },
+          "antennaR": {
+            "r": -35
+          },
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.9
+          },
+          "body": {
+            "y": 24
+          },
+          "face": {
+            "x": 4
+          },
+          "head": {
+            "r": -4,
+            "x": 10,
+            "y": 26
+          },
+          "wingL": {
+            "r": 16
+          },
+          "wingR": {
+            "r": 16
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "antennaL": {
+            "r": -20
+          },
+          "antennaR": {
+            "r": -35
+          },
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.9
+          },
+          "body": {
+            "y": 24
+          },
+          "head": {
+            "r": -4,
+            "x": 10,
+            "y": 26
+          },
+          "wingL": {
+            "r": 16
+          },
+          "wingR": {
+            "r": 16
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "head": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

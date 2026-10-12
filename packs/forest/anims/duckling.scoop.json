@@ -1,0 +1,193 @@
+{
+  "id": "scoop",
+  "sticker": "duckling",
+  "kind": "action",
+  "description": "the duckling dips its beak down into the water and flicks it up, splish, then does it again and gives a happy shake of its head.",
+  "stickerBox": {
+    "x": 0.17188,
+    "y": 0.02995,
+    "width": 0.65625,
+    "height": 0.9401
+  },
+  "particles": [
+    {
+      "frame": 3,
+      "effect": "spray",
+      "x": 0.8,
+      "y": 0.6,
+      "intensity": 0.35
+    },
+    {
+      "frame": 6,
+      "effect": "spray",
+      "x": 0.8,
+      "y": 0.6,
+      "intensity": 0.35
+    }
+  ],
+  "puppet": {
+    "rig": "anims/duckling.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": 6
+          },
+          "head": {
+            "r": 16,
+            "x": 14,
+            "y": 36
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "r": 10
+          },
+          "head": {
+            "r": 26,
+            "x": 28,
+            "y": 80
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.18,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -16,
+            "y": -8
+          },
+          "wingL": {
+            "r": 12
+          },
+          "wingR": {
+            "r": -12
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "inOut",
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "r": 10
+          },
+          "head": {
+            "r": 26,
+            "x": 28,
+            "y": 80
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.18,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -16,
+            "y": -8
+          },
+          "wingL": {
+            "r": 12
+          },
+          "wingR": {
+            "r": -12
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "head": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

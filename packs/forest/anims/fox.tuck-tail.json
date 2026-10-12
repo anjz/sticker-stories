@@ -1,0 +1,221 @@
+{
+  "id": "tuck-tail",
+  "sticker": "fox",
+  "kind": "action",
+  "description": "the fox curls round and tucks its nose into its big bushy tail, snug and cosy, then peeks out with a smile.",
+  "stickerBox": {
+    "x": 0.06901,
+    "y": 0.02995,
+    "width": 0.86198,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the fox curled round with its nose tucked into its big bushy tail"
+  },
+  "puppet": {
+    "rig": "anims/fox.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "body": {
+            "r": -12
+          },
+          "head": {
+            "r": -8
+          },
+          "root": {
+            "y": 10
+          },
+          "tail": {
+            "r": 14
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.5,
+        "ease": "inOut",
+        "bones": {
+          "armL": {
+            "r": 40
+          },
+          "armR": {
+            "r": 40
+          },
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.92
+          },
+          "body": {
+            "r": -22
+          },
+          "earL": {
+            "r": -8
+          },
+          "earR": {
+            "r": 8
+          },
+          "head": {
+            "r": -26,
+            "x": -30,
+            "y": 40,
+            "sx": -1
+          },
+          "legL": {
+            "r": -10
+          },
+          "legR": {
+            "r": -20
+          },
+          "root": {
+            "y": 22
+          },
+          "tail": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "armL": {
+            "r": 40
+          },
+          "armR": {
+            "r": 40
+          },
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.94
+          },
+          "body": {
+            "r": -22
+          },
+          "earL": {
+            "r": -8
+          },
+          "earR": {
+            "r": 8
+          },
+          "head": {
+            "r": -26,
+            "x": -30,
+            "y": 40,
+            "sx": -1
+          },
+          "legL": {
+            "r": -10
+          },
+          "legR": {
+            "r": -20
+          },
+          "root": {
+            "y": 22
+          },
+          "tail": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 40
+          },
+          "armR": {
+            "r": 40
+          },
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.92
+          },
+          "body": {
+            "r": -22
+          },
+          "earL": {
+            "r": -8
+          },
+          "earR": {
+            "r": 8
+          },
+          "head": {
+            "r": -26,
+            "x": -30,
+            "y": 40,
+            "sx": -1
+          },
+          "legL": {
+            "r": -10
+          },
+          "legR": {
+            "r": -20
+          },
+          "root": {
+            "y": 22
+          },
+          "tail": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.5,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": -6
+          },
+          "head": {
+            "r": -4
+          },
+          "root": {
+            "y": 6
+          },
+          "tail": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

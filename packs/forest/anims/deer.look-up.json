@@ -1,0 +1,153 @@
+{
+  "id": "look-up",
+  "sticker": "deer",
+  "kind": "action",
+  "description": "the fawn lifts its head high and gazes up at the sky, then looks back down with a smile.",
+  "stickerBox": {
+    "x": 0.22005,
+    "y": 0.02995,
+    "width": 0.5599,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the fawn with its head lifted high, gazing up at the sky"
+  },
+  "puppet": {
+    "rig": "anims/deer.rig.json",
+    "keys": [
+      {
+        "hold": 0.25
+      },
+      {
+        "hold": 0.6,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "earL": {
+            "r": -10
+          },
+          "earR": {
+            "r": 10
+          },
+          "face": {
+            "y": -4
+          },
+          "head": {
+            "r": 22,
+            "y": -4
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "browL": "up",
+          "browR": "up",
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "earL": {
+            "r": -10
+          },
+          "earR": {
+            "r": 10
+          },
+          "face": {
+            "y": -4
+          },
+          "head": {
+            "r": 24,
+            "y": -5
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "browL": "up",
+          "browR": "up"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "earL": {
+            "r": -10
+          },
+          "earR": {
+            "r": 10
+          },
+          "face": {
+            "y": -4
+          },
+          "head": {
+            "r": 24,
+            "y": -5
+          },
+          "tail": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "browL": "up",
+          "browR": "up",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "earL": {
+            "r": -10
+          },
+          "earR": {
+            "r": 10
+          },
+          "face": {
+            "y": -4
+          },
+          "head": {
+            "r": 22,
+            "y": -4
+          },
+          "tail": {
+            "r": -8
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "ease": "inOut",
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "id": "tap-hoof",
+  "sticker": "deer",
+  "kind": "action",
+  "description": "the fawn lifts a front hoof and taps the ground with it, tap, tap.",
+  "stickerBox": {
+    "x": 0.22005,
+    "y": 0.02995,
+    "width": 0.5599,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/deer.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "head": {
+            "r": -6
+          },
+          "legFN": {
+            "r": 24,
+            "y": -16,
+            "sy": 0.96
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sy": 0.99
+          },
+          "head": {
+            "r": -8
+          },
+          "legFN": {
+            "r": 8,
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "head": {
+            "r": -6
+          },
+          "legFN": {
+            "r": 24,
+            "y": -16,
+            "sy": 0.96
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sy": 0.99
+          },
+          "head": {
+            "r": -8
+          },
+          "legFN": {
+            "r": 8,
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "head": {
+            "r": -2
+          },
+          "legFN": {
+            "r": 18,
+            "y": -10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "inOut",
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

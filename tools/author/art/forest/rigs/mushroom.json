@@ -1533,6 +1533,136 @@
           "hold": 0.2
         }
       ]
+    },
+    {
+      "id": "grow",
+      "kind": "action",
+      "description": "the mushroom stretches up a little taller, its cap lifting, and beams, then settles back down.",
+      "pause": {
+        "frame": 3,
+        "shows": "the mushroom stretched up a little taller, its cap lifted, beaming"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.02
+            },
+            "cap": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "puff"
+          }
+        },
+        {
+          "hold": 0.6,
+          "ease": "out",
+          "bones": {
+            "belly": {
+              "sy": 1.12,
+              "sx": 0.96
+            },
+            "cap": {
+              "sy": 0.893,
+              "sx": 1.042,
+              "y": -10,
+              "r": -2
+            },
+            "face": {
+              "sy": 0.893,
+              "sx": 1.042
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.9,
+          "bones": {
+            "belly": {
+              "sy": 1.12,
+              "sx": 0.96
+            },
+            "cap": {
+              "sy": 0.893,
+              "sx": 1.042,
+              "y": -14,
+              "r": -3
+            },
+            "face": {
+              "sy": 0.893,
+              "sx": 1.042
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "belly": {
+              "sy": 1.06,
+              "sx": 0.98
+            },
+            "cap": {
+              "sy": 0.943,
+              "sx": 1.02,
+              "y": -6,
+              "r": -1
+            },
+            "face": {
+              "sy": 0.943,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "belly": {
+              "sy": 1.018,
+              "sx": 0.994
+            },
+            "cap": {
+              "sy": 0.982,
+              "sx": 1.006,
+              "y": -2,
+              "r": 0
+            },
+            "face": {
+              "sy": 0.982,
+              "sx": 1.006
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
     }
   ]
 }

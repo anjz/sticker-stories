@@ -1,0 +1,190 @@
+{
+  "id": "dip-foot",
+  "sticker": "duckling",
+  "kind": "action",
+  "description": "the duckling carefully stretches one foot forward and dips it down, then the other, testing, before it stands happily on both feet.",
+  "stickerBox": {
+    "x": 0.17188,
+    "y": 0.02995,
+    "width": 0.65625,
+    "height": 0.9401
+  },
+  "particles": [
+    {
+      "frame": 2,
+      "effect": "spray",
+      "x": 0.78,
+      "y": 0.87,
+      "intensity": 0.2
+    },
+    {
+      "frame": 6,
+      "effect": "spray",
+      "x": 0.48,
+      "y": 0.89,
+      "intensity": 0.2
+    }
+  ],
+  "puppet": {
+    "rig": "anims/duckling.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": -4
+          },
+          "footR": {
+            "r": -14,
+            "x": 34,
+            "y": -30
+          },
+          "head": {
+            "r": 6,
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "footR": {
+            "r": 8,
+            "x": 42,
+            "y": -6
+          },
+          "head": {
+            "r": 10,
+            "y": 3
+          }
+        },
+        "slots": {
+          "beak": "little",
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "body": {
+            "r": -4
+          },
+          "footR": {
+            "r": -14,
+            "x": 34,
+            "y": -30
+          },
+          "head": {
+            "r": 6,
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": 4
+          },
+          "footL": {
+            "r": -18,
+            "x": 30,
+            "y": -40
+          },
+          "head": {
+            "r": 6,
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": 4
+          },
+          "footL": {
+            "r": 6,
+            "x": 36,
+            "y": -4
+          },
+          "head": {
+            "r": 10,
+            "y": 3
+          }
+        },
+        "slots": {
+          "beak": "little",
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "body": {
+            "r": 4
+          },
+          "footL": {
+            "r": -18,
+            "x": 30,
+            "y": -40
+          },
+          "head": {
+            "r": 6,
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.97
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

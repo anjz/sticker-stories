@@ -1,0 +1,209 @@
+{
+  "id": "twitch-whiskers",
+  "sticker": "mouse",
+  "kind": "action",
+  "description": "the mouse twitches its little snout and whiskers, twitch-twitch-twitch, feeling its way.",
+  "stickerBox": {
+    "x": 0.13151,
+    "y": 0.02995,
+    "width": 0.73698,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/mouse.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -5
+          },
+          "face": {
+            "x": -4,
+            "y": 2
+          },
+          "head": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -5
+          },
+          "face": {
+            "x": -7
+          },
+          "head": {
+            "r": -3,
+            "sx": 1.03
+          }
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -5
+          },
+          "face": {
+            "x": -4,
+            "y": 2
+          },
+          "head": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -5
+          },
+          "face": {
+            "x": -7
+          },
+          "head": {
+            "r": -3,
+            "sx": 1.03
+          }
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -5
+          },
+          "face": {
+            "x": -4,
+            "y": 2
+          },
+          "head": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -5
+          },
+          "face": {
+            "x": -7
+          },
+          "head": {
+            "r": -3,
+            "sx": 1.03
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "x": -2,
+            "y": 2
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "x": -5
+          },
+          "head": {
+            "r": -4,
+            "sx": 1.03
+          }
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "x": -2,
+            "y": 2
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "x": -5
+          },
+          "head": {
+            "r": -4,
+            "sx": 1.03
+          }
+        }
+      },
+      {
+        "hold": 0.09,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "x": -2,
+            "y": 2
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

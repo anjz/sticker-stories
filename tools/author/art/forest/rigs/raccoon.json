@@ -3620,6 +3620,141 @@
           "hold": 0.2
         }
       ]
+    },
+    {
+      "id": "listen",
+      "kind": "action",
+      "description": "the raccoon pricks up its ears and tilts its head, listening very hard.",
+      "pause": {
+        "frame": 4,
+        "shows": "the raccoon with its ears pricked up and its head tilted, listening"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "earL": {
+              "r": 10,
+              "sy": 1.12
+            },
+            "earR": {
+              "r": -26,
+              "sy": 1.12
+            },
+            "head": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "earL": {
+              "r": 10,
+              "sy": 1.12
+            },
+            "earR": {
+              "r": -26,
+              "sy": 1.12
+            },
+            "head": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "earL": {
+              "r": 10,
+              "sy": 1.12
+            },
+            "earR": {
+              "r": -26,
+              "sy": 1.12
+            },
+            "head": {
+              "r": 9,
+              "y": -2
+            },
+            "face": {
+              "x": 3
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.9,
+          "bones": {
+            "earL": {
+              "r": 10,
+              "sy": 1.12
+            },
+            "earR": {
+              "r": -26,
+              "sy": 1.12
+            },
+            "head": {
+              "r": 9,
+              "y": -2
+            },
+            "face": {
+              "x": 3
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "earL": {
+              "r": 10,
+              "sy": 1.12
+            },
+            "earR": {
+              "r": -26,
+              "sy": 1.12
+            },
+            "head": {
+              "r": 5
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
     }
   ]
 }

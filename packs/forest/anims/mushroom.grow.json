@@ -1,0 +1,139 @@
+{
+  "id": "grow",
+  "sticker": "mushroom",
+  "kind": "action",
+  "description": "the mushroom stretches up a little taller, its cap lifting, and beams, then settles back down.",
+  "stickerBox": {
+    "x": 0.07031,
+    "y": 0.02995,
+    "width": 0.85807,
+    "height": 0.9401
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the mushroom stretched up a little taller, its cap lifted, beaming"
+  },
+  "puppet": {
+    "rig": "anims/mushroom.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.96
+          },
+          "cap": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "puff"
+        }
+      },
+      {
+        "hold": 0.6,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.12
+          },
+          "cap": {
+            "r": -2,
+            "y": -10,
+            "sx": 1.042,
+            "sy": 0.893
+          },
+          "face": {
+            "sx": 1.042,
+            "sy": 0.893
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "belly": {
+            "sx": 0.96,
+            "sy": 1.12
+          },
+          "cap": {
+            "r": -3,
+            "y": -14,
+            "sx": 1.042,
+            "sy": 0.893
+          },
+          "face": {
+            "sx": 1.042,
+            "sy": 0.893
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 0.98,
+            "sy": 1.06
+          },
+          "cap": {
+            "r": -1,
+            "y": -6,
+            "sx": 1.02,
+            "sy": 0.943
+          },
+          "face": {
+            "sx": 1.02,
+            "sy": 0.943
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sx": 0.994,
+            "sy": 1.018
+          },
+          "cap": {
+            "y": -2,
+            "sx": 1.006,
+            "sy": 0.982
+          },
+          "face": {
+            "sx": 1.006,
+            "sy": 0.982
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

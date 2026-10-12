@@ -1721,6 +1721,315 @@
           "hold": 0.2
         }
       ]
+    },
+    {
+      "id": "reach-up",
+      "kind": "action",
+      "description": "the caterpillar strains up as tall as it can, wobbling, then flops back down with a bump and smiles.",
+      "pause": {
+        "frame": 5,
+        "shows": "the caterpillar straining up as tall as it can, wobbling, eyes squeezed shut"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "seg2": {
+              "r": -3
+            },
+            "body": {
+              "r": -2
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.5,
+          "ease": "out",
+          "bones": {
+            "seg3": {
+              "r": 4
+            },
+            "seg2": {
+              "r": 18
+            },
+            "body": {
+              "r": 14
+            },
+            "head": {
+              "r": -8
+            },
+            "face": {
+              "x": -4,
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.09,
+              "sx": 0.96
+            },
+            "antennaL": {
+              "r": -8
+            },
+            "antennaR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "seg3": {
+              "r": 4
+            },
+            "seg2": {
+              "r": 22
+            },
+            "body": {
+              "r": 18
+            },
+            "head": {
+              "r": -12
+            },
+            "face": {
+              "x": -4,
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.09,
+              "sx": 0.96
+            },
+            "antennaL": {
+              "r": -8
+            },
+            "antennaR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "seg3": {
+              "r": 4
+            },
+            "seg2": {
+              "r": 20
+            },
+            "body": {
+              "r": 20
+            },
+            "head": {
+              "r": -8
+            },
+            "face": {
+              "x": -4,
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.09,
+              "sx": 0.96
+            },
+            "antennaL": {
+              "r": -8
+            },
+            "antennaR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "seg3": {
+              "r": 4
+            },
+            "seg2": {
+              "r": 24
+            },
+            "body": {
+              "r": 16
+            },
+            "head": {
+              "r": -13
+            },
+            "face": {
+              "x": -4,
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.09,
+              "sx": 0.96
+            },
+            "antennaL": {
+              "r": -8
+            },
+            "antennaR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "seg3": {
+              "r": 4
+            },
+            "seg2": {
+              "r": 20
+            },
+            "body": {
+              "r": 20
+            },
+            "head": {
+              "r": -8
+            },
+            "face": {
+              "x": -4,
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.09,
+              "sx": 0.96
+            },
+            "antennaL": {
+              "r": -8
+            },
+            "antennaR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "seg3": {
+              "r": 4
+            },
+            "seg2": {
+              "r": 23
+            },
+            "body": {
+              "r": 18
+            },
+            "head": {
+              "r": -12
+            },
+            "face": {
+              "x": -4,
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.09,
+              "sx": 0.96
+            },
+            "antennaL": {
+              "r": -8
+            },
+            "antennaR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.2,
+          "ease": "in",
+          "bones": {
+            "seg2": {
+              "r": -4
+            },
+            "body": {
+              "r": -3,
+              "y": 4
+            },
+            "head": {
+              "r": 4,
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.92,
+              "sx": 1.05
+            },
+            "antennaL": {
+              "r": 12
+            },
+            "antennaR": {
+              "r": -10
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            },
+            "head": {
+              "y": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.35,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
     }
   ]
 }

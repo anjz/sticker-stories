@@ -1331,6 +1331,146 @@
     {
       "id": "twirl",
       "template": "common.twirl"
+    },
+    {
+      "id": "sneeze",
+      "kind": "action",
+      "description": "the hedgehog scrunches up its face, ah… ah… then gives a tiny sneeze, tishoo!, with a little jolt of its nose.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "r": 7,
+              "y": -3
+            },
+            "belly": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "head": {
+              "r": 4,
+              "y": -1
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "smile"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "r": 11,
+              "y": -5
+            },
+            "belly": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "head": {
+              "r": 12,
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.05
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.1,
+          "ease": "out",
+          "bones": {
+            "head": {
+              "r": -8,
+              "x": -8,
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.02
+            },
+            "root": {
+              "y": 2
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": -5,
+              "x": -5,
+              "y": 3
+            },
+            "belly": {
+              "sy": 0.97
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.4,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
     }
   ]
 }

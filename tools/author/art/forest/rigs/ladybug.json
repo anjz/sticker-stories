@@ -3532,6 +3532,192 @@
           "hold": 0.2
         }
       ]
+    },
+    {
+      "id": "think",
+      "kind": "action",
+      "description": "the ladybug tilts its head and taps its chin with a front leg, tap, tap, thinking hard, then has an idea and smiles.",
+      "pause": {
+        "frame": 5,
+        "shows": "the ladybug thinking, head tilted, a front leg on its chin"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.45,
+          "ease": "inOut",
+          "bones": {
+            "head": {
+              "r": -9
+            },
+            "eyeL": {
+              "y": -4
+            },
+            "eyeR": {
+              "y": -4
+            },
+            "browR": {
+              "y": -5
+            },
+            "browL": {
+              "y": -3
+            },
+            "legL1": {
+              "r": -130,
+              "x": 80,
+              "y": -30
+            },
+            "body": {
+              "r": -1
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "head": {
+              "r": -9
+            },
+            "eyeL": {
+              "y": -4
+            },
+            "eyeR": {
+              "y": -4
+            },
+            "browR": {
+              "y": -5
+            },
+            "browL": {
+              "y": -3
+            },
+            "legL1": {
+              "r": -145,
+              "x": 80,
+              "y": -30
+            },
+            "body": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "head": {
+              "r": -9
+            },
+            "eyeL": {
+              "y": -4
+            },
+            "eyeR": {
+              "y": -4
+            },
+            "browR": {
+              "y": -5
+            },
+            "browL": {
+              "y": -3
+            },
+            "legL1": {
+              "r": -130,
+              "x": 80,
+              "y": -30
+            },
+            "body": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "head": {
+              "r": -9
+            },
+            "eyeL": {
+              "y": -4
+            },
+            "eyeR": {
+              "y": -4
+            },
+            "browR": {
+              "y": -5
+            },
+            "browL": {
+              "y": -3
+            },
+            "legL1": {
+              "r": -145,
+              "x": 80,
+              "y": -30
+            },
+            "body": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.9,
+          "bones": {
+            "head": {
+              "r": -10
+            },
+            "eyeL": {
+              "y": -4
+            },
+            "eyeR": {
+              "y": -4
+            },
+            "browR": {
+              "y": -5
+            },
+            "browL": {
+              "y": -3
+            },
+            "legL1": {
+              "r": -132,
+              "x": 80,
+              "y": -30
+            },
+            "body": {
+              "r": -1
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "head": {
+              "y": -4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
     }
   ]
 }

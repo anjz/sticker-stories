@@ -1,0 +1,172 @@
+{
+  "id": "sneeze",
+  "sticker": "fox",
+  "kind": "action",
+  "description": "the fox scrunches up its face, ah… ah… then sneezes with a jerk of its head, and blinks in surprise.",
+  "stickerBox": {
+    "x": 0.06901,
+    "y": 0.02995,
+    "width": 0.86198,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/fox.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "head": {
+            "r": -8,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "head": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "earL": {
+            "r": -6
+          },
+          "earR": {
+            "r": 6
+          },
+          "head": {
+            "r": -14,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "earL": {
+            "r": -6
+          },
+          "earR": {
+            "r": 6
+          },
+          "head": {
+            "r": -16,
+            "y": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.12,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sy": 0.95
+          },
+          "body": {
+            "r": 5
+          },
+          "earL": {
+            "r": 8
+          },
+          "earR": {
+            "r": -8
+          },
+          "head": {
+            "r": 14,
+            "x": 6,
+            "y": 6
+          },
+          "tail": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "body": {
+            "r": 4
+          },
+          "head": {
+            "r": 10,
+            "x": 4,
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

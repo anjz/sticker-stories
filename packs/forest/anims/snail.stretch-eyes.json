@@ -1,0 +1,151 @@
+{
+  "id": "stretch-eyes",
+  "sticker": "snail",
+  "kind": "action",
+  "description": "the snail stretches both eye stalks out long and peers hard at something, then pulls them back in.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.08984,
+    "width": 0.9401,
+    "height": 0.81901
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the snail with both eye stalks stretched out long, peering"
+  },
+  "puppet": {
+    "rig": "anims/snail.rig.json",
+    "keys": [
+      {
+        "hold": 0.25
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "stalkL": {
+            "sy": 0.92
+          },
+          "stalkR": {
+            "sy": 0.92
+          }
+        },
+        "slots": {
+          "stalkL": "calm",
+          "stalkR": "calm"
+        }
+      },
+      {
+        "hold": 0.6,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "x": 6
+          },
+          "stalkL": {
+            "r": 4,
+            "sx": 0.97,
+            "sy": 1.28
+          },
+          "stalkR": {
+            "r": 6,
+            "sx": 0.97,
+            "sy": 1.28
+          }
+        },
+        "slots": {
+          "mouth": "o",
+          "stalkL": "wide",
+          "stalkR": "wide"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "x": 6
+          },
+          "stalkL": {
+            "r": 2,
+            "sx": 0.97,
+            "sy": 1.28
+          },
+          "stalkR": {
+            "r": 10,
+            "sx": 0.97,
+            "sy": 1.28
+          }
+        },
+        "slots": {
+          "mouth": "o",
+          "stalkL": "wide",
+          "stalkR": "wide"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "x": 6
+          },
+          "stalkL": {
+            "r": 6,
+            "sx": 0.97,
+            "sy": 1.28
+          },
+          "stalkR": {
+            "r": 4,
+            "sx": 0.97,
+            "sy": 1.28
+          }
+        },
+        "slots": {
+          "mouth": "o",
+          "stalkL": "wide",
+          "stalkR": "wide"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.008
+          },
+          "head": {
+            "x": 1
+          },
+          "stalkL": {
+            "sx": 0.97,
+            "sy": 1.056
+          },
+          "stalkR": {
+            "sx": 0.97,
+            "sy": 1.056
+          }
+        },
+        "slots": {
+          "stalkL": "calm",
+          "stalkR": "calm"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "stalkL": "happy",
+          "stalkR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

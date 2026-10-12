@@ -1,0 +1,158 @@
+{
+  "id": "talk",
+  "sticker": "pinecone",
+  "kind": "action",
+  "description": "the pinecone talks, its mouth moving, its body bobbing a little.",
+  "stickerBox": {
+    "x": 0.03516,
+    "y": 0.02995,
+    "width": 0.92969,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/pinecone.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 1.01
+          },
+          "body": {
+            "r": -1.5
+          },
+          "face": {
+            "y": -4
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "face": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 1.01
+          },
+          "body": {
+            "r": -1.5
+          },
+          "face": {
+            "y": -4
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "face": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 1.01
+          },
+          "body": {
+            "r": -1.5
+          },
+          "face": {
+            "y": -4
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "face": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 1.01
+          },
+          "body": {
+            "r": -1.5
+          },
+          "face": {
+            "y": -4
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "face": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 1.01
+          },
+          "body": {
+            "r": -1.5
+          },
+          "face": {
+            "y": -4
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "face": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

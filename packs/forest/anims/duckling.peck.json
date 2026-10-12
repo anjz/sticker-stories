@@ -1,0 +1,166 @@
+{
+  "id": "peck",
+  "sticker": "duckling",
+  "kind": "action",
+  "description": "the duckling bends down and nibbles at the grass with its beak, peck, peck, peck, then looks up happily.",
+  "stickerBox": {
+    "x": 0.17188,
+    "y": 0.02995,
+    "width": 0.65625,
+    "height": 0.9401
+  },
+  "puppet": {
+    "rig": "anims/duckling.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.45,
+        "ease": "inOut",
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "r": 12
+          },
+          "head": {
+            "r": 30,
+            "x": 34,
+            "y": 125
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "r": 13
+          },
+          "head": {
+            "r": 42,
+            "x": 34,
+            "y": 137
+          }
+        },
+        "slots": {
+          "beak": "little"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "r": 13
+          },
+          "head": {
+            "r": 30,
+            "x": 34,
+            "y": 125
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "r": 13
+          },
+          "head": {
+            "r": 42,
+            "x": 34,
+            "y": 137
+          }
+        },
+        "slots": {
+          "beak": "little"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "r": 13
+          },
+          "head": {
+            "r": 30,
+            "x": 34,
+            "y": 125
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "r": 13
+          },
+          "head": {
+            "r": 42,
+            "x": 34,
+            "y": 137
+          }
+        },
+        "slots": {
+          "beak": "little"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "r": 13
+          },
+          "head": {
+            "r": 30,
+            "x": 34,
+            "y": 125
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "inOut",
+        "bones": {
+          "head": {
+            "r": -5,
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

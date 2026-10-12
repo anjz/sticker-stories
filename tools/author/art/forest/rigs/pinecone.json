@@ -1199,6 +1199,536 @@
           "hold": 0.2
         }
       ]
+    },
+    {
+      "id": "talk",
+      "kind": "action",
+      "description": "the pinecone talks, its mouth moving, its body bobbing a little.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": -4
+            },
+            "body": {
+              "r": -1.5
+            },
+            "belly": {
+              "sy": 1.01
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": -4
+            },
+            "body": {
+              "r": -1.5
+            },
+            "belly": {
+              "sy": 1.01
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": -4
+            },
+            "body": {
+              "r": -1.5
+            },
+            "belly": {
+              "sy": 1.01
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": -4
+            },
+            "body": {
+              "r": -1.5
+            },
+            "belly": {
+              "sy": 1.01
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": -4
+            },
+            "body": {
+              "r": -1.5
+            },
+            "belly": {
+              "sy": 1.01
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "rattle",
+      "kind": "action",
+      "description": "the pinecone shakes itself fast from side to side so its scales rattle like a maraca, giggling.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "root": {
+              "x": -4
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.99
+            },
+            "face": {
+              "x": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "root": {
+              "x": 4
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.99
+            },
+            "face": {
+              "x": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "root": {
+              "x": -4
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.99
+            },
+            "face": {
+              "x": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "root": {
+              "x": 4
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.99
+            },
+            "face": {
+              "x": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "root": {
+              "x": -4
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.99
+            },
+            "face": {
+              "x": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "root": {
+              "x": 4
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.99
+            },
+            "face": {
+              "x": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "root": {
+              "x": -4
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.99
+            },
+            "face": {
+              "x": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "root": {
+              "x": 4
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.99
+            },
+            "face": {
+              "x": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "root": {
+              "x": -4
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.99
+            },
+            "face": {
+              "x": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "root": {
+              "x": 4
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.99
+            },
+            "face": {
+              "x": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "root": {
+              "x": -4
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.99
+            },
+            "face": {
+              "x": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "root": {
+              "x": 4
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.99
+            },
+            "face": {
+              "x": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "root": {
+              "x": -4
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.99
+            },
+            "face": {
+              "x": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "root": {
+              "x": 4
+            },
+            "belly": {
+              "sx": 1.02,
+              "sy": 0.99
+            },
+            "face": {
+              "x": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.35,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
     }
   ]
 }

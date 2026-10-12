@@ -1899,6 +1899,501 @@
     {
       "id": "twirl",
       "template": "common.twirl"
+    },
+    {
+      "id": "wipe-nose",
+      "kind": "action",
+      "description": "the badger lifts its head and rubs the earth off its nose with a front paw, then grins.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.4,
+          "ease": "inOut",
+          "bones": {
+            "body": {
+              "r": 3
+            },
+            "head": {
+              "r": 18,
+              "y": -16
+            },
+            "legFN": {
+              "r": 72,
+              "x": -165,
+              "y": 70
+            },
+            "legBN": {
+              "r": -3
+            },
+            "legBF": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "r": 3
+            },
+            "head": {
+              "r": 18,
+              "y": -16
+            },
+            "legFN": {
+              "r": 80,
+              "x": -192,
+              "y": 70
+            },
+            "legBN": {
+              "r": -3
+            },
+            "legBF": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "r": 3
+            },
+            "head": {
+              "r": 18,
+              "y": -16
+            },
+            "legFN": {
+              "r": 68,
+              "x": -155,
+              "y": 70
+            },
+            "legBN": {
+              "r": -3
+            },
+            "legBF": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "r": 3
+            },
+            "head": {
+              "r": 18,
+              "y": -16
+            },
+            "legFN": {
+              "r": 80,
+              "x": -192,
+              "y": 70
+            },
+            "legBN": {
+              "r": -3
+            },
+            "legBF": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "r": 3
+            },
+            "head": {
+              "r": 18,
+              "y": -16
+            },
+            "legFN": {
+              "r": 68,
+              "x": -155,
+              "y": 70
+            },
+            "legBN": {
+              "r": -3
+            },
+            "legBF": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "inOut",
+          "bones": {
+            "head": {
+              "r": 4,
+              "y": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.4,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "scratch-head",
+      "kind": "action",
+      "description": "the badger tips its head and scratches it with a front paw, puzzled.",
+      "pause": {
+        "frame": 6,
+        "shows": "the badger scratching its head with a front paw, puzzled"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.4,
+          "ease": "inOut",
+          "bones": {
+            "head": {
+              "r": 8,
+              "y": -4
+            },
+            "face": {
+              "x": 6
+            },
+            "legFF": {
+              "r": 136,
+              "x": -40,
+              "y": -140
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "mouth": "o",
+            "browL": "sad"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "head": {
+              "r": 9,
+              "y": -4
+            },
+            "face": {
+              "x": 6
+            },
+            "legFF": {
+              "r": 128,
+              "x": -40,
+              "y": -140
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "mouth": "o",
+            "browL": "sad"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "head": {
+              "r": 8,
+              "y": -4
+            },
+            "face": {
+              "x": 6
+            },
+            "legFF": {
+              "r": 142,
+              "x": -40,
+              "y": -140
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "mouth": "o",
+            "browL": "sad"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "head": {
+              "r": 9,
+              "y": -4
+            },
+            "face": {
+              "x": 6
+            },
+            "legFF": {
+              "r": 128,
+              "x": -40,
+              "y": -140
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "mouth": "o",
+            "browL": "sad"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "head": {
+              "r": 8,
+              "y": -4
+            },
+            "face": {
+              "x": 6
+            },
+            "legFF": {
+              "r": 142,
+              "x": -40,
+              "y": -140
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "mouth": "o",
+            "browL": "sad"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "head": {
+              "r": 10,
+              "y": -4
+            },
+            "face": {
+              "x": 6
+            },
+            "legFF": {
+              "r": 136,
+              "x": -40,
+              "y": -140
+            },
+            "body": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "mouth": "o",
+            "browL": "sad"
+          }
+        },
+        {
+          "hold": 0.4,
+          "ease": "inOut",
+          "bones": {
+            "head": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "twitch-whiskers",
+      "kind": "action",
+      "description": "the badger twitches its snout this way and that, quick little twitches, trying out its whiskers.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "head": {
+              "r": 4,
+              "y": -2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "head": {
+              "r": 6,
+              "x": -3,
+              "y": -3
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "head": {
+              "r": 3,
+              "x": 1,
+              "y": -1
+            }
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "head": {
+              "r": 6,
+              "x": -3,
+              "y": -3
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "head": {
+              "r": 3,
+              "x": 1,
+              "y": -1
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": 4,
+              "y": -2
+            },
+            "face": {
+              "x": -4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "head": {
+              "r": 1,
+              "x": -3,
+              "y": 1
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "head": {
+              "r": 4,
+              "x": 1,
+              "y": -1
+            }
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "head": {
+              "r": 1,
+              "x": -3,
+              "y": 1
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "head": {
+              "r": 4,
+              "x": 1,
+              "y": -1
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
     }
   ]
 }

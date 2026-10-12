@@ -1,0 +1,258 @@
+{
+  "id": "hide-behind-stick",
+  "sticker": "beaver",
+  "kind": "action",
+  "description": "the beaver holds its stick up in front of its face to hide, then peeks round it, first one side, then the other.",
+  "stickerBox": {
+    "x": 0.02995,
+    "y": 0.04427,
+    "width": 0.9401,
+    "height": 0.91016
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the beaver hiding its face behind its stick, eyes shut"
+  },
+  "puppet": {
+    "rig": "anims/beaver.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "x": 60,
+            "y": -150
+          },
+          "armR": {
+            "r": 40,
+            "x": -40,
+            "y": -100
+          },
+          "head": {
+            "r": -2
+          },
+          "stick": {
+            "r": 30
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "x": 60,
+            "y": -150
+          },
+          "armR": {
+            "r": 40,
+            "x": -40,
+            "y": -100
+          },
+          "belly": {
+            "sx": 0.98
+          },
+          "head": {
+            "r": -2
+          },
+          "stick": {
+            "r": 30
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "armL": {
+            "x": 60,
+            "y": -150
+          },
+          "armR": {
+            "r": 40,
+            "x": -40,
+            "y": -100
+          },
+          "belly": {
+            "sx": 0.98
+          },
+          "head": {
+            "r": -2
+          },
+          "stick": {
+            "r": 30
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "x": 60,
+            "y": -150
+          },
+          "armR": {
+            "r": 40,
+            "x": -40,
+            "y": -100
+          },
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "x": -12
+          },
+          "head": {
+            "r": -8
+          },
+          "stick": {
+            "r": 30
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "armL": {
+            "x": 60,
+            "y": -150
+          },
+          "armR": {
+            "r": 40,
+            "x": -40,
+            "y": -100
+          },
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "x": -12
+          },
+          "head": {
+            "r": -8
+          },
+          "stick": {
+            "r": 30
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "x": 60,
+            "y": -150
+          },
+          "armR": {
+            "r": 40,
+            "x": -40,
+            "y": -100
+          },
+          "head": {
+            "r": -1
+          },
+          "stick": {
+            "r": 30
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "x": 60,
+            "y": -150
+          },
+          "armR": {
+            "r": 40,
+            "x": -40,
+            "y": -100
+          },
+          "body": {
+            "r": 3
+          },
+          "face": {
+            "x": 12
+          },
+          "head": {
+            "r": 7
+          },
+          "stick": {
+            "r": 30
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "x": 60,
+            "y": -150
+          },
+          "armR": {
+            "r": 40,
+            "x": -40,
+            "y": -100
+          },
+          "body": {
+            "r": 3
+          },
+          "face": {
+            "x": 12
+          },
+          "head": {
+            "r": 7
+          },
+          "stick": {
+            "r": 30
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}
