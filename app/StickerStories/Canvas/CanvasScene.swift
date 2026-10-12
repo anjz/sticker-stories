@@ -229,8 +229,8 @@ final class CanvasScene: SKScene {
         let visitors: [UUID: EntrancePlan]
         /// How the story moves stickers about, by node (`MotionPlanner`).
         let motions: [UUID: MotionPlan]
-        /// Depth, in a pack with a space (`DepthStage`).
-        let depth: DepthStage?
+        /// The story in space, in a pack with a space (`StoryStage`).
+        let stage: StoryStage?
     }
     private var playSession: PlaySession?
     /// Every live animation the pack declares (`StickerAnimation`), read
@@ -1468,8 +1468,12 @@ final class CanvasScene: SKScene {
         // The stickers the story names that the child has not placed come
         // in when they are first named; from here on they are on the stage
         // like any other, so every trigger reaches them.
-        var visitors = addVisitors(for: triggers.entrances, goes: triggers.goes, policy: policy)
-        let depth = beginDepth(visitors: &visitors)
+        // A pack with a space plays its stories in space (`StoryStage`);
+        // any other stages them on the art (`StagePlanner`, `MotionPlanner`).
+        let inSpace = pack.manifest.space != nil
+        let visitors = inSpace
+            ? [:] : addVisitors(for: triggers.entrances, goes: triggers.goes, policy: policy)
+        if inSpace { addStageVisitors(for: triggers.entrances) }
         let nodes = allStickerNodes()
         let targets = Dictionary(grouping: nodes, by: \.stickerID).mapValues { $0.map(\.instanceID) }
         let runner = StickerEffectsRunner(
@@ -1489,13 +1493,17 @@ final class CanvasScene: SKScene {
         // action of its happens (the woodpecker to a trunk before it taps);
         // those actions wait for it to get there.
         let placing = PlacementPlanner.goes(live: triggers.live, places: actionPlaces, goes: triggers.goes)
-        let motions = planMotions(triggers.goes + placing, visitors: visitors, policy: policy)
-        let live = LiveTimeline(triggers: PlacementPlanner.delayed(
-            triggers.live, plans: motions, stickers: Dictionary(uniqueKeysWithValues: nodes.map { ($0.instanceID, $0.stickerID) }),
-            places: Set(actionPlaces.keys)))
+        let stickerOf = Dictionary(uniqueKeysWithValues: nodes.map { ($0.instanceID, $0.stickerID) })
+        let stage = pack.manifest.space.map {
+            planStage($0, entrances: triggers.entrances, goes: triggers.goes + placing, policy: policy)
+        }
+        let motions = stage == nil ? planMotions(triggers.goes + placing, visitors: visitors, policy: policy) : [:]
+        let live = LiveTimeline(triggers: stage.map {
+            StageDirector.delayed(triggers.live, plans: $0.plans, stickers: stickerOf, places: Set(actionPlaces.keys))
+        } ?? PlacementPlanner.delayed(triggers.live, plans: motions, stickers: stickerOf, places: Set(actionPlaces.keys)))
         // The actions the story cues on stickers on the stage, and the
         // moves of the ones it brings in.
-        if !motions.isEmpty || depth != nil {
+        if !motions.isEmpty || stage != nil {
             for node in nodes where !node.isVisitor {
                 if let parent = node.parent { stackBeforeMotion[node.instanceID] = (parent, node.zPosition) }
             }
@@ -1510,6 +1518,12 @@ final class CanvasScene: SKScene {
                 if let move = leg.move { wanted.insert(LiveAnimationKey(stickerID: node.stickerID, animationID: move)) }
             }
         }
+        for (id, plan) in stage?.plans ?? [:] {
+            guard let sticker = stickerOf[id] else { continue }
+            for leg in plan.legs where leg.travels {
+                if let move = leg.move { wanted.insert(LiveAnimationKey(stickerID: sticker, animationID: move)) }
+            }
+        }
         if policy.allowsLiveAnimations, !wanted.isEmpty {
             liveLoad = Task { [weak self, pack, liveAnimations] in
                 let loaded = await LiveAnimationLoader.load(wanted, from: liveAnimations, pack: pack)
@@ -1521,33 +1535,46 @@ final class CanvasScene: SKScene {
             triggers: triggers.canvas, setting: pack.manifest.setting, policy: policy)
         playSession = PlaySession(
             runner: runner, canvasRunner: canvasRunner, applier: applier, emitters: emitterCoordinator(), clock: clock,
-            live: live, faces: faces, visitors: visitors, motions: motions, depth: depth)
-        if let depth { orderByDepth(depth) }
+            live: live, faces: faces, visitors: visitors, motions: motions, stage: stage)
+        if let stage { orderByDepth(stage) }
     }
 
-    /// In a pack with a space, the story plays in depth (`DepthStage`):
-    /// every sticker's depth at its spot is taken, and each visitor comes in
-    /// at the size of where it lands, its feet where they were planned
-    /// (no entrance scaling of its own).
-    private func beginDepth(visitors: inout [UUID: EntrancePlan]) -> DepthStage? {
-        guard let space = pack.manifest.space else { return nil }
-        let depth = DepthStage(space: space, wide: artVariant == .wide, world: worldSize) { [weak self] id in
-            self?.drawingBox(of: id) ?? CGRect(x: 0, y: 0, width: 1, height: 1)
+    /// Every sticker the story names but the child has not placed, on the
+    /// stage and hidden: the director plans where and how it comes in.
+    private func addStageVisitors(for entrances: [EntranceTrigger]) {
+        var added = Set(allStickerNodes().map(\.stickerID))
+        for entrance in entrances where added.insert(entrance.stickerID).inserted {
+            guard let texture = stickerTextures[entrance.stickerID] else { continue }
+            let node = makeSticker(entrance.stickerID, texture: texture)
+            node.isVisitor = true
+            node.alpha = 0
+            node.position = CGPoint(x: worldSize.width / 2, y: worldSize.height / 2)
+            stagingLayer.addChild(node)
         }
-        depth.begin(allStickerNodes())
-        for node in allStickerNodes() where node.isVisitor {
-            guard var base = node.effectBase else { continue }
-            let k = depth.visitorScale(node)
-            let feet = (drawingBox(of: node.stickerID).minY - 0.5) * node.unscaledSize.height
-            base.y += feet * base.scale * (1 - k)
-            base.scale *= k
-            node.effectBase = base
-            node.baseScale = CGFloat(base.scale)
-            node.setScale(node.baseScale)
-            node.position = CGPoint(x: base.x, y: base.y)
-            visitors[node.instanceID]?.startScale = 1
-        }
-        return depth
+    }
+
+    /// Plans the story in space (`StageDirector`): the stage as the window
+    /// shows it, every sticker on it, the story's entrances and moves.
+    private func planStage(
+        _ space: SceneSpace, entrances: [EntranceTrigger], goes: [GoTrigger], policy: EffectPolicy
+    ) -> StoryStage {
+        let aspect = baseArtPixelSize.height > 0 ? Double(baseArtPixelSize.width / baseArtPixelSize.height) : 4.0 / 3
+        let world = StageWorld(
+            space: space, aspect: aspect, wide: artVariant == .wide,
+            frame: StageSize(width: worldSize.width, height: worldSize.height))
+        let visible = visibleRect.intersection(worldExtent)
+        let screen = StageScreen(
+            visible: StageRect(minX: visible.minX, minY: visible.minY, maxX: visible.maxX, maxY: visible.maxY),
+            clear: clearStageRect(visible),
+            avoid: playbackPillRect.map { [StageRect(minX: $0.minX, minY: $0.minY, maxX: $0.maxX, maxY: $0.maxY)] } ?? [])
+        let nodes = allStickerNodes()
+        let drawing = { [weak self] (id: String) in self?.drawingBox(of: id) ?? CGRect(x: 0, y: 0, width: 1, height: 1) }
+        let actors = StoryStage.actors(
+            nodes, space: space, world: world, stages: stages, moves: stageMoves, fronts: stickerFronts, drawing: drawing)
+        var random = SystemRandomNumberGenerator()
+        let plans = StageDirector.plan(
+            world: world, screen: screen, actors: actors, entrances: entrances, goes: goes, policy: policy, random: &random)
+        return StoryStage(world: world, plans: plans, nodes: nodes, drawing: drawing)
     }
 
     /// Where each sticker's drawing sits in its image (fractions, origin
@@ -1562,12 +1589,12 @@ final class CanvasScene: SKScene {
 
     /// Puts the scene's planes at their depths for the story: the stickers
     /// are sorted in among them every frame (`update`).
-    private func orderByDepth(_ depth: DepthStage) {
+    private func orderByDepth(_ stage: StoryStage) {
         for layer in [sceneLayers, backgroundStickers, foregroundStickers] { layer.zPosition = 0 }
         for case let sprite as SKSpriteNode in sceneLayers.children {
-            sprite.zPosition = depth.zPosition(forDepth: depth.space.planeDepth(sprite.name ?? "", wide: depth.wide) ?? depth.space.back)
+            sprite.zPosition = stage.zPosition(forDepth: stage.world.planeDepth(sprite.name ?? "") ?? stage.world.space.back)
         }
-        foregroundArt.zPosition = depth.zPosition(forDepth: depth.space.planeDepth(SceneSpace.Layer.foreground, wide: depth.wide) ?? 1)
+        foregroundArt.zPosition = stage.zPosition(forDepth: stage.world.planeDepth(SceneSpace.Layer.foreground) ?? 1)
         foregroundShadowBlur.zPosition = foregroundArt.zPosition - 0.5
     }
 
@@ -1596,30 +1623,7 @@ final class CanvasScene: SKScene {
             stickerSize: stickerBaseSize, sizes: sizes, fronts: stickerFronts,
             avoid: playbackPillRect.map { [StageRect(minX: $0.minX, minY: $0.minY, maxX: $0.maxX, maxY: $0.maxY)] } ?? [],
             anchorFeet: pack.manifest.staging?.standsOnFeet ?? false, feet: stickerFeet, doors: stickerDoors,
-            clear: clearStageRect(visible), water: spaceWater, blocked: spaceFootprints)
-    }
-
-    /// The space's water, by place, in world points: feet stay out of it
-    /// unless they belong there.
-    private var spaceWater: [String: [StagePoint]] {
-        guard let space = pack.manifest.space else { return [:] }
-        return space.places.compactMapValues { place in
-            place.water == true ? place.ground.map { $0.map(worldPoint) } : nil
-        }
-    }
-
-    /// The ground the scene's planes stand on (a tree's roots), on the art
-    /// drawn, in world points: no one stands there.
-    private var spaceFootprints: [[StagePoint]] {
-        guard let space = pack.manifest.space else { return [] }
-        let wide = artVariant == .wide
-        return space.layers.compactMap { layer in
-            ((wide ? layer.wide?.footprint : nil) ?? layer.footprint)?.map(worldPoint)
-        }
-    }
-
-    private func worldPoint(_ p: SceneSpace.Point) -> StagePoint {
-        StagePoint(x: p.u * worldSize.width, y: p.v * worldSize.height)
+            clear: clearStageRect(visible))
     }
 
     /// The visible stage less what the device covers (a phone's camera
@@ -1685,9 +1689,8 @@ final class CanvasScene: SKScene {
     /// The scale each sticker comes in at when a story invites it (its
     /// size class: big ones a little bigger, tiny ones a little smaller) —
     /// for stickers whose drawings fill their images. One drawn at its
-    /// size already is its size: it comes in as drawn, or by its depth; so
-    /// is every sticker of a pack with a space (`stickerSide`).
-    private lazy var visitScales: [String: Double] = pack.manifest.space != nil ? [:] : Dictionary(
+    /// size already is its size: it comes in as drawn, or by its depth.
+    private lazy var visitScales: [String: Double] = Dictionary(
         uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in
             s.content == nil ? s.size.map { (s.id, $0.visitScale) } : nil
         })
@@ -1736,8 +1739,7 @@ final class CanvasScene: SKScene {
                     width: node.unscaledSize.width * base.scale, height: node.unscaledSize.height * base.scale),
                 readyAt: visit.map { $0.at + $0.duration } ?? 0, facing: Double(node.facing),
                 canMove: stage.entrance != .grow, flies: stage.entrance == .fly,
-                // With a space, depth sizes it beside another (`DepthStage`).
-                stature: pack.manifest.space == nil ? statures[node.stickerID] : nil, places: stage.on)
+                stature: statures[node.stickerID], places: stage.on)
         }
         var random = SystemRandomNumberGenerator()
         return MotionPlanner.plan(
@@ -1818,7 +1820,7 @@ final class CanvasScene: SKScene {
                 node.move(toParent: leavingVisitors)
                 node.run(.sequence([.fadeOut(withDuration: 0.3), .removeFromParent()]))
             }
-            if session.depth != nil { orderByLayers() }
+            if session.stage != nil { orderByLayers() }
             for node in allStickerNodes() where !node.isVisitor {
                 guard let prior = stackBeforeMotion[node.instanceID] else { continue }
                 if node.parent !== prior.parent { node.move(toParent: prior.parent) }
@@ -1839,6 +1841,15 @@ final class CanvasScene: SKScene {
             session.emitters.clearAll()
             canvasEffects.clearAll()
             session.applier.restoreAll(stickerNodesByID())
+            // Every child's sticker exactly where and as the child had it.
+            for node in allStickerNodes() {
+                guard let child = session.stage?.childPlacements[node.instanceID] else { continue }
+                node.position = CGPoint(x: child.x, y: child.y)
+                node.zRotation = CGFloat(child.rotation)
+                node.setScale(CGFloat(child.scale))
+                node.alpha = CGFloat(child.alpha)
+                node.effectBase = nil
+            }
             playSession = nil
         }
         setPlayLocked(false)
@@ -1867,23 +1878,25 @@ final class CanvasScene: SKScene {
             deltas[id] = plan.delta(at: time).combined(with: deltas[id] ?? .identity)
             if let node = nodes[id] {
                 node.facing = CGFloat(plan.facing(at: time))
-                if session.depth == nil { stackForMotion(node, plan: plan, at: time, nodes: nodes) }
+                stackForMotion(node, plan: plan, at: time, nodes: nodes)
             }
         }
         for (id, plan) in session.visitors {
             // The entrance under whatever the story's effects do to it.
             deltas[id] = plan.delta(at: time).combined(with: deltas[id] ?? .identity)
         }
-        if let depth = session.depth {
-            // Each sticker at its depth: as big as that makes it, about its
-            // feet, and in front of whatever is further away.
+        if let stage = session.stage {
+            // Each sticker where the story has it in space, projected: the
+            // placement its effects compose on, at its depth's place in the
+            // order.
             for (id, node) in nodes {
-                let plan = session.motions[id]
-                let z = depth.depth(of: node, plan: plan, at: time)
-                let k = depth.growth(of: node, at: z, time: time)
-                if abs(k - 1) > 1e-4 { deltas[id] = depth.grow(deltas[id] ?? .identity, by: k, stickerID: node.stickerID) }
-                node.zPosition = depth.zPosition(
-                    of: node, depth: z, plan: plan, arrivedAt: arrival(of: id, in: session, at: time), at: time)
+                guard let frame = stage.frame(of: node, at: time) else { continue }
+                node.effectBase = frame.base
+                var delta = deltas[id] ?? .identity
+                delta.opacityMul *= frame.opacity
+                deltas[id] = delta
+                node.facing = CGFloat(frame.facing)
+                node.zPosition = frame.z
             }
         }
         session.applier.apply(deltas, to: nodes)
@@ -1984,6 +1997,9 @@ final class CanvasScene: SKScene {
                     travel = (plan.at, plan.travel, plan.move, plan.stays)
                 }
                 if let move = session.motions[node.instanceID]?.travel(at: time), move.at >= (travel?.at ?? -1) {
+                    travel = move
+                }
+                if let move = session.stage?.travel(of: node.instanceID, at: time) {
                     travel = move
                 }
                 if let travel, action.map({ $0.since < travel.at }) ?? true, let id = travel.move,
