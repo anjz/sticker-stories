@@ -195,7 +195,11 @@ func printLive(pack story.Manifest, cov story.Coverage) {
 	fmt.Printf("  live stickers ({sticker:live}; %d of %d stories play one):\n", cov.LiveStories, cov.Stories)
 	for _, id := range ids {
 		for _, a := range pack.Animations[id] {
-			fmt.Printf("    %-10s %-13s %4.1fs  %2d stories  %s\n", id, a.ID, a.Seconds, cov.LiveUse[id], a.Description)
+			uses := cov.ActionUse[id+"."+a.ID]
+			if len(pack.Animations[id]) == 1 {
+				uses += cov.ActionUse[id+"."]
+			}
+			fmt.Printf("    %-10s %-13s %4.1fs  %2d stories  %s\n", id, a.ID, a.Seconds, uses, a.Description)
 			if a.Pause != "" {
 				fmt.Printf("    %-10s %-13s %4.1fs + %.1fs   hold: %s\n", "", "", a.ToPause, a.FromPause, a.Pause)
 			}

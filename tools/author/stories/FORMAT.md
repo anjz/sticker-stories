@@ -100,7 +100,7 @@ lines" below):
 {bird:fade-out hold}     keep the end state
 {fox:sparkle 0.9}        a bare number is intensity (0–1)
 {fox:go to rabbit}       moves the fox beside the rabbit (see "Move cues")
-{bear:live}              the bear's live action (see "Live cues"); {snail:live hold} … {snail:live resume}
+{bear:live nap}          one of the bear's live actions (see "Live cues"); {snail:live hide hold} … {snail:live hide resume}
 {bear:face happy}        the bear's face from now on (see "Face cues")
 {all:hop}                every sticker on the canvas (see "Everyone: all")
 {fox:enter}              the fox enters here if not placed (see "Entrance cues")
@@ -234,23 +234,24 @@ La mujer señaló el cielo. {woman:says} [excited] «¡Mira, un cometa!» El hom
 
 ### Live cues
 
-Every sticker carries a live action (`storycheck` lists each one with what
-it shows, how long it plays and, for most, the pose it can pause on; the
-pack's `anims/*.json` sidecars hold the same `description` and
-`pause.shows`), brought alive with the reserved effect `live`:
+Every sticker carries many live actions (`storycheck -plan` lists each
+one with what it shows, how long it plays and, for many, the pose it can
+pause on; the pack's `anims/*.json` sidecars hold the same `description`
+and `pause.shows`), brought alive with the reserved effect `live` and
+the action's id:
 
 ```
-Bear gave a {bear:live} great big yawn.          the whole action
-{owl:live sleepy-blink}                          name one when a sticker has several
-Snail {snail:live hold} hid in his shell…        up to the pause pose, and stay there
-…then {snail:live resume} peeked out.            on from the pause pose to the end
+Bear gave a {bear:live nap} great big yawn.      the whole action
+"No," {owl:live shake-head} said Owl.            any of the sticker's actions, by id
+Snail {snail:live hide hold} hid in his shell…   up to the pause pose, and stay there
+…then {snail:live hide resume} peeked out.       on from the pause pose to the end
 ```
 
 - The sticker must be featured or supporting; `{sticker:live}` takes no
-  parameters other than an animation id (needed only if the sticker has
-  several) and `hold` or `resume`.
+  parameters other than the action's id (it may be left out only when
+  the sticker has a single action) and `hold` or `resume`.
 - It fires on the word that follows, like any cue. Whole, it plays for
-  the action's length (2–4 s): cue it on the words that tell exactly that
+  the action's length (1–5 s): cue it on the words that tell exactly that
   action, and start no other effect on that sticker until it ends.
 - `hold` plays up to the action's pause pose (`hold:` in the listing —
   the snail hidden in its shell, the frog watching a fly) and stays there

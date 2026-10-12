@@ -439,62 +439,76 @@ the branches), off the canvas and back.
 
 ## Live stickers
 
-**Every sticker is alive.** Each one carries an **action** — a few seconds
-of its own frames, drawn from the sticker's art: the snail hides in its
+**Every sticker is alive.** Each one is a puppet — its own drawing cut
+into parts that move — with **many actions**: the snail hides in its
 shell and peeks out, the frog watches a fly and snaps it up, the bear cub
-yawns and nods off, the flower folds its petals up for the night — and a
-**move**, how it gets about (a walk, a hop, a crawl, a flight, a sprout),
-which plays by itself when it enters (below). An action is one fixed
-sequence; you cannot change what it does, only *when* it happens and,
-for most, **where it stops**: its **pause pose** — the snail hidden in its
-shell, the bear cub asleep, the frog frozen watching the fly. `storycheck
--plan` lists every action with what it shows, how long it plays (2–4 s),
-its pause pose (`hold:`) and the time to it and from it. Read them before
-planning the roster: they are the cast's vocabulary, and the stories are
-written to them.
+yawns and nods off; and most characters also jump, nod, shake their
+head, look around, laugh, dance, talk, shiver, cry, wave and twirl, plus
+what their body does (a bird flaps and pecks, a fox pounces, a beaver
+slaps its tail, a flower sways). It also has a **move**, how it gets
+about (a walk, a hop, a crawl, a flight, a sprout), which plays by itself
+when it enters or goes somewhere (below). An action is one fixed
+sequence; you choose *which* one, *when* it happens and, for many,
+**where it stops**: its **pause pose** — the snail hidden in its shell,
+the bear cub asleep, the frog frozen watching the fly. `storycheck
+-plan` lists every sticker's actions with what each shows, how long it
+plays (1–5 s), its pause pose (`hold:`) and the time to it and from it.
+Read them before planning the roster: they are the cast's vocabulary,
+and the stories are written to them.
 
-- **Name the moment, then cue it.** `{bear:live}` goes on the words that
-  say what the sticker does: *Bear gave a {bear:live} great big yawn.* A
-  few words are enough — *Badger {badger:live} dug a hole.* — and the
-  picture shows the rest. Don't narrate the frames (*put his head down
-  close to the ground and dug, and got soil on his nose*): it is tedious
-  to hear and spends words the story needs. Add a detail only when the
-  story uses it later (the soil on his nose is what makes Rabbit laugh).
-  Never cue it on words it contradicts, and if you mention two steps,
-  keep the frames' order: the frog *watches* the fly before it *snaps* it
-  up.
+- **Name the moment, then cue it.** `{bear:live nap}` goes on the words
+  that say what the sticker does: *Bear gave a {bear:live nap} great big
+  yawn.* A few words are enough — *Badger {badger:live dig} dug a hole.*
+  — and the picture shows the rest. Pick the action whose description
+  matches the words: *Fox {fox:live jump} leapt for joy*, *"No," Owl
+  {owl:live shake-head} said*. Don't narrate the frames (*put his head
+  down close to the ground and dug, and got soil on his nose*): it is
+  tedious to hear and spends words the story needs. Add a detail only
+  when the story uses it later. Never cue it on words it contradicts, and
+  if you mention two steps, keep the frames' order: the frog *watches*
+  the fly before it *snaps* it up.
+- **An action beats an effect.** Where the sticker has an action for the
+  moment (a `jump`, a `shiver`, a `laugh`), cue it rather than the
+  sticker effect that only bounces or shakes the whole picture (`hop`,
+  `shake`, `wobble`); keep effects for what no action shows, for `all`,
+  and for stickers in mid-action.
 - **Pause where the story lingers.** When a character stays in that pose
   for a while — hides and waits, falls asleep, holds a wish — play it up
-  to its pause pose and keep it there: *Snail {snail:live hold} tucked
-  himself deep into his shell.* … *Knock, knock. Nothing.* … *Then, slowly,
-  {snail:live resume} he peeked out.* Hold on the words that put it in the
-  pose, resume on the words that bring it out. It may stay held to the end
-  of the story (a bear asleep at bedtime). While held, the character is
-  still — other stickers carry the scene — and a face cue on it waits
-  until it resumes, so change its face before the hold or after the
-  resume.
-- **Let the story carry on over the motion.** Whole, an action runs
-  2–4 s, about 6–10 spoken words; the way into a pause pose about half
-  that. Those words don't have to describe it: once it's named, the
-  narration moves on (another character speaks, the next thing happens)
-  while the sticker finishes. Cue no other effect on that sticker until
+  to its pause pose and keep it there: *Snail {snail:live hide hold}
+  tucked himself deep into his shell.* … *Knock, knock. Nothing.* …
+  *Then, slowly, {snail:live hide resume} he peeked out.* Hold on the
+  words that put it in the pose, resume on the words that bring it out.
+  It may stay held to the end of the story (a bear asleep at bedtime).
+  While held, the character is still — other stickers carry the scene —
+  and a face cue on it waits until it resumes, so change its face before
+  the hold or after the resume.
+- **Let the story carry on over the motion.** An action runs 1–5 s,
+  about 3–12 spoken words; the way into a pause pose about half that.
+  Those words don't have to describe it: once it's named, the narration
+  moves on (another character speaks, the next thing happens) while the
+  sticker finishes. Cue no other effect on that sticker until
   the motion is done (`storyaudio` warns when a sticker effect starts on
   top of it); a held sticker may take effects again. Other stickers may
   react meanwhile.
 - **Use them — this is how the stories come alive**, but only where the
-  words tell that moment: typically two to four actions in a story, on
-  different stickers (at most five; a hold and its resume count once).
-  The same action may play twice in a story if the words tell it twice.
-  Across the set, every sticker's action plays in **at least three
-  stories**, and premises grow from them (a hide-and-seek for the snail,
-  a wish for the acorn, a flower closing at night).
+  words tell that moment: typically two to five actions in a story, on
+  different stickers or the same one (at most five; a hold and its
+  resume count once). Short ones suit a character's spoken line: `talk`
+  while it speaks, `nod` or `shake-head` on its yes or no. Across the
+  set, every sticker plays actions in **at least three stories**, its
+  signature action among them, and premises grow from them (a
+  hide-and-seek for the snail, a wish for the acorn, a flower closing at
+  night).
 - **Mostly on featured stickers.** A supporting sticker may act too, but
   the story must read fine if it is not on the canvas.
 - **Never rely on it.** The sticker may be missing, and under Reduce
-  Motion or calm mode no frames play: the words alone must tell the moment.
-- An action takes no parameters other than `hold` or `resume`:
-  `{frog:live}`, `{frog:live hold}`. If a sticker ever has several, name
-  one: `{owl:live doze}`.
+  Motion or calm mode nothing plays: the words alone must tell the moment.
+- Always name the action: `{frog:live catch-fly}`, `{frog:live catch-fly
+  hold}`. Only a sticker with a single action may leave it out.
+- **Missing an action?** When the words tell a sticker doing something
+  it has no action for (Owl *ruffled his feathers*, Bear *scratched his
+  head*), note it: actions are data, so a new one costs nothing, and the
+  action pass (the `author-stories` skill) adds it and cues it.
 
 ## Using canvas effects
 

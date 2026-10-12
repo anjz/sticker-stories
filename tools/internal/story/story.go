@@ -1892,8 +1892,11 @@ type Coverage struct {
 	// CanvasStories counts the stories that use any canvas effect.
 	CanvasStories int
 	// LiveUse counts, per sticker, the stories whose first language plays
-	// one of its live animations; LiveStories the stories that play any.
+	// one of its live animations; ActionUse the same per action
+	// ("<sticker>.<id>"; "<sticker>." for a cue naming none);
+	// LiveStories the stories that play any.
 	LiveUse     map[string]int
+	ActionUse   map[string]int
 	LiveStories int
 	// GoStories counts the stories that move a sticker ({fox:go …}).
 	GoStories int
@@ -1918,7 +1921,7 @@ type Coverage struct {
 
 // Cover computes coverage and set-level issues.
 func Cover(stories []*Story, m Manifest, expected int) Coverage {
-	c := Coverage{Stories: len(stories), Featured: map[string]int{}, Used: map[string]int{}, EffectUse: map[string]int{}, TagUse: map[string]int{}, LiveUse: map[string]int{}, FaceUse: map[string]int{}}
+	c := Coverage{Stories: len(stories), Featured: map[string]int{}, Used: map[string]int{}, EffectUse: map[string]int{}, TagUse: map[string]int{}, LiveUse: map[string]int{}, ActionUse: map[string]int{}, FaceUse: map[string]int{}}
 	for _, st := range m.Stickers {
 		c.Featured[st] = 0
 		c.Used[st] = 0
@@ -1963,6 +1966,10 @@ func Cover(stories []*Story, m Manifest, expected int) Coverage {
 					if !seen["live:"+cue.Sticker] {
 						seen["live:"+cue.Sticker] = true
 						c.LiveUse[cue.Sticker]++
+					}
+					if action := cue.Sticker + "." + cue.Animation; !seen["action:"+action] {
+						seen["action:"+action] = true
+						c.ActionUse[action]++
 					}
 					continue
 				case cue.Sound:
@@ -2046,7 +2053,7 @@ func Cover(stories []*Story, m Manifest, expected int) Coverage {
 	}
 	for _, st := range m.Stickers {
 		if len(m.Animations[st]) > 0 && c.Featured[st] >= MinFeaturedPer && c.LiveUse[st] < MinLivePer {
-			c.Warnings = append(c.Warnings, fmt.Sprintf("sticker %q's action (%s) plays in %d stories; aim for at least %d ({%s:%s})", st, m.Animations[st][0].Description, c.LiveUse[st], MinLivePer, st, LiveEffect))
+			c.Warnings = append(c.Warnings, fmt.Sprintf("sticker %q's actions play in %d stories; aim for at least %d ({%s:%s %s})", st, c.LiveUse[st], MinLivePer, st, LiveEffect, m.Animations[st][0].ID))
 		}
 	}
 	if c.Fallbacks < MinFallbacks {

@@ -30,16 +30,18 @@ Read, in this order, before writing anything:
    sticker's `id` and per-language `name` (the cast and the only IDs you
    may use), and its **`setting`** (`outdoors`, `indoors`, `space`,
    `underwater` or `none`; absent means `none`). The setting decides which canvas effects the stories may
-   use — note it down before writing anything.   Every sticker declares `animations`: one **action** (what stories cue)
-   and one **move** (its walk, hop, flight or sprout, played by its
-   entrance). Run
+   use — note it down before writing anything.   Every sticker declares `animations`: many **actions** (what stories
+   cue, by id — its signature one, like the snail hiding, and shared ones
+   like jump, nod, laugh, wave) and one or more **moves** (its walk, hop,
+   flight or sprout, played by its entrance). Run
    `cd tools && go run ./author/storycheck -pack ../packs/<packID> -plan`,
    which prints every action: what it shows, how long it plays and, for
-   most, its **pause pose** (`hold:` — the snail hidden in its shell, the
+   many, its **pause pose** (`hold:` — the snail hidden in its shell, the
    bear cub asleep) with the time to reach it and to come out of it. The
    sidecars (`packs/<packID>/anims/<sticker>.<id>.json`) hold the same
    `description` and `pause.shows`. Each action is one fixed sequence;
-   stories choose when it happens and whether it stops on its pause pose.
+   stories choose which, when it happens and whether it stops on its
+   pause pose.
    Note which stickers declare `expressions` (face variants: `happy`,
    `sad`, `sleeping`, `surprised`… plus their own `normal` face) — the
    `-plan` run lists them too. Faces are the cheapest way to make the
@@ -185,9 +187,12 @@ exactly per `FORMAT.md`:
   owl dozing off) move it onto or under something or down to the
   meadow or branches, never resting in the sky or hovering beside
   someone (storycheck errors);
-- live cues (`{bear:live}`, `{snail:live hold}` … `{snail:live resume}` —
-  see FORMAT "Live cues", GUIDE "Live stickers") as the roster planned
-  them: on a few words that name what that action shows (*Badger dug a
+- live cues (`{bear:live nap}`, `{snail:live hide hold}` …
+  `{snail:live hide resume}` — always the action's id; see FORMAT "Live
+  cues", GUIDE "Live stickers") as the roster planned them, and wherever
+  else the words tell a sticker doing one of its actions (jumping,
+  nodding, laughing, waving — an action rather than a sticker effect):
+  on a few words that name what that action shows (*Badger dug a
   hole*), not a frame-by-frame description unless the story uses a
   detail later, with the next 6–10 words (the story moving on) free of
   other effects on that sticker; a hold on the words that put it in its pause pose, its resume
@@ -254,9 +259,33 @@ story, every sticker's action in several stories and holds in about
 half, audio tags and sounds in most stories but never
 crowding one, and learning at about 40 %.
 
-## 4. Finish
+## 4. The action pass
 
-When the count is reached: run `storycheck` once more, make sure it exits
+When the set is written, read it once more sticker by sticker, with the
+`-plan` action list beside you. For every sentence where the words tell
+a featured or supporting sticker *doing* something:
+
+- it has an action for it and the story has room (at most five, 6–10
+  words clear around it on that sticker): cue it;
+- it has none, but its body could show it and the moment matters (Owl
+  *ruffled his feathers*, Bear *scratched his head*, Frog *puffed out
+  his throat*): write it down in `plan.md` under **Action requests** —
+  sticker, a short id in the style of the others, one sentence of what
+  it shows, the stories that would cue it.
+
+Then make the requested actions: they are keyframes on the sticker's
+puppet and cost nothing (the `puppet` skill, step 6: add them to
+`tools/author/art/<pack>/rigs/<id>.json`, install, look at the keys).
+A request that needs a new drawn part (a prop it doesn't have, a pose no
+turn can make) costs one redraw of its parts sheet: list those for the
+user instead of making them. Cue the new actions in the stories that
+asked for them, and record in `plan.md` what was added. Cue-only changes
+leave the narration as it is: `storyaudio render` re-renders the effects
+sidecars for free.
+
+## 5. Finish
+
+When the count is reached and the action pass is done: run `storycheck` once more, make sure it exits
 clean with full coverage, and report to the user: how many stories, the
 coverage table, the effects-used, faces, live-sticker, audio-tag and sound
 tables, that every story's entrances are clean, the learning share, the mood mix, and anything you chose not to write and why. Do not
@@ -290,8 +319,9 @@ build step 2 (audio); it is a separate tool.
   character on or under a small one, or cue anything on a sticker that
   has gone away before it comes back.
 - Never cue a live action on words it contradicts or out of the frames'
-  order, resume one that is not held, hold one without a pause pose, or
-  pile more than five into a story.
+  order, resume one that is not held, hold one without a pause pose,
+  leave out its id when the sticker has several, or pile more than five
+  into a story.
 - Never use an effect name that is not in `docs/effects/effects.json`, a
   canvas effect the pack's setting does not allow, a canvas effect the
   words don't describe, a described snowfall (or rain, sunset…) left
