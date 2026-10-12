@@ -6,6 +6,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 
@@ -15,12 +16,17 @@ import (
 // runPreview writes one self-contained HTML page per installed puppet
 // (out/rigs/<sticker>.preview.html): the puppet at rest beside and over
 // the sticker, every face, and every animation playing, with its keys
-// laid out — drawn by the same rules the app poses it with.
+// laid out — drawn by the same rules the app poses it with. With -png it
+// also takes pictures of the page with headless Chrome, to look at
+// without a browser: <sticker>.rest.png (rest and faces) and
+// <sticker>.<animation>.png (its keys, larger).
 func runPreview(args []string) error {
 	fs := flag.NewFlagSet("preview", flag.ExitOnError)
 	packDir := fs.String("pack", "", "pack directory")
 	artDir := fs.String("art", "", "art directory (default author/art/<packID>)")
 	only := fs.String("only", "", "comma-separated sticker ids")
+	pngs := fs.Bool("png", false, "also write PNG pictures of the page (needs Google Chrome)")
+	animOnly := fs.String("anim", "", "with -png: only this animation's picture (and the rest's)")
 	fs.Parse(args)
 	c, err := load(*packDir, *artDir, *only)
 	if err != nil {
@@ -42,8 +48,10 @@ func runPreview(args []string) error {
 			return err
 		}
 		type anim struct {
-			ID, Kind, Description string
-			Puppet                *manifest.AnimationPuppet
+			ID, Kind, Description, Shows string
+			Keys                         []manifest.PuppetKey
+			Pause                        *int
+			Loop                         *manifest.FrameRange
 		}
 		var anims []anim
 		for _, rel := range st.Animations {
@@ -51,9 +59,22 @@ func runPreview(args []string) error {
 			if err != nil {
 				return err
 			}
-			if a.Puppet != nil {
-				anims = append(anims, anim{a.ID, a.EffectiveKind(), a.Description, a.Puppet})
+			if a.Puppet == nil {
+				continue
 			}
+			// Beside a sheet the puppet has its own pause and loop; alone,
+			// the sidecar's count its keys.
+			v := anim{ID: a.ID, Kind: a.EffectiveKind(), Description: a.Description, Keys: a.Puppet.Keys, Pause: a.Puppet.Pause, Loop: a.Puppet.Loop}
+			if a.PuppetOnly() {
+				v.Loop = a.Loop
+				if a.Pause != nil {
+					v.Pause = &a.Pause.Frame
+				}
+			}
+			if a.Pause != nil {
+				v.Shows = a.Pause.Shows
+			}
+			anims = append(anims, v)
 		}
 		data, _ := json.Marshal(map[string]any{
 			"rig": rig, "anims": anims,
@@ -67,9 +88,42 @@ func runPreview(args []string) error {
 			return err
 		}
 		fmt.Printf("✓ %s\n", out)
+		if !*pngs {
+			continue
+		}
+		shoot := func(hash, name string, height int) error {
+			png := c.out(r.Sticker + "." + name + ".png")
+			abs, _ := filepath.Abs(out)
+			cmd := exec.Command(chrome, "--headless", "--disable-gpu", "--hide-scrollbars", "--screenshot="+png,
+				fmt.Sprintf("--window-size=%d,%d", map[bool]int{true: 2360, false: 1400}[hash == "rest"], height), "--virtual-time-budget=2000", "file://"+abs+"#"+hash)
+			if msg, err := cmd.CombinedOutput(); err != nil {
+				return fmt.Errorf("chrome: %v: %s", err, msg)
+			}
+			fmt.Printf("  %s\n", png)
+			return nil
+		}
+		if err := shoot("rest", "rest", 800); err != nil {
+			return err
+		}
+		for _, a := range anims {
+			if *animOnly != "" && a.ID != *animOnly {
+				continue
+			}
+			rows := (len(a.Keys) + keysPerRow - 1) / keysPerRow
+			if err := shoot("anim="+a.ID, a.ID, 150+rows*keyRow); err != nil {
+				return err
+			}
+		}
 	}
 	return nil
 }
+
+// chrome takes the pictures; the key strip's layout in a picture.
+const (
+	chrome     = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+	keysPerRow = 6
+	keyRow     = 236
+)
 
 // previewHTML draws a puppet with canvas transforms, by the rules of
 // docs/pack-format.md, "Puppets" (the app's PuppetNode does the same).
@@ -84,10 +138,10 @@ figcaption { font-size: 12px; opacity: .85; margin-top: 4px; }
 canvas { background: #86a586; border-radius: 10px; }
 .desc { opacity: .85; max-width: 900px; }
 </style></head><body>
-<h1>{{STICKER}} puppet</h1>
-<h2>At rest</h2>
+<h1 id="title">{{STICKER}} puppet</h1>
+<h2 id="restH">At rest</h2>
 <div class="row" id="rest"></div>
-<h2>Faces</h2>
+<h2 id="facesH">Faces</h2>
 <div class="row" id="faces"></div>
 <div id="anims"></div>
 <script>
@@ -167,27 +221,45 @@ function canvas(parent, caption, size = 300, span = 1) {
 function frame(v, fn) {
   const { ctx, c, k } = v;
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, c.width, c.height);
-  ctx.setTransform(k, 0, 0, k, (c.width - S * k) / 2, 0);
+  // A margin round the sticker's square: wings and leaps reach past it.
+  const m = 0.8 * k;
+  ctx.setTransform(m, 0, 0, m, (c.width - S * m) / 2, (c.height - S * m) / 2);
   fn(ctx);
 }
 
+const only = location.hash.slice(1), onlyAnim = only.startsWith("anim=") ? only.slice(5) : null;
 function start() {
+  if (onlyAnim) { for (const id of ["restH", "rest", "facesH", "faces", "title"]) document.getElementById(id).style.display = "none"; }
   const rest = document.getElementById("rest");
-  frame(canvas(rest, "the sticker"), ctx => ctx.drawImage(sticker, 0, 0, S, S));
-  frame(canvas(rest, "the puppet at rest"), ctx => draw(ctx, restPose("normal")));
-  frame(canvas(rest, "puppet over the sticker (50 %)"), ctx => { ctx.drawImage(sticker, 0, 0, S, S); ctx.globalAlpha = .5; draw(ctx, restPose("normal")); ctx.globalAlpha = 1; });
-  const flick = canvas(rest, "sticker ⇄ puppet, every second");
+  const big = only === "rest" ? 440 : 300;
+  frame(canvas(rest, "the sticker", big), ctx => ctx.drawImage(sticker, 0, 0, S, S));
+  frame(canvas(rest, "the puppet at rest", big), ctx => draw(ctx, restPose("normal")));
+  frame(canvas(rest, "puppet over the sticker (50 %)", big), ctx => { ctx.drawImage(sticker, 0, 0, S, S); ctx.globalAlpha = .5; draw(ctx, restPose("normal")); ctx.globalAlpha = 1; });
+  // Where the two differ: the sticker's shape magenta, the puppet's green.
+  const tinted = (paint, color) => {
+    const c = document.createElement("canvas"); c.width = c.height = S;
+    const x = c.getContext("2d"); paint(x);
+    x.globalCompositeOperation = "source-in"; x.fillStyle = color; x.fillRect(0, 0, S, S);
+    return c;
+  };
+  const stickerShape = tinted(x => x.drawImage(sticker, 0, 0, S, S), "#ff00cc"), puppetShape = tinted(x => draw(x, restPose("normal")), "#00ff66");
+  frame(canvas(rest, "mismatch: sticker only magenta, puppet only green", big), ctx => {
+    ctx.globalAlpha = .55; ctx.drawImage(stickerShape, 0, 0); ctx.drawImage(puppetShape, 0, 0); ctx.globalAlpha = 1;
+  });
+  const flick = canvas(rest, "sticker ⇄ puppet, every second", big);
   setInterval(() => frame(flick, ctx => (Math.floor(Date.now() / 1000) % 2) ? ctx.drawImage(sticker, 0, 0, S, S) : draw(ctx, restPose("normal"))), 100);
   const faces = document.getElementById("faces");
   for (const f of ["normal", ...Object.keys(rig.faces || {}).filter(f => f != "normal")])
     frame(canvas(faces, f, 160), ctx => draw(ctx, restPose(f)));
   const anims = document.getElementById("anims");
+  if (only === "rest") return;
   for (const a of D.anims) {
+    if (onlyAnim && a.ID !== onlyAnim) continue;
     const sec = document.createElement("div");
-    sec.innerHTML = "<h2>" + a.ID + " (" + a.Kind + ")</h2><p class=desc>" + a.Description + "</p>";
+    sec.innerHTML = "<h2>" + a.ID + " (" + a.Kind + ")</h2><p class=desc>" + a.Description + (a.Shows ? "<br>pause: " + a.Shows : "") + "</p>";
     anims.appendChild(sec);
     const row = document.createElement("div"); row.className = "row"; sec.appendChild(row);
-    const p = a.Puppet, keys = p.keys;
+    const p = { pause: a.Pause, loop: a.Loop }, keys = a.Keys;
     // Played as a story would: an action whole (holding its pause a
     // second), a move's loop three times then its settle.
     const seq = [];
@@ -200,9 +272,9 @@ function start() {
     }
     const holds = seq.map(([i]) => keys[i].hold + (i === p.pause ? 1 : 0));
     const total = holds.reduce((x, y) => x + y, 0) + 0.8;
-    const v = canvas(row, "playing (" + total.toFixed(1) + " s a round)", 300, p.loop ? 1.6 : 1);
+    const v = onlyAnim ? null : canvas(row, "playing (" + total.toFixed(1) + " s a round)", 300, p.loop ? 1.6 : 1);
     const t0 = performance.now();
-    (function tick() {
+    if (v) (function tick() {
       let t = ((performance.now() - t0) / 1000) % total, j = 0;
       while (j < seq.length && t >= holds[j]) { t -= holds[j]; j++; }
       let pose;
@@ -218,7 +290,7 @@ function start() {
       requestAnimationFrame(tick);
     })();
     const strip = document.createElement("div"); strip.className = "row"; sec.appendChild(strip);
-    keys.forEach((k, i) => frame(canvas(strip, "key " + i + " · " + k.hold + " s" + (i === p.pause ? " · pause" : "") + (p.loop && i >= p.loop.from && i <= p.loop.to ? " · loop" : ""), 110), ctx => draw(ctx, poseAt(keys, i, 0, "normal"))));
+    keys.forEach((k, i) => frame(canvas(strip, "key " + i + " · " + k.hold + " s" + (i === p.pause ? " · pause" : "") + (p.loop && i >= p.loop.from && i <= p.loop.to ? " · loop" : ""), onlyAnim ? 200 : 110), ctx => draw(ctx, poseAt(keys, i, 0, "normal"))));
   }
 }
 </script></body></html>
