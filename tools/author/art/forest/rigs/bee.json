@@ -13,7 +13,7 @@
       "references": [
         "parts"
       ],
-      "prompt": "Image 1 is a sticker of a bee character; image 2 shows the same bee cut into puppet parts, with a blank face. Draw the bee's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the bee in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the bee's left eye (on the right of image 1) as it is in image 1: a big dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a small happy smile.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+      "prompt": "Image 1 is a sticker of a bee character; image 2 shows the same bee cut into puppet parts, with a blank face. Draw the bee's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the bee in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the bee's left eye (on the right of image 1) as it is in image 1: a big dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a small happy smile.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n10. the nose as it is in image 1: a tiny dark brown rounded-triangle nose.\n11. one eyebrow as in image 1: a small, thin, softly curved brown line.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
     }
   ],
   "parts": {
@@ -55,64 +55,78 @@
     "eye": {
       "sheet": "face",
       "at": [
-        158,
-        374
+        184,
+        283
       ]
     },
     "eyeWide": {
       "sheet": "face",
       "at": [
-        467,
-        369
+        501,
+        283
       ]
     },
     "eyeClosed": {
       "sheet": "face",
       "at": [
-        771,
-        411
+        819,
+        322
       ]
     },
     "eyeHappy": {
       "sheet": "face",
       "at": [
-        1081,
-        364
+        1093,
+        273
       ]
     },
     "eyeSad": {
       "sheet": "face",
       "at": [
-        1381,
-        386
+        1373,
+        289
       ]
     },
     "mouth": {
       "sheet": "face",
       "at": [
-        252,
-        739
+        255,
+        629
       ]
     },
     "mouthLaugh": {
       "sheet": "face",
       "at": [
-        588,
-        729
+        615,
+        618
       ]
     },
     "mouthO": {
       "sheet": "face",
       "at": [
-        943,
-        725
+        909,
+        623
       ]
     },
     "mouthSad": {
       "sheet": "face",
       "at": [
-        1297,
-        716
+        1262,
+        602
+      ]
+    },
+    "nose": {
+      "sheet": "face",
+      "at": [
+        555,
+        856
+      ]
+    },
+    "brow": {
+      "sheet": "face",
+      "at": [
+        921,
+        859
       ]
     }
   },
@@ -355,33 +369,33 @@
           "part": "eye",
           "x": 130,
           "y": 320,
-          "scale": 0.27,
+          "scale": 0.295,
           "scaleY": 1.2
         },
         "wide": {
           "part": "eyeWide",
           "x": 130,
           "y": 320,
-          "scale": 0.27,
+          "scale": 0.311,
           "scaleY": 1.2
         },
         "closed": {
           "part": "eyeClosed",
           "x": 130,
           "y": 328,
-          "scale": 0.27
+          "scale": 0.313
         },
         "happy": {
           "part": "eyeHappy",
           "x": 130,
           "y": 318,
-          "scale": 0.27
+          "scale": 0.323
         },
         "sad": {
           "part": "eyeSad",
           "x": 130,
           "y": 322,
-          "scale": 0.27,
+          "scale": 0.302,
           "scaleY": 1.2,
           "flip": true
         }
@@ -396,31 +410,31 @@
           "part": "eye",
           "x": 264,
           "y": 362,
-          "scale": 0.33
+          "scale": 0.361
         },
         "wide": {
           "part": "eyeWide",
           "x": 264,
           "y": 362,
-          "scale": 0.33
+          "scale": 0.38
         },
         "closed": {
           "part": "eyeClosed",
           "x": 264,
           "y": 370,
-          "scale": 0.33
+          "scale": 0.383
         },
         "happy": {
           "part": "eyeHappy",
           "x": 264,
           "y": 360,
-          "scale": 0.33
+          "scale": 0.395
         },
         "sad": {
           "part": "eyeSad",
           "x": 264,
           "y": 364,
-          "scale": 0.33
+          "scale": 0.369
         }
       }
     },
@@ -430,18 +444,20 @@
       "default": "brow",
       "attachments": {
         "brow": {
-          "part": "eyeHappy",
+          "part": "brow",
           "x": 160,
           "y": 247,
-          "scale": 0.11,
-          "rotate": -10
+          "scale": 0.233,
+          "rotate": -6,
+          "scaleY": 1.3
         },
         "sad": {
-          "part": "eyeHappy",
+          "part": "brow",
           "x": 160,
-          "y": 245,
-          "scale": 0.11,
-          "rotate": -30
+          "y": 244,
+          "scale": 0.233,
+          "rotate": -26,
+          "scaleY": 1.3
         }
       }
     },
@@ -451,18 +467,20 @@
       "default": "brow",
       "attachments": {
         "brow": {
-          "part": "eyeHappy",
+          "part": "brow",
           "x": 292,
-          "y": 290,
-          "scale": 0.11,
-          "rotate": 30
+          "y": 291,
+          "scale": 0.233,
+          "rotate": 34,
+          "scaleY": 1.3
         },
         "sad": {
-          "part": "eyeHappy",
+          "part": "brow",
           "x": 292,
           "y": 288,
-          "scale": 0.11,
-          "rotate": 50
+          "scale": 0.233,
+          "rotate": 52,
+          "scaleY": 1.3
         }
       }
     },
@@ -472,12 +490,10 @@
       "default": "nose",
       "attachments": {
         "nose": {
-          "part": "eye",
-          "x": 156,
-          "y": 375,
-          "scale": 0.11,
-          "scaleY": 0.8,
-          "rotate": 200
+          "part": "nose",
+          "x": 154,
+          "y": 376,
+          "scale": 0.227
         }
       }
     },
@@ -490,26 +506,26 @@
           "part": "mouth",
           "x": 178,
           "y": 405,
-          "scale": 0.27,
+          "scale": 0.327,
           "rotate": -3
         },
         "open": {
           "part": "mouthLaugh",
           "x": 178,
           "y": 412,
-          "scale": 0.25
+          "scale": 0.327
         },
         "o": {
           "part": "mouthO",
           "x": 178,
           "y": 410,
-          "scale": 0.22
+          "scale": 0.254
         },
         "sad": {
           "part": "mouthSad",
           "x": 178,
           "y": 410,
-          "scale": 0.22
+          "scale": 0.275
         }
       }
     }

@@ -1,6 +1,6 @@
 {
   "sticker": "snail",
-  "skeleton": "snail seen from the side facing right: root on the ground; body (the slimy foot with the head rising at the right) with squash, a neck bone so the head can rise or tuck into the shell; shell on the body's back; stalkL/stalkR on the head with the eye balls at their tips (face pieces); mouth on the head.",
+  "skeleton": "snail seen from the side facing right: root on the ground; body (the slimy foot with the head rising at the right) with squash; shell on the body's back; stalkL/stalkR rooted inside the head (behind the body, so the head's edge covers their base), each with an eye bone at its tip carrying the eye ball (face pieces); mouth on the head. The eye bones undo their stalk's stretch so the balls stay round.",
   "sheets": [
     {
       "id": "parts",
@@ -13,7 +13,7 @@
       "references": [
         "parts"
       ],
-      "prompt": "Image 1 is a sticker of a snail character; image 2 shows the same snail cut into puppet parts, with a blank face. Draw the snail's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the snail in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. one of the snail's eye balls on its stalk tip as it is in image 1: a round white eye ball with a dark pupil and a sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its lid drooping.\n6. the mouth as it is in image 1: a small calm smile.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+      "prompt": "Image 1 is a sticker of a snail character; image 2 shows the same snail cut into puppet parts, with a blank face. Draw the snail's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the snail in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. one of the snail's eyes as it is in image 1: only the round green ball at the very tip of the eye stalk, with its white eye, dark pupil and sparkle on it — the ball alone, with NO stalk below it, its bottom edge a full round curve like the rest of the ball. Every eye below is this same ball, without any stalk.\n2. the same green ball with the eye wide open and surprised: the white eye bigger and rounder, with its sparkle.\n3. the same green ball with its eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same green ball with the eye closed in a happy smile: an upward-curving arc.\n5. the same green ball with the eye sad: looking down, its lid drooping.\n6. the mouth as it is in image 1: a small calm smile.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
     }
   ],
   "parts": {
@@ -31,67 +31,74 @@
         741
       ]
     },
+    "stalk": {
+      "sheet": "parts",
+      "at": [
+        1403,
+        243
+      ]
+    },
     "eye": {
       "sheet": "face",
       "at": [
-        166,
-        370
+        143,
+        345
       ]
     },
     "eyeWide": {
       "sheet": "face",
       "at": [
-        471,
-        355
+        455,
+        344
       ]
     },
     "eyeClosed": {
       "sheet": "face",
       "at": [
-        790,
-        376
+        767,
+        349
       ]
     },
     "eyeHappy": {
       "sheet": "face",
       "at": [
-        1090,
-        376
+        1075,
+        349
       ]
     },
     "eyeSad": {
       "sheet": "face",
       "at": [
-        1374,
-        368
+        1391,
+        349
       ]
     },
     "mouth": {
       "sheet": "face",
       "at": [
-        207,
-        823
+        184,
+        750
       ]
     },
     "mouthLaugh": {
       "sheet": "face",
       "at": [
-        590,
-        813
+        586,
+        733
       ]
     },
     "mouthO": {
       "sheet": "face",
       "at": [
-        970,
-        803
+        953,
+        722
       ]
     },
     "mouthSad": {
       "sheet": "face",
       "at": [
-        1342,
-        794
+        1313,
+        708
       ]
     }
   },
@@ -122,14 +129,26 @@
     {
       "id": "stalkL",
       "parent": "head",
-      "x": 568,
-      "y": 292
+      "x": 575,
+      "y": 300
+    },
+    {
+      "id": "eyeL",
+      "parent": "stalkL",
+      "x": 529,
+      "y": 134
     },
     {
       "id": "stalkR",
       "parent": "head",
-      "x": 638,
-      "y": 296
+      "x": 640,
+      "y": 300
+    },
+    {
+      "id": "eyeR",
+      "parent": "stalkR",
+      "x": 679,
+      "y": 163
     },
     {
       "id": "mouth",
@@ -148,94 +167,120 @@
     {
       "id": "stalkL",
       "bone": "stalkL",
+      "default": "stalk",
+      "attachments": {
+        "stalk": {
+          "part": "stalk",
+          "x": 543,
+          "y": 222,
+          "scale": 0.8,
+          "scaleY": 0.8,
+          "rotate": -3.6
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
       "default": "calm",
       "attachments": {
         "calm": {
           "part": "eye",
-          "x": 527,
-          "y": 190,
-          "scale": 0.42,
-          "scaleY": 1.15,
-          "rotate": -1
+          "x": 529,
+          "y": 134,
+          "scale": 0.36,
+          "scaleY": 1.08
         },
         "wide": {
           "part": "eyeWide",
-          "x": 527,
-          "y": 190,
-          "scale": 0.42,
-          "scaleY": 1.15,
-          "rotate": -1
+          "x": 529,
+          "y": 134,
+          "scale": 0.36,
+          "scaleY": 1.08
         },
         "closed": {
           "part": "eyeClosed",
-          "x": 527,
-          "y": 190,
-          "scale": 0.42,
-          "scaleY": 1.15,
-          "rotate": -1
+          "x": 529,
+          "y": 134,
+          "scale": 0.36,
+          "scaleY": 1.08
         },
         "happy": {
           "part": "eyeHappy",
-          "x": 527,
-          "y": 190,
-          "scale": 0.42,
-          "scaleY": 1.15,
-          "rotate": -1
+          "x": 529,
+          "y": 134,
+          "scale": 0.36,
+          "scaleY": 1.08
         },
         "sad": {
           "part": "eyeSad",
-          "x": 527,
-          "y": 190,
-          "scale": 0.42,
-          "scaleY": 1.15,
-          "rotate": -1
+          "x": 529,
+          "y": 134,
+          "scale": 0.36,
+          "scaleY": 1.08
         }
       }
     },
     {
       "id": "stalkR",
       "bone": "stalkR",
+      "default": "stalk",
+      "attachments": {
+        "stalk": {
+          "part": "stalk",
+          "x": 663,
+          "y": 239,
+          "scale": 0.75,
+          "scaleY": 0.663,
+          "rotate": -2.5,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
       "default": "calm",
       "attachments": {
         "calm": {
           "part": "eye",
-          "x": 655,
-          "y": 212,
-          "scale": 0.42,
-          "scaleY": 1.15,
-          "rotate": 24
+          "x": 679,
+          "y": 163,
+          "scale": 0.38,
+          "scaleY": 0.86,
+          "rotate": 18
         },
         "wide": {
           "part": "eyeWide",
-          "x": 655,
-          "y": 212,
-          "scale": 0.42,
-          "scaleY": 1.15,
-          "rotate": 24
+          "x": 679,
+          "y": 163,
+          "scale": 0.38,
+          "scaleY": 0.86,
+          "rotate": 18
         },
         "closed": {
           "part": "eyeClosed",
-          "x": 655,
-          "y": 212,
-          "scale": 0.42,
-          "scaleY": 1.15,
-          "rotate": 24
+          "x": 679,
+          "y": 163,
+          "scale": 0.38,
+          "scaleY": 0.86,
+          "rotate": 18
         },
         "happy": {
           "part": "eyeHappy",
-          "x": 655,
-          "y": 212,
-          "scale": 0.42,
-          "scaleY": 1.15,
-          "rotate": 24
+          "x": 679,
+          "y": 163,
+          "scale": 0.38,
+          "scaleY": 0.86,
+          "rotate": 18
         },
         "sad": {
           "part": "eyeSad",
-          "x": 655,
-          "y": 212,
-          "scale": 0.42,
-          "scaleY": 1.15,
-          "rotate": 24
+          "x": 679,
+          "y": 163,
+          "scale": 0.38,
+          "scaleY": 0.86,
+          "rotate": 18
         }
       }
     },
@@ -281,50 +326,50 @@
           "part": "mouthLaugh",
           "x": 632,
           "y": 362,
-          "scale": 0.2
+          "scale": 0.235
         },
         "o": {
           "part": "mouthO",
           "x": 632,
           "y": 360,
-          "scale": 0.2
+          "scale": 0.215
         },
         "sad": {
           "part": "mouthSad",
           "x": 632,
           "y": 360,
-          "scale": 0.22
+          "scale": 0.25
         }
       }
     }
   ],
   "faces": {
     "happy": {
-      "stalkL": "happy",
-      "stalkR": "happy",
-      "mouth": "open"
+      "mouth": "open",
+      "eyeL": "happy",
+      "eyeR": "happy"
     },
     "sad": {
-      "stalkL": "sad",
-      "stalkR": "sad",
-      "mouth": "sad"
+      "mouth": "sad",
+      "eyeL": "sad",
+      "eyeR": "sad"
     },
     "sleeping": {
-      "stalkL": "closed",
-      "stalkR": "closed",
-      "mouth": "smile"
+      "mouth": "smile",
+      "eyeL": "closed",
+      "eyeR": "closed"
     },
     "surprised": {
-      "stalkL": "wide",
-      "stalkR": "wide",
-      "mouth": "o"
+      "mouth": "o",
+      "eyeL": "wide",
+      "eyeR": "wide"
     }
   },
   "idle": {
     "breathe": "belly",
     "blink": {
-      "stalkL": "closed",
-      "stalkR": "closed"
+      "eyeL": "closed",
+      "eyeR": "closed"
     }
   },
   "animations": [
@@ -355,11 +400,17 @@
             },
             "belly": {
               "sy": 0.97
+            },
+            "eyeL": {
+              "sy": 1.176
+            },
+            "eyeR": {
+              "sy": 1.176
             }
           },
           "slots": {
-            "stalkL": "wide",
-            "stalkR": "wide",
+            "eyeL": "wide",
+            "eyeR": "wide",
             "mouth": "o"
           }
         },
@@ -380,11 +431,17 @@
             },
             "shell": {
               "y": 20
+            },
+            "eyeL": {
+              "sy": 1.667
+            },
+            "eyeR": {
+              "sy": 1.667
             }
           },
           "slots": {
-            "stalkL": "closed",
-            "stalkR": "closed",
+            "eyeL": "closed",
+            "eyeR": "closed",
             "mouth": "o"
           }
         },
@@ -407,11 +464,17 @@
             },
             "shell": {
               "y": 58
+            },
+            "eyeL": {
+              "sy": 3.333
+            },
+            "eyeR": {
+              "sy": 3.333
             }
           },
           "slots": {
-            "stalkL": "closed",
-            "stalkR": "closed",
+            "eyeL": "closed",
+            "eyeR": "closed",
             "mouth": "none"
           }
         },
@@ -433,11 +496,17 @@
             },
             "shell": {
               "y": 58
+            },
+            "eyeL": {
+              "sy": 3.333
+            },
+            "eyeR": {
+              "sy": 3.333
             }
           },
           "slots": {
-            "stalkL": "closed",
-            "stalkR": "closed",
+            "eyeL": "closed",
+            "eyeR": "closed",
             "mouth": "none"
           }
         },
@@ -460,11 +529,17 @@
             "shell": {
               "y": 58,
               "r": -2
+            },
+            "eyeL": {
+              "sy": 3.333
+            },
+            "eyeR": {
+              "sy": 3.333
             }
           },
           "slots": {
-            "stalkL": "closed",
-            "stalkR": "closed",
+            "eyeL": "closed",
+            "eyeR": "closed",
             "mouth": "none"
           }
         },
@@ -485,6 +560,12 @@
             },
             "shell": {
               "y": 32
+            },
+            "eyeL": {
+              "sy": 1.667
+            },
+            "eyeR": {
+              "sy": 1.667
             }
           }
         },
@@ -503,6 +584,12 @@
             },
             "shell": {
               "y": 8
+            },
+            "eyeL": {
+              "sy": 1.176
+            },
+            "eyeR": {
+              "sy": 1.176
             }
           }
         },
@@ -531,8 +618,8 @@
         {
           "hold": 0.3,
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {
@@ -728,55 +815,23 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {
           "hold": 0.2,
           "bones": {
             "stalkL": {
-              "r": 14
+              "r": 5
             },
             "stalkR": {
-              "r": -14
+              "r": -5
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "stalkL": {
-              "r": -18
-            },
-            "stalkR": {
-              "r": 18
-            }
-          },
-          "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
-            "mouth": "open"
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "stalkL": {
-              "r": 14
-            },
-            "stalkR": {
-              "r": -14
-            }
-          },
-          "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
-            "mouth": "open"
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {
@@ -790,8 +845,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
+            "eyeL": "happy",
+            "eyeR": "happy",
             "mouth": "open"
           }
         },
@@ -799,22 +854,54 @@
           "hold": 0.2,
           "bones": {
             "stalkL": {
-              "r": 14
+              "r": 5
             },
             "stalkR": {
-              "r": -14
+              "r": -5
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "stalkL": {
+              "r": -18
+            },
+            "stalkR": {
+              "r": 18
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "stalkL": {
+              "r": 5
+            },
+            "stalkR": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {
           "hold": 0.3,
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {
@@ -846,6 +933,12 @@
             },
             "stalkR": {
               "sy": 1.05
+            },
+            "eyeL": {
+              "sy": 0.952
+            },
+            "eyeR": {
+              "sy": 0.952
             }
           }
         },
@@ -866,11 +959,17 @@
             },
             "shell": {
               "y": -6
+            },
+            "eyeL": {
+              "sy": 0.893
+            },
+            "eyeR": {
+              "sy": 0.893
             }
           },
           "slots": {
-            "stalkL": "closed",
-            "stalkR": "closed",
+            "eyeL": "closed",
+            "eyeR": "closed",
             "mouth": "open"
           }
         },
@@ -891,11 +990,17 @@
             },
             "shell": {
               "y": -6
+            },
+            "eyeL": {
+              "sy": 0.877
+            },
+            "eyeR": {
+              "sy": 0.877
             }
           },
           "slots": {
-            "stalkL": "closed",
-            "stalkR": "closed",
+            "eyeL": "closed",
+            "eyeR": "closed",
             "mouth": "o"
           }
         },
@@ -908,15 +1013,15 @@
             }
           },
           "slots": {
-            "stalkL": "closed",
-            "stalkR": "closed"
+            "eyeL": "closed",
+            "eyeR": "closed"
           }
         },
         {
           "hold": 0.3,
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {
@@ -943,8 +1048,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {
@@ -958,8 +1063,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {
@@ -973,8 +1078,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {
@@ -988,8 +1093,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {
@@ -1003,15 +1108,15 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {
           "hold": 0.3,
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {
@@ -1180,8 +1285,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
+            "eyeL": "happy",
+            "eyeR": "happy",
             "mouth": "open"
           }
         },
@@ -1200,8 +1305,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
+            "eyeL": "happy",
+            "eyeR": "happy",
             "mouth": "open"
           }
         },
@@ -1223,8 +1328,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
+            "eyeL": "happy",
+            "eyeR": "happy",
             "mouth": "open"
           }
         },
@@ -1243,8 +1348,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
+            "eyeL": "happy",
+            "eyeR": "happy",
             "mouth": "open"
           }
         },
@@ -1266,8 +1371,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
+            "eyeL": "happy",
+            "eyeR": "happy",
             "mouth": "open"
           }
         },
@@ -1286,8 +1391,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
+            "eyeL": "happy",
+            "eyeR": "happy",
             "mouth": "open"
           }
         },
@@ -1309,8 +1414,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
+            "eyeL": "happy",
+            "eyeR": "happy",
             "mouth": "open"
           }
         },
@@ -1329,16 +1434,16 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
+            "eyeL": "happy",
+            "eyeR": "happy",
             "mouth": "open"
           }
         },
         {
           "hold": 0.3,
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {
@@ -1724,11 +1829,17 @@
             },
             "shell": {
               "y": 0
+            },
+            "eyeL": {
+              "sy": 1.111
+            },
+            "eyeR": {
+              "sy": 1.111
             }
           },
           "slots": {
-            "stalkL": "sad",
-            "stalkR": "sad",
+            "eyeL": "sad",
+            "eyeR": "sad",
             "mouth": "sad"
           }
         },
@@ -1748,11 +1859,17 @@
             },
             "shell": {
               "y": 2
+            },
+            "eyeL": {
+              "sy": 1.111
+            },
+            "eyeR": {
+              "sy": 1.111
             }
           },
           "slots": {
-            "stalkL": "sad",
-            "stalkR": "sad",
+            "eyeL": "sad",
+            "eyeR": "sad",
             "mouth": "sad"
           }
         },
@@ -1772,11 +1889,17 @@
             },
             "shell": {
               "y": 0
+            },
+            "eyeL": {
+              "sy": 1.111
+            },
+            "eyeR": {
+              "sy": 1.111
             }
           },
           "slots": {
-            "stalkL": "sad",
-            "stalkR": "sad",
+            "eyeL": "sad",
+            "eyeR": "sad",
             "mouth": "sad"
           }
         },
@@ -1796,11 +1919,17 @@
             },
             "shell": {
               "y": 2
+            },
+            "eyeL": {
+              "sy": 1.111
+            },
+            "eyeR": {
+              "sy": 1.111
             }
           },
           "slots": {
-            "stalkL": "sad",
-            "stalkR": "sad",
+            "eyeL": "sad",
+            "eyeR": "sad",
             "mouth": "sad"
           }
         },
@@ -1820,11 +1949,17 @@
             },
             "shell": {
               "y": 0
+            },
+            "eyeL": {
+              "sy": 1.111
+            },
+            "eyeR": {
+              "sy": 1.111
             }
           },
           "slots": {
-            "stalkL": "sad",
-            "stalkR": "sad",
+            "eyeL": "sad",
+            "eyeR": "sad",
             "mouth": "sad"
           }
         },
@@ -1844,11 +1979,17 @@
             },
             "shell": {
               "y": 2
+            },
+            "eyeL": {
+              "sy": 1.111
+            },
+            "eyeR": {
+              "sy": 1.111
             }
           },
           "slots": {
-            "stalkL": "sad",
-            "stalkR": "sad",
+            "eyeL": "sad",
+            "eyeR": "sad",
             "mouth": "sad"
           }
         },
@@ -1868,11 +2009,17 @@
             },
             "shell": {
               "y": 0
+            },
+            "eyeL": {
+              "sy": 1.111
+            },
+            "eyeR": {
+              "sy": 1.111
             }
           },
           "slots": {
-            "stalkL": "sad",
-            "stalkR": "sad",
+            "eyeL": "sad",
+            "eyeR": "sad",
             "mouth": "sad"
           }
         },
@@ -1892,19 +2039,25 @@
             },
             "shell": {
               "y": 2
+            },
+            "eyeL": {
+              "sy": 1.111
+            },
+            "eyeR": {
+              "sy": 1.111
             }
           },
           "slots": {
-            "stalkL": "sad",
-            "stalkR": "sad",
+            "eyeL": "sad",
+            "eyeR": "sad",
             "mouth": "sad"
           }
         },
         {
           "hold": 0.3,
           "slots": {
-            "stalkL": "sad",
-            "stalkR": "sad"
+            "eyeL": "sad",
+            "eyeR": "sad"
           }
         },
         {
@@ -1937,11 +2090,17 @@
             "stalkR": {
               "r": 6,
               "sy": 1.05
+            },
+            "eyeL": {
+              "sy": 0.952
+            },
+            "eyeR": {
+              "sy": 0.952
             }
           },
           "slots": {
-            "stalkL": "closed",
-            "stalkR": "closed",
+            "eyeL": "closed",
+            "eyeR": "closed",
             "mouth": "o"
           }
         },
@@ -1958,11 +2117,17 @@
             "stalkR": {
               "r": 6,
               "sy": 1.05
+            },
+            "eyeL": {
+              "sy": 0.952
+            },
+            "eyeR": {
+              "sy": 0.952
             }
           },
           "slots": {
-            "stalkL": "closed",
-            "stalkR": "closed",
+            "eyeL": "closed",
+            "eyeR": "closed",
             "mouth": "o"
           }
         },
@@ -1983,11 +2148,17 @@
             },
             "shell": {
               "y": 3
+            },
+            "eyeL": {
+              "sy": 1.176
+            },
+            "eyeR": {
+              "sy": 1.176
             }
           },
           "slots": {
-            "stalkL": "closed",
-            "stalkR": "closed"
+            "eyeL": "closed",
+            "eyeR": "closed"
           }
         },
         {
@@ -2007,11 +2178,17 @@
             },
             "shell": {
               "y": 3
+            },
+            "eyeL": {
+              "sy": 1.176
+            },
+            "eyeR": {
+              "sy": 1.176
             }
           },
           "slots": {
-            "stalkL": "closed",
-            "stalkR": "closed"
+            "eyeL": "closed",
+            "eyeR": "closed"
           }
         },
         {
@@ -2025,22 +2202,22 @@
             }
           },
           "slots": {
-            "stalkL": "wide",
-            "stalkR": "wide"
+            "eyeL": "wide",
+            "eyeR": "wide"
           }
         },
         {
           "hold": 0.25,
           "slots": {
-            "stalkL": "closed",
-            "stalkR": "closed"
+            "eyeL": "closed",
+            "eyeR": "closed"
           }
         },
         {
           "hold": 0.3,
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {
@@ -2155,8 +2332,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
+            "eyeL": "happy",
+            "eyeR": "happy",
             "mouth": "open"
           }
         },
@@ -2181,8 +2358,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
+            "eyeL": "happy",
+            "eyeR": "happy",
             "mouth": "open"
           }
         },
@@ -2207,8 +2384,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
+            "eyeL": "happy",
+            "eyeR": "happy",
             "mouth": "open"
           }
         },
@@ -2233,8 +2410,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
+            "eyeL": "happy",
+            "eyeR": "happy",
             "mouth": "open"
           }
         },
@@ -2259,8 +2436,8 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
+            "eyeL": "happy",
+            "eyeR": "happy",
             "mouth": "open"
           }
         },
@@ -2285,16 +2462,16 @@
             }
           },
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy",
+            "eyeL": "happy",
+            "eyeR": "happy",
             "mouth": "open"
           }
         },
         {
           "hold": 0.3,
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {
@@ -2322,11 +2499,17 @@
             },
             "stalkR": {
               "sy": 0.92
+            },
+            "eyeL": {
+              "sy": 1.087
+            },
+            "eyeR": {
+              "sy": 1.087
             }
           },
           "slots": {
-            "stalkL": "calm",
-            "stalkR": "calm"
+            "eyeL": "calm",
+            "eyeR": "calm"
           }
         },
         {
@@ -2348,11 +2531,19 @@
             },
             "head": {
               "x": 6
+            },
+            "eyeL": {
+              "sx": 1.031,
+              "sy": 0.781
+            },
+            "eyeR": {
+              "sx": 1.031,
+              "sy": 0.781
             }
           },
           "slots": {
-            "stalkL": "wide",
-            "stalkR": "wide",
+            "eyeL": "wide",
+            "eyeR": "wide",
             "mouth": "o"
           }
         },
@@ -2374,11 +2565,19 @@
             },
             "head": {
               "x": 6
+            },
+            "eyeL": {
+              "sx": 1.031,
+              "sy": 0.781
+            },
+            "eyeR": {
+              "sx": 1.031,
+              "sy": 0.781
             }
           },
           "slots": {
-            "stalkL": "wide",
-            "stalkR": "wide",
+            "eyeL": "wide",
+            "eyeR": "wide",
             "mouth": "o"
           }
         },
@@ -2400,11 +2599,19 @@
             },
             "head": {
               "x": 6
+            },
+            "eyeL": {
+              "sx": 1.031,
+              "sy": 0.781
+            },
+            "eyeR": {
+              "sx": 1.031,
+              "sy": 0.781
             }
           },
           "slots": {
-            "stalkL": "wide",
-            "stalkR": "wide",
+            "eyeL": "wide",
+            "eyeR": "wide",
             "mouth": "o"
           }
         },
@@ -2426,18 +2633,26 @@
             },
             "head": {
               "x": 1
+            },
+            "eyeL": {
+              "sx": 1.031,
+              "sy": 0.947
+            },
+            "eyeR": {
+              "sx": 1.031,
+              "sy": 0.947
             }
           },
           "slots": {
-            "stalkL": "calm",
-            "stalkR": "calm"
+            "eyeL": "calm",
+            "eyeR": "calm"
           }
         },
         {
           "hold": 0.3,
           "slots": {
-            "stalkL": "happy",
-            "stalkR": "happy"
+            "eyeL": "happy",
+            "eyeR": "happy"
           }
         },
         {

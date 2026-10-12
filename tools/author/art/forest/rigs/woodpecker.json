@@ -5,7 +5,7 @@
     {
       "id": "parts",
       "size": "1536x1024",
-      "prompt": "Image 1 is a sticker of a woodpecker character. Draw this exact woodpecker as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the body: the black-and-white spotted body with its cream chest, clinging upright as in image 1, without head, wing, tail or feet; its top, normally under the head, rounded.\n2. the head: the head with its red crest, facing left as in image 1, with a completely blank face — no eye, no beak — keep the rosy cheek; its bottom edge rounded.\n3. the folded wing: the black wing with white spots folded at rest, as in image 1, with a rounded shoulder.\n4. the open wing: the same wing spread out as in flight, with a rounded shoulder.\n5. the tail: the stiff black tail feathers, with a rounded base.\n6. one foot: a grey clinging foot with its curved claws.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+      "prompt": "Image 1 is a sticker of a woodpecker character. Draw this exact woodpecker as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the body: the body with its cream chest and the red patch under it, clinging upright as in image 1, without head, without tail, without feet and WITHOUT ANY WING: where the folded black-and-white wing lies along the back in image 1, draw only plain black back feathers, no wing shape, no wing spots and no wing outline on it; its top, normally under the head, rounded.\n2. the head: the head with its red crest, facing left as in image 1, with a completely blank face — no eye, no beak — keep the rosy cheek; its bottom edge rounded.\n3. the folded wing: the black wing with white spots folded at rest, as in image 1, with a rounded shoulder.\n4. the open wing: the same wing spread out as in flight, with a rounded shoulder.\n5. the tail: the stiff black tail feathers, with a rounded base.\n6. one foot: a grey clinging foot with its curved claws.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
     },
     {
       "id": "face",
@@ -20,43 +20,43 @@
     "head": {
       "sheet": "parts",
       "at": [
-        298,
-        249
+        443,
+        217
       ]
     },
     "body": {
       "sheet": "parts",
       "at": [
-        729,
-        425
+        920,
+        309
       ]
     },
     "wingFolded": {
       "sheet": "parts",
       "at": [
-        1127,
-        284
+        1302,
+        338
       ]
     },
     "foot": {
       "sheet": "parts",
       "at": [
-        312,
-        747
+        1322,
+        798
       ]
     },
     "tail": {
       "sheet": "parts",
       "at": [
-        733,
-        824
+        944,
+        797
       ]
     },
     "wingOpen": {
       "sheet": "parts",
       "at": [
-        1268,
-        716
+        394,
+        720
       ]
     },
     "eye": {
@@ -160,8 +160,8 @@
     {
       "id": "wingL",
       "parent": "body",
-      "x": 440,
-      "y": 285
+      "x": 375.0,
+      "y": 305.0
     },
     {
       "id": "tail",
@@ -172,14 +172,14 @@
     {
       "id": "footL",
       "parent": "root",
-      "x": 322,
-      "y": 340
+      "x": 332,
+      "y": 345
     },
     {
       "id": "footR",
       "parent": "root",
       "x": 345,
-      "y": 455
+      "y": 470
     }
   ],
   "slots": [
@@ -190,9 +190,9 @@
       "attachments": {
         "open": {
           "part": "wingOpen",
-          "x": 575,
-          "y": 345,
-          "scale": 0.62,
+          "x": 290,
+          "y": 389,
+          "scale": 0.44,
           "shade": 0.2
         }
       }
@@ -204,9 +204,9 @@
       "attachments": {
         "foot": {
           "part": "foot",
-          "x": 298,
+          "x": 307,
           "y": 329,
-          "scale": 0.5
+          "scale": 0.45
         }
       }
     },
@@ -217,9 +217,9 @@
       "attachments": {
         "foot": {
           "part": "foot",
-          "x": 324,
+          "x": 327,
           "y": 455,
-          "scale": 0.5
+          "scale": 0.45
         }
       }
     },
@@ -232,7 +232,7 @@
           "part": "tail",
           "x": 413,
           "y": 610,
-          "scale": 0.66,
+          "scale": 0.52,
           "rotate": 14
         }
       }
@@ -246,7 +246,7 @@
           "part": "body",
           "x": 432,
           "y": 405,
-          "scale": 0.7
+          "scale": 0.64
         }
       }
     },
@@ -259,14 +259,15 @@
           "part": "wingFolded",
           "x": 471,
           "y": 434,
-          "scale": 0.72,
+          "scale": 0.54,
           "rotate": -5
         },
         "open": {
           "part": "wingOpen",
-          "x": 559,
-          "y": 354,
-          "scale": 0.67
+          "x": 522,
+          "y": 386,
+          "scale": 0.5,
+          "flip": true
         }
       }
     },
@@ -279,7 +280,7 @@
           "part": "head",
           "x": 430,
           "y": 158,
-          "scale": 0.64
+          "scale": 0.6
         }
       }
     },
@@ -646,7 +647,7 @@
               "r": -40
             },
             "wingL": {
-              "r": -50
+              "r": 26
             },
             "root": {
               "y": -10
@@ -683,7 +684,7 @@
               "r": 10
             },
             "wingL": {
-              "r": 0
+              "r": -6
             },
             "root": {
               "y": -4
@@ -720,7 +721,7 @@
               "r": 45
             },
             "wingL": {
-              "r": 35
+              "r": -29
             },
             "root": {
               "y": 4
@@ -760,7 +761,7 @@
               "r": 5
             },
             "wingL": {
-              "r": -5
+              "r": -3
             },
             "root": {
               "y": -2
@@ -781,7 +782,7 @@
               "r": -55
             },
             "wingL": {
-              "r": -60
+              "r": 36
             },
             "head": {
               "r": 4
@@ -1038,7 +1039,7 @@
               "r": -15
             },
             "wingL": {
-              "r": -25
+              "r": 10
             }
           },
           "slots": {
@@ -1053,7 +1054,7 @@
               "r": -25
             },
             "wingL": {
-              "r": -35
+              "r": 16
             }
           },
           "slots": {
@@ -1069,7 +1070,7 @@
               "r": 30
             },
             "wingL": {
-              "r": 20
+              "r": -20
             }
           },
           "slots": {
@@ -1084,7 +1085,7 @@
               "r": -45
             },
             "wingL": {
-              "r": -55
+              "r": 29
             }
           },
           "slots": {
@@ -1099,7 +1100,7 @@
               "r": 30
             },
             "wingL": {
-              "r": 20
+              "r": -20
             }
           },
           "slots": {
@@ -1114,7 +1115,7 @@
               "r": -45
             },
             "wingL": {
-              "r": -55
+              "r": 29
             }
           },
           "slots": {
@@ -1129,7 +1130,7 @@
               "r": 30
             },
             "wingL": {
-              "r": 20
+              "r": -20
             }
           },
           "slots": {
@@ -1144,7 +1145,7 @@
               "r": -10
             },
             "wingL": {
-              "r": -20
+              "r": 6
             }
           },
           "slots": {
@@ -1267,7 +1268,7 @@
               "r": -30
             },
             "wingL": {
-              "r": -40
+              "r": 20
             },
             "tail": {
               "r": 6
@@ -1303,7 +1304,7 @@
               "r": -10
             },
             "wingL": {
-              "r": -20
+              "r": 6
             },
             "tail": {
               "r": 6
@@ -1461,7 +1462,7 @@
           "hold": 0.24,
           "bones": {
             "body": {
-              "r": -8
+              "r": -4.0
             },
             "head": {
               "r": 6
@@ -1485,7 +1486,7 @@
           "hold": 0.24,
           "bones": {
             "body": {
-              "r": 8
+              "r": 4.0
             },
             "head": {
               "r": -6
@@ -1509,7 +1510,7 @@
           "hold": 0.24,
           "bones": {
             "body": {
-              "r": -8
+              "r": -4.0
             },
             "head": {
               "r": 6
@@ -1533,7 +1534,7 @@
           "hold": 0.24,
           "bones": {
             "body": {
-              "r": 8
+              "r": 4.0
             },
             "head": {
               "r": -6
@@ -1557,7 +1558,7 @@
           "hold": 0.24,
           "bones": {
             "body": {
-              "r": -8
+              "r": -4.0
             },
             "head": {
               "r": 6
@@ -1581,7 +1582,7 @@
           "hold": 0.24,
           "bones": {
             "body": {
-              "r": 8
+              "r": 4.0
             },
             "head": {
               "r": -6

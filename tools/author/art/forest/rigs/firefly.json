@@ -13,7 +13,7 @@
       "references": [
         "parts"
       ],
-      "prompt": "Image 1 is a sticker of a firefly character; image 2 shows the same firefly cut into puppet parts, with a blank face. Draw the firefly's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the firefly in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the firefly's left eye (on the right of image 1) as it is in image 1: a big dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a small happy smile.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+      "prompt": "Image 1 is a sticker of a firefly character; image 2 shows the same firefly cut into puppet parts, with a blank face. Draw the firefly's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the firefly in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the firefly's left eye (on the right of image 1) as it is in image 1: a big dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a small happy smile.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n10. the nose as it is in image 1: a tiny round dark brown nose.\n11. one eyebrow as in image 1: a small, thin, softly curved dark brown line.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
     }
   ],
   "parts": {
@@ -62,64 +62,78 @@
     "eye": {
       "sheet": "face",
       "at": [
-        156,
-        334
+        178,
+        295
       ]
     },
     "eyeWide": {
       "sheet": "face",
       "at": [
-        455,
-        326
+        463,
+        273
       ]
     },
     "eyeClosed": {
       "sheet": "face",
       "at": [
-        762,
-        376
+        772,
+        331
       ]
     },
     "eyeHappy": {
       "sheet": "face",
       "at": [
-        1071,
-        330
+        1091,
+        296
       ]
     },
     "eyeSad": {
       "sheet": "face",
       "at": [
-        1384,
-        349
+        1368,
+        286
       ]
     },
     "mouth": {
       "sheet": "face",
       "at": [
-        206,
-        738
+        233,
+        625
       ]
     },
     "mouthLaugh": {
       "sheet": "face",
       "at": [
-        612,
-        721
+        580,
+        610
       ]
     },
     "mouthO": {
       "sheet": "face",
       "at": [
-        971,
-        715
+        947,
+        612
       ]
     },
     "mouthSad": {
       "sheet": "face",
       "at": [
-        1308,
-        713
+        1292,
+        608
+      ]
+    },
+    "nose": {
+      "sheet": "face",
+      "at": [
+        592,
+        860
+      ]
+    },
+    "brow": {
+      "sheet": "face",
+      "at": [
+        933,
+        844
       ]
     }
   },
@@ -161,39 +175,39 @@
     },
     {
       "id": "legR1",
-      "parent": "root",
-      "x": 318,
-      "y": 572
-    },
-    {
-      "id": "legR2",
-      "parent": "root",
-      "x": 412,
-      "y": 565
-    },
-    {
-      "id": "legR3",
-      "parent": "root",
-      "x": 520,
-      "y": 565
-    },
-    {
-      "id": "legL1",
-      "parent": "root",
-      "x": 285,
-      "y": 525
-    },
-    {
-      "id": "legL2",
-      "parent": "root",
-      "x": 362,
+      "parent": "body",
+      "x": 330,
       "y": 520
     },
     {
+      "id": "legR2",
+      "parent": "body",
+      "x": 392,
+      "y": 560
+    },
+    {
+      "id": "legR3",
+      "parent": "body",
+      "x": 462,
+      "y": 578
+    },
+    {
+      "id": "legL1",
+      "parent": "body",
+      "x": 296,
+      "y": 498
+    },
+    {
+      "id": "legL2",
+      "parent": "body",
+      "x": 375,
+      "y": 528
+    },
+    {
       "id": "legL3",
-      "parent": "root",
-      "x": 432,
-      "y": 545
+      "parent": "body",
+      "x": 428,
+      "y": 562
     },
     {
       "id": "head",
@@ -286,10 +300,11 @@
       "attachments": {
         "leg": {
           "part": "leg",
-          "x": 322,
-          "y": 608,
-          "scale": 0.4,
-          "flip": true,
+          "x": 324.9,
+          "y": 576.6,
+          "scale": 0.55,
+          "scaleY": 1.154,
+          "rotate": 5.4,
           "shade": 0.25
         }
       }
@@ -301,10 +316,11 @@
       "attachments": {
         "leg": {
           "part": "leg",
-          "x": 418,
-          "y": 602,
-          "scale": 0.45,
-          "flip": true,
+          "x": 393.9,
+          "y": 600.5,
+          "scale": 0.55,
+          "scaleY": 0.823,
+          "rotate": -2.4,
           "shade": 0.25
         }
       }
@@ -316,9 +332,11 @@
       "attachments": {
         "leg": {
           "part": "leg",
-          "x": 538,
-          "y": 590,
-          "scale": 0.42,
+          "x": 480.9,
+          "y": 608.9,
+          "scale": 0.55,
+          "scaleY": 0.735,
+          "rotate": -31.8,
           "flip": true,
           "shade": 0.25
         }
@@ -354,6 +372,21 @@
       }
     },
     {
+      "id": "legL1",
+      "bone": "legL1",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 275.8,
+          "y": 565.5,
+          "scale": 0.55,
+          "scaleY": 1.432,
+          "rotate": 16.9
+        }
+      }
+    },
+    {
       "id": "body",
       "bone": "belly",
       "default": "body",
@@ -374,9 +407,11 @@
       "attachments": {
         "leg": {
           "part": "leg",
-          "x": 368,
-          "y": 590,
-          "scale": 0.61
+          "x": 372.7,
+          "y": 586.0,
+          "scale": 0.55,
+          "scaleY": 1.178,
+          "rotate": 2.5
         }
       }
     },
@@ -387,11 +422,12 @@
       "attachments": {
         "leg": {
           "part": "leg",
-          "x": 462,
-          "y": 600,
-          "scale": 0.5,
-          "flip": true,
-          "rotate": -10
+          "x": 452.5,
+          "y": 603.3,
+          "scale": 0.55,
+          "scaleY": 0.975,
+          "rotate": -31.0,
+          "flip": true
         }
       }
     },
@@ -423,20 +459,6 @@
       }
     },
     {
-      "id": "legL1",
-      "bone": "legL1",
-      "default": "leg",
-      "attachments": {
-        "leg": {
-          "part": "leg",
-          "x": 272,
-          "y": 585,
-          "scale": 0.58,
-          "rotate": 12
-        }
-      }
-    },
-    {
       "id": "eyeL",
       "bone": "eyeL",
       "default": "calm",
@@ -445,33 +467,33 @@
           "part": "eye",
           "x": 192,
           "y": 385,
-          "scale": 0.22,
+          "scale": 0.24,
           "scaleY": 1.37
         },
         "wide": {
           "part": "eyeWide",
           "x": 192,
           "y": 385,
-          "scale": 0.22,
+          "scale": 0.231,
           "scaleY": 1.37
         },
         "closed": {
           "part": "eyeClosed",
           "x": 192,
           "y": 395,
-          "scale": 0.22
+          "scale": 0.217
         },
         "happy": {
           "part": "eyeHappy",
           "x": 192,
           "y": 383,
-          "scale": 0.22
+          "scale": 0.21
         },
         "sad": {
           "part": "eyeSad",
           "x": 192,
           "y": 387,
-          "scale": 0.22,
+          "scale": 0.231,
           "scaleY": 1.37,
           "flip": true
         }
@@ -486,31 +508,31 @@
           "part": "eye",
           "x": 321,
           "y": 410,
-          "scale": 0.35
+          "scale": 0.381
         },
         "wide": {
           "part": "eyeWide",
           "x": 321,
           "y": 410,
-          "scale": 0.35
+          "scale": 0.367
         },
         "closed": {
           "part": "eyeClosed",
           "x": 321,
           "y": 420,
-          "scale": 0.35
+          "scale": 0.345
         },
         "happy": {
           "part": "eyeHappy",
           "x": 321,
           "y": 408,
-          "scale": 0.35
+          "scale": 0.335
         },
         "sad": {
           "part": "eyeSad",
           "x": 321,
           "y": 412,
-          "scale": 0.35
+          "scale": 0.368
         }
       }
     },
@@ -520,12 +542,10 @@
       "default": "nose",
       "attachments": {
         "nose": {
-          "part": "eye",
+          "part": "nose",
           "x": 227,
-          "y": 427,
-          "scale": 0.1,
-          "scaleY": 0.85,
-          "rotate": 200
+          "y": 429,
+          "scale": 0.287
         }
       }
     },
@@ -535,18 +555,20 @@
       "default": "brow",
       "attachments": {
         "brow": {
-          "part": "eyeHappy",
-          "x": 217,
-          "y": 325,
-          "scale": 0.14,
-          "rotate": -15
+          "part": "brow",
+          "x": 215,
+          "y": 321,
+          "scale": 0.186,
+          "rotate": -10,
+          "scaleY": 1.3
         },
         "sad": {
-          "part": "eyeHappy",
-          "x": 217,
-          "y": 322,
-          "scale": 0.14,
-          "rotate": -35
+          "part": "brow",
+          "x": 215,
+          "y": 318,
+          "scale": 0.186,
+          "rotate": -30,
+          "scaleY": 1.3
         }
       }
     },
@@ -556,18 +578,20 @@
       "default": "brow",
       "attachments": {
         "brow": {
-          "part": "eyeHappy",
-          "x": 346,
-          "y": 346,
-          "scale": 0.15,
-          "rotate": 25
+          "part": "brow",
+          "x": 348,
+          "y": 348,
+          "scale": 0.221,
+          "rotate": 32,
+          "scaleY": 1.3
         },
         "sad": {
-          "part": "eyeHappy",
-          "x": 346,
-          "y": 343,
-          "scale": 0.15,
-          "rotate": 45
+          "part": "brow",
+          "x": 348,
+          "y": 345,
+          "scale": 0.221,
+          "rotate": 50,
+          "scaleY": 1.3
         }
       }
     },
@@ -580,26 +604,26 @@
           "part": "mouth",
           "x": 245,
           "y": 456,
-          "scale": 0.25,
+          "scale": 0.28,
           "rotate": -4
         },
         "open": {
           "part": "mouthLaugh",
           "x": 245,
           "y": 463,
-          "scale": 0.25
+          "scale": 0.24
         },
         "o": {
           "part": "mouthO",
           "x": 245,
           "y": 461,
-          "scale": 0.22
+          "scale": 0.247
         },
         "sad": {
           "part": "mouthSad",
           "x": 245,
           "y": 461,
-          "scale": 0.24
+          "scale": 0.225
         }
       }
     }
@@ -2724,7 +2748,7 @@
               "y": -6
             },
             "legL3": {
-              "r": -52,
+              "r": -14,
               "y": -8
             },
             "tail": {
@@ -2781,7 +2805,7 @@
               "y": -6
             },
             "legL3": {
-              "r": -52,
+              "r": -14,
               "y": -8
             },
             "tail": {
@@ -2920,7 +2944,7 @@
               "r": 10
             },
             "legL3": {
-              "r": -51,
+              "r": -14,
               "y": -6
             },
             "tail": {
@@ -3001,7 +3025,7 @@
               "r": 10
             },
             "legL3": {
-              "r": -51,
+              "r": -14,
               "y": -6
             },
             "tail": {
@@ -3082,7 +3106,7 @@
               "r": 10
             },
             "legL3": {
-              "r": -51,
+              "r": -14,
               "y": -6
             },
             "tail": {
@@ -4330,7 +4354,7 @@
               "r": 60
             },
             "legL3": {
-              "r": -60
+              "r": -14
             },
             "wingL": {
               "r": -20
@@ -4359,7 +4383,7 @@
               "r": 60
             },
             "legL3": {
-              "r": -60
+              "r": -14
             },
             "wingL": {
               "r": -20
@@ -4500,7 +4524,7 @@
               "r": 35
             },
             "legL3": {
-              "r": -35
+              "r": -14
             }
           },
           "slots": {
@@ -4520,7 +4544,7 @@
               "r": 35
             },
             "legL3": {
-              "r": -35
+              "r": -14
             }
           },
           "slots": {

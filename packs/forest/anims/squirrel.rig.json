@@ -352,8 +352,8 @@
     {
       "id": "armL",
       "parent": "body",
-      "x": 185,
-      "y": 445
+      "x": 172,
+      "y": 420
     },
     {
       "id": "armR",
@@ -445,6 +445,21 @@
           "w": 137.15,
           "h": 142.35,
           "rotate": -6
+        }
+      }
+    },
+    {
+      "id": "armLBack",
+      "bone": "armL",
+      "default": "none",
+      "attachments": {
+        "arm": {
+          "part": "arm",
+          "x": 98.13,
+          "y": 405.5,
+          "w": 103.74,
+          "h": 105,
+          "shade": 0.15
         }
       }
     },

@@ -172,14 +172,14 @@
     {
       "id": "footL",
       "parent": "root",
-      "x": 300,
-      "y": 625
+      "x": 276,
+      "y": 608
     },
     {
       "id": "footR",
       "parent": "root",
       "x": 470,
-      "y": 615
+      "y": 598
     }
   ],
   "slots": [
@@ -214,9 +214,10 @@
       "attachments": {
         "foot": {
           "part": "foot",
-          "x": 294,
-          "y": 681,
-          "scale": 0.38
+          "x": 309.0,
+          "y": 664.8,
+          "scale": 0.384,
+          "rotate": 18.8
         }
       }
     },
@@ -227,10 +228,10 @@
       "attachments": {
         "foot": {
           "part": "foot",
-          "x": 521,
-          "y": 653,
+          "x": 532.6,
+          "y": 626.0,
           "scale": 0.4,
-          "rotate": -36
+          "rotate": -17
         }
       }
     },
@@ -399,10 +400,9 @@
       "attachments": {
         "tuck": {
           "part": "wingFolded",
-          "x": 345,
-          "y": 330,
-          "scale": 0.6,
-          "rotate": -25
+          "x": 300,
+          "y": 467,
+          "scale": 0.56
         }
       }
     }
@@ -478,21 +478,23 @@
           "bones": {
             "head": {
               "sx": -1,
-              "x": -30,
-              "y": 70,
-              "r": -10
+              "x": -40.0,
+              "y": 100.0,
+              "r": -18.0
             },
             "belly": {
               "sx": 1.06,
               "sy": 1.0
             },
             "wingL": {
-              "r": 18
+              "r": 22.0
             }
           },
           "slots": {
             "eyeL": "closed",
-            "eyeR": "closed"
+            "eyeR": "closed",
+            "wingL": "none",
+            "tuck": "tuck"
           }
         },
         {
@@ -500,40 +502,70 @@
           "bones": {
             "head": {
               "sx": -1,
-              "x": -30,
-              "y": 70,
-              "r": -10
+              "x": -40.0,
+              "y": 100.0,
+              "r": -18.0
             },
             "belly": {
               "sx": 1.06,
               "sy": 1.0
+            },
+            "wingL": {
+              "r": 22.0
             }
           },
           "slots": {
-            "eyeL": "none",
-            "eyeR": "none",
-            "beak": "none",
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "wingL": "none",
             "tuck": "tuck"
           }
         },
         {
-          "hold": 0.8,
+          "hold": 0.6,
           "bones": {
             "head": {
               "sx": -1,
-              "x": -30,
-              "y": 70,
-              "r": -10
+              "x": -40.0,
+              "y": 100.0,
+              "r": -18.0
             },
             "belly": {
               "sx": 1.07,
               "sy": 0.98
+            },
+            "wingL": {
+              "r": 22.0
             }
           },
           "slots": {
-            "eyeL": "none",
-            "eyeR": "none",
-            "beak": "none",
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "wingL": "none",
+            "tuck": "tuck"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "head": {
+              "sx": -1,
+              "x": -36,
+              "y": 88,
+              "r": -14
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.98
+            },
+            "wingL": {
+              "r": 16
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "wingL": "none",
             "tuck": "tuck"
           }
         },
@@ -1158,10 +1190,10 @@
           "hold": 0.14,
           "bones": {
             "wingL": {
-              "r": 45
+              "r": 34
             },
             "wingR": {
-              "r": -50
+              "r": -40
             },
             "root": {
               "y": -6
@@ -1206,10 +1238,10 @@
           "hold": 0.14,
           "bones": {
             "wingL": {
-              "r": 45
+              "r": 34
             },
             "wingR": {
-              "r": -50
+              "r": -40
             },
             "root": {
               "y": -6
@@ -1254,10 +1286,10 @@
           "hold": 0.14,
           "bones": {
             "wingL": {
-              "r": 45
+              "r": 34
             },
             "wingR": {
-              "r": -50
+              "r": -40
             },
             "root": {
               "y": -6
@@ -1755,7 +1787,7 @@
           "hold": 0.3,
           "bones": {
             "wingL": {
-              "r": 50
+              "r": 26
             },
             "head": {
               "r": -3
@@ -1763,14 +1795,16 @@
           },
           "slots": {
             "eyeL": "happy",
-            "eyeR": "happy"
+            "eyeR": "happy",
+            "wingL": "none",
+            "wingOpen": "open"
           }
         },
         {
           "hold": 0.2,
           "bones": {
             "wingL": {
-              "r": 65
+              "r": 38
             },
             "head": {
               "r": -3
@@ -1778,14 +1812,16 @@
           },
           "slots": {
             "eyeL": "happy",
-            "eyeR": "happy"
+            "eyeR": "happy",
+            "wingL": "none",
+            "wingOpen": "open"
           }
         },
         {
           "hold": 0.2,
           "bones": {
             "wingL": {
-              "r": 40
+              "r": 22
             },
             "head": {
               "r": -3
@@ -1793,14 +1829,16 @@
           },
           "slots": {
             "eyeL": "happy",
-            "eyeR": "happy"
+            "eyeR": "happy",
+            "wingL": "none",
+            "wingOpen": "open"
           }
         },
         {
           "hold": 0.2,
           "bones": {
             "wingL": {
-              "r": 65
+              "r": 38
             },
             "head": {
               "r": -3
@@ -1808,14 +1846,16 @@
           },
           "slots": {
             "eyeL": "happy",
-            "eyeR": "happy"
+            "eyeR": "happy",
+            "wingL": "none",
+            "wingOpen": "open"
           }
         },
         {
           "hold": 0.2,
           "bones": {
             "wingL": {
-              "r": 40
+              "r": 22
             },
             "head": {
               "r": -3
@@ -1823,19 +1863,23 @@
           },
           "slots": {
             "eyeL": "happy",
-            "eyeR": "happy"
+            "eyeR": "happy",
+            "wingL": "none",
+            "wingOpen": "open"
           }
         },
         {
           "hold": 0.3,
           "bones": {
             "wingL": {
-              "r": 8
+              "r": 6
             }
           },
           "slots": {
             "eyeL": "happy",
-            "eyeR": "happy"
+            "eyeR": "happy",
+            "wingL": "none",
+            "wingOpen": "open"
           }
         },
         {
@@ -1879,6 +1923,11 @@
             "belly": {
               "sx": 1.02,
               "sy": 0.98
+            },
+            "footL": {
+              "x": 5,
+              "y": -18,
+              "r": 11
             }
           },
           "slots": {
@@ -1940,6 +1989,11 @@
             "belly": {
               "sx": 1.02,
               "sy": 0.98
+            },
+            "footL": {
+              "x": 5,
+              "y": -18,
+              "r": 11
             }
           },
           "slots": {
@@ -2115,9 +2169,9 @@
               "r": 4
             },
             "footL": {
-              "x": 30,
-              "y": -40,
-              "r": -18
+              "x": 34,
+              "y": -20,
+              "r": -14
             },
             "head": {
               "r": 6,
@@ -2158,9 +2212,9 @@
               "r": 4
             },
             "footL": {
-              "x": 30,
-              "y": -40,
-              "r": -18
+              "x": 34,
+              "y": -20,
+              "r": -14
             },
             "head": {
               "r": 6,
@@ -2229,6 +2283,11 @@
             "belly": {
               "sx": 1.02,
               "sy": 0.98
+            },
+            "footL": {
+              "x": 6,
+              "y": -21,
+              "r": 13
             }
           }
         },
@@ -2246,6 +2305,11 @@
             "belly": {
               "sx": 1.02,
               "sy": 0.98
+            },
+            "footL": {
+              "x": 6,
+              "y": -23,
+              "r": 14
             }
           },
           "slots": {
@@ -2266,6 +2330,11 @@
             "belly": {
               "sx": 1.02,
               "sy": 0.98
+            },
+            "footL": {
+              "x": 6,
+              "y": -23,
+              "r": 14
             }
           }
         },
@@ -2283,6 +2352,11 @@
             "belly": {
               "sx": 1.02,
               "sy": 0.98
+            },
+            "footL": {
+              "x": 6,
+              "y": -23,
+              "r": 14
             }
           },
           "slots": {
@@ -2303,6 +2377,11 @@
             "belly": {
               "sx": 1.02,
               "sy": 0.98
+            },
+            "footL": {
+              "x": 6,
+              "y": -23,
+              "r": 14
             }
           }
         },
@@ -2320,6 +2399,11 @@
             "belly": {
               "sx": 1.02,
               "sy": 0.98
+            },
+            "footL": {
+              "x": 6,
+              "y": -23,
+              "r": 14
             }
           },
           "slots": {
@@ -2340,6 +2424,11 @@
             "belly": {
               "sx": 1.02,
               "sy": 0.98
+            },
+            "footL": {
+              "x": 6,
+              "y": -23,
+              "r": 14
             }
           }
         },

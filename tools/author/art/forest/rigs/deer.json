@@ -6,7 +6,7 @@
     {
       "id": "parts",
       "size": "1536x1024",
-      "prompt": "Image 1 is a sticker of a fawn character. Draw this exact fawn as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the body: the spotted fawn body with its neck, white spots on the back, as in image 1, without head, legs or tail; the top of the neck, normally under the head, rounded.\n2. the head: the fawn's head with its black nose, facing left as in image 1, with a completely blank face — no eyes, no mouth — keep the nose and the rosy cheek; without ears and without any neck: the head ends at the chin and jaw, its bottom edge the smooth rounded line of the jaw and the back of the head, nothing hanging below it.\n3. one ear: a big pointed ear with its pink inside, as the ear on the right of image 1, with a rounded base.\n4. one front leg: a slender front leg with its dark hoof, as the near front leg in image 1, with a rounded top.\n5. one back leg: the near back leg with its bent hock and dark hoof, with a rounded top.\n6. the tail: the little white fluffy tail, with a rounded base.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+      "prompt": "Image 1 is a sticker of a fawn character. Draw this exact fawn as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the body: the spotted fawn body with its neck and chest, white spots on the back, as in image 1, without head, without tail and without any legs: no legs, no shoulders, no thighs and no haunches drawn on it — its underside one smooth rounded line from the chest to the rump; the top of the neck, normally under the head, rounded.\n2. the head: the fawn's head with its black nose, facing left as in image 1, with a completely blank face — no eyes, no mouth — keep the nose and the rosy cheek; without ears and without any neck: the head ends at the chin and jaw, its bottom edge the smooth rounded line of the jaw and the back of the head, nothing hanging below it.\n3. one ear: a big pointed ear with its pink inside, as the ear on the right of image 1, with a rounded base.\n4. one front leg: the near front leg of image 1 drawn whole, from the top of the shoulder down to the hoof: the broad rounded shoulder and upper leg (the part that joins the chest), tapering into the slender lower leg and its dark hoof; its top is the full, smooth, rounded curve of the shoulder.\n5. one back leg: the near back leg of image 1 drawn whole, from the top of the haunch down to the hoof: the big rounded thigh (the whole haunch at the rump, as big as it is in image 1), the bent hock, the slender lower leg and its dark hoof; its top is the full, smooth, rounded curve of the haunch.\n6. the tail: the little white fluffy tail, with a rounded base.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
     },
     {
       "id": "face",
@@ -21,43 +21,43 @@
     "head": {
       "sheet": "parts",
       "at": [
-        261,
-        226
+        255,
+        223
       ]
     },
     "body": {
       "sheet": "parts",
       "at": [
-        821,
-        331
+        832,
+        251
       ]
     },
     "ear": {
       "sheet": "parts",
       "at": [
-        1302,
-        195
+        1356,
+        223
       ]
     },
     "tail": {
       "sheet": "parts",
       "at": [
-        1317,
-        618
+        1368,
+        633
       ]
     },
     "frontLeg": {
       "sheet": "parts",
       "at": [
-        250,
-        717
+        366,
+        731
       ]
     },
     "backLeg": {
       "sheet": "parts",
       "at": [
-        926,
-        760
+        1068,
+        721
       ]
     },
     "brow": {
@@ -166,14 +166,14 @@
     {
       "id": "legFF",
       "parent": "body",
-      "x": 278,
-      "y": 435
+      "x": 286,
+      "y": 455
     },
     {
       "id": "legBF",
       "parent": "body",
       "x": 468,
-      "y": 440
+      "y": 450
     },
     {
       "id": "tail",
@@ -184,14 +184,14 @@
     {
       "id": "legBN",
       "parent": "body",
-      "x": 515,
-      "y": 440
+      "x": 488,
+      "y": 445
     },
     {
       "id": "legFN",
       "parent": "body",
-      "x": 368,
-      "y": 445
+      "x": 362,
+      "y": 455
     },
     {
       "id": "head",
@@ -257,10 +257,10 @@
         "leg": {
           "part": "frontLeg",
           "x": 285,
-          "y": 562,
-          "scale": 0.6,
-          "scaleY": 0.92,
-          "shade": 0.2
+          "y": 561,
+          "scale": 0.56,
+          "shade": 0.2,
+          "rotate": -3.5
         }
       }
     },
@@ -271,10 +271,10 @@
       "attachments": {
         "leg": {
           "part": "backLeg",
-          "x": 482,
-          "y": 566,
-          "scale": 0.56,
-          "rotate": 22,
+          "x": 439.5,
+          "y": 542,
+          "scale": 0.57,
+          "rotate": 30,
           "shade": 0.2
         }
       }
@@ -286,9 +286,9 @@
       "attachments": {
         "tail": {
           "part": "tail",
-          "x": 522,
-          "y": 332,
-          "scale": 0.5
+          "x": 528,
+          "y": 325,
+          "scale": 0.6
         }
       }
     },
@@ -315,9 +315,9 @@
       "attachments": {
         "body": {
           "part": "body",
-          "x": 393,
-          "y": 375,
-          "scale": 0.58
+          "x": 395,
+          "y": 373,
+          "scale": 0.47
         }
       }
     },
@@ -328,10 +328,10 @@
       "attachments": {
         "leg": {
           "part": "backLeg",
-          "x": 542,
-          "y": 575,
-          "scale": 0.57,
-          "rotate": -12
+          "x": 509,
+          "y": 552,
+          "scale": 0.56,
+          "rotate": -3
         }
       }
     },
@@ -342,10 +342,10 @@
       "attachments": {
         "leg": {
           "part": "frontLeg",
-          "x": 372,
-          "y": 576,
-          "scale": 0.6,
-          "scaleY": 0.92
+          "x": 364,
+          "y": 565,
+          "scale": 0.55,
+          "rotate": -5
         }
       }
     },
@@ -369,10 +369,10 @@
       "attachments": {
         "head": {
           "part": "head",
-          "x": 314,
-          "y": 204,
+          "x": 312,
+          "y": 200,
           "scale": 0.48,
-          "scaleY": 1.22
+          "scaleY": 1.1
         }
       }
     },
@@ -1851,7 +1851,7 @@
           "bones": {
             "legFN": {
               "r": 24,
-              "y": -16,
+              "y": -3,
               "sy": 0.96
             },
             "head": {
@@ -1884,7 +1884,7 @@
           "bones": {
             "legFN": {
               "r": 24,
-              "y": -16,
+              "y": -3,
               "sy": 0.96
             },
             "head": {
@@ -1917,7 +1917,7 @@
           "bones": {
             "legFN": {
               "r": 18,
-              "y": -10
+              "y": -3
             },
             "head": {
               "r": -2
@@ -2131,7 +2131,7 @@
             },
             "legFN": {
               "r": 30,
-              "y": -24,
+              "y": -6,
               "sy": 0.94
             },
             "head": {
@@ -2250,7 +2250,7 @@
             },
             "legFN": {
               "r": 30,
-              "y": -24,
+              "y": -6,
               "sy": 0.94
             },
             "head": {

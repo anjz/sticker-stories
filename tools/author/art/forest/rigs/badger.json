@@ -1903,7 +1903,7 @@
     {
       "id": "wipe-nose",
       "kind": "action",
-      "description": "the badger lifts its head and rubs the earth off its nose with a front paw, then grins.",
+      "description": "the badger lifts its head and wrinkles and shakes its earthy nose clean, sniffing, then grins.",
       "keys": [
         {
           "hold": 0.2
@@ -1913,22 +1913,14 @@
           "ease": "inOut",
           "bones": {
             "body": {
-              "r": 3
+              "r": 2
             },
             "head": {
               "r": 18,
               "y": -16
             },
-            "legFN": {
-              "r": 72,
-              "x": -165,
-              "y": 70
-            },
-            "legBN": {
-              "r": -3
-            },
-            "legBF": {
-              "r": -3
+            "face": {
+              "x": 0
             }
           },
           "slots": {
@@ -1941,22 +1933,14 @@
           "hold": 0.16,
           "bones": {
             "body": {
-              "r": 3
+              "r": 2
             },
             "head": {
-              "r": 18,
+              "r": 21,
               "y": -16
             },
-            "legFN": {
-              "r": 80,
-              "x": -192,
-              "y": 70
-            },
-            "legBN": {
-              "r": -3
-            },
-            "legBF": {
-              "r": -3
+            "face": {
+              "x": 5
             }
           },
           "slots": {
@@ -1969,22 +1953,14 @@
           "hold": 0.16,
           "bones": {
             "body": {
-              "r": 3
+              "r": 2
             },
             "head": {
-              "r": 18,
+              "r": 15,
               "y": -16
             },
-            "legFN": {
-              "r": 68,
-              "x": -155,
-              "y": 70
-            },
-            "legBN": {
-              "r": -3
-            },
-            "legBF": {
-              "r": -3
+            "face": {
+              "x": -5
             }
           },
           "slots": {
@@ -1997,22 +1973,14 @@
           "hold": 0.16,
           "bones": {
             "body": {
-              "r": 3
+              "r": 2
             },
             "head": {
-              "r": 18,
+              "r": 21,
               "y": -16
             },
-            "legFN": {
-              "r": 80,
-              "x": -192,
-              "y": 70
-            },
-            "legBN": {
-              "r": -3
-            },
-            "legBF": {
-              "r": -3
+            "face": {
+              "x": 5
             }
           },
           "slots": {
@@ -2025,22 +1993,14 @@
           "hold": 0.16,
           "bones": {
             "body": {
-              "r": 3
+              "r": 2
             },
             "head": {
-              "r": 18,
+              "r": 15,
               "y": -16
             },
-            "legFN": {
-              "r": 68,
-              "x": -155,
-              "y": 70
-            },
-            "legBN": {
-              "r": -3
-            },
-            "legBF": {
-              "r": -3
+            "face": {
+              "x": -5
             }
           },
           "slots": {
@@ -2080,10 +2040,10 @@
     {
       "id": "scratch-head",
       "kind": "action",
-      "description": "the badger tips its head and scratches it with a front paw, puzzled.",
+      "description": "the badger tips its head this way and that, puzzled, and scuffs the ground with a front paw.",
       "pause": {
         "frame": 6,
-        "shows": "the badger scratching its head with a front paw, puzzled"
+        "shows": "the badger with its head tipped, puzzled"
       },
       "keys": [
         {
@@ -2100,13 +2060,12 @@
             "face": {
               "x": 6
             },
-            "legFF": {
-              "r": 136,
-              "x": -40,
-              "y": -140
+            "legFN": {
+              "r": 30,
+              "y": -6
             },
             "body": {
-              "r": 2
+              "r": 1
             }
           },
           "slots": {
@@ -2124,13 +2083,58 @@
             "face": {
               "x": 6
             },
-            "legFF": {
-              "r": 128,
-              "x": -40,
-              "y": -140
+            "legFN": {
+              "r": 22,
+              "y": -6
             },
             "body": {
-              "r": 2
+              "r": 1
+            }
+          },
+          "slots": {
+            "mouth": "o",
+            "browL": "sad"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "head": {
+              "r": -8,
+              "y": -4
+            },
+            "face": {
+              "x": -6
+            },
+            "legFN": {
+              "r": 34,
+              "y": -6
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "mouth": "o",
+            "browL": "sad"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "head": {
+              "r": -9,
+              "y": -4
+            },
+            "face": {
+              "x": -6
+            },
+            "legFN": {
+              "r": 22,
+              "y": -6
+            },
+            "body": {
+              "r": 1
             }
           },
           "slots": {
@@ -2148,61 +2152,12 @@
             "face": {
               "x": 6
             },
-            "legFF": {
-              "r": 142,
-              "x": -40,
-              "y": -140
+            "legFN": {
+              "r": 34,
+              "y": -6
             },
             "body": {
-              "r": 2
-            }
-          },
-          "slots": {
-            "mouth": "o",
-            "browL": "sad"
-          }
-        },
-        {
-          "hold": 0.15,
-          "bones": {
-            "head": {
-              "r": 9,
-              "y": -4
-            },
-            "face": {
-              "x": 6
-            },
-            "legFF": {
-              "r": 128,
-              "x": -40,
-              "y": -140
-            },
-            "body": {
-              "r": 2
-            }
-          },
-          "slots": {
-            "mouth": "o",
-            "browL": "sad"
-          }
-        },
-        {
-          "hold": 0.15,
-          "bones": {
-            "head": {
-              "r": 8,
-              "y": -4
-            },
-            "face": {
-              "x": 6
-            },
-            "legFF": {
-              "r": 142,
-              "x": -40,
-              "y": -140
-            },
-            "body": {
-              "r": 2
+              "r": 1
             }
           },
           "slots": {
@@ -2220,13 +2175,12 @@
             "face": {
               "x": 6
             },
-            "legFF": {
-              "r": 136,
-              "x": -40,
-              "y": -140
+            "legFN": {
+              "r": 26,
+              "y": -6
             },
             "body": {
-              "r": 2
+              "r": 1
             }
           },
           "slots": {
