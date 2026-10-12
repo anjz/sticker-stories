@@ -75,6 +75,22 @@ func TestPuppetsValidate(t *testing.T) {
 			a.Puppet.Loop = &FrameRange{From: 1, To: 3}
 		}, "stride"},
 		{"rig not json", nil, func(a *StickerAnimation) { a.Puppet.Rig = "anims/fox.rig.webp" }, ".json"},
+		// Without a sheet the keys are the frames.
+		{"puppet only", nil, sheetless(nil), ""},
+		{"puppet only, paused on a key", nil, sheetless(func(a *StickerAnimation) { a.Pause = &AnimationPause{Frame: 3, Shows: "asleep"} }), ""},
+		{"puppet only, paused past the keys", nil, sheetless(func(a *StickerAnimation) { a.Pause = &AnimationPause{Frame: 4, Shows: "asleep"} }), "middle frame (1–3)"},
+		{"puppet only, its own pause", nil, sheetless(func(a *StickerAnimation) { p := 2; a.Puppet.Pause = &p }), "sidecar's own"},
+		{"puppet only with frames", nil, sheetless(func(a *StickerAnimation) { a.Hold = []float64{0.3} }), "belong to a sheet"},
+		{"puppet only, a move", nil, sheetless(func(a *StickerAnimation) {
+			a.Kind, a.Loop, a.Facing, a.Stride = KindMove, &FrameRange{From: 1, To: 3}, "right", 0.5
+		}), ""},
+		{"puppet only, a loop from rest", nil, sheetless(func(a *StickerAnimation) {
+			a.Kind, a.Loop, a.Facing, a.Stride = KindMove, &FrameRange{From: 0, To: 3}, "right", 0.5
+		}), "after key 0"},
+		{"puppet only, a particle past the keys", nil, sheetless(func(a *StickerAnimation) {
+			a.Particles = []AnimationParticle{{Frame: 5, Effect: "dust-puff", X: 0.5, Y: 0.9}}
+		}), "not one of the 5 frames"},
+		{"neither sheet nor puppet", nil, func(a *StickerAnimation) { a.Sheet, a.Puppet = "", nil }, "sheet must not be empty"},
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
@@ -104,5 +120,32 @@ func TestPuppetsValidate(t *testing.T) {
 			}
 			t.Fatalf("want an error with %q, got %v", tc.expect, errs)
 		})
+	}
+}
+
+// sheetless makes the animation its puppet's alone: no sheet, no frames.
+func sheetless(mutate func(a *StickerAnimation)) func(a *StickerAnimation) {
+	return func(a *StickerAnimation) {
+		a.Sheet, a.Columns, a.Count, a.Hold, a.Rest = "", 0, 0, nil, UnitBox{}
+		a.Frame.Width, a.Frame.Height = 0, 0
+		if mutate != nil {
+			mutate(a)
+		}
+	}
+}
+
+func TestPuppetOnlyTiming(t *testing.T) {
+	a := StickerAnimation{Puppet: &AnimationPuppet{Keys: []PuppetKey{{Hold: 0.25}, {Hold: 0.5}, {Hold: 1}, {Hold: 0.25}}}, Pause: &AnimationPause{Frame: 2}}
+	if !a.PuppetOnly() || a.Frames() != 4 || a.Duration() != 2 {
+		t.Fatalf("puppet only %v, frames %d, duration %g", a.PuppetOnly(), a.Frames(), a.Duration())
+	}
+	if to, from := a.PlaySeconds(); to != 0.75 || from != 0.25 {
+		t.Fatalf("play seconds %g, %g; want 0.75, 0.25", to, from)
+	}
+	data, _ := json.Marshal(a)
+	for _, field := range []string{`"frame":{`, `"rest"`, `"hold":[`, `"columns"`, `"sheet"`} {
+		if strings.Contains(string(data), field) {
+			t.Fatalf("a puppet's sidecar writes %s: %s", field, data)
+		}
 	}
 }

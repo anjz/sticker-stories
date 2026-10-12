@@ -90,16 +90,19 @@ type PuppetAttachment struct {
 	Shade  float64 `json:"shade,omitempty"`
 }
 
-// AnimationPuppet is an animation as the sticker's puppet plays it,
-// beside its sheet (StickerAnimation.Puppet): keyframes instead of
-// frames, with the same meaning of hold, pause and loop — each key's Hold
-// is the time from that pose to the next — so stories cue it the same way.
+// AnimationPuppet is an animation as the sticker's puppet plays it
+// (StickerAnimation.Puppet): keyframes, with the same meaning of hold,
+// pause and loop as a sheet's frames — each key's Hold is the time from
+// that pose to the next — so stories cue it the same way. Beside a sheet
+// it carries its own pause, loop and stride; without one the sidecar's
+// count its keys.
 type AnimationPuppet struct {
 	Rig  string      `json:"rig"`
 	Keys []PuppetKey `json:"keys"`
-	// Pause is the key an action can stop on (0-based, a middle one).
+	// Pause is the key an action can stop on (0-based, a middle one),
+	// beside a sheet.
 	Pause *int `json:"pause,omitempty"`
-	// Loop and Stride are a looping move's, as for its sheet.
+	// Loop and Stride are a looping move's, as for its sheet, beside one.
 	Loop   *FrameRange `json:"loop,omitempty"`
 	Stride float64     `json:"stride,omitempty"`
 }
@@ -281,6 +284,13 @@ func (a *StickerAnimation) validatePuppet(dir string) []error {
 				fail("keys[%d]: slot %q has no attachment %q", i, slot, att)
 			}
 		}
+	}
+	if a.PuppetOnly() {
+		// The sidecar's own pause, loop and stride count the keys.
+		if p.Pause != nil || p.Loop != nil || p.Stride != 0 {
+			fail("pause, loop and stride are the sidecar's own when there is no sheet")
+		}
+		return errs
 	}
 	switch a.EffectiveKind() {
 	case KindAction:

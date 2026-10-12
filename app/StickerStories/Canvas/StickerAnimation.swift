@@ -10,7 +10,9 @@ import UIKit
 /// that lays its rest frame exactly over the placed sticker. The sidecar
 /// contract is `docs/pack-format.md`, "Live animations"; the manifest
 /// declares each sticker's sidecars and this reads them leniently (a
-/// sidecar that does not decode is skipped).
+/// sidecar that does not decode is skipped). A sidecar without a sheet is
+/// its puppet's alone (`docs/pack-format.md`, "Puppets"): the keys are its
+/// frames.
 ///
 /// An **action** is a moment a story cues (`LiveTimeline`: whole, or held
 /// on its pause frame and resumed); a **move** is how the character gets
@@ -44,7 +46,8 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     var sticker: String
     var kind: Kind
     /// Pack-relative path of the sheet PNG: `columns` frames per row,
-    /// `count` frames read left to right, top to bottom.
+    /// `count` frames read left to right, top to bottom. Empty when the
+    /// puppet alone plays it (`puppetOnly`).
     var sheet: String
     var frame: FrameSize
     var columns: Int
@@ -75,11 +78,15 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// Particle bursts the frames fire as they show (a landing's dust, a
     /// splash): stickers never draw particles themselves.
     var particles: [ParticleCue]
-    /// The same animation as keyframes for the sticker's puppet
-    /// (`docs/pack-format.md`, "Puppets"). When puppets are on and it
-    /// decodes, `available(in:)` takes its timing for the animation's and
-    /// the loader poses the puppet instead of cutting the sheet.
+    /// The animation as keyframes for the sticker's puppet
+    /// (`docs/pack-format.md`, "Puppets"). Beside a sheet, when puppets
+    /// are on and it decodes, `available(in:)` takes its timing for the
+    /// animation's and the loader poses the puppet instead of cutting the
+    /// sheet; without one it is the animation.
     var puppet: Puppet?
+    /// The puppet alone plays it: there is no sheet, and the keys are the
+    /// frames (`pause`, `loop` and `particles` count keys).
+    var puppetOnly: Bool { sheet.isEmpty }
 
     struct Puppet: Decodable, Sendable {
         var rig: String
@@ -125,13 +132,27 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         sticker = try c.decode(String.self, forKey: .sticker)
         // An unknown kind is not an action a story may cue by mistake.
         kind = try c.decodeIfPresent(Kind.self, forKey: .kind) ?? .action
-        sheet = try c.decode(String.self, forKey: .sheet)
-        frame = try c.decode(FrameSize.self, forKey: .frame)
-        columns = try c.decode(Int.self, forKey: .columns)
-        count = try c.decode(Int.self, forKey: .count)
-        rest = try c.decode(UnitBox.self, forKey: .rest)
         stickerBox = try c.decode(UnitBox.self, forKey: .stickerBox)
-        hold = try c.decode([Double].self, forKey: .hold)
+        puppet = try? c.decodeIfPresent(Puppet.self, forKey: .puppet)
+        if let sheet = try c.decodeIfPresent(String.self, forKey: .sheet) {
+            self.sheet = sheet
+            frame = try c.decode(FrameSize.self, forKey: .frame)
+            columns = try c.decode(Int.self, forKey: .columns)
+            count = try c.decode(Int.self, forKey: .count)
+            rest = try c.decode(UnitBox.self, forKey: .rest)
+            hold = try c.decode([Double].self, forKey: .hold)
+        } else {
+            // The puppet's alone: its keys are the frames.
+            guard let puppet, puppet.keys.count >= 2 else {
+                throw DecodingError.dataCorruptedError(forKey: .puppet, in: c, debugDescription: "no sheet and no puppet keys")
+            }
+            sheet = ""
+            frame = FrameSize(width: 0, height: 0)
+            columns = 1
+            count = puppet.keys.count
+            rest = stickerBox
+            hold = puppet.keys.map(\.hold)
+        }
         pause = try? c.decodeIfPresent(Pause.self, forKey: .pause)
         loop = try? c.decodeIfPresent(FrameRange.self, forKey: .loop)
         facing = try? c.decodeIfPresent(StageMove.Facing.self, forKey: .facing)
@@ -144,15 +165,15 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         let cues = (try? c.decodeIfPresent([LenientCue].self, forKey: .particles)) ?? nil
         let frames = count
         particles = (cues ?? []).compactMap(\.cue).filter { $0.effect.followsWorld && $0.frame >= 0 && $0.frame < frames }
-        puppet = try? c.decodeIfPresent(Puppet.self, forKey: .puppet)
     }
 
     /// The animation as its puppet plays it: the keys' timing in place of
     /// the frames' (each key's hold is the time to the next), its pause,
     /// loop and stride. Particles fire on frames, so they stay with the
-    /// sheet.
+    /// sheet. One without a sheet is already its puppet's.
     func playedByPuppet() -> StickerAnimation? {
         guard let puppet, puppet.keys.count >= 2 else { return nil }
+        if puppetOnly { return self }
         var copy = self
         copy.count = puppet.keys.count
         copy.hold = puppet.keys.map(\.hold)
@@ -204,7 +225,8 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
                     print("StickerAnimation: skipping \(path) (undecodable or not \(sticker.id)'s)")
                     return nil
                 }
-                if puppetsEnabled, let played = animation.playedByPuppet() {
+                // One without a sheet has nothing else to play.
+                if puppetsEnabled || animation.puppetOnly, let played = animation.playedByPuppet() {
                     return played
                 }
                 animation.puppet = nil

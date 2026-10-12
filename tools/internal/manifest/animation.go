@@ -14,8 +14,11 @@ import (
 // StickerAnimation is a live-animation sidecar (docs/pack-format.md, "Live
 // animations"): a sprite sheet of frames the app plays over the placed
 // sticker, with the timing and the mapping of its rest frame onto the
-// sticker. stickeranim writes it; the packager validates it strictly;
-// the app reads it leniently.
+// sticker — or, without a sheet, keys the sticker's puppet plays
+// (Puppet; docs/pack-format.md, "Puppets"), whose keys are then its
+// frames: Pause, Loop and Particles count keys. stickeranim writes sheet
+// sidecars and stickerrig puppet ones; the packager validates them
+// strictly; the app reads them leniently.
 type StickerAnimation struct {
 	ID      string `json:"id"`
 	Sticker string `json:"sticker"`
@@ -34,22 +37,24 @@ type StickerAnimation struct {
 	Description string `json:"description"`
 	// Sheet is the pack-relative path of the sprite sheet: Columns frames
 	// per row, Count frames read left to right, top to bottom, each
-	// Frame.Width×Frame.Height px.
-	Sheet string `json:"sheet"`
+	// Frame.Width×Frame.Height px. Empty for a puppet's animation.
+	Sheet string `json:"sheet,omitempty"`
 	Frame struct {
 		Width  int `json:"width"`
 		Height int `json:"height"`
-	} `json:"frame"`
-	Columns int `json:"columns"`
-	Count   int `json:"count"`
+	} `json:"frame,omitzero"`
+	Columns int `json:"columns,omitempty"`
+	Count   int `json:"count,omitempty"`
 	// Rest is the first frame's bordered art within a frame and StickerBox
 	// the same art within the sticker image, both as fractions of their
 	// image with a top-left origin: the app scales and offsets the frames
-	// so Rest lands on StickerBox.
-	Rest       UnitBox `json:"rest"`
+	// so Rest lands on StickerBox. A puppet's animation has no Rest; its
+	// StickerBox is the sticker's drawing in its image all the same.
+	Rest       UnitBox `json:"rest,omitzero"`
 	StickerBox UnitBox `json:"stickerBox"`
-	// Hold is how long each frame shows, in seconds, one entry per frame.
-	Hold []float64 `json:"hold"`
+	// Hold is how long each frame shows, in seconds, one entry per frame
+	// (a puppet's keys carry their own).
+	Hold []float64 `json:"hold,omitempty"`
 	// Pause is the frame an action can stop on and stay ({snail:live
 	// hold}) until the story resumes it ({snail:live resume}) or ends:
 	// the snail tucked inside its shell. Actions only; optional.
@@ -93,9 +98,10 @@ type StickerAnimation struct {
 	// landing's dust, a splash — since stickers never draw particles
 	// themselves (docs/effects.md, "Particles"). Optional.
 	Particles []AnimationParticle `json:"particles,omitempty"`
-	// Puppet is the same animation played on the sticker's puppet
+	// Puppet is the animation played on the sticker's puppet
 	// (docs/pack-format.md, "Puppets"): keyframes the app poses its parts
-	// with, instead of the sheet's frames. Optional; written by
+	// with. Beside a sheet it is the same animation, played instead of the
+	// sheet's frames; without one it is the animation. Written by
 	// stickerrig.
 	Puppet *AnimationPuppet `json:"puppet,omitempty"`
 }
@@ -191,9 +197,94 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	if a.Sticker != stickerID {
 		fail("sticker %q does not match the declaring sticker %q", a.Sticker, stickerID)
 	}
+	if a.PuppetOnly() {
+		// The keys are the frames: their holds are checked with the puppet.
+		if a.Frame.Width != 0 || a.Frame.Height != 0 || a.Columns != 0 || a.Count != 0 || len(a.Hold) > 0 || a.Rest != (UnitBox{}) {
+			fail("frame, columns, count, rest and hold belong to a sheet; a puppet's keys are its frames")
+		}
+	} else {
+		a.validateSheet(dir, fail)
+	}
+	count := a.Frames()
+	switch a.EffectiveKind() {
+	case KindAction:
+		if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || len(a.On) > 0 || a.Stays {
+			fail("loop, facing, stride, hops, flies, on and stays belong to a move, not an action")
+		}
+		if p := a.Pause; p != nil {
+			if p.Frame < 1 || p.Frame > count-2 {
+				fail("pause.frame %d must be a middle frame (1–%d)", p.Frame, count-2)
+			}
+			if strings.TrimSpace(p.Shows) == "" {
+				fail("pause.shows must say what the paused frame shows")
+			}
+		}
+	case KindMove:
+		if a.Pause != nil || a.Perched || len(a.Place) > 0 {
+			fail("pause, perched and place belong to an action, not a move")
+		}
+		if l := a.Loop; l != nil {
+			if l.From < 0 || l.To < l.From || l.To >= count {
+				fail("loop %d–%d must be frames within 0–%d", l.From, l.To, count-1)
+			} else if a.PuppetOnly() && l.From < 1 {
+				fail("loop %d–%d must start after key 0, the rest pose", l.From, l.To)
+			}
+			if a.Facing != "left" && a.Facing != "right" {
+				fail("a looping move needs facing left or right, got %q", a.Facing)
+			}
+			if a.Stride <= 0 || a.Stride > 5 {
+				fail("stride %g must be above 0 and at most 5 sticker widths", a.Stride)
+			}
+			if a.Hops && a.Flies {
+				fail("a move hops or flies, not both")
+			}
+			if a.Stays && len(a.On) == 0 {
+				fail("stays needs on: the places where the move keeps going")
+			}
+		} else if a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || len(a.On) > 0 || a.Stays {
+			fail("facing, stride, hops, flies, on and stays need a loop")
+		}
+	default:
+		fail("kind %q must be action or move", a.Kind)
+	}
+	boxes := map[string]UnitBox{"stickerBox": a.StickerBox}
+	if !a.PuppetOnly() {
+		boxes["rest"] = a.Rest
+	}
+	for name, b := range boxes {
+		if b.Width <= 0 || b.Height <= 0 || b.X < 0 || b.Y < 0 || b.X+b.Width > 1.0001 || b.Y+b.Height > 1.0001 {
+			fail("%s must be a non-empty box inside the unit square, got %+v", name, b)
+		}
+	}
+	if a.Puppet != nil {
+		errs = append(errs, a.validatePuppet(dir)...)
+	}
+	for i, p := range a.Particles {
+		field := fmt.Sprintf("particles[%d]", i)
+		if p.Frame < 0 || p.Frame >= count {
+			fail("%s: frame %d is not one of the %d frames (0-based)", field, p.Frame, count)
+		}
+		if !slices.Contains(ParticleEffects, p.Effect) {
+			fail("%s: effect %q must be one of %s", field, p.Effect, strings.Join(ParticleEffects, ", "))
+		}
+		if p.X < -0.5 || p.X > 1.5 || p.Y < -0.5 || p.Y > 1.5 {
+			fail("%s: x and y must be within -0.5–1.5 of the sticker image, got %g, %g", field, p.X, p.Y)
+		}
+		if p.Intensity != nil && (*p.Intensity < 0 || *p.Intensity > 1) {
+			fail("%s: intensity %g must be 0–1", field, *p.Intensity)
+		}
+		if p.Color != "" && !hexColor.MatchString(p.Color) {
+			fail("%s: color %q must be #RRGGBB", field, p.Color)
+		}
+	}
+	return errs
+}
+
+// validateSheet checks a sheet sidecar's sheet, frames and holds.
+func (a *StickerAnimation) validateSheet(dir string, fail func(string, ...any)) {
 	switch ext := path.Ext(a.Sheet); {
 	case a.Sheet == "":
-		fail("sheet must not be empty")
+		fail("sheet must not be empty (or give a puppet instead)")
 	case filepath.IsAbs(a.Sheet) || pathEscapes(a.Sheet):
 		fail("sheet: path %q must be pack-relative and must not escape the pack", a.Sheet)
 	case ext != ".png" && ext != ".webp":
@@ -220,79 +311,37 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 			fail("hold[%d] = %g is outside %g–%g s", i, h, MinHold, MaxHold)
 		}
 	}
-	switch a.EffectiveKind() {
-	case KindAction:
-		if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || len(a.On) > 0 || a.Stays {
-			fail("loop, facing, stride, hops, flies, on and stays belong to a move, not an action")
-		}
-		if p := a.Pause; p != nil {
-			if p.Frame < 1 || p.Frame > a.Count-2 {
-				fail("pause.frame %d must be a middle frame (1–%d)", p.Frame, a.Count-2)
-			}
-			if strings.TrimSpace(p.Shows) == "" {
-				fail("pause.shows must say what the paused frame shows")
-			}
-		}
-	case KindMove:
-		if a.Pause != nil || a.Perched || len(a.Place) > 0 {
-			fail("pause, perched and place belong to an action, not a move")
-		}
-		if l := a.Loop; l != nil {
-			if l.From < 0 || l.To < l.From || l.To >= a.Count {
-				fail("loop %d–%d must be frames within 0–%d", l.From, l.To, a.Count-1)
-			}
-			if a.Facing != "left" && a.Facing != "right" {
-				fail("a looping move needs facing left or right, got %q", a.Facing)
-			}
-			if a.Stride <= 0 || a.Stride > 5 {
-				fail("stride %g must be above 0 and at most 5 sticker widths", a.Stride)
-			}
-			if a.Hops && a.Flies {
-				fail("a move hops or flies, not both")
-			}
-			if a.Stays && len(a.On) == 0 {
-				fail("stays needs on: the places where the move keeps going")
-			}
-		} else if a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || len(a.On) > 0 || a.Stays {
-			fail("facing, stride, hops, flies, on and stays need a loop")
-		}
-	default:
-		fail("kind %q must be action or move", a.Kind)
+}
+
+// PuppetOnly says the animation is its puppet's keys, with no sheet.
+func (a *StickerAnimation) PuppetOnly() bool { return a.Sheet == "" && a.Puppet != nil }
+
+// Holds is how long each frame shows: the sheet's holds, or a puppet's
+// keys' (each key's hold is the time from it to the next).
+func (a *StickerAnimation) Holds() []float64 {
+	if !a.PuppetOnly() {
+		return a.Hold
 	}
-	for name, b := range map[string]UnitBox{"rest": a.Rest, "stickerBox": a.StickerBox} {
-		if b.Width <= 0 || b.Height <= 0 || b.X < 0 || b.Y < 0 || b.X+b.Width > 1.0001 || b.Y+b.Height > 1.0001 {
-			fail("%s must be a non-empty box inside the unit square, got %+v", name, b)
-		}
+	holds := make([]float64, len(a.Puppet.Keys))
+	for i, k := range a.Puppet.Keys {
+		holds[i] = k.Hold
 	}
-	if a.Puppet != nil {
-		errs = append(errs, a.validatePuppet(dir)...)
+	return holds
+}
+
+// Frames is how many frames the animation has (a puppet's: its keys).
+func (a *StickerAnimation) Frames() int {
+	if a.PuppetOnly() {
+		return len(a.Puppet.Keys)
 	}
-	for i, p := range a.Particles {
-		field := fmt.Sprintf("particles[%d]", i)
-		if p.Frame < 0 || p.Frame >= a.Count {
-			fail("%s: frame %d is not one of the %d frames (0-based)", field, p.Frame, a.Count)
-		}
-		if !slices.Contains(ParticleEffects, p.Effect) {
-			fail("%s: effect %q must be one of %s", field, p.Effect, strings.Join(ParticleEffects, ", "))
-		}
-		if p.X < -0.5 || p.X > 1.5 || p.Y < -0.5 || p.Y > 1.5 {
-			fail("%s: x and y must be within -0.5–1.5 of the sticker image, got %g, %g", field, p.X, p.Y)
-		}
-		if p.Intensity != nil && (*p.Intensity < 0 || *p.Intensity > 1) {
-			fail("%s: intensity %g must be 0–1", field, *p.Intensity)
-		}
-		if p.Color != "" && !hexColor.MatchString(p.Color) {
-			fail("%s: color %q must be #RRGGBB", field, p.Color)
-		}
-	}
-	return errs
+	return a.Count
 }
 
 // Duration is how long the animation plays, in seconds: the sum of its
 // holds.
 func (a *StickerAnimation) Duration() float64 {
 	total := 0.0
-	for _, h := range a.Hold {
+	for _, h := range a.Holds() {
 		total += h
 	}
 	return total
@@ -306,7 +355,7 @@ func (a *StickerAnimation) PlaySeconds() (toPause, fromPause float64) {
 	if a.Pause == nil {
 		return a.Duration(), 0
 	}
-	for i, h := range a.Hold {
+	for i, h := range a.Holds() {
 		if i < a.Pause.Frame {
 			toPause += h
 		} else if i > a.Pause.Frame {

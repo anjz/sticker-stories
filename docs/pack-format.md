@@ -23,8 +23,8 @@ picks the best match for the device (see "Language resolution" below).
     <stickerID>.webp      # sticker art, alpha background, white border baked in
     <stickerID>.<expr>.webp  # optional face variant ("Expressions" below)
   anims/
-    <stickerID>.<animID>.webp  # live animation: sprite sheet ("Live animations" below)
-    <stickerID>.<animID>.json  # its sidecar, declared in stickers[].animations
+    <stickerID>.<animID>.json  # live animation sidecar, declared in stickers[].animations
+    <stickerID>.<animID>.webp  # its sprite sheet, unless the puppet plays it ("Live animations" below)
     <stickerID>.rig.json   # optional puppet: its rig ("Puppets" below)
     <stickerID>.rig.webp   # the puppet's parts (atlas)
   audio/
@@ -255,7 +255,9 @@ never letterboxes:
 12. Every `stickers[].animations` entry is a `.json` file inside the pack.
     The packager validates the sidecar **strictly** (unknown keys, a
     `sticker` other than the declaring one, an empty `description`, an
-    `id` the sticker already uses, a missing or non-image sheet,
+    `id` the sticker already uses, a missing or non-image sheet
+    (unless the sidecar is a puppet's alone, which has no `sheet`,
+    `frame`, `columns`, `count`, `rest` or `hold`),
     a `hold` list that does not match `count`, holds outside 0.02–5 s,
     boxes outside the unit square, a `kind` other than `action`/`move`,
     a second move for one sticker without a `loop`, a `pause` on a move
@@ -271,9 +273,11 @@ never letterboxes:
     bone comes after its parent, slots hang on bones and show the rig's
     parts, faces and the idle blink name real attachments; keys are at
     least two, with holds in 0.02–5 s, known eases, bones and attachments
-    of the rig, stretches above 0 and at most 4; its `pause` and `loop`
-    match the sidecar's); an undecodable puppet is ignored by the app,
-    which plays the sheet.
+    of the rig, stretches above 0 and at most 4; beside a sheet its
+    `pause` and `loop` match the sidecar's, and without one it has none:
+    the sidecar's `pause`, `loop` and `particles` count its keys, and a
+    loop starts after key 0); an undecodable puppet is ignored by the
+    app, which plays the sheet (or, without one, skips the sidecar).
 13. Every `stickers[].expressions` key is lowercase `a-z0-9-` and not
     `normal`; every value is an image inside the pack (`.png` or `.webp`)
     that exists. No sticker is called `all`.
@@ -513,14 +517,20 @@ own art that bring it to life. Two kinds (`kind`):
 
 **Every pack gives every sticker one action and one move** (the authoring
 target, like the story count; not a validation rule), and a second move
-to a character that plainly gets about two ways. The motions are
+to a character that plainly gets about two ways. A puppet's animations
+cost no image generation, so a sticker with a puppet gets **many
+actions** — a jump, a nod, a wave, a little dance, whatever its body can
+do and stories are likely to tell ("Puppets"). The motions are
 small and unhurried — nothing fast, nothing that reaches far from the
 sticker — and smooth: about 10–12 frames a second, with frames drawn
 close enough together that each step is small (an action is typically
 24 frames over 2–3 s, a walk cycle 8 frames at 12 fps).
 
-Each animation is a sprite sheet plus a sidecar, made by
-`tools/author/stickeranim` and declared in `stickers[].animations`:
+Each animation is a sidecar declared in `stickers[].animations`, with
+either a sprite sheet made by `tools/author/stickeranim` or the keys of
+the sticker's puppet made by `tools/author/stickerrig` ("Puppets"; then
+`sheet`, `frame`, `columns`, `count`, `rest` and `hold` are absent, and
+`pause`, `loop` and `particles` count keys instead of frames):
 
 | Key | Meaning |
 |---|---|
@@ -542,7 +552,7 @@ Each animation is a sprite sheet plus a sidecar, made by
 | `on` | moves with a loop, optional: feature ids (`features` above) a story that brings the character in this way lands it on, in order of preference — the duckling swimming in lands on the pond; empty for its `stage`'s |
 | `stays` | moves with a loop and `on`, optional: `true` when the character stays in its element once this way has taken it into one of `on` — the surfer out on the waves, a pelican afloat: the app keeps the loop going where it is instead of settling into the sticker pose, which would stand it on the water (`docs/effects.md`, "Movement") |
 | `particles` | optional: bursts the frames fire as they first come on show — `[{ "frame": 6, "effect": "dust-puff", "x": 0.5, "y": 0.86, "intensity"?: 0.5, "color"?: "#RRGGBB" }]`: the 0-based frame, a particle effect (`dust-puff`, `spray` or `sparks`, `docs/effects.md`), the point of the **sticker image** it comes from (fractions, top-left origin like `stickerBox`; −0.5–1.5 so a flame's tip can be just outside), and optional intensity (0–1) and colour. A landing's dust, a touchdown, a splash: the frames never draw particles themselves (`docs/pack-art.md`). They follow the pack's `world` ("World") and play wherever the animation plays — an action, an entrance, a move — but not under Reduce Motion or calm mode, where live animations don't play |
-| `puppet` | optional: the same animation as keyframes for the sticker's puppet ("Puppets" below) — `{ "rig": "anims/owl.rig.json", "keys": [...], "pause"?: 11, "loop"?: { "from": 1, "to": 4 }, "stride"?: 1.2 }`. `pause` is given exactly when the sidecar has one and `loop` exactly when it has one, with the same meaning, counted in keys |
+| `puppet` | the animation as keyframes for the sticker's puppet ("Puppets" below) — `{ "rig": "anims/owl.rig.json", "keys": [...] }`. Required without a sheet. Beside a sheet it is optional and plays instead of the frames, with its own `"pause"?: 11, "loop"?: { "from": 1, "to": 4 }, "stride"?: 1.2`, counted in keys: `pause` given exactly when the sidecar has one and `loop` exactly when it has one |
 
 The frames are registered on the part that stays still (the feet, the
 shell's base) — a move's frames on the character's body, feet on the
@@ -567,17 +577,19 @@ before adding frames; a story loads only the sheets it plays.
 
 ## Puppets
 
-A sticker can also carry a **puppet**: its drawing cut into parts —
-body, head, wings, feet, eyes, beak — hanging on a skeleton, so the app
-moves the parts instead of showing drawn frames. An animation is then a
+A sticker can carry a **puppet**: its drawing cut into parts — body,
+head, wings, feet, eyes, beak — hanging on a skeleton, so the app moves
+the parts instead of showing drawn frames. An animation is then a
 handful of keyframes (data), and a new one costs no image generation.
-`tools/author/stickerrig` makes it from two sheets the image model draws
-from the sticker's own art (the parts, the face pieces), and the puppet
-plays the sticker's existing animations: each sidecar gets a `puppet`
-beside its sheet, with the same id, kind, pause and loop, so stories cue
-it exactly as before. The app plays the puppet where a sidecar has one
-(a developer switch in debug builds turns it off, for comparison) and
-the sheet otherwise; an older build ignores it.
+`tools/author/stickerrig` makes it from sheets the image model draws
+from the sticker's own art (the parts, the face pieces). This is how new
+packs animate their stickers: each animation is a sidecar **without a
+sheet**, whose `puppet` keys are its frames — its `pause`, `loop` and
+`particles` count keys, and stories cue it like any other. A sidecar can
+also carry a `puppet` beside a sheet (the same animation, with its own
+pause and loop in keys): the app plays the puppet, and the sheet only
+when a developer switch in debug builds turns puppets off, for
+comparison. An older build skips a sidecar without a sheet.
 
 The rig (`anims/<stickerID>.rig.json`):
 
@@ -645,7 +657,8 @@ same device preference.
   no bump); optional `narrationPacks` added (additive, no bump);
   2026-10: optional `staging` and `stickers[].door` added (additive, no
   bump); optional sidecar `puppet` and puppet rigs added (additive, no
-  bump).
+  bump); sidecars without a sheet, played by the puppet alone (an
+  older build skips them; no bump).
 - Any schema change must update this document, the Go validator
   (`tools/internal/manifest`), and the Swift decoder in the **same commit**.
 - `version` (pack content revision) is bumped whenever any asset or story in a
