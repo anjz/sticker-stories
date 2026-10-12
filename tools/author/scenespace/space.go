@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"regexp"
 )
 
 // Space is a pack's scene as a place with depth
@@ -44,6 +45,9 @@ type Space struct {
 	Sizes map[string]float64 `json:"sizes,omitempty"`
 	// Preview is what the viewer shows walking about; not part of the pack.
 	Preview []PreviewSticker `json:"preview,omitempty"`
+	// Lineup is where the sizing page last had each sticker (its feet), so
+	// the comparison carries on; not part of the pack.
+	Lineup []LineupSticker `json:"lineup,omitempty"`
 }
 
 type Range struct {
@@ -103,6 +107,12 @@ type Line struct {
 	Facing string  `json:"facing,omitempty"`
 }
 
+type LineupSticker struct {
+	Sticker string     `json:"sticker"`
+	At      [2]float64 `json:"at"`
+	Flip    bool       `json:"flip,omitempty"`
+}
+
 type PreviewSticker struct {
 	Sticker string      `json:"sticker"`
 	At      *[2]float64 `json:"at,omitempty"`
@@ -119,6 +129,18 @@ func (l Layer) Plane() string {
 	}
 	return l.Art
 }
+
+// Save writes the space as JSON with each [u, v] point on one line.
+func (s *Space) Save(path string) error {
+	data, err := json.MarshalIndent(s, "", "  ")
+	if err != nil {
+		return err
+	}
+	data = compactPoints.ReplaceAll(data, []byte("[$1, $2]"))
+	return os.WriteFile(path, append(data, '\n'), 0o644)
+}
+
+var compactPoints = regexp.MustCompile(`\[\s+(-?[\d.e+-]+),\s+(-?[\d.e+-]+)\s+\]`)
 
 func LoadSpace(path string) (*Space, error) {
 	data, err := os.ReadFile(path)
@@ -279,6 +301,11 @@ func (s *Space) Validate(stickers, features map[string]bool) []error {
 		}
 		if size <= 0 {
 			fail("sizes.%s: %v must be positive", id, size)
+		}
+	}
+	for i, l := range s.Lineup {
+		if stickers != nil && !stickers[l.Sticker] {
+			fail("lineup[%d] %q: not a sticker of the pack", i, l.Sticker)
 		}
 	}
 	for i, p := range s.Preview {

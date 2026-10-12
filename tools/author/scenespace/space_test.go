@@ -2,6 +2,8 @@ package main
 
 import (
 	"math"
+	"os"
+	"strings"
 	"testing"
 )
 
@@ -63,5 +65,28 @@ func TestForestSpaceIsValid(t *testing.T) {
 	features := map[string]bool{"meadow": true, "pond": true, "sky": true, "branches": true, "trunks": true}
 	if errs := s.Validate(nil, features); len(errs) != 0 {
 		t.Errorf("%v", errs)
+	}
+}
+
+func TestSaveKeepsPointsOnOneLine(t *testing.T) {
+	s, err := LoadSpace("../art/forest/space.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	s.Lineup = []LineupSticker{{Sticker: "fox", At: [2]float64{0.4, 0.25}}}
+	path := t.TempDir() + "/space.json"
+	if err := s.Save(path); err != nil {
+		t.Fatal(err)
+	}
+	data, _ := os.ReadFile(path)
+	if !strings.Contains(string(data), `"at": [0.4, 0.25]`) {
+		t.Errorf("points not compact:\n%s", data)
+	}
+	again, err := LoadSpace(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if again.Horizon != s.Horizon || len(again.Layers) != len(s.Layers) || again.Lineup[0] != s.Lineup[0] {
+		t.Errorf("round trip changed the space")
 	}
 }

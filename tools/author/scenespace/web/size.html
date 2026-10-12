@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>scenespace — sizes</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #2b2f36; color: #eee; font: 13px -apple-system, system-ui, sans-serif; overflow: hidden; }
+  #side { position: fixed; top: 0; left: 0; bottom: 0; width: 260px; background: #1d2026; display: flex; flex-direction: column; }
+  #side h1 { font-size: 14px; margin: 10px 12px 4px; }
+  #side .hint { color: #999; margin: 0 12px 6px; line-height: 1.35; }
+  #tray { flex: 1; overflow-y: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 6px 10px; align-content: start; }
+  #tray button { background: #2c3038; border: 1px solid #3a3f48; border-radius: 6px; color: #ccc; font: 11px system-ui; padding: 3px 2px; cursor: pointer; }
+  #tray button.placed { border-color: #4b7bd6; }
+  #tray button.sel { background: #4b7bd6; color: #fff; }
+  #tray canvas { display: block; margin: 0 auto 2px; }
+  #panel { border-top: 1px solid #333; padding: 8px 12px 12px; }
+  #panel .row { margin: 5px 0; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  #panel input[type=range] { flex: 1; }
+  #panel input[type=number] { width: 64px; background: #2c3038; color: #eee; border: 1px solid #444; border-radius: 4px; padding: 2px 4px; }
+  #panel button { font: inherit; padding: 4px 8px; border-radius: 5px; border: 1px solid #555; background: #3a3f48; color: #eee; cursor: pointer; }
+  #panel button.on { background: #4b7bd6; border-color: #4b7bd6; }
+  #panel button.save { background: #2f8f4e; border-color: #2f8f4e; }
+  #panel button.save.dirty { background: #d68b2f; border-color: #d68b2f; }
+  #sel { font-variant-numeric: tabular-nums; line-height: 1.5; min-height: 6.5em; color: #ccc; }
+  #sel b { color: #fff; }
+  #view { position: fixed; top: 0; left: 260px; right: 0; bottom: 0; }
+  #view canvas { width: 100%; height: 100%; display: block; touch-action: none; }
+  #status { color: #8c8; min-height: 1.2em; }
+</style>
+</head>
+<body>
+<div id="side">
+  <h1 id="title">Sizes</h1>
+  <div class="hint">Click a sticker to put it in the scene. Drag to move it, scroll (or +/−) to size it, F flips, Delete takes it out. A size is the sticker's height at depth 1, so it is drawn smaller the further back it stands: compare them anywhere.</div>
+  <div id="tray"></div>
+  <div id="panel">
+    <div id="sel">Nothing selected.</div>
+    <div class="row"><span>Size</span><input id="size" type="range" min="-4.6" max="0.7" step="0.005"><input id="sizeNum" type="number" step="0.005" min="0.01"></div>
+    <div class="row"><span>Minimum</span><input id="floor" type="range" min="0" max="0.12" step="0.002"><span id="floorNum"></span></div>
+    <div class="row">
+      <button id="ghosts" class="on" title="the selected sticker at the front and the back">Front / back</button>
+      <button id="layers" class="on">Layers</button>
+      <button id="wide">Wide art</button>
+    </div>
+    <div class="row">
+      <button id="all">Add the rest</button>
+      <button id="save" class="save">Save</button>
+    </div>
+    <div id="status"></div>
+  </div>
+</div>
+<div id="view"><canvas id="c"></canvas></div>
+<script type="module" src="size.js"></script>
+</body>
+</html>

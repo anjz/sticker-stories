@@ -22,6 +22,21 @@ URL options start it that way: `?pov=0&places=1&layers=1&wide=1&walk=0&t=6`
 (`t` is the walk's time, `from=x,y,z` where the turning camera starts) —
 for pictures with headless Chrome.
 
+## Sizing stickers (`/size.html`)
+
+The camera view with the scene's layers, drawn back to front as the app
+will. Click a sticker in the tray to put it in the scene; drag it, scroll
+(or +/−) to size it, F flips, Delete takes it out; "Add the rest" puts
+every sticker not yet there in three rows. A size is the sticker's
+drawn height at depth 1, so it is drawn smaller the further back it
+stands — compare stickers anywhere. The selected one shows its numbers
+(drawn height here, at the front and the back of where stickers stand:
+the child's pinch range, starting halfway) and ghosts of it at the
+front and the back. "Minimum" is the floor. Save writes `sizes`, `floor`
+and the `lineup` (where each sticker stood, so the comparison carries
+on) into space.json; until a line-up is saved, stickers start at their
+size class's default. `?all=1&sel=fox&wide=1` start that way.
+
 ## The model
 
 Units are art heights at depth 1, the depth of the nearest foreground
@@ -42,6 +57,7 @@ ground:
 | `layers` | the planes in front of the background at their depths: `art` (`foreground`, the default, or an art.json `scene.layers` id such as `trees`), `mask` (an art polygon cutting a piece of the plane; per plane one layer may have none — the rest), `footprint` (ground nothing walks on), `wide` (the same on the wide art) |
 | `places` | the pack's features in space: `ground` (feet polygon; `water`), `air` (`area` + `depth` range), or `lines` / `wideLines` on a layer (a branch, the bark, with `facing`) |
 | `sizes` | stickers' drawn heights at depth 1 |
+| `lineup` | where the sizing page last had each sticker (its feet; `flip`) |
 | `preview` | what the viewer shows: `at`, `path` (feet points), `perch` (a place with lines), `fly` + `depth` |
 
 All points are fractions of the base art, origin bottom-left; on the wide

@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"io/fs"
 	"log"
+	"math"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -175,10 +176,11 @@ func runServe(args []string) error {
 			ID     string `json:"id"`
 			Image  string `json:"image"`
 			Facing string `json:"facing,omitempty"` // the way its usual move goes
+			Size   string `json:"size,omitempty"`   // its size class
 		}
 		var stickers []sticker
 		for _, s := range p.m.Stickers {
-			st := sticker{ID: s.ID, Image: s.Image}
+			st := sticker{ID: s.ID, Image: s.Image, Size: s.Size}
 			for _, rel := range s.Animations {
 				a, err := manifest.LoadStickerAnimation(filepath.Join(p.dir, filepath.FromSlash(rel)))
 				if err == nil && a.EffectiveKind() == "move" && a.Facing != "" {
@@ -223,7 +225,52 @@ func runServe(args []string) error {
 			"stickers": stickers, "space": p.space, "problems": problems,
 		})
 	})
-	log.Printf("scenespace: %s on http://%s", *packDir, *addr)
+	// The sizing page saves sticker sizes, the floor and its line-up into
+	// space.json; everything else in it stays as it is.
+	mux.HandleFunc("POST /api/sizes", func(w http.ResponseWriter, r *http.Request) {
+		var body struct {
+			Sizes  map[string]float64 `json:"sizes"`
+			Floor  float64            `json:"floor"`
+			Lineup []LineupSticker    `json:"lineup"`
+		}
+		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+		p, err := load(*packDir, *artDir)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		s := p.space
+		s.Sizes, s.Floor, s.Lineup = body.Sizes, body.Floor, body.Lineup
+		for id, size := range s.Sizes {
+			s.Sizes[id] = math.Round(size*1000) / 1000
+		}
+		for i := range s.Lineup {
+			for j := range s.Lineup[i].At {
+				s.Lineup[i].At[j] = math.Round(s.Lineup[i].At[j]*1000) / 1000
+			}
+		}
+		stickers, features := map[string]bool{}, map[string]bool{}
+		for _, st := range p.m.Stickers {
+			stickers[st.ID] = true
+		}
+		for id := range p.m.Features {
+			features[id] = true
+		}
+		if errs := s.Validate(stickers, features); len(errs) > 0 {
+			http.Error(w, fmt.Sprint(errs), http.StatusBadRequest)
+			return
+		}
+		if err := s.Save(filepath.Join(p.artDir, "space.json")); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		log.Printf("saved %d sizes, floor %.3f, %d in the line-up", len(s.Sizes), s.Floor, len(s.Lineup))
+		w.WriteHeader(http.StatusNoContent)
+	})
+	log.Printf("scenespace: %s on http://%s (sizing: /size.html)", *packDir, *addr)
 	return http.ListenAndServe(*addr, mux)
 }
 
