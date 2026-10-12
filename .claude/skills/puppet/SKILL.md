@@ -29,15 +29,18 @@ drawing anything:
   ears, antennae, wings at their roots. Use the standard names
   (README, "Templates") so the shared actions fit.
 - **The parts** it needs drawn: body without head or limbs; head with a
-  blank face; each limb once (the other side is the same piece
-  flipped, or shaded behind the body); and a piece for every pose a
+  blank face; each limb once and whole, from the top of its thigh or
+  shoulder to the paw (the other side is the same piece flipped, or
+  shaded behind the body) — a leg cut off at the body's edge shows its
+  seam; and a piece for every pose a
   turn cannot make — a wing open, hands clasped, a closed bud, a
   curled-up ball, the open scales — plus props it holds or uses (a
   stick, a nut, a tongue, a fly).
 - **The face pieces**: one eye as in the sticker, wide, closed in sleep,
   closed happy, sad; the mouth (or beak) as in the sticker, laughing
   open, a small "o", sad, and any the actions need (a yawn, nibbling
-  teeth, a beak open in song).
+  teeth, a beak open in song); the nose and brows if the sticker has
+  them. Never stand one piece in for another (an eye as a nose).
 - **The actions** (step 6): which ones its body can do.
 
 Write the rig file `tools/author/art/<pack>/rigs/<id>.json` with
@@ -84,6 +87,13 @@ and foot is. Then write:
 - `faces`: the pack's expressions (`happy`, `sad`, `sleeping`,
   `surprised`) as slot attachments;
 - `idle`: `{ "breathe": "belly", "blink": { "eyeL": "closed", … } }`.
+
+Layer so joints never show: a limb's joint end tucks **behind** the
+body (or under the part that covers it), so the body's outline is the
+only line where they meet; a joint end drawn over the body shows its
+outline as a seam. Each bone sits at the real joint (the shoulder, the
+hip, a stalk's base), so turning it never pulls the part out of its
+socket.
 
 Install, then `preview -png -anim none` and read `out/rigs/<id>.rest.png`:
 the puppet beside, over (50 %) and against the sticker (mismatch: magenta
@@ -138,7 +148,10 @@ goes back to the face.
 
 `preview -png` and read every `out/rigs/<id>.<animation>.png`: each key
 should be a pose an illustrator would draw — balanced, nothing
-detached, nothing pointing the wrong way (signs: turns are clockwise, y
+detached or out of its socket, no seam where a limb meets the body, no
+arm flung past the face, left and right where they belong, both wings
+of a flyer visible in flight (the far one spread behind, shaded),
+nothing pointing the wrong way (signs: turns are clockwise, y
 is down; an arm on the viewer's left rises with +r). Fix what reads
 wrong and look again.
 
