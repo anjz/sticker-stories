@@ -1,3 +1,4 @@
+import CoreGraphics
 import Foundation
 import Testing
 
@@ -88,5 +89,39 @@ import Testing
         #expect(throws: (any Error).self) {
             try JSONDecoder().decode([SceneSpace.Point].self, from: Data("[[0.1, 0.2, 0.3]]".utf8))
         }
+    }
+}
+
+@Suite struct EditSizeAndBoundsTests {
+    @Test func editSizeIsHalfwayAndPinchesFromBackToFront() throws {
+        let space = SceneSpace(
+            horizon: 0.5, ground: 0, back: 5, stand: .init(near: 1, far: 4), floor: 0.05,
+            layers: [.init(id: "front", depth: 1)], sizes: ["fox": 0.4, "bee": 0.08])
+        let fox = try #require(space.editSize(of: "fox"))
+        #expect(abs(fox.height - 0.25) < 1e-12)  // (0.4 + 0.1) / 2
+        #expect(abs(fox.scales.lowerBound - 0.4) < 1e-12 && abs(fox.scales.upperBound - 1.6) < 1e-12)
+        // The floor holds a tiny one up at the back: it barely pinches.
+        let bee = try #require(space.editSize(of: "bee"))
+        #expect(abs(bee.height - 0.065) < 1e-12)
+        #expect(bee.scales.upperBound / bee.scales.lowerBound < 1.7)
+        #expect(space.editSize(of: "owl") == nil)
+    }
+
+    /// An image with a painted block in its lower left: the box comes back
+    /// in fractions, origin bottom-left.
+    @Test func opaqueBoundsAreBottomLeftFractions() throws {
+        let context = try #require(CGContext(
+            data: nil, width: 100, height: 50, bitsPerComponent: 8, bytesPerRow: 400,
+            space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue))
+        context.setFillColor(CGColor(red: 1, green: 0, blue: 0, alpha: 1))
+        context.fill(CGRect(x: 10, y: 0, width: 20, height: 30))  // user space: y up from the bottom
+        let image = try #require(context.makeImage())
+        let box = try #require(OpaqueBounds.of(image))
+        #expect(abs(box.minX - 0.1) < 0.02 && abs(box.width - 0.2) < 0.02)
+        #expect(abs(box.minY - 0) < 0.02 && abs(box.height - 0.6) < 0.02)
+        let empty = try #require(CGContext(
+            data: nil, width: 10, height: 10, bitsPerComponent: 8, bytesPerRow: 40,
+            space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)?.makeImage())
+        #expect(OpaqueBounds.of(empty) == nil)
     }
 }

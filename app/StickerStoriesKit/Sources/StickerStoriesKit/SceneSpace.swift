@@ -219,6 +219,24 @@ public struct SceneSpace: Codable, Equatable, Sendable {
         max(size / z, min(floor, size))
     }
 
+    /// How big a sticker is while the child edits the canvas: its drawing
+    /// `height` (art heights) halfway between where it would be at the back
+    /// and at the front of where stickers stand, and the `scales` a pinch
+    /// takes it between — from its back size to its front size.
+    public struct EditSize: Equatable, Sendable {
+        public var height: Double
+        public var scales: ClosedRange<Double>
+    }
+
+    /// A sticker's `EditSize`, or nil when the space gives it no size.
+    public func editSize(of stickerID: String) -> EditSize? {
+        guard let size = sizes[stickerID], size > 0 else { return nil }
+        let front = drawnHeight(size: size, atDepth: stand.near)
+        let back = drawnHeight(size: size, atDepth: stand.far)
+        let middle = (front + back) / 2
+        return EditSize(height: middle, scales: (back / middle)...(front / middle))
+    }
+
     // MARK: Validation (rule 20)
 
     /// Every problem with the space. `planes` are the pack's scene layer

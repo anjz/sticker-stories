@@ -40,6 +40,11 @@ final class CanvasScene: SKScene {
     private let stateStore: any CanvasStateStore
 
     private let backgroundArt = SKSpriteNode()
+    /// The scene's layers (the trees, the reeds; `SceneLayer`), far to near.
+    /// While the child edits the canvas they are drawn with the background,
+    /// behind both sticker layers.
+    private let sceneLayers = SKNode()
+    private var sceneLayerTextures: [LayerTextures] = []
     private let backgroundStickers = SKNode()
     /// The foreground plane's soft shadow, cast onto the background art and
     /// the background stickers: a blurred black copy of the foreground art,
@@ -310,6 +315,7 @@ final class CanvasScene: SKScene {
         let isFirstLoad = backgroundArt.parent == nil
         if isFirstLoad {
             backgroundArt.zPosition = 0
+            sceneLayers.zPosition = 50
             backgroundStickers.zPosition = 100
             foregroundShadowBlur.zPosition = 150
             foregroundArt.zPosition = 200
@@ -323,6 +329,7 @@ final class CanvasScene: SKScene {
             foregroundShadowBlur.shouldEnableEffects = true
             foregroundShadowBlur.addChild(foregroundShadow)
             addChild(backgroundArt)
+            addChild(sceneLayers)
             addChild(backgroundStickers)
             addChild(foregroundShadowBlur)
             addChild(foregroundArt)
@@ -407,6 +414,13 @@ final class CanvasScene: SKScene {
         backgroundArt.texture = baseArtTextures.background
         foregroundArt.texture = baseArtTextures.foreground
         stickerTextures = textures.stickers
+        sceneLayerTextures = textures.layers
+        for (index, layer) in sceneLayerTextures.enumerated() {
+            let sprite = SKSpriteNode(texture: layer.base.texture)
+            sprite.name = layer.id
+            sprite.zPosition = CGFloat(index)
+            sceneLayers.addChild(sprite)
+        }
         buildTray()
     }
 
@@ -445,12 +459,26 @@ final class CanvasScene: SKScene {
             art.size = CGSize(width: textureSize.width * scale, height: textureSize.height * scale)
             art.position = center
         }
+        layoutSceneLayers(art: CGRect(
+            x: center.x - backgroundArt.size.width / 2, y: center.y - backgroundArt.size.height / 2,
+            width: backgroundArt.size.width, height: backgroundArt.size.height))
         layoutForegroundShadow(center: center)
         canvasEffects.layout(world: worldExtent)
         // The tray is laid out in view coordinates and pinned to the view's
         // bottom-left corner in world space (kept in step with the camera).
         syncHUDToCamera()
         layoutTray()
+    }
+
+    /// Lays each scene layer's painted part over the art being drawn
+    /// (`art`, in world coordinates).
+    private func layoutSceneLayers(art: CGRect) {
+        for (sprite, layer) in zip(sceneLayers.children.compactMap { $0 as? SKSpriteNode }, sceneLayerTextures) {
+            let piece = artVariant == .wide ? (layer.wide ?? layer.base) : layer.base
+            sprite.texture = piece.texture
+            sprite.size = CGSize(width: piece.frame.width * art.width, height: piece.frame.height * art.height)
+            sprite.position = CGPoint(x: art.minX + piece.frame.midX * art.width, y: art.minY + piece.frame.midY * art.height)
+        }
     }
 
     /// Shadow strength and geometry, as fractions of the world height so the
@@ -746,7 +774,23 @@ final class CanvasScene: SKScene {
     /// bigger box for a sticker drawn at its size, so its medium stickers
     /// come out the size an older pack's do (`StickerBox`).
     private func stickerSide(for stickerID: String) -> CGFloat {
-        worldSize.height * CGFloat(StickerBox.fraction(for: definitions[stickerID]))
+        // A pack with a space sizes each drawing: halfway between its size
+        // at the back and at the front (`SceneSpace.editSize`).
+        if let edit = pack.manifest.space?.editSize(of: stickerID),
+            let drawing = textures.drawings[stickerID], drawing.height > 0,
+            let image = stickerTextures[stickerID]?.size(), image.height > 0
+        {
+            let imageHeight = worldSize.height * CGFloat(edit.height) / drawing.height
+            return imageHeight * max(image.width, image.height) / image.height
+        }
+        return worldSize.height * CGFloat(StickerBox.fraction(for: definitions[stickerID]))
+    }
+
+    /// How far a pinch scales a sticker: in a pack with a space, from its
+    /// size at the back to its size at the front.
+    private func scaleRange(for stickerID: String) -> ClosedRange<CGFloat> {
+        guard let edit = pack.manifest.space?.editSize(of: stickerID) else { return Self.stickerScaleRange }
+        return CGFloat(edit.scales.lowerBound)...CGFloat(edit.scales.upperBound)
     }
 
     /// A sticker at its size, knowing where its drawing sits in its image.
@@ -1239,10 +1283,10 @@ final class CanvasScene: SKScene {
         let node = transform.node
 
         let distance = max(a.distance(to: b), 1)
+        let range = scaleRange(for: node.stickerID)
         node.baseScale = min(
-            max(transform.initialScale * distance / transform.initialDistance,
-                Self.stickerScaleRange.lowerBound),
-            Self.stickerScaleRange.upperBound)
+            max(transform.initialScale * distance / transform.initialDistance, range.lowerBound),
+            range.upperBound)
         node.setScale(node.baseScale * 1.12)  // keep the lifted emphasis
 
         let angle = atan2(b.y - a.y, b.x - a.x)
@@ -1548,8 +1592,9 @@ final class CanvasScene: SKScene {
     /// The scale each sticker comes in at when a story invites it (its
     /// size class: big ones a little bigger, tiny ones a little smaller) —
     /// for stickers whose drawings fill their images. One drawn at its
-    /// size already is its size: it comes in as drawn, or by its depth.
-    private lazy var visitScales: [String: Double] = Dictionary(
+    /// size already is its size: it comes in as drawn, or by its depth; so
+    /// is every sticker of a pack with a space (`stickerSide`).
+    private lazy var visitScales: [String: Double] = pack.manifest.space != nil ? [:] : Dictionary(
         uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in
             s.content == nil ? s.size.map { (s.id, $0.visitScale) } : nil
         })
@@ -2102,7 +2147,10 @@ final class CanvasScene: SKScene {
             guard let texture = stickerTextures[placed.stickerID] else { continue }
             let node = makeSticker(placed.stickerID, texture: texture)
             node.position = CGPoint(x: placed.position.x * worldSize.width, y: placed.position.y * worldSize.height)
-            node.baseScale = CGFloat(placed.scale)
+            // A canvas saved with other sizes keeps its stickers' scales as far
+            // as their pinch reaches now.
+            let range = scaleRange(for: placed.stickerID)
+            node.baseScale = min(max(CGFloat(placed.scale), range.lowerBound), range.upperBound)
             node.setScale(node.baseScale)
             node.zRotation = CGFloat(placed.rotation)
             node.zPosition = CGFloat(placed.zOrder)
