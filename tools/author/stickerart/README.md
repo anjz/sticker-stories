@@ -38,6 +38,17 @@ go run ./packager validate ../packs/forest
   size rather than fill a third of a phone. Its text is the direction;
   places on those elements then need `wideAreas` (`docs/pack-format.md`,
   "Features").
+- `scene.layers` (optional, far to near: `id`, `prompt`, `wide`): planes
+  between the background and the foreground — Forest's trees — so a
+  story can put a sticker between them at its depth
+  (`author/scenespace`). Each is painted over everything behind it as a
+  cut-out (the scene is sent as a guide, not to copy; a layer that comes
+  back more than 70 % opaque fails, render it again), widened like the
+  foreground (`wide` is extra direction for that), and written to
+  `out/art/layer-<id>.png` / `-wide.png`; the foreground is then painted
+  over them all. With layers the background is only the far part of the
+  scene, with no framing elements. The app cannot draw layers yet, so
+  `install` leaves a layered scene's planes out of the pack.
 - `scene.layout` (optional): an image, relative to the art directory, whose
   composition the background follows — a concept picked from rough
   layouts (Beach's cove) — repainted in the style sheet's style. Sent as

@@ -28,7 +28,9 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"image"
 	"image/color"
+	"image/draw"
 	"math"
 	"os"
 	"path/filepath"
@@ -214,6 +216,12 @@ type sceneSpec struct {
 	// Edits are painted into the finished background afterwards, in order:
 	// a feature added to the scene (a pond) without repainting the rest.
 	Edits []sceneEdit `json:"edits,omitempty"`
+	// Layers are planes between the background and the foreground, far to
+	// near (the trees, a rock): each painted over the scene behind it with
+	// everything else transparent, so a story can put a sticker between
+	// them at its depth (tools/author/scenespace). With layers the
+	// background is only the far part of the scene: no framing elements.
+	Layers []sceneLayer `json:"layers,omitempty"`
 	// Layout is an image (a path relative to the art directory) whose
 	// composition the background follows — a concept the user picked —
 	// repainted in the style sheet's style. Its content is part of the
@@ -238,6 +246,16 @@ type sceneSpec struct {
 type sceneEdit struct {
 	Prompt string             `json:"prompt"`
 	Area   stickerimg.FaceBox `json:"area"`
+}
+
+// sceneLayer is one plane of the scene between the background and the
+// foreground: out/art/layer-<id>.png and its wide rendition.
+type sceneLayer struct {
+	ID     string `json:"id"`
+	Prompt string `json:"prompt"`
+	// Wide is extra direction for widening it to the 2:1 rendition
+	// (optional), like ForegroundWide.
+	Wide string `json:"wide,omitempty"`
 }
 
 func main() {
@@ -1019,12 +1037,18 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 	wide := fmt.Sprintf("%dx%d", wideW, baseH)
 	framing := "Compose it as a complete picture: framing elements such as the nearest trees at the left and right edges of THIS image, an open middle for the stickers. " + sceneSafeArea
 	extend := "Extend the attached scene seamlessly into the transparent side bands, continuing the same style, lighting, horizon and ground line, adding more of the same scenery beyond the current edges. Do not change the existing centre."
+	if len(cfg.Scene.Layers) > 0 {
+		framing = "Paint only the far part of the scene: no framing elements at the edges and nothing close to the viewer — those are painted later on their own layers in front of it. The ground and the far scenery run right to the left and right edges, with an open middle for the stickers. " + sceneSafeArea
+	}
 	if neutral := sceneNeutral(r.c.pack.EffectiveSetting()); neutral != "" {
 		framing += " " + neutral
 		extend += " " + neutral
 	}
 
 	bgFP := hashOf(toolVersion, "background", sheetFP, cfg.Style, cfg.Scene.Background, r.o.quality, "4")
+	if len(cfg.Scene.Layers) > 0 {
+		bgFP = hashOf(bgFP, "far only")
+	}
 	bgRefs := [][]byte{sheet}
 	bgLead := "Using the attached style sheet as the exact style reference, paint the scene background:"
 	if cfg.Scene.Layout != "" {
@@ -1067,7 +1091,20 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 		return err
 	}
 
-	fgFP := hashOf(toolVersion, "foreground", bgFP, cfg.Scene.Foreground, r.o.quality, "4")
+	// The layers, far to near, each over everything behind it; the
+	// foreground then goes over them all.
+	behindFP, behind, behindWide := bgFP, []string{bgBase}, []string{bgWide}
+	for _, l := range cfg.Scene.Layers {
+		fp, err := r.sceneLayer(l, behindFP, behind, sheet, extend, size, wide)
+		if err != nil {
+			return err
+		}
+		behindFP = fp
+		behind = append(behind, r.out("art", "layer-"+l.ID+".png"))
+		behindWide = append(behindWide, r.out("art", "layer-"+l.ID+"-wide.png"))
+	}
+
+	fgFP := hashOf(toolVersion, "foreground", behindFP, cfg.Scene.Foreground, r.o.quality, "4")
 	fgBase, fgWide := r.out("art", "foreground.png"), r.out("art", "foreground-wide.png")
 	// The wide rendition's own fingerprint: the same as the base's unless
 	// the widening has direction of its own.
@@ -1078,7 +1115,7 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 		fgExtend += " " + hint
 	}
 	if own := strings.TrimSpace(cfg.Scene.ForegroundWideOwn); own != "" {
-		return r.foregroundOwnWide(sheet, fgFP, hashOf(fgFP, "own", own, "1"), fgBase, fgWide, bgBase, bgWide, own, size, wide)
+		return r.foregroundOwnWide(sheet, fgFP, hashOf(fgFP, "own", own, "1"), fgBase, fgWide, behind, behindWide, own, size, wide)
 	}
 	if r.upToDate(fgWide, fgWideFP) && r.upToDate(fgBase, fgFP) {
 		r.say("· foreground up to date")
@@ -1107,12 +1144,9 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 		r.planned = append(r.planned, "foreground ("+size+", transparent)", "foreground-wide ("+wide+", outpaint around the masked centre)")
 		return nil
 	}
-	bg, err := os.ReadFile(bgBase)
+	bg, err := composite(behind)
 	if err != nil {
-		return errors.New("foreground needs the background first")
-	}
-	if small, err := downscale(bg, 1024); err == nil {
-		bg = small
+		return fmt.Errorf("foreground needs the background (and layers) first: %w", err)
 	}
 	r.say("▶ foreground")
 	img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: r.foregroundPrompt(), Size: size, Quality: r.o.quality, Background: "transparent", References: [][]byte{bg, sheet}})
@@ -1129,6 +1163,123 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 	return nil
 }
 
+// sceneLayer paints one layer over the scene behind it (and widens it like
+// the foreground) unless it is up to date, and returns its fingerprint:
+// a layer changes when anything behind it does.
+func (r *renderer) sceneLayer(l sceneLayer, behindFP string, behind []string, sheet []byte, extend, size, wide string) (string, error) {
+	fp := hashOf(behindFP, "layer", layerVersion, l.ID, l.Prompt, r.o.quality)
+	wideFP := hashOf(fp, "wide", l.Wide)
+	base, wideOut := r.out("art", "layer-"+l.ID+".png"), r.out("art", "layer-"+l.ID+"-wide.png")
+	name := "layer " + l.ID
+	if r.upToDate(base, fp) && r.upToDate(wideOut, wideFP) {
+		r.say("· %s up to date", name)
+		return fp, nil
+	}
+	if r.o.dry {
+		r.planned = append(r.planned, name+" ("+size+", transparent)", name+"-wide ("+wide+", outpaint around the masked centre)")
+		return fp, nil
+	}
+	layerExtend := extend + " Keep everything outside this layer's elements fully transparent."
+	if hint := strings.TrimSpace(l.Wide); hint != "" {
+		layerExtend += " " + hint
+	}
+	var painted []byte
+	if r.upToDate(base, fp) {
+		// Only the widening changed: re-widen the kept 4:3 layer.
+		data, err := os.ReadFile(base)
+		if err != nil {
+			return "", err
+		}
+		painted = data
+	} else {
+		ref, err := composite(behind)
+		if err != nil {
+			return "", fmt.Errorf("%s needs what is behind it first: %w", name, err)
+		}
+		r.say("▶ %s", name)
+		prompt := fmt.Sprintf("%s\n\nThe first attached image is the scene so far — everything behind this layer — at the same framing as the output. Paint only the next plane in front of it, matching its style, lighting and perspective exactly: %s Whatever stands on the ground stands on the ground shown in the image, at the height its distance puts it. The output is a cut-out on a fully transparent background, like a sticker of just these elements placed exactly where they stand in the scene: the attached scene only shows where they stand and how big they are — do NOT copy its ground, grass, water, far scenery or sky into the output. Everything that is not part of this plane must be fully transparent. No characters, no animals, no text. %s", r.c.cfg.Style, l.Prompt, sceneSafeArea)
+		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: prompt, Size: size, Quality: r.o.quality, Background: "transparent", References: [][]byte{ref, sheet}})
+		if err != nil {
+			return "", fmt.Errorf("%s: %w", name, err)
+		}
+		r.say("  … %s (%s)", name, r.charge(img.Usage))
+		if err := checkCutOut(img.PNG); err != nil {
+			return "", fmt.Errorf("%s: %w", name, err)
+		}
+		painted = img.PNG
+	}
+	if err := r.extend(painted, base, wideOut, layerExtend, "transparent", wide, true); err != nil {
+		return "", fmt.Errorf("%s-wide: %w", name, err)
+	}
+	if data, err := os.ReadFile(wideOut); err != nil {
+		return "", err
+	} else if err := checkCutOut(data); err != nil {
+		return "", fmt.Errorf("%s-wide: %w", name, err)
+	}
+	r.done(base, fp)
+	r.done(wideOut, wideFP)
+	r.say("✓ %s + wide", name)
+	return fp, nil
+}
+
+// layerVersion changes whenever a layer's fixed prompt wording changes.
+// 2: a cut-out — the scene is a guide, not to be copied.
+const layerVersion = "2"
+
+// checkCutOut fails a layer that came back as a whole picture: the model
+// sometimes repaints the scene it was given instead of the plane alone.
+func checkCutOut(png []byte) error {
+	img, err := stickerimg.Decode(png)
+	if err != nil {
+		return err
+	}
+	b := img.Bounds()
+	opaque := 0
+	for y := b.Min.Y; y < b.Max.Y; y += 4 {
+		for x := b.Min.X; x < b.Max.X; x += 4 {
+			if img.RGBAAt(x, y).A >= 128 {
+				opaque++
+			}
+		}
+	}
+	if f := float64(opaque) / float64(((b.Dx()+3)/4)*((b.Dy()+3)/4)); f > maxLayerCover {
+		return fmt.Errorf("came back %.0f%% opaque: it painted the whole scene, not a cut-out (render it again)", f*100)
+	}
+	return nil
+}
+
+// maxLayerCover is how much of the picture a layer may cover.
+const maxLayerCover = 0.7
+
+// composite lays the planes (paths, back to front) over each other and
+// returns the picture as a PNG at most 1024 px wide: what a plane in front
+// of them is painted over.
+func composite(paths []string) ([]byte, error) {
+	var out *image.RGBA
+	for _, p := range paths {
+		data, err := os.ReadFile(p)
+		if err != nil {
+			return nil, err
+		}
+		img, err := stickerimg.Decode(data)
+		if err != nil {
+			return nil, fmt.Errorf("%s: %w", p, err)
+		}
+		if out == nil {
+			out = image.NewRGBA(img.Bounds())
+		}
+		draw.Draw(out, out.Bounds(), img, img.Bounds().Min, draw.Over)
+	}
+	png, err := stickerimg.Encode(out)
+	if err != nil {
+		return nil, err
+	}
+	if small, err := downscale(png, 1024); err == nil {
+		return small, nil
+	}
+	return png, nil
+}
+
 // foregroundPrompt is the 4:3 foreground's prompt.
 func (r *renderer) foregroundPrompt() string {
 	return fmt.Sprintf("%s\n\nThe first attached image is the finished background of a scene at the same framing as the output. Paint only the foreground plane that sits in front of it, matching its style, lighting and perspective exactly: %s Everything that is not a foreground element must be fully transparent. No characters, no animals, no text. %s The nearest trunks and plants may run through the top and bottom bands, but keep their interesting parts (foliage, flowers, anything eye-catching) in the central 70%%.", r.c.cfg.Style, r.c.cfg.Scene.Foreground, sceneSafeArea)
@@ -1138,7 +1289,7 @@ func (r *renderer) foregroundPrompt() string {
 // ForegroundWideOwn): the 4:3 one over the base background, then the wide
 // one over the wide background with the 4:3 foreground as the design to
 // match, its elements at the wide picture's own edges.
-func (r *renderer) foregroundOwnWide(sheet []byte, fgFP, wideFP, fgBase, fgWide, bgBase, bgWide, direction, size, wide string) error {
+func (r *renderer) foregroundOwnWide(sheet []byte, fgFP, wideFP, fgBase, fgWide string, behind, behindWide []string, direction, size, wide string) error {
 	baseOK, wideOK := r.upToDate(fgBase, fgFP), r.upToDate(fgWide, wideFP)
 	if baseOK && wideOK {
 		r.say("· foreground up to date")
@@ -1152,12 +1303,9 @@ func (r *renderer) foregroundOwnWide(sheet []byte, fgFP, wideFP, fgBase, fgWide,
 		return nil
 	}
 	if !baseOK {
-		bg, err := os.ReadFile(bgBase)
+		bg, err := composite(behind)
 		if err != nil {
-			return errors.New("foreground needs the background first")
-		}
-		if small, err := downscale(bg, 1024); err == nil {
-			bg = small
+			return fmt.Errorf("foreground needs the background (and layers) first: %w", err)
 		}
 		r.say("▶ foreground")
 		img, err := r.oa.Edit(r.ctx, openai.ImageRequest{Model: editModel, Prompt: r.foregroundPrompt(), Size: size, Quality: r.o.quality, Background: "transparent", References: [][]byte{bg, sheet}})
@@ -1170,16 +1318,13 @@ func (r *renderer) foregroundOwnWide(sheet []byte, fgFP, wideFP, fgBase, fgWide,
 		r.done(fgBase, fgFP)
 		r.say("✓ foreground (%s)", r.charge(img.Usage))
 	}
-	bg, err := os.ReadFile(bgWide)
+	bg, err := composite(behindWide)
 	if err != nil {
-		return errors.New("foreground-wide needs the wide background first")
+		return fmt.Errorf("foreground-wide needs the wide background (and layers) first: %w", err)
 	}
 	fg, err := os.ReadFile(fgBase)
 	if err != nil {
 		return err
-	}
-	if small, err := downscale(bg, 1024); err == nil {
-		bg = small
 	}
 	if small, err := downscale(fg, 1024); err == nil {
 		fg = small
@@ -1232,19 +1377,6 @@ func (r *renderer) sceneEdits(bgFP, bgBase, bgWide string) error {
 		r.say("· background edits up to date")
 		return nil
 	}
-	if !r.upToDate(orig, bgFP) {
-		if r.fps[bgWide] != bgFP {
-			return errors.New("background edits: no unedited background to start from; render the background again (-force)")
-		}
-		data, err := os.ReadFile(bgWide)
-		if err != nil {
-			return err
-		}
-		if err := os.WriteFile(orig, data, 0o644); err != nil {
-			return err
-		}
-		r.done(orig, bgFP)
-	}
 	// Each edit's drawing is kept, keyed by its own prompt and area, so
 	// changing one edit redraws only that one: the others are laid over
 	// the background again from their kept drawings.
@@ -1260,6 +1392,19 @@ func (r *renderer) sceneEdits(bgFP, bgBase, bgWide string) error {
 			}
 		}
 		return nil
+	}
+	if !r.upToDate(orig, bgFP) {
+		if r.fps[bgWide] != bgFP {
+			return errors.New("background edits: no unedited background to start from; render the background again (-force)")
+		}
+		data, err := os.ReadFile(bgWide)
+		if err != nil {
+			return err
+		}
+		if err := os.WriteFile(orig, data, 0o644); err != nil {
+			return err
+		}
+		r.done(orig, bgFP)
 	}
 	data, err := os.ReadFile(orig)
 	if err != nil {
@@ -1543,6 +1688,12 @@ func runInstall(args []string) error {
 	planes := map[string]*string{"background": &c.pack.Background, "foreground": &c.pack.Foreground, "background-wide": &c.pack.BackgroundWide, "foreground-wide": &c.pack.ForegroundWide}
 	names := []string{"background", "foreground", "background-wide", "foreground-wide"}
 	scene := 0
+	if len(c.cfg.Scene.Layers) > 0 {
+		// The app does not draw layers yet: a background and foreground
+		// painted to go with them would lose what the layers hold.
+		fmt.Println("  scene planes not installed: the scene has layers, which the app cannot draw yet (tools/author/scenespace)")
+		names = nil
+	}
 	for _, n := range names {
 		src := filepath.Join(outDir, "art", n+".png")
 		if !exists(src) {
