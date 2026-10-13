@@ -540,10 +540,12 @@ public enum StageDirector {
                             (us.min() ?? 0) + ((us.max() ?? 1) - (us.min() ?? 0)) * Double(c) / 8,
                             (vs.min() ?? 0) + ((vs.max() ?? 1) - (vs.min() ?? 0)) * Double(r) / 4)
                         guard SceneSpace.contains(air.area, p) else { continue }
-                        // The area holds centres.
-                        var centre = world.point(p, atDepth: (air.near + air.far) / 2)
-                        centre.y -= me.size / 2
-                        out.append(StagePose(position: centre, support: .air(name), facing: states[i].pose.facing))
+                        // The area holds centres, near and far.
+                        for depth in [air.near, (air.near + air.far) / 2, air.far] {
+                            var centre = world.point(p, atDepth: depth)
+                            centre.y -= me.size / 2
+                            out.append(StagePose(position: centre, support: .air(name), facing: states[i].pose.facing))
+                        }
                     }
                 }
                 return out
