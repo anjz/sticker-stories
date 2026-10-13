@@ -55,7 +55,9 @@ func TestSpaceValidate(t *testing.T) {
 		t.Fatalf("valid space: %v", errs)
 	}
 	cases := map[string]func(s *Space){
-		"not a feature":         func(s *Space) { s.Places["sky"] = SpacePlace{Air: &SpaceAir{Area: Polygon{{0, 0.6}, {1, 0.6}, {0.5, 0.9}}, Depth: [2]float64{2, 5}}} },
+		"not a feature": func(s *Space) {
+			s.Places["sky"] = SpacePlace{Air: &SpaceAir{Area: Polygon{{0, 0.6}, {1, 0.6}, {0.5, 0.9}}, Depth: [2]float64{2, 5}}}
+		},
 		"not below the horizon": func(s *Space) { s.Places["meadow"] = SpacePlace{Ground: Polygon{{0.1, 0.6}, {0.9, 0.6}, {0.5, 0.8}}} },
 		"show all of trees":     func(s *Space) { s.Layers = append(s.Layers, SpaceLayer{ID: "more", Art: "trees", Depth: 3}) },
 		"not one of the pack's": func(s *Space) { s.Layers[0].Art = "rocks" },

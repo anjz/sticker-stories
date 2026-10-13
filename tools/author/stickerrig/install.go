@@ -129,7 +129,7 @@ func (c *ctxt) install(r *rigSpec, templates map[string]animSpec, drop bool) err
 	for i, a := range anims {
 		side := manifest.StickerAnimation{
 			ID: a.ID, Sticker: r.Sticker, Kind: a.Kind, Description: a.Description, StickerBox: box,
-			Pause: a.Pause, Perched: a.Perched, Place: a.Place, Loop: a.Loop, Facing: a.Facing, Stride: a.Stride,
+			Pause: a.Pause, Perched: a.Perched, Idle: a.Idle, Place: a.Place, Loop: a.Loop, Facing: a.Facing, Stride: a.Stride,
 			Hops: a.Hops, Flies: a.Flies, On: a.On, Stays: a.Stays, Particles: a.Particles,
 			Puppet: &manifest.AnimationPuppet{Rig: "anims/" + r.Sticker + ".rig.json", Keys: a.Keys},
 		}

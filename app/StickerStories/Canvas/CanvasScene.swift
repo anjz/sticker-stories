@@ -236,6 +236,8 @@ final class CanvasScene: SKScene {
     /// Every live animation the pack declares (`StickerAnimation`), read
     /// once; the sheets themselves load per story (`liveLoaded`).
     private lazy var liveAnimations = StickerAnimation.available(in: pack)
+    /// When each sticker's puppet began taking over at rest, this story.
+    private var idleBegan: [UUID: TimeInterval] = [:]
     /// The current story's live animations, loaded when play starts and let
     /// go of when it ends; a trigger whose sheet is not in yet is skipped.
     private var liveLoaded: [LiveAnimationKey: LoadedLiveAnimation] = [:]
@@ -1501,9 +1503,15 @@ final class CanvasScene: SKScene {
             planStage($0, entrances: triggers.entrances, goes: triggers.goes + placing, cast: cast, policy: policy)
         }
         let motions = stage == nil ? planMotions(triggers.goes + placing, visitors: visitors, policy: policy) : [:]
-        let live = LiveTimeline(triggers: stage.map {
+        var storyLive = stage.map {
             StageDirector.delayed(triggers.live, plans: $0.plans, stickers: stickerOf, places: Set(actionPlaces.keys))
-        } ?? PlacementPlanner.delayed(triggers.live, plans: motions, stickers: stickerOf, places: Set(actionPlaces.keys)))
+        } ?? PlacementPlanner.delayed(triggers.live, plans: motions, stickers: stickerOf, places: Set(actionPlaces.keys))
+        // Everyone alive at rest: small, gentle actions now and then.
+        if policy.allowsLiveAnimations, !policy.isCalm {
+            storyLive += idleLife(
+                story: storyLive, nodes: nodes, stage: stage, motions: motions, visitors: visitors, faces: faces)
+        }
+        let live = LiveTimeline(triggers: storyLive)
         // The actions the story cues on stickers on the stage, and the
         // moves of the ones it brings in.
         if !motions.isEmpty || stage != nil {
@@ -1512,6 +1520,11 @@ final class CanvasScene: SKScene {
             }
         }
         var wanted = live.animations.filter { placed.contains($0.stickerID) }
+        // A puppet for everyone on the stage from the start, breathing and
+        // blinking (its first idle action brings the rig).
+        for sticker in Set(nodes.map(\.stickerID)) {
+            if let rest = idleActions[sticker]?.first { wanted.insert(LiveAnimationKey(stickerID: sticker, animationID: rest.id)) }
+        }
         for plan in visitors.values where plan.motion != .fade {
             if let move = plan.move { wanted.insert(LiveAnimationKey(stickerID: plan.stickerID, animationID: move)) }
         }
@@ -1540,6 +1553,46 @@ final class CanvasScene: SKScene {
             runner: runner, canvasRunner: canvasRunner, applier: applier, emitters: emitterCoordinator(), clock: clock,
             live: live, faces: faces, visitors: visitors, motions: motions, stage: stage)
         if let stage { orderByDepth(stage) }
+    }
+
+    /// Each sticker's idle actions (`IdleLife`), from its sidecars.
+    private lazy var idleActions: [String: [IdleLife.Action]] = Dictionary(grouping: liveAnimations.filter {
+        $0.idle && $0.usesPuppet
+    }, by: \.sticker).mapValues { list in
+        list.map { IdleLife.Action(id: $0.id, duration: $0.frames.duration(.whole) ?? 0) }
+    }
+
+    /// The idle actions the stickers on the stage play while the story
+    /// leaves them be: not on their way, hovering or swimming, asleep, or
+    /// before they come in.
+    private func idleLife(
+        story: [LiveAnimationTrigger], nodes: [StickerNode], stage: StoryStage?, motions: [UUID: MotionPlan],
+        visitors: [UUID: EntrancePlan], faces: ExpressionTimeline
+    ) -> [LiveAnimationTrigger] {
+        let actions = idleActions.filter { entry in nodes.contains { $0.stickerID == entry.key } }
+        guard !actions.isEmpty else { return [] }
+        let frames = Dictionary(liveAnimations.map { ($0.liveKey, $0.frames) }, uniquingKeysWith: { a, _ in a })
+        let byID = Dictionary(grouping: nodes, by: \.stickerID)
+        var settled: TimeInterval = StageDirector.settle + 1
+        for plan in stage?.plans.values ?? [:].values {
+            for leg in plan.legs where leg.kind == .settle { settled = max(settled, leg.end + 1) }
+        }
+        var random = SystemRandomNumberGenerator()
+        return IdleLife.triggers(
+            actions: actions, story: story, frames: { frames[$0] },
+            busy: { sticker, t in
+                if faces.expressions(at: t, for: [sticker])[sticker] == "sleeping" { return true }
+                for node in byID[sticker] ?? [] {
+                    let id = node.instanceID
+                    if let plan = stage?.plans[id] {
+                        if plan.sample(at: t).opacity < 0.99 { return true }
+                        if let travel = plan.travel(at: t), travel.stays || t < travel.at + travel.duration + 1 { return true }
+                    }
+                    if let move = motions[id]?.travel(at: t), move.stays || t < move.at + move.duration + 1 { return true }
+                    if let plan = visitors[id], t < plan.at + plan.duration + 1 { return true }
+                }
+                return false
+            }, from: settled, to: 600, random: &random)
     }
 
     /// Every sticker the story names but the child has not placed, on the
@@ -1831,6 +1884,7 @@ final class CanvasScene: SKScene {
         liveLoad?.cancel()
         liveLoad = nil
         liveLoaded.removeAll()
+        idleBegan.removeAll()
         faceLoad?.cancel()
         faceLoad = nil
         faceTextures.removeAll()
@@ -2052,6 +2106,20 @@ final class CanvasScene: SKScene {
                 } else {
                     shown = moving ?? acting
                 }
+            }
+            if shown == nil, allowed, !(node.puppetNode?.settled ?? false),
+                let rest = idleActions[node.stickerID]?.first,
+                let loaded = liveLoaded[LiveAnimationKey(stickerID: node.stickerID, animationID: rest.id)]
+            {
+                // Its puppet takes over from the still art, at rest, and from
+                // then on breathes and blinks (`PuppetPose.idle`).
+                let began = idleBegan[node.instanceID] ?? time
+                idleBegan[node.instanceID] = began
+                let k = min(max((time - began) / LiveFrames.fade, 0), 1)
+                node.showLive(
+                    loaded, state: LiveFrameState(frame: 0, liveAlpha: k, stillAlpha: k < 1 ? 1 : 0),
+                    tween: LiveTween(frame: 0, next: 0, progress: 0))
+                continue
             }
             if let (loaded, state, tween) = shown {
                 if let frame = node.showLive(loaded, state: state, tween: tween) {

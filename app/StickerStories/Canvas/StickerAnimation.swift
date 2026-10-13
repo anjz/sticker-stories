@@ -75,6 +75,9 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// An action that happens in one place: the features it needs (the
     /// woodpecker's tap: the trunks).
     var place: [String]?
+    /// A small, gentle action it plays now and then on its own while a
+    /// story leaves it be (`IdleLife`).
+    var idle: Bool
     /// Particle bursts the frames fire as they show (a landing's dust, a
     /// splash): stickers never draw particles themselves.
     var particles: [ParticleCue]
@@ -116,7 +119,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
 
     private enum CodingKeys: String, CodingKey {
         case id, sticker, kind, sheet, frame, columns, count, rest, stickerBox, hold, pause, loop, facing, stride, hops,
-            flies, on, stays, place, particles, puppet
+            flies, on, stays, place, idle, particles, puppet
     }
 
     /// A particle cue that decodes or is skipped (an effect this build
@@ -162,6 +165,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         on = try? c.decodeIfPresent([String].self, forKey: .on)
         stays = try? c.decodeIfPresent(Bool.self, forKey: .stays)
         place = try? c.decodeIfPresent([String].self, forKey: .place)
+        idle = kind == .action && ((try? c.decodeIfPresent(Bool.self, forKey: .idle)) ?? nil) == true
         let cues = (try? c.decodeIfPresent([LenientCue].self, forKey: .particles)) ?? nil
         let frames = count
         particles = (cues ?? []).compactMap(\.cue).filter { $0.effect.followsWorld && $0.frame >= 0 && $0.frame < frames }

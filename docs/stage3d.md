@@ -90,6 +90,18 @@ Plans the whole story at once, from the cast and the story's triggers:
    screen away from the cast, the further back and nearer the sides the
    better, as the story starts; then the story is planned again round it.
 
+## Alive at rest
+
+Every puppet on the stage takes over from its still art as the story
+starts and breathes and blinks from then on (`PuppetPose.idle`). Now and
+then — every 7 to 14 seconds, staggered so the stage never fidgets all at
+once — a character the story leaves be plays one of its small, gentle
+actions (`idle` in its sidecar, `docs/pack-format.md`: a look around, an
+ear flick, a sniff), never the same twice in a row (`IdleLife`). Never
+while it is on its way, plays or holds an action the story cued, sleeps,
+hovers or swims, or just before the story cues it: the story always comes
+first. Calm mode keeps only the breathing and blinking.
+
 ## Rendering
 
 Every frame each sticker's pose at that time is projected: its feet's

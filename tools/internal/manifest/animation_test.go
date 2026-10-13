@@ -176,8 +176,23 @@ func TestPerchedIsForActions(t *testing.T) {
 	m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) {
 		a.Kind, a.Perched, a.Loop, a.Facing, a.Stride = KindMove, true, &FrameRange{From: 1, To: 2}, "left", 0.5
 	})}
-	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "perched and place belong to an action") {
+	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "perched, idle and place belong to an action") {
 		t.Errorf("a perched move: %v", errs)
+	}
+}
+
+func TestIdleIsForActions(t *testing.T) {
+	dir := t.TempDir()
+	m := validManifest(t, dir)
+	m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) { a.Idle = true })}
+	if errs := m.Validate(dir); len(errs) != 0 {
+		t.Errorf("an idle action rejected: %v", errs)
+	}
+	m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) {
+		a.Kind, a.Idle, a.Loop, a.Facing, a.Stride = KindMove, true, &FrameRange{From: 1, To: 2}, "left", 0.5
+	})}
+	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "idle") {
+		t.Errorf("an idle move: %v", errs)
 	}
 }
 

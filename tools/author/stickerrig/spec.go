@@ -86,6 +86,7 @@ type animSpec struct {
 	Description string                       `json:"description,omitempty"`
 	Pause       *manifest.AnimationPause     `json:"pause,omitempty"`
 	Perched     bool                         `json:"perched,omitempty"`
+	Idle        bool                         `json:"idle,omitempty"`
 	Place       []string                     `json:"place,omitempty"`
 	Loop        *manifest.FrameRange         `json:"loop,omitempty"`
 	Facing      string                       `json:"facing,omitempty"`
@@ -160,6 +161,7 @@ func (r *rigSpec) resolve(a animSpec, templates map[string]animSpec) (animSpec, 
 		a.Hops = a.Hops || t.Hops
 		a.Flies = a.Flies || t.Flies
 		a.Perched = a.Perched || t.Perched
+		a.Idle = a.Idle || t.Idle
 		if a.On == nil {
 			a.On = t.On
 		}
