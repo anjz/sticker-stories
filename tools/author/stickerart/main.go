@@ -619,6 +619,10 @@ func (r *renderer) run() error {
 	if r.want("scene") || r.o.only == nil {
 		if err := r.scene(sheet, sheetFP); err != nil {
 			failures = append(failures, "scene: "+err.Error())
+		} else if !r.o.dry && len(r.c.cfg.Scene.Layers) > 0 {
+			if err := checkSceneCover(r.out(), r.c.cfg.Scene.Layers); err != nil {
+				failures = append(failures, "scene: "+err.Error())
+			}
 		}
 	}
 	if r.o.dry {
@@ -1179,8 +1183,11 @@ func (r *renderer) sceneLayer(l sceneLayer, behindFP string, behind []string, sh
 	base, wideOut := r.out("art", "layer-"+l.ID+".png"), r.out("art", "layer-"+l.ID+"-wide.png")
 	name := "layer " + l.ID
 	if l.Area != nil {
-		fp = hashOf(behindFP, "placed layer", placedLayerVersion, l.ID, l.Prompt, r.o.quality)
-		return fp, r.placedLayer(l, fp, base, wideOut, sheet)
+		// The element is painted on its own, so its drawing does not
+		// depend on what is behind it; the layer as laid does (for what
+		// is painted in front of it).
+		drawingFP := hashOf("placed layer", placedLayerVersion, l.ID, l.Prompt, r.o.quality)
+		return hashOf(behindFP, drawingFP, fmt.Sprint(*l.Area)), r.placedLayer(l, drawingFP, base, wideOut, sheet)
 	}
 	if r.upToDate(base, fp) && r.upToDate(wideOut, wideFP) {
 		r.say("· %s up to date", name)
@@ -1361,6 +1368,77 @@ func checkCutOut(png []byte) error {
 
 // maxLayerCover is how much of the picture a layer may cover.
 const maxLayerCover = 0.7
+
+// maxSceneCover is how much of the picture everything in front of the
+// background — the foreground and every layer — may cover together
+// (docs/pack-art.md, "Layers in front"): more hides the stickers.
+const maxSceneCover = 0.2
+
+// sceneCover is the part of the picture the planes (PNG paths) cover
+// together: the share of pixels any of them is opaque at.
+func sceneCover(paths []string) (float64, error) {
+	var covered []bool
+	var w, h int
+	for _, p := range paths {
+		data, err := os.ReadFile(p)
+		if err != nil {
+			return 0, err
+		}
+		img, err := stickerimg.Decode(data)
+		if err != nil {
+			return 0, fmt.Errorf("%s: %w", p, err)
+		}
+		b := img.Bounds()
+		if covered == nil {
+			w, h = (b.Dx()+1)/2, (b.Dy()+1)/2
+			covered = make([]bool, w*h)
+		}
+		for y := 0; y < h; y++ {
+			for x := 0; x < w; x++ {
+				px, py := b.Min.X+x*b.Dx()/w, b.Min.Y+y*b.Dy()/h
+				if img.RGBAAt(px, py).A >= 64 {
+					covered[y*w+x] = true
+				}
+			}
+		}
+	}
+	if len(covered) == 0 {
+		return 0, nil
+	}
+	n := 0
+	for _, c := range covered {
+		if c {
+			n++
+		}
+	}
+	return float64(n) / float64(len(covered)), nil
+}
+
+// checkSceneCover fails a scene whose foreground and layers together
+// cover more than maxSceneCover of either rendition.
+func checkSceneCover(outDir string, layers []sceneLayer) error {
+	for _, suffix := range []string{"", "-wide"} {
+		paths := []string{filepath.Join(outDir, "art", "foreground"+suffix+".png")}
+		for _, l := range layers {
+			paths = append(paths, filepath.Join(outDir, "art", "layer-"+l.ID+suffix+".png"))
+		}
+		var have []string
+		for _, p := range paths {
+			if exists(p) {
+				have = append(have, p)
+			}
+		}
+		f, err := sceneCover(have)
+		if err != nil {
+			return err
+		}
+		fmt.Printf("· foreground and layers%s cover %.1f%% of the picture\n", suffix, f*100)
+		if f > maxSceneCover {
+			return fmt.Errorf("the foreground and layers%s cover %.0f%% of the picture, more than %.0f%%: make them smaller (docs/pack-art.md, \"Layers in front\")", suffix, f*100, maxSceneCover*100)
+		}
+	}
+	return nil
+}
 
 // composite lays the planes (paths, back to front) over each other and
 // returns the picture as a PNG at most 1024 px wide: what a plane in front
@@ -1820,6 +1898,11 @@ func runInstall(args []string) error {
 	}
 	// The scene's layers, far to near, each with its wide rendition when
 	// the pack has wide art.
+	if len(c.cfg.Scene.Layers) > 0 {
+		if err := checkSceneCover(outDir, c.cfg.Scene.Layers); err != nil {
+			return err
+		}
+	}
 	if len(c.cfg.Scene.Layers) > 0 || len(c.pack.Layers) > 0 {
 		var layers []manifest.SceneLayer
 		for _, l := range c.cfg.Scene.Layers {

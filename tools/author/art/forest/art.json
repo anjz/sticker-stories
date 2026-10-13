@@ -642,7 +642,7 @@
   ],
   "scene": {
     "background": "A bright forest clearing in soft daylight, seen from a child's height: a soft grassy meadow filling the lower half of the picture and running right to the left and right edges, a gentle line of distant trees, bushes and ferns where the meadow ends in the middle, a warm pale-blue sky with a few round clouds above (no sun in the sky); open space in the centre where stickers will be placed. No big trees close to the viewer. Right of the middle, about a third of the way up the picture, a small natural forest pond lies flat in the meadow, part of the ground: an irregular, softly wavy outline (wider on its right side, never a circle or a clean oval), clear blue-green water reflecting a little of the sky, two or three round lily pads and one white water lily; a strip of damp brown soil with a few grey pebbles and two or three rounded mossy rocks along its near edge, a clump of tall reeds and cattails at its back-left edge, and longer grass leaning over the water on its right.",
-    "foreground": "The nearest elements only: low bushes, tall ferns, grass tufts and a few flowers and red berries along the very bottom edge of the picture, rising a little higher in the two bottom corners. No trees and no trunks. The whole centre and everything above the bottom quarter stay empty and transparent.",
+    "foreground": "Only a few small, low plants in the two bottom corners, nothing else: in the bottom-left corner a small clump of grass tufts with one little fern and a sprig of red berries; in the bottom-right corner a low tuft of grass with two or three small daisies beside a small mossy stone. Each clump is no wider than a sixth of the picture and no taller than a tenth of it, sitting on the bottom edge. No trees, no trunks, no bushes. The bottom edge between the two corners, the whole centre and everything above stay fully transparent.",
     "edits": [
       {
         "prompt": "Remove the clump of tall reeds and cattails at the back-left edge of the pond completely. In their place, continue exactly what is around and behind them: the pond's far bank of damp brown soil, pebbles and short grass, the edge of the water, and behind it the meadow grass and the line of far bushes. No reeds, no cattails, no tall plants or leaves standing there.",
@@ -656,11 +656,6 @@
     ],
     "layers": [
       {
-        "id": "trees",
-        "prompt": "Two different trees standing in the meadow at the far left and far right edges of the picture — not a matching pair. On the left, an old oak: a broad, gnarled, slightly leaning trunk with knots and twisting roots, and a wide, dense crown. On the right, a taller, slimmer tree of another kind with smoother pale bark, a narrower and airier crown in a lighter green, standing a little further away than the oak (its roots a little higher in the picture). Keep both at the very sides, but with their whole trunks inside the picture: each trunk stands between a thirtieth and an eighth of the picture's width in from its edge, never cut by the edge; their crowns spread out of the top and reach in only along the top fifth of the picture, so the sky in the middle stays open. Everything between and around the two trees stays fully transparent: no ground, no grass, no bushes, no sky.",
-        "wide": "Add nothing new in the side bands: only continue the leaves of a crown that the edge cuts; the rest of the bands stays fully transparent."
-      },
-      {
         "id": "reeds",
         "prompt": "a broad clump of pond reeds growing along the water's edge, about one and a half times as wide as it is tall: many green reed blades and long, broad leaves fanning out to both sides, four or five brown cattails on slim stems at different heights spread across the clump, a few stems leaning outwards; its base a low, wide tuft along the bottom where the stems meet.",
         "area": {
@@ -668,6 +663,26 @@
           "y": 0.4,
           "width": 0.13,
           "height": 0.13
+        }
+      },
+      {
+        "id": "birch",
+        "prompt": "a slim birch tree seen whole from its roots to its top, about three and a half times as tall as it is wide: a straight, slender white trunk with dark marks and a slight lean, a few thin roots at its foot, one short bare side branch reaching out to the left a little above the middle, and a narrow, airy crown of light-green leaves on its upper half.",
+        "area": {
+          "x": 0.7267,
+          "y": 0.0,
+          "width": 0.095,
+          "height": 0.8
+        }
+      },
+      {
+        "id": "oak",
+        "prompt": "a tall old oak tree seen whole from its roots to its top, about three times as tall as it is wide: a long, sturdy, gnarled brown trunk with knots and moss, rising with a slight lean to the right, a few twisting roots at its foot; about two thirds of the way up, one long, nearly level bare branch reaching out to the right, good to sit on; above it a dense crown of green oak leaves on the top third of the tree only, no wider than the branch reaches. Tall and narrow, filling the frame's height.",
+        "area": {
+          "x": 0.1267,
+          "y": -0.25,
+          "width": 0.185,
+          "height": 1.13
         }
       }
     ],
@@ -693,11 +708,11 @@
         "areas": [
           {
             "x": [
-              0.12,
+              0.1,
               0.88
             ],
             "y": [
-              0.2,
+              0.14,
               0.46
             ]
           }
@@ -769,28 +784,28 @@
         "areas": [
           {
             "x": [
-              0.22,
-              0.34
+              0.08,
+              0.19
             ],
             "y": [
-              0.78,
-              0.83
+              0.47,
+              0.51
             ]
           },
           {
             "x": [
-              0.9,
-              0.97
+              0.855,
+              0.895
             ],
             "y": [
-              0.8,
-              0.86
+              0.44,
+              0.48
             ]
           }
         ]
       },
       "trunks": {
-        "description": "the bark of the old oak's trunk on the left (and, on wide screens, the birch's on the right): a woodpecker there faces the bark, its beak on it",
+        "description": "the bark of the old oak's trunk on the left and the birch's on the right: a woodpecker there faces the bark, its beak on it",
         "words": {
           "en-US": [
             "trunk",
@@ -806,42 +821,30 @@
         "areas": [
           {
             "x": [
-              0.095,
-              0.105
+              0.06,
+              0.07
             ],
             "y": [
-              0.42,
-              0.58
-            ],
-            "facing": "left"
-          }
-        ],
-        "wideAreas": [
-          {
-            "x": [
-              0.095,
-              0.105
-            ],
-            "y": [
-              0.42,
-              0.58
+              0.29,
+              0.42
             ],
             "facing": "left"
           },
           {
             "x": [
-              1.025,
-              1.035
+              0.888,
+              0.898
             ],
             "y": [
-              0.4,
-              0.6
+              0.28,
+              0.42
             ],
             "facing": "right"
           }
         ]
       }
-    }
+    },
+    "foregroundWideOwn": "The same two small corner clumps at the wide picture's own bottom corners, each the same size as in the attached 4:3 foreground; everything else fully transparent."
   },
   "notes": {
     "stickers": "Every character faces slightly left, whole body visible. Edit prompts freely; a changed prompt re-renders only that sticker.",
