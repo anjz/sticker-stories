@@ -122,6 +122,26 @@ import Testing
         #expect(plans[deer]?.legs.allSatisfy { $0.kind != .settle } ?? true)
     }
 
+    /// Stepping aside, never behind a tree.
+    @Test func extrasStepAsideIntoView() throws {
+        let bear = UUID()
+        let w = covered(world)
+        for seed in 1...6 {
+            var random = SeededGenerator(state: UInt64(seed))
+            let plans = StageDirector.plan(
+                world: w, screen: screen,
+                actors: [actor(fox, "fox", at: .init(0.2, 0.12), moves: trot),
+                         actor(rabbit, "rabbit", at: .init(0.8, 0.12), moves: trot),
+                         actor(bear, "bear", at: .init(0.5, 0.12), moves: trot)],
+                entrances: [], goes: [GoTrigger(at: 2, stickerID: "fox", kind: .to, target: "rabbit")],
+                policy: .standard, cast: ["fox", "rabbit"], random: &random)
+            let p = try #require(plans[bear]).sample(at: 30).position
+            var r = w.drawing(at: p, size: 0.5, ratio: 1)
+            r.maxY += (r.maxY - r.minY) * 0.5
+            #expect(w.hidden(r, atDepth: p.z) < 0.05)
+        }
+    }
+
     /// A walker's steps keep pace with the ground: its leg takes as long
     /// as its steps take to cover the way, at a rate near the drawn one.
     @Test func walkersNeverGlide() throws {

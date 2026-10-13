@@ -232,7 +232,10 @@ public enum StageDirector {
                 let home = states[i].home.position
                 let back = world.space.back
                 let candidates = lands.flatMap { spots($0, for: i, move: way(i).move) }
-                    .filter { onScreen(i, at: $0.position) && !covered(i, at: $0.position) && overlap(drawing(i, at: $0.position)) < 0.02 }
+                    .filter {
+                        onScreen(i, at: $0.position) && !covered(i, at: $0.position) && overlap(drawing(i, at: $0.position)) < 0.02
+                            && hiddenWithHeadroom(i, at: $0.position) < 0.05
+                    }
                 let best = candidates.max { a, b in
                     score(a) < score(b)
                 }
