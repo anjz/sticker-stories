@@ -1562,9 +1562,10 @@ final class CanvasScene: SKScene {
         _ space: SceneSpace, entrances: [EntranceTrigger], goes: [GoTrigger], cast: Set<String>, policy: EffectPolicy
     ) -> StoryStage {
         let aspect = baseArtPixelSize.height > 0 ? Double(baseArtPixelSize.width / baseArtPixelSize.height) : 4.0 / 3
-        let world = StageWorld(
+        var world = StageWorld(
             space: space, aspect: aspect, wide: artVariant == .wide,
             frame: StageSize(width: worldSize.width, height: worldSize.height))
+        world.covers = stageCovers(space, wide: artVariant == .wide)
         let visible = visibleRect.intersection(worldExtent)
         let screen = StageScreen(
             visible: StageRect(minX: visible.minX, minY: visible.minY, maxX: visible.maxX, maxY: visible.maxY),
@@ -1573,12 +1574,30 @@ final class CanvasScene: SKScene {
         let nodes = allStickerNodes()
         let drawing = { [weak self] (id: String) in self?.drawingBox(of: id) ?? CGRect(x: 0, y: 0, width: 1, height: 1) }
         let actors = StoryStage.actors(
-            nodes, space: space, world: world, stages: stages, moves: stageMoves, fronts: stickerFronts, drawing: drawing)
+            nodes, space: space, world: world, stages: stages, moves: stageMoves, fronts: stickerFronts,
+            statures: Dictionary(uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.size.map { (s.id, $0) } }),
+            drawing: drawing)
         var random = SystemRandomNumberGenerator()
         let plans = StageDirector.plan(
             world: world, screen: screen, actors: actors, entrances: entrances, goes: goes, policy: policy, cast: cast,
             random: &random)
         return StoryStage(world: world, plans: plans, nodes: nodes, drawing: drawing)
+    }
+
+    /// What the planes in front of the background hide, each at its depth,
+    /// on the art drawn: the wide art runs past the base art's sides.
+    private func stageCovers(_ space: SceneSpace, wide: Bool) -> [StageWorld.Cover] {
+        let w = max(worldSize.width, 1), h = max(worldSize.height, 1)
+        let area = StageRect(
+            minX: worldExtent.minX / w, minY: worldExtent.minY / h, maxX: worldExtent.maxX / w, maxY: worldExtent.maxY / h)
+        var covers: [StageWorld.Cover] = []
+        for art in Set(space.layers.map { $0.art ?? SceneSpace.Layer.foreground }) {
+            guard let pair = textures.covers[art], let grid = wide ? pair.wide : pair.base,
+                let depth = space.planeDepth(art, wide: wide)
+            else { continue }
+            covers.append(.init(depth: depth, grid: grid, area: area))
+        }
+        return covers
     }
 
     /// Where each sticker's drawing sits in its image (fractions, origin

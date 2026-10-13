@@ -17,10 +17,14 @@ public struct StageActor: Sendable {
     /// Where the child put its feet (art points); nil for a visitor.
     public var placed: SceneSpace.Point?
     public var facing: Double
+    /// Its size class (`StickerSize`): where the director may choose, the
+    /// small ones come to the front, where their details show.
+    public var stature: StickerSize?
 
     public init(
         id: UUID, stickerID: String, size: Double, ratio: Double, stage: StickerStage = .default,
-        moves: [StageMove] = [], front: Double = 0.4, placed: SceneSpace.Point? = nil, facing: Double = 1
+        moves: [StageMove] = [], front: Double = 0.4, placed: SceneSpace.Point? = nil, facing: Double = 1,
+        stature: StickerSize? = nil
     ) {
         self.id = id
         self.stickerID = stickerID
@@ -31,9 +35,21 @@ public struct StageActor: Sendable {
         self.front = front
         self.placed = placed
         self.facing = facing
+        self.stature = stature
     }
 
     public var width: Double { size * ratio }
+
+    /// How much it wants a spot near the front (0…1): tiny and small
+    /// characters are hard to see far back or half hidden.
+    public var wantsFront: Double {
+        switch stature {
+        case .tiny: 1
+        case .small: 0.75
+        case .medium: 0.25
+        default: 0
+        }
+    }
     public var canMove: Bool { stage.entrance != .grow }
 }
 
@@ -51,7 +67,7 @@ public enum StageDirector {
     static let fadeTime: TimeInterval = 0.8
     /// How much faster or slower than drawn a move's frames may play to
     /// keep pace with the ground it covers.
-    static let rates: ClosedRange<Double> = 0.6...1.8
+    static let rates: ClosedRange<Double> = 0.6...2.5
     /// How far in front of whom it is with a sticker stands, in depth.
     static let inFront = SceneSpace.inFront
     /// Two sharing a spot overlap by this much of the narrower one.
@@ -223,7 +239,11 @@ public enum StageDirector {
                 func score(_ pose: StagePose) -> Double {
                     let p = pose.position
                     let side = abs(world.project(p).u - 0.5) * 2
-                    return p.z / back + side * 0.6 - (p - home).length * 0.15
+                    // Back and to the sides — a small one not so far back
+                    // it is lost — and never behind the trees.
+                    let front = states[i].actor.wantsFront
+                    return p.z / back * (1 - 0.8 * front) + side * 0.6 - (p - home).length * 0.15
+                        - hidden(i, at: p) * 1.5
                 }
                 guard let spot = best else { continue }
                 // From where the child had it, as the story starts.
@@ -294,6 +314,19 @@ public enum StageDirector {
             return r.minX >= c.minX && r.maxX <= c.maxX && r.minY >= c.minY && r.maxY <= c.maxY
         }
 
+        /// How much of it the planes in front hide at `p` (0…1).
+        func hidden(_ i: Int, at p: Vec3) -> Double {
+            world.hidden(drawing(i, at: p), atDepth: p.z)
+        }
+
+        /// The same with the room above it (for whoever climbs on it, an
+        /// effect over it), for choosing where it goes.
+        func hiddenWithHeadroom(_ i: Int, at p: Vec3) -> Double {
+            var r = drawing(i, at: p)
+            r.maxY += (r.maxY - r.minY) * 0.5
+            return world.hidden(r, atDepth: p.z)
+        }
+
         func covered(_ i: Int, at p: Vec3) -> Bool {
             let r = drawing(i, at: p)
             return screen.avoid.contains { a in r.minX < a.maxX && r.maxX > a.minX && r.minY < a.maxY && r.maxY > a.minY }
@@ -339,7 +372,8 @@ public enum StageDirector {
         mutating func settleThePlaced() {
             for i in states.indices {
                 guard let feet = states[i].actor.placed else { continue }
-                let (from, valid) = placedPose(i, feet)
+                let (from, standing) = placedPose(i, feet)
+                let valid = outFromBehind(i, standing)
                 states[i].start = from
                 states[i].pose = from
                 states[i].home = valid
@@ -370,6 +404,18 @@ public enum StageDirector {
 
         /// Where a child's sticker is, by its feet on the art, and where it
         /// can be.
+        /// A child's sticker that its depth puts mostly behind a plane in
+        /// front (a tree's trunk) steps out to the nearest spot where it
+        /// shows.
+        func outFromBehind(_ i: Int, _ pose: StagePose) -> StagePose {
+            guard case .ground = pose.support, hidden(i, at: pose.position) > 0.3 else { return pose }
+            let belongs = self.belongs(i, way(i).move)
+            guard let spot = world.nearestStand(to: pose.position.ground, belongsIn: belongs, accept: {
+                hidden(i, at: $0.onGround) < 0.15 && onScreen(i, at: $0.onGround)
+            }) else { return pose }
+            return StagePose(position: spot.onGround, support: .ground, facing: pose.facing)
+        }
+
         func placedPose(_ i: Int, _ feet: SceneSpace.Point) -> (StagePose, StagePose) {
             let me = states[i].actor
             let space = world.space
@@ -521,10 +567,15 @@ public enum StageDirector {
             }
             let uncovered = visible.filter { !covered(i, at: $0.position) }
             let pool = uncovered.isEmpty ? visible : uncovered
+            // Small characters to the front; nobody behind the trees.
+            let stand = world.space.stand
             let scored = pool.map { pose -> (StagePose, Double) in
                 let c = clearance(pose.position)
                 let d = near.map { (pose.position - $0).length } ?? 0
-                return (pose, min(c, me.width * 2) - d * 0.05)
+                let back = min(max((pose.position.z - stand.near) / max(stand.far - stand.near, 0.01), 0), 1)
+                let front = me.wantsFront
+                return (pose, min(c, me.width * 2) - d * 0.05 - back * front * 0.35
+                    - hiddenWithHeadroom(i, at: pose.position) * (me.width * 2 + 0.3 + front * 0.5))
             }
             let best = scored.map(\.1).max() ?? 0
             let roomy = scored.filter { $0.1 >= best - me.width * 0.3 }
@@ -768,10 +819,23 @@ public enum StageDirector {
                 onScreen(i, at: Vec3(t.x + side * spacing, 0, t.z))
             }
             if !room(side), room(-side) { side = -side }
-            if let toward { side = toward == .right ? 1 : -1 }
-            let already = Double(onSide(side) / 2 * 2)
-            let x = t.x + side * spacing * (1 + 0.85 * already / 2)
             let z = max(t.z - StageDirector.inFront, 0.1)
+            let spotX = { (side: Double, out: Double) -> Double in
+                t.x + side * spacing * (out + 0.85 * Double(onSide(side) / 2 * 2) / 2)
+            }
+            if let toward { side = toward == .right ? 1 : -1 }
+            // Not behind a tree: the other side, or a step further out,
+            // when that shows it.
+            var x = spotX(side, 1)
+            var behind = hidden(i, at: Vec3(x, 0, z))
+            if behind > 0.2 {
+                for (s, out) in [(side, 1.6), (-side, 1), (-side, 1.6)] where toward == nil || s == side {
+                    let other = spotX(s, out)
+                    guard onScreen(i, at: Vec3(other, 0, z)) else { continue }
+                    let h = hidden(i, at: Vec3(other, 0, z))
+                    if h < behind - 0.15 { (x, behind) = (other, h) }
+                }
+            }
             if way(i).flies {
                 let hover = pushedOnScreen(i, Vec3(x, t.y + them.size * 0.15, z))
                 return StagePose(position: hover, support: .beside(them.id), facing: states[i].pose.facing)
@@ -810,13 +874,27 @@ public enum StageDirector {
             let widths = members.map { states[$0].actor.width }
             var total = widths.reduce(0, +)
             for (a, b) in zip(widths, widths.dropFirst()) { total -= min(a, b) * StageDirector.sharedOverlap }
-            var x = t.x - total / 2
+            let y = on ? t.y + them.size * 0.8 : t.y
+            let z = max(t.z - StageDirector.inFront * (on ? 1 : 2), 0.1)
+            func centres(_ shift: Double) -> [Double] {
+                var x = t.x - total / 2 + shift
+                return widths.enumerated().map { k, w in
+                    defer { x += w - (k + 1 < widths.count ? min(w, widths[k + 1]) * StageDirector.sharedOverlap : 0) }
+                    return x + w / 2
+                }
+            }
+            // Along its back (or before it) out from behind a tree, when
+            // the row would be hidden there.
+            func hiddenRow(_ shift: Double) -> Double {
+                zip(members, centres(shift)).map { hidden($0, at: pushedOnScreen($0, Vec3($1, y, z))) }.reduce(0, +)
+            }
+            var shift = 0.0
+            for candidate in [-0.25, 0.25, -0.5, 0.5].map({ $0 * them.width }) where hiddenRow(candidate) < hiddenRow(shift) - 0.05 {
+                shift = candidate
+            }
+            let row = centres(shift)
             for (k, m) in members.enumerated() {
-                let w = widths[k]
-                let centre = x + w / 2
-                x += w - (k + 1 < widths.count ? min(w, widths[k + 1]) * StageDirector.sharedOverlap : 0)
-                let y = on ? t.y + them.size * 0.8 : t.y
-                let z = max(t.z - StageDirector.inFront * (on ? 1 : 2), 0.1)
+                let centre = row[k]
                 let target = StagePose(
                     position: pushedOnScreen(m, Vec3(centre, y, z)),
                     support: on ? .on(them.id) : .under(them.id), facing: states[m].pose.facing)
@@ -941,7 +1019,7 @@ public enum StageDirector {
                 let bounds = groundBounds(start, target.position.ground)
                 let ground = GroundPaths.path(
                     from: start, to: target.position.ground,
-                    walkable: { [world] p in world.canStand(at: p, belongsIn: belongs) || offstage(p) }, bounds: bounds)
+                    walkable: { [world] p in world.canPass(at: p, belongsIn: belongs) }, bounds: bounds)
                 path = (lead + ground).map(\.onGround)
                 if from.y > 0.01 { path.insert(from, at: 0) }
                 if target.position.y > 0.01 { path.append(target.position) }
@@ -969,8 +1047,10 @@ public enum StageDirector {
                 let natural = length / max(speed, 0.01)
                 duration = min(max(natural, shuffle ? 0.5 : StageDirector.minTravel), StageDirector.maxTravel)
                 if natural > 0 {
+                    // A long way for short legs (a caterpillar across the
+                    // meadow) hurries, but never keeps the story waiting.
                     rate = min(max(natural / duration, StageDirector.rates.lowerBound), StageDirector.rates.upperBound)
-                    duration = natural / rate
+                    duration = min(natural / rate, StageDirector.maxTravel)
                 }
                 gait = move.hops ? .hops(cycle: cycle / rate) : .walk
             } else {

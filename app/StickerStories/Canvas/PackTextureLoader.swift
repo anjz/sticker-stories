@@ -19,6 +19,10 @@ struct PackTextures {
     /// bottom-left) — measured for a pack with a space, whose sizes are the
     /// drawings' (`SceneSpace.sizes`).
     var drawings: [String: CGRect] = [:]
+    /// What each plane in front of the background hides — "foreground" and
+    /// the layers' ids — on the base art and the wide art, for a pack with
+    /// a space (`StageWorld.covers`).
+    var covers: [String: (base: OpaqueGrid?, wide: OpaqueGrid?)] = [:]
 }
 
 /// A scene layer's painted part, on the base art and on the wide art.
@@ -60,29 +64,33 @@ enum PackTextureLoader {
         // A layer is cropped to its painted part (most of a plane is
         // empty); with a space, every sticker's drawing is measured.
         let measureDrawings = pack.manifest.space != nil
-        let (images, bounds) = await withTaskGroup(of: (String, CGImage?, CGRect?).self) { group in
+        let (images, bounds, grids) = await withTaskGroup(of: (String, CGImage?, CGRect?, OpaqueGrid?).self) { group in
             for (key, path) in paths {
                 let url = pack.url(forAssetPath: path)
                 let isLayer = key.hasPrefix("layer")
                 let measure = isLayer || (measureDrawings && key.hasPrefix("sticker:"))
+                let gridded = measureDrawings && (isLayer || key.hasPrefix("foreground"))
                 group.addTask {
-                    guard let image = decode(url) else { return (key, nil, nil) }
-                    guard measure else { return (key, image, nil) }
-                    guard let box = OpaqueBounds.of(image, maxSide: isLayer ? 1024 : 512) else { return (key, image, nil) }
+                    guard let image = decode(url) else { return (key, nil, nil, nil) }
+                    let grid = gridded ? OpaqueGrid.of(image) : nil
+                    guard measure else { return (key, image, nil, grid) }
+                    guard let box = OpaqueBounds.of(image, maxSide: isLayer ? 1024 : 512) else { return (key, image, nil, grid) }
                     if isLayer {
                         let (cropped, frame) = crop(image, to: box)
-                        return (key, cropped, frame)
+                        return (key, cropped, frame, grid)
                     }
-                    return (key, image, box)
+                    return (key, image, box, grid)
                 }
             }
             var decoded: [String: CGImage] = [:]
             var measured: [String: CGRect] = [:]
-            for await (key, image, box) in group {
+            var grids: [String: OpaqueGrid] = [:]
+            for await (key, image, box, grid) in group {
                 if let image { decoded[key] = image }
                 if let box { measured[key] = box }
+                if let grid { grids[key] = grid }
             }
-            return (decoded, measured)
+            return (decoded, measured, grids)
         }
 
         var textures = PackTextures(
@@ -106,6 +114,13 @@ enum PackTextureLoader {
             }
             if let base = piece("layer:" + layer.id) {
                 textures.layers.append(.init(id: layer.id, base: base, wide: piece("layer-wide:" + layer.id)))
+            }
+        }
+
+        if measureDrawings {
+            textures.covers[SceneSpace.Layer.foreground] = (grids["foreground"], grids["foreground-wide"])
+            for layer in pack.manifest.layers {
+                textures.covers[layer.id] = (grids["layer:" + layer.id], grids["layer-wide:" + layer.id])
             }
         }
 

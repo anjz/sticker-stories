@@ -126,7 +126,7 @@ import Testing
     /// as its steps take to cover the way, at a rate near the drawn one.
     @Test func walkersNeverGlide() throws {
         let plans = plan(
-            [actor(fox, "fox", at: .init(0.15, 0.15), moves: trot), actor(rabbit, "rabbit", at: .init(0.8, 0.4))],
+            [actor(fox, "fox", at: .init(0.15, 0.15), moves: trot), actor(rabbit, "rabbit", at: .init(0.45, 0.25))],
             goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "rabbit")])
         let leg = try #require(plans[fox]?.legs.last)
         #expect(leg.gait == .walk && leg.move == "trot")
@@ -134,6 +134,11 @@ import Testing
         let length = zip(leg.path, leg.path.dropFirst()).reduce(0) { $0 + ($1.1 - $1.0).length }
         let speed = 0.6 * (testSpace().sizes["fox"] ?? 0.2) / 0.8  // stride × width ÷ cycle
         #expect(abs(leg.duration * leg.rate * speed - length) < 1e-6)
+        // A long way never keeps the story waiting: it hurries.
+        let far = plan([actor(fox, "fox", at: .init(0.06, 0.07), moves: trot), actor(rabbit, "rabbit", at: .init(0.94, 0.38))],
+                       goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "rabbit")])
+        let long = try #require(far[fox]?.legs.last)
+        #expect(long.duration <= StageDirector.maxTravel + 1e-9 && long.rate > 1)
     }
 
     /// An action cued while its sticker is on its way waits until it gets
@@ -165,6 +170,61 @@ import Testing
         // Bobbing gently where it is.
         let a = try #require(plans[bird]?.sample(at: 30)), b = try #require(plans[bird]?.sample(at: 30.4))
         #expect(a.position.y != b.position.y && abs(a.position.y - b.position.y) < 0.05)
+    }
+
+    /// The world with a plane at depth 2 painted over the art's right
+    /// third (a tree): what stands behind it there is hidden.
+    func covered(_ w: StageWorld) -> StageWorld {
+        var w = w
+        var cells = [Bool](repeating: false, count: 30 * 30)
+        for r in 0..<30 { for c in 20..<30 { cells[r * 30 + c] = true } }
+        w.covers = [.init(depth: 2, grid: OpaqueGrid(columns: 30, rows: 30, cells: cells), area: StageRect(minX: 0, minY: 0, maxX: 1, maxY: 1))]
+        return w
+    }
+
+    @Test func planesInFrontHideWhatIsBehindThem() {
+        let w = covered(world)
+        let behind = w.groundPoint(.init(0.85, 0.3)).onGround, before = w.groundPoint(.init(0.85, 0.15)).onGround
+        #expect(w.hidden(w.drawing(at: behind, size: 0.2, ratio: 0.5), atDepth: behind.z) == 1)
+        #expect(w.hidden(w.drawing(at: before, size: 0.2, ratio: 0.5), atDepth: before.z) == 0)
+    }
+
+    /// Where the director chooses, a tiny visitor comes to the front, and
+    /// nobody lands behind the tree.
+    @Test func smallOnesComeToTheFrontAndNobodyLandsBehindATree() throws {
+        let w = covered(world)
+        let meadow = StickerStage(entrance: .hop, on: ["meadow"])
+        for seed in 1...8 {
+            var random = SeededGenerator(state: UInt64(seed))
+            let plans = StageDirector.plan(
+                world: w, screen: screen,
+                actors: [StageActor(id: bee, stickerID: "bee", size: 0.06, ratio: 1, stage: meadow, stature: .tiny),
+                         StageActor(id: bird, stickerID: "bird", size: 0.1, ratio: 1, stage: meadow, stature: .small),
+                         StageActor(id: fox, stickerID: "fox", size: 0.3, ratio: 1, stage: meadow, stature: .big)],
+                entrances: [EntranceTrigger(at: 1, stickerID: "bee"), EntranceTrigger(at: 1, stickerID: "bird"),
+                            EntranceTrigger(at: 1, stickerID: "fox")],
+                goes: [], policy: .standard, random: &random)
+            let near = w.space.stand.near, far = w.space.stand.far
+            for (id, size) in [(bee, 0.06), (bird, 0.1), (fox, 0.3)] {
+                let p = try #require(plans[id]).sample(at: 30).position
+                #expect(w.hidden(w.drawing(at: p, size: size, ratio: 1), atDepth: p.z) < 0.2)
+                if id != fox { #expect(p.z < near + (far - near) * 0.3) }
+            }
+        }
+    }
+
+    /// A child's sticker its depth puts behind the tree steps out to where
+    /// it shows.
+    @Test func aChildsStickerBehindATreeStepsOut() throws {
+        var random = SeededGenerator(state: 7)
+        let w = covered(world)
+        let plans = StageDirector.plan(
+            world: w, screen: screen, actors: [actor(fox, "fox", at: .init(0.85, 0.3), moves: trot)], entrances: [],
+            goes: [], policy: .standard, random: &random)
+        let leg = try #require(plans[fox]?.legs.first)
+        #expect(leg.kind == .settle)
+        let p = try #require(plans[fox]).sample(at: leg.end).position
+        #expect(w.hidden(w.drawing(at: p, size: 0.3, ratio: 1), atDepth: p.z) < 0.15)
     }
 
     @Test func theWoodpeckerFacesTheBark() throws {
@@ -228,7 +288,18 @@ import Testing
 
     @Test func everyStoryKeepsTheStagesRules() throws {
         guard let pack = try Self.load(), let space = pack.manifest.space else { return }
-        let world = StageWorld(space: space, aspect: 4.0 / 3, wide: false, frame: StageSize(width: 1024, height: 768))
+        var world = StageWorld(space: space, aspect: 4.0 / 3, wide: false, frame: StageSize(width: 1024, height: 768))
+        // What the trees, the reeds and the foreground hide.
+        var arts = ["foreground": pack.manifest.foreground]
+        for layer in pack.manifest.layers { arts[layer.id] = layer.image }
+        for (art, path) in arts {
+            guard let source = CGImageSourceCreateWithURL(pack.dir.appendingPathComponent(path) as CFURL, nil),
+                let image = CGImageSourceCreateImageAtIndex(source, 0, nil), let grid = OpaqueGrid.of(image),
+                let depth = space.planeDepth(art)
+            else { continue }
+            world.covers.append(.init(depth: depth, grid: grid, area: StageRect(minX: 0, minY: 0, maxX: 1, maxY: 1)))
+        }
+        #expect(world.covers.count == pack.manifest.layers.count + 1)
         // An iPad's landscape window shows the art less a few percent top and bottom.
         let screen = StageScreen(
             visible: StageRect(minX: 0, minY: 30, maxX: 1024, maxY: 738),
@@ -253,14 +324,15 @@ import Testing
                     let feet = SceneSpace.Point(0.08 + 0.84 * Double((k * 37) % 11) / 10, 0.1 + 0.4 * Double((k * 53) % 7) / 6)
                     actors.append(StageActor(
                         id: UUID(), stickerID: id, size: space.sizes[id] ?? 0.2, ratio: pack.ratios[id] ?? 1,
-                        stage: s.stage ?? .default, moves: pack.moves[id] ?? [], placed: feet))
+                        stage: s.stage ?? .default, moves: pack.moves[id] ?? [], placed: feet, stature: s.size))
                 }
                 for entrance in file.entranceTriggers where !placed.contains(entrance.stickerID) {
                     guard !actors.contains(where: { $0.stickerID == entrance.stickerID }), let s = stickers[entrance.stickerID] else { continue }
                     actors.append(StageActor(
                         id: UUID(), stickerID: s.id, size: space.sizes[s.id] ?? 0.2, ratio: pack.ratios[s.id] ?? 1,
-                        stage: s.stage ?? .default, moves: pack.moves[s.id] ?? []))
+                        stage: s.stage ?? .default, moves: pack.moves[s.id] ?? [], stature: s.size))
                 }
+                let placedIDs = Set(actors.filter { $0.placed != nil }.map(\.id))
                 let goes = file.goTriggers + PlacementPlanner.goes(live: file.liveTriggers, places: pack.places, goes: file.goTriggers)
                 let cast = StageDirector.cast(
                     entrances: file.entranceTriggers, goes: file.goTriggers, live: file.liveTriggers,
@@ -293,6 +365,16 @@ import Testing
                             }
                             if onFoot, world.footprints.contains(where: { $0.contains(s.position.ground) }) {
                                 problems.append("\(tag): on a tree's roots at \(String(format: "%.1f", t))")
+                            }
+                            // On (or under) a sticker the child put by a tree, it
+                            // shares that sticker's place.
+                            var onTheChilds = false
+                            switch s.support {
+                            case .on(let host), .under(let host): onTheChilds = placedIDs.contains(host)
+                            default: break
+                            }
+                            if !onTheChilds, world.hidden(r, atDepth: s.position.z) > 0.35 {
+                                problems.append("\(tag): hidden behind the scene at \(String(format: "%.1f", t))")
                             }
                         }
                     }

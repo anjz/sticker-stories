@@ -27,7 +27,8 @@ final class StoryStage {
     /// The director's cast for these stickers (`StageActor`).
     static func actors(
         _ nodes: [StickerNode], space: SceneSpace, world: StageWorld, stages: [String: StickerStage],
-        moves: [String: [StageMove]], fronts: [String: Double], drawing: (String) -> CGRect
+        moves: [String: [StageMove]], fronts: [String: Double], statures: [String: StickerSize] = [:],
+        drawing: (String) -> CGRect
     ) -> [StageActor] {
         nodes.map { node in
             let box = drawing(node.stickerID)
@@ -43,7 +44,8 @@ final class StoryStage {
             return StageActor(
                 id: node.instanceID, stickerID: node.stickerID, size: space.sizes[node.stickerID] ?? 0.2, ratio: ratio,
                 stage: stages[node.stickerID] ?? .default, moves: moves[node.stickerID] ?? [],
-                front: fronts[node.stickerID] ?? 0.4, placed: feet, facing: Double(node.facing))
+                front: fronts[node.stickerID] ?? 0.4, placed: feet, facing: Double(node.facing),
+                stature: statures[node.stickerID])
         }
     }
 

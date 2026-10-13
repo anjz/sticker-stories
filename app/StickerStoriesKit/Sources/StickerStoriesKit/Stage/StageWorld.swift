@@ -53,6 +53,23 @@ public struct StageWorld: Sendable {
     public let footprints: [GroundPolygon]
     public let perches: [Perch]
     public let airs: [Air]
+    /// What the planes in front of the background hide, each at its depth
+    /// (set by whoever has their images).
+    public var covers: [Cover] = []
+
+    /// A plane's painted part: its grid over `area` of the art drawn (art
+    /// points, which run past 0…1 on the wide art).
+    public struct Cover: Sendable {
+        public var depth: Double
+        public var grid: OpaqueGrid
+        public var area: StageRect
+
+        public init(depth: Double, grid: OpaqueGrid, area: StageRect) {
+            self.depth = depth
+            self.grid = grid
+            self.area = area
+        }
+    }
 
     public init(space: SceneSpace, aspect: Double, wide: Bool, frame: StageSize) {
         self.space = space
@@ -158,6 +175,15 @@ public struct StageWorld: Sendable {
         return grounds.contains { !$0.water && $0.polygon.contains(p) }
     }
 
+    /// Whether such a sticker can walk across `p` on its way: any ground
+    /// in front of the backdrop — not only the places it may stop in — but
+    /// no water it does not belong in and no plane's footprint.
+    public func canPass(at p: Vec2, belongsIn belongs: Set<String>) -> Bool {
+        if footprints.contains(where: { $0.contains(p) }) { return false }
+        if let water = water(at: p) { return belongs.contains(water) }
+        return p.z > 0.05 && p.z <= space.back
+    }
+
     /// The ground place at `p` (the water first: it lies in the meadow).
     public func place(at p: Vec2) -> String? {
         water(at: p) ?? grounds.first { !$0.water && $0.polygon.contains(p) }?.place
@@ -183,4 +209,30 @@ public struct StageWorld: Sendable {
         }
         return nil
     }
+
+    // MARK: What hides what
+
+    /// How much of a drawing (world points) standing at depth `z` the
+    /// planes in front of it hide: the share of it behind any of them.
+    public func hidden(_ r: StageRect, atDepth z: Double) -> Double {
+        let nearer = covers.filter { $0.depth < z - 1e-6 }
+        guard !nearer.isEmpty, r.maxX > r.minX, r.maxY > r.minY else { return 0 }
+        let n = 8
+        var behind = 0
+        for i in 0..<n {
+            for j in 0..<n {
+                let u = (r.minX + (r.maxX - r.minX) * (Double(i) + 0.5) / Double(n)) / max(frame.width, 1)
+                let v = (r.minY + (r.maxY - r.minY) * (Double(j) + 0.5) / Double(n)) / max(frame.height, 1)
+                if nearer.contains(where: { c in
+                    c.grid.isOpaque(
+                        atU: (u - c.area.minX) / max(c.area.maxX - c.area.minX, 1e-9),
+                        v: (v - c.area.minY) / max(c.area.maxY - c.area.minY, 1e-9))
+                }) {
+                    behind += 1
+                }
+            }
+        }
+        return Double(behind) / Double(n * n)
+    }
 }
+

@@ -53,11 +53,22 @@ Plans the whole story at once, from the cast and the story's triggers:
    belongs in the water, clear of the others — and comes in from the
    nearer side along the ground (walkers), through the air (flyers), or
    grows where it stands.
+
+   **Where the director chooses** (a visitor's spot, a spot in a place,
+   the side to stand beside someone, a row on someone's back), it keeps
+   characters in view: the planes in front (`StageWorld.covers`, each
+   plane's painted part as a grid at its depth) must not hide them or the
+   room above them, and the small ones (size class `tiny`, `small`) come
+   to the front, where their details show. A place the story names keeps
+   its spot — the pond's shore is where it is. A child's sticker its
+   depth puts mostly behind a plane steps out to where it shows as the
+   story starts.
 3. **Moves.** Each `go` ends at a pose planned in space: beside someone at
    their depth, on or under them, at a free spot of a place (in it, or on
    its shore for one that does not belong in its water), off the stage,
    back home. Walkers follow a path on the ground around water and roots
-   (A* on a grid of the ground plane, then straightened); a way that
+   (A* on a grid of the ground plane, then straightened) — across any
+   ground, not only the places they may stop in; a way that
    belongs to the water walks to its edge and swims the rest; flyers arc
    up through the air and down. Every leg's time follows the distance in the
    world and the sticker's gait: a walker's leg takes as long as its steps
