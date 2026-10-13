@@ -35,8 +35,11 @@ import Testing
             actor(duck, "duck", at: .init(0.55, 0.25), stage: StickerStage(entrance: .hop, on: ["pond"])),
         ])
         let foxPlan = try #require(plans[fox])
-        #expect(foxPlan.legs.first?.kind == .settle)
-        let settled = foxPlan.sample(at: StageDirector.settle).position.ground
+        let settle = try #require(foxPlan.legs.first)
+        #expect(settle.kind == .settle)
+        // At its walking pace, never less than the settle.
+        #expect(settle.duration >= StageDirector.settle && settle.move == "trot")
+        let settled = foxPlan.sample(at: settle.end).position.ground
         #expect(world.water(at: settled) == nil && world.canStand(at: settled, belongsIn: []))
         // The duck belongs in the pond: it stays.
         #expect(try #require(plans[duck]).legs.isEmpty)
@@ -117,6 +120,51 @@ import Testing
         #expect((moved.sample(at: 30).position.ground - start).length > 0.3)
         // The far "fox" is the same sticker as the cast's: it is cast too.
         #expect(plans[deer]?.legs.allSatisfy { $0.kind != .settle } ?? true)
+    }
+
+    /// A walker's steps keep pace with the ground: its leg takes as long
+    /// as its steps take to cover the way, at a rate near the drawn one.
+    @Test func walkersNeverGlide() throws {
+        let plans = plan(
+            [actor(fox, "fox", at: .init(0.15, 0.15), moves: trot), actor(rabbit, "rabbit", at: .init(0.8, 0.4))],
+            goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "rabbit")])
+        let leg = try #require(plans[fox]?.legs.last)
+        #expect(leg.gait == .walk && leg.move == "trot")
+        #expect(StageDirector.rates.contains(leg.rate))
+        let length = zip(leg.path, leg.path.dropFirst()).reduce(0) { $0 + ($1.1 - $1.0).length }
+        let speed = 0.6 * (testSpace().sizes["fox"] ?? 0.2) / 0.8  // stride × width ÷ cycle
+        #expect(abs(leg.duration * leg.rate * speed - length) < 1e-6)
+    }
+
+    /// An action cued while its sticker is on its way waits until it gets
+    /// there; one cued when it is still plays then.
+    @Test func actionsWaitForTheMoveToEnd() throws {
+        let plans = plan(
+            [actor(fox, "fox", at: .init(0.15, 0.15), moves: trot), actor(rabbit, "rabbit", at: .init(0.8, 0.4))],
+            goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "rabbit")])
+        let leg = try #require(plans[fox]?.legs.last)
+        let live = StageDirector.delayed(
+            [LiveAnimationTrigger(at: 1.5, stickerID: "fox", animationID: "jump"),
+             LiveAnimationTrigger(at: 0.5, stickerID: "fox", animationID: "nod"),
+             LiveAnimationTrigger(at: 1.5, stickerID: "rabbit", animationID: "nod")],
+            plans: plans, stickers: [fox: "fox", rabbit: "rabbit"], places: [])
+        #expect(live.map(\.at) == [leg.end, 0.5, 1.5])
+    }
+
+    /// A flyer resting in the air keeps its wings going: one that flies to
+    /// the sky, and one the child put there.
+    @Test func flyersInTheAirKeepFlying() throws {
+        let plans = plan(
+            [actor(bee, "bee", at: .init(0.5, 0.7), stage: StickerStage(entrance: .fly, on: ["sky"]), moves: flight),
+             actor(bird, "bird", at: .init(0.3, 0.15), stage: StickerStage(entrance: .fly, on: ["sky"]), moves: flight)],
+            goes: [GoTrigger(at: 1, stickerID: "bird", kind: .to, target: "sky")])
+        let hover = try #require(plans[bee]?.travel(at: 5))
+        #expect(hover.move == "fly" && hover.stays)
+        let flight = try #require(plans[bird]?.travel(at: 30))
+        #expect(flight.move == "fly" && flight.stays && !flight.isMoving(at: 30))
+        // Bobbing gently where it is.
+        let a = try #require(plans[bird]?.sample(at: 30)), b = try #require(plans[bird]?.sample(at: 30.4))
+        #expect(a.position.y != b.position.y && abs(a.position.y - b.position.y) < 0.05)
     }
 
     @Test func theWoodpeckerFacesTheBark() throws {

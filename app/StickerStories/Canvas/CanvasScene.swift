@@ -1987,7 +1987,10 @@ final class CanvasScene: SKScene {
     /// on its way in plays its move (unless the story cues an action on it
     /// after its entrance), anyone else the action the story has it playing
     /// (`LiveTimeline`), or its still art. An animation whose sheet is not
-    /// in yet leaves the still art.
+    /// in yet leaves the still art. On the stage in space a sticker on its
+    /// way somewhere always plays its move until it stops (its actions wait
+    /// for it, `StageDirector.delayed`); there, once an action is over, a
+    /// move that stays (a flyer hovering, a duck swimming) goes on.
     private func applyLive(_ session: PlaySession, at time: TimeInterval) {
         let allowed = livePolicy.allowsLiveAnimations
         let timing: (LiveAnimationKey) -> LiveFrames? = { [liveLoaded] in liveLoaded[$0]?.timing }
@@ -1995,30 +1998,40 @@ final class CanvasScene: SKScene {
             var shown: (LoadedLiveAnimation, LiveFrameState, LiveTween?)?
             if allowed {
                 let action = session.live.current(for: node.stickerID, at: time, frames: timing)
-                // The latest travel in progress: its entrance, or a move.
-                var travel: (at: TimeInterval, duration: TimeInterval, move: String?, stays: Bool)?
+                // The latest travel: its entrance, or a move.
+                var travel: StageTravel?
                 if let plan = session.visitors[node.instanceID], time >= plan.at {
-                    travel = (plan.at, plan.travel, plan.move, plan.stays)
+                    travel = StageTravel(at: plan.at, duration: plan.travel, move: plan.move, stays: plan.stays, rate: 1)
                 }
                 if let move = session.motions[node.instanceID]?.travel(at: time), move.at >= (travel?.at ?? -1) {
-                    travel = move
+                    travel = StageTravel(at: move.at, duration: move.duration, move: move.move, stays: move.stays, rate: 1)
                 }
                 if let move = session.stage?.travel(of: node.instanceID, at: time) {
                     travel = move
                 }
-                if let travel, action.map({ $0.since < travel.at }) ?? true, let id = travel.move,
-                    let move = liveLoaded[LiveAnimationKey(stickerID: node.stickerID, animationID: id)],
-                    let state = move.timing.state(.move(travel: travel.duration, stays: travel.stays), at: time - travel.at)
-                {
+                let moving: (LoadedLiveAnimation, LiveFrameState, LiveTween?)? = travel.flatMap { travel in
+                    guard let id = travel.move,
+                        let move = liveLoaded[LiveAnimationKey(stickerID: node.stickerID, animationID: id)]
+                    else { return nil }
+                    let (part, elapsed) = travel.part(at: time)
+                    guard let state = move.timing.state(part, at: elapsed) else { return nil }
                     // A puppet moves between its keys; frames only show.
-                    let tween = move.puppet.flatMap { _ in
-                        move.timing.tween(.move(travel: travel.duration, stays: travel.stays), at: time - travel.at)
-                    }
-                    shown = (move, state, tween)
-                } else if let action, let loaded = liveLoaded[action.key],
-                    let state = loaded.timing.state(action.part, at: action.elapsed)
-                {
-                    shown = (loaded, state, loaded.puppet.flatMap { _ in loaded.timing.tween(action.part, at: action.elapsed) })
+                    return (move, state, move.puppet.flatMap { _ in move.timing.tween(part, at: elapsed) })
+                }
+                let acting: (LoadedLiveAnimation, LiveFrameState, LiveTween?)? = action.flatMap { action in
+                    guard let loaded = liveLoaded[action.key], let state = loaded.timing.state(action.part, at: action.elapsed)
+                    else { return nil }
+                    return (loaded, state, loaded.puppet.flatMap { _ in loaded.timing.tween(action.part, at: action.elapsed) })
+                }
+                let actionIsNewer = action.map { $0.since >= (travel?.at ?? -1) } ?? false
+                if session.stage != nil, let travel, travel.isMoving(at: time), let moving {
+                    shown = moving
+                } else if actionIsNewer {
+                    // Once it is over, a move that stays goes on (on the
+                    // stage in space).
+                    shown = acting ?? (session.stage != nil ? moving : nil)
+                } else {
+                    shown = moving ?? acting
                 }
             }
             if let (loaded, state, tween) = shown {

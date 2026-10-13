@@ -60,10 +60,19 @@ Plans the whole story at once, from the cast and the story's triggers:
    (A* on a grid of the ground plane, then straightened); a way that
    belongs to the water walks to its edge and swims the rest; flyers arc
    up through the air and down. Every leg's time follows the distance in the
-   world and the sticker's gait.
-4. **Actions in their place** (the woodpecker on the bark) go there first,
+   world and the sticker's gait: a walker's leg takes as long as its steps
+   take to cover the way, its frames played a little faster or slower
+   (0.6–1.8×) to keep near the usual times — its feet always keep pace with
+   the ground, so nobody glides. A flyer that comes to rest in the air (a
+   place's air, hovering by someone, or put there by the child) keeps its
+   wings going and bobs gently.
+4. **Moving comes first.** A sticker on its way somewhere plays its move
+   until it stops: an action the story cues meanwhile waits until it gets
+   there (`StageDirector.delayed`). Once an action is over, a move that
+   stays (a flyer hovering, a duckling swimming) goes on.
+5. **Actions in their place** (the woodpecker on the bark) go there first,
    as before (`PlacementPlanner`).
-5. **Out of the story's way.** The director plans the story once to see
+6. **Out of the story's way.** The director plans the story once to see
    where its cast — every sticker it names, moves, sends someone to or
    cues anything on — will be and pass; a child's sticker the story does
    not use that stands in the way walks (or fades) to the freest land on

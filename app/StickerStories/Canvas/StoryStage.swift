@@ -81,8 +81,8 @@ final class StoryStage {
         return Self.nearZ - (Self.nearZ - Self.farZ) * CGFloat(min(max(z, 0), back) / back)
     }
 
-    /// The move in progress for a sticker, for its frames.
-    func travel(of id: UUID, at time: TimeInterval) -> (at: TimeInterval, duration: TimeInterval, move: String?, stays: Bool)? {
+    /// The move whose frames a sticker plays now, if any.
+    func travel(of id: UUID, at time: TimeInterval) -> StageTravel? {
         plans[id]?.travel(at: time)
     }
 

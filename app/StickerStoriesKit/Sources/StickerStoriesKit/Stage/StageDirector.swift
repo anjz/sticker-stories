@@ -49,6 +49,9 @@ public enum StageDirector {
     static let minTravel: TimeInterval = 0.8
     static let maxTravel: TimeInterval = 6
     static let fadeTime: TimeInterval = 0.8
+    /// How much faster or slower than drawn a move's frames may play to
+    /// keep pace with the ground it covers.
+    static let rates: ClosedRange<Double> = 0.6...1.8
     /// How far in front of whom it is with a sticker stands, in depth.
     static let inFront = SceneSpace.inFront
     /// Two sharing a spot overlap by this much of the narrower one.
@@ -100,19 +103,21 @@ public enum StageDirector {
         return cast
     }
 
-    /// The live triggers with every action that has a place held back until
-    /// its sticker has got there (`PlacementPlanner.delayed`, for plans in
-    /// space).
+    /// The live triggers with every action cued while its sticker is on
+    /// its way somewhere held back until it has got there: a sticker on
+    /// the move shows its move (walking, hopping, flying) until it stops,
+    /// and an action that has a place (`PlacementPlanner.delayed`) waits
+    /// for the move that takes it there.
     public static func delayed(
         _ live: [LiveAnimationTrigger], plans: [UUID: StagePlan], stickers: [UUID: String], places: Set<LiveAnimationKey>
     ) -> [LiveAnimationTrigger] {
         live.map { trigger in
-            let key = LiveAnimationKey(stickerID: trigger.stickerID, animationID: trigger.animationID)
-            guard trigger.mode != .resume, places.contains(key) else { return trigger }
             var start = trigger.at
             for (id, plan) in plans where stickers[id] == trigger.stickerID {
-                for leg in plan.legs where leg.travels && leg.at <= trigger.at && trigger.at < leg.end {
-                    start = max(start, leg.end)
+                // Legs follow one another (to the shore, then swimming): on
+                // to the end of the last one it is still on its way in.
+                for leg in plan.legs where leg.travels && leg.at <= start + 1e-6 && start < leg.end {
+                    start = leg.end
                 }
             }
             var moved = trigger
@@ -259,6 +264,25 @@ public enum StageDirector {
             return !moves.isEmpty && moves.allSatisfy { !$0.on.isEmpty }
         }
 
+        /// Whether, resting at `pose`, it is up in the air on its wings
+        /// (in a place's air, or hovering by someone) rather than on
+        /// something.
+        func hovers(_ i: Int, at pose: StagePose) -> Bool {
+            switch pose.support {
+            case .air: return true
+            case .beside: return pose.position.y > 0.01 && (way(i).flies || states[i].actor.stage.entrance == .fly)
+            default: return false
+            }
+        }
+
+        /// The move it flies by, when its frames may play.
+        func flyingMove(_ i: Int) -> String? {
+            guard policy.allowsLiveAnimations, !policy.isCalm else { return nil }
+            let move = way(i).move
+            if let move, move.flies, move.cycle != nil { return move.id }
+            return states[i].actor.moves.first { $0.flies && $0.cycle != nil }?.id
+        }
+
         // MARK: Screen
 
         func drawing(_ i: Int, at p: Vec3) -> StageRect {
@@ -321,12 +345,24 @@ public enum StageDirector {
                 states[i].home = valid
                 if (valid.position - from.position).length > 0.01 || valid.support != from.support {
                     let me = states[i].actor
-                    let gait: StageLeg.Gait = !me.canMove || policy.isCalm ? .fade : way(i).flies ? .fly : .walk
+                    var leg: StageLeg
+                    if !me.canMove || policy.isCalm {
+                        leg = StageLeg(
+                            at: 0, duration: StageDirector.settle, path: [from.position, valid.position], gait: .fade,
+                            kind: .settle, facingFrom: from.facing, facingTo: from.facing, support: valid.support)
+                    } else {
+                        leg = makeLeg(i, to: valid, start: 0, kind: .settle)
+                        leg.facingTo = leg.facingFrom
+                        if leg.duration < StageDirector.settle, leg.rate == 1 || leg.gait == .fly { leg.duration = StageDirector.settle }
+                    }
+                    leg.stays = hovers(i, at: valid) && leg.gait == .fly && leg.move != nil
+                    states[i].legs.append(leg)
+                    states[i].busyUntil = leg.end
+                } else if hovers(i, at: valid), let fly = flyingMove(i) {
+                    // Placed in the air: its wings going from the start.
                     states[i].legs.append(StageLeg(
-                        at: 0, duration: StageDirector.settle, path: [from.position, valid.position], gait: gait,
-                        kind: .settle, move: gait == .fade ? nil : way(i).move?.id,
-                        facingFrom: from.facing, facingTo: from.facing, support: valid.support))
-                    states[i].busyUntil = StageDirector.settle
+                        at: 0, duration: 0, path: [valid.position], gait: .fly, kind: .settle, move: fly, stays: true,
+                        facingFrom: valid.facing, facingTo: valid.facing, support: valid.support))
                 }
                 states[i].pose = valid
             }
@@ -569,7 +605,8 @@ public enum StageDirector {
                 if stage.entrance == .fly {
                     states[i].by = move?.flies == true ? move?.id : states[i].by
                 }
-                let leg = makeLeg(i, to: target, start: entrance.at, kind: .entrance, forceFly: stage.entrance == .fly)
+                var leg = makeLeg(i, to: target, start: entrance.at, kind: .entrance, forceFly: stage.entrance == .fly)
+                if leg.gait == .fly, leg.move != nil, hovers(i, at: target) { leg.stays = true }
                 states[i].legs.append(leg)
                 states[i].pose = target
                 states[i].busyUntil = leg.end
@@ -862,7 +899,8 @@ public enum StageDirector {
                 || states[i].visible != (target.support != .off)
             else { return }
             var leg = makeLeg(i, to: target, start: begin, kind: kind)
-            leg.stays = stays && leg.gait != .fade && leg.move != nil
+            let hovering = leg.gait == .fly && hovers(i, at: target)
+            leg.stays = (stays || hovering) && leg.gait != .fade && leg.move != nil
             states[i].legs.append(leg)
             states[i].pose = target
             states[i].pose.facing = leg.facingTo
@@ -913,6 +951,7 @@ public enum StageDirector {
             let shuffle = kind == .shuffle
             var gait: StageLeg.Gait
             var duration: TimeInterval
+            var rate = 1.0
             var moveID = move?.id
             if policy.isCalm {
                 gait = .fade
@@ -923,9 +962,17 @@ public enum StageDirector {
                 duration = min(max(widths * 0.3 + 0.6, shuffle ? 0.6 : 1.2), 3.4)
                 if !(move?.flies ?? false) { moveID = me.moves.first { $0.flies }?.id ?? move?.id }
             } else if let move, let cycle = move.cycle, cycle > 0, move.stride > 0, policy.allowsLiveAnimations {
-                gait = move.hops ? .hops(cycle: cycle) : .walk
+                // As long as its steps take to cover the way, the frames a
+                // little faster or slower to keep it near the usual times;
+                // its feet always keep pace with the ground.
                 let speed = move.stride * me.width / cycle
-                duration = min(max(length / max(speed, 0.01), shuffle ? 0.5 : StageDirector.minTravel), StageDirector.maxTravel)
+                let natural = length / max(speed, 0.01)
+                duration = min(max(natural, shuffle ? 0.5 : StageDirector.minTravel), StageDirector.maxTravel)
+                if natural > 0 {
+                    rate = min(max(natural / duration, StageDirector.rates.lowerBound), StageDirector.rates.upperBound)
+                    duration = natural / rate
+                }
+                gait = move.hops ? .hops(cycle: cycle / rate) : .walk
             } else {
                 gait = .bounce
                 duration = min(max(widths * 0.35, shuffle ? 0.5 : StageDirector.minTravel), 3.2)
@@ -948,7 +995,7 @@ public enum StageDirector {
             }
             return StageLeg(
                 at: start, duration: duration, path: path, gait: gait, kind: kind, move: moveID,
-                facingFrom: states[i].pose.facing, facingTo: facing, support: target.support)
+                facingFrom: states[i].pose.facing, facingTo: facing, support: target.support, rate: rate)
         }
 
         func groundBounds(_ a: Vec2, _ b: Vec2) -> (min: Vec2, max: Vec2) {

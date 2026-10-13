@@ -76,10 +76,14 @@ public struct StageLeg: Equatable, Sendable {
     public var facingTo: Double
     /// What holds it up once it is there.
     public var support: StageSupport
+    /// How fast its move frames play (1: as drawn), so its steps keep pace
+    /// with the ground it covers and it never glides.
+    public var rate: Double
 
     public init(
         at: TimeInterval, duration: TimeInterval, path: [Vec3], gait: Gait, kind: Kind = .move,
-        move: String? = nil, stays: Bool = false, facingFrom: Double = 1, facingTo: Double = 1, support: StageSupport = .ground
+        move: String? = nil, stays: Bool = false, facingFrom: Double = 1, facingTo: Double = 1, support: StageSupport = .ground,
+        rate: Double = 1
     ) {
         self.at = at
         self.duration = duration
@@ -91,6 +95,7 @@ public struct StageLeg: Equatable, Sendable {
         self.facingFrom = facingFrom
         self.facingTo = facingTo
         self.support = support
+        self.rate = rate
     }
 
     public var end: TimeInterval { at + duration }
@@ -138,6 +143,10 @@ public struct StagePlan: Equatable, Sendable {
 
     static let hopHeight = 0.18
     static let flyBob = 0.08
+    /// A flyer resting in the air bobs gently, this much of its size, once
+    /// every `hoverCycle` seconds.
+    static let hoverBob = 0.04
+    static let hoverCycle: TimeInterval = 1.7
     static let turn: TimeInterval = 0.25
 
     public func sample(at time: TimeInterval) -> Sample {
@@ -163,6 +172,10 @@ public struct StagePlan: Equatable, Sendable {
         case .fly:
             position = Self.along(leg.path, p * p * (3 - 2 * p))
             position.y += Self.flyBob * size * sin(2 * .pi * 1.5 * p) * (1 - p)
+            if p >= 1, leg.stays {
+                // Hovering where it got to, its wings going.
+                position.y += Self.hoverBob * size * sin(2 * .pi * (time - leg.end) / Self.hoverCycle)
+            }
         case .walk:
             position = Self.along(leg.path, p)
         case .hops(let cycle):
@@ -209,10 +222,38 @@ public struct StagePlan: Equatable, Sendable {
         return path.last!
     }
 
-    /// The move in progress at `time` whose frames should play (its start,
-    /// how long it travels, which move, whether its loop stays on), if any.
-    public func travel(at time: TimeInterval) -> (at: TimeInterval, duration: TimeInterval, move: String?, stays: Bool)? {
+    /// The move whose frames play at `time`, if any: the latest leg's, on
+    /// its way or settling (or going on, for one that stays).
+    public func travel(at time: TimeInterval) -> StageTravel? {
         guard let leg = legs.last(where: { $0.at <= time }), leg.travels else { return nil }
-        return (leg.at, leg.duration, leg.move, leg.stays)
+        return StageTravel(at: leg.at, duration: leg.duration, move: leg.move, stays: leg.stays, rate: leg.rate)
+    }
+}
+
+/// A move's frames on a leg (`StagePlan.travel`): from `at`, its loop for
+/// `duration` seconds at `rate`, then the frames that bring it to rest —
+/// or its loop on, when it `stays`.
+public struct StageTravel: Equatable, Sendable {
+    public var at: TimeInterval
+    public var duration: TimeInterval
+    public var move: String?
+    public var stays: Bool
+    public var rate: Double
+
+    public init(at: TimeInterval, duration: TimeInterval, move: String?, stays: Bool, rate: Double = 1) {
+        self.at = at
+        self.duration = duration
+        self.move = move
+        self.stays = stays
+        self.rate = rate
+    }
+
+    /// Whether it is still on its way at `time` (its move frames come
+    /// before anything else then).
+    public func isMoving(at time: TimeInterval) -> Bool { time < at + duration }
+
+    /// The part of the move to play and how far into it, at `time`.
+    public func part(at time: TimeInterval) -> (part: LivePart, elapsed: TimeInterval) {
+        (.move(travel: duration * rate, stays: stays), (time - at) * rate)
     }
 }
