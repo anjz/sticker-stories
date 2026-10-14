@@ -70,6 +70,8 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     var stride: Double?
     var hops: Bool?
     var flies: Bool?
+    /// The flight can hold still in the air (`StageMove.hovers`).
+    var hovers: Bool?
     var on: [String]?
     var stays: Bool?
     /// An action that happens in one place: the features it needs (the
@@ -97,6 +99,9 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         var pause: Int?
         var loop: FrameRange?
         var stride: Double?
+        /// The bones a flight keeps going while the character does
+        /// anything else in the air (`PuppetPose.flying`).
+        var wings: [String]?
     }
 
     /// Whether stories play the puppets where the pack has them (a
@@ -119,7 +124,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
 
     private enum CodingKeys: String, CodingKey {
         case id, sticker, kind, sheet, frame, columns, count, rest, stickerBox, hold, pause, loop, facing, stride, hops,
-            flies, on, stays, place, idle, particles, puppet
+            flies, hovers, on, stays, place, idle, particles, puppet
     }
 
     /// A particle cue that decodes or is skipped (an effect this build
@@ -162,6 +167,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         stride = try? c.decodeIfPresent(Double.self, forKey: .stride)
         hops = try? c.decodeIfPresent(Bool.self, forKey: .hops)
         flies = try? c.decodeIfPresent(Bool.self, forKey: .flies)
+        hovers = try? c.decodeIfPresent(Bool.self, forKey: .hovers)
         on = try? c.decodeIfPresent([String].self, forKey: .on)
         stays = try? c.decodeIfPresent(Bool.self, forKey: .stays)
         place = try? c.decodeIfPresent([String].self, forKey: .place)
@@ -211,7 +217,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
             guard let stride, stride > 0 else { return nil }
             return StageMove(
                 id: id, cycle: timing.loopDuration, stride: stride, hops: hops ?? false, flies: flies ?? false,
-                on: on ?? [], stays: stays ?? false, facing: facing)
+                hovers: hovers ?? false, on: on ?? [], stays: stays ?? false, facing: facing)
         }
         return StageMove(id: id, seconds: timing.duration(.move(travel: 0)) ?? 0)
     }
@@ -373,14 +379,16 @@ extension StickerNode {
     /// Returns the frame when it is a new one (it has just come on show),
     /// for what fires on a frame (`StickerAnimation.particles`).
     @discardableResult
-    func showLive(_ loaded: LoadedLiveAnimation, state: LiveFrameState, tween: LiveTween? = nil) -> Int? {
+    func showLive(
+        _ loaded: LoadedLiveAnimation, state: LiveFrameState, tween: LiveTween? = nil, wings: PuppetNode.Wings? = nil
+    ) -> Int? {
         if liveKey != loaded.animation.key, !continuePuppet(loaded) {
             stopLive()
             beginLive(loaded)
             liveFrame = nil
         }
         if loaded.puppet != nil {
-            return showPuppet(state: state, tween: tween)
+            return showPuppet(state: state, tween: tween, wings: wings)
         }
         guard let live = childNode(withName: Self.liveNodeName) as? SKSpriteNode else { return nil }
         let index = min(max(state.frame, 0), loaded.frames.count - 1)

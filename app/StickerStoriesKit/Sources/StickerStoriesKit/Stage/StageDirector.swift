@@ -72,6 +72,12 @@ public enum StageDirector {
     static let inFront = SceneSpace.inFront
     /// Two sharing a spot overlap by this much of the narrower one.
     static let sharedOverlap = 0.25
+    /// A flyer that cannot hover circles this many of its widths either
+    /// side of its spot, and comes this much of its depth nearer.
+    static let lapAcross = 0.9
+    static let lapToward = 0.15
+    /// How much of a circling flyer the planes in front may hide.
+    static let lapHidden = 0.25
 
     /// - Parameter cast: the stickers the story uses (names, moves, cues
     ///   on); the child's other stickers that stand in its way move aside to
@@ -93,9 +99,15 @@ public enum StageDirector {
         }
         director.run(entrances: entrances, goes: goes, random: &random)
         var plans: [UUID: StagePlan] = [:]
-        for state in director.states {
+        for (i, state) in director.states.enumerated() {
+            // Left in the air, one that cannot hover flies round its spot.
+            let legs = state.legs.map { leg in
+                var leg = leg
+                leg.circling = director.circling(i, after: leg)
+                return leg
+            }
             plans[state.actor.id] = StagePlan(
-                start: state.start, startsVisible: state.startsVisible, legs: state.legs, size: state.actor.size)
+                start: state.start, startsVisible: state.startsVisible, legs: legs, size: state.actor.size)
         }
         return plans
     }
@@ -296,6 +308,30 @@ public enum StageDirector {
             case .beside: return pose.position.y > 0.01 && (way(i).flies || states[i].actor.stage.entrance == .fly)
             default: return false
             }
+        }
+
+        /// The loop it flies round its spot once `leg` leaves it in the
+        /// air, when its flight cannot hover (`StageMove.hovers`): about
+        /// its width either side and a little nearer the camera, narrower
+        /// where that keeps it on screen and out from behind the trees.
+        /// Nil for one that hovers, lands or goes on its way.
+        func circling(_ i: Int, after leg: StageLeg) -> StageLeg.Circling? {
+            guard leg.stays, leg.gait == .fly, let id = leg.move, let spot = leg.path.last,
+                let move = states[i].actor.moves.first(where: { $0.id == id }), move.flies, !move.hovers
+            else { return nil }
+            let way = leg.facingTo < 0 ? -1.0 : 1.0
+            var loop = StageLeg.Circling(across: 0, toward: 0)
+            for k in [1, 0.7, 0.45, 0.3] {
+                loop = StageLeg.Circling(
+                    across: StageDirector.lapAcross * states[i].actor.width * k,
+                    toward: max(min(StageDirector.lapToward * spot.z * k, spot.z - world.space.stand.near), 0))
+                let round = (1..<12).map { k -> Vec3 in
+                    let a = 2 * Double.pi * Double(k) / 12
+                    return spot + Vec3(way * loop.across * sin(a), 0, -loop.toward * (1 - cos(a)) / 2)
+                }
+                if round.allSatisfy({ onScreen(i, at: $0) && hidden(i, at: $0) <= StageDirector.lapHidden }) { break }
+            }
+            return loop
         }
 
         /// The move it flies by, when its frames may play.

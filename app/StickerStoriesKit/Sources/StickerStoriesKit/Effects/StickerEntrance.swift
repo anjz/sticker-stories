@@ -270,6 +270,10 @@ public struct StageMove: Equatable, Sendable {
     public var hops: Bool
     /// The loop is a flight: it glides along with a gentle bob.
     public var flies: Bool
+    /// The flight can hold still in the air (a bee, a butterfly). One that
+    /// cannot (a bird) keeps flying a slow loop round its spot instead
+    /// (`StageLeg.circling`).
+    public var hovers: Bool
     /// Features it comes in on when a story brings it in this way (a
     /// duckling swimming in: the pond); empty for the sticker's stage.
     public var on: [String]
@@ -283,13 +287,14 @@ public struct StageMove: Equatable, Sendable {
 
     public init(
         id: String = "", cycle: TimeInterval? = nil, stride: Double = 0, hops: Bool = false, flies: Bool = false,
-        on: [String] = [], stays: Bool = false, facing: Facing? = nil, seconds: TimeInterval = 0
+        hovers: Bool = false, on: [String] = [], stays: Bool = false, facing: Facing? = nil, seconds: TimeInterval = 0
     ) {
         self.id = id
         self.cycle = cycle
         self.stride = stride
         self.hops = hops
         self.flies = flies
+        self.hovers = hovers
         self.on = on
         self.stays = stays
         self.facing = facing

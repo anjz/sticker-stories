@@ -21,6 +21,7 @@ import Testing
 
     let trot = [StageMove(id: "trot", cycle: 0.8, stride: 0.6, facing: .right)]
     let flight = [StageMove(id: "fly", cycle: 0.5, stride: 1.2, flies: true, facing: .right)]
+    let hovering = [StageMove(id: "fly", cycle: 0.5, stride: 1.2, flies: true, hovers: true, facing: .right)]
 
     func plan(_ actors: [StageActor], entrances: [EntranceTrigger] = [], goes: [GoTrigger] = []) -> [UUID: StagePlan] {
         var random = SeededGenerator(state: 7)
@@ -180,8 +181,8 @@ import Testing
     /// the sky, and one the child put there.
     @Test func flyersInTheAirKeepFlying() throws {
         let plans = plan(
-            [actor(bee, "bee", at: .init(0.5, 0.7), stage: StickerStage(entrance: .fly, on: ["sky"]), moves: flight),
-             actor(bird, "bird", at: .init(0.3, 0.15), stage: StickerStage(entrance: .fly, on: ["sky"]), moves: flight)],
+            [actor(bee, "bee", at: .init(0.5, 0.7), stage: StickerStage(entrance: .fly, on: ["sky"]), moves: hovering),
+             actor(bird, "bird", at: .init(0.3, 0.15), stage: StickerStage(entrance: .fly, on: ["sky"]), moves: hovering)],
             goes: [GoTrigger(at: 1, stickerID: "bird", kind: .to, target: "sky")])
         let hover = try #require(plans[bee]?.travel(at: 5))
         #expect(hover.move == "fly" && hover.stays)
@@ -190,6 +191,37 @@ import Testing
         // Bobbing gently where it is.
         let a = try #require(plans[bird]?.sample(at: 30)), b = try #require(plans[bird]?.sample(at: 30.4))
         #expect(a.position.y != b.position.y && abs(a.position.y - b.position.y) < 0.05)
+        #expect(a.position.x == b.position.x && a.position.z == b.position.z)
+    }
+
+    /// One that cannot hover never stops in the air: it flies a loop round
+    /// its spot, turning at each end, on screen, until it goes on — from
+    /// wherever it is on the loop, without a jump.
+    @Test func flyersThatCannotHoverCircle() throws {
+        let plans = plan(
+            [actor(bird, "bird", at: .init(0.3, 0.15), stage: StickerStage(entrance: .fly, on: ["sky"]), moves: flight),
+             actor(fox, "fox", at: .init(0.7, 0.2), moves: trot)],
+            goes: [GoTrigger(at: 1, stickerID: "bird", kind: .to, target: "sky"),
+                   GoTrigger(at: 21.3, stickerID: "bird", kind: .to, target: "fox")])
+        let bird = try #require(plans[self.bird])
+        let up = try #require(bird.legs.first { $0.at == 1 })
+        let loop = try #require(up.circling)
+        #expect(up.stays && loop.across > 0 && loop.toward > 0)
+        let lap = stride(from: up.end + 2, to: up.end + 7, by: 0.1).map { bird.sample(at: $0) }
+        let xs = lap.map(\.position.x), zs = lap.map(\.position.z)
+        #expect(xs.max()! - xs.min()! > loop.across && zs.max()! - zs.min()! > loop.toward / 2)
+        // Out its way, back the other.
+        #expect(lap.contains { $0.facing > 0.9 } && lap.contains { $0.facing < -0.9 })
+        for sample in lap {
+            let r = world.drawing(at: sample.position, size: testSpace().sizes["bird"] ?? 0.2, ratio: 1)
+            #expect(r.minX >= 0 && r.maxX <= 1000 && r.minY >= 0 && r.maxY <= 750)
+        }
+        // On to the fox from where it was on its loop.
+        let next = try #require(bird.legs.first { $0.at == 21.3 })
+        let before = bird.sample(at: next.at - 0.01), after = bird.sample(at: next.at + 0.01)
+        #expect((before.position - after.position).length < 0.02)
+        #expect(abs(before.facing - after.facing) < 0.2)
+        #expect((bird.sample(at: next.end).position - next.path.last!).length < 1e-6)
     }
 
     /// The world with a plane at depth 2 painted over the art's right
@@ -290,7 +322,7 @@ import Testing
                     pack.moves[sticker.id, default: []].append(StageMove(
                         id: id, cycle: loop ? 0.8 : nil, stride: json["stride"] as? Double ?? 0,
                         hops: json["hops"] as? Bool ?? false, flies: json["flies"] as? Bool ?? false,
-                        on: json["on"] as? [String] ?? [], stays: json["stays"] as? Bool ?? false,
+                        hovers: json["hovers"] as? Bool ?? false, on: json["on"] as? [String] ?? [], stays: json["stays"] as? Bool ?? false,
                         facing: (json["facing"] as? String).flatMap(StageMove.Facing.init(rawValue:)), seconds: loop ? 0 : 1))
                 }
                 if let place = json["place"] as? [String] {
@@ -327,6 +359,7 @@ import Testing
         let waterPlaces = Set(world.grounds.filter(\.water).map(\.place))
         let stickers = Dictionary(uniqueKeysWithValues: pack.manifest.stickers.map { ($0.id, $0) })
         var problems: [String] = []
+        var circling = 0
         for story in pack.manifest.stories {
             guard let sidecar = story.localizations["en-US"]?.effects,
                 let data = try? Data(contentsOf: pack.dir.appendingPathComponent(sidecar)),
@@ -360,7 +393,9 @@ import Testing
                 let plans = StageDirector.plan(
                     world: world, screen: screen, actors: actors, entrances: file.entranceTriggers, goes: goes,
                     policy: .standard, cast: cast, random: &random)
-                let end = (plans.values.flatMap(\.legs).map(\.end).max() ?? 0) + 1
+                // A whole lap past the last leg: whoever circles is seen all round its loop.
+                let end = (plans.values.flatMap(\.legs).map(\.end).max() ?? 0) + StagePlan.lapTime + 1
+                circling += plans.values.flatMap(\.legs).filter { $0.circling != nil }.count
                 for a in actors {
                     guard let plan = plans[a.id] else { continue }
                     let land = !(a.stage.on + a.moves.flatMap(\.on)).contains { waterPlaces.contains($0) }
@@ -405,6 +440,8 @@ import Testing
             let parts = p.split(separator: ":", maxSplits: 1)
             return parts[0] + ":" + (parts.count > 1 ? String(parts[1].split(separator: " at ")[0]) : "")
         }.map { "\($0.key) ×\($0.value.count) — first \($0.value.first!.split(separator: ":", maxSplits: 1).last!)" }.sorted()
+        // The birds, the owl and the woodpecker are left in the air now and then.
+        #expect(circling > 0)
         #expect(problems.isEmpty, "\(problems.count) problems:\n\(report.prefix(40).joined(separator: "\n"))")
     }
 }
