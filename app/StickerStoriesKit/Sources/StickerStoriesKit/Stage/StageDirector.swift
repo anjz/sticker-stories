@@ -1118,6 +1118,10 @@ public enum StageDirector {
             var path: [Vec3]
             if policy.isCalm {
                 path = [from, target.position]
+            } else if kind == .shuffle, from.y > 0.01 || target.position.y > 0.01 {
+                // Shuffling over in a row on someone's back: along it, not
+                // down to the ground and up again.
+                path = [from, target.position]
             } else if flies {
                 // Up through the air and down: an arc over whatever lies
                 // between (never skimming the pond).
@@ -1139,7 +1143,8 @@ public enum StageDirector {
                 let bounds = groundBounds(start, target.position.ground)
                 let ground = GroundPaths.path(
                     from: start, to: target.position.ground,
-                    walkable: { [world] p in world.canPass(at: p, belongsIn: belongs) }, bounds: bounds)
+                    walkable: { [world] p in world.canPass(at: p, belongsIn: belongs) },
+                    crosses: { [world] p, q in world.crossesBlocked(from: p, to: q, belongsIn: belongs) }, bounds: bounds)
                 path = (lead + ground).map(\.onGround)
                 if from.y > 0.01 { path.insert(from, at: 0) }
                 if target.position.y > 0.01 { path.append(target.position) }

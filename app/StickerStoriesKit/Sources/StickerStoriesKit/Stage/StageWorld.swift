@@ -197,6 +197,13 @@ public struct StageWorld: Sendable {
         return line * k * k * (3 - 2 * k)
     }
 
+    /// Whether a walker that belongs in `belongs` crosses, going straight
+    /// from `p` to `q`, water it does not belong in or a plane's footprint.
+    public func crossesBlocked(from p: Vec2, to q: Vec2, belongsIn belongs: Set<String>) -> Bool {
+        footprints.contains { $0.crosses(from: p, to: q) }
+            || grounds.contains { $0.water && !belongs.contains($0.place) && $0.polygon.crosses(from: p, to: q) }
+    }
+
     /// The ground place at `p` (the water first: it lies in the meadow).
     public func place(at p: Vec2) -> String? {
         water(at: p) ?? grounds.first { !$0.water && $0.polygon.contains(p) }?.place

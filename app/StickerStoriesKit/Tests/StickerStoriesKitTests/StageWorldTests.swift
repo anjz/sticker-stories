@@ -66,6 +66,19 @@ func testWorld() -> StageWorld {
         #expect(near > 0 && near < 0.25)
     }
 
+    @Test func aStraightWayCrossesAPondsSharpCorner() {
+        // A sliver of water a centimetre deep: samples a few apart step over it.
+        let corner = GroundPolygon([Vec2(0, 0), Vec2(1, 0), Vec2(0.5, 0.01)])
+        #expect(corner.crosses(from: Vec2(0.5, -0.5), to: Vec2(0.5, 0.5)))
+        #expect(!corner.crosses(from: Vec2(-1, 0.5), to: Vec2(2, 0.5)))
+        // Along an edge, or ending on it, is not crossing.
+        #expect(!corner.crosses(from: Vec2(0, 0), to: Vec2(1, 0)))
+        #expect(!corner.crosses(from: Vec2(0.5, -1), to: Vec2(0.5, 0)))
+        // Lying wholly in it is.
+        let pond = GroundPolygon([Vec2(0, 0), Vec2(1, 0), Vec2(1, 1), Vec2(0, 1)])
+        #expect(pond.crosses(from: Vec2(0.2, 0.5), to: Vec2(0.8, 0.5)))
+    }
+
     @Test func walkersGoRoundThePond() {
         let w = testWorld()
         let a = w.groundPoint(.init(0.3, 0.25)), b = w.groundPoint(.init(0.8, 0.25))

@@ -80,8 +80,11 @@ Plans the whole story at once, from the cast and the story's triggers:
    their depth, on or under them, at a free spot of a place (in it, or on
    its shore for one that does not belong in its water), off the stage,
    back home. Walkers follow a path on the ground around water and roots
-   (A* on a grid of the ground plane, then straightened) — across any
-   ground, not only the places they may stop in; a way that
+   (A* on a grid of the ground plane, then straightened, each straight
+   stretch checked exactly against the water's outline and the roots so
+   it never cuts a pond's corner) — across any ground, not only the places
+   they may stop in; one riding on someone's back shuffles along it, never
+   down to the ground and up; a way that
    belongs to the water walks to its edge and swims the rest; flyers arc
    up through the air and down. Every leg's time follows the distance in the
    world and the sticker's gait: a walker's leg takes as long as its steps

@@ -64,6 +64,24 @@ public struct GroundPolygon: Equatable, Sendable {
         return inside
     }
 
+    /// Whether the straight way from `p` to `q` goes into the polygon:
+    /// through one of its edges, or lying in it. Exact, so it catches a
+    /// sharp corner thinner than any sampling step; only touching an edge
+    /// does not count.
+    public func crosses(from p: Vec2, to q: Vec2) -> Bool {
+        func side(_ a: Vec2, _ b: Vec2, _ c: Vec2) -> Double { (b.x - a.x) * (c.z - a.z) - (b.z - a.z) * (c.x - a.x) }
+        let eps = 1e-9
+        for (i, a) in points.enumerated() {
+            let b = points[(i + 1) % points.count]
+            let d1 = side(p, q, a), d2 = side(p, q, b), d3 = side(a, b, p), d4 = side(a, b, q)
+            if ((d1 > eps && d2 < -eps) || (d1 < -eps && d2 > eps)) && ((d3 > eps && d4 < -eps) || (d3 < -eps && d4 > eps)) {
+                return true
+            }
+        }
+        let middle = p + (q - p) * 0.5
+        return contains(middle) && distance(to: middle) > eps
+    }
+
     /// How far `p` is from the polygon's edge.
     public func distance(to p: Vec2) -> Double {
         var best = Double.infinity

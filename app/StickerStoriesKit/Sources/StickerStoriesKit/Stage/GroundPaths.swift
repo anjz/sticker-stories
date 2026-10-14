@@ -8,13 +8,19 @@ public enum GroundPaths {
     /// The way from `a` to `b` for a walker: `[a, …, b]`. `walkable` says
     /// where it may go; `a` and `b` themselves always count as walkable (a
     /// child's sticker standing somewhere odd can still walk out). When no
-    /// way exists it goes straight.
-    public static func path(from a: Vec2, to b: Vec2, walkable: @escaping (Vec2) -> Bool, bounds: (min: Vec2, max: Vec2)) -> [Vec2] {
+    /// way exists it goes straight. `crosses`, when given, says exactly
+    /// whether a straight stretch goes through what it cannot cross, which
+    /// samples along it can step over (a pond's sharp corner).
+    public static func path(
+        from a: Vec2, to b: Vec2, walkable: @escaping (Vec2) -> Bool, crosses: ((Vec2, Vec2) -> Bool)? = nil,
+        bounds: (min: Vec2, max: Vec2)
+    ) -> [Vec2] {
         let span = max(bounds.max.x - bounds.min.x, bounds.max.z - bounds.min.z, 0.1)
         let cell = max(0.03, span / 140)
         let clear = { (p: Vec2, q: Vec2) -> Bool in
             let steps = max(1, Int((q - p).length / (cell * 0.5)))
             return (1..<steps).allSatisfy { i in walkable(p + (q - p) * (Double(i) / Double(steps))) }
+                && crosses?(p, q) != true
         }
         if clear(a, b) { return [a, b] }
 
