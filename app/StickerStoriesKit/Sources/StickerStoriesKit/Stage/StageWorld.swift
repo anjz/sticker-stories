@@ -184,6 +184,19 @@ public struct StageWorld: Sendable {
         return p.z > 0.05 && p.z <= space.back
     }
 
+    /// How deep a sticker floats at `p`, as a fraction of its drawing's
+    /// height under the water: the `waterline` of its way that belongs in
+    /// the water there (a duckling swimming), eased in over `ramp` from the
+    /// water's edge so it sinks in as it swims in and rises as it climbs
+    /// out; 0 on land, up in the air, or in water it does not float in.
+    public func afloat(at p: Vec3, moves: [StageMove], ramp: Double) -> Double {
+        guard p.y < 0.01, let ground = grounds.first(where: { $0.water && $0.polygon.contains(p.ground) }),
+            let line = moves.first(where: { $0.waterline > 0 && $0.on.contains(ground.place) })?.waterline
+        else { return 0 }
+        let k = min(ground.polygon.distance(to: p.ground) / max(ramp, 1e-6), 1)
+        return line * k * k * (3 - 2 * k)
+    }
+
     /// The ground place at `p` (the water first: it lies in the meadow).
     public func place(at p: Vec2) -> String? {
         water(at: p) ?? grounds.first { !$0.water && $0.polygon.contains(p) }?.place

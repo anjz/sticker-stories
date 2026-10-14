@@ -130,7 +130,7 @@ func (c *ctxt) install(r *rigSpec, templates map[string]animSpec, drop bool) err
 		side := manifest.StickerAnimation{
 			ID: a.ID, Sticker: r.Sticker, Kind: a.Kind, Description: a.Description, StickerBox: box,
 			Pause: a.Pause, Perched: a.Perched, Idle: a.Idle, Place: a.Place, Loop: a.Loop, Facing: a.Facing, Stride: a.Stride,
-			Hops: a.Hops, Flies: a.Flies, Hovers: a.Hovers, On: a.On, Stays: a.Stays, Particles: a.Particles,
+			Hops: a.Hops, Flies: a.Flies, Hovers: a.Hovers, On: a.On, Stays: a.Stays, Waterline: a.Waterline, Particles: a.Particles,
 			Puppet: &manifest.AnimationPuppet{Rig: "anims/" + r.Sticker + ".rig.json", Keys: a.Keys, Wings: a.Wings},
 		}
 		path := filepath.Join(c.packDir, filepath.FromSlash(paths[i]))

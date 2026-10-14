@@ -282,12 +282,17 @@ public struct StageMove: Equatable, Sendable {
     /// instead of settling into its sticker pose, which would stand it on
     /// the water.
     public var stays: Bool
+    /// How deep it floats in water among `on` (a duckling swimming): the
+    /// fraction of its drawing's height, from its feet, under the water;
+    /// 0 for one that does not float (`StageWorld.afloat`).
+    public var waterline: Double
     public var facing: Facing?
     public var seconds: TimeInterval
 
     public init(
         id: String = "", cycle: TimeInterval? = nil, stride: Double = 0, hops: Bool = false, flies: Bool = false,
-        hovers: Bool = false, on: [String] = [], stays: Bool = false, facing: Facing? = nil, seconds: TimeInterval = 0
+        hovers: Bool = false, on: [String] = [], stays: Bool = false, waterline: Double = 0, facing: Facing? = nil,
+        seconds: TimeInterval = 0
     ) {
         self.id = id
         self.cycle = cycle
@@ -297,6 +302,7 @@ public struct StageMove: Equatable, Sendable {
         self.hovers = hovers
         self.on = on
         self.stays = stays
+        self.waterline = waterline
         self.facing = facing
         self.seconds = seconds
     }

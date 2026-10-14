@@ -73,6 +73,8 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// The flight can hold still in the air (`StageMove.hovers`).
     var hovers: Bool?
     var on: [String]?
+    /// How deep it floats in water among `on` (`StageMove.waterline`).
+    var waterline: Double?
     var stays: Bool?
     /// An action that happens in one place: the features it needs (the
     /// woodpecker's tap: the trunks).
@@ -124,7 +126,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
 
     private enum CodingKeys: String, CodingKey {
         case id, sticker, kind, sheet, frame, columns, count, rest, stickerBox, hold, pause, loop, facing, stride, hops,
-            flies, hovers, on, stays, place, idle, particles, puppet
+            flies, hovers, on, stays, waterline, place, idle, particles, puppet
     }
 
     /// A particle cue that decodes or is skipped (an effect this build
@@ -170,6 +172,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         hovers = try? c.decodeIfPresent(Bool.self, forKey: .hovers)
         on = try? c.decodeIfPresent([String].self, forKey: .on)
         stays = try? c.decodeIfPresent(Bool.self, forKey: .stays)
+        waterline = try? c.decodeIfPresent(Double.self, forKey: .waterline)
         place = try? c.decodeIfPresent([String].self, forKey: .place)
         idle = kind == .action && ((try? c.decodeIfPresent(Bool.self, forKey: .idle)) ?? nil) == true
         let cues = (try? c.decodeIfPresent([LenientCue].self, forKey: .particles)) ?? nil
@@ -217,7 +220,8 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
             guard let stride, stride > 0 else { return nil }
             return StageMove(
                 id: id, cycle: timing.loopDuration, stride: stride, hops: hops ?? false, flies: flies ?? false,
-                hovers: hovers ?? false, on: on ?? [], stays: stays ?? false, facing: facing)
+                hovers: hovers ?? false, on: on ?? [], stays: stays ?? false,
+                waterline: min(max(waterline ?? 0, 0), 0.95), facing: facing)
         }
         return StageMove(id: id, seconds: timing.duration(.move(travel: 0)) ?? 0)
     }

@@ -264,10 +264,11 @@ never letterboxes:
     boxes outside the unit square, a `kind` other than `action`/`move`,
     a second move for one sticker without a `loop`, a `pause` on a move
     or a `perched` or `place` on a move, a `place` naming no feature, an area `facing` other than left/right or on a stage area, a `pause` outside the middle frames or without `shows`, a `loop`, `facing`,
-    `stride`, `hops`, `flies`, `hovers`, `on` or `stays` on an action or
-    a move without a loop, a loop outside the frames, a looping move
-    without `facing` left/right or with a `stride` outside 0–5, `hops`
-    with `flies`, `hovers` without `flies`, `stays` without `on`, an
+    `stride`, `hops`, `flies`, `hovers`, `on`, `stays` or `waterline` on
+    an action or a move without a loop, a loop outside the frames, a
+    looping move without `facing` left/right or with a `stride` outside
+    0–5, `hops` with `flies`, `hovers` without `flies`, `stays` or
+    `waterline` without `on`, a `waterline` outside 0–1 (1 excluded), an
     `on` naming no feature are
     errors); the app checks the file exists and reads it **leniently**
     (an undecodable sidecar is skipped with a log, never fatal; a pause
@@ -644,6 +645,7 @@ the sticker's puppet made by `tools/author/stickerrig` ("Puppets"; then
 | `hovers` | moves with `flies`, optional: `true` when the flight can hold still in the air (a bee, a butterfly): resting in the air, it stays put with a gentle bob, its loop going. Without it the character cannot hover (a bird, an owl): the app keeps it flying a slow loop round its spot, turning as it goes, for as long as the story leaves it in the air (`docs/stage3d.md`, "In the air") |
 | `on` | moves with a loop, optional: feature ids (`features` above) a story that brings the character in this way lands it on, in order of preference — the duckling swimming in lands on the pond; empty for its `stage`'s |
 | `stays` | moves with a loop and `on`, optional: `true` when the character stays in its element once this way has taken it into one of `on` — the surfer out on the waves, a pelican afloat: the app keeps the loop going where it is instead of settling into the sticker pose, which would stand it on the water (`docs/effects.md`, "Movement") |
+| `waterline` | moves with a loop and `on`, optional: how deep the character floats while it is in water among `on` (a feature `water` in the space, "Space"), as a fraction of its drawing's height from its feet — the duckling swimming, `0.3`: its feet and the bottom of its belly are under water. Whatever it does there (swims, quacks, naps), the app hides that part of it and its shadow, sinking it in as it enters and out as it leaves, and draws a ripple where it meets the water (`docs/stage3d.md`, "In the water"). Packs with a space only |
 | `particles` | optional: bursts the frames fire as they first come on show — `[{ "frame": 6, "effect": "dust-puff", "x": 0.5, "y": 0.86, "intensity"?: 0.5, "color"?: "#RRGGBB" }]`: the 0-based frame, a particle effect (`dust-puff`, `spray` or `sparks`, `docs/effects.md`), the point of the **sticker image** it comes from (fractions, top-left origin like `stickerBox`; −0.5–1.5 so a flame's tip can be just outside), and optional intensity (0–1) and colour. A landing's dust, a touchdown, a splash: the frames never draw particles themselves (`docs/pack-art.md`). They follow the pack's `world` ("World") and play wherever the animation plays — an action, an entrance, a move — but not under Reduce Motion or calm mode, where live animations don't play |
 | `puppet` | the animation as keyframes for the sticker's puppet ("Puppets" below) — `{ "rig": "anims/owl.rig.json", "keys": [...] }`. Required without a sheet. Beside a sheet it is optional and plays instead of the frames, with its own `"pause"?: 11, "loop"?: { "from": 1, "to": 4 }, "stride"?: 1.2`, counted in keys: `pause` given exactly when the sidecar has one and `loop` exactly when it has one. A move that `flies` can name its `"wings"?: ["wingL", "wingR"]`: bones of the rig its flight keeps going — with every bone hanging on them and their slots — whatever else the character does while it is in the air (it talks, laughs or holds a pose and its wings beat on) |
 

@@ -323,7 +323,7 @@ import Testing
                         id: id, cycle: loop ? 0.8 : nil, stride: json["stride"] as? Double ?? 0,
                         hops: json["hops"] as? Bool ?? false, flies: json["flies"] as? Bool ?? false,
                         hovers: json["hovers"] as? Bool ?? false, on: json["on"] as? [String] ?? [], stays: json["stays"] as? Bool ?? false,
-                        facing: (json["facing"] as? String).flatMap(StageMove.Facing.init(rawValue:)), seconds: loop ? 0 : 1))
+                        waterline: json["waterline"] as? Double ?? 0, facing: (json["facing"] as? String).flatMap(StageMove.Facing.init(rawValue:)), seconds: loop ? 0 : 1))
                 }
                 if let place = json["place"] as? [String] {
                     pack.places[LiveAnimationKey(stickerID: sticker.id, animationID: id)] = place
@@ -410,6 +410,12 @@ import Testing
                         let settling = plan.legs.contains { $0.kind == .settle && $0.at <= t && t < $0.end }
                         if land, onFoot, !settling, let water = world.water(at: s.position.ground) {
                             problems.append("\(tag): in the \(water) at \(String(format: "%.1f", t))")
+                        }
+                        // In the water only afloat, its feet under it (never standing in it).
+                        if !land, onFoot, !settling, let water = world.water(at: s.position.ground),
+                            !a.moves.contains(where: { $0.waterline > 0 && $0.on.contains(water) })
+                        {
+                            problems.append("\(tag): standing in the \(water) at \(String(format: "%.1f", t))")
                         }
                         let moving = plan.legs.contains { $0.at <= t && t < $0.end }
                         if !moving, t >= StageDirector.settle, s.support != .off {

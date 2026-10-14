@@ -51,6 +51,21 @@ func testWorld() -> StageWorld {
         #expect(w.perches.count == 2 && w.perches.allSatisfy { $0.depth == 2 } && w.airs.count == 1)
     }
 
+    @Test func floatsAtItsWaterlineOnlyInItsWater() {
+        let w = testWorld()
+        let swim = [StageMove(id: "swim", cycle: 0.8, stride: 0.5, on: ["pond"], waterline: 0.25, facing: .right)]
+        let middle = w.groundPoint(.init(0.55, 0.25)).onGround
+        #expect(abs(w.afloat(at: middle, moves: swim, ramp: 0.05) - 0.25) < 1e-9)
+        // Nothing on land, up in the air, or for a way with no waterline.
+        #expect(w.afloat(at: w.groundPoint(.init(0.55, 0.12)).onGround, moves: swim, ramp: 0.05) == 0)
+        #expect(w.afloat(at: middle + Vec3(0, 0.2, 0), moves: swim, ramp: 0.05) == 0)
+        #expect(w.afloat(at: middle, moves: [StageMove(id: "swim", cycle: 0.8, stride: 0.5, on: ["pond"])], ramp: 0.05) == 0)
+        // Sinking in from the edge: shallower near it.
+        let edge = w.groundPoint(.init(0.55, 0.2)), inside = edge + (middle.ground - edge) * 0.02
+        let near = w.afloat(at: inside.onGround, moves: swim, ramp: 1)
+        #expect(near > 0 && near < 0.25)
+    }
+
     @Test func walkersGoRoundThePond() {
         let w = testWorld()
         let a = w.groundPoint(.init(0.3, 0.25)), b = w.groundPoint(.init(0.8, 0.25))

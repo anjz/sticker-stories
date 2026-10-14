@@ -1653,7 +1653,7 @@ final class CanvasScene: SKScene {
         let plans = StageDirector.plan(
             world: world, screen: screen, actors: actors, entrances: entrances, goes: goes, policy: policy, cast: cast,
             random: &random)
-        return StoryStage(world: world, plans: plans, nodes: nodes, drawing: drawing)
+        return StoryStage(world: world, plans: plans, moves: stageMoves, nodes: nodes, drawing: drawing)
     }
 
     /// What the planes in front of the background hide, each at its depth,
@@ -1927,6 +1927,7 @@ final class CanvasScene: SKScene {
             arrivedLegs.removeAll()
             for node in allStickerNodes() where !node.isVisitor {
                 node.facing = 1
+                node.float(0, drawing: drawingBox(of: node.stickerID))
                 node.stopLive()
                 if node.face != ExpressionTrigger.normal, let normal = stickerTextures[node.stickerID] {
                     node.showFace(ExpressionTrigger.normal, texture: normal, fade: 0)
@@ -1993,6 +1994,7 @@ final class CanvasScene: SKScene {
                 deltas[id] = delta
                 node.facing = CGFloat(frame.facing)
                 node.zPosition = frame.z
+                node.float(frame.afloat, drawing: drawingBox(of: node.stickerID))
             }
         }
         session.applier.apply(deltas, to: nodes)

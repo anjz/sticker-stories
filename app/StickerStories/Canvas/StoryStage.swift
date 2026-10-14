@@ -10,6 +10,8 @@ import StickerStoriesKit
 final class StoryStage {
     let world: StageWorld
     let plans: [UUID: StagePlan]
+    /// Each sticker's ways about (`StageMove`): how deep it floats.
+    private let moves: [String: [StageMove]]
     /// Where each sticker's drawing sits in its image (fractions, origin
     /// bottom-left).
     private let drawing: (String) -> CGRect
@@ -17,9 +19,13 @@ final class StoryStage {
     /// eases from its own to the stage's over the settle.
     private(set) var childPlacements: [UUID: StickerPlacement] = [:]
 
-    init(world: StageWorld, plans: [UUID: StagePlan], nodes: [StickerNode], drawing: @escaping (String) -> CGRect) {
+    init(
+        world: StageWorld, plans: [UUID: StagePlan], moves: [String: [StageMove]], nodes: [StickerNode],
+        drawing: @escaping (String) -> CGRect
+    ) {
         self.world = world
         self.plans = plans
+        self.moves = moves
         self.drawing = drawing
         for node in nodes where !node.isVisitor { childPlacements[node.instanceID] = node.placement }
     }
@@ -50,8 +56,11 @@ final class StoryStage {
     }
 
     /// Where a sticker is drawn at `time`: the placement its effects compose
-    /// on, how visible it is, which way it faces, and its z.
-    func frame(of node: StickerNode, at time: TimeInterval) -> (base: StickerPlacement, opacity: Double, facing: Double, z: CGFloat)? {
+    /// on, how visible it is, which way it faces, its z, and how deep it
+    /// floats (`StageWorld.afloat`).
+    func frame(of node: StickerNode, at time: TimeInterval) -> (
+        base: StickerPlacement, opacity: Double, facing: Double, z: CGFloat, afloat: Double
+    )? {
         guard let plan = plans[node.instanceID] else { return nil }
         let s = plan.sample(at: time)
         let box = drawing(node.stickerID)
@@ -73,7 +82,9 @@ final class StoryStage {
                 x: child.x + (base.x - child.x) * k, y: child.y + (base.y - child.y) * k,
                 rotation: child.rotation * (1 - k), scale: child.scale + (base.scale - child.scale) * k)
         }
-        return (base, s.opacity, s.facing, zPosition(forDepth: s.position.z) + CGFloat(s.arrivedAt) * 1e-4)
+        // Sinking in over its first half-height into the water.
+        let afloat = world.afloat(at: s.position, moves: moves[node.stickerID] ?? [], ramp: plan.size * 0.5)
+        return (base, s.opacity, s.facing, zPosition(forDepth: s.position.z) + CGFloat(s.arrivedAt) * 1e-4, afloat)
     }
 
     /// Where a depth is in the scene's z order: nearer is higher, between

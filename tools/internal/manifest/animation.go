@@ -103,6 +103,12 @@ type StickerAnimation struct {
 	// On (the surfer out on the waves), the loop keeps going where it is
 	// instead of settling into the sticker pose. Needs On.
 	Stays bool `json:"stays,omitempty"`
+	// Waterline is how deep the character floats while it is in water
+	// among On: the fraction of its drawing's height, from its feet, that
+	// is under the water (a duckling swimming: its feet and the bottom of
+	// its belly). The app hides that part and draws a ripple where it
+	// meets the water, whatever the character does there. Needs On.
+	Waterline float64 `json:"waterline,omitempty"`
 	// Particles are bursts the frames fire as they come on show — a
 	// landing's dust, a splash — since stickers never draw particles
 	// themselves (docs/effects.md, "Particles"). Optional.
@@ -217,8 +223,8 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	count := a.Frames()
 	switch a.EffectiveKind() {
 	case KindAction:
-		if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || a.Hovers || len(a.On) > 0 || a.Stays {
-			fail("loop, facing, stride, hops, flies, hovers, on and stays belong to a move, not an action")
+		if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || a.Hovers || len(a.On) > 0 || a.Stays || a.Waterline != 0 {
+			fail("loop, facing, stride, hops, flies, hovers, on, stays and waterline belong to a move, not an action")
 		}
 		if p := a.Pause; p != nil {
 			if p.Frame < 1 || p.Frame > count-2 {
@@ -253,8 +259,14 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 			if a.Stays && len(a.On) == 0 {
 				fail("stays needs on: the places where the move keeps going")
 			}
-		} else if a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || a.Hovers || len(a.On) > 0 || a.Stays {
-			fail("facing, stride, hops, flies, hovers, on and stays need a loop")
+			if a.Waterline != 0 && len(a.On) == 0 {
+				fail("waterline needs on: the water the character floats in")
+			}
+			if a.Waterline < 0 || a.Waterline >= 1 {
+				fail("waterline %g must be a fraction of the drawing's height, at least 0 and below 1", a.Waterline)
+			}
+		} else if a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || a.Hovers || len(a.On) > 0 || a.Stays || a.Waterline != 0 {
+			fail("facing, stride, hops, flies, hovers, on, stays and waterline need a loop")
 		}
 	default:
 		fail("kind %q must be action or move", a.Kind)

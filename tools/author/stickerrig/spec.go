@@ -97,6 +97,7 @@ type animSpec struct {
 	Wings       []string                     `json:"wings,omitempty"`
 	On          []string                     `json:"on,omitempty"`
 	Stays       bool                         `json:"stays,omitempty"`
+	Waterline   float64                      `json:"waterline,omitempty"`
 	Particles   []manifest.AnimationParticle `json:"particles,omitempty"`
 	Keys        []manifest.PuppetKey         `json:"keys,omitempty"`
 }

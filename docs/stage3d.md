@@ -110,6 +110,21 @@ talk, a laugh, a held pose) plays on the rest of its body while the
 flight keeps the bones its sidecar names as `wings` — and whatever hangs
 on them — beating (`PuppetPose.flying`).
 
+## In the water
+
+Only a sticker with a way that belongs to the water goes into it (a move
+with that water in its `on`: the duckling `by swim`); anyone else stops
+on the bank and walks round it. In the water it floats: its move's
+`waterline` (`docs/pack-format.md`) is how much of its drawing, from its
+feet, is under the water. Whatever it does there — swims, quacks, naps —
+its puppet and its shadow are cut off at the waterline and sunk by as
+much, so the waterline lies where its feet were, and ripples ring it
+there, the far half behind it and the near half in front
+(`StageWorld.afloat`, `StickerNode.float`). It sinks in over its first
+half-height into the water and rises as it climbs out. A sticker in water
+without a waterline would stand on the water, so the Forest staging test
+fails one.
+
 ## Alive at rest
 
 Every puppet on the stage takes over from its still art as the story

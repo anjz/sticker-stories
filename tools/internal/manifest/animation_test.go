@@ -67,6 +67,13 @@ func TestAnimationsValidate(t *testing.T) {
 		{"stays without on", func(a *StickerAnimation) {
 			a.Kind, a.Loop, a.Facing, a.Stride, a.Stays = KindMove, &FrameRange{From: 1, To: 6}, "left", 0.5, true
 		}, "stays needs on"},
+		{"waterline on an action", func(a *StickerAnimation) { a.Waterline = 0.3 }, "belong to a move"},
+		{"waterline without on", func(a *StickerAnimation) {
+			a.Kind, a.Loop, a.Facing, a.Stride, a.Waterline = KindMove, &FrameRange{From: 1, To: 6}, "left", 0.5, 0.3
+		}, "waterline needs on"},
+		{"waterline of the whole drawing", func(a *StickerAnimation) {
+			a.Kind, a.Loop, a.Facing, a.Stride, a.On, a.Waterline = KindMove, &FrameRange{From: 1, To: 6}, "left", 0.5, []string{"pond"}, 1
+		}, "below 1"},
 		{"hovers on an action", func(a *StickerAnimation) { a.Hovers = true }, "belong to a move"},
 		{"hovers without flies", func(a *StickerAnimation) {
 			a.Kind, a.Loop, a.Facing, a.Stride, a.Hovers = KindMove, &FrameRange{From: 1, To: 6}, "left", 0.5, true

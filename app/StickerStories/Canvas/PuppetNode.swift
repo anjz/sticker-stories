@@ -83,18 +83,24 @@ final class PuppetNode: SKEffectNode {
     private var shownTween: LiveTween?
     private var jump: (from: PuppetPose, at: TimeInterval)?
     private static let jumpTime: TimeInterval = 0.18
+    /// Holds the bones: cuts the puppet off at the waterline while it
+    /// floats (`float`), showing it whole otherwise.
+    private let crop = SKCropNode()
+    private let span: CGSize
 
     /// - Parameter size: the sticker's unscaled size, which the rig's
     ///   square spans.
     init(_ puppet: LoadedPuppet, size: CGSize, look: Look) {
         self.puppet = puppet
+        span = size
         super.init()
         let rig = puppet.rig
         let root = SKNode()
         // The rig's top-left at the sticker's top-left, its px to points.
         root.position = CGPoint(x: -size.width / 2, y: size.height / 2)
         root.setScale(size.width / rig.size)
-        addChild(root)
+        addChild(crop)
+        crop.addChild(root)
         var rest: [String: CGPoint] = [:]
         for bone in rig.bones {
             let node = SKNode()
@@ -243,6 +249,27 @@ final class PuppetNode: SKEffectNode {
         }
     }
 
+    /// Afloat: everything below `waterline` (in the sticker's unscaled
+    /// space) is under the water and hidden, and the puppet sinks by
+    /// `sink` so that its waterline lies where its feet were. A `sink` of
+    /// 0 shows it whole where it stands.
+    func float(waterline: CGFloat, sink: CGFloat) {
+        guard sink > 0.5 else {
+            crop.maskNode = nil
+            crop.position = .zero
+            return
+        }
+        let mask = crop.maskNode as? SKSpriteNode ?? {
+            // Wide and tall enough for wings spread and a jump.
+            let m = SKSpriteNode(color: .white, size: CGSize(width: span.width * 4, height: span.height * 4))
+            m.anchorPoint = CGPoint(x: 0.5, y: 0)
+            crop.maskNode = m
+            return m
+        }()
+        mask.position = CGPoint(x: 0, y: waterline)
+        crop.position = CGPoint(x: 0, y: -sink)
+    }
+
     /// Tints the art (a sticker effect's tint), keeping a part's shade.
     func setTint(_ color: UIColor?, amount: CGFloat) {
         for nodes in slots.values {
@@ -303,6 +330,89 @@ extension StickerNode {
         defer { liveFrame = state.frame }
         return state.frame != liveFrame ? state.frame : nil
     }
+
+    /// Afloat in water (`StageWorld.afloat`): `depth` of its drawing's
+    /// height (`drawing`, fractions of the image, origin bottom-left), from
+    /// its feet, is under the water. The puppet and its shadows are cut off
+    /// at the waterline and sunk by as much, so the waterline lies where
+    /// its feet were, and ripples ring it there. 0 shows it whole again.
+    /// Only a puppet floats: the still art stands where it is.
+    func float(_ depth: Double, drawing: CGRect) {
+        let base = unscaledSize
+        let feet = CGPoint(x: (drawing.midX - 0.5) * base.width, y: (drawing.minY - 0.5) * base.height)
+        let sink = puppetNode == nil ? 0 : CGFloat(depth) * drawing.height * base.height
+        puppetNode?.float(waterline: feet.y + sink, sink: sink)
+        for shadow in puppetShadows { shadow.float(waterline: feet.y + sink, sink: sink) }
+        let ripple = childNode(withName: Self.rippleName)
+        guard sink > 0.5 else {
+            ripple?.removeFromParent()
+            return
+        }
+        let rings = ripple ?? Self.makeRipple(width: drawing.width * base.width)
+        if ripple == nil { addChild(rings) }
+        rings.position = feet
+        // Fully ringed once it is a little way in.
+        rings.alpha = min(sink / max(0.06 * drawing.height * base.height, 1), 1)
+    }
+
+    private static let rippleName = "afloat-ripple"
+
+    /// Ripples round a sticker afloat, `width` across: a ring where it
+    /// meets the water and two more spreading out from it in turn, each
+    /// in two halves — the far one behind the puppet, the near one in
+    /// front, so the ring goes round it.
+    private static func makeRipple(width: CGFloat) -> SKNode {
+        let node = SKNode()
+        node.name = rippleName
+        let (back, front) = rippleHalves
+        let size = CGSize(width: width * 1.15, height: width * 1.15 * 0.24)
+        func ring(alpha: CGFloat) -> SKNode {
+            let ring = SKNode()
+            for (texture, z, y) in [(back, 0.45, size.height / 4), (front, 0.55, -size.height / 4)] {
+                let half = SKSpriteNode(texture: texture, size: CGSize(width: size.width, height: size.height / 2))
+                half.position = CGPoint(x: 0, y: y)
+                half.zPosition = z
+                half.alpha = alpha
+                ring.addChild(half)
+            }
+            return ring
+        }
+        node.addChild(ring(alpha: 0.75))
+        for delay in [0.0, 0.9] {
+            let spreading = ring(alpha: 0.6)
+            spreading.alpha = 0
+            spreading.run(.sequence([
+                .wait(forDuration: delay),
+                .repeatForever(.sequence([
+                    .group([.scale(to: 1, duration: 0), .fadeAlpha(to: 1, duration: 0)]),
+                    .group([.scale(to: 1.45, duration: 1.8), .fadeOut(withDuration: 1.8)]),
+                ])),
+            ]))
+            node.addChild(spreading)
+        }
+        return node
+    }
+
+    /// A ripple ring's far and near halves.
+    private static let rippleHalves: (back: SKTexture, front: SKTexture) = {
+        let size = CGSize(width: 256, height: 64)
+        let image = UIGraphicsImageRenderer(size: size).image { context in
+            let cg = context.cgContext
+            let rect = CGRect(origin: .zero, size: size).insetBy(dx: 6, dy: 6)
+            cg.setStrokeColor(UIColor(white: 1, alpha: 0.9).cgColor)
+            cg.setLineWidth(5)
+            cg.strokeEllipse(in: rect)
+            cg.setStrokeColor(UIColor(red: 0.2, green: 0.45, blue: 0.55, alpha: 0.35).cgColor)
+            cg.setLineWidth(3)
+            cg.strokeEllipse(in: rect.insetBy(dx: 5, dy: 4))
+        }
+        let texture = SKTexture(image: image)
+        // Texture rects have their origin at the bottom-left: the far half is the top.
+        return (
+            SKTexture(rect: CGRect(x: 0, y: 0.5, width: 1, height: 0.5), in: texture),
+            SKTexture(rect: CGRect(x: 0, y: 0, width: 1, height: 0.5), in: texture)
+        )
+    }()
 
     /// The puppet on show, if any (an animation playing or parked).
     var puppetNode: PuppetNode? { childNode(withName: Self.liveNodeName) as? PuppetNode }
