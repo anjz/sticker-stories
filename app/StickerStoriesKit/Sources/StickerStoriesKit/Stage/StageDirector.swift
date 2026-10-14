@@ -860,21 +860,29 @@ public enum StageDirector {
                 onScreen(i, at: Vec3(t.x + side * spacing, 0, t.z))
             }
             if !room(side), room(-side) { side = -side }
-            let z = max(t.z - StageDirector.inFront, 0.1)
+            var z = max(t.z - StageDirector.inFront, 0.1)
             let spotX = { (side: Double, out: Double) -> Double in
                 t.x + side * spacing * (out + 0.85 * Double(onSide(side) / 2 * 2) / 2)
             }
             if let toward { side = toward == .right ? 1 : -1 }
-            // Not behind a tree: the other side, or a step further out,
-            // when that shows it.
+            // Not behind a tree: the other side, or a step further out —
+            // or nearer, out from under its low branches — when that shows
+            // it.
             var x = spotX(side, 1)
             var behind = hidden(i, at: Vec3(x, 0, z))
             if behind > 0.2 {
-                for (s, out) in [(side, 1.6), (-side, 1), (-side, 1.6)] where toward == nil || s == side {
+                let near = world.space.stand.near
+                var tries: [(Double, Double, Double)] = []
+                for dz in [0, 0.4, 0.8] where dz == 0 || z - dz >= near {
+                    for (s, out) in [(side, 1.0), (side, 1.6), (-side, 1), (-side, 1.6)] where dz > 0 || out != 1 || s != side {
+                        tries.append((s, out, z - dz))
+                    }
+                }
+                for (s, out, depth) in tries where toward == nil || s == side {
                     let other = spotX(s, out)
-                    guard onScreen(i, at: Vec3(other, 0, z)) else { continue }
-                    let h = hidden(i, at: Vec3(other, 0, z))
-                    if h < behind - 0.15 { (x, behind) = (other, h) }
+                    guard onScreen(i, at: Vec3(other, 0, depth)) else { continue }
+                    let h = hidden(i, at: Vec3(other, 0, depth))
+                    if h < behind - 0.15 { (x, z, behind) = (other, depth, h) }
                 }
             }
             if way(i).flies {
