@@ -251,6 +251,23 @@ public struct PuppetPose: Equatable, Sendable {
         })
     }
 
+    /// This pose with `wings` — those bones, every bone hanging on them,
+    /// and the slots they carry — as `flight` has them: a flyer up in the
+    /// air keeps its wings going whatever else it does
+    /// (`docs/pack-format.md`, "Live animations", `wings`).
+    public func flying(_ wings: [String], as flight: PuppetPose, rig: PuppetRig) -> PuppetPose {
+        guard !wings.isEmpty else { return self }
+        var kept = Set(wings)
+        // Bones come after their parents.
+        for bone in rig.bones where bone.parent.map(kept.contains) == true { kept.insert(bone.id) }
+        var pose = self
+        for id in kept { pose.bones[id] = flight.bones[id] ?? pose.bones[id] }
+        for slot in rig.slots where kept.contains(slot.bone) {
+            if let shown = flight.slots[slot.id] { pose.slots[slot.id] = shown }
+        }
+        return pose
+    }
+
     /// This pose part of the way to another, for smoothing over a jump
     /// (a move's loop cut short as the character arrives).
     public func mixed(with other: PuppetPose, _ t: Double) -> PuppetPose {

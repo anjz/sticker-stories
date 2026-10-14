@@ -74,9 +74,8 @@ Plans the whole story at once, from the cast and the story's triggers:
    world and the sticker's gait: a walker's leg takes as long as its steps
    take to cover the way, its frames played a little faster or slower
    (0.6–1.8×) to keep near the usual times — its feet always keep pace with
-   the ground, so nobody glides. A flyer that comes to rest in the air (a
-   place's air, hovering by someone, or put there by the child) keeps its
-   wings going and bobs gently.
+   the ground, so nobody glides. A flyer left in the air keeps flying
+   ("In the air" below).
 4. **Moving comes first.** A sticker on its way somewhere plays its move
    until it stops: an action the story cues meanwhile waits until it gets
    there (`StageDirector.delayed`). Once an action is over, a move that
@@ -89,6 +88,27 @@ Plans the whole story at once, from the cast and the story's triggers:
    not use that stands in the way walks (or fades) to the freest land on
    screen away from the cast, the further back and nearer the sides the
    better, as the story starts; then the story is planned again round it.
+
+## In the air
+
+A flyer left in the air — in a place's air, by someone up there, or put
+there by the child — never stops flying while it is up there; on a
+branch, the ground or someone's back it rests like anyone else. Flyers
+come in two kinds, by their flight (`hovers` in its sidecar,
+`docs/pack-format.md`):
+
+- **It can hover** (a bee, a butterfly, a firefly, a ladybug): it stays
+  where it is, bobbing gently, its wings going.
+- **It cannot** (a bird, an owl, a woodpecker): it flies a slow loop
+  round its spot (`StageLeg.circling`, a lap every 5 s) — out ahead the
+  way it faces, round nearer the camera and back, turning at each end —
+  as wide as keeps it on screen and out from behind the trees, until the
+  story sends it on, from wherever it is on the loop.
+
+Either way its wings never stop: an action the story cues up there (a
+talk, a laugh, a held pose) plays on the rest of its body while the
+flight keeps the bones its sidecar names as `wings` — and whatever hangs
+on them — beating (`PuppetPose.flying`).
 
 ## Alive at rest
 

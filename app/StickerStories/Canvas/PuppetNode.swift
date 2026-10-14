@@ -52,6 +52,14 @@ final class PuppetNode: SKEffectNode {
         case shadow(blur: CGFloat)
     }
 
+    /// A flyer's wings as its flight has them now, kept going over an
+    /// action it plays up in the air.
+    struct Wings {
+        let flight: LoadedPuppet
+        let tween: LiveTween
+        let bones: [String]
+    }
+
     private struct SlotNodes {
         let border: SKSpriteNode
         let art: SKSpriteNode?
@@ -140,8 +148,12 @@ final class PuppetNode: SKEffectNode {
     /// A tween that does not carry on from the last one (it is neither on
     /// the same key nor on the key that was next) eases over from the pose
     /// that was on show.
-    func show(_ tween: LiveTween, face: String, now: TimeInterval = CACurrentMediaTime()) {
-        let target = puppet.pose(tween, face: face)
+    /// `wings`: a flight beating on over it (`PuppetPose.flying`).
+    func show(_ tween: LiveTween, face: String, wings: Wings? = nil, now: TimeInterval = CACurrentMediaTime()) {
+        var target = puppet.pose(tween, face: face)
+        if let wings {
+            target = target.flying(wings.bones, as: wings.flight.pose(wings.tween, face: face), rig: puppet.rig)
+        }
         if let shown = shownPose,
             parkedAt != nil || shownTween.map({ tween.frame != $0.frame && tween.frame != $0.next }) ?? false
         {
@@ -278,11 +290,11 @@ extension StickerNode {
             PuppetNode(puppet, size: base, look: .shadow(blur: blur)))
     }
 
-    func showPuppet(state: LiveFrameState, tween: LiveTween?) -> Int? {
+    func showPuppet(state: LiveFrameState, tween: LiveTween?, wings: PuppetNode.Wings? = nil) -> Int? {
         guard let node = puppetNode else { return nil }
         let tween = tween ?? LiveTween(frame: state.frame, next: state.frame, progress: 0)
-        node.show(tween, face: face)
-        for shadow in puppetShadows { shadow.show(tween, face: face) }
+        node.show(tween, face: face, wings: wings)
+        for shadow in puppetShadows { shadow.show(tween, face: face, wings: wings) }
         // It dissolves in over the still art once; after that the
         // animations' own fades are hand-overs it no longer needs.
         if !node.settled, state.liveAlpha >= 1, state.stillAlpha <= 0 { node.settled = true }

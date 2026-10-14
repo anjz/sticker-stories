@@ -2069,6 +2069,7 @@ final class CanvasScene: SKScene {
         let timing: (LiveAnimationKey) -> LiveFrames? = { [liveLoaded] in liveLoaded[$0]?.timing }
         for node in allStickerNodes() {
             var shown: (LoadedLiveAnimation, LiveFrameState, LiveTween?)?
+            var wings: PuppetNode.Wings?
             if allowed {
                 let action = session.live.current(for: node.stickerID, at: time, frames: timing)
                 // The latest travel: its entrance, or a move.
@@ -2103,6 +2104,14 @@ final class CanvasScene: SKScene {
                     // Once it is over, a move that stays goes on (on the
                     // stage in space).
                     shown = acting ?? (session.stage != nil ? moving : nil)
+                    // Up in the air, a flyer's wings beat on through it.
+                    if session.stage != nil, travel?.stays == true, let acting, let moving,
+                        let bones = moving.0.animation.puppet?.wings, !bones.isEmpty,
+                        let flight = moving.0.puppet, let tween = moving.2,
+                        acting.0.puppet?.rig.atlas == flight.rig.atlas
+                    {
+                        wings = PuppetNode.Wings(flight: flight, tween: tween, bones: bones)
+                    }
                 } else {
                     shown = moving ?? acting
                 }
@@ -2122,7 +2131,7 @@ final class CanvasScene: SKScene {
                 continue
             }
             if let (loaded, state, tween) = shown {
-                if let frame = node.showLive(loaded, state: state, tween: tween) {
+                if let frame = node.showLive(loaded, state: state, tween: tween, wings: wings) {
                     session.emitters.fire(loaded.animation, frame: frame, on: node)
                 }
             } else if node.liveKey != nil || node.puppetNode != nil {

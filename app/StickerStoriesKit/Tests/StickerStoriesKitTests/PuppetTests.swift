@@ -30,6 +30,26 @@ import Testing
         #expect(rig.faces["sleeping"] == ["eye": "shut"])
     }
 
+    /// Up in the air, the wings (here the head, with the eye it carries)
+    /// keep the flight's pose over an action; the rest plays the action.
+    @Test func wingsKeepTheFlightOverAnAction() {
+        let rig = Self.rig
+        var action = PuppetPose.rest(face: ExpressionTrigger.normal, rig: rig)
+        action.bones["root"] = BonePose(r: 10)
+        action.bones["head"] = BonePose(r: -5)
+        var flight = PuppetPose.rest(face: ExpressionTrigger.normal, rig: rig)
+        flight.bones["root"] = BonePose(y: 40)
+        flight.bones["head"] = BonePose(r: 30)
+        flight.slots["eye"] = "shut"
+        let both = action.flying(["head"], as: flight, rig: rig)
+        #expect(both.bones["root"] == BonePose(r: 10))
+        #expect(both.bones["head"] == BonePose(r: 30))
+        #expect(both.slots["eye"] == "shut" && both.slots["body"] == "body")
+        #expect(action.flying([], as: flight, rig: rig) == action)
+        // Whatever hangs on a wing goes with it.
+        #expect(action.flying(["root"], as: flight, rig: rig).bones["head"] == BonePose(r: 30))
+    }
+
     @Test func aBoneBeforeItsParentIsNotWellFormed() throws {
         let json = Self.rigJSON.replacingOccurrences(
             of: #"{ "id": "root", "x": 380, "y": 700 }, { "id": "head", "parent": "root", "x": 380, "y": 360 }"#,
