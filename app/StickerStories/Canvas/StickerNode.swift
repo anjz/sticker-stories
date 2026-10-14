@@ -256,12 +256,15 @@ final class StickerNode: SKSpriteNode {
 
     /// The world rescaled uniformly (window shape changed): keep the same
     /// spot on the art at the same relative size.
-    func rescale(by ratio: CGFloat) {
+    /// `size`: how much its own size changes, when that is not with the
+    /// world (`ratio`).
+    func rescale(by ratio: CGFloat, size sizeRatio: CGFloat? = nil) {
+        let k = sizeRatio ?? ratio
         position = CGPoint(x: position.x * ratio, y: position.y * ratio)
-        size = CGSize(width: size.width * ratio, height: size.height * ratio)
+        size = CGSize(width: size.width * k, height: size.height * k)
         layoutShadows()
         if let glowNode {
-            glowNode.size = CGSize(width: glowNode.size.width * ratio, height: glowNode.size.height * ratio)
+            glowNode.size = CGSize(width: glowNode.size.width * k, height: glowNode.size.height * k)
         }
         if var base = effectBase {
             base.x *= Double(ratio)

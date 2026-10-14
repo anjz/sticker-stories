@@ -392,6 +392,10 @@ final class CanvasScene: SKScene {
         noteActivity()
         let oldWorld = worldSize
         let overflowedBefore = worldOverflows
+        // A sticker's size on a screen is not all in proportion to the art
+        // (a minimum in points, `SceneSpace.editSize`): each keeps its own.
+        let oldSides = Dictionary(
+            allStickerNodes().map { ($0.stickerID, stickerSide(for: $0.stickerID)) }, uniquingKeysWith: { a, _ in a })
         let cameraFraction = CGPoint(
             x: oldWorld.width > 0 ? cameraNode.position.x / oldWorld.width : 0.5,
             y: oldWorld.height > 0 ? cameraNode.position.y / oldWorld.height : 0.5)
@@ -400,7 +404,10 @@ final class CanvasScene: SKScene {
         // sticker on the same spot of the art at the same relative size.
         if oldWorld.height > 0 {
             let ratio = worldSize.height / oldWorld.height
-            for node in allStickerNodes() { node.rescale(by: ratio) }
+            for node in allStickerNodes() {
+                let old = oldSides[node.stickerID] ?? 0
+                node.rescale(by: ratio, size: old > 0 ? stickerSide(for: node.stickerID) / old : ratio)
+            }
         }
         cameraNode.position = CGPoint(
             x: cameraFraction.x * worldSize.width, y: cameraFraction.y * worldSize.height)
@@ -778,9 +785,8 @@ final class CanvasScene: SKScene {
     /// bigger box for a sticker drawn at its size, so its medium stickers
     /// come out the size an older pack's do (`StickerBox`).
     private func stickerSide(for stickerID: String) -> CGFloat {
-        // A pack with a space sizes each drawing: halfway between its size
-        // at the back and at the front (`SceneSpace.editSize`).
-        if let edit = pack.manifest.space?.editSize(of: stickerID),
+        // A pack with a space sizes each drawing (`SceneSpace.editSize`).
+        if let edit = editSize(of: stickerID),
             let drawing = textures.drawings[stickerID], drawing.height > 0,
             let image = stickerTextures[stickerID]?.size(), image.height > 0
         {
@@ -790,10 +796,23 @@ final class CanvasScene: SKScene {
         return worldSize.height * CGFloat(StickerBox.fraction(for: definitions[stickerID]))
     }
 
+    /// A sticker's size while the child edits, in a pack with a space: on
+    /// this screen, so the smallest still show and can be picked up.
+    private func editSize(of stickerID: String) -> SceneSpace.EditSize? {
+        guard let space = pack.manifest.space else { return nil }
+        var ratio = 1.0
+        if let drawing = textures.drawings[stickerID], drawing.height > 0,
+            let image = stickerTextures[stickerID]?.size(), image.height > 0
+        {
+            ratio = Double(drawing.width * image.width / (drawing.height * image.height))
+        }
+        return space.editSize(of: stickerID, artHeight: Double(worldSize.height), ratio: ratio)
+    }
+
     /// How far a pinch scales a sticker: in a pack with a space, from its
-    /// size at the back to its size at the front.
+    /// size at the back to its size at the front (`SceneSpace.editSize`).
     private func scaleRange(for stickerID: String) -> ClosedRange<CGFloat> {
-        guard let edit = pack.manifest.space?.editSize(of: stickerID) else { return Self.stickerScaleRange }
+        guard let edit = editSize(of: stickerID) else { return Self.stickerScaleRange }
         return CGFloat(edit.scales.lowerBound)...CGFloat(edit.scales.upperBound)
     }
 
@@ -818,7 +837,7 @@ final class CanvasScene: SKScene {
     }
 
     /// The smallest a sticker's touch target gets, in points.
-    private static let minTouchTarget: CGFloat = 44
+    private static let minTouchTarget: CGFloat = 60
 
     private func squareFit(texture: SKTexture?, side: CGFloat) -> CGSize {
         guard let texture, texture.size().width > 0, texture.size().height > 0 else {
