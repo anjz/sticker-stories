@@ -264,10 +264,11 @@ never letterboxes:
     boxes outside the unit square, a `kind` other than `action`/`move`,
     a second move for one sticker without a `loop`, a `pause` on a move
     or a `perched` or `place` on a move, a `place` naming no feature, an area `facing` other than left/right or on a stage area, a `pause` outside the middle frames or without `shows`, a `loop`, `facing`,
-    `stride`, `hops`, `flies`, `on` or `stays` on an action or a move
-    without a loop, a loop outside the frames, a looping move without
-    `facing` left/right or with a `stride` outside 0–5, `hops` with
-    `flies`, `stays` without `on`, an `on` naming no feature are
+    `stride`, `hops`, `flies`, `hovers`, `on` or `stays` on an action or
+    a move without a loop, a loop outside the frames, a looping move
+    without `facing` left/right or with a `stride` outside 0–5, `hops`
+    with `flies`, `hovers` without `flies`, `stays` without `on`, an
+    `on` naming no feature are
     errors); the app checks the file exists and reads it **leniently**
     (an undecodable sidecar is skipped with a log, never fatal; a pause
     or loop it cannot use is dropped). A `puppet` is checked against its
@@ -278,7 +279,8 @@ never letterboxes:
     of the rig, stretches not 0 and at most 4 either way; beside a sheet its
     `pause` and `loop` match the sidecar's, and without one it has none:
     the sidecar's `pause`, `loop` and `particles` count its keys, and a
-    loop starts after key 0); an undecodable puppet is ignored by the
+    loop starts after key 0; `wings` only on a move that flies, naming
+    bones of the rig); an undecodable puppet is ignored by the
     app, which plays the sheet (or, without one, skips the sidecar).
 13. Every `stickers[].expressions` key is lowercase `a-z0-9-` and not
     `normal`; every value is an image inside the pack (`.png` or `.webp`)
@@ -618,10 +620,11 @@ the sticker's puppet made by `tools/author/stickerrig` ("Puppets"; then
 | `stride` | moves with a loop: how far one loop carries the character, in multiples of the sticker's width (above 0, at most 5), so it travels at the pace of its legs |
 | `hops` | moves with a loop, optional: `true` when the loop is a hop drawn in place; the app lifts the character in an arc once per loop |
 | `flies` | moves with a loop, optional: `true` when the loop is a flight; the app glides the character along with a gentle bob and stops it beside others at their height (not with `hops`) |
+| `hovers` | moves with `flies`, optional: `true` when the flight can hold still in the air (a bee, a butterfly): resting in the air, it stays put with a gentle bob, its loop going. Without it the character cannot hover (a bird, an owl): the app keeps it flying a slow loop round its spot, turning as it goes, for as long as the story leaves it in the air (`docs/stage3d.md`, "In the air") |
 | `on` | moves with a loop, optional: feature ids (`features` above) a story that brings the character in this way lands it on, in order of preference — the duckling swimming in lands on the pond; empty for its `stage`'s |
 | `stays` | moves with a loop and `on`, optional: `true` when the character stays in its element once this way has taken it into one of `on` — the surfer out on the waves, a pelican afloat: the app keeps the loop going where it is instead of settling into the sticker pose, which would stand it on the water (`docs/effects.md`, "Movement") |
 | `particles` | optional: bursts the frames fire as they first come on show — `[{ "frame": 6, "effect": "dust-puff", "x": 0.5, "y": 0.86, "intensity"?: 0.5, "color"?: "#RRGGBB" }]`: the 0-based frame, a particle effect (`dust-puff`, `spray` or `sparks`, `docs/effects.md`), the point of the **sticker image** it comes from (fractions, top-left origin like `stickerBox`; −0.5–1.5 so a flame's tip can be just outside), and optional intensity (0–1) and colour. A landing's dust, a touchdown, a splash: the frames never draw particles themselves (`docs/pack-art.md`). They follow the pack's `world` ("World") and play wherever the animation plays — an action, an entrance, a move — but not under Reduce Motion or calm mode, where live animations don't play |
-| `puppet` | the animation as keyframes for the sticker's puppet ("Puppets" below) — `{ "rig": "anims/owl.rig.json", "keys": [...] }`. Required without a sheet. Beside a sheet it is optional and plays instead of the frames, with its own `"pause"?: 11, "loop"?: { "from": 1, "to": 4 }, "stride"?: 1.2`, counted in keys: `pause` given exactly when the sidecar has one and `loop` exactly when it has one |
+| `puppet` | the animation as keyframes for the sticker's puppet ("Puppets" below) — `{ "rig": "anims/owl.rig.json", "keys": [...] }`. Required without a sheet. Beside a sheet it is optional and plays instead of the frames, with its own `"pause"?: 11, "loop"?: { "from": 1, "to": 4 }, "stride"?: 1.2`, counted in keys: `pause` given exactly when the sidecar has one and `loop` exactly when it has one. A move that `flies` can name its `"wings"?: ["wingL", "wingR"]`: bones of the rig its flight keeps going — with every bone hanging on them and their slots — whatever else the character does while it is in the air (it talks, laughs or holds a pose and its wings beat on) |
 
 The frames are registered on the part that stays still (the feet, the
 shell's base) — a move's frames on the character's body, feet on the
@@ -717,7 +720,9 @@ same device preference.
   optional `cover` added (additive, no bump); optional
   `stickers[].stage` and `features` added (additive, no bump); optional
   `features[].wideAreas` added (additive, no bump); optional
-  `features[].from` and sidecar `stays` added (additive, no bump); size class `huge`
+  `features[].from` and sidecar `stays` added (additive, no bump);
+  sidecar `hovers` and `puppet.wings` added 2026-10-14 (additive, no
+  bump); size class `huge`
   and optional `stickers[].content` added (additive, no bump); optional
   `world` added (additive, no bump); optional sidecar `particles`
   added (additive, no bump); the live

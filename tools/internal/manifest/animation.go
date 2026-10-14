@@ -90,6 +90,11 @@ type StickerAnimation struct {
 	// Flies says the loop is a flight: the app glides the character along
 	// with a gentle bob, and it stops beside others at their height.
 	Flies bool `json:"flies,omitempty"`
+	// Hovers says the flight can hold still in the air, its wings going
+	// (a bee, a butterfly). Without it a flyer never stops in the air:
+	// the app keeps it flying a slow loop round its spot (a bird). Needs
+	// Flies.
+	Hovers bool `json:"hovers,omitempty"`
 	// On are the features a story that brings the character in this way
 	// lands it on ({duckling:enter by swim}: the pond), in order of
 	// preference; empty for its stage's. Moves with a loop only.
@@ -212,8 +217,8 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	count := a.Frames()
 	switch a.EffectiveKind() {
 	case KindAction:
-		if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || len(a.On) > 0 || a.Stays {
-			fail("loop, facing, stride, hops, flies, on and stays belong to a move, not an action")
+		if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || a.Hovers || len(a.On) > 0 || a.Stays {
+			fail("loop, facing, stride, hops, flies, hovers, on and stays belong to a move, not an action")
 		}
 		if p := a.Pause; p != nil {
 			if p.Frame < 1 || p.Frame > count-2 {
@@ -242,11 +247,14 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 			if a.Hops && a.Flies {
 				fail("a move hops or flies, not both")
 			}
+			if a.Hovers && !a.Flies {
+				fail("hovers needs flies: only a flight holds still in the air")
+			}
 			if a.Stays && len(a.On) == 0 {
 				fail("stays needs on: the places where the move keeps going")
 			}
-		} else if a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || len(a.On) > 0 || a.Stays {
-			fail("facing, stride, hops, flies, on and stays need a loop")
+		} else if a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || a.Hovers || len(a.On) > 0 || a.Stays {
+			fail("facing, stride, hops, flies, hovers, on and stays need a loop")
 		}
 	default:
 		fail("kind %q must be action or move", a.Kind)

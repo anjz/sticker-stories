@@ -67,6 +67,10 @@ func TestAnimationsValidate(t *testing.T) {
 		{"stays without on", func(a *StickerAnimation) {
 			a.Kind, a.Loop, a.Facing, a.Stride, a.Stays = KindMove, &FrameRange{From: 1, To: 6}, "left", 0.5, true
 		}, "stays needs on"},
+		{"hovers on an action", func(a *StickerAnimation) { a.Hovers = true }, "belong to a move"},
+		{"hovers without flies", func(a *StickerAnimation) {
+			a.Kind, a.Loop, a.Facing, a.Stride, a.Hovers = KindMove, &FrameRange{From: 1, To: 6}, "left", 0.5, true
+		}, "hovers needs flies"},
 		{"particle on a missing frame", func(a *StickerAnimation) {
 			a.Particles = []AnimationParticle{{Frame: 99, Effect: "dust-puff", X: 0.5, Y: 0.9}}
 		}, "is not one of the"},

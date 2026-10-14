@@ -78,6 +78,18 @@ func TestPuppetsValidate(t *testing.T) {
 			a.Kind, a.Loop, a.Facing, a.Stride = KindMove, &FrameRange{From: 1, To: 6}, "right", 0.5
 			a.Puppet.Loop = &FrameRange{From: 1, To: 3}
 		}, "stride"},
+		{"wings of a flight", nil, sheetless(func(a *StickerAnimation) {
+			a.Kind, a.Loop, a.Facing, a.Stride, a.Flies, a.Hovers = KindMove, &FrameRange{From: 1, To: 3}, "right", 0.5, true, true
+			a.Puppet.Wings = []string{"head"}
+		}), ""},
+		{"wings of no bone", nil, sheetless(func(a *StickerAnimation) {
+			a.Kind, a.Loop, a.Facing, a.Stride, a.Flies = KindMove, &FrameRange{From: 1, To: 3}, "right", 0.5, true
+			a.Puppet.Wings = []string{"wingL"}
+		}), `wings: bone "wingL"`},
+		{"wings on a walk", nil, sheetless(func(a *StickerAnimation) {
+			a.Kind, a.Loop, a.Facing, a.Stride = KindMove, &FrameRange{From: 1, To: 3}, "right", 0.5
+			a.Puppet.Wings = []string{"head"}
+		}), "move that flies"},
 		{"rig not json", nil, func(a *StickerAnimation) { a.Puppet.Rig = "anims/fox.rig.webp" }, ".json"},
 		// Without a sheet the keys are the frames.
 		{"puppet only", nil, sheetless(nil), ""},

@@ -54,7 +54,8 @@ One file per sticker, so several can be rigged at once:
 - `animations`: the sticker's animations, in the manifest's order (its
   first move is its usual way), each with the sidecar's fields — `id`,
   `kind`, `description`, `pause` (`{ "frame": key, "shows" }`), `loop`,
-  `facing`, `stride`, `hops`, `flies`, `on`, `stays`, `place`,
+  `facing`, `stride`, `hops`, `flies`, `hovers`, `wings` (the
+  sidecar's `puppet.wings`), `on`, `stays`, `place`,
   `perched`, `particles` — and its `keys`. Pause, loop and particles
   count keys. Or `template`: `"common.jump"` takes from
   `templates/common.json` whatever the animation leaves out (its keys,

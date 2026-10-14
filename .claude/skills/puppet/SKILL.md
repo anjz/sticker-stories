@@ -108,6 +108,13 @@ read as the expression they name.
 The rig must carry every animation the sticker has (install refuses
 otherwise): same ids, same kind, and for a move the same `facing`,
 `loop` (now in keys), `hops`/`flies`/`on`/`stays`, a similar stride.
+A flying move also says how it flies (`docs/stage3d.md`, "In the air"):
+`hovers: true` when the creature can hold still in the air (insects,
+a hummingbird) — leave it out for one that cannot (most birds), which
+the app keeps circling while it is up there — and `wings`, the bones
+its flight keeps beating whatever else it does in the air (`["wingL",
+"wingR"]`, the ladybug's `shell` too; whatever hangs on them goes with
+them).
 Read the old sidecar for its `description` and `pause.shows` — stories
 were written to them — and make the keys tell exactly that, about as
 long (an action 2–5 s, a move's loop a step or a wingbeat cycle of

@@ -93,6 +93,8 @@ type animSpec struct {
 	Stride      float64                      `json:"stride,omitempty"`
 	Hops        bool                         `json:"hops,omitempty"`
 	Flies       bool                         `json:"flies,omitempty"`
+	Hovers      bool                         `json:"hovers,omitempty"`
+	Wings       []string                     `json:"wings,omitempty"`
 	On          []string                     `json:"on,omitempty"`
 	Stays       bool                         `json:"stays,omitempty"`
 	Particles   []manifest.AnimationParticle `json:"particles,omitempty"`
@@ -160,6 +162,10 @@ func (r *rigSpec) resolve(a animSpec, templates map[string]animSpec) (animSpec, 
 		}
 		a.Hops = a.Hops || t.Hops
 		a.Flies = a.Flies || t.Flies
+		a.Hovers = a.Hovers || t.Hovers
+		if a.Wings == nil {
+			a.Wings = t.Wings
+		}
 		a.Perched = a.Perched || t.Perched
 		a.Idle = a.Idle || t.Idle
 		if a.On == nil {

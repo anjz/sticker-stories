@@ -105,6 +105,10 @@ type AnimationPuppet struct {
 	// Loop and Stride are a looping move's, as for its sheet, beside one.
 	Loop   *FrameRange `json:"loop,omitempty"`
 	Stride float64     `json:"stride,omitempty"`
+	// Wings are the bones a flight keeps going (with every bone hanging
+	// on them, and their slots) whatever else the character does in the
+	// air: a butterfly's wings beat on while it talks. A move that flies.
+	Wings []string `json:"wings,omitempty"`
 }
 
 // PuppetKey is one pose: each bone's turn (R, degrees clockwise), shift
@@ -286,6 +290,14 @@ func (a *StickerAnimation) validatePuppet(dir string) []error {
 				fail("keys[%d]: slot %q has no attachment %q", i, slot, att)
 			}
 		}
+	}
+	for _, id := range p.Wings {
+		if !bones[id] {
+			fail("wings: bone %q is not in the rig", id)
+		}
+	}
+	if len(p.Wings) > 0 && (a.EffectiveKind() != KindMove || !a.Flies) {
+		fail("wings belong to a move that flies")
 	}
 	if a.PuppetOnly() {
 		// The sidecar's own pause, loop and stride count the keys.
