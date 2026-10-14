@@ -16,6 +16,7 @@
   "facing": "left",
   "stride": 1,
   "flies": true,
+  "hovers": true,
   "puppet": {
     "rig": "anims/firefly.rig.json",
     "keys": [
@@ -349,6 +350,10 @@
       {
         "hold": 0.35
       }
+    ],
+    "wings": [
+      "wingL",
+      "wingR"
     ]
   }
 }

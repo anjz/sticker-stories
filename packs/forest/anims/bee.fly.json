@@ -16,6 +16,7 @@
   "facing": "left",
   "stride": 1,
   "flies": true,
+  "hovers": true,
   "puppet": {
     "rig": "anims/bee.rig.json",
     "keys": [
@@ -218,6 +219,10 @@
       {
         "hold": 0.3
       }
+    ],
+    "wings": [
+      "wingL",
+      "wingR"
     ]
   }
 }

@@ -16,6 +16,7 @@
   "facing": "right",
   "stride": 1,
   "flies": true,
+  "hovers": true,
   "puppet": {
     "rig": "anims/ladybug.rig.json",
     "keys": [
@@ -413,6 +414,11 @@
       {
         "hold": 0.35
       }
+    ],
+    "wings": [
+      "shell",
+      "wingL",
+      "wingR"
     ]
   }
 }

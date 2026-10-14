@@ -16,6 +16,7 @@
   "facing": "right",
   "stride": 0.9,
   "flies": true,
+  "hovers": true,
   "puppet": {
     "rig": "anims/butterfly.rig.json",
     "keys": [
@@ -177,6 +178,10 @@
       {
         "hold": 0.35
       }
+    ],
+    "wings": [
+      "wingL",
+      "wingR"
     ]
   }
 }
