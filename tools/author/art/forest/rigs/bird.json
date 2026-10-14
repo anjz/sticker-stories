@@ -676,7 +676,10 @@
       "description": "the bird flies along to the right flapping its little wings, then glides down, lands and folds its wings.",
       "facing": "right",
       "flies": true,
-      "wings": ["wingL", "wingR"],
+      "wings": [
+        "wingL",
+        "wingR"
+      ],
       "loop": {
         "from": 1,
         "to": 4
@@ -1855,10 +1858,10 @@
     {
       "id": "look-around",
       "idle": true,
-      "description": "the bird looks up, then turns its head right round to look behind it, then looks ahead again.",
+      "description": "the bird looks up, then turns right round to look behind it, then turns back and looks ahead again.",
       "pause": {
         "frame": 4,
-        "shows": "the bird looking back over its shoulder"
+        "shows": "the bird turned round, looking behind it"
       },
       "keys": [
         {
@@ -1883,34 +1886,33 @@
           }
         },
         {
-          "hold": 0.35,
+          "hold": 0.4,
           "ease": "inOut",
           "bones": {
-            "head": {
+            "root": {
               "sx": -1,
-              "r": 2,
-              "x": -6
+              "x": -192
             },
-            "body": {
-              "r": -2
+            "head": {
+              "r": -4
             }
           }
         },
         {
           "hold": 0.7,
           "bones": {
-            "head": {
+            "root": {
               "sx": -1,
-              "r": 2,
-              "x": -6
+              "x": -192
             },
-            "body": {
-              "r": -2
+            "head": {
+              "r": -6,
+              "y": -2
             }
           }
         },
         {
-          "hold": 0.35,
+          "hold": 0.4,
           "ease": "inOut",
           "bones": {
             "head": {

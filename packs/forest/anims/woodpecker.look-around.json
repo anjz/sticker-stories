@@ -1,7 +1,7 @@
 {
   "id": "look-around",
   "sticker": "woodpecker",
-  "description": "the woodpecker peeks up the trunk, then turns its head to look behind it, then looks ahead again.",
+  "description": "the woodpecker peeks up the trunk, then peers down it, then looks ahead again.",
   "stickerBox": {
     "x": 0.2487,
     "y": 0.02995,
@@ -10,7 +10,7 @@
   },
   "pause": {
     "frame": 4,
-    "shows": "the woodpecker looking back over its shoulder"
+    "shows": "the woodpecker peering down the trunk"
   },
   "idle": true,
   "puppet": {
@@ -42,9 +42,8 @@
         "ease": "inOut",
         "bones": {
           "head": {
-            "r": -2,
-            "x": 10,
-            "sx": -1
+            "r": -14,
+            "y": 4
           }
         }
       },
@@ -52,9 +51,8 @@
         "hold": 0.7,
         "bones": {
           "head": {
-            "r": -2,
-            "x": 10,
-            "sx": -1
+            "r": -14,
+            "y": 4
           }
         }
       },

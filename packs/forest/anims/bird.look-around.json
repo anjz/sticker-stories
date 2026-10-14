@@ -1,7 +1,7 @@
 {
   "id": "look-around",
   "sticker": "bird",
-  "description": "the bird looks up, then turns its head right round to look behind it, then looks ahead again.",
+  "description": "the bird looks up, then turns right round to look behind it, then turns back and looks ahead again.",
   "stickerBox": {
     "x": 0.07031,
     "y": 0.02995,
@@ -10,7 +10,7 @@
   },
   "pause": {
     "frame": 4,
-    "shows": "the bird looking back over its shoulder"
+    "shows": "the bird turned round, looking behind it"
   },
   "idle": true,
   "puppet": {
@@ -38,15 +38,14 @@
         }
       },
       {
-        "hold": 0.35,
+        "hold": 0.4,
         "ease": "inOut",
         "bones": {
-          "body": {
-            "r": -2
-          },
           "head": {
-            "r": 2,
-            "x": -6,
+            "r": -4
+          },
+          "root": {
+            "x": -192,
             "sx": -1
           }
         }
@@ -54,18 +53,18 @@
       {
         "hold": 0.7,
         "bones": {
-          "body": {
-            "r": -2
-          },
           "head": {
-            "r": 2,
-            "x": -6,
+            "r": -6,
+            "y": -2
+          },
+          "root": {
+            "x": -192,
             "sx": -1
           }
         }
       },
       {
-        "hold": 0.35,
+        "hold": 0.4,
         "ease": "inOut",
         "bones": {
           "head": {

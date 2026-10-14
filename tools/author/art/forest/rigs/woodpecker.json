@@ -612,7 +612,10 @@
       "description": "the woodpecker flies along to the left with bouncy wingbeats, then lands clinging upright.",
       "facing": "left",
       "flies": true,
-      "wings": ["wingL", "wingR"],
+      "wings": [
+        "wingL",
+        "wingR"
+      ],
       "loop": {
         "from": 1,
         "to": 4
@@ -1171,10 +1174,10 @@
     {
       "id": "look-around",
       "idle": true,
-      "description": "the woodpecker peeks up the trunk, then turns its head to look behind it, then looks ahead again.",
+      "description": "the woodpecker peeks up the trunk, then peers down it, then looks ahead again.",
       "pause": {
         "frame": 4,
-        "shows": "the woodpecker looking back over its shoulder"
+        "shows": "the woodpecker peering down the trunk"
       },
       "keys": [
         {
@@ -1203,9 +1206,8 @@
           "ease": "inOut",
           "bones": {
             "head": {
-              "sx": -1,
-              "x": 10,
-              "r": -2
+              "r": -14,
+              "y": 4
             }
           }
         },
@@ -1213,9 +1215,8 @@
           "hold": 0.7,
           "bones": {
             "head": {
-              "sx": -1,
-              "x": 10,
-              "r": -2
+              "r": -14,
+              "y": 4
             }
           }
         },
