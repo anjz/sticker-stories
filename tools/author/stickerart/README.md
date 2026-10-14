@@ -52,7 +52,10 @@ go run ./packager validate ../packs/forest
   a sticker, and laid into that box, its base on the box's bottom edge —
   the model does not keep a small element's size or place when it paints
   a whole plane. Its drawing is kept (`out/art/layer-<id>.element.png`),
-  so moving the area costs nothing. With layers the background is only the far part of the
+  so moving the area costs nothing. `wideArea` (optional) lays it into a
+  box of its own on the wide rendition, which otherwise shows the 4:3
+  placement with more around it: Forest's big trees stand at the 4:3
+  picture's edges and at the wide one's. With layers the background is only the far part of the
   scene, with no framing elements. `install` copies them to
   `art/layer-<id>.webp` (and `-wide`) and lists them in the manifest's
   `layers`; it also copies `space.json` (`author/scenespace`), without the

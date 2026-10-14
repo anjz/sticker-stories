@@ -263,6 +263,19 @@ type sceneLayer struct {
 	// on the box's bottom edge, as big as fits. The model does not keep a
 	// small element's size or place in a whole picture.
 	Area *stickerimg.FaceBox `json:"area,omitempty"`
+	// WideArea (optional, with Area) lays the same element into its own box
+	// on the wide rendition, which otherwise shows the 4:3 placement with
+	// more around it: a tree at the 4:3 picture's edge would stand well
+	// inside the wide one, whole.
+	WideArea *stickerimg.FaceBox `json:"wideArea,omitempty"`
+}
+
+// placement is how a placed layer is laid, for its fingerprints.
+func (l sceneLayer) placement() string {
+	if l.WideArea == nil {
+		return fmt.Sprint(*l.Area)
+	}
+	return fmt.Sprint(*l.Area) + " wide " + fmt.Sprint(*l.WideArea)
 }
 
 func main() {
@@ -1182,12 +1195,15 @@ func (r *renderer) sceneLayer(l sceneLayer, behindFP string, behind []string, sh
 	wideFP := hashOf(fp, "wide", l.Wide)
 	base, wideOut := r.out("art", "layer-"+l.ID+".png"), r.out("art", "layer-"+l.ID+"-wide.png")
 	name := "layer " + l.ID
+	if l.WideArea != nil && l.Area == nil {
+		return "", fmt.Errorf("%s: wideArea needs area", name)
+	}
 	if l.Area != nil {
 		// The element is painted on its own, so its drawing does not
 		// depend on what is behind it; the layer as laid does (for what
 		// is painted in front of it).
 		drawingFP := hashOf("placed layer", placedLayerVersion, l.ID, l.Prompt, r.o.quality)
-		return hashOf(behindFP, drawingFP, fmt.Sprint(*l.Area)), r.placedLayer(l, drawingFP, base, wideOut, sheet)
+		return hashOf(behindFP, drawingFP, l.placement()), r.placedLayer(l, drawingFP, base, wideOut, sheet)
 	}
 	if r.upToDate(base, fp) && r.upToDate(wideOut, wideFP) {
 		r.say("· %s up to date", name)
@@ -1245,7 +1261,7 @@ func (r *renderer) sceneLayer(l sceneLayer, behindFP string, behind []string, sh
 // prompt, so moving the area only lays it again.
 func (r *renderer) placedLayer(l sceneLayer, fp, base, wideOut string, sheet []byte) error {
 	name := "layer " + l.ID
-	placedFP := hashOf(fp, "area", fmt.Sprint(*l.Area))
+	placedFP := hashOf(fp, "area", l.placement())
 	if r.upToDate(base, placedFP) && r.upToDate(wideOut, placedFP) {
 		r.say("· %s up to date", name)
 		return nil
@@ -1285,6 +1301,19 @@ func (r *renderer) placedLayer(l sceneLayer, fp, base, wideOut string, sheet []b
 	}
 	if err := r.splitWideImage(wide, base, wideOut); err != nil {
 		return err
+	}
+	if l.WideArea != nil {
+		own, err := layInto(element, *l.WideArea, wideW, baseH)
+		if err != nil {
+			return fmt.Errorf("%s (wide): %w", name, err)
+		}
+		data, err := stickerimg.Encode(own)
+		if err != nil {
+			return err
+		}
+		if err := os.WriteFile(wideOut, data, 0o644); err != nil {
+			return err
+		}
 	}
 	r.done(base, placedFP)
 	r.done(wideOut, placedFP)
@@ -1372,7 +1401,7 @@ const maxLayerCover = 0.7
 // maxSceneCover is how much of the picture everything in front of the
 // background — the foreground and every layer — may cover together
 // (docs/pack-art.md, "Layers in front"): more hides the stickers.
-const maxSceneCover = 0.2
+const maxSceneCover = 0.4
 
 // sceneCover is the part of the picture the planes (PNG paths) cover
 // together: the share of pixels any of them is opaque at.

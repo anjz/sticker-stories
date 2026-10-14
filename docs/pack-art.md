@@ -114,14 +114,17 @@ moves, moves.
   phones: paint the wide foreground on its own with them at its own edges
   (`scene.foregroundWideOwn`), never by widening one the 4:3 picture cuts.
   Places on them get `wideAreas`.
-- **Layers in front stay small.** Everything in front of the background —
-  the foreground and every scene layer (`scene.layers`: trees, reeds) —
-  covers **at most 20 %** of the picture together, on each rendition:
-  more hides the stickers behind it. A few low plants in the bottom
-  corners for the foreground; trees as slim placed layers (`area`) at
-  the sides, each its own layer so it has its own depth. `stickerart`
-  prints the coverage after a scene render and refuses to install over
-  the limit.
+- **Layers in front frame the scene, no more.** Everything in front of
+  the background — the foreground and every scene layer (`scene.layers`:
+  trees, reeds) — covers **at most 40 %** of the picture together, on
+  each rendition (Forest: 38 %), most of it above the ground the stickers
+  stand on: more hides them. A few low plants in the bottom corners for
+  the foreground; a big tree on each side, close to the viewer, as placed
+  layers (`area`, and `wideArea` to stand at the wide picture's edges
+  too), each its own layer so it has its own depth: two different kinds,
+  with full leafy crowns, their trunks in the picture at its edges and
+  their tops running off it — the middle stays open. `stickerart` prints the coverage after a scene
+  render and refuses to install over the limit.
 - **Outdoors**: no sun, moon, stars, rain or rainbow in the art — canvas
   effects draw those. A space pack's sky is part of the place (stars, the
   Earth) and stays.
