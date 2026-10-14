@@ -17,17 +17,31 @@ for (const st of data.stickers) {
   sizes[st.id] = (saved && S.sizes && S.sizes[st.id]) || +(0.32 * (classScale[st.size] || 1)).toFixed(3);
 }
 let floor = S.floor ?? 0.04;
+let edit = { spread: S.edit?.spread ?? 1, minimum: S.edit?.minimum ?? 0 };
 let lineup = (S.lineup || []).map(l => ({ sticker: l.sticker, at: [...l.at], flip: !!l.flip }));
 let selected = null;   // a lineup entry
 let dirty = false;
-const ui = { ghosts: true, layers: true, wide: false };
+const ui = { ghosts: true, layers: true, wide: false, child: false, device: 0 };
+
+// Devices the child's canvas is shown on (landscape, points): the art
+// covers the screen, base or wide as the app picks (ArtVariant), and its
+// height in points is what the edit minimum is measured against.
+const devices = [
+  { name: 'iPad Pro 11″', short: 'iPad 11″', w: 1210, h: 834, wide: false },
+  { name: 'iPad Pro 13″', short: 'iPad 13″', w: 1376, h: 1032, wide: false },
+  { name: 'iPhone 18 Pro', short: 'iPhone', w: 874, h: 402, wide: true },
+];
+for (const d of devices) {
+  const k = d.wide ? data.wide : 1;
+  d.art = Math.max(d.w / (A * k), d.h);   // the base art's height on screen
+}
 
 // MARK: Images
 
 const load = src => new Promise((ok, fail) => { const i = new Image(); i.onload = () => ok(i); i.onerror = fail; i.src = src; });
 const art = {};
-async function plane(name) {
-  const p = data.planes[name], src = ui.wide ? p.wide : p.base;
+async function plane(name, wide = ui.wide) {
+  const p = data.planes[name], src = wide && p.wide ? p.wide : p.base;
   return art[src] || (art[src] = await load(src));
 }
 const stickers = {};
@@ -50,6 +64,19 @@ await Promise.all(data.stickers.map(async st => {
 const depthAt = v => v < S.horizon - 0.01 ? Math.min(Math.max(eye / (S.horizon - v), 0.5), S.back) : S.back;
 const groundAt = z => S.horizon - eye / z;
 const drawnHeight = (size, z) => Math.max(size / z, Math.min(floor, size));
+// While the child edits (SceneSpace.editSize in the app): halfway between
+// its size at the back and the front, its difference from the biggest
+// softened by the spread, never under the minimum on a screen whose art is
+// artHeight points tall.
+const middle = size => (drawnHeight(size, S.stand.near) + drawnHeight(size, S.stand.far)) / 2;
+function editHeight(id, artHeight) {
+  const natural = middle(sizes[id]);
+  const biggest = Math.max(...Object.values(sizes).map(middle));
+  let h = biggest * Math.pow(natural / biggest, edit.spread);
+  const b = stickers[id].box;
+  if (edit.minimum > 0) h = Math.max(h, edit.minimum / artHeight / Math.sqrt(b.w / b.h));
+  return h;
+}
 const layers = () => S.layers.map(l => ({ ...l, plane: l.art || 'foreground', ...(ui.wide && l.wide ? l.wide : {}) }));
 
 const canvas = document.getElementById('c'), ctx = canvas.getContext('2d');
@@ -107,6 +134,57 @@ function drawLayer(r, l, all, img) {
   ctx.restore();
 }
 
+// The child's canvas on a device: the art covering its screen (centred),
+// every sticker of the line-up at its edit size, no depth, the planes with
+// the background as while editing; outside the screen dimmed.
+async function drawChild() {
+  const d = devices[ui.device], W = canvas.clientWidth, H = canvas.clientHeight;
+  const fit = Math.min(W / d.w, H / d.h) * 0.92;
+  const sw = d.w * fit, sh = d.h * fit, sx = (W - sw) / 2, sy = (H - sh) / 2;
+  const k = d.wide ? data.wide : 1;
+  const ah = d.art * fit, aw = ah * A * k;
+  const r = { x: sx + (sw - aw) / 2, y: sy + (sh - ah) / 2, w: aw, h: ah, k };
+  ctx.drawImage(await plane('background', d.wide), r.x, r.y, r.w, r.h);
+  for (const l of [...new Set(layers().map(l => l.plane))].filter(p => p !== 'foreground')) {
+    ctx.drawImage(await plane(l, d.wide), r.x, r.y, r.w, r.h);
+  }
+  hits = [];
+  // Further back first, as the child would have them; the selected one on
+  // top, so it always shows.
+  const order = [...lineup].sort((a, b) => (a === selected) - (b === selected) || b.at[1] - a.at[1]);
+  for (const e of order) {
+    const st = stickers[e.sticker], h = editHeight(e.sticker, d.art) * ah, w = h * st.box.w / st.box.h;
+    const p = toScreen(r, e.at);
+    const b = { x: p.x - w / 2, y: p.y - h, w, h };
+    ctx.save();
+    if (e.flip) { ctx.translate(p.x, 0); ctx.scale(-1, 1); ctx.translate(-p.x, 0); }
+    ctx.drawImage(st.img, st.box.x, st.box.y, st.box.w, st.box.h, b.x, b.y, b.w, b.h);
+    ctx.restore();
+    hits.push({ entry: e, ...b });
+  }
+  ctx.drawImage(await plane('foreground', d.wide), r.x, r.y, r.w, r.h);
+  hits.reverse();
+  // The screen: what is outside it is the art the child pans to.
+  ctx.save();
+  ctx.fillStyle = 'rgba(43, 47, 54, 0.75)';
+  ctx.beginPath();
+  ctx.rect(0, 0, W, H);
+  ctx.rect(sx, sy, sw, sh);
+  ctx.fill('evenodd');
+  ctx.strokeStyle = '#888';
+  ctx.strokeRect(sx, sy, sw, sh);
+  ctx.fillStyle = '#ccc';
+  ctx.fillText(`${d.name} · ${d.w}×${d.h} pt · art ${Math.round(d.art)} pt tall · shown at ${Math.round(fit * 100)}%`, sx, sy - 6);
+  ctx.restore();
+  const h = selected && hits.find(x => x.entry === selected);
+  if (h) {
+    ctx.strokeStyle = '#4b9bff';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(h.x - 3, h.y - 3, h.w + 6, h.h + 6);
+  }
+  panel();
+}
+
 async function draw() {
   const dpr = window.devicePixelRatio || 1;
   canvas.width = canvas.clientWidth * dpr;
@@ -114,6 +192,7 @@ async function draw() {
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.fillStyle = '#2b2f36';
   ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+  if (ui.child) return drawChild();
   const r = rect();
   ctx.drawImage(await plane('background'), r.x, r.y, r.w, r.h);
 
@@ -163,6 +242,10 @@ function panel() {
   const sizeIn = document.getElementById('size'), sizeNum = document.getElementById('sizeNum');
   document.getElementById('floor').value = floor;
   document.getElementById('floorNum').textContent = pct(floor);
+  document.getElementById('spread').value = edit.spread;
+  document.getElementById('spreadNum').textContent = edit.spread.toFixed(2);
+  document.getElementById('minimum').value = edit.minimum;
+  document.getElementById('minimumNum').textContent = edit.minimum + ' pt';
   if (!selected) {
     sel.textContent = 'Nothing selected.';
     sizeIn.disabled = sizeNum.disabled = true;
@@ -172,7 +255,10 @@ function panel() {
     sel.innerHTML = `<b>${id}</b> (${stickers[id].size || 'no class'}) · size <b>${s.toFixed(3)}</b><br>`
       + `here: depth ${z.toFixed(2)}, ${pct(drawnHeight(s, z))} of the art's height<br>`
       + `front ${pct(front)} · back ${pct(back)}<br>`
-      + `pinch: ${pct(back)} – ${pct(front)}, starts at ${pct((front + back) / 2)}`;
+      + `editing: ` + devices.map(d => {
+        const b = stickers[id].box, h = editHeight(id, d.art) * d.art;
+        return `${d.short} ${Math.round(h * b.w / b.h)}×${Math.round(h)} pt`;
+      }).join(' · ');
     sizeIn.disabled = sizeNum.disabled = false;
     sizeIn.value = Math.log(s);
     if (document.activeElement !== sizeNum) sizeNum.value = s.toFixed(3);
@@ -184,7 +270,7 @@ function panel() {
   const save = document.getElementById('save');
   save.classList.toggle('dirty', dirty);
   save.textContent = dirty ? 'Save *' : 'Save';
-  for (const k of ['ghosts', 'layers', 'wide']) document.getElementById(k).classList.toggle('on', ui[k]);
+  for (const k of ['ghosts', 'layers', 'wide', 'child']) document.getElementById(k).classList.toggle('on', ui[k]);
 }
 
 function changed() { dirty = true; document.getElementById('status').textContent = ''; draw(); }
@@ -236,7 +322,7 @@ canvas.addEventListener('pointerdown', e => {
   draw();
 });
 canvas.addEventListener('pointermove', e => {
-  if (!drag || !selected) return;
+  if (!drag || !selected || ui.child) return;
   selected.at = fromScreen(rect(), e.offsetX + drag.dx, e.offsetY + drag.dy);
   changed();
 });
@@ -264,13 +350,18 @@ window.addEventListener('keydown', e => {
 document.getElementById('size').oninput = e => selected && setSize(selected.sticker, Math.exp(+e.target.value));
 document.getElementById('sizeNum').onchange = e => selected && +e.target.value > 0 && setSize(selected.sticker, +e.target.value);
 document.getElementById('floor').oninput = e => { floor = +e.target.value; changed(); };
-for (const k of ['ghosts', 'layers', 'wide']) document.getElementById(k).onclick = () => { ui[k] = !ui[k]; draw(); };
+document.getElementById('spread').oninput = e => { edit.spread = +e.target.value; changed(); };
+document.getElementById('minimum').oninput = e => { edit.minimum = +e.target.value; changed(); };
+for (const k of ['ghosts', 'layers', 'wide', 'child']) document.getElementById(k).onclick = () => { ui[k] = !ui[k]; draw(); };
+const deviceSelect = document.getElementById('device');
+devices.forEach((d, i) => deviceSelect.add(new Option(d.name, i)));
+deviceSelect.onchange = e => { ui.device = +e.target.value; ui.child = true; draw(); };
 
 document.getElementById('save').onclick = async () => {
   const status = document.getElementById('status');
   const res = await fetch('/api/sizes', {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ sizes, floor, lineup }),
+    body: JSON.stringify({ sizes, floor, edit, lineup }),
   });
   if (res.ok) { dirty = false; status.style.color = '#8c8'; status.textContent = 'Saved to space.json'; }
   else { status.style.color = '#e88'; status.textContent = await res.text(); }
@@ -280,6 +371,7 @@ document.getElementById('save').onclick = async () => {
 const params = new URLSearchParams(location.search);
 if (params.get('all') === '1') document.getElementById('all').onclick();
 if (params.get('wide') === '1') ui.wide = true;
+if (params.has('child')) { ui.child = true; ui.device = +params.get('child') || 0; deviceSelect.value = ui.device; }
 if (params.has('sel')) selected = lineup.find(e => e.sticker === params.get('sel')) || null;
 window.addEventListener('beforeunload', e => { if (dirty) e.preventDefault(); });
 window.addEventListener('resize', draw);

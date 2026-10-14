@@ -225,13 +225,15 @@ func runServe(args []string) error {
 			"stickers": stickers, "space": p.space, "problems": problems,
 		})
 	})
-	// The sizing page saves sticker sizes, the floor and its line-up into
-	// space.json; everything else in it stays as it is.
+	// The sizing page saves sticker sizes, the floor, how stickers are
+	// sized while the child edits and its line-up into space.json;
+	// everything else in it stays as it is.
 	mux.HandleFunc("POST /api/sizes", func(w http.ResponseWriter, r *http.Request) {
 		var body struct {
-			Sizes  map[string]float64 `json:"sizes"`
-			Floor  float64            `json:"floor"`
-			Lineup []LineupSticker    `json:"lineup"`
+			Sizes  map[string]float64  `json:"sizes"`
+			Floor  float64             `json:"floor"`
+			Edit   *manifest.SpaceEdit `json:"edit"`
+			Lineup []LineupSticker     `json:"lineup"`
 		}
 		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
@@ -243,7 +245,7 @@ func runServe(args []string) error {
 			return
 		}
 		s := p.space
-		s.Sizes, s.Floor, s.Lineup = body.Sizes, body.Floor, body.Lineup
+		s.Sizes, s.Floor, s.Edit, s.Lineup = body.Sizes, body.Floor, body.Edit, body.Lineup
 		for id, size := range s.Sizes {
 			s.Sizes[id] = math.Round(size*1000) / 1000
 		}

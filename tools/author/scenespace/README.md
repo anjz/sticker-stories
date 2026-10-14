@@ -32,10 +32,16 @@ drawn height at depth 1, so it is drawn smaller the further back it
 stands — compare stickers anywhere. The selected one shows its numbers
 (drawn height here, at the front and the back of where stickers stand:
 the child's pinch range, starting halfway) and ghosts of it at the
-front and the back. "Minimum" is the floor. Save writes `sizes`, `floor`
+front and the back. "Minimum" is the floor. "Edit spread" and "Edit
+minimum" size the stickers while the child edits (`edit` in
+docs/pack-format.md, "Space"); "Child's canvas" shows that on a device —
+the art covering an iPad 11″, iPad 13″ or iPhone screen, every sticker of
+the line-up at its edit size with no depth — and the selected one gives
+its edit size in points on each. Save writes `sizes`, `floor`, `edit`
 and the `lineup` (where each sticker stood, so the comparison carries
 on) into space.json; until a line-up is saved, stickers start at their
-size class's default. `?all=1&sel=fox&wide=1` start that way.
+size class's default. `?all=1&sel=fox&wide=1&child=2` start that way
+(`child` picks the device: 0, 1, 2).
 
 ## The model
 
