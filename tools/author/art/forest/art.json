@@ -666,22 +666,34 @@
       },
       {
         "id": "birch",
-        "prompt": "a slim birch tree seen whole from its roots to its top, about three and a half times as tall as it is wide: a straight, slender white trunk with dark marks and a slight lean, a few thin roots at its foot, one short bare side branch reaching out to the left a little above the middle, and a narrow, airy crown of light-green leaves on its upper half.",
+        "prompt": "a tall birch tree seen whole from its roots to its top, about twice as tall as it is wide: a straight, slender white trunk with black marks and a slight lean, a few thin roots at its foot; a full, rich crown of bright light-green birch leaves over its upper half, its leafy twigs hanging softly down; a little below the crown one short side branch with a few leaves reaches out to the left, good to sit on.",
         "area": {
-          "x": 0.7267,
-          "y": 0.0,
-          "width": 0.095,
-          "height": 0.8
+          "x": 0.3067,
+          "y": -0.34,
+          "width": 1.0,
+          "height": 1.3
+        },
+        "wideArea": {
+          "x": 0.45,
+          "y": -0.24,
+          "width": 1.0,
+          "height": 1.2
         }
       },
       {
         "id": "oak",
-        "prompt": "a tall old oak tree seen whole from its roots to its top, about three times as tall as it is wide: a long, sturdy, gnarled brown trunk with knots and moss, rising with a slight lean to the right, a few twisting roots at its foot; about two thirds of the way up, one long, nearly level bare branch reaching out to the right, good to sit on; above it a dense crown of green oak leaves on the top third of the tree only, no wider than the branch reaches. Tall and narrow, filling the frame's height.",
+        "prompt": "a big, old oak tree seen whole from its roots to the top of its crown, about one and a half times as tall as it is wide: a thick, gnarled brown trunk with knots and patches of moss, a few twisting roots at its foot; a huge, full, rounded crown of dense green oak leaves over the upper half of the tree, leafy boughs spreading out to both sides; below the crown one sturdy, nearly level branch reaches out to the right, good to sit on, with a few leaves at its tip.",
         "area": {
-          "x": 0.1267,
-          "y": -0.25,
-          "width": 0.185,
-          "height": 1.13
+          "x": -0.36,
+          "y": -0.24,
+          "width": 1.0,
+          "height": 1.2
+        },
+        "wideArea": {
+          "x": -0.44,
+          "y": -0.14,
+          "width": 1.0,
+          "height": 1.1
         }
       }
     ],
@@ -692,12 +704,12 @@
         "areas": [
           {
             "x": [
-              0.35,
-              0.75
+              0.4,
+              0.68
             ],
             "y": [
               0.62,
-              0.84
+              0.85
             ]
           }
         ]
@@ -769,7 +781,7 @@
         ]
       },
       "branches": {
-        "description": "the branches of the old oak on the left and the birch on the right, high up under the leaves",
+        "description": "the low branches of the big oak on the left and the birch on the right, under their leaves",
         "words": {
           "en-US": [
             "branch",
@@ -783,22 +795,44 @@
         "areas": [
           {
             "x": [
-              0.08,
-              0.19
+              0.06,
+              0.2
             ],
             "y": [
-              0.47,
-              0.51
+              0.5,
+              0.52
             ]
           },
           {
             "x": [
-              0.855,
-              0.895
+              0.8,
+              0.9
             ],
             "y": [
-              0.44,
-              0.48
+              0.665,
+              0.72
+            ]
+          }
+        ],
+        "wideAreas": [
+          {
+            "x": [
+              -0.06,
+              0.08
+            ],
+            "y": [
+              0.478,
+              0.49
+            ]
+          },
+          {
+            "x": [
+              1.03,
+              1.12
+            ],
+            "y": [
+              0.632,
+              0.67
             ]
           }
         ]
@@ -820,19 +854,43 @@
         "areas": [
           {
             "x": [
-              0.06,
-              0.07
+              0.035,
+              0.05
             ],
             "y": [
-              0.29,
-              0.42
+              0.26,
+              0.4
             ],
             "facing": "left"
           },
           {
             "x": [
-              0.888,
-              0.898
+              0.94,
+              0.95
+            ],
+            "y": [
+              0.28,
+              0.42
+            ],
+            "facing": "right"
+          }
+        ],
+        "wideAreas": [
+          {
+            "x": [
+              -0.1,
+              -0.085
+            ],
+            "y": [
+              0.28,
+              0.4
+            ],
+            "facing": "left"
+          },
+          {
+            "x": [
+              1.16,
+              1.168
             ],
             "y": [
               0.28,
