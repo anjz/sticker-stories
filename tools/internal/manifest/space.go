@@ -47,6 +47,19 @@ type Space struct {
 	Places map[string]SpacePlace `json:"places,omitempty"`
 	// Sizes are stickers' drawn heights at depth 1, in art heights.
 	Sizes map[string]float64 `json:"sizes"`
+	// Edit is how big stickers are while the child edits the canvas;
+	// without it, at their sizes (docs/pack-format.md, "Space").
+	Edit *SpaceEdit `json:"edit,omitempty"`
+}
+
+// SpaceEdit sizes stickers while the child edits the canvas: Spread
+// softens their differences in size (1: as they are; less draws them
+// closer together, the biggest staying as it is: height = biggest ×
+// (height / biggest)^Spread), and none is smaller on the screen than
+// Minimum points (the square root of its drawing's width × height).
+type SpaceEdit struct {
+	Spread  float64 `json:"spread"`
+	Minimum float64 `json:"minimum"`
 }
 
 type SpaceRange struct {
@@ -174,6 +187,14 @@ func (s *Space) Validate(planes, stickers, features map[string]bool) []error {
 	}
 	if s.Floor < 0 || s.Floor >= 1 {
 		fail("floor %v must be a fraction of the art's height (0 up to 1)", s.Floor)
+	}
+	if e := s.Edit; e != nil {
+		if e.Spread <= 0 || e.Spread > 1 {
+			fail("edit.spread %v must be above 0 and at most 1", e.Spread)
+		}
+		if e.Minimum < 0 || e.Minimum > 200 {
+			fail("edit.minimum %v must be 0–200 points", e.Minimum)
+		}
 	}
 	inArt := func(field string, p Polygon, least int) bool {
 		if len(p) < least {

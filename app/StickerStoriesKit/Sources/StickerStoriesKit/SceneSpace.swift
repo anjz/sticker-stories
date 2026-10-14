@@ -45,6 +45,25 @@ public struct SceneSpace: Codable, Equatable, Sendable {
     public var places: [String: Place]
     /// Stickers' drawn heights at depth 1, in art heights.
     public var sizes: [String: Double]
+    /// How big stickers are while the child edits the canvas, against
+    /// each other and on the screen (`editSize`); nil keeps them at their
+    /// sizes.
+    public var edit: Edit?
+
+    /// Stickers while the child edits: their differences in size
+    /// softened (`spread`: 1 as they are, smaller draws them closer
+    /// together, the biggest staying as it is) and none smaller on the
+    /// screen than `minimum` points (its drawing's width and height
+    /// multiplied, the square root of that), however small the device.
+    public struct Edit: Codable, Equatable, Sendable {
+        public var spread: Double
+        public var minimum: Double
+
+        public init(spread: Double = 1, minimum: Double = 0) {
+            self.spread = spread
+            self.minimum = minimum
+        }
+    }
 
     public struct Range: Codable, Equatable, Sendable {
         public var near: Double
@@ -173,7 +192,7 @@ public struct SceneSpace: Codable, Equatable, Sendable {
 
     public init(
         horizon: Double, ground: Double, back: Double, stand: Range, floor: Double = 0,
-        layers: [Layer], places: [String: Place] = [:], sizes: [String: Double]
+        layers: [Layer], places: [String: Place] = [:], sizes: [String: Double], edit: Edit? = nil
     ) {
         self.horizon = horizon
         self.ground = ground
@@ -183,10 +202,11 @@ public struct SceneSpace: Codable, Equatable, Sendable {
         self.layers = layers
         self.places = places
         self.sizes = sizes
+        self.edit = edit
     }
 
     private enum CodingKeys: String, CodingKey {
-        case horizon, ground, back, stand, floor, layers, places, sizes
+        case horizon, ground, back, stand, floor, layers, places, sizes, edit
     }
 
     public init(from decoder: Decoder) throws {
@@ -199,6 +219,8 @@ public struct SceneSpace: Codable, Equatable, Sendable {
         layers = try c.decode([Layer].self, forKey: .layers)
         places = try c.decodeIfPresent([String: Place].self, forKey: .places) ?? [:]
         sizes = try c.decode([String: Double].self, forKey: .sizes)
+        // A setting this build cannot read leaves the sizes as they are.
+        edit = (try? c.decodeIfPresent(Edit.self, forKey: .edit)) ?? nil
     }
 
     // MARK: The camera
@@ -220,21 +242,42 @@ public struct SceneSpace: Codable, Equatable, Sendable {
     }
 
     /// How big a sticker is while the child edits the canvas: its drawing
-    /// `height` (art heights) halfway between where it would be at the back
-    /// and at the front of where stickers stand, and the `scales` a pinch
-    /// takes it between — from its back size to its front size.
+    /// `height` (art heights) and the `scales` a pinch takes it between.
     public struct EditSize: Equatable, Sendable {
         public var height: Double
         public var scales: ClosedRange<Double>
     }
 
+    /// Whatever its size, a pinch takes a sticker at least this much
+    /// smaller and bigger than it starts.
+    public static let editPinch: ClosedRange<Double> = 0.7...1.5
+
     /// A sticker's `EditSize`, or nil when the space gives it no size.
-    public func editSize(of stickerID: String) -> EditSize? {
+    /// It starts halfway between its size at the back and at the front of
+    /// where stickers stand, its difference from the biggest softened by
+    /// `edit.spread`, and never smaller than `edit.minimum` points on art
+    /// `artHeight` points tall; a pinch takes it from its back size to its
+    /// front size (with `edit`, at least `editPinch`), never under the
+    /// minimum.
+    /// - Parameter ratio: its drawing's width over its height.
+    public func editSize(of stickerID: String, artHeight: Double = 0, ratio: Double = 1) -> EditSize? {
         guard let size = sizes[stickerID], size > 0 else { return nil }
-        let front = drawnHeight(size: size, atDepth: stand.near)
-        let back = drawnHeight(size: size, atDepth: stand.far)
-        let middle = (front + back) / 2
-        return EditSize(height: middle, scales: (back / middle)...(front / middle))
+        func middle(_ size: Double) -> Double {
+            (drawnHeight(size: size, atDepth: stand.near) + drawnHeight(size: size, atDepth: stand.far)) / 2
+        }
+        let natural = middle(size)
+        let front = drawnHeight(size: size, atDepth: stand.near) / natural
+        let back = drawnHeight(size: size, atDepth: stand.far) / natural
+        guard let edit else { return EditSize(height: natural, scales: back...front) }
+        let biggest = sizes.values.filter { $0 > 0 }.map(middle).max() ?? natural
+        var height = biggest * pow(natural / biggest, min(max(edit.spread, 0.05), 1))
+        var least = 0.0
+        if edit.minimum > 0, artHeight > 0 {
+            least = edit.minimum / artHeight / max(ratio, 0.05).squareRoot()
+            height = max(height, least)
+        }
+        let low = max(min(back, Self.editPinch.lowerBound), least / height)
+        return EditSize(height: height, scales: low...max(front, Self.editPinch.upperBound, low))
     }
 
     // MARK: Depth on the stage
@@ -294,6 +337,10 @@ public struct SceneSpace: Codable, Equatable, Sendable {
         if !(stand.near > 0 && stand.far > stand.near) { fail("stand \(stand.near)…\(stand.far) needs 0 < near < far") }
         if back < stand.far { fail("back \(back) must be at least stand.far \(stand.far)") }
         if !(floor >= 0 && floor < 1) { fail("floor \(floor) must be a fraction of the art's height (0 up to 1)") }
+        if let edit {
+            if !(edit.spread > 0 && edit.spread <= 1) { fail("edit.spread \(edit.spread) must be above 0 and at most 1") }
+            if !(edit.minimum >= 0 && edit.minimum <= 200) { fail("edit.minimum \(edit.minimum) must be 0–200 points") }
+        }
 
         func inArt(_ field: String, _ points: [Point], least: Int) -> Bool {
             if points.count < least {

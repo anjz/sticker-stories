@@ -107,6 +107,33 @@ import Testing
         #expect(space.editSize(of: "owl") == nil)
     }
 
+    /// While the child edits, the spread draws small ones closer to the
+    /// biggest (which stays), none under the minimum on the screen — a
+    /// long, low drawing by its area, not its height — and a pinch always
+    /// has room, never under the minimum.
+    @Test func editSizesSoftenedAndNeverTooSmallOnTheScreen() throws {
+        var space = SceneSpace(
+            horizon: 0.5, ground: 0, back: 5, stand: .init(near: 1, far: 4), floor: 0.05,
+            layers: [.init(id: "front", depth: 1)], sizes: ["fox": 0.4, "bee": 0.08, "worm": 0.08])
+        space.edit = .init(spread: 0.5, minimum: 0)
+        let fox = try #require(space.editSize(of: "fox", artHeight: 900))
+        #expect(abs(fox.height - 0.25) < 1e-12)
+        let bee = try #require(space.editSize(of: "bee", artHeight: 900))
+        #expect(abs(bee.height - 0.25 * (0.065 / 0.25).squareRoot()) < 1e-12)
+        #expect(bee.scales.lowerBound <= 0.7 && bee.scales.upperBound >= 1.5)
+        // 60 points on a phone's art 437 points tall.
+        space.edit = .init(spread: 0.5, minimum: 60)
+        let small = try #require(space.editSize(of: "bee", artHeight: 437))
+        #expect(abs(small.height * 437 - 60) < 1e-9)
+        #expect(abs(small.scales.lowerBound - 1) < 1e-9)
+        // As long as four of its heights, its area is over the minimum at
+        // the softened size: it keeps that.
+        let worm = try #require(space.editSize(of: "worm", artHeight: 437, ratio: 4))
+        #expect(abs(worm.height - bee.height) < 1e-12 && worm.height < small.height)
+        // On the iPad's art it is big enough already.
+        #expect(try #require(space.editSize(of: "bee", artHeight: 900)) == bee)
+    }
+
     /// An image with a painted block in its lower left: the box comes back
     /// in fractions, origin bottom-left.
     @Test func opaqueBoundsAreBottomLeftFractions() throws {

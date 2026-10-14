@@ -196,7 +196,7 @@ never letterboxes:
 | `background` / `foreground` | string | Pack-relative paths to PNG or WebP files that must exist ("Image formats" above). Their frame is the sticker coordinate system ("Art safe area" below). |
 | `backgroundWide` / `foregroundWide` | string | **Optional, together or not at all.** Wider renditions (e.g. 2:1) with the **same pixel height** as the base art and the base art **centred** inside. The app draws whichever rendition lets a landscape window avoid panning with the least crop (tall phones get the wide one; iPads keep the base one). Files must exist. |
 | `layers` | [object] | **Optional.** The scene's planes between the background and the foreground, far to near ("Layers" below): each `{ "id", "image", "imageWide" }` — a lowercase id (not `background` or `foreground`), a PNG or WebP plane of the base art's size, and the same on the wide art exactly when the pack has wide art. |
-| `space` | object | **Optional.** The scene as a place with depth ("Space" below): `horizon`, `ground`, `back`, `stand`, `floor`, `layers` (the planes at their depths), `places` (features in space) and `sizes` (every sticker's). |
+| `space` | object | **Optional.** The scene as a place with depth ("Space" below): `horizon`, `ground`, `back`, `stand`, `floor`, `layers` (the planes at their depths), `places` (features in space), `sizes` (every sticker's) and `edit` (how big they are while the child edits). |
 | `cover` | string | **Optional.** Pack-relative path to the pack's cover art (PNG or WebP, must exist): what its tile shows in the main menu and the store. Made with `uiart` (`tools/author/uiart`); without one the app composes the tile from the background and a few stickers. No text in it — the app writes the name. |
 | `world` | object | **Optional.** The physics of the pack's world for particle effects ("World" below): `gravity` (relative to Earth's: 1 on Earth, 0.17 on the Moon; 0–2) and `ground` (`#RRGGBB`, the colour dust is kicked up from). Either may be left out; the app fills it from the `setting`. |
 | `staging` | object | **Optional.** How stories stage the stickers they bring in and move ("Staging" below): `layer` (`foreground`, the default, or `background`) and `anchor` (`centre`, the default, or `feet`). |
@@ -317,7 +317,8 @@ never letterboxes:
     pack; its `imageWide` is one too, present exactly when the pack has
     wide art.
 20. `space`, when present: `horizon` inside 0…1, `ground` below it,
-    0 < `stand.near` < `stand.far` ≤ `back`, `floor` from 0 up to 1. Its
+    0 < `stand.near` < `stand.far` ≤ `back`, `floor` from 0 up to 1,
+    `edit.spread` above 0 and at most 1, `edit.minimum` 0–200. Its
     `layers` have unique lowercase ids and depths in (0, `back`], show
     `foreground` or a declared `layers` id (`art`), with at most one
     piece per plane without a `mask`, and put every plane (the
@@ -533,6 +534,7 @@ bottom-left, as everywhere else in the manifest.
 | `layers` | The planes at their depths: `{ "id", "art", "depth", "mask", "footprint", "wide" }` — `art` is the plane shown (`foreground` when absent, or a `layers` id); `mask`, a polygon of art points, cuts a piece of the plane (two trees at different depths), one piece per plane may be the rest; `footprint`, a polygon of feet positions, is ground nothing walks on (a trunk's roots); `wide` holds another `depth`, `mask` and `footprint` for the wide art when the piece is painted elsewhere there. |
 | `places` | Features (the same ids) in space, exactly one of: `ground` — a polygon of feet positions, `water: true` for water; `air` — `{ "area": polygon, "depth": [near, far] }`, open air; `lines` — `[{ "layer", "points", "facing" }]`, where feet (a branch) or a front (`facing`: the bark of a trunk) go on a layer, at its depth, with `wideLines` for the wide art. |
 | `sizes` | Every sticker's drawn height at depth 1, in art heights. |
+| `edit` | **Optional.** `{ "spread", "minimum" }`: how big stickers are while the child edits the canvas (below). Without it they are at their sizes. |
 
 **The camera.** The eye is `horizon − ground` above the ground. The
 ground seen at art y `v` is at depth `z = (horizon − ground) / (horizon − v)`;
@@ -543,6 +545,25 @@ is `s / z` tall — never below `floor`, nor above its own size when that is
 smaller than the floor. Sizes are set against each other on the scene
 (`scenespace`'s sizing page), so every sticker keeps its size next to
 every other at any depth.
+
+**While the child edits** there is no depth: a sticker starts halfway
+between its height at the front and at the back of `stand`, and a pinch
+takes it between those two. With `edit`, the differences are softened and
+the smallest kept big enough to see and pick up on any screen:
+
+- `spread` (above 0, at most 1): a sticker's height `h` becomes
+  `H · (h / H)^spread`, `H` the biggest sticker's, which stays as it is.
+  1 changes nothing; 0.6 makes a bee about twice as big next to the bear.
+- `minimum` (points, 0–200): none is drawn smaller on the screen than
+  this — the square root of its drawing's width × height, so a long, low
+  one is not stretched tall — measured on the art as the device shows it
+  (the base art's height in points), so it bites on phones and small
+  windows.
+- A pinch then takes it at least from 0.7× to 1.5× (or its front-to-back
+  range when that is wider), never under the minimum.
+
+A story still draws every sticker at its size for its depth: as it
+starts, the child's stickers ease to those sizes, and back when it ends.
 
 ## Expressions
 

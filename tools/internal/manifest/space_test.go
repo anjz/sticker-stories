@@ -54,6 +54,11 @@ func TestSpaceValidate(t *testing.T) {
 	if errs := validSpace().Validate(planes, stickers, features); len(errs) != 0 {
 		t.Fatalf("valid space: %v", errs)
 	}
+	edited := validSpace()
+	edited.Edit = &SpaceEdit{Spread: 0.6, Minimum: 60}
+	if errs := edited.Validate(planes, stickers, features); len(errs) != 0 {
+		t.Fatalf("valid edit sizes: %v", errs)
+	}
 	cases := map[string]func(s *Space){
 		"not a feature": func(s *Space) {
 			s.Places["sky"] = SpacePlace{Air: &SpaceAir{Area: Polygon{{0, 0.6}, {1, 0.6}, {0.5, 0.9}}, Depth: [2]float64{2, 5}}}
@@ -65,6 +70,8 @@ func TestSpaceValidate(t *testing.T) {
 		"has no size":           func(s *Space) { delete(s.Sizes, "fox") },
 		"not one of the space":  func(s *Space) { s.Places["branch"].Lines[0].Layer = "bush" },
 		"exactly one of":        func(s *Space) { s.Places["meadow"] = SpacePlace{} },
+		"edit.spread":           func(s *Space) { s.Edit = &SpaceEdit{Spread: 0, Minimum: 60} },
+		"edit.minimum":          func(s *Space) { s.Edit = &SpaceEdit{Spread: 0.6, Minimum: -1} },
 	}
 	for want, change := range cases {
 		s := validSpace()
