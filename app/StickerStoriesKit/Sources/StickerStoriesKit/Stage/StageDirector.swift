@@ -87,6 +87,7 @@ public enum StageDirector {
         goes: [GoTrigger], policy: EffectPolicy, cast: Set<String>? = nil, random: inout R
     ) -> [UUID: StagePlan] {
         var director = Director(world: world, screen: screen, policy: policy, actors: actors)
+        director.cast = cast
         director.settleThePlaced()
         if let cast {
             // Where the story's cast will be and pass, from a first run;
@@ -177,6 +178,11 @@ public enum StageDirector {
         let screen: StageScreen
         let policy: EffectPolicy
         var states: [State]
+        /// The stickers the story uses: they come first in being seen.
+        var cast: Set<String>?
+        /// The moves an entrance has already made (it came in straight to
+        /// the place): not made again.
+        var made: Set<String> = []
         /// Who shares a spot on or under a sticker ("on:<id>"), left to right.
         var groups: [String: [Int]] = [:]
 
@@ -192,21 +198,36 @@ public enum StageDirector {
             }
         }
 
-        /// Plans the story's entrances and moves, in time order.
+        /// Plans the story's entrances and moves in the order the story has
+        /// them (at the same moment, the entrance first): each one chooses
+        /// its spot on the stage as it is then.
         mutating func run<R: RandomNumberGenerator>(entrances: [EntranceTrigger], goes: [GoTrigger], random: inout R) {
             var entered = Set<String>()
-            for entrance in entrances.sorted(by: { $0.at < $1.at }) where entered.insert(entrance.stickerID).inserted {
-                for i in states.indices where states[i].actor.stickerID == entrance.stickerID && states[i].actor.placed == nil {
-                    enter(i, entrance, goes: goes, random: &random)
-                }
-            }
-            for go in goes.sorted(by: { $0.at < $1.at }) {
-                for i in states.indices
-                where states[i].actor.stickerID == go.stickerID && states[i].actor.canMove && states[i].hasEntered {
-                    apply(go, to: i, random: &random)
+            let firsts = entrances.sorted { $0.at < $1.at }.filter { entered.insert($0.stickerID).inserted }
+            let cues = (firsts.map { (at: $0.at, order: 0, cue: Cue.entrance($0)) }
+                + goes.map { (at: $0.at, order: 1, cue: Cue.go($0)) })
+                .enumerated().sorted { a, b in
+                    (a.element.at, a.element.order, a.offset) < (b.element.at, b.element.order, b.offset)
+                }.map(\.element.cue)
+            for cue in cues {
+                switch cue {
+                case .entrance(let entrance):
+                    for i in states.indices where states[i].actor.stickerID == entrance.stickerID && states[i].actor.placed == nil {
+                        enter(i, entrance, goes: goes, random: &random)
+                    }
+                case .go(let go):
+                    guard !made.contains(Self.key(go)) else { continue }
+                    for i in states.indices
+                    where states[i].actor.stickerID == go.stickerID && states[i].actor.canMove && states[i].hasEntered {
+                        apply(go, to: i, random: &random)
+                    }
                 }
             }
         }
+
+        static func key(_ go: GoTrigger) -> String { "\(go.stickerID)@\(go.at)" }
+
+        enum Cue { case entrance(EntranceTrigger), go(GoTrigger) }
 
         // MARK: Out of the story's way
 
@@ -229,11 +250,14 @@ public enum StageDirector {
                 }
             }
             guard !taken.isEmpty else { return }
+            // As a share of the smaller of the two: a bear over a snail
+            // hides all of it, however little of the bear that is.
             func overlap(_ r: StageRect) -> Double {
-                let area = max((r.maxX - r.minX) * (r.maxY - r.minY), 1)
+                let area = { (r: StageRect) in max((r.maxX - r.minX) * (r.maxY - r.minY), 1) }
                 return taken.map { t in
                     max(0, min(r.maxX, t.maxX) - max(r.minX, t.minX)) * max(0, min(r.maxY, t.maxY) - max(r.minY, t.minY))
-                }.max().map { $0 / area } ?? 0
+                        / min(area(r), area(t))
+                }.max() ?? 0
             }
             let lands = world.grounds.filter { !$0.water }.map(\.place)
             for i in states.indices where states[i].actor.placed != nil && !cast.contains(states[i].actor.stickerID) {
@@ -364,6 +388,33 @@ public enum StageDirector {
             var r = drawing(i, at: p)
             r.maxY += (r.maxY - r.minY) * 0.5
             return world.hidden(r, atDepth: p.z)
+        }
+
+        /// How much it matters that the viewer sees it: fully for the
+        /// story's cast, less for the child's other stickers.
+        func weight(_ i: Int) -> Double {
+            cast.map { $0.contains(states[i].actor.stickerID) ? 1 : 0.4 } ?? 1
+        }
+
+        /// What the other stickers on the stage and it would hide of each
+        /// other with it at `p`, for the viewer: the share of it behind
+        /// those nearer, and the most of anyone farther it would stand in
+        /// front of, each as much as that one matters (`weight`). Those in
+        /// `except` (whom it stands beside) do not count.
+        func blocking(_ i: Int, at p: Vec3, except: Set<Int> = []) -> Double {
+            let mine = drawing(i, at: p)
+            var nearer: [StageRect] = []
+            var hides = 0.0
+            for o in states.indices where o != i && !except.contains(o) && states[o].visible && states[o].hasEntered {
+                let q = states[o].pose.position
+                let theirs = drawing(o, at: q)
+                if q.z < p.z - 1e-6 {
+                    nearer.append(theirs)
+                } else if q.z > p.z + 1e-6 {
+                    hides = max(hides, StageWorld.hidden(theirs, behind: [mine]) * weight(o))
+                }
+            }
+            return StageWorld.hidden(mine, behind: nearer) * weight(i) + hides
         }
 
         func covered(_ i: Int, at p: Vec3) -> Bool {
@@ -615,8 +666,11 @@ public enum StageDirector {
                 let d = near.map { (pose.position - $0).length } ?? 0
                 let back = min(max((pose.position.z - stand.near) / max(stand.far - stand.near, 0.01), 0), 1)
                 let front = me.wantsFront
+                // Seen: not behind the planes, nor behind someone, nor in
+                // front of someone already there.
                 return (pose, min(c, me.width * 2) - d * 0.05 - back * front * 0.35
-                    - hiddenWithHeadroom(i, at: pose.position) * (me.width * 2 + 0.3 + front * 0.5))
+                    - hiddenWithHeadroom(i, at: pose.position) * (me.width * 2 + 0.3 + front * 0.5)
+                    - blocking(i, at: pose.position) * (me.width * 3 + 1))
             }
             let best = scored.map(\.1).max() ?? 0
             let roomy = scored.filter { $0.1 >= best - me.width * 0.3 }
@@ -634,10 +688,12 @@ public enum StageDirector {
             var stage = states[i].actor.stage
             let itsGoes = goes.filter { $0.stickerID == entrance.stickerID && $0.at >= entrance.at - 0.01 }
                 .sorted { $0.at < $1.at }
+            var arrival: (go: GoTrigger, place: String)?
             if let first = itsGoes.first, first.kind == .to, first.at - entrance.at <= StagePlanner.arrivalMove,
                 let place = first.target, world.space.places[place] != nil
             {
                 stage.on = [place] + stage.on.filter { $0 != place }
+                arrival = (first, place)
             }
             states[i].by = entrance.by
             let move = StageMove.pick(states[i].actor.moves, by: entrance.by)
@@ -648,7 +704,16 @@ public enum StageDirector {
             var landing: StagePose?
             for place in stage.on {
                 landing = choose(spots(place, for: i, move: move), for: i, at: entrance.at, near: nil, random: &random)
-                if landing != nil { break }
+                if landing != nil {
+                    // Come straight to the place the story sends it to its
+                    // usual way: that move is made.
+                    if let arrival, arrival.place == place, arrival.go.by == nil || arrival.go.by == entrance.by,
+                        !arrival.go.another, arrival.go.toward == nil
+                    {
+                        made.insert(Director.key(arrival.go))
+                    }
+                    break
+                }
             }
             if landing == nil {
                 // Nowhere of its own: any land on screen.
@@ -860,39 +925,45 @@ public enum StageDirector {
                 onScreen(i, at: Vec3(t.x + side * spacing, 0, t.z))
             }
             if !room(side), room(-side) { side = -side }
-            var z = max(t.z - StageDirector.inFront, 0.1)
+            let z = max(t.z - StageDirector.inFront, 0.1)
             let spotX = { (side: Double, out: Double) -> Double in
                 t.x + side * spacing * (out + 0.85 * Double(onSide(side) / 2 * 2) / 2)
             }
             if let toward { side = toward == .right ? 1 : -1 }
-            // Not behind a tree: the other side, or a step further out —
-            // or nearer, out from under its low branches — when that shows
-            // it.
-            var x = spotX(side, 1)
-            var behind = hidden(i, at: Vec3(x, 0, z))
+            // Where it would stand for a spot: a flyer hovers there; a
+            // walker stands on the nearest land it can, on screen.
+            let flies = way(i).flies
+            let belongs = self.belongs(i, way(i).move)
+            func standing(_ x: Double, _ z: Double) -> Vec3 {
+                if flies { return pushedOnScreen(i, Vec3(x, t.y + them.size * 0.15, z)) }
+                let ground = Vec2(x, z)
+                let land = world.nearestStand(to: ground, belongsIn: belongs, accept: { onScreen(i, at: $0.onGround) }) ?? ground
+                return pushedOnScreen(i, land.onGround)
+            }
+            // Seen where it ends up: not behind a tree (the planes count
+            // double — behind one it is never seen) nor behind or in front
+            // of someone else. Else the other side, or a step further out,
+            // or nearer — out from under a tree's low branches.
+            let seen = { (p: Vec3) in hidden(i, at: p) * 2 + blocking(i, at: p, except: [j]) }
+            var spot = standing(spotX(side, 1), z)
+            var behind = seen(spot)
             if behind > 0.2 {
                 let near = world.space.stand.near
                 var tries: [(Double, Double, Double)] = []
                 for dz in [0, 0.4, 0.8] where dz == 0 || z - dz >= near {
-                    for (s, out) in [(side, 1.0), (side, 1.6), (-side, 1), (-side, 1.6)] where dz > 0 || out != 1 || s != side {
+                    for (s, out) in [(side, 1.0), (side, 1.6), (-side, 1), (-side, 1.6), (side, 2.4), (-side, 2.4)]
+                    where dz > 0 || out != 1 || s != side {
                         tries.append((s, out, z - dz))
                     }
                 }
                 for (s, out, depth) in tries where toward == nil || s == side {
-                    let other = spotX(s, out)
-                    guard onScreen(i, at: Vec3(other, 0, depth)) else { continue }
-                    let h = hidden(i, at: Vec3(other, 0, depth))
-                    if h < behind - 0.15 { (x, z, behind) = (other, depth, h) }
+                    let other = standing(spotX(s, out), depth)
+                    guard onScreen(i, at: other) else { continue }
+                    let h = seen(other)
+                    if h < behind - 0.15 { (spot, behind) = (other, h) }
                 }
             }
-            if way(i).flies {
-                let hover = pushedOnScreen(i, Vec3(x, t.y + them.size * 0.15, z))
-                return StagePose(position: hover, support: .beside(them.id), facing: states[i].pose.facing)
-            }
-            let belongs = self.belongs(i, way(i).move)
-            let ground = Vec2(x, z)
-            let land = world.nearestStand(to: ground, belongsIn: belongs, accept: { onScreen(i, at: $0.onGround) }) ?? ground
-            return StagePose(position: pushedOnScreen(i, land.onGround), support: .beside(them.id), facing: states[i].pose.facing)
+            return StagePose(position: spot, support: .beside(them.id), facing: states[i].pose.facing)
         }
 
         /// The instance of `name` nearest to it on the stage.

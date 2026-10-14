@@ -365,8 +365,9 @@ import Testing
                 let data = try? Data(contentsOf: pack.dir.appendingPathComponent(sidecar)),
                 let file = try? EffectTriggerFile(data: data)
             else { continue }
-            for crowded in [false, true] {
-                var random = SeededGenerator(state: 11)
+            // Spots are chosen with a little chance: two draws of each.
+            for (crowded, seed) in [(false, 11), (true, 11), (false, 7777), (true, 7777)] {
+                var random = SeededGenerator(state: UInt64(seed))
                 // The story's cast as visitors; on the crowded canvas the
                 // child has placed its stickers (and a few more) here and there.
                 var actors: [StageActor] = []
@@ -396,6 +397,39 @@ import Testing
                 // A whole lap past the last leg: whoever circles is seen all round its loop.
                 let end = (plans.values.flatMap(\.legs).map(\.end).max() ?? 0) + StagePlan.lapTime + 1
                 circling += plans.values.flatMap(\.legs).filter { $0.circling != nil }.count
+                // Nobody in the story stands mostly hidden behind another
+                // sticker while both are still (the deer in front of the
+                // frog); one passing in front on its way is fine.
+                var t0 = StageDirector.settle
+                let last = plans.values.flatMap(\.legs).map(\.end).max() ?? 0
+                while t0 <= last + 1 {
+                    defer { t0 += 0.25 }
+                    let shown = actors.compactMap { a -> (StageActor, StagePlan.Sample, StageRect, Bool)? in
+                        guard let plan = plans[a.id] else { return nil }
+                        let s = plan.sample(at: t0)
+                        guard s.opacity > 0.5, s.support != .off else { return nil }
+                        let still = !plan.legs.contains { $0.at <= t0 && t0 < $0.end }
+                        return (a, s, world.drawing(at: s.position, size: a.size, ratio: a.ratio), still)
+                    }
+                    for (a, s, r, still) in shown where still && cast.contains(a.stickerID) {
+                        func linked(_ x: StageSupport, _ id: UUID) -> Bool {
+                            switch x {
+                            case .on(let h), .under(let h), .beside(let h): return h == id
+                            default: return false
+                            }
+                        }
+                        let front = shown.filter { b in
+                            b.0.id != a.id && b.3 && b.1.position.z < s.position.z - 1e-6
+                                && !linked(s.support, b.0.id) && !linked(b.1.support, a.id)
+                        }
+                        let h = StageWorld.hidden(r, behind: front.map(\.2))
+                        if h > 0.5 {
+                            let tag = "\(story.id)\(crowded ? " (crowded)" : "") \(a.stickerID)"
+                            let who = front.filter { StageWorld.hidden(r, behind: [$0.2]) > 0.1 }.map(\.0.stickerID).sorted()
+                            problems.append("\(tag): behind \(who.joined(separator: "+")) at \(String(format: "%.1f", t0))")
+                        }
+                    }
+                }
                 for a in actors {
                     guard let plan = plans[a.id] else { continue }
                     let land = !(a.stage.on + a.moves.flatMap(\.on)).contains { waterPlaces.contains($0) }

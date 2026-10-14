@@ -225,6 +225,28 @@ public struct StageWorld: Sendable {
 
     // MARK: What hides what
 
+    /// How much of a drawing (world points) the drawings of the stickers
+    /// in front of it hide: the share of it behind any of them. A
+    /// drawing's box is roomier than its outline, so each one in front
+    /// counts by its box less an eighth at every side.
+    public static func hidden(_ r: StageRect, behind front: [StageRect]) -> Double {
+        let boxes = front.map { f -> StageRect in
+            let dx = (f.maxX - f.minX) / 8, dy = (f.maxY - f.minY) / 8
+            return StageRect(minX: f.minX + dx, minY: f.minY + dy, maxX: f.maxX - dx, maxY: f.maxY - dy)
+        }.filter { $0.maxX > r.minX && $0.minX < r.maxX && $0.maxY > r.minY && $0.minY < r.maxY }
+        guard !boxes.isEmpty, r.maxX > r.minX, r.maxY > r.minY else { return 0 }
+        let n = 8
+        var behind = 0
+        for i in 0..<n {
+            for j in 0..<n {
+                let x = r.minX + (r.maxX - r.minX) * (Double(i) + 0.5) / Double(n)
+                let y = r.minY + (r.maxY - r.minY) * (Double(j) + 0.5) / Double(n)
+                if boxes.contains(where: { $0.minX <= x && x <= $0.maxX && $0.minY <= y && y <= $0.maxY }) { behind += 1 }
+            }
+        }
+        return Double(behind) / Double(n * n)
+    }
+
     /// How much of a drawing (world points) standing at depth `z` the
     /// planes in front of it hide: the share of it behind any of them.
     public func hidden(_ r: StageRect, atDepth z: Double) -> Double {

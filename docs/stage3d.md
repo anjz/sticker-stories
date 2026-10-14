@@ -59,7 +59,20 @@ Plans the whole story at once, from the cast and the story's triggers:
    characters in view: the planes in front (`StageWorld.covers`, each
    plane's painted part as a grid at its depth) must not hide them or the
    room above them, and the small ones (size class `tiny`, `small`) come
-   to the front, where their details show. A place the story names keeps
+   to the front, where their details show. **Nobody stands behind
+   someone, nor in front of someone already there**, as the viewer sees
+   it: far apart in depth can still be one in front of the other on the
+   screen (the deer near the front, the frog at the pond behind it). A
+   spot is scored by how much of it the nearer stickers' drawings would
+   hide and how much of anyone farther it would hide
+   (`StageWorld.hidden(_:behind:)`), the story's cast counting fully and
+   the child's other stickers less (`Director.blocking`); beside someone
+   it is weighed where it will really stand, a step further out or nearer
+   when that shows it. Entrances and moves are planned in the story's
+   order, so each sees the stage as it is then; a move an entrance already
+   made (it came straight to the place) is not made again. The Forest
+   staging test fails any of the cast mostly hidden behind another
+   sticker while both stand still. A place the story names keeps
    its spot — the pond's shore is where it is. A child's sticker its
    depth puts mostly behind a plane steps out to where it shows as the
    story starts.
