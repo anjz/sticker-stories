@@ -420,3 +420,38 @@ func (c *Client) Voices(ctx context.Context) ([]Voice, error) {
 	}
 	return out.Voices, nil
 }
+
+// Subscription is the account's plan and this period's character use.
+type Subscription struct {
+	Tier           string `json:"tier"`
+	CharacterCount int    `json:"character_count"`
+	CharacterLimit int    `json:"character_limit"`
+	NextResetUnix  int64  `json:"next_character_count_reset_unix"`
+}
+
+// Subscription reads the account's plan.
+func (c *Client) Subscription(ctx context.Context) (*Subscription, error) {
+	data, err := c.do(ctx, http.MethodGet, "/v1/user/subscription", nil, nil, "application/json")
+	if err != nil {
+		return nil, err
+	}
+	var s Subscription
+	if err := json.Unmarshal(data, &s); err != nil {
+		return nil, err
+	}
+	return &s, nil
+}
+
+// concurrency is how many requests each plan may run at once, from
+// ElevenLabs' published limits. A request over the limit gets HTTP 429,
+// which do retries.
+var concurrency = map[string]int{
+	"free": 2, "starter": 3, "creator": 5, "pro": 10,
+	"scale": 15, "growing_business": 15, "business": 15,
+}
+
+// Concurrency is how many requests the plan lets run at once, or 0 for a
+// tier this client does not know (enterprise plans are set per contract).
+func (s *Subscription) Concurrency() int {
+	return concurrency[strings.ToLower(s.Tier)]
+}

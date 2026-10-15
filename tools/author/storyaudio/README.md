@@ -70,8 +70,11 @@ or stability change reads the story again. The model performs a little
 differently every time: `-retake` (with `-only …`) throws the cached take away and asks for
 another performance of just those stories — the way to shop for the best
 read of a story you are not happy with. `-only id,…` and
-`-lang` narrow a run. Renditions are rendered `-parallel` at a time
-(default 10); each shared asset (a mood's music, a sound effect) is still
+`-lang` narrow a run. Renditions are rendered `-parallel` at a time;
+by default as many as the account's ElevenLabs plan runs at once (read
+from the API at the start: Pro 10, Creator 5…, printed with the
+characters used), so a better plan is used in full and a smaller one is
+not overrun, and an occasional 429 is retried; each shared asset (a mood's music, a sound effect) is still
 generated exactly once. A failed rendition does not stop the others; the
 run ends with the list, and rerunning retries only those. The first use of a library voice
 adds it to the account, and parallel requests doing so collide (HTTP 409

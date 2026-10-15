@@ -9,7 +9,7 @@
 //	storyaudio render  -pack ../packs/forest [-only id,…] [-lang en-US] [-dry-run] [-force] [-retake]
 //	                   [-voice en-US=<id>,es-ES=<id>] [-model eleven_v4] [-stability 0.5] [-rate 44100]
 //	                   [-no-sfx] [-no-music] [-music-prompt "…"] [-sfx-db -12] [-music-db -14]
-//	                   [-lead 3] [-intro-db -6] [-parallel 10]
+//	                   [-lead 3] [-intro-db -6] [-parallel 0]
 //	storyaudio voices  -pack ../packs/forest            # list candidate voices per language
 //	storyaudio audition -pack ../packs/forest -only id,… -stability 0.3,0.5,0.7 [-all-voices] [-out dir]
 //	storyaudio install -pack ../packs/forest [-prune] [-bump] [-model eleven_v4]
@@ -207,6 +207,25 @@ func client() (*elevenlabs.Client, error) {
 		c.Log = func(s string) { fmt.Fprintln(os.Stderr, "  ·", s) }
 	}
 	return c, nil
+}
+
+// planParallel is how many renditions to render at once: as many requests
+// as the account's ElevenLabs plan runs concurrently, so a bigger plan is
+// used in full and a smaller one is not overrun; fallback when the plan
+// cannot be read or its limit is unknown.
+func planParallel(ctx context.Context, el *elevenlabs.Client, fallback int) int {
+	s, err := el.Subscription(ctx)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "could not read the ElevenLabs plan (%v): rendering %d at a time\n", err, fallback)
+		return fallback
+	}
+	n := s.Concurrency()
+	if n == 0 {
+		n = fallback
+	}
+	fmt.Printf("ElevenLabs plan %s: rendering %d at a time; %d of %d characters used, renews %s\n",
+		s.Tier, n, s.CharacterCount, s.CharacterLimit, time.Unix(s.NextResetUnix, 0).Format("2 Jan"))
+	return n
 }
 
 func primary(lang string) string {
@@ -534,7 +553,7 @@ func runRender(args []string) error {
 	lead := fs.Float64("lead", 3, "seconds of music alone before the narrator starts")
 	introDB := fs.Float64("intro-db", -6, "music level during the lead-in, dB relative to the narrator (ramps down to -music-db over the last second)")
 	bitrate := fs.Int("bitrate", 64000, "AAC bitrate (64 kbps mono is transparent for narration)")
-	parallel := fs.Int("parallel", 10, "renditions rendered concurrently")
+	parallel := fs.Int("parallel", 0, "renditions rendered concurrently (0: as many as the ElevenLabs plan allows — Pro 10, Creator 5…)")
 	force := fs.Bool("force", false, "re-render (re-mix) even if nothing changed; cached narration is reused")
 	retake := fs.Bool("retake", false, "synthesise the narration again even when a cached take exists — every take is a new performance, so this is how you ask for another one (implies -force)")
 	dry := fs.Bool("dry-run", false, "print what would be rendered and the characters that would be synthesised (cached narration excluded); no API calls that cost")
@@ -569,6 +588,9 @@ func runRender(args []string) error {
 		el = elevenlabs.New(os.Getenv("ELEVENLABS_API_KEY"))
 	}
 	ctx := context.Background()
+	if o.parallel == 0 && !o.dry {
+		o.parallel = planParallel(ctx, el, 4)
+	}
 	voices, err := resolveVoices(ctx, el, c, *voice, o.dry)
 	if err != nil {
 		return err
@@ -1525,6 +1547,10 @@ func runAudition(args []string) error {
 			langs = append(langs, l)
 		}
 	}
+	parallel := 1
+	if !*dry {
+		parallel = planParallel(context.Background(), el, 4)
+	}
 	mp3 := false
 	for _, st := range stabs {
 		for _, l := range langs {
@@ -1541,7 +1567,7 @@ func runAudition(args []string) error {
 					label += "." + voiceSlug(v.Name)
 				}
 				o := renderOpts{model: *model, sampleRate: 44100, noMusic: *noMusic, sfxDB: -12, ambienceDB: -18,
-					musicDB: -14, lead: 3, introDB: -6, stability: st, parallel: 4, force: true, dry: *dry,
+					musicDB: -14, lead: 3, introDB: -6, stability: st, parallel: parallel, force: true, dry: *dry,
 					only: ids, lang: l, bitrate: 64000, outDir: dir, label: label, voice: v}
 				r := &renderer{c: c, el: el, o: o, voices: voices, characters: chars, ctx: context.Background(), mp3: mp3}
 				err := r.run()

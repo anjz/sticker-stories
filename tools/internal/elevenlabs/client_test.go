@@ -119,3 +119,27 @@ func TestDialogueWithTimestamps(t *testing.T) {
 		t.Fatalf("dialogue = %+v, %v", sp, err)
 	}
 }
+
+func TestSubscriptionConcurrency(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/v1/user/subscription" {
+			t.Errorf("unexpected path %s", r.URL.Path)
+		}
+		w.Write([]byte(`{"tier":"pro","character_count":12,"character_limit":666374,"next_character_count_reset_unix":1794775481}`))
+	}))
+	defer srv.Close()
+	c := New("k")
+	c.BaseURL = srv.URL
+	s, err := c.Subscription(context.Background())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if s.Tier != "pro" || s.CharacterCount != 12 || s.CharacterLimit != 666374 || s.NextResetUnix != 1794775481 {
+		t.Errorf("subscription = %+v", s)
+	}
+	for tier, want := range map[string]int{"pro": 10, "Creator": 5, "starter": 3, "enterprise": 0} {
+		if got := (&Subscription{Tier: tier}).Concurrency(); got != want {
+			t.Errorf("%s: concurrency %d, want %d", tier, got, want)
+		}
+	}
+}
