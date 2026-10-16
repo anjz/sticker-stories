@@ -9,6 +9,10 @@ import StickerStoriesKit
 /// sit in the sky behind the foreground art, everything else over the whole
 /// canvas).
 ///
+/// Everything in the sky is drawn in `sky`, a crop node clipped by the
+/// pack's sky mask (`EffectScenery`): the moon, a cloud or a star never
+/// shows over a treetop or a ridge painted into the background.
+///
 /// The numbers in this file are the tuning surface — content only ever
 /// reaches `strength` (intensity × envelope). The original six effects are
 /// drawn here; every later one is a `CanvasEffectPainter` in `Canvas/`,
@@ -16,13 +20,26 @@ import StickerStoriesKit
 @MainActor
 final class CanvasEffectLayer: SKNode {
     /// In the sky: over the background art, under the background stickers
-    /// and the foreground art (the rainbow, the moon, the stars).
+    /// and the foreground art (the rainbow, the moon, the stars) — the z of
+    /// `sky`, whose children sit at `inSky` and up.
     static let skyZ: CGFloat = 50
+    /// The z of things in the sky, inside `sky` (`CanvasEffectPainter.sky`).
+    static let inSky: CGFloat = 0
     /// Over both art planes and every sticker; under the tray (1000).
     static let overlayZ: CGFloat = 500
 
     private var world: CGRect = .zero
+    /// The art frame the sky and the ground are laid on (the world, but
+    /// for the effects gallery), and which rendition of the art it is.
+    private var art: CGRect = .zero
+    private var wideArt = false
     private var lastTime: TimeInterval = -1
+
+    /// The sky, clipped by the sky mask of the art on show.
+    private let sky = SKCropNode()
+    private let skyMask = SKSpriteNode()
+    private var scenery = EffectScenery()
+    private var hasScenery = false
 
     // Fog: an even haze plus a few big soft blobs, each on its own slow sine drift.
     private let haze = SKSpriteNode()
@@ -46,7 +63,7 @@ final class CanvasEffectLayer: SKNode {
     private let rainClouds = DriftField(.init(
         count: 6, texture: EffectTextures.texture(named: "cloud"),
         colors: [UIColor(red: 0.66, green: 0.69, blue: 0.75, alpha: 1), UIColor(red: 0.74, green: 0.77, blue: 0.82, alpha: 1)],
-        zPosition: CanvasEffectLayer.skyZ + 1,
+        zPosition: CanvasEffectLayer.inSky + 1,
         size: 0.12...0.24, aspect: 2,
         velocity: CGVector(dx: 0.014, dy: 0), depthSpeed: 0.5...1,
         wander: 0.005, wanderPeriod: 9...14,
@@ -74,22 +91,41 @@ final class CanvasEffectLayer: SKNode {
     private let rainbow = SKSpriteNode()
     private let dim = SKSpriteNode()
 
-    // Snow on the ground (`CanvasEffectsRunner.snowCover`): a soft white
-    // blanket along the bottom and flakes settled in it that appear one by
-    // one as the snow builds and go the same way as it melts — over the
-    // scenery, under the stickers standing on it.
+    // Snow on the ground (`CanvasEffectsRunner.snowCover`): the ground's
+    // snow field (`EffectScenery`, `SnowScenery.ground`) — the whole
+    // ground up to its far edge, in perspective, never on water, and a cap
+    // along the treeline — and flakes settled in it that appear one by one
+    // as the snow builds and go the same way as it melts. On the
+    // background art, under every sticker, layer and the foreground, which
+    // carry their own caps (`addSnowCap`). Both grow with the cover
+    // through `snowShader`, a pure function of it.
     private let snowGround = SKNode()
-    private let snowBlanket = SKSpriteNode()
-    private struct Settled {
-        let node: SKSpriteNode
-        let x: CGFloat, y: CGFloat  // fractions of the world; y from the bottom
-        let size: CGFloat  // fraction of the world height
-        let threshold: Double  // the cover at which it appears
-    }
-    private var settled: [Settled] = []
-    /// Over the foreground art (200) and the back stickers, under the front
-    /// stickers (300): snow lies on the ground the characters stand on.
-    static let groundZ: CGFloat = 250
+    private let snowField = SKSpriteNode()
+    private var settled: [SKSpriteNode] = []
+    private var settledThresholds: [Double] = []
+    private var snowCaps: [SKSpriteNode] = []
+    private var snowCover = 0.0
+    /// Over the background art and the sky, under the background stickers
+    /// (100) and, while a story plays, under every plane of the scene at
+    /// its depth (`StoryStage`): snow lies on the ground.
+    static let groundZ: CGFloat = 90
+    /// Draws a snow field (`SnowScenery.Field`) at the snow cover: a pixel
+    /// shows from the cover `1 - earliness` on, as white as its green
+    /// says and as cool as its blue.
+    let snowShader: SKShader = {
+        let shader = SKShader(source: """
+            void main() {
+                vec4 field = texture2D(u_texture, v_tex_coord);
+                float edge = 1.0 - u_cover;
+                float k = smoothstep(edge, edge + 0.1, field.r) * step(0.002, field.r);
+                float a = k * field.g;
+                vec3 snow = mix(vec3(0.98, 0.99, 1.0), vec3(0.76, 0.83, 0.95), field.b);
+                gl_FragColor = vec4(snow * a, a) * v_color_mix.a;
+            }
+            """)
+        shader.uniforms = [SKUniform(name: "u_cover", float: 0)]
+        return shader
+    }()
 
     // Night: the dimlight vignette in a deeper blue and a darker wash down
     // from the top edge so the sky goes first, both over everything like
@@ -155,9 +191,15 @@ final class CanvasEffectLayer: SKNode {
 
     override init() {
         super.init()
+        sky.zPosition = Self.skyZ
+        addChild(sky)
         for painter in painters.values {
             painter.node.isHidden = true
-            addChild(painter.node)
+            if let part = painter.sky {
+                part.isHidden = true
+                sky.addChild(part)
+            }
+            if painter.sky !== painter.node { addChild(painter.node) }
         }
         buildFog()
         buildRain()
@@ -165,9 +207,9 @@ final class CanvasEffectLayer: SKNode {
         buildSunshine()
         rainbow.texture = EffectTextures.texture(named: "rainbow")
         rainbow.anchorPoint = CGPoint(x: 0.5, y: 0)
-        rainbow.zPosition = Self.skyZ
+        rainbow.zPosition = Self.inSky
         rainbow.alpha = 0
-        addChild(rainbow)
+        sky.addChild(rainbow)
         dim.texture = EffectTextures.texture(named: "vignette")
         dim.color = UIColor(red: 0.055, green: 0.07, blue: 0.19, alpha: 1)
         dim.colorBlendFactor = 1
@@ -199,9 +241,9 @@ final class CanvasEffectLayer: SKNode {
             node.color = UIColor(red: 1.0, green: 0.98, blue: 0.9, alpha: 1)
             node.colorBlendFactor = 1
             node.blendMode = .add
-            node.zPosition = Self.skyZ
+            node.zPosition = Self.inSky
             node.alpha = 0
-            addChild(node)
+            sky.addChild(node)
             stars.append(Star(node: node, place: CGPoint(x: x, y: y), size: size, period: period, phase: phase))
         }
         moonGlow.texture = EffectTextures.texture(named: "moonglow")
@@ -214,9 +256,9 @@ final class CanvasEffectLayer: SKNode {
         moon.texture = EffectTextures.texture(named: "moon")
         moon.color = UIColor(red: 1.0, green: 0.97, blue: 0.86, alpha: 1)
         moon.colorBlendFactor = 1
-        moon.zPosition = Self.skyZ
+        moon.zPosition = Self.inSky + 1
         moon.alpha = 0
-        addChild(moon)
+        sky.addChild(moon)
     }
 
     private static let fogColor = UIColor(red: 0.9, green: 0.93, blue: 0.95, alpha: 1)
@@ -246,39 +288,76 @@ final class CanvasEffectLayer: SKNode {
     }
 
     private func buildSnowGround() {
-        snowBlanket.texture = EffectTextures.texture(named: "overcast")
-        // The sky's band turned over: solid at the bottom, fading upwards.
-        snowBlanket.anchorPoint = CGPoint(x: 0.5, y: 1)
-        snowBlanket.zRotation = .pi
-        snowBlanket.color = UIColor(red: 0.97, green: 0.98, blue: 1, alpha: 1)
-        snowBlanket.colorBlendFactor = 1
-        snowBlanket.zPosition = Self.groundZ
-        snowGround.addChild(snowBlanket)
-        var random = SeededRandom(seed: 0x5E77)
-        let texture = EffectTextures.texture(named: "dot")
-        for _ in 0..<280 {
-            let node = SKSpriteNode(texture: texture)
-            node.color = .white
-            node.colorBlendFactor = 1
-            node.zPosition = Self.groundZ + 1
-            // Thicker towards the bottom of the scene.
-            settled.append(Settled(
-                node: node, x: CGFloat(random.next()), y: CGFloat(pow(random.next(), 1.7) * 0.3),
-                size: CGFloat(0.014 + 0.02 * random.next()), threshold: 0.03 + 0.9 * random.next()))
-            snowGround.addChild(node)
-        }
+        snowField.shader = snowShader
+        snowField.zPosition = Self.groundZ
+        snowGround.addChild(snowField)
         snowGround.isHidden = true
         addChild(snowGround)
     }
 
-    /// Shows `cover` (0...1) of snow lying on the ground.
+    /// The scene's sky and ground (`PackTextureLoader`); without it nothing
+    /// is clipped and no snow settles on the ground.
+    func setScenery(_ scenery: EffectScenery) {
+        self.scenery = scenery
+        hasScenery = true
+        art = .zero  // laid out again
+        if world.width > 0 { layout(world: world, art: nil, wide: wideArt) }
+    }
+
+    /// Shows a plane's snow cap (`EffectScenery.snowCap`) with the snow
+    /// cover: the caller keeps it with its plane, in the depth stack.
+    func addSnowCap(_ cap: SKSpriteNode) {
+        cap.shader = snowShader
+        cap.isHidden = snowCover <= 0
+        snowCaps.append(cap)
+    }
+
+    /// Shows `cover` (0...1) of snow lying on the ground and on the tops of
+    /// the scene's planes.
     func applySnowCover(_ cover: Double) {
-        snowGround.isHidden = cover <= 0
-        guard cover > 0 else { return }
-        snowBlanket.alpha = min(0.9, cover * 1.1)
-        for flake in settled {
-            flake.node.alpha = min(max((cover - flake.threshold) / 0.1, 0), 1) * 0.95
+        let wasOn = snowCover > 0
+        snowCover = cover
+        if (cover > 0) != wasOn {
+            snowGround.isHidden = cover <= 0
+            for cap in snowCaps { cap.isHidden = cover <= 0 }
         }
+        guard cover > 0 else { return }
+        snowShader.uniformNamed("u_cover")?.floatValue = Float(cover)
+        for (flake, threshold) in zip(settled, settledThresholds) {
+            flake.alpha = min(max((cover - threshold) / 0.1, 0), 1) * 0.95
+        }
+    }
+
+    /// Strews the settled flakes of the art on show.
+    private func layoutSnowGround() {
+        let plane = scenery.plane(wide: wideArt)
+        snowField.texture = plane.ground
+        snowField.isHidden = plane.ground == nil
+        snowField.size = art.size
+        snowField.position = CGPoint(x: art.midX, y: art.midY)
+        let texture = EffectTextures.texture(named: "dot")
+        while settled.count < plane.flakes.count {
+            let node = SKSpriteNode(texture: texture)
+            node.color = .white
+            node.colorBlendFactor = 1
+            node.zPosition = Self.groundZ + 1
+            snowGround.addChild(node)
+            settled.append(node)
+        }
+        settledThresholds = []
+        for (index, node) in settled.enumerated() {
+            guard index < plane.flakes.count else {
+                node.isHidden = true
+                continue
+            }
+            let flake = plane.flakes[index]
+            node.isHidden = false
+            node.position = CGPoint(x: art.minX + art.width * flake.x, y: art.minY + art.height * flake.y)
+            let h = art.height * flake.size
+            node.size = CGSize(width: h * 1.5, height: h)  // lying flat
+            settledThresholds.append(flake.threshold)
+        }
+        applySnowCover(snowCover)
     }
 
     private static let rainWind: CGFloat = -8 * .pi / 180  // a little to the left
@@ -306,11 +385,11 @@ final class CanvasEffectLayer: SKNode {
         rainSky.anchorPoint = CGPoint(x: 0.5, y: 1)  // hangs from the top edge
         rainSky.color = UIColor(red: 0.6, green: 0.64, blue: 0.7, alpha: 1)
         rainSky.colorBlendFactor = 1
-        rainSky.zPosition = Self.skyZ
+        rainSky.zPosition = Self.inSky
         rainSky.alpha = 0
-        addChild(rainSky)
+        sky.addChild(rainSky)
         rainClouds.node.isHidden = true
-        addChild(rainClouds.node)
+        sky.addChild(rainClouds.node)
     }
 
     private func buildSunshine() {
@@ -347,9 +426,24 @@ final class CanvasEffectLayer: SKNode {
     // MARK: Layout
 
     /// Sizes everything to the art frame (world coordinates). Call whenever
-    /// the scene lays out; cheap.
-    func layout(world: CGRect) {
-        guard world != self.world, world.width > 0, world.height > 0 else { return }
+    /// the scene lays out; cheap. The sky mask and the ground's snow are
+    /// laid on `art` (the world unless given: the effects gallery's art
+    /// overflows its view), from the wide art's scenery when `wide`.
+    func layout(world: CGRect, art: CGRect? = nil, wide: Bool = false) {
+        let art = art ?? world
+        guard world.width > 0, world.height > 0, world != self.world || art != self.art || wide != wideArt else { return }
+        let sceneryChanged = art != self.art || wide != wideArt
+        self.art = art
+        wideArt = wide
+        if sceneryChanged {
+            let plane = scenery.plane(wide: wide)
+            skyMask.texture = plane.sky
+            skyMask.size = art.size
+            skyMask.position = CGPoint(x: art.midX, y: art.midY)
+            sky.maskNode = hasScenery && plane.sky != nil ? skyMask : nil
+            layoutSnowGround()
+        }
+        guard world != self.world else { return }
         self.world = world
         let w = world.width, h = world.height
         let center = CGPoint(x: world.midX, y: world.midY)
@@ -408,13 +502,6 @@ final class CanvasEffectLayer: SKNode {
         moon.position = moonAt
         moonGlow.size = CGSize(width: h * 0.55, height: h * 0.55)
         moonGlow.position = moonAt
-
-        snowBlanket.size = CGSize(width: w * 1.04, height: h * 0.34)
-        snowBlanket.position = CGPoint(x: world.midX, y: world.minY)
-        for flake in settled {
-            flake.node.position = CGPoint(x: world.minX + w * flake.x, y: world.minY + h * flake.y)
-            flake.node.size = CGSize(width: h * flake.size * 1.5, height: h * flake.size)  // lying flat
-        }
 
         for painter in painters.values { painter.layout(world: world) }
     }
@@ -483,8 +570,12 @@ final class CanvasEffectLayer: SKNode {
             let off = strength <= 0
             if off && !painter.node.isHidden { painter.didTurnOff() }
             painter.node.isHidden = off
+            painter.sky?.isHidden = off
             if !off { painter.apply(strength: strength, at: time) }
         }
+        // An empty sky costs nothing either (the crop draws its mask).
+        sky.isHidden = rainStrength <= 0 && rainbow.alpha <= 0 && nightStrength <= 0
+            && painters.values.allSatisfy { $0.sky?.isHidden ?? true }
     }
 
     /// Everything off at once (playback cancelled); live raindrops are
@@ -504,10 +595,14 @@ final class CanvasEffectLayer: SKNode {
 @MainActor
 protocol CanvasEffectPainter: AnyObject {
     /// Added to the layer once; its children carry the real z-positions
-    /// (`CanvasEffectLayer.skyZ` for things in the sky behind the
-    /// foreground art, `overlayZ` and up for things over everything). The
-    /// layer hides it while the effect is off.
+    /// (`overlayZ` and up for things over everything). The layer hides it
+    /// while the effect is off.
     var node: SKNode { get }
+    /// What the effect draws in the sky, behind the scenery (the moon, the
+    /// stars, clouds): the layer puts it in its sky, clipped by the sky
+    /// mask, its children at `CanvasEffectLayer.inSky` and up. It may be
+    /// `node` itself, for an effect all in the sky. Optional.
+    var sky: SKNode? { get }
     /// Sizes everything to the art frame (world coordinates).
     func layout(world: CGRect)
     /// Renders the effect at `strength` (0 < strength ≤ 1, intensity ×
@@ -519,5 +614,6 @@ protocol CanvasEffectPainter: AnyObject {
 }
 
 extension CanvasEffectPainter {
+    var sky: SKNode? { nil }
     func didTurnOff() {}
 }

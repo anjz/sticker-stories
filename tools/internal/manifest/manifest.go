@@ -57,6 +57,9 @@ type Manifest struct {
 	// Layers are the scene's planes between the background and the
 	// foreground, far to near (docs/pack-format.md, "Layers"). Optional.
 	Layers []SceneLayer `json:"layers,omitempty"`
+	// Sky is where the background is open sky, as masks made from it
+	// (docs/pack-format.md, "Sky"). Optional.
+	Sky *Sky `json:"sky,omitempty"`
 	// Space is the scene as a place with depth: where everything stands
 	// and how big each sticker is there (docs/pack-format.md, "Space").
 	// Optional.
@@ -428,6 +431,17 @@ func (m *Manifest) Validate(dir string) []error {
 		}
 		if (l.ImageWide == "") != (m.BackgroundWide == "") {
 			fail("%s: imageWide is needed exactly when the pack has wide art", field)
+		}
+	}
+	// Rule 21: the sky masks are images, the wide one exactly when the
+	// pack has wide art.
+	if m.Sky != nil {
+		checkImage("sky image", m.Sky.Image)
+		if m.Sky.ImageWide != "" {
+			checkImage("sky imageWide", m.Sky.ImageWide)
+		}
+		if (m.Sky.ImageWide == "") != (m.BackgroundWide == "") {
+			fail("sky: imageWide is needed exactly when the pack has wide art")
 		}
 	}
 

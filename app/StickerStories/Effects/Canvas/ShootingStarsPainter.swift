@@ -8,6 +8,8 @@ import SpriteKit
 @MainActor
 final class ShootingStarsPainter: CanvasEffectPainter {
     let node = SKNode()
+    /// All of it is in the sky, behind the scenery.
+    var sky: SKNode? { node }
     private struct Slot {
         let streak: SKSpriteNode
         let head: SKSpriteNode
@@ -30,7 +32,7 @@ final class ShootingStarsPainter: CanvasEffectPainter {
                 sprite.color = UIColor(red: 0.92, green: 0.96, blue: 1, alpha: 1)
                 sprite.colorBlendFactor = 1
                 sprite.blendMode = .add
-                sprite.zPosition = CanvasEffectLayer.skyZ
+                sprite.zPosition = CanvasEffectLayer.inSky
                 sprite.alpha = 0
                 node.addChild(sprite)
             }

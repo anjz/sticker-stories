@@ -242,6 +242,11 @@ func TestValidationFailures(t *testing.T) {
 		}, "backgroundWide"},
 		{"missing cover file", func(m *Manifest) { m.Cover = "art/cover.png" }, "cover"},
 		{"cover not png or webp", func(m *Manifest) { m.Cover = "art/background.jpg" }, ".png or .webp"},
+		{"missing sky mask", func(m *Manifest) { m.Sky = &Sky{Image: "art/sky.webp"} }, "sky image"},
+		{"wide art without a wide sky mask", func(m *Manifest) {
+			m.BackgroundWide, m.ForegroundWide = m.Background, m.Foreground
+			m.Sky = &Sky{Image: m.Background}
+		}, "sky: imageWide is needed"},
 		{"absolute path", func(m *Manifest) { m.Foreground = "/etc/passwd" }, "pack-relative"},
 		{"path escape", func(m *Manifest) { m.Foreground = "../../evil.png" }, "escape"},
 		{"unknown entrance", func(m *Manifest) {

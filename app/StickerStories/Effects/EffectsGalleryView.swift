@@ -306,6 +306,9 @@ final class EffectsGalleryScene: SKScene {
             backgroundColor = UIColor(
                 red: CGFloat((hex >> 16) & 0xFF) / 255, green: CGFloat((hex >> 8) & 0xFF) / 255,
                 blue: CGFloat(hex & 0xFF) / 255, alpha: 1)
+        } else {
+            // The background's sky and ground, as the canvas has them.
+            canvasEffects.setScenery(EffectScenery.load(pack))
         }
         layer.zPosition = 100  // the rainbow (50) sits behind the sticker, the rest (500) in front
         addChild(background)
@@ -326,11 +329,15 @@ final class EffectsGalleryScene: SKScene {
     }
 
     private func layoutBackground() {
-        canvasEffects.layout(world: CGRect(origin: .zero, size: size))
-        guard let textureSize = background.texture?.size(), textureSize.width > 0 else { return }
+        let view = CGRect(origin: .zero, size: size)
+        guard let textureSize = background.texture?.size(), textureSize.width > 0 else {
+            canvasEffects.layout(world: view)
+            return
+        }
         let fill = max(size.width / textureSize.width, size.height / textureSize.height)
         background.size = CGSize(width: textureSize.width * fill, height: textureSize.height * fill)
         background.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        canvasEffects.layout(world: view, art: background.frame)
     }
 
     func show(stickerID: String) {

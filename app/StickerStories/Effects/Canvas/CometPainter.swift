@@ -7,6 +7,8 @@ import SpriteKit
 @MainActor
 final class CometPainter: CanvasEffectPainter {
     let node = SKNode()
+    /// All of it is in the sky, behind the scenery.
+    var sky: SKNode? { node }
     private let tail = SKSpriteNode()
     private let halo = SKSpriteNode()
     private let head = SKSpriteNode()
@@ -29,7 +31,7 @@ final class CometPainter: CanvasEffectPainter {
             sprite.color = color
             sprite.colorBlendFactor = 1
             sprite.blendMode = .add
-            sprite.zPosition = CanvasEffectLayer.skyZ
+            sprite.zPosition = CanvasEffectLayer.inSky
             node.addChild(sprite)
         }
     }

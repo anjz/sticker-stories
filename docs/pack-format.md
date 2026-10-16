@@ -19,6 +19,7 @@ picks the best match for the device (see "Language resolution" below).
     foreground.webp       # full-canvas front plane (trees, mushrooms…), alpha where see-through
     background-wide.webp  # optional: wider rendition for wide windows (iPhone), same height
     foreground-wide.webp  # optional: its front plane; declared together with the above
+    sky.webp              # optional: where the background is open sky ("Sky" below); sky-wide.webp for the wide art
   stickers/
     <stickerID>.webp      # sticker art, alpha background, white border baked in
     <stickerID>.<expr>.webp  # optional face variant ("Expressions" below)
@@ -196,6 +197,7 @@ never letterboxes:
 | `background` / `foreground` | string | Pack-relative paths to PNG or WebP files that must exist ("Image formats" above). Their frame is the sticker coordinate system ("Art safe area" below). |
 | `backgroundWide` / `foregroundWide` | string | **Optional, together or not at all.** Wider renditions (e.g. 2:1) with the **same pixel height** as the base art and the base art **centred** inside. The app draws whichever rendition lets a landscape window avoid panning with the least crop (tall phones get the wide one; iPads keep the base one). Files must exist. |
 | `layers` | [object] | **Optional.** The scene's planes between the background and the foreground, far to near ("Layers" below): each `{ "id", "image", "imageWide" }` — a lowercase id (not `background` or `foreground`), a PNG or WebP plane of the base art's size, and the same on the wide art exactly when the pack has wide art. |
+| `sky` | object | **Optional.** Where the background is open sky ("Sky" below): `{ "image", "imageWide" }` — a PNG or WebP mask of the background (alpha = sky), and the wide background's exactly when the pack has wide art. Made by `stickerart install` (or `stickerart sky`); without one, sky effects are not clipped. |
 | `space` | object | **Optional.** The scene as a place with depth ("Space" below): `horizon`, `ground`, `back`, `stand`, `floor`, `layers` (the planes at their depths), `places` (features in space), `sizes` (every sticker's) and `edit` (how big they are while the child edits). |
 | `cover` | string | **Optional.** Pack-relative path to the pack's cover art (PNG or WebP, must exist): what its tile shows in the main menu and the store. Made with `uiart` (`tools/author/uiart`); without one the app composes the tile from the background and a few stickers. No text in it — the app writes the name. |
 | `world` | object | **Optional.** The physics of the pack's world for particle effects ("World" below): `gravity` (relative to Earth's: 1 on Earth, 0.17 on the Moon; 0–2) and `ground` (`#RRGGBB`, the colour dust is kicked up from). Either may be left out; the app fills it from the `setting`. |
@@ -253,7 +255,8 @@ never letterboxes:
     all, and exist when declared. Their pixel dimensions are the pack
     author's responsibility (same height as the base art, base centred).
 11. Every image path (`background`, `foreground`, the wide planes, `cover`,
-    every `stickers[].image`) ends in `.png` or `.webp` ("Image formats").
+    the sky masks, every `stickers[].image`) ends in `.png` or `.webp`
+    ("Image formats").
 12. Every `stickers[].animations` entry is a `.json` file inside the pack.
     The packager validates the sidecar **strictly** (unknown keys, a
     `sticker` other than the declaring one, an empty `description`, an
@@ -330,6 +333,9 @@ never letterboxes:
     the horizon and in front of `back`; every point is within x −0.5…1.5,
     y 0…1; polygons have at least 3 points, lines 2. `sizes` name
     declared stickers, every sticker has one, each above 0 and at most 5.
+21. `sky`, when present: its `image` is a PNG or WebP inside the pack;
+    its `imageWide` is one too, present exactly when the pack has wide
+    art.
 
 ## Stage
 
@@ -565,6 +571,39 @@ the smallest kept big enough to see and pick up on any screen:
 
 A story still draws every sticker at its size for its depth: as it
 starts, the child's stickers ease to those sizes, and back when it ends.
+
+## Sky
+
+`sky` says which part of the background is **open sky**, so the canvas
+effects that live in the sky — the moon and stars, clouds, the rainbow,
+a comet, the Milky Way (`docs/effects.md`, "Canvas effects") — are drawn
+only there and never over the treetops, ridges, buildings or planets
+painted into the background. It is worked out from the art when the art
+is installed, never guessed by the app:
+
+- `art/sky.webp` (and `art/sky-wide.webp` for the wide background): a
+  mask at **half the background's size**, white, its **alpha** the sky —
+  255 in open sky, 0 on the scenery, a soft edge of a few pixels set a
+  pixel inside the sky.
+- **How it is found** (`stickerimg.SkyMask`): a colour flood fill from
+  the top edge. It spreads to each neighbour whose colour is a small step
+  from the pixel it comes from (a painted edge is a jump in colour; the
+  sky's gradient never is) and still looks like this sky — close to the
+  top edge's colour (by 18 plus a quarter of that colour's brightness: a
+  blue sky pales towards the horizon, a black one stays black, so a
+  planet's night side against it is not sky) or a pale, unsaturated
+  cloud. Whatever it closes round without reaching the bottom edge — a
+  painted cloud, a star — is sky too; whatever stands on the ground
+  (trees, a ridge, the Earth behind the ridge, a lighthouse) reaches the
+  bottom through what it stands on.
+- `stickerart install` makes the masks from the backgrounds it installs;
+  `stickerart sky -pack <dir> [-preview <dir>]` remakes them for an
+  installed pack and can write each background with its sky tinted, to
+  check by eye.
+
+The app also uses the mask for snow: the ground it settles on is what is
+not sky (with a `space`, up to the ground's far edge), with a cap along
+the top of the painted scenery where it meets the sky.
 
 ## Expressions
 

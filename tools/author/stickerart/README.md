@@ -12,8 +12,15 @@ go run ./author/stickerart render  -pack ../packs/forest -only stylesheet   # ap
 go run ./author/stickerart render  -pack ../packs/forest -dry-run
 go run ./author/stickerart render  -pack ../packs/forest
 go run ./author/stickerart install -pack ../packs/forest -bump
+go run ./author/stickerart sky     -pack ../packs/forest -preview /tmp/sky -bump  # the sky masks alone
 go run ./packager validate ../packs/forest
 ```
+
+`install` also makes the pack's sky masks from the backgrounds it
+installs (`art/sky.webp`, `art/sky-wide.webp`: where the background is
+open sky, `docs/pack-format.md`, "Sky"); `sky` remakes just those for an
+installed pack, and `-preview` writes each background with its sky tinted
+magenta, to check that treetops and ridges are left out.
 
 ## art.json (`tools/author/art/<packID>/art.json`)
 

@@ -128,6 +128,8 @@ public struct PackManifest: Codable, Equatable, Sendable {
     /// The scene's planes between the background and the foreground, far to
     /// near (`SceneLayer`); empty when the pack has none.
     public var layers: [SceneLayer]
+    /// Where the background is open sky (`PackSky`). Optional.
+    public var sky: PackSky?
     /// The scene as a place with depth (`SceneSpace`). Optional.
     public var space: SceneSpace?
     /// Optional cover art for the pack's tile in the menu and the store;
@@ -167,7 +169,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
         theme: String, setting: PackSetting = .none,
         background: String, foreground: String,
         backgroundWide: String? = nil, foregroundWide: String? = nil,
-        layers: [SceneLayer] = [], space: SceneSpace? = nil, cover: String? = nil,
+        layers: [SceneLayer] = [], sky: PackSky? = nil, space: SceneSpace? = nil, cover: String? = nil,
         features: [String: SceneFeature] = [:], narrationPacks: [String: String] = [:],
         world: PackWorld? = nil, staging: PackStaging? = nil,
         stickers: [StickerDefinition], stories: [StoryDefinition]
@@ -185,6 +187,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
         self.backgroundWide = backgroundWide
         self.foregroundWide = foregroundWide
         self.layers = layers
+        self.sky = sky
         self.space = space
         self.cover = cover
         self.features = features
@@ -197,7 +200,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
 
     private enum CodingKeys: String, CodingKey {
         case schemaVersion, id, version, languages, displayName, description, theme, setting
-        case background, foreground, backgroundWide, foregroundWide, layers, space, cover, features, narrationPacks, world, staging, stickers, stories
+        case background, foreground, backgroundWide, foregroundWide, layers, sky, space, cover, features, narrationPacks, world, staging, stickers, stories
     }
 
     public init(from decoder: Decoder) throws {
@@ -224,6 +227,7 @@ public struct PackManifest: Codable, Equatable, Sendable {
         backgroundWide = try c.decodeIfPresent(String.self, forKey: .backgroundWide)
         foregroundWide = try c.decodeIfPresent(String.self, forKey: .foregroundWide)
         layers = try c.decodeIfPresent([SceneLayer].self, forKey: .layers) ?? []
+        sky = try c.decodeIfPresent(PackSky.self, forKey: .sky)
         space = try c.decodeIfPresent(SceneSpace.self, forKey: .space)
         cover = try c.decodeIfPresent(String.self, forKey: .cover)
         features = try c.decodeIfPresent([String: SceneFeature].self, forKey: .features) ?? [:]
@@ -747,6 +751,15 @@ extension PackManifest {
             if let imageWide = layer.imageWide { checkImage("\(field) imageWide", imageWide) }
             if (layer.imageWide == nil) != (backgroundWide == nil) {
                 issues.append("\(field): imageWide is needed exactly when the pack has wide art")
+            }
+        }
+        // Rule 21: the sky masks are images, the wide one exactly when the
+        // pack has wide art.
+        if let sky {
+            checkImage("sky image", sky.image)
+            if let imageWide = sky.imageWide { checkImage("sky imageWide", imageWide) }
+            if (sky.imageWide == nil) != (backgroundWide == nil) {
+                issues.append("sky: imageWide is needed exactly when the pack has wide art")
             }
         }
 

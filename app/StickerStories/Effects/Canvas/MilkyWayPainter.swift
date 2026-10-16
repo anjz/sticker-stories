@@ -7,6 +7,8 @@ import SpriteKit
 @MainActor
 final class MilkyWayPainter: CanvasEffectPainter {
     let node = SKNode()
+    /// All of it is in the sky, behind the scenery.
+    var sky: SKNode? { node }
     /// The band's own frame: centred on it, x along it.
     private let band = SKNode()
     private let glow = SKSpriteNode()
@@ -28,7 +30,7 @@ final class MilkyWayPainter: CanvasEffectPainter {
             sprite.color = Self.tint
             sprite.colorBlendFactor = 1
             sprite.blendMode = .add
-            sprite.zPosition = CanvasEffectLayer.skyZ
+            sprite.zPosition = CanvasEffectLayer.inSky
             band.addChild(sprite)
         }
         var random = SeededRandom(seed: 0x3117)
@@ -37,7 +39,7 @@ final class MilkyWayPainter: CanvasEffectPainter {
             sprite.color = .white
             sprite.colorBlendFactor = 1
             sprite.blendMode = .add
-            sprite.zPosition = CanvasEffectLayer.skyZ
+            sprite.zPosition = CanvasEffectLayer.inSky
             band.addChild(sprite)
             // Most of them near the band's middle line.
             let across = (random.next(in: -1...1) + random.next(in: -1...1)) / 2
