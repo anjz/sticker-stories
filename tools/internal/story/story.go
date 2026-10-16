@@ -1554,7 +1554,7 @@ var canvasWords = map[string]map[string]*regexp.Regexp{
 // validateCanvasMentions warns when the words put weather or light into the
 // scene that a canvas effect for the pack's setting can show, and the story
 // never cues it: the child should see the snow the narrator talks about.
-// A word that names one of the story's stickers (Moon Base's comet) is that
+// A word that names one of the story's stickers (a comet sticker) is that
 // sticker, not the weather.
 func validateCanvasMentions(is *Issues, lang string, nar Narration, m Manifest, cat *Catalog, inStory map[string]bool) {
 	cued := map[string]bool{}

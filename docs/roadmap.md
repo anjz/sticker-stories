@@ -91,7 +91,7 @@
       `comet`; underwater `sunrays`, `ripples`, `deepwater`,
       `glowplankton`, `current`, `sandcloud` (`planetrise` and `seasnow`
       were built and later removed)
-- [x] Space effects made real for Moon Base (2026-09): `comet` kept;
+- [x] Space effects made real (2026-09): `comet` kept;
       new `nightfall` (held until `daybreak`), `daybreak`, `eclipse`,
       `milkyway`, `satellites`, `dust`, `floodlights`, `glints`;
       `shootingstars` moved to outdoors; `confetti` and `bubbles` left

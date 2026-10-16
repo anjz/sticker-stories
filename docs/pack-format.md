@@ -90,7 +90,7 @@ never letterboxes:
   element the base art cuts at its edge makes it fill a third of a phone
   screen. Paint the wide foreground on its own instead, with the same
   elements at *its* edges at the same size (`stickerart`'s
-  `scene.foregroundWideOwn`; Moon Base's habitat and mast) — the wide
+  `scene.foregroundWideOwn`; say, a building and a mast) — the wide
   foreground is then not the base one widened, and a place on those
   elements gets its own wide areas (`features[].wideAreas`, "Features").
 - Keep skies, ground lines and anything the child needs inside the central
@@ -416,7 +416,7 @@ and flyer as able to be at a place with an edge, so a sentence that puts
 one by the pond needs a move there.
 
 A place on a foreground element that the wide art paints at its own edge
-(Moon Base's habitat hatch, at the left edge of every screen) is
+(a building's door, at the left edge of every screen) is
 somewhere else on each rendition, so it carries **`wideAreas`**: the
 areas the app uses instead of `areas` while it draws the wide art, in the
 same base-art fractions — which on the wide art run from about −0.25 to
@@ -492,7 +492,7 @@ bring in (entrances) and move (`docs/effects.md`, "Movement"):
 
 - **`layer`** — `foreground` (the default, Forest): visitors and movers
   play in the sticker layer in front of the foreground art, and a flyer
-  goes in front of everyone as it takes off. `background` (Moon Base):
+  goes in front of everyone as it takes off. `background`:
   they come in, travel and land in the layer **behind** the foreground
   art, so the scene's near elements — a habitat, the rocks in front —
   pass in front of a lander on the pad or a rover crossing the plain, as

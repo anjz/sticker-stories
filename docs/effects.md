@@ -84,7 +84,7 @@ so sparkles on a tiny flower are tiny.
 **The physical particles follow the pack's world** (`docs/pack-format.md`,
 "World"): `spray`, `sparks` and the grains of a `dust-puff` fall under
 its gravity and hang longer where it is weak — the same grains arc slowly
-as grey moon dust in Moon Base and drop at once as brown soil in Forest;
+as grey dust on a moon and drop at once as brown soil in Forest;
 the puff's cloud itself never sinks: it billows out sideways and a
 little up, then fades — and
 dust is the colour of its ground. Stickers and their live animations

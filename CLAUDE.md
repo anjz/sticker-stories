@@ -85,8 +85,8 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
   and `resume` it) and its moves (walk/hop/flight/sprout, played by
   entrances); a rig file per sticker in `author/art/<pack>/rigs/`,
   shared actions in `stickerrig/templates/`, skill `/puppet`;
-  `stickeranim` = the older live-sticker sprite sheets (Beach, Moon
-  Base), spec in `author/art/<pack>/anim.json`; `uiart` =
+  `stickeranim` = the older live-sticker sprite sheets (Beach),
+  spec in `author/art/<pack>/anim.json`; `uiart` =
   the app's own art — menu background, title, pack covers, the canvas
   hints' hand — as
   alternatives to pick from, prompts in `author/art/app/ui.json`;

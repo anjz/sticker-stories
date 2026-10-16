@@ -32,9 +32,9 @@ falling, the lights going low). Stories are:
 Packs are written for four and up unless their roster (`plan.md`,
 "Audience") pitches them older. An older pitch changes the writing, never
 the length (100–150 words) or a single safety rule: the app is in the Kids
-Category's youngest band whatever the pack. **Moon Base** is pitched at
-8–10: a real plot with a twist, missions and problem-solving, dry humour,
-one true piece of Moon science where the roster puts it, and the words a
+Category's youngest band whatever the pack. A pack pitched at 8–10 gets
+a real plot with a twist, missions and problem-solving, dry humour, one
+true piece of science where the roster puts it, and the words a
 nine-year-old enjoys (*gravity*, *orbit*, *airlock*, *vacuum*) — still
 read aloud, still gentle, still warm at the end.
 
@@ -294,8 +294,8 @@ stickers) come alive with whatever is on the canvas.
 - **Everyone is everyone who can feel something**: `all` reaches the
   stickers with faces — animals, people, robots — and leaves the rest
   alone (a rover does not cheer, a rock does not hop). In Forest that is
-  every sticker; in Moon Base only Maya and Leo. So in a pack of
-  machines, a fallback story's `{all:…}` comes alive only when an
+  every sticker; in a space pack perhaps only the astronauts. So in a
+  pack of machines, a fallback story's `{all:…}` comes alive only when an
   astronaut is on the canvas: write its words so they still read right
   over a canvas of machines, and let the machines' own beats carry the
   stories that feature them. (A pack with no faces at all: everyone.)
@@ -611,7 +611,7 @@ performer:
   `[laughs]`, `[yawns]` (experimental).
 - **Characters can speak in their own voice — when it makes sense.** A
   sticker with a cast character voice (`character-voices.json` beside the
-  stories; Moon Base: the man and the woman) can say a line itself:
+  stories; say, a pack's two astronauts) can say a line itself:
   `{woman:says} "Look, a comet!"` — the line in quotes is read by her
   voice, in the same take, and the narrator carries on after the closing
   quote. It is the same voice in every story, so the child comes to know

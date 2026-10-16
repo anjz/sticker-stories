@@ -29,7 +29,7 @@ go run ./author/uiart pick cover:forest 1
   direction per pack under `cover.packs.<packID>`, and the stickers they
   show under `cover.stickers.<packID>` (ids): their finished art goes along
   as references so the characters match their stickers exactly — the style
-  sheet alone drew Moon Base's astronaut with the wrong skin tone.
+  sheet alone drew an astronaut with the wrong skin tone.
 
 The tool adds the rules that must always hold: no text in the background
 or covers (the app writes pack names), the exact spelling and a
