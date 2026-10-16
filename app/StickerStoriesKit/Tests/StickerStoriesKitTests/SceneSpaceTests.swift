@@ -85,6 +85,23 @@ import Testing
         #expect(issues.contains { $0.contains(want) }, "\(issues)")
     }
 
+    @Test func skyMasksRoundTripAndComeInPairs() throws {
+        var manifest = manifest()
+        manifest.sky = PackSky(image: "art/sky.webp")
+        #expect(manifest.validationIssues(packDirectory: try materialize(manifest)).isEmpty)
+        let decoded = try JSONDecoder().decode(PackManifest.self, from: JSONEncoder().encode(manifest))
+        #expect(decoded.sky == manifest.sky)
+        // Wide art needs a wide mask too, and a mask must be an image.
+        manifest.backgroundWide = "art/background-wide.png"
+        manifest.foregroundWide = "art/foreground-wide.png"
+        manifest.layers[0].imageWide = "art/layer-trees-wide.png"
+        var issues = manifest.validationIssues(packDirectory: try materialize(manifest))
+        #expect(issues == ["sky: imageWide is needed exactly when the pack has wide art"], "\(issues)")
+        manifest.sky?.imageWide = "art/sky-wide.jpg"
+        issues = manifest.validationIssues(packDirectory: try materialize(manifest))
+        #expect(issues.contains { $0.contains("sky imageWide") && $0.contains(".png or .webp") }, "\(issues)")
+    }
+
     @Test func pointsAreTwoNumbers() {
         #expect(throws: (any Error).self) {
             try JSONDecoder().decode([SceneSpace.Point].self, from: Data("[[0.1, 0.2, 0.3]]".utf8))

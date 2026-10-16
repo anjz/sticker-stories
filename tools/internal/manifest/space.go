@@ -18,6 +18,14 @@ type SceneLayer struct {
 	ImageWide string `json:"imageWide,omitempty"`
 }
 
+// Sky is where the background is open sky (docs/pack-format.md, "Sky"):
+// masks of the background's shape — white, their alpha the sky — for the
+// base art and, exactly when the pack has wide art, for the wide art.
+type Sky struct {
+	Image     string `json:"image"`
+	ImageWide string `json:"imageWide,omitempty"`
+}
+
 // Space is the scene as a place with depth (docs/pack-format.md,
 // "Space"): a camera looking level at a ground, fitted to the art, so
 // every point on the art has a depth and every sticker a size there.

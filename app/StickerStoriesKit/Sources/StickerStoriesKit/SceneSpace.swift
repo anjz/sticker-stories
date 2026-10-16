@@ -1,5 +1,21 @@
 import Foundation
 
+/// Where the background is open sky (`docs/pack-format.md`, "Sky"): masks
+/// of the background's shape — white, their alpha the sky — made from it
+/// by the tools. Sky effects (the moon, stars, clouds) are clipped by it so
+/// they never draw over the treetops or ridges painted into the background.
+public struct PackSky: Codable, Equatable, Sendable {
+    public var image: String
+    /// The mask of the wide background; present exactly when the pack has
+    /// wide art.
+    public var imageWide: String?
+
+    public init(image: String, imageWide: String? = nil) {
+        self.image = image
+        self.imageWide = imageWide
+    }
+}
+
 /// A plane of the scene between the background and the foreground — the
 /// trees, the reeds at the pond (`docs/pack-format.md`, "Layers"): painted
 /// on its own, so a story can put a sticker between planes at its depth

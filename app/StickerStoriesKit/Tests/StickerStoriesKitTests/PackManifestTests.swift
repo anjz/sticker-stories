@@ -55,6 +55,7 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
     assets += manifest.stickers.map(\.image)
     assets += [manifest.backgroundWide, manifest.foregroundWide].compactMap { $0 }
     assets += manifest.layers.flatMap { [$0.image, $0.imageWide].compactMap { $0 } }
+    assets += [manifest.sky?.image, manifest.sky?.imageWide].compactMap { $0 }
     assets += manifest.stories.flatMap { $0.localizations.values.map(\.audio) }
     assets += manifest.stories.flatMap { $0.localizations.values.compactMap(\.effects) }
     for relative in assets {

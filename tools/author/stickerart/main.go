@@ -7,6 +7,7 @@
 //	stickerart render  -pack ../packs/forest [-only fox,tree|stylesheet|scene] [-quality high]
 //	                   [-dry-run] [-force] [-parallel 4]
 //	stickerart install -pack ../packs/forest [-bump]
+//	stickerart sky     -pack ../packs/forest [-preview dir] [-bump]  # the sky masks alone
 //
 // art.json (tools/author/art/<packID>/art.json) holds the pack's style, one
 // prompt per sticker and prompts for the scene planes. Rendering makes one
@@ -293,6 +294,8 @@ func main() {
 		err = runInstall(os.Args[2:])
 	case "pick":
 		err = runPick(os.Args[2:])
+	case "sky":
+		err = runSky(os.Args[2:])
 	default:
 		usage()
 	}
@@ -303,7 +306,7 @@ func main() {
 }
 
 func usage() {
-	fmt.Fprintln(os.Stderr, "usage: stickerart init|render|pick|install -pack <pack-dir> [flags]  (see -h on each)")
+	fmt.Fprintln(os.Stderr, "usage: stickerart init|render|pick|install|sky -pack <pack-dir> [flags]  (see -h on each)")
 	os.Exit(2)
 }
 
@@ -1969,6 +1972,10 @@ func runInstall(args []string) error {
 			}
 		}
 		c.pack.Layers = layers
+	}
+	// Where the installed background is open sky.
+	if err := installSky(c, ""); err != nil {
+		return err
 	}
 	// The scene with depth (tools/author/scenespace), without the tools'
 	// own keys.
