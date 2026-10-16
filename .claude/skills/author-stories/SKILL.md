@@ -129,8 +129,8 @@ Show the user the coverage summary and proceed.
 For each story, create `tools/author/stories/<packID>/<id>/story.json`
 exactly per `FORMAT.md`:
 
-- every pack language, written natively, 80–140 words each, same beats and
-  cues in each;
+- every pack language, transcreated from the beats (GUIDE "Both
+  languages"), 100–150 words each (50–80 s), same beats and cues in each;
 - a real shape (setup → wish/problem → try → turn → warm ending), one
   idea, the lesson **shown, never stated**;
 - read-aloud craft: short sentences, rhythm, sound words, a landing line;
@@ -220,8 +220,8 @@ exactly per `FORMAT.md`:
 - **the narrator's performance** (GUIDE "Voice performance"): the feeling
   in the words first (v4 acts what the sentence says), rhythm in the
   punctuation and sentence length (… — CAPITALS, short sentences; there is
-  no speed setting), a `[short pause]` / `[long pause]` where a silence
-  tells it, then two to four audio tags from the allowed list in FORMAT
+  no speed setting), no pauses (the story never stops for the child to
+  guess), then two to four audio tags from the allowed list in FORMAT
   "Audio tags", each right before the words it colours, where the feeling
   genuinely changes — never stacked, never more than six, never a tag that
   names a sound (v4 would make it); a character's line named before it

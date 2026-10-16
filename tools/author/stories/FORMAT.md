@@ -71,9 +71,10 @@ reads it.
 
 ## Text and length
 
-- Narration read at a gentle pace runs ~130–150 words a minute. Target
-  **80–140 words** per language (Spanish tends to run ~10 % longer for the
-  same story); the validator rejects outside 65–160.
+- Eleven v4 narration with its sounds runs about two words a second.
+  Target **100–150 words** per language, 50–80 seconds (Spanish tends to
+  run ~10 % longer for the same story); the validator rejects outside
+  65–170.
 - Plain text: no Markdown, no stage directions, no emoji. Sound words
   (pitter-patter, whoosh, plic ploc) are welcome — they are what the cues
   and the sound effects hang on — but a real sound can also stand in for
@@ -163,7 +164,7 @@ Tags are written in English in every language:
 [excited] Ready, steady, GO!
 Snail took one step… [slowly] and then another.
 [giggles] That tickles!
-[long pause] [whispers] Three… two… one…
+[whispers] Everyone held their breath.
 Owl ruffled his feathers. [in a deep, slow voice] Who is out so late?
 ```
 
@@ -171,7 +172,7 @@ The allowed list (anything else is an error):
 
 | Tag | Kind | Use |
 |---|---|---|
-| `[pause]` `[short pause]` `[long pause]` | pause | a beat, a held breath before a reveal, a real hush (an ellipsis is a short one) |
+| `[pause]` `[short pause]` `[long pause]` | pause | allowed by the parser but not used: the narration never stops (GUIDE "Voice performance"); storycheck warns |
 | `[whispers]` | delivery | a secret, a sleeping friend, a hush |
 | `[softly]` | delivery | tender, close, bedtime |
 | `[slowly]` | delivery | a snail, a sleepy voice, suspense |

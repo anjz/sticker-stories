@@ -39,7 +39,7 @@ stories may use), the effects catalogue (`docs/effects/effects.json`),
    covering every sticker in the pack several times plus a few
    "whole-forest" stories that need no particular sticker;
 3. writes the stories in small batches — bilingual (every pack language),
-   80–140 words per language, with effect cues, a few Eleven v4 audio tags
+   100–150 words per language (50–80 s), with effect cues, a few Eleven v4 audio tags
    for the narrator, sound effects (some in place of sound words), a canvas
    effect wherever the words describe weather or light, and a
    small true fact in about four stories in ten — into

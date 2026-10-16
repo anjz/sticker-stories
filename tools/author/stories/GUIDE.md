@@ -16,7 +16,7 @@ hides in its shell and stays there until it peeks out, the frog snaps up a
 fly), stickers the story names walk, hop, fly or sprout into the scene and, whenever the words bring it, the weather or the light changes over the whole scene (rain, fog, sunshine, a rainbow, night
 falling, the lights going low). Stories are:
 
-- **30–60 seconds** of narration (80–140 words per language), read in one
+- **50–80 seconds** of narration (100–150 words per language), read in one
   take by an Eleven v4 voice that takes stage directions, with real sound
   effects mixed in — you write those in too (see "Voice performance" and "Sound
   effects");
@@ -31,7 +31,7 @@ falling, the lights going low). Stories are:
 
 Packs are written for four and up unless their roster (`plan.md`,
 "Audience") pitches them older. An older pitch changes the writing, never
-the length (80–140 words) or a single safety rule: the app is in the Kids
+the length (100–150 words) or a single safety rule: the app is in the Kids
 Category's youngest band whatever the pack. **Moon Base** is pitched at
 8–10: a real plot with a twist, missions and problem-solving, dry humour,
 one true piece of Moon science where the roster puts it, and the words a
@@ -44,8 +44,11 @@ Write at the level of the best read-aloud picture books, not app filler.
 Every story must have:
 
 1. **A real shape.** Setup → a small, concrete problem or wish → an attempt
-   → a surprise or turn → a warm resolution. In 100 words. If nothing turns,
-   it is not a story yet.
+   → a surprise or turn → a warm resolution. In about 120 words. If nothing
+   turns, it is not a story yet. **Nothing random**: every event happens
+   *because of* the one before it (so…, but…, so…), never "and then";
+   a sticker that turns up has a reason to be there in this story. A
+   parent should be able to say what the story is about in one sentence.
 2. **One idea, held all the way through.** A story about the shy mushroom
    is about shyness from the first line to the last.
 3. **Depth borrowed from the classics, transformed.** Draw on public-domain
@@ -63,8 +66,9 @@ Every story must have:
 5. **Read-aloud craft.** Short sentences. Present-tense action or simple
    past. Concrete nouns and verbs. Rhythm and repetition (three of
    something; a refrain). Sound words that a narrator can perform (*drip
-   drop*, *rustle rustle*, *whoo-hoo*). A question to the listener now and
-   then. An ending line that lands — quiet, funny or warm — and would work
+   drop*, *rustle rustle*, *whoo-hoo*). The narration never stops for the
+   child: no "can you guess?" and no gap to fill in — a question to the
+   listener is rare and answered in the same breath. An ending line that lands — quiet, funny or warm — and would work
    as the last line a parent reads at bedtime.
 6. **Warmth and humour.** Gentle, physical, kind humour (a tumble into
    leaves, a hedgehog covered in leaves, a snail's grand expedition).
@@ -87,7 +91,13 @@ from twigs; a hedgehog rolls into a ball; rain fills puddles and the sun
 dries them. Aim for the wonder a four-year-old feels at a real fact.
 
 - **One fact per story, concrete and observable**, something the child
-  could notice outside. No numbers, no big words, no "did you know".
+  could notice outside. No numbers, no big words.
+- **Told, never vouched for.** The fact is simply how things are in the
+  story — Butterfly lands on the clover and tastes it with her feet —
+  and the narrator never steps out to certify it: no "did you know", no
+  "it's true!", no "real butterflies really do", no closing "and that
+  part is real". Said plainly once, it is believed; vouched for, it
+  becomes a lesson. `storycheck` warns on these phrases.
 - **The story stays a story.** The fact is what a character does or finds
   out on the way to the turn, never a lesson read out; if the plot would
   survive deleting the fact, it is bolted on.
@@ -576,10 +586,10 @@ performer:
   line cut off (*"Wait, that's my—"*), ONE WORD IN CAPITALS the word that
   lands (once or twice a story). `[slowly]` or `[rushed]` sets the pace of
   a whole passage.
-- **Silence is a tool.** `[short pause]` is a held breath before a reveal;
-  `[long pause]` a real hush — before the rocket lifts, as the bedtime
-  story settles. One or two a story; a pause may sit beside a direction
-  (`[long pause] [whispers]`), nothing else stacks.
+- **No pauses.** The story keeps moving: no `[pause]`, `[short pause]`
+  or `[long pause]` (storycheck warns), no silence left for the child to
+  guess into, no ellipsis before a reveal. A hush is written in the words
+  (*and everyone went very, very quiet*) and read softly, not as a gap.
 - **A tag where the feeling changes**, right before the words it colours:
   `[whispers]` for a secret, `[excited]` when the game starts, `[curious]`
   for a peek, `[warmly]` / `[gently]` for comfort, `[playfully]` for a
@@ -601,7 +611,7 @@ performer:
   pointed up.*) so the child knows who is talking; a tag for the line goes
   just inside it (`{woman:says} [excited] "Look!"`). Both languages give
   the same characters the same lines. A story with lines must stay under
-  2,000 characters per language (they all do at 80–140 words).
+  2,000 characters per language (they all do at 100–150 words).
 - **The narrator can still do a voice.** For a character without a voice
   of their own, name the speaker before the line when the way it is said
   matters (*Owl yawned and said, "Who's there?"*), or give it
@@ -655,12 +665,32 @@ no voices". Never a scary sound: no roars, growls, thunder claps, bangs.
 
 ## Both languages
 
-- Write each language as a native author would: idiom, rhythm, sound
-  words (*whoosh* / *fiu*, *pitter-patter* / *tip-tap*), names of things.
-  Not a translation.
-- Spanish is Castilian (es-ES), *vosotros* where a plural "you" appears,
-  child-friendly vocabulary.
-- Same beats, same cues, same lesson. Titles may differ in wording.
+Each language is **transcreated**: written by a native author from the
+story's beats, not translated from the English sentences. Only the beats
+(who does what, in what order), the facts and the cues must match —
+the cues land on the same beats — everything else is free.
+
+- **Work from the beats.** Before writing the Spanish, list the beats in
+  a line each (*Snail wants to see the pond; sets off; the others pass
+  him; he arrives at night — the moon in the water*), then write the
+  story as a Spanish picture-book author would tell it, reading the
+  English only to check the beats. Sentences may merge, split, reorder
+  within a beat or change completely.
+- **Native sound and rhythm.** Spanish onomatopoeia (*guau*, *cua cua*,
+  *croac*, *toc, toc*, *ñam*, *zas*, *fiu*, *plif plof*, *chof*), never
+  English ones. A refrain is **rebuilt** to rhyme and scan in Spanish (a
+  new rhyme, not the English one carried across); a joke or wordplay
+  that does not survive is replaced by one that works in Spanish.
+- **No calques.** Natural Spanish word order and idiom: *La cometa subió
+  muy alto*, not *Arriba subió la cometa*; *se puso contentísimo*, not
+  *estaba muy feliz*; diminutives where a Spanish parent would use them
+  (*despacito*, *un poquito*). No English punctuation habits.
+- **Castilian (es-ES)**: *vosotros* for a plural "you", Spain's words
+  (*mariquita*, *zumo*, *gafas*), dialogue with the raya (—¡Hola! —dijo
+  Zorro.), never English quotes for the narrator's characters.
+- **Titles** are native titles, not translated ones.
+- **Then read it aloud** as a Spanish parent at bedtime. If a line sounds
+  translated, rewrite it from the beat.
 
 ## Process discipline
 
