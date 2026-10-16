@@ -602,6 +602,18 @@ extension StageDirectorTests {
                             problems.append("\(tag): standing in the \(water) at \(String(format: "%.1f", t))")
                         }
                         let moving = plan.legs.contains { $0.at <= t && t < $0.end }
+                        // On bark it faces the bark, its beak on it (whichever tree).
+                        // (The tree it is on: the nearest bark across the screen.)
+                        if !moving, case .perch(let place) = s.support,
+                            let face = world.perches.filter({ $0.place == place && $0.facing != nil }).min(by: { p, q in
+                                let x = world.screen(s.position).x
+                                return abs(world.screen(p.points[0]).x - x) < abs(world.screen(q.points[0]).x - x)
+                            })?.facing,
+                            let art = a.moves.first?.facing
+                        {
+                            let looks = (art == .right) == (s.facing > 0) ? StageMove.Facing.right : .left
+                            if looks != face { problems.append("\(tag): faces away from the \(place) at \(String(format: "%.1f", t))") }
+                        }
                         // On its way in the water by its water way (a duckling swims, never
                         // waddles, afloat); on its way over land by a way that walks it.
                         if let leg = plan.legs.last(where: { $0.at <= t && t < $0.end && $0.gait.carries }), leg.kind != .settle,

@@ -1385,11 +1385,13 @@ public enum StageDirector {
                 if ways.count < 2 { ways = [] }
             }
             // Onto bark: it flies there facing its way, and turns to it as
-            // it gets there.
+            // it gets there — to the bark of the tree it lands on, which its
+            // spot already faces (`perchPose`; the two trees face apart).
             if case .perch(let place) = target.support,
-                let perch = world.perches.first(where: { $0.place == place && $0.facing != nil }),
-                let face = perch.facing, let sign = sign(face, for: i)
+                world.perches.contains(where: { $0.place == place && $0.facing != nil }),
+                states[i].actor.moves.first?.facing != nil
             {
+                let sign = target.facing
                 if ways.isEmpty, sign != facing { ways = [StageLeg.Way(k: 0, facing: facing)] }
                 facing = sign
             }
