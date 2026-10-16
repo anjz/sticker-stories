@@ -46,6 +46,24 @@ import Testing
         #expect(try #require(plans[duck]).legs.isEmpty)
     }
 
+    @Test func walksFacingItsWayUnlessTheStorySaysBackwards() throws {
+        // The fox's art faces right; the flower is to its left.
+        let cast = [actor(fox, "fox", at: .init(0.8, 0.25), moves: trot), actor(flower, "flower", at: .init(0.2, 0.25))]
+        let goes = [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "flower")]
+        let walk = try #require(plan(cast, goes: goes)[fox])
+        let leg = try #require(walk.legs.last)
+        #expect(leg.facingTo == -1)
+        // It turns on the spot first, then walks.
+        #expect(walk.sample(at: leg.at + StagePlan.turn * 0.9).position == walk.sample(at: leg.at).position)
+        #expect(walk.sample(at: leg.end).facing == -1)
+        var backwards = goes[0]
+        backwards.backwards = true
+        let back = try #require(plan(cast, goes: [backwards])[fox])
+        let backLeg = try #require(back.legs.last)
+        #expect(backLeg.facingTo == 1)
+        #expect(back.sample(at: backLeg.end).facing == 1)
+    }
+
     @Test func goingToSomeoneAcrossThePondWalksRoundItAndStandsBesideThem() throws {
         let plans = plan(
             [actor(fox, "fox", at: .init(0.3, 0.25), moves: trot), actor(rabbit, "flower", at: .init(0.85, 0.25))],

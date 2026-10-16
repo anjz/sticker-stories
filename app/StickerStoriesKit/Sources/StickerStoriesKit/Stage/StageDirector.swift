@@ -166,6 +166,8 @@ public enum StageDirector {
         var legs: [StageLeg] = []
         /// The way the story last named (`by`); nil for its usual one.
         var by: String?
+        /// The move under way goes backwards (`GoTrigger.backwards`).
+        var backwards = false
         /// Whom it stands beside, if anyone ("beside:<id>").
         var beside: String?
         /// The side it went off by (−1 left, 1 right).
@@ -806,6 +808,8 @@ public enum StageDirector {
             let wasBeside = states[i].beside
             states[i].beside = nil
             states[i].by = go.by
+            states[i].backwards = go.backwards
+            defer { states[i].backwards = false }
             let me = states[i].actor
 
             switch go.kind {
@@ -1197,7 +1201,9 @@ public enum StageDirector {
             let travels = StageMove.pick(me.moves, by: moveID).flatMap(\.facing) ?? me.moves.first?.facing
             if gait != .fade, let travels {
                 let widthPoints = world.drawnHeight(size: me.size, atDepth: from.z) * me.ratio
-                ways = self.ways(along: path, art: travels == .right ? 1 : -1, width: widthPoints, shuffle: shuffle)
+                // Backwards, when the story says so: facing away from its way.
+                let art = (travels == .right ? 1.0 : -1.0) * (states[i].backwards && !shuffle ? -1 : 1)
+                ways = self.ways(along: path, art: art, width: widthPoints, shuffle: shuffle)
                 if let last = ways.last { facing = last.facing }
                 if ways.count < 2 { ways = [] }
             }

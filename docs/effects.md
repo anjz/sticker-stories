@@ -485,7 +485,7 @@ without one stage them.
 A story can move any sticker that walks or flies (its manifest `stage`
 entrance is `hop` or `fly`; things that grow — a flower, a mushroom — stay
 put), placed by the child or visiting, when the words say it goes
-somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "toward"?, "another"? }`:
+somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "toward"?, "another"?, "backwards"? }`:
 
 | `go` | `target` | where it goes |
 |---|---|---|
@@ -508,7 +508,10 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
   mirrors, never a part of it. A circling flyer faces the way it is going
   round its loop, a little sidestep making room (under a quarter of its
   width) may go sideways, and something rooted, a sprout or a fade
-  (Reduce Motion, calm mode) never turns. The time is not authored: it
+  (Reduce Motion, calm mode) never turns. Only a move with `"backwards":
+  true` (authored `{crab:go to rock backwards}`, when the words say so)
+  goes the other way: it faces away from its way, turning round first if
+  it has to. The time is not authored: it
   follows the distance and the sticker's gait (0.8–5 s; a flight
   1.2–3.4 s). A move cued while an earlier one (or its entrance) is still
   under way starts when that ends.

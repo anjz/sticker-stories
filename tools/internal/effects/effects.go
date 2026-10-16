@@ -92,7 +92,7 @@ var (
 	knownLiveKeys   = set("at", "cue", "sticker", "animation", "mode")
 	knownFaceKeys   = set("at", "cue", "sticker", "expression")
 	knownEnterKeys  = set("at", "cue", "sticker", "enter", "by")
-	knownGoKeys     = set("at", "cue", "sticker", "go", "target", "by", "toward", "another")
+	knownGoKeys     = set("at", "cue", "sticker", "go", "target", "by", "toward", "another", "backwards")
 	colorPattern    = regexp.MustCompile(`^#[0-9A-Fa-f]{6}$`)
 )
 
@@ -483,6 +483,12 @@ func validateGoTrigger(label string, fields map[string]json.RawMessage, declared
 			fail("%s: another must be true or false", label)
 		} else if another && kind != "to" {
 			fail("%s: another is only for go to", label)
+		}
+	}
+	if raw, ok := fields["backwards"]; ok {
+		var backwards bool
+		if err := json.Unmarshal(raw, &backwards); err != nil {
+			fail("%s: backwards must be true or false", label)
 		}
 	}
 	if raw, ok := fields["toward"]; ok {

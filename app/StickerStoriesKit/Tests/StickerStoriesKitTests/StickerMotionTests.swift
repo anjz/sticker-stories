@@ -14,7 +14,8 @@ import Testing
               { "at": 8, "sticker": "fox", "go": "under" },
               { "at": 9, "sticker": "all", "go": "away" },
               { "at": 9, "sticker": "fox", "go": "fly" },
-              { "at": 10, "sticker": "bee", "go": "to", "target": "fox", "by": "walk" } ] }
+              { "at": 10, "sticker": "bee", "go": "to", "target": "fox", "by": "walk" },
+              { "at": 11, "sticker": "fox", "go": "away", "backwards": true } ] }
             """
         let file = try EffectTriggerFile(data: Data(json.utf8))
         #expect(file.goTriggers == [
@@ -23,6 +24,7 @@ import Testing
             GoTrigger(at: 6, stickerID: "fox", kind: .away),
             GoTrigger(at: 7, stickerID: "fox", kind: .back),
             GoTrigger(at: 10, stickerID: "bee", kind: .to, target: "fox", by: "walk"),
+            GoTrigger(at: 11, stickerID: "fox", kind: .away, backwards: true),
         ])
         #expect(file.warnings.count == 4)  // target on back, under without target, all, unknown kind
     }
@@ -202,6 +204,15 @@ import Testing
         let x = { (t: TimeInterval) in plan.delta(at: t).offsetXSelf }
         #expect(abs(x(10 + MotionPlan.turn * 0.9) - x(10)) < 1e-9)
         #expect(x(10 + MotionPlan.turn + 0.2) < x(10))
+    }
+
+    @Test func goesBackwardsOnlyWhenTheStorySays() {
+        // Back to its spot on the left, backwards: still facing right.
+        var back = GoTrigger(at: 10, stickerID: "fox", kind: .back)
+        back.backwards = true
+        let plan = plan([GoTrigger(at: 0, stickerID: "fox", kind: .to, target: "rabbit"), back])[fox]!
+        #expect(plan.legs[1].facingTo == 1)
+        #expect(plan.facing(at: 11) == 1)
     }
 
     @Test func aWalkerGoingToAFlyerStaysOnTheGround() {

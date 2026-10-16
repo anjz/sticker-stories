@@ -43,6 +43,10 @@ public struct GoTrigger: Equatable, Sendable {
     /// next tree": `{woodpecker:go to trunks another}`). Without it a move
     /// to where the sticker already is does nothing.
     public var another: Bool
+    /// Backwards, facing away from the way it goes — only when the story
+    /// says so (`{crab:go to rock backwards}`); otherwise it turns to face
+    /// its way.
+    public var backwards: Bool
 
     public enum Side: String, Equatable, Sendable {
         case left, right
@@ -50,8 +54,9 @@ public struct GoTrigger: Equatable, Sendable {
 
     public init(
         at: TimeInterval, cue: String? = nil, stickerID: String, kind: Kind, target: String? = nil, by: String? = nil,
-        toward: Side? = nil, unlessThere: Bool = false, another: Bool = false
+        toward: Side? = nil, unlessThere: Bool = false, another: Bool = false, backwards: Bool = false
     ) {
+        self.backwards = backwards
         self.unlessThere = unlessThere
         self.another = another
         self.at = at
@@ -350,6 +355,8 @@ public enum MotionPlanner {
         var at: String?
         /// The way it last went (a move's id), for a shuffle to make room.
         var by: String?
+        /// The move under way goes backwards (`GoTrigger.backwards`).
+        var backwards = false
     }
 
     public static func plan<R: RandomNumberGenerator>(
@@ -402,6 +409,8 @@ public enum MotionPlanner {
             let left = leaveGroup(index)
             states[index].at = nil
             states[index].by = go.by
+            states[index].backwards = go.backwards
+            defer { states[index].backwards = false }
 
             if go.kind == .on || go.kind == .under, let name = go.target, let other = nearest(name, to: index) {
                 let key = "\(go.kind.rawValue):\(states[other].actor.id)"
@@ -848,6 +857,8 @@ public enum MotionPlanner {
             var facing = state.facing
             if let way = move?.facing, abs(dx) > me.size.width * (shuffle ? 0.25 : 0.1), gait != .fade {
                 facing = (way == .right) == (dx > 0) ? 1 : -1
+                // Backwards, when the story says so: facing away from its way.
+                if state.backwards, !shuffle { facing = -facing }
             }
             // Onto a place it faces into: facing it when it gets there,
             // whichever way it came.

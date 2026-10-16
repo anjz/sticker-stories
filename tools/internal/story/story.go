@@ -285,6 +285,11 @@ const (
 // place it is already at keeps it there.
 const GoAnother = "another"
 
+// GoBackwards has a sticker go the other way to the one it faces — only
+// when the words say it goes backwards ({crab:go to rock backwards}):
+// otherwise every sticker turns to face the way it goes.
+const GoBackwards = "backwards"
+
 // Move kinds.
 const (
 	GoTo    = "to"
@@ -313,6 +318,7 @@ type Cue struct {
 	By         string // the move an entrance or a move goes by ("" = its usual one)
 	Toward     string // the side a move goes toward: left, right ("" = where it goes decides)
 	Another    bool   // go to a place: another part of it than where it is ("on to the next tree")
+	Backwards  bool   // a move: backwards, facing away from the way it goes (only when the words say so)
 	Sound      bool
 	Solo       bool
 	Effect     string
@@ -729,6 +735,8 @@ func parseCue(inner string) (Cue, error) {
 			c.GoKind = p
 		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind != "" && p == GoAnother:
 			c.Another = true
+		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind != "" && p == GoBackwards:
+			c.Backwards = true
 		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind != "" && (p == GoLeft || p == GoRight):
 			if c.Toward != "" {
 				return c, fmt.Errorf("a move goes one way: left or right")
@@ -1218,7 +1226,7 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 				continue
 			}
 			if c.Effect == GoEffect {
-				shape = append(shape, c.Sticker+":go:"+c.GoKind+":"+c.Target+":"+c.By+":"+c.Toward+":"+fmt.Sprint(c.Another))
+				shape = append(shape, c.Sticker+":go:"+c.GoKind+":"+c.Target+":"+c.By+":"+c.Toward+":"+fmt.Sprint(c.Another)+":"+fmt.Sprint(c.Backwards))
 				validateGoCue(&is, lang, c, m, inStory, enterAt)
 				switch c.GoKind {
 				case GoTo:
