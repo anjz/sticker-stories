@@ -4,10 +4,10 @@
   "kind": "action",
   "description": "the fox shivers and trembles, cold or scared.",
   "stickerBox": {
-    "x": 0.06901,
-    "y": 0.02995,
-    "width": 0.86198,
-    "height": 0.9401
+    "x": 0.02995,
+    "y": 0.05599,
+    "width": 0.9401,
+    "height": 0.88802
   },
   "puppet": {
     "rig": "anims/fox.rig.json",
@@ -21,29 +21,53 @@
         }
       },
       {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 0.98
+          },
+          "earL": {
+            "r": -10
+          },
+          "earR": {
+            "r": 12
+          },
+          "head": {
+            "y": 5
+          },
+          "tail": {
+            "r": 24
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "sad"
+        }
+      },
+      {
         "hold": 0.06,
         "ease": "linear",
         "bones": {
-          "armL": {
-            "r": 12
-          },
-          "armR": {
-            "r": 12
-          },
           "belly": {
-            "sx": 0.97
+            "sx": 0.97,
+            "sy": 0.98
           },
           "earL": {
-            "r": -5
+            "r": -14
           },
           "earR": {
-            "r": 5
+            "r": 10
           },
           "head": {
-            "y": 4
+            "y": 5
           },
           "root": {
             "x": -3
+          },
+          "tail": {
+            "r": 24
           }
         },
         "slots": {
@@ -56,26 +80,24 @@
         "hold": 0.06,
         "ease": "linear",
         "bones": {
-          "armL": {
-            "r": 12
-          },
-          "armR": {
-            "r": 12
-          },
           "belly": {
-            "sx": 0.97
+            "sx": 0.97,
+            "sy": 0.98
           },
           "earL": {
-            "r": 5
+            "r": -8
           },
           "earR": {
-            "r": -5
+            "r": 16
           },
           "head": {
-            "y": 4
+            "y": 5
           },
           "root": {
             "x": 3
+          },
+          "tail": {
+            "r": 24
           }
         },
         "slots": {
@@ -88,26 +110,24 @@
         "hold": 0.06,
         "ease": "linear",
         "bones": {
-          "armL": {
-            "r": 12
-          },
-          "armR": {
-            "r": 12
-          },
           "belly": {
-            "sx": 0.97
+            "sx": 0.97,
+            "sy": 0.98
           },
           "earL": {
-            "r": -5
+            "r": -14
           },
           "earR": {
-            "r": 5
+            "r": 10
           },
           "head": {
-            "y": 4
+            "y": 5
           },
           "root": {
             "x": -3
+          },
+          "tail": {
+            "r": 24
           }
         },
         "slots": {
@@ -120,26 +140,24 @@
         "hold": 0.06,
         "ease": "linear",
         "bones": {
-          "armL": {
-            "r": 12
-          },
-          "armR": {
-            "r": 12
-          },
           "belly": {
-            "sx": 0.97
+            "sx": 0.97,
+            "sy": 0.98
           },
           "earL": {
-            "r": 5
+            "r": -8
           },
           "earR": {
-            "r": -5
+            "r": 16
           },
           "head": {
-            "y": 4
+            "y": 5
           },
           "root": {
             "x": 3
+          },
+          "tail": {
+            "r": 24
           }
         },
         "slots": {
@@ -152,26 +170,24 @@
         "hold": 0.06,
         "ease": "linear",
         "bones": {
-          "armL": {
-            "r": 12
-          },
-          "armR": {
-            "r": 12
-          },
           "belly": {
-            "sx": 0.97
+            "sx": 0.97,
+            "sy": 0.98
           },
           "earL": {
-            "r": -5
+            "r": -14
           },
           "earR": {
-            "r": 5
+            "r": 10
           },
           "head": {
-            "y": 4
+            "y": 5
           },
           "root": {
             "x": -3
+          },
+          "tail": {
+            "r": 24
           }
         },
         "slots": {
@@ -184,26 +200,24 @@
         "hold": 0.06,
         "ease": "linear",
         "bones": {
-          "armL": {
-            "r": 12
-          },
-          "armR": {
-            "r": 12
-          },
           "belly": {
-            "sx": 0.97
+            "sx": 0.97,
+            "sy": 0.98
           },
           "earL": {
-            "r": 5
+            "r": -8
           },
           "earR": {
-            "r": -5
+            "r": 16
           },
           "head": {
-            "y": 4
+            "y": 5
           },
           "root": {
             "x": 3
+          },
+          "tail": {
+            "r": 24
           }
         },
         "slots": {
@@ -216,26 +230,24 @@
         "hold": 0.06,
         "ease": "linear",
         "bones": {
-          "armL": {
-            "r": 12
-          },
-          "armR": {
-            "r": 12
-          },
           "belly": {
-            "sx": 0.97
+            "sx": 0.97,
+            "sy": 0.98
           },
           "earL": {
-            "r": -5
+            "r": -14
           },
           "earR": {
-            "r": 5
+            "r": 10
           },
           "head": {
-            "y": 4
+            "y": 5
           },
           "root": {
             "x": -3
+          },
+          "tail": {
+            "r": 24
           }
         },
         "slots": {
@@ -248,26 +260,24 @@
         "hold": 0.06,
         "ease": "linear",
         "bones": {
-          "armL": {
-            "r": 12
-          },
-          "armR": {
-            "r": 12
-          },
           "belly": {
-            "sx": 0.97
+            "sx": 0.97,
+            "sy": 0.98
           },
           "earL": {
-            "r": 5
+            "r": -8
           },
           "earR": {
-            "r": -5
+            "r": 16
           },
           "head": {
-            "y": 4
+            "y": 5
           },
           "root": {
             "x": 3
+          },
+          "tail": {
+            "r": 24
           }
         },
         "slots": {
@@ -280,26 +290,24 @@
         "hold": 0.06,
         "ease": "linear",
         "bones": {
-          "armL": {
-            "r": 12
-          },
-          "armR": {
-            "r": 12
-          },
           "belly": {
-            "sx": 0.97
+            "sx": 0.97,
+            "sy": 0.98
           },
           "earL": {
-            "r": -5
+            "r": -14
           },
           "earR": {
-            "r": 5
+            "r": 10
           },
           "head": {
-            "y": 4
+            "y": 5
           },
           "root": {
             "x": -3
+          },
+          "tail": {
+            "r": 24
           }
         },
         "slots": {
@@ -312,26 +320,24 @@
         "hold": 0.06,
         "ease": "linear",
         "bones": {
-          "armL": {
-            "r": 12
-          },
-          "armR": {
-            "r": 12
-          },
           "belly": {
-            "sx": 0.97
+            "sx": 0.97,
+            "sy": 0.98
           },
           "earL": {
-            "r": 5
+            "r": -8
           },
           "earR": {
-            "r": -5
+            "r": 16
           },
           "head": {
-            "y": 4
+            "y": 5
           },
           "root": {
             "x": 3
+          },
+          "tail": {
+            "r": 24
           }
         },
         "slots": {
@@ -344,26 +350,24 @@
         "hold": 0.06,
         "ease": "linear",
         "bones": {
-          "armL": {
-            "r": 12
-          },
-          "armR": {
-            "r": 12
-          },
           "belly": {
-            "sx": 0.97
+            "sx": 0.97,
+            "sy": 0.98
           },
           "earL": {
-            "r": -5
+            "r": -14
           },
           "earR": {
-            "r": 5
+            "r": 10
           },
           "head": {
-            "y": 4
+            "y": 5
           },
           "root": {
             "x": -3
+          },
+          "tail": {
+            "r": 24
           }
         },
         "slots": {
@@ -376,26 +380,24 @@
         "hold": 0.06,
         "ease": "linear",
         "bones": {
-          "armL": {
-            "r": 12
-          },
-          "armR": {
-            "r": 12
-          },
           "belly": {
-            "sx": 0.97
+            "sx": 0.97,
+            "sy": 0.98
           },
           "earL": {
-            "r": 5
+            "r": -8
           },
           "earR": {
-            "r": -5
+            "r": 16
           },
           "head": {
-            "y": 4
+            "y": 5
           },
           "root": {
             "x": 3
+          },
+          "tail": {
+            "r": 24
           }
         },
         "slots": {
@@ -408,26 +410,24 @@
         "hold": 0.06,
         "ease": "linear",
         "bones": {
-          "armL": {
-            "r": 12
-          },
-          "armR": {
-            "r": 12
-          },
           "belly": {
-            "sx": 0.97
+            "sx": 0.97,
+            "sy": 0.98
           },
           "earL": {
-            "r": -5
+            "r": -14
           },
           "earR": {
-            "r": 5
+            "r": 10
           },
           "head": {
-            "y": 4
+            "y": 5
           },
           "root": {
             "x": -3
+          },
+          "tail": {
+            "r": 24
           }
         },
         "slots": {
@@ -440,26 +440,24 @@
         "hold": 0.06,
         "ease": "linear",
         "bones": {
-          "armL": {
-            "r": 12
-          },
-          "armR": {
-            "r": 12
-          },
           "belly": {
-            "sx": 0.97
+            "sx": 0.97,
+            "sy": 0.98
           },
           "earL": {
-            "r": 5
+            "r": -8
           },
           "earR": {
-            "r": -5
+            "r": 16
           },
           "head": {
-            "y": 4
+            "y": 5
           },
           "root": {
             "x": 3
+          },
+          "tail": {
+            "r": 24
           }
         },
         "slots": {

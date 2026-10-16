@@ -4,10 +4,10 @@
   "kind": "action",
   "description": "the fox gives a big yawn, closes its eyes and falls asleep, then wakes up, blinks and smiles.",
   "stickerBox": {
-    "x": 0.06901,
-    "y": 0.02995,
-    "width": 0.86198,
-    "height": 0.9401
+    "x": 0.02995,
+    "y": 0.05599,
+    "width": 0.9401,
+    "height": 0.88802
   },
   "pause": {
     "frame": 4,
@@ -20,119 +20,118 @@
         "hold": 0.2
       },
       {
-        "hold": 0.35,
+        "hold": 0.4,
         "bones": {
-          "armL": {
-            "r": -26
-          },
-          "armR": {
-            "r": -22
-          },
           "belly": {
             "sy": 1.05
-          },
-          "head": {
-            "r": -4,
-            "y": -4
-          }
-        },
-        "slots": {
-          "eyeL": "closed",
-          "eyeR": "closed",
-          "mouth": "o"
-        }
-      },
-      {
-        "hold": 0.5,
-        "bones": {
-          "armL": {
-            "r": -26
-          },
-          "armR": {
-            "r": -22
-          },
-          "belly": {
-            "sy": 1.05
-          },
-          "head": {
-            "r": -4,
-            "y": -4
-          }
-        },
-        "slots": {
-          "eyeL": "closed",
-          "eyeR": "closed",
-          "mouth": "o"
-        }
-      },
-      {
-        "hold": 0.5,
-        "bones": {
-          "armL": {
-            "r": 16
-          },
-          "armR": {
-            "r": 14
-          },
-          "belly": {
-            "sx": 1.02,
-            "sy": 0.97
           },
           "earL": {
-            "r": 8
+            "r": -6
           },
           "earR": {
-            "r": -8
-          },
-          "face": {
-            "y": 4
+            "r": 8
           },
           "head": {
-            "r": 6,
-            "y": 9
+            "r": 10,
+            "y": -4
           }
         },
         "slots": {
           "eyeL": "closed",
-          "eyeR": "closed"
+          "eyeR": "closed",
+          "mouth": "wide"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "earL": {
+            "r": -6
+          },
+          "earR": {
+            "r": 8
+          },
+          "head": {
+            "r": 10,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "wide"
         }
       },
       {
         "hold": 0.6,
         "bones": {
-          "armL": {
-            "r": 16
-          },
-          "armR": {
-            "r": 14
-          },
           "belly": {
             "sx": 1.02,
             "sy": 0.97
           },
           "earL": {
-            "r": 8
+            "r": -12
           },
           "earR": {
-            "r": -8
+            "r": 14
           },
           "face": {
-            "y": 4
+            "y": 3
           },
           "head": {
-            "r": 6,
-            "y": 9
+            "r": -10,
+            "y": 14
+          },
+          "root": {},
+          "tail": {
+            "r": 18
           }
         },
         "slots": {
           "eyeL": "closed",
-          "eyeR": "closed"
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 1
+          },
+          "earL": {
+            "r": -12
+          },
+          "earR": {
+            "r": 14
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -10,
+            "y": 14
+          },
+          "root": {},
+          "tail": {
+            "r": 18
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
         }
       },
       {
         "hold": 0.3,
         "bones": {
           "head": {
+            "r": 2,
             "y": -2
           }
         },
@@ -142,7 +141,7 @@
         }
       },
       {
-        "hold": 0.25,
+        "hold": 0.2,
         "slots": {
           "eyeL": "closed",
           "eyeR": "closed"

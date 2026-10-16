@@ -4,10 +4,10 @@
   "kind": "action",
   "description": "the fox turns its head round to nibble at its own big tail, then spins right round after it.",
   "stickerBox": {
-    "x": 0.06901,
-    "y": 0.02995,
-    "width": 0.86198,
-    "height": 0.9401
+    "x": 0.02995,
+    "y": 0.05599,
+    "width": 0.9401,
+    "height": 0.88802
   },
   "puppet": {
     "rig": "anims/fox.rig.json",
@@ -16,182 +16,214 @@
         "hold": 0.2
       },
       {
-        "hold": 0.4,
-        "ease": "inOut",
+        "hold": 0.3,
         "bones": {
-          "armL": {
-            "r": 25
-          },
-          "armR": {
-            "r": 25
-          },
-          "belly": {
-            "sy": 0.96
-          },
-          "body": {
-            "r": -18
-          },
           "head": {
-            "r": -20,
-            "x": -24,
-            "y": 30,
-            "sx": -1
-          },
-          "root": {
-            "y": 8
-          },
-          "tail": {}
-        },
-        "slots": {
-          "eyeL": "wide",
-          "eyeR": "wide"
-        }
-      },
-      {
-        "hold": 0.18,
-        "bones": {
-          "armL": {
-            "r": 25
-          },
-          "armR": {
-            "r": 25
-          },
-          "belly": {
-            "sy": 0.96
-          },
-          "body": {
-            "r": -18
-          },
-          "head": {
-            "r": -24,
-            "x": -34,
-            "y": 36,
-            "sx": -1
-          },
-          "root": {
-            "y": 8
+            "r": 3
           },
           "tail": {
-            "r": -10
+            "r": -30
           }
         },
         "slots": {
           "eyeL": "happy",
-          "eyeR": "happy",
-          "mouth": "open"
+          "eyeR": "happy"
         }
       },
       {
         "hold": 0.18,
         "bones": {
-          "armL": {
-            "r": 25
-          },
-          "armR": {
-            "r": 25
-          },
-          "belly": {
-            "sy": 0.96
-          },
           "body": {
-            "r": -18
+            "r": -3
           },
           "head": {
-            "r": -20,
-            "x": -24,
-            "y": 30,
-            "sx": -1
+            "r": 2,
+            "x": 4
           },
-          "root": {
-            "y": 8
+          "legBN": {
+            "r": 6
           },
-          "tail": {}
-        },
-        "slots": {
-          "eyeL": "happy",
-          "eyeR": "happy",
-          "mouth": "smile"
-        }
-      },
-      {
-        "hold": 0.18,
-        "bones": {
-          "armL": {
-            "r": 25
+          "legFN": {
+            "r": 4
           },
-          "armR": {
-            "r": 25
-          },
-          "belly": {
-            "sy": 0.96
-          },
-          "body": {
-            "r": -18
-          },
-          "head": {
-            "r": -24,
-            "x": -34,
-            "y": 36,
-            "sx": -1
-          },
-          "root": {
-            "y": 8
-          },
+          "root": {},
           "tail": {
-            "r": -10
+            "r": -70,
+            "x": -6,
+            "y": 6
           }
         },
         "slots": {
-          "eyeL": "happy",
-          "eyeR": "happy",
-          "mouth": "open"
+          "browL": "none",
+          "browR": "none",
+          "earL": "none",
+          "earR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "back",
+          "mouth": "none"
         }
       },
       {
         "hold": 0.18,
         "bones": {
-          "armL": {
-            "r": 25
-          },
-          "armR": {
-            "r": 25
-          },
-          "belly": {
-            "sy": 0.96
-          },
           "body": {
-            "r": -18
+            "r": -3
           },
           "head": {
-            "r": -20,
-            "x": -24,
-            "y": 30,
-            "sx": -1
+            "r": 2,
+            "x": 8
           },
-          "root": {
-            "y": 8
+          "legBN": {
+            "r": 6
           },
-          "tail": {}
+          "legFN": {
+            "r": 4
+          },
+          "root": {},
+          "tail": {
+            "r": -76,
+            "x": -6,
+            "y": 6
+          }
         },
         "slots": {
-          "eyeL": "happy",
-          "eyeR": "happy",
-          "mouth": "smile"
+          "browL": "none",
+          "browR": "none",
+          "earL": "none",
+          "earR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "back",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": 2,
+            "x": 4
+          },
+          "legBN": {
+            "r": 6
+          },
+          "legFN": {
+            "r": 4
+          },
+          "root": {},
+          "tail": {
+            "r": -66,
+            "x": -6,
+            "y": 6
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "earL": "none",
+          "earR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "back",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": 2,
+            "x": 8
+          },
+          "legBN": {
+            "r": 6
+          },
+          "legFN": {
+            "r": 4
+          },
+          "root": {},
+          "tail": {
+            "r": -76,
+            "x": -6,
+            "y": 6
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "earL": "none",
+          "earR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "back",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": 2,
+            "x": 4
+          },
+          "legBN": {
+            "r": 6
+          },
+          "legFN": {
+            "r": 4
+          },
+          "root": {},
+          "tail": {
+            "r": -60,
+            "x": -6,
+            "y": 6
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "earL": "none",
+          "earR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "head": "back",
+          "mouth": "none"
         }
       },
       {
         "hold": 0.32,
-        "ease": "inOut",
         "bones": {
           "body": {
-            "r": -8
+            "r": 4
+          },
+          "legBF": {
+            "r": -12
+          },
+          "legBN": {
+            "r": 12
+          },
+          "legFF": {
+            "r": -10
+          },
+          "legFN": {
+            "r": 14
           },
           "root": {
-            "y": -20,
+            "y": -22,
             "sx": -1
           },
           "tail": {
-            "r": 20
+            "r": 14
           }
         },
         "slots": {
@@ -202,16 +234,12 @@
       },
       {
         "hold": 0.32,
-        "ease": "inOut",
         "bones": {
-          "body": {
-            "r": -4
-          },
           "root": {
             "sx": 1
           },
           "tail": {
-            "r": 10
+            "r": 8
           }
         },
         "slots": {

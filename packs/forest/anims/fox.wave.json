@@ -4,10 +4,10 @@
   "kind": "action",
   "description": "the fox waves hello with one front paw.",
   "stickerBox": {
-    "x": 0.06901,
-    "y": 0.02995,
-    "width": 0.86198,
-    "height": 0.9401
+    "x": 0.02995,
+    "y": 0.05599,
+    "width": 0.9401,
+    "height": 0.88802
   },
   "puppet": {
     "rig": "anims/fox.rig.json",
@@ -16,112 +16,143 @@
         "hold": 0.15
       },
       {
+        "hold": 0.12,
+        "bones": {
+          "legFN": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legFN": "lift"
+        }
+      },
+      {
         "hold": 0.25,
         "bones": {
-          "armL": {
-            "r": -12
-          },
-          "armR": {
-            "r": -64
-          },
           "body": {
-            "r": -3
+            "r": 2
           },
           "head": {
-            "r": -3
-          }
-        },
-        "slots": {
-          "eyeL": "happy",
-          "eyeR": "happy"
-        }
-      },
-      {
-        "hold": 0.18,
-        "bones": {
-          "armL": {
-            "r": -12
+            "r": 3
           },
-          "armR": {
-            "r": -48
+          "legFF": {
+            "r": -4
           },
-          "body": {
-            "r": -3
-          },
-          "head": {
-            "r": -3
+          "legFN": {
+            "r": 42
           }
         },
         "slots": {
           "eyeL": "happy",
           "eyeR": "happy",
-          "mouth": "open"
+          "legFN": "lift"
         }
       },
       {
-        "hold": 0.18,
+        "hold": 0.2,
         "bones": {
-          "armL": {
-            "r": -12
-          },
-          "armR": {
-            "r": -72
-          },
           "body": {
-            "r": -3
+            "r": 2
           },
           "head": {
-            "r": -3
+            "r": 3
+          },
+          "legFF": {
+            "r": -4
+          },
+          "legFN": {
+            "r": 30
           }
         },
         "slots": {
           "eyeL": "happy",
           "eyeR": "happy",
+          "legFN": "lift",
           "mouth": "open"
         }
       },
       {
-        "hold": 0.18,
+        "hold": 0.2,
         "bones": {
-          "armL": {
-            "r": -12
-          },
-          "armR": {
-            "r": -48
-          },
           "body": {
-            "r": -3
+            "r": 2
           },
           "head": {
-            "r": -3
+            "r": 3
+          },
+          "legFF": {
+            "r": -4
+          },
+          "legFN": {
+            "r": 48
           }
         },
         "slots": {
           "eyeL": "happy",
           "eyeR": "happy",
+          "legFN": "lift",
           "mouth": "open"
         }
       },
       {
-        "hold": 0.18,
+        "hold": 0.2,
         "bones": {
-          "armL": {
-            "r": -12
-          },
-          "armR": {
-            "r": -72
-          },
           "body": {
-            "r": -3
+            "r": 2
           },
           "head": {
-            "r": -3
+            "r": 3
+          },
+          "legFF": {
+            "r": -4
+          },
+          "legFN": {
+            "r": 30
           }
         },
         "slots": {
           "eyeL": "happy",
           "eyeR": "happy",
+          "legFN": "lift",
           "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 3
+          },
+          "legFF": {
+            "r": -4
+          },
+          "legFN": {
+            "r": 48
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legFN": "lift",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "legFN": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legFN": "lift"
         }
       },
       {

@@ -2,18 +2,18 @@
   "id": "trot",
   "sticker": "fox",
   "kind": "move",
-  "description": "the fox trots along to the right on all four legs, its big tail streaming behind, then stops.",
+  "description": "the fox trots along on all four legs, its big tail streaming behind, then stops.",
   "stickerBox": {
-    "x": 0.06901,
-    "y": 0.02995,
-    "width": 0.86198,
-    "height": 0.9401
+    "x": 0.02995,
+    "y": 0.05599,
+    "width": 0.9401,
+    "height": 0.88802
   },
   "loop": {
     "from": 1,
     "to": 4
   },
-  "facing": "right",
+  "facing": "left",
   "stride": 0.6,
   "puppet": {
     "rig": "anims/fox.rig.json",
@@ -22,163 +22,150 @@
         "hold": 0.1
       },
       {
-        "hold": 0.16,
-        "bones": {
-          "armL": {
-            "r": 8,
-            "x": 60,
-            "y": 45,
-            "sy": 1.4
-          },
-          "armR": {
-            "r": -18,
-            "sy": 1.4
-          },
-          "body": {
-            "r": 50,
-            "y": -10
-          },
-          "head": {
-            "r": -32
-          },
-          "legL": {
-            "r": -36
-          },
-          "legR": {
-            "r": -68
-          },
-          "root": {
-            "y": 16
-          },
-          "tail": {
-            "r": -30
-          }
-        }
-      },
-      {
-        "hold": 0.16,
-        "bones": {
-          "armL": {
-            "r": -4,
-            "x": 60,
-            "y": 45,
-            "sy": 1.4
-          },
-          "armR": {
-            "r": -4,
-            "sy": 1.4
-          },
-          "body": {
-            "r": 50
-          },
-          "head": {
-            "r": -32
-          },
-          "legL": {
-            "r": -50,
-            "y": -8
-          },
-          "legR": {
-            "r": -50,
-            "y": -8
-          },
-          "root": {
-            "y": 26
-          },
-          "tail": {
-            "r": -26
-          }
-        }
-      },
-      {
-        "hold": 0.16,
-        "bones": {
-          "armL": {
-            "r": -18,
-            "x": 60,
-            "y": 45,
-            "sy": 1.4
-          },
-          "armR": {
-            "r": 8,
-            "sy": 1.4
-          },
-          "body": {
-            "r": 50,
-            "y": -10
-          },
-          "head": {
-            "r": -32
-          },
-          "legL": {
-            "r": -68
-          },
-          "legR": {
-            "r": -36
-          },
-          "root": {
-            "y": 16
-          },
-          "tail": {
-            "r": -30
-          }
-        }
-      },
-      {
-        "hold": 0.16,
-        "bones": {
-          "armL": {
-            "r": -4,
-            "x": 60,
-            "y": 45,
-            "sy": 1.4
-          },
-          "armR": {
-            "r": -4,
-            "sy": 1.4
-          },
-          "body": {
-            "r": 50
-          },
-          "head": {
-            "r": -32
-          },
-          "legL": {
-            "r": -50,
-            "y": -8
-          },
-          "legR": {
-            "r": -50,
-            "y": -8
-          },
-          "root": {
-            "y": 26
-          },
-          "tail": {
-            "r": -26
-          }
-        }
-      },
-      {
-        "hold": 0.22,
+        "hold": 0.17,
         "bones": {
           "belly": {
-            "sy": 0.97
+            "sy": 0.99
           },
-          "body": {
-            "r": 10
+          "earL": {
+            "r": -4
+          },
+          "earR": {
+            "r": 5
           },
           "head": {
-            "r": -6
+            "r": 1
           },
-          "legL": {
-            "r": -10
+          "legBF": {
+            "r": 12
           },
-          "legR": {
-            "r": -10
+          "legBN": {
+            "r": 4
+          },
+          "legFF": {
+            "r": -36
+          },
+          "legFN": {
+            "r": 15
+          },
+          "root": {},
+          "tail": {
+            "r": 10
+          }
+        }
+      },
+      {
+        "hold": 0.17,
+        "bones": {
+          "earL": {
+            "r": -4
+          },
+          "earR": {
+            "r": 5
+          },
+          "head": {
+            "r": -1
+          },
+          "legBF": {
+            "r": -2
+          },
+          "legBN": {
+            "r": 19,
+            "y": -12
+          },
+          "legFF": {
+            "r": -22,
+            "y": -12
+          },
+          "legFN": {},
+          "root": {
+            "y": -8
           },
           "tail": {
+            "r": 14
+          }
+        }
+      },
+      {
+        "hold": 0.17,
+        "bones": {
+          "belly": {
+            "sy": 0.99
+          },
+          "earL": {
+            "r": -4
+          },
+          "earR": {
+            "r": 5
+          },
+          "head": {
+            "r": 1
+          },
+          "legBF": {
+            "r": -17
+          },
+          "legBN": {
+            "r": 32
+          },
+          "legFF": {
+            "r": -7
+          },
+          "legFN": {
+            "r": -15
+          },
+          "root": {},
+          "tail": {
+            "r": 10
+          }
+        }
+      },
+      {
+        "hold": 0.17,
+        "bones": {
+          "earL": {
+            "r": -4
+          },
+          "earR": {
+            "r": 5
+          },
+          "head": {
+            "r": -1
+          },
+          "legBF": {
+            "r": -2,
+            "y": -12
+          },
+          "legBN": {
+            "r": 19
+          },
+          "legFF": {
+            "r": -22
+          },
+          "legFN": {
+            "y": -12
+          },
+          "root": {
+            "y": -8
+          },
+          "tail": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "legBN": {
+            "r": 8
+          },
+          "legFF": {
             "r": -8
+          },
+          "root": {
+            "y": -2
+          },
+          "tail": {
+            "r": 4
           }
         }
       },

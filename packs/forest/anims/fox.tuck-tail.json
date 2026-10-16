@@ -4,10 +4,10 @@
   "kind": "action",
   "description": "the fox curls round and tucks its nose into its big bushy tail, snug and cosy, then peeks out with a smile.",
   "stickerBox": {
-    "x": 0.06901,
-    "y": 0.02995,
-    "width": 0.86198,
-    "height": 0.9401
+    "x": 0.02995,
+    "y": 0.05599,
+    "width": 0.9401,
+    "height": 0.88802
   },
   "pause": {
     "frame": 3,
@@ -20,19 +20,32 @@
         "hold": 0.2
       },
       {
-        "hold": 0.5,
+        "hold": 0.45,
         "bones": {
-          "body": {
-            "r": -12
+          "belly": {
+            "sy": 0.95
           },
           "head": {
-            "r": -8
+            "r": -6,
+            "y": 24
+          },
+          "legBF": {
+            "r": -20
+          },
+          "legBN": {
+            "r": -10
+          },
+          "legFF": {
+            "r": 6
+          },
+          "legFN": {
+            "r": 16
           },
           "root": {
-            "y": 10
+            "y": 16
           },
           "tail": {
-            "r": 14
+            "r": 40
           }
         },
         "slots": {
@@ -43,174 +56,196 @@
       },
       {
         "hold": 0.5,
-        "ease": "inOut",
         "bones": {
-          "armL": {
-            "r": 40
-          },
-          "armR": {
-            "r": 40
-          },
-          "belly": {
-            "sx": 1.05,
-            "sy": 0.92
-          },
-          "body": {
-            "r": -22
-          },
-          "earL": {
-            "r": -8
-          },
-          "earR": {
-            "r": 8
-          },
           "head": {
-            "r": -26,
-            "x": -30,
-            "y": 40,
-            "sx": -1
-          },
-          "legL": {
-            "r": -10
-          },
-          "legR": {
-            "r": -20
+            "r": -4,
+            "x": -40,
+            "y": 130
           },
           "root": {
-            "y": 22
+            "y": 30
           },
-          "tail": {
-            "r": 8
+          "tailFront": {
+            "x": -40,
+            "y": 46,
+            "sx": 0.9
           }
         },
         "slots": {
+          "body": "lying",
           "eyeL": "closed",
           "eyeR": "closed",
-          "mouth": "smile"
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none",
+          "mouth": "smile",
+          "tail": "none",
+          "tailFront": "curl"
         }
       },
       {
-        "hold": 0.8,
+        "hold": 0.9,
         "bones": {
-          "armL": {
-            "r": 40
-          },
-          "armR": {
-            "r": 40
-          },
-          "belly": {
-            "sx": 1.05,
-            "sy": 0.94
-          },
-          "body": {
-            "r": -22
-          },
-          "earL": {
-            "r": -8
-          },
-          "earR": {
-            "r": 8
-          },
           "head": {
-            "r": -26,
+            "r": -16,
             "x": -30,
-            "y": 40,
-            "sx": -1
-          },
-          "legL": {
-            "r": -10
-          },
-          "legR": {
-            "r": -20
+            "y": 178
           },
           "root": {
-            "y": 22
+            "y": 30
           },
-          "tail": {
-            "r": 8
+          "tailFront": {
+            "x": -48,
+            "y": 38,
+            "sx": 1.1,
+            "sy": 1.1
           }
         },
         "slots": {
+          "body": "lying",
           "eyeL": "closed",
           "eyeR": "closed",
-          "mouth": "smile"
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none",
+          "mouth": "smile",
+          "tail": "none",
+          "tailFront": "curl"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "head": {
+            "r": -16,
+            "x": -30,
+            "y": 178
+          },
+          "root": {
+            "y": 30
+          },
+          "tailFront": {
+            "x": -48,
+            "y": 38,
+            "sx": 1.1,
+            "sy": 1.1
+          }
+        },
+        "slots": {
+          "body": "lying",
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none",
+          "mouth": "smile",
+          "tail": "none",
+          "tailFront": "curl"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "head": {
+            "x": -40,
+            "y": 122
+          },
+          "root": {
+            "y": 30
+          },
+          "tailFront": {
+            "x": -30,
+            "y": 50
+          }
+        },
+        "slots": {
+          "body": "lying",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none",
+          "mouth": "smile",
+          "tail": "none",
+          "tailFront": "curl"
         }
       },
       {
         "hold": 0.4,
         "bones": {
-          "armL": {
-            "r": 40
+          "head": {
+            "r": 2,
+            "x": -40,
+            "y": 120
           },
-          "armR": {
-            "r": 40
+          "root": {
+            "y": 30
           },
+          "tailFront": {
+            "x": -30,
+            "y": 50
+          }
+        },
+        "slots": {
+          "body": "lying",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legBF": "none",
+          "legBN": "none",
+          "legFF": "none",
+          "legFN": "none",
+          "mouth": "open",
+          "tail": "none",
+          "tailFront": "curl"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
           "belly": {
-            "sx": 1.05,
-            "sy": 0.92
-          },
-          "body": {
-            "r": -22
-          },
-          "earL": {
-            "r": -8
-          },
-          "earR": {
-            "r": 8
+            "sy": 0.95
           },
           "head": {
-            "r": -26,
-            "x": -30,
-            "y": 40,
-            "sx": -1
+            "r": -6,
+            "y": 24
           },
-          "legL": {
-            "r": -10
-          },
-          "legR": {
+          "legBF": {
             "r": -20
           },
-          "root": {
-            "y": 22
+          "legBN": {
+            "r": -10
           },
-          "tail": {
-            "r": 8
-          }
-        },
-        "slots": {
-          "eyeL": "closed",
-          "eyeR": "closed",
-          "mouth": "smile"
-        }
-      },
-      {
-        "hold": 0.5,
-        "ease": "inOut",
-        "bones": {
-          "body": {
-            "r": -6
+          "legFF": {
+            "r": 6
           },
-          "head": {
-            "r": -4
+          "legFN": {
+            "r": 16
           },
           "root": {
-            "y": 6
+            "y": 16
           },
           "tail": {
-            "r": 10
+            "r": 40
           }
         },
-        "slots": {
-          "eyeL": "wide",
-          "eyeR": "wide"
-        }
-      },
-      {
-        "hold": 0.35,
         "slots": {
           "eyeL": "happy",
           "eyeR": "happy",
           "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
         }
       },
       {

@@ -4,10 +4,10 @@
   "kind": "action",
   "description": "the fox looks up, springs up and snaps its jaws at something just overhead, twice, then lands with a grin.",
   "stickerBox": {
-    "x": 0.06901,
-    "y": 0.02995,
-    "width": 0.86198,
-    "height": 0.9401
+    "x": 0.02995,
+    "y": 0.05599,
+    "width": 0.9401,
+    "height": 0.88802
   },
   "puppet": {
     "rig": "anims/fox.rig.json",
@@ -23,16 +23,16 @@
             "sy": 0.93
           },
           "earL": {
-            "r": 6
+            "r": 9,
+            "sy": 1.05
           },
           "earR": {
-            "r": -6
+            "r": -9,
+            "sy": 1.05
           },
           "head": {
-            "r": -12
-          },
-          "root": {
-            "y": 8
+            "r": 12,
+            "y": 4
           }
         },
         "slots": {
@@ -44,64 +44,70 @@
         "hold": 0.22,
         "ease": "out",
         "bones": {
-          "armL": {
-            "r": -16
-          },
-          "armR": {
-            "r": -16
-          },
           "belly": {
-            "sy": 1.05
+            "sy": 1.04
+          },
+          "body": {
+            "r": 8
           },
           "head": {
-            "r": -22
+            "r": 24
           },
-          "legL": {
+          "legBF": {
+            "r": 6
+          },
+          "legBN": {
             "r": 14
           },
-          "legR": {
-            "r": 16
+          "legFF": {
+            "r": -18
+          },
+          "legFN": {
+            "r": -10
           },
           "root": {
             "y": -62
           },
           "tail": {
-            "r": -14
+            "r": 12
           }
         },
         "slots": {
           "eyeL": "wide",
           "eyeR": "wide",
-          "mouth": "open"
+          "mouth": "wide"
         }
       },
       {
         "hold": 0.14,
         "ease": "in",
         "bones": {
-          "armL": {
-            "r": -16
-          },
-          "armR": {
-            "r": -16
-          },
           "belly": {
-            "sy": 1.05
+            "sy": 1.04
+          },
+          "body": {
+            "r": 8
           },
           "head": {
-            "r": -20
+            "r": 20
           },
-          "legL": {
+          "legBF": {
+            "r": 6
+          },
+          "legBN": {
             "r": 14
           },
-          "legR": {
-            "r": 16
+          "legFF": {
+            "r": -18
+          },
+          "legFN": {
+            "r": -10
           },
           "root": {
             "y": -66
           },
           "tail": {
-            "r": -14
+            "r": 12
           }
         },
         "slots": {
@@ -114,13 +120,11 @@
         "hold": 0.14,
         "bones": {
           "belly": {
-            "sx": 1.05,
-            "sy": 0.92
+            "sx": 1.04,
+            "sy": 0.93
           },
           "head": {
-            "r": -12
-          },
-          "root": {
+            "r": 12,
             "y": 4
           }
         },
@@ -134,64 +138,70 @@
         "hold": 0.22,
         "ease": "out",
         "bones": {
-          "armL": {
-            "r": -14
-          },
-          "armR": {
-            "r": -14
-          },
           "belly": {
             "sy": 1.04
           },
+          "body": {
+            "r": 8
+          },
           "head": {
-            "r": -24
+            "r": 26
           },
-          "legL": {
-            "r": 10
+          "legBF": {
+            "r": 6
           },
-          "legR": {
-            "r": 12
+          "legBN": {
+            "r": 14
+          },
+          "legFF": {
+            "r": -18
+          },
+          "legFN": {
+            "r": -10
           },
           "root": {
             "y": -44
           },
           "tail": {
-            "r": -10
+            "r": 12
           }
         },
         "slots": {
           "eyeL": "wide",
           "eyeR": "wide",
-          "mouth": "open"
+          "mouth": "wide"
         }
       },
       {
         "hold": 0.14,
         "ease": "in",
         "bones": {
-          "armL": {
-            "r": -14
-          },
-          "armR": {
-            "r": -14
-          },
           "belly": {
             "sy": 1.04
           },
+          "body": {
+            "r": 8
+          },
           "head": {
-            "r": -22
+            "r": 22
           },
-          "legL": {
-            "r": 10
+          "legBF": {
+            "r": 6
           },
-          "legR": {
-            "r": 12
+          "legBN": {
+            "r": 14
+          },
+          "legFF": {
+            "r": -18
+          },
+          "legFN": {
+            "r": -10
           },
           "root": {
             "y": -46
           },
           "tail": {
-            "r": -10
+            "r": 12
           }
         },
         "slots": {
@@ -206,9 +216,6 @@
           "belly": {
             "sx": 1.04,
             "sy": 0.94
-          },
-          "root": {
-            "y": 3
           }
         },
         "slots": {

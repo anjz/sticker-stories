@@ -4,10 +4,10 @@
   "kind": "action",
   "description": "the fox laughs and laughs, bouncing with giggles.",
   "stickerBox": {
-    "x": 0.06901,
-    "y": 0.02995,
-    "width": 0.86198,
-    "height": 0.9401
+    "x": 0.02995,
+    "y": 0.05599,
+    "width": 0.9401,
+    "height": 0.88802
   },
   "puppet": {
     "rig": "anims/fox.rig.json",
@@ -18,22 +18,19 @@
       {
         "hold": 0.14,
         "bones": {
-          "armL": {
-            "r": -10
-          },
-          "armR": {
-            "r": -8
-          },
           "belly": {
             "sx": 0.98,
             "sy": 1.04
           },
           "head": {
-            "r": -5,
+            "r": 5,
             "y": -3
           },
           "root": {
-            "y": -6
+            "y": -5
+          },
+          "tail": {
+            "r": -6
           }
         },
         "slots": {
@@ -50,10 +47,13 @@
             "sy": 0.95
           },
           "head": {
-            "r": 2,
+            "r": -2,
             "y": 2
           },
-          "root": {}
+          "root": {},
+          "tail": {
+            "r": 4
+          }
         },
         "slots": {
           "eyeL": "happy",
@@ -64,22 +64,19 @@
       {
         "hold": 0.14,
         "bones": {
-          "armL": {
-            "r": -10
-          },
-          "armR": {
-            "r": -8
-          },
           "belly": {
             "sx": 0.98,
             "sy": 1.04
           },
           "head": {
-            "r": -5,
+            "r": 5,
             "y": -3
           },
           "root": {
-            "y": -6
+            "y": -5
+          },
+          "tail": {
+            "r": -6
           }
         },
         "slots": {
@@ -96,10 +93,13 @@
             "sy": 0.95
           },
           "head": {
-            "r": 2,
+            "r": -2,
             "y": 2
           },
-          "root": {}
+          "root": {},
+          "tail": {
+            "r": 4
+          }
         },
         "slots": {
           "eyeL": "happy",
@@ -110,22 +110,19 @@
       {
         "hold": 0.14,
         "bones": {
-          "armL": {
-            "r": -10
-          },
-          "armR": {
-            "r": -8
-          },
           "belly": {
             "sx": 0.98,
             "sy": 1.04
           },
           "head": {
-            "r": -5,
+            "r": 5,
             "y": -3
           },
           "root": {
-            "y": -6
+            "y": -5
+          },
+          "tail": {
+            "r": -6
           }
         },
         "slots": {
@@ -142,10 +139,13 @@
             "sy": 0.95
           },
           "head": {
-            "r": 2,
+            "r": -2,
             "y": 2
           },
-          "root": {}
+          "root": {},
+          "tail": {
+            "r": 4
+          }
         },
         "slots": {
           "eyeL": "happy",
@@ -156,22 +156,19 @@
       {
         "hold": 0.14,
         "bones": {
-          "armL": {
-            "r": -10
-          },
-          "armR": {
-            "r": -8
-          },
           "belly": {
             "sx": 0.98,
             "sy": 1.04
           },
           "head": {
-            "r": -5,
+            "r": 5,
             "y": -3
           },
           "root": {
-            "y": -6
+            "y": -5
+          },
+          "tail": {
+            "r": -6
           }
         },
         "slots": {
@@ -188,10 +185,13 @@
             "sy": 0.95
           },
           "head": {
-            "r": 2,
+            "r": -2,
             "y": 2
           },
-          "root": {}
+          "root": {},
+          "tail": {
+            "r": 4
+          }
         },
         "slots": {
           "eyeL": "happy",

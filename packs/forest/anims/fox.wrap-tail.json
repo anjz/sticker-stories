@@ -4,13 +4,13 @@
   "kind": "action",
   "description": "the fox swings its big bushy tail round to the front and curls it close, as if around a friend.",
   "stickerBox": {
-    "x": 0.06901,
-    "y": 0.02995,
-    "width": 0.86198,
-    "height": 0.9401
+    "x": 0.02995,
+    "y": 0.05599,
+    "width": 0.9401,
+    "height": 0.88802
   },
   "pause": {
-    "frame": 3,
+    "frame": 4,
     "shows": "the fox with its big tail curled round to the front, close and cosy"
   },
   "puppet": {
@@ -32,59 +32,105 @@
         }
       },
       {
-        "hold": 0.6,
-        "ease": "inOut",
+        "hold": 0.25,
         "bones": {
-          "armL": {
-            "r": 25
-          },
-          "armR": {
-            "r": 25
-          },
-          "body": {
-            "r": -4
-          },
-          "head": {
-            "r": 6
-          },
           "tail": {
-            "r": 124
+            "r": 45
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "tailFront": {
+            "r": -14,
+            "x": 45,
+            "y": -12,
+            "sx": 0.72,
+            "sy": 0.86
           }
         },
         "slots": {
           "eyeL": "happy",
           "eyeR": "happy",
-          "mouth": "smile"
+          "tail": "none",
+          "tailFront": "curl"
         }
       },
       {
-        "hold": 0.8,
+        "hold": 0.9,
         "bones": {
-          "armL": {
-            "r": 25
-          },
-          "armR": {
-            "r": 25
-          },
           "body": {
-            "r": -4
+            "r": -2
           },
           "head": {
-            "r": 8
+            "r": -5,
+            "y": 4
           },
-          "tail": {
-            "r": 130
+          "legFN": {
+            "r": 4
+          },
+          "tailFront": {}
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "smile",
+          "tail": "none",
+          "tailFront": "curl"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -5,
+            "y": 4
+          },
+          "legFN": {
+            "r": 4
+          },
+          "tailFront": {}
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "smile",
+          "tail": "none",
+          "tailFront": "curl"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "tailFront": {
+            "r": -14,
+            "x": 45,
+            "y": -12,
+            "sx": 0.72,
+            "sy": 0.86
           }
         },
         "slots": {
           "eyeL": "happy",
           "eyeR": "happy",
-          "mouth": "smile"
+          "mouth": "open",
+          "tail": "none",
+          "tailFront": "curl"
         }
       },
       {
-        "hold": 0.6,
-        "ease": "inOut",
+        "hold": 0.3,
         "bones": {
           "tail": {
             "r": -6
@@ -92,8 +138,7 @@
         },
         "slots": {
           "eyeL": "happy",
-          "eyeR": "happy",
-          "mouth": "open"
+          "eyeR": "happy"
         }
       },
       {
