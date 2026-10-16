@@ -4,9 +4,9 @@
   "kind": "action",
   "description": "the fawn lifts its head high and gazes up at the sky, then looks back down with a smile.",
   "stickerBox": {
-    "x": 0.22005,
+    "x": 0.20182,
     "y": 0.02995,
-    "width": 0.5599,
+    "width": 0.59635,
     "height": 0.9401
   },
   "pause": {
@@ -24,23 +24,33 @@
         "ease": "inOut",
         "bones": {
           "body": {
-            "r": 2
+            "r": -1.8
+          },
+          "browL": {
+            "y": -3.6
+          },
+          "browR": {
+            "y": -3.6
           },
           "earL": {
-            "r": -10
+            "r": -9
           },
           "earR": {
-            "r": 10
+            "r": 9
           },
-          "face": {
-            "y": -4
+          "eyeL": {
+            "y": -4.5
+          },
+          "eyeR": {
+            "y": -4.5
           },
           "head": {
-            "r": 22,
-            "y": -4
+            "r": 6.3,
+            "y": -10.8,
+            "sy": 0.973
           },
           "tail": {
-            "r": -8
+            "r": -7.2
           }
         },
         "slots": {
@@ -54,7 +64,13 @@
         "hold": 0.4,
         "bones": {
           "body": {
-            "r": 2
+            "r": -2
+          },
+          "browL": {
+            "y": -4
+          },
+          "browR": {
+            "y": -4
           },
           "earL": {
             "r": -10
@@ -62,12 +78,16 @@
           "earR": {
             "r": 10
           },
-          "face": {
-            "y": -4
+          "eyeL": {
+            "y": -5
+          },
+          "eyeR": {
+            "y": -5
           },
           "head": {
-            "r": 24,
-            "y": -5
+            "r": 7,
+            "y": -12,
+            "sy": 0.97
           },
           "tail": {
             "r": -8
@@ -82,7 +102,13 @@
         "hold": 0.9,
         "bones": {
           "body": {
-            "r": 2
+            "r": -2
+          },
+          "browL": {
+            "y": -4
+          },
+          "browR": {
+            "y": -4
           },
           "earL": {
             "r": -10
@@ -90,12 +116,16 @@
           "earR": {
             "r": 10
           },
-          "face": {
-            "y": -4
+          "eyeL": {
+            "y": -5
+          },
+          "eyeR": {
+            "y": -5
           },
           "head": {
-            "r": 24,
-            "y": -5
+            "r": 7,
+            "y": -12,
+            "sy": 0.97
           },
           "tail": {
             "r": -8
@@ -111,23 +141,33 @@
         "hold": 0.5,
         "bones": {
           "body": {
-            "r": 2
+            "r": -1.8
+          },
+          "browL": {
+            "y": -3.6
+          },
+          "browR": {
+            "y": -3.6
           },
           "earL": {
-            "r": -10
+            "r": -9
           },
           "earR": {
-            "r": 10
+            "r": 9
           },
-          "face": {
-            "y": -4
+          "eyeL": {
+            "y": -4.5
+          },
+          "eyeR": {
+            "y": -4.5
           },
           "head": {
-            "r": 22,
-            "y": -4
+            "r": 6.3,
+            "y": -10.8,
+            "sy": 0.973
           },
           "tail": {
-            "r": -8
+            "r": -7.2
           }
         }
       },
@@ -136,7 +176,7 @@
         "ease": "inOut",
         "bones": {
           "head": {
-            "r": 2
+            "r": 1
           }
         },
         "slots": {
