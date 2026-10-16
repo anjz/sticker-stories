@@ -7,6 +7,8 @@ import SpriteKit
 @MainActor
 final class SatellitesPainter: CanvasEffectPainter {
     let node = SKNode()
+    /// All of it is in the sky, behind the scenery.
+    var sky: SKNode? { node }
     private struct Light {
         let dot: SKSpriteNode
         let halo: SKSpriteNode
@@ -32,7 +34,7 @@ final class SatellitesPainter: CanvasEffectPainter {
                 sprite.color = UIColor(red: 0.95, green: 0.97, blue: 1, alpha: 1)
                 sprite.colorBlendFactor = 1
                 sprite.blendMode = .add
-                sprite.zPosition = CanvasEffectLayer.skyZ
+                sprite.zPosition = CanvasEffectLayer.inSky
                 node.addChild(sprite)
             }
             lights.append(Light(dot: dot, halo: halo, from: from, to: to, crossing: crossing, offset: offset, size: size))

@@ -7,6 +7,7 @@ import SpriteKit
 @MainActor
 final class NightfallPainter: CanvasEffectPainter {
     let node = SKNode()
+    let sky: SKNode? = SKNode()
     private let wash = SKSpriteNode()
     private let edges = SKSpriteNode()
     private struct Star {
@@ -33,8 +34,8 @@ final class NightfallPainter: CanvasEffectPainter {
             sprite.color = .white
             sprite.colorBlendFactor = 1
             sprite.blendMode = .add
-            sprite.zPosition = CanvasEffectLayer.skyZ
-            node.addChild(sprite)
+            sprite.zPosition = CanvasEffectLayer.inSky
+            sky?.addChild(sprite)
             stars.append(Star(
                 node: sprite,
                 place: CGPoint(x: random.next(in: 0...1), y: random.next(in: 0.62...0.99)),

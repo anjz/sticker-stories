@@ -149,7 +149,18 @@ system that shares the clock and the trigger file but not this vocabulary
 Weather and light over the **whole scene**: they draw over the art and the
 stickers (the rainbow, the moon and the stars sit behind the foreground
 art, in the sky; the darkness of `night` is over everything) and never
-move a sticker. Where a sticker effect is a cycle, a canvas effect is one
+move a sticker. **What is in the sky stays in the sky**: the moon and
+`night`'s stars, `clouds`, `rain`'s overcast band and grey clouds,
+`snow`'s white sky, the `rainbow`, `sunset`'s rose-violet upper sky and
+its horizon glow, `shootingstars`, `comet`, `milkyway`, `satellites` and
+`nightfall`'s stars are drawn in a sky clipped by the pack's sky mask
+(`docs/pack-format.md`, "Sky"), so none of them shows over a treetop, a
+ridge, a building or the Earth painted into the background — the
+painted scenery stands in front of them, as the layers and the
+foreground always did. What falls (rain, snowflakes, leaves, confetti)
+falls over everything, and the washes that darken or tint the light
+(`night`, `nightfall`, `dimlight`, `sunset`'s warmth, `clouds`' grey…)
+stay over the whole scene. Where a sticker effect is a cycle, a canvas effect is one
 **envelope**: it builds up over its ramp-in, stays at full strength, and
 clears over its ramp-out — then it is gone. There is no repeat, no colour,
 no hold; content controls **`intensity`** (how much: thin or thick fog,
@@ -181,7 +192,7 @@ or fantastical places) gets no canvas effects at all.
 | `sunshine` | outdoors | Warm light across the top of the scene, soft shafts drifting down. | The sun comes out, a warm afternoon, waking up, a happy ending after rain. | 8 s | 1.5 / 1.5 s | full |
 | `rainbow` | outdoors | A soft rainbow arcs across the sky behind the scenery. | The reward after rain, a wish come true, a wonder everyone looks up at. One per story at most. | 8 s | 2 / 2 s | full |
 | `night` | outdoors | Night falls: the scene darkens and a moon glows in the sky. | Evening and bedtime outdoors, the moon coming up, stars, a story that settles to sleep. Never darkness as a threat. Builds slowly — cue it a beat early. | 10 s | 2 / 2 s | full |
-| `snow` | outdoors | Soft snowflakes drift down at different sizes and speeds; the top of the sky turns white (behind the scenery) and the light a little cooler and brighter. It keeps falling until `sunshine`, `sunrays` or `rain` or the story's end (held, like the time of day), and it **settles**: a snow cover builds on the ground (a white blanket along the bottom, settled flakes appearing one by one; over the scenery, under the front stickers) while it falls, stays after the snowfall, and melts under `sunshine`/`sunrays` (~6 s) or `rain` (~9 s). The cover is a pure function of the timeline (`CanvasEffectsRunner.snowCover`), so seeks and fast playback show it right. | Winter, a snow day, the first flakes, a quiet hush. `intensity` is a few flakes to a thick flurry. | 12 s | 2 / 2.5 s | runs at ≤0.4 |
+| `snow` | outdoors | Soft snowflakes drift down at different sizes and speeds; the top of the sky turns white (behind the scenery) and the light a little cooler and brighter. It keeps falling until `sunshine`, `sunrays` or `rain` or the story's end (held, like the time of day), and it **settles**: a snow cover builds while it falls — on the **whole ground** up to its far edge (the scene's `space`; without one, all of the background that is not sky), in perspective (its patches and the flakes lying in it smaller and closer together towards the horizon, the far snow a little thinner), never on water (a `space` place with `water: true`) — in patches that join up, with a cap along the top of the painted treeline or ridge, and **caps on the upward-facing edges of every plane with alpha** (the layers and the foreground: Forest's oak, birch, reeds), a few points thick, following their shape and standing with their plane in the depth stack; all under the stickers (worked out once per pack as it loads, `SnowScenery`), stays after the snowfall, and melts under `sunshine`/`sunrays` (~6 s) or `rain` (~9 s). The cover is a pure function of the timeline (`CanvasEffectsRunner.snowCover`), so seeks and fast playback show it right. | Winter, a snow day, the first flakes, a quiet hush. `intensity` is a few flakes to a thick flurry. | 12 s | 2 / 2.5 s | runs at ≤0.4 |
 | `sunset` | outdoors | A warm orange-pink glow spreads from the horizon while the top of the sky deepens to violet. | The end of the day, going home, a calm golden moment. Followed by `night` it makes a gentle bedtime. Builds slowly — cue it a beat early. | 10 s | 2.5 / 2.5 s | full |
 | `clouds` | outdoors | Big soft clouds drift slowly across the sky behind the scenery; the light dims a little. | A cloudy day, "a cloud shaped like…", the grey before rain, the sun going in. | 12 s | 2.5 / 2.5 s | full |
 | `wind` | outdoors | Pale wisps of air sweep across the scene from left to right, with a few specks tumbling along. | A windy day, a kite, something blown away, a whoosh. `intensity` is a breeze to a gust. | 8 s | 1 / 1.5 s | runs at ≤0.4 |
@@ -643,7 +654,16 @@ drives two particle emitters (`sparkles`, `hearts`) defined in
 rainbow arc, a vignette and a moon with a halo, all procedurally textured, sized to the pack's
 art frame — the tuning numbers live in that file; every effect added after
 the first six is a `CanvasEffectPainter` of its own in `Effects/Canvas/`,
-placing its sprites from the timeline time so it needs no emitter). The DEBUG-only gallery
+placing its sprites from the timeline time so it needs no emitter; what a
+painter draws in the sky is its `sky` node, which the layer puts in an
+`SKCropNode` masked by the pack's sky mask). The scenery the effects need
+is worked out once as the pack loads (`PackTextureLoader`,
+`EffectScenery`): the sky's crop mask, the ground's snow field and its
+flakes for the base and the wide art (`SnowScenery.ground`), and a snow
+cap for every layer and the foreground (`SnowScenery.caps`, children of
+their planes). Snow fields carry how early each pixel takes snow; one
+shader (`CanvasEffectLayer.snowShader`) shows each at the cover, so the
+snow stays a pure function of the timeline. The DEBUG-only gallery
 (Settings → Effects gallery in debug builds) plays every sticker effect on
 a real sticker at three intensities and every canvas effect over the pack's
 art, for tuning. Its sibling, the story gallery (Settings → Story gallery), plays any

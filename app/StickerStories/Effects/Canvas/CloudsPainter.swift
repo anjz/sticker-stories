@@ -8,10 +8,11 @@ import SpriteKit
 final class CloudsPainter: CanvasEffectPainter {
     let node = SKNode()
     private let dim = SKSpriteNode()
+    let sky: SKNode? = SKNode()
     private let clouds = DriftField(.init(
         count: 7, texture: EffectTextures.texture(named: "cloud"),
         colors: [.white],
-        zPosition: CanvasEffectLayer.skyZ,
+        zPosition: CanvasEffectLayer.inSky,
         size: 0.1...0.21, aspect: 2,
         velocity: CGVector(dx: 0.018, dy: 0), depthSpeed: 0.5...1,
         wander: 0.006, wanderPeriod: 9...14,
@@ -24,7 +25,7 @@ final class CloudsPainter: CanvasEffectPainter {
         dim.color = UIColor(red: 0.42, green: 0.46, blue: 0.54, alpha: 1)
         dim.zPosition = CanvasEffectLayer.overlayZ
         node.addChild(dim)
-        node.addChild(clouds.node)
+        sky?.addChild(clouds.node)
     }
 
     func layout(world: CGRect) {

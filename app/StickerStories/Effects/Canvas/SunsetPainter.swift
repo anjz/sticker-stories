@@ -8,6 +8,7 @@ import SpriteKit
 @MainActor
 final class SunsetPainter: CanvasEffectPainter {
     let node = SKNode()
+    let sky: SKNode? = SKNode()
     private let warmth = SKSpriteNode()
     private let skyTop = SKSpriteNode()
     private let horizon = SKSpriteNode()
@@ -19,12 +20,13 @@ final class SunsetPainter: CanvasEffectPainter {
         skyTop.anchorPoint = CGPoint(x: 0.5, y: 1)  // hangs from the top edge
         skyTop.color = UIColor(red: 0.66, green: 0.36, blue: 0.62, alpha: 1)
         skyTop.colorBlendFactor = 1
-        skyTop.zPosition = CanvasEffectLayer.overlayZ + 1
+        skyTop.zPosition = CanvasEffectLayer.inSky + 1
         horizon.texture = EffectTextures.texture(named: "band")
         horizon.color = UIColor(red: 1.0, green: 0.62, blue: 0.4, alpha: 1)
         horizon.colorBlendFactor = 1
-        horizon.zPosition = CanvasEffectLayer.skyZ
-        for sprite in [warmth, skyTop, horizon] { node.addChild(sprite) }
+        horizon.zPosition = CanvasEffectLayer.inSky
+        node.addChild(warmth)
+        for sprite in [skyTop, horizon] { sky?.addChild(sprite) }
     }
 
     func layout(world: CGRect) {

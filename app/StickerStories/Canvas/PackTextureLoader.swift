@@ -23,6 +23,11 @@ struct PackTextures {
     /// the layers' ids — on the base art and the wide art, for a pack with
     /// a space (`StageWorld.covers`).
     var covers: [String: (base: OpaqueGrid?, wide: OpaqueGrid?)] = [:]
+    /// The snow cap of the foreground (`EffectScenery.snowCap`), on the
+    /// base art and the wide art.
+    var foregroundSnowCaps: (base: SKTexture?, wide: SKTexture?) = (nil, nil)
+    /// The sky and the ground as the canvas effects see them.
+    var scenery = EffectScenery()
 }
 
 /// A scene layer's painted part, on the base art and on the wide art.
@@ -31,6 +36,8 @@ struct LayerTextures {
         var texture: SKTexture
         /// Where the piece sits on its art, in fractions, origin bottom-left.
         var frame: CGRect
+        /// Its snow cap (`EffectScenery.snowCap`), the same shape.
+        var snowCap: SKTexture?
     }
 
     var id: String
@@ -61,36 +68,52 @@ enum PackTextureLoader {
             if let wide = layer.imageWide { paths["layer-wide:" + layer.id] = wide }
         }
 
+        // The sky and the ground for the canvas effects, alongside.
+        let manifest = pack.manifest
+        let skyURLs = (manifest.sky.map { pack.url(forAssetPath: $0.image) }, manifest.sky?.imageWide.map { pack.url(forAssetPath: $0) })
+        let sceneryTask = Task.detached(priority: .userInitiated) {
+            EffectScenery.images(sky: skyURLs.0, skyWide: skyURLs.1, space: manifest.space, aspect: 4.0 / 3)
+        }
+
         // A layer is cropped to its painted part (most of a plane is
-        // empty); with a space, every sticker's drawing is measured.
+        // empty); with a space, every sticker's drawing is measured. The
+        // layers and the foreground get their snow caps.
         let measureDrawings = pack.manifest.space != nil
-        let (images, bounds, grids) = await withTaskGroup(of: (String, CGImage?, CGRect?, OpaqueGrid?).self) { group in
+        let (images, bounds, grids, caps) = await withTaskGroup(
+            of: (String, CGImage?, CGRect?, OpaqueGrid?, CGImage?).self
+        ) { group in
             for (key, path) in paths {
                 let url = pack.url(forAssetPath: path)
                 let isLayer = key.hasPrefix("layer")
                 let measure = isLayer || (measureDrawings && key.hasPrefix("sticker:"))
                 let gridded = measureDrawings && (isLayer || key.hasPrefix("foreground"))
+                let isForeground = key.hasPrefix("foreground")
                 group.addTask {
-                    guard let image = decode(url) else { return (key, nil, nil, nil) }
+                    guard let image = decode(url) else { return (key, nil, nil, nil, nil) }
                     let grid = gridded ? OpaqueGrid.of(image) : nil
-                    guard measure else { return (key, image, nil, grid) }
-                    guard let box = OpaqueBounds.of(image, maxSide: isLayer ? 1024 : 512) else { return (key, image, nil, grid) }
+                    if isForeground {
+                        return (key, image, nil, grid, EffectScenery.snowCap(of: image, artHeight: image.height))
+                    }
+                    guard measure else { return (key, image, nil, grid, nil) }
+                    guard let box = OpaqueBounds.of(image, maxSide: isLayer ? 1024 : 512) else { return (key, image, nil, grid, nil) }
                     if isLayer {
                         let (cropped, frame) = crop(image, to: box)
-                        return (key, cropped, frame, grid)
+                        return (key, cropped, frame, grid, EffectScenery.snowCap(of: cropped, artHeight: image.height))
                     }
-                    return (key, image, box, grid)
+                    return (key, image, box, grid, nil)
                 }
             }
             var decoded: [String: CGImage] = [:]
             var measured: [String: CGRect] = [:]
             var grids: [String: OpaqueGrid] = [:]
-            for await (key, image, box, grid) in group {
+            var caps: [String: CGImage] = [:]
+            for await (key, image, box, grid, cap) in group {
                 if let image { decoded[key] = image }
                 if let box { measured[key] = box }
                 if let grid { grids[key] = grid }
+                if let cap { caps[key] = cap }
             }
-            return (decoded, measured, grids)
+            return (decoded, measured, grids, caps)
         }
 
         var textures = PackTextures(
@@ -110,7 +133,7 @@ enum PackTextureLoader {
         for layer in pack.manifest.layers {
             func piece(_ key: String) -> LayerTextures.Piece? {
                 guard let image = images[key], let frame = bounds[key] else { return nil }
-                return .init(texture: SKTexture(cgImage: image), frame: frame)
+                return .init(texture: SKTexture(cgImage: image), frame: frame, snowCap: caps[key].map(SKTexture.init(cgImage:)))
             }
             if let base = piece("layer:" + layer.id) {
                 textures.layers.append(.init(id: layer.id, base: base, wide: piece("layer-wide:" + layer.id)))
@@ -124,8 +147,18 @@ enum PackTextureLoader {
             }
         }
 
+        textures.foregroundSnowCaps = (
+            caps["foreground"].map(SKTexture.init(cgImage:)), caps["foreground-wide"].map(SKTexture.init(cgImage:))
+        )
+        textures.scenery = EffectScenery(await sceneryTask.value)
+
         var all = Array(textures.stickers.values)
         all += textures.layers.flatMap { [$0.base.texture, $0.wide?.texture].compactMap { $0 } }
+        all += textures.layers.flatMap { [$0.base.snowCap, $0.wide?.snowCap].compactMap { $0 } }
+        all += [textures.foregroundSnowCaps.base, textures.foregroundSnowCaps.wide].compactMap { $0 }
+        for plane in [textures.scenery.base, textures.scenery.wide].compactMap({ $0 }) {
+            all += [plane.sky, plane.ground].compactMap { $0 }
+        }
         for texture in [textures.background, textures.foreground, textures.wide?.background, textures.wide?.foreground] {
             if let texture { all.append(texture) }
         }

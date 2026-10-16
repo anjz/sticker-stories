@@ -8,7 +8,8 @@ import UIKit
 /// sticker out of the tray and onto the canvas is one continuous gesture.
 ///
 /// Node stack (accumulated zPosition, back to front):
-///   background art (0) < rainbow, moon, stars (50) < background stickers (100)
+///   background art (0) < rainbow, moon, stars (50, clipped to the open sky)
+///   < snow on the ground (90) < background stickers (100)
 ///   < foreground art (200) < foreground stickers (300) < canvas effects
 ///   (500: rain, fog, sunshine, night, dimlight) < tray (1000); a dragged sticker
 ///   is lifted to its layer's z + 10000 so it floats above everything while
@@ -431,8 +432,33 @@ final class CanvasScene: SKScene {
             sprite.name = layer.id
             sprite.zPosition = CGFloat(index)
             sceneLayers.addChild(sprite)
+            addSnowCap(to: sprite)
         }
+        addSnowCap(to: foregroundArt)
+        canvasEffects.setScenery(textures.scenery)
         buildTray()
+    }
+
+    /// The snow that settles on a plane's upper edges (`EffectScenery`):
+    /// a child of the plane, just in front of it, so it stands at the
+    /// plane's depth; the canvas effects show it with the snow cover.
+    private func addSnowCap(to plane: SKSpriteNode) {
+        let cap = SKSpriteNode()
+        cap.name = Self.snowCapName
+        cap.zPosition = 0.001
+        plane.addChild(cap)
+        canvasEffects.addSnowCap(cap)
+    }
+
+    private static let snowCapName = "snow-cap"
+
+    /// Gives a plane's snow cap the plane's size and the cap of the art on
+    /// show (none: hidden for good).
+    private func layoutSnowCap(of plane: SKSpriteNode, texture: SKTexture?) {
+        guard let cap = plane.childNode(withName: Self.snowCapName) as? SKSpriteNode else { return }
+        cap.texture = texture
+        cap.size = plane.size
+        cap.alpha = texture == nil ? 0 : 1
     }
 
     // MARK: Layout
@@ -474,7 +500,10 @@ final class CanvasScene: SKScene {
             x: center.x - backgroundArt.size.width / 2, y: center.y - backgroundArt.size.height / 2,
             width: backgroundArt.size.width, height: backgroundArt.size.height))
         layoutForegroundShadow(center: center)
-        canvasEffects.layout(world: worldExtent)
+        layoutSnowCap(
+            of: foregroundArt,
+            texture: artVariant == .wide ? textures.foregroundSnowCaps.wide : textures.foregroundSnowCaps.base)
+        canvasEffects.layout(world: worldExtent, wide: artVariant == .wide)
         // The tray is laid out in view coordinates and pinned to the view's
         // bottom-left corner in world space (kept in step with the camera).
         syncHUDToCamera()
@@ -489,6 +518,7 @@ final class CanvasScene: SKScene {
             sprite.texture = piece.texture
             sprite.size = CGSize(width: piece.frame.width * art.width, height: piece.frame.height * art.height)
             sprite.position = CGPoint(x: art.minX + piece.frame.midX * art.width, y: art.minY + piece.frame.midY * art.height)
+            layoutSnowCap(of: sprite, texture: piece.snowCap)
         }
     }
 
