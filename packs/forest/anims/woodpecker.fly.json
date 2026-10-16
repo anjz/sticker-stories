@@ -2,11 +2,11 @@
   "id": "fly",
   "sticker": "woodpecker",
   "kind": "move",
-  "description": "the woodpecker flies along to the left with bouncy wingbeats, then lands clinging upright.",
+  "description": "the woodpecker flies along to the left with bouncy wingbeats, then lands and folds its wings.",
   "stickerBox": {
-    "x": 0.2487,
+    "x": 0.20182,
     "y": 0.02995,
-    "width": 0.5013,
+    "width": 0.59635,
     "height": 0.9401
   },
   "loop": {
@@ -26,32 +26,30 @@
         "hold": 0.16,
         "bones": {
           "body": {
-            "r": -28
+            "r": -26
           },
           "footL": {
-            "r": -40,
-            "x": 20,
-            "y": 10
+            "r": -50,
+            "y": -6
           },
           "footR": {
-            "r": -40,
-            "x": 10,
-            "y": -10
+            "r": -50,
+            "y": -6
           },
           "head": {
-            "r": 10
-          },
-          "root": {
-            "y": -10
-          },
-          "tail": {
             "r": 12
           },
+          "root": {
+            "y": -14
+          },
+          "tail": {
+            "r": 10
+          },
           "wingL": {
-            "r": 26
+            "r": -10
           },
           "wingR": {
-            "r": -40
+            "r": -15
           }
         },
         "slots": {
@@ -63,32 +61,30 @@
         "hold": 0.16,
         "bones": {
           "body": {
-            "r": -28
+            "r": -26
           },
           "footL": {
-            "r": -40,
-            "x": 20,
-            "y": 10
+            "r": -50,
+            "y": -6
           },
           "footR": {
-            "r": -40,
-            "x": 10,
-            "y": -10
+            "r": -50,
+            "y": -6
           },
           "head": {
-            "r": 10
-          },
-          "root": {
-            "y": -4
-          },
-          "tail": {
             "r": 12
           },
+          "root": {
+            "y": -8
+          },
+          "tail": {
+            "r": 10
+          },
           "wingL": {
-            "r": -6
+            "r": 20
           },
           "wingR": {
-            "r": 10
+            "r": 30
           }
         },
         "slots": {
@@ -103,32 +99,30 @@
             "sy": 0.97
           },
           "body": {
-            "r": -28
+            "r": -26
           },
           "footL": {
-            "r": -40,
-            "x": 20,
-            "y": 10
+            "r": -50,
+            "y": -6
           },
           "footR": {
-            "r": -40,
-            "x": 10,
-            "y": -10
+            "r": -50,
+            "y": -6
           },
           "head": {
-            "r": 10
-          },
-          "root": {
-            "y": 4
-          },
-          "tail": {
             "r": 12
           },
+          "root": {
+            "y": -2
+          },
+          "tail": {
+            "r": 10
+          },
           "wingL": {
-            "r": -29
+            "r": 50
           },
           "wingR": {
-            "r": 45
+            "r": 70
           }
         },
         "slots": {
@@ -140,32 +134,30 @@
         "hold": 0.16,
         "bones": {
           "body": {
-            "r": -28
+            "r": -26
           },
           "footL": {
-            "r": -40,
-            "x": 20,
-            "y": 10
+            "r": -50,
+            "y": -6
           },
           "footR": {
-            "r": -40,
-            "x": 10,
-            "y": -10
+            "r": -50,
+            "y": -6
           },
           "head": {
-            "r": 10
-          },
-          "root": {
-            "y": -2
-          },
-          "tail": {
             "r": 12
           },
+          "root": {
+            "y": -8
+          },
+          "tail": {
+            "r": 10
+          },
           "wingL": {
-            "r": -3
+            "r": 15
           },
           "wingR": {
-            "r": 5
+            "r": 25
           }
         },
         "slots": {
@@ -177,16 +169,22 @@
         "hold": 0.2,
         "bones": {
           "body": {
-            "r": -10
+            "r": -8
+          },
+          "footL": {
+            "r": -15
+          },
+          "footR": {
+            "r": -15
           },
           "head": {
             "r": 4
           },
           "wingL": {
-            "r": 36
+            "r": -8
           },
           "wingR": {
-            "r": -55
+            "r": -10
           }
         },
         "slots": {
@@ -200,9 +198,6 @@
           "belly": {
             "sx": 1.04,
             "sy": 0.95
-          },
-          "body": {
-            "r": 3
           },
           "head": {
             "y": 5

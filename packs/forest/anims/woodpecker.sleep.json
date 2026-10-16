@@ -1,11 +1,12 @@
 {
   "id": "sleep",
   "sticker": "woodpecker",
+  "kind": "action",
   "description": "the woodpecker gives a big yawn, closes its eyes and falls asleep, then wakes up, blinks and smiles.",
   "stickerBox": {
-    "x": 0.2487,
+    "x": 0.20182,
     "y": 0.02995,
-    "width": 0.5013,
+    "width": 0.59635,
     "height": 0.9401
   },
   "pause": {
@@ -19,25 +20,21 @@
         "hold": 0.2
       },
       {
-        "hold": 0.35,
+        "hold": 0.4,
         "bones": {
           "belly": {
             "sy": 1.05
           },
           "head": {
-            "r": -4,
+            "r": 8,
             "y": -4
-          },
-          "wingL": {
-            "r": 20
-          },
-          "wingR": {
-            "r": -20
           }
         },
         "slots": {
-          "beak": "open",
-          "eye": "closed"
+          "beak": "yawn",
+          "browR": "closed",
+          "eyeL": "closed",
+          "eyeR": "closed"
         }
       },
       {
@@ -47,19 +44,15 @@
             "sy": 1.05
           },
           "head": {
-            "r": -4,
+            "r": 8,
             "y": -4
-          },
-          "wingL": {
-            "r": 20
-          },
-          "wingR": {
-            "r": -20
           }
         },
         "slots": {
-          "beak": "open",
-          "eye": "closed"
+          "beak": "yawn",
+          "browR": "closed",
+          "eyeL": "closed",
+          "eyeR": "closed"
         }
       },
       {
@@ -69,16 +62,15 @@
             "sx": 1.02,
             "sy": 0.97
           },
-          "face": {
-            "y": 4
-          },
           "head": {
-            "r": 6,
+            "r": -10,
             "y": 9
           }
         },
         "slots": {
-          "eye": "closed"
+          "browR": "closed",
+          "eyeL": "closed",
+          "eyeR": "closed"
         }
       },
       {
@@ -88,16 +80,15 @@
             "sx": 1.02,
             "sy": 0.97
           },
-          "face": {
-            "y": 4
-          },
           "head": {
-            "r": 6,
+            "r": -10,
             "y": 9
           }
         },
         "slots": {
-          "eye": "closed"
+          "browR": "closed",
+          "eyeL": "closed",
+          "eyeR": "closed"
         }
       },
       {
@@ -108,19 +99,25 @@
           }
         },
         "slots": {
-          "eye": "wide"
+          "browR": "wide",
+          "eyeL": "wide",
+          "eyeR": "wide"
         }
       },
       {
-        "hold": 0.25,
+        "hold": 0.2,
         "slots": {
-          "eye": "closed"
+          "browR": "closed",
+          "eyeL": "closed",
+          "eyeR": "closed"
         }
       },
       {
         "hold": 0.3,
         "slots": {
-          "eye": "happy"
+          "browR": "happy",
+          "eyeL": "happy",
+          "eyeR": "happy"
         }
       },
       {

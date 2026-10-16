@@ -1,11 +1,12 @@
 {
   "id": "jump",
   "sticker": "woodpecker",
-  "description": "the woodpecker crouches against the bark, hops up the trunk with its wings out and grips on again with a little squash.",
+  "kind": "action",
+  "description": "the woodpecker crouches, hops up with its wings out and lands with a little squash.",
   "stickerBox": {
-    "x": 0.2487,
+    "x": 0.20182,
     "y": 0.02995,
-    "width": 0.5013,
+    "width": 0.59635,
     "height": 0.9401
   },
   "puppet": {
@@ -18,7 +19,7 @@
         "hold": 0.16,
         "bones": {
           "belly": {
-            "sx": 1.05,
+            "sx": 1.06,
             "sy": 0.92
           },
           "head": {
@@ -38,12 +39,10 @@
             "sy": 1.05
           },
           "footL": {
-            "r": -15,
-            "x": 6
+            "r": -15
           },
           "footR": {
-            "r": -15,
-            "x": 6
+            "r": -15
           },
           "root": {
             "y": -70
@@ -52,15 +51,17 @@
             "r": 6
           },
           "wingL": {
-            "r": 20
+            "r": 8
           },
           "wingR": {
-            "r": -30
+            "r": 10
           }
         },
         "slots": {
           "beak": "open",
-          "eye": "happy",
+          "browR": "happy",
+          "eyeL": "happy",
+          "eyeR": "happy",
           "wingL": "open",
           "wingR": "open"
         }
@@ -73,6 +74,12 @@
             "sx": 0.97,
             "sy": 1.05
           },
+          "footL": {
+            "r": -10
+          },
+          "footR": {
+            "r": -10
+          },
           "root": {
             "y": -76
           },
@@ -80,15 +87,17 @@
             "r": 6
           },
           "wingL": {
-            "r": 6
+            "r": 24
           },
           "wingR": {
-            "r": -10
+            "r": 30
           }
         },
         "slots": {
           "beak": "open",
-          "eye": "happy",
+          "browR": "happy",
+          "eyeL": "happy",
+          "eyeR": "happy",
           "wingL": "open",
           "wingR": "open"
         }
@@ -108,13 +117,17 @@
           }
         },
         "slots": {
-          "eye": "happy"
+          "browR": "happy",
+          "eyeL": "happy",
+          "eyeR": "happy"
         }
       },
       {
         "hold": 0.3,
         "slots": {
-          "eye": "happy"
+          "browR": "happy",
+          "eyeL": "happy",
+          "eyeR": "happy"
         }
       },
       {

@@ -1,0 +1,157 @@
+{
+  "id": "cling",
+  "sticker": "woodpecker",
+  "kind": "move",
+  "description": "the woodpecker clings upright to the bark, tail braced, gripping with its toes",
+  "stickerBox": {
+    "x": 0.20182,
+    "y": 0.02995,
+    "width": 0.59635,
+    "height": 0.9401
+  },
+  "loop": {
+    "from": 1,
+    "to": 4
+  },
+  "facing": "left",
+  "stride": 0.2,
+  "on": [
+    "trunks"
+  ],
+  "stays": true,
+  "puppet": {
+    "rig": "anims/woodpecker.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sx": 1,
+            "sy": 0.985
+          },
+          "head": {
+            "x": 6,
+            "y": 4
+          },
+          "tail": {
+            "r": 52,
+            "x": -150,
+            "y": 40
+          },
+          "wingR": {
+            "r": 10,
+            "x": -25
+          }
+        },
+        "slots": {
+          "body": "cling",
+          "footL": "cling",
+          "footR": "cling"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "r": 2,
+            "x": 6,
+            "y": 2
+          },
+          "tail": {
+            "r": 54,
+            "x": -150,
+            "y": 40
+          },
+          "wingR": {
+            "r": 10,
+            "x": -25
+          }
+        },
+        "slots": {
+          "body": "cling",
+          "footL": "cling",
+          "footR": "cling"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "footR": {
+            "y": -3
+          },
+          "head": {
+            "x": 6,
+            "y": 5
+          },
+          "tail": {
+            "r": 52,
+            "x": -150,
+            "y": 40
+          },
+          "wingR": {
+            "r": 10,
+            "x": -25
+          }
+        },
+        "slots": {
+          "body": "cling",
+          "footL": "cling",
+          "footR": "cling"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "footR": {
+            "y": -1
+          },
+          "head": {
+            "r": -1,
+            "x": 6,
+            "y": 4
+          },
+          "tail": {
+            "r": 52,
+            "x": -150,
+            "y": 40
+          },
+          "wingR": {
+            "r": 10,
+            "x": -25
+          }
+        },
+        "slots": {
+          "body": "cling",
+          "footL": "cling",
+          "footR": "cling"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "x": 6,
+            "y": 4
+          },
+          "tail": {
+            "r": 52,
+            "x": -150,
+            "y": 40
+          },
+          "wingR": {
+            "r": 10,
+            "x": -25
+          }
+        },
+        "slots": {
+          "body": "cling",
+          "footL": "cling",
+          "footR": "cling"
+        }
+      }
+    ]
+  }
+}

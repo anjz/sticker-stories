@@ -1,16 +1,17 @@
 {
   "id": "look-around",
   "sticker": "woodpecker",
-  "description": "the woodpecker peeks up the trunk, then peers down it, then looks ahead again.",
+  "kind": "action",
+  "description": "the woodpecker looks up, then turns right round to look behind it, then turns back and looks ahead again.",
   "stickerBox": {
-    "x": 0.2487,
+    "x": 0.20182,
     "y": 0.02995,
-    "width": 0.5013,
+    "width": 0.59635,
     "height": 0.9401
   },
   "pause": {
     "frame": 4,
-    "shows": "the woodpecker peering down the trunk"
+    "shows": "the woodpecker turned round, looking behind it"
   },
   "idle": true,
   "puppet": {
@@ -24,7 +25,7 @@
         "bones": {
           "head": {
             "r": 10,
-            "y": -4
+            "y": -3
           }
         }
       },
@@ -33,17 +34,20 @@
         "bones": {
           "head": {
             "r": 10,
-            "y": -4
+            "y": -3
           }
         }
       },
       {
-        "hold": 0.35,
+        "hold": 0.45,
         "ease": "inOut",
         "bones": {
           "head": {
-            "r": -14,
-            "y": 4
+            "r": 3
+          },
+          "root": {
+            "x": -74,
+            "sx": -1
           }
         }
       },
@@ -51,13 +55,17 @@
         "hold": 0.7,
         "bones": {
           "head": {
-            "r": -14,
-            "y": 4
+            "r": -4,
+            "y": 2
+          },
+          "root": {
+            "x": -74,
+            "sx": -1
           }
         }
       },
       {
-        "hold": 0.35,
+        "hold": 0.45,
         "ease": "inOut",
         "bones": {
           "head": {

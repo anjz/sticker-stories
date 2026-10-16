@@ -1,11 +1,12 @@
 {
   "id": "flap",
   "sticker": "woodpecker",
-  "description": "the woodpecker opens its wings and flaps them, still holding on to the bark with its feet.",
+  "kind": "action",
+  "description": "the woodpecker opens its wings and flaps them, its feet staying where they are.",
   "stickerBox": {
-    "x": 0.2487,
+    "x": 0.20182,
     "y": 0.02995,
-    "width": 0.5013,
+    "width": 0.59635,
     "height": 0.9401
   },
   "pause": {
@@ -19,13 +20,13 @@
         "hold": 0.15
       },
       {
-        "hold": 0.22,
+        "hold": 0.25,
         "bones": {
           "wingL": {
+            "r": 8
+          },
+          "wingR": {
             "r": 10
-          },
-          "wingR": {
-            "r": -15
           }
         },
         "slots": {
@@ -34,32 +35,19 @@
         }
       },
       {
-        "hold": 0.3,
+        "hold": 0.35,
         "bones": {
           "wingL": {
-            "r": 16
+            "r": -5
           },
           "wingR": {
-            "r": -25
+            "r": -5
           }
         },
         "slots": {
-          "eye": "wide",
-          "wingL": "open",
-          "wingR": "open"
-        }
-      },
-      {
-        "hold": 0.16,
-        "bones": {
-          "wingL": {
-            "r": -20
-          },
-          "wingR": {
-            "r": 30
-          }
-        },
-        "slots": {
+          "browR": "wide",
+          "eyeL": "wide",
+          "eyeR": "wide",
           "wingL": "open",
           "wingR": "open"
         }
@@ -67,11 +55,14 @@
       {
         "hold": 0.16,
         "bones": {
+          "belly": {
+            "sy": 0.98
+          },
           "wingL": {
-            "r": 29
+            "r": 35
           },
           "wingR": {
-            "r": -45
+            "r": 45
           }
         },
         "slots": {
@@ -82,11 +73,14 @@
       {
         "hold": 0.16,
         "bones": {
+          "root": {
+            "y": -3
+          },
           "wingL": {
-            "r": -20
+            "r": -8
           },
           "wingR": {
-            "r": 30
+            "r": -8
           }
         },
         "slots": {
@@ -97,11 +91,14 @@
       {
         "hold": 0.16,
         "bones": {
+          "belly": {
+            "sy": 0.98
+          },
           "wingL": {
-            "r": 29
+            "r": 35
           },
           "wingR": {
-            "r": -45
+            "r": 45
           }
         },
         "slots": {
@@ -112,11 +109,32 @@
       {
         "hold": 0.16,
         "bones": {
+          "root": {
+            "y": -3
+          },
           "wingL": {
-            "r": -20
+            "r": -8
           },
           "wingR": {
-            "r": 30
+            "r": -8
+          }
+        },
+        "slots": {
+          "wingL": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "wingL": {
+            "r": 35
+          },
+          "wingR": {
+            "r": 45
           }
         },
         "slots": {
@@ -128,10 +146,10 @@
         "hold": 0.2,
         "bones": {
           "wingL": {
-            "r": 6
+            "r": 50
           },
           "wingR": {
-            "r": -10
+            "r": 60
           }
         },
         "slots": {
