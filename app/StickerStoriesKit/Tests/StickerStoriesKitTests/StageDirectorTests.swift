@@ -359,6 +359,7 @@ import Testing
         let waterPlaces = Set(world.grounds.filter(\.water).map(\.place))
         let stickers = Dictionary(uniqueKeysWithValues: pack.manifest.stickers.map { ($0.id, $0) })
         var problems: [String] = []
+        var backwards: [String] = []
         var circling = 0
         for story in pack.manifest.stories {
             guard let sidecar = story.localizations["en-US"]?.effects,
@@ -430,6 +431,34 @@ import Testing
                         }
                     }
                 }
+                // Whoever travels across faces the way it goes.
+                for a in actors {
+                    guard let plan = plans[a.id] else { continue }
+                    var t = 0.0
+                    let step = 0.05
+                    while t <= end {
+                        defer { t += step }
+                        let s = plan.sample(at: t), next = plan.sample(at: t + step)
+                        guard s.opacity > 0.5, next.opacity > 0.5 else { continue }
+                        let leg = plan.legs.last { $0.at <= t }
+                        let art = StageMove.pick(a.moves, by: leg?.move).flatMap(\.facing) ?? a.moves.first?.facing
+                        guard let art else { continue }
+                        let dx = world.screen(next.position).x - world.screen(s.position).x
+                        let width = world.drawnHeight(size: a.size, atDepth: s.position.z) * a.ratio
+                        // Faster than a quarter of its width a second, sideways
+                        // — but a little sidestep making room is not a walk.
+                        guard abs(dx) / step > width * 0.25 else { continue }
+                        if let now = plan.legs.last(where: { $0.at <= t + step }), now.kind == .shuffle,
+                            let a0 = now.path.first, let a1 = now.path.last,
+                            abs(world.screen(a1).x - world.screen(a0).x) < width * 0.25
+                        { continue }
+                        let looks = (art == .right ? 1.0 : -1.0) * (s.facing < 0 ? -1 : 1)
+                        if looks * dx < 0 {
+                            let what = leg.map { $0.end > t ? "\($0.kind) \($0.gait)" : "after \($0.kind) \($0.gait)" } ?? "start"
+                            backwards.append("\(story.id)\(crowded ? " (crowded)" : "") \(a.stickerID): \(what) at \(String(format: "%.1f", t))")
+                        }
+                    }
+                }
                 for a in actors {
                     guard let plan = plans[a.id] else { continue }
                     let land = !(a.stage.on + a.moves.flatMap(\.on)).contains { waterPlaces.contains($0) }
@@ -482,6 +511,9 @@ import Testing
         }.map { "\($0.key) ×\($0.value.count) — first \($0.value.first!.split(separator: ":", maxSplits: 1).last!)" }.sorted()
         // The birds, the owl and the woodpecker are left in the air now and then.
         #expect(circling > 0)
+        let turned = Dictionary(grouping: backwards) { $0.components(separatedBy: " at ")[0] }
+            .map { "\($0.key) ×\($0.value.count) — first at \($0.value[0].components(separatedBy: " at ").last!)" }.sorted()
+        #expect(backwards.isEmpty, "\(turned.count) travel backwards:\n\(turned.joined(separator: "\n"))")
         #expect(problems.isEmpty, "\(problems.count) problems:\n\(report.prefix(40).joined(separator: "\n"))")
     }
 }

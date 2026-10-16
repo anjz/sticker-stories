@@ -343,12 +343,14 @@ public enum StageDirector {
             guard leg.stays, leg.gait == .fly, let id = leg.move, let spot = leg.path.last,
                 let move = states[i].actor.moves.first(where: { $0.id == id }), move.flies, !move.hovers
             else { return nil }
-            let way = leg.facingTo < 0 ? -1.0 : 1.0
-            var loop = StageLeg.Circling(across: 0, toward: 0)
+            // Out the way its art looks (`StagePlan.lap`).
+            let art = move.facing == .left ? -1.0 : 1.0
+            let way = (leg.facingTo < 0 ? -1.0 : 1.0) * art
+            var loop = StageLeg.Circling(across: 0, toward: 0, art: art)
             for k in [1, 0.7, 0.45, 0.3] {
                 loop = StageLeg.Circling(
                     across: StageDirector.lapAcross * states[i].actor.width * k,
-                    toward: max(min(StageDirector.lapToward * spot.z * k, spot.z - world.space.stand.near), 0))
+                    toward: max(min(StageDirector.lapToward * spot.z * k, spot.z - world.space.stand.near), 0), art: art)
                 let round = (1..<12).map { k -> Vec3 in
                     let a = 2 * Double.pi * Double(k) / 12
                     return spot + Vec3(way * loop.across * sin(a), 0, -loop.toward * (1 - cos(a)) / 2)
@@ -475,20 +477,21 @@ public enum StageDirector {
                             at: 0, duration: StageDirector.settle, path: [from.position, valid.position], gait: .fade,
                             kind: .settle, facingFrom: from.facing, facingTo: from.facing, support: valid.support)
                     } else {
+                        // Facing the way it goes, like any move.
                         leg = makeLeg(i, to: valid, start: 0, kind: .settle)
-                        leg.facingTo = leg.facingFrom
                         if leg.duration < StageDirector.settle, leg.rate == 1 || leg.gait == .fly { leg.duration = StageDirector.settle }
                     }
                     leg.stays = hovers(i, at: valid) && leg.gait == .fly && leg.move != nil
                     states[i].legs.append(leg)
                     states[i].busyUntil = leg.end
+                    states[i].home.facing = leg.facingTo
                 } else if hovers(i, at: valid), let fly = flyingMove(i) {
                     // Placed in the air: its wings going from the start.
                     states[i].legs.append(StageLeg(
                         at: 0, duration: 0, path: [valid.position], gait: .fly, kind: .settle, move: fly, stays: true,
                         facingFrom: valid.facing, facingTo: valid.facing, support: valid.support))
                 }
-                states[i].pose = valid
+                states[i].pose = states[i].home
             }
         }
 
@@ -764,6 +767,9 @@ public enum StageDirector {
                 }
                 var leg = makeLeg(i, to: target, start: entrance.at, kind: .entrance, forceFly: stage.entrance == .fly)
                 if leg.gait == .fly, leg.move != nil, hovers(i, at: target) { leg.stays = true }
+                // Off stage it already faces the way it comes in: no turn on the way.
+                leg.facingFrom = leg.facingTo
+                states[i].start.facing = leg.facingTo
                 states[i].legs.append(leg)
                 states[i].pose = target
                 states[i].busyUntil = leg.end
@@ -1184,23 +1190,64 @@ public enum StageDirector {
                 moveID = nil
             }
             if !policy.allowsLiveAnimations { moveID = nil }
+            // Facing the way it goes, all the way: turning round where its
+            // way doubles back across the screen.
             var facing = states[i].pose.facing
-            let dx = world.screen(target.position).x - world.screen(from).x
-            let widthPoints = world.drawnHeight(size: me.size, atDepth: from.z) * me.ratio
-            if !shuffle, gait != .fade, abs(dx) > widthPoints * 0.1 {
-                let travels = StageMove.pick(me.moves, by: moveID).flatMap(\.facing) ?? me.moves.first?.facing
-                if let travels { facing = (travels == .right) == (dx > 0) ? 1 : -1 }
+            var ways: [StageLeg.Way] = []
+            let travels = StageMove.pick(me.moves, by: moveID).flatMap(\.facing) ?? me.moves.first?.facing
+            if gait != .fade, let travels {
+                let widthPoints = world.drawnHeight(size: me.size, atDepth: from.z) * me.ratio
+                ways = self.ways(along: path, art: travels == .right ? 1 : -1, width: widthPoints, shuffle: shuffle)
+                if let last = ways.last { facing = last.facing }
+                if ways.count < 2 { ways = [] }
             }
-            // Onto bark: facing it when it gets there.
+            // Onto bark: it flies there facing its way, and turns to it as
+            // it gets there.
             if case .perch(let place) = target.support,
                 let perch = world.perches.first(where: { $0.place == place && $0.facing != nil }),
                 let face = perch.facing, let sign = sign(face, for: i)
             {
+                if ways.isEmpty, sign != facing { ways = [StageLeg.Way(k: 0, facing: facing)] }
                 facing = sign
             }
-            return StageLeg(
+            var leg = StageLeg(
                 at: start, duration: duration, path: path, gait: gait, kind: kind, move: moveID,
                 facingFrom: states[i].pose.facing, facingTo: facing, support: target.support, rate: rate)
+            leg.ways = ways
+            return leg
+        }
+
+        /// The way a sticker whose art looks `art` (1 right, −1 left)
+        /// faces along a path, run by run across the screen: from where
+        /// each run starts (a fraction of the path's length), facing the
+        /// way it goes. Runs too short to show (a wiggle round a corner,
+        /// less than a fifth of its `width` — a tenth for the whole way;
+        /// a quarter for a shuffle, which can sidestep) keep the way before.
+        /// Empty when nothing goes far enough across to turn for.
+        func ways(along path: [Vec3], art: Double, width: Double, shuffle: Bool) -> [StageLeg.Way] {
+            guard path.count > 1 else { return [] }
+            let xs = path.map { world.screen($0).x }
+            let lengths = zip(path, path.dropFirst()).map { ($1 - $0).length }
+            let total = max(lengths.reduce(0, +), 1e-9)
+            // Runs of segments going the same way across.
+            var runs: [(k: Double, dx: Double)] = []
+            var done = 0.0
+            for j in lengths.indices {
+                let dx = xs[j + 1] - xs[j]
+                if let last = runs.last, (last.dx < 0) == (dx < 0) || abs(dx) < 1e-9 {
+                    runs[runs.count - 1].dx += dx
+                } else {
+                    runs.append((done / total, dx))
+                }
+                done += lengths[j]
+            }
+            let least = width * (shuffle ? 0.25 : runs.count == 1 ? 0.1 : 0.2)
+            var ways: [StageLeg.Way] = []
+            for run in runs where abs(run.dx) > least {
+                let facing = (run.dx > 0) == (art > 0) ? 1.0 : -1.0
+                if ways.last?.facing != facing { ways.append(StageLeg.Way(k: ways.isEmpty ? 0 : run.k, facing: facing)) }
+            }
+            return ways
         }
 
         func groundBounds(_ a: Vec2, _ b: Vec2) -> (min: Vec2, max: Vec2) {

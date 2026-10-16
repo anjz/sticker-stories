@@ -198,6 +198,10 @@ import Testing
         #expect(plan.legs[1].facingTo == -1)
         let mid = plan.facing(at: 10 + MotionPlan.turn / 2)
         #expect(abs(mid) < 0.6 && abs(mid) >= 0.05)
+        // It turns on the spot before it sets off: never a step backwards.
+        let x = { (t: TimeInterval) in plan.delta(at: t).offsetXSelf }
+        #expect(abs(x(10 + MotionPlan.turn * 0.9) - x(10)) < 1e-9)
+        #expect(x(10 + MotionPlan.turn + 0.2) < x(10))
     }
 
     @Test func aWalkerGoingToAFlyerStaysOnTheGround() {

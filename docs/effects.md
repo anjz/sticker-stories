@@ -498,8 +498,17 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
 
 - **It travels as it enters**: walkers walk (their move frames looping)
   at the pace of their legs, hoppers leap once per loop, flyers glide with
-  their wings going; it turns to face the way it goes (a squash through
-  the turn) and keeps facing that way. The time is not authored: it
+  their wings going. **It always faces the way it goes** — never a step
+  backwards: facing the other way, it first turns round on the spot (a
+  quick squash through the turn, its feet going), then sets off, and it
+  turns again wherever its way doubles back across the screen (round the
+  pond) and, onto a place it faces into (the bark of a trunk), as it gets
+  there; it keeps the way it ended up facing. Which way a sticker's art
+  looks is its move's `facing` (`docs/pack-format.md`); the whole sticker
+  mirrors, never a part of it. A circling flyer faces the way it is going
+  round its loop, a little sidestep making room (under a quarter of its
+  width) may go sideways, and something rooted, a sprout or a fade
+  (Reduce Motion, calm mode) never turns. The time is not authored: it
   follows the distance and the sticker's gait (0.8–5 s; a flight
   1.2–3.4 s). A move cued while an earlier one (or its entrance) is still
   under way starts when that ends.

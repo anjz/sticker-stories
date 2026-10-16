@@ -129,6 +129,10 @@ public struct MotionLeg: Equatable, Sendable {
     /// after: it turns at the start to face where it goes.
     public var facingFrom: Double
     public var facingTo: Double
+    /// The way it faces on its way when that is not `facingTo` (into a
+    /// place it faces: it goes facing its way, and turns to the place as
+    /// it gets there); nil: `facingTo` all the way.
+    public var heading: Double?
     /// The id of the move whose frames play along; nil for none.
     public var move: String?
     /// It goes into its element by a move that stays there
@@ -183,7 +187,7 @@ public struct MotionPlan: Equatable, Sendable {
     public func delta(at time: TimeInterval) -> EffectDelta {
         var delta = EffectDelta()
         guard let leg = leg(at: time) else { return delta }
-        let p = leg.duration > 0 ? min(max((time - leg.at) / leg.duration, 0), 1) : 1
+        let p = progress(leg, at: time).p
         var spot: MotionSpot
         switch leg.gait {
         case .fade:
@@ -220,10 +224,38 @@ public struct MotionPlan: Equatable, Sendable {
     /// never vanishes).
     public func facing(at time: TimeInterval) -> Double {
         guard let leg = leg(at: time) else { return facing }
-        guard leg.facingFrom != leg.facingTo else { return leg.facingTo }
-        let p = min(max((time - leg.at) / Self.turn, 0), 1)
-        let value = leg.facingFrom + (leg.facingTo - leg.facingFrom) * (p * p * (3 - 2 * p))
-        return abs(value) < 0.05 ? (value < 0 ? -0.05 : 0.05) : value
+        return progress(leg, at: time).facing
+    }
+
+    /// How far through its way a leg has it at `time`, and the way it
+    /// faces. Facing one way and going the other, it stops and turns
+    /// round on the spot first, then sets off — never a step backwards —
+    /// and, to face a place it came to, turns again as it gets there.
+    func progress(_ leg: MotionLeg, at time: TimeInterval) -> (p: Double, facing: Double) {
+        let p = leg.duration > 0 ? min(max((time - leg.at) / leg.duration, 0), 1) : 1
+        func blend(_ a: Double, _ b: Double, _ k: Double) -> Double {
+            let k = min(max(k, 0), 1)
+            let value = a + (b - a) * (k * k * (3 - 2 * k))
+            return abs(value) < 0.05 ? (value < 0 ? -0.05 : 0.05) : value
+        }
+        let way = leg.heading ?? leg.facingTo
+        let first = (leg.facingFrom < 0) != (way < 0), last = (way < 0) != (leg.facingTo < 0)
+        let turns = (first ? 1.0 : 0) + (last ? 1.0 : 0)
+        guard leg.gait != .fade, turns > 0, leg.duration > 0 else {
+            guard leg.facingFrom != leg.facingTo else { return (p, leg.facingTo) }
+            return (p, blend(leg.facingFrom, leg.facingTo, (time - leg.at) / Self.turn))
+        }
+        // Each turn takes its time from the moving; a short leg turns quicker.
+        let turn = min(Self.turn, leg.duration * 0.5 / turns)
+        let moving = leg.duration - turn * turns
+        var t = time - leg.at
+        if first {
+            if t < turn { return (0, blend(leg.facingFrom, way, t / turn)) }
+            t -= turn
+        }
+        if t < moving { return (max(t, 0) / moving, way) }
+        guard last else { return (1, way) }
+        return (1, blend(way, leg.facingTo, (t - moving) / turn))
     }
 
     /// The move in progress at `time` whose frames should play (its start,
@@ -811,23 +843,31 @@ public enum MotionPlanner {
                 gait = .bounce
                 duration = min(max(widths * 0.35, shuffle ? 0.5 : minTravel), 3.2)
             }
+            // Facing the way it goes (a little shuffle to make room, under
+            // a quarter of its width, can sidestep).
             var facing = state.facing
-            if !shuffle, let way = move?.facing, abs(dx) > me.size.width * 0.1, gait != .fade {
+            if let way = move?.facing, abs(dx) > me.size.width * (shuffle ? 0.25 : 0.1), gait != .fade {
                 facing = (way == .right) == (dx > 0) ? 1 : -1
             }
             // Onto a place it faces into: facing it when it gets there,
             // whichever way it came.
-            if let face, let sign = sign(face, for: index) { facing = sign }
+            var heading: Double?
+            if let face, let sign = sign(face, for: index) {
+                if sign != facing, gait != .fade { heading = facing }
+                facing = sign
+            }
             let base = me.home
             let spot = { (p: StagePoint, s: Double, visible: Bool) in
                 MotionSpot(
                     x: (p.x - base.x) / max(me.unit.width, 1), y: -(p.y - base.y) / max(me.unit.height, 1),
                     scale: s, visible: visible)
             }
-            states[index].legs.append(MotionLeg(
+            var leg = MotionLeg(
                 at: start, duration: duration, from: spot(from, state.scale, true), to: spot(target, scale, visible),
                 gait: gait, facingFrom: state.facing, facingTo: facing, move: move?.id, stacking: stacking,
-                stays: stays && gait != .fade && move?.cycle != nil))
+                stays: stays && gait != .fade && move?.cycle != nil)
+            leg.heading = heading
+            states[index].legs.append(leg)
             states[index].center = target
             states[index].scale = scale
             states[index].visible = visible

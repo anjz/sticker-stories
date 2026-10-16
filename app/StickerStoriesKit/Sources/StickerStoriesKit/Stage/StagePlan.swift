@@ -50,6 +50,42 @@ public struct StageLeg: Equatable, Sendable {
         case fade
         /// It comes in where it stands: fades in and grows from small.
         case grow
+
+        /// Whether it carries the sticker along its path (it does not fade
+        /// or grow where it is).
+        var carries: Bool {
+            switch self {
+            case .fade, .grow: false
+            default: true
+            }
+        }
+
+        /// How far along its path it is (by length) when it is `q` of the
+        /// way through its moving: a flight eases in and out, a bounce
+        /// slows into its landing.
+        func eased(_ q: Double) -> Double {
+            switch self {
+            case .fly: q * q * (3 - 2 * q)
+            case .bounce: 1 - (1 - q) * (1 - q)
+            default: q
+            }
+        }
+
+        /// The inverse of `eased`.
+        func uneased(_ k: Double) -> Double {
+            let k = min(max(k, 0), 1)
+            switch self {
+            case .bounce: return 1 - (1 - k).squareRoot()
+            case .fly:
+                var lo = 0.0, hi = 1.0
+                for _ in 0..<30 {
+                    let mid = (lo + hi) / 2
+                    if eased(mid) < k { lo = mid } else { hi = mid }
+                }
+                return (lo + hi) / 2
+            default: return k
+            }
+        }
     }
 
     public enum Kind: Equatable, Sendable {
@@ -77,6 +113,12 @@ public struct StageLeg: Equatable, Sendable {
     public var circling: Circling?
     public var facingFrom: Double
     public var facingTo: Double
+    /// The way it faces along its path when that changes on the way (a
+    /// walk round the pond that doubles back): from each point (`k`, the
+    /// fraction of the path's length) on. Empty: `facingTo` all the way.
+    /// It turns round on the spot at each change (`StagePlan.way`), and
+    /// at the end to `facingTo` if that is not the way it went.
+    public var ways: [Way] = []
     /// What holds it up once it is there.
     public var support: StageSupport
     /// How fast its move frames play (1: as drawn), so its steps keep pace
@@ -109,10 +151,24 @@ public struct StageLeg: Equatable, Sendable {
     public struct Circling: Equatable, Sendable {
         public var across: Double
         public var toward: Double
+        /// The way across the screen its art looks: 1 right, −1 left.
+        public var art: Double
 
-        public init(across: Double, toward: Double) {
+        public init(across: Double, toward: Double, art: Double = 1) {
             self.across = across
             self.toward = toward
+            self.art = art
+        }
+    }
+
+    /// The way it faces from a point of its path on (`ways`).
+    public struct Way: Equatable, Sendable {
+        public var k: Double
+        public var facing: Double
+
+        public init(k: Double, facing: Double) {
+            self.k = k
+            self.facing = facing
         }
     }
 
@@ -177,7 +233,12 @@ public struct StagePlan: Equatable, Sendable {
                 support: start.support, arrivedAt: 0)
         }
         let leg = legs[index]
+        // Off a loop it was flying round its spot (below).
+        let lapBefore = index > 0 ? lap(before: index) : nil
         let p = leg.duration > 0 ? min(max((time - leg.at) / leg.duration, 0), 1) : 1
+        // How far along its way it is, and the way it faces: it turns
+        // round on the spot wherever it has to, never stepping backwards.
+        let (q, facing) = way(leg, at: time, from: lapBefore?.facing)
         let arrived = legs[...index].filter { $0.end <= time }.map(\.end).max() ?? 0
         var opacity = 1.0, growth = 1.0
         var position: Vec3
@@ -191,31 +252,29 @@ public struct StagePlan: Equatable, Sendable {
             // From small, a little past its size, and back.
             growth = p < 0.7 ? 0.2 + 0.9 * (p / 0.7) : 1.1 - 0.1 * ((p - 0.7) / 0.3)
         case .fly:
-            position = Self.along(leg.path, p * p * (3 - 2 * p))
-            position.y += Self.flyBob * size * sin(2 * .pi * 1.5 * p) * (1 - p)
-            if p >= 1, leg.stays, let circling = leg.circling {
+            position = Self.along(leg.path, leg.gait.eased(q))
+            position.y += Self.flyBob * size * sin(2 * .pi * 1.5 * q) * (1 - q)
+            if p >= 1, leg.stays, leg.circling != nil {
                 // It cannot hover: round and round its spot, wings going.
-                position = position + lap(circling, facing: leg.facingTo, since: time - leg.end).offset
+                position = position + lap(leg, since: time - leg.end).offset
             } else if p >= 1, leg.stays {
                 // Hovering where it got to, its wings going.
                 position.y += Self.hoverBob * size * sin(2 * .pi * (time - leg.end) / Self.hoverCycle)
             }
         case .walk:
-            position = Self.along(leg.path, p)
+            position = Self.along(leg.path, q)
         case .hops(let cycle):
-            position = Self.along(leg.path, p)
+            position = Self.along(leg.path, q)
             if p < 1, cycle > 0 { position.y += Self.hopHeight * size * abs(sin(.pi * (time - leg.at) / cycle)) }
         case .bounce:
-            position = Self.along(leg.path, 1 - (1 - p) * (1 - p))
+            position = Self.along(leg.path, leg.gait.eased(q))
             let hops = max(2, (GroundPaths.length(leg.path.map(\.ground)) / max(size, 0.01)).rounded())
-            if p < 1 { position.y += Self.hopHeight * size * abs(sin(.pi * hops * p)) }
+            if q < 1 { position.y += Self.hopHeight * size * abs(sin(.pi * hops * q)) }
         }
         // Off a loop it was flying round its spot: from where it was on
         // it, easing over onto the way.
-        var turnFrom: Double?
-        if index > 0, let lap = lap(before: index) {
-            position = position + lap.offset * (1 - p * p * (3 - 2 * p))
-            turnFrom = lap.facing
+        if let lap = lapBefore {
+            position = position + lap.offset * (1 - q * q * (3 - 2 * q))
         }
         // Off the stage once it is there; in view while it comes or goes.
         let off = leg.support == .off
@@ -223,22 +282,62 @@ public struct StagePlan: Equatable, Sendable {
         // A visitor is not there until it comes in.
         if leg.kind == .entrance, time < leg.at { opacity = 0 }
         return Sample(
-            position: position, facing: facing(leg, at: time, from: turnFrom), opacity: opacity, growth: growth,
+            position: position, facing: facing, opacity: opacity, growth: growth,
             support: p >= 1 ? leg.support : (index > 0 ? legs[index - 1].support : start.support), arrivedAt: arrived)
     }
 
-    /// The way it faces: it turns at a leg's start, passing through a
-    /// squash (never quite 0, so the art never vanishes).
-    /// `from`: the way it faced as the leg began, when that is not the
-    /// leg's own (it was circling).
-    func facing(_ leg: StageLeg, at time: TimeInterval, from: Double? = nil) -> Double {
-        if let circling = leg.circling, leg.stays, time > leg.end {
-            return lap(circling, facing: leg.facingTo, since: time - leg.end).facing
+    /// How far along its way a leg has it at `time` (0…1 of its moving,
+    /// before its gait's easing), and the way it faces. Facing one way
+    /// and going the other, it stops and turns round on the spot — as it
+    /// sets off, wherever its way doubles back (`StageLeg.ways`) and, to
+    /// face what it came to (the bark of a trunk), as it gets there —
+    /// passing through a squash (never quite 0, so the art never
+    /// vanishes). `from`: the way it faced as the leg began, when that is
+    /// not the leg's own (it was circling).
+    func way(_ leg: StageLeg, at time: TimeInterval, from: Double? = nil) -> (q: Double, facing: Double) {
+        let p = leg.duration > 0 ? min(max((time - leg.at) / leg.duration, 0), 1) : 1
+        if leg.circling != nil, leg.stays, time > leg.end {
+            return (1, lap(leg, since: time - leg.end).facing)
         }
-        let start = from ?? leg.facingFrom
-        guard start != leg.facingTo else { return leg.facingTo }
-        let p = min(max((time - leg.at) / Self.turn, 0), 1)
-        return Self.unsquashed(start + (leg.facingTo - start) * (p * p * (3 - 2 * p)))
+        let begin = from ?? leg.facingFrom
+        func blend(_ a: Double, _ b: Double, _ k: Double) -> Double {
+            let k = min(max(k, 0), 1)
+            return Self.unsquashed(a + (b - a) * (k * k * (3 - 2 * k)))
+        }
+        guard leg.gait.carries else {
+            // Fading or growing where it is: a turn as it begins, if any.
+            guard begin != leg.facingTo else { return (p, leg.facingTo) }
+            return (p, blend(begin, leg.facingTo, (time - leg.at) / Self.turn))
+        }
+        // Where it turns round: (where along its moving, from, to).
+        var ways = leg.ways.isEmpty ? [StageLeg.Way(k: 0, facing: leg.facingTo)] : leg.ways
+        if (ways[ways.count - 1].facing < 0) != (leg.facingTo < 0) { ways.append(.init(k: 1, facing: leg.facingTo)) }
+        var stops: [(q: Double, from: Double, to: Double)] = []
+        var was = begin
+        for w in ways {
+            if (w.facing < 0) != (was < 0) { stops.append((leg.gait.uneased(w.k), was, w.facing)) }
+            was = w.facing
+        }
+        let first = ways[0].facing
+        guard !stops.isEmpty, leg.duration > 0 else {
+            // Its way all along; easing from a lap's turn, if it was circling.
+            guard begin != first else { return (p, first) }
+            return (p, blend(begin, first, (time - leg.at) / Self.turn))
+        }
+        // Each turn takes its time from the moving; a short leg turns quicker.
+        let turn = min(Self.turn, leg.duration * 0.5 / Double(stops.count))
+        let moving = leg.duration - turn * Double(stops.count)
+        var left = time - leg.at, q = 0.0, facing = begin
+        for stop in stops {
+            let going = (stop.q - q) * moving
+            if left < going { return (q + max(left, 0) / moving, facing) }
+            left -= going
+            q = stop.q
+            if left < turn { return (q, blend(stop.from, stop.to, left / turn)) }
+            left -= turn
+            facing = stop.to
+        }
+        return (min(q + left / moving, 1), facing)
     }
 
     /// Never quite edge-on, so the art never vanishes.
@@ -246,30 +345,42 @@ public struct StagePlan: Equatable, Sendable {
         abs(value) < 0.05 ? (value < 0 ? -0.05 : 0.05) : value
     }
 
-    /// Where a circling flyer is on its loop, `since` seconds after it got
-    /// to its spot (from it), and the way it faces: it swings out into the
-    /// loop, and turns, through the squash, at each end.
-    func lap(_ circling: StageLeg.Circling, facing: Double, since: TimeInterval) -> (offset: Vec3, facing: Double) {
-        let s = max(since, 0)
-        let k = min(s / Self.lapIn, 1)
-        let swing = k * k * (3 - 2 * k)
-        let angle = 2 * .pi * s / Self.lapTime
-        let way = facing < 0 ? -1.0 : 1.0
-        let offset = Vec3(
-            way * circling.across * sin(angle) * swing,
-            Self.hoverBob * size * sin(2 * angle) * swing,
-            -circling.toward * (1 - cos(angle)) / 2 * swing)
-        // Heading out (cos > 0) it faces its way; coming back, the other.
-        let heading = cos(angle) + (1 - swing) * 2
-        return (offset, way * Self.unsquashed(min(max(heading / 0.35, -1), 1)))
+    /// Where a circling flyer is on its loop, `since` seconds after `leg`
+    /// got it to its spot (from it), and the way it faces: it swings out
+    /// into the loop the way it faces, and turns, through the squash, at
+    /// each end — always facing the way it is going across the screen.
+    func lap(_ leg: StageLeg, since: TimeInterval) -> (offset: Vec3, facing: Double) {
+        guard let circling = leg.circling else { return (Vec3(0, 0, 0), leg.facingTo) }
+        let look = leg.facingTo < 0 ? -1.0 : 1.0
+        // The way across the screen it sets out: the way its art looks.
+        let way = look * circling.art
+        func offset(_ since: TimeInterval) -> Vec3 {
+            let s = max(since, 0)
+            let k = min(s / Self.lapIn, 1)
+            let swing = k * k * (3 - 2 * k)
+            let angle = 2 * .pi * s / Self.lapTime
+            return Vec3(
+                way * circling.across * sin(angle) * swing,
+                Self.hoverBob * size * sin(2 * angle) * swing,
+                -circling.toward * (1 - cos(angle)) / 2 * swing)
+        }
+        // Which way it is going across the screen (nearer the camera, its
+        // depth moves it across too): its way out, or back.
+        let spot = leg.path.last ?? Vec3(0, 0, 1)
+        func across(_ o: Vec3) -> Double { (spot.x + o.x) / max(spot.z + o.z, 0.05) }
+        let dt = 0.02
+        let here = offset(since)
+        let speed = (across(offset(since + dt)) - across(here)) / dt * way
+        let full = max(circling.across, 1e-6) * 2 * .pi / Self.lapTime / max(spot.z, 0.05)
+        return (here, look * Self.unsquashed(min(max(speed / (full * 0.35), -1), 1)))
     }
 
     /// The loop it was flying round its spot as leg `index` began, if the
     /// leg before left it circling.
     func lap(before index: Int) -> (offset: Vec3, facing: Double)? {
         let before = legs[index - 1]
-        guard before.stays, let circling = before.circling, legs[index].at > before.end else { return nil }
-        return lap(circling, facing: before.facingTo, since: legs[index].at - before.end)
+        guard before.stays, before.circling != nil, legs[index].at > before.end else { return nil }
+        return lap(before, since: legs[index].at - before.end)
     }
 
     /// The point `k` (0…1) of the way along a path, by length.
