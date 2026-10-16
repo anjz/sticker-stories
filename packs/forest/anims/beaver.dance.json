@@ -5,9 +5,9 @@
   "description": "the beaver does a happy little dance, swaying from side to side.",
   "stickerBox": {
     "x": 0.02995,
-    "y": 0.04427,
+    "y": 0.04167,
     "width": 0.9401,
-    "height": 0.91016
+    "height": 0.91536
   },
   "puppet": {
     "rig": "anims/beaver.rig.json",
@@ -16,82 +16,32 @@
         "hold": 0.15
       },
       {
-        "hold": 0.24,
+        "hold": 0.26,
         "bones": {
           "armL": {
-            "r": -25
+            "r": -14
           },
           "armR": {
-            "r": -10
+            "r": 35
           },
           "body": {
-            "r": -8
-          },
-          "head": {
-            "r": 6
-          },
-          "root": {
-            "x": -12
-          },
-          "tail": {
-            "r": -15
-          }
-        },
-        "slots": {
-          "eyeL": "happy",
-          "eyeR": "happy",
-          "mouth": "open"
-        }
-      },
-      {
-        "hold": 0.24,
-        "bones": {
-          "armL": {
-            "r": 10
-          },
-          "armR": {
-            "r": 30
-          },
-          "body": {
-            "r": 8
-          },
-          "head": {
             "r": -6
           },
+          "head": {
+            "r": 5
+          },
+          "legL": {
+            "r": 4,
+            "y": -8
+          },
           "root": {
-            "x": 12,
-            "y": -10
+            "x": -10
+          },
+          "stick": {
+            "r": 4
           },
           "tail": {
-            "r": 15
-          }
-        },
-        "slots": {
-          "eyeL": "happy",
-          "eyeR": "happy",
-          "mouth": "open"
-        }
-      },
-      {
-        "hold": 0.24,
-        "bones": {
-          "armL": {
-            "r": -25
-          },
-          "armR": {
             "r": -10
-          },
-          "body": {
-            "r": -8
-          },
-          "head": {
-            "r": 6
-          },
-          "root": {
-            "x": -12
-          },
-          "tail": {
-            "r": -15
           }
         },
         "slots": {
@@ -101,54 +51,33 @@
         }
       },
       {
-        "hold": 0.24,
+        "hold": 0.26,
         "bones": {
           "armL": {
-            "r": 10
-          },
-          "armR": {
-            "r": 30
-          },
-          "body": {
-            "r": 8
-          },
-          "head": {
             "r": -6
           },
-          "root": {
-            "x": 12,
-            "y": -10
-          },
-          "tail": {
-            "r": 15
-          }
-        },
-        "slots": {
-          "eyeL": "happy",
-          "eyeR": "happy",
-          "mouth": "open"
-        }
-      },
-      {
-        "hold": 0.24,
-        "bones": {
-          "armL": {
-            "r": -25
-          },
           "armR": {
-            "r": -10
+            "r": 2.5
           },
           "body": {
-            "r": -8
-          },
-          "head": {
             "r": 6
           },
+          "head": {
+            "r": -5
+          },
+          "legR": {
+            "r": 4,
+            "y": -8
+          },
           "root": {
-            "x": -12
+            "x": 10,
+            "y": -8
+          },
+          "stick": {
+            "r": 16
           },
           "tail": {
-            "r": -15
+            "r": 8
           }
         },
         "slots": {
@@ -158,26 +87,139 @@
         }
       },
       {
-        "hold": 0.24,
+        "hold": 0.26,
         "bones": {
           "armL": {
-            "r": 10
+            "r": -14
           },
           "armR": {
-            "r": 30
+            "r": 35
           },
           "body": {
-            "r": 8
-          },
-          "head": {
             "r": -6
           },
+          "head": {
+            "r": 5
+          },
+          "legL": {
+            "r": 4,
+            "y": -8
+          },
           "root": {
-            "x": 12,
-            "y": -10
+            "x": -10
+          },
+          "stick": {
+            "r": 4
           },
           "tail": {
-            "r": 15
+            "r": -10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.26,
+        "bones": {
+          "armL": {
+            "r": -6
+          },
+          "armR": {
+            "r": 2.5
+          },
+          "body": {
+            "r": 6
+          },
+          "head": {
+            "r": -5
+          },
+          "legR": {
+            "r": 4,
+            "y": -8
+          },
+          "root": {
+            "x": 10,
+            "y": -8
+          },
+          "stick": {
+            "r": 16
+          },
+          "tail": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.26,
+        "bones": {
+          "armL": {
+            "r": -14
+          },
+          "armR": {
+            "r": 35
+          },
+          "body": {
+            "r": -6
+          },
+          "head": {
+            "r": 5
+          },
+          "legL": {
+            "r": 4,
+            "y": -8
+          },
+          "root": {
+            "x": -10
+          },
+          "stick": {
+            "r": 4
+          },
+          "tail": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.26,
+        "bones": {
+          "armL": {
+            "r": -6
+          },
+          "armR": {
+            "r": 2.5
+          },
+          "body": {
+            "r": 6
+          },
+          "head": {
+            "r": -5
+          },
+          "legR": {
+            "r": 4,
+            "y": -8
+          },
+          "root": {
+            "x": 10,
+            "y": -8
+          },
+          "stick": {
+            "r": 16
+          },
+          "tail": {
+            "r": 8
           }
         },
         "slots": {

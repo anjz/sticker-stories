@@ -5,9 +5,9 @@
   "description": "the beaver cries, head down, shoulders shaking with little sobs.",
   "stickerBox": {
     "x": 0.02995,
-    "y": 0.04427,
+    "y": 0.04167,
     "width": 0.9401,
-    "height": 0.91016
+    "height": 0.91536
   },
   "puppet": {
     "rig": "anims/beaver.rig.json",
@@ -19,10 +19,10 @@
         "hold": 0.3,
         "bones": {
           "armL": {
-            "r": -15
+            "r": -6
           },
           "armR": {
-            "r": 15
+            "r": -8.75
           },
           "belly": {
             "sy": 1.03
@@ -31,8 +31,11 @@
             "y": 6
           },
           "head": {
-            "r": 3,
+            "r": -3,
             "y": 10
+          },
+          "stick": {
+            "r": 6
           }
         },
         "slots": {
@@ -47,20 +50,26 @@
         "hold": 0.18,
         "bones": {
           "armL": {
-            "r": -15
+            "r": -8
           },
           "armR": {
-            "r": 15
+            "r": -10.75
           },
           "belly": {
-            "sy": 1.04
+            "sy": 1.05
           },
           "face": {
             "y": 6
           },
           "head": {
-            "r": 3,
-            "y": 9
+            "r": -3,
+            "y": 8
+          },
+          "root": {
+            "y": -3
+          },
+          "stick": {
+            "r": 8
           }
         },
         "slots": {
@@ -75,20 +84,23 @@
         "hold": 0.18,
         "bones": {
           "armL": {
-            "r": -15
+            "r": -6
           },
           "armR": {
-            "r": 15
+            "r": -8.75
           },
           "belly": {
-            "sy": 0.98
+            "sy": 1.03
           },
           "face": {
             "y": 6
           },
           "head": {
-            "r": 3,
-            "y": 12
+            "r": -3,
+            "y": 10
+          },
+          "stick": {
+            "r": 6
           }
         },
         "slots": {
@@ -103,20 +115,26 @@
         "hold": 0.18,
         "bones": {
           "armL": {
-            "r": -15
+            "r": -8
           },
           "armR": {
-            "r": 15
+            "r": -10.75
           },
           "belly": {
-            "sy": 1.04
+            "sy": 1.05
           },
           "face": {
             "y": 6
           },
           "head": {
-            "r": 3,
-            "y": 9
+            "r": -3,
+            "y": 8
+          },
+          "root": {
+            "y": -3
+          },
+          "stick": {
+            "r": 8
           }
         },
         "slots": {
@@ -131,20 +149,23 @@
         "hold": 0.18,
         "bones": {
           "armL": {
-            "r": -15
+            "r": -6
           },
           "armR": {
-            "r": 15
+            "r": -8.75
           },
           "belly": {
-            "sy": 0.98
+            "sy": 1.03
           },
           "face": {
             "y": 6
           },
           "head": {
-            "r": 3,
-            "y": 12
+            "r": -3,
+            "y": 10
+          },
+          "stick": {
+            "r": 6
           }
         },
         "slots": {
@@ -159,20 +180,26 @@
         "hold": 0.18,
         "bones": {
           "armL": {
-            "r": -15
+            "r": -8
           },
           "armR": {
-            "r": 15
+            "r": -10.75
           },
           "belly": {
-            "sy": 1.04
+            "sy": 1.05
           },
           "face": {
             "y": 6
           },
           "head": {
-            "r": 3,
-            "y": 9
+            "r": -3,
+            "y": 8
+          },
+          "root": {
+            "y": -3
+          },
+          "stick": {
+            "r": 8
           }
         },
         "slots": {
@@ -187,76 +214,23 @@
         "hold": 0.18,
         "bones": {
           "armL": {
-            "r": -15
+            "r": -6
           },
           "armR": {
-            "r": 15
+            "r": -8.75
           },
           "belly": {
-            "sy": 0.98
+            "sy": 1.03
           },
           "face": {
             "y": 6
           },
           "head": {
-            "r": 3,
-            "y": 12
-          }
-        },
-        "slots": {
-          "browL": "sad",
-          "browR": "sad",
-          "eyeL": "sad",
-          "eyeR": "sad",
-          "mouth": "sad"
-        }
-      },
-      {
-        "hold": 0.18,
-        "bones": {
-          "armL": {
-            "r": -15
+            "r": -3,
+            "y": 10
           },
-          "armR": {
-            "r": 15
-          },
-          "belly": {
-            "sy": 1.04
-          },
-          "face": {
-            "y": 6
-          },
-          "head": {
-            "r": 3,
-            "y": 9
-          }
-        },
-        "slots": {
-          "browL": "sad",
-          "browR": "sad",
-          "eyeL": "sad",
-          "eyeR": "sad",
-          "mouth": "sad"
-        }
-      },
-      {
-        "hold": 0.18,
-        "bones": {
-          "armL": {
-            "r": -15
-          },
-          "armR": {
-            "r": 15
-          },
-          "belly": {
-            "sy": 0.98
-          },
-          "face": {
-            "y": 6
-          },
-          "head": {
-            "r": 3,
-            "y": 12
+          "stick": {
+            "r": 6
           }
         },
         "slots": {
@@ -269,9 +243,24 @@
       },
       {
         "hold": 0.3,
+        "bones": {
+          "head": {
+            "y": 4
+          }
+        },
         "slots": {
+          "browL": "sad",
+          "browR": "sad",
           "eyeL": "sad",
-          "eyeR": "sad"
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "browL": "sad",
+          "browR": "sad"
         }
       },
       {

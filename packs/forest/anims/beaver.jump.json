@@ -5,9 +5,9 @@
   "description": "the beaver crouches, jumps up high for joy and lands with a little squash.",
   "stickerBox": {
     "x": 0.02995,
-    "y": 0.04427,
+    "y": 0.04167,
     "width": 0.9401,
-    "height": 0.91016
+    "height": 0.91536
   },
   "puppet": {
     "rig": "anims/beaver.rig.json",
@@ -18,12 +18,6 @@
       {
         "hold": 0.16,
         "bones": {
-          "armL": {
-            "r": -5
-          },
-          "armR": {
-            "r": 8
-          },
           "belly": {
             "sx": 1.07,
             "sy": 0.9
@@ -41,22 +35,22 @@
         "ease": "out",
         "bones": {
           "armL": {
-            "r": -20
+            "r": -10
           },
           "armR": {
-            "r": 25
+            "r": -12.5
           },
           "belly": {
             "sx": 0.96,
             "sy": 1.06
           },
-          "footL": {
-            "r": 14,
-            "y": -8
+          "legL": {
+            "r": 10,
+            "y": -4
           },
-          "footR": {
-            "r": -14,
-            "y": -8
+          "legR": {
+            "r": -8,
+            "y": -4
           },
           "root": {
             "y": -78
@@ -65,7 +59,7 @@
             "r": 10
           },
           "tail": {
-            "r": -18
+            "r": -14
           }
         },
         "slots": {
@@ -79,22 +73,22 @@
         "ease": "in",
         "bones": {
           "armL": {
-            "r": -20
+            "r": -10
           },
           "armR": {
-            "r": 25
+            "r": -12.5
           },
           "belly": {
             "sx": 0.96,
             "sy": 1.06
           },
-          "footL": {
-            "r": 14,
-            "y": -8
+          "legL": {
+            "r": 10,
+            "y": -4
           },
-          "footR": {
-            "r": -14,
-            "y": -8
+          "legR": {
+            "r": -8,
+            "y": -4
           },
           "root": {
             "y": -84
@@ -103,7 +97,7 @@
             "r": 10
           },
           "tail": {
-            "r": -18
+            "r": -14
           }
         },
         "slots": {

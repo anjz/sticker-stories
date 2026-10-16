@@ -2,12 +2,12 @@
   "id": "pull",
   "sticker": "beaver",
   "kind": "action",
-  "description": "the beaver grips its stick with both paws and leans back to pull, heave-ho, straining with its eyes squeezed shut, then lets go and sits back with a happy puff.",
+  "description": "the beaver grips its stick with both paws and leans back to pull, heave-ho, straining with its eyes squeezed shut, then lets go and rocks back with a happy puff.",
   "stickerBox": {
     "x": 0.02995,
-    "y": 0.04427,
+    "y": 0.04167,
     "width": 0.9401,
-    "height": 0.91016
+    "height": 0.91536
   },
   "pause": {
     "frame": 6,
@@ -22,21 +22,13 @@
       {
         "hold": 0.35,
         "bones": {
-          "armL": {
-            "r": 20
-          },
           "armR": {
-            "r": -5
-          },
-          "body": {
-            "r": -3
-          },
-          "head": {
-            "r": -2
+            "r": 15
           },
           "stick": {
-            "r": -90,
-            "x": -30
+            "r": 33.5,
+            "x": -33.4,
+            "y": 163.7
           }
         },
         "slots": {
@@ -47,11 +39,8 @@
       {
         "hold": 0.4,
         "bones": {
-          "armL": {
-            "r": 20
-          },
           "armR": {
-            "r": -5
+            "r": 14.5
           },
           "belly": {
             "sy": 1.02
@@ -63,8 +52,9 @@
             "r": 3
           },
           "stick": {
-            "r": -90,
-            "x": -30
+            "r": 32,
+            "x": -30.7,
+            "y": 178.5
           }
         },
         "slots": {
@@ -78,11 +68,11 @@
       {
         "hold": 0.25,
         "bones": {
-          "armL": {
-            "r": 20
-          },
           "armR": {
-            "r": -5
+            "r": 15
+          },
+          "belly": {
+            "sy": 1.01
           },
           "body": {
             "r": 2
@@ -91,8 +81,9 @@
             "r": 1
           },
           "stick": {
-            "r": -90,
-            "x": -30
+            "r": 33,
+            "x": -32.7,
+            "y": 168.7
           }
         },
         "slots": {
@@ -106,11 +97,8 @@
       {
         "hold": 0.4,
         "bones": {
-          "armL": {
-            "r": 20
-          },
           "armR": {
-            "r": -5
+            "r": 14.5
           },
           "belly": {
             "sy": 1.02
@@ -122,8 +110,9 @@
             "r": 4
           },
           "stick": {
-            "r": -90,
-            "x": -30
+            "r": 31.5,
+            "x": -29.5,
+            "y": 183.3
           }
         },
         "slots": {
@@ -137,11 +126,11 @@
       {
         "hold": 0.25,
         "bones": {
-          "armL": {
-            "r": 20
-          },
           "armR": {
-            "r": -5
+            "r": 15
+          },
+          "belly": {
+            "sy": 1.01
           },
           "body": {
             "r": 2
@@ -150,8 +139,9 @@
             "r": 1
           },
           "stick": {
-            "r": -90,
-            "x": -30
+            "r": 33,
+            "x": -32.7,
+            "y": 168.7
           }
         },
         "slots": {
@@ -165,11 +155,8 @@
       {
         "hold": 0.6,
         "bones": {
-          "armL": {
-            "r": 20
-          },
           "armR": {
-            "r": -5
+            "r": 14.25
           },
           "belly": {
             "sy": 1.03
@@ -180,9 +167,14 @@
           "head": {
             "r": 5
           },
+          "legL": {
+            "r": -4,
+            "x": -3
+          },
           "stick": {
-            "r": -90,
-            "x": -30
+            "r": 31,
+            "x": -28.1,
+            "y": 188.1
           }
         },
         "slots": {
@@ -194,20 +186,17 @@
         }
       },
       {
-        "hold": 0.2,
+        "hold": 0.25,
         "ease": "out",
         "bones": {
-          "armR": {
-            "r": 20
-          },
           "body": {
-            "r": 6
+            "r": -3
           },
           "head": {
-            "r": 3
+            "r": -2
           },
           "root": {
-            "y": -6
+            "y": -5
           }
         },
         "slots": {
@@ -221,10 +210,13 @@
         "bones": {
           "belly": {
             "sx": 1.03,
-            "sy": 0.96
+            "sy": 0.95
+          },
+          "head": {
+            "y": 3
           },
           "root": {
-            "y": 2
+            "y": 3
           }
         },
         "slots": {

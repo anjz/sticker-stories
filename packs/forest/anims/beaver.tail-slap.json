@@ -5,24 +5,24 @@
   "description": "the beaver lifts its big flat tail and slaps it on the ground, slap, slap!",
   "stickerBox": {
     "x": 0.02995,
-    "y": 0.04427,
+    "y": 0.04167,
     "width": 0.9401,
-    "height": 0.91016
+    "height": 0.91536
   },
   "particles": [
     {
       "frame": 2,
       "effect": "dust-puff",
-      "x": 0.8,
-      "y": 0.9,
+      "x": 0.82,
+      "y": 0.86,
       "intensity": 0.45,
       "color": "#8A6A4C"
     },
     {
       "frame": 4,
       "effect": "dust-puff",
-      "x": 0.8,
-      "y": 0.9,
+      "x": 0.82,
+      "y": 0.86,
       "intensity": 0.45,
       "color": "#8A6A4C"
     }
@@ -34,6 +34,48 @@
         "hold": 0.15
       },
       {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -2
+          },
+          "tail": {
+            "r": -48
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.96
+          },
+          "head": {
+            "y": 3
+          },
+          "root": {
+            "y": 2
+          },
+          "tail": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "open"
+        }
+      },
+      {
         "hold": 0.35,
         "bones": {
           "body": {
@@ -43,7 +85,7 @@
             "r": -2
           },
           "tail": {
-            "r": -62
+            "r": -42
           }
         },
         "slots": {
@@ -66,7 +108,7 @@
             "y": 2
           },
           "tail": {
-            "r": 5
+            "r": 4
           }
         },
         "slots": {
@@ -76,46 +118,7 @@
         }
       },
       {
-        "hold": 0.3,
-        "bones": {
-          "body": {
-            "r": -3
-          },
-          "tail": {
-            "r": -56
-          }
-        },
-        "slots": {
-          "eyeL": "wide",
-          "eyeR": "wide"
-        }
-      },
-      {
-        "hold": 0.1,
-        "ease": "in",
-        "bones": {
-          "belly": {
-            "sx": 1.02,
-            "sy": 0.96
-          },
-          "head": {
-            "y": 3
-          },
-          "root": {
-            "y": 2
-          },
-          "tail": {
-            "r": 5
-          }
-        },
-        "slots": {
-          "eyeL": "closed",
-          "eyeR": "closed",
-          "mouth": "open"
-        }
-      },
-      {
-        "hold": 0.4,
+        "hold": 0.45,
         "slots": {
           "eyeL": "happy",
           "eyeR": "happy",

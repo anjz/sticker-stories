@@ -5,9 +5,9 @@
   "description": "the beaver waves hello with its free paw, holding its stick in the other.",
   "stickerBox": {
     "x": 0.02995,
-    "y": 0.04427,
+    "y": 0.04167,
     "width": 0.9401,
-    "height": 0.91016
+    "height": 0.91536
   },
   "puppet": {
     "rig": "anims/beaver.rig.json",
@@ -16,88 +16,133 @@
         "hold": 0.15
       },
       {
+        "hold": 0.12,
+        "bones": {
+          "armR": {
+            "r": 14
+          },
+          "head": {
+            "r": 1
+          }
+        },
+        "slots": {
+          "armR": "none",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "waveR": "wave"
+        }
+      },
+      {
         "hold": 0.3,
         "bones": {
-          "armR": {
-            "r": 80,
-            "x": 12,
-            "y": -10
+          "body": {
+            "r": 1
           },
           "head": {
-            "r": 3
+            "r": 2
           }
         },
         "slots": {
+          "armR": "none",
           "eyeL": "happy",
-          "eyeR": "happy"
+          "eyeR": "happy",
+          "mouth": "open",
+          "waveR": "wave"
         }
       },
       {
-        "hold": 0.2,
+        "hold": 0.28,
         "bones": {
           "armR": {
-            "r": 100,
-            "x": 12,
-            "y": -10
+            "r": 12
+          },
+          "body": {
+            "r": 1
           },
           "head": {
-            "r": 3
+            "r": 2
           }
         },
         "slots": {
+          "armR": "none",
           "eyeL": "happy",
-          "eyeR": "happy"
+          "eyeR": "happy",
+          "mouth": "open",
+          "waveR": "wave"
         }
       },
       {
-        "hold": 0.2,
+        "hold": 0.28,
         "bones": {
           "armR": {
-            "r": 75,
-            "x": 12,
-            "y": -10
+            "r": -2
+          },
+          "body": {
+            "r": 1
           },
           "head": {
-            "r": 3
+            "r": 2
           }
         },
         "slots": {
+          "armR": "none",
           "eyeL": "happy",
-          "eyeR": "happy"
+          "eyeR": "happy",
+          "mouth": "open",
+          "waveR": "wave"
         }
       },
       {
-        "hold": 0.2,
+        "hold": 0.28,
         "bones": {
           "armR": {
-            "r": 100,
-            "x": 12,
-            "y": -10
+            "r": 12
+          },
+          "body": {
+            "r": 1
           },
           "head": {
-            "r": 3
+            "r": 2
           }
         },
         "slots": {
+          "armR": "none",
           "eyeL": "happy",
-          "eyeR": "happy"
+          "eyeR": "happy",
+          "mouth": "open",
+          "waveR": "wave"
         }
       },
       {
-        "hold": 0.25,
+        "hold": 0.3,
         "bones": {
-          "armR": {
-            "r": 75,
-            "x": 12,
-            "y": -10
+          "body": {
+            "r": 1
           },
           "head": {
-            "r": 3
+            "r": 2
           }
         },
         "slots": {
+          "armR": "none",
           "eyeL": "happy",
-          "eyeR": "happy"
+          "eyeR": "happy",
+          "mouth": "open",
+          "waveR": "wave"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "armR": {
+            "r": 14
+          }
+        },
+        "slots": {
+          "armR": "none",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "waveR": "wave"
         }
       },
       {
