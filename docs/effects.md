@@ -72,7 +72,7 @@ they are what make a wobble a wobble — and are not authorable.
 |---|---|---|---|---|
 | `sparkle` | A shower of twinkles above the sticker. `color` default warm gold `#FFD166`. | Delight, magic, treasure, a good idea. | 1.0 s | runs at ≤0.4 |
 | `hearts` | A few hearts drift up. | Friendship, a hug, kindness. | 1.2 s | runs at ≤0.4 |
-| `dust-puff` | A puff of dust kicked up from the ground at its feet that settles under the world's gravity. `color` default: the pack's ground, a shade lighter. | A landing, a stamp, a wheel spinning, a rocket touching down, a dig. | 0.4 s | runs at ≤0.4 |
+| `dust-puff` | A puff of dust kicked up from the ground at its feet: the cloud billows out sideways both ways and rises a little as it fades, while a few grains thrown up fall back under the world's gravity. `color` default: the pack's ground, a shade lighter. | A landing, a stamp, a wheel spinning, a rocket touching down, a dig. | 0.4 s | runs at ≤0.4 |
 | `spray` | Water drops thrown up that arc and fall. `color` default `#CFE8FF`. | A splash, a shake of wet fur, a fountain, watering. | 0.4 s | runs at ≤0.4 |
 | `sparks` | A few tiny bright sparks that fly out, fall and fade. `color` default `#FFD27A`. | A tool on metal, a connection made, a machine starting — never fire or danger. | 0.4 s | runs at ≤0.4 |
 
@@ -82,9 +82,11 @@ and they come from the drawing (its feet, for dust), not its image's box —
 so sparkles on a tiny flower are tiny.
 
 **The physical particles follow the pack's world** (`docs/pack-format.md`,
-"World"): `dust-puff`, `spray` and `sparks` fall under its gravity and
-hang longer where it is weak — the same puff drifts down slowly as grey
-moon dust in Moon Base and drops at once as brown soil in Forest — and
+"World"): `spray`, `sparks` and the grains of a `dust-puff` fall under
+its gravity and hang longer where it is weak — the same grains arc slowly
+as grey moon dust in Moon Base and drop at once as brown soil in Forest;
+the puff's cloud itself never sinks: it billows out sideways and a
+little up, then fades — and
 dust is the colour of its ground. Stickers and their live animations
 never draw particles themselves (no dust, drops, sparks or smoke in the
 art: `docs/pack-art.md`); these effects do it, cued by stories or fired by

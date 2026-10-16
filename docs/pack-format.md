@@ -451,9 +451,9 @@ A pack without `content` keeps the old behaviour throughout.
 
 `world` is what particle effects (`docs/effects.md`, `dust-puff`, `spray`,
 `sparks`) need to know about the place: how strongly things fall and what
-the ground is made of. The same `dust-puff` then hangs and drifts down
-slowly as grey dust on the Moon and settles at once as brown soil in a
-forest.
+the ground is made of. The same `dust-puff`'s grains then hang and arc
+slowly as grey dust on the Moon and drop at once as brown soil in a
+forest (its cloud billows out sideways and a little up either way).
 
 ```json
 "world": { "gravity": 0.17, "ground": "#A9A6A1" }

@@ -158,7 +158,7 @@ public struct EffectDefinition: Sendable {
         // default to it (dust is its ground) or to the emitter's own.
         EffectDefinition(
             name: .dustPuff, defaultDuration: 0.4, anchor: .bottomCenter, defaultColor: nil,
-            summary: "A puff of dust kicked up from the ground at its feet, settling under the world's gravity."
+            summary: "A puff of dust kicked up from the ground at its feet, billowing out sideways and a little up as it fades; a few grains fall back under the world's gravity."
         ) { _, _, _ in EffectDelta() },
 
         EffectDefinition(

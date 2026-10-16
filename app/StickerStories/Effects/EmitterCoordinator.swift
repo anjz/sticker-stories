@@ -24,13 +24,17 @@ final class EmitterCoordinator {
     }
 
     private struct Live {
-        let node: SKEmitterNode
-        let spec: EmitterSpec
+        /// The effect's emitters (a mirrored half, grains: `emitters.json`)
+        /// and each one's full birth rate.
+        let nodes: [SKEmitterNode]
+        let baseBirthRates: [Double]
+        /// How long the longest-lived of its particles lives.
+        let lifetime: Double
         let effect: ActiveEffect
-        let baseBirthRate: Double
         let anchor: EffectAnchor
         let inFront: Bool
         var dying = false
+        var retiredAt: CFTimeInterval?
     }
 
     /// The pack's world: the physical particles fall under its gravity, and
@@ -38,8 +42,9 @@ final class EmitterCoordinator {
     var world = PackWorld.defaults(for: .none)
 
     private var live: [EffectHandle: Live] = [:]
-    /// Bursts fired by animation frames, until their particles are gone.
-    private var bursts: [SKEmitterNode] = []
+    /// Bursts fired by animation frames (each its emitters), until their
+    /// particles are gone.
+    private var bursts: [[SKEmitterNode]] = []
     private var dropped: Set<EffectHandle> = []
     private var lastTime: TimeInterval = -1
     private let budget = Budget.current
@@ -47,7 +52,7 @@ final class EmitterCoordinator {
     func reconcile(_ active: [ActiveEffect], at time: TimeInterval, nodes: [UUID: StickerNode]) {
         let paused = time == lastTime
         lastTime = time
-        for burst in bursts { burst.isPaused = paused }
+        for burst in bursts { for node in burst { node.isPaused = paused } }
 
         let wanted = active.filter { $0.name.category == .particle }
         let wantedHandles = Set(wanted.map(\.handle))
@@ -76,27 +81,30 @@ final class EmitterCoordinator {
                 retire(handle)
                 continue
             }
-            entry.node.position = node.convert(Self.point(entry.anchor, on: node), to: parent)
-            entry.node.zPosition = node.zPosition + (entry.inFront ? 0.5 : -0.5)
-            entry.node.isPaused = paused
-            if !entry.dying {
-                let rate = entry.baseBirthRate * ramp(for: entry.effect, at: time)
-                entry.node.particleBirthRate = rate
-                totalExpected += rate * entry.spec.lifetime.value
+            let at = node.convert(Self.point(entry.anchor, on: node), to: parent)
+            let ramp = entry.dying ? 0 : ramp(for: entry.effect, at: time)
+            for (emitter, base) in zip(entry.nodes, entry.baseBirthRates) {
+                emitter.position = at
+                emitter.zPosition = node.zPosition + (entry.inFront ? 0.5 : -0.5)
+                emitter.isPaused = paused
+                if !entry.dying {
+                    emitter.particleBirthRate = base * ramp
+                    totalExpected += base * ramp * Double(emitter.particleLifetime)
+                }
             }
         }
         if totalExpected > Double(budget.maxParticles) {
             let factor = Double(budget.maxParticles) / totalExpected
             for entry in live.values where !entry.dying {
-                entry.node.particleBirthRate *= factor
+                for emitter in entry.nodes { emitter.particleBirthRate *= factor }
             }
         }
 
         // Remove emitters whose particles have all died.
-        for (handle, entry) in live where entry.dying && entry.node.userData?["retiredAt"] != nil {
-            let retiredAt = entry.node.userData?["retiredAt"] as? CFTimeInterval ?? 0
-            if CACurrentMediaTime() - retiredAt > entry.spec.lifetime.value + entry.spec.lifetime.variance + 0.1 {
-                entry.node.removeFromParent()
+        for (handle, entry) in live where entry.dying {
+            guard let retiredAt = entry.retiredAt else { continue }
+            if CACurrentMediaTime() - retiredAt > entry.lifetime + 0.1 {
+                for emitter in entry.nodes { emitter.removeFromParent() }
                 live[handle] = nil
             }
         }
@@ -104,8 +112,8 @@ final class EmitterCoordinator {
 
     /// Stops everything immediately (playback cancelled — P4).
     func clearAll() {
-        for entry in live.values { entry.node.removeFromParent() }
-        for burst in bursts { burst.removeFromParent() }
+        for entry in live.values { for emitter in entry.nodes { emitter.removeFromParent() } }
+        for burst in bursts { for emitter in burst { emitter.removeFromParent() } }
         bursts.removeAll()
         live.removeAll()
         dropped.removeAll()
@@ -120,14 +128,16 @@ final class EmitterCoordinator {
         // Seeking into the middle of an effect starts fresh at reduced
         // intensity rather than simulating what "should" exist.
         let seekedIn = time - effect.startTime > Self.rampIn + 0.05
-        let emitter = makeEmitter(effect.name, spec: spec, options: effect.options, on: node)
-        emitter.particleBirthRate = 0  // ramped in by reconcile
-        parent.addChild(emitter)
-
+        let parts = makeEmitters(effect.name, spec: spec, options: effect.options, on: node)
+        for (emitter, _) in parts {
+            emitter.particleBirthRate = 0  // ramped in by reconcile
+            parent.addChild(emitter)
+        }
+        let factor = Self.intensityFactor(effect.options.intensity, damped: seekedIn)
         live[effect.handle] = Live(
-            node: emitter, spec: spec, effect: effect,
-            baseBirthRate: spec.birthRate * Self.intensityFactor(effect.options.intensity, damped: seekedIn),
-            anchor: EffectDefinition.definition(for: effect.name).anchor,
+            nodes: parts.map(\.0), baseBirthRates: parts.map { $0.1.birthRate * factor },
+            lifetime: parts.map { Double($0.0.particleLifetime + $0.0.particleLifetimeRange / 2) }.max() ?? 0,
+            effect: effect, anchor: EffectDefinition.definition(for: effect.name).anchor,
             inFront: spec.inFront)
     }
 
@@ -140,22 +150,37 @@ final class EmitterCoordinator {
         guard let emitterName = EmitterSpec.name(for: name), let spec = EmitterSpec.bundled[emitterName],
             let parent = node.parent
         else { return }
-        bursts.removeAll { $0.parent == nil }
+        bursts.removeAll { $0.allSatisfy { $0.parent == nil } }
         guard bursts.count + live.values.filter({ !$0.dying }).count < budget.maxEmitters else { return }
-        let emitter = makeEmitter(name, spec: spec, options: options, on: node)
-        emitter.position = node.convert(point, to: parent)
-        emitter.zPosition = node.zPosition + (spec.inFront ? 0.5 : -0.5)
-        emitter.particleBirthRate = CGFloat(spec.birthRate * Self.intensityFactor(options.intensity, damped: false))
-        parent.addChild(emitter)
-        bursts.append(emitter)
+        let parts = makeEmitters(name, spec: spec, options: options, on: node)
         let duration = options.duration ?? EffectDefinition.definition(for: name).defaultDuration
-        let fade = Double(emitter.particleLifetime + emitter.particleLifetimeRange / 2) + 0.1
-        emitter.run(.sequence([
-            .wait(forDuration: duration),
-            .run { [weak emitter] in emitter?.particleBirthRate = 0 },
-            .wait(forDuration: fade),
-            .removeFromParent(),
-        ]))
+        for (emitter, part) in parts {
+            emitter.position = node.convert(point, to: parent)
+            emitter.zPosition = node.zPosition + (spec.inFront ? 0.5 : -0.5)
+            emitter.particleBirthRate = CGFloat(part.birthRate * Self.intensityFactor(options.intensity, damped: false))
+            parent.addChild(emitter)
+            let fade = Double(emitter.particleLifetime + emitter.particleLifetimeRange / 2) + 0.1
+            emitter.run(.sequence([
+                .wait(forDuration: duration),
+                .run { [weak emitter] in emitter?.particleBirthRate = 0 },
+                .wait(forDuration: fade),
+                .removeFromParent(),
+            ]))
+        }
+        bursts.append(parts.map(\.0))
+    }
+
+    /// An effect's emitters, each with its tuning: its own, its mirror
+    /// image when it is `mirrored`, and those it fires `with` (each
+    /// mirrored too when it says so), all in its colour and intensity.
+    private func makeEmitters(
+        _ name: EffectName, spec: EmitterSpec, options: EffectOptions, on node: StickerNode
+    ) -> [(SKEmitterNode, EmitterSpec)] {
+        let specs = [spec] + (spec.with ?? []).compactMap { EmitterSpec.bundled[$0] }
+        return specs.flatMap { part -> [(SKEmitterNode, EmitterSpec)] in
+            let mirrors = part.mirrored == true ? [false, true] : [false]
+            return mirrors.map { (makeEmitter(name, spec: part, options: options, on: node, mirrored: $0), part) }
+        }
     }
 
     /// How much of an emitter's birth rate an intensity gives.
@@ -165,7 +190,9 @@ final class EmitterCoordinator {
 
     /// An emitter for a particle effect on a sticker, sized on its drawing,
     /// in the pack's world, not yet emitting or placed.
-    private func makeEmitter(_ name: EffectName, spec: EmitterSpec, options: EffectOptions, on node: StickerNode) -> SKEmitterNode {
+    private func makeEmitter(
+        _ name: EffectName, spec: EmitterSpec, options: EffectOptions, on node: StickerNode, mirrored: Bool = false
+    ) -> SKEmitterNode {
         let intensity = options.intensity
         // Sized on the drawing, not its image's box (a sticker drawn at its size).
         let renderedHeight = node.size.height * node.content.height * CGFloat(node.placement.scale)
@@ -183,9 +210,11 @@ final class EmitterCoordinator {
         emitter.particleLifetimeRange = CGFloat(spec.lifetime.variance * 2) * hang
         emitter.particleSpeed = CGFloat(spec.speed.value) * sizeFactor
         emitter.particleSpeedRange = CGFloat(spec.speed.variance * 2) * sizeFactor
-        emitter.emissionAngle = CGFloat(spec.emissionAngle.value) * .pi / 180
+        // Mirrored across the vertical: the other half of a cloud.
+        let angle = mirrored ? 180 - spec.emissionAngle.value : spec.emissionAngle.value
+        emitter.emissionAngle = CGFloat(angle) * .pi / 180
         emitter.emissionAngleRange = CGFloat(spec.emissionAngle.range) * .pi / 180
-        emitter.xAcceleration = CGFloat(spec.gravity.first ?? 0) * sizeFactor * gravity
+        emitter.xAcceleration = CGFloat(spec.gravity.first ?? 0) * (mirrored ? -1 : 1) * sizeFactor * gravity
         emitter.yAcceleration = CGFloat(spec.gravity.last ?? 0) * sizeFactor * gravity
         emitter.particlePositionRange = CGVector(
             dx: renderedWidth * CGFloat(spec.positionSpread.first ?? 0),
@@ -239,9 +268,11 @@ final class EmitterCoordinator {
 
     private func retire(_ handle: EffectHandle) {
         guard var entry = live[handle] else { return }
-        entry.node.particleBirthRate = 0
-        entry.node.isPaused = false
-        entry.node.userData = ["retiredAt": CACurrentMediaTime()]
+        for emitter in entry.nodes {
+            emitter.particleBirthRate = 0
+            emitter.isPaused = false
+        }
+        entry.retiredAt = CACurrentMediaTime()
         entry.dying = true
         live[handle] = entry
     }
