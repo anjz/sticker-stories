@@ -129,6 +129,14 @@ moves, moves.
   plants at a tree's foot — so a sticker the child puts behind them never
   shows its feet below them (`scene.foregroundDown`, a layer's
   `toBottom`).
+- **Every window shape plays the whole picture.** A portrait iPad, Split
+  View or a narrow phone shows about half the art across (a third, or
+  less, in a narrow Split View) and the camera follows the story there
+  (`docs/stage3d.md`, "Narrow windows"). So a place at the edges (a
+  trunk, a landing pad) works in every window, and the art must read
+  well in any window-wide slice: no slice that is only an empty strip,
+  nothing a scene needs split across both edges. Check new art in a
+  portrait iPad simulator as well as landscape.
 - **Outdoors**: no sun, moon, stars, rain or rainbow in the art — canvas
   effects draw those. A space pack's sky is part of the place (stars, the
   Earth) and stays.

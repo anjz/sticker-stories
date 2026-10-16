@@ -29,7 +29,12 @@ wide) and the base art's frame in world points:
 - **The camera's view.** The window shows part of the art (`StageScreen`:
   what is visible, what the device leaves clear, the story's pill to keep
   clear of); a pose is *on screen* when the sticker's projected drawing is
-  wholly inside the clear part.
+  wholly inside the clear part. A window **narrower than the art**
+  (portrait, Split View, a narrow phone) plays the story on all of the
+  art across, as a wide window would, and its camera follows the story
+  ("Narrow windows"): the screen is then the whole art's width at the
+  window's height, the pill's band is kept clear across all of it, and
+  `window` says how much across the window shows.
 
 ## Poses
 
@@ -61,6 +66,15 @@ Plans the whole story at once, from the cast and the story's triggers:
    clear of them and not hiding them — so the move is short and they are
    together when the words say so. Sent to someone within 3 s of coming
    in, it comes straight to their side, and that move is made.
+
+   **In a narrow window** a visitor's spot is also pulled in towards the
+   cast already on the stage (`togetherPull`): the score drops for every
+   window width they would spread past 80 % of the window, so the camera
+   can show them all at once and seldom has far to go. On an empty canvas
+   the Forest cast now always fits a portrait iPad's window (17 % of the
+   time it did not); the child's own stickers stay where the child put
+   them, however far apart. The older planner (packs without a space)
+   does the same when it picks a visitor's free spot.
 
    **Where the director chooses** (a visitor's spot, a spot in a place,
    the side to stand beside someone, a row on someone's back), it keeps
@@ -181,6 +195,23 @@ ear flick, a sniff), never the same twice in a row (`IdleLife`). Never
 while it is on its way, plays or holds an action the story cued, sleeps,
 hovers or swims, or just before the story cues it: the story always comes
 first. Calm mode keeps only the breathing and blinking.
+
+## Narrow windows (`StoryCamera`)
+
+When the art is wider than the window, the story is planned on all of it
+(above) and the camera follows it while it plays, in every pack. It
+follows the story's **beats**: each action, face (not the return to the
+usual one) and sticker effect the story cues, from 0.8 s before it to
+0.6 s after, and each sticker's way in and moves, all the way along (not
+the child's stickers settling, nor making room). Idle life is not a beat.
+Each frame it takes the least move that brings every current beat's
+sticker into the window, a margin in from its sides; when they do not
+all fit it goes with the beat that began last, then adds as many of the
+others as still fit. It eases there, never faster than 0.9 window widths
+a second, and never past the art's edges. Under Reduce Motion it cuts
+instead of gliding. While the child pans by hand, and for 4 s after, it
+leaves the view where they put it. A window as wide as the art never
+moves.
 
 ## Rendering
 

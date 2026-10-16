@@ -65,7 +65,10 @@ AVFoundation. This is our own code, not a third-party dependency.
    resizable windows, Split View, portrait). Horizontal overflow (portrait,
    Split View, narrow windows) can be panned with one finger on empty space
    (also during playback); the camera is clamped to the world and a one-shot
-   drift hints that there is more. Vertical overflow — a view wider than the
+   drift hints that there is more. A story in such a window plays on the
+   whole art, the same as in a wide one, and the camera follows what is
+   happening (`StoryCamera`, `docs/stage3d.md`, "Narrow windows"), leaving
+   the view to the child for a few seconds after they pan. Vertical overflow — a view wider than the
    art, i.e. every full-screen landscape case, iPhone especially — is
    centre-cropped and never panned, so pack art keeps nothing important in
    its top and bottom bands. Packs designed for iPad can ship a **wide

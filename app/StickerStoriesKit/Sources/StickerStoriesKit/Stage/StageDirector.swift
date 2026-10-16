@@ -75,6 +75,11 @@ public enum StageDirector {
     /// How much a visitor's spot is pulled towards whom the story soon
     /// puts it with (score per unit of distance too far).
     static let partnerPull = 1.5
+    /// In a window narrower than the stage, how much a visitor's spot is
+    /// pulled in towards the cast already there (score per window width
+    /// they would spread past most of the window): the camera then seldom
+    /// has far to go (`StageScreen.window`).
+    static let togetherPull = 2.0
     /// How soon after a visitor comes in the story must put it with
     /// someone for its spot to be chosen near them.
     static let partnerWindow: TimeInterval = 10
@@ -714,6 +719,17 @@ public enum StageDirector {
                     return (p - q).length - reach
                 }.min() ?? 10
             }
+            // In a narrow window the camera follows the story: the cast
+            // kept within most of a window's width when it can be.
+            let together = screen.window.flatMap { window -> ((Vec3) -> Double)? in
+                let there = others.filter { cast?.contains(states[$0].actor.stickerID) ?? true }
+                    .map { drawing($0, at: states[$0].pose.position) }
+                guard let lo = there.map(\.minX).min(), let hi = there.map(\.maxX).max(), window > 0 else { return nil }
+                return { p in
+                    let r = drawing(i, at: p)
+                    return max(max(hi, r.maxX) - min(lo, r.minX) - window * 0.8, 0) / window * StageDirector.togetherPull
+                }
+            }
             let uncovered = visible.filter { !covered(i, at: $0.position) }
             let pool = uncovered.isEmpty ? visible : uncovered
             // Small characters to the front; nobody behind the trees.
@@ -731,6 +747,7 @@ public enum StageDirector {
                 // Seen: not behind the planes, nor behind someone, nor in
                 // front of someone already there.
                 return (pose, min(c, me.width * 2) - d * 0.05 - back * front * 0.35 - apart
+                    - (together?(pose.position) ?? 0)
                     - hiddenWithHeadroom(i, at: pose.position) * (me.width * 2 + 0.3 + front * 0.5)
                     - blocking(i, at: pose.position) * (me.width * 3 + 1))
             }

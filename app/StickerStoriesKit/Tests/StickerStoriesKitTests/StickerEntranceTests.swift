@@ -283,6 +283,21 @@ struct SeededGenerator: RandomNumberGenerator {
         #expect((640...860).contains(plans[0].target.x))
     }
 
+    @Test func inAWindowNarrowerThanTheStageVisitorsComeInTogether() {
+        // The camera follows the story across the whole art; whoever comes
+        // in stays within most of a window's width of who is there.
+        var scene = Self.scene
+        scene.window = 300
+        let crab = StageObstacle(center: StagePoint(x: 150, y: 200), radius: 50)
+        for seed in 1...20 {
+            var random = SeededGenerator(state: UInt64(seed))
+            let fox = StagePlanner.plan(
+                entrances: [EntranceTrigger(at: 0, stickerID: "fox")], placed: [], stages: Self.stages, scene: scene,
+                obstacles: [crab], policy: .standard, random: &random)[0].target
+            #expect(fox.x < 150 + 300, "seed \(seed): fox at \(fox.x), far from the crab")
+        }
+    }
+
     @Test func walkersComeFromOffScreenAndScaleWithDepth() {
         for seed in 1...30 {
             let fox = plan(["fox"], seed: UInt64(seed))[0]

@@ -1,0 +1,77 @@
+import Foundation
+import Testing
+
+@testable import StickerStoriesKit
+
+@Suite struct StoryCameraTests {
+    let world = 0.0...1600.0
+
+    @Test func staysPutWhenTheFocusIsInView() {
+        let focus = [StoryCamera.Focus(minX: 300, maxX: 500, since: 1)]
+        #expect(StoryCamera.target(center: 400, view: 600, world: world, focus: focus, margin: 40) == 400)
+    }
+
+    @Test func movesOnlyAsFarAsItMust() {
+        // The woodpecker on the oak's trunk, off the window's left side.
+        let focus = [StoryCamera.Focus(minX: 60, maxX: 200, since: 3)]
+        let x = StoryCamera.target(center: 800, view: 600, world: world, focus: focus, margin: 40)
+        #expect(x == 60 - 40 + 300)
+        // Never past the art's edge.
+        let edge = [StoryCamera.Focus(minX: 0, maxX: 80, since: 3)]
+        #expect(StoryCamera.target(center: 800, view: 600, world: world, focus: edge, margin: 40) == 300)
+    }
+
+    @Test func takesInEveryoneThatFits() {
+        let focus = [
+            StoryCamera.Focus(minX: 900, maxX: 1000, since: 1),
+            StoryCamera.Focus(minX: 1200, maxX: 1300, since: 2),
+        ]
+        let x = StoryCamera.target(center: 400, view: 600, world: world, focus: focus, margin: 40)
+        #expect(x - 300 <= 900 - 40 && x + 300 >= 1300 + 40)
+    }
+
+    @Test func goesWithTheLatestWhenNotAllFit() {
+        let focus = [
+            StoryCamera.Focus(minX: 100, maxX: 200, since: 5),
+            StoryCamera.Focus(minX: 1300, maxX: 1400, since: 2),
+        ]
+        let x = StoryCamera.target(center: 1100, view: 600, world: world, focus: focus, margin: 40)
+        #expect(x - 300 <= 100 && x + 300 >= 200)
+    }
+
+    @Test func aWindowAsWideAsTheArtNeverMoves() {
+        let focus = [StoryCamera.Focus(minX: 0, maxX: 100, since: 1)]
+        #expect(StoryCamera.target(center: 800, view: 1600, world: world, focus: focus, margin: 40) == 800)
+    }
+
+    @Test func glidesAtAPaceAChildCanFollow() {
+        var x = 300.0
+        var frames = 0
+        while x != 1300, frames < 600 {
+            let next = StoryCamera.step(center: x, toward: 1300, dt: 1.0 / 60, view: 600)
+            #expect(next - x <= StoryCamera.topSpeed * 600 / 60 + 1e-9)
+            #expect(next >= x)
+            x = next
+            frames += 1
+        }
+        // There within a few seconds, and never past it.
+        #expect(frames < 300)
+        #expect(x == 1300)
+    }
+
+    @Test func followsTheStorysCuesFromAMomentBefore() {
+        let beats = StoryCamera.beats(
+            live: [LiveAnimationTrigger(at: 4, stickerID: "woodpecker", animationID: "drum")],
+            duration: { _ in 3 },
+            faces: [
+                ExpressionTrigger(at: 9, stickerID: "fox", expression: "happy"),
+                ExpressionTrigger(at: 12, stickerID: "fox", expression: ExpressionTrigger.normal),
+            ],
+            effects: [])
+        #expect(beats.map(\.stickerID) == ["woodpecker", "fox"])
+        #expect(StoryCamera.current(beats, at: 3.5).map(\.stickerID) == ["woodpecker"])
+        #expect(StoryCamera.current(beats, at: 7.5).map(\.stickerID) == ["woodpecker"])
+        #expect(StoryCamera.current(beats, at: 8.5).map(\.stickerID) == ["fox"])
+        #expect(StoryCamera.current(beats, at: 12.5).isEmpty)
+    }
+}

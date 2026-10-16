@@ -367,14 +367,19 @@ public enum StagePlanner {
         /// phone's camera cutout and rounded corners): a sticker that comes
         /// to rest stays wholly inside it. Defaults to `visible`.
         public var clear: StageRect
+        /// How much across the window shows when it is narrower than the
+        /// stage (the camera follows the story, `StoryCamera`); nil when
+        /// it shows it all.
+        public var window: Double?
 
         public init(
             world: StageRect, usable: StageRect, visible: StageRect, stickerSize: Double,
             sizes: [String: StageSize] = [:], fronts: [String: Double] = [:], avoid: [StageRect] = [],
             anchorFeet: Bool = false, feet: [String: Double] = [:], doors: [String: StagePoint] = [:],
-            clear: StageRect? = nil
+            clear: StageRect? = nil, window: Double? = nil
         ) {
             self.clear = clear ?? visible
+            self.window = window
             self.world = world
             self.usable = usable
             self.visible = visible
@@ -441,6 +446,10 @@ public enum StagePlanner {
     /// the art rarely fills its square, so two can stand a little closer
     /// than their squares would say.
     public static let footprint = 0.38
+    /// In a window narrower than the stage, how much a visitor's spot is
+    /// pulled in towards the stickers already there (points of room given
+    /// up per point they would spread past most of the window).
+    static let togetherPull = 2.0
     /// A move this soon after a visitor's entrance (the same words) is
     /// where it arrives: it lands there.
     public static let arrivalMove: TimeInterval = 1
@@ -505,7 +514,7 @@ public enum StagePlanner {
             for rects in choices {
                 landing = freeSpot(
                     in: rects, radius: radius, avoiding: present, random: &random,
-                    uncovered: { !scene.isCovered($0, size: size) })
+                    uncovered: { !scene.isCovered($0, size: size) }, window: scene.window)
                 if landing != nil { break }
             }
             var (target, rect) = landing
@@ -623,10 +632,12 @@ public enum StagePlanner {
     /// The best free spot in `rects`: the grid point farthest from anything
     /// already there (a little randomness among the roomiest so the same
     /// story does not always use the same spot), with the rect it is in;
-    /// nil when nothing there is free.
+    /// nil when nothing there is free. In a `window` narrower than the
+    /// stage, the roomiest near the others: within most of the window's
+    /// width of them when it can be, so the camera seldom has far to go.
     static func freeSpot<R: RandomNumberGenerator>(
         in rects: [StageRect], radius: Double, avoiding obstacles: [StageObstacle], random: inout R,
-        uncovered: (StagePoint) -> Bool = { _ in true }
+        uncovered: (StagePoint) -> Bool = { _ in true }, window: Double? = nil
     ) -> (point: StagePoint, rect: StageRect)? {
         let columns = 9, rows = 5
         var free: [(point: StagePoint, rect: StageRect, clearance: Double)] = []
@@ -645,6 +656,15 @@ public enum StagePlanner {
             }
         }
         guard !free.isEmpty else { return nil }
+        if let window, window > 0, let lo = obstacles.map({ $0.center.x - $0.radius }).min(),
+            let hi = obstacles.map({ $0.center.x + $0.radius }).max()
+        {
+            // Room enough, then as little spread past the window as can be.
+            free = free.map { spot in
+                let spread = max(hi, spot.point.x + radius) - min(lo, spot.point.x - radius)
+                return (spot.point, spot.rect, min(spot.clearance, radius * 3) - max(spread - window * 0.8, 0) * togetherPull)
+            }
+        }
         // Everything within a sticker's radius of the roomiest spot is as
         // good; an empty stage makes every spot as good.
         let best = free.map(\.clearance).max() ?? 0

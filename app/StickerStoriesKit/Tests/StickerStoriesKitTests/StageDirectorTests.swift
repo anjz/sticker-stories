@@ -458,9 +458,20 @@ extension StageDirectorTests {
         }
         #expect(world.covers.count == pack.manifest.layers.count + 1)
         // An iPad's landscape window shows the art less a few percent top and bottom.
-        let screen = StageScreen(
+        let landscape = StageScreen(
             visible: StageRect(minX: 0, minY: 30, maxX: 1024, maxY: 738),
             avoid: [StageRect(minX: 900, minY: 30, maxX: 1024, maxY: 110)])
+        // A window narrower than the art (portrait, Split View) shows all
+        // its height; the story plays on all of it across and the camera
+        // follows (`StoryCamera`), so the pill's band is kept clear
+        // across the whole stage.
+        // An iPad in portrait shows about half the art across.
+        let narrowWidth = 1024 * 834.0 / (1194 * 4 / 3)
+        var spread = (wide: 0, all: 0)
+        var spreadEmpty = (wide: 0, all: 0)
+        let narrow = StageScreen(
+            visible: StageRect(minX: 0, minY: 0, maxX: 1024, maxY: 768),
+            avoid: [StageRect(minX: 0, minY: 10, maxX: 1024, maxY: 65)], window: narrowWidth)
         let waterPlaces = Set(world.grounds.filter(\.water).map(\.place))
         let stickers = Dictionary(uniqueKeysWithValues: pack.manifest.stickers.map { ($0.id, $0) })
         var problems: [String] = []
@@ -473,7 +484,10 @@ extension StageDirectorTests {
                 let file = try? EffectTriggerFile(data: data)
             else { continue }
             // Spots are chosen with a little chance: two draws of each.
-            for (crowded, seed) in [(false, 11), (true, 11), (false, 7777), (true, 7777)] {
+            for (crowded, seed, narrowWindow) in [
+                (false, 11, false), (true, 11, false), (false, 7777, false), (true, 7777, false), (false, 11, true), (true, 11, true),
+            ] {
+                let screen = narrowWindow ? narrow : landscape
                 var random = SeededGenerator(state: UInt64(seed))
                 // The story's cast as visitors; on the crowded canvas the
                 // child has placed its stickers (and a few more) here and there.
@@ -546,9 +560,28 @@ extension StageDirectorTests {
                         }
                         let h = StageWorld.hidden(r, behind: front.map(\.2))
                         if h > 0.5 {
-                            let tag = "\(story.id)\(crowded ? " (crowded)" : "") \(a.stickerID)"
+                            let tag = "\(story.id)\(crowded ? " (crowded)" : "")\(narrowWindow ? " (narrow)" : "") \(a.stickerID)"
                             let who = front.filter { StageWorld.hidden(r, behind: [$0.2]) > 0.1 }.map(\.0.stickerID).sorted()
                             problems.append("\(tag): behind \(who.joined(separator: "+")) at \(String(format: "%.1f", t0))")
+                        }
+                    }
+                }
+                // In the narrow window, how often the cast on the stage is
+                // wider than the window (the camera cannot show them all).
+                if narrowWindow {
+                    var t = StageDirector.settle
+                    while t <= last + 1 {
+                        defer { t += 0.5 }
+                        let shown = actors.filter { cast.contains($0.stickerID) }.compactMap { a -> StageRect? in
+                            guard let s = plans[a.id]?.sample(at: t), s.opacity > 0.5, s.support != .off else { return nil }
+                            return world.drawing(at: s.position, size: a.size, ratio: a.ratio)
+                        }
+                        guard let lo = shown.map(\.minX).min(), let hi = shown.map(\.maxX).max() else { continue }
+                        spread.all += 1
+                        if hi - lo > narrowWidth { spread.wide += 1 }
+                        if !crowded {
+                            spreadEmpty.all += 1
+                            if hi - lo > narrowWidth { spreadEmpty.wide += 1 }
                         }
                     }
                 }
@@ -576,7 +609,7 @@ extension StageDirectorTests {
                         let looks = (art == .right ? 1.0 : -1.0) * (s.facing < 0 ? -1 : 1)
                         if looks * dx < 0 {
                             let what = leg.map { $0.end > t ? "\($0.kind) \($0.gait)" : "after \($0.kind) \($0.gait)" } ?? "start"
-                            backwards.append("\(story.id)\(crowded ? " (crowded)" : "") \(a.stickerID): \(what) at \(String(format: "%.1f", t))")
+                            backwards.append("\(story.id)\(crowded ? " (crowded)" : "")\(narrowWindow ? " (narrow)" : "") \(a.stickerID): \(what) at \(String(format: "%.1f", t))")
                         }
                     }
                 }
@@ -588,7 +621,7 @@ extension StageDirectorTests {
                         defer { t += 0.1 }
                         let s = plan.sample(at: t)
                         guard s.opacity > 0.5 else { continue }
-                        let tag = "\(story.id)\(crowded ? " (crowded)" : "") \(a.stickerID)"
+                        let tag = "\(story.id)\(crowded ? " (crowded)" : "")\(narrowWindow ? " (narrow)" : "") \(a.stickerID)"
                         let onFoot = s.position.y < 0.01 && t >= StageDirector.settle
                         // A child's sticker left in the water wades out as the story starts.
                         let settling = plan.legs.contains { $0.kind == .settle && $0.at <= t && t < $0.end }
@@ -666,5 +699,12 @@ extension StageDirectorTests {
             .map { "\($0.key) ×\($0.value.count) — first at \($0.value[0].components(separatedBy: " at ").last!)" }.sorted()
         #expect(backwards.isEmpty, "\(turned.count) travel backwards:\n\(turned.joined(separator: "\n"))")
         #expect(problems.isEmpty, "\(problems.count) problems:\n\(report.prefix(40).joined(separator: "\n"))")
+        // In a portrait window the visitors come in together, so the
+        // camera can show the whole cast (17 % of the time it could not,
+        // before `togetherPull`); the child's own stickers stay where the
+        // child put them, however far apart.
+        let wide = Double(spread.wide) / Double(max(spread.all, 1))
+        let wideEmpty = Double(spreadEmpty.wide) / Double(max(spreadEmpty.all, 1))
+        #expect(wideEmpty < 0.03 && wide < 0.35, "cast wider than the window \(Int(wide * 100)) % of the time, \(Int(wideEmpty * 100)) % on an empty canvas")
     }
 }

@@ -4,15 +4,21 @@ import Foundation
 /// frame, origin bottom-left): the visible part of the art, the part of it
 /// the device leaves clear (a phone's camera cutout, the home indicator),
 /// and screen furniture to keep stickers out from under (the story's pill).
+/// A window narrower than the art plays the story on all of it across and
+/// shows `window` of it at a time, following the story (`StoryCamera`).
 public struct StageScreen: Sendable {
     public var visible: StageRect
     public var clear: StageRect
     public var avoid: [StageRect]
+    /// How much across the window shows when it is narrower than the
+    /// stage; nil when it shows it all.
+    public var window: Double?
 
-    public init(visible: StageRect, clear: StageRect? = nil, avoid: [StageRect] = []) {
+    public init(visible: StageRect, clear: StageRect? = nil, avoid: [StageRect] = [], window: Double? = nil) {
         self.visible = visible
         self.clear = clear ?? visible
         self.avoid = avoid
+        self.window = window
     }
 }
 

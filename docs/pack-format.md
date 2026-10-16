@@ -68,8 +68,10 @@ never letterboxes:
 
 - **Windows wider than the art** are **centre-cropped top and bottom**,
   never panned. On an iPad in landscape that is a few percent per edge.
-- **Windows narrower than the art** (portrait, Split View) show the full
-  height and let the child pan sideways over the rest.
+- **Windows narrower than the art** (portrait, Split View, a narrow
+  phone) show the full height and let the child pan sideways over the
+  rest; a story there plays on the whole art and the camera follows it
+  (`docs/stage3d.md`, "Narrow windows").
 - **Wide art** (`backgroundWide` / `foregroundWide`) is how a pack avoids a
   heavy crop on tall iPhones: paint the same scene wider (2:1 is a good
   target: on an iPhone that leaves ~4 % cropped per edge instead of ~20 %)
@@ -358,8 +360,10 @@ preference, and/or an `area` of its own; both are about the sticker's
 bottom-left — the space saved positions use. The app goes down the list
 and takes the first feature with a free spot the window shows — the
 freest one, farthest from every sticker already there, earlier visitors
-included; a feature off screen (portrait shows only the middle of the
-art) or full is skipped. Then the `area`. When every choice is crowded
+included; a feature off screen or full is skipped. A window narrower than
+the art plays the story on all of it across, and its camera follows the
+story, so every feature counts there (`docs/stage3d.md`, "Narrow
+windows"). Then the `area`. When every choice is crowded
 it takes any spot in the first one on screen. Under Reduce Motion or
 calm mode every entrance is a plain fade-in. A sticker without a stage
 grows in the default area.
@@ -386,9 +390,10 @@ sky. They are measured on the finished art (draw a grid over the base
 background with the foreground on top) and describe where a sticker's
 **centre** sits when it is on that place — for a bird perching on a
 branch, a little above the branch line. A feature may have several areas
-(one per tree). The app keeps each to the part on screen: the edges of
-the art are cropped or panned away on narrow windows, which is why
-stages list a fallback. Story authors read the descriptions (`storycheck
+(one per tree). The app keeps each to the part on screen: the top and
+bottom bands are cropped away on wide windows, which is why stages list a
+fallback (a narrow window shows everything across, its camera following
+the story). Story authors read the descriptions (`storycheck
 -plan` prints them with the stickers that land on each) so the words put
 a sticker where the child will see it. `stickerart` copies them from
 `art.json` (`scene.features`) on install. A feature marked `air` is open

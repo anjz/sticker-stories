@@ -232,8 +232,15 @@ final class CanvasScene: SKScene {
         let motions: [UUID: MotionPlan]
         /// The story in space, in a pack with a space (`StoryStage`).
         let stage: StoryStage?
+        /// What the camera follows in a window narrower than the art
+        /// (`StoryCamera`).
+        let beats: [StoryCamera.Beat]
     }
     private var playSession: PlaySession?
+    /// Scene time until which the camera stays where the child panned it
+    /// during a story, and the scene time of its last step.
+    private var cameraHandsOffUntil: TimeInterval = 0
+    private var cameraSteppedAt: TimeInterval?
     /// Every live animation the pack declares (`StickerAnimation`), read
     /// once; the sheets themselves load per story (`liveLoaded`).
     private lazy var liveAnimations = StickerAnimation.available(in: pack)
@@ -595,6 +602,14 @@ final class CanvasScene: SKScene {
         guard worldOverflows, let view else { return }
         cameraNode.removeAction(forKey: Self.panHintActionKey)
         pans[touch] = PanInfo(startViewLocation: touch.location(in: view), startCamera: cameraNode.position)
+    }
+
+    /// A pan during a story leaves the view where the child put it for a
+    /// while before the camera follows the story again.
+    private func endPans(_ touches: Set<UITouch>) {
+        for touch in touches where pans.removeValue(forKey: touch) != nil && playSession != nil {
+            cameraHandsOffUntil = sceneTime + StoryCamera.handsOff
+        }
     }
 
     private func updatePan(for touch: UITouch) {
@@ -1006,7 +1021,7 @@ final class CanvasScene: SKScene {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches { pans.removeValue(forKey: touch) }
+        endPans(touches)
         guard !isPlayLocked else { return }
         for touch in touches {
             if let pending = pendingTrayTouches.removeValue(forKey: touch) {
@@ -1024,7 +1039,7 @@ final class CanvasScene: SKScene {
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches { pans.removeValue(forKey: touch) }
+        endPans(touches)
         guard !isPlayLocked else { return }
         for touch in touches {
             pendingTrayTouches.removeValue(forKey: touch)
@@ -1570,6 +1585,10 @@ final class CanvasScene: SKScene {
         }
         let runner = StickerEffectsRunner(
             triggers: stickerTriggers, targets: targets, everyone: pack.manifest.characters, policy: policy)
+        // What the camera follows: the story's own cues, not idle life.
+        let beats = storyBeats(
+            live: storyLive, faces: faces.triggers, effects: stickerTriggers, stage: stage, motions: motions,
+            visitors: visitors, stickers: stickerOf)
         // Everyone alive at rest: small, gentle actions now and then.
         if policy.allowsLiveAnimations, !policy.isCalm {
             storyLive += idleLife(
@@ -1615,8 +1634,69 @@ final class CanvasScene: SKScene {
             triggers: triggers.canvas, setting: pack.manifest.setting, policy: policy)
         playSession = PlaySession(
             runner: runner, canvasRunner: canvasRunner, applier: applier, emitters: emitterCoordinator(), clock: clock,
-            live: live, faces: faces, visitors: visitors, motions: motions, stage: stage)
+            live: live, faces: faces, visitors: visitors, motions: motions, stage: stage, beats: beats)
+        cameraHandsOffUntil = 0
+        cameraSteppedAt = nil
         if let stage { orderByDepth(stage) }
+    }
+
+    /// What the camera follows while the story plays (`StoryCamera`): its
+    /// actions, faces and effects, and every sticker's way in and moves —
+    /// not the child's stickers settling, nor making room.
+    private func storyBeats(
+        live: [LiveAnimationTrigger], faces: [ExpressionTrigger], effects: [EffectTrigger], stage: StoryStage?,
+        motions: [UUID: MotionPlan], visitors: [UUID: EntrancePlan], stickers: [UUID: String]
+    ) -> [StoryCamera.Beat] {
+        let lengths = Dictionary(
+            liveAnimations.map { ($0.liveKey, $0.frames.duration(.whole) ?? 2) }, uniquingKeysWith: { a, _ in a })
+        var beats = StoryCamera.beats(live: live, duration: { lengths[$0] }, faces: faces, effects: effects)
+        for (id, plan) in stage?.plans ?? [:] {
+            guard let sticker = stickers[id] else { continue }
+            for leg in plan.legs where (leg.kind == .entrance || leg.kind == .move) && leg.support != .off {
+                beats.append(StoryCamera.Beat(stickerID: sticker, instance: id, from: leg.at, to: leg.end))
+            }
+        }
+        for (id, plan) in visitors {
+            beats.append(StoryCamera.Beat(stickerID: plan.stickerID, instance: id, from: plan.at, to: plan.at + plan.duration))
+        }
+        for (id, plan) in motions {
+            guard let sticker = stickers[id] else { continue }
+            for leg in plan.legs where leg.stacking != .shuffle {
+                beats.append(StoryCamera.Beat(stickerID: sticker, instance: id, from: leg.at, to: leg.at + leg.duration))
+            }
+        }
+        return beats
+    }
+
+    /// In a window narrower than the art, the camera glides to keep the
+    /// story's beats in view (`StoryCamera`) — unless the child has a
+    /// finger on it, or panned it a moment ago.
+    private func followStory(_ session: PlaySession, at time: TimeInterval) {
+        let dt = cameraSteppedAt.map { min(max(sceneTime - $0, 0), 0.1) } ?? 0
+        cameraSteppedAt = sceneTime
+        guard worldOverflows, pans.isEmpty, sceneTime >= cameraHandsOffUntil else { return }
+        let nodes = allStickerNodes()
+        var focus: [StoryCamera.Focus] = []
+        for beat in StoryCamera.current(session.beats, at: time) {
+            for node in nodes {
+                guard beat.instance.map({ $0 == node.instanceID }) ?? (node.stickerID == beat.stickerID) else { continue }
+                // Someone not on the stage yet is in focus only on its way in.
+                guard beat.instance != nil || node.alpha > 0.05 else { continue }
+                let half = node.frame.width * node.content.width / 2
+                focus.append(StoryCamera.Focus(
+                    minX: Double(node.position.x - half), maxX: Double(node.position.x + half), since: beat.from))
+            }
+        }
+        let view = Double(size.width)
+        let target = StoryCamera.target(
+            center: Double(cameraNode.position.x), view: view,
+            world: Double(worldExtent.minX)...Double(worldExtent.maxX), focus: focus,
+            margin: Double(min(size.width * 0.06, stickerBaseSize * 0.3)))
+        // Under Reduce Motion it cuts instead of gliding.
+        let x = livePolicy.reduceMotion
+            ? target : StoryCamera.step(center: Double(cameraNode.position.x), toward: target, dt: dt, view: view)
+        cameraNode.position.x = CGFloat(x)
+        clampCamera()
     }
 
     /// Each sticker's idle actions (`IdleLife`), from its sidecars.
@@ -1683,11 +1763,10 @@ final class CanvasScene: SKScene {
             space: space, aspect: aspect, wide: artVariant == .wide,
             frame: StageSize(width: worldSize.width, height: worldSize.height))
         world.covers = stageCovers(space, wide: artVariant == .wide)
-        let visible = visibleRect.intersection(worldExtent)
+        let visible = storyStageRect
         let screen = StageScreen(
             visible: StageRect(minX: visible.minX, minY: visible.minY, maxX: visible.maxX, maxY: visible.maxY),
-            clear: clearStageRect(visible),
-            avoid: playbackPillRect.map { [StageRect(minX: $0.minX, minY: $0.minY, maxX: $0.maxX, maxY: $0.maxY)] } ?? [])
+            clear: clearStageRect(visible), avoid: storyAvoid, window: worldOverflows ? Double(size.width) : nil)
         let nodes = allStickerNodes()
         let drawing = { [weak self] (id: String) in self?.drawingBox(of: id) ?? CGRect(x: 0, y: 0, width: 1, height: 1) }
         let actors = StoryStage.actors(
@@ -1753,7 +1832,7 @@ final class CanvasScene: SKScene {
     /// visible part of the art (the tray is hidden in play).
     private func stageScene(sizes: [String: StageSize] = [:]) -> StagePlanner.Scene {
         let margin = stickerBaseSize * 0.45
-        let visible = visibleRect.intersection(worldExtent)
+        let visible = storyStageRect
         return StagePlanner.Scene(
             world: StageRect(minX: 0, minY: 0, maxX: worldSize.width, maxY: worldSize.height),
             usable: StageRect(
@@ -1761,9 +1840,29 @@ final class CanvasScene: SKScene {
                 maxX: visible.maxX - margin, maxY: visible.maxY - margin),
             visible: StageRect(minX: visible.minX, minY: visible.minY, maxX: visible.maxX, maxY: visible.maxY),
             stickerSize: stickerBaseSize, sizes: sizes, fronts: stickerFronts,
-            avoid: playbackPillRect.map { [StageRect(minX: $0.minX, minY: $0.minY, maxX: $0.maxX, maxY: $0.maxY)] } ?? [],
+            avoid: storyAvoid,
             anchorFeet: pack.manifest.staging?.standsOnFeet ?? false, feet: stickerFeet, doors: stickerDoors,
-            clear: clearStageRect(visible))
+            clear: clearStageRect(visible), window: worldOverflows ? Double(size.width) : nil)
+    }
+
+    /// Where a story plays, in world points: the art as the window shows
+    /// it, and all of it across when the window is narrower than the art —
+    /// the story is the same at every window size, and the camera follows
+    /// it (`followStory`).
+    private var storyStageRect: CGRect {
+        let visible = visibleRect.intersection(worldExtent)
+        guard worldOverflows else { return visible }
+        return CGRect(x: worldExtent.minX, y: visible.minY, width: worldExtent.width, height: visible.height)
+    }
+
+    /// What a story keeps clear: the playback pill — across the whole
+    /// stage when the camera moves under it.
+    private var storyAvoid: [StageRect] {
+        guard var pill = playbackPillRect else { return [] }
+        if worldOverflows {
+            pill = CGRect(x: worldExtent.minX, y: pill.minY, width: worldExtent.width, height: pill.height)
+        }
+        return [StageRect(minX: pill.minX, minY: pill.minY, maxX: pill.maxX, maxY: pill.maxY)]
     }
 
     /// The visible stage less what the device covers (a phone's camera
@@ -2048,6 +2147,7 @@ final class CanvasScene: SKScene {
         canvasEffects.applySnowCover(session.canvasRunner.snowCover)
         applyLive(session, at: time)
         applyFaces(session.faces, at: time)
+        followStory(session, at: time)
     }
 
     /// When a sticker last got where it is: the end of its latest move or
