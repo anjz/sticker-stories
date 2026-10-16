@@ -72,6 +72,10 @@ type attachSpec struct {
 type partSpec struct {
 	Sheet string `json:"sheet"`
 	At    [2]int `json:"at"`
+	// FadeTop fades the top of the piece in, over this fraction of its
+	// height: a limb laid over the body then has no outline where it
+	// joins it, its fur running into the body's.
+	FadeTop float64 `json:"fadeTop,omitempty"`
 }
 
 // animSpec is one animation: the sidecar's fields (docs/pack-format.md,

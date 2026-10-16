@@ -44,7 +44,9 @@ One file per sticker, so several can be rigged at once:
 - `parts`: `{ name: { "sheet", "at": [x, y] } }` — the piece of a sheet
   at (or nearest) that point. `parts` lists every piece with a point
   inside it and writes `<sticker>.<sheet>.pieces.png`, every piece boxed
-  and numbered.
+  and numbered. `fadeTop` (a fraction of the piece's height) fades its
+  top in: a limb laid **over** the body then joins it with no outline,
+  its fur running into the body's (the deer's near legs).
 - `bones`, `faces`, `idle`: as in the pack's rig, in the sticker image's
   pixels at `stickerSize` (768): measure them on the finished sticker.
 - `slots`: as in the pack's rig, except that an attachment is given by

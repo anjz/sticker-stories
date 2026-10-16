@@ -226,6 +226,7 @@ func (c *ctxt) buildRig(r *rigSpec, sheets map[string]*image.RGBA) (*manifest.Pu
 		if !ok {
 			return nil, nil, fmt.Errorf("part %s: no piece of sheet %s at %v (stickerrig parts lists them)", name, p.Sheet, p.At)
 		}
+		fadeTop(img, p.FadeTop)
 		pieces[name] = img
 	}
 	rig := &manifest.PuppetRig{
@@ -301,6 +302,23 @@ func (c *ctxt) buildRig(r *rigSpec, sheets map[string]*image.RGBA) (*manifest.Pu
 		rig.Parts[ct.name] = manifest.PuppetPart{Rect: box(rr[0]), Border: box(rr[1]), Pad: radius + 1}
 	}
 	return rig, atlas, nil
+}
+
+// fadeTop fades the top `fraction` of the piece in, smoothly from
+// transparent at its top edge to as drawn (the pixels are premultiplied).
+func fadeTop(img *image.RGBA, fraction float64) {
+	b := img.Bounds()
+	rows := int(math.Round(fraction * float64(b.Dy())))
+	for y := 0; y < rows; y++ {
+		t := (float64(y) + 0.5) / float64(rows)
+		k := t * t * (3 - 2*t)
+		for x := b.Min.X; x < b.Max.X; x++ {
+			i := img.PixOffset(x, b.Min.Y+y)
+			for c := 0; c < 4; c++ {
+				img.Pix[i+c] = uint8(math.Round(float64(img.Pix[i+c]) * k))
+			}
+		}
+	}
 }
 
 func round2(v float64) float64 { return math.Round(v*100) / 100 }
