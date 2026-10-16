@@ -172,7 +172,8 @@ The allowed list (anything else is an error):
 
 | Tag | Kind | Use |
 |---|---|---|
-| `[pause]` `[short pause]` `[long pause]` | pause | allowed by the parser but not used: the narration never stops (GUIDE "Voice performance"); storycheck warns |
+| `[pause]` `[short pause]` | pause | a beat, a held breath before a reveal (an ellipsis is a short one) |
+| `[long pause]` | pause | accepted but avoided: no long silences (GUIDE "Voice performance"); storycheck warns |
 | `[whispers]` | delivery | a secret, a sleeping friend, a hush |
 | `[softly]` | delivery | tender, close, bedtime |
 | `[slowly]` | delivery | a snail, a sleepy voice, suspense |

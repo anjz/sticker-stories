@@ -66,9 +66,8 @@ Every story must have:
 5. **Read-aloud craft.** Short sentences. Present-tense action or simple
    past. Concrete nouns and verbs. Rhythm and repetition (three of
    something; a refrain). Sound words that a narrator can perform (*drip
-   drop*, *rustle rustle*, *whoo-hoo*). The narration never stops for the
-   child: no "can you guess?" and no gap to fill in — a question to the
-   listener is rare and answered in the same breath. An ending line that lands — quiet, funny or warm — and would work
+   drop*, *rustle rustle*, *whoo-hoo*). A question to the listener now and
+   then, answered straight away — never a gap left for a guess. An ending line that lands — quiet, funny or warm — and would work
    as the last line a parent reads at bedtime.
 6. **Warmth and humour.** Gentle, physical, kind humour (a tumble into
    leaves, a hedgehog covered in leaves, a snail's grand expedition).
@@ -92,12 +91,11 @@ dries them. Aim for the wonder a four-year-old feels at a real fact.
 
 - **One fact per story, concrete and observable**, something the child
   could notice outside. No numbers, no big words.
-- **Told, never vouched for.** The fact is simply how things are in the
-  story — Butterfly lands on the clover and tastes it with her feet —
-  and the narrator never steps out to certify it: no "did you know", no
-  "it's true!", no "real butterflies really do", no closing "and that
-  part is real". Said plainly once, it is believed; vouched for, it
-  becomes a lesson. `storycheck` warns on these phrases.
+- **Told, not vouched for.** The fact is simply how things are in the
+  story — Butterfly lands on the clover and tastes it with her feet.
+  A light "did you know?" now and then is fine; what to avoid is the
+  narrator stepping out to certify it ("this is actually real —
+  butterflies really do taste with their feet!") as a habit.
 - **The story stays a story.** The fact is what a character does or finds
   out on the way to the turn, never a lesson read out; if the plot would
   survive deleting the fact, it is bolted on.
@@ -586,10 +584,11 @@ performer:
   line cut off (*"Wait, that's my—"*), ONE WORD IN CAPITALS the word that
   lands (once or twice a story). `[slowly]` or `[rushed]` sets the pace of
   a whole passage.
-- **No pauses.** The story keeps moving: no `[pause]`, `[short pause]`
-  or `[long pause]` (storycheck warns), no silence left for the child to
-  guess into, no ellipsis before a reveal. A hush is written in the words
-  (*and everyone went very, very quiet*) and read softly, not as a gap.
+- **Short pauses only.** An ellipsis, `[pause]` or `[short pause]` is a
+  held breath before a reveal — fine, one or two a story. No long
+  silences: no `[long pause]` (storycheck warns), no gap left for the
+  child to guess into. A deep hush is written in the words (*and
+  everyone went very, very quiet*) and read softly.
 - **A tag where the feeling changes**, right before the words it colours:
   `[whispers]` for a secret, `[excited]` when the game starts, `[curious]`
   for a peek, `[warmly]` / `[gently]` for comfort, `[playfully]` for a

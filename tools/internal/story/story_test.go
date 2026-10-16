@@ -275,19 +275,9 @@ func TestSoundCuesAndTagsAreValidated(t *testing.T) {
 		}, "stacked", true},
 		{"a pause", func(s *Story) {
 			l := s.Languages["en-US"]
-			l.Text = "And then… [short pause] " + l.Text
+			l.Text = "And then… [long pause] " + l.Text
 			s.Languages["en-US"] = l
-		}, "no pauses", true},
-		{"an announced fact", func(s *Story) {
-			l := s.Languages["en-US"]
-			l.Text += " Butterflies taste with their feet. It's true!"
-			s.Languages["en-US"] = l
-		}, "the fact is announced", true},
-		{"an announced fact in Spanish", func(s *Story) {
-			l := s.Languages["es-ES"]
-			l.Text += " ¿Sabías que las mariposas saborean con las patas?"
-			s.Languages["es-ES"] = l
-		}, "the fact is announced", true},
+		}, "no long silences", true},
 		{"only sound cues", func(s *Story) {
 			l := s.Languages["en-US"]
 			l.Text = "It rained. {sfx:rain solo} " + words(90, "word")

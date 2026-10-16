@@ -220,8 +220,8 @@ exactly per `FORMAT.md`:
 - **the narrator's performance** (GUIDE "Voice performance"): the feeling
   in the words first (v4 acts what the sentence says), rhythm in the
   punctuation and sentence length (… — CAPITALS, short sentences; there is
-  no speed setting), no pauses (the story never stops for the child to
-  guess), then two to four audio tags from the allowed list in FORMAT
+  no speed setting), a short pause at most where a held breath tells it
+  (no long silences, no gap for the child to guess), then two to four audio tags from the allowed list in FORMAT
   "Audio tags", each right before the words it colours, where the feeling
   genuinely changes — never stacked, never more than six, never a tag that
   names a sound (v4 would make it); a character's line named before it
