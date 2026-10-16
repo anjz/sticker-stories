@@ -62,11 +62,20 @@ magenta, to check that treetops and ridges are left out.
   so moving the area costs nothing. `wideArea` (optional) lays it into a
   box of its own on the wide rendition, which otherwise shows the 4:3
   placement with more around it: Forest's big trees stand at the 4:3
-  picture's edges and at the wide one's. With layers the background is only the far part of the
+  picture's edges and at the wide one's. `toBottom` (optional, a fraction
+  of the drawing's height) stretches its lowest part — the plants at a
+  tree's foot — down past the picture's bottom edge, the rest where it
+  is, so a sticker the child puts behind it never shows below it (Forest's
+  oak and birch, 0.1); it re-lays the layer for free and leaves the
+  planes in front as they are. With layers the background is only the far part of the
   scene, with no framing elements. `install` copies them to
   `art/layer-<id>.webp` (and `-wide`) and lists them in the manifest's
   `layers`; it also copies `space.json` (`author/scenespace`), without the
   tools' preview and line-up, into the manifest's `space`.
+- `scene.foregroundDown` (optional): `install` lowers both foreground
+  renditions by this fraction of the picture's height, the bottom cut
+  off — low plants painted a little above the bottom edge then run off
+  it (Forest: 0.04). Nothing is repainted.
 - `scene.layout` (optional): an image, relative to the art directory, whose
   composition the background follows — a concept picked from rough
   layouts (Beach's cove) — repainted in the style sheet's style. Sent as

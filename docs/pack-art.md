@@ -124,7 +124,11 @@ moves, moves.
   too), each its own layer so it has its own depth: two different kinds,
   with full leafy crowns, their trunks in the picture at its edges and
   their tops running off it — the middle stays open. `stickerart` prints the coverage after a scene
-  render and refuses to install over the limit.
+  render and refuses to install over the limit. **What stands at the
+  bottom runs off the bottom edge** — the foreground's plants, the
+  plants at a tree's foot — so a sticker the child puts behind them never
+  shows its feet below them (`scene.foregroundDown`, a layer's
+  `toBottom`).
 - **Outdoors**: no sun, moon, stars, rain or rainbow in the art — canvas
   effects draw those. A space pack's sky is part of the place (stars, the
   Earth) and stays.

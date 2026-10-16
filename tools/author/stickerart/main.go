@@ -214,6 +214,12 @@ type sceneSpec struct {
 	// on those elements then need their own wide areas (features[].
 	// wideAreas). ForegroundWide is ignored when this is set.
 	ForegroundWideOwn string `json:"foregroundWideOwn,omitempty"`
+	// ForegroundDown (optional) lowers the installed foreground, both
+	// renditions, by this fraction of the picture's height: bushes painted
+	// a little above the bottom edge run off it, so a sticker the child
+	// puts behind them never shows its feet below them. Nothing is
+	// repainted.
+	ForegroundDown float64 `json:"foregroundDown,omitempty"`
 	// Edits are painted into the finished background afterwards, in order:
 	// a feature added to the scene (a pond) without repainting the rest.
 	Edits []sceneEdit `json:"edits,omitempty"`
@@ -269,10 +275,26 @@ type sceneLayer struct {
 	// more around it: a tree at the 4:3 picture's edge would stand well
 	// inside the wide one, whole.
 	WideArea *stickerimg.FaceBox `json:"wideArea,omitempty"`
+	// ToBottom (optional, with Area) stretches the lowest part of the
+	// drawing — this fraction of its height, the bushes at a tree's foot —
+	// down past the picture's bottom edge, so a sticker behind the layer
+	// never shows below it; everything above stays where it is.
+	ToBottom float64 `json:"toBottom,omitempty"`
 }
 
 // placement is how a placed layer is laid, for its fingerprints.
 func (l sceneLayer) placement() string {
+	p := l.where()
+	if l.ToBottom > 0 {
+		p += fmt.Sprintf(" to bottom %g", l.ToBottom)
+	}
+	return p
+}
+
+// where is where a placed layer stands, for the fingerprints of the planes
+// in front of it: stretching its foot past the bottom edge (ToBottom)
+// changes nothing they were painted against.
+func (l sceneLayer) where() string {
 	if l.WideArea == nil {
 		return fmt.Sprint(*l.Area)
 	}
@@ -1206,7 +1228,7 @@ func (r *renderer) sceneLayer(l sceneLayer, behindFP string, behind []string, sh
 		// depend on what is behind it; the layer as laid does (for what
 		// is painted in front of it).
 		drawingFP := hashOf("placed layer", placedLayerVersion, l.ID, l.Prompt, r.o.quality)
-		return hashOf(behindFP, drawingFP, l.placement()), r.placedLayer(l, drawingFP, base, wideOut, sheet)
+		return hashOf(behindFP, drawingFP, l.where()), r.placedLayer(l, drawingFP, base, wideOut, sheet)
 	}
 	if r.upToDate(base, fp) && r.upToDate(wideOut, wideFP) {
 		r.say("· %s up to date", name)
@@ -1298,7 +1320,7 @@ func (r *renderer) placedLayer(l sceneLayer, fp, base, wideOut string, sheet []b
 	if err != nil {
 		return err
 	}
-	wide, err := layInto(element, *l.Area, wideW, baseH)
+	wide, err := layInto(element, *l.Area, wideW, baseH, l.ToBottom)
 	if err != nil {
 		return fmt.Errorf("%s: %w", name, err)
 	}
@@ -1306,7 +1328,7 @@ func (r *renderer) placedLayer(l sceneLayer, fp, base, wideOut string, sheet []b
 		return err
 	}
 	if l.WideArea != nil {
-		own, err := layInto(element, *l.WideArea, wideW, baseH)
+		own, err := layInto(element, *l.WideArea, wideW, baseH, l.ToBottom)
 		if err != nil {
 			return fmt.Errorf("%s (wide): %w", name, err)
 		}
@@ -1327,7 +1349,7 @@ func (r *renderer) placedLayer(l sceneLayer, fp, base, wideOut string, sheet []b
 // layInto lays the element's drawing (its opaque part) into the box on a
 // transparent w×h picture: as big as fits, centred across, its base on the
 // box's bottom edge.
-func layInto(element *image.RGBA, box stickerimg.FaceBox, w, h int) (*image.RGBA, error) {
+func layInto(element *image.RGBA, box stickerimg.FaceBox, w, h int, toBottom float64) (*image.RGBA, error) {
 	eb := element.Bounds()
 	x0, y0, x1, y1 := eb.Max.X, eb.Max.Y, eb.Min.X, eb.Min.Y
 	for y := eb.Min.Y; y < eb.Max.Y; y++ {
@@ -1354,8 +1376,40 @@ func layInto(element *image.RGBA, box stickerimg.FaceBox, w, h int) (*image.RGBA
 	out := image.NewRGBA(image.Rect(0, 0, w, h))
 	left := int(math.Round(box.X*float64(w) + (bw-float64(sw))/2))
 	top := int(math.Round((box.Y+box.Height)*float64(h))) - sh
+	// Its lowest part stretched down past the bottom edge (1 % of the
+	// picture beyond it), the rest where it is.
+	if gap := h + h/100 - (top + sh); toBottom > 0 && gap > 0 {
+		cut := sh - int(math.Round(toBottom*float64(sh)))
+		upper := scaled.SubImage(image.Rect(0, 0, sw, cut)).(*image.RGBA)
+		lower := stickerimg.Resize(stickerimg.Centre(scaled.SubImage(image.Rect(0, cut, sw, sh)).(*image.RGBA), sw), sw, sh-cut+gap)
+		draw.Draw(out, image.Rect(left, top, left+sw, top+cut), upper, image.Point{}, draw.Over)
+		draw.Draw(out, image.Rect(left, top+cut, left+sw, top+sh+gap), lower, image.Point{}, draw.Over)
+		return out, nil
+	}
 	draw.Draw(out, image.Rect(left, top, left+sw, top+sh), scaled, image.Point{}, draw.Over)
 	return out, nil
+}
+
+// lowerImage writes src moved down by `fraction` of its height (its bottom
+// cut off, transparent above) to dst.
+func lowerImage(src, dst string, fraction float64) error {
+	data, err := os.ReadFile(src)
+	if err != nil {
+		return err
+	}
+	img, err := stickerimg.Decode(data)
+	if err != nil {
+		return err
+	}
+	b := img.Bounds()
+	dy := int(math.Round(fraction * float64(b.Dy())))
+	out := image.NewRGBA(b)
+	draw.Draw(out, b.Add(image.Pt(0, dy)), img, b.Min, draw.Src)
+	enc, err := stickerimg.Encode(out)
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(dst, enc, 0o644)
 }
 
 // splitWideImage writes a transparent wide plane and the base cut from its
@@ -1915,6 +1969,13 @@ func runInstall(args []string) error {
 			continue
 		}
 		rel := "art/" + n + ".webp"
+		if down := c.cfg.Scene.ForegroundDown; down > 0 && strings.HasPrefix(n, "foreground") {
+			lowered := filepath.Join(outDir, "art", n+".lowered.png")
+			if err := lowerImage(src, lowered, down); err != nil {
+				return err
+			}
+			src = lowered
+		}
 		did, err := stickerimg.InstallWebP(src, filepath.Join(c.packDir, rel), cache)
 		if err != nil {
 			return err
