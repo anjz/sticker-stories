@@ -208,6 +208,8 @@ func TestValidationFailures(t *testing.T) {
 		{"unknown canvas effect", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:blizzard}"; s.Languages["en-US"] = l }, "unknown canvas effect"},
 		{"canvas effect for the wrong setting", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:dimlight}"; s.Languages["en-US"] = l }, `suits indoors packs; this pack's setting is "outdoors"`},
 		{"canvas cue with sticker params", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain loop}"; s.Languages["en-US"] = l }, "only an intensity and a duration"},
+		{"stop with nothing running", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain stop}"; s.Languages["en-US"] = l }, "no rain is running to stop"},
+		{"stop with a duration", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain} rain {canvas:rain stop 4s}"; s.Languages["en-US"] = l }, "a stop takes nothing else"},
 		{"canvas cue too short", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain 0.5s}"; s.Languages["en-US"] = l }, "stays on for 1–120 s"},
 	}
 	for _, tc := range cases {

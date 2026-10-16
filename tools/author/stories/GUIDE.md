@@ -532,8 +532,9 @@ a pack may use is decided by its **`setting`** in `manifest.json`:
 | `underwater` | `bubbles` (bath time, blowing bubbles, a party; under the sea, something bubbling up), `sunrays` (a bright day under the sea, swimming up towards the light), `ripples` (shallow water, a sunny lagoon, calm and playful), `deepwater` (diving deeper, exploring, bedtime under the sea; never darkness as a threat), `glowplankton` (a little magic in the dark sea; over deepwater), `current` (swimming along, being carried away, a whoosh), `sandcloud` (something stirs, hide and seek, digging in the sand) | the sentence where the water or the light changes |
 | `none` | nothing — the pack's stories use sticker effects only | — |
 
-Grammar: `{canvas:rain}`, `{canvas:rain 0.8 14s}` (intensity, then how long
-it stays). See `FORMAT.md`, "Canvas cues".
+Grammar: `{canvas:rain}`, `{canvas:rain 0.8}` (intensity), and
+`{canvas:rain stop}` on the word where it ends. See `FORMAT.md`, "Canvas
+cues".
 
 - **Show the weather the words tell.** Whenever the story puts weather or
   light into the scene that the pack's setting has an effect for — snow
@@ -549,8 +550,18 @@ it stays). See `FORMAT.md`, "Canvas cues".
   that): pick the biggest changes when more are mentioned.
 - **The story leads, the effect follows.** Write the rain into the words
   (*plip, plop; pitter-patter*) and cue `{canvas:rain}` a beat before them:
-  it takes a moment to build up (fog longest). Let the duration cover the
-  beats it belongs to and no more; it clears on its own.
+  it takes a moment to build up (fog longest).
+- **The words end it, with a stop.** Weather the story keeps for a while
+  (rain, fog, clouds, fireflies, wind that blows on) ends where the words
+  end it: `{canvas:rain stop}` just before *"…and the rain stopped"*, or
+  on the last words that belong to it. The stop is timed on the real
+  narration, so the rain clears exactly there — never guess a duration
+  in seconds (`14s`) for weather that has words around it. A short
+  moment (a rainbow, a gust, confetti, a shooting star) needs no stop;
+  its default length suits it. Anything whose words carry on to the end
+  of the story without a stop should be held weather (night, snow) or
+  carry on visibly — check that the picture never shows rain after the
+  words say it has stopped, or a moon after morning.
 - **Night stays night, snow stays snow.** The time of day — `night`,
   `sunset`, `dimlight` — holds until the words change it or the story
   ends, whatever its duration: nothing brightens by itself; and snow keeps
@@ -558,7 +569,8 @@ it stays). See `FORMAT.md`, "Canvas cues".
   Snow also settles on the ground and stays there after it stops, until the
   sunshine or the rain melts it — so a story that melts the snow says so. If the day comes back, the words
   say so ("In the morning…") and `{canvas:sunshine}` (indoors
-  `{canvas:windowlight}`) brings it.
+  `{canvas:windowlight}`) brings it, or `{canvas:night stop}` ends the
+  night there.
 - **Classic shapes** that earn one: rain → sunshine → rainbow as a story
   resolves; fog that lifts as something is found; sunshine as the forest
   wakes; night or dimlight as the story settles to sleep.

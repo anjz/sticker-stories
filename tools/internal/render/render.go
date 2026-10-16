@@ -206,6 +206,10 @@ type Trigger struct {
 	Intensity  float64 `json:"intensity,omitempty"`
 	Color      string  `json:"color,omitempty"`
 	Hold       bool    `json:"hold,omitempty"`
+	// StopAt is when a {canvas:… stop} cue ends this canvas effect (0 =
+	// none), on the same timeline as At: RangeStops turns it into the
+	// duration, and HoldLights leaves the effect be.
+	StopAt float64 `json:"-"`
 }
 
 // Sidecar is the effects trigger file.
@@ -232,6 +236,10 @@ func Triggers(cues []story.Cue, tl *Timeline, pack story.Manifest) ([]Trigger, e
 			at = 0
 		}
 		at = round(at)
+		if c.Canvas && c.Stop {
+			stopCanvas(out, c.Effect, at)
+			continue
+		}
 		if c.Effect == story.EnterEffect && !c.Canvas {
 			t := Trigger{At: at, Sticker: c.Sticker, Enter: true, By: c.By}
 			if c.WordIndex < len(tl.Words) {
@@ -299,6 +307,37 @@ func Triggers(cues []story.Cue, tl *Timeline, pack story.Manifest) ([]Trigger, e
 	return out, nil
 }
 
+// stopCanvas marks the latest canvas effect of that kind started before
+// at to end there (StopAt); RangeStops sets its duration once the triggers
+// are on the final timeline.
+func stopCanvas(triggers []Trigger, effect string, at float64) {
+	for i := len(triggers) - 1; i >= 0; i-- {
+		t := &triggers[i]
+		if t.Sticker == "" && t.Effect == effect && t.At <= at && t.StopAt == 0 {
+			t.StopAt = at
+			return
+		}
+	}
+}
+
+// RangeStops gives every stopped canvas effect its duration: full
+// strength up to the stop word, clearing from there (the duration includes
+// the ramp-out), within the effect's duration range. Only the stop
+// decides how long it stays. Run it on the final timeline.
+func RangeStops(triggers []Trigger, cat *story.Catalog) {
+	for i, t := range triggers {
+		if t.StopAt == 0 {
+			continue
+		}
+		fx := cat.Canvas[t.Effect]
+		d := round(t.StopAt - t.At + fx.RampOut)
+		if len(fx.DurationRange) == 2 {
+			d = max(fx.DurationRange[0], min(d, fx.DurationRange[1]))
+		}
+		triggers[i].Duration = d
+	}
+}
+
 // LightChanges are the canvas effects that change the light: a held light
 // gives way to the next one of these (morning sunshine after the night, the
 // night after a sunset).
@@ -324,26 +363,27 @@ var Held = map[string]map[string]bool{
 // HoldLights lengthens every held effect so it lasts until the next effect
 // that ends it (crossfading into it: it starts clearing as that one starts
 // building) or, when none comes, until the story ends at end seconds (it
-// starts clearing only then). Durations only grow, and stay within the
-// effect's range.
+// starts clearing only then). An ender always ends it there, even when the
+// authored duration was longer (no moon after the sun is up); without
+// one, durations only grow. All stay within the effect's range.
 func HoldLights(triggers []Trigger, end float64, cat *story.Catalog) {
 	for i, t := range triggers {
 		enders, held := Held[t.Effect]
-		if t.Sticker != "" || !held {
+		if t.Sticker != "" || !held || t.StopAt > 0 {
 			continue
 		}
 		fx := cat.Canvas[t.Effect]
-		until := end + fx.RampOut
+		until, ended := end+fx.RampOut, false
 		for _, next := range triggers {
-			if next.Sticker == "" && enders[next.Effect] && next.At > t.At {
-				until = min(until, next.At+fx.RampOut)
+			if next.Sticker == "" && enders[next.Effect] && next.At > t.At && next.At+fx.RampOut < until {
+				until, ended = next.At+fx.RampOut, true
 			}
 		}
 		d := round(until - t.At)
 		if len(fx.DurationRange) == 2 {
 			d = min(d, fx.DurationRange[1])
 		}
-		if d > t.Duration {
+		if ended || d > t.Duration {
 			triggers[i].Duration = d
 		}
 	}

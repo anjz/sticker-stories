@@ -205,6 +205,10 @@ type PlacedTag struct {
 // sticker after either.
 const (
 	CanvasTarget = "canvas"
+	// CanvasStop ends a canvas effect on the word it is on ({canvas:rain
+	// stop}): the effect started before it clears from there, so it lasts
+	// exactly as long as the words keep it.
+	CanvasStop = "stop"
 	SoundTarget  = "sfx"
 )
 
@@ -320,6 +324,7 @@ type Cue struct {
 	Loop       bool
 	Hold       bool    // a sticker effect's hold, or a live cue that stops at the pause frame
 	Resume     bool    // a live cue that plays on from the pause frame
+	Stop       bool    // a canvas cue that ends the effect started before it
 	Color      string  // "#RRGGBB" or ""
 	Duration   float64 // seconds, 0 = default
 	Intensity  float64 // 0 = default; -1 = explicitly zero
@@ -723,6 +728,8 @@ func parseCue(inner string) (Cue, error) {
 			c.Hold = true
 		case p == "solo":
 			c.Solo = true
+		case p == CanvasStop && c.Canvas:
+			c.Stop = true
 		case p == LiveResume && c.Effect == LiveEffect:
 			c.Resume = true
 		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind == "" && (p == GoTo || p == GoOn || p == GoUnder || p == GoAway || p == GoBack):
@@ -1190,8 +1197,12 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 				continue
 			}
 			if c.Canvas {
-				canvasCues++
-				shape = append(shape, CanvasTarget+":"+c.Effect)
+				if c.Stop {
+					shape = append(shape, CanvasTarget+":"+c.Effect+":"+CanvasStop)
+				} else {
+					canvasCues++
+					shape = append(shape, CanvasTarget+":"+c.Effect)
+				}
 				validateCanvasCue(&is, lang, c, m, cat)
 				continue
 			}
@@ -1539,8 +1550,15 @@ var canvasWords = map[string]map[string]*regexp.Regexp{
 // sticker, not the weather.
 func validateCanvasMentions(is *Issues, lang string, nar Narration, m Manifest, cat *Catalog, inStory map[string]bool) {
 	cued := map[string]bool{}
+	running := map[string]bool{}
 	for _, c := range nar.Cues {
-		if c.Canvas {
+		switch {
+		case c.Canvas && c.Stop && !running[c.Effect]:
+			is.errorf("%s: cue %s: no %s is running to stop; start it first ({%s:%s})", lang, c.Raw, c.Effect, CanvasTarget, c.Effect)
+		case c.Canvas && c.Stop:
+			running[c.Effect] = false
+		case c.Canvas:
+			running[c.Effect] = true
 			cued[c.Effect] = true
 		}
 	}
@@ -1870,7 +1888,10 @@ func validateCanvasCue(is *Issues, lang string, c Cue, m Manifest, cat *Catalog)
 		is.errorf("%s: cue %s: %s suits %s packs; this pack's setting is %q", lang, c.Raw, c.Effect, strings.Join(e.Settings, "/"), setting)
 	}
 	if c.Repeat > 0 || c.Loop || c.Hold || c.Color != "" {
-		is.errorf("%s: cue %s: a canvas effect takes only an intensity and a duration (Ns)", lang, c.Raw)
+		is.errorf("%s: cue %s: a canvas effect takes only an intensity and a duration (Ns), or stop", lang, c.Raw)
+	}
+	if c.Stop && (c.Duration > 0 || c.Intensity != 0) {
+		is.errorf("%s: cue %s: a stop takes nothing else; it ends the %s started before it", lang, c.Raw, c.Effect)
 	}
 	if c.Duration > 0 && !inRange(c.Duration, e.DurationRange) {
 		is.errorf("%s: cue %s: %s stays on for %g–%g s", lang, c.Raw, c.Effect, e.DurationRange[0], e.DurationRange[1])
@@ -1978,6 +1999,8 @@ func Cover(stories []*Story, m Manifest, expected int) Coverage {
 				case cue.Sound:
 					usesSound = true
 					usesSolo = usesSolo || cue.Solo
+					continue
+				case cue.Canvas && cue.Stop:
 					continue
 				case cue.Canvas:
 					key = CanvasTarget + ":" + cue.Effect

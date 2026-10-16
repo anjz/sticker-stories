@@ -359,17 +359,51 @@ func TestHeldLightsLastUntilTheLightChangesOrTheEnd(t *testing.T) {
 	if tr[2].Duration != 0 || tr[3].Duration != 5 {
 		t.Errorf("other triggers changed: %+v", tr[2:])
 	}
-	// A morning ends the night where the sun comes up; an authored duration
-	// longer than needed stays.
+	// A morning ends the night where the sun comes up, even when the night
+	// was authored longer: no moon once the sun is up.
 	tr = []Trigger{{At: 10, Effect: "night", Duration: 50}, {At: 20, Effect: "sunshine", Duration: 8}}
 	HoldLights(tr, 70, cat)
-	if tr[0].Duration != 50 {
-		t.Errorf("a longer authored night was cut to %g", tr[0].Duration)
+	if want := 20 + cat.Canvas["night"].RampOut - 10; tr[0].Duration != want {
+		t.Errorf("the night lasts %g s past the morning, want %g", tr[0].Duration, want)
 	}
 	// Snow keeps falling through the night, and stops when the sun comes out.
 	tr = []Trigger{{At: 5, Effect: "snow", Duration: 10}, {At: 20, Effect: "night", Duration: 10}, {At: 40, Effect: "sunshine", Duration: 8}}
 	HoldLights(tr, 70, cat)
 	if want := 40 + cat.Canvas["snow"].RampOut - 5; tr[0].Duration != want {
 		t.Errorf("snow lasts %g s, want %g", tr[0].Duration, want)
+	}
+}
+
+func TestStopEndsACanvasEffectOnItsWord(t *testing.T) {
+	cat, err := story.LoadCatalog("../../../docs/effects/effects.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	tr := []Trigger{
+		{At: 0, Effect: "night", Duration: 10},
+		{At: 4, Effect: "rain", Duration: 30},
+		{At: 5, Sticker: "fox", Effect: "hop"},
+	}
+	stopCanvas(tr, "rain", 9)
+	stopCanvas(tr, "night", 20)
+	stopCanvas(tr, "fog", 21) // nothing to stop: ignored
+	// The lead-in shifts every time but a first-word one (storyaudio).
+	for i := range tr {
+		if tr[i].At > 0 {
+			tr[i].At += 1
+		}
+		if tr[i].StopAt > 0 {
+			tr[i].StopAt += 1
+		}
+	}
+	HoldLights(tr, 70, cat)
+	RangeStops(tr, cat)
+	// Rain clears from the stop word: 10 − 5 + its ramp-out, not 30 s.
+	if want := 10 - 5 + cat.Canvas["rain"].RampOut; tr[1].Duration != want {
+		t.Errorf("rain lasts %g s, want %g", tr[1].Duration, want)
+	}
+	// A held night stopped by the words is not held to the end.
+	if want := 21 + cat.Canvas["night"].RampOut; tr[0].Duration != want {
+		t.Errorf("night lasts %g s, want %g", tr[0].Duration, want)
 	}
 }

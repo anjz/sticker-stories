@@ -422,6 +422,7 @@ Weather and light over the whole scene use the reserved target `canvas`
 {canvas:rain 0.8 14s}     intensity 0.8, stays on for 14 s (1–120 s)
 {canvas:fog 0.4}          thin mist
 {canvas:sunshine} {canvas:rainbow 10s}
+{canvas:rain stop}        the rain started before clears from this word
 ```
 
 - `effect` is one of the names in `docs/effects/effects.json` under
@@ -435,7 +436,14 @@ Weather and light over the whole scene use the reserved target `canvas`
   `current`, `sandcloud` (underwater packs). The pack's
   `setting` in its manifest decides which are allowed; a `none` pack
   allows no canvas cues. Only an intensity and a duration (`Ns`) may
-  follow — no `xN`, `loop`, `hold` or colour.
+  follow — no `xN`, `loop`, `hold` or colour — or `stop` alone.
+- **`stop` ends it on the words.** `{canvas:<effect> stop}` ends the
+  latest effect of that kind started before it: it stays at full strength
+  up to the stop's word and clears from there. `storyaudio` sets the
+  duration from the real narration (stop − start + the ramp-out), so it
+  wins over a duration or a hold; a stop with nothing of that kind
+  running is an error. Prefer it to a guessed `Ns` whenever words say
+  where the weather ends.
 - A canvas cue fires on the word that follows it like any other, and the
   effect takes a moment to build up (fog ~2.5 s, rain ~1 s), so put it a
   beat before the words it illustrates. The duration is how long it stays,
@@ -447,7 +455,8 @@ Weather and light over the whole scene use the reserved target `canvas`
   however short their duration (`storyaudio` lengthens them to the real
   narration; a duration is only a minimum). So a story that stays at night
   needs nothing more; one where the day comes back says so and cues it
-  (`{canvas:sunshine}` on "In the morning…").
+  (`{canvas:sunshine}` on "In the morning…"), which always ends the night
+  there, or ends it with `{canvas:night stop}`.
 - Canvas effects **follow the words**: whenever the text puts weather or
   light the setting can show into the scene (snow, rain, fog, sunset,
   night, clouds, wind, autumn leaves, fireflies, a party, bubbles,

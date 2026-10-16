@@ -162,7 +162,12 @@ included). The exceptions are the light of the time of day and snow: a
 falling until the sun comes out (`sunshine`, `sunrays`) or `rain` washes it
 away — or the story ends. `storyaudio` lengthens their triggers' duration
 to that on the real narration (`render.HoldLights`), so the day never
-comes back, nor the snow stops, unless the words bring it.
+comes back, nor the snow stops, unless the words bring it — and the light
+that brings it always ends them there. Any canvas effect can also be ended
+on a word by the story (`{canvas:rain stop}`, `tools/author/stories/FORMAT.md`):
+`storyaudio` then writes the duration from the narration's timing, so the
+rain clears exactly where the words stop it. The app only ever sees `at`
+and `duration`.
 
 Each canvas effect suits one or more pack **`setting`**s
 (`docs/pack-format.md`: `outdoors`, `indoors`, `space`, `underwater` or
