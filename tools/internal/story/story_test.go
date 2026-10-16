@@ -52,8 +52,8 @@ func goodStory() *Story {
 		Featured: []string{"fox", "rabbit", "tree"}, Supporting: []string{"flower"},
 		Tags: []string{"friendship", "funny"}, Premise: "A race that ties.", Inspiration: "Aesop, turned.", Lesson: "Finish together.",
 		Languages: map[string]Localization{
-			"en-US": {Title: "The Race", Text: "{flower:enter} {flower:float loop 0.4} {tree:enter} Ready, steady, {fox:enter} {rabbit:enter} {fox:hop} {rabbit:hop} go! " + beats(90, "hop") + " {fox:hearts} friends."},
-			"es-ES": {Title: "La carrera", Text: "{flower:enter} {flower:float loop 0.4} {tree:enter} Preparados, listos, {fox:enter} {rabbit:enter} {fox:hop} {rabbit:hop} ya! " + beats(90, "salta") + " {fox:hearts} amigos."},
+			"en-US": {Title: "The Race", Text: "{flower:enter} {flower:float loop 0.4} {tree:enter} Ready, steady, {fox:enter} {rabbit:enter} {fox:hop} {rabbit:hop} go! " + beats(115, "hop") + " {fox:hearts} friends."},
+			"es-ES": {Title: "La carrera", Text: "{flower:enter} {flower:float loop 0.4} {tree:enter} Preparados, listos, {fox:enter} {rabbit:enter} {fox:hop} {rabbit:hop} ya! " + beats(115, "salta") + " {fox:hearts} amigos."},
 		},
 	}
 }
@@ -273,6 +273,21 @@ func TestSoundCuesAndTagsAreValidated(t *testing.T) {
 			l.Text = "[excited] [whispers] " + l.Text
 			s.Languages["en-US"] = l
 		}, "stacked", true},
+		{"a pause", func(s *Story) {
+			l := s.Languages["en-US"]
+			l.Text = "And then… [short pause] " + l.Text
+			s.Languages["en-US"] = l
+		}, "no pauses", true},
+		{"an announced fact", func(s *Story) {
+			l := s.Languages["en-US"]
+			l.Text += " Butterflies taste with their feet. It's true!"
+			s.Languages["en-US"] = l
+		}, "the fact is announced", true},
+		{"an announced fact in Spanish", func(s *Story) {
+			l := s.Languages["es-ES"]
+			l.Text += " ¿Sabías que las mariposas saborean con las patas?"
+			s.Languages["es-ES"] = l
+		}, "the fact is announced", true},
 		{"only sound cues", func(s *Story) {
 			l := s.Languages["en-US"]
 			l.Text = "It rained. {sfx:rain solo} " + words(90, "word")

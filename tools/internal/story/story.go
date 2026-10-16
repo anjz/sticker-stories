@@ -25,14 +25,14 @@ import (
 // SupportedSchema is the only story.json schema this package accepts.
 const SupportedSchema = 1
 
-// Word budgets per language (words excluding cues). Narration at a gentle
-// pace runs ~130–150 words a minute; 30–60 s ⇒ roughly 65–160 words with
-// a target band inside that.
+// Word budgets per language (words excluding cues). Eleven v4 narration
+// with its sounds mixed in runs about two words a second; a 50–80 s story
+// is about 100–150 words, the target band, inside a looser hard range.
 const (
 	MinWords       = 65
-	MaxWords       = 160
-	TargetMinWords = 80
-	TargetMaxWords = 140
+	MaxWords       = 170
+	TargetMinWords = 100
+	TargetMaxWords = 150
 	MaxTitleWords  = 6
 	MaxFeatured    = 4
 	MaxSupporting  = 4
@@ -796,6 +796,28 @@ func parseCue(inner string) (Cue, error) {
 	return c, nil
 }
 
+// announcedFacts are phrases that step out of the story to vouch for a
+// fact ("butterflies really do taste with their feet — it's true!"): the
+// learning is shown by what happens, never certified by the narrator.
+var announcedFacts = map[string]*regexp.Regexp{
+	"en-US": regexp.MustCompile(`(?i)\b(did you know|fun fact|true fact|it'?s (really )?true|it is (really )?true|that'?s (really )?true|really true|(this|that|it) is real|(this|that|it)'?s real|in real life|real (ones|life)|really do|really does)\b`),
+	"es-ES": regexp.MustCompile(`(?i)(¿?sabías que|dato curioso|es (muy )?verdad|es (de )?verdad|es real|en la vida real|de verdad de la buena|aunque no lo creáis|aunque no lo creas)`),
+}
+
+// AnnouncedFacts returns the phrases in a text that announce a fact as
+// real or true instead of letting the story show it.
+func AnnouncedFacts(lang, text string) []string {
+	re := announcedFacts[lang]
+	if re == nil {
+		return nil
+	}
+	var out []string
+	for _, m := range re.FindAllString(text, -1) {
+		out = append(out, strings.ToLower(m))
+	}
+	return out
+}
+
 // WordCount counts narration words (cues excluded).
 func WordCount(text string) int {
 	_, plain, _ := ParseCues(text)
@@ -1151,6 +1173,9 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		if strings.ContainsAny(plain, "*_#`") {
 			is.warnf("%s: text contains Markdown-looking characters", lang)
 		}
+		if said := AnnouncedFacts(lang, plain); len(said) > 0 {
+			is.warnf("%s: the fact is announced (%s); let the story show it, never say it is real or true", lang, strings.Join(said, ", "))
+		}
 		if bad := ForbiddenWords(lang, plain); len(bad) > 0 {
 			is.errorf("%s: forbidden words: %s", lang, strings.Join(bad, ", "))
 		}
@@ -1486,6 +1511,9 @@ func validateTags(is *Issues, lang string, nar Narration) {
 	for i, t := range nar.Tags {
 		if tag, _ := LookupAudioTag(t.Name); tag.Experimental {
 			experimental++
+		}
+		if isPause(t.Name) {
+			is.warnf("%s: %s: no pauses; the narration never stops for the child to guess or wait, it keeps telling", lang, t.Raw)
 		}
 		if i > 0 && nar.Tags[i-1].WordIndex == t.WordIndex && !isPause(t.Name) && !isPause(nar.Tags[i-1].Name) {
 			is.warnf("%s: tags %s and %s stacked on one word; one direction at a time", lang, nar.Tags[i-1].Raw, t.Raw)
