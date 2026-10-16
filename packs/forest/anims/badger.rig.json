@@ -33,6 +33,21 @@
       ],
       "pad": 20
     },
+    "brow": {
+      "rect": [
+        1445,
+        455,
+        36,
+        16
+      ],
+      "border": [
+        1483,
+        455,
+        76,
+        56
+      ],
+      "pad": 20
+    },
     "eye": {
       "rect": [
         883,
@@ -50,13 +65,13 @@
     },
     "eyeClosed": {
       "rect": [
-        1303,
+        1157,
         455,
         51,
         28
       ],
       "border": [
-        1356,
+        1210,
         455,
         91,
         68
@@ -65,13 +80,13 @@
     },
     "eyeHappy": {
       "rect": [
-        1449,
+        1303,
         455,
         49,
         27
       ],
       "border": [
-        1500,
+        1354,
         455,
         89,
         67
@@ -135,66 +150,6 @@
         0,
         390,
         368
-      ],
-      "pad": 20
-    },
-    "mouth": {
-      "rect": [
-        1673,
-        455,
-        46,
-        20
-      ],
-      "border": [
-        1721,
-        455,
-        86,
-        60
-      ],
-      "pad": 20
-    },
-    "mouthLaugh": {
-      "rect": [
-        1157,
-        455,
-        51,
-        35
-      ],
-      "border": [
-        1210,
-        455,
-        91,
-        75
-      ],
-      "pad": 20
-    },
-    "mouthO": {
-      "rect": [
-        1591,
-        455,
-        19,
-        27
-      ],
-      "border": [
-        1612,
-        455,
-        59,
-        67
-      ],
-      "pad": 20
-    },
-    "mouthSad": {
-      "rect": [
-        1809,
-        455,
-        36,
-        16
-      ],
-      "border": [
-        1847,
-        455,
-        76,
-        56
       ],
       "pad": 20
     },
@@ -297,12 +252,6 @@
       "parent": "face",
       "x": 206,
       "y": 430
-    },
-    {
-      "id": "mouth",
-      "parent": "face",
-      "x": 168,
-      "y": 553
     }
   ],
   "slots": [
@@ -498,19 +447,26 @@
       "default": "brow",
       "attachments": {
         "brow": {
-          "part": "mouthSad",
+          "part": "brow",
           "x": 81.8,
           "y": 406.15,
           "w": 26.4,
           "h": 11.7
         },
         "sad": {
-          "part": "mouthSad",
+          "part": "brow",
           "x": 81.8,
           "y": 402.15,
           "w": 26.4,
           "h": 11.7,
           "rotate": -18
+        },
+        "up": {
+          "part": "brow",
+          "x": 81.8,
+          "y": 397.15,
+          "w": 26.4,
+          "h": 11.7
         }
       }
     },
@@ -520,7 +476,7 @@
       "default": "brow",
       "attachments": {
         "brow": {
-          "part": "mouthSad",
+          "part": "brow",
           "x": 188.4,
           "y": 422.2,
           "w": 35.2,
@@ -528,50 +484,20 @@
           "rotate": 8
         },
         "sad": {
-          "part": "mouthSad",
+          "part": "brow",
           "x": 188.4,
           "y": 418.2,
           "w": 35.2,
           "h": 15.6,
           "rotate": 24
-        }
-      }
-    },
-    {
-      "id": "mouth",
-      "bone": "mouth",
-      "default": "smile",
-      "attachments": {
-        "o": {
-          "part": "mouthO",
-          "x": 158.65,
-          "y": 543,
-          "w": 18.7,
-          "h": 26.01
         },
-        "open": {
-          "part": "mouthLaugh",
-          "x": 139.5,
-          "y": 538.7,
-          "w": 51,
-          "h": 34.6,
-          "rotate": -8
-        },
-        "sad": {
-          "part": "mouthSad",
-          "x": 153.04,
-          "y": 549.37,
-          "w": 29.92,
-          "h": 13.26,
-          "rotate": -8
-        },
-        "smile": {
-          "part": "mouth",
-          "x": 145.05,
-          "y": 542.31,
-          "w": 45.9,
-          "h": 19.38,
-          "rotate": -12
+        "up": {
+          "part": "brow",
+          "x": 188.4,
+          "y": 413.2,
+          "w": 35.2,
+          "h": 15.6,
+          "rotate": 8
         }
       }
     }
@@ -579,24 +505,23 @@
   "faces": {
     "happy": {
       "eyeL": "happy",
-      "eyeR": "happy",
-      "mouth": "open"
+      "eyeR": "happy"
     },
     "sad": {
       "browL": "sad",
       "browR": "sad",
       "eyeL": "sad",
-      "eyeR": "sad",
-      "mouth": "sad"
+      "eyeR": "sad"
     },
     "sleeping": {
       "eyeL": "closed",
       "eyeR": "closed"
     },
     "surprised": {
+      "browL": "up",
+      "browR": "up",
       "eyeL": "wide",
-      "eyeR": "wide",
-      "mouth": "o"
+      "eyeR": "wide"
     }
   },
   "idle": {
