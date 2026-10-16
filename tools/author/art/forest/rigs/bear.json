@@ -15,6 +15,14 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a bear cub character; image 2 shows the same bear cub cut into puppet parts, with a blank face. Draw the bear cub's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the bear cub in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the cub's left eye (the bigger one, on the right of image 1) as it is in image 1: a content, slightly sleepy half-lidded dark eye with its white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the eyebrow as in image 1: a short thin dark-brown arc.\n7. the mouth as it is in image 1: a small happy smile under the nose.\n8. the mouth wide open in a big yawn: a tall oval, the inside pink.\n9. the mouth wide open in a big happy laugh, the inside pink.\n10. the mouth open in a small round 'o'.\n11. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    },
+    {
+      "id": "belly",
+      "size": "1024x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a bear cub character; image 2 shows the same bear cub cut into puppet parts. Draw only the body piece of image 2 again, alone in the middle of the sheet, at the same size and in exactly the same drawing style, colours, fur texture and line: the standing body with its cream tummy, facing the viewer, without head, arms or legs, its top (the neck) rounded and its sides smooth.\n\nIts bottom is one single smooth, full, round curve, like the bottom of a round, chubby belly: no dip, notch or cleft in the middle, not two lobes, not heart-shaped — one even round arc from side to side.\n\nNo text, no labels, no shadow, nothing else on the sheet. Fully transparent background."
     }
   ],
   "parts": {
@@ -26,10 +34,10 @@
       ]
     },
     "body": {
-      "sheet": "parts",
+      "sheet": "belly",
       "at": [
-        845,
-        580
+        512,
+        524
       ]
     },
     "arm": {
@@ -257,8 +265,8 @@
           "part": "body",
           "x": 362.0,
           "y": 463.5,
-          "scale": 0.52,
-          "scaleY": 1.15
+          "scale": 0.343,
+          "scaleY": 1.21
         }
       }
     },
