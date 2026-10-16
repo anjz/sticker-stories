@@ -1,5 +1,5 @@
 {
-  "_comment": "Tuning data for the particle emitters behind sparkle / hearts / dust-puff / spray / sparks (docs/effects.md). Content cannot ship emitters or set these values; only intensity, duration and color reach them. Conventions are SpriteKit's: angles in degrees counterclockwise with 0 = right (90 = up); gravity is points/s² with y up; scale is relative to the sticker's rendered size at the reference height. Emitters with \"worldGravity\" are tuned for Earth: the app scales their gravity by the pack world's (PackWorld) and lets them live longer where it is weak.",
+  "_comment": "Tuning data for the particle emitters behind sparkle / hearts / dust-puff / spray / sparks (docs/effects.md). Content cannot ship emitters or set these values; only intensity, duration and color reach them. Conventions are SpriteKit's: angles in degrees counterclockwise with 0 = right (90 = up); gravity is points/s² with y up; scale is relative to the sticker's rendered size at the reference height. Emitters with \"worldGravity\" are tuned for Earth: the app scales their gravity by the pack world's (PackWorld) and lets them live longer where it is weak. An emitter with \"mirrored\" is drawn as a pair, itself and its mirror image across the vertical (emission angle and sideways gravity flipped): a cloud that billows out both ways. \"with\" names emitters that fire along with it, at the same spot, intensity and colour (the dust cloud's grains).",
   "sparkles": {
     "texture": "star",
     "blend": "add",
@@ -83,41 +83,85 @@
   "dust": {
     "texture": "dot",
     "blend": "alpha",
-    "birthRate": 170,
+    "birthRate": 65,
     "lifetime": {
-      "value": 0.9,
+      "value": 1.0,
       "variance": 0.3
     },
     "speed": {
-      "value": 45,
+      "value": 55,
       "variance": 20
     },
     "emissionAngle": {
-      "value": 90,
-      "range": 160
+      "value": 18,
+      "range": 32
     },
     "gravity": [
-      0,
-      -180
+      -28,
+      -5
     ],
     "positionSpread": [
-      0.5,
+      0.35,
       0.03
     ],
     "scale": {
-      "start": 0.6,
-      "end": 1.2,
+      "start": 0.5,
+      "end": 1.4,
       "variance": 0.3
     },
     "alpha": {
       "start": 0.0,
-      "peak": 0.9,
+      "peak": 0.8,
       "end": 0.0,
-      "peakAt": 0.12
+      "peakAt": 0.15
     },
     "rotationSpeed": 0,
     "defaultColor": "#9C7B55",
     "maxParticles": 90,
+    "inFront": true,
+    "mirrored": true,
+    "with": [
+      "dustGrains"
+    ]
+  },
+  "dustGrains": {
+    "texture": "dot",
+    "blend": "alpha",
+    "birthRate": 30,
+    "lifetime": {
+      "value": 0.55,
+      "variance": 0.15
+    },
+    "speed": {
+      "value": 100,
+      "variance": 30
+    },
+    "emissionAngle": {
+      "value": 90,
+      "range": 110
+    },
+    "gravity": [
+      0,
+      -520
+    ],
+    "positionSpread": [
+      0.25,
+      0.02
+    ],
+    "scale": {
+      "start": 0.16,
+      "end": 0.12,
+      "variance": 0.05
+    },
+    "alpha": {
+      "start": 0.0,
+      "peak": 1.0,
+      "end": 0.0,
+      "peakAt": 0.08
+    },
+    "rotationSpeed": 0,
+    "defaultColor": "#9C7B55",
+    "maxParticles": 25,
     "inFront": true,
     "worldGravity": true
   },

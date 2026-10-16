@@ -313,6 +313,11 @@ Off {fox:go away} ran Fox, out of the meadow.      off the canvas
   visitor stays where it came in), so it costs nothing to add; to send it
   on to **another** part of the place ("on to the next tree", "paddled
   across the pond"), add `another`: `{woodpecker:go to trunks another}`.
+- **Backwards only when the words say so**: every character turns to
+  face the way it goes. When the story has it go backwards ("Crab
+  shuffled backwards to the rock", "the bear backed away"), add
+  `backwards` to the move: `{crab:go to rock backwards}`,
+  `{bear:go away backwards}`.
   storycheck warns when a sentence names a place (the pack's features'
   `words`: branch, pond, trunk…) with a character that can be there and no
   move has taken it there.

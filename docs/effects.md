@@ -72,7 +72,7 @@ they are what make a wobble a wobble — and are not authorable.
 |---|---|---|---|---|
 | `sparkle` | A shower of twinkles above the sticker. `color` default warm gold `#FFD166`. | Delight, magic, treasure, a good idea. | 1.0 s | runs at ≤0.4 |
 | `hearts` | A few hearts drift up. | Friendship, a hug, kindness. | 1.2 s | runs at ≤0.4 |
-| `dust-puff` | A puff of dust kicked up from the ground at its feet that settles under the world's gravity. `color` default: the pack's ground, a shade lighter. | A landing, a stamp, a wheel spinning, a rocket touching down, a dig. | 0.4 s | runs at ≤0.4 |
+| `dust-puff` | A puff of dust kicked up from the ground at its feet: the cloud billows out sideways both ways and rises a little as it fades, while a few grains thrown up fall back under the world's gravity. `color` default: the pack's ground, a shade lighter. | A landing, a stamp, a wheel spinning, a rocket touching down, a dig. | 0.4 s | runs at ≤0.4 |
 | `spray` | Water drops thrown up that arc and fall. `color` default `#CFE8FF`. | A splash, a shake of wet fur, a fountain, watering. | 0.4 s | runs at ≤0.4 |
 | `sparks` | A few tiny bright sparks that fly out, fall and fade. `color` default `#FFD27A`. | A tool on metal, a connection made, a machine starting — never fire or danger. | 0.4 s | runs at ≤0.4 |
 
@@ -82,9 +82,11 @@ and they come from the drawing (its feet, for dust), not its image's box —
 so sparkles on a tiny flower are tiny.
 
 **The physical particles follow the pack's world** (`docs/pack-format.md`,
-"World"): `dust-puff`, `spray` and `sparks` fall under its gravity and
-hang longer where it is weak — the same puff drifts down slowly as grey
-moon dust in Moon Base and drops at once as brown soil in Forest — and
+"World"): `spray`, `sparks` and the grains of a `dust-puff` fall under
+its gravity and hang longer where it is weak — the same grains arc slowly
+as grey moon dust in Moon Base and drop at once as brown soil in Forest;
+the puff's cloud itself never sinks: it billows out sideways and a
+little up, then fades — and
 dust is the colour of its ground. Stickers and their live animations
 never draw particles themselves (no dust, drops, sparks or smoke in the
 art: `docs/pack-art.md`); these effects do it, cued by stories or fired by
@@ -488,7 +490,7 @@ without one stage them.
 A story can move any sticker that walks or flies (its manifest `stage`
 entrance is `hop` or `fly`; things that grow — a flower, a mushroom — stay
 put), placed by the child or visiting, when the words say it goes
-somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "toward"?, "another"? }`:
+somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "toward"?, "another"?, "backwards"? }`:
 
 | `go` | `target` | where it goes |
 |---|---|---|
@@ -501,8 +503,20 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
 
 - **It travels as it enters**: walkers walk (their move frames looping)
   at the pace of their legs, hoppers leap once per loop, flyers glide with
-  their wings going; it turns to face the way it goes (a squash through
-  the turn) and keeps facing that way. The time is not authored: it
+  their wings going. **It always faces the way it goes** — never a step
+  backwards: facing the other way, it first turns round on the spot (a
+  quick squash through the turn, its feet going), then sets off, and it
+  turns again wherever its way doubles back across the screen (round the
+  pond) and, onto a place it faces into (the bark of a trunk), as it gets
+  there; it keeps the way it ended up facing. Which way a sticker's art
+  looks is its move's `facing` (`docs/pack-format.md`); the whole sticker
+  mirrors, never a part of it. A circling flyer faces the way it is going
+  round its loop, a little sidestep making room (under a quarter of its
+  width) may go sideways, and something rooted, a sprout or a fade
+  (Reduce Motion, calm mode) never turns. Only a move with `"backwards":
+  true` (authored `{crab:go to rock backwards}`, when the words say so)
+  goes the other way: it faces away from its way, turning round first if
+  it has to. The time is not authored: it
   follows the distance and the sticker's gait (0.8–5 s; a flight
   1.2–3.4 s). A move cued while an earlier one (or its entrance) is still
   under way starts when that ends.
