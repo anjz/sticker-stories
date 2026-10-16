@@ -66,6 +66,16 @@ func testWorld() -> StageWorld {
         #expect(near > 0 && near < 0.25)
     }
 
+    @Test func nobodyFloatsInShallowWater() {
+        var space = testSpace()
+        space.places["pond"]?.shallow = true
+        let w = StageWorld(space: space, aspect: 4.0 / 3, wide: false, frame: StageSize(width: 1024, height: 768))
+        let swim = [StageMove(id: "swim", cycle: 0.8, stride: 0.5, on: ["pond"], waterline: 0.25, facing: .right)]
+        let middle = w.groundPoint(.init(0.55, 0.25)).onGround
+        #expect(w.afloat(at: middle, moves: swim, ramp: 0.05) == 0)
+        #expect(w.canStand(at: middle.ground, belongsIn: ["pond"]) && !w.canStand(at: middle.ground, belongsIn: []))
+    }
+
     @Test func aStraightWayCrossesAPondsSharpCorner() {
         // A sliver of water a centimetre deep: samples a few apart step over it.
         let corner = GroundPolygon([Vec2(0, 0), Vec2(1, 0), Vec2(0.5, 0.01)])

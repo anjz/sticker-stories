@@ -30,6 +30,8 @@ public struct StageWorld: Sendable {
         public var place: String
         public var polygon: GroundPolygon
         public var water: Bool
+        /// Shallow, clear water: nobody floats in it.
+        public var shallow = false
     }
 
     /// A line of a place on a layer — a branch to perch on, the bark of a
@@ -88,7 +90,9 @@ public struct StageWorld: Sendable {
         var airs: [Air] = []
         for (name, place) in space.places.sorted(by: { $0.key < $1.key }) {
             if let polygon = place.ground {
-                grounds.append(Ground(place: name, polygon: GroundPolygon(polygon.map(toGround)), water: place.water == true))
+                grounds.append(Ground(
+                    place: name, polygon: GroundPolygon(polygon.map(toGround)), water: place.water == true,
+                    shallow: place.shallow == true))
             }
             for line in (wide ? place.wideLines : nil) ?? place.lines ?? [] {
                 guard let depth = space.layerDepth(line.layer, wide: wide) else { continue }
@@ -194,9 +198,10 @@ public struct StageWorld: Sendable {
     /// height under the water: the `waterline` of its way that belongs in
     /// the water there (a duckling swimming), eased in over `ramp` from the
     /// water's edge so it sinks in as it swims in and rises as it climbs
-    /// out; 0 on land, up in the air, or in water it does not float in.
+    /// out; 0 on land, up in the air, in water it does not float in, or in
+    /// shallow water (a rock pool), where it sits on the bottom, seen whole.
     public func afloat(at p: Vec3, moves: [StageMove], ramp: Double) -> Double {
-        guard p.y < 0.01, let ground = grounds.first(where: { $0.water && $0.polygon.contains(p.ground) }),
+        guard p.y < 0.01, let ground = grounds.first(where: { $0.water && $0.polygon.contains(p.ground) }), !ground.shallow,
             let line = moves.first(where: { $0.waterline > 0 && $0.on.contains(ground.place) })?.waterline
         else { return 0 }
         let k = min(ground.polygon.distance(to: p.ground) / max(ramp, 1e-6), 1)

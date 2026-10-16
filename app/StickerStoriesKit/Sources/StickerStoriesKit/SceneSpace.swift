@@ -166,16 +166,20 @@ public struct SceneSpace: Codable, Equatable, Sendable {
     public struct Place: Codable, Equatable, Sendable {
         public var ground: [Point]?
         public var water: Bool?
+        /// Shallow, clear water (a rock pool): who belongs in it sits on
+        /// its bottom, seen whole — nobody floats there.
+        public var shallow: Bool?
         public var air: Air?
         public var lines: [Line]?
         public var wideLines: [Line]?
 
         public init(
-            ground: [Point]? = nil, water: Bool? = nil, air: Air? = nil,
+            ground: [Point]? = nil, water: Bool? = nil, shallow: Bool? = nil, air: Air? = nil,
             lines: [Line]? = nil, wideLines: [Line]? = nil
         ) {
             self.ground = ground
             self.water = water
+            self.shallow = shallow
             self.air = air
             self.lines = lines
             self.wideLines = wideLines
@@ -424,6 +428,7 @@ public struct SceneSpace: Codable, Equatable, Sendable {
             } else if place.water == true {
                 fail("\(field): water needs ground")
             }
+            if place.shallow == true, place.water != true { fail("\(field): shallow needs water") }
             if let air = place.air {
                 kinds += 1
                 _ = inArt(field + " air area", air.area, least: 3)

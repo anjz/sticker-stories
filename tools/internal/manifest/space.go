@@ -114,8 +114,11 @@ func (l SpaceLayer) Plane() string {
 // open air to fly in, or lines on a layer (a branch to perch on, the bark
 // of a trunk).
 type SpacePlace struct {
-	Ground    Polygon     `json:"ground,omitempty"`
-	Water     bool        `json:"water,omitempty"`
+	Ground Polygon `json:"ground,omitempty"`
+	Water  bool    `json:"water,omitempty"`
+	// Shallow, clear water (a rock pool): who belongs in it sits on its
+	// bottom, seen whole; nobody floats there.
+	Shallow   bool        `json:"shallow,omitempty"`
 	Air       *SpaceAir   `json:"air,omitempty"`
 	Lines     []SpaceLine `json:"lines,omitempty"`
 	WideLines []SpaceLine `json:"wideLines,omitempty"`
@@ -295,6 +298,9 @@ func (s *Space) Validate(planes, stickers, features map[string]bool) []error {
 			ground(field+" ground", p.Ground)
 		} else if p.Water {
 			fail("%s: water needs ground", field)
+		}
+		if p.Shallow && !p.Water {
+			fail("%s: shallow needs water", field)
 		}
 		if a := p.Air; a != nil {
 			kinds++
