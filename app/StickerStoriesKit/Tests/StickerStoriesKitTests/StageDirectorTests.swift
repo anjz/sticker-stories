@@ -181,7 +181,8 @@ import Testing
     }
 
     /// An action cued while its sticker is on its way waits until it gets
-    /// there; one cued when it is still plays then.
+    /// there; one cued when it is still plays then — unless someone is on
+    /// the way to it (the rabbit waits for the fox).
     @Test func actionsWaitForTheMoveToEnd() throws {
         let plans = plan(
             [actor(fox, "fox", at: .init(0.15, 0.15), moves: trot), actor(rabbit, "rabbit", at: .init(0.8, 0.4))],
@@ -192,7 +193,7 @@ import Testing
              LiveAnimationTrigger(at: 0.5, stickerID: "fox", animationID: "nod"),
              LiveAnimationTrigger(at: 1.5, stickerID: "rabbit", animationID: "nod")],
             plans: plans, stickers: [fox: "fox", rabbit: "rabbit"], places: [])
-        #expect(live.map(\.at) == [leg.end, 0.5, 1.5])
+        #expect(live.map(\.at) == [leg.end, 0.5, min(leg.end, 1.5 + StageDirector.reactionWait)])
     }
 
     /// A flyer resting in the air keeps its wings going: one that flies to
@@ -311,6 +312,92 @@ import Testing
     }
 }
 
+extension StageDirectorTests {
+    @Test func theWoodpeckerClingsToTheBarkItStaysOn() throws {
+        let moves = [
+            StageMove(id: "fly", cycle: 0.5, stride: 1, flies: true, facing: .right),
+            StageMove(id: "cling", cycle: 0.8, stride: 0, on: ["trunks"], stays: true, facing: .right),
+        ]
+        let plans = plan(
+            [actor(woodpecker, "woodpecker", at: .init(0.5, 0.15), stage: StickerStage(entrance: .fly, on: ["meadow"]), moves: moves)],
+            goes: [
+                GoTrigger(at: 1, stickerID: "woodpecker", kind: .to, target: "trunks"),
+                GoTrigger(at: 9, stickerID: "woodpecker", kind: .away),
+            ])
+        let legs = try #require(plans[woodpecker]?.legs)
+        let flight = try #require(legs.first { $0.move == "fly" })
+        let cling = try #require(legs.first { $0.move == "cling" })
+        // As it gets to the bark it takes to clinging, where it is, and stays.
+        #expect(cling.at == flight.end && cling.stays && cling.support == .perch("trunks"))
+        #expect(cling.path.first == cling.path.last && cling.path.last == flight.path.last)
+        // It flies off by its usual way.
+        #expect(legs.last?.move == "fly" && (legs.last?.at ?? 0) >= 9)
+        // Its own flight to a branch does not cling.
+        let branch = plan(
+            [actor(woodpecker, "woodpecker", at: .init(0.5, 0.15), stage: StickerStage(entrance: .fly, on: ["meadow"]), moves: moves)],
+            goes: [GoTrigger(at: 1, stickerID: "woodpecker", kind: .to, target: "meadow")])
+        #expect(branch[woodpecker]?.legs.contains { $0.move == "cling" } != true)
+    }
+
+    @Test func aDucklingAfloatSwimsToTheBankBeforeItWaddlesOff() throws {
+        let moves = [
+            StageMove(id: "waddle", cycle: 0.8, stride: 0.5, facing: .right),
+            StageMove(id: "swim", cycle: 0.8, stride: 0.5, on: ["pond"], waterline: 0.25, facing: .right),
+        ]
+        let plans = plan(
+            [actor(duck, "duckling", moves: moves), actor(fox, "fox", at: .init(0.15, 0.25), moves: trot)],
+            entrances: [EntranceTrigger(at: 0, stickerID: "duckling", by: "swim")],
+            goes: [GoTrigger(at: 8, stickerID: "duckling", kind: .to, target: "fox")])
+        let legs = try #require(plans[duck]?.legs)
+        let afloat = try #require(legs.first)
+        let landed = try #require(afloat.path.last)
+        #expect(afloat.move == "swim" && world.water(at: landed.ground) != nil)
+        // Out of the water swimming, then on foot to the fox.
+        let out = legs.filter { $0.at >= 8 }
+        #expect(out.count == 2 && out[0].move == "swim" && out[1].move == "waddle")
+        for k in 0...20 {
+            #expect(world.water(at: StagePlan.along(out[1].path, Double(k) / 20).ground) == nil, "k \(k)")
+        }
+    }
+
+    @Test func whoeverSomeoneIsComingToReactsWhenTheyGetThere() throws {
+        let cast = [actor(fox, "fox", at: .init(0.15, 0.25), moves: trot), actor(flower, "flower", at: .init(0.5, 0.25))]
+        let plans = plan(cast, goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "flower")])
+        let leg = try #require(plans[fox]?.legs.last)
+        let stickers = [fox: "fox", flower: "flower"]
+        // The flower's cue while the fox is on its way waits for it…
+        let waited = StageDirector.reaction(at: leg.at + 0.2, of: "flower", plans: plans, stickers: stickers)
+        #expect(waited == min(leg.end, leg.at + 0.2 + StageDirector.reactionWait))
+        // …not one before it sets off or after it is there, nor anyone else's.
+        #expect(StageDirector.reaction(at: leg.at - 0.5, of: "flower", plans: plans, stickers: stickers) == leg.at - 0.5)
+        #expect(StageDirector.reaction(at: leg.end + 0.1, of: "flower", plans: plans, stickers: stickers) == leg.end + 0.1)
+        #expect(StageDirector.reaction(at: leg.at + 0.2, of: "fox", plans: plans, stickers: stickers) == leg.at + 0.2)
+        let live = StageDirector.delayed(
+            [LiveAnimationTrigger(at: leg.at + 0.2, stickerID: "flower", animationID: "sway")], plans: plans, stickers: stickers,
+            places: [])
+        #expect(live.first?.at == waited)
+    }
+
+    @Test func aVisitorComesInNearWhomTheStoryPutsItWith() throws {
+        let cast = [actor(fox, "fox", moves: trot), actor(flower, "flower", at: .init(0.75, 0.3))]
+        let flowerAt = world.groundPoint(.init(0.75, 0.3)).onGround
+        // Sent to the flower as it comes in: straight to its side.
+        let straight = plan(
+            cast, entrances: [EntranceTrigger(at: 0, stickerID: "fox")],
+            goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "flower")])
+        let legs = try #require(straight[fox]?.legs)
+        #expect(legs.count == 1 && legs[0].kind == .entrance && legs[0].support == .beside(flower))
+        // Sent a little later: it comes in near, a step or two away.
+        let later = plan(
+            cast, entrances: [EntranceTrigger(at: 0, stickerID: "fox")],
+            goes: [GoTrigger(at: 8, stickerID: "fox", kind: .to, target: "flower")])
+        let entrance = try #require(later[fox]?.legs.first)
+        let home = try #require(entrance.path.last)
+        let fox = cast[0], them = cast[1]
+        #expect((home - flowerAt).length < (fox.width + them.width) * 1.2)
+    }
+}
+
 /// Plans every story of the real Forest pack on an empty canvas and on a
 /// crowded one, and checks the stage keeps its rules all the way through.
 @Suite struct ForestStagingTests {
@@ -379,6 +466,7 @@ import Testing
         var problems: [String] = []
         var backwards: [String] = []
         var circling = 0
+        var lags: [Double] = []
         for story in pack.manifest.stories {
             guard let sidecar = story.localizations["en-US"]?.effects,
                 let data = try? Data(contentsOf: pack.dir.appendingPathComponent(sidecar)),
@@ -413,6 +501,19 @@ import Testing
                 let plans = StageDirector.plan(
                     world: world, screen: screen, actors: actors, entrances: file.entranceTriggers, goes: goes,
                     policy: .standard, cast: cast, random: &random)
+                // How long after its cue a sticker sent to another gets there.
+                for go in goes where go.target.map({ t in actors.contains { $0.stickerID == t } }) == true && go.kind != .away && go.kind != .back {
+                    guard let mover = actors.first(where: { $0.stickerID == go.stickerID }), let plan = plans[mover.id] else { continue }
+                    let targets = Set(actors.filter { $0.stickerID == go.target }.map(\.id))
+                    let leg = plan.legs.first { leg in
+                        guard leg.at >= go.at - 1e-6 else { return false }
+                        switch leg.support {
+                        case .on(let h), .under(let h), .beside(let h): return targets.contains(h)
+                        default: return false
+                        }
+                    }
+                    if let leg { lags.append(leg.end - go.at) }
+                }
                 // A whole lap past the last leg: whoever circles is seen all round its loop.
                 let end = (plans.values.flatMap(\.legs).map(\.end).max() ?? 0) + StagePlan.lapTime + 1
                 circling += plans.values.flatMap(\.legs).filter { $0.circling != nil }.count
@@ -499,6 +600,20 @@ import Testing
                             problems.append("\(tag): standing in the \(water) at \(String(format: "%.1f", t))")
                         }
                         let moving = plan.legs.contains { $0.at <= t && t < $0.end }
+                        // On its way in the water by its water way (a duckling swims, never
+                        // waddles, afloat); on its way over land by a way that walks it.
+                        if let leg = plan.legs.last(where: { $0.at <= t && t < $0.end && $0.gait.carries }), leg.kind != .settle,
+                            let id = leg.move, let move = a.moves.first(where: { $0.id == id }), !move.flies, onFoot
+                        {
+                            let water = world.water(at: s.position.ground)
+                            if let water, !move.on.contains(water), a.moves.contains(where: { $0.on.contains(water) }) {
+                                problems.append("\(tag): \(id) in the \(water) at \(String(format: "%.1f", t))")
+                            }
+                            let seen = world.drawing(at: s.position, size: a.size, ratio: a.ratio)
+                            if water == nil, move.on.contains(where: waterPlaces.contains), seen.maxX > screen.clear.minX, seen.minX < screen.clear.maxX {
+                                problems.append("\(tag): \(id) on land at \(String(format: "%.1f", t))")
+                            }
+                        }
                         if !moving, t >= StageDirector.settle, s.support != .off {
                             let r = world.drawing(at: s.position, size: a.size, ratio: a.ratio)
                             let c = screen.clear
@@ -529,6 +644,10 @@ import Testing
         }.map { "\($0.key) ×\($0.value.count) — first \($0.value.first!.split(separator: ":", maxSplits: 1).last!)" }.sorted()
         // The birds, the owl and the woodpecker are left in the air now and then.
         #expect(circling > 0)
+        // Sent to someone, it gets there soon: it comes in near them, and
+        // a walk to someone takes at most `maxTravelToSomeone`.
+        let meanArrival = lags.reduce(0, +) / Double(max(lags.count, 1))
+        #expect(lags.count > 150 && meanArrival < 4.2, "mean arrival \(meanArrival) s over \(lags.count) goes")
         let turned = Dictionary(grouping: backwards) { $0.components(separatedBy: " at ")[0] }
             .map { "\($0.key) ×\($0.value.count) — first at \($0.value[0].components(separatedBy: " at ").last!)" }.sorted()
         #expect(backwards.isEmpty, "\(turned.count) travel backwards:\n\(turned.joined(separator: "\n"))")

@@ -1527,11 +1527,9 @@ final class CanvasScene: SKScene {
         if inSpace { addStageVisitors(for: triggers.entrances) }
         let nodes = allStickerNodes()
         let targets = Dictionary(grouping: nodes, by: \.stickerID).mapValues { $0.map(\.instanceID) }
-        let runner = StickerEffectsRunner(
-            triggers: triggers.sticker, targets: targets, everyone: pack.manifest.characters, policy: policy)
         livePolicy = policy
         let placed = Set(nodes.map(\.stickerID))
-        let faces = ExpressionTimeline(triggers: triggers.faces)
+        var faces = ExpressionTimeline(triggers: triggers.faces)
         let wantedFaces = faces.expressionsUsed(by: placed)
         if !wantedFaces.isEmpty {
             faceLoad = Task { [weak self, pack] in
@@ -1555,6 +1553,23 @@ final class CanvasScene: SKScene {
         var storyLive = stage.map {
             StageDirector.delayed(triggers.live, plans: $0.plans, stickers: stickerOf, places: Set(actionPlaces.keys))
         } ?? PlacementPlanner.delayed(triggers.live, plans: motions, stickers: stickerOf, places: Set(actionPlaces.keys))
+        // A face or an effect of someone another is on the way to waits
+        // until they are there, like its actions (`StageDirector.reaction`).
+        var stickerTriggers = triggers.sticker
+        if let stage {
+            faces = ExpressionTimeline(triggers: triggers.faces.map { face in
+                var face = face
+                face.at = StageDirector.reaction(at: face.at, of: face.stickerID, plans: stage.plans, stickers: stickerOf)
+                return face
+            })
+            stickerTriggers = stickerTriggers.map { effect in
+                var effect = effect
+                effect.at = StageDirector.reaction(at: effect.at, of: effect.stickerID, plans: stage.plans, stickers: stickerOf)
+                return effect
+            }
+        }
+        let runner = StickerEffectsRunner(
+            triggers: stickerTriggers, targets: targets, everyone: pack.manifest.characters, policy: policy)
         // Everyone alive at rest: small, gentle actions now and then.
         if policy.allowsLiveAnimations, !policy.isCalm {
             storyLive += idleLife(

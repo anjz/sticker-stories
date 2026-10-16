@@ -72,6 +72,24 @@ public enum StageDirector {
     static let inFront = SceneSpace.inFront
     /// Two sharing a spot overlap by this much of the narrower one.
     static let sharedOverlap = 0.25
+    /// How much a visitor's spot is pulled towards whom the story soon
+    /// puts it with (score per unit of distance too far).
+    static let partnerPull = 1.5
+    /// How soon after a visitor comes in the story must put it with
+    /// someone for its spot to be chosen near them.
+    static let partnerWindow: TimeInterval = 10
+    /// How long a sticker takes to settle into the way it stays on a
+    /// perch in (`takeToPerch`).
+    static let takeToPerch: TimeInterval = 0.3
+    /// A visitor sent to someone this soon after it comes in comes
+    /// straight to their side (it would still be on its way in).
+    static let straightToPartner: TimeInterval = 3
+    /// The longest an action, face or effect of a sticker waits for
+    /// someone on the way to it (beside, on, under) to get there.
+    static let reactionWait: TimeInterval = 4
+    /// The longest a walk to someone takes (`maxTravel` elsewhere): they
+    /// are waiting for it, and the story goes on.
+    static let maxTravelToSomeone: TimeInterval = 4
     /// A flyer that cannot hover circles this many of its widths either
     /// side of its spot, and comes this much of its depth nearer.
     static let lapAcross = 0.9
@@ -150,9 +168,31 @@ public enum StageDirector {
                 }
             }
             var moved = trigger
-            moved.at = start
+            moved.at = reaction(at: start, of: trigger.stickerID, plans: plans, stickers: stickers)
             return moved
         }
+    }
+
+    /// When a sticker's cue at `time` comes while someone is on the way
+    /// to it — to its side, onto or under it — the moment they get there
+    /// (`reactionWait` at most): the mushroom giggles once the ladybug's
+    /// feet are on her cap, not while she is still flying over.
+    public static func reaction(
+        at time: TimeInterval, of stickerID: String, plans: [UUID: StagePlan], stickers: [UUID: String]
+    ) -> TimeInterval {
+        let mine = Set(stickers.filter { $0.value == stickerID }.map(\.key))
+        guard !mine.isEmpty else { return time }
+        var until = time
+        for (id, plan) in plans where !mine.contains(id) {
+            for leg in plan.legs where leg.travels && leg.at <= time + 1e-6 && time < leg.end {
+                switch leg.support {
+                case .beside(let to), .on(let to), .under(let to):
+                    if mine.contains(to) { until = max(until, leg.end) }
+                default: break
+                }
+            }
+        }
+        return min(until, time + reactionWait)
     }
 
     struct State {
@@ -648,8 +688,10 @@ public enum StageDirector {
         /// The freest of `spots` on screen at `time` — farthest from the
         /// others there, a little random among the roomiest, a little
         /// nearer preferred — clear of the screen's furniture when it can.
+        /// With a `partner` (whom the story soon puts it with), as near
+        /// that one as leaves a step or two to go.
         func choose<R: RandomNumberGenerator>(
-            _ spots: [StagePose], for i: Int, at time: TimeInterval, near: Vec3?, random: inout R
+            _ spots: [StagePose], for i: Int, at time: TimeInterval, near: Vec3?, partner: Int? = nil, random: inout R
         ) -> StagePose? {
             let visible = spots.filter { onScreen(i, at: $0.position) }
             guard !visible.isEmpty else { return nil }
@@ -669,11 +711,16 @@ public enum StageDirector {
             let scored = pool.map { pose -> (StagePose, Double) in
                 let c = clearance(pose.position)
                 let d = near.map { (pose.position - $0).length } ?? 0
+                // Near its partner: a step or two from its side.
+                let apart = partner.map { j -> Double in
+                    let reach = (me.width + states[j].actor.width) * 0.75
+                    return max((pose.position - states[j].pose.position).length - reach, 0) * StageDirector.partnerPull
+                } ?? 0
                 let back = min(max((pose.position.z - stand.near) / max(stand.far - stand.near, 0.01), 0), 1)
                 let front = me.wantsFront
                 // Seen: not behind the planes, nor behind someone, nor in
                 // front of someone already there.
-                return (pose, min(c, me.width * 2) - d * 0.05 - back * front * 0.35
+                return (pose, min(c, me.width * 2) - d * 0.05 - back * front * 0.35 - apart
                     - hiddenWithHeadroom(i, at: pose.position) * (me.width * 2 + 0.3 + front * 0.5)
                     - blocking(i, at: pose.position) * (me.width * 3 + 1))
             }
@@ -706,9 +753,22 @@ public enum StageDirector {
                 stage.entrance = move.flies ? .fly : .hop
                 if !move.on.isEmpty { stage.on = move.on }
             }
+            // Whom the story soon puts it with: it comes in near them, so
+            // it is with them when the words say so.
+            let partner = arrival == nil ? self.partner(of: i, entrance: entrance, goes: goes) : nil
             var landing: StagePose?
-            for place in stage.on {
-                landing = choose(spots(place, for: i, move: move), for: i, at: entrance.at, near: nil, random: &random)
+            if let partner, partner.go.stickerID == entrance.stickerID, partner.go.kind == .to,
+                partner.go.at - entrance.at <= StageDirector.straightToPartner, partner.go.by == nil || partner.go.by == entrance.by
+            {
+                // Sent to them as it comes in: it comes straight to their side.
+                states[i].pose.position = offstagePoint(i, side: nearerSide(states[partner.j].pose.position), at: states[partner.j].pose.position)
+                landing = besideSpot(i, partner.j, toward: partner.go.toward)
+                states[i].beside = "beside:\(states[partner.j].actor.id)"
+                made.insert(Director.key(partner.go))
+            }
+            for place in stage.on where landing == nil {
+                landing = choose(
+                    spots(place, for: i, move: move), for: i, at: entrance.at, near: nil, partner: partner?.j, random: &random)
                 if landing != nil {
                     // Come straight to the place the story sends it to its
                     // usual way: that move is made.
@@ -724,7 +784,8 @@ public enum StageDirector {
                 // Nowhere of its own: any land on screen.
                 let land = world.grounds.filter { !$0.water }.map(\.place)
                 for place in land {
-                    landing = choose(spots(place, for: i, move: move), for: i, at: entrance.at, near: nil, random: &random)
+                    landing = choose(
+                        spots(place, for: i, move: move), for: i, at: entrance.at, near: nil, partner: partner?.j, random: &random)
                     if landing != nil { break }
                 }
             }
@@ -782,6 +843,7 @@ public enum StageDirector {
                 {
                     states[i].legs[states[i].legs.count - 1].stays = true
                 }
+                takeToPerch(i)
                 return
             }
             states[i].start = StagePose(position: target.position, support: .off, facing: facing)
@@ -793,6 +855,37 @@ public enum StageDirector {
             states[i].pose = target
             states[i].visible = true
             states[i].busyUntil = entrance.at + duration
+        }
+
+        /// Whom a visitor will soon be with, if anyone: the sticker its first
+        /// move goes to (beside, on, under), or one already on the stage
+        /// whose next move comes to it — whichever the story has first,
+        /// within `partnerWindow` of its coming in.
+        func partner(of i: Int, entrance: EntranceTrigger, goes: [GoTrigger]) -> (go: GoTrigger, j: Int)? {
+            let me = entrance.stickerID
+            let window = entrance.at - 0.01...entrance.at + StageDirector.partnerWindow
+            let toSomeone = { (go: GoTrigger) -> Bool in
+                go.kind == .to || go.kind == .on || go.kind == .under
+            }
+            let mine = goes.filter { $0.stickerID == me && window.contains($0.at) }.min { $0.at < $1.at }
+            var best: (go: GoTrigger, j: Int)?
+            if let go = mine, toSomeone(go), let name = go.target, name != me,
+                world.space.places[name] == nil || states.contains(where: { $0.actor.stickerID == name }),
+                let j = states.indices.first(where: {
+                    $0 != i && states[$0].actor.stickerID == name && states[$0].visible && states[$0].hasEntered
+                })
+            {
+                best = (go, j)
+            }
+            // Someone on the stage coming to it next.
+            for j in states.indices where j != i && states[j].visible && states[j].hasEntered && states[j].actor.canMove {
+                let theirs = states[j].actor.stickerID
+                guard let next = goes.filter({ $0.stickerID == theirs && window.contains($0.at) }).min(by: { $0.at < $1.at }),
+                    toSomeone(next), next.target == me, next.at < (best?.go.at ?? .infinity)
+                else { continue }
+                best = (next, j)
+            }
+            return best
         }
 
         func crossesAvoid(_ i: Int, from a: Vec3, to b: Vec3) -> Bool {
@@ -832,6 +925,11 @@ public enum StageDirector {
                     }
                     let spot = besideSpot(i, j, toward: go.toward)
                     states[i].beside = key
+                    // By their side already (it came in there): it stays.
+                    if go.toward == nil, (spot.position - states[i].pose.position).length < me.width * 0.25 {
+                        states[i].pose.support = spot.support
+                        break
+                    }
                     goWalking(i, to: spot, begin: begin)
                 }
             case .away:
@@ -1043,6 +1141,20 @@ public enum StageDirector {
             var target = target
             var begin = begin
             let flies = way(i).flies
+            // Afloat, off somewhere its usual way: it swims to the bank first.
+            if !flies, states[i].visible, states[i].pose.position.y < 0.01,
+                let water = world.water(at: states[i].pose.position.ground), !belongs(i, way(i).move).contains(water),
+                world.water(at: target.position.ground) != water,
+                let swim = states[i].actor.moves.first(where: { !$0.flies && $0.cycle != nil && $0.on.contains(water) }),
+                let edge = shore(of: [water], near: target.position.ground, from: states[i].pose.position.ground),
+                let exit = world.nearestStand(to: edge, belongsIn: belongs(i, way(i).move), reach: 0.3)
+            {
+                let by = states[i].by
+                states[i].by = swim.id
+                travel(i, to: StagePose(position: exit.onGround, support: .ground, facing: states[i].pose.facing), begin: begin)
+                begin = max(begin, states[i].busyUntil)
+                states[i].by = by
+            }
             let element = (way(i).move?.on ?? []).filter { name in world.grounds.contains { $0.place == name && $0.water } }
             if !element.isEmpty, !flies {
                 let world = self.world
@@ -1114,6 +1226,23 @@ public enum StageDirector {
             states[i].pose.facing = leg.facingTo
             states[i].visible = target.support != .off
             states[i].busyUntil = leg.end
+            takeToPerch(i)
+        }
+
+        /// On a perch one of its ways stays on (the woodpecker clinging to
+        /// bark), it takes to that way as it gets there and stays in it:
+        /// its actions play over it, and it goes on after them.
+        mutating func takeToPerch(_ i: Int) {
+            guard policy.allowsLiveAnimations, !policy.isCalm, case .perch(let place) = states[i].pose.support,
+                let move = states[i].actor.moves.first(where: { $0.stays && $0.cycle != nil && $0.on.contains(place) }),
+                states[i].legs.last?.move != move.id
+            else { return }
+            let here = states[i].pose
+            let leg = StageLeg(
+                at: states[i].busyUntil, duration: StageDirector.takeToPerch, path: [here.position, here.position], gait: .walk,
+                kind: .move, move: move.id, stays: true, facingFrom: here.facing, facingTo: here.facing, support: here.support)
+            states[i].legs.append(leg)
+            states[i].busyUntil = leg.end
         }
 
         /// The leg from where it is to `target`: the path (round the water
@@ -1125,6 +1254,11 @@ public enum StageDirector {
             let (move, wayFlies) = way(i)
             let flies = forceFly || wayFlies
             let belongs = self.belongs(i, move)
+            // Into the water its water way: through the water only, never
+            // over the land on the way (it walks there first, `goWalking`).
+            let swims = !flies && !policy.isCalm && move.map { move in
+                world.water(at: target.position.ground).map(move.on.contains) ?? false
+            } ?? false
             var path: [Vec3]
             if policy.isCalm {
                 path = [from, target.position]
@@ -1150,11 +1284,23 @@ public enum StageDirector {
                     lead = [start]
                     start = land
                 }
+                let world = self.world
+                let inWater = { (p: Vec2) in world.water(at: p).map(belongs.contains) ?? false }
+                if swims, !inWater(start), !offstage(start),
+                    let water = world.nearestStand(to: start, belongsIn: belongs, reach: 0.6, accept: inWater)
+                {
+                    // From the water's edge, in.
+                    lead.append(start)
+                    start = water
+                }
                 let bounds = groundBounds(start, target.position.ground)
                 let ground = GroundPaths.path(
                     from: start, to: target.position.ground,
-                    walkable: { [world] p in world.canPass(at: p, belongsIn: belongs) },
-                    crosses: { [world] p, q in world.crossesBlocked(from: p, to: q, belongsIn: belongs) }, bounds: bounds)
+                    walkable: { p in swims ? inWater(p) : world.canPass(at: p, belongsIn: belongs) },
+                    crosses: { p, q in
+                        world.crossesBlocked(from: p, to: q, belongsIn: belongs)
+                            || (swims && world.grounds.contains { $0.water && belongs.contains($0.place) && $0.polygon.cutsEdge(from: p, to: q) })
+                    }, bounds: bounds)
                 path = (lead + ground).map(\.onGround)
                 if from.y > 0.01 { path.insert(from, at: 0) }
                 if target.position.y > 0.01 { path.append(target.position) }
@@ -1180,12 +1326,17 @@ public enum StageDirector {
                 // its feet always keep pace with the ground.
                 let speed = move.stride * me.width / cycle
                 let natural = length / max(speed, 0.01)
-                duration = min(max(natural, shuffle ? 0.5 : StageDirector.minTravel), StageDirector.maxTravel)
+                var most = StageDirector.maxTravel
+                switch target.support {
+                case .beside, .on, .under: if kind == .move { most = StageDirector.maxTravelToSomeone }
+                default: break
+                }
+                duration = min(max(natural, shuffle ? 0.5 : StageDirector.minTravel), most)
                 if natural > 0 {
                     // A long way for short legs (a caterpillar across the
                     // meadow) hurries, but never keeps the story waiting.
                     rate = min(max(natural / duration, StageDirector.rates.lowerBound), StageDirector.rates.upperBound)
-                    duration = min(natural / rate, StageDirector.maxTravel)
+                    duration = min(natural / rate, most)
                 }
                 gait = move.hops ? .hops(cycle: cycle / rate) : .walk
             } else {

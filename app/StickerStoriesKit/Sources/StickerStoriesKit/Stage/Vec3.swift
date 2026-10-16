@@ -69,6 +69,14 @@ public struct GroundPolygon: Equatable, Sendable {
     /// sharp corner thinner than any sampling step; only touching an edge
     /// does not count.
     public func crosses(from p: Vec2, to q: Vec2) -> Bool {
+        if cutsEdge(from: p, to: q) { return true }
+        let middle = p + (q - p) * 0.5
+        return contains(middle) && distance(to: middle) > 1e-9
+    }
+
+    /// Whether the straight way from `p` to `q` goes through one of its
+    /// edges (in or out); only touching one does not count.
+    public func cutsEdge(from p: Vec2, to q: Vec2) -> Bool {
         func side(_ a: Vec2, _ b: Vec2, _ c: Vec2) -> Double { (b.x - a.x) * (c.z - a.z) - (b.z - a.z) * (c.x - a.x) }
         let eps = 1e-9
         for (i, a) in points.enumerated() {
@@ -78,8 +86,7 @@ public struct GroundPolygon: Equatable, Sendable {
                 return true
             }
         }
-        let middle = p + (q - p) * 0.5
-        return contains(middle) && distance(to: middle) > eps
+        return false
     }
 
     /// How far `p` is from the polygon's edge.

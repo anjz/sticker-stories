@@ -54,6 +54,14 @@ Plans the whole story at once, from the cast and the story's triggers:
    nearer side along the ground (walkers), through the air (flyers), or
    grows where it stands.
 
+   **Near whom the story puts it with** (`Director.partner`): when its
+   first move goes to someone on the stage (beside, onto, under), or
+   someone on the stage next comes to it, within 10 s of its coming in,
+   its spot is pulled to a step or two from them (`partnerPull`) — still
+   clear of them and not hiding them — so the move is short and they are
+   together when the words say so. Sent to someone within 3 s of coming
+   in, it comes straight to their side, and that move is made.
+
    **Where the director chooses** (a visitor's spot, a spot in a place,
    the side to stand beside someone, a row on someone's back), it keeps
    characters in view: the planes in front (`StageWorld.covers`, each
@@ -89,13 +97,25 @@ Plans the whole story at once, from the cast and the story's triggers:
    up through the air and down. Every leg's time follows the distance in the
    world and the sticker's gait: a walker's leg takes as long as its steps
    take to cover the way, its frames played a little faster or slower
-   (0.6–1.8×) to keep near the usual times — its feet always keep pace with
-   the ground, so nobody glides. A flyer left in the air keeps flying
-   ("In the air" below).
+   (0.6–2.5×) to keep near the usual times — its feet always keep pace with
+   the ground, so nobody glides — 6 s at most, 4 s to someone, who is
+   waiting for it (`maxTravelToSomeone`). A go to someone it already
+   stands beside is no move. A flyer left in the air keeps flying
+   ("In the air" below). On a perch one of its ways `stays` on (the
+   woodpecker's `cling`, `on: ["trunks"]`), it takes to that way as it
+   gets there and keeps it while it is there (`takeToPerch`): it clings to
+   the bark, its actions there (`tap`, `drum`) play from that pose, and it
+   clings on after them.
 4. **Moving comes first.** A sticker on its way somewhere plays its move
    until it stops: an action the story cues meanwhile waits until it gets
    there (`StageDirector.delayed`). Once an action is over, a move that
-   stays (a flyer hovering, a duckling swimming) goes on.
+   stays (a flyer hovering, a duckling swimming) goes on. **Whoever
+   someone is on the way to waits for them too** (`StageDirector.reaction`):
+   its actions, faces and effects cued while someone travels to its side,
+   onto or under it wait until they get there, 4 s at most — the mushroom
+   giggles once the ladybug's feet are on her cap. The Forest staging
+   test keeps the mean time from a go to someone to the arrival under
+   4.2 s.
 5. **Actions in their place** (the woodpecker on the bark) go there first,
    as before (`PlacementPlanner`).
 6. **Out of the story's way.** The director plans the story once to see
@@ -130,7 +150,11 @@ on them — beating (`PuppetPose.flying`).
 
 Only a sticker with a way that belongs to the water goes into it (a move
 with that water in its `on`: the duckling `by swim`); anyone else stops
-on the bank and walks round it. In the water it floats: its move's
+on the bank and walks round it. Its water way keeps it in the water: it
+walks to the edge, swims in without crossing the bank on the way, and
+leaving by its usual way it swims to the bank first, then walks; the
+Forest staging test fails a swim over land or a walk in the water. In
+the water it floats: its move's
 `waterline` (`docs/pack-format.md`) is how much of its drawing, from its
 feet, is under the water. Whatever it does there — swims, quacks, naps —
 its puppet and its shadow are cut off at the waterline and sunk by as
