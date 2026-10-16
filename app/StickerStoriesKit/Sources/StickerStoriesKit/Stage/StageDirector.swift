@@ -388,6 +388,14 @@ public enum StageDirector {
             // Out the way its art looks (`StagePlan.lap`).
             let art = move.facing == .left ? -1.0 : 1.0
             let way = (leg.facingTo < 0 ? -1.0 : 1.0) * art
+            // Nor round in front of whom it flies by (a bird by the snail).
+            var partner: Int?
+            if case .beside(let id) = leg.support { partner = states.firstIndex { $0.actor.id == id } }
+            let hidesPartner = { (p: Vec3) -> Bool in
+                guard let j = partner else { return false }
+                let q = states[j].pose.position
+                return p.z < q.z && StageWorld.hidden(drawing(j, at: q), behind: [drawing(i, at: p)]) > 0.3
+            }
             var loop = StageLeg.Circling(across: 0, toward: 0, art: art)
             for k in [1, 0.7, 0.45, 0.3] {
                 loop = StageLeg.Circling(
@@ -397,7 +405,9 @@ public enum StageDirector {
                     let a = 2 * Double.pi * Double(k) / 12
                     return spot + Vec3(way * loop.across * sin(a), 0, -loop.toward * (1 - cos(a)) / 2)
                 }
-                if round.allSatisfy({ onScreen(i, at: $0) && hidden(i, at: $0) <= StageDirector.lapHidden }) { break }
+                if round.allSatisfy({ onScreen(i, at: $0) && hidden(i, at: $0) <= StageDirector.lapHidden && !hidesPartner($0) }) {
+                    break
+                }
             }
             return loop
         }
@@ -1043,7 +1053,15 @@ public enum StageDirector {
             let flies = way(i).flies
             let belongs = self.belongs(i, way(i).move)
             func standing(_ x: Double, _ z: Double) -> Vec3 {
-                if flies { return pushedOnScreen(i, Vec3(x, t.y + them.size * 0.15, z)) }
+                // A flyer hovers by them; by someone small on the ground (a
+                // bird by the snail), up by their head rather than across them.
+                if flies {
+                    let low = pushedOnScreen(i, Vec3(x, t.y + them.size * 0.15, z))
+                    guard t.y < 0.01, them.size < me.size * 1.5 else { return low }
+                    let up = pushedOnScreen(i, Vec3(x, t.y + max(them.size * 0.15, them.size - me.size * 0.2), z))
+                    // Not up into the trees' leaves.
+                    return hidden(i, at: up) > hidden(i, at: low) + 0.05 ? low : up
+                }
                 let ground = Vec2(x, z)
                 let land = world.nearestStand(to: ground, belongsIn: belongs, accept: { onScreen(i, at: $0.onGround) }) ?? ground
                 return pushedOnScreen(i, land.onGround)
@@ -1052,7 +1070,15 @@ public enum StageDirector {
             // double — behind one it is never seen) nor behind or in front
             // of someone else. Else the other side, or a step further out,
             // or nearer — out from under a tree's low branches.
-            let seen = { (p: Vec3) in hidden(i, at: p) * 2 + blocking(i, at: p, except: [j]) }
+            // Nor hiding whom it stands by (a fox by a duckling), nor hidden
+            // by them: a little overlap is being together.
+            let theirs = drawing(j, at: t)
+            let together = { (p: Vec3) -> Double in
+                let mine = drawing(i, at: p)
+                let h = p.z < t.z ? StageWorld.hidden(theirs, behind: [mine]) : StageWorld.hidden(mine, behind: [theirs])
+                return max(h - 0.3, 0) * 2
+            }
+            let seen = { (p: Vec3) in hidden(i, at: p) * 2 + blocking(i, at: p, except: [j]) + together(p) }
             var spot = standing(spotX(side, 1), z)
             var behind = seen(spot)
             if behind > 0.2 {

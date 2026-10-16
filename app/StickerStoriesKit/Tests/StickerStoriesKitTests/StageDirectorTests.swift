@@ -532,9 +532,11 @@ extension StageDirectorTests {
                         return (a, s, world.drawing(at: s.position, size: a.size, ratio: a.ratio), still)
                     }
                     for (a, s, r, still) in shown where still && cast.contains(a.stickerID) {
+                        // On or under someone hides some of them, as it should;
+                        // standing beside them hides little of anyone.
                         func linked(_ x: StageSupport, _ id: UUID) -> Bool {
                             switch x {
-                            case .on(let h), .under(let h), .beside(let h): return h == id
+                            case .on(let h), .under(let h): return h == id
                             default: return false
                             }
                         }

@@ -76,11 +76,16 @@ Plans the whole story at once, from the cast and the story's triggers:
    (`StageWorld.hidden(_:behind:)`), the story's cast counting fully and
    the child's other stickers less (`Director.blocking`); beside someone
    it is weighed where it will really stand, a step further out or nearer
-   when that shows it. Entrances and moves are planned in the story's
+   when that shows it — and **it does not hide whom it stands by**, nor
+   stand hidden by them (a little overlap is being together; the fox
+   beside the duckling). A flyer by someone small on the ground hovers up
+   by their head, not across them, and one that circles keeps its loop
+   from passing in front of them. Entrances and moves are planned in the story's
    order, so each sees the stage as it is then; a move an entrance already
    made (it came straight to the place) is not made again. The Forest
    staging test fails any of the cast mostly hidden behind another
-   sticker while both stand still. A place the story names keeps
+   sticker while both stand still — beside each other too; only on or
+   under someone may hide them. A place the story names keeps
    its spot — the pond's shore is where it is. A child's sticker its
    depth puts mostly behind a plane steps out to where it shows as the
    story starts.
