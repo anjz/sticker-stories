@@ -1,0 +1,223 @@
+{
+  "id": "paddle",
+  "sticker": "surfer",
+  "kind": "move",
+  "description": "the surfer boy lies on his surfboard and paddles towards us with his hands, head up and smiling.",
+  "stickerBox": {
+    "x": 0.26302,
+    "y": 0.13932,
+    "width": 0.47266,
+    "height": 0.72005
+  },
+  "loop": {
+    "from": 1,
+    "to": 4
+  },
+  "facing": "left",
+  "stride": 0.35,
+  "on": [
+    "sea"
+  ],
+  "away": "paddle-out",
+  "stays": true,
+  "waterline": 0.06,
+  "puppet": {
+    "rig": "anims/surfer.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 25,
+            "y": 2
+          },
+          "head": {
+            "x": -10,
+            "y": 142
+          },
+          "pArmL": {
+            "r": 12,
+            "sy": 1.08
+          },
+          "pArmR": {
+            "r": 10,
+            "sy": 0.94
+          },
+          "prone": {}
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "none",
+          "armR": "none",
+          "armRF": "none",
+          "board": "none",
+          "boardFlat": "none",
+          "body": "none",
+          "bodyFront": "front",
+          "head": "front",
+          "legL": "none",
+          "legR": "none",
+          "legsCrouch": "none",
+          "pArmL": "front",
+          "pArmR": "front"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 25,
+            "y": 2
+          },
+          "head": {
+            "x": -10,
+            "y": 144
+          },
+          "pArmL": {
+            "sy": 0.94
+          },
+          "pArmR": {
+            "sy": 0.94
+          },
+          "prone": {
+            "y": 2
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "none",
+          "armR": "none",
+          "armRF": "none",
+          "board": "none",
+          "boardFlat": "none",
+          "body": "none",
+          "bodyFront": "front",
+          "head": "front",
+          "legL": "none",
+          "legR": "none",
+          "legsCrouch": "none",
+          "pArmL": "front",
+          "pArmR": "front"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 25,
+            "y": 2
+          },
+          "head": {
+            "x": -10,
+            "y": 142
+          },
+          "pArmL": {
+            "r": -10,
+            "sy": 0.94
+          },
+          "pArmR": {
+            "r": -12,
+            "sy": 1.08
+          },
+          "prone": {}
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "none",
+          "armR": "none",
+          "armRF": "none",
+          "board": "none",
+          "boardFlat": "none",
+          "body": "none",
+          "bodyFront": "front",
+          "head": "front",
+          "legL": "none",
+          "legR": "none",
+          "legsCrouch": "none",
+          "pArmL": "front",
+          "pArmR": "front"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "face": {
+            "x": 25,
+            "y": 2
+          },
+          "head": {
+            "x": -10,
+            "y": 144
+          },
+          "pArmL": {
+            "sy": 0.94
+          },
+          "pArmR": {
+            "sy": 0.94
+          },
+          "prone": {
+            "y": 2
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "none",
+          "armR": "none",
+          "armRF": "none",
+          "board": "none",
+          "boardFlat": "none",
+          "body": "none",
+          "bodyFront": "front",
+          "head": "front",
+          "legL": "none",
+          "legR": "none",
+          "legsCrouch": "none",
+          "pArmL": "front",
+          "pArmR": "front"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "face": {
+            "x": 25,
+            "y": 2
+          },
+          "head": {
+            "x": -10,
+            "y": 142
+          },
+          "pArmL": {
+            "sy": 0.94
+          },
+          "pArmR": {
+            "sy": 0.94
+          },
+          "prone": {}
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "none",
+          "armR": "none",
+          "armRF": "none",
+          "board": "none",
+          "boardFlat": "none",
+          "body": "none",
+          "bodyFront": "front",
+          "head": "front",
+          "legL": "none",
+          "legR": "none",
+          "legsCrouch": "none",
+          "pArmL": "front",
+          "pArmR": "front"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

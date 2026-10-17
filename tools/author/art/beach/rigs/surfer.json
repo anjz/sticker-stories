@@ -14,6 +14,23 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a boy with a surfboard; image 2 shows the same boy cut into puppet parts, with a blank face. Draw the boy's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the boy in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the boy's right eye (on the left of image 1): a big dark round eye with a white sparkle, as it is in image 1.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle, a thin shine of a welling tear along its bottom rim.\n6. the same eye crying: gently squeezed shut, a soft downward-curving line (a sad closed eye, not a smile), a few small lashes, and one small light-blue teardrop just below its outer end.\n7. his eyebrow as it is in image 1: a short dark arched line.\n8. the same eyebrow sad: tilted up at its inner end.\n9. his small nose as it is in image 1.\n10. his mouth as it is in image 1: a big open grin showing his top teeth.\n11. the mouth wide open in a big happy laugh, the inside pink.\n12. the mouth open in a small round 'o'.\n13. the mouth in a small sad frown.\n14. the mouth closed in a gentle smile: just a curved line.\n15. the mouth sobbing: a small open downturned frown with a little pink inside, trembling.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    },
+    {
+      "id": "prone",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a boy with a surfboard; image 2 shows the same boy and board cut into puppet parts. Draw more cut-out puppet parts of this exact boy and his board on one sheet, for when he lies on his board in the sea and paddles: the same drawing style, colours, texture, line and proportions as in images 1 and 2, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the surfboard lying flat on the water seen from the front, its rounded nose pointing straight at the viewer: strongly foreshortened, a short wide yellow oval with the red stripe running away from us down its middle.\n2. his head seen from the front, raised and looking straight at the viewer, the dark curly hair and both ears, with a completely blank face — no eyes, no eyebrows, no nose, no mouth — keep the rosy cheeks; its bottom edge, at the chin, rounded.\n3. his body lying face-down seen from the front (from the board's nose): the tops of his shoulders and his back in the blue-and-orange wetsuit going away from us, foreshortened, with his legs and feet lying behind on the board at the far end; without head and without arms; the shoulders rounded.\n4. one bare arm seen from the front, reaching forward towards the viewer and down to paddle, bent a little, the hand cupped, from a rounded shoulder.\n5. the same surfboard lying flat on the water seen from behind, its square tail nearest the viewer: strongly foreshortened, a short wide yellow oval with the red stripe running away from us.\n6. his body lying face-down on the board seen from behind (from the board's tail): his legs lying together along the board nearest us with the soles of his bare feet towards the viewer, the back of the wetsuit and his shoulders further away, foreshortened; without head and without arms; the shoulders rounded.\n7. the back of his head seen from behind: the dark curly hair and both ears, no face; its bottom edge, at the neck, rounded.\n8. one bare arm seen from behind, reaching forward away from the viewer and down to paddle, bent a little, from a rounded shoulder.\n9. his left leg (on the left of image 1) standing, drawn whole and smooth from the top of the thigh (normally under the shorts) down to the bare foot: one clean outline from thigh to ankle with only a soft hint of a knee, no crease and no pinch at the knee; its top a full rounded curve.\n10. his right leg the same: standing, whole and smooth from the top of the thigh to the bare foot, one clean outline, only a soft hint of a knee; its top a full rounded curve.\n11. the same leg in mid-step: the knee bent gently forward and the foot lifted behind, drawn whole and smooth from the top of the thigh to the bare foot; its top a full rounded curve.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end is a full, smooth, rounded edge. No water, no splashes, no waves. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "paddle",
+      "size": "1536x1024",
+      "references": [
+        "parts",
+        "prone"
+      ],
+      "prompt": "Image 1 is a sticker of a boy with a surfboard; images 2 and 3 show the same boy and his yellow surfboard with its red stripe cut into puppet parts. Draw two more cut-out puppet parts of this exact boy lying on his surfboard, for when he paddles in the sea: the same drawing style, colours, texture, line and proportions as in the images, the boy at the size he has in image 1.\n\nDraw each part on its own, far apart on the sheet, nothing touching:\n1. the surfboard lying flat, seen from a three-quarter front view from slightly above: its pointed nose comes towards the viewer at an angle at the lower left, and its long shape runs back and away to the upper right, clearly a long surfboard (not round); the red stripe runs lengthwise along the middle of the board from nose to tail. The boy lies on it chest down, seen from the front: his shoulders at the front near the nose, his back, and his legs lying straight along the board behind him with his bare feet near the tail at the far end. WITHOUT his head and WITHOUT his arms: his shoulders rounded where they join.\n2. the same surfboard lying flat, seen from behind and slightly above, as from the beach watching a surfer paddle out: its rounded tail nearest the viewer at the bottom, its long shape running away up the sheet towards the horizon, narrowing in perspective to its pointed nose at the top; the red stripe runs lengthwise along the middle from tail to nose. The boy lies on it chest down, seen from behind: his legs lying together along the board nearest us with the soles of his bare feet towards the viewer just above the tail, then his bottom in the wetsuit, his back, and his shoulders further up the board; the nose of the board shows beyond where his head will be. WITHOUT his head and WITHOUT his arms: his shoulders rounded where they join.\n\nEvery part drawn whole. No water, no splashes, no waves. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -206,6 +223,69 @@
         300
       ],
       "fadeTop": 0.06
+    },
+    "headFront": {
+      "sheet": "prone",
+      "at": [
+        550,
+        172
+      ]
+    },
+    "armFront": {
+      "sheet": "prone",
+      "at": [
+        1249,
+        208
+      ]
+    },
+    "headBack": {
+      "sheet": "prone",
+      "at": [
+        975,
+        493
+      ]
+    },
+    "armBack": {
+      "sheet": "prone",
+      "at": [
+        1334,
+        509
+      ]
+    },
+    "legL2": {
+      "sheet": "prone",
+      "at": [
+        290,
+        810
+      ]
+    },
+    "legR2": {
+      "sheet": "prone",
+      "at": [
+        772,
+        814
+      ]
+    },
+    "legStep": {
+      "sheet": "prone",
+      "at": [
+        1198,
+        796
+      ]
+    },
+    "paddleFront": {
+      "sheet": "paddle",
+      "at": [
+        514,
+        547
+      ]
+    },
+    "paddleBack": {
+      "sheet": "paddle",
+      "at": [
+        1229,
+        513
+      ]
     }
   },
   "bones": [
@@ -219,6 +299,42 @@
       "parent": "root",
       "x": 468,
       "y": 622
+    },
+    {
+      "id": "prone",
+      "parent": "root",
+      "x": 330,
+      "y": 560
+    },
+    {
+      "id": "pArmL",
+      "parent": "prone",
+      "x": 270,
+      "y": 451
+    },
+    {
+      "id": "pArmR",
+      "parent": "prone",
+      "x": 402,
+      "y": 467
+    },
+    {
+      "id": "pHeadB",
+      "parent": "prone",
+      "x": 330,
+      "y": 390
+    },
+    {
+      "id": "bArmL",
+      "parent": "prone",
+      "x": 266,
+      "y": 392
+    },
+    {
+      "id": "bArmR",
+      "parent": "prone",
+      "x": 394,
+      "y": 392
     },
     {
       "id": "body",
@@ -351,7 +467,7 @@
         "flat": {
           "part": "boardFlat",
           "x": 320.2,
-          "y": 613.2,
+          "y": 597.2,
           "scale": 0.46
         }
       }
@@ -362,11 +478,17 @@
       "default": "leg",
       "attachments": {
         "leg": {
-          "part": "legR",
-          "x": 391.7,
-          "y": 555.7,
-          "scale": 0.408,
+          "part": "legR2",
+          "x": 394.1,
+          "y": 555.3,
+          "scale": 0.442,
           "rotate": -11.699999999999989
+        },
+        "step": {
+          "part": "legStep",
+          "x": 400.1,
+          "y": 544.7,
+          "scale": 0.41
         }
       }
     },
@@ -376,11 +498,17 @@
       "default": "leg",
       "attachments": {
         "leg": {
-          "part": "legL",
-          "x": 272.7,
-          "y": 555.6,
-          "scale": 0.433,
-          "rotate": 18.900000000000006
+          "part": "legL2",
+          "x": 271.3,
+          "y": 552.2,
+          "scale": 0.463,
+          "rotate": 16.5
+        },
+        "step": {
+          "part": "legStep",
+          "x": 328.1,
+          "y": 540.7,
+          "scale": 0.41
         }
       }
     },
@@ -392,8 +520,9 @@
         "crouch": {
           "part": "legsCrouch",
           "x": 338.2,
-          "y": 563.9,
-          "scale": 0.42
+          "y": 549.8,
+          "scale": 0.45,
+          "scaleY": 0.9
         }
       }
     },
@@ -423,6 +552,104 @@
           "scale": 0.47,
           "rotate": -15,
           "flip": true
+        }
+      }
+    },
+    {
+      "id": "bodyFront",
+      "bone": "prone",
+      "default": "none",
+      "attachments": {
+        "front": {
+          "part": "paddleFront",
+          "x": 343.8,
+          "y": 482.0,
+          "scale": 0.4
+        }
+      }
+    },
+    {
+      "id": "pArmL",
+      "bone": "pArmL",
+      "default": "none",
+      "attachments": {
+        "front": {
+          "part": "armFront",
+          "x": 249.2,
+          "y": 487.0,
+          "scale": 0.36,
+          "rotate": 9.199999999999989
+        }
+      }
+    },
+    {
+      "id": "pArmR",
+      "bone": "pArmR",
+      "default": "none",
+      "attachments": {
+        "front": {
+          "part": "armFront",
+          "x": 426.0,
+          "y": 500.9,
+          "scale": 0.36,
+          "rotate": -14.5,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "bodyBack",
+      "bone": "prone",
+      "default": "none",
+      "attachments": {
+        "back": {
+          "part": "paddleBack",
+          "x": 329.8,
+          "y": 463.2,
+          "scale": 0.43,
+          "scaleY": 0.9
+        }
+      }
+    },
+    {
+      "id": "bArmL",
+      "bone": "bArmL",
+      "default": "none",
+      "attachments": {
+        "back": {
+          "part": "armBack",
+          "x": 232.1,
+          "y": 420.2,
+          "scale": 0.36,
+          "rotate": -5.400000000000006
+        }
+      }
+    },
+    {
+      "id": "bArmR",
+      "bone": "bArmR",
+      "default": "none",
+      "attachments": {
+        "back": {
+          "part": "armBack",
+          "x": 427.9,
+          "y": 420.2,
+          "scale": 0.36,
+          "rotate": 5.400000000000006,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "headBack",
+      "bone": "pHeadB",
+      "default": "none",
+      "attachments": {
+        "back": {
+          "part": "headBack",
+          "x": 330.2,
+          "y": 372.0,
+          "scale": 0.37
         }
       }
     },
@@ -480,6 +707,12 @@
           "y": 217.1,
           "scale": 0.555,
           "rotate": 0.6999999999999886
+        },
+        "front": {
+          "part": "headFront",
+          "x": 339.9,
+          "y": 217.4,
+          "scale": 0.55
         }
       }
     },
@@ -882,10 +1115,10 @@
           "hold": 0.17,
           "bones": {
             "legL": {
-              "r": 12
+              "r": 8
             },
             "legR": {
-              "r": -12
+              "r": -8
             },
             "armL": {
               "r": -8
@@ -909,7 +1142,7 @@
             },
             "legR": {
               "r": 0,
-              "y": -6
+              "y": -2
             },
             "root": {
               "y": 0
@@ -917,16 +1150,19 @@
             "board": {
               "y": -3
             }
+          },
+          "slots": {
+            "legR": "step"
           }
         },
         {
           "hold": 0.17,
           "bones": {
             "legL": {
-              "r": -12
+              "r": -8
             },
             "legR": {
-              "r": 12
+              "r": 8
             },
             "armL": {
               "r": 8
@@ -947,7 +1183,7 @@
           "bones": {
             "legL": {
               "r": 0,
-              "y": -6
+              "y": -2
             },
             "legR": {
               "r": 0
@@ -958,6 +1194,9 @@
             "board": {
               "y": -3
             }
+          },
+          "slots": {
+            "legL": "step"
           }
         },
         {
@@ -975,6 +1214,231 @@
           "hold": 0.4
         }
       ]
+    },
+    {
+      "id": "paddle",
+      "kind": "move",
+      "description": "the surfer boy lies on his surfboard and paddles towards us with his hands, head up and smiling.",
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "facing": "left",
+      "stride": 0.35,
+      "on": [
+        "sea"
+      ],
+      "stays": true,
+      "waterline": 0.06,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "pArmL": {
+              "r": 12,
+              "sy": 1.08
+            },
+            "pArmR": {
+              "r": 10,
+              "sy": 0.94
+            },
+            "prone": {
+              "y": 0
+            },
+            "head": {
+              "x": -10,
+              "y": 142
+            },
+            "face": {
+              "x": 25,
+              "y": 2
+            }
+          },
+          "slots": {
+            "armR": "none",
+            "board": "none",
+            "boardFlat": "none",
+            "legR": "none",
+            "legL": "none",
+            "legsCrouch": "none",
+            "armL": "none",
+            "body": "none",
+            "armLF": "none",
+            "armRF": "none",
+            "head": "front",
+            "bodyFront": "front",
+            "pArmL": "front",
+            "pArmR": "front"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "pArmL": {
+              "r": 0,
+              "sy": 0.94
+            },
+            "pArmR": {
+              "r": 0,
+              "sy": 0.94
+            },
+            "prone": {
+              "y": 2
+            },
+            "head": {
+              "x": -10,
+              "y": 144
+            },
+            "face": {
+              "x": 25,
+              "y": 2
+            }
+          },
+          "slots": {
+            "armR": "none",
+            "board": "none",
+            "boardFlat": "none",
+            "legR": "none",
+            "legL": "none",
+            "legsCrouch": "none",
+            "armL": "none",
+            "body": "none",
+            "armLF": "none",
+            "armRF": "none",
+            "head": "front",
+            "bodyFront": "front",
+            "pArmL": "front",
+            "pArmR": "front"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "pArmL": {
+              "r": -10,
+              "sy": 0.94
+            },
+            "pArmR": {
+              "r": -12,
+              "sy": 1.08
+            },
+            "prone": {
+              "y": 0
+            },
+            "head": {
+              "x": -10,
+              "y": 142
+            },
+            "face": {
+              "x": 25,
+              "y": 2
+            }
+          },
+          "slots": {
+            "armR": "none",
+            "board": "none",
+            "boardFlat": "none",
+            "legR": "none",
+            "legL": "none",
+            "legsCrouch": "none",
+            "armL": "none",
+            "body": "none",
+            "armLF": "none",
+            "armRF": "none",
+            "head": "front",
+            "bodyFront": "front",
+            "pArmL": "front",
+            "pArmR": "front"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "pArmL": {
+              "r": 0,
+              "sy": 0.94
+            },
+            "pArmR": {
+              "r": 0,
+              "sy": 0.94
+            },
+            "prone": {
+              "y": 2
+            },
+            "head": {
+              "x": -10,
+              "y": 144
+            },
+            "face": {
+              "x": 25,
+              "y": 2
+            }
+          },
+          "slots": {
+            "armR": "none",
+            "board": "none",
+            "boardFlat": "none",
+            "legR": "none",
+            "legL": "none",
+            "legsCrouch": "none",
+            "armL": "none",
+            "body": "none",
+            "armLF": "none",
+            "armRF": "none",
+            "head": "front",
+            "bodyFront": "front",
+            "pArmL": "front",
+            "pArmR": "front"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "pArmL": {
+              "r": 0,
+              "sy": 0.94
+            },
+            "pArmR": {
+              "r": 0,
+              "sy": 0.94
+            },
+            "prone": {
+              "y": 0
+            },
+            "head": {
+              "x": -10,
+              "y": 142
+            },
+            "face": {
+              "x": 25,
+              "y": 2
+            }
+          },
+          "slots": {
+            "armR": "none",
+            "board": "none",
+            "boardFlat": "none",
+            "legR": "none",
+            "legL": "none",
+            "legsCrouch": "none",
+            "armL": "none",
+            "body": "none",
+            "armLF": "none",
+            "armRF": "none",
+            "head": "front",
+            "bodyFront": "front",
+            "pArmL": "front",
+            "pArmR": "front"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ],
+      "away": "paddle-out"
     },
     {
       "id": "surf",
@@ -1174,6 +1638,225 @@
             "armR": "free",
             "eyeL": "happy",
             "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "paddle-out",
+      "kind": "move",
+      "description": "the surfer boy lies on his surfboard and paddles out to sea with his hands, away towards the horizon.",
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "facing": "left",
+      "stride": 0.35,
+      "on": [
+        "sea"
+      ],
+      "stays": true,
+      "waterline": 0.06,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "bArmL": {
+              "r": -14,
+              "sy": 0.9
+            },
+            "bArmR": {
+              "r": -10,
+              "sy": 1.08
+            },
+            "prone": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "armR": "none",
+            "board": "none",
+            "boardFlat": "none",
+            "legR": "none",
+            "legL": "none",
+            "legsCrouch": "none",
+            "armL": "none",
+            "body": "none",
+            "armLF": "none",
+            "armRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "bodyBack": "back",
+            "bArmL": "back",
+            "bArmR": "back",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "nose": "none",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "bArmL": {
+              "r": 0,
+              "sy": 0.9
+            },
+            "bArmR": {
+              "r": 0,
+              "sy": 0.9
+            },
+            "prone": {
+              "y": 2
+            }
+          },
+          "slots": {
+            "armR": "none",
+            "board": "none",
+            "boardFlat": "none",
+            "legR": "none",
+            "legL": "none",
+            "legsCrouch": "none",
+            "armL": "none",
+            "body": "none",
+            "armLF": "none",
+            "armRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "bodyBack": "back",
+            "bArmL": "back",
+            "bArmR": "back",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "nose": "none",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "bArmL": {
+              "r": 10,
+              "sy": 1.08
+            },
+            "bArmR": {
+              "r": 14,
+              "sy": 0.9
+            },
+            "prone": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "armR": "none",
+            "board": "none",
+            "boardFlat": "none",
+            "legR": "none",
+            "legL": "none",
+            "legsCrouch": "none",
+            "armL": "none",
+            "body": "none",
+            "armLF": "none",
+            "armRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "bodyBack": "back",
+            "bArmL": "back",
+            "bArmR": "back",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "nose": "none",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "bArmL": {
+              "r": 0,
+              "sy": 0.9
+            },
+            "bArmR": {
+              "r": 0,
+              "sy": 0.9
+            },
+            "prone": {
+              "y": 2
+            }
+          },
+          "slots": {
+            "armR": "none",
+            "board": "none",
+            "boardFlat": "none",
+            "legR": "none",
+            "legL": "none",
+            "legsCrouch": "none",
+            "armL": "none",
+            "body": "none",
+            "armLF": "none",
+            "armRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "bodyBack": "back",
+            "bArmL": "back",
+            "bArmR": "back",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "nose": "none",
+            "mouth": "none"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "bArmL": {
+              "r": 0,
+              "sy": 0.9
+            },
+            "bArmR": {
+              "r": 0,
+              "sy": 0.9
+            },
+            "prone": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "armR": "none",
+            "board": "none",
+            "boardFlat": "none",
+            "legR": "none",
+            "legL": "none",
+            "legsCrouch": "none",
+            "armL": "none",
+            "body": "none",
+            "armLF": "none",
+            "armRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "bodyBack": "back",
+            "bArmL": "back",
+            "bArmR": "back",
+            "eyeL": "none",
+            "eyeR": "none",
+            "browL": "none",
+            "browR": "none",
+            "nose": "none",
+            "mouth": "none"
           }
         },
         {
@@ -1501,7 +2184,11 @@
         {
           "hold": 0.2
         }
-      ]
+      ],
+      "on": [
+        "sea"
+      ],
+      "faces": "right"
     },
     {
       "id": "clap",
