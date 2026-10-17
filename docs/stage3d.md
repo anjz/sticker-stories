@@ -53,6 +53,18 @@ Plans the whole story at once, from the cast and the story's triggers:
    tree's roots, up in the air though it walks) moves to the nearest place
    it can, in the story's first moments (the *settle*), while every child's
    sticker eases to the size its depth makes it.
+
+   **Something that never moves** (`StageActor.canMove`: a sticker whose
+   `stage` entrance is `grow` — the flower, the mushroom, the sand castle,
+   the umbrella) stays exactly where the child put it, its feet on that
+   spot, only easing to its size there. Put where it cannot stand (up in
+   the sky, out on the sea), it drops straight down the screen to the
+   first ground it can stand on and be seen on (`Gait.drop`, falling ever
+   faster) — never off to a spot of the director's choosing. It does not
+   step out from behind a tree either: a plane its depth puts it behind is
+   drawn behind it (`StagePlan.drawnAt`), as the child saw it while
+   playing, every sticker in front of the scene. Nor does it step out of
+   the story's way (6): the cast goes round it.
 2. **Entrances.** A visitor lands on the first place of its stage with a
    free spot on screen — sampled in the place's region, on land unless it
    belongs in the water, clear of the others — and comes in from the
@@ -102,7 +114,7 @@ Plans the whole story at once, from the cast and the story's triggers:
    under someone may hide them. A place the story names keeps
    its spot — the pond's shore is where it is. A child's sticker its
    depth puts mostly behind a plane steps out to where it shows as the
-   story starts.
+   story starts (one that never moves stays, drawn in front of it: 1).
 3. **Moves.** Each `go` ends at a pose planned in space: beside someone at
    their depth, on or under them, at a free spot of a place (in it, or on
    its shore for one that does not belong in its water), off the stage,
@@ -152,7 +164,7 @@ Plans the whole story at once, from the cast and the story's triggers:
    where its cast — every sticker it names, moves, sends someone to or
    cues anything on — will be and pass; a child's sticker the story does
    not use that stands in the way walks (or fades) to the freest land on
-   screen away from the cast, the further back and nearer the sides the
+   screen away from the cast (one that never moves stays: 1), the further back and nearer the sides the
    better, as the story starts; then the story is planned again round it.
 
 ## In the air

@@ -50,6 +50,10 @@ public struct StageLeg: Equatable, Sendable {
         case fade
         /// It comes in where it stands: fades in and grows from small.
         case grow
+        /// It drops straight down where it is, falling ever faster, no
+        /// move frames: something that does not move, put up off the
+        /// ground (`StageDirector`, the cast's start).
+        case drop
 
         /// Whether it carries the sticker along its path (it does not fade
         /// or grow where it is).
@@ -67,6 +71,7 @@ public struct StageLeg: Equatable, Sendable {
             switch self {
             case .fly: q * q * (3 - 2 * q)
             case .bounce: 1 - (1 - q) * (1 - q)
+            case .drop: q * q
             default: q
             }
         }
@@ -76,6 +81,7 @@ public struct StageLeg: Equatable, Sendable {
             let k = min(max(k, 0), 1)
             switch self {
             case .bounce: return 1 - (1 - k).squareRoot()
+            case .drop: return k.squareRoot()
             case .fly:
                 var lo = 0.0, hi = 1.0
                 for _ in 0..<30 {
@@ -182,7 +188,7 @@ public struct StageLeg: Equatable, Sendable {
     /// Whether its move frames play along.
     public var travels: Bool {
         switch gait {
-        case .fade: false
+        case .fade, .drop: false
         case .grow: move != nil
         default: true
         }
@@ -200,12 +206,18 @@ public struct StagePlan: Equatable, Sendable {
     /// Its drawing's height at depth 1 (`SceneSpace.sizes`): hops and bobs
     /// are in proportion.
     public var size: Double
+    /// The depth it is drawn at among the scene's planes, when not its
+    /// feet's: something that never moves, left where the child put it
+    /// behind a tree, is drawn just in front of the tree, as the child saw
+    /// it (every sticker is in front of the scene while the child plays).
+    public var drawnAt: Double?
 
-    public init(start: StagePose, startsVisible: Bool = true, legs: [StageLeg] = [], size: Double) {
+    public init(start: StagePose, startsVisible: Bool = true, legs: [StageLeg] = [], size: Double, drawnAt: Double? = nil) {
         self.start = start
         self.startsVisible = startsVisible
         self.legs = legs.sorted { $0.at < $1.at }
         self.size = size
+        self.drawnAt = drawnAt
     }
 
     /// Where it is at a moment, and how it shows.
@@ -270,6 +282,8 @@ public struct StagePlan: Equatable, Sendable {
             }
         case .walk:
             position = Self.along(leg.path, q)
+        case .drop:
+            position = Self.along(leg.path, leg.gait.eased(q))
         case .hops(let cycle):
             position = Self.along(leg.path, q)
             if p < 1, cycle > 0 { position.y += Self.hopHeight * size * abs(sin(.pi * (time - leg.at) / cycle)) }

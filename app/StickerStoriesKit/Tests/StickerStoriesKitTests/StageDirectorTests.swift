@@ -298,6 +298,23 @@ import Testing
         #expect(w.hidden(w.drawing(at: p, size: 0.3, ratio: 1), atDepth: p.z) < 0.15)
     }
 
+    /// Something that never moves (the flower) stays where the child put
+    /// it behind the tree, drawn in front of the tree, as the child saw it.
+    @Test func somethingThatNeverMovesBehindATreeStaysDrawnInFrontOfIt() throws {
+        var random = SeededGenerator(state: 7)
+        let w = covered(world)
+        let feet = SceneSpace.Point(0.85, 0.3)
+        let flower = StageActor(
+            id: fox, stickerID: "fox", size: 0.3, ratio: 1, stage: StickerStage(entrance: .grow, on: ["meadow"]), placed: feet)
+        let plan = try #require(StageDirector.plan(
+            world: w, screen: screen, actors: [flower], entrances: [], goes: [], policy: .standard, random: &random)[fox])
+        #expect(plan.legs.isEmpty)
+        let p = plan.sample(at: 10).position
+        #expect((p - w.groundPoint(feet).onGround).length < 1e-9)
+        let drawnAt = try #require(plan.drawnAt)
+        #expect(drawnAt < 2 && w.hidden(w.drawing(at: p, size: 0.3, ratio: 1), atDepth: drawnAt) == 0)
+    }
+
     @Test func theWoodpeckerFacesTheBark() throws {
         let plans = plan(
             [actor(woodpecker, "woodpecker", at: .init(0.5, 0.15), stage: StickerStage(entrance: .fly, on: ["trunks"]),
@@ -839,7 +856,9 @@ extension StageDirectorTests {
                             case .on(let host), .under(let host): onTheChilds = placedIDs.contains(host)
                             default: break
                             }
-                            if !onTheChilds, world.hidden(r, atDepth: s.position.z) > 0.35 {
+                            // (Drawn in front of the plane it stands behind: something
+                            // that never moves, left where the child put it.)
+                            if !onTheChilds, world.hidden(r, atDepth: plan.drawnAt ?? s.position.z) > 0.35 {
                                 problems.append("\(tag): hidden behind the scene at \(String(format: "%.1f", t))")
                             }
                         }

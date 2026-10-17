@@ -164,8 +164,16 @@ public enum StageDirector {
                 }
                 return leg
             }
+            // Something that never moves, where the child put it behind a
+            // plane: drawn in front of it.
+            var drawnAt: Double?
+            if state.actor.placed != nil, !state.actor.canMove {
+                let at = state.home.position
+                let r = world.drawing(at: at, size: state.actor.size, ratio: state.actor.ratio(at: at, in: world))
+                drawnAt = world.nearestCover(r, atDepth: at.z).map { $0 - 0.01 }
+            }
             plans[state.actor.id] = StagePlan(
-                start: state.start, startsVisible: state.startsVisible, legs: legs, size: state.actor.size)
+                start: state.start, startsVisible: state.startsVisible, legs: legs, size: state.actor.size, drawnAt: drawnAt)
         }
         return plans
     }
@@ -428,7 +436,9 @@ public enum StageDirector {
             }
             let lands = world.grounds.filter { !$0.water }.map(\.place)
             for i in states.indices where states[i].actor.placed != nil && !cast.contains(states[i].actor.stickerID) {
-                guard overlap(drawing(i, at: states[i].home.position)) > 0.15 else {
+                // Something that never moves (a flower, the sand castle)
+                // stays where the child put it: the cast goes round it.
+                guard states[i].actor.canMove, overlap(drawing(i, at: states[i].home.position)) > 0.15 else {
                     taken.append(drawing(i, at: states[i].home.position))
                     continue
                 }
@@ -460,7 +470,7 @@ public enum StageDirector {
                 let across = onlyGetsAboutInWater(i)
                     && !waterReaches(i, from: states[i].start.position.ground, to: spot.position.ground)
                 travel(i, to: spot, begin: 0, kind: .settle)
-                if !states[i].actor.canMove || across, var leg = states[i].legs.last {
+                if across, var leg = states[i].legs.last {
                     leg.gait = .fade
                     leg.move = nil
                     states[i].legs[states[i].legs.count - 1] = leg
@@ -754,7 +764,9 @@ public enum StageDirector {
             for i in states.indices {
                 guard let feet = states[i].actor.placed else { continue }
                 let (from, standing) = placedPose(i, feet)
-                let valid = outFromBehind(i, standing)
+                // Something that never moves stays where the child put it,
+                // behind a tree or not.
+                let valid = states[i].actor.canMove ? outFromBehind(i, standing) : standing
                 states[i].start = from
                 states[i].pose = from
                 states[i].home = valid
@@ -764,7 +776,17 @@ public enum StageDirector {
                     // Water-bound and out of its water, or in water that does
                     // not reach where it can be: it fades over.
                     let across = onlyGetsAboutInWater(i) && !waterReaches(i, from: from.position.ground, to: valid.position.ground)
-                    if !me.canMove || policy.isCalm || across {
+                    if !me.canMove, !policy.isCalm, case .air = from.support,
+                        abs(from.position.x - valid.position.x) < 1e-9, abs(from.position.z - valid.position.z) < 1e-9
+                    {
+                        // Up off the ground where it cannot be: it drops
+                        // straight down, the further the longer.
+                        let fall = world.project(from.position).v - world.project(valid.position).v
+                        leg = StageLeg(
+                            at: 0, duration: min(StageDirector.settle, max(0.45, 1.3 * fall.squareRoot())),
+                            path: [from.position, valid.position], gait: .drop, kind: .settle,
+                            facingFrom: from.facing, facingTo: from.facing, support: valid.support)
+                    } else if !me.canMove || policy.isCalm || across {
                         leg = StageLeg(
                             at: 0, duration: StageDirector.settle, path: [from.position, valid.position], gait: .fade,
                             kind: .settle, facingFrom: from.facing, facingTo: from.facing, support: valid.support)
@@ -822,6 +844,23 @@ public enum StageDirector {
                     return (here, StagePose(position: spot, support: .ground, facing: facing))
                 }
             }
+            // Something that never moves (a flower, the sand castle) stays
+            // where the child put it: on ground it can stand on, or the
+            // perch it is at. Anywhere else (up in the sky, out on the sea)
+            // it drops straight down to the first ground it can stand on.
+            if !me.canMove {
+                let g = world.groundPoint(feet)
+                let standing = space.isGround(artY: feet.v) && world.canStand(at: g, belongsIn: belongs)
+                if !standing, let perch = nearestPerch(i, to: feet, within: 0.08), onScreen(i, at: perch.position),
+                    hidden(i, at: perch.position) <= 0.3
+                {
+                    return (perch, perch)
+                }
+                if !standing, let land = groundBelow(i, feet, belongsIn: belongs) {
+                    return (StagePose(position: world.point(feet, atDepth: land.z), support: .air(""), facing: facing),
+                            StagePose(position: land.onGround, support: .ground, facing: facing))
+                }
+            }
             if space.isGround(artY: feet.v) {
                 let g = world.groundPoint(feet)
                 let here = StagePose(position: g.onGround, support: .ground, facing: facing)
@@ -848,6 +887,19 @@ public enum StageDirector {
             let land = world.nearestStand(to: below, belongsIn: belongs, reach: 4, accept: accept) ?? below
             return (StagePose(position: up, support: .air(""), facing: facing),
                     StagePose(position: land.onGround, support: .ground, facing: facing))
+        }
+
+        /// The first ground straight below an art point, down the screen,
+        /// that it can stand on and be seen on.
+        func groundBelow(_ i: Int, _ feet: SceneSpace.Point, belongsIn belongs: Set<String>) -> Vec2? {
+            var v = min(feet.v, world.space.horizon)
+            while v > 0 {
+                v -= 0.004
+                guard world.space.isGround(artY: v) else { continue }
+                let g = world.groundPoint(.init(feet.u, v))
+                if world.canStand(at: g, belongsIn: belongs), onScreen(i, at: g.onGround) { return g }
+            }
+            return nil
         }
 
         /// The perch spot nearest an art point, if one is within `within`

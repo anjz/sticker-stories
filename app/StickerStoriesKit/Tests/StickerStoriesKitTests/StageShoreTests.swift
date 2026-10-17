@@ -388,4 +388,48 @@ func shoreWorld() -> StageWorld {
             #expect(lying.minX >= -1e-6 && lying.maxX <= 1000 + 1e-6, "seed \(seed)")
         }
     }
+
+    // MARK: Things that never move (a flower, the sand castle)
+
+    func castle(at feet: SceneSpace.Point) -> StageActor {
+        StageActor(id: boat, stickerID: "castle", size: 0.2, ratio: 1, stage: StickerStage(entrance: .grow, on: ["sand"]), placed: feet)
+    }
+
+    @Test func somethingThatNeverMovesStaysWhereTheChildPutIt() throws {
+        // On the sand right in the fox's way to the ball: the fox goes round.
+        let feet = SceneSpace.Point(0.5, 0.15)
+        var random = SeededGenerator(state: 7)
+        let plans = StageDirector.plan(
+            world: world, screen: screen,
+            actors: [castle(at: feet), actor(fox, "fox", at: .init(0.15, 0.15), moves: trot), actor(ball, "ball", at: .init(0.85, 0.15), moves: trot)],
+            entrances: [], goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "ball")],
+            policy: .standard, cast: ["fox", "ball"], random: &random)
+        let plan = try #require(plans[boat])
+        #expect(plan.legs.isEmpty)
+        #expect((plan.sample(at: 10).position - world.groundPoint(feet).onGround).length < 1e-9)
+    }
+
+    @Test func upInTheSkyItDropsStraightDownToTheGround() throws {
+        let plans = plan([castle(at: .init(0.3, 0.7))])
+        let leg = try #require(plans[boat]?.legs.first)
+        let top = try #require(leg.path.first), bottom = try #require(leg.path.last)
+        #expect(leg.gait == .drop && leg.kind == .settle && leg.move == nil && !leg.travels)
+        #expect(abs(world.project(top).u - 0.3) < 1e-9 && abs(world.project(top).v - 0.7) < 1e-9)
+        #expect(abs(world.project(bottom).u - 0.3) < 1e-9 && bottom.y == 0)
+        #expect(world.canStand(at: bottom.ground, belongsIn: ["sand"]))
+        // The sea between: down past it to the first sand.
+        #expect(world.project(bottom).v < 0.3 && world.project(bottom).v > 0.28)
+        // Falling ever faster, at the same depth all the way.
+        let plan = try #require(plans[boat])
+        let mid = plan.sample(at: leg.at + leg.duration / 2).position
+        #expect(abs(mid.z - top.z) < 1e-9 && mid.y > (top.y + bottom.y) / 2)
+    }
+
+    @Test func outOnTheSeaItDropsToTheSandInFront() throws {
+        let plans = plan([castle(at: .init(0.3, 0.38))])
+        let leg = try #require(plans[boat]?.legs.first)
+        let bottom = try #require(leg.path.last)
+        #expect(leg.gait == .drop && abs(world.project(bottom).u - 0.3) < 1e-9)
+        #expect(world.water(at: bottom.ground) == nil && world.project(bottom).v > 0.28)
+    }
 }

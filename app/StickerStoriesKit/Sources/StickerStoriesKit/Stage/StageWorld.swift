@@ -320,7 +320,17 @@ public struct StageWorld: Sendable {
     /// How much of a drawing (world points) standing at depth `z` the
     /// planes in front of it hide: the share of it behind any of them.
     public func hidden(_ r: StageRect, atDepth z: Double) -> Double {
-        let nearer = covers.filter { $0.depth < z - 1e-6 }
+        share(of: r, behind: covers.filter { $0.depth < z - 1e-6 })
+    }
+
+    /// The nearest of the planes in front of depth `z` that hides any of a
+    /// drawing (world points), by its depth.
+    public func nearestCover(_ r: StageRect, atDepth z: Double) -> Double? {
+        covers.filter { $0.depth < z - 1e-6 }.sorted { $0.depth < $1.depth }
+            .first { share(of: r, behind: [$0]) > 0 }?.depth
+    }
+
+    private func share(of r: StageRect, behind nearer: [Cover]) -> Double {
         guard !nearer.isEmpty, r.maxX > r.minX, r.maxY > r.minY else { return 0 }
         let n = 8
         var behind = 0

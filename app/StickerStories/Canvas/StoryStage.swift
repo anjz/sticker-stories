@@ -84,7 +84,7 @@ final class StoryStage {
         }
         // Sinking in over its first half-height into the water.
         let afloat = world.afloat(at: s.position, moves: moves[node.stickerID] ?? [], ramp: plan.size * 0.5)
-        return (base, s.opacity, s.facing, zPosition(forDepth: s.position.z) + CGFloat(s.arrivedAt) * 1e-4, afloat)
+        return (base, s.opacity, s.facing, zPosition(forDepth: plan.drawnAt ?? s.position.z) + CGFloat(s.arrivedAt) * 1e-4, afloat)
     }
 
     /// Whether a sticker is out in open water at `time`: where a `surf-wave` cued
