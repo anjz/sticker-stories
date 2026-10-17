@@ -40,6 +40,17 @@ public struct StageActor: Sendable {
 
     public var width: Double { size * ratio }
 
+    /// Its drawing's width over its height at `p`: afloat on a move that
+    /// keeps it in the water (Nico lying on his board, paddling), at
+    /// least as wide as it is tall standing — so the stage keeps all of
+    /// that pose on the art, not only its standing still.
+    public func ratio(at p: Vec3, in world: StageWorld) -> Double {
+        guard ratio < 1, p.y < 0.01, let water = world.water(at: p.ground),
+            moves.contains(where: { $0.stays && $0.waterline > 0 && $0.on.contains(water) })
+        else { return ratio }
+        return 1
+    }
+
     /// How much it wants a spot near the front (0…1): tiny and small
     /// characters are hard to see far back or half hidden.
     public var wantsFront: Double {
@@ -400,7 +411,7 @@ public enum StageDirector {
                 while t <= end {
                     let s = plan.sample(at: t)
                     if s.opacity > 0.5 {
-                        taken.append(world.drawing(at: s.position, size: state.actor.size, ratio: state.actor.ratio))
+                        taken.append(world.drawing(at: s.position, size: state.actor.size, ratio: state.actor.ratio(at: s.position, in: world)))
                     }
                     t += 0.25
                 }
@@ -608,7 +619,7 @@ public enum StageDirector {
         // MARK: Screen
 
         func drawing(_ i: Int, at p: Vec3) -> StageRect {
-            world.drawing(at: p, size: states[i].actor.size, ratio: states[i].actor.ratio)
+            world.drawing(at: p, size: states[i].actor.size, ratio: states[i].actor.ratio(at: p, in: world))
         }
 
         func onScreen(_ i: Int, at p: Vec3) -> Bool {

@@ -783,7 +783,8 @@ extension StageDirectorTests {
                             }
                         }
                         if !moving, t >= StageDirector.settle, s.support != .off {
-                            let r = world.drawing(at: s.position, size: a.size, ratio: a.ratio)
+                            // (Afloat on a move that stays, as wide as it lies.)
+                            let r = world.drawing(at: s.position, size: a.size, ratio: a.ratio(at: s.position, in: world))
                             // On a shallow bottom it belongs on, seen in the water
                             // (the fish in the rock pool, not up on its rim).
                             // (One that lives in it: whose places are all water.)

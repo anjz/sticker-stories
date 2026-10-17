@@ -362,4 +362,30 @@ func shoreWorld() -> StageWorld {
         #expect(plan.sample(at: next.at).facing == -1 && next.facingFrom == -1 && next.facingTo == -1)
         #expect(plan.sample(at: next.at + 0.1).facing == -1)
     }
+
+    @Test func lyingOnHisBoardHeIsKeptWhollyOnTheArt() throws {
+        // A narrow surfer standing, lying on his board as wide as he is
+        // tall: sent far left along the sea, he stops where all of that
+        // pose shows, not only his standing still.
+        let surf = [
+            StageMove(id: "walk", cycle: 0.8, stride: 0.45, facing: .left),
+            StageMove(id: "paddle", cycle: 0.8, stride: 0.5, on: ["sea"], stays: true, waterline: 0.3, facing: .left),
+        ]
+        let actor = StageActor(
+            id: fox, stickerID: "fox", size: 0.3, ratio: 0.35, stage: StickerStage(entrance: .hop, on: ["sand"]), moves: surf,
+            placed: .init(0.3, 0.12))
+        #expect(actor.ratio(at: world.groundPoint(.init(0.3, 0.36)).onGround, in: world) == 1)
+        #expect(actor.ratio(at: world.groundPoint(.init(0.3, 0.15)).onGround, in: world) == 0.35)
+        for seed in UInt64(1)...8 {
+            var random = SeededGenerator(state: seed)
+            let plans = StageDirector.plan(
+                world: world, screen: screen, actors: [actor], entrances: [],
+                goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "sea", by: "paddle"),
+                       GoTrigger(at: 12, stickerID: "fox", kind: .to, target: "sea", toward: .left)],
+                policy: .standard, random: &random)
+            let at = try #require(plans[fox]?.sample(at: 40).position)
+            let lying = world.drawing(at: at, size: 0.3, ratio: 1)
+            #expect(lying.minX >= -1e-6 && lying.maxX <= 1000 + 1e-6, "seed \(seed)")
+        }
+    }
 }

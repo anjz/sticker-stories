@@ -333,7 +333,10 @@ begins meanwhile (the wave Nico rides crashes in view while the seal comes
 in), the one that began first keeping it (`Focus.playing`). Anyone the
 window's edge would cut goes wholly out or comes wholly in, giving up the
 margin if that is the only way; a puppet counts as wide as its pose is
-drawn (lying on his board is wider than standing). Each frame it
+drawn (lying on his board is wider than standing). The stage counts it
+so too: afloat on a move that stays, a sticker is at least as wide as it
+is tall (`StageActor.ratio(at:in:)`), so it rests where all of that pose
+is on the art — at the art's edge no camera can show more. Each frame it
 takes the least move that brings every current beat's
 sticker into the window, a margin in from its sides; when they do not
 all fit it goes with the beat that began last, then adds as many of the
