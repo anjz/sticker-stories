@@ -4,13 +4,15 @@ import Foundation
 /// effects (weather and light over the whole scene) are a separate, equally
 /// closed list: `CanvasEffectName`.
 ///
-/// Fifteen. Adding one later is easy (unknown names are skipped by older
+/// Sixteen. Adding one later is easy (unknown names are skipped by older
 /// builds, so it is not a breaking change); removing one from shipped
 /// content is not, so do not add casually and never repurpose a name.
 /// `sway`, `blink` and `puff` were removed in 2026-09 — do not reuse them.
 /// The physical particles (`dust-puff`, `spray`, `sparks`, 2026-10) follow
 /// the pack's world — its gravity and ground (`PackWorld`): stickers never
-/// draw particles themselves.
+/// draw particles themselves. `surf-wave` (2026-10) is painted, not
+/// emitted: a wave behind the sticker, a pure function of the timeline
+/// (`SurfWave`).
 public enum EffectName: String, CaseIterable, Codable, Sendable, Hashable {
     // Motion (6)
     case pulse
@@ -30,11 +32,14 @@ public enum EffectName: String, CaseIterable, Codable, Sendable, Hashable {
     case dustPuff = "dust-puff"
     case spray
     case sparks
+    // Water (1)
+    case surfWave = "surf-wave"
 
     public enum Category: String, Sendable, Codable {
         case motion
         case opacityAndColor = "opacity-and-color"
         case particle
+        case water
     }
 
     public var category: Category {
@@ -42,6 +47,7 @@ public enum EffectName: String, CaseIterable, Codable, Sendable, Hashable {
         case .pulse, .wobble, .shake, .hop, .spin, .float: .motion
         case .fadeIn, .fadeOut, .glow, .tint: .opacityAndColor
         case .sparkle, .hearts, .dustPuff, .spray, .sparks: .particle
+        case .surfWave: .water
         }
     }
 

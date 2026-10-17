@@ -4,7 +4,8 @@ Small, charming things that happen while a story plays. Two kinds, two
 closed libraries:
 
 - **Sticker effects** — one placed sticker does something: a sparkle, a
-  wobble, a glow, a fade, a puff of dust at its feet. Fifteen of them.
+  wobble, a glow, a fade, a puff of dust at its feet, a wave to ride.
+  Sixteen of them.
 - **Canvas effects** — the weather or the light changes over the whole
   scene: fog, rain, sunshine, a rainbow, night falling, the lights going low,
   and their counterparts indoors, in space and under the sea. Each suits
@@ -40,7 +41,7 @@ test. Tooling should read that file rather than parse this one.
    skipped with a log line; a pack authored against a future library plays
    with fewer effects.
 
-## The sticker library (15 effects, closed)
+## The sticker library (16 effects, closed)
 
 `i` is the trigger's `intensity` (default 0.6). At `intensity: 0` every effect
 is visually identical to no effect. Anchors and easing are fixed per effect —
@@ -92,6 +93,35 @@ never draw particles themselves (no dust, drops, sparks or smoke in the
 art: `docs/pack-art.md`); these effects do it, cued by stories or fired by
 an animation's frames ("Live animations").
 
+### Water
+
+| Effect | What it looks like | Good for | Default cycle | Reduce Motion |
+|---|---|---|---|---|
+| `surf-wave` | A wave rises **behind** a sticker in the water, at its waterline: it swells into a smooth, rounded body, rolls along with the sticker, its lip pitches forward in a short hook and crashes down — a quick burst of white foam and spray thrown forward and up — and the wave collapses into a churning band of whitewater that spreads and fizzles out. Nothing in it plays backwards. Teal-blue with a puffy white lip, like Beach's painted sea, and a low foam line in front of the sticker's base so it sits in the water. On land the cue draws nothing. | Riding a wave: the surfer, a boat or the seal out at sea, a big wave rolling in. | 4.0 s | runs at ≤0.4 |
+
+It rises only on a sticker **in the water** when the wave is cued: afloat,
+or standing in a water place (`SurfWave.rises`, from where the stage has
+the sticker then); on the sand the cue draws nothing, and a sticker that
+walks into the water later does not get one for that cue. The wave is
+painted, not emitted: everything about it at a moment is a pure function
+of the timeline (`SurfWave` in the Kit, drawn by `SurfWaveCoordinator`),
+so a seek or a replay shows the same wave, foam and spray. It is drawn in
+the sticker's layer in world space, just behind the sticker: it follows
+where the sticker is and its size at its depth — its crest about
+two-thirds of the drawing's height at the default intensity, a little
+taller behind a long, low sticker such as the seal — but never its
+rotation, its puppet's poses or a flip, so it stays level with the sea
+while the surfer tilts on his board. It rolls and pitches the way the
+sticker's art faces (its usual move's `facing`, turned with it). It
+never covers the sticker: the water, its foam and its spray are behind
+it, and only the thin foam line, over the very bottom of its drawing, is
+in front. Afloat, the stage sinks the sticker so its waterline lies
+where its feet were (`docs/stage3d.md`, "In the water"), so the wave
+rises from the waterline. `intensity` is a swell to a big wave;
+`duration` paces the whole cycle; no colour. Stories cue it
+(`{surfer:surf-wave}`); an animation's frames cannot fire it ("Live
+animations").
+
 ### Deliberately not in the library
 
 Removed in 2026-09 and not to be reused (older content that names them is
@@ -100,6 +130,9 @@ wobbling), `blink` (hard-edged flashing) and `puff` (smoke at the feet).
 `dust-puff` (2026-10) is not `puff` back: that was a fixed smoke cloud;
 this is a physical emitter that follows each pack's gravity and ground,
 added when stickers stopped drawing particles of their own.
+`surf-wave` (2026-10) was asked for by the user, as a sticker effect
+rather than a canvas effect: a wave one sticker rides, not the sea
+changing — the canvas list stays closed to waves.
 
 Recorded so nobody re-adds them by accident: entrances/exits beyond fade,
 squash and stretch, keyframe authoring, scene shake and parallax,
@@ -122,7 +155,7 @@ system that shares the clock and the trigger file but not this vocabulary
 
 | Key | Required | Default | Meaning |
 |---|---|---|---|
-| `effect` | yes | | One of the 12 names above. |
+| `effect` | yes | | One of the 16 names above. |
 | `sticker` | yes | | Sticker ID from the manifest, or `all` for every sticker on the canvas that can feel something — those with faces (`expressions`), or every sticker in a pack without faces (`PackManifest.characters`). Every placed instance is affected. |
 | `at` | yes | | Seconds into **this language's** narration when the effect starts. |
 | `cue` | no | | Free label for authoring traceability (the word it lines up with). The app ignores it. |
@@ -384,7 +417,8 @@ snail tucked inside its shell"); `storycheck` lists them.
 - **Particles from frames**: an animation's sidecar can say a frame fires
   a burst of `dust-puff`, `spray` or `sparks` from a point of the sticker
   (`docs/pack-format.md`, the sidecar's `particles`) — a landing kicks up
-  dust every time the lope lands, a ship's touchdown raises a cloud. It
+  dust every time the lope lands, a ship's touchdown raises a cloud
+  (`surf-wave` is not one of them: a story cues it). It
   fires as the frame first comes on show, wherever the animation plays
   (an action, an entrance, a move), in the pack's world; stories don't
   cue it. The frames themselves never draw particles.
@@ -644,7 +678,7 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
 
 - **Reduce Motion** (system setting) is observed live: `shake`, `hop`,
   `spin` and `float` do not run; `pulse` and `wobble` run at
-  intensity ≤0.3; particles and the canvas effects that fall or drift
+  intensity ≤0.3; particles, `surf-wave` and the canvas effects that fall or drift
   (`rain`, `snow` and the others marked in the canvas table) at ≤0.4;
   fades, `glow`, `tint` and the other canvas effects (slow washes of light)
   run in full because they carry story meaning.
@@ -667,8 +701,9 @@ the envelope and the pack setting (canvas), and the trigger decoder — all
 unit-tested on macOS. The app target applies deltas to `StickerNode`s every
 frame from the narrator's playback time (`Narrator.playbackTime`,
 interpolated between resyncs), renders glow from a cached blurred mask,
-drives two particle emitters (`sparkles`, `hearts`) defined in
-`app/StickerStories/Effects/emitters.json`, and renders canvas effects in
+drives the particle emitters defined in
+`app/StickerStories/Effects/emitters.json`, paints `surf-wave` behind its
+sticker (`SurfWaveCoordinator`, in the sticker's layer, level with the sea), and renders canvas effects in
 `CanvasEffectLayer` (a rain emitter, drifting fog sprites, a sky glow with light shafts, a
 rainbow arc, a vignette and a moon with a halo, all procedurally textured, sized to the pack's
 art frame — the tuning numbers live in that file; every effect added after

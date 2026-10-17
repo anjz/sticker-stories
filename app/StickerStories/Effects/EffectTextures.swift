@@ -6,7 +6,7 @@ import UIKit
 /// names (`star`, `dot`, `heart` for the emitters in `emitters.json`;
 /// `drop`, `fog`, `ray`, `skyglow`, `rainbow`, `vignette`, `moon`, `moonglow`
 /// for `CanvasEffectLayer`; `band` and the rest below for the painters in
-/// `Canvas/`).
+/// `Canvas/`; `foam` for `surf-wave`).
 /// `dot` is kept as the generic soft particle even though no emitter uses
 /// it today.
 enum EffectTextures {
@@ -44,6 +44,7 @@ enum EffectTextures {
                 switch name {
                 case "star": drawStar(in: rect, cg)
                 case "heart": drawHeart(in: rect, cg)
+                case "foam": drawFoam(in: rect, cg)
                 default: drawDot(in: rect, cg)
                 }
             }
@@ -281,6 +282,15 @@ enum EffectTextures {
     private static func drawDot(in rect: CGRect, _ cg: CGContext) {
         let colors = [UIColor.white.cgColor, UIColor.white.withAlphaComponent(0.6).cgColor, UIColor.white.withAlphaComponent(0).cgColor] as CFArray
         guard let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colors, locations: [0, 0.45, 1]) else { return }
+        let center = CGPoint(x: rect.midX, y: rect.midY)
+        cg.drawRadialGradient(gradient, startCenter: center, startRadius: 0, endCenter: center, endRadius: rect.width / 2, options: [])
+    }
+
+    /// A round of foam: full in the middle, soft at its edge
+    /// (`SurfWaveNode`).
+    private static func drawFoam(in rect: CGRect, _ cg: CGContext) {
+        let colors = [UIColor.white.cgColor, UIColor.white.withAlphaComponent(0.92).cgColor, UIColor.white.withAlphaComponent(0).cgColor] as CFArray
+        guard let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colors, locations: [0, 0.55, 1]) else { return }
         let center = CGPoint(x: rect.midX, y: rect.midY)
         cg.drawRadialGradient(gradient, startCenter: center, startRadius: 0, endCenter: center, endRadius: rect.width / 2, options: [])
     }

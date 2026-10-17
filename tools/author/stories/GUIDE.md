@@ -199,7 +199,7 @@ the stories.
 
 ## Using sticker effects
 
-The app has exactly 15 sticker effects (`docs/effects/effects.json`,
+The app has exactly 16 sticker effects (`docs/effects/effects.json`,
 `effects`; human reference in `docs/effects.md`) — read the catalogue, not
 this list, for what each means and accepts:
 
@@ -219,6 +219,7 @@ this list, for what each means and accepts:
 | `dust-puff` | a cloud of dust the words make: a stamp, a skid, a dig (landings and touchdowns already puff on their own) |
 | `spray` | a splash, a shake of wet fur, water flying |
 | `sparks` | a tool on metal, a machine starting — never fire or danger |
+| `surf-wave` | riding a wave: the surfer, a boat or the seal **in the water** (on the sand it draws nothing); a wave swells behind it, pitches and crashes into foam (about 4 s) |
 
 Cue grammar is in `FORMAT.md`.
 

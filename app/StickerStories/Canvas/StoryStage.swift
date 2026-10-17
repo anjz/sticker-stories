@@ -87,6 +87,13 @@ final class StoryStage {
         return (base, s.opacity, s.facing, zPosition(forDepth: s.position.z) + CGFloat(s.arrivedAt) * 1e-4, afloat)
     }
 
+    /// Whether a sticker is in the water at `time` (afloat, or standing in
+    /// a water place): where a `surf-wave` cued then rises (`SurfWave.rises`).
+    func inWater(_ node: StickerNode, at time: TimeInterval) -> Bool {
+        guard let plan = plans[node.instanceID] else { return false }
+        return SurfWave.rises(at: plan.sample(at: time).position, in: world)
+    }
+
     /// Where a depth is in the scene's z order: nearer is higher, between
     /// the snow on the ground and the overlays (`CanvasEffectLayer`).
     func zPosition(forDepth z: Double) -> CGFloat {

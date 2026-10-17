@@ -223,6 +223,7 @@ final class CanvasScene: SKScene {
         let canvasRunner: CanvasEffectsRunner
         let applier: EffectApplier
         let emitters: EmitterCoordinator
+        let waves: SurfWaveCoordinator
         let clock: PlaybackClock
         let live: LiveTimeline
         let faces: ExpressionTimeline
@@ -820,6 +821,16 @@ final class CanvasScene: SKScene {
         let emitters = EmitterCoordinator()
         emitters.world = pack.manifest.effectiveWorld
         return emitters
+    }
+
+    /// A coordinator for this story's waves (`surf-wave`), each rolling the
+    /// way its sticker's art faces, for stickers in the water.
+    private func surfWaveCoordinator() -> SurfWaveCoordinator {
+        let waves = SurfWaveCoordinator()
+        waves.facings = SurfWaveCoordinator.facings(of: liveAnimations)
+        // Only in the water, when it is cued: a pack without a stage has none.
+        waves.inWater = { [weak self] node, time in self?.playSession?.stage?.inWater(node, at: time) ?? false }
+        return waves
     }
 
     /// The pack's stickers by id.
@@ -1633,7 +1644,8 @@ final class CanvasScene: SKScene {
         let canvasRunner = CanvasEffectsRunner(
             triggers: triggers.canvas, setting: pack.manifest.setting, policy: policy)
         playSession = PlaySession(
-            runner: runner, canvasRunner: canvasRunner, applier: applier, emitters: emitterCoordinator(), clock: clock,
+            runner: runner, canvasRunner: canvasRunner, applier: applier, emitters: emitterCoordinator(),
+            waves: surfWaveCoordinator(), clock: clock,
             live: live, faces: faces, visitors: visitors, motions: motions, stage: stage, beats: beats)
         cameraHandsOffUntil = 0
         cameraSteppedAt = nil
@@ -2080,6 +2092,7 @@ final class CanvasScene: SKScene {
             session.runner.stopAll()
             session.canvasRunner.stopAll()
             session.emitters.clearAll()
+            session.waves.clearAll()
             canvasEffects.clearAll()
             session.applier.restoreAll(stickerNodesByID())
             // Every child's sticker exactly where and as the child had it.
@@ -2143,6 +2156,7 @@ final class CanvasScene: SKScene {
         }
         session.applier.apply(deltas, to: nodes)
         session.emitters.reconcile(session.runner.active, at: time, nodes: nodes)
+        session.waves.reconcile(session.runner.active, at: time, nodes: nodes)
         canvasEffects.apply(session.canvasRunner.tick(time), at: time)
         canvasEffects.applySnowCover(session.canvasRunner.snowCover)
         applyLive(session, at: time)

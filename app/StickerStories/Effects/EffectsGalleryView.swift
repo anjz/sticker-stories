@@ -169,14 +169,18 @@ struct EffectsGalleryView: View {
                 }
                 scene.playCanvas(groups.filter { !$0.isEmpty })
             }
-            // `-effectDemo dust-puff,spray [-gallerySticker woman]`: loop just
-            // those sticker effects at full strength on that sticker.
+            // `-effectDemo dust-puff,spray [-gallerySticker woman]
+            // [-effectDemoIntensity 0.6]`: loop just those sticker effects
+            // on that sticker, at full strength unless it says.
             if let index = arguments.firstIndex(of: "-gallerySticker"), index + 1 < arguments.count {
                 stickerID = arguments[index + 1]
             }
             if let index = arguments.firstIndex(of: "-effectDemo"), index + 1 < arguments.count {
                 let effects = arguments[index + 1].split(separator: ",").compactMap { EffectName(rawValue: String($0)) }
-                scene.playEffects(effects)
+                let strength = arguments.firstIndex(of: "-effectDemoIntensity").flatMap {
+                    $0 + 1 < arguments.count ? Double(arguments[$0 + 1]) : nil
+                }
+                scene.playEffects(effects, intensity: strength ?? 1)
             }
             // `-liveDemo [sticker | sticker.animation]`: loop a live animation
             // on its sticker (the first one, the named sticker's first, or
@@ -234,6 +238,7 @@ struct EffectsGalleryView: View {
         case .motion: Color(red: 0.36, green: 0.6, blue: 0.9)
         case .opacityAndColor: Color(red: 0.86, green: 0.5, blue: 0.3)
         case .particle: Color(red: 0.2, green: 0.55, blue: 0.3)
+        case .water: Color(red: 0.1, green: 0.55, blue: 0.7)
         }
     }
 
@@ -261,6 +266,7 @@ final class EffectsGalleryScene: SKScene {
         }
     }
     private let emitters = EmitterCoordinator()
+    private let waves = SurfWaveCoordinator()
     private let clock = PlaybackClock { nil }
     private var pendingStickerID: String
     /// A `playAll` requested before the scene was presented (SwiftUI's
@@ -282,6 +288,10 @@ final class EffectsGalleryScene: SKScene {
         pendingStickerID = stickerID
         super.init(size: CGSize(width: 700, height: 700))
         emitters.world = pack.manifest.effectiveWorld
+        waves.facings = SurfWaveCoordinator.facings(of: StickerAnimation.available(in: pack))
+        // The gallery has no stage: its sticker is in the water only when
+        // it is shown afloat (`-galleryAfloat`).
+        waves.inWater = { _, _ in ProcessInfo.processInfo.arguments.contains("-galleryAfloat") }
         scaleMode = .resizeFill
         backgroundColor = UIColor(red: 0.49, green: 0.78, blue: 0.91, alpha: 1)
     }
@@ -426,6 +436,7 @@ final class EffectsGalleryScene: SKScene {
         runner.stopAll()
         canvasRunner.stopAll()
         emitters.clearAll()
+        waves.clearAll()
         canvasEffects.clearAll()
         if let sticker { applier.restoreAll([sticker.instanceID: sticker]) }
     }
@@ -445,7 +456,7 @@ final class EffectsGalleryScene: SKScene {
                 if effect == .tint { options.color = RGBA(hex: "#FF6B8A") }
                 self?.play(effect, options: options)
             })
-            steps.append(.wait(forDuration: 1.6))
+            steps.append(.wait(forDuration: max(1.6, EffectDefinition.definition(for: effect).defaultDuration + 0.4)))
         }
         for effect in CanvasEffectName.allCases {
             steps.append(.run { [weak self] in
@@ -457,14 +468,15 @@ final class EffectsGalleryScene: SKScene {
         run(repeating ? .repeatForever(sequence) : sequence, withKey: "play-all")
     }
 
-    /// Loops the given sticker effects at full strength, 2.5 s apart.
-    func playEffects(_ effects: [EffectName]) {
+    /// Loops the given sticker effects (at full strength unless told), at
+    /// least 2.5 s apart.
+    func playEffects(_ effects: [EffectName], intensity: Double = 1) {
         guard !effects.isEmpty else { return }
         stopAll()
         var steps: [SKAction] = []
         for effect in effects {
-            steps.append(.run { [weak self] in self?.play(effect, options: EffectOptions(intensity: 1)) })
-            steps.append(.wait(forDuration: 2.5))
+            steps.append(.run { [weak self] in self?.play(effect, options: EffectOptions(intensity: intensity)) })
+            steps.append(.wait(forDuration: max(2.5, EffectDefinition.definition(for: effect).defaultDuration + 0.5)))
         }
         run(.repeatForever(.sequence(steps)), withKey: "play-all")
     }
@@ -504,6 +516,15 @@ final class EffectsGalleryScene: SKScene {
         let time = clock.now()
         applier.apply(runner.tick(time), to: nodes)
         emitters.reconcile(runner.active, at: time, nodes: nodes)
+        // `-galleryAfloat 0.3`: the sticker's puppet afloat that deep, as a
+        // story floats it in water (surf-wave at the waterline).
+        let arguments = ProcessInfo.processInfo.arguments
+        if let index = arguments.firstIndex(of: "-galleryAfloat"), index + 1 < arguments.count,
+            let depth = Double(arguments[index + 1])
+        {
+            sticker.float(depth, drawing: sticker.content)
+        }
+        waves.reconcile(runner.active, at: time, nodes: nodes)
         canvasEffects.apply(canvasRunner.tick(time), at: time)
         canvasEffects.applySnowCover(canvasRunner.snowCover)
     }

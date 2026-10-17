@@ -170,6 +170,13 @@ public struct EffectDefinition: Sendable {
             name: .sparks, defaultDuration: 0.4, anchor: .center, defaultColor: RGBA(hex: "#FFD27A"),
             summary: "A few tiny bright sparks that fly out, fall and fade."
         ) { _, _, _ in EffectDelta() },
+
+        // MARK: Water (the delta is identity; the wave is painted behind the sticker, `SurfWave`)
+
+        EffectDefinition(
+            name: .surfWave, defaultDuration: 4.0, anchor: .bottomCenter, defaultColor: nil,
+            summary: "A wave rises behind a sticker in the water, at its waterline: it swells, rolls along with it, its lip pitches forward and crashes into a burst of foam and spray, and it collapses into whitewater that fizzles out. On land the cue draws nothing."
+        ) { _, _, _ in EffectDelta() },
     ]
 }
 
