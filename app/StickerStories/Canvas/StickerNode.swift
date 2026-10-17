@@ -57,6 +57,11 @@ final class StickerNode: SKSpriteNode {
     /// child's canvas, and gone when the story ends.
     var isVisitor = false
 
+    /// A copy of a sticker resting through a story that would have too
+    /// many on the stage (`StoryCrowd`): faded out, left out of the story,
+    /// still the child's, and back as the story ends.
+    var isResting = false
+
     /// Which way the sticker faces while a story plays: 1 its art's own
     /// way, -1 mirrored (a visitor or a mover whose move frames travel the
     /// other way, `EntrancePlan.mirrored`, `MotionPlan.facing`), and in

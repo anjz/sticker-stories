@@ -167,6 +167,16 @@ Plans the whole story at once, from the cast and the story's triggers:
    screen away from the cast (one that never moves stays: 1), the further back and nearer the sides the
    better, as the story starts; then the story is planned again round it.
 
+## Not too many
+
+A story plays at most 25 stickers on the stage (`StoryCrowd.limit`): a
+crowded canvas plays slowly and choppily. When the child's stickers and
+the story's visitors would be more, copies of the same sticker rest
+through the story (`StoryCrowd.resting`) — from the sticker with the most
+copies, its smallest copy first, never the last of a kind: they fade out
+as it starts, are left out of it (`StickerNode.isResting`), and fade back
+in where they were as it ends. They stay on the child's canvas throughout.
+
 ## In the air
 
 A flyer left in the air — in a place's air, by someone up there, or put

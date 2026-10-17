@@ -1467,8 +1467,9 @@ final class CanvasScene: SKScene {
 
     // MARK: Canvas state
 
+    /// Every sticker on the stage (not those resting through a story).
     private func allStickerNodes() -> [StickerNode] {
-        (backgroundStickers.children + foregroundStickers.children).compactMap { $0 as? StickerNode }
+        (backgroundStickers.children + foregroundStickers.children).compactMap { $0 as? StickerNode }.filter { !$0.isResting }
     }
 
     /// Serialisable snapshot of the canvas — see docs/architecture.md.
@@ -1547,6 +1548,7 @@ final class CanvasScene: SKScene {
         endPlayMode()
         setPlayLocked(true)
         let triggers = loadTriggers(for: story)
+        restCrowd(entrances: triggers.entrances)
         let applier = EffectApplier { [weak self] node in self?.glowMask(for: node) }
         applier.normalize(allStickerNodes())
         // The stickers the story names that the child has not placed come
@@ -2093,8 +2095,28 @@ final class CanvasScene: SKScene {
         return visitors
     }
 
+    /// No more than `StoryCrowd.limit` stickers on the stage while a story
+    /// plays: copies beyond it fade out and rest until it ends.
+    private func restCrowd(entrances: [EntranceTrigger]) {
+        let nodes = allStickerNodes()
+        let visitors = Set(entrances.map(\.stickerID)).subtracting(nodes.map(\.stickerID)).count
+        let resting = StoryCrowd.resting(
+            nodes.map { .init(id: $0.instanceID, stickerID: $0.stickerID, scale: $0.placement.scale) }, visitors: visitors)
+        for node in nodes where resting.contains(node.instanceID) {
+            node.isResting = true
+            node.run(.fadeOut(withDuration: 0.35), withKey: Self.restActionKey)
+        }
+    }
+
+    private static let restActionKey = "rest"
+
     /// Restores the child's exact arrangement (P4) and tears the pipeline down.
     func endPlayMode() {
+        // The copies that rested through the story come back.
+        for case let node as StickerNode in backgroundStickers.children + foregroundStickers.children where node.isResting {
+            node.isResting = false
+            node.run(.fadeIn(withDuration: 0.35), withKey: Self.restActionKey)
+        }
         liveLoad?.cancel()
         liveLoad = nil
         liveLoaded.removeAll()
