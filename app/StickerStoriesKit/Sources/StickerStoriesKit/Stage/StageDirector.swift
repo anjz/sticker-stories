@@ -70,6 +70,9 @@ public enum StageDirector {
     static let rates: ClosedRange<Double> = 0.6...2.5
     /// How far in front of whom it is with a sticker stands, in depth.
     static let inFront = SceneSpace.inFront
+    /// Under a host on the ground, a guest taller than this share of it
+    /// shelters just behind it, its head under the canopy (`relayout`).
+    static let shelteredFrom = 0.55
     /// Two sharing a spot overlap by this much of the narrower one.
     static let sharedOverlap = 0.25
     /// How much a visitor's spot is pulled towards whom the story soon
@@ -1494,7 +1497,18 @@ public enum StageDirector {
             var total = widths.reduce(0, +)
             for (a, b) in zip(widths, widths.dropFirst()) { total -= min(a, b) * StageDirector.sharedOverlap }
             let y = on ? t.y + them.size * 0.8 : t.y
+            // Sheltering under something on the ground whose canopy reaches
+            // their heads (Lola under the umbrella, the frog under the
+            // mushroom): just behind it, so its canopy comes over the top of
+            // their heads from in front and their faces show below it.
+            // Small ones that fit under it whole stand in front, as before.
+            let sizes = Dictionary(uniqueKeysWithValues: members.map { ($0, states[$0].actor.size) })
+            let shelters = { (m: Int) -> Bool in
+                let size = sizes[m] ?? 0
+                return !on && t.y < 0.01 && them.size > size && size > them.size * StageDirector.shelteredFrom
+            }
             let z = max(t.z - StageDirector.inFront * (on ? 1 : 2), 0.1)
+            let behind = t.z + StageDirector.inFront
             func centres(_ shift: Double) -> [Double] {
                 var x = t.x - total / 2 + shift
                 return widths.enumerated().map { k, w in
@@ -1511,11 +1525,23 @@ public enum StageDirector {
             for candidate in [-0.25, 0.25, -0.5, 0.5].map({ $0 * them.width }) where hiddenRow(candidate) < hiddenRow(shift) - 0.05 {
                 shift = candidate
             }
-            let row = centres(shift)
+            var row = centres(shift)
+            // One alone beside the pole or the stalk, about a third of its
+            // width off it, on the side it came from — not across it.
+            // (In a row too: none behind it right across the pole. One about
+            // as wide as it — the frog by the mushroom — by its edge.)
+            for (k, m) in members.enumerated() where shelters(m) {
+                let w = states[m].actor.width
+                let off = w > them.width * 0.8 ? them.width / 2 : w / 3
+                guard abs(row[k] - t.x) < off else { continue }
+                let side: Double = members.count > 1 && abs(row[k] - t.x) > 1e-9
+                    ? (row[k] < t.x ? -1 : 1) : (states[m].pose.position.x < t.x ? -1 : 1)
+                row[k] = t.x + side * off
+            }
             for (k, m) in members.enumerated() {
                 let centre = row[k]
                 let target = StagePose(
-                    position: pushedOnScreen(m, Vec3(centre, y, z)),
+                    position: pushedOnScreen(m, Vec3(centre, y, shelters(m) ? behind : z)),
                     support: on ? .on(them.id) : .under(them.id), facing: states[m].pose.facing)
                 if m == mover {
                     goWalking(m, to: target, begin: start)

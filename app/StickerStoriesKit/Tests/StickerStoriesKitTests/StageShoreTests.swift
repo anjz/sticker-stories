@@ -288,4 +288,34 @@ func shoreWorld() -> StageWorld {
         let p = try #require(plans[fox])
         for t in stride(from: 0.0, through: 8, by: 0.01) { #expect(abs(p.sample(at: t).facing) >= StagePlan.narrowest - 1e-9) }
     }
+
+    @Test func underAnUmbrellaItSheltersJustBehindItBesideThePole() throws {
+        let umbrella = UUID()
+        let walk = [StageMove(id: "walk", cycle: 0.8, stride: 0.45, facing: .left)]
+        func guest(_ id: UUID, _ name: String, _ size: Double, _ ratio: Double, at u: Double) -> StageActor {
+            StageActor(
+                id: id, stickerID: name, size: size, ratio: ratio, stage: StickerStage(entrance: .hop, on: ["sand"]), moves: walk,
+                placed: .init(u, 0.12))
+        }
+        var random = SeededGenerator(state: 3)
+        let plans = StageDirector.plan(
+            world: world, screen: screen,
+            actors: [
+                StageActor(id: umbrella, stickerID: "umbrella", size: 0.343, ratio: 0.9, stage: StickerStage(entrance: .grow, on: ["sand"]),
+                           placed: .init(0.5, 0.2)),
+                guest(girl, "girl", 0.317, 0.45, at: 0.2), guest(crab, "crab", 0.095, 1.4, at: 0.85),
+            ],
+            entrances: [],
+            goes: [GoTrigger(at: 1, stickerID: "girl", kind: .under, target: "umbrella"),
+                   GoTrigger(at: 1, stickerID: "crab", kind: .under, target: "umbrella")],
+            policy: .standard, random: &random)
+        let host = try #require(plans[umbrella]).sample(at: 20).position
+        let lola = try #require(plans[girl]).sample(at: 20), crabby = try #require(plans[crab]).sample(at: 20)
+        // Lola, whose head reaches the canopy: just behind it, a third of
+        // her width off the pole on the side she came from.
+        #expect(lola.support == .under(umbrella) && lola.position.z > host.z)
+        #expect(lola.position.x < host.x - 0.317 * 0.45 / 3 + 1e-6)
+        // The crab, under it whole: in front, as before.
+        #expect(crabby.support == .under(umbrella) && crabby.position.z < host.z)
+    }
 }

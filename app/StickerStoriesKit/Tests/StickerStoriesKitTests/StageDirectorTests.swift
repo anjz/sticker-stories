@@ -427,6 +427,9 @@ extension StageDirectorTests {
         var ratios: [String: Double] = [:]
         /// Each action's timing, as it plays.
         var actionFrames: [LiveAnimationKey: LiveFrames] = [:]
+        /// Each sticker's painted shape and its drawing's box in its image
+        /// (fractions, origin bottom-left).
+        var shapes: [String: (grid: OpaqueGrid, box: CGRect)] = [:]
     }
 
     static func load(_ id: String) throws -> Pack? {
@@ -470,6 +473,7 @@ extension StageDirectorTests {
                 let image = CGImageSourceCreateImageAtIndex(source, 0, nil), let box = OpaqueBounds.of(image)
             {
                 pack.ratios[sticker.id] = Double(box.width / box.height) * Double(image.width) / Double(image.height)
+                if let grid = OpaqueGrid.of(image) { pack.shapes[sticker.id] = (grid, box) }
             }
         }
         return pack
@@ -781,6 +785,25 @@ extension StageDirectorTests {
                                 world.overWaterShare(water, drawing: r) < 0.75
                             {
                                 problems.append("\(tag): on the \(water)'s rim at \(String(format: "%.1f", t))")
+                            }
+                            // Sheltering just behind whom it is under (Lola under
+                            // the umbrella): its face or its middle shows, beside
+                            // the pole, below the canopy.
+                            if case .under(let id) = s.support, let b = actors.first(where: { $0.id == id }),
+                                let host = plans[id]?.sample(at: t), host.position.z < s.position.z, let shape = pack.shapes[b.stickerID]
+                            {
+                                let h = world.drawing(at: host.position, size: b.size, ratio: b.ratio)
+                                var fx = ((r.minX + r.maxX) / 2 - h.minX) / max(h.maxX - h.minX, 1e-9)
+                                if host.facing < 0 { fx = 1 - fx }
+                                let covered = [0.85, 0.5, 0.4].allSatisfy { k in
+                                    let fy = (r.minY + (r.maxY - r.minY) * k - h.minY) / max(h.maxY - h.minY, 1e-9)
+                                    return shape.grid.isOpaque(
+                                        atU: Double(shape.box.minX) + fx * Double(shape.box.width),
+                                        v: Double(shape.box.minY) + fy * Double(shape.box.height))
+                                }
+                                if covered {
+                                    problems.append("\(tag): hidden under \(b.stickerID) at \(String(format: "%.1f", t))")
+                                }
                             }
                             // A flyer by someone, in the air: clear of them,
                             // never across them (the gull by Lola).

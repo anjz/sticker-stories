@@ -243,6 +243,17 @@ their shoulders (the gull flew up beside Lola), never down by their feet — and
 away as it gets there, never across them (a lap that fits nowhere
 shrinks to beating its wings where it is).
 
+**Under someone** standing on the ground and taller than it (an
+umbrella, a mushroom), a sticker taller than 55 % of them shelters just
+behind them in depth — they are drawn in front, their canopy coming over
+the top of its head, its face or middle showing below — and across the
+screen beside the pole or stalk, a third of its own width off their
+middle on the side it came from (one about as wide as them, the frog by
+the mushroom, by their edge). A small one that fits under them whole
+stands in front, as before; both keep their sizes. The staging test fails
+one sheltering so that neither its face nor its middle shows past its
+host's painted shape; being partly behind its own host is no fault there.
+
 **On a shallow bottom** a sticker is seen in the water: (nearly) all of
 its drawing over the water where there is room to choose
 (`StageWorld.overWaterShare`), else its middle (`overWater`) — not up on
