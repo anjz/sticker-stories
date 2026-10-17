@@ -10,7 +10,7 @@
     "height": 0.72005
   },
   "pause": {
-    "frame": 5,
+    "frame": 6,
     "shows": "the surfer boy riding up a wave, board nose-up, crouched with his arms out for balance"
   },
   "on": [
@@ -21,7 +21,7 @@
     "rig": "anims/surfer.rig.json",
     "keys": [
       {
-        "hold": 0.15,
+        "hold": 0.25,
         "bones": {
           "face": {
             "x": 25,
@@ -57,7 +57,7 @@
         }
       },
       {
-        "hold": 0.3,
+        "hold": 0.1,
         "ease": "step",
         "bones": {
           "face": {
@@ -101,7 +101,41 @@
         }
       },
       {
-        "hold": 0.3,
+        "hold": 0.17,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "armR": {
+            "r": -8
+          },
+          "board": {},
+          "body": {
+            "r": -1,
+            "y": 100
+          },
+          "head": {
+            "r": -2
+          },
+          "root": {
+            "y": 8
+          }
+        },
+        "slots": {
+          "armR": "free",
+          "board": "none",
+          "boardFlat": "flat",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "legL": "none",
+          "legR": "none",
+          "legsCrouch": "crouch",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.23,
         "ease": "out",
         "bones": {
           "armL": {
@@ -361,8 +395,8 @@
         }
       },
       {
-        "hold": 0.3,
-        "ease": "step",
+        "hold": 0.17,
+        "ease": "in",
         "bones": {
           "armL": {
             "r": 25
@@ -395,7 +429,41 @@
         }
       },
       {
-        "hold": 0.35,
+        "hold": 0.1,
+        "ease": "step",
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "armR": {
+            "r": -8
+          },
+          "board": {},
+          "body": {
+            "r": -1,
+            "y": 100
+          },
+          "head": {
+            "r": -2
+          },
+          "root": {
+            "y": 8
+          }
+        },
+        "slots": {
+          "armR": "free",
+          "board": "none",
+          "boardFlat": "flat",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "legsCrouch": "crouch",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
         "bones": {
           "face": {
             "x": 25,

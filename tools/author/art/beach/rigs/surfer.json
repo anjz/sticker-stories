@@ -1232,7 +1232,8 @@
       "waterline": 0.06,
       "keys": [
         {
-          "hold": 0.1
+          "hold": 0.1,
+          "ease": "step"
         },
         {
           "hold": 0.22,
@@ -1466,7 +1467,8 @@
       ],
       "keys": [
         {
-          "hold": 0.1
+          "hold": 0.1,
+          "ease": "step"
         },
         {
           "hold": 0.2,
@@ -1662,7 +1664,8 @@
       "waterline": 0.06,
       "keys": [
         {
-          "hold": 0.1
+          "hold": 0.1,
+          "ease": "step"
         },
         {
           "hold": 0.22,
@@ -1869,12 +1872,12 @@
       "kind": "action",
       "description": "the surfer boy pops up from lying on his surfboard and rides a wave, crouched low with his arms out for balance, then drops back down onto his board with a grin.",
       "pause": {
-        "frame": 5,
+        "frame": 6,
         "shows": "the surfer boy riding up a wave, board nose-up, crouched with his arms out for balance"
       },
       "keys": [
         {
-          "hold": 0.15,
+          "hold": 0.25,
           "bones": {
             "pArmL": {
               "r": 0,
@@ -1914,7 +1917,7 @@
           }
         },
         {
-          "hold": 0.3,
+          "hold": 0.1,
           "ease": "step",
           "bones": {
             "pArmL": {
@@ -1958,7 +1961,43 @@
           }
         },
         {
-          "hold": 0.3,
+          "hold": 0.17,
+          "ease": "out",
+          "bones": {
+            "body": {
+              "y": 100,
+              "r": -1
+            },
+            "root": {
+              "y": 8
+            },
+            "board": {
+              "r": 0
+            },
+            "armL": {
+              "r": 8
+            },
+            "armR": {
+              "r": -8
+            },
+            "head": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "board": "none",
+            "boardFlat": "flat",
+            "legL": "none",
+            "legR": "none",
+            "legsCrouch": "crouch",
+            "armR": "free",
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.23,
           "ease": "out",
           "bones": {
             "body": {
@@ -2231,8 +2270,8 @@
           }
         },
         {
-          "hold": 0.3,
-          "ease": "step",
+          "hold": 0.17,
+          "ease": "in",
           "bones": {
             "body": {
               "y": 78,
@@ -2267,7 +2306,43 @@
           }
         },
         {
-          "hold": 0.35,
+          "hold": 0.1,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": 100,
+              "r": -1
+            },
+            "root": {
+              "y": 8
+            },
+            "board": {
+              "r": 0
+            },
+            "armL": {
+              "r": 8
+            },
+            "armR": {
+              "r": -8
+            },
+            "head": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "board": "none",
+            "boardFlat": "flat",
+            "legL": "none",
+            "legR": "none",
+            "legsCrouch": "crouch",
+            "armR": "free",
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
           "bones": {
             "pArmL": {
               "r": 0,
@@ -2566,7 +2641,27 @@
           }
         },
         {
-          "hold": 0.8,
+          "hold": 0.52,
+          "bones": {
+            "head": {
+              "r": -3
+            },
+            "face": {
+              "x": -4
+            },
+            "armL": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "open",
+            "armL": "point"
+          }
+        },
+        {
+          "hold": 0.28,
           "bones": {
             "head": {
               "r": -3
@@ -2639,7 +2734,31 @@
           }
         },
         {
-          "hold": 0.6,
+          "hold": 0.32,
+          "bones": {
+            "armL": {
+              "r": 6
+            },
+            "root": {
+              "y": -10
+            },
+            "belly": {
+              "sy": 1.05
+            },
+            "head": {
+              "r": 4,
+              "y": -3
+            }
+          },
+          "slots": {
+            "armL": "wave",
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.28,
           "bones": {
             "armL": {
               "r": 6

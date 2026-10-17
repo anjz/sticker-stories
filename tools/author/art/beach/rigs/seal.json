@@ -543,9 +543,6 @@
     {
       "id": "clap",
       "kind": "action",
-      "on": [
-        "sea"
-      ],
       "description": "the seal claps its flippers and barks",
       "pause": {
         "frame": 4,
@@ -2748,7 +2745,32 @@
           }
         },
         {
-          "hold": 0.8,
+          "hold": 0.52,
+          "bones": {
+            "head": {
+              "r": -14,
+              "y": 30,
+              "x": -6
+            },
+            "body": {
+              "r": -2
+            },
+            "belly": {
+              "sy": 0.98,
+              "sx": 1.02
+            },
+            "tail": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "smile"
+          }
+        },
+        {
+          "hold": 0.28,
           "bones": {
             "head": {
               "r": -14,
