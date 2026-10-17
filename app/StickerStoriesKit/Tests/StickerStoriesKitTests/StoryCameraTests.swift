@@ -39,6 +39,37 @@ import Testing
         #expect(x - 300 <= 100 && x + 300 >= 200)
     }
 
+    @Test func keepsTheRestOfTheCastWholeWhenItCan() {
+        // Nico waits out at sea while the turtle swims: the turtle first,
+        // and Nico in view too when both fit.
+        let turtle = [StoryCamera.Focus(minX: 700, maxX: 800, since: 5)]
+        let nico = StoryCamera.Focus(minX: 420, maxX: 500, since: 0)
+        let x = StoryCamera.target(center: 750, view: 600, world: world, focus: turtle, cast: [nico], margin: 40)
+        #expect(x - 300 <= 420 - 40 && x + 300 >= 800 + 40)
+        // One that does not fit is left wholly out, never cut by the edge.
+        let pelican = StoryCamera.Focus(minX: 1060, maxX: 1180, since: 0)
+        let far = StoryCamera.Focus(minX: 120, maxX: 200, since: 0)
+        let y = StoryCamera.target(center: 800, view: 600, world: world, focus: turtle, cast: [pelican, far], margin: 40)
+        #expect(y - 300 <= 700 - 40 && y + 300 >= 800 + 40)
+        for f in [pelican, far] {
+            let whollyIn = f.minX >= y - 300 && f.maxX <= y + 300
+            let whollyOut = f.maxX <= y - 300 || f.minX >= y + 300
+            #expect(whollyIn || whollyOut, "\(f) at \(y)")
+        }
+    }
+
+    @Test func aBeatCutByTheEdgeGoesWhollyOut() {
+        // The latest beat wins; an earlier one it cannot take in is not
+        // left half on screen.
+        let focus = [
+            StoryCamera.Focus(minX: 700, maxX: 800, since: 5),
+            StoryCamera.Focus(minX: 300, maxX: 420, since: 2),
+        ]
+        let x = StoryCamera.target(center: 650, view: 400, world: world, focus: focus, margin: 40)
+        #expect(x - 200 <= 700 - 40 && x + 200 >= 800 + 40)
+        #expect(420 <= x - 200 || 300 >= x - 200)
+    }
+
     @Test func aWindowAsWideAsTheArtNeverMoves() {
         let focus = [StoryCamera.Focus(minX: 0, maxX: 100, since: 1)]
         #expect(StoryCamera.target(center: 800, view: 1600, world: world, focus: focus, margin: 40) == 800)

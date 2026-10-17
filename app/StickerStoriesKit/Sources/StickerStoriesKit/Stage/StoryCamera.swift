@@ -91,20 +91,22 @@ public enum StoryCamera {
     /// Where the camera's centre should be, from where it is: the least
     /// move that puts every focus inside the window, `margin` in from its
     /// sides; when they do not all fit, the latest first and then as many
-    /// of the others as still fit, latest first. On the world always.
+    /// of the others as still fit, latest first. Then as much of the rest
+    /// of the `cast` (the other stickers on show) as still fits, nearest
+    /// first; and nobody is left cut by the window's edge when the camera
+    /// can help it: a sticker it cannot take in whole it leaves wholly
+    /// out, if that keeps what it must show in view. On the world always.
     /// - Parameters:
     ///   - center: the camera's centre now; `view`, the window's width;
     ///     `world`, the art's span. All in world points.
     public static func target(
-        center: Double, view: Double, world: ClosedRange<Double>, focus: [Focus], margin: Double
+        center: Double, view: Double, world: ClosedRange<Double>, focus: [Focus], cast: [Focus] = [], margin: Double
     ) -> Double {
         let half = view / 2
-        func onWorld(_ x: Double) -> Double {
-            world.upperBound - world.lowerBound <= view
-                ? (world.lowerBound + world.upperBound) / 2
-                : min(max(x, world.lowerBound + half), world.upperBound - half)
-        }
-        guard !focus.isEmpty else { return onWorld(center) }
+        guard world.upperBound - world.lowerBound > view else { return (world.lowerBound + world.upperBound) / 2 }
+        // Where the centre may go: on the world.
+        let first = world.lowerBound + half, last = world.upperBound - half
+        func onWorld(_ x: Double) -> Double { min(max(x, first), last) }
         let room = max(view - 2 * margin, 0)
         var span: (lo: Double, hi: Double)?
         for f in focus.sorted(by: { $0.since > $1.since }) {
@@ -112,14 +114,38 @@ public enum StoryCamera {
                 span = (f.minX, f.maxX)
                 continue
             }
-            let lo = min(s.lo, f.minX), hi = max(s.hi, f.maxX)
-            if hi - lo <= room { span = (lo, hi) }
+            let l = min(s.lo, f.minX), h = max(s.hi, f.maxX)
+            if h - l <= room { span = (l, h) }
         }
-        guard let s = span else { return onWorld(center) }
+        guard var s = span else { return onWorld(center) }
         if s.hi - s.lo > room { return onWorld((s.lo + s.hi) / 2) }
+        // The rest of the cast that still fits, nearest first.
+        let middle = (s.lo + s.hi) / 2
+        for f in cast.sorted(by: { abs(($0.minX + $0.maxX) / 2 - middle) < abs(($1.minX + $1.maxX) / 2 - middle) }) {
+            let l = min(s.lo, f.minX), h = max(s.hi, f.maxX)
+            if h - l <= room { s = (l, h) }
+        }
         // As little as it can: just enough that both ends are in.
-        let least = s.hi + margin - half, most = s.lo - margin + half
-        return onWorld(min(max(center, least), most))
+        let lo = max(first, s.hi + margin - half), hi = min(last, s.lo - margin + half)
+        // Against the art's edge there is no room for the margin: as near as it gets.
+        guard lo <= hi else { return onWorld(min(max(center, s.hi + margin - half), s.lo - margin + half)) }
+        var x = min(max(center, lo), hi)
+        // Nobody cut by the edge: whoever straddles one goes wholly out,
+        // the least way that keeps the rest in.
+        for _ in 0..<3 {
+            var moved = false
+            for f in focus + cast {
+                let left = x - half, right = x + half
+                let cutLeft = f.minX < left && f.maxX > left, cutRight = f.minX < right && f.maxX > right
+                guard cutLeft || cutRight else { continue }
+                let options = [f.maxX + half, f.minX - half].filter { $0 >= lo && $0 <= hi }
+                guard let best = options.min(by: { abs($0 - x) < abs($1 - x) }) else { continue }
+                x = best
+                moved = true
+            }
+            if !moved { break }
+        }
+        return x
     }
 
     /// The camera's centre a frame (`dt` seconds) later on its way to
