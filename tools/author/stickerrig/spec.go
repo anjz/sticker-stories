@@ -287,6 +287,13 @@ func (r *rigSpec) check(c *ctxt) error {
 		}
 		ids[a.ID] = true
 	}
+	// A sheet and the preview of an animation (or the rest) share a file
+	// name, out/rigs/<sticker>.<id>.png: preview would overwrite the sheet.
+	for _, sh := range sheets {
+		if ids[sh] || sh == "rest" {
+			return fmt.Errorf("sheet %s: an animation's preview has that name; name the sheet otherwise", sh)
+		}
+	}
 	return nil
 }
 
