@@ -95,10 +95,24 @@ type StickerAnimation struct {
 	// the app keeps it flying a slow loop round its spot (a bird). Needs
 	// Flies.
 	Hovers bool `json:"hovers,omitempty"`
-	// On are the features a story that brings the character in this way
-	// lands it on ({duckling:enter by swim}: the pond), in order of
-	// preference; empty for its stage's. Moves with a loop only.
+	// On, for a move, are the features a story that brings the character
+	// in this way lands it on ({duckling:enter by swim}: the pond), in
+	// order of preference; empty for its stage's. Moves with a loop only.
+	// For an action, On are the places it is done in (riding a wave: the
+	// sea): while a move that Stays keeps the character in water, an
+	// action whose On does not name that water shows only its face over
+	// the move (the surfer laughs as he paddles on). Optional.
 	On []string `json:"on,omitempty"`
+	// Away is another looping move of the sticker's, played instead while
+	// a leg this way goes away from the viewer, deeper into the scene
+	// (paddle's "paddle-out", his back to us); resting or coming back it
+	// plays this one. Moves with a loop only; optional.
+	Away string `json:"away,omitempty"`
+	// Faces is the way the character faces on screen while the action
+	// plays ("left" or "right"; riding a wave: right): the app mirrors the
+	// whole puppet as needed and turns it back after. Actions only;
+	// optional.
+	Faces string `json:"faces,omitempty"`
 	// Stays says that once this way has taken the character into one of
 	// On (the surfer out on the waves), the loop keeps going where it is
 	// instead of settling into the sticker pose. Needs On.
@@ -223,8 +237,11 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	count := a.Frames()
 	switch a.EffectiveKind() {
 	case KindAction:
-		if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || a.Hovers || len(a.On) > 0 || a.Stays || a.Waterline != 0 {
-			fail("loop, facing, stride, hops, flies, hovers, on, stays and waterline belong to a move, not an action")
+		if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || a.Hovers || a.Stays || a.Waterline != 0 || a.Away != "" {
+			fail("loop, facing, stride, hops, flies, hovers, stays, waterline and away belong to a move, not an action")
+		}
+		if a.Faces != "" && a.Faces != "left" && a.Faces != "right" {
+			fail("faces must be left or right, got %q", a.Faces)
 		}
 		if p := a.Pause; p != nil {
 			if p.Frame < 1 || p.Frame > count-2 {
@@ -237,6 +254,9 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	case KindMove:
 		if a.Pause != nil || a.Perched || a.Idle || len(a.Place) > 0 {
 			fail("pause, perched, idle and place belong to an action, not a move")
+		}
+		if a.Faces != "" {
+			fail("faces belongs to an action, not a move")
 		}
 		if l := a.Loop; l != nil {
 			if l.From < 0 || l.To < l.From || l.To >= count {
@@ -265,8 +285,11 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 			if a.Waterline < 0 || a.Waterline >= 1 {
 				fail("waterline %g must be a fraction of the drawing's height, at least 0 and below 1", a.Waterline)
 			}
-		} else if a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || a.Hovers || len(a.On) > 0 || a.Stays || a.Waterline != 0 {
-			fail("facing, stride, hops, flies, hovers, on, stays and waterline need a loop")
+			if a.Away != "" && a.Away == a.ID {
+				fail("away %q must be another move, not this one", a.Away)
+			}
+		} else if a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || a.Hovers || len(a.On) > 0 || a.Stays || a.Waterline != 0 || a.Away != "" {
+			fail("facing, stride, hops, flies, hovers, on, stays, waterline and away need a loop")
 		}
 	default:
 		fail("kind %q must be action or move", a.Kind)

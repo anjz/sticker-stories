@@ -823,11 +823,10 @@ final class CanvasScene: SKScene {
         return emitters
     }
 
-    /// A coordinator for this story's waves (`surf-wave`), each rolling the
-    /// way its sticker's art faces, for stickers in the water.
+    /// A coordinator for this story's waves (`surf-wave`), for stickers out
+    /// in the water.
     private func surfWaveCoordinator() -> SurfWaveCoordinator {
         let waves = SurfWaveCoordinator()
-        waves.facings = SurfWaveCoordinator.facings(of: liveAnimations)
         // Only in the water, when it is cued: a pack without a stage has none.
         waves.inWater = { [weak self] node, time in self?.playSession?.stage?.inWater(node, at: time) ?? false }
         return waves
@@ -2154,6 +2153,7 @@ final class CanvasScene: SKScene {
                 node.float(frame.afloat, drawing: drawingBox(of: node.stickerID))
             }
         }
+        faceActions(session, nodes: nodes, at: time)
         session.applier.apply(deltas, to: nodes)
         session.emitters.reconcile(session.runner.active, at: time, nodes: nodes)
         session.waves.reconcile(session.runner.active, at: time, nodes: nodes)
@@ -2250,19 +2250,10 @@ final class CanvasScene: SKScene {
         for node in allStickerNodes() {
             var shown: (LoadedLiveAnimation, LiveFrameState, LiveTween?)?
             var wings: PuppetNode.Wings?
+            var faceOver: PuppetNode.FaceOver?
             if allowed {
                 let action = session.live.current(for: node.stickerID, at: time, frames: timing)
-                // The latest travel: its entrance, or a move.
-                var travel: StageTravel?
-                if let plan = session.visitors[node.instanceID], time >= plan.at {
-                    travel = StageTravel(at: plan.at, duration: plan.travel, move: plan.move, stays: plan.stays, rate: 1)
-                }
-                if let move = session.motions[node.instanceID]?.travel(at: time), move.at >= (travel?.at ?? -1) {
-                    travel = StageTravel(at: move.at, duration: move.duration, move: move.move, stays: move.stays, rate: 1)
-                }
-                if let move = session.stage?.travel(of: node.instanceID, at: time) {
-                    travel = move
-                }
+                let travel = latestTravel(of: node, in: session, at: time)
                 let moving: (LoadedLiveAnimation, LiveFrameState, LiveTween?)? = travel.flatMap { travel in
                     guard let id = travel.move,
                         let move = liveLoaded[LiveAnimationKey(stickerID: node.stickerID, animationID: id)]
@@ -2280,6 +2271,16 @@ final class CanvasScene: SKScene {
                 let actionIsNewer = action.map { $0.since >= (travel?.at ?? -1) } ?? false
                 if session.stage != nil, let travel, travel.isMoving(at: time), let moving {
                     shown = moving
+                } else if actionIsNewer, let acting, let moving, keepsToFace(node, acting.0, travel: travel, in: session, at: time) {
+                    // In the water a move keeps it in, an action not done
+                    // there shows only its face over the move: the surfer
+                    // laughs as he paddles on.
+                    shown = moving
+                    if let action = acting.0.puppet, let tween = acting.2, let move = moving.0.puppet,
+                        action.rig.atlas == move.rig.atlas
+                    {
+                        faceOver = PuppetNode.FaceOver(action: action, tween: tween)
+                    }
                 } else if actionIsNewer {
                     // Once it is over, a move that stays goes on (on the
                     // stage in space).
@@ -2311,12 +2312,59 @@ final class CanvasScene: SKScene {
                 continue
             }
             if let (loaded, state, tween) = shown {
-                if let frame = node.showLive(loaded, state: state, tween: tween, wings: wings) {
+                if let frame = node.showLive(loaded, state: state, tween: tween, wings: wings, faceOver: faceOver) {
                     session.emitters.fire(loaded.animation, frame: frame, on: node)
                 }
             } else if node.liveKey != nil || node.puppetNode != nil {
                 node.parkLive()
             }
+        }
+    }
+
+    /// A sticker's latest travel: its entrance, or a move — on the stage in
+    /// space, the leg it is on (its `away` move while it goes away).
+    private func latestTravel(of node: StickerNode, in session: PlaySession, at time: TimeInterval) -> StageTravel? {
+        var travel: StageTravel?
+        if let plan = session.visitors[node.instanceID], time >= plan.at {
+            travel = StageTravel(at: plan.at, duration: plan.travel, move: plan.move, stays: plan.stays, rate: 1)
+        }
+        if let move = session.motions[node.instanceID]?.travel(at: time), move.at >= (travel?.at ?? -1) {
+            travel = StageTravel(at: move.at, duration: move.duration, move: move.move, stays: move.stays, rate: 1)
+        }
+        if let move = session.stage?.travel(of: node.instanceID, at: time) {
+            travel = move
+        }
+        return travel
+    }
+
+    /// Whether an action cued on a sticker staying in the water shows only
+    /// its face over the move that keeps it there (`StageActing.keepsToFace`).
+    private func keepsToFace(
+        _ node: StickerNode, _ action: LoadedLiveAnimation, travel: StageTravel?, in session: PlaySession, at time: TimeInterval
+    ) -> Bool {
+        guard let stage = session.stage else { return false }
+        let move = stageMoves[node.stickerID]?.first { $0.id == travel?.move }
+        return StageActing.keepsToFace(
+            actionOn: action.animation.on ?? [], travel: travel, move: move, water: stage.water(of: node, at: time))
+    }
+
+    /// Turns a sticker whose action faces a way on screen (riding a wave:
+    /// right) to it while the action plays its body — the whole sticker,
+    /// whatever way it faced — and back as it ends (`StageActing.facing`).
+    private func faceActions(_ session: PlaySession, nodes: [UUID: StickerNode], at time: TimeInterval) {
+        guard livePolicy.allowsLiveAnimations else { return }
+        let timing: (LiveAnimationKey) -> LiveFrames? = { [liveLoaded] in liveLoaded[$0]?.timing }
+        for node in nodes.values {
+            guard let action = session.live.current(for: node.stickerID, at: time, frames: timing),
+                let loaded = liveLoaded[action.key], let faces = loaded.animation.faces
+            else { continue }
+            let travel = latestTravel(of: node, in: session, at: time)
+            // Its move comes first while it is on its way.
+            if let travel, action.since < travel.at || (session.stage != nil && travel.isMoving(at: time)) { continue }
+            if keepsToFace(node, loaded, travel: travel, in: session, at: time) { continue }
+            node.facing = CGFloat(StageActing.facing(
+                Double(node.facing), art: stageMoves[node.stickerID]?.first?.facing, faces: faces, elapsed: action.elapsed,
+                duration: loaded.timing.duration(action.part)))
         }
     }
 

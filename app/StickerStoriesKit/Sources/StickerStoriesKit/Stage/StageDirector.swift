@@ -374,6 +374,12 @@ public enum StageDirector {
             return Set(states[i].actor.moves.flatMap(\.on).filter(water.contains))
         }
 
+        /// Whether it floats in water `name` (a way of its there has a
+        /// waterline).
+        func floats(_ i: Int, in name: String) -> Bool {
+            states[i].actor.moves.contains { $0.waterline > 0 && $0.on.contains(name) }
+        }
+
         /// Whether every way it gets about belongs to the water (a fish, a
         /// boat, a bottle bobbing): it is water-bound, never on or across
         /// land — where its water does not reach, it fades across.
@@ -401,10 +407,10 @@ public enum StageDirector {
         /// `p` out of them (on the sand, by someone on land, at the shore):
         /// as near `p` as it can be, on screen, seen — not behind the
         /// planes, nor behind or in front of anyone (`blocking`).
-        func waterSpot(_ i: Int, near p: Vec2) -> Vec3? {
+        func waterSpot(_ i: Int, near p: Vec2, open: Bool = false) -> Vec3? {
             let move = states[i].actor.moves.first
             let me = states[i].actor
-            let candidates = waters(i).sorted().flatMap { spots($0, for: i, move: move) }.map(\.position)
+            let candidates = waters(i).sorted().flatMap { spots($0, for: i, move: move, open: open) }.map(\.position)
                 .filter { onScreen(i, at: $0) && !covered(i, at: $0) }
             let seen = candidates.filter { hiddenWithHeadroom(i, at: $0) < 0.1 && blocking(i, at: $0) < 0.1 }
             return (seen.isEmpty ? candidates : seen).min { a, b in
@@ -671,7 +677,9 @@ public enum StageDirector {
                 let here = ground ? StagePose(position: g.onGround, support: .ground, facing: facing)
                     : StagePose(position: up, support: .air(""), facing: facing)
                 if ground, world.water(at: g).map(waters(i).contains) == true { return (here, here) }
-                if let spot = waterSpot(i, near: g) { return (here, StagePose(position: spot, support: .ground, facing: facing)) }
+                if let spot = waterSpot(i, near: g, open: true) {
+                    return (here, StagePose(position: spot, support: .ground, facing: facing))
+                }
             }
             if space.isGround(artY: feet.v) {
                 let g = world.groundPoint(feet)
@@ -745,7 +753,7 @@ public enum StageDirector {
         /// Where in a place it can be: ground inside the place (or on its
         /// shore, for one that does not belong in its water), points along
         /// its lines, points in its air.
-        func spots(_ name: String, for i: Int, move: StageMove?) -> [StagePose] {
+        func spots(_ name: String, for i: Int, move: StageMove?, open: Bool = true) -> [StagePose] {
             let me = states[i].actor
             let bound = onlyGetsAboutInWater(i)
             let belongs = self.belongs(i, move).union(bound ? waters(i) : [])
@@ -755,7 +763,7 @@ public enum StageDirector {
                 // Water-bound, at a place out of its waters (the shore): in
                 // its water by it — a bottle at the waterline.
                 if bound, !waters(i).contains(name) {
-                    return waters(i).sorted().flatMap { spots($0, for: i, move: move) }.filter {
+                    return waters(i).sorted().flatMap { spots($0, for: i, move: move, open: false) }.filter {
                         ground.polygon.distance(to: $0.position.ground) < me.width * 0.9 + 0.1
                     }
                 }
@@ -778,6 +786,12 @@ public enum StageDirector {
                         }
                         out.append(StagePose(position: g.onGround, support: .ground, facing: states[i].pose.facing))
                     }
+                }
+                // Afloat in it (not on a shallow bottom): out in open water,
+                // never hugging the shore (`StageWorld.openWater`).
+                if open, into, ground.water, !ground.shallow, floats(i, in: name) {
+                    let out2 = out.filter { world.inOpenWater($0.position.ground) }
+                    if !out2.isEmpty { return out2 }
                 }
                 return out
             }
@@ -1369,9 +1383,14 @@ public enum StageDirector {
                 let water = world.water(at: states[i].pose.position.ground), !belongs(i, way(i).move).contains(water),
                 world.water(at: target.position.ground) != water,
                 let swim = states[i].actor.moves.first(where: { !$0.flies && $0.cycle != nil && $0.on.contains(water) }),
-                let edge = shore(of: [water], near: target.position.ground, from: states[i].pose.position.ground),
-                let exit = world.nearestStand(to: edge, belongsIn: belongs(i, way(i).move), reach: 0.3)
+                let edge = shore(of: [water], near: target.position.ground, from: states[i].pose.position.ground)
             {
+                // To the bank: the first land a hair up from the edge,
+                // towards where it goes (never a step inland swimming).
+                let inland = target.position.ground - edge, d = inland.length
+                let belongs = self.belongs(i, way(i).move)
+                let exit = stride(from: 0.0, through: min(d, 0.05), by: 0.002).lazy
+                    .map { edge + inland * ($0 / max(d, 1e-9)) }.first { world.canStand(at: $0, belongsIn: belongs) } ?? edge
                 let by = states[i].by
                 states[i].by = swim.id
                 travel(i, to: StagePose(position: exit.onGround, support: .ground, facing: states[i].pose.facing), begin: begin)
@@ -1647,6 +1666,14 @@ public enum StageDirector {
                 at: start, duration: duration, path: path, gait: gait, kind: kind, move: moveID,
                 facingFrom: states[i].pose.facing, facingTo: facing, support: target.support, rate: rate)
             leg.ways = ways
+            // Mostly away from the viewer, deeper into the scene: the move
+            // that shows its back, when its way has one.
+            if gait != .fade, gait != .fly, let id = moveID, let a = path.first, let b = path.last,
+                let away = me.moves.first(where: { $0.id == id })?.away, away != id, me.moves.contains(where: { $0.id == away }),
+                b.z - a.z > abs(b.x - a.x)
+            {
+                leg.away = away
+            }
             return leg
         }
 

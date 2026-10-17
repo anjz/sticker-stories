@@ -208,6 +208,32 @@ public struct StageWorld: Sendable {
         return line * k * k * (3 - 2 * k)
     }
 
+    /// How far out into open water a sticker afloat rests or is sent: at
+    /// least this share of the way out from the waterline (`outInWater`),
+    /// never hugging the shore. A wave rises only that far out too.
+    public static let openWater = 1.0 / 3
+
+    /// How far out into its water `p` is, as the viewer sees it: 0 at the
+    /// waterline in front, 1 at the water's far edge, up the art at that
+    /// spot. Nil out of the water.
+    public func outInWater(_ p: Vec2) -> Double? {
+        guard let name = water(at: p), let ground = grounds.first(where: { $0.place == name }) else { return nil }
+        let a = project(p.onGround)
+        // The water's band up the art at this spot.
+        var near = a.v, far = a.v
+        let step = 0.002
+        while near - step > 0, ground.polygon.contains(groundPoint(.init(a.u, near - step))) { near -= step }
+        while far + step < space.horizon, ground.polygon.contains(groundPoint(.init(a.u, far + step))) { far += step }
+        guard far - near > 1e-9 else { return 0 }
+        return (a.v - near) / (far - near)
+    }
+
+    /// Whether `p` is out in open water (`openWater`): where a sticker
+    /// afloat rests, and where a wave can rise.
+    public func inOpenWater(_ p: Vec2) -> Bool {
+        (outInWater(p) ?? 0) >= Self.openWater
+    }
+
     /// Whether a walker that belongs in `belongs` crosses, going straight
     /// from `p` to `q`, water it does not belong in or a plane's footprint.
     public func crossesBlocked(from p: Vec2, to q: Vec2, belongsIn belongs: Set<String>) -> Bool {

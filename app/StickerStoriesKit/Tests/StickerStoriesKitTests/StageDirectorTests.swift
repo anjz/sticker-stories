@@ -442,7 +442,8 @@ extension StageDirectorTests {
                         id: id, cycle: loop ? 0.8 : nil, stride: json["stride"] as? Double ?? 0,
                         hops: json["hops"] as? Bool ?? false, flies: json["flies"] as? Bool ?? false,
                         hovers: json["hovers"] as? Bool ?? false, on: json["on"] as? [String] ?? [], stays: json["stays"] as? Bool ?? false,
-                        waterline: json["waterline"] as? Double ?? 0, facing: (json["facing"] as? String).flatMap(StageMove.Facing.init(rawValue:)), seconds: loop ? 0 : 1))
+                        waterline: json["waterline"] as? Double ?? 0, facing: (json["facing"] as? String).flatMap(StageMove.Facing.init(rawValue:)), seconds: loop ? 0 : 1,
+                        away: json["away"] as? String))
                 }
                 if let place = json["place"] as? [String] {
                     pack.places[LiveAnimationKey(stickerID: sticker.id, animationID: id)] = place

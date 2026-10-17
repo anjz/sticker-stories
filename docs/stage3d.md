@@ -210,6 +210,37 @@ fails one — except in **shallow** water (Beach's rock pool, `shallow` in
 the space): whoever belongs there sits on its clear bottom, seen whole,
 and nobody floats there, whatever its waterline.
 
+**Out in open water.** A sticker afloat that rests in a water or is sent
+to it (not on a shallow bottom) stops well out from the waterline, never
+hugging the shore: at least a third of the way out (`StageWorld.openWater`),
+measured up the art at that spot from the water's near edge (0) to its
+far edge (1) (`StageWorld.outInWater`, `inOpenWater`). A wave rises only
+that far out too. A water-bound sticker sent to a place on land (the
+bottle "to shore") still stops at the waterline; a child's sticker the
+child put in the water stays where the child put it.
+
+**Its back to us going out.** A move can name another as its `away`
+(`docs/pack-format.md`): while a leg that way goes away from the viewer
+— deeper into the scene more than across it — that move plays instead,
+the character's back to us (the surfer paddling out, `paddle`'s
+`paddle-out`); resting there, or coming back, it plays its own, looking
+at us (`StageLeg.away`, `StagePlan.travel`).
+
+**Acting in the water** (`StageActing`). While a move that `stays` keeps
+a sticker in water (the surfer paddling, a seal swimming, a pelican
+afloat), an action the story cues there plays its body only when its
+`on` names that water (riding a wave, `on: ["sea"]`). Any other keeps the
+move's loop going and shows only its face — the eye, mouth and brow
+attachments its keys swap (`PuppetRig.faceSlots`), over the move's pose
+(`PuppetPose.wearingFace`): the surfer laughs as he paddles on, never
+standing up on the water. It is the other way round from a flyer's
+wings, which beat on through an action (`PuppetPose.flying`). Out of the
+water, and on a move that does not stay (Forest's duckling swimming),
+every action plays as before. An action that `faces` a way on screen
+(riding a wave: right, the way the wave rolls) turns the whole sticker to
+it as it starts, whatever way it faced, and back as it ends
+(`StageActing.facing`) — never the head alone.
+
 ## Alive at rest
 
 Every puppet on the stage takes over from its still art as the story

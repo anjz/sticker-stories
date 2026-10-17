@@ -288,12 +288,18 @@ public struct StageMove: Equatable, Sendable {
     public var waterline: Double
     public var facing: Facing?
     public var seconds: TimeInterval
+    /// Another of its moves played instead while a leg this way goes away
+    /// from the viewer, deeper into the scene (the surfer paddling out,
+    /// his back to us: `paddle`'s `paddle-out`); resting, or coming back,
+    /// it plays this one.
+    public var away: String?
 
     public init(
         id: String = "", cycle: TimeInterval? = nil, stride: Double = 0, hops: Bool = false, flies: Bool = false,
         hovers: Bool = false, on: [String] = [], stays: Bool = false, waterline: Double = 0, facing: Facing? = nil,
-        seconds: TimeInterval = 0
+        seconds: TimeInterval = 0, away: String? = nil
     ) {
+        self.away = away
         self.id = id
         self.cycle = cycle
         self.stride = stride

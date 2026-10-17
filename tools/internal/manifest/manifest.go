@@ -539,6 +539,8 @@ func (m *Manifest) Validate(dir string) []error {
 		checkCoverage(fmt.Sprintf("sticker %q name", st.ID), st.Name)
 		checkImage(fmt.Sprintf("sticker %q image", st.ID), st.Image)
 		// Rule 12: live-animation sidecars exist and are valid.
+		loopingMoves := map[string]bool{}
+		var aways [][2]string
 		for j, rel := range st.Animations {
 			field := fmt.Sprintf("sticker %q animations[%d]", st.ID, j)
 			checkFile(field, rel)
@@ -571,10 +573,16 @@ func (m *Manifest) Validate(dir string) []error {
 					fail("%s: a sticker's second move must loop (only its first may be a sprout)", field)
 				}
 				moves[st.ID] = true
-				for _, f := range anim.On {
-					if _, ok := m.Features[f]; !ok {
-						fail("%s: on: %q is not a feature of the pack", field, f)
-					}
+				if anim.Loop != nil {
+					loopingMoves[anim.ID] = true
+				}
+				if anim.Away != "" {
+					aways = append(aways, [2]string{field, anim.Away})
+				}
+			}
+			for _, f := range anim.On {
+				if _, ok := m.Features[f]; !ok {
+					fail("%s: on: %q is not a feature of the pack", field, f)
 				}
 			}
 			for _, f := range anim.Place {
@@ -583,6 +591,12 @@ func (m *Manifest) Validate(dir string) []error {
 				}
 			}
 			animations[st.ID] = append(animations[st.ID], effects.Animation{ID: anim.ID, Pausable: anim.Pause != nil, Move: anim.EffectiveKind() == KindMove})
+		}
+		// A move's away is another looping move of the same sticker's.
+		for _, a := range aways {
+			if !loopingMoves[a[1]] {
+				fail("%s: away: %q is not another looping move of sticker %q", a[0], a[1], st.ID)
+			}
 		}
 		// Rule 13: expression variants are images of the sticker; "normal"
 		// is the sticker's own image and cannot be one.

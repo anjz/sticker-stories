@@ -127,12 +127,7 @@ func (c *ctxt) install(r *rigSpec, templates map[string]animSpec, drop bool) err
 	}
 	fmt.Printf("✓ %s: %d parts in a %dx%d atlas, %d bones, %d slots\n", r.Sticker, len(rig.Parts), art.Bounds().Dx(), art.Bounds().Dy(), len(rig.Bones), len(rig.Slots))
 	for i, a := range anims {
-		side := manifest.StickerAnimation{
-			ID: a.ID, Sticker: r.Sticker, Kind: a.Kind, Description: a.Description, StickerBox: box,
-			Pause: a.Pause, Perched: a.Perched, Idle: a.Idle, Place: a.Place, Loop: a.Loop, Facing: a.Facing, Stride: a.Stride,
-			Hops: a.Hops, Flies: a.Flies, Hovers: a.Hovers, On: a.On, Stays: a.Stays, Waterline: a.Waterline, Particles: a.Particles,
-			Puppet: &manifest.AnimationPuppet{Rig: "anims/" + r.Sticker + ".rig.json", Keys: a.Keys, Wings: a.Wings},
-		}
+		side := sidecar(r.Sticker, a, box)
 		path := filepath.Join(c.packDir, filepath.FromSlash(paths[i]))
 		if old, err := manifest.LoadStickerAnimation(path); err == nil && old.Sheet != "" {
 			// The puppet plays it now: the sheet goes.
@@ -369,4 +364,16 @@ func silhouette(art *image.RGBA, radius int) *image.RGBA {
 		out.Pix[o+3] = uint8(a*255 + 0.5)
 	}
 	return out
+}
+
+// sidecar is the pack's sidecar for one of the rig's animations: every
+// field the rig file gives it, the keys played on the sticker's rig.
+func sidecar(sticker string, a animSpec, box manifest.UnitBox) manifest.StickerAnimation {
+	return manifest.StickerAnimation{
+		ID: a.ID, Sticker: sticker, Kind: a.Kind, Description: a.Description, StickerBox: box,
+		Pause: a.Pause, Perched: a.Perched, Idle: a.Idle, Place: a.Place, Loop: a.Loop, Facing: a.Facing, Stride: a.Stride,
+		Hops: a.Hops, Flies: a.Flies, Hovers: a.Hovers, On: a.On, Away: a.Away, Faces: a.Faces, Stays: a.Stays,
+		Waterline: a.Waterline, Particles: a.Particles,
+		Puppet: &manifest.AnimationPuppet{Rig: "anims/" + sticker + ".rig.json", Keys: a.Keys, Wings: a.Wings},
+	}
 }

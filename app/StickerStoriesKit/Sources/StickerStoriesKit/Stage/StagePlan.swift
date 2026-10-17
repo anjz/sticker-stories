@@ -106,6 +106,9 @@ public struct StageLeg: Equatable, Sendable {
     public var kind: Kind
     /// The move whose frames play along, if any.
     public var move: String?
+    /// The move played instead while it is on its way, when the way goes
+    /// away from the viewer (`StageMove.away`): its back to us.
+    public var away: String?
     /// The move's loop goes on once it is there (`StageMove.stays`).
     public var stays: Bool
     /// A flyer that cannot hover, left in the air: from its arrival it
@@ -404,7 +407,9 @@ public struct StagePlan: Equatable, Sendable {
     /// its way or settling (or going on, for one that stays).
     public func travel(at time: TimeInterval) -> StageTravel? {
         guard let leg = legs.last(where: { $0.at <= time }), leg.travels else { return nil }
-        return StageTravel(at: leg.at, duration: leg.duration, move: leg.move, stays: leg.stays, rate: leg.rate)
+        // Going away its `away` move; there, its own again.
+        let move = time < leg.end ? leg.away ?? leg.move : leg.move
+        return StageTravel(at: leg.at, duration: leg.duration, move: move, stays: leg.stays, rate: leg.rate)
     }
 }
 

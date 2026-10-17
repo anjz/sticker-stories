@@ -276,3 +276,27 @@ public struct PuppetPose: Equatable, Sendable {
         return PuppetPose(bones: bones, slots: t < 0.5 ? slots : other.slots)
     }
 }
+
+extension PuppetRig {
+    /// The slots a face sets — every slot any of its faces swaps (the
+    /// eyes, the mouth, the brows) and those its blink does.
+    public var faceSlots: Set<String> {
+        Set(faces.values.flatMap(\.keys)).union(idle?.blink?.keys.map { $0 } ?? [])
+    }
+}
+
+extension PuppetPose {
+    /// This pose wearing `action`'s face: the face slots
+    /// (`PuppetRig.faceSlots`) as the action shows them, wherever this
+    /// pose shows them at all — the surfer laughing as he paddles on,
+    /// his body still paddling. The other way round from `flying`: the
+    /// move keeps the body, the action gives the face. A slot this pose
+    /// hides (a back view's eyes) stays hidden.
+    public func wearingFace(of action: PuppetPose, rig: PuppetRig) -> PuppetPose {
+        var pose = self
+        for slot in rig.faceSlots where slots[slot] != PuppetRig.hidden {
+            if let shown = action.slots[slot] { pose.slots[slot] = shown }
+        }
+        return pose
+    }
+}

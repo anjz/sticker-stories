@@ -57,9 +57,17 @@ One file per sticker, so several can be rigged at once:
   first move is its usual way), each with the sidecar's fields — `id`,
   `kind`, `description`, `pause` (`{ "frame": key, "shows" }`), `loop`,
   `facing`, `stride`, `hops`, `flies`, `hovers`, `wings` (the
-  sidecar's `puppet.wings`), `on`, `stays`, `place`,
-  `perched`, `particles` — and its `keys`. Pause, loop and particles
-  count keys. Or `template`: `"common.jump"` takes from
+  sidecar's `puppet.wings`), `on`, `stays`, `waterline`, `away`,
+  `place`, `perched`, `faces`, `idle`, `particles` — and its `keys`.
+  Pause, loop and particles count keys. In the water: a move's `away`
+  names the move it plays going away from us (`"paddle"` with
+  `"away": "paddle-out"`, his back to us); an action's `on` names the
+  places it is done in (`"ride-wave"`: `["sea"]`) — while a move that
+  `stays` keeps the character in water, any other action shows only its
+  face over the move, so its face slots should be the ones the rig's
+  `faces` swap; an action's `faces` (`"right"`) is the way the
+  character faces on screen while it plays
+  (`docs/pack-format.md`, "Live animations"). Or `template`: `"common.jump"` takes from
   `templates/common.json` whatever the animation leaves out (its keys,
   kind, pause and a description where `{the}` becomes `called`).
 

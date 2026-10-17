@@ -72,7 +72,17 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     var flies: Bool?
     /// The flight can hold still in the air (`StageMove.hovers`).
     var hovers: Bool?
+    /// A move's features it lands on (above); an action's, the places it
+    /// is done in (riding a wave: the sea) — in water a move keeps it in,
+    /// any other action shows only its face (`StageActing.keepsToFace`).
     var on: [String]?
+    /// A move's other move played while it goes away from the viewer
+    /// (`StageMove.away`).
+    var away: String?
+    /// The way an action faces on screen while it plays (riding a wave:
+    /// right); the whole puppet is mirrored to it and back
+    /// (`StageActing.facing`).
+    var faces: StageMove.Facing?
     /// How deep it floats in water among `on` (`StageMove.waterline`).
     var waterline: Double?
     var stays: Bool?
@@ -126,7 +136,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
 
     private enum CodingKeys: String, CodingKey {
         case id, sticker, kind, sheet, frame, columns, count, rest, stickerBox, hold, pause, loop, facing, stride, hops,
-            flies, hovers, on, stays, waterline, place, idle, particles, puppet
+            flies, hovers, on, stays, waterline, place, idle, particles, puppet, away, faces
     }
 
     /// A particle cue that decodes or is skipped (an effect this build
@@ -171,6 +181,8 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         flies = try? c.decodeIfPresent(Bool.self, forKey: .flies)
         hovers = try? c.decodeIfPresent(Bool.self, forKey: .hovers)
         on = try? c.decodeIfPresent([String].self, forKey: .on)
+        away = kind == .move ? (try? c.decodeIfPresent(String.self, forKey: .away)) ?? nil : nil
+        faces = kind == .action ? (try? c.decodeIfPresent(StageMove.Facing.self, forKey: .faces)) ?? nil : nil
         stays = try? c.decodeIfPresent(Bool.self, forKey: .stays)
         waterline = try? c.decodeIfPresent(Double.self, forKey: .waterline)
         place = try? c.decodeIfPresent([String].self, forKey: .place)
@@ -221,7 +233,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
             return StageMove(
                 id: id, cycle: timing.loopDuration, stride: stride, hops: hops ?? false, flies: flies ?? false,
                 hovers: hovers ?? false, on: on ?? [], stays: stays ?? false,
-                waterline: min(max(waterline ?? 0, 0), 0.95), facing: facing)
+                waterline: min(max(waterline ?? 0, 0), 0.95), facing: facing, away: away)
         }
         return StageMove(id: id, seconds: timing.duration(.move(travel: 0)) ?? 0)
     }
@@ -384,7 +396,8 @@ extension StickerNode {
     /// for what fires on a frame (`StickerAnimation.particles`).
     @discardableResult
     func showLive(
-        _ loaded: LoadedLiveAnimation, state: LiveFrameState, tween: LiveTween? = nil, wings: PuppetNode.Wings? = nil
+        _ loaded: LoadedLiveAnimation, state: LiveFrameState, tween: LiveTween? = nil, wings: PuppetNode.Wings? = nil,
+        faceOver: PuppetNode.FaceOver? = nil
     ) -> Int? {
         if liveKey != loaded.animation.key, !continuePuppet(loaded) {
             stopLive()
@@ -392,7 +405,7 @@ extension StickerNode {
             liveFrame = nil
         }
         if loaded.puppet != nil {
-            return showPuppet(state: state, tween: tween, wings: wings)
+            return showPuppet(state: state, tween: tween, wings: wings, faceOver: faceOver)
         }
         guard let live = childNode(withName: Self.liveNodeName) as? SKSpriteNode else { return nil }
         let index = min(max(state.frame, 0), loaded.frames.count - 1)

@@ -100,6 +100,8 @@ type animSpec struct {
 	Hovers      bool                         `json:"hovers,omitempty"`
 	Wings       []string                     `json:"wings,omitempty"`
 	On          []string                     `json:"on,omitempty"`
+	Away        string                       `json:"away,omitempty"`
+	Faces       string                       `json:"faces,omitempty"`
 	Stays       bool                         `json:"stays,omitempty"`
 	Waterline   float64                      `json:"waterline,omitempty"`
 	Particles   []manifest.AnimationParticle `json:"particles,omitempty"`
@@ -175,6 +177,12 @@ func (r *rigSpec) resolve(a animSpec, templates map[string]animSpec) (animSpec, 
 		a.Idle = a.Idle || t.Idle
 		if a.On == nil {
 			a.On = t.On
+		}
+		if a.Away == "" {
+			a.Away = t.Away
+		}
+		if a.Faces == "" {
+			a.Faces = t.Faces
 		}
 		if a.Place == nil {
 			a.Place = t.Place

@@ -222,3 +222,60 @@ func TestPlaceNamesFeatures(t *testing.T) {
 		t.Errorf("a missing place and a bad facing: %v", errs)
 	}
 }
+
+func TestActionOnFacesAndMoveAway(t *testing.T) {
+	water := map[string]Feature{"sea": {Description: "The sea.", Areas: []StageArea{{X: []float64{0.1, 0.9}, Y: []float64{0.5, 0.6}}}}}
+	move := func(dir, id string, mutate func(*StickerAnimation)) string {
+		a := StickerAnimation{ID: id, Sticker: "fox", Kind: KindMove, Description: "the fox paddles.", Sheet: "anims/fox.yawn.webp", Columns: 4, Count: 8,
+			Rest: UnitBox{X: 0.1, Y: 0.1, Width: 0.8, Height: 0.8}, StickerBox: UnitBox{X: 0.1, Y: 0.1, Width: 0.8, Height: 0.8},
+			Hold: []float64{0.1, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.3}, Loop: &FrameRange{From: 1, To: 6}, Facing: "left", Stride: 0.6}
+		a.Frame.Width, a.Frame.Height = 400, 400
+		if mutate != nil {
+			mutate(&a)
+		}
+		data, _ := json.Marshal(a)
+		os.WriteFile(filepath.Join(dir, "anims", "fox."+id+".json"), data, 0o644)
+		return "anims/fox." + id + ".json"
+	}
+	setup := func(t *testing.T, action func(*StickerAnimation), paddle func(*StickerAnimation)) (*Manifest, string) {
+		dir := t.TempDir()
+		m := validManifest(t, dir)
+		m.Features = water
+		m.Stickers[1].Animations = []string{
+			validAnimation(t, dir, action),
+			move(dir, "paddle", func(a *StickerAnimation) {
+				a.On, a.Stays, a.Away = []string{"sea"}, true, "paddle-out"
+				if paddle != nil {
+					paddle(a)
+				}
+			}),
+			move(dir, "paddle-out", nil),
+		}
+		return m, dir
+	}
+	m, dir := setup(t, func(a *StickerAnimation) { a.On, a.Faces = []string{"sea"}, "right" }, nil)
+	if errs := m.Validate(dir); len(errs) != 0 {
+		t.Fatalf("an action done in the sea facing right, and a paddle that paddles out, rejected: %v", errs)
+	}
+	cases := []struct {
+		name           string
+		action, paddle func(*StickerAnimation)
+		wantSub        string
+	}{
+		{"an action on no feature", func(a *StickerAnimation) { a.On = []string{"moon"} }, nil, `on: "moon" is not a feature`},
+		{"faces up", func(a *StickerAnimation) { a.Faces = "up" }, nil, "faces must be left or right"},
+		{"faces on a move", nil, func(a *StickerAnimation) { a.Faces = "right" }, "faces belongs to an action"},
+		{"away on an action", func(a *StickerAnimation) { a.Away = "paddle" }, nil, "belong to a move"},
+		{"away to no move", nil, func(a *StickerAnimation) { a.Away = "swim" }, `away: "swim" is not another looping move`},
+		{"away to itself", nil, func(a *StickerAnimation) { a.Away = "paddle" }, "must be another move"},
+		{"away to an action", nil, func(a *StickerAnimation) { a.Away = "yawn" }, `away: "yawn" is not another looping move`},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			m, dir := setup(t, tc.action, tc.paddle)
+			if errs := fmt.Sprint(m.Validate(dir)); !strings.Contains(errs, tc.wantSub) {
+				t.Errorf("no error mentioning %q in %v", tc.wantSub, errs)
+			}
+		})
+	}
+}
