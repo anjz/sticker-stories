@@ -291,6 +291,12 @@
       "y": 624.8
     },
     {
+      "id": "squatB",
+      "parent": "root",
+      "x": 341.3,
+      "y": 640
+    },
+    {
       "id": "sand",
       "parent": "root",
       "x": 346.5,
@@ -510,7 +516,7 @@
     },
     {
       "id": "squat",
-      "bone": "root",
+      "bone": "squatB",
       "default": "none",
       "attachments": {
         "squat": {
@@ -2792,7 +2798,7 @@
       "kind": "action",
       "description": "the girl squats down low on her heels, knees bent, and stays there, then stands back up.",
       "pause": {
-        "frame": 3,
+        "frame": 4,
         "shows": "the girl crouched low on her heels, knees bent, hands resting in front of her"
       },
       "keys": [
@@ -2800,16 +2806,13 @@
           "hold": 0.15
         },
         {
-          "hold": 0.25,
+          "hold": 0.3,
           "bones": {
             "body": {
-              "y": 30
+              "y": 100
             },
             "belly": {
-              "sy": 0.94
-            },
-            "head": {
-              "y": 4
+              "sy": 0.9
             }
           },
           "slots": {
@@ -2818,7 +2821,40 @@
           }
         },
         {
-          "hold": 0.4,
+          "hold": 0.06,
+          "bones": {
+            "body": {
+              "y": 100
+            },
+            "squatB": {
+              "sy": 1.344
+            },
+            "armL": {
+              "x": 6.3,
+              "y": 17.5,
+              "r": 5
+            },
+            "armR": {
+              "x": -1.4,
+              "y": 28.2,
+              "r": -5
+            }
+          },
+          "slots": {
+            "legL": "none",
+            "legR": "none",
+            "body": "none",
+            "squat": "squat",
+            "armL": "none",
+            "armLF": "reach",
+            "armR": "none",
+            "armRF": "reach",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.35,
           "ease": "out",
           "bones": {
             "body": {
@@ -2891,17 +2927,46 @@
           }
         },
         {
-          "hold": 0.35,
-          "ease": "out",
+          "hold": 0.3,
           "bones": {
             "body": {
-              "y": 30
+              "y": 100
+            },
+            "squatB": {
+              "sy": 1.344
+            },
+            "armL": {
+              "x": 6.3,
+              "y": 17.5,
+              "r": 5
+            },
+            "armR": {
+              "x": -1.4,
+              "y": 28.2,
+              "r": -5
+            }
+          },
+          "slots": {
+            "legL": "none",
+            "legR": "none",
+            "body": "none",
+            "squat": "squat",
+            "armL": "none",
+            "armLF": "reach",
+            "armR": "none",
+            "armRF": "reach",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.06,
+          "bones": {
+            "body": {
+              "y": 100
             },
             "belly": {
-              "sy": 0.95
-            },
-            "head": {
-              "y": 4
+              "sy": 0.9
             }
           },
           "slots": {
@@ -2926,7 +2991,7 @@
       "kind": "action",
       "description": "the girl crouches and scoops and pats the sand with both hands, building a little heap, smiling, then pats it flat and stands up.",
       "pause": {
-        "frame": 5,
+        "frame": 6,
         "shows": "the girl crouched over a little heap of sand, patting it with both hands"
       },
       "keys": [
@@ -2934,16 +2999,13 @@
           "hold": 0.15
         },
         {
-          "hold": 0.25,
+          "hold": 0.3,
           "bones": {
             "body": {
-              "y": 30
+              "y": 100
             },
             "belly": {
-              "sy": 0.94
-            },
-            "head": {
-              "y": 4
+              "sy": 0.9
             }
           },
           "slots": {
@@ -2952,7 +3014,40 @@
           }
         },
         {
-          "hold": 0.4,
+          "hold": 0.06,
+          "bones": {
+            "body": {
+              "y": 100
+            },
+            "squatB": {
+              "sy": 1.344
+            },
+            "armL": {
+              "x": 6.3,
+              "y": 17.5,
+              "r": 5
+            },
+            "armR": {
+              "x": -1.4,
+              "y": 28.2,
+              "r": -5
+            }
+          },
+          "slots": {
+            "legL": "none",
+            "legR": "none",
+            "body": "none",
+            "squat": "squat",
+            "armL": "none",
+            "armLF": "reach",
+            "armR": "none",
+            "armRF": "reach",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.35,
           "ease": "out",
           "bones": {
             "body": {
@@ -3328,17 +3423,47 @@
           }
         },
         {
-          "hold": 0.35,
-          "ease": "out",
+          "hold": 0.3,
           "bones": {
             "body": {
-              "y": 30
+              "y": 100
+            },
+            "squatB": {
+              "sy": 1.344
+            },
+            "armL": {
+              "x": 6.3,
+              "y": 17.5,
+              "r": 5
+            },
+            "armR": {
+              "x": -1.4,
+              "y": 28.2,
+              "r": -5
+            }
+          },
+          "slots": {
+            "legL": "none",
+            "legR": "none",
+            "body": "none",
+            "squat": "squat",
+            "armL": "none",
+            "armLF": "reach",
+            "armR": "none",
+            "armRF": "reach",
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.06,
+          "bones": {
+            "body": {
+              "y": 100
             },
             "belly": {
-              "sy": 0.95
-            },
-            "head": {
-              "y": 4
+              "sy": 0.9
             }
           },
           "slots": {

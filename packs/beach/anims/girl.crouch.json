@@ -10,7 +10,7 @@
     "height": 0.72005
   },
   "pause": {
-    "frame": 3,
+    "frame": 4,
     "shows": "the girl crouched low on her heels, knees bent, hands resting in front of her"
   },
   "puppet": {
@@ -20,16 +20,13 @@
         "hold": 0.15
       },
       {
-        "hold": 0.25,
+        "hold": 0.3,
         "bones": {
           "belly": {
-            "sy": 0.94
+            "sy": 0.9
           },
           "body": {
-            "y": 30
-          },
-          "head": {
-            "y": 4
+            "y": 100
           }
         },
         "slots": {
@@ -38,7 +35,40 @@
         }
       },
       {
-        "hold": 0.4,
+        "hold": 0.06,
+        "bones": {
+          "armL": {
+            "r": 5,
+            "x": 6.3,
+            "y": 17.5
+          },
+          "armR": {
+            "r": -5,
+            "x": -1.4,
+            "y": 28.2
+          },
+          "body": {
+            "y": 100
+          },
+          "squatB": {
+            "sy": 1.344
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "reach",
+          "armR": "none",
+          "armRF": "reach",
+          "body": "none",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "squat": "squat"
+        }
+      },
+      {
+        "hold": 0.35,
         "ease": "out",
         "bones": {
           "armL": {
@@ -111,17 +141,46 @@
         }
       },
       {
-        "hold": 0.35,
-        "ease": "out",
+        "hold": 0.3,
         "bones": {
-          "belly": {
-            "sy": 0.95
+          "armL": {
+            "r": 5,
+            "x": 6.3,
+            "y": 17.5
+          },
+          "armR": {
+            "r": -5,
+            "x": -1.4,
+            "y": 28.2
           },
           "body": {
-            "y": 30
+            "y": 100
           },
-          "head": {
-            "y": 4
+          "squatB": {
+            "sy": 1.344
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "reach",
+          "armR": "none",
+          "armRF": "reach",
+          "body": "none",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "squat": "squat"
+        }
+      },
+      {
+        "hold": 0.06,
+        "bones": {
+          "belly": {
+            "sy": 0.9
+          },
+          "body": {
+            "y": 100
           }
         },
         "slots": {
