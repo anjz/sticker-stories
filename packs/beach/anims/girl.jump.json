@@ -1,0 +1,142 @@
+{
+  "id": "jump",
+  "sticker": "girl",
+  "kind": "action",
+  "description": "the girl crouches, jumps up high for joy and lands with a little squash.",
+  "stickerBox": {
+    "x": 0.25651,
+    "y": 0.13932,
+    "width": 0.48568,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/girl.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "armR": {
+            "r": 8
+          },
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.93
+          },
+          "head": {
+            "y": 4
+          },
+          "kite": {
+            "r": 4
+          },
+          "root": {
+            "y": 8
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 18
+          },
+          "armR": {
+            "r": -35
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "kite": {
+            "r": -8
+          },
+          "legL": {
+            "r": 10
+          },
+          "legR": {
+            "r": -10
+          },
+          "root": {
+            "y": -70
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": 18
+          },
+          "armR": {
+            "r": -35
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "kite": {
+            "r": -10
+          },
+          "legL": {
+            "r": 10
+          },
+          "legR": {
+            "r": -10
+          },
+          "root": {
+            "y": -74
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.92
+          },
+          "head": {
+            "y": 4
+          },
+          "kite": {
+            "r": 6
+          },
+          "root": {
+            "y": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "kite": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

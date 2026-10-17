@@ -1,0 +1,119 @@
+{
+  "id": "shut",
+  "sticker": "clam",
+  "kind": "action",
+  "description": "the clam shuts its shell tight with a worried look, waits, then slowly opens again and smiles.",
+  "stickerBox": {
+    "x": 0.25521,
+    "y": 0.25,
+    "width": 0.48958,
+    "height": 0.5
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the clam shut tight, its eyes squeezed shut"
+  },
+  "puppet": {
+    "rig": "anims/clam.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sy": 0.96
+          },
+          "lid": {
+            "sy": 0.5
+          },
+          "soft": {
+            "y": 8,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sad",
+          "soft": "none"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "lid": {
+            "sy": 0.5
+          },
+          "soft": {
+            "y": 8,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "cry",
+          "eyeR": "cry",
+          "mouth": "sad",
+          "soft": "none"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "lid": {
+            "sy": 0.62
+          },
+          "soft": {
+            "y": 6,
+            "sy": 0.62
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "lid": {
+            "sy": 0.85
+          },
+          "soft": {
+            "y": 2,
+            "sy": 0.85
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

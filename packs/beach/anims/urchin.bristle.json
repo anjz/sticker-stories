@@ -1,0 +1,117 @@
+{
+  "id": "bristle",
+  "sticker": "urchin",
+  "kind": "action",
+  "description": "the sea urchin gets a fright and bristles, its spines shooting out wide, then smooths them down again with a sigh.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26953,
+    "width": 0.5,
+    "height": 0.45964
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the sea urchin bristling in surprise, all its spines sticking out"
+  },
+  "puppet": {
+    "rig": "anims/urchin.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.94
+          }
+        },
+        "slots": {
+          "browL": "up",
+          "browR": "up",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "out",
+        "bones": {
+          "root": {
+            "y": -6
+          },
+          "spines": {
+            "sx": 0.85,
+            "sy": 0.85
+          }
+        },
+        "slots": {
+          "body": "fanned",
+          "browL": "up",
+          "browR": "up",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "root": {
+            "y": -6
+          },
+          "spines": {
+            "sx": 1.02,
+            "sy": 1.02
+          }
+        },
+        "slots": {
+          "body": "fanned",
+          "browL": "up",
+          "browR": "up",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "spines": {
+            "sx": 0.85,
+            "sy": 0.85
+          }
+        },
+        "slots": {
+          "body": "fanned",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

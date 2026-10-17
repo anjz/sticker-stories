@@ -1,0 +1,178 @@
+{
+  "id": "shuffle",
+  "sticker": "crab",
+  "kind": "action",
+  "description": "the crab shuffles a few steps sideways and back again, tip-tap on its little legs.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.21745,
+    "width": 0.59896,
+    "height": 0.5651
+  },
+  "puppet": {
+    "rig": "anims/crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {
+            "y": -3
+          },
+          "legL1": {
+            "r": 12,
+            "y": -8
+          },
+          "legL3": {
+            "r": 12,
+            "y": -8
+          },
+          "legR2": {
+            "r": -12,
+            "y": -8
+          },
+          "legR4": {
+            "r": -12,
+            "y": -8
+          },
+          "root": {
+            "x": -10
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "root": {
+            "x": -22
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {
+            "y": -3
+          },
+          "legL2": {
+            "r": 12,
+            "y": -8
+          },
+          "legL4": {
+            "r": 12,
+            "y": -8
+          },
+          "legR1": {
+            "r": -12,
+            "y": -8
+          },
+          "legR3": {
+            "r": -12,
+            "y": -8
+          },
+          "root": {
+            "x": -32
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "root": {
+            "x": -40
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {
+            "y": -3
+          },
+          "legL2": {
+            "r": 12,
+            "y": -8
+          },
+          "legL4": {
+            "r": 12,
+            "y": -8
+          },
+          "legR1": {
+            "r": -12,
+            "y": -8
+          },
+          "legR3": {
+            "r": -12,
+            "y": -8
+          },
+          "root": {
+            "x": -30
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "root": {
+            "x": -18
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {
+            "y": -3
+          },
+          "legL1": {
+            "r": 12,
+            "y": -8
+          },
+          "legL3": {
+            "r": 12,
+            "y": -8
+          },
+          "legR2": {
+            "r": -12,
+            "y": -8
+          },
+          "legR4": {
+            "r": -12,
+            "y": -8
+          },
+          "root": {
+            "x": -8
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

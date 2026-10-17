@@ -19,10 +19,6 @@
   "world": {
     "ground": "#E3C68F"
   },
-  "staging": {
-    "layer": "background",
-    "anchor": "feet"
-  },
   "background": "art/background.webp",
   "foreground": "art/foreground.webp",
   "backgroundWide": "art/background-wide.webp",
@@ -98,7 +94,8 @@
             0.25
           ]
         ],
-        "water": true
+        "water": true,
+        "shallow": true
       },
       "rocks": {
         "ground": [
@@ -730,7 +727,12 @@
       "image": "stickers/ball.webp",
       "animations": [
         "anims/ball.spin.json",
-        "anims/ball.roll.json"
+        "anims/ball.roll.json",
+        "anims/ball.bounce.json",
+        "anims/ball.jump.json",
+        "anims/ball.wobble.json",
+        "anims/ball.nudge.json",
+        "anims/ball.rock.json"
       ],
       "stage": {
         "entrance": "hop",
@@ -759,7 +761,12 @@
       "image": "stickers/bottle.webp",
       "animations": [
         "anims/bottle.pop.json",
-        "anims/bottle.bob.json"
+        "anims/bottle.bob.json",
+        "anims/bottle.wobble.json",
+        "anims/bottle.bounce.json",
+        "anims/bottle.tip.json",
+        "anims/bottle.wiggle-cork.json",
+        "anims/bottle.rock.json"
       ],
       "stage": {
         "entrance": "hop",
@@ -789,7 +796,12 @@
       "image": "stickers/bucket.webp",
       "animations": [
         "anims/bucket.dig.json",
-        "anims/bucket.plonk.json"
+        "anims/bucket.plonk.json",
+        "anims/bucket.wobble.json",
+        "anims/bucket.bounce.json",
+        "anims/bucket.tip.json",
+        "anims/bucket.swing-spade.json",
+        "anims/bucket.mould-hop.json"
       ],
       "stage": {
         "entrance": "grow",
@@ -818,7 +830,12 @@
       "image": "stickers/castle.webp",
       "animations": [
         "anims/castle.flag.json",
-        "anims/castle.build.json"
+        "anims/castle.build.json",
+        "anims/castle.wobble.json",
+        "anims/castle.bounce.json",
+        "anims/castle.shiver.json",
+        "anims/castle.lean.json",
+        "anims/castle.wave.json"
       ],
       "stage": {
         "entrance": "grow",
@@ -847,7 +864,15 @@
       "image": "stickers/clam.webp",
       "animations": [
         "anims/clam.peek.json",
-        "anims/clam.dig-up.json"
+        "anims/clam.dig-up.json",
+        "anims/clam.snap.json",
+        "anims/clam.shut.json",
+        "anims/clam.talk.json",
+        "anims/clam.laugh.json",
+        "anims/clam.sleep.json",
+        "anims/clam.cry.json",
+        "anims/clam.dance.json",
+        "anims/clam.look-around.json"
       ],
       "expressions": {
         "happy": "stickers/clam.happy.webp",
@@ -883,7 +908,20 @@
       "image": "stickers/crab.webp",
       "animations": [
         "anims/crab.dance.json",
-        "anims/crab.scuttle.json"
+        "anims/crab.scuttle.json",
+        "anims/crab.clap.json",
+        "anims/crab.wave.json",
+        "anims/crab.look-around.json",
+        "anims/crab.peer.json",
+        "anims/crab.shuffle.json",
+        "anims/crab.jump.json",
+        "anims/crab.laugh.json",
+        "anims/crab.talk.json",
+        "anims/crab.shiver.json",
+        "anims/crab.cry.json",
+        "anims/crab.sleep.json",
+        "anims/crab.nod.json",
+        "anims/crab.shake-head.json"
       ],
       "expressions": {
         "happy": "stickers/crab.happy.webp",
@@ -920,7 +958,21 @@
       "image": "stickers/dog.webp",
       "animations": [
         "anims/dog.shake.json",
-        "anims/dog.run.json"
+        "anims/dog.run.json",
+        "anims/dog.sniff.json",
+        "anims/dog.wag-tail.json",
+        "anims/dog.dig.json",
+        "anims/dog.fetch.json",
+        "anims/dog.play-bow.json",
+        "anims/dog.howl.json",
+        "anims/dog.wave.json",
+        "anims/dog.jump.json",
+        "anims/dog.nod.json",
+        "anims/dog.shake-head.json",
+        "anims/dog.look-around.json",
+        "anims/dog.laugh.json",
+        "anims/dog.cry.json",
+        "anims/dog.sleep.json"
       ],
       "expressions": {
         "happy": "stickers/dog.happy.webp",
@@ -955,7 +1007,21 @@
       "image": "stickers/fish.webp",
       "animations": [
         "anims/fish.wiggle.json",
-        "anims/fish.swim.json"
+        "anims/fish.swim.json",
+        "anims/fish.blow.json",
+        "anims/fish.flick.json",
+        "anims/fish.nod.json",
+        "anims/fish.shake-head.json",
+        "anims/fish.laugh.json",
+        "anims/fish.talk.json",
+        "anims/fish.cry.json",
+        "anims/fish.sleep.json",
+        "anims/fish.jump.json",
+        "anims/fish.look-around.json",
+        "anims/fish.dance.json",
+        "anims/fish.shiver.json",
+        "anims/fish.twirl.json",
+        "anims/fish.wave.json"
       ],
       "expressions": {
         "happy": "stickers/fish.happy.webp",
@@ -991,7 +1057,12 @@
       "image": "stickers/fishing-boat.webp",
       "animations": [
         "anims/fishing-boat.net.json",
-        "anims/fishing-boat.chug.json"
+        "anims/fishing-boat.chug.json",
+        "anims/fishing-boat.rock.json",
+        "anims/fishing-boat.toot.json",
+        "anims/fishing-boat.swing.json",
+        "anims/fishing-boat.bounce.json",
+        "anims/fishing-boat.tip.json"
       ],
       "stage": {
         "entrance": "hop",
@@ -1020,7 +1091,21 @@
       "image": "stickers/girl.webp",
       "animations": [
         "anims/girl.kite.json",
-        "anims/girl.skip.json"
+        "anims/girl.skip.json",
+        "anims/girl.tug.json",
+        "anims/girl.kite-dive.json",
+        "anims/girl.wave.json",
+        "anims/girl.point.json",
+        "anims/girl.clap.json",
+        "anims/girl.stretch.json",
+        "anims/girl.jump.json",
+        "anims/girl.dance.json",
+        "anims/girl.nod.json",
+        "anims/girl.shake-head.json",
+        "anims/girl.look-around.json",
+        "anims/girl.laugh.json",
+        "anims/girl.talk.json",
+        "anims/girl.cry.json"
       ],
       "expressions": {
         "happy": "stickers/girl.happy.webp",
@@ -1054,7 +1139,19 @@
       "image": "stickers/hermit-crab.webp",
       "animations": [
         "anims/hermit-crab.hide.json",
-        "anims/hermit-crab.scuttle.json"
+        "anims/hermit-crab.scuttle.json",
+        "anims/hermit-crab.peek.json",
+        "anims/hermit-crab.shell-wobble.json",
+        "anims/hermit-crab.wave.json",
+        "anims/hermit-crab.look-around.json",
+        "anims/hermit-crab.jump.json",
+        "anims/hermit-crab.laugh.json",
+        "anims/hermit-crab.talk.json",
+        "anims/hermit-crab.shiver.json",
+        "anims/hermit-crab.cry.json",
+        "anims/hermit-crab.sleep.json",
+        "anims/hermit-crab.dance.json",
+        "anims/hermit-crab.nod.json"
       ],
       "expressions": {
         "happy": "stickers/hermit-crab.happy.webp",
@@ -1090,7 +1187,20 @@
       "image": "stickers/octopus.webp",
       "animations": [
         "anims/octopus.wave.json",
-        "anims/octopus.swim.json"
+        "anims/octopus.swim.json",
+        "anims/octopus.hide.json",
+        "anims/octopus.hug.json",
+        "anims/octopus.nod.json",
+        "anims/octopus.shake-head.json",
+        "anims/octopus.laugh.json",
+        "anims/octopus.talk.json",
+        "anims/octopus.cry.json",
+        "anims/octopus.sleep.json",
+        "anims/octopus.jump.json",
+        "anims/octopus.dance.json",
+        "anims/octopus.shiver.json",
+        "anims/octopus.twirl.json",
+        "anims/octopus.look-around.json"
       ],
       "expressions": {
         "happy": "stickers/octopus.happy.webp",
@@ -1126,7 +1236,20 @@
       "animations": [
         "anims/pelican.scoop.json",
         "anims/pelican.fly.json",
-        "anims/pelican.float.json"
+        "anims/pelican.float.json",
+        "anims/pelican.gulp.json",
+        "anims/pelican.flap.json",
+        "anims/pelican.peck.json",
+        "anims/pelican.preen.json",
+        "anims/pelican.look-around.json",
+        "anims/pelican.nod.json",
+        "anims/pelican.shake-head.json",
+        "anims/pelican.laugh.json",
+        "anims/pelican.talk.json",
+        "anims/pelican.cry.json",
+        "anims/pelican.sleep.json",
+        "anims/pelican.wave.json",
+        "anims/pelican.jump.json"
       ],
       "expressions": {
         "happy": "stickers/pelican.happy.webp",
@@ -1162,7 +1285,11 @@
       "image": "stickers/ring.webp",
       "animations": [
         "anims/ring.spin.json",
-        "anims/ring.bob.json"
+        "anims/ring.bob.json",
+        "anims/ring.bounce.json",
+        "anims/ring.wobble.json",
+        "anims/ring.tip.json",
+        "anims/ring.float.json"
       ],
       "stage": {
         "entrance": "hop",
@@ -1192,7 +1319,12 @@
       "image": "stickers/sailboat.webp",
       "animations": [
         "anims/sailboat.sails.json",
-        "anims/sailboat.sail.json"
+        "anims/sailboat.sail.json",
+        "anims/sailboat.luff.json",
+        "anims/sailboat.flutter.json",
+        "anims/sailboat.rock.json",
+        "anims/sailboat.bounce.json",
+        "anims/sailboat.tip.json"
       ],
       "stage": {
         "entrance": "hop",
@@ -1222,7 +1354,19 @@
       "animations": [
         "anims/sandpiper.peck.json",
         "anims/sandpiper.fly.json",
-        "anims/sandpiper.run.json"
+        "anims/sandpiper.run.json",
+        "anims/sandpiper.bob.json",
+        "anims/sandpiper.flap.json",
+        "anims/sandpiper.preen.json",
+        "anims/sandpiper.look-around.json",
+        "anims/sandpiper.nod.json",
+        "anims/sandpiper.shake-head.json",
+        "anims/sandpiper.laugh.json",
+        "anims/sandpiper.talk.json",
+        "anims/sandpiper.cry.json",
+        "anims/sandpiper.sleep.json",
+        "anims/sandpiper.wave.json",
+        "anims/sandpiper.jump.json"
       ],
       "expressions": {
         "happy": "stickers/sandpiper.happy.webp",
@@ -1259,7 +1403,19 @@
       "animations": [
         "anims/seagull.squawk.json",
         "anims/seagull.fly.json",
-        "anims/seagull.hop.json"
+        "anims/seagull.hop.json",
+        "anims/seagull.flap.json",
+        "anims/seagull.peck.json",
+        "anims/seagull.preen.json",
+        "anims/seagull.look-around.json",
+        "anims/seagull.nod.json",
+        "anims/seagull.shake-head.json",
+        "anims/seagull.laugh.json",
+        "anims/seagull.talk.json",
+        "anims/seagull.cry.json",
+        "anims/seagull.sleep.json",
+        "anims/seagull.wave.json",
+        "anims/seagull.jump.json"
       ],
       "expressions": {
         "happy": "stickers/seagull.happy.webp",
@@ -1296,7 +1452,20 @@
       "animations": [
         "anims/seal.clap.json",
         "anims/seal.flop.json",
-        "anims/seal.swim.json"
+        "anims/seal.swim.json",
+        "anims/seal.balance.json",
+        "anims/seal.roll.json",
+        "anims/seal.bark.json",
+        "anims/seal.wave.json",
+        "anims/seal.jump.json",
+        "anims/seal.nod.json",
+        "anims/seal.shake-head.json",
+        "anims/seal.look-around.json",
+        "anims/seal.laugh.json",
+        "anims/seal.talk.json",
+        "anims/seal.shiver.json",
+        "anims/seal.cry.json",
+        "anims/seal.sleep.json"
       ],
       "expressions": {
         "happy": "stickers/seal.happy.webp",
@@ -1332,7 +1501,15 @@
       "image": "stickers/seaweed.webp",
       "animations": [
         "anims/seaweed.sway.json",
-        "anims/seaweed.sprout.json"
+        "anims/seaweed.sprout.json",
+        "anims/seaweed.droop.json",
+        "anims/seaweed.stretch-up.json",
+        "anims/seaweed.wave.json",
+        "anims/seaweed.dance.json",
+        "anims/seaweed.laugh.json",
+        "anims/seaweed.talk.json",
+        "anims/seaweed.sleep.json",
+        "anims/seaweed.shiver.json"
       ],
       "expressions": {
         "happy": "stickers/seaweed.happy.webp",
@@ -1368,7 +1545,20 @@
       "image": "stickers/shrimp.webp",
       "animations": [
         "anims/shrimp.flick.json",
-        "anims/shrimp.swim.json"
+        "anims/shrimp.swim.json",
+        "anims/shrimp.wiggle-feelers.json",
+        "anims/shrimp.dart-back.json",
+        "anims/shrimp.nod.json",
+        "anims/shrimp.shake-head.json",
+        "anims/shrimp.laugh.json",
+        "anims/shrimp.talk.json",
+        "anims/shrimp.cry.json",
+        "anims/shrimp.sleep.json",
+        "anims/shrimp.jump.json",
+        "anims/shrimp.wave.json",
+        "anims/shrimp.dance.json",
+        "anims/shrimp.shiver.json",
+        "anims/shrimp.look-around.json"
       ],
       "expressions": {
         "happy": "stickers/shrimp.happy.webp",
@@ -1403,7 +1593,19 @@
       "image": "stickers/starfish.webp",
       "animations": [
         "anims/starfish.wave.json",
-        "anims/starfish.cartwheel.json"
+        "anims/starfish.cartwheel.json",
+        "anims/starfish.jump.json",
+        "anims/starfish.dance.json",
+        "anims/starfish.stretch.json",
+        "anims/starfish.twirl.json",
+        "anims/starfish.laugh.json",
+        "anims/starfish.talk.json",
+        "anims/starfish.nod.json",
+        "anims/starfish.shake-head.json",
+        "anims/starfish.look-around.json",
+        "anims/starfish.shiver.json",
+        "anims/starfish.cry.json",
+        "anims/starfish.sleep.json"
       ],
       "expressions": {
         "happy": "stickers/starfish.happy.webp",
@@ -1440,7 +1642,19 @@
       "animations": [
         "anims/surfer.wave.json",
         "anims/surfer.walk.json",
-        "anims/surfer.surf.json"
+        "anims/surfer.surf.json",
+        "anims/surfer.clap.json",
+        "anims/surfer.point.json",
+        "anims/surfer.stretch.json",
+        "anims/surfer.jump.json",
+        "anims/surfer.dance.json",
+        "anims/surfer.nod.json",
+        "anims/surfer.shake-head.json",
+        "anims/surfer.look-around.json",
+        "anims/surfer.laugh.json",
+        "anims/surfer.talk.json",
+        "anims/surfer.shiver.json",
+        "anims/surfer.cry.json"
       ],
       "expressions": {
         "happy": "stickers/surfer.happy.webp",
@@ -1476,7 +1690,21 @@
       "animations": [
         "anims/turtle.peek.json",
         "anims/turtle.crawl.json",
-        "anims/turtle.swim.json"
+        "anims/turtle.swim.json",
+        "anims/turtle.hide.json",
+        "anims/turtle.flap.json",
+        "anims/turtle.stretch-neck.json",
+        "anims/turtle.dig.json",
+        "anims/turtle.wave.json",
+        "anims/turtle.jump.json",
+        "anims/turtle.dance.json",
+        "anims/turtle.nod.json",
+        "anims/turtle.shake-head.json",
+        "anims/turtle.look-around.json",
+        "anims/turtle.laugh.json",
+        "anims/turtle.talk.json",
+        "anims/turtle.cry.json",
+        "anims/turtle.sleep.json"
       ],
       "expressions": {
         "happy": "stickers/turtle.happy.webp",
@@ -1512,7 +1740,13 @@
       "image": "stickers/umbrella.webp",
       "animations": [
         "anims/umbrella.spin.json",
-        "anims/umbrella.open.json"
+        "anims/umbrella.open.json",
+        "anims/umbrella.sway.json",
+        "anims/umbrella.flutter.json",
+        "anims/umbrella.wobble.json",
+        "anims/umbrella.tip.json",
+        "anims/umbrella.pop.json",
+        "anims/umbrella.bounce.json"
       ],
       "stage": {
         "entrance": "grow",
@@ -1541,7 +1775,19 @@
       "image": "stickers/urchin.webp",
       "animations": [
         "anims/urchin.wiggle.json",
-        "anims/urchin.creep.json"
+        "anims/urchin.creep.json",
+        "anims/urchin.bristle.json",
+        "anims/urchin.tuck.json",
+        "anims/urchin.roll.json",
+        "anims/urchin.jump.json",
+        "anims/urchin.laugh.json",
+        "anims/urchin.talk.json",
+        "anims/urchin.shiver.json",
+        "anims/urchin.cry.json",
+        "anims/urchin.sleep.json",
+        "anims/urchin.dance.json",
+        "anims/urchin.look-around.json",
+        "anims/urchin.nod.json"
       ],
       "expressions": {
         "happy": "stickers/urchin.happy.webp",

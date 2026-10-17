@@ -1,0 +1,188 @@
+{
+  "id": "talk",
+  "sticker": "crab",
+  "kind": "action",
+  "description": "the crab talks, its mouth moving, its eye stalks bobbing a little.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.21745,
+    "width": 0.59896,
+    "height": 0.5651
+  },
+  "puppet": {
+    "rig": "anims/crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "y": -2
+          },
+          "eyeL": {
+            "r": 3
+          },
+          "eyeR": {
+            "r": 3
+          },
+          "stalkL": {
+            "r": -3
+          },
+          "stalkR": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "y": -2
+          },
+          "eyeL": {
+            "r": 3
+          },
+          "eyeR": {
+            "r": 3
+          },
+          "stalkL": {
+            "r": -3
+          },
+          "stalkR": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "y": -2
+          },
+          "eyeL": {
+            "r": 3
+          },
+          "eyeR": {
+            "r": 3
+          },
+          "stalkL": {
+            "r": -3
+          },
+          "stalkR": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "y": -2
+          },
+          "eyeL": {
+            "r": 3
+          },
+          "eyeR": {
+            "r": 3
+          },
+          "stalkL": {
+            "r": -3
+          },
+          "stalkR": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "y": -2
+          },
+          "eyeL": {
+            "r": 3
+          },
+          "eyeR": {
+            "r": 3
+          },
+          "stalkL": {
+            "r": -3
+          },
+          "stalkR": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

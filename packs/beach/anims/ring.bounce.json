@@ -1,0 +1,70 @@
+{
+  "id": "bounce",
+  "sticker": "ring",
+  "kind": "action",
+  "description": "the rubber ring bounces up and down on the spot, squishing a little each time it lands, then settles.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.24089,
+    "width": 0.59896,
+    "height": 0.51693
+  },
+  "puppet": {
+    "rig": "anims/ring.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "root": {
+            "sx": 1.04,
+            "sy": 0.93
+          }
+        }
+      },
+      {
+        "hold": 0.34,
+        "ease": "in",
+        "bones": {
+          "root": {
+            "y": -80
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "root": {
+            "sx": 1.04,
+            "sy": 0.93
+          }
+        }
+      },
+      {
+        "hold": 0.26,
+        "ease": "in",
+        "bones": {
+          "root": {
+            "y": -40
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "root": {
+            "sx": 1.02,
+            "sy": 0.96
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "id": "sleep",
+  "sticker": "hermit-crab",
+  "kind": "action",
+  "description": "the hermit crab gives a big yawn, snuggles back into its shell and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.30469,
+    "width": 0.5,
+    "height": 0.39063
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the hermit crab fast asleep, snuggled into its shell, eyes shut"
+  },
+  "puppet": {
+    "rig": "anims/hermit-crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "body": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "body": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "body": {
+            "x": -6,
+            "y": 2,
+            "sx": 0.94,
+            "sy": 0.92
+          },
+          "clawL": {
+            "r": 6
+          },
+          "clawR": {
+            "r": 6
+          },
+          "face": {
+            "y": 3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "x": -6,
+            "y": 2,
+            "sx": 0.94,
+            "sy": 0.92
+          },
+          "clawL": {
+            "r": 6
+          },
+          "clawR": {
+            "r": 6
+          },
+          "face": {
+            "y": 3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

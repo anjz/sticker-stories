@@ -1,54 +1,210 @@
 {
   "id": "kite",
   "sticker": "girl",
+  "kind": "action",
   "description": "the girl flies her kite: it swoops and loops above her",
-  "sheet": "anims/girl.kite.webp",
-  "frame": {
-    "width": 446,
-    "height": 564
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.16368,
-    "y": 0.11702,
-    "width": 0.78475,
-    "height": 0.85461
-  },
   "stickerBox": {
-    "x": 0.23698,
+    "x": 0.25651,
     "y": 0.13932,
-    "width": 0.52604,
+    "width": 0.48568,
     "height": 0.72005
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.7,
-    0.2,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 5,
     "shows": "the girl holding the string up high, the kite riding high above her, its tail fluttering"
+  },
+  "puppet": {
+    "rig": "anims/girl.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "face": {
+            "x": -2,
+            "y": -2
+          },
+          "head": {
+            "r": -4
+          },
+          "kite": {
+            "r": -20,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.55,
+        "bones": {
+          "armL": {
+            "r": 6
+          },
+          "face": {
+            "x": -2,
+            "y": -2
+          },
+          "head": {
+            "r": -3
+          },
+          "kite": {
+            "y": -12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "armL": {
+            "r": 12
+          },
+          "face": {
+            "x": -2,
+            "y": -2
+          },
+          "head": {
+            "r": -4
+          },
+          "kite": {
+            "r": -16,
+            "y": -20
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "face": {
+            "x": -2,
+            "y": -3
+          },
+          "head": {
+            "r": -5
+          },
+          "kite": {
+            "r": -12,
+            "y": -30
+          },
+          "root": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "face": {
+            "x": -2,
+            "y": -3
+          },
+          "head": {
+            "r": -5
+          },
+          "kite": {
+            "r": -14,
+            "y": -32,
+            "sx": 1.03
+          },
+          "root": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 12
+          },
+          "face": {
+            "x": -2,
+            "y": -2
+          },
+          "head": {
+            "r": -4
+          },
+          "kite": {
+            "r": -18,
+            "y": -24,
+            "sx": 0.98
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "head": {
+            "r": -2
+          },
+          "kite": {
+            "r": -4,
+            "y": -14
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 4
+          },
+          "kite": {
+            "r": -9,
+            "y": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
   }
 }

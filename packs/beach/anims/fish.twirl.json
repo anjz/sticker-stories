@@ -1,0 +1,85 @@
+{
+  "id": "twirl",
+  "sticker": "fish",
+  "description": "the little fish twirls right round on the spot.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27734,
+    "width": 0.5,
+    "height": 0.44401
+  },
+  "puppet": {
+    "rig": "anims/fish.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sy": 0.94
+          },
+          "root": {
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "root": {
+            "x": -80,
+            "y": -26,
+            "sx": -1
+          },
+          "tail": {
+            "r": 14
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "finSide": "open"
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "root": {
+            "sx": 1
+          },
+          "tail": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "finSide": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.94
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

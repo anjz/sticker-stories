@@ -1,0 +1,70 @@
+{
+  "id": "bounce",
+  "sticker": "castle",
+  "kind": "action",
+  "description": "the sand castle gives a little hop and lands with a soft thump, its flag bouncing.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.14974,
+    "width": 0.72005,
+    "height": 0.70052
+  },
+  "particles": [
+    {
+      "frame": 2,
+      "effect": "dust-puff",
+      "x": 0.5,
+      "y": 0.8,
+      "intensity": 0.35
+    }
+  ],
+  "puppet": {
+    "rig": "anims/castle.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "flag": {
+            "r": 5
+          },
+          "root": {
+            "y": -30
+          }
+        }
+      },
+      {
+        "hold": 0.24,
+        "ease": "in",
+        "bones": {
+          "flag": {
+            "r": -6
+          },
+          "root": {}
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "flag": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "flag": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -2,44 +2,111 @@
   "id": "walk",
   "sticker": "surfer",
   "kind": "move",
-  "description": "the surfer boy walks along to the left with his surfboard under one arm, legs swinging step by step, then stops.",
-  "sheet": "anims/surfer.walk.webp",
-  "frame": {
-    "width": 401,
-    "height": 515
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.03741,
-    "y": 0.03301,
-    "width": 0.83791,
-    "height": 0.93592
-  },
+  "description": "the surfer boy walks along to the left with his surfboard at his side, legs swinging step by step, then stops.",
   "stickerBox": {
-    "x": 0.24609,
+    "x": 0.26302,
     "y": 0.13932,
-    "width": 0.50651,
+    "width": 0.47266,
     "height": 0.72005
   },
-  "hold": [
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "left",
-  "stride": 0.45
+  "stride": 0.45,
+  "puppet": {
+    "rig": "anims/surfer.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.17,
+        "bones": {
+          "armL": {
+            "r": -8
+          },
+          "board": {
+            "r": -1
+          },
+          "head": {
+            "r": 1
+          },
+          "legL": {
+            "r": 12
+          },
+          "legR": {
+            "r": -12
+          },
+          "root": {
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.17,
+        "bones": {
+          "board": {
+            "y": -3
+          },
+          "legL": {},
+          "legR": {
+            "y": -6
+          },
+          "root": {}
+        }
+      },
+      {
+        "hold": 0.17,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "board": {
+            "r": 1
+          },
+          "head": {
+            "r": -1
+          },
+          "legL": {
+            "r": -12
+          },
+          "legR": {
+            "r": 12
+          },
+          "root": {
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.17,
+        "bones": {
+          "board": {
+            "y": -3
+          },
+          "legL": {
+            "y": -6
+          },
+          "legR": {},
+          "root": {}
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "root": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
 }

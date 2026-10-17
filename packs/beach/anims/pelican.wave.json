@@ -1,0 +1,108 @@
+{
+  "id": "wave",
+  "sticker": "pelican",
+  "description": "the pelican lifts its big wing and waves hello.",
+  "stickerBox": {
+    "x": 0.18359,
+    "y": 0.13932,
+    "width": 0.63281,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/pelican.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 4
+          },
+          "wingL": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "wingL": "none",
+          "wingOpen": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 4
+          },
+          "wingL": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "wingL": "none",
+          "wingOpen": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 4
+          },
+          "wingL": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "wingL": "none",
+          "wingOpen": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 4
+          },
+          "wingL": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "wingL": "none",
+          "wingOpen": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {
+            "r": 4
+          },
+          "wingL": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "wingL": "none",
+          "wingOpen": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

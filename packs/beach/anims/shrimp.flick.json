@@ -2,53 +2,159 @@
   "id": "flick",
   "sticker": "shrimp",
   "description": "the shrimp twitches its feelers and flicks its tail",
-  "sheet": "anims/shrimp.flick.webp",
-  "frame": {
-    "width": 564,
-    "height": 574
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.10284,
-    "y": 0.1324,
-    "width": 0.83156,
-    "height": 0.83972
-  },
   "stickerBox": {
     "x": 0.25651,
     "y": 0.25,
     "width": 0.48568,
     "height": 0.5
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.7,
-    0.2,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 5,
     "shows": "the shrimp curled up tight, its fan tail tucked under"
+  },
+  "puppet": {
+    "rig": "anims/shrimp.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "antennaL": {
+            "r": 8
+          },
+          "antennaR": {
+            "r": -6.4
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "antennaL": {
+            "r": -6
+          },
+          "antennaR": {
+            "r": 4.8
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "antennaL": {
+            "r": 8
+          },
+          "antennaR": {
+            "r": -6.4
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "antennaL": {
+            "r": 2
+          },
+          "antennaR": {
+            "r": -1.6
+          },
+          "body": {
+            "r": -3
+          },
+          "fan": {
+            "r": 18
+          },
+          "tail": {
+            "r": 6
+          },
+          "tail2": {
+            "r": 13.2
+          }
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "belly": {
+            "sx": 0.97
+          },
+          "body": {
+            "r": -5
+          },
+          "fan": {
+            "r": 36
+          },
+          "legs": {
+            "r": 10
+          },
+          "legsFar": {
+            "r": 10
+          },
+          "tail": {
+            "r": 12
+          },
+          "tail2": {
+            "r": 26.4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "out",
+        "bones": {
+          "antennaL": {
+            "r": -6
+          },
+          "antennaR": {
+            "r": 4.8
+          },
+          "fan": {
+            "r": -12
+          },
+          "root": {
+            "x": 6
+          },
+          "tail": {
+            "r": -4
+          },
+          "tail2": {
+            "r": -8.8
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "antennaL": {
+            "r": 4
+          },
+          "antennaR": {
+            "r": -3.2
+          },
+          "fan": {
+            "r": 6
+          },
+          "tail": {
+            "r": 2
+          },
+          "tail2": {
+            "r": 4.4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
   }
 }

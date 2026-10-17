@@ -3,42 +3,15 @@
   "sticker": "seagull",
   "kind": "move",
   "description": "the seagull hops along to the left on both feet, wings folded, then stops.",
-  "sheet": "anims/seagull.hop.webp",
-  "frame": {
-    "width": 461,
-    "height": 515
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.12798,
-    "y": 0.02913,
-    "width": 0.77874,
-    "height": 0.93592
-  },
   "stickerBox": {
     "x": 0.27474,
     "y": 0.20052,
     "width": 0.45052,
     "height": 0.59896
   },
-  "hold": [
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "left",
   "stride": 0.45,
@@ -46,5 +19,95 @@
   "on": [
     "sand",
     "rocks"
-  ]
+  ],
+  "puppet": {
+    "rig": "anims/seagull.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.93
+          },
+          "legL": {},
+          "legR": {},
+          "root": {
+            "y": 5
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.95,
+            "sy": 1.05
+          },
+          "legL": {
+            "r": -14,
+            "y": -4.333
+          },
+          "legR": {
+            "r": -14,
+            "y": -4.333
+          },
+          "root": {
+            "y": -26
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.03
+          },
+          "legL": {
+            "r": -10,
+            "y": -3.667
+          },
+          "legR": {
+            "r": -10,
+            "y": -3.667
+          },
+          "root": {
+            "y": -22
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.95
+          },
+          "legL": {},
+          "legR": {},
+          "root": {
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          }
+        }
+      },
+      {
+        "hold": 0.45
+      }
+    ]
+  }
 }

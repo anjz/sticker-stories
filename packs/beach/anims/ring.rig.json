@@ -1,0 +1,79 @@
+{
+  "sticker": "ring",
+  "atlas": "anims/ring.rig.webp",
+  "size": 768,
+  "parts": {
+    "ring": {
+      "rect": [
+        890,
+        0,
+        423,
+        364
+      ],
+      "border": [
+        1315,
+        0,
+        463,
+        404
+      ],
+      "pad": 20
+    },
+    "turned": {
+      "rect": [
+        0,
+        0,
+        423,
+        365
+      ],
+      "border": [
+        425,
+        0,
+        463,
+        405
+      ],
+      "pad": 20
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 384,
+      "y": 564
+    },
+    {
+      "id": "tip",
+      "parent": "root",
+      "x": 594,
+      "y": 400
+    },
+    {
+      "id": "body",
+      "parent": "tip",
+      "x": 384,
+      "y": 384
+    }
+  ],
+  "slots": [
+    {
+      "id": "ring",
+      "bone": "body",
+      "default": "ring",
+      "attachments": {
+        "ring": {
+          "part": "ring",
+          "x": 172.98,
+          "y": 202.19,
+          "w": 422.05,
+          "h": 363.63
+        },
+        "turned": {
+          "part": "turned",
+          "x": 172.98,
+          "y": 200.65,
+          "w": 422.05,
+          "h": 364.7
+        }
+      }
+    }
+  ]
+}

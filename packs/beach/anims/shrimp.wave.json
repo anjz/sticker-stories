@@ -1,0 +1,104 @@
+{
+  "id": "wave",
+  "sticker": "shrimp",
+  "description": "the shrimp lifts its little front legs and waves hello with them.",
+  "stickerBox": {
+    "x": 0.25651,
+    "y": 0.25,
+    "width": 0.48568,
+    "height": 0.5
+  },
+  "puppet": {
+    "rig": "anims/shrimp.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "legs": {
+            "r": 30
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "legs": {
+            "r": 16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "legs": {
+            "r": 32
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "legs": {
+            "r": 16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "legs": {
+            "r": 32
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

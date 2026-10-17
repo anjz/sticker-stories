@@ -1,0 +1,2616 @@
+{
+  "sticker": "shrimp",
+  "skeleton": "shrimp side view facing left, its tail curled under on the right: root under the middle; body is the head-shell (with belly squash) carrying the face (both eyes, mouth) and the two long feelers at the nose; a tail chain tail1 → tail2 → fan curling down and round behind; the near and far rows of little legs under the shell.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a shrimp character. Draw this exact shrimp character as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the head shell: the orange-pink head and front body shell with its pointed nose, facing left as in image 1, without feelers, without legs and without its tail segments, with a completely blank face — no eyes, no mouth — keep the rosy cheek; its back end rounded.\n2. the front of the tail: the first three curved tail segments, as in image 1, drawn whole, both ends rounded.\n3. the end of the tail: the last two tail segments, as in image 1, drawn whole, both ends rounded.\n4. the tail fan: the orange fan tail at the end, as in image 1, with a rounded base.\n5. one feeler: one long thin curving feeler, drawn whole, with a rounded base.\n6. the legs: the row of little thin curved legs from under its body in image 1, drawn as one piece joined at the top, with a rounded top.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a shrimp character; image 2 shows the same shrimp cut into puppet parts, with a blank face. Draw the shrimp's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the shrimp in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the shrimp's eye as it is in image 1: a dark round eye with a white sparkle and a white rim.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: the pupil looking down, its upper lid drooping and tilted, a thin shine of a welling tear along the bottom rim.\n6. the same eye crying: gently squeezed shut, a soft downward-curving line (a sad closed eye, not a smile), a few small lashes, and one small light-blue teardrop just below it.\n7. the mouth as it is in image 1: a small happy smile.\n8. the mouth laughing: open wide, a little pink inside.\n9. the mouth a small round \"o\".\n10. the mouth sad: a small downturned frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "shell": {
+      "sheet": "parts",
+      "at": [
+        356,
+        317
+      ]
+    },
+    "tailFront": {
+      "sheet": "parts",
+      "at": [
+        914,
+        318
+      ]
+    },
+    "feeler": {
+      "sheet": "parts",
+      "at": [
+        487,
+        556
+      ]
+    },
+    "tailEnd": {
+      "sheet": "parts",
+      "at": [
+        1333,
+        421
+      ]
+    },
+    "legs": {
+      "sheet": "parts",
+      "at": [
+        613,
+        768
+      ]
+    },
+    "fan": {
+      "sheet": "parts",
+      "at": [
+        1172,
+        778
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        140,
+        399
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        385,
+        383
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        660,
+        440
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        912,
+        399
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1156,
+        395
+      ]
+    },
+    "eyeCry": {
+      "sheet": "face",
+      "at": [
+        1393,
+        419
+      ]
+    },
+    "tear": {
+      "sheet": "face",
+      "at": [
+        1462,
+        500
+      ]
+    },
+    "mouthSmile": {
+      "sheet": "face",
+      "at": [
+        229,
+        748
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        604,
+        735
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        928,
+        728
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1278,
+        716
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 400,
+      "y": 555
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 380,
+      "y": 400
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 380,
+      "y": 400
+    },
+    {
+      "id": "face",
+      "parent": "body",
+      "x": 322,
+      "y": 340
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 295,
+      "y": 322
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 350,
+      "y": 333
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 318,
+      "y": 356
+    },
+    {
+      "id": "antennaR",
+      "parent": "body",
+      "x": 268,
+      "y": 322
+    },
+    {
+      "id": "antennaL",
+      "parent": "body",
+      "x": 262,
+      "y": 328
+    },
+    {
+      "id": "legsFar",
+      "parent": "body",
+      "x": 372,
+      "y": 392
+    },
+    {
+      "id": "legs",
+      "parent": "body",
+      "x": 358,
+      "y": 398
+    },
+    {
+      "id": "tail",
+      "parent": "body",
+      "x": 418,
+      "y": 360
+    },
+    {
+      "id": "tail2",
+      "parent": "tail",
+      "x": 512,
+      "y": 405
+    },
+    {
+      "id": "fan",
+      "parent": "tail2",
+      "x": 492,
+      "y": 482
+    }
+  ],
+  "slots": [
+    {
+      "id": "antennaR",
+      "bone": "antennaR",
+      "default": "feeler",
+      "attachments": {
+        "feeler": {
+          "part": "feeler",
+          "x": 365,
+          "y": 288,
+          "scale": 0.26,
+          "scaleY": 1.35,
+          "shade": 0.12
+        }
+      }
+    },
+    {
+      "id": "legsFar",
+      "bone": "legsFar",
+      "default": "legs",
+      "attachments": {
+        "legs": {
+          "part": "legs",
+          "x": 372,
+          "y": 420,
+          "scale": 0.3,
+          "shade": 0.18
+        }
+      }
+    },
+    {
+      "id": "fan",
+      "bone": "fan",
+      "default": "fan",
+      "attachments": {
+        "fan": {
+          "part": "fan",
+          "x": 450,
+          "y": 505,
+          "scale": 0.34
+        }
+      }
+    },
+    {
+      "id": "tail2",
+      "bone": "tail2",
+      "default": "seg",
+      "attachments": {
+        "seg": {
+          "part": "tailEnd",
+          "x": 503,
+          "y": 425,
+          "scale": 0.33
+        }
+      }
+    },
+    {
+      "id": "tail",
+      "bone": "tail",
+      "default": "seg",
+      "attachments": {
+        "seg": {
+          "part": "tailFront",
+          "x": 466,
+          "y": 360,
+          "scale": 0.34,
+          "rotate": 12
+        }
+      }
+    },
+    {
+      "id": "legs",
+      "bone": "legs",
+      "default": "legs",
+      "attachments": {
+        "legs": {
+          "part": "legs",
+          "x": 352,
+          "y": 428,
+          "scale": 0.32
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "shell",
+      "attachments": {
+        "shell": {
+          "part": "shell",
+          "x": 330,
+          "y": 350,
+          "scale": 0.36
+        }
+      }
+    },
+    {
+      "id": "antennaL",
+      "bone": "antennaL",
+      "default": "feeler",
+      "attachments": {
+        "feeler": {
+          "part": "feeler",
+          "x": 357,
+          "y": 262,
+          "scale": 0.32,
+          "scaleY": 1.65
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "default",
+      "attachments": {
+        "default": {
+          "part": "eye",
+          "x": 300,
+          "y": 324,
+          "scale": 0.18
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 300,
+          "y": 323,
+          "scale": 0.153
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 300,
+          "y": 328,
+          "scale": 0.153
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 300,
+          "y": 324,
+          "scale": 0.153
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 300,
+          "y": 324,
+          "scale": 0.17099999999999999,
+          "flip": true
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 300,
+          "y": 328,
+          "scale": 0.153
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "default",
+      "attachments": {
+        "default": {
+          "part": "eye",
+          "x": 352,
+          "y": 334,
+          "scale": 0.2
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 352,
+          "y": 333,
+          "scale": 0.17
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 352,
+          "y": 338,
+          "scale": 0.17
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 352,
+          "y": 334,
+          "scale": 0.17
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 352,
+          "y": 334,
+          "scale": 0.19,
+          "flip": false
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 352,
+          "y": 338,
+          "scale": 0.17
+        }
+      }
+    },
+    {
+      "id": "tear",
+      "bone": "eyeR",
+      "default": "none",
+      "attachments": {
+        "drop": {
+          "part": "tear",
+          "x": 362,
+          "y": 350,
+          "scale": 0.22
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouthSmile",
+          "x": 319,
+          "y": 355,
+          "scale": 0.15
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 319,
+          "y": 358,
+          "scale": 0.13
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 319,
+          "y": 357,
+          "scale": 0.14
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 319,
+          "y": 357,
+          "scale": 0.14
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "flick",
+      "description": "the shrimp twitches its feelers and flicks its tail",
+      "pause": {
+        "frame": 5,
+        "shows": "the shrimp curled up tight, its fan tail tucked under"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "antennaL": {
+              "r": 8
+            },
+            "antennaR": {
+              "r": -6.4
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "antennaL": {
+              "r": -6
+            },
+            "antennaR": {
+              "r": 4.8
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "antennaL": {
+              "r": 8
+            },
+            "antennaR": {
+              "r": -6.4
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "tail": {
+              "r": 6.0
+            },
+            "tail2": {
+              "r": 13.2
+            },
+            "fan": {
+              "r": 18.0
+            },
+            "antennaL": {
+              "r": 2
+            },
+            "antennaR": {
+              "r": -1.6
+            },
+            "body": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.8,
+          "bones": {
+            "tail": {
+              "r": 12.0
+            },
+            "tail2": {
+              "r": 26.4
+            },
+            "fan": {
+              "r": 36.0
+            },
+            "body": {
+              "r": -5
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "legs": {
+              "r": 10
+            },
+            "legsFar": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.16,
+          "ease": "out",
+          "bones": {
+            "tail": {
+              "r": -4.0
+            },
+            "tail2": {
+              "r": -8.8
+            },
+            "fan": {
+              "r": -12.0
+            },
+            "antennaL": {
+              "r": -6
+            },
+            "antennaR": {
+              "r": 4.8
+            },
+            "root": {
+              "x": 6
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "tail": {
+              "r": 2.0
+            },
+            "tail2": {
+              "r": 4.4
+            },
+            "fan": {
+              "r": 6.0
+            },
+            "antennaL": {
+              "r": 4
+            },
+            "antennaR": {
+              "r": -3.2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "swim",
+      "kind": "move",
+      "description": "the shrimp swims along to the left, its little legs paddling and its tail flicking, then stops.",
+      "facing": "left",
+      "on": [
+        "pool"
+      ],
+      "waterline": 0.3,
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "stride": 0.5,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "legs": {
+              "r": 14
+            },
+            "legsFar": {
+              "r": -14
+            },
+            "tail2": {
+              "r": 6
+            },
+            "fan": {
+              "r": 6
+            },
+            "root": {
+              "y": -2
+            },
+            "antennaL": {
+              "r": -3
+            },
+            "antennaR": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "legs": {
+              "r": 0
+            },
+            "legsFar": {
+              "r": 0
+            },
+            "tail2": {
+              "r": 0
+            },
+            "fan": {
+              "r": 0
+            },
+            "root": {
+              "y": 0
+            },
+            "antennaL": {
+              "r": -3
+            },
+            "antennaR": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "legs": {
+              "r": -14
+            },
+            "legsFar": {
+              "r": 14
+            },
+            "tail2": {
+              "r": -4
+            },
+            "fan": {
+              "r": -4
+            },
+            "root": {
+              "y": -2
+            },
+            "antennaL": {
+              "r": -3
+            },
+            "antennaR": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "legs": {
+              "r": 0
+            },
+            "legsFar": {
+              "r": 0
+            },
+            "tail2": {
+              "r": 0
+            },
+            "fan": {
+              "r": 0
+            },
+            "root": {
+              "y": 0
+            },
+            "antennaL": {
+              "r": -3
+            },
+            "antennaR": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "legs": {
+              "r": 4
+            },
+            "legsFar": {
+              "r": -4
+            },
+            "tail2": {
+              "r": 2
+            },
+            "fan": {
+              "r": 2
+            },
+            "root": {
+              "y": 0
+            },
+            "antennaL": {
+              "r": -3
+            },
+            "antennaR": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "wiggle-feelers",
+      "idle": true,
+      "description": "the shrimp waves its long feelers this way and that, curious, sniffing the water.",
+      "pause": {
+        "frame": 3,
+        "shows": "the shrimp with its feelers lifted high, curious"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "antennaL": {
+              "r": 10
+            },
+            "antennaR": {
+              "r": -8.0
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "antennaL": {
+              "r": -8
+            },
+            "antennaR": {
+              "r": 6.4
+            }
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "antennaL": {
+              "r": 14
+            },
+            "antennaR": {
+              "r": -11.2
+            },
+            "body": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "antennaL": {
+              "r": -6
+            },
+            "antennaR": {
+              "r": 4.8
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "antennaL": {
+              "r": 8
+            },
+            "antennaR": {
+              "r": -6.4
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "antennaL": {
+              "r": -4
+            },
+            "antennaR": {
+              "r": 3.2
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "dart-back",
+      "description": "the shrimp gives a big flick of its tail under itself and shoots backwards, whoosh, then settles and peeks out happily.",
+      "pause": {
+        "frame": 3,
+        "shows": "the shrimp shot back, its tail tucked under it, feelers streaming"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "tail": {
+              "r": -3.0
+            },
+            "tail2": {
+              "r": -6.6
+            },
+            "fan": {
+              "r": -9.0
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "out",
+          "bones": {
+            "tail": {
+              "r": 12.0
+            },
+            "tail2": {
+              "r": 26.4
+            },
+            "fan": {
+              "r": 36.0
+            },
+            "antennaL": {
+              "r": -10
+            },
+            "antennaR": {
+              "r": 8.0
+            },
+            "root": {
+              "x": 40,
+              "y": -6
+            },
+            "body": {
+              "r": -6
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "tail": {
+              "r": 9.0
+            },
+            "tail2": {
+              "r": 19.8
+            },
+            "fan": {
+              "r": 27.0
+            },
+            "antennaL": {
+              "r": -8
+            },
+            "antennaR": {
+              "r": 6.4
+            },
+            "root": {
+              "x": 56,
+              "y": -8
+            },
+            "body": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.5,
+          "ease": "inOut",
+          "bones": {
+            "tail": {
+              "r": 2.0
+            },
+            "tail2": {
+              "r": 4.4
+            },
+            "fan": {
+              "r": 6.0
+            },
+            "antennaL": {
+              "r": 4
+            },
+            "antennaR": {
+              "r": -3.2
+            },
+            "root": {
+              "x": 30
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "ease": "inOut",
+          "bones": {
+            "antennaL": {
+              "r": -2
+            },
+            "antennaR": {
+              "r": 1.6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "description": "the shrimp nods yes, twice, dipping its head.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "face": {
+              "y": 3
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "face": {
+              "y": 3
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "shake-head",
+      "description": "the shrimp shakes its head no, its feelers swishing.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "face": {
+              "x": -6
+            },
+            "body": {
+              "r": -3
+            },
+            "antennaL": {
+              "r": 6
+            },
+            "antennaR": {
+              "r": -4.8
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "x": 5
+            },
+            "body": {
+              "r": 3
+            },
+            "antennaL": {
+              "r": -6
+            },
+            "antennaR": {
+              "r": 4.8
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "x": -6
+            },
+            "body": {
+              "r": -3
+            },
+            "antennaL": {
+              "r": 6
+            },
+            "antennaR": {
+              "r": -4.8
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "x": 4
+            },
+            "body": {
+              "r": 2
+            },
+            "antennaL": {
+              "r": -4
+            },
+            "antennaR": {
+              "r": 3.2
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "laugh",
+      "description": "the shrimp laughs and laughs, bouncing with giggles, its tail flapping.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "body": {
+              "r": 3
+            },
+            "tail": {
+              "r": 3.0
+            },
+            "tail2": {
+              "r": 6.6
+            },
+            "fan": {
+              "r": 9.0
+            },
+            "antennaL": {
+              "r": 6
+            },
+            "antennaR": {
+              "r": -4.8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96
+            },
+            "body": {
+              "r": 0
+            },
+            "tail": {
+              "r": 0
+            },
+            "tail2": {
+              "r": 0
+            },
+            "fan": {
+              "r": 0
+            },
+            "antennaL": {
+              "r": -4
+            },
+            "antennaR": {
+              "r": 3.2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "body": {
+              "r": 3
+            },
+            "tail": {
+              "r": 3.0
+            },
+            "tail2": {
+              "r": 6.6
+            },
+            "fan": {
+              "r": 9.0
+            },
+            "antennaL": {
+              "r": 6
+            },
+            "antennaR": {
+              "r": -4.8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96
+            },
+            "body": {
+              "r": 0
+            },
+            "tail": {
+              "r": 0
+            },
+            "tail2": {
+              "r": 0
+            },
+            "fan": {
+              "r": 0
+            },
+            "antennaL": {
+              "r": -4
+            },
+            "antennaR": {
+              "r": 3.2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "body": {
+              "r": 3
+            },
+            "tail": {
+              "r": 3.0
+            },
+            "tail2": {
+              "r": 6.6
+            },
+            "fan": {
+              "r": 9.0
+            },
+            "antennaL": {
+              "r": 6
+            },
+            "antennaR": {
+              "r": -4.8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96
+            },
+            "body": {
+              "r": 0
+            },
+            "tail": {
+              "r": 0
+            },
+            "tail2": {
+              "r": 0
+            },
+            "fan": {
+              "r": 0
+            },
+            "antennaL": {
+              "r": -4
+            },
+            "antennaR": {
+              "r": 3.2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "body": {
+              "r": 3
+            },
+            "tail": {
+              "r": 3.0
+            },
+            "tail2": {
+              "r": 6.6
+            },
+            "fan": {
+              "r": 9.0
+            },
+            "antennaL": {
+              "r": 6
+            },
+            "antennaR": {
+              "r": -4.8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96
+            },
+            "body": {
+              "r": 0
+            },
+            "tail": {
+              "r": 0
+            },
+            "tail2": {
+              "r": 0
+            },
+            "fan": {
+              "r": 0
+            },
+            "antennaL": {
+              "r": -4
+            },
+            "antennaR": {
+              "r": 3.2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "description": "the shrimp talks, its mouth moving, its feelers bobbing.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": -2
+            },
+            "antennaL": {
+              "r": 4
+            },
+            "antennaR": {
+              "r": -3.2
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": 0
+            },
+            "antennaL": {
+              "r": 0
+            },
+            "antennaR": {
+              "r": 0.0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": -2
+            },
+            "antennaL": {
+              "r": 4
+            },
+            "antennaR": {
+              "r": -3.2
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": 0
+            },
+            "antennaL": {
+              "r": 0
+            },
+            "antennaR": {
+              "r": 0.0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": -2
+            },
+            "antennaL": {
+              "r": 4
+            },
+            "antennaR": {
+              "r": -3.2
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": 0
+            },
+            "antennaL": {
+              "r": 0
+            },
+            "antennaR": {
+              "r": 0.0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": -2
+            },
+            "antennaL": {
+              "r": 4
+            },
+            "antennaR": {
+              "r": -3.2
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": 0
+            },
+            "antennaL": {
+              "r": 0
+            },
+            "antennaR": {
+              "r": 0.0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": -2
+            },
+            "antennaL": {
+              "r": 4
+            },
+            "antennaR": {
+              "r": -3.2
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": 0
+            },
+            "antennaL": {
+              "r": 0
+            },
+            "antennaR": {
+              "r": 0.0
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "cry",
+      "description": "the shrimp cries, curling up small, its feelers drooping, shaking with little sobs.",
+      "pause": {
+        "frame": 3,
+        "shows": "the shrimp crying, curled small, eyes squeezed shut with tears"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "root": {
+              "y": 4
+            },
+            "body": {
+              "r": -5
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "antennaL": {
+              "r": -10
+            },
+            "antennaR": {
+              "r": 8.0
+            },
+            "tail": {
+              "r": 4.0
+            },
+            "tail2": {
+              "r": 8.8
+            },
+            "fan": {
+              "r": 12.0
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 7
+            },
+            "body": {
+              "r": -5
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "antennaL": {
+              "r": -10
+            },
+            "antennaR": {
+              "r": 8.0
+            },
+            "tail": {
+              "r": 4.0
+            },
+            "tail2": {
+              "r": 8.8
+            },
+            "fan": {
+              "r": 12.0
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "tear": "drop"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 4
+            },
+            "body": {
+              "r": -5
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "antennaL": {
+              "r": -10
+            },
+            "antennaR": {
+              "r": 8.0
+            },
+            "tail": {
+              "r": 4.0
+            },
+            "tail2": {
+              "r": 8.8
+            },
+            "fan": {
+              "r": 12.0
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "tear": "drop"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 7
+            },
+            "body": {
+              "r": -5
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "antennaL": {
+              "r": -10
+            },
+            "antennaR": {
+              "r": 8.0
+            },
+            "tail": {
+              "r": 4.0
+            },
+            "tail2": {
+              "r": 8.8
+            },
+            "fan": {
+              "r": 12.0
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "tear": "drop"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 4
+            },
+            "body": {
+              "r": -5
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "antennaL": {
+              "r": -10
+            },
+            "antennaR": {
+              "r": 8.0
+            },
+            "tail": {
+              "r": 4.0
+            },
+            "tail2": {
+              "r": 8.8
+            },
+            "fan": {
+              "r": 12.0
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "tear": "drop"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 7
+            },
+            "body": {
+              "r": -5
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "antennaL": {
+              "r": -10
+            },
+            "antennaR": {
+              "r": 8.0
+            },
+            "tail": {
+              "r": 4.0
+            },
+            "tail2": {
+              "r": 8.8
+            },
+            "fan": {
+              "r": 12.0
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "tear": "drop"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 4
+            },
+            "body": {
+              "r": -5
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "antennaL": {
+              "r": -10
+            },
+            "antennaR": {
+              "r": 8.0
+            },
+            "tail": {
+              "r": 4.0
+            },
+            "tail2": {
+              "r": 8.8
+            },
+            "fan": {
+              "r": 12.0
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "tear": "drop"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 7
+            },
+            "body": {
+              "r": -5
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "antennaL": {
+              "r": -10
+            },
+            "antennaR": {
+              "r": 8.0
+            },
+            "tail": {
+              "r": 4.0
+            },
+            "tail2": {
+              "r": 8.8
+            },
+            "fan": {
+              "r": 12.0
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "tear": "drop"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "root": {
+              "y": 2
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "description": "the shrimp gives a big yawn, curls up and falls asleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the shrimp curled up fast asleep, eyes shut"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "antennaL": {
+              "r": 8
+            },
+            "antennaR": {
+              "r": -6.4
+            },
+            "belly": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "antennaL": {
+              "r": 8
+            },
+            "antennaR": {
+              "r": -6.4
+            },
+            "belly": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "body": {
+              "r": -4
+            },
+            "root": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "tail": {
+              "r": 8.0
+            },
+            "tail2": {
+              "r": 17.6
+            },
+            "fan": {
+              "r": 24.0
+            },
+            "antennaL": {
+              "r": -12
+            },
+            "antennaR": {
+              "r": 9.6
+            },
+            "legs": {
+              "r": 8
+            },
+            "legsFar": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.8,
+          "bones": {
+            "body": {
+              "r": -4
+            },
+            "root": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.0
+            },
+            "tail": {
+              "r": 8.0
+            },
+            "tail2": {
+              "r": 17.6
+            },
+            "fan": {
+              "r": 24.0
+            },
+            "antennaL": {
+              "r": -12
+            },
+            "antennaR": {
+              "r": 9.6
+            },
+            "legs": {
+              "r": 8
+            },
+            "legsFar": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "antennaL": {
+              "r": 6
+            },
+            "antennaR": {
+              "r": -4.8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "description": "the shrimp crouches, springs up high for joy with a flick of its tail and lands with a little squash.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 6
+            },
+            "belly": {
+              "sx": 1.05,
+              "sy": 0.93
+            },
+            "tail": {
+              "r": 5.0
+            },
+            "tail2": {
+              "r": 11.0
+            },
+            "fan": {
+              "r": 15.0
+            }
+          }
+        },
+        {
+          "hold": 0.24,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -70
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "tail": {
+              "r": -3.0
+            },
+            "tail2": {
+              "r": -6.6
+            },
+            "fan": {
+              "r": -9.0
+            },
+            "antennaL": {
+              "r": -8
+            },
+            "antennaR": {
+              "r": 6.4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -76
+            },
+            "tail": {
+              "r": 1.0
+            },
+            "tail2": {
+              "r": 2.2
+            },
+            "fan": {
+              "r": 3.0
+            },
+            "antennaL": {
+              "r": -4
+            },
+            "antennaR": {
+              "r": 3.2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": 4
+            },
+            "belly": {
+              "sx": 1.05,
+              "sy": 0.93
+            },
+            "antennaL": {
+              "r": 6
+            },
+            "antennaR": {
+              "r": -4.8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "description": "the shrimp lifts its little front legs and waves hello with them.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "legs": {
+              "r": 30
+            },
+            "body": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "legs": {
+              "r": 16
+            },
+            "body": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "legs": {
+              "r": 32
+            },
+            "body": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "legs": {
+              "r": 16
+            },
+            "body": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "legs": {
+              "r": 32
+            },
+            "body": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "dance",
+      "description": "the shrimp does a happy little dance, swaying and wiggling its tail from side to side.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "root": {
+              "x": -10,
+              "y": 0
+            },
+            "tail": {
+              "r": 3.0
+            },
+            "tail2": {
+              "r": 6.6
+            },
+            "fan": {
+              "r": 9.0
+            },
+            "antennaL": {
+              "r": 8
+            },
+            "antennaR": {
+              "r": -6.4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "root": {
+              "x": 10,
+              "y": -8
+            },
+            "tail": {
+              "r": -3.0
+            },
+            "tail2": {
+              "r": -6.6
+            },
+            "fan": {
+              "r": -9.0
+            },
+            "antennaL": {
+              "r": -8
+            },
+            "antennaR": {
+              "r": 6.4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "root": {
+              "x": -10,
+              "y": 0
+            },
+            "tail": {
+              "r": 3.0
+            },
+            "tail2": {
+              "r": 6.6
+            },
+            "fan": {
+              "r": 9.0
+            },
+            "antennaL": {
+              "r": 8
+            },
+            "antennaR": {
+              "r": -6.4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "root": {
+              "x": 10,
+              "y": -8
+            },
+            "tail": {
+              "r": -3.0
+            },
+            "tail2": {
+              "r": -6.6
+            },
+            "fan": {
+              "r": -9.0
+            },
+            "antennaL": {
+              "r": -8
+            },
+            "antennaR": {
+              "r": 6.4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "root": {
+              "x": -10,
+              "y": 0
+            },
+            "tail": {
+              "r": 3.0
+            },
+            "tail2": {
+              "r": 6.6
+            },
+            "fan": {
+              "r": 9.0
+            },
+            "antennaL": {
+              "r": 8
+            },
+            "antennaR": {
+              "r": -6.4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "root": {
+              "x": 10,
+              "y": -8
+            },
+            "tail": {
+              "r": -3.0
+            },
+            "tail2": {
+              "r": -6.6
+            },
+            "fan": {
+              "r": -9.0
+            },
+            "antennaL": {
+              "r": -8
+            },
+            "antennaR": {
+              "r": 6.4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shiver",
+      "template": "common.shiver",
+      "description": "the shrimp shivers and trembles, cold or scared."
+    },
+    {
+      "id": "look-around",
+      "idle": true,
+      "description": "the shrimp looks up, then turns right round to look behind it, then turns back and looks ahead again.",
+      "pause": {
+        "frame": 4,
+        "shows": "the shrimp turned round, looking behind it"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "body": {
+              "r": 5
+            },
+            "antennaL": {
+              "r": 6
+            },
+            "antennaR": {
+              "r": -4.8
+            }
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "body": {
+              "r": 5
+            },
+            "antennaL": {
+              "r": 6
+            },
+            "antennaR": {
+              "r": -4.8
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "ease": "inOut",
+          "bones": {
+            "root": {
+              "sx": -1,
+              "x": -10
+            }
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "root": {
+              "sx": -1,
+              "x": -10
+            },
+            "antennaL": {
+              "r": 4
+            },
+            "antennaR": {
+              "r": -3.2
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "ease": "inOut",
+          "bones": {
+            "antennaL": {
+              "r": -4
+            },
+            "antennaR": {
+              "r": 3.2
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    }
+  ]
+}

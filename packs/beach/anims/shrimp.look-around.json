@@ -1,0 +1,92 @@
+{
+  "id": "look-around",
+  "sticker": "shrimp",
+  "description": "the shrimp looks up, then turns right round to look behind it, then turns back and looks ahead again.",
+  "stickerBox": {
+    "x": 0.25651,
+    "y": 0.25,
+    "width": 0.48568,
+    "height": 0.5
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the shrimp turned round, looking behind it"
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/shrimp.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "antennaL": {
+            "r": 6
+          },
+          "antennaR": {
+            "r": -4.8
+          },
+          "body": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "antennaL": {
+            "r": 6
+          },
+          "antennaR": {
+            "r": -4.8
+          },
+          "body": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "ease": "inOut",
+        "bones": {
+          "root": {
+            "x": -10,
+            "sx": -1
+          }
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "antennaL": {
+            "r": 4
+          },
+          "antennaR": {
+            "r": -3.2
+          },
+          "root": {
+            "x": -10,
+            "sx": -1
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "ease": "inOut",
+        "bones": {
+          "antennaL": {
+            "r": -4
+          },
+          "antennaR": {
+            "r": 3.2
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

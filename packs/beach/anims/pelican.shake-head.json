@@ -1,0 +1,67 @@
+{
+  "id": "shake-head",
+  "sticker": "pelican",
+  "kind": "action",
+  "description": "the pelican shakes its head no.",
+  "stickerBox": {
+    "x": 0.18359,
+    "y": 0.13932,
+    "width": 0.63281,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/pelican.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "face": {
+            "x": -12
+          },
+          "head": {
+            "r": -7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": 12
+          },
+          "head": {
+            "r": 7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": -12
+          },
+          "head": {
+            "r": -7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": 10
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

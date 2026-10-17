@@ -1,54 +1,259 @@
 {
   "id": "dance",
   "sticker": "crab",
+  "kind": "action",
   "description": "the crab does a happy dance, clicking its claws",
-  "sheet": "anims/crab.dance.webp",
-  "frame": {
-    "width": 553,
-    "height": 485
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.03978,
-    "y": 0.03093,
-    "width": 0.87161,
-    "height": 0.93402
-  },
   "stickerBox": {
     "x": 0.20052,
     "y": 0.21745,
     "width": 0.59896,
     "height": 0.5651
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.7,
-    0.2,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 5,
     "shows": "the crab with both claws raised wide open, mid-dance, grinning"
+  },
+  "puppet": {
+    "rig": "anims/crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": -5
+          },
+          "clawL": {
+            "r": -16
+          },
+          "clawR": {
+            "r": -6
+          },
+          "legL1": {
+            "r": 7.199999999999999,
+            "y": -4.8
+          },
+          "legL2": {
+            "r": 7.199999999999999,
+            "y": -4.8
+          },
+          "root": {
+            "x": -12
+          }
+        },
+        "slots": {
+          "clawR": "shut",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": 5
+          },
+          "clawL": {
+            "r": 6
+          },
+          "clawR": {
+            "r": 16
+          },
+          "legR1": {
+            "r": -7.199999999999999,
+            "y": -4.8
+          },
+          "legR2": {
+            "r": -7.199999999999999,
+            "y": -4.8
+          },
+          "root": {
+            "x": 12,
+            "y": -6
+          }
+        },
+        "slots": {
+          "clawL": "shut",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": -5
+          },
+          "clawL": {
+            "r": -16
+          },
+          "clawR": {
+            "r": -6
+          },
+          "legL1": {
+            "r": 7.199999999999999,
+            "y": -4.8
+          },
+          "legL2": {
+            "r": 7.199999999999999,
+            "y": -4.8
+          },
+          "root": {
+            "x": -12
+          }
+        },
+        "slots": {
+          "clawR": "shut",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": 5
+          },
+          "clawL": {
+            "r": 6
+          },
+          "clawR": {
+            "r": 16
+          },
+          "legR1": {
+            "r": -7.199999999999999,
+            "y": -4.8
+          },
+          "legR2": {
+            "r": -7.199999999999999,
+            "y": -4.8
+          },
+          "root": {
+            "x": 12,
+            "y": -6
+          }
+        },
+        "slots": {
+          "clawL": "shut",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "clawL": {
+            "r": -14,
+            "y": -8
+          },
+          "clawR": {
+            "r": 14,
+            "y": -8
+          },
+          "eyeL": {
+            "sy": 0.893
+          },
+          "eyeR": {
+            "sy": 0.893
+          },
+          "root": {
+            "y": -10
+          },
+          "stalkL": {
+            "sy": 1.12
+          },
+          "stalkR": {
+            "sy": 1.12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": -5
+          },
+          "clawL": {
+            "r": -16
+          },
+          "clawR": {
+            "r": -6
+          },
+          "legL1": {
+            "r": 7.199999999999999,
+            "y": -4.8
+          },
+          "legL2": {
+            "r": 7.199999999999999,
+            "y": -4.8
+          },
+          "root": {
+            "x": -12
+          }
+        },
+        "slots": {
+          "clawR": "shut",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": 5
+          },
+          "clawL": {
+            "r": 6
+          },
+          "clawR": {
+            "r": 16
+          },
+          "legR1": {
+            "r": -7.199999999999999,
+            "y": -4.8
+          },
+          "legR2": {
+            "r": -7.199999999999999,
+            "y": -4.8
+          },
+          "root": {
+            "x": 12,
+            "y": -6
+          }
+        },
+        "slots": {
+          "clawL": "shut",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
   }
 }

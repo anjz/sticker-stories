@@ -1,0 +1,536 @@
+{
+  "sticker": "ball",
+  "called": "the beach ball",
+  "skeleton": "a round rigid beach ball: root where it touches the ground; spin at its centre (rolls and spins turn it); body on spin carries the ball's art.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1024x1024",
+      "prompt": "Image 1 is a sticker of a classic inflatable beach ball. Draw it as a cut-out paper puppet: its separate pieces laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every piece at the size it has in image 1 (if they do not all fit, draw them all a little smaller, at the same scale as each other).\n\nDraw each piece on its own, spread out over the sheet with wide empty gaps between them, no piece touching or overlapping another:\n1. the beach ball exactly as in image 1: its red, yellow, blue and white segments, its white valve on top and its shine.\n\nEvery piece is drawn whole, including what is normally hidden behind another piece, with its edges clean and smooth. It is an object, not a character: no face, no eyes, no mouth. No text, no labels, no numbers, no outline around the pieces beyond the drawing's own line, no shadows, no water, no sand, no splashes or drops. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "ball": {
+      "sheet": "parts",
+      "at": [
+        512,
+        507
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 384,
+      "y": 594
+    },
+    {
+      "id": "spin",
+      "parent": "root",
+      "x": 384,
+      "y": 384
+    }
+  ],
+  "slots": [
+    {
+      "id": "ball",
+      "bone": "spin",
+      "default": "ball",
+      "attachments": {
+        "ball": {
+          "part": "ball",
+          "x": 384,
+          "y": 384.5,
+          "scale": 0.449
+        }
+      }
+    }
+  ],
+  "animations": [
+    {
+      "id": "spin",
+      "kind": "action",
+      "description": "the beach ball spins round",
+      "pause": {
+        "frame": 2,
+        "shows": "the beach ball turned half round, its stripes swapped"
+      },
+      "keys": [
+        {
+          "hold": 0.35,
+          "ease": "in"
+        },
+        {
+          "hold": 0.35,
+          "ease": "out",
+          "bones": {
+            "spin": {
+              "r": 90
+            }
+          }
+        },
+        {
+          "hold": 0.5,
+          "ease": "in",
+          "bones": {
+            "spin": {
+              "r": 180
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "out",
+          "bones": {
+            "spin": {
+              "r": 270
+            }
+          }
+        },
+        {
+          "hold": 0.02,
+          "ease": "step",
+          "bones": {
+            "spin": {
+              "r": 360
+            }
+          }
+        },
+        {
+          "hold": 0.25
+        }
+      ]
+    },
+    {
+      "id": "roll",
+      "kind": "move",
+      "description": "the beach ball rolls along to the left, turning over and over, then rocks to a stop.",
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "facing": "left",
+      "stride": 0.9,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.15,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": -90
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": -180
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": -270
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "spin": {
+              "r": -372
+            },
+            "root": {
+              "x": -44
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "spin": {
+              "r": -355
+            },
+            "root": {
+              "x": 18
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "spin": {
+              "r": -362
+            },
+            "root": {
+              "x": -7
+            }
+          }
+        },
+        {
+          "hold": 0.02,
+          "ease": "step",
+          "bones": {
+            "spin": {
+              "r": -360
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "bounce",
+      "kind": "action",
+      "description": "the beach ball bounces up and down on the spot, each bounce a little lower, then settles.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.4,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "sx": 1.05,
+              "sy": 0.93
+            }
+          }
+        },
+        {
+          "hold": 0.36,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -90
+            }
+          }
+        },
+        {
+          "hold": 0.32,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "sx": 1.05,
+              "sy": 0.93
+            }
+          }
+        },
+        {
+          "hold": 0.28,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -50
+            }
+          }
+        },
+        {
+          "hold": 0.24,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "sx": 1.03,
+              "sy": 0.96
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -20
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "root": {
+              "sx": 1.01,
+              "sy": 0.99
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "kind": "action",
+      "description": "the beach ball gives one big bounce up high, turning a full circle in the air, and lands with a little bump.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.45,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "sx": 1.06,
+              "sy": 0.9
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -150
+            },
+            "spin": {
+              "r": 180
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "sx": 1.05,
+              "sy": 0.92
+            },
+            "spin": {
+              "r": 360
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -18
+            },
+            "spin": {
+              "r": 360
+            }
+          }
+        },
+        {
+          "hold": 0.02,
+          "ease": "step",
+          "bones": {
+            "spin": {
+              "r": 360
+            }
+          }
+        },
+        {
+          "hold": 0.25
+        }
+      ]
+    },
+    {
+      "id": "wobble",
+      "kind": "action",
+      "description": "the beach ball wobbles from side to side on the spot, then settles.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "spin": {
+              "r": 9
+            },
+            "root": {
+              "x": 33.1
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "spin": {
+              "r": -9
+            },
+            "root": {
+              "x": -33.1
+            }
+          }
+        },
+        {
+          "hold": 0.28,
+          "bones": {
+            "spin": {
+              "r": 7
+            },
+            "root": {
+              "x": 25.8
+            }
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "spin": {
+              "r": -5
+            },
+            "root": {
+              "x": -18.4
+            }
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "spin": {
+              "r": 3
+            },
+            "root": {
+              "x": 11.0
+            }
+          }
+        },
+        {
+          "hold": 0.25
+        }
+      ]
+    },
+    {
+      "id": "nudge",
+      "kind": "action",
+      "description": "the beach ball rolls a little way to the left, stops, and rolls back again, as if someone gave it a nudge.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.6,
+          "ease": "out",
+          "bones": {
+            "spin": {
+              "r": -22
+            },
+            "root": {
+              "x": -81.0
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "spin": {
+              "r": -24
+            },
+            "root": {
+              "x": -88.4
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "ease": "inOut",
+          "bones": {
+            "spin": {
+              "r": 2
+            },
+            "root": {
+              "x": 7.4
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "spin": {
+              "r": -1
+            },
+            "root": {
+              "x": -3.7
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "rock",
+      "kind": "action",
+      "description": "the beach ball rocks gently back and forth on the sand.",
+      "idle": true,
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.55,
+          "bones": {
+            "spin": {
+              "r": 4
+            },
+            "root": {
+              "x": 14.7
+            }
+          }
+        },
+        {
+          "hold": 0.55,
+          "bones": {
+            "spin": {
+              "r": -4
+            },
+            "root": {
+              "x": -14.7
+            }
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "spin": {
+              "r": 3
+            },
+            "root": {
+              "x": 11.0
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "spin": {
+              "r": -1
+            },
+            "root": {
+              "x": -3.7
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    }
+  ]
+}

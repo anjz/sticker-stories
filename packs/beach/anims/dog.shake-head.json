@@ -1,0 +1,67 @@
+{
+  "id": "shake-head",
+  "sticker": "dog",
+  "kind": "action",
+  "description": "the dog shakes its head no.",
+  "stickerBox": {
+    "x": 0.16797,
+    "y": 0.13932,
+    "width": 0.66406,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/dog.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "face": {
+            "x": -8.4
+          },
+          "head": {
+            "r": -7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": 8.4
+          },
+          "head": {
+            "r": 7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": -8.4
+          },
+          "head": {
+            "r": -7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": 7
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

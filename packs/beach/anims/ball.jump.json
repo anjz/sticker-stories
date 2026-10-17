@@ -1,0 +1,79 @@
+{
+  "id": "jump",
+  "sticker": "ball",
+  "kind": "action",
+  "description": "the beach ball gives one big bounce up high, turning a full circle in the air, and lands with a little bump.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20052,
+    "width": 0.59766,
+    "height": 0.59896
+  },
+  "puppet": {
+    "rig": "anims/ball.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.45,
+        "ease": "out",
+        "bones": {
+          "root": {
+            "sx": 1.06,
+            "sy": 0.9
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "ease": "in",
+        "bones": {
+          "root": {
+            "y": -150
+          },
+          "spin": {
+            "r": 180
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "out",
+        "bones": {
+          "root": {
+            "sx": 1.05,
+            "sy": 0.92
+          },
+          "spin": {
+            "r": 360
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "in",
+        "bones": {
+          "root": {
+            "y": -18
+          },
+          "spin": {
+            "r": 360
+          }
+        }
+      },
+      {
+        "hold": 0.02,
+        "ease": "step",
+        "bones": {
+          "spin": {
+            "r": 360
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "id": "peck",
+  "sticker": "pelican",
+  "description": "the pelican bends down and pecks at the ground with the hooked tip of its long beak, peck-peck-peck, then looks up happily.",
+  "stickerBox": {
+    "x": 0.18359,
+    "y": 0.13932,
+    "width": 0.63281,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the pelican bent forward, beak down to the ground"
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/pelican.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": -14,
+            "y": 4
+          },
+          "head": {
+            "r": -50,
+            "y": 8
+          },
+          "legL": {
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": -14,
+            "y": 4
+          },
+          "head": {
+            "r": -50,
+            "y": 8
+          },
+          "legL": {
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": -18,
+            "y": 4
+          },
+          "head": {
+            "r": -58,
+            "y": 8
+          },
+          "legL": {
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": -14,
+            "y": 4
+          },
+          "head": {
+            "r": -50,
+            "y": 8
+          },
+          "legL": {
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": -18,
+            "y": 4
+          },
+          "head": {
+            "r": -58,
+            "y": 8
+          },
+          "legL": {
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": -14,
+            "y": 4
+          },
+          "head": {
+            "r": -50,
+            "y": 8
+          },
+          "legL": {
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": -18,
+            "y": 4
+          },
+          "head": {
+            "r": -58,
+            "y": 8
+          },
+          "legL": {
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -8
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 6,
+            "y": -3
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

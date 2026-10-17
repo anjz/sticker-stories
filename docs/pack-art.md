@@ -4,8 +4,7 @@ What every sticker pack's art must get right, collected from building Forest
 and Beach. The tools enforce what they can; the rest is on the author.
 How the tools work: `tools/author/stickerart/README.md` (stickers, faces,
 scene) and `tools/author/stickerrig/README.md` (puppets: how stickers
-animate; Beach still uses `tools/author/stickeranim`'s sprite
-sheets). The format: `docs/pack-format.md`. The effects: `docs/effects.md`.
+animate). The format: `docs/pack-format.md`. The effects: `docs/effects.md`.
 
 A pack has **25 stickers**, every one with a size class, a stage, a
 puppet with many actions, and its moves.
@@ -62,7 +61,7 @@ into parts on a skeleton, every animation keyframes. What the art needs:
 - The puppet lies on the still at rest (the preview's mismatch view):
   the app hands over from one to the other once per story.
 
-## 3b. Sprite sheets hold their size (Beach)
+## 3b. Sprite sheets hold their size (`stickeranim`, no pack uses them now)
 
 The rule: **the sticker is the same size in every frame**, and only what
 moves, moves.

@@ -1,0 +1,142 @@
+{
+  "id": "peck",
+  "sticker": "seagull",
+  "description": "the seagull bends down and pecks at the ground, peck-peck-peck, then looks up happily.",
+  "stickerBox": {
+    "x": 0.27474,
+    "y": 0.20052,
+    "width": 0.45052,
+    "height": 0.59896
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the seagull bent forward, beak down to the ground"
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/seagull.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -12,
+            "y": 4
+          },
+          "head": {
+            "r": -40,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": -12,
+            "y": 4
+          },
+          "head": {
+            "r": -40,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": -17,
+            "y": 4
+          },
+          "head": {
+            "r": -50,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": -12,
+            "y": 4
+          },
+          "head": {
+            "r": -40,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": -17,
+            "y": 4
+          },
+          "head": {
+            "r": -50,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": -12,
+            "y": 4
+          },
+          "head": {
+            "r": -40,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": -17,
+            "y": 4
+          },
+          "head": {
+            "r": -50,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": 6,
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

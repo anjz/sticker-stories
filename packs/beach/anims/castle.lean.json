@@ -1,0 +1,75 @@
+{
+  "id": "lean",
+  "sticker": "castle",
+  "kind": "action",
+  "description": "the sand castle leans over to one side, wobbles there, then settles back upright.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.14974,
+    "width": 0.72005,
+    "height": 0.70052
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the sand castle leaning over to one side"
+  },
+  "puppet": {
+    "rig": "anims/castle.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.55,
+        "ease": "out",
+        "bones": {
+          "flag": {
+            "r": -5
+          },
+          "lean": {
+            "r": 7
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "lean": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "flag": {
+            "r": 3
+          },
+          "lean": {
+            "r": 7.5
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "in",
+        "bones": {
+          "lean": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "lean": {
+            "r": 0.5
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

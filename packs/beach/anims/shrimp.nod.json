@@ -1,0 +1,60 @@
+{
+  "id": "nod",
+  "sticker": "shrimp",
+  "description": "the shrimp nods yes, twice, dipping its head.",
+  "stickerBox": {
+    "x": 0.25651,
+    "y": 0.25,
+    "width": 0.48568,
+    "height": 0.5
+  },
+  "puppet": {
+    "rig": "anims/shrimp.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -6
+          },
+          "face": {
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -6
+          },
+          "face": {
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

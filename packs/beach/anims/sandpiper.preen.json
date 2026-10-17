@@ -1,0 +1,181 @@
+{
+  "id": "preen",
+  "sticker": "sandpiper",
+  "description": "the sandpiper tucks its beak down into its feathers and nibbles them neat, lifting its wing a little, then fluffs up and smooths itself down.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26302,
+    "width": 0.5,
+    "height": 0.47266
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the sandpiper with its beak tucked into its feathers, preening"
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/sandpiper.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 32,
+            "x": -6,
+            "y": 8
+          },
+          "wingL": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 36,
+            "x": -6,
+            "y": 8
+          },
+          "wingL": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 32,
+            "x": -6,
+            "y": 8
+          },
+          "wingL": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 36,
+            "x": -6,
+            "y": 8
+          },
+          "wingL": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 32,
+            "x": -6,
+            "y": 8
+          },
+          "wingL": {
+            "r": -7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 18,
+            "x": -6,
+            "y": 8
+          },
+          "wingL": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 1.04
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 0.99
+          },
+          "root": {
+            "x": -2
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.02
+          },
+          "root": {
+            "x": 2
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

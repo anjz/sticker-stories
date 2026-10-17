@@ -1,0 +1,226 @@
+{
+  "sticker": "sailboat",
+  "atlas": "anims/sailboat.rig.webp",
+  "size": 768,
+  "parts": {
+    "boat": {
+      "rect": [
+        0,
+        0,
+        531,
+        607
+      ],
+      "border": [
+        533,
+        0,
+        571,
+        647
+      ],
+      "pad": 20
+    },
+    "jib": {
+      "rect": [
+        870,
+        649,
+        296,
+        430
+      ],
+      "border": [
+        1168,
+        649,
+        336,
+        470
+      ],
+      "pad": 20
+    },
+    "jibFull": {
+      "rect": [
+        1106,
+        0,
+        315,
+        480
+      ],
+      "border": [
+        1423,
+        0,
+        355,
+        520
+      ],
+      "pad": 20
+    },
+    "main": {
+      "rect": [
+        1780,
+        0,
+        260,
+        445
+      ],
+      "border": [
+        0,
+        649,
+        300,
+        485
+      ],
+      "pad": 20
+    },
+    "mainFull": {
+      "rect": [
+        302,
+        649,
+        262,
+        443
+      ],
+      "border": [
+        566,
+        649,
+        302,
+        483
+      ],
+      "pad": 20
+    },
+    "pennant": {
+      "rect": [
+        0,
+        1136,
+        207,
+        87
+      ],
+      "border": [
+        209,
+        1136,
+        247,
+        127
+      ],
+      "pad": 20
+    },
+    "rippled": {
+      "rect": [
+        1506,
+        649,
+        204,
+        118
+      ],
+      "border": [
+        1712,
+        649,
+        244,
+        158
+      ],
+      "pad": 20
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 390,
+      "y": 685
+    },
+    {
+      "id": "rock",
+      "parent": "root",
+      "x": 390,
+      "y": 610
+    },
+    {
+      "id": "jib",
+      "parent": "rock",
+      "x": 389,
+      "y": 330
+    },
+    {
+      "id": "main",
+      "parent": "rock",
+      "x": 404,
+      "y": 330
+    },
+    {
+      "id": "pennant",
+      "parent": "rock",
+      "x": 396,
+      "y": 132
+    }
+  ],
+  "slots": [
+    {
+      "id": "pennant",
+      "bone": "pennant",
+      "default": "pennant",
+      "attachments": {
+        "pennant": {
+          "part": "pennant",
+          "x": 391.64,
+          "y": 94.53,
+          "w": 206.72,
+          "h": 86.94,
+          "rotate": 1.8
+        },
+        "rippled": {
+          "part": "rippled",
+          "x": 392.16,
+          "y": 96.48,
+          "w": 203.68,
+          "h": 117.04,
+          "rotate": 1.8
+        }
+      }
+    },
+    {
+      "id": "jib",
+      "bone": "jib",
+      "default": "jib",
+      "attachments": {
+        "full": {
+          "part": "jibFull",
+          "x": 126.56,
+          "y": 109.91,
+          "w": 314.08,
+          "h": 479.98,
+          "rotate": 1.5
+        },
+        "jib": {
+          "part": "jib",
+          "x": 111.47,
+          "y": 121.38,
+          "w": 295.46,
+          "h": 429.45,
+          "rotate": -3.5
+        }
+      }
+    },
+    {
+      "id": "boat",
+      "bone": "rock",
+      "default": "boat",
+      "attachments": {
+        "boat": {
+          "part": "boat",
+          "x": 125.86,
+          "y": 76.54,
+          "w": 530.29,
+          "h": 606.91
+        }
+      }
+    },
+    {
+      "id": "main",
+      "bone": "main",
+      "default": "main",
+      "attachments": {
+        "full": {
+          "part": "mainFull",
+          "x": 396.32,
+          "y": 116.58,
+          "w": 261.56,
+          "h": 442.84
+        },
+        "main": {
+          "part": "main",
+          "x": 398.28,
+          "y": 115.03,
+          "w": 259.05,
+          "h": 444.14
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": "nod",
+  "sticker": "fish",
+  "description": "the little fish nods yes, twice, dipping its nose.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27734,
+    "width": 0.5,
+    "height": 0.44401
+  },
+  "puppet": {
+    "rig": "anims/fish.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 8
+          },
+          "tail": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 8
+          },
+          "tail": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

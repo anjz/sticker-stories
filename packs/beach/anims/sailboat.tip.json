@@ -1,0 +1,97 @@
+{
+  "id": "tip",
+  "sticker": "sailboat",
+  "kind": "action",
+  "description": "a gust of wind tips the sailboat over to one side; it leans there, then rights itself.",
+  "stickerBox": {
+    "x": 0.11719,
+    "y": 0.07943,
+    "width": 0.76563,
+    "height": 0.83984
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the sailboat leaning over to one side in a gust"
+  },
+  "puppet": {
+    "rig": "anims/sailboat.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.6,
+        "ease": "out",
+        "bones": {
+          "jib": {
+            "sx": 1.02
+          },
+          "main": {
+            "sx": 1.02
+          },
+          "pennant": {
+            "r": -6
+          },
+          "rock": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "jib": "full",
+          "main": "full"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "pennant": {
+            "r": -4
+          },
+          "rock": {
+            "r": 9
+          }
+        },
+        "slots": {
+          "jib": "full",
+          "main": "full",
+          "pennant": "rippled"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "pennant": {
+            "r": -6
+          },
+          "rock": {
+            "r": 10.5
+          }
+        },
+        "slots": {
+          "jib": "full",
+          "main": "full"
+        }
+      },
+      {
+        "hold": 0.45,
+        "ease": "in",
+        "bones": {
+          "rock": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "rock": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

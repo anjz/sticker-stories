@@ -1,0 +1,188 @@
+{
+  "id": "sleep",
+  "sticker": "octopus",
+  "description": "the octopus gives a big yawn, curls its arms in and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.23047,
+    "width": 0.59896,
+    "height": 0.53906
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the octopus fast asleep, arms curled in, eyes shut"
+  },
+  "puppet": {
+    "rig": "anims/octopus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": -10
+          },
+          "armR": {
+            "r": 10
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "lowL": {
+            "r": 10
+          },
+          "lowR": {
+            "r": -10
+          },
+          "sideL": {
+            "r": 10
+          },
+          "sideR": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "lowL": {
+            "r": 12
+          },
+          "lowR": {
+            "r": -12
+          },
+          "sideL": {
+            "r": 12
+          },
+          "sideR": {
+            "r": -12
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "armL": {
+            "r": 12
+          },
+          "armR": {
+            "r": -12
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.96
+          },
+          "face": {
+            "y": 6
+          },
+          "lowL": {
+            "r": -12
+          },
+          "lowR": {
+            "r": 12
+          },
+          "root": {
+            "y": 8
+          },
+          "sideL": {
+            "r": -12
+          },
+          "sideR": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "armL": {
+            "r": 12
+          },
+          "armR": {
+            "r": -12
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.98
+          },
+          "face": {
+            "y": 6
+          },
+          "lowL": {
+            "r": -12
+          },
+          "lowR": {
+            "r": 12
+          },
+          "root": {
+            "y": 8
+          },
+          "sideL": {
+            "r": -12
+          },
+          "sideR": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "face": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

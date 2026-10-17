@@ -3,43 +3,122 @@
   "sticker": "crab",
   "kind": "move",
   "description": "the crab scuttles sideways to the left on its eight legs, claws up, then stops.",
-  "sheet": "anims/crab.scuttle.webp",
-  "frame": {
-    "width": 531,
-    "height": 489
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.04331,
-    "y": 0.03885,
-    "width": 0.90772,
-    "height": 0.92638
-  },
   "stickerBox": {
     "x": 0.20052,
     "y": 0.21745,
     "width": 0.59896,
     "height": 0.5651
   },
-  "hold": [
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "left",
-  "stride": 0.45
+  "stride": 0.45,
+  "puppet": {
+    "rig": "anims/crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.13,
+        "bones": {
+          "body": {
+            "r": -2,
+            "y": -4
+          },
+          "clawL": {
+            "r": -4
+          },
+          "clawR": {
+            "r": 4
+          },
+          "legL1": {
+            "r": 12,
+            "y": -8
+          },
+          "legL3": {
+            "r": 12,
+            "y": -8
+          },
+          "legR2": {
+            "r": -12,
+            "y": -8
+          },
+          "legR4": {
+            "r": -12,
+            "y": -8
+          }
+        }
+      },
+      {
+        "hold": 0.13,
+        "bones": {
+          "body": {},
+          "clawL": {
+            "r": -2
+          },
+          "clawR": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.13,
+        "bones": {
+          "body": {
+            "r": 2,
+            "y": -4
+          },
+          "clawL": {
+            "r": -4
+          },
+          "clawR": {
+            "r": 4
+          },
+          "legL2": {
+            "r": 12,
+            "y": -8
+          },
+          "legL4": {
+            "r": 12,
+            "y": -8
+          },
+          "legR1": {
+            "r": -12,
+            "y": -8
+          },
+          "legR3": {
+            "r": -12,
+            "y": -8
+          }
+        }
+      },
+      {
+        "hold": 0.13,
+        "bones": {
+          "body": {},
+          "clawL": {
+            "r": -2
+          },
+          "clawR": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
 }

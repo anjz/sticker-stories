@@ -1,0 +1,48 @@
+{
+  "id": "rock",
+  "sticker": "bottle",
+  "kind": "action",
+  "description": "the bottle rocks gently back and forth.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.29297,
+    "width": 0.5,
+    "height": 0.41276
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/bottle.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.55,
+        "bones": {
+          "root": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.55,
+        "bones": {
+          "root": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "root": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

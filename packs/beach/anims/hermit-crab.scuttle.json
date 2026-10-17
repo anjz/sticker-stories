@@ -3,43 +3,95 @@
   "sticker": "hermit-crab",
   "kind": "move",
   "description": "the hermit crab scuttles along to the right on its little legs, carrying its shell, then stops.",
-  "sheet": "anims/hermit-crab.scuttle.webp",
-  "frame": {
-    "width": 537,
-    "height": 414
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.04097,
-    "y": 0.06039,
-    "width": 0.89758,
-    "height": 0.89855
-  },
   "stickerBox": {
     "x": 0.25,
     "y": 0.30469,
     "width": 0.5,
     "height": 0.39063
   },
-  "hold": [
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "right",
-  "stride": 0.4
+  "stride": 0.4,
+  "puppet": {
+    "rig": "anims/hermit-crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.13,
+        "bones": {
+          "body": {
+            "y": -3
+          },
+          "clawL": {
+            "r": -4
+          },
+          "legL1": {
+            "r": 8,
+            "y": -6
+          },
+          "legR2": {
+            "r": -8,
+            "y": -6
+          },
+          "shell": {
+            "r": 1.5,
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.13,
+        "bones": {
+          "body": {},
+          "shell": {}
+        }
+      },
+      {
+        "hold": 0.13,
+        "bones": {
+          "body": {
+            "y": -3
+          },
+          "clawR": {
+            "r": -4
+          },
+          "legL2": {
+            "r": 8,
+            "y": -6
+          },
+          "legR1": {
+            "r": -8,
+            "y": -6
+          },
+          "shell": {
+            "r": -1.5,
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.13,
+        "bones": {
+          "body": {},
+          "shell": {}
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
 }

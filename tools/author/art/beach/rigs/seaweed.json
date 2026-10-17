@@ -1,0 +1,2242 @@
+{
+  "sticker": "seaweed",
+  "skeleton": "seaweed growing from a little rock, facing the viewer: root at the holdfast (on the ground); body (pivot at the holdfast) carrying every frond; each frond on its own bone at its base so it sways and waves (frondFace with the face, frondTall, frondRight, frondLeft, frondTop); face on the face frond with eyes, mouth and brows; the holdfast in front.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a smiling seaweed character: green kelp fronds growing from a little brown rock. Draw this exact seaweed as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the holdfast: the little brown rock clump with its roots at the bottom of image 1, alone.\n2. the face frond: the big wide green frond with the face, left of the middle in image 1, from its narrow stem end at the bottom to its curled tip, with a completely blank face — no eyes, no mouth — keep the rosy cheeks.\n3. the tall frond: the tallest frond, in the middle of image 1, from its narrow stem end at the bottom to its curled tip at the top.\n4. the right frond: the yellow-green wavy frond on the right of image 1, from its narrow stem end at the bottom to its tip, with its round golden air bladder.\n5. the left curl: the frond curling out to the far left of image 1, from its narrow stem end to its curled tip.\n6. the top-left frond: the frond at the top left of image 1 with its curled tip, from its narrow stem end, with its thin stalk of round golden air bladders.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or another part) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a smiling seaweed character: green kelp fronds growing from a little brown rock; image 2 shows the same seaweed cut into puppet parts, with a blank face. Draw the seaweed's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the seaweed in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the left eye (on the right of image 1) as it is in image 1: a small dark eye with a white sparkle and a few lashes.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the same eye squeezed shut, crying: a tight, creased, downward-curving closed line.\n7. the mouth as it is in image 1: a small happy smile line.\n8. the mouth wide open in a big happy laugh, the inside pink.\n9. the mouth open in a small round 'o'.\n10. the mouth in a small sad frown.\n11. the mouth open in a wobbly crying wail, its corners turned down, the inside pink.\n12. one eyebrow: a small, thin, softly curved dark brown line.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "curl": {
+      "sheet": "parts",
+      "at": [
+        253,
+        634
+      ]
+    },
+    "faceFrond": {
+      "sheet": "parts",
+      "at": [
+        499,
+        495
+      ]
+    },
+    "tall": {
+      "sheet": "parts",
+      "at": [
+        803,
+        493
+      ]
+    },
+    "mid": {
+      "sheet": "parts",
+      "at": [
+        1117,
+        407
+      ]
+    },
+    "holdfast": {
+      "sheet": "parts",
+      "at": [
+        1063,
+        881
+      ]
+    },
+    "olive": {
+      "sheet": "parts",
+      "at": [
+        1382,
+        547
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        127,
+        345
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        387,
+        344
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        652,
+        361
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        899,
+        353
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1178,
+        345
+      ]
+    },
+    "eyeCry": {
+      "sheet": "face",
+      "at": [
+        1426,
+        349
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        133,
+        671
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        391,
+        674
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        625,
+        668
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        867,
+        681
+      ]
+    },
+    "mouthCry": {
+      "sheet": "face",
+      "at": [
+        1142,
+        675
+      ]
+    },
+    "brow": {
+      "sheet": "face",
+      "at": [
+        1418,
+        668
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 395,
+      "y": 588
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 395,
+      "y": 560
+    },
+    {
+      "id": "frondRight",
+      "parent": "body",
+      "x": 420,
+      "y": 540
+    },
+    {
+      "id": "frondMid",
+      "parent": "body",
+      "x": 408,
+      "y": 542
+    },
+    {
+      "id": "frondFace",
+      "parent": "body",
+      "x": 392,
+      "y": 538
+    },
+    {
+      "id": "frondTall",
+      "parent": "body",
+      "x": 398,
+      "y": 542
+    },
+    {
+      "id": "frondLeft",
+      "parent": "body",
+      "x": 386,
+      "y": 538
+    },
+    {
+      "id": "face",
+      "parent": "frondFace",
+      "x": 336,
+      "y": 405
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 316,
+      "y": 408
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 356,
+      "y": 397
+    },
+    {
+      "id": "browL",
+      "parent": "face",
+      "x": 313,
+      "y": 391
+    },
+    {
+      "id": "browR",
+      "parent": "face",
+      "x": 352,
+      "y": 380
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 338,
+      "y": 418
+    }
+  ],
+  "slots": [
+    {
+      "id": "frondRight",
+      "bone": "frondRight",
+      "default": "frond",
+      "attachments": {
+        "frond": {
+          "part": "olive",
+          "x": 490.8,
+          "y": 417.3,
+          "scale": 0.374,
+          "rotate": 11.1
+        }
+      }
+    },
+    {
+      "id": "frondMid",
+      "bone": "frondMid",
+      "default": "frond",
+      "attachments": {
+        "frond": {
+          "part": "mid",
+          "x": 440.7,
+          "y": 432.6,
+          "scale": 0.321,
+          "rotate": 24.4
+        }
+      }
+    },
+    {
+      "id": "frondFace",
+      "bone": "frondFace",
+      "default": "frond",
+      "attachments": {
+        "frond": {
+          "part": "faceFrond",
+          "x": 333.0,
+          "y": 371.3,
+          "scale": 0.386,
+          "rotate": -3.0
+        }
+      }
+    },
+    {
+      "id": "frondTall",
+      "bone": "frondTall",
+      "default": "frond",
+      "attachments": {
+        "frond": {
+          "part": "tall",
+          "x": 400.6,
+          "y": 356.6,
+          "scale": 0.402,
+          "rotate": 2.9
+        }
+      }
+    },
+    {
+      "id": "frondLeft",
+      "bone": "frondLeft",
+      "default": "frond",
+      "attachments": {
+        "frond": {
+          "part": "curl",
+          "x": 302.9,
+          "y": 451.3,
+          "scale": 0.331,
+          "rotate": -9.9
+        }
+      }
+    },
+    {
+      "id": "holdfast",
+      "bone": "root",
+      "default": "holdfast",
+      "attachments": {
+        "holdfast": {
+          "part": "holdfast",
+          "x": 395,
+          "y": 566,
+          "scale": 0.33
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 316,
+          "y": 408,
+          "scale": 0.15,
+          "rotate": -12,
+          "flip": true
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 316,
+          "y": 408,
+          "scale": 0.15,
+          "rotate": -12
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 316,
+          "y": 412,
+          "scale": 0.15,
+          "rotate": -12,
+          "flip": true
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 316,
+          "y": 406,
+          "scale": 0.15,
+          "rotate": -12
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 316,
+          "y": 410,
+          "scale": 0.16,
+          "rotate": -12,
+          "flip": true
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 316,
+          "y": 410,
+          "scale": 0.16,
+          "rotate": -12,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 356,
+          "y": 397,
+          "scale": 0.15,
+          "rotate": -12
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 356,
+          "y": 397,
+          "scale": 0.15,
+          "rotate": -12
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 356,
+          "y": 401,
+          "scale": 0.15,
+          "rotate": -12
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 356,
+          "y": 395,
+          "scale": 0.15,
+          "rotate": -12
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 356,
+          "y": 399,
+          "scale": 0.16,
+          "rotate": -12
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 356,
+          "y": 399,
+          "scale": 0.16,
+          "rotate": -12
+        }
+      }
+    },
+    {
+      "id": "browL",
+      "bone": "browL",
+      "default": "none",
+      "attachments": {
+        "sad": {
+          "part": "brow",
+          "x": 316,
+          "y": 396,
+          "scale": 0.16,
+          "rotate": -34
+        },
+        "up": {
+          "part": "brow",
+          "x": 313,
+          "y": 383,
+          "scale": 0.16,
+          "rotate": -12
+        }
+      }
+    },
+    {
+      "id": "browR",
+      "bone": "browR",
+      "default": "none",
+      "attachments": {
+        "sad": {
+          "part": "brow",
+          "x": 349,
+          "y": 385,
+          "scale": 0.16,
+          "rotate": 10,
+          "flip": true
+        },
+        "up": {
+          "part": "brow",
+          "x": 352,
+          "y": 372,
+          "scale": 0.16,
+          "rotate": -12,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 338,
+          "y": 418,
+          "scale": 0.15,
+          "rotate": -12
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 338,
+          "y": 424,
+          "scale": 0.15
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 338,
+          "y": 422,
+          "scale": 0.17
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 338,
+          "y": 421,
+          "scale": 0.14
+        },
+        "cry": {
+          "part": "mouthCry",
+          "x": 338,
+          "y": 423,
+          "scale": 0.13
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad",
+      "browL": "sad",
+      "browR": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o",
+      "browL": "up",
+      "browR": "up"
+    }
+  },
+  "idle": {
+    "breathe": "body",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "sway",
+      "kind": "action",
+      "idle": true,
+      "description": "the seaweed sways gently",
+      "pause": {
+        "frame": 3,
+        "shows": "the seaweed swayed to one side, its fronds curling"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.65,
+          "bones": {
+            "body": {
+              "r": -4
+            },
+            "frondLeft": {
+              "r": -3
+            },
+            "frondFace": {
+              "r": -2
+            },
+            "frondTall": {
+              "r": -3.5
+            },
+            "frondMid": {
+              "r": -3
+            },
+            "frondRight": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.65,
+          "bones": {
+            "body": {
+              "r": 4
+            },
+            "frondLeft": {
+              "r": 3
+            },
+            "frondFace": {
+              "r": 2
+            },
+            "frondTall": {
+              "r": 3.5
+            },
+            "frondMid": {
+              "r": 3
+            },
+            "frondRight": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.8,
+          "bones": {
+            "body": {
+              "r": -6.4
+            },
+            "frondLeft": {
+              "r": -4.800000000000001,
+              "sy": 0.95
+            },
+            "frondFace": {
+              "r": -3.2,
+              "sy": 0.95
+            },
+            "frondTall": {
+              "r": -5.6000000000000005,
+              "sy": 0.95
+            },
+            "frondMid": {
+              "r": -4.800000000000001,
+              "sy": 0.95
+            },
+            "frondRight": {
+              "r": -6.4,
+              "sy": 0.95
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.65,
+          "bones": {
+            "body": {
+              "r": 4
+            },
+            "frondLeft": {
+              "r": 3
+            },
+            "frondFace": {
+              "r": 2
+            },
+            "frondTall": {
+              "r": 3.5
+            },
+            "frondMid": {
+              "r": 3
+            },
+            "frondRight": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "body": {
+              "r": -1.2
+            },
+            "frondLeft": {
+              "r": -0.8999999999999999
+            },
+            "frondFace": {
+              "r": -0.6
+            },
+            "frondTall": {
+              "r": -1.05
+            },
+            "frondMid": {
+              "r": -0.8999999999999999
+            },
+            "frondRight": {
+              "r": -1.2
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sprout",
+      "description": "the seaweed sprouts: little fronds grow up from its holdfast and unfurl.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "frondRight": {
+              "sx": 0.3,
+              "sy": 0.06
+            },
+            "frondMid": {
+              "sx": 0.3,
+              "sy": 0.06
+            },
+            "frondFace": {
+              "sx": 0.3,
+              "sy": 0.06
+            },
+            "frondTall": {
+              "sx": 0.3,
+              "sy": 0.06
+            },
+            "frondLeft": {
+              "sx": 0.3,
+              "sy": 0.06
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "linear",
+          "bones": {
+            "frondRight": {
+              "sx": 0.5,
+              "sy": 0.35,
+              "r": -20
+            },
+            "frondMid": {
+              "sx": 0.5,
+              "sy": 0.35
+            },
+            "frondFace": {
+              "sx": 0.5,
+              "sy": 0.35,
+              "r": 12
+            },
+            "frondTall": {
+              "sx": 0.5,
+              "sy": 0.35
+            },
+            "frondLeft": {
+              "sx": 0.5,
+              "sy": 0.35,
+              "r": 20
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "frondRight": {
+              "sx": 0.8,
+              "sy": 0.7,
+              "r": -10
+            },
+            "frondMid": {
+              "sx": 0.8,
+              "sy": 0.7
+            },
+            "frondFace": {
+              "sx": 0.8,
+              "sy": 0.7,
+              "r": 6
+            },
+            "frondTall": {
+              "sx": 0.8,
+              "sy": 0.7
+            },
+            "frondLeft": {
+              "sx": 0.8,
+              "sy": 0.7,
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "frondRight": {
+              "sx": 1.0,
+              "sy": 1.05
+            },
+            "frondMid": {
+              "sx": 1.0,
+              "sy": 1.05
+            },
+            "frondFace": {
+              "sx": 1.0,
+              "sy": 1.05
+            },
+            "frondTall": {
+              "sx": 1.0,
+              "sy": 1.05
+            },
+            "frondLeft": {
+              "sx": 1.0,
+              "sy": 1.05
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "r": -2.4
+            },
+            "frondLeft": {
+              "r": -1.7999999999999998
+            },
+            "frondFace": {
+              "r": -1.2
+            },
+            "frondTall": {
+              "r": -2.1
+            },
+            "frondMid": {
+              "r": -1.7999999999999998
+            },
+            "frondRight": {
+              "r": -2.4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "r": 1.6
+            },
+            "frondLeft": {
+              "r": 1.2000000000000002
+            },
+            "frondFace": {
+              "r": 0.8
+            },
+            "frondTall": {
+              "r": 1.4000000000000001
+            },
+            "frondMid": {
+              "r": 1.2000000000000002
+            },
+            "frondRight": {
+              "r": 1.6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "droop",
+      "kind": "action",
+      "description": "the seaweed droops sadly, its fronds sagging, then slowly lifts itself up again.",
+      "pause": {
+        "frame": 3,
+        "shows": "the seaweed drooping sadly, its fronds sagging"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "body": {
+              "r": 1.0
+            },
+            "frondLeft": {
+              "r": -8.0,
+              "sy": 0.96
+            },
+            "frondFace": {
+              "r": -6.0,
+              "sy": 0.975
+            },
+            "frondTall": {
+              "r": -4.0,
+              "sy": 0.97
+            },
+            "frondMid": {
+              "r": 6.0,
+              "sy": 0.9650000000000001
+            },
+            "frondRight": {
+              "r": 8.0,
+              "sy": 0.96
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "body": {
+              "r": 2
+            },
+            "frondLeft": {
+              "r": -16,
+              "sy": 0.92
+            },
+            "frondFace": {
+              "r": -12,
+              "sy": 0.95
+            },
+            "frondTall": {
+              "r": -8,
+              "sy": 0.94
+            },
+            "frondMid": {
+              "r": 12,
+              "sy": 0.93
+            },
+            "frondRight": {
+              "r": 16,
+              "sy": 0.92
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 1.0,
+          "bones": {
+            "body": {
+              "r": 2
+            },
+            "frondLeft": {
+              "r": -16,
+              "sy": 0.92
+            },
+            "frondFace": {
+              "r": -12,
+              "sy": 0.95
+            },
+            "frondTall": {
+              "r": -8,
+              "sy": 0.94
+            },
+            "frondMid": {
+              "r": 12,
+              "sy": 0.93
+            },
+            "frondRight": {
+              "r": 16,
+              "sy": 0.92
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "body": {
+              "r": 1.0
+            },
+            "frondLeft": {
+              "r": -8.0,
+              "sy": 0.96
+            },
+            "frondFace": {
+              "r": -6.0,
+              "sy": 0.975
+            },
+            "frondTall": {
+              "r": -4.0,
+              "sy": 0.97
+            },
+            "frondMid": {
+              "r": 6.0,
+              "sy": 0.9650000000000001
+            },
+            "frondRight": {
+              "r": 8.0,
+              "sy": 0.96
+            }
+          },
+          "slots": {
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.4,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "stretch-up",
+      "kind": "action",
+      "description": "the seaweed stretches up tall towards the light, its fronds reaching up, and beams.",
+      "pause": {
+        "frame": 3,
+        "shows": "the seaweed stretched up tall, its fronds reaching up"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "frondLeft": {
+              "r": 5.0,
+              "sy": 1.05
+            },
+            "frondFace": {
+              "r": 4.0,
+              "sy": 1.04
+            },
+            "frondTall": {
+              "r": 1.0,
+              "sy": 1.04
+            },
+            "frondMid": {
+              "r": -3.0,
+              "sy": 1.05
+            },
+            "frondRight": {
+              "r": -5.0,
+              "sy": 1.05
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "frondLeft": {
+              "r": 10,
+              "sy": 1.1
+            },
+            "frondFace": {
+              "r": 8,
+              "sy": 1.08
+            },
+            "frondTall": {
+              "r": 2,
+              "sy": 1.08
+            },
+            "frondMid": {
+              "r": -6,
+              "sy": 1.1
+            },
+            "frondRight": {
+              "r": -10,
+              "sy": 1.1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.8,
+          "bones": {
+            "frondLeft": {
+              "r": 10,
+              "sy": 1.1
+            },
+            "frondFace": {
+              "r": 8,
+              "sy": 1.08
+            },
+            "frondTall": {
+              "r": 2,
+              "sy": 1.08
+            },
+            "frondMid": {
+              "r": -6,
+              "sy": 1.1
+            },
+            "frondRight": {
+              "r": -10,
+              "sy": 1.1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.4,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "kind": "action",
+      "description": "the seaweed waves hello with one of its fronds.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "frondRight": {
+              "r": 14
+            },
+            "frondFace": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "frondRight": {
+              "r": -6
+            },
+            "frondFace": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "frondRight": {
+              "r": 16
+            },
+            "frondFace": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "frondRight": {
+              "r": -6
+            },
+            "frondFace": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "frondRight": {
+              "r": 12
+            },
+            "frondFace": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "dance",
+      "kind": "action",
+      "description": "the seaweed does a happy little dance, swaying from side to side and swinging its fronds.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "frondLeft": {
+              "r": -8
+            },
+            "frondFace": {
+              "r": -4
+            },
+            "frondTall": {
+              "r": -7.0
+            },
+            "frondMid": {
+              "r": -6
+            },
+            "frondRight": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "frondLeft": {
+              "r": 8
+            },
+            "frondFace": {
+              "r": 4
+            },
+            "frondTall": {
+              "r": 7.0
+            },
+            "frondMid": {
+              "r": 6
+            },
+            "frondRight": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "frondLeft": {
+              "r": -8
+            },
+            "frondFace": {
+              "r": -4
+            },
+            "frondTall": {
+              "r": -7.0
+            },
+            "frondMid": {
+              "r": -6
+            },
+            "frondRight": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "frondLeft": {
+              "r": 8
+            },
+            "frondFace": {
+              "r": 4
+            },
+            "frondTall": {
+              "r": 7.0
+            },
+            "frondMid": {
+              "r": 6
+            },
+            "frondRight": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "frondLeft": {
+              "r": -8
+            },
+            "frondFace": {
+              "r": -4
+            },
+            "frondTall": {
+              "r": -7.0
+            },
+            "frondMid": {
+              "r": -6
+            },
+            "frondRight": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "frondLeft": {
+              "r": 8
+            },
+            "frondFace": {
+              "r": 4
+            },
+            "frondTall": {
+              "r": 7.0
+            },
+            "frondMid": {
+              "r": 6
+            },
+            "frondRight": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "laugh",
+      "kind": "action",
+      "description": "the seaweed laughs and laughs, its fronds jiggling with giggles.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "frondFace": {
+              "r": -3,
+              "sy": 1.03
+            },
+            "frondTall": {
+              "r": 2
+            },
+            "frondLeft": {
+              "r": 3
+            },
+            "frondRight": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "frondFace": {
+              "r": 1,
+              "sy": 0.97
+            },
+            "frondTall": {
+              "r": -1
+            },
+            "frondLeft": {
+              "r": -1
+            },
+            "frondRight": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "frondFace": {
+              "r": -3,
+              "sy": 1.03
+            },
+            "frondTall": {
+              "r": 2
+            },
+            "frondLeft": {
+              "r": 3
+            },
+            "frondRight": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "frondFace": {
+              "r": 1,
+              "sy": 0.97
+            },
+            "frondTall": {
+              "r": -1
+            },
+            "frondLeft": {
+              "r": -1
+            },
+            "frondRight": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "frondFace": {
+              "r": -3,
+              "sy": 1.03
+            },
+            "frondTall": {
+              "r": 2
+            },
+            "frondLeft": {
+              "r": 3
+            },
+            "frondRight": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "frondFace": {
+              "r": 1,
+              "sy": 0.97
+            },
+            "frondTall": {
+              "r": -1
+            },
+            "frondLeft": {
+              "r": -1
+            },
+            "frondRight": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "frondFace": {
+              "r": -3,
+              "sy": 1.03
+            },
+            "frondTall": {
+              "r": 2
+            },
+            "frondLeft": {
+              "r": 3
+            },
+            "frondRight": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "frondFace": {
+              "r": 1,
+              "sy": 0.97
+            },
+            "frondTall": {
+              "r": -1
+            },
+            "frondLeft": {
+              "r": -1
+            },
+            "frondRight": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "kind": "action",
+      "description": "the seaweed talks, its mouth moving, its big frond bobbing a little.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "frondFace": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "frondFace": {
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "frondFace": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "frondFace": {
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "frondFace": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "frondFace": {
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "frondFace": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "frondFace": {
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "frondFace": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "frondFace": {
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "kind": "action",
+      "description": "the seaweed gives a big yawn, lets its fronds settle and falls asleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the seaweed fast asleep, eyes shut, its fronds settled"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "frondFace": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "frondFace": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "frondLeft": {
+              "r": -8,
+              "sy": 0.96
+            },
+            "frondFace": {
+              "r": -6,
+              "sy": 0.97
+            },
+            "frondTall": {
+              "r": -4
+            },
+            "frondMid": {
+              "r": 6
+            },
+            "frondRight": {
+              "r": 8,
+              "sy": 0.96
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "frondLeft": {
+              "r": -8,
+              "sy": 0.96
+            },
+            "frondFace": {
+              "r": -6,
+              "sy": 0.97
+            },
+            "frondTall": {
+              "r": -4
+            },
+            "frondMid": {
+              "r": 6
+            },
+            "frondRight": {
+              "r": 8,
+              "sy": 0.96
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shiver",
+      "kind": "action",
+      "description": "the seaweed shivers with cold, trembling from its fronds down to its holdfast.",
+      "keys": [
+        {
+          "hold": 0.1,
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": -1.5
+            },
+            "frondLeft": {
+              "r": 2
+            },
+            "frondRight": {
+              "r": -2
+            },
+            "frondTall": {
+              "r": 1.5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": 1.5
+            },
+            "frondLeft": {
+              "r": -2
+            },
+            "frondRight": {
+              "r": 2
+            },
+            "frondTall": {
+              "r": -1.5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": -1.5
+            },
+            "frondLeft": {
+              "r": 2
+            },
+            "frondRight": {
+              "r": -2
+            },
+            "frondTall": {
+              "r": 1.5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": 1.5
+            },
+            "frondLeft": {
+              "r": -2
+            },
+            "frondRight": {
+              "r": 2
+            },
+            "frondTall": {
+              "r": -1.5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": -1.5
+            },
+            "frondLeft": {
+              "r": 2
+            },
+            "frondRight": {
+              "r": -2
+            },
+            "frondTall": {
+              "r": 1.5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": 1.5
+            },
+            "frondLeft": {
+              "r": -2
+            },
+            "frondRight": {
+              "r": 2
+            },
+            "frondTall": {
+              "r": -1.5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": -1.5
+            },
+            "frondLeft": {
+              "r": 2
+            },
+            "frondRight": {
+              "r": -2
+            },
+            "frondTall": {
+              "r": 1.5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": 1.5
+            },
+            "frondLeft": {
+              "r": -2
+            },
+            "frondRight": {
+              "r": 2
+            },
+            "frondTall": {
+              "r": -1.5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": -1.5
+            },
+            "frondLeft": {
+              "r": 2
+            },
+            "frondRight": {
+              "r": -2
+            },
+            "frondTall": {
+              "r": 1.5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": 1.5
+            },
+            "frondLeft": {
+              "r": -2
+            },
+            "frondRight": {
+              "r": 2
+            },
+            "frondTall": {
+              "r": -1.5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": -1.5
+            },
+            "frondLeft": {
+              "r": 2
+            },
+            "frondRight": {
+              "r": -2
+            },
+            "frondTall": {
+              "r": 1.5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": 1.5
+            },
+            "frondLeft": {
+              "r": -2
+            },
+            "frondRight": {
+              "r": 2
+            },
+            "frondTall": {
+              "r": -1.5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": -1.5
+            },
+            "frondLeft": {
+              "r": 2
+            },
+            "frondRight": {
+              "r": -2
+            },
+            "frondTall": {
+              "r": 1.5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "body": {
+              "r": 1.5
+            },
+            "frondLeft": {
+              "r": -2
+            },
+            "frondRight": {
+              "r": 2
+            },
+            "frondTall": {
+              "r": -1.5
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    }
+  ]
+}

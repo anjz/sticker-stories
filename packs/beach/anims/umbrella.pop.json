@@ -1,0 +1,84 @@
+{
+  "id": "pop",
+  "sticker": "umbrella",
+  "kind": "action",
+  "description": "the beach umbrella folds itself shut, then pops open again.",
+  "stickerBox": {
+    "x": 0.08203,
+    "y": 0.07943,
+    "width": 0.83594,
+    "height": 0.83984
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the beach umbrella folded shut"
+  },
+  "puppet": {
+    "rig": "anims/umbrella.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "ease": "in",
+        "bones": {
+          "canopy": {
+            "sx": 0.3,
+            "sy": 0.95
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "canopy": {}
+        },
+        "slots": {
+          "canopy": "none",
+          "closed": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "canopy": {}
+        },
+        "slots": {
+          "canopy": "none",
+          "closed": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "out",
+        "bones": {
+          "canopy": {
+            "sx": 0.3,
+            "sy": 0.9
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "canopy": {
+            "sx": 1.06,
+            "sy": 0.98
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "canopy": {
+            "sx": 0.98
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "id": "talk",
+  "sticker": "starfish",
+  "kind": "action",
+  "description": "the starfish talks, its mouth moving, its arms bobbing a little.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20182,
+    "width": 0.59896,
+    "height": 0.59505
+  },
+  "puppet": {
+    "rig": "anims/starfish.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "armR": {
+            "r": -5
+          },
+          "face": {
+            "y": -2
+          },
+          "top": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "face": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "armR": {
+            "r": -5
+          },
+          "face": {
+            "y": -2
+          },
+          "top": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "face": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "armR": {
+            "r": -5
+          },
+          "face": {
+            "y": -2
+          },
+          "top": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "face": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "armR": {
+            "r": -5
+          },
+          "face": {
+            "y": -2
+          },
+          "top": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "face": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "armR": {
+            "r": -5
+          },
+          "face": {
+            "y": -2
+          },
+          "top": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "face": {
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

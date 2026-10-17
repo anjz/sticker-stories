@@ -1,0 +1,153 @@
+{
+  "id": "dance",
+  "sticker": "clam",
+  "kind": "action",
+  "description": "the clam does a happy little dance, rocking from side to side and clapping its shell.",
+  "stickerBox": {
+    "x": 0.25521,
+    "y": 0.25,
+    "width": 0.48958,
+    "height": 0.5
+  },
+  "puppet": {
+    "rig": "anims/clam.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": -6
+          },
+          "lid": {
+            "r": -3,
+            "y": -10
+          },
+          "root": {
+            "x": -10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": 6
+          },
+          "lid": {
+            "r": 3,
+            "sy": 0.8
+          },
+          "root": {
+            "x": 10,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": -6
+          },
+          "lid": {
+            "r": -3,
+            "y": -10
+          },
+          "root": {
+            "x": -10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": 6
+          },
+          "lid": {
+            "r": 3,
+            "sy": 0.8
+          },
+          "root": {
+            "x": 10,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": -6
+          },
+          "lid": {
+            "r": -3,
+            "y": -10
+          },
+          "root": {
+            "x": -10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "body": {
+            "r": 6
+          },
+          "lid": {
+            "r": 3,
+            "sy": 0.8
+          },
+          "root": {
+            "x": 10,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

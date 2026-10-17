@@ -1,0 +1,68 @@
+{
+  "id": "look-around",
+  "sticker": "clam",
+  "kind": "action",
+  "description": "the clam looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.25521,
+    "y": 0.25,
+    "width": 0.48958,
+    "height": 0.5
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/clam.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -10
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -10
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 10
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 10
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

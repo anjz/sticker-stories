@@ -1,0 +1,133 @@
+{
+  "id": "kite-dive",
+  "sticker": "girl",
+  "kind": "action",
+  "description": "the kite dives down to one side and the girl pulls it back up just in time, phew!",
+  "stickerBox": {
+    "x": 0.25651,
+    "y": 0.13932,
+    "width": 0.48568,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the kite diving low beside the girl, her eyes wide"
+  },
+  "puppet": {
+    "rig": "anims/girl.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.45,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": -8
+          },
+          "face": {
+            "x": -3
+          },
+          "head": {
+            "r": -5
+          },
+          "kite": {
+            "r": -30
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "face": {
+            "x": -4
+          },
+          "head": {
+            "r": -6
+          },
+          "kite": {
+            "r": -38
+          },
+          "root": {
+            "x": -4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "body": {
+            "r": -3
+          },
+          "head": {
+            "r": -4
+          },
+          "kite": {
+            "r": -14,
+            "y": -14
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 9
+          },
+          "head": {
+            "r": -3
+          },
+          "kite": {
+            "r": -2,
+            "y": -14
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": 6
+          },
+          "kite": {
+            "r": -2,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

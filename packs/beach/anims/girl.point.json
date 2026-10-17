@@ -1,0 +1,80 @@
+{
+  "id": "point",
+  "sticker": "girl",
+  "kind": "action",
+  "description": "the girl points at something over there, eyes wide.",
+  "stickerBox": {
+    "x": 0.25651,
+    "y": 0.13932,
+    "width": 0.48568,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the girl pointing, her eyes wide"
+  },
+  "puppet": {
+    "rig": "anims/girl.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "armR": {
+            "r": -35
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "face": {
+            "x": 3
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "armR": "point",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "armR": {
+            "r": -3
+          },
+          "face": {
+            "x": 3
+          },
+          "head": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "armR": "point",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armR": {
+            "r": -35
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

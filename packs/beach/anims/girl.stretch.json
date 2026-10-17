@@ -1,0 +1,116 @@
+{
+  "id": "stretch",
+  "sticker": "girl",
+  "kind": "action",
+  "description": "the girl stretches up on tiptoe, her arms out wide, and gives a big happy sigh.",
+  "stickerBox": {
+    "x": 0.25651,
+    "y": 0.13932,
+    "width": 0.48568,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/girl.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armR": {
+            "r": -35
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": -66
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": -3,
+            "y": -2
+          },
+          "kite": {
+            "r": -6,
+            "y": -8
+          },
+          "root": {
+            "y": -8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "armL": {
+            "r": 12
+          },
+          "armR": {
+            "r": -72
+          },
+          "belly": {
+            "sy": 1.05
+          },
+          "head": {
+            "r": -4,
+            "y": -3
+          },
+          "kite": {
+            "r": -6,
+            "y": -10
+          },
+          "root": {
+            "y": -10
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armR": {
+            "r": -35
+          },
+          "belly": {
+            "sy": 0.98
+          },
+          "root": {
+            "y": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

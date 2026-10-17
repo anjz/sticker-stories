@@ -1,0 +1,113 @@
+{
+  "id": "tuck",
+  "sticker": "urchin",
+  "kind": "action",
+  "description": "the sea urchin folds its spines down flat and makes itself small and shy, then slowly fans them out again and smiles.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26953,
+    "width": 0.5,
+    "height": 0.45964
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the sea urchin small and shy, its spines folded down flat"
+  },
+  "puppet": {
+    "rig": "anims/urchin.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "spines": {
+            "sx": 0.9,
+            "sy": 0.9
+          }
+        },
+        "slots": {
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "face": {
+            "y": 10
+          },
+          "spines": {
+            "sx": 1.08,
+            "sy": 1.08
+          }
+        },
+        "slots": {
+          "body": "tucked",
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "face": {
+            "y": 10
+          }
+        },
+        "slots": {
+          "body": "tucked",
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "face": {
+            "y": 10
+          }
+        },
+        "slots": {
+          "body": "tucked"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "spines": {
+            "sx": 0.92,
+            "sy": 0.92
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "id": "nudge",
+  "sticker": "ball",
+  "kind": "action",
+  "description": "the beach ball rolls a little way to the left, stops, and rolls back again, as if someone gave it a nudge.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20052,
+    "width": 0.59766,
+    "height": 0.59896
+  },
+  "puppet": {
+    "rig": "anims/ball.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.6,
+        "ease": "out",
+        "bones": {
+          "root": {
+            "x": -81
+          },
+          "spin": {
+            "r": -22
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "root": {
+            "x": -88.4
+          },
+          "spin": {
+            "r": -24
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "ease": "inOut",
+        "bones": {
+          "root": {
+            "x": 7.4
+          },
+          "spin": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "root": {
+            "x": -3.7
+          },
+          "spin": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

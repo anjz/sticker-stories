@@ -1,0 +1,125 @@
+{
+  "id": "jump",
+  "sticker": "surfer",
+  "kind": "action",
+  "description": "the surfer boy crouches, jumps up high for joy and lands with a little squash.",
+  "stickerBox": {
+    "x": 0.26302,
+    "y": 0.13932,
+    "width": 0.47266,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/surfer.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "armL": {
+            "r": -8
+          },
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.93
+          },
+          "head": {
+            "y": 4
+          },
+          "root": {
+            "y": 8
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 45
+          },
+          "armR": {
+            "r": -6
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "legL": {
+            "r": 10
+          },
+          "legR": {
+            "r": -10
+          },
+          "root": {
+            "y": -70
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": 45
+          },
+          "armR": {
+            "r": -6
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "legL": {
+            "r": 10
+          },
+          "legR": {
+            "r": -10
+          },
+          "root": {
+            "y": -74
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.92
+          },
+          "head": {
+            "y": 4
+          },
+          "root": {
+            "y": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

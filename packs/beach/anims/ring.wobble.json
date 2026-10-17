@@ -1,0 +1,63 @@
+{
+  "id": "wobble",
+  "sticker": "ring",
+  "kind": "action",
+  "description": "the rubber ring wobbles from side to side, then settles.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.24089,
+    "width": 0.59896,
+    "height": 0.51693
+  },
+  "puppet": {
+    "rig": "anims/ring.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "root": {
+            "r": 7
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "root": {
+            "r": -7
+          }
+        }
+      },
+      {
+        "hold": 0.28,
+        "bones": {
+          "root": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.26,
+        "bones": {
+          "root": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "root": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

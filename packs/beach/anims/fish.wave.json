@@ -1,0 +1,103 @@
+{
+  "id": "wave",
+  "sticker": "fish",
+  "description": "the little fish lifts its little side fin and waves hello.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27734,
+    "width": 0.5,
+    "height": 0.44401
+  },
+  "puppet": {
+    "rig": "anims/fish.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "finSide": {
+            "r": -30
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "finSide": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "finSide": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "finSide": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "finSide": {
+            "r": -35
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "finSide": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "finSide": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "finSide": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "finSide": {
+            "r": -35
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "finSide": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

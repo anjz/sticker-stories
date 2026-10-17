@@ -1,0 +1,80 @@
+{
+  "id": "look-around",
+  "sticker": "pelican",
+  "description": "the pelican looks up, then turns right round to look behind it, then turns back and looks ahead again.",
+  "stickerBox": {
+    "x": 0.18359,
+    "y": 0.13932,
+    "width": 0.63281,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the pelican turned round, looking behind it"
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/pelican.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": 10,
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "head": {
+            "r": 10,
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "ease": "inOut",
+        "bones": {
+          "head": {
+            "r": 4
+          },
+          "root": {
+            "x": 30,
+            "sx": -1
+          }
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "head": {
+            "r": 6,
+            "y": -2
+          },
+          "root": {
+            "x": 30,
+            "sx": -1
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "ease": "inOut",
+        "bones": {
+          "head": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

@@ -1,0 +1,2289 @@
+{
+  "sticker": "fish",
+  "skeleton": "little fish side view facing right: root at the bottom of its belly; body (pivot at the middle) with belly squash; face on the body carrying the eye and mouth; tail at the back, dorsal fin on top, two belly fins below and the side fin on the body, each at its root.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a little fish character. Draw this exact little fish character as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the body: the round striped yellow-and-blue body, facing right as in image 1, without its tail and without any fin, with a completely blank face — no eye, no mouth — keep the rosy cheek.\n2. the tail: the big yellow fan tail with its orange lines, with a rounded base.\n3. the top fin: the yellow fin on its back with its orange lines, with a rounded base.\n4. the belly fin: one small yellow fin from under its belly, with a rounded base.\n5. the side fin: the small yellow fin that lies on its side in image 1, drawn whole, with a rounded base.\n6. the side fin spread out wide, fanned open, with a rounded base.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a little fish character; image 2 shows the same fish cut into puppet parts, with a blank face. Draw the fish's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the fish in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the fish's eye as it is in image 1: a big dark round eye with a white sparkle and a white rim.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: the pupil looking down, its upper lid drooping and tilted, a thin shine of a welling tear along the bottom rim.\n6. the same eye crying: gently squeezed shut, a soft downward-curving line (a sad closed eye, not a smile), a few small lashes, and one small light-blue teardrop just below it.\n7. the mouth as it is in image 1: a small happy smile.\n8. the mouth laughing: open wide, a little pink inside.\n9. the mouth puckered into a small round \"o\", blowing.\n10. the mouth sad: a small downturned frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "called": "the little fish",
+  "parts": {
+    "finTop": {
+      "sheet": "parts",
+      "at": [
+        725,
+        161
+      ]
+    },
+    "tail": {
+      "sheet": "parts",
+      "at": [
+        244,
+        545
+      ]
+    },
+    "body": {
+      "sheet": "parts",
+      "at": [
+        845,
+        541
+      ]
+    },
+    "finSide": {
+      "sheet": "parts",
+      "at": [
+        1362,
+        417
+      ]
+    },
+    "finSideOpen": {
+      "sheet": "parts",
+      "at": [
+        1360,
+        750
+      ]
+    },
+    "finBelly": {
+      "sheet": "parts",
+      "at": [
+        820,
+        918
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        124,
+        378
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        394,
+        374
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        658,
+        401
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        916,
+        361
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1169,
+        377
+      ]
+    },
+    "eyeCry": {
+      "sheet": "face",
+      "at": [
+        1411,
+        408
+      ]
+    },
+    "mouthSmile": {
+      "sheet": "face",
+      "at": [
+        249,
+        713
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        581,
+        707
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        921,
+        705
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1269,
+        698
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 424,
+      "y": 530
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 424,
+      "y": 400
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 424,
+      "y": 400
+    },
+    {
+      "id": "face",
+      "parent": "body",
+      "x": 505,
+      "y": 385
+    },
+    {
+      "id": "eye",
+      "parent": "face",
+      "x": 490,
+      "y": 368
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 526,
+      "y": 401
+    },
+    {
+      "id": "tail",
+      "parent": "body",
+      "x": 305,
+      "y": 400
+    },
+    {
+      "id": "finTop",
+      "parent": "body",
+      "x": 400,
+      "y": 300
+    },
+    {
+      "id": "finBack",
+      "parent": "body",
+      "x": 345,
+      "y": 465
+    },
+    {
+      "id": "finFront",
+      "parent": "body",
+      "x": 440,
+      "y": 482
+    },
+    {
+      "id": "finSide",
+      "parent": "body",
+      "x": 384,
+      "y": 412
+    }
+  ],
+  "slots": [
+    {
+      "id": "tail",
+      "bone": "tail",
+      "default": "tail",
+      "attachments": {
+        "tail": {
+          "part": "tail",
+          "x": 276,
+          "y": 397,
+          "scale": 0.33
+        }
+      }
+    },
+    {
+      "id": "finTop",
+      "bone": "finTop",
+      "default": "fin",
+      "attachments": {
+        "fin": {
+          "part": "finTop",
+          "x": 387,
+          "y": 282,
+          "scale": 0.36
+        }
+      }
+    },
+    {
+      "id": "finBack",
+      "bone": "finBack",
+      "default": "fin",
+      "attachments": {
+        "fin": {
+          "part": "finBelly",
+          "x": 336,
+          "y": 484,
+          "scale": 0.36
+        }
+      }
+    },
+    {
+      "id": "finFront",
+      "bone": "finFront",
+      "default": "fin",
+      "attachments": {
+        "fin": {
+          "part": "finBelly",
+          "x": 438,
+          "y": 503,
+          "scale": 0.36,
+          "rotate": -25
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "body",
+          "x": 424,
+          "y": 384,
+          "scale": 0.368
+        }
+      }
+    },
+    {
+      "id": "finSide",
+      "bone": "finSide",
+      "default": "fin",
+      "attachments": {
+        "fin": {
+          "part": "finSide",
+          "x": 410,
+          "y": 426,
+          "scale": 0.31,
+          "flip": true
+        },
+        "open": {
+          "part": "finSideOpen",
+          "x": 418,
+          "y": 424,
+          "scale": 0.31
+        }
+      }
+    },
+    {
+      "id": "eye",
+      "bone": "eye",
+      "default": "default",
+      "attachments": {
+        "default": {
+          "part": "eye",
+          "x": 494,
+          "y": 368,
+          "scale": 0.235
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 490,
+          "y": 366,
+          "scale": 0.24675
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 490,
+          "y": 374,
+          "scale": 0.235
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 490,
+          "y": 370,
+          "scale": 0.235
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 494,
+          "y": 370,
+          "scale": 0.235,
+          "flip": true
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 492,
+          "y": 380,
+          "scale": 0.235
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouthSmile",
+          "x": 526,
+          "y": 401,
+          "scale": 0.22
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 526,
+          "y": 405,
+          "scale": 0.22
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 528,
+          "y": 403,
+          "scale": 0.22
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 526,
+          "y": 403,
+          "scale": 0.22
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eye": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eye": "sad",
+      "mouth": "sad"
+    },
+    "sleeping": {
+      "eye": "closed"
+    },
+    "surprised": {
+      "eye": "wide",
+      "mouth": "o"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eye": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "wiggle",
+      "description": "the little fish wiggles its tail and flutters its fins",
+      "pause": {
+        "frame": 5,
+        "shows": "the fish with its fins spread wide and its tail fanned, smiling"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "tail": {
+              "r": 14
+            },
+            "body": {
+              "r": -2
+            },
+            "finSide": {
+              "r": -10
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "tail": {
+              "r": -14
+            },
+            "body": {
+              "r": 2
+            },
+            "finSide": {
+              "r": 8
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "tail": {
+              "r": 14
+            },
+            "body": {
+              "r": -2
+            },
+            "finSide": {
+              "r": -10
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "tail": {
+              "r": -10
+            },
+            "body": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "tail": {
+              "sy": 1.12,
+              "sx": 1.06
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "finTop": {
+              "r": -10
+            },
+            "finBack": {
+              "r": 10
+            },
+            "finFront": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "finSide": "open",
+            "eye": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "tail": {
+              "r": 10
+            },
+            "finTop": {
+              "r": -6
+            },
+            "finBack": {
+              "r": 6
+            },
+            "finFront": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "finSide": "open",
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "tail": {
+              "r": -10
+            },
+            "finTop": {
+              "r": -3
+            },
+            "finBack": {
+              "r": 3
+            },
+            "finFront": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "finSide": "open",
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "tail": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "swim",
+      "kind": "move",
+      "description": "the little fish swims along to the right, swishing its tail, then stops.",
+      "facing": "right",
+      "on": [
+        "pool",
+        "sea"
+      ],
+      "waterline": 0.3,
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "stride": 0.7,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "tail": {
+              "r": 18
+            },
+            "root": {
+              "y": -3
+            },
+            "body": {
+              "r": -2
+            },
+            "finSide": {
+              "r": -12
+            },
+            "finTop": {
+              "r": -4.5
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "tail": {
+              "r": 0
+            },
+            "root": {
+              "y": 0
+            },
+            "body": {
+              "r": 0
+            },
+            "finSide": {
+              "r": 0
+            },
+            "finTop": {
+              "r": 0.0
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "tail": {
+              "r": -18
+            },
+            "root": {
+              "y": -3
+            },
+            "body": {
+              "r": 2
+            },
+            "finSide": {
+              "r": 10
+            },
+            "finTop": {
+              "r": 4.5
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "tail": {
+              "r": 0
+            },
+            "root": {
+              "y": 0
+            },
+            "body": {
+              "r": 0
+            },
+            "finSide": {
+              "r": 0
+            },
+            "finTop": {
+              "r": 0.0
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "tail": {
+              "r": 6
+            },
+            "root": {
+              "y": -1
+            },
+            "body": {
+              "r": 0
+            },
+            "finSide": {
+              "r": -4
+            },
+            "finTop": {
+              "r": -1.5
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "blow",
+      "description": "the little fish puckers its lips into a round little o and blows, puff, puff, puff, as if blowing bubbles, then smiles.",
+      "pause": {
+        "frame": 2,
+        "shows": "the fish with its cheeks puffed and its mouth a round little o, blowing"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "belly": {
+              "sx": 1.04,
+              "sy": 1.04
+            },
+            "face": {
+              "x": 3
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "belly": {
+              "sx": 1.06,
+              "sy": 1.06
+            },
+            "face": {
+              "x": 3
+            },
+            "tail": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "belly": {
+              "sx": 0.98,
+              "sy": 0.98
+            },
+            "face": {
+              "x": 3
+            },
+            "root": {
+              "x": -4
+            }
+          },
+          "slots": {
+            "mouth": "o",
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "belly": {
+              "sx": 1.05,
+              "sy": 1.05
+            },
+            "face": {
+              "x": 3
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "belly": {
+              "sx": 0.98,
+              "sy": 0.98
+            },
+            "face": {
+              "x": 3
+            },
+            "root": {
+              "x": -4
+            }
+          },
+          "slots": {
+            "mouth": "o",
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "belly": {
+              "sx": 1.05,
+              "sy": 1.05
+            },
+            "face": {
+              "x": 3
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "belly": {
+              "sx": 0.98,
+              "sy": 0.98
+            },
+            "face": {
+              "x": 3
+            },
+            "root": {
+              "x": -4
+            }
+          },
+          "slots": {
+            "mouth": "o",
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.35,
+          "slots": {
+            "eye": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "flick",
+      "description": "the little fish curls its tail round and flicks it hard, swish, darting forward a little, then wriggles happily.",
+      "pause": {
+        "frame": 2,
+        "shows": "the fish curled round, its tail swept forward, about to flick"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "tail": {
+              "r": 30
+            },
+            "body": {
+              "r": -4
+            },
+            "root": {
+              "x": -6
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "tail": {
+              "r": 38
+            },
+            "body": {
+              "r": -5
+            },
+            "root": {
+              "x": -8
+            },
+            "finSide": {
+              "r": -10
+            }
+          },
+          "slots": {
+            "eye": "wide"
+          }
+        },
+        {
+          "hold": 0.16,
+          "ease": "out",
+          "bones": {
+            "tail": {
+              "r": -24
+            },
+            "body": {
+              "r": 3
+            },
+            "root": {
+              "x": 22
+            },
+            "finSide": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "tail": {
+              "r": 10
+            },
+            "root": {
+              "x": 26
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.4,
+          "ease": "inOut",
+          "bones": {
+            "tail": {
+              "r": -6
+            },
+            "root": {
+              "x": 10
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "tail": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "description": "the little fish nods yes, twice, dipping its nose.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "tail": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "tail": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "shake-head",
+      "description": "the little fish shakes its head no, wiggling from side to side.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "face": {
+              "x": -8
+            },
+            "body": {
+              "sx": 0.97
+            },
+            "tail": {
+              "r": 8
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "x": 6
+            },
+            "body": {
+              "sx": 1.02
+            },
+            "tail": {
+              "r": -8
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "x": -8
+            },
+            "body": {
+              "sx": 0.97
+            },
+            "tail": {
+              "r": 8
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "x": 5
+            },
+            "tail": {
+              "r": -6
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "laugh",
+      "description": "the little fish laughs and laughs, bouncing with giggles and wagging its tail.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "tail": {
+              "r": 10
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "tail": {
+              "r": -6
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "tail": {
+              "r": 10
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "tail": {
+              "r": -6
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "tail": {
+              "r": 10
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "tail": {
+              "r": -6
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "tail": {
+              "r": 10
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "tail": {
+              "r": -6
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "description": "the little fish talks, its mouth opening and closing, its tail swishing a little.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": -2
+            },
+            "root": {
+              "y": -3
+            },
+            "tail": {
+              "r": 5
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": 0
+            },
+            "root": {
+              "y": 0
+            },
+            "tail": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": -2
+            },
+            "root": {
+              "y": -3
+            },
+            "tail": {
+              "r": 5
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": 0
+            },
+            "root": {
+              "y": 0
+            },
+            "tail": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": -2
+            },
+            "root": {
+              "y": -3
+            },
+            "tail": {
+              "r": 5
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": 0
+            },
+            "root": {
+              "y": 0
+            },
+            "tail": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": -2
+            },
+            "root": {
+              "y": -3
+            },
+            "tail": {
+              "r": 5
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": 0
+            },
+            "root": {
+              "y": 0
+            },
+            "tail": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": -2
+            },
+            "root": {
+              "y": -3
+            },
+            "tail": {
+              "r": 5
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "r": 0
+            },
+            "root": {
+              "y": 0
+            },
+            "tail": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "cry",
+      "description": "the little fish cries, sinking down with its fins drooping, shaking with little sobs.",
+      "pause": {
+        "frame": 3,
+        "shows": "the fish crying, eyes squeezed shut, a tear on its cheek"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "root": {
+              "y": 10
+            },
+            "body": {
+              "r": 6
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "tail": {
+              "r": -6
+            },
+            "finTop": {
+              "r": -8
+            },
+            "finSide": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eye": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 13
+            },
+            "body": {
+              "r": 6
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "tail": {
+              "r": -6
+            },
+            "finTop": {
+              "r": -8
+            },
+            "finSide": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eye": "cry",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 10
+            },
+            "body": {
+              "r": 6
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "tail": {
+              "r": -6
+            },
+            "finTop": {
+              "r": -8
+            },
+            "finSide": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eye": "cry",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 13
+            },
+            "body": {
+              "r": 6
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "tail": {
+              "r": -6
+            },
+            "finTop": {
+              "r": -8
+            },
+            "finSide": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eye": "cry",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 10
+            },
+            "body": {
+              "r": 6
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "tail": {
+              "r": -6
+            },
+            "finTop": {
+              "r": -8
+            },
+            "finSide": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eye": "cry",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 13
+            },
+            "body": {
+              "r": 6
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "tail": {
+              "r": -6
+            },
+            "finTop": {
+              "r": -8
+            },
+            "finSide": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eye": "cry",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 10
+            },
+            "body": {
+              "r": 6
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "tail": {
+              "r": -6
+            },
+            "finTop": {
+              "r": -8
+            },
+            "finSide": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eye": "cry",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 13
+            },
+            "body": {
+              "r": 6
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "tail": {
+              "r": -6
+            },
+            "finTop": {
+              "r": -8
+            },
+            "finSide": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eye": "cry",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "root": {
+              "y": 4
+            }
+          },
+          "slots": {
+            "eye": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "description": "the little fish gives a big yawn, closes its eyes and drifts off to sleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the fish fast asleep, eyes shut, floating still"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            },
+            "body": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eye": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            },
+            "body": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eye": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "root": {
+              "y": 14
+            },
+            "body": {
+              "r": 4
+            },
+            "finTop": {
+              "r": -10
+            },
+            "finSide": {
+              "r": 8
+            },
+            "tail": {
+              "r": -6
+            },
+            "belly": {
+              "sy": 0.98,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.8,
+          "bones": {
+            "root": {
+              "y": 14
+            },
+            "body": {
+              "r": 4
+            },
+            "finTop": {
+              "r": -10
+            },
+            "finSide": {
+              "r": 8
+            },
+            "tail": {
+              "r": -6
+            },
+            "belly": {
+              "sy": 1.01,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "root": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "eye": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "description": "the little fish curls, leaps up high in an arc for joy and drops back down with a wiggle.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 6
+            },
+            "belly": {
+              "sx": 1.05,
+              "sy": 0.93
+            },
+            "tail": {
+              "r": 14
+            }
+          }
+        },
+        {
+          "hold": 0.24,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -80,
+              "x": 10
+            },
+            "body": {
+              "r": -18
+            },
+            "tail": {
+              "r": -16
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open",
+            "finSide": "open"
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -86,
+              "x": 20
+            },
+            "body": {
+              "r": 6
+            },
+            "tail": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open",
+            "finSide": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 4
+            },
+            "body": {
+              "r": 10
+            },
+            "belly": {
+              "sx": 1.04,
+              "sy": 0.95
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "tail": {
+              "r": -6
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "look-around",
+      "idle": true,
+      "description": "the little fish looks up, then turns right round to look behind it, then turns back and looks ahead again.",
+      "pause": {
+        "frame": 4,
+        "shows": "the fish turned round, looking behind it"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "tail": {
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "tail": {
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "ease": "inOut",
+          "bones": {
+            "root": {
+              "sx": -1,
+              "x": -80
+            },
+            "tail": {
+              "r": 10
+            }
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "root": {
+              "sx": -1,
+              "x": -80
+            },
+            "body": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "ease": "inOut",
+          "bones": {
+            "tail": {
+              "r": -8
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "dance",
+      "description": "the little fish does a happy little dance, swaying and swishing from side to side.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "root": {
+              "x": -12,
+              "y": 0
+            },
+            "tail": {
+              "r": 15
+            },
+            "finTop": {
+              "r": 6
+            },
+            "finSide": {
+              "r": -12
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open",
+            "finSide": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "root": {
+              "x": 12,
+              "y": -10
+            },
+            "tail": {
+              "r": -15
+            },
+            "finTop": {
+              "r": -6
+            },
+            "finSide": {
+              "r": 12
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open",
+            "finSide": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "root": {
+              "x": -12,
+              "y": 0
+            },
+            "tail": {
+              "r": 15
+            },
+            "finTop": {
+              "r": 6
+            },
+            "finSide": {
+              "r": -12
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open",
+            "finSide": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "root": {
+              "x": 12,
+              "y": -10
+            },
+            "tail": {
+              "r": -15
+            },
+            "finTop": {
+              "r": -6
+            },
+            "finSide": {
+              "r": 12
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open",
+            "finSide": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "root": {
+              "x": -12,
+              "y": 0
+            },
+            "tail": {
+              "r": 15
+            },
+            "finTop": {
+              "r": 6
+            },
+            "finSide": {
+              "r": -12
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open",
+            "finSide": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 8
+            },
+            "root": {
+              "x": 12,
+              "y": -10
+            },
+            "tail": {
+              "r": -15
+            },
+            "finTop": {
+              "r": -6
+            },
+            "finSide": {
+              "r": 12
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "mouth": "open",
+            "finSide": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shiver",
+      "template": "common.shiver",
+      "description": "the little fish shivers and trembles, cold or scared, its fins pressed tight."
+    },
+    {
+      "id": "twirl",
+      "description": "the little fish twirls right round on the spot.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.94
+            }
+          }
+        },
+        {
+          "hold": 0.32,
+          "ease": "inOut",
+          "bones": {
+            "root": {
+              "sx": -1,
+              "x": -80,
+              "y": -26
+            },
+            "tail": {
+              "r": 14
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "finSide": "open"
+          }
+        },
+        {
+          "hold": 0.32,
+          "ease": "inOut",
+          "bones": {
+            "root": {
+              "sx": 1,
+              "y": 0
+            },
+            "tail": {
+              "r": -10
+            }
+          },
+          "slots": {
+            "eye": "happy",
+            "finSide": "open"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "belly": {
+              "sy": 0.94,
+              "sx": 1.04
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "description": "the little fish lifts its little side fin and waves hello.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "finSide": {
+              "r": -30
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "finSide": "open",
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "finSide": {
+              "r": -10
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "finSide": "open",
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "finSide": {
+              "r": -35
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "finSide": "open",
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "finSide": {
+              "r": -10
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "finSide": "open",
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "finSide": {
+              "r": -35
+            },
+            "body": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "finSide": "open",
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

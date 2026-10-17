@@ -1,0 +1,136 @@
+{
+  "id": "jump",
+  "sticker": "hermit-crab",
+  "kind": "action",
+  "description": "the hermit crab crouches and gives a happy hop, shell and all, landing with a little squash.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.30469,
+    "width": 0.5,
+    "height": 0.39063
+  },
+  "puppet": {
+    "rig": "anims/hermit-crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.93
+          },
+          "root": {
+            "y": 6
+          },
+          "shell": {
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "clawL": {
+            "r": -14
+          },
+          "clawR": {
+            "r": -14
+          },
+          "legL1": {
+            "r": 8,
+            "y": -6
+          },
+          "legL2": {
+            "r": 8,
+            "y": -6
+          },
+          "legR1": {
+            "r": -8,
+            "y": -6
+          },
+          "legR2": {
+            "r": -8,
+            "y": -6
+          },
+          "root": {
+            "y": -55
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "clawL": {
+            "r": -14
+          },
+          "clawR": {
+            "r": -14
+          },
+          "legL1": {
+            "r": 8,
+            "y": -6
+          },
+          "legL2": {
+            "r": 8,
+            "y": -6
+          },
+          "legR1": {
+            "r": -8,
+            "y": -6
+          },
+          "legR2": {
+            "r": -8,
+            "y": -6
+          },
+          "root": {
+            "y": -58
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.92
+          },
+          "root": {
+            "y": 3
+          },
+          "shell": {
+            "y": 3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

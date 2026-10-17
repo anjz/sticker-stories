@@ -1,39 +1,197 @@
 {
   "id": "dig-up",
   "sticker": "clam",
-  "kind": "move",
   "description": "the clam wiggles up out of the sand and opens a little.",
-  "sheet": "anims/clam.dig-up.webp",
-  "frame": {
-    "width": 508,
-    "height": 513
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.0374,
-    "y": 0.02924,
-    "width": 0.92913,
-    "height": 0.93957
-  },
   "stickerBox": {
     "x": 0.25521,
     "y": 0.25,
     "width": 0.48958,
     "height": 0.5
   },
-  "hold": [
-    0.1,
-    0.1,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.1,
-    0.1,
-    0.12,
-    0.45
-  ]
+  "puppet": {
+    "rig": "anims/clam.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {
+            "sx": 0.7300000000000001,
+            "sy": 0.4
+          },
+          "lid": {
+            "sy": 0.5
+          },
+          "soft": {
+            "y": 8,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "mouth": "none",
+          "soft": "none"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {
+            "r": -6,
+            "sx": 0.775,
+            "sy": 0.5
+          },
+          "lid": {
+            "sy": 0.5
+          },
+          "soft": {
+            "y": 8,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "mouth": "none",
+          "soft": "none"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {
+            "r": 6,
+            "sx": 0.8200000000000001,
+            "sy": 0.6
+          },
+          "lid": {
+            "sy": 0.5
+          },
+          "soft": {
+            "y": 8,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "mouth": "none",
+          "soft": "none"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {
+            "r": -5,
+            "sx": 0.8740000000000001,
+            "sy": 0.72
+          },
+          "lid": {
+            "sy": 0.5
+          },
+          "soft": {
+            "y": 8,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "browL": "none",
+          "browR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "mouth": "none",
+          "soft": "none"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "body": {
+            "r": 4,
+            "sx": 0.937,
+            "sy": 0.86
+          },
+          "lid": {
+            "sy": 0.5
+          },
+          "soft": {
+            "y": 8,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "sx": 1,
+            "sy": 1
+          },
+          "lid": {
+            "sy": 0.5
+          },
+          "soft": {
+            "y": 8,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "lid": {
+            "sy": 0.75
+          },
+          "soft": {
+            "y": 4,
+            "sy": 0.75
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "lid": {
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
 }

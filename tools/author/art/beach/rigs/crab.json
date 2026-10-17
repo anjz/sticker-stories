@@ -1,0 +1,3409 @@
+{
+  "sticker": "crab",
+  "skeleton": "crab facing the viewer: root on the ground under the body; body (the round shell) with a belly bone for squash; face on the body with the mouth; stalkL/stalkR rooted behind the top of the body, each with an eye bone at its tip carrying the eye ball (face pieces; the eye bones undo their stalk's stretch); clawL/clawR (arm and claw, open or shut) at the shoulders on the body's sides; four walking legs a side at the hips (legL1-4, legR1-4, the far one shaded).",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a cheerful orange-red crab character. Draw this exact crab as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the body: the round orange-red crab shell body with its cream belly and little spots, facing the viewer as in image 1, with a completely blank face — no eyes, no mouth — keep the rosy cheeks; without its claws, legs or eyes; its top a smooth rounded edge.\n2. one eye stalk: a short, thick orange stalk with no eye on its tip, both ends rounded.\n3. one big claw with its arm, open: the claw on the left of image 1 with its arm, from a rounded shoulder end to the big claw, its pincers open as in image 1.\n4. the same big claw with its arm, its pincers shut, closed together.\n5. one walking leg: the lowest leg on the left of image 1, a slim, curved, jointed orange leg with a pointed tip, its top (hip) end rounded.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or another part) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a cheerful orange-red crab character; image 2 shows the same crab cut into puppet parts, with a blank face. Draw the crab's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the crab in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. one of the crab's eyes as it is in image 1: only the round eye ball — the white eye with its big dark pupil and white sparkle, in its thin orange rim — the ball alone, with NO stalk or head below it, its bottom edge a full round curve like the rest of the ball. Every eye below is this same ball, alone.\n2. the same ball with the eye wide open and surprised: the pupil smaller, the white bigger, with its sparkle.\n3. the same ball with the eye gently closed in sleep: an orange lid shut over it, a soft downward-curving line with a few lashes.\n4. the same ball with the eye closed in a happy smile: an orange lid, an upward-curving arc.\n5. the same ball with the eye sad: looking down, its orange upper lid drooping, tilted towards the middle.\n6. the same ball with the eye squeezed shut, crying: an orange lid shut tight in a creased, downward-curving line.\n7. the mouth as it is in image 1: a small happy smile line.\n8. the mouth wide open in a big happy laugh, the inside pink.\n9. the mouth open in a small round 'o'.\n10. the mouth in a small sad frown.\n11. the mouth open in a wobbly crying wail, its corners turned down, the inside pink.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "body": {
+      "sheet": "parts",
+      "at": [
+        750,
+        281
+      ]
+    },
+    "claw": {
+      "sheet": "parts",
+      "at": [
+        279,
+        631
+      ]
+    },
+    "stalk": {
+      "sheet": "parts",
+      "at": [
+        1287,
+        308
+      ]
+    },
+    "clawShut": {
+      "sheet": "parts",
+      "at": [
+        983,
+        712
+      ]
+    },
+    "leg": {
+      "sheet": "parts",
+      "at": [
+        1370,
+        801
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        135,
+        292
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        391,
+        290
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        641,
+        292
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        889,
+        292
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1147,
+        289
+      ]
+    },
+    "eyeCry": {
+      "sheet": "face",
+      "at": [
+        1401,
+        292
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        169,
+        727
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        494,
+        701
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        765,
+        733
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1024,
+        717
+      ]
+    },
+    "mouthCry": {
+      "sheet": "face",
+      "at": [
+        1316,
+        736
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 380,
+      "y": 578
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 380,
+      "y": 522
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 380,
+      "y": 522
+    },
+    {
+      "id": "legL4",
+      "parent": "body",
+      "x": 290,
+      "y": 455
+    },
+    {
+      "id": "legR4",
+      "parent": "body",
+      "x": 470,
+      "y": 470
+    },
+    {
+      "id": "legL1",
+      "parent": "body",
+      "x": 278,
+      "y": 432
+    },
+    {
+      "id": "legL2",
+      "parent": "body",
+      "x": 282,
+      "y": 470
+    },
+    {
+      "id": "legL3",
+      "parent": "body",
+      "x": 305,
+      "y": 500
+    },
+    {
+      "id": "legR1",
+      "parent": "body",
+      "x": 482,
+      "y": 448
+    },
+    {
+      "id": "legR2",
+      "parent": "body",
+      "x": 470,
+      "y": 482
+    },
+    {
+      "id": "legR3",
+      "parent": "body",
+      "x": 440,
+      "y": 510
+    },
+    {
+      "id": "clawL",
+      "parent": "body",
+      "x": 272,
+      "y": 398
+    },
+    {
+      "id": "clawR",
+      "parent": "body",
+      "x": 480,
+      "y": 440
+    },
+    {
+      "id": "stalkL",
+      "parent": "body",
+      "x": 356,
+      "y": 388
+    },
+    {
+      "id": "eyeL",
+      "parent": "stalkL",
+      "x": 353,
+      "y": 325
+    },
+    {
+      "id": "stalkR",
+      "parent": "body",
+      "x": 430,
+      "y": 398
+    },
+    {
+      "id": "eyeR",
+      "parent": "stalkR",
+      "x": 434,
+      "y": 350
+    },
+    {
+      "id": "face",
+      "parent": "body",
+      "x": 378,
+      "y": 400
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 377,
+      "y": 392
+    }
+  ],
+  "slots": [
+    {
+      "id": "legL4",
+      "bone": "legL4",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 246.1,
+          "y": 474.4,
+          "scale": 0.348,
+          "rotate": 32.6,
+          "shade": 0.2
+        }
+      }
+    },
+    {
+      "id": "legR4",
+      "bone": "legR4",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 513.1,
+          "y": 494.7,
+          "scale": 0.359,
+          "rotate": -26.5,
+          "flip": true,
+          "shade": 0.2
+        }
+      }
+    },
+    {
+      "id": "legL1",
+      "bone": "legL1",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 224.4,
+          "y": 444.8,
+          "scale": 0.399,
+          "rotate": 42.9
+        }
+      }
+    },
+    {
+      "id": "legL2",
+      "bone": "legL2",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 238.0,
+          "y": 499.5,
+          "scale": 0.384,
+          "rotate": 22.6
+        }
+      }
+    },
+    {
+      "id": "legL3",
+      "bone": "legL3",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 292.4,
+          "y": 532.6,
+          "scale": 0.253,
+          "rotate": -12.5
+        }
+      }
+    },
+    {
+      "id": "legR1",
+      "bone": "legR1",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 546.7,
+          "y": 472.1,
+          "scale": 0.5,
+          "rotate": -35.9,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "legR2",
+      "bone": "legR2",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 527.2,
+          "y": 511.5,
+          "scale": 0.466,
+          "rotate": -29.1,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "legR3",
+      "bone": "legR3",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 453.5,
+          "y": 542.3,
+          "scale": 0.253,
+          "rotate": 10.9,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "clawL",
+      "bone": "clawL",
+      "default": "open",
+      "attachments": {
+        "open": {
+          "part": "claw",
+          "x": 256.1,
+          "y": 298.7,
+          "scale": 0.343,
+          "rotate": 12.0
+        },
+        "shut": {
+          "part": "clawShut",
+          "x": 271.7,
+          "y": 316.1,
+          "scale": 0.3,
+          "rotate": 45.0,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "clawR",
+      "bone": "clawR",
+      "default": "open",
+      "attachments": {
+        "open": {
+          "part": "claw",
+          "x": 527.5,
+          "y": 359.8,
+          "scale": 0.318,
+          "rotate": 9.5,
+          "flip": true
+        },
+        "shut": {
+          "part": "clawShut",
+          "x": 508.3,
+          "y": 369.0,
+          "scale": 0.28,
+          "rotate": -23.4
+        }
+      }
+    },
+    {
+      "id": "stalkL",
+      "bone": "stalkL",
+      "default": "stalk",
+      "attachments": {
+        "stalk": {
+          "part": "stalk",
+          "x": 354,
+          "y": 352,
+          "scale": 0.25,
+          "rotate": -4
+        }
+      }
+    },
+    {
+      "id": "stalkR",
+      "bone": "stalkR",
+      "default": "stalk",
+      "attachments": {
+        "stalk": {
+          "part": "stalk",
+          "x": 432,
+          "y": 372,
+          "scale": 0.25,
+          "rotate": 5
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "body",
+          "x": 380,
+          "y": 437,
+          "scale": 0.331,
+          "scaleY": 1.09,
+          "rotate": 5
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 353,
+          "y": 325,
+          "scale": 0.255
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 353,
+          "y": 325,
+          "scale": 0.25
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 353,
+          "y": 325,
+          "scale": 0.255
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 353,
+          "y": 325,
+          "scale": 0.255
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 353,
+          "y": 325,
+          "scale": 0.255,
+          "flip": true
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 353,
+          "y": 325,
+          "scale": 0.25
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 434,
+          "y": 350,
+          "scale": 0.255
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 434,
+          "y": 350,
+          "scale": 0.25
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 434,
+          "y": 350,
+          "scale": 0.255
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 434,
+          "y": 350,
+          "scale": 0.255
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 434,
+          "y": 350,
+          "scale": 0.255
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 434,
+          "y": 350,
+          "scale": 0.25
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 377,
+          "y": 392,
+          "scale": 0.2,
+          "rotate": 4
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 377,
+          "y": 400,
+          "scale": 0.21
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 377,
+          "y": 396,
+          "scale": 0.22
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 377,
+          "y": 396,
+          "scale": 0.22
+        },
+        "cry": {
+          "part": "mouthCry",
+          "x": 377,
+          "y": 398,
+          "scale": 0.2
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "dance",
+      "kind": "action",
+      "description": "the crab does a happy dance, clicking its claws",
+      "pause": {
+        "frame": 5,
+        "shows": "the crab with both claws raised wide open, mid-dance, grinning"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -5
+            },
+            "root": {
+              "x": -12
+            },
+            "clawL": {
+              "r": -16
+            },
+            "clawR": {
+              "r": -6
+            },
+            "legL1": {
+              "r": 7.199999999999999,
+              "y": -4.8
+            },
+            "legL2": {
+              "r": 7.199999999999999,
+              "y": -4.8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open",
+            "clawR": "shut"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 5
+            },
+            "root": {
+              "x": 12,
+              "y": -6
+            },
+            "clawL": {
+              "r": 6
+            },
+            "clawR": {
+              "r": 16
+            },
+            "legR1": {
+              "r": -7.199999999999999,
+              "y": -4.8
+            },
+            "legR2": {
+              "r": -7.199999999999999,
+              "y": -4.8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open",
+            "clawL": "shut"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -5
+            },
+            "root": {
+              "x": -12
+            },
+            "clawL": {
+              "r": -16
+            },
+            "clawR": {
+              "r": -6
+            },
+            "legL1": {
+              "r": 7.199999999999999,
+              "y": -4.8
+            },
+            "legL2": {
+              "r": 7.199999999999999,
+              "y": -4.8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open",
+            "clawR": "shut"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 5
+            },
+            "root": {
+              "x": 12,
+              "y": -6
+            },
+            "clawL": {
+              "r": 6
+            },
+            "clawR": {
+              "r": 16
+            },
+            "legR1": {
+              "r": -7.199999999999999,
+              "y": -4.8
+            },
+            "legR2": {
+              "r": -7.199999999999999,
+              "y": -4.8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open",
+            "clawL": "shut"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "root": {
+              "y": -10
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "clawL": {
+              "r": -14,
+              "y": -8
+            },
+            "clawR": {
+              "r": 14,
+              "y": -8
+            },
+            "stalkL": {
+              "r": 0,
+              "sy": 1.12
+            },
+            "stalkR": {
+              "r": 0,
+              "sy": 1.12
+            },
+            "eyeL": {
+              "sy": 0.893,
+              "r": 0
+            },
+            "eyeR": {
+              "sy": 0.893,
+              "r": 0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -5
+            },
+            "root": {
+              "x": -12
+            },
+            "clawL": {
+              "r": -16
+            },
+            "clawR": {
+              "r": -6
+            },
+            "legL1": {
+              "r": 7.199999999999999,
+              "y": -4.8
+            },
+            "legL2": {
+              "r": 7.199999999999999,
+              "y": -4.8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open",
+            "clawR": "shut"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 5
+            },
+            "root": {
+              "x": 12,
+              "y": -6
+            },
+            "clawL": {
+              "r": 6
+            },
+            "clawR": {
+              "r": 16
+            },
+            "legR1": {
+              "r": -7.199999999999999,
+              "y": -4.8
+            },
+            "legR2": {
+              "r": -7.199999999999999,
+              "y": -4.8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open",
+            "clawL": "shut"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "scuttle",
+      "kind": "move",
+      "description": "the crab scuttles sideways to the left on its eight legs, claws up, then stops.",
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "facing": "left",
+      "stride": 0.45,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.13,
+          "bones": {
+            "legL1": {
+              "r": 12.0,
+              "y": -8.0
+            },
+            "legL3": {
+              "r": 12.0,
+              "y": -8.0
+            },
+            "legR2": {
+              "r": -12.0,
+              "y": -8.0
+            },
+            "legR4": {
+              "r": -12.0,
+              "y": -8.0
+            },
+            "body": {
+              "y": -4,
+              "r": -2
+            },
+            "clawL": {
+              "r": -4
+            },
+            "clawR": {
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.13,
+          "bones": {
+            "body": {
+              "y": 0
+            },
+            "clawL": {
+              "r": -2
+            },
+            "clawR": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.13,
+          "bones": {
+            "legL2": {
+              "r": 12.0,
+              "y": -8.0
+            },
+            "legL4": {
+              "r": 12.0,
+              "y": -8.0
+            },
+            "legR1": {
+              "r": -12.0,
+              "y": -8.0
+            },
+            "legR3": {
+              "r": -12.0,
+              "y": -8.0
+            },
+            "body": {
+              "y": -4,
+              "r": 2
+            },
+            "clawL": {
+              "r": -4
+            },
+            "clawR": {
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.13,
+          "bones": {
+            "body": {
+              "y": 0
+            },
+            "clawL": {
+              "r": -2
+            },
+            "clawR": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "clap",
+      "kind": "action",
+      "description": "the crab claps its big claws together, snapping them shut, clack, clack, clack, and grins.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "clawL": {
+              "r": -6
+            },
+            "clawR": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "clawL": {
+              "r": 18
+            },
+            "clawR": {
+              "r": -18
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open",
+            "clawL": "shut",
+            "clawR": "shut"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "clawL": {
+              "r": -6
+            },
+            "clawR": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "clawL": {
+              "r": 18
+            },
+            "clawR": {
+              "r": -18
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open",
+            "clawL": "shut",
+            "clawR": "shut"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "clawL": {
+              "r": -6
+            },
+            "clawR": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "clawL": {
+              "r": 18
+            },
+            "clawR": {
+              "r": -18
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open",
+            "clawL": "shut",
+            "clawR": "shut"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "kind": "action",
+      "description": "the crab waves hello with one big claw.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "clawR": {
+              "r": 22,
+              "y": -6
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "clawR": {
+              "r": 4,
+              "y": -6
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "clawR": {
+              "r": 24,
+              "y": -6
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "clawR": {
+              "r": 4,
+              "y": -6
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "clawR": {
+              "r": 22,
+              "y": -6
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "look-around",
+      "kind": "action",
+      "idle": true,
+      "description": "the crab turns its eye stalks one way, then the other, then back.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "stalkL": {
+              "r": -16
+            },
+            "stalkR": {
+              "r": -16
+            },
+            "eyeL": {
+              "r": 16
+            },
+            "eyeR": {
+              "r": 16
+            },
+            "face": {
+              "x": -5
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "stalkL": {
+              "r": -16
+            },
+            "stalkR": {
+              "r": -16
+            },
+            "eyeL": {
+              "r": 16
+            },
+            "eyeR": {
+              "r": 16
+            },
+            "face": {
+              "x": -5
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "stalkL": {
+              "r": 16
+            },
+            "stalkR": {
+              "r": 16
+            },
+            "eyeL": {
+              "r": -16
+            },
+            "eyeR": {
+              "r": -16
+            },
+            "face": {
+              "x": 5
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "stalkL": {
+              "r": 16
+            },
+            "stalkR": {
+              "r": 16
+            },
+            "eyeL": {
+              "r": -16
+            },
+            "eyeR": {
+              "r": -16
+            },
+            "face": {
+              "x": 5
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "peer",
+      "kind": "action",
+      "description": "the crab stretches its eye stalks up tall and peers hard at something, then pulls them back down.",
+      "pause": {
+        "frame": 3,
+        "shows": "the crab with both eye stalks stretched up tall, peering"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "stalkL": {
+              "r": 0,
+              "sy": 1.25
+            },
+            "stalkR": {
+              "r": 0,
+              "sy": 1.25
+            },
+            "eyeL": {
+              "sy": 0.8,
+              "r": 0
+            },
+            "eyeR": {
+              "sy": 0.8,
+              "r": 0
+            },
+            "belly": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "stalkL": {
+              "r": 0,
+              "sy": 1.6
+            },
+            "stalkR": {
+              "r": 0,
+              "sy": 1.6
+            },
+            "eyeL": {
+              "sy": 0.625,
+              "r": 0
+            },
+            "eyeR": {
+              "sy": 0.625,
+              "r": 0
+            },
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "stalkL": {
+              "r": -8,
+              "sy": 1.6
+            },
+            "stalkR": {
+              "r": -8,
+              "sy": 1.6
+            },
+            "eyeL": {
+              "sy": 0.625,
+              "r": 8
+            },
+            "eyeR": {
+              "sy": 0.625,
+              "r": 8
+            },
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "stalkL": {
+              "r": 8,
+              "sy": 1.6
+            },
+            "stalkR": {
+              "r": 8,
+              "sy": 1.6
+            },
+            "eyeL": {
+              "sy": 0.625,
+              "r": -8
+            },
+            "eyeR": {
+              "sy": 0.625,
+              "r": -8
+            },
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "stalkL": {
+              "r": 0,
+              "sy": 1.15
+            },
+            "stalkR": {
+              "r": 0,
+              "sy": 1.15
+            },
+            "eyeL": {
+              "sy": 0.87,
+              "r": 0
+            },
+            "eyeR": {
+              "sy": 0.87,
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shuffle",
+      "kind": "action",
+      "description": "the crab shuffles a few steps sideways and back again, tip-tap on its little legs.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "legL1": {
+              "r": 12.0,
+              "y": -8.0
+            },
+            "legL3": {
+              "r": 12.0,
+              "y": -8.0
+            },
+            "legR2": {
+              "r": -12.0,
+              "y": -8.0
+            },
+            "legR4": {
+              "r": -12.0,
+              "y": -8.0
+            },
+            "root": {
+              "x": -10
+            },
+            "body": {
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "root": {
+              "x": -22
+            }
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "legL2": {
+              "r": 12.0,
+              "y": -8.0
+            },
+            "legL4": {
+              "r": 12.0,
+              "y": -8.0
+            },
+            "legR1": {
+              "r": -12.0,
+              "y": -8.0
+            },
+            "legR3": {
+              "r": -12.0,
+              "y": -8.0
+            },
+            "root": {
+              "x": -32
+            },
+            "body": {
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "root": {
+              "x": -40
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "legL2": {
+              "r": 12.0,
+              "y": -8.0
+            },
+            "legL4": {
+              "r": 12.0,
+              "y": -8.0
+            },
+            "legR1": {
+              "r": -12.0,
+              "y": -8.0
+            },
+            "legR3": {
+              "r": -12.0,
+              "y": -8.0
+            },
+            "root": {
+              "x": -30
+            },
+            "body": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "root": {
+              "x": -18
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "legL1": {
+              "r": 12.0,
+              "y": -8.0
+            },
+            "legL3": {
+              "r": 12.0,
+              "y": -8.0
+            },
+            "legR2": {
+              "r": -12.0,
+              "y": -8.0
+            },
+            "legR4": {
+              "r": -12.0,
+              "y": -8.0
+            },
+            "root": {
+              "x": -8
+            },
+            "body": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "kind": "action",
+      "description": "the crab crouches, jumps up high for joy with its claws in the air, and lands with a little squash.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 8
+            },
+            "belly": {
+              "sx": 1.06,
+              "sy": 0.92
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": -8
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -75
+            },
+            "belly": {
+              "sx": 0.97,
+              "sy": 1.05
+            },
+            "clawL": {
+              "r": -16
+            },
+            "clawR": {
+              "r": 16
+            },
+            "legL1": {
+              "r": 8.399999999999999,
+              "y": -5.6
+            },
+            "legL3": {
+              "r": 8.399999999999999,
+              "y": -5.6
+            },
+            "legR2": {
+              "r": -8.399999999999999,
+              "y": -5.6
+            },
+            "legR4": {
+              "r": -8.399999999999999,
+              "y": -5.6
+            },
+            "legL2": {
+              "r": 8.399999999999999,
+              "y": -5.6
+            },
+            "legL4": {
+              "r": 8.399999999999999,
+              "y": -5.6
+            },
+            "legR1": {
+              "r": -8.399999999999999,
+              "y": -5.6
+            },
+            "legR3": {
+              "r": -8.399999999999999,
+              "y": -5.6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -80
+            },
+            "belly": {
+              "sx": 0.97,
+              "sy": 1.05
+            },
+            "clawL": {
+              "r": -16
+            },
+            "clawR": {
+              "r": 16
+            },
+            "legL1": {
+              "r": 8.399999999999999,
+              "y": -5.6
+            },
+            "legL3": {
+              "r": 8.399999999999999,
+              "y": -5.6
+            },
+            "legR2": {
+              "r": -8.399999999999999,
+              "y": -5.6
+            },
+            "legR4": {
+              "r": -8.399999999999999,
+              "y": -5.6
+            },
+            "legL2": {
+              "r": 8.399999999999999,
+              "y": -5.6
+            },
+            "legL4": {
+              "r": 8.399999999999999,
+              "y": -5.6
+            },
+            "legR1": {
+              "r": -8.399999999999999,
+              "y": -5.6
+            },
+            "legR3": {
+              "r": -8.399999999999999,
+              "y": -5.6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "root": {
+              "y": 4
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.9
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "laugh",
+      "kind": "action",
+      "description": "the crab laughs and laughs, bouncing with giggles.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "clawL": {
+              "r": -6
+            },
+            "clawR": {
+              "r": 6
+            },
+            "stalkL": {
+              "r": 0,
+              "y": -3
+            },
+            "stalkR": {
+              "r": 0,
+              "y": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "clawL": {
+              "r": 2
+            },
+            "clawR": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "clawL": {
+              "r": -6
+            },
+            "clawR": {
+              "r": 6
+            },
+            "stalkL": {
+              "r": 0,
+              "y": -3
+            },
+            "stalkR": {
+              "r": 0,
+              "y": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "clawL": {
+              "r": 2
+            },
+            "clawR": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "clawL": {
+              "r": -6
+            },
+            "clawR": {
+              "r": 6
+            },
+            "stalkL": {
+              "r": 0,
+              "y": -3
+            },
+            "stalkR": {
+              "r": 0,
+              "y": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "clawL": {
+              "r": 2
+            },
+            "clawR": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "clawL": {
+              "r": -6
+            },
+            "clawR": {
+              "r": 6
+            },
+            "stalkL": {
+              "r": 0,
+              "y": -3
+            },
+            "stalkR": {
+              "r": 0,
+              "y": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "clawL": {
+              "r": 2
+            },
+            "clawR": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "kind": "action",
+      "description": "the crab talks, its mouth moving, its eye stalks bobbing a little.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": -2
+            },
+            "stalkL": {
+              "r": -3
+            },
+            "stalkR": {
+              "r": -3
+            },
+            "eyeL": {
+              "r": 3
+            },
+            "eyeR": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": -2
+            },
+            "stalkL": {
+              "r": -3
+            },
+            "stalkR": {
+              "r": -3
+            },
+            "eyeL": {
+              "r": 3
+            },
+            "eyeR": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": -2
+            },
+            "stalkL": {
+              "r": -3
+            },
+            "stalkR": {
+              "r": -3
+            },
+            "eyeL": {
+              "r": 3
+            },
+            "eyeR": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": -2
+            },
+            "stalkL": {
+              "r": -3
+            },
+            "stalkR": {
+              "r": -3
+            },
+            "eyeL": {
+              "r": 3
+            },
+            "eyeR": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": -2
+            },
+            "stalkL": {
+              "r": -3
+            },
+            "stalkR": {
+              "r": -3
+            },
+            "eyeL": {
+              "r": 3
+            },
+            "eyeR": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shiver",
+      "kind": "action",
+      "description": "the crab shivers and trembles, cold or scared, its claws pulled in.",
+      "keys": [
+        {
+          "hold": 0.1,
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 10
+            },
+            "clawR": {
+              "r": -10
+            },
+            "stalkL": {
+              "r": -4
+            },
+            "stalkR": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 10
+            },
+            "clawR": {
+              "r": -10
+            },
+            "stalkL": {
+              "r": 4
+            },
+            "stalkR": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 10
+            },
+            "clawR": {
+              "r": -10
+            },
+            "stalkL": {
+              "r": -4
+            },
+            "stalkR": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 10
+            },
+            "clawR": {
+              "r": -10
+            },
+            "stalkL": {
+              "r": 4
+            },
+            "stalkR": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 10
+            },
+            "clawR": {
+              "r": -10
+            },
+            "stalkL": {
+              "r": -4
+            },
+            "stalkR": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 10
+            },
+            "clawR": {
+              "r": -10
+            },
+            "stalkL": {
+              "r": 4
+            },
+            "stalkR": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 10
+            },
+            "clawR": {
+              "r": -10
+            },
+            "stalkL": {
+              "r": -4
+            },
+            "stalkR": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 10
+            },
+            "clawR": {
+              "r": -10
+            },
+            "stalkL": {
+              "r": 4
+            },
+            "stalkR": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 10
+            },
+            "clawR": {
+              "r": -10
+            },
+            "stalkL": {
+              "r": -4
+            },
+            "stalkR": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 10
+            },
+            "clawR": {
+              "r": -10
+            },
+            "stalkL": {
+              "r": 4
+            },
+            "stalkR": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 10
+            },
+            "clawR": {
+              "r": -10
+            },
+            "stalkL": {
+              "r": -4
+            },
+            "stalkR": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 10
+            },
+            "clawR": {
+              "r": -10
+            },
+            "stalkL": {
+              "r": 4
+            },
+            "stalkR": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 10
+            },
+            "clawR": {
+              "r": -10
+            },
+            "stalkL": {
+              "r": -4
+            },
+            "stalkR": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 10
+            },
+            "clawR": {
+              "r": -10
+            },
+            "stalkL": {
+              "r": 4
+            },
+            "stalkR": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "cry",
+      "kind": "action",
+      "description": "the crab cries, eye stalks drooping, claws down, its shell shaking with little sobs.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "stalkL": {
+              "r": -18,
+              "sy": 0.85
+            },
+            "stalkR": {
+              "r": 18,
+              "sy": 0.85
+            },
+            "eyeL": {
+              "r": 18,
+              "sy": 1.176
+            },
+            "eyeR": {
+              "r": -18,
+              "sy": 1.176
+            },
+            "clawL": {
+              "r": -22,
+              "y": 10
+            },
+            "clawR": {
+              "r": 22,
+              "y": 10
+            },
+            "belly": {
+              "sy": 1.02
+            },
+            "root": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -18,
+              "sy": 0.85
+            },
+            "stalkR": {
+              "r": 18,
+              "sy": 0.85
+            },
+            "eyeL": {
+              "r": 18,
+              "sy": 1.176
+            },
+            "eyeR": {
+              "r": -18,
+              "sy": 1.176
+            },
+            "clawL": {
+              "r": -22,
+              "y": 10
+            },
+            "clawR": {
+              "r": 22,
+              "y": 10
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "root": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -18,
+              "sy": 0.85
+            },
+            "stalkR": {
+              "r": 18,
+              "sy": 0.85
+            },
+            "eyeL": {
+              "r": 18,
+              "sy": 1.176
+            },
+            "eyeR": {
+              "r": -18,
+              "sy": 1.176
+            },
+            "clawL": {
+              "r": -22,
+              "y": 10
+            },
+            "clawR": {
+              "r": 22,
+              "y": 10
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "root": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -18,
+              "sy": 0.85
+            },
+            "stalkR": {
+              "r": 18,
+              "sy": 0.85
+            },
+            "eyeL": {
+              "r": 18,
+              "sy": 1.176
+            },
+            "eyeR": {
+              "r": -18,
+              "sy": 1.176
+            },
+            "clawL": {
+              "r": -22,
+              "y": 10
+            },
+            "clawR": {
+              "r": 22,
+              "y": 10
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "root": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -18,
+              "sy": 0.85
+            },
+            "stalkR": {
+              "r": 18,
+              "sy": 0.85
+            },
+            "eyeL": {
+              "r": 18,
+              "sy": 1.176
+            },
+            "eyeR": {
+              "r": -18,
+              "sy": 1.176
+            },
+            "clawL": {
+              "r": -22,
+              "y": 10
+            },
+            "clawR": {
+              "r": 22,
+              "y": 10
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "root": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -18,
+              "sy": 0.85
+            },
+            "stalkR": {
+              "r": 18,
+              "sy": 0.85
+            },
+            "eyeL": {
+              "r": 18,
+              "sy": 1.176
+            },
+            "eyeR": {
+              "r": -18,
+              "sy": 1.176
+            },
+            "clawL": {
+              "r": -22,
+              "y": 10
+            },
+            "clawR": {
+              "r": 22,
+              "y": 10
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "root": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -18,
+              "sy": 0.85
+            },
+            "stalkR": {
+              "r": 18,
+              "sy": 0.85
+            },
+            "eyeL": {
+              "r": 18,
+              "sy": 1.176
+            },
+            "eyeR": {
+              "r": -18,
+              "sy": 1.176
+            },
+            "clawL": {
+              "r": -22,
+              "y": 10
+            },
+            "clawR": {
+              "r": 22,
+              "y": 10
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "root": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "stalkL": {
+              "r": -18,
+              "sy": 0.85
+            },
+            "stalkR": {
+              "r": 18,
+              "sy": 0.85
+            },
+            "eyeL": {
+              "r": 18,
+              "sy": 1.176
+            },
+            "eyeR": {
+              "r": -18,
+              "sy": 1.176
+            },
+            "clawL": {
+              "r": -22,
+              "y": 10
+            },
+            "clawR": {
+              "r": 22,
+              "y": 10
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "root": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "stalkL": {
+              "r": -18,
+              "sy": 0.85
+            },
+            "stalkR": {
+              "r": 18,
+              "sy": 0.85
+            },
+            "eyeL": {
+              "r": 18,
+              "sy": 1.176
+            },
+            "eyeR": {
+              "r": -18,
+              "sy": 1.176
+            },
+            "clawL": {
+              "r": -22,
+              "y": 10
+            },
+            "clawR": {
+              "r": 22,
+              "y": 10
+            },
+            "belly": {
+              "sy": 1.0
+            },
+            "root": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "kind": "action",
+      "description": "the crab gives a big yawn, lowers its claws and eye stalks and falls asleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the crab fast asleep, eyes shut, eye stalks and claws drooping"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "stalkL": {
+              "r": 0,
+              "sy": 1.15
+            },
+            "stalkR": {
+              "r": 0,
+              "sy": 1.15
+            },
+            "eyeL": {
+              "sy": 0.87,
+              "r": 0
+            },
+            "eyeR": {
+              "sy": 0.87,
+              "r": 0
+            },
+            "clawL": {
+              "r": -14
+            },
+            "clawR": {
+              "r": 14
+            },
+            "belly": {
+              "sy": 1.05
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "stalkL": {
+              "r": 0,
+              "sy": 1.15
+            },
+            "stalkR": {
+              "r": 0,
+              "sy": 1.15
+            },
+            "eyeL": {
+              "sy": 0.87,
+              "r": 0
+            },
+            "eyeR": {
+              "sy": 0.87,
+              "r": 0
+            },
+            "clawL": {
+              "r": -14
+            },
+            "clawR": {
+              "r": 14
+            },
+            "belly": {
+              "sy": 1.05
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "stalkL": {
+              "r": -14,
+              "sy": 0.8
+            },
+            "stalkR": {
+              "r": 14,
+              "sy": 0.8
+            },
+            "eyeL": {
+              "r": 14,
+              "sy": 1.25
+            },
+            "eyeR": {
+              "r": -14,
+              "sy": 1.25
+            },
+            "clawL": {
+              "r": -18,
+              "y": 12
+            },
+            "clawR": {
+              "r": 18,
+              "y": 12
+            },
+            "root": {
+              "y": 5
+            },
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "stalkL": {
+              "r": -14,
+              "sy": 0.8
+            },
+            "stalkR": {
+              "r": 14,
+              "sy": 0.8
+            },
+            "eyeL": {
+              "r": 14,
+              "sy": 1.25
+            },
+            "eyeR": {
+              "r": -14,
+              "sy": 1.25
+            },
+            "clawL": {
+              "r": -18,
+              "y": 12
+            },
+            "clawR": {
+              "r": 18,
+              "y": 12
+            },
+            "root": {
+              "y": 5
+            },
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "stalkL": {
+              "r": 0,
+              "sy": 1.08
+            },
+            "stalkR": {
+              "r": 0,
+              "sy": 1.08
+            },
+            "eyeL": {
+              "sy": 0.926,
+              "r": 0
+            },
+            "eyeR": {
+              "sy": 0.926,
+              "r": 0
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "kind": "action",
+      "description": "the crab nods yes, twice, bobbing its eye stalks.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.97
+            },
+            "stalkL": {
+              "sy": 0.88
+            },
+            "stalkR": {
+              "sy": 0.88
+            },
+            "eyeL": {
+              "sy": 1.136
+            },
+            "eyeR": {
+              "sy": 1.136
+            },
+            "face": {
+              "y": 4
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": -2
+            },
+            "face": {
+              "y": -1
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": 4
+            },
+            "belly": {
+              "sy": 0.97
+            },
+            "stalkL": {
+              "sy": 0.88
+            },
+            "stalkR": {
+              "sy": 0.88
+            },
+            "eyeL": {
+              "sy": 1.136
+            },
+            "eyeR": {
+              "sy": 1.136
+            },
+            "face": {
+              "y": 4
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": -2
+            },
+            "face": {
+              "y": -1
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "shake-head",
+      "kind": "action",
+      "description": "the crab shakes its eye stalks no.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "stalkL": {
+              "r": -12
+            },
+            "stalkR": {
+              "r": -12
+            },
+            "eyeL": {
+              "r": 12
+            },
+            "eyeR": {
+              "r": 12
+            },
+            "face": {
+              "x": -5
+            },
+            "body": {
+              "r": -1.5
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "stalkL": {
+              "r": 12
+            },
+            "stalkR": {
+              "r": 12
+            },
+            "eyeL": {
+              "r": -12
+            },
+            "eyeR": {
+              "r": -12
+            },
+            "face": {
+              "x": 5
+            },
+            "body": {
+              "r": 1.5
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "stalkL": {
+              "r": -12
+            },
+            "stalkR": {
+              "r": -12
+            },
+            "eyeL": {
+              "r": 12
+            },
+            "eyeR": {
+              "r": 12
+            },
+            "face": {
+              "x": -5
+            },
+            "body": {
+              "r": -1.5
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "stalkL": {
+              "r": 12
+            },
+            "stalkR": {
+              "r": 12
+            },
+            "eyeL": {
+              "r": -12
+            },
+            "eyeR": {
+              "r": -12
+            },
+            "face": {
+              "x": 5
+            },
+            "body": {
+              "r": 1.5
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    }
+  ]
+}

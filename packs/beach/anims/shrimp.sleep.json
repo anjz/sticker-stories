@@ -1,0 +1,171 @@
+{
+  "id": "sleep",
+  "sticker": "shrimp",
+  "description": "the shrimp gives a big yawn, curls up and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.25651,
+    "y": 0.25,
+    "width": 0.48568,
+    "height": 0.5
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the shrimp curled up fast asleep, eyes shut"
+  },
+  "puppet": {
+    "rig": "anims/shrimp.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "antennaL": {
+            "r": 8
+          },
+          "antennaR": {
+            "r": -6.4
+          },
+          "belly": {
+            "sy": 1.04
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "antennaL": {
+            "r": 8
+          },
+          "antennaR": {
+            "r": -6.4
+          },
+          "belly": {
+            "sy": 1.04
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "antennaL": {
+            "r": -12
+          },
+          "antennaR": {
+            "r": 9.6
+          },
+          "belly": {
+            "sy": 0.98
+          },
+          "body": {
+            "r": -4
+          },
+          "fan": {
+            "r": 24
+          },
+          "legs": {
+            "r": 8
+          },
+          "legsFar": {
+            "r": 8
+          },
+          "root": {
+            "y": 6
+          },
+          "tail": {
+            "r": 8
+          },
+          "tail2": {
+            "r": 17.6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "antennaL": {
+            "r": -12
+          },
+          "antennaR": {
+            "r": 9.6
+          },
+          "belly": {
+            "sy": 1
+          },
+          "body": {
+            "r": -4
+          },
+          "fan": {
+            "r": 24
+          },
+          "legs": {
+            "r": 8
+          },
+          "legsFar": {
+            "r": 8
+          },
+          "root": {
+            "y": 6
+          },
+          "tail": {
+            "r": 8
+          },
+          "tail2": {
+            "r": 17.6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "antennaL": {
+            "r": 6
+          },
+          "antennaR": {
+            "r": -4.8
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

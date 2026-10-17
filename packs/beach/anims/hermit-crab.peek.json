@@ -1,0 +1,158 @@
+{
+  "id": "peek",
+  "sticker": "hermit-crab",
+  "kind": "action",
+  "description": "the hermit crab tucks itself away in its shell, then peeks out with just its eyes, looking this way and that, and comes out smiling.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.30469,
+    "width": 0.5,
+    "height": 0.39063
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "only the hermit crab's eyes peeking out of the dark opening of its shell"
+  },
+  "puppet": {
+    "rig": "anims/hermit-crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.25,
+        "ease": "in",
+        "bones": {
+          "body": {
+            "x": -12,
+            "y": -42,
+            "sx": 0.55,
+            "sy": 0.55
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "slots": {
+          "body": "none",
+          "clawL": "none",
+          "clawR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "legL1": "none",
+          "legL2": "none",
+          "legR1": "none",
+          "legR2": "none",
+          "mouth": "none",
+          "shell": "tucked"
+        }
+      },
+      {
+        "hold": 0.4,
+        "slots": {
+          "body": "none",
+          "clawL": "none",
+          "clawR": "none",
+          "eyeL": "none",
+          "eyeR": "none",
+          "legL1": "none",
+          "legL2": "none",
+          "legR1": "none",
+          "legR2": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "y": 6
+          },
+          "face": {
+            "x": -6
+          }
+        },
+        "slots": {
+          "body": "none",
+          "clawL": "none",
+          "clawR": "none",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "legL1": "none",
+          "legL2": "none",
+          "legR1": "none",
+          "legR2": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "y": 6
+          },
+          "face": {
+            "x": 6
+          }
+        },
+        "slots": {
+          "body": "none",
+          "clawL": "none",
+          "clawR": "none",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "legL1": "none",
+          "legL2": "none",
+          "legR1": "none",
+          "legR2": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "y": 6
+          }
+        },
+        "slots": {
+          "body": "none",
+          "clawL": "none",
+          "clawR": "none",
+          "legL1": "none",
+          "legL2": "none",
+          "legR1": "none",
+          "legR2": "none",
+          "mouth": "none"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "x": -6,
+            "y": -20,
+            "sx": 0.75,
+            "sy": 0.75
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

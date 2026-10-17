@@ -1,0 +1,161 @@
+{
+  "id": "jump",
+  "sticker": "octopus",
+  "description": "the octopus squashes down, springs up high for joy with its arms flung out and lands with a little squash.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.23047,
+    "width": 0.59896,
+    "height": 0.53906
+  },
+  "puppet": {
+    "rig": "anims/octopus.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "armR": {
+            "r": -8
+          },
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.9
+          },
+          "lowL": {
+            "r": -8
+          },
+          "lowR": {
+            "r": 8
+          },
+          "root": {
+            "y": 8
+          },
+          "sideL": {
+            "r": -8
+          },
+          "sideR": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.24,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": -16
+          },
+          "armR": {
+            "r": 16
+          },
+          "belly": {
+            "sx": 0.95,
+            "sy": 1.06
+          },
+          "lowL": {
+            "r": 6
+          },
+          "lowR": {
+            "r": -6
+          },
+          "root": {
+            "y": -76
+          },
+          "sideL": {
+            "r": 6
+          },
+          "sideR": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": -10
+          },
+          "armR": {
+            "r": 10
+          },
+          "lowL": {
+            "r": 4
+          },
+          "lowR": {
+            "r": -4
+          },
+          "root": {
+            "y": -82
+          },
+          "sideL": {
+            "r": 4
+          },
+          "sideR": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "armL": {
+            "r": 6
+          },
+          "armR": {
+            "r": -6
+          },
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.9
+          },
+          "lowL": {
+            "r": -6
+          },
+          "lowR": {
+            "r": 6
+          },
+          "root": {
+            "y": 5
+          },
+          "sideL": {
+            "r": -6
+          },
+          "sideR": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "id": "wave",
+  "sticker": "crab",
+  "kind": "action",
+  "description": "the crab waves hello with one big claw.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.21745,
+    "width": 0.59896,
+    "height": 0.5651
+  },
+  "puppet": {
+    "rig": "anims/crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "clawR": {
+            "r": 22,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "clawR": {
+            "r": 4,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "clawR": {
+            "r": 24,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "clawR": {
+            "r": 4,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "clawR": {
+            "r": 22,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

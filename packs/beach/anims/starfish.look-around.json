@@ -1,0 +1,80 @@
+{
+  "id": "look-around",
+  "sticker": "starfish",
+  "kind": "action",
+  "description": "the starfish looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20182,
+    "width": 0.59896,
+    "height": 0.59505
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/starfish.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -12
+          },
+          "top": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -12
+          },
+          "top": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 12
+          },
+          "top": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 12
+          },
+          "top": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

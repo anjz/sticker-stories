@@ -1,0 +1,68 @@
+{
+  "id": "look-around",
+  "sticker": "urchin",
+  "kind": "action",
+  "description": "the sea urchin looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26953,
+    "width": 0.5,
+    "height": 0.45964
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/urchin.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "face": {
+            "x": -14
+          },
+          "roll": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "face": {
+            "x": -14
+          },
+          "roll": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "face": {
+            "x": 14
+          },
+          "roll": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "face": {
+            "x": 14
+          },
+          "roll": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

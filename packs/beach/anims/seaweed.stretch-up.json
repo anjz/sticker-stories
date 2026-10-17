@@ -1,0 +1,123 @@
+{
+  "id": "stretch-up",
+  "sticker": "seaweed",
+  "kind": "action",
+  "description": "the seaweed stretches up tall towards the light, its fronds reaching up, and beams.",
+  "stickerBox": {
+    "x": 0.25781,
+    "y": 0.20052,
+    "width": 0.48438,
+    "height": 0.59896
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the seaweed stretched up tall, its fronds reaching up"
+  },
+  "puppet": {
+    "rig": "anims/seaweed.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "frondFace": {
+            "r": 4,
+            "sy": 1.04
+          },
+          "frondLeft": {
+            "r": 5,
+            "sy": 1.05
+          },
+          "frondMid": {
+            "r": -3,
+            "sy": 1.05
+          },
+          "frondRight": {
+            "r": -5,
+            "sy": 1.05
+          },
+          "frondTall": {
+            "r": 1,
+            "sy": 1.04
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "frondFace": {
+            "r": 8,
+            "sy": 1.08
+          },
+          "frondLeft": {
+            "r": 10,
+            "sy": 1.1
+          },
+          "frondMid": {
+            "r": -6,
+            "sy": 1.1
+          },
+          "frondRight": {
+            "r": -10,
+            "sy": 1.1
+          },
+          "frondTall": {
+            "r": 2,
+            "sy": 1.08
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "frondFace": {
+            "r": 8,
+            "sy": 1.08
+          },
+          "frondLeft": {
+            "r": 10,
+            "sy": 1.1
+          },
+          "frondMid": {
+            "r": -6,
+            "sy": 1.1
+          },
+          "frondRight": {
+            "r": -10,
+            "sy": 1.1
+          },
+          "frondTall": {
+            "r": 2,
+            "sy": 1.08
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.4,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

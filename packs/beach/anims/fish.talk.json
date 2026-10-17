@@ -1,0 +1,167 @@
+{
+  "id": "talk",
+  "sticker": "fish",
+  "description": "the little fish talks, its mouth opening and closing, its tail swishing a little.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27734,
+    "width": 0.5,
+    "height": 0.44401
+  },
+  "puppet": {
+    "rig": "anims/fish.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "root": {
+            "y": -3
+          },
+          "tail": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {},
+          "root": {},
+          "tail": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "root": {
+            "y": -3
+          },
+          "tail": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {},
+          "root": {},
+          "tail": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "root": {
+            "y": -3
+          },
+          "tail": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {},
+          "root": {},
+          "tail": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "root": {
+            "y": -3
+          },
+          "tail": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {},
+          "root": {},
+          "tail": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "root": {
+            "y": -3
+          },
+          "tail": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "body": {},
+          "root": {},
+          "tail": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

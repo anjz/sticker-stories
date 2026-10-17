@@ -1,0 +1,655 @@
+{
+  "sticker": "fishing-boat",
+  "called": "the fishing boat",
+  "skeleton": "a fishing boat seen from the side, bow to the right: root under the keel; hull on it (wheelhouse, mast, crossbar, rigging); net (the bundled net with its floats and the rope it hangs by) on a bone where that rope ties to the mast, swinging out and hauled up; an open-net variant.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a small fishing boat. Draw it as a cut-out paper puppet: its separate pieces laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every piece at the size it has in image 1 (if they do not all fit, draw them all a little smaller, at the same scale as each other).\n\nDraw each piece on its own, spread out over the sheet with wide empty gaps between them, no piece touching or overlapping another:\n1. the boat WITHOUT its net: the blue-and-white wooden hull, the white wheelhouse with its round windows and funnel, the mast with its crossbar, the bow post, the wooden post at the stern and the rigging ropes, but no net, no orange floats and no rope hanging down to the net.\n2. the net alone as in image 1: the bundled net with its two orange floats and the short rope it hangs by at its top.\n3. the same net swung open: spread out wide and hanging in loose folds, with its two orange floats and the short rope it hangs by at its top.\n\nEvery piece is drawn whole, including what is normally hidden behind another piece, with its edges clean and smooth. It is an object, not a character: no face, no eyes, no mouth. No text, no labels, no numbers, no outline around the pieces beyond the drawing's own line, no shadows, no water, no sand, no splashes or drops. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "boat": {
+      "sheet": "parts",
+      "at": [
+        497,
+        345
+      ]
+    },
+    "net": {
+      "sheet": "parts",
+      "at": [
+        426,
+        853
+      ]
+    },
+    "open": {
+      "sheet": "parts",
+      "at": [
+        1156,
+        832
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 385,
+      "y": 635
+    },
+    {
+      "id": "rock",
+      "parent": "root",
+      "x": 385,
+      "y": 560
+    },
+    {
+      "id": "net",
+      "parent": "rock",
+      "x": 257,
+      "y": 300
+    }
+  ],
+  "slots": [
+    {
+      "id": "net",
+      "bone": "net",
+      "default": "net",
+      "attachments": {
+        "net": {
+          "part": "net",
+          "x": 245,
+          "y": 398,
+          "scale": 0.66
+        },
+        "open": {
+          "part": "open",
+          "x": 144,
+          "y": 372,
+          "scale": 0.45,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "boat",
+      "bone": "rock",
+      "default": "boat",
+      "attachments": {
+        "boat": {
+          "part": "boat",
+          "x": 382,
+          "y": 385,
+          "scale": 0.665,
+          "scaleY": 1.12
+        }
+      }
+    }
+  ],
+  "animations": [
+    {
+      "id": "net",
+      "kind": "action",
+      "description": "the fishing boat hauls up its net",
+      "pause": {
+        "frame": 5,
+        "shows": "the fishing boat with its net hauled up high on the mast"
+      },
+      "particles": [
+        {
+          "frame": 2,
+          "effect": "spray",
+          "x": 0.16,
+          "y": 0.72,
+          "intensity": 0.35
+        },
+        {
+          "frame": 4,
+          "effect": "spray",
+          "x": 0.16,
+          "y": 0.6,
+          "intensity": 0.4
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.3
+        },
+        {
+          "hold": 0.55,
+          "bones": {
+            "rock": {
+              "r": -1
+            },
+            "net": {
+              "x": -120,
+              "y": 10,
+              "r": 22
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "ease": "in",
+          "bones": {
+            "rock": {
+              "r": -2
+            },
+            "net": {
+              "x": -150,
+              "y": 140,
+              "r": 6
+            }
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "rock": {
+              "r": -1
+            },
+            "net": {
+              "x": 34,
+              "y": 160,
+              "r": 2
+            }
+          },
+          "slots": {
+            "net": "open"
+          }
+        },
+        {
+          "hold": 0.5,
+          "ease": "out",
+          "bones": {
+            "rock": {
+              "r": 1
+            },
+            "net": {
+              "x": 34,
+              "y": -20,
+              "r": -3
+            }
+          },
+          "slots": {
+            "net": "open"
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "rock": {
+              "r": 1.5
+            },
+            "net": {
+              "x": 12,
+              "y": -110,
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "net": {
+              "x": 10,
+              "y": -104,
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.55,
+          "ease": "inOut",
+          "bones": {
+            "net": {
+              "y": -20,
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "net": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "chug",
+      "kind": "move",
+      "description": "the fishing boat chugs along to the right over the waves, bobbing gently, then stops.",
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "facing": "right",
+      "stride": 0.5,
+      "on": [
+        "sea"
+      ],
+      "waterline": 0.12,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "rock": {
+              "r": -2
+            },
+            "net": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "rock": {
+              "y": 5
+            },
+            "net": {
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "rock": {
+              "r": 2
+            },
+            "net": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "rock": {
+              "y": -4
+            },
+            "net": {
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "rock": {
+              "r": -1,
+              "y": 2
+            },
+            "net": {
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "rock": {
+              "r": 1
+            },
+            "net": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "rock",
+      "kind": "action",
+      "description": "the fishing boat rocks gently on the waves.",
+      "idle": true,
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "rock": {
+              "r": 2.5,
+              "y": 3
+            },
+            "net": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "rock": {
+              "r": -2.5,
+              "y": -2
+            },
+            "net": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.55,
+          "bones": {
+            "rock": {
+              "r": 2,
+              "y": 2
+            },
+            "net": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "toot",
+      "kind": "action",
+      "description": "the fishing boat gives a happy toot of its horn: it bobs up with a little rock, and settles.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "rock": {
+              "r": -1,
+              "y": 4
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "rock": {
+              "r": -3,
+              "y": -12
+            },
+            "net": {
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "rock": {
+              "r": 2,
+              "y": -4
+            },
+            "net": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "rock": {
+              "r": 3,
+              "y": -12
+            },
+            "net": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "rock": {
+              "r": -1.5,
+              "y": 2
+            },
+            "net": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "rock": {
+              "r": 0.5
+            },
+            "net": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "swing",
+      "kind": "action",
+      "description": "the net swings out over the side on its rope and back, to and fro.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "rock": {
+              "r": -1
+            },
+            "net": {
+              "r": 20,
+              "x": -20
+            }
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "rock": {
+              "r": 1
+            },
+            "net": {
+              "r": -10
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "rock": {
+              "r": -0.5
+            },
+            "net": {
+              "r": 12,
+              "x": -10
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "net": {
+              "r": -5
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "net": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "bounce",
+      "kind": "action",
+      "description": "the fishing boat rides over a big wave: its bow lifts, then dips with a splash, and it settles.",
+      "particles": [
+        {
+          "frame": 2,
+          "effect": "spray",
+          "x": 0.86,
+          "y": 0.72,
+          "intensity": 0.4
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.4,
+          "ease": "out",
+          "bones": {
+            "rock": {
+              "r": -8,
+              "y": -14
+            },
+            "net": {
+              "r": 6
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "rock": {
+              "r": 6,
+              "y": 6
+            },
+            "net": {
+              "r": -5
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "rock": {
+              "r": -3,
+              "y": -3
+            },
+            "net": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "rock": {
+              "r": 1,
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "tip",
+      "kind": "action",
+      "description": "a big wave tips the fishing boat over to one side; it leans there, then rights itself.",
+      "pause": {
+        "frame": 2,
+        "shows": "the fishing boat leaning over to one side on a big wave"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.6,
+          "ease": "out",
+          "bones": {
+            "rock": {
+              "r": -9
+            },
+            "net": {
+              "r": 9
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "rock": {
+              "r": -8
+            },
+            "net": {
+              "r": 7
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "rock": {
+              "r": -9.5
+            },
+            "net": {
+              "r": 10
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "ease": "in",
+          "bones": {
+            "rock": {
+              "r": 2
+            },
+            "net": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "rock": {
+              "r": -1
+            },
+            "net": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

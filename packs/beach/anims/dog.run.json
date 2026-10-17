@@ -3,52 +3,197 @@
   "sticker": "dog",
   "kind": "move",
   "description": "the dog runs along to the right, ears bouncing and tail up, then stops.",
-  "sheet": "anims/dog.run.webp",
-  "frame": {
-    "width": 631,
-    "height": 513
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.17116,
-    "y": 0.02924,
-    "width": 0.70365,
-    "height": 0.93957
-  },
   "stickerBox": {
     "x": 0.16797,
     "y": 0.13932,
     "width": 0.66406,
     "height": 0.72005
   },
-  "hold": [
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "right",
   "stride": 0.7,
   "particles": [
     {
-      "frame": 4,
+      "frame": 2,
       "effect": "dust-puff",
       "x": 0.5,
       "y": 0.8594,
       "intensity": 0.3
     }
-  ]
+  ],
+  "puppet": {
+    "rig": "anims/dog.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.15,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "earL": {
+            "r": -10
+          },
+          "earR": {
+            "r": -8
+          },
+          "head": {
+            "r": -2
+          },
+          "legBF": {
+            "r": 18
+          },
+          "legBN": {
+            "r": 22
+          },
+          "legFF": {
+            "r": -20
+          },
+          "legFN": {
+            "r": -26
+          },
+          "root": {
+            "y": -14
+          },
+          "tail": {
+            "r": -12
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "body": {
+            "r": 3
+          },
+          "earL": {
+            "r": 6
+          },
+          "earR": {
+            "r": 6
+          },
+          "head": {
+            "r": 2
+          },
+          "legBF": {
+            "r": -10
+          },
+          "legBN": {
+            "r": -14
+          },
+          "legFF": {
+            "r": 18
+          },
+          "legFN": {
+            "r": 14
+          },
+          "root": {},
+          "tail": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "earL": {
+            "r": -10
+          },
+          "earR": {
+            "r": -8
+          },
+          "head": {
+            "r": -2
+          },
+          "legBF": {
+            "r": 18
+          },
+          "legBN": {
+            "r": 22
+          },
+          "legFF": {
+            "r": -20
+          },
+          "legFN": {
+            "r": -26
+          },
+          "root": {
+            "y": -14
+          },
+          "tail": {
+            "r": -12
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "body": {
+            "r": 3
+          },
+          "earL": {
+            "r": 6
+          },
+          "earR": {
+            "r": 6
+          },
+          "head": {
+            "r": 2
+          },
+          "legBF": {
+            "r": -10
+          },
+          "legBN": {
+            "r": -14
+          },
+          "legFF": {
+            "r": 18
+          },
+          "legFN": {
+            "r": 14
+          },
+          "root": {},
+          "tail": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "earL": {
+            "r": 4
+          },
+          "earR": {
+            "r": 4
+          },
+          "root": {
+            "y": 2
+          }
+        }
+      },
+      {
+        "hold": 0.35
+      }
+    ]
+  }
 }

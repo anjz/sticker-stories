@@ -1,0 +1,80 @@
+{
+  "id": "look-around",
+  "sticker": "sandpiper",
+  "description": "the sandpiper looks up, then turns right round to look behind it, then turns back and looks ahead again.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26302,
+    "width": 0.5,
+    "height": 0.47266
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the sandpiper turned round, looking behind it"
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/sandpiper.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": -10,
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "head": {
+            "r": -10,
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "ease": "inOut",
+        "bones": {
+          "head": {
+            "r": -4
+          },
+          "root": {
+            "x": -70,
+            "sx": -1
+          }
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "head": {
+            "r": -6,
+            "y": -2
+          },
+          "root": {
+            "x": -70,
+            "sx": -1
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "ease": "inOut",
+        "bones": {
+          "head": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

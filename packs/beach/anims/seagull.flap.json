@@ -1,0 +1,201 @@
+{
+  "id": "flap",
+  "sticker": "seagull",
+  "description": "the seagull spreads its wings and flaps them in place, its feet staying on the ground.",
+  "stickerBox": {
+    "x": 0.27474,
+    "y": 0.20052,
+    "width": 0.45052,
+    "height": 0.59896
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the seagull with its wings spread wide"
+  },
+  "puppet": {
+    "rig": "anims/seagull.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {},
+          "root": {},
+          "wingL": {
+            "r": -10
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {},
+          "root": {},
+          "wingL": {
+            "r": -22
+          },
+          "wingR": {
+            "r": 22
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "head": {
+            "y": -1
+          },
+          "root": {
+            "y": 2
+          },
+          "wingL": {
+            "r": 24
+          },
+          "wingR": {
+            "r": -24
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "head": {
+            "y": 2
+          },
+          "root": {
+            "y": -4
+          },
+          "wingL": {
+            "r": -22
+          },
+          "wingR": {
+            "r": 22
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "head": {
+            "y": -1
+          },
+          "root": {
+            "y": 2
+          },
+          "wingL": {
+            "r": 24
+          },
+          "wingR": {
+            "r": -24
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "head": {
+            "y": 2
+          },
+          "root": {
+            "y": -4
+          },
+          "wingL": {
+            "r": -22
+          },
+          "wingR": {
+            "r": 22
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "head": {
+            "y": -1
+          },
+          "root": {
+            "y": 2
+          },
+          "wingL": {
+            "r": 24
+          },
+          "wingR": {
+            "r": -24
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "head": {},
+          "root": {},
+          "wingL": {
+            "r": 4
+          },
+          "wingR": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

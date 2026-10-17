@@ -1,0 +1,73 @@
+{
+  "id": "nod",
+  "sticker": "hermit-crab",
+  "kind": "action",
+  "description": "the hermit crab nods yes, twice.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.30469,
+    "width": 0.5,
+    "height": 0.39063
+  },
+  "puppet": {
+    "rig": "anims/hermit-crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "body": {
+            "y": 5
+          },
+          "face": {
+            "y": 5
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "y": -2
+          },
+          "face": {
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "body": {
+            "y": 5
+          },
+          "face": {
+            "y": 5
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "y": -2
+          },
+          "face": {
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

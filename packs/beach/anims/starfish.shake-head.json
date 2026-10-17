@@ -1,0 +1,79 @@
+{
+  "id": "shake-head",
+  "sticker": "starfish",
+  "kind": "action",
+  "description": "the starfish shakes its head no, its top arm swinging.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20182,
+    "width": 0.59896,
+    "height": 0.59505
+  },
+  "puppet": {
+    "rig": "anims/starfish.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -10
+          },
+          "top": {
+            "r": -9
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 10
+          },
+          "top": {
+            "r": 9
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -10
+          },
+          "top": {
+            "r": -9
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 10
+          },
+          "top": {
+            "r": 9
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

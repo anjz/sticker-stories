@@ -1,0 +1,118 @@
+{
+  "id": "talk",
+  "sticker": "clam",
+  "kind": "action",
+  "description": "the clam talks, its mouth moving and its top shell bobbing a little.",
+  "stickerBox": {
+    "x": 0.25521,
+    "y": 0.25,
+    "width": 0.48958,
+    "height": 0.5
+  },
+  "puppet": {
+    "rig": "anims/clam.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "lid": {
+            "y": -6
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "lid": {}
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "lid": {
+            "y": -6
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "lid": {}
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "lid": {
+            "y": -6
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "lid": {}
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "lid": {
+            "y": -6
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "lid": {}
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "lid": {
+            "y": -6
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "lid": {}
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

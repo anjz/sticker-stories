@@ -1,0 +1,91 @@
+{
+  "id": "twirl",
+  "sticker": "starfish",
+  "kind": "action",
+  "description": "the starfish twirls right round on the spot.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20182,
+    "width": 0.59896,
+    "height": 0.59505
+  },
+  "puppet": {
+    "rig": "anims/starfish.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sy": 0.94
+          },
+          "root": {
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.32,
+        "bones": {
+          "armL": {
+            "r": 15
+          },
+          "armR": {
+            "r": -15
+          },
+          "root": {
+            "y": -26,
+            "sx": -1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.32,
+        "bones": {
+          "armL": {
+            "r": 15
+          },
+          "armR": {
+            "r": -15
+          },
+          "root": {
+            "sx": 1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.94
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

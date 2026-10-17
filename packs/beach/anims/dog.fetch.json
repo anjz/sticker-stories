@@ -1,0 +1,236 @@
+{
+  "id": "fetch",
+  "sticker": "dog",
+  "kind": "action",
+  "description": "the dog watches a ball fly, leaps up and catches it in its mouth, then drops it and nudges it away for another throw.",
+  "stickerBox": {
+    "x": 0.16797,
+    "y": 0.13932,
+    "width": 0.66406,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the dog with the red ball in its mouth, tail up"
+  },
+  "puppet": {
+    "rig": "anims/dog.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "ball": {
+            "x": 60,
+            "y": -260
+          },
+          "belly": {
+            "sy": 0.96
+          },
+          "head": {
+            "r": -12
+          },
+          "root": {
+            "y": 4
+          },
+          "tail": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "out",
+        "bones": {
+          "ball": {
+            "x": 20,
+            "y": -80
+          },
+          "head": {
+            "r": -10
+          },
+          "legBF": {
+            "r": 12
+          },
+          "legBN": {
+            "r": 12
+          },
+          "legFF": {
+            "r": -15
+          },
+          "legFN": {
+            "r": -15
+          },
+          "root": {
+            "y": -40
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "in",
+        "bones": {
+          "ball": {
+            "y": -6
+          },
+          "head": {
+            "r": -4
+          },
+          "legBF": {
+            "r": 8
+          },
+          "legBN": {
+            "r": 8
+          },
+          "legFF": {
+            "r": -10
+          },
+          "legFN": {
+            "r": -10
+          },
+          "root": {
+            "y": -30
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "ball": {
+            "y": -6
+          },
+          "belly": {
+            "sy": 0.97
+          },
+          "root": {
+            "y": 2
+          },
+          "tail": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "ball": {
+            "y": -6
+          },
+          "tail": {
+            "r": 8
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "in",
+        "bones": {
+          "ball": {
+            "x": 10,
+            "y": 300
+          },
+          "head": {
+            "r": 12,
+            "y": 10
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "ball": {
+            "r": 180,
+            "x": 140,
+            "y": 280
+          },
+          "head": {
+            "r": 14,
+            "x": 10,
+            "y": 12
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "ball": {
+            "r": 360,
+            "x": 260,
+            "y": 260,
+            "sx": 0.6,
+            "sy": 0.6
+          },
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "ball": {
+            "x": 300,
+            "y": 260,
+            "sx": 0.1,
+            "sy": 0.1
+          }
+        },
+        "slots": {
+          "ball": "ball",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

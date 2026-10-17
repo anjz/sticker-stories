@@ -1,0 +1,67 @@
+{
+  "id": "wobble",
+  "sticker": "bucket",
+  "kind": "action",
+  "description": "the bucket wobbles from side to side, its spade rattling, then settles.",
+  "stickerBox": {
+    "x": 0.25911,
+    "y": 0.20052,
+    "width": 0.48047,
+    "height": 0.59896
+  },
+  "puppet": {
+    "rig": "anims/bucket.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "root": {
+            "r": 5
+          },
+          "spade": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "root": {
+            "r": -5
+          },
+          "spade": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.28,
+        "bones": {
+          "root": {
+            "r": 3
+          },
+          "spade": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.26,
+        "bones": {
+          "root": {
+            "r": -1.5
+          },
+          "spade": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

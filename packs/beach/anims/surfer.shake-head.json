@@ -1,0 +1,67 @@
+{
+  "id": "shake-head",
+  "sticker": "surfer",
+  "kind": "action",
+  "description": "the surfer shakes its head no.",
+  "stickerBox": {
+    "x": 0.26302,
+    "y": 0.13932,
+    "width": 0.47266,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/surfer.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "face": {
+            "x": -7.2
+          },
+          "head": {
+            "r": -7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": 7.2
+          },
+          "head": {
+            "r": 7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": -7.2
+          },
+          "head": {
+            "r": -7
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": 6
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

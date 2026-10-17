@@ -1,0 +1,229 @@
+{
+  "id": "dig",
+  "sticker": "dog",
+  "kind": "action",
+  "description": "the dog digs in the sand with its front paws, sand flying, then looks up proudly.",
+  "stickerBox": {
+    "x": 0.16797,
+    "y": 0.13932,
+    "width": 0.66406,
+    "height": 0.72005
+  },
+  "particles": [
+    {
+      "frame": 2,
+      "effect": "dust-puff",
+      "x": 0.62,
+      "y": 0.82,
+      "intensity": 0.35
+    },
+    {
+      "frame": 4,
+      "effect": "dust-puff",
+      "x": 0.7,
+      "y": 0.82,
+      "intensity": 0.35
+    },
+    {
+      "frame": 6,
+      "effect": "dust-puff",
+      "x": 0.62,
+      "y": 0.82,
+      "intensity": 0.35
+    }
+  ],
+  "puppet": {
+    "rig": "anims/dog.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": 6
+          },
+          "head": {
+            "r": 9,
+            "y": 7
+          },
+          "tail": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 7
+          },
+          "head": {
+            "r": 10,
+            "y": 8
+          },
+          "legFF": {
+            "r": 4
+          },
+          "legFN": {
+            "r": -30,
+            "y": -12
+          },
+          "tail": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 7
+          },
+          "head": {
+            "r": 10,
+            "y": 8
+          },
+          "legFF": {
+            "r": -30,
+            "y": -12
+          },
+          "legFN": {
+            "r": 6
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 7
+          },
+          "head": {
+            "r": 10,
+            "y": 8
+          },
+          "legFF": {
+            "r": 4
+          },
+          "legFN": {
+            "r": -30,
+            "y": -12
+          },
+          "tail": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 7
+          },
+          "head": {
+            "r": 10,
+            "y": 8
+          },
+          "legFF": {
+            "r": -30,
+            "y": -12
+          },
+          "legFN": {
+            "r": 6
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 7
+          },
+          "head": {
+            "r": 10,
+            "y": 8
+          },
+          "legFF": {
+            "r": 4
+          },
+          "legFN": {
+            "r": -30,
+            "y": -12
+          },
+          "tail": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 7
+          },
+          "head": {
+            "r": 10,
+            "y": 8
+          },
+          "legFF": {
+            "r": -30,
+            "y": -12
+          },
+          "legFN": {
+            "r": 6
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "mouth": "smile"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": -4
+          },
+          "tail": {
+            "r": -12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

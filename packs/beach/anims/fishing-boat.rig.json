@@ -1,0 +1,109 @@
+{
+  "sticker": "fishing-boat",
+  "atlas": "anims/fishing-boat.rig.webp",
+  "size": 768,
+  "parts": {
+    "boat": {
+      "rect": [
+        0,
+        0,
+        604,
+        507
+      ],
+      "border": [
+        606,
+        0,
+        644,
+        547
+      ],
+      "pad": 20
+    },
+    "net": {
+      "rect": [
+        1252,
+        0,
+        170,
+        214
+      ],
+      "border": [
+        1424,
+        0,
+        210,
+        254
+      ],
+      "pad": 20
+    },
+    "open": {
+      "rect": [
+        1636,
+        0,
+        313,
+        165
+      ],
+      "border": [
+        0,
+        549,
+        353,
+        205
+      ],
+      "pad": 20
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 385,
+      "y": 635
+    },
+    {
+      "id": "rock",
+      "parent": "root",
+      "x": 385,
+      "y": 560
+    },
+    {
+      "id": "net",
+      "parent": "rock",
+      "x": 257,
+      "y": 300
+    }
+  ],
+  "slots": [
+    {
+      "id": "net",
+      "bone": "net",
+      "default": "net",
+      "attachments": {
+        "net": {
+          "part": "net",
+          "x": 160.19,
+          "y": 291.41,
+          "w": 169.62,
+          "h": 213.18
+        },
+        "open": {
+          "part": "open",
+          "x": -12.15,
+          "y": 289.88,
+          "w": 312.3,
+          "h": 164.25,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "boat",
+      "bone": "rock",
+      "default": "boat",
+      "attachments": {
+        "boat": {
+          "part": "boat",
+          "x": 80.09,
+          "y": 131.77,
+          "w": 603.82,
+          "h": 506.46
+        }
+      }
+    }
+  ]
+}

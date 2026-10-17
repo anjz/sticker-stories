@@ -1,0 +1,112 @@
+{
+  "id": "wave",
+  "sticker": "dog",
+  "kind": "action",
+  "description": "the dog lifts a front paw and waves hello.",
+  "stickerBox": {
+    "x": 0.16797,
+    "y": 0.13932,
+    "width": 0.66406,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/dog.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": 3
+          },
+          "legFN": {
+            "r": -44,
+            "y": -20
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": 3
+          },
+          "legFN": {
+            "r": -54,
+            "y": -22
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": 3
+          },
+          "legFN": {
+            "r": -40,
+            "y": -20
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": 3
+          },
+          "legFN": {
+            "r": -54,
+            "y": -22
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "legFN": {
+            "r": -10,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

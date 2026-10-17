@@ -1,0 +1,108 @@
+{
+  "id": "jump",
+  "sticker": "fish",
+  "description": "the little fish curls, leaps up high in an arc for joy and drops back down with a wiggle.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27734,
+    "width": 0.5,
+    "height": 0.44401
+  },
+  "puppet": {
+    "rig": "anims/fish.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.93
+          },
+          "root": {
+            "y": 6
+          },
+          "tail": {
+            "r": 14
+          }
+        }
+      },
+      {
+        "hold": 0.24,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": -18
+          },
+          "root": {
+            "x": 10,
+            "y": -80
+          },
+          "tail": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "finSide": "open",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "in",
+        "bones": {
+          "body": {
+            "r": 6
+          },
+          "root": {
+            "x": 20,
+            "y": -86
+          },
+          "tail": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "finSide": "open",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.95
+          },
+          "body": {
+            "r": 10
+          },
+          "root": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

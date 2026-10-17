@@ -3,37 +3,121 @@
   "sticker": "castle",
   "kind": "move",
   "description": "the sand castle builds itself up from the sand: the base, then the walls, the towers and the flag.",
-  "sheet": "anims/castle.build.webp",
-  "frame": {
-    "width": 533,
-    "height": 501
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.04503,
-    "y": 0.02994,
-    "width": 0.90432,
-    "height": 0.93613
-  },
   "stickerBox": {
     "x": 0.13932,
     "y": 0.14974,
     "width": 0.72005,
     "height": 0.70052
   },
-  "hold": [
-    0.1,
-    0.1,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.1,
-    0.1,
-    0.12,
-    0.45
-  ]
+  "puppet": {
+    "rig": "anims/castle.rig.json",
+    "keys": [
+      {
+        "hold": 0.02,
+        "ease": "step"
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "base": {
+            "sx": 0.6,
+            "sy": 0.05
+          },
+          "keep": {
+            "sy": 0.02
+          },
+          "towerL": {
+            "sy": 0.02
+          },
+          "towerR": {
+            "sy": 0.02
+          }
+        },
+        "slots": {
+          "flag": "none",
+          "keep": "none",
+          "towerL": "none",
+          "towerR": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "keep": {
+            "sy": 0.02
+          },
+          "towerL": {
+            "sy": 0.02
+          },
+          "towerR": {
+            "sy": 0.02
+          }
+        },
+        "slots": {
+          "flag": "none",
+          "towerL": "none",
+          "towerR": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "flag": {
+            "sx": 0.02
+          },
+          "keep": {
+            "sy": 1.04
+          },
+          "towerL": {
+            "sy": 0.02
+          },
+          "towerR": {
+            "sy": 0.02
+          }
+        },
+        "slots": {
+          "flag": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "flag": {
+            "sx": 0.02
+          },
+          "towerL": {
+            "sy": 1.04
+          },
+          "towerR": {
+            "sy": 1.04
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "flag": {
+            "r": -4,
+            "sx": 1.08
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "flag": {
+            "r": 3,
+            "sx": 0.96
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
 }

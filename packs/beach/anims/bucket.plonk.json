@@ -3,39 +3,12 @@
   "sticker": "bucket",
   "kind": "move",
   "description": "the bucket and spade are set down on the sand: they wobble and settle.",
-  "sheet": "anims/bucket.plonk.webp",
-  "frame": {
-    "width": 476,
-    "height": 520
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.13025,
-    "y": 0.06923,
-    "width": 0.78151,
-    "height": 0.89808
-  },
   "stickerBox": {
     "x": 0.25911,
     "y": 0.20052,
     "width": 0.48047,
     "height": 0.59896
   },
-  "hold": [
-    0.1,
-    0.1,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.1,
-    0.1,
-    0.12,
-    0.45
-  ],
   "particles": [
     {
       "frame": 3,
@@ -44,5 +17,77 @@
       "y": 0.7995,
       "intensity": 0.4
     }
-  ]
+  ],
+  "puppet": {
+    "rig": "anims/bucket.rig.json",
+    "keys": [
+      {
+        "hold": 0.02,
+        "ease": "step"
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "root": {
+            "r": -5,
+            "y": -60
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "in",
+        "bones": {
+          "root": {
+            "r": -3,
+            "y": -40
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "root": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "mould": {
+            "y": -8
+          },
+          "root": {
+            "r": -2.5
+          },
+          "spade": {
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "root": {
+            "r": 1.5
+          },
+          "spade": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "root": {
+            "r": -0.5
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
 }

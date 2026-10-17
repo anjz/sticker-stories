@@ -1,0 +1,116 @@
+{
+  "id": "sleep",
+  "sticker": "clam",
+  "kind": "action",
+  "description": "the clam gives a big yawn, closes its shell most of the way and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.25521,
+    "y": 0.25,
+    "width": 0.48958,
+    "height": 0.5
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the clam fast asleep, its shell nearly closed, eyes shut"
+  },
+  "puppet": {
+    "rig": "anims/clam.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "lid": {
+            "y": -14
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "lid": {
+            "y": -14
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "lid": {
+            "sy": 0.6
+          },
+          "soft": {
+            "y": 7,
+            "sy": 0.6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "soft": "none"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "lid": {
+            "sy": 0.6
+          },
+          "soft": {
+            "y": 7,
+            "sy": 0.6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "soft": "none"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

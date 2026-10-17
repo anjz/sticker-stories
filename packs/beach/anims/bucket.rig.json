@@ -1,0 +1,205 @@
+{
+  "sticker": "bucket",
+  "atlas": "anims/bucket.rig.webp",
+  "size": 768,
+  "parts": {
+    "bucket": {
+      "rect": [
+        804,
+        0,
+        302,
+        279
+      ],
+      "border": [
+        1108,
+        0,
+        342,
+        319
+      ],
+      "pad": 20
+    },
+    "front": {
+      "rect": [
+        1452,
+        0,
+        311,
+        268
+      ],
+      "border": [
+        0,
+        332,
+        351,
+        308
+      ],
+      "pad": 20
+    },
+    "mould": {
+      "rect": [
+        353,
+        332,
+        167,
+        173
+      ],
+      "border": [
+        522,
+        332,
+        207,
+        213
+      ],
+      "pad": 20
+    },
+    "sand": {
+      "rect": [
+        0,
+        0,
+        168,
+        290
+      ],
+      "border": [
+        170,
+        0,
+        208,
+        330
+      ],
+      "pad": 20
+    },
+    "spade": {
+      "rect": [
+        380,
+        0,
+        190,
+        288
+      ],
+      "border": [
+        572,
+        0,
+        230,
+        328
+      ],
+      "pad": 20
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 372,
+      "y": 578
+    },
+    {
+      "id": "tip",
+      "parent": "root",
+      "x": 262,
+      "y": 578
+    },
+    {
+      "id": "body",
+      "parent": "tip",
+      "x": 372,
+      "y": 578
+    },
+    {
+      "id": "spade",
+      "parent": "body",
+      "x": 395,
+      "y": 380
+    },
+    {
+      "id": "mould",
+      "parent": "root",
+      "x": 474,
+      "y": 506
+    }
+  ],
+  "slots": [
+    {
+      "id": "back",
+      "bone": "body",
+      "default": "bucket",
+      "attachments": {
+        "bucket": {
+          "part": "bucket",
+          "x": 217,
+          "y": 304.75,
+          "w": 302,
+          "h": 278.5
+        }
+      }
+    },
+    {
+      "id": "spade",
+      "bone": "spade",
+      "default": "spade",
+      "attachments": {
+        "sand": {
+          "part": "sand",
+          "x": 335.24,
+          "y": 167.04,
+          "w": 167.52,
+          "h": 289.92,
+          "rotate": 7.5
+        },
+        "spade": {
+          "part": "spade",
+          "x": 324.2,
+          "y": 168.24,
+          "w": 189.6,
+          "h": 287.52,
+          "rotate": 7.5
+        }
+      }
+    },
+    {
+      "id": "front",
+      "bone": "body",
+      "default": "front",
+      "attachments": {
+        "front": {
+          "part": "front",
+          "x": 219.94,
+          "y": 315.22,
+          "w": 310.13,
+          "h": 267.55,
+          "rotate": -1
+        }
+      }
+    },
+    {
+      "id": "mould",
+      "bone": "mould",
+      "default": "mould",
+      "attachments": {
+        "mould": {
+          "part": "mould",
+          "x": 390.53,
+          "y": 420.1,
+          "w": 166.95,
+          "h": 172.8,
+          "rotate": -3.2
+        }
+      }
+    },
+    {
+      "id": "spadeOut",
+      "bone": "spade",
+      "default": "none",
+      "attachments": {
+        "sand": {
+          "part": "sand",
+          "x": 335.24,
+          "y": 167.04,
+          "w": 167.52,
+          "h": 289.92,
+          "rotate": 7.5
+        },
+        "spade": {
+          "part": "spade",
+          "x": 324.2,
+          "y": 168.24,
+          "w": 189.6,
+          "h": 287.52,
+          "rotate": 7.5
+        }
+      }
+    }
+  ]
+}

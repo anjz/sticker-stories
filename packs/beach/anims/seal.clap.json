@@ -1,54 +1,230 @@
 {
   "id": "clap",
   "sticker": "seal",
+  "kind": "action",
   "description": "the seal claps its flippers and barks",
-  "sheet": "anims/seal.clap.webp",
-  "frame": {
-    "width": 535,
-    "height": 425
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.03738,
-    "y": 0.05647,
-    "width": 0.90093,
-    "height": 0.90353
-  },
   "stickerBox": {
     "x": 0.13932,
     "y": 0.21094,
     "width": 0.72005,
     "height": 0.57682
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.7,
-    0.2,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 4,
     "shows": "the seal with its front flippers together mid-clap, mouth open in a happy bark"
+  },
+  "puppet": {
+    "rig": "anims/seal.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": -10
+          },
+          "armR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "up",
+          "armR": "up",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": -14
+          },
+          "belly": {
+            "sy": 1.02
+          },
+          "head": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "up",
+          "armR": "up",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armL": {},
+          "armR": {},
+          "belly": {
+            "sy": 1.02
+          },
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "up",
+          "armR": "up",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": -14
+          },
+          "belly": {
+            "sy": 1.02
+          },
+          "head": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "up",
+          "armR": "up",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armL": {},
+          "armR": {},
+          "belly": {
+            "sy": 1.02
+          },
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "up",
+          "armR": "up",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": -14
+          },
+          "belly": {
+            "sy": 1.02
+          },
+          "head": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "up",
+          "armR": "up",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armL": {},
+          "armR": {},
+          "belly": {
+            "sy": 1.02
+          },
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "up",
+          "armR": "up",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": -14
+          },
+          "belly": {
+            "sy": 1.02
+          },
+          "head": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "up",
+          "armR": "up",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": -10
+          },
+          "armR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "up",
+          "armR": "up",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
   }
 }

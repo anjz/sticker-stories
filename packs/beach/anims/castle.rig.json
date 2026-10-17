@@ -1,0 +1,221 @@
+{
+  "sticker": "castle",
+  "atlas": "anims/castle.rig.webp",
+  "size": 768,
+  "parts": {
+    "base": {
+      "rect": [
+        1182,
+        0,
+        536,
+        147
+      ],
+      "border": [
+        0,
+        458,
+        576,
+        187
+      ],
+      "pad": 20
+    },
+    "flag": {
+      "rect": [
+        956,
+        458,
+        167,
+        88
+      ],
+      "border": [
+        1125,
+        458,
+        207,
+        128
+      ],
+      "pad": 20
+    },
+    "flag2": {
+      "rect": [
+        578,
+        458,
+        167,
+        90
+      ],
+      "border": [
+        747,
+        458,
+        207,
+        130
+      ],
+      "pad": 20
+    },
+    "keep": {
+      "rect": [
+        0,
+        0,
+        222,
+        416
+      ],
+      "border": [
+        224,
+        0,
+        262,
+        456
+      ],
+      "pad": 20
+    },
+    "towerL": {
+      "rect": [
+        488,
+        0,
+        152,
+        200
+      ],
+      "border": [
+        642,
+        0,
+        192,
+        240
+      ],
+      "pad": 20
+    },
+    "towerR": {
+      "rect": [
+        836,
+        0,
+        151,
+        196
+      ],
+      "border": [
+        989,
+        0,
+        191,
+        236
+      ],
+      "pad": 20
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 380,
+      "y": 615
+    },
+    {
+      "id": "lean",
+      "parent": "root",
+      "x": 610,
+      "y": 610
+    },
+    {
+      "id": "base",
+      "parent": "lean",
+      "x": 380,
+      "y": 625
+    },
+    {
+      "id": "towerL",
+      "parent": "lean",
+      "x": 236,
+      "y": 535
+    },
+    {
+      "id": "towerR",
+      "parent": "lean",
+      "x": 534,
+      "y": 535
+    },
+    {
+      "id": "keep",
+      "parent": "lean",
+      "x": 385,
+      "y": 545
+    },
+    {
+      "id": "flag",
+      "parent": "keep",
+      "x": 383,
+      "y": 195
+    }
+  ],
+  "slots": [
+    {
+      "id": "flag",
+      "bone": "flag",
+      "default": "flag",
+      "attachments": {
+        "flag": {
+          "part": "flag",
+          "x": 371.8,
+          "y": 157.32,
+          "w": 166.4,
+          "h": 87.35,
+          "rotate": -2.5
+        },
+        "flag2": {
+          "part": "flag2",
+          "x": 371.54,
+          "y": 156.21,
+          "w": 166.92,
+          "h": 89.58,
+          "rotate": -2.5
+        }
+      }
+    },
+    {
+      "id": "towerL",
+      "bone": "towerL",
+      "default": "towerL",
+      "attachments": {
+        "towerL": {
+          "part": "towerL",
+          "x": 160.32,
+          "y": 322.42,
+          "w": 151.36,
+          "h": 199.15
+        }
+      }
+    },
+    {
+      "id": "towerR",
+      "bone": "towerR",
+      "default": "towerR",
+      "attachments": {
+        "towerR": {
+          "part": "towerR",
+          "x": 458.76,
+          "y": 325.29,
+          "w": 150.48,
+          "h": 195.42
+        }
+      }
+    },
+    {
+      "id": "keep",
+      "bone": "keep",
+      "default": "keep",
+      "attachments": {
+        "keep": {
+          "part": "keep",
+          "x": 270,
+          "y": 135.32,
+          "w": 222,
+          "h": 415.36
+        }
+      }
+    },
+    {
+      "id": "base",
+      "bone": "base",
+      "default": "base",
+      "attachments": {
+        "base": {
+          "part": "base",
+          "x": 110.25,
+          "y": 492.58,
+          "w": 535.5,
+          "h": 146.84
+        }
+      }
+    }
+  ]
+}

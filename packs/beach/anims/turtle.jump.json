@@ -1,0 +1,104 @@
+{
+  "id": "jump",
+  "sticker": "turtle",
+  "kind": "action",
+  "description": "the sea turtle gives a little hop for joy and lands with a bump.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.27604,
+    "width": 0.59896,
+    "height": 0.44792
+  },
+  "puppet": {
+    "rig": "anims/turtle.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.94
+          },
+          "head": {
+            "y": 4
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": -14
+          },
+          "armR": {
+            "r": 14
+          },
+          "head": {
+            "r": -4
+          },
+          "root": {
+            "y": -40
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": -14
+          },
+          "armR": {
+            "r": 14
+          },
+          "head": {
+            "r": -4
+          },
+          "root": {
+            "y": -42
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.92
+          },
+          "head": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

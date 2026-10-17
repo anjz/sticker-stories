@@ -1,0 +1,153 @@
+{
+  "id": "blow",
+  "sticker": "fish",
+  "description": "the little fish puckers its lips into a round little o and blows, puff, puff, puff, as if blowing bubbles, then smiles.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27734,
+    "width": 0.5,
+    "height": 0.44401
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the fish with its cheeks puffed and its mouth a round little o, blowing"
+  },
+  "puppet": {
+    "rig": "anims/fish.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 1.04
+          },
+          "face": {
+            "x": 3
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 1.06
+          },
+          "face": {
+            "x": 3
+          },
+          "tail": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 0.98,
+            "sy": 0.98
+          },
+          "face": {
+            "x": 3
+          },
+          "root": {
+            "x": -4
+          }
+        },
+        "slots": {
+          "eye": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 1.05
+          },
+          "face": {
+            "x": 3
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 0.98,
+            "sy": 0.98
+          },
+          "face": {
+            "x": 3
+          },
+          "root": {
+            "x": -4
+          }
+        },
+        "slots": {
+          "eye": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 1.05
+          },
+          "face": {
+            "x": 3
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 0.98,
+            "sy": 0.98
+          },
+          "face": {
+            "x": 3
+          },
+          "root": {
+            "x": -4
+          }
+        },
+        "slots": {
+          "eye": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.35,
+        "slots": {
+          "eye": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

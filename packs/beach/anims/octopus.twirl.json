@@ -1,0 +1,116 @@
+{
+  "id": "twirl",
+  "sticker": "octopus",
+  "description": "the octopus twirls right round on the spot, its arms swirling out.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.23047,
+    "width": 0.59896,
+    "height": 0.53906
+  },
+  "puppet": {
+    "rig": "anims/octopus.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sy": 0.94
+          },
+          "root": {
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "armR": {
+            "r": 12
+          },
+          "lowL": {
+            "r": 12
+          },
+          "lowR": {
+            "r": -12
+          },
+          "root": {
+            "y": -24,
+            "sx": -1
+          },
+          "sideL": {
+            "r": 12
+          },
+          "sideR": {
+            "r": -12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "inOut",
+        "bones": {
+          "armL": {
+            "r": -6
+          },
+          "armR": {
+            "r": 6
+          },
+          "lowL": {
+            "r": 6
+          },
+          "lowR": {
+            "r": -6
+          },
+          "root": {
+            "sx": 1
+          },
+          "sideL": {
+            "r": 6
+          },
+          "sideR": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.94
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

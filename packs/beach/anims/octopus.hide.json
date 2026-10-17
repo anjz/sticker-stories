@@ -1,0 +1,249 @@
+{
+  "id": "hide",
+  "sticker": "octopus",
+  "description": "the shy octopus squeezes itself small and hides its face behind two arms, then peeks out over them and smiles.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.23047,
+    "width": 0.59896,
+    "height": 0.53906
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the octopus squeezed small, hiding its face behind its arms"
+  },
+  "puppet": {
+    "rig": "anims/octopus.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": 12
+          },
+          "armR": {
+            "r": -12
+          },
+          "belly": {
+            "sx": 0.94,
+            "sy": 0.9
+          },
+          "hug": {
+            "y": -40
+          },
+          "lowL": {
+            "r": -12
+          },
+          "lowR": {
+            "r": 12
+          },
+          "root": {
+            "y": 10
+          },
+          "sideL": {
+            "r": -12
+          },
+          "sideR": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "hug": "arms",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "inOut",
+        "bones": {
+          "armL": {
+            "r": 18
+          },
+          "armR": {
+            "r": -18
+          },
+          "belly": {
+            "sx": 0.94,
+            "sy": 0.9
+          },
+          "hug": {
+            "y": -102
+          },
+          "lowL": {
+            "r": -18
+          },
+          "lowR": {
+            "r": 18
+          },
+          "root": {
+            "y": 10
+          },
+          "sideL": {
+            "r": -18
+          },
+          "sideR": {
+            "r": 18
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "hug": "arms"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "armL": {
+            "r": 18
+          },
+          "armR": {
+            "r": -18
+          },
+          "belly": {
+            "sx": 0.94,
+            "sy": 0.89
+          },
+          "hug": {
+            "y": -104
+          },
+          "lowL": {
+            "r": -18
+          },
+          "lowR": {
+            "r": 18
+          },
+          "root": {
+            "y": 10
+          },
+          "sideL": {
+            "r": -18
+          },
+          "sideR": {
+            "r": 18
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "hug": "arms"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "inOut",
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": -14
+          },
+          "belly": {
+            "sx": 0.94,
+            "sy": 0.9
+          },
+          "hug": {
+            "y": -78
+          },
+          "lowL": {
+            "r": -14
+          },
+          "lowR": {
+            "r": 14
+          },
+          "root": {
+            "y": 10
+          },
+          "sideL": {
+            "r": -14
+          },
+          "sideR": {
+            "r": 14
+          }
+        },
+        "slots": {
+          "eyeL": "default",
+          "eyeR": "default",
+          "hug": "arms"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": 12
+          },
+          "armR": {
+            "r": -12
+          },
+          "belly": {
+            "sx": 0.94,
+            "sy": 0.9
+          },
+          "face": {
+            "y": -2
+          },
+          "hug": {
+            "y": -76
+          },
+          "lowL": {
+            "r": -12
+          },
+          "lowR": {
+            "r": 12
+          },
+          "root": {
+            "y": 10
+          },
+          "sideL": {
+            "r": -12
+          },
+          "sideR": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "hug": "arms"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": 4
+          },
+          "armR": {
+            "r": -4
+          },
+          "lowL": {
+            "r": -4
+          },
+          "lowR": {
+            "r": 4
+          },
+          "sideL": {
+            "r": -4
+          },
+          "sideR": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "id": "tip",
+  "sticker": "umbrella",
+  "kind": "action",
+  "description": "a gust tips the beach umbrella over to one side, nearly blowing it down, then it swings back upright.",
+  "stickerBox": {
+    "x": 0.08203,
+    "y": 0.07943,
+    "width": 0.83594,
+    "height": 0.83984
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the beach umbrella tipped over to one side in a gust"
+  },
+  "puppet": {
+    "rig": "anims/umbrella.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.6,
+        "ease": "out",
+        "bones": {
+          "canopy": {
+            "r": 3
+          },
+          "root": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "canopy": "turned"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "root": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "canopy": "turned"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "root": {
+            "r": 12.5
+          }
+        },
+        "slots": {
+          "canopy": "turned"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "in",
+        "bones": {
+          "root": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "root": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

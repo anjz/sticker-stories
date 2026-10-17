@@ -1,0 +1,144 @@
+{
+  "id": "sleep",
+  "sticker": "starfish",
+  "kind": "action",
+  "description": "the starfish gives a big yawn, lets its arms droop and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20182,
+    "width": 0.59896,
+    "height": 0.59505
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the starfish fast asleep, eyes shut, its arms drooping"
+  },
+  "puppet": {
+    "rig": "anims/starfish.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": 20
+          },
+          "armR": {
+            "r": -20
+          },
+          "belly": {
+            "sy": 1.05
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": 20
+          },
+          "armR": {
+            "r": -20
+          },
+          "belly": {
+            "sy": 1.05
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -14
+          },
+          "armR": {
+            "r": 14
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.96
+          },
+          "face": {
+            "y": 6
+          },
+          "root": {
+            "y": 3
+          },
+          "top": {
+            "r": 14,
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "armL": {
+            "r": -14
+          },
+          "armR": {
+            "r": 14
+          },
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.96
+          },
+          "face": {
+            "y": 6
+          },
+          "root": {
+            "y": 3
+          },
+          "top": {
+            "r": 14,
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

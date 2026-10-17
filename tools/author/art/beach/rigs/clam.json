@@ -1,0 +1,1949 @@
+{
+  "sticker": "clam",
+  "skeleton": "clam facing the viewer: root on the ground under the shell; body with a belly bone (squash); lid: the top shell, pivot at the hinge behind the bottom shell, stretched down to close and lifted to open; inside, soft and pearl between the shells; the bottom shell in front carries the face (eyes, brows, mouth).",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a smiling clam character. Draw this exact clam as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the top shell: the big fan-shaped upper shell with its scalloped pink-and-cream ribs, as in image 1, alone, drawn whole, including its lower part and hinge normally hidden behind the lower shell.\n2. the bottom shell: the lower shell with its wavy rim and ribs, facing the viewer as in image 1, with a completely blank face — no eyes, no brows, no mouth — keep the rosy cheeks.\n3. the soft body: the pale cream soft body of the clam that shows between its two shells in image 1, drawn whole as a soft rounded oval.\n4. the inside of the open shell: the glossy, deep coral-pink inside of the clam, a wide rounded oval, as seen when the shell opens wide.\n5. the pearl: a small round shiny white pearl with a soft pink sheen.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or another part) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a smiling clam character; image 2 shows the same clam cut into puppet parts, with a blank face. Draw the clam's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the clam in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the left eye (on the right of image 1) as it is in image 1: a big dark brown eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the same eye squeezed shut, crying: a tight, creased, downward-curving closed line.\n7. the mouth as it is in image 1: a small happy smile line.\n8. the mouth wide open in a big happy laugh, the inside pink.\n9. the mouth open in a small round 'o'.\n10. the mouth in a small sad frown.\n11. the mouth open in a wobbly crying wail, its corners turned down, the inside pink.\n12. one eyebrow as in image 1: a small, thin, softly curved dark brown line.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "top": {
+      "sheet": "parts",
+      "at": [
+        432,
+        295
+      ]
+    },
+    "inside": {
+      "sheet": "parts",
+      "at": [
+        1183,
+        316
+      ]
+    },
+    "bottom": {
+      "sheet": "parts",
+      "at": [
+        468,
+        805
+      ]
+    },
+    "soft": {
+      "sheet": "parts",
+      "at": [
+        1197,
+        670
+      ]
+    },
+    "pearl": {
+      "sheet": "parts",
+      "at": [
+        1197,
+        906
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        132,
+        364
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        387,
+        356
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        655,
+        385
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        894,
+        362
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1167,
+        376
+      ]
+    },
+    "eyeCry": {
+      "sheet": "face",
+      "at": [
+        1403,
+        365
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        141,
+        678
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        410,
+        681
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        640,
+        686
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        864,
+        681
+      ]
+    },
+    "mouthCry": {
+      "sheet": "face",
+      "at": [
+        1156,
+        683
+      ]
+    },
+    "brow": {
+      "sheet": "face",
+      "at": [
+        1432,
+        658
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 382,
+      "y": 556
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 382,
+      "y": 556
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 382,
+      "y": 556
+    },
+    {
+      "id": "lid",
+      "parent": "body",
+      "x": 382,
+      "y": 440
+    },
+    {
+      "id": "soft",
+      "parent": "body",
+      "x": 385,
+      "y": 440
+    },
+    {
+      "id": "pearl",
+      "parent": "body",
+      "x": 386,
+      "y": 402
+    },
+    {
+      "id": "face",
+      "parent": "belly",
+      "x": 378,
+      "y": 470
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 334,
+      "y": 466
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 416,
+      "y": 470
+    },
+    {
+      "id": "browL",
+      "parent": "face",
+      "x": 336,
+      "y": 439
+    },
+    {
+      "id": "browR",
+      "parent": "face",
+      "x": 437,
+      "y": 442
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 378,
+      "y": 490
+    }
+  ],
+  "slots": [
+    {
+      "id": "top",
+      "bone": "lid",
+      "default": "top",
+      "attachments": {
+        "top": {
+          "part": "top",
+          "x": 376,
+          "y": 318,
+          "scale": 0.432
+        }
+      }
+    },
+    {
+      "id": "inside",
+      "bone": "lid",
+      "default": "none",
+      "attachments": {
+        "inside": {
+          "part": "inside",
+          "x": 385,
+          "y": 405,
+          "scale": 0.4,
+          "scaleY": 0.8
+        }
+      }
+    },
+    {
+      "id": "soft",
+      "bone": "soft",
+      "default": "soft",
+      "attachments": {
+        "soft": {
+          "part": "soft",
+          "x": 386,
+          "y": 441,
+          "scale": 0.44
+        }
+      }
+    },
+    {
+      "id": "pearl",
+      "bone": "pearl",
+      "default": "none",
+      "attachments": {
+        "pearl": {
+          "part": "pearl",
+          "x": 386,
+          "y": 400,
+          "scale": 0.26
+        }
+      }
+    },
+    {
+      "id": "bottom",
+      "bone": "belly",
+      "default": "bottom",
+      "attachments": {
+        "bottom": {
+          "part": "bottom",
+          "x": 381,
+          "y": 488,
+          "scale": 0.395,
+          "scaleY": 0.95
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 334,
+          "y": 466,
+          "scale": 0.18
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 334,
+          "y": 466,
+          "scale": 0.18
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 334,
+          "y": 470,
+          "scale": 0.19,
+          "flip": true
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 334,
+          "y": 464,
+          "scale": 0.18
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 334,
+          "y": 468,
+          "scale": 0.19,
+          "flip": true
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 334,
+          "y": 468,
+          "scale": 0.2,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 416,
+          "y": 470,
+          "scale": 0.18
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 416,
+          "y": 470,
+          "scale": 0.18
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 416,
+          "y": 474,
+          "scale": 0.19
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 416,
+          "y": 468,
+          "scale": 0.18
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 416,
+          "y": 472,
+          "scale": 0.19
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 416,
+          "y": 472,
+          "scale": 0.2
+        }
+      }
+    },
+    {
+      "id": "browL",
+      "bone": "browL",
+      "default": "brow",
+      "attachments": {
+        "sad": {
+          "part": "brow",
+          "x": 339,
+          "y": 444,
+          "scale": 0.2,
+          "rotate": -22
+        },
+        "up": {
+          "part": "brow",
+          "x": 336,
+          "y": 431,
+          "scale": 0.2
+        },
+        "brow": {
+          "part": "brow",
+          "x": 336,
+          "y": 439,
+          "scale": 0.2
+        }
+      }
+    },
+    {
+      "id": "browR",
+      "bone": "browR",
+      "default": "brow",
+      "attachments": {
+        "sad": {
+          "part": "brow",
+          "x": 434,
+          "y": 447,
+          "scale": 0.2,
+          "rotate": 22,
+          "flip": true
+        },
+        "up": {
+          "part": "brow",
+          "x": 437,
+          "y": 434,
+          "scale": 0.2,
+          "flip": true
+        },
+        "brow": {
+          "part": "brow",
+          "x": 437,
+          "y": 442,
+          "scale": 0.2,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 378,
+          "y": 490,
+          "scale": 0.22
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 378,
+          "y": 496,
+          "scale": 0.22
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 378,
+          "y": 494,
+          "scale": 0.22
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 378,
+          "y": 493,
+          "scale": 0.2
+        },
+        "cry": {
+          "part": "mouthCry",
+          "x": 378,
+          "y": 495,
+          "scale": 0.17
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad",
+      "browL": "sad",
+      "browR": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o",
+      "browL": "up",
+      "browR": "up"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "peek",
+      "kind": "action",
+      "description": "the clam opens wide to show its pearl, then snaps shut",
+      "pause": {
+        "frame": 4,
+        "shows": "the clam open wide, a little shiny pearl showing inside"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "lid": {
+              "y": -8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "lid": {
+              "y": -16,
+              "sy": 1.02
+            },
+            "soft": {
+              "y": 3
+            },
+            "pearl": {
+              "y": 12,
+              "sx": 0.6,
+              "sy": 0.6
+            }
+          },
+          "slots": {
+            "inside": "inside",
+            "pearl": "pearl",
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "lid": {
+              "y": -26,
+              "sy": 1.04
+            },
+            "soft": {
+              "y": 6
+            }
+          },
+          "slots": {
+            "inside": "inside",
+            "pearl": "pearl",
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.8,
+          "bones": {
+            "lid": {
+              "y": -26,
+              "sy": 1.04
+            },
+            "soft": {
+              "y": 6
+            }
+          },
+          "slots": {
+            "inside": "inside",
+            "pearl": "pearl",
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "ease": "in",
+          "bones": {
+            "lid": {
+              "y": -10
+            }
+          },
+          "slots": {
+            "inside": "inside",
+            "pearl": "pearl",
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "lid": {
+              "sy": 0.5
+            },
+            "soft": {
+              "sy": 0.5,
+              "y": 8
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            }
+          },
+          "slots": {
+            "soft": "none",
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "lid": {
+              "sy": 0.5
+            },
+            "soft": {
+              "sy": 0.5,
+              "y": 8
+            }
+          },
+          "slots": {
+            "soft": "none",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "lid": {
+              "sy": 0.8
+            },
+            "soft": {
+              "sy": 0.8,
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "dig-up",
+      "description": "the clam wiggles up out of the sand and opens a little.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "body": {
+              "sy": 0.4,
+              "sx": 0.7300000000000001,
+              "r": 0
+            },
+            "lid": {
+              "sy": 0.5
+            },
+            "soft": {
+              "sy": 0.5,
+              "y": 8
+            }
+          },
+          "slots": {
+            "eyeL": "none",
+            "eyeR": "none",
+            "mouth": "none",
+            "browL": "none",
+            "browR": "none",
+            "soft": "none"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "body": {
+              "sy": 0.5,
+              "sx": 0.775,
+              "r": -6
+            },
+            "lid": {
+              "sy": 0.5
+            },
+            "soft": {
+              "sy": 0.5,
+              "y": 8
+            }
+          },
+          "slots": {
+            "eyeL": "none",
+            "eyeR": "none",
+            "mouth": "none",
+            "browL": "none",
+            "browR": "none",
+            "soft": "none"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "body": {
+              "sy": 0.6,
+              "sx": 0.8200000000000001,
+              "r": 6
+            },
+            "lid": {
+              "sy": 0.5
+            },
+            "soft": {
+              "sy": 0.5,
+              "y": 8
+            }
+          },
+          "slots": {
+            "eyeL": "none",
+            "eyeR": "none",
+            "mouth": "none",
+            "browL": "none",
+            "browR": "none",
+            "soft": "none"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "body": {
+              "sy": 0.72,
+              "sx": 0.8740000000000001,
+              "r": -5
+            },
+            "lid": {
+              "sy": 0.5
+            },
+            "soft": {
+              "sy": 0.5,
+              "y": 8
+            }
+          },
+          "slots": {
+            "eyeL": "none",
+            "eyeR": "none",
+            "mouth": "none",
+            "browL": "none",
+            "browR": "none",
+            "soft": "none"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "body": {
+              "sy": 0.86,
+              "sx": 0.937,
+              "r": 4
+            },
+            "lid": {
+              "sy": 0.5
+            },
+            "soft": {
+              "sy": 0.5,
+              "y": 8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "sy": 1.0,
+              "sx": 1.0,
+              "r": 0
+            },
+            "lid": {
+              "sy": 0.5
+            },
+            "soft": {
+              "sy": 0.5,
+              "y": 8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "lid": {
+              "sy": 0.75
+            },
+            "soft": {
+              "sy": 0.75,
+              "y": 4
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "lid": {
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "snap",
+      "kind": "action",
+      "description": "the clam claps its shells open and shut, snap, snap, snap, and giggles.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "lid": {
+              "sy": 0.5
+            },
+            "soft": {
+              "sy": 0.5,
+              "y": 8
+            },
+            "belly": {
+              "sy": 0.97
+            }
+          },
+          "slots": {
+            "soft": "none",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "lid": {
+              "y": -10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "lid": {
+              "sy": 0.5
+            },
+            "soft": {
+              "sy": 0.5,
+              "y": 8
+            },
+            "belly": {
+              "sy": 0.97
+            }
+          },
+          "slots": {
+            "soft": "none",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "lid": {
+              "y": -10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "lid": {
+              "sy": 0.5
+            },
+            "soft": {
+              "sy": 0.5,
+              "y": 8
+            },
+            "belly": {
+              "sy": 0.97
+            }
+          },
+          "slots": {
+            "soft": "none",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "lid": {
+              "y": -10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shut",
+      "kind": "action",
+      "description": "the clam shuts its shell tight with a worried look, waits, then slowly opens again and smiles.",
+      "pause": {
+        "frame": 3,
+        "shows": "the clam shut tight, its eyes squeezed shut"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "in",
+          "bones": {
+            "lid": {
+              "sy": 0.5
+            },
+            "soft": {
+              "sy": 0.5,
+              "y": 8
+            },
+            "belly": {
+              "sy": 0.96
+            }
+          },
+          "slots": {
+            "soft": "none",
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 1.0,
+          "bones": {
+            "lid": {
+              "sy": 0.5
+            },
+            "soft": {
+              "sy": 0.5,
+              "y": 8
+            }
+          },
+          "slots": {
+            "soft": "none",
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "lid": {
+              "sy": 0.62
+            },
+            "soft": {
+              "sy": 0.62,
+              "y": 6
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "lid": {
+              "sy": 0.85
+            },
+            "soft": {
+              "sy": 0.85,
+              "y": 2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "kind": "action",
+      "description": "the clam talks, its mouth moving and its top shell bobbing a little.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "lid": {
+              "y": -6
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "lid": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "lid": {
+              "y": -6
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "lid": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "lid": {
+              "y": -6
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "lid": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "lid": {
+              "y": -6
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "lid": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "lid": {
+              "y": -6
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "lid": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "laugh",
+      "kind": "action",
+      "description": "the clam laughs and laughs, its shell flapping with giggles.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "lid": {
+              "y": -12
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "root": {
+              "y": -5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "lid": {
+              "sy": 0.85,
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "root": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "lid": {
+              "y": -12
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "root": {
+              "y": -5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "lid": {
+              "sy": 0.85,
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "root": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "lid": {
+              "y": -12
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "root": {
+              "y": -5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "lid": {
+              "sy": 0.85,
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "root": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "lid": {
+              "y": -12
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "root": {
+              "y": -5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "lid": {
+              "sy": 0.85,
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "root": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "kind": "action",
+      "description": "the clam gives a big yawn, closes its shell most of the way and falls asleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the clam fast asleep, its shell nearly closed, eyes shut"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "lid": {
+              "y": -14
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "lid": {
+              "y": -14
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "lid": {
+              "sy": 0.6
+            },
+            "soft": {
+              "sy": 0.6,
+              "y": 7
+            },
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "soft": "none"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "lid": {
+              "sy": 0.6
+            },
+            "soft": {
+              "sy": 0.6,
+              "y": 7
+            },
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "soft": "none"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "cry",
+      "kind": "action",
+      "description": "the clam cries, its shell drooping, shaking with little sobs.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "lid": {
+              "sy": 0.82
+            },
+            "soft": {
+              "sy": 0.82,
+              "y": 3
+            },
+            "belly": {
+              "sy": 1
+            },
+            "face": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "lid": {
+              "sy": 0.82
+            },
+            "soft": {
+              "sy": 0.82,
+              "y": 3
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "face": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "lid": {
+              "sy": 0.82
+            },
+            "soft": {
+              "sy": 0.82,
+              "y": 3
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "face": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "lid": {
+              "sy": 0.82
+            },
+            "soft": {
+              "sy": 0.82,
+              "y": 3
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "face": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "lid": {
+              "sy": 0.82
+            },
+            "soft": {
+              "sy": 0.82,
+              "y": 3
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "face": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "lid": {
+              "sy": 0.82
+            },
+            "soft": {
+              "sy": 0.82,
+              "y": 3
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "face": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "lid": {
+              "sy": 0.82
+            },
+            "soft": {
+              "sy": 0.82,
+              "y": 3
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "face": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "lid": {
+              "sy": 0.82
+            },
+            "soft": {
+              "sy": 0.82,
+              "y": 3
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "face": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "lid": {
+              "sy": 0.82
+            },
+            "soft": {
+              "sy": 0.82,
+              "y": 3
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "face": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "lid": {
+              "sy": 0.82
+            },
+            "soft": {
+              "sy": 0.82,
+              "y": 3
+            },
+            "belly": {
+              "sy": 1
+            },
+            "face": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "dance",
+      "kind": "action",
+      "description": "the clam does a happy little dance, rocking from side to side and clapping its shell.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "root": {
+              "x": -10
+            },
+            "lid": {
+              "y": -10,
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "root": {
+              "x": 10,
+              "y": -6
+            },
+            "lid": {
+              "sy": 0.8,
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "root": {
+              "x": -10
+            },
+            "lid": {
+              "y": -10,
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "root": {
+              "x": 10,
+              "y": -6
+            },
+            "lid": {
+              "sy": 0.8,
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -6
+            },
+            "root": {
+              "x": -10
+            },
+            "lid": {
+              "y": -10,
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 6
+            },
+            "root": {
+              "x": 10,
+              "y": -6
+            },
+            "lid": {
+              "sy": 0.8,
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "look-around",
+      "kind": "action",
+      "idle": true,
+      "description": "the clam looks one way, then the other, then back.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "face": {
+              "x": -10
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "face": {
+              "x": -10
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "face": {
+              "x": 10
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "face": {
+              "x": 10
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    }
+  ]
+}

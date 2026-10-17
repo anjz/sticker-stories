@@ -3,44 +3,210 @@
   "sticker": "pelican",
   "kind": "move",
   "description": "the pelican flies along to the left on big slow wingbeats, then glides down and lands.",
-  "sheet": "anims/pelican.fly.webp",
-  "frame": {
-    "width": 682,
-    "height": 568
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.19355,
-    "y": 0.14085,
-    "width": 0.60264,
-    "height": 0.82394
-  },
   "stickerBox": {
     "x": 0.18359,
     "y": 0.13932,
     "width": 0.63281,
     "height": 0.72005
   },
-  "hold": [
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "left",
   "stride": 1.1,
-  "flies": true
+  "flies": true,
+  "puppet": {
+    "rig": "anims/pelican.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -6,
+            "y": -4
+          },
+          "head": {
+            "r": 6
+          },
+          "legL": {
+            "r": -35,
+            "y": -26
+          },
+          "legR": {
+            "r": -35,
+            "y": -26
+          },
+          "wingL": {
+            "r": -28
+          },
+          "wingR": {
+            "r": 28
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -6,
+            "y": -10
+          },
+          "head": {
+            "r": 6
+          },
+          "legL": {
+            "r": -35,
+            "y": -26
+          },
+          "legR": {
+            "r": -35,
+            "y": -26
+          },
+          "wingL": {},
+          "wingR": {}
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -6,
+            "y": -14
+          },
+          "head": {
+            "r": 6
+          },
+          "legL": {
+            "r": -35,
+            "y": -26
+          },
+          "legR": {
+            "r": -35,
+            "y": -26
+          },
+          "wingL": {
+            "r": 30
+          },
+          "wingR": {
+            "r": -30
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -6,
+            "y": -10
+          },
+          "head": {
+            "r": 6
+          },
+          "legL": {
+            "r": -35,
+            "y": -26
+          },
+          "legR": {
+            "r": -35,
+            "y": -26
+          },
+          "wingL": {},
+          "wingR": {}
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -2,
+            "y": -6
+          },
+          "legL": {
+            "r": 12,
+            "y": -10
+          },
+          "legR": {
+            "r": 12,
+            "y": -10
+          },
+          "wingL": {
+            "r": 8
+          },
+          "wingR": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 4
+          },
+          "wingL": {
+            "r": -24
+          },
+          "wingR": {
+            "r": 24
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.04,
+            "sy": 0.95
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 2
+          }
+        }
+      },
+      {
+        "hold": 0.45
+      }
+    ],
+    "wings": [
+      "wingL",
+      "wingR"
+    ]
+  }
 }

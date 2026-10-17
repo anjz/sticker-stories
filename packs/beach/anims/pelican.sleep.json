@@ -1,0 +1,125 @@
+{
+  "id": "sleep",
+  "sticker": "pelican",
+  "description": "the pelican gives a big yawn, rests its long beak on its chest and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.18359,
+    "y": 0.13932,
+    "width": 0.63281,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the pelican fast asleep, its beak resting on its chest, eye shut"
+  },
+  "puppet": {
+    "rig": "anims/pelican.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 16,
+            "y": -4
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.04
+          },
+          "head": {
+            "r": 16,
+            "y": -4
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": -22,
+            "y": 14
+          },
+          "wingL": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 1
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": -22,
+            "y": 14
+          },
+          "wingL": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eye": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

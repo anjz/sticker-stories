@@ -1,0 +1,74 @@
+{
+  "id": "flutter",
+  "sticker": "sailboat",
+  "kind": "action",
+  "description": "the little red pennant at the top of the mast flutters in the breeze.",
+  "stickerBox": {
+    "x": 0.11719,
+    "y": 0.07943,
+    "width": 0.76563,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/sailboat.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "pennant": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "pennant": "rippled"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "pennant": {
+            "r": 4,
+            "sx": 1.04
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "pennant": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "pennant": "rippled"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "pennant": {
+            "r": 4,
+            "sx": 1.04
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "pennant": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "pennant": "rippled"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

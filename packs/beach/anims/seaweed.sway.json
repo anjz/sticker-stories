@@ -1,54 +1,164 @@
 {
   "id": "sway",
   "sticker": "seaweed",
+  "kind": "action",
   "description": "the seaweed sways gently",
-  "sheet": "anims/seaweed.sway.webp",
-  "frame": {
-    "width": 438,
-    "height": 517
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.07991,
-    "y": 0.02901,
-    "width": 0.88128,
-    "height": 0.9323
-  },
   "stickerBox": {
     "x": 0.25781,
     "y": 0.20052,
     "width": 0.48438,
     "height": 0.59896
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.7,
-    0.2,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 3,
     "shows": "the seaweed swayed to one side, its fronds curling"
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/seaweed.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.65,
+        "bones": {
+          "body": {
+            "r": -4
+          },
+          "frondFace": {
+            "r": -2
+          },
+          "frondLeft": {
+            "r": -3
+          },
+          "frondMid": {
+            "r": -3
+          },
+          "frondRight": {
+            "r": -4
+          },
+          "frondTall": {
+            "r": -3.5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.65,
+        "bones": {
+          "body": {
+            "r": 4
+          },
+          "frondFace": {
+            "r": 2
+          },
+          "frondLeft": {
+            "r": 3
+          },
+          "frondMid": {
+            "r": 3
+          },
+          "frondRight": {
+            "r": 4
+          },
+          "frondTall": {
+            "r": 3.5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "body": {
+            "r": -6.4
+          },
+          "frondFace": {
+            "r": -3.2,
+            "sy": 0.95
+          },
+          "frondLeft": {
+            "r": -4.800000000000001,
+            "sy": 0.95
+          },
+          "frondMid": {
+            "r": -4.800000000000001,
+            "sy": 0.95
+          },
+          "frondRight": {
+            "r": -6.4,
+            "sy": 0.95
+          },
+          "frondTall": {
+            "r": -5.6000000000000005,
+            "sy": 0.95
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.65,
+        "bones": {
+          "body": {
+            "r": 4
+          },
+          "frondFace": {
+            "r": 2
+          },
+          "frondLeft": {
+            "r": 3
+          },
+          "frondMid": {
+            "r": 3
+          },
+          "frondRight": {
+            "r": 4
+          },
+          "frondTall": {
+            "r": 3.5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -1.2
+          },
+          "frondFace": {
+            "r": -0.6
+          },
+          "frondLeft": {
+            "r": -0.8999999999999999
+          },
+          "frondMid": {
+            "r": -0.8999999999999999
+          },
+          "frondRight": {
+            "r": -1.2
+          },
+          "frondTall": {
+            "r": -1.05
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
   }
 }

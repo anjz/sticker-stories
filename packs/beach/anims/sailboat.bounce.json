@@ -1,0 +1,75 @@
+{
+  "id": "bounce",
+  "sticker": "sailboat",
+  "kind": "action",
+  "description": "the sailboat rides over a big wave: its bow lifts, then dips, and it settles.",
+  "stickerBox": {
+    "x": 0.11719,
+    "y": 0.07943,
+    "width": 0.76563,
+    "height": 0.83984
+  },
+  "particles": [
+    {
+      "frame": 2,
+      "effect": "spray",
+      "x": 0.2,
+      "y": 0.72,
+      "intensity": 0.35
+    }
+  ],
+  "puppet": {
+    "rig": "anims/sailboat.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "pennant": {
+            "r": -4
+          },
+          "rock": {
+            "r": 8,
+            "y": -14
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "pennant": {
+            "r": 5
+          },
+          "rock": {
+            "r": -6,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "rock": {
+            "r": 3,
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "rock": {
+            "r": -1,
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

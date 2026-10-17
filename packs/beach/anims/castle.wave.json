@@ -1,0 +1,67 @@
+{
+  "id": "wave",
+  "sticker": "castle",
+  "kind": "action",
+  "description": "the flag waves to and fro on its pole, as if waving hello.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.14974,
+    "width": 0.72005,
+    "height": 0.70052
+  },
+  "puppet": {
+    "rig": "anims/castle.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "flag": {
+            "r": -14,
+            "sx": 0.9
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "flag": {
+            "r": 12,
+            "sx": 1.04
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "flag": {
+            "r": -12,
+            "sx": 0.92
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "flag": {
+            "r": 10,
+            "sx": 1.03
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "flag": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

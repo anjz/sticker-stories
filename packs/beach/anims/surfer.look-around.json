@@ -1,0 +1,80 @@
+{
+  "id": "look-around",
+  "sticker": "surfer",
+  "kind": "action",
+  "description": "the surfer looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.26302,
+    "y": 0.13932,
+    "width": 0.47266,
+    "height": 0.72005
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/surfer.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -9.6
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": -9.6
+          },
+          "head": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 9.6
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 9.6
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

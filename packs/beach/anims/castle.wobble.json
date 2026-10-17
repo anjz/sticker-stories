@@ -1,0 +1,64 @@
+{
+  "id": "wobble",
+  "sticker": "castle",
+  "kind": "action",
+  "description": "the sand castle wobbles a little, as if it might crumble, then holds firm.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.14974,
+    "width": 0.72005,
+    "height": 0.70052
+  },
+  "puppet": {
+    "rig": "anims/castle.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "flag": {
+            "r": -4
+          },
+          "root": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "flag": {
+            "r": 4
+          },
+          "root": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.28,
+        "bones": {
+          "flag": {
+            "r": -3
+          },
+          "root": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.26,
+        "bones": {
+          "root": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

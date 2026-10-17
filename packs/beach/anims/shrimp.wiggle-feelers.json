@@ -1,0 +1,107 @@
+{
+  "id": "wiggle-feelers",
+  "sticker": "shrimp",
+  "description": "the shrimp waves its long feelers this way and that, curious, sniffing the water.",
+  "stickerBox": {
+    "x": 0.25651,
+    "y": 0.25,
+    "width": 0.48568,
+    "height": 0.5
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the shrimp with its feelers lifted high, curious"
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/shrimp.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "antennaL": {
+            "r": 10
+          },
+          "antennaR": {
+            "r": -8
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "antennaL": {
+            "r": -8
+          },
+          "antennaR": {
+            "r": 6.4
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "antennaL": {
+            "r": 14
+          },
+          "antennaR": {
+            "r": -11.2
+          },
+          "body": {
+            "r": 3
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "antennaL": {
+            "r": -6
+          },
+          "antennaR": {
+            "r": 4.8
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "antennaL": {
+            "r": 8
+          },
+          "antennaR": {
+            "r": -6.4
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "antennaL": {
+            "r": -4
+          },
+          "antennaR": {
+            "r": 3.2
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

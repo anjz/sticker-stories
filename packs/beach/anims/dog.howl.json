@@ -1,0 +1,91 @@
+{
+  "id": "howl",
+  "sticker": "dog",
+  "kind": "action",
+  "description": "the dog points its nose to the sky and howls a long happy aroo.",
+  "stickerBox": {
+    "x": 0.16797,
+    "y": 0.13932,
+    "width": 0.66406,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the dog howling, nose to the sky"
+  },
+  "puppet": {
+    "rig": "anims/dog.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "body": {
+            "r": -3
+          },
+          "earL": {
+            "r": 10
+          },
+          "earR": {
+            "r": 10
+          },
+          "head": {
+            "r": -24,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "body": {
+            "r": -3
+          },
+          "earL": {
+            "r": 12
+          },
+          "earR": {
+            "r": 12
+          },
+          "head": {
+            "r": -26,
+            "y": -8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

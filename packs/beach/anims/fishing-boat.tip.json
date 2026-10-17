@@ -1,0 +1,84 @@
+{
+  "id": "tip",
+  "sticker": "fishing-boat",
+  "kind": "action",
+  "description": "a big wave tips the fishing boat over to one side; it leans there, then rights itself.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.14583,
+    "width": 0.83984,
+    "height": 0.70833
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the fishing boat leaning over to one side on a big wave"
+  },
+  "puppet": {
+    "rig": "anims/fishing-boat.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.6,
+        "ease": "out",
+        "bones": {
+          "net": {
+            "r": 9
+          },
+          "rock": {
+            "r": -9
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "net": {
+            "r": 7
+          },
+          "rock": {
+            "r": -8
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "net": {
+            "r": 10
+          },
+          "rock": {
+            "r": -9.5
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "ease": "in",
+        "bones": {
+          "net": {
+            "r": -3
+          },
+          "rock": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "net": {
+            "r": 1
+          },
+          "rock": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

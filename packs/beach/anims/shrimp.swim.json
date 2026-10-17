@@ -3,46 +3,139 @@
   "sticker": "shrimp",
   "kind": "move",
   "description": "the shrimp swims along to the left, its little legs paddling and its tail flicking, then stops.",
-  "sheet": "anims/shrimp.swim.webp",
-  "frame": {
-    "width": 574,
-    "height": 520
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.03484,
-    "y": 0.03654,
-    "width": 0.81533,
-    "height": 0.92692
-  },
   "stickerBox": {
     "x": 0.25651,
     "y": 0.25,
     "width": 0.48568,
     "height": 0.5
   },
-  "hold": [
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "left",
   "stride": 0.5,
   "on": [
     "pool"
-  ]
+  ],
+  "waterline": 0.3,
+  "puppet": {
+    "rig": "anims/shrimp.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "antennaL": {
+            "r": -3
+          },
+          "antennaR": {
+            "r": -3
+          },
+          "fan": {
+            "r": 6
+          },
+          "legs": {
+            "r": 14
+          },
+          "legsFar": {
+            "r": -14
+          },
+          "root": {
+            "y": -2
+          },
+          "tail2": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "antennaL": {
+            "r": -3
+          },
+          "antennaR": {
+            "r": -3
+          },
+          "fan": {},
+          "legs": {},
+          "legsFar": {},
+          "root": {},
+          "tail2": {}
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "antennaL": {
+            "r": -3
+          },
+          "antennaR": {
+            "r": -3
+          },
+          "fan": {
+            "r": -4
+          },
+          "legs": {
+            "r": -14
+          },
+          "legsFar": {
+            "r": 14
+          },
+          "root": {
+            "y": -2
+          },
+          "tail2": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "antennaL": {
+            "r": -3
+          },
+          "antennaR": {
+            "r": -3
+          },
+          "fan": {},
+          "legs": {},
+          "legsFar": {},
+          "root": {},
+          "tail2": {}
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "antennaL": {
+            "r": -3
+          },
+          "antennaR": {
+            "r": -3
+          },
+          "fan": {
+            "r": 2
+          },
+          "legs": {
+            "r": 4
+          },
+          "legsFar": {
+            "r": -4
+          },
+          "root": {},
+          "tail2": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
 }

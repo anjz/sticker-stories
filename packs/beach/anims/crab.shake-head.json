@@ -1,0 +1,115 @@
+{
+  "id": "shake-head",
+  "sticker": "crab",
+  "kind": "action",
+  "description": "the crab shakes its eye stalks no.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.21745,
+    "width": 0.59896,
+    "height": 0.5651
+  },
+  "puppet": {
+    "rig": "anims/crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "eyeL": {
+            "r": 12
+          },
+          "eyeR": {
+            "r": 12
+          },
+          "face": {
+            "x": -5
+          },
+          "stalkL": {
+            "r": -12
+          },
+          "stalkR": {
+            "r": -12
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 1.5
+          },
+          "eyeL": {
+            "r": -12
+          },
+          "eyeR": {
+            "r": -12
+          },
+          "face": {
+            "x": 5
+          },
+          "stalkL": {
+            "r": 12
+          },
+          "stalkR": {
+            "r": 12
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "eyeL": {
+            "r": 12
+          },
+          "eyeR": {
+            "r": 12
+          },
+          "face": {
+            "x": -5
+          },
+          "stalkL": {
+            "r": -12
+          },
+          "stalkR": {
+            "r": -12
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": 1.5
+          },
+          "eyeL": {
+            "r": -12
+          },
+          "eyeR": {
+            "r": -12
+          },
+          "face": {
+            "x": 5
+          },
+          "stalkL": {
+            "r": 12
+          },
+          "stalkR": {
+            "r": 12
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

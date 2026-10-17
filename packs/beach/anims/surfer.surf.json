@@ -3,42 +3,15 @@
   "sticker": "surfer",
   "kind": "move",
   "description": "the surfer boy rides his surfboard along to the left, crouched with his arms out for balance, bobbing over the waves.",
-  "sheet": "anims/surfer.surf.webp",
-  "frame": {
-    "width": 493,
-    "height": 525
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.10953,
-    "y": 0.04952,
-    "width": 0.68154,
-    "height": 0.9181
-  },
   "stickerBox": {
-    "x": 0.24609,
+    "x": 0.26302,
     "y": 0.13932,
-    "width": 0.50651,
+    "width": 0.47266,
     "height": 0.72005
   },
-  "hold": [
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "left",
   "stride": 0.9,
@@ -46,13 +19,193 @@
     "sea"
   ],
   "stays": true,
+  "waterline": 0.08,
   "particles": [
     {
-      "frame": 3,
+      "frame": 2,
       "effect": "spray",
       "x": 0.4993,
       "y": 0.8594,
       "intensity": 0.4
     }
-  ]
+  ],
+  "puppet": {
+    "rig": "anims/surfer.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": 58
+          },
+          "armR": {
+            "r": -62
+          },
+          "board": {
+            "r": 2
+          },
+          "body": {
+            "r": -3,
+            "y": 38
+          },
+          "head": {
+            "r": -3
+          },
+          "root": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "armR": "free",
+          "board": "none",
+          "boardFlat": "flat",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "legsCrouch": "crouch"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": 66
+          },
+          "armR": {
+            "r": -54
+          },
+          "board": {
+            "r": -2
+          },
+          "body": {
+            "r": -6,
+            "y": 43
+          },
+          "head": {
+            "r": -3
+          },
+          "root": {
+            "y": 5
+          }
+        },
+        "slots": {
+          "armR": "free",
+          "board": "none",
+          "boardFlat": "flat",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "legsCrouch": "crouch",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": 58
+          },
+          "armR": {
+            "r": -62
+          },
+          "board": {
+            "r": 2
+          },
+          "body": {
+            "r": -3,
+            "y": 38
+          },
+          "head": {
+            "r": -3
+          },
+          "root": {
+            "y": -3
+          }
+        },
+        "slots": {
+          "armR": "free",
+          "board": "none",
+          "boardFlat": "flat",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "legsCrouch": "crouch"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": 66
+          },
+          "armR": {
+            "r": -54
+          },
+          "board": {
+            "r": -2
+          },
+          "body": {
+            "r": -6,
+            "y": 43
+          },
+          "head": {
+            "r": -3
+          },
+          "root": {
+            "y": 5
+          }
+        },
+        "slots": {
+          "armR": "free",
+          "board": "none",
+          "boardFlat": "flat",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "legsCrouch": "crouch",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "r": 50
+          },
+          "armR": {
+            "r": -50
+          },
+          "board": {},
+          "body": {
+            "r": -3,
+            "y": 40
+          },
+          "head": {
+            "r": -2
+          },
+          "root": {}
+        },
+        "slots": {
+          "armR": "free",
+          "board": "none",
+          "boardFlat": "flat",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "legsCrouch": "crouch"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
 }

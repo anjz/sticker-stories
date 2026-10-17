@@ -1,0 +1,84 @@
+{
+  "id": "flutter",
+  "sticker": "umbrella",
+  "kind": "action",
+  "description": "a gust of wind catches the beach umbrella: its canopy lifts a little and its frill flutters, then it settles.",
+  "stickerBox": {
+    "x": 0.08203,
+    "y": 0.07943,
+    "width": 0.83594,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/umbrella.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "canopy": {
+            "r": -2,
+            "y": -6,
+            "sx": 1.02,
+            "sy": 1.03
+          }
+        },
+        "slots": {
+          "canopy": "turned"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "canopy": {
+            "r": 2,
+            "y": -4,
+            "sy": 1.02
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "canopy": {
+            "r": -2,
+            "y": -6,
+            "sx": 1.02,
+            "sy": 1.03
+          }
+        },
+        "slots": {
+          "canopy": "turned"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "canopy": {
+            "r": 1,
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "canopy": {
+            "r": -1,
+            "y": -3,
+            "sx": 1.01,
+            "sy": 1.01
+          }
+        },
+        "slots": {
+          "canopy": "turned"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

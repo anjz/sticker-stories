@@ -1,0 +1,170 @@
+{
+  "id": "preen",
+  "sticker": "pelican",
+  "description": "the pelican tucks its long beak down and nibbles through the feathers of its chest, lifts its wing a little to tidy it, then fluffs up and smooths itself down.",
+  "stickerBox": {
+    "x": 0.18359,
+    "y": 0.13932,
+    "width": 0.63281,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the pelican with its beak tucked down in its chest feathers, preening"
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/pelican.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -42,
+            "y": 10
+          },
+          "wingL": {}
+        },
+        "slots": {
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -46,
+            "y": 10
+          },
+          "wingL": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -40,
+            "y": 10
+          },
+          "wingL": {
+            "r": -8
+          }
+        },
+        "slots": {
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -46,
+            "y": 10
+          },
+          "wingL": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -40,
+            "y": 10
+          },
+          "wingL": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -20,
+            "y": 10
+          },
+          "wingL": {
+            "r": -14
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 1.04
+          },
+          "wingL": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 0.99
+          },
+          "root": {
+            "x": -2
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.02
+          },
+          "root": {
+            "x": 2
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

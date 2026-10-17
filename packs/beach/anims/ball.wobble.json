@@ -1,0 +1,78 @@
+{
+  "id": "wobble",
+  "sticker": "ball",
+  "kind": "action",
+  "description": "the beach ball wobbles from side to side on the spot, then settles.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20052,
+    "width": 0.59766,
+    "height": 0.59896
+  },
+  "puppet": {
+    "rig": "anims/ball.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "root": {
+            "x": 33.1
+          },
+          "spin": {
+            "r": 9
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "root": {
+            "x": -33.1
+          },
+          "spin": {
+            "r": -9
+          }
+        }
+      },
+      {
+        "hold": 0.28,
+        "bones": {
+          "root": {
+            "x": 25.8
+          },
+          "spin": {
+            "r": 7
+          }
+        }
+      },
+      {
+        "hold": 0.26,
+        "bones": {
+          "root": {
+            "x": -18.4
+          },
+          "spin": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "root": {
+            "x": 11
+          },
+          "spin": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

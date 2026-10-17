@@ -1,0 +1,115 @@
+{
+  "id": "bob",
+  "sticker": "sandpiper",
+  "description": "the sandpiper bobs its tail up and down, bob-bob-bob, the way sandpipers do, then stands still and looks happy.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26302,
+    "width": 0.5,
+    "height": 0.47266
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the sandpiper with its tail tipped up, bobbing"
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/sandpiper.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 5
+          },
+          "head": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 5
+          },
+          "head": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 5
+          },
+          "head": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 5
+          },
+          "head": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {},
+          "head": {}
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

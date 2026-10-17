@@ -1,39 +1,202 @@
 {
   "id": "sprout",
   "sticker": "seaweed",
-  "kind": "move",
   "description": "the seaweed sprouts: little fronds grow up from its holdfast and unfurl.",
-  "sheet": "anims/seaweed.sprout.webp",
-  "frame": {
-    "width": 424,
-    "height": 524
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.03538,
-    "y": 0.04771,
-    "width": 0.91038,
-    "height": 0.91985
-  },
   "stickerBox": {
     "x": 0.25781,
     "y": 0.20052,
     "width": 0.48438,
     "height": 0.59896
   },
-  "hold": [
-    0.1,
-    0.1,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.08,
-    0.1,
-    0.1,
-    0.12,
-    0.45
-  ]
+  "puppet": {
+    "rig": "anims/seaweed.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.25,
+        "ease": "out",
+        "bones": {
+          "frondFace": {
+            "sx": 0.3,
+            "sy": 0.06
+          },
+          "frondLeft": {
+            "sx": 0.3,
+            "sy": 0.06
+          },
+          "frondMid": {
+            "sx": 0.3,
+            "sy": 0.06
+          },
+          "frondRight": {
+            "sx": 0.3,
+            "sy": 0.06
+          },
+          "frondTall": {
+            "sx": 0.3,
+            "sy": 0.06
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "linear",
+        "bones": {
+          "frondFace": {
+            "r": 12,
+            "sx": 0.5,
+            "sy": 0.35
+          },
+          "frondLeft": {
+            "r": 20,
+            "sx": 0.5,
+            "sy": 0.35
+          },
+          "frondMid": {
+            "sx": 0.5,
+            "sy": 0.35
+          },
+          "frondRight": {
+            "r": -20,
+            "sx": 0.5,
+            "sy": 0.35
+          },
+          "frondTall": {
+            "sx": 0.5,
+            "sy": 0.35
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "frondFace": {
+            "r": 6,
+            "sx": 0.8,
+            "sy": 0.7
+          },
+          "frondLeft": {
+            "r": 10,
+            "sx": 0.8,
+            "sy": 0.7
+          },
+          "frondMid": {
+            "sx": 0.8,
+            "sy": 0.7
+          },
+          "frondRight": {
+            "r": -10,
+            "sx": 0.8,
+            "sy": 0.7
+          },
+          "frondTall": {
+            "sx": 0.8,
+            "sy": 0.7
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "ease": "out",
+        "bones": {
+          "frondFace": {
+            "sx": 1,
+            "sy": 1.05
+          },
+          "frondLeft": {
+            "sx": 1,
+            "sy": 1.05
+          },
+          "frondMid": {
+            "sx": 1,
+            "sy": 1.05
+          },
+          "frondRight": {
+            "sx": 1,
+            "sy": 1.05
+          },
+          "frondTall": {
+            "sx": 1,
+            "sy": 1.05
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": -2.4
+          },
+          "frondFace": {
+            "r": -1.2
+          },
+          "frondLeft": {
+            "r": -1.7999999999999998
+          },
+          "frondMid": {
+            "r": -1.7999999999999998
+          },
+          "frondRight": {
+            "r": -2.4
+          },
+          "frondTall": {
+            "r": -2.1
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": 1.6
+          },
+          "frondFace": {
+            "r": 0.8
+          },
+          "frondLeft": {
+            "r": 1.2000000000000002
+          },
+          "frondMid": {
+            "r": 1.2000000000000002
+          },
+          "frondRight": {
+            "r": 1.6
+          },
+          "frondTall": {
+            "r": 1.4000000000000001
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
 }

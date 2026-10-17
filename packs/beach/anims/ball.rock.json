@@ -1,0 +1,68 @@
+{
+  "id": "rock",
+  "sticker": "ball",
+  "kind": "action",
+  "description": "the beach ball rocks gently back and forth on the sand.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20052,
+    "width": 0.59766,
+    "height": 0.59896
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/ball.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.55,
+        "bones": {
+          "root": {
+            "x": 14.7
+          },
+          "spin": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.55,
+        "bones": {
+          "root": {
+            "x": -14.7
+          },
+          "spin": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "root": {
+            "x": 11
+          },
+          "spin": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "root": {
+            "x": -3.7
+          },
+          "spin": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

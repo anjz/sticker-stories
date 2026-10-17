@@ -3,46 +3,94 @@
   "sticker": "fishing-boat",
   "kind": "move",
   "description": "the fishing boat chugs along to the right over the waves, bobbing gently, then stops.",
-  "sheet": "anims/fishing-boat.chug.webp",
-  "frame": {
-    "width": 516,
-    "height": 442
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.03101,
-    "y": 0.03394,
-    "width": 0.93411,
-    "height": 0.91855
-  },
   "stickerBox": {
     "x": 0.07943,
     "y": 0.14583,
     "width": 0.83984,
     "height": 0.70833
   },
-  "hold": [
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "right",
   "stride": 0.5,
   "on": [
     "sea"
-  ]
+  ],
+  "waterline": 0.12,
+  "puppet": {
+    "rig": "anims/fishing-boat.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "net": {
+            "r": 3
+          },
+          "rock": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "net": {},
+          "rock": {
+            "y": 5
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "net": {
+            "r": -3
+          },
+          "rock": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "net": {},
+          "rock": {
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "net": {
+            "r": 4
+          },
+          "rock": {
+            "r": -1,
+            "y": 2
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "net": {
+            "r": -2
+          },
+          "rock": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
 }

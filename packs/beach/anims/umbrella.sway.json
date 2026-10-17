@@ -1,0 +1,54 @@
+{
+  "id": "sway",
+  "sticker": "umbrella",
+  "kind": "action",
+  "description": "the beach umbrella sways gently in the breeze.",
+  "stickerBox": {
+    "x": 0.08203,
+    "y": 0.07943,
+    "width": 0.83594,
+    "height": 0.83984
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/umbrella.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "canopy": {
+            "r": -1
+          },
+          "root": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "canopy": {
+            "r": 1
+          },
+          "root": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.55,
+        "bones": {
+          "root": {
+            "r": 1.5
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

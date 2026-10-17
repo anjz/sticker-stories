@@ -1,0 +1,70 @@
+{
+  "id": "bounce",
+  "sticker": "umbrella",
+  "kind": "action",
+  "description": "the beach umbrella hops up out of the sand, its canopy bouncing, and lands back where it was.",
+  "stickerBox": {
+    "x": 0.08203,
+    "y": 0.07943,
+    "width": 0.83594,
+    "height": 0.83984
+  },
+  "particles": [
+    {
+      "frame": 2,
+      "effect": "dust-puff",
+      "x": 0.5,
+      "y": 0.9,
+      "intensity": 0.3
+    }
+  ],
+  "puppet": {
+    "rig": "anims/umbrella.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "canopy": {
+            "sy": 0.97
+          },
+          "root": {
+            "y": -35
+          }
+        }
+      },
+      {
+        "hold": 0.24,
+        "ease": "in",
+        "bones": {
+          "canopy": {
+            "sy": 1.03
+          },
+          "root": {}
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "canopy": {
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "canopy": {
+            "sy": 1.01
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

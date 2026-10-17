@@ -1,0 +1,75 @@
+{
+  "id": "bounce",
+  "sticker": "bottle",
+  "kind": "action",
+  "description": "the bottle hops up off the sand and lands with a little bump, twice.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.29297,
+    "width": 0.5,
+    "height": 0.41276
+  },
+  "puppet": {
+    "rig": "anims/bottle.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": -4
+          },
+          "root": {
+            "y": -50
+          }
+        }
+      },
+      {
+        "hold": 0.26,
+        "ease": "in",
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "root": {}
+        }
+      },
+      {
+        "hold": 0.26,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "root": {
+            "y": -30
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "in",
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "root": {}
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "r": -0.5
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

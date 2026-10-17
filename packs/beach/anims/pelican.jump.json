@@ -1,0 +1,125 @@
+{
+  "id": "jump",
+  "sticker": "pelican",
+  "description": "the pelican crouches, jumps up for joy with its wings out and lands with a little squash.",
+  "stickerBox": {
+    "x": 0.18359,
+    "y": 0.13932,
+    "width": 0.63281,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/pelican.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.92
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 8
+          }
+        }
+      },
+      {
+        "hold": 0.24,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.05
+          },
+          "legL": {
+            "r": 14,
+            "y": -6
+          },
+          "legR": {
+            "r": 14,
+            "y": -6
+          },
+          "root": {
+            "y": -70
+          },
+          "wingL": {
+            "r": -14
+          },
+          "wingR": {
+            "r": 14
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eye": "happy",
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "in",
+        "bones": {
+          "legL": {
+            "r": 14,
+            "y": -6
+          },
+          "legR": {
+            "r": 14,
+            "y": -6
+          },
+          "root": {
+            "y": -76
+          },
+          "wingL": {
+            "r": 10
+          },
+          "wingR": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eye": "happy",
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.9
+          },
+          "head": {
+            "y": 6
+          },
+          "root": {
+            "y": 5
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

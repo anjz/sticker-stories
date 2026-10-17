@@ -1,54 +1,107 @@
 {
   "id": "spin",
   "sticker": "umbrella",
+  "kind": "action",
   "description": "the beach umbrella spins in the breeze",
-  "sheet": "anims/umbrella.spin.webp",
-  "frame": {
-    "width": 529,
-    "height": 515
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.05482,
-    "y": 0.03107,
-    "width": 0.89981,
-    "height": 0.93592
-  },
   "stickerBox": {
     "x": 0.08203,
     "y": 0.07943,
     "width": 0.83594,
     "height": 0.83984
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.7,
-    0.2,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 5,
     "shows": "the beach umbrella with its canopy turned and its frill fluttering"
+  },
+  "puppet": {
+    "rig": "anims/umbrella.rig.json",
+    "keys": [
+      {
+        "hold": 0.3
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "canopy": {
+            "r": -3,
+            "sx": 0.97
+          }
+        },
+        "slots": {
+          "canopy": "turned"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "canopy": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "canopy": {
+            "r": -3,
+            "sx": 0.97
+          }
+        },
+        "slots": {
+          "canopy": "turned"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "canopy": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "canopy": {
+            "r": -2,
+            "sx": 0.98
+          }
+        },
+        "slots": {
+          "canopy": "turned"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "canopy": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "canopy": {
+            "r": -3,
+            "sx": 0.97
+          }
+        },
+        "slots": {
+          "canopy": "turned"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "canopy": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
   }
 }

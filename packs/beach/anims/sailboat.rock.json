@@ -1,0 +1,51 @@
+{
+  "id": "rock",
+  "sticker": "sailboat",
+  "kind": "action",
+  "description": "the sailboat rocks gently on the waves.",
+  "stickerBox": {
+    "x": 0.11719,
+    "y": 0.07943,
+    "width": 0.76563,
+    "height": 0.83984
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/sailboat.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "rock": {
+            "r": 3,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "rock": {
+            "r": -3,
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.55,
+        "bones": {
+          "rock": {
+            "r": 2,
+            "y": 2
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

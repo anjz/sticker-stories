@@ -1,0 +1,139 @@
+{
+  "id": "clap",
+  "sticker": "crab",
+  "kind": "action",
+  "description": "the crab claps its big claws together, snapping them shut, clack, clack, clack, and grins.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.21745,
+    "width": 0.59896,
+    "height": 0.5651
+  },
+  "puppet": {
+    "rig": "anims/crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "clawL": {
+            "r": -6
+          },
+          "clawR": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "clawL": {
+            "r": 18
+          },
+          "clawR": {
+            "r": -18
+          }
+        },
+        "slots": {
+          "clawL": "shut",
+          "clawR": "shut",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "clawL": {
+            "r": -6
+          },
+          "clawR": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "clawL": {
+            "r": 18
+          },
+          "clawR": {
+            "r": -18
+          }
+        },
+        "slots": {
+          "clawL": "shut",
+          "clawR": "shut",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "clawL": {
+            "r": -6
+          },
+          "clawR": {
+            "r": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sy": 0.98
+          },
+          "clawL": {
+            "r": 18
+          },
+          "clawR": {
+            "r": -18
+          }
+        },
+        "slots": {
+          "clawL": "shut",
+          "clawR": "shut",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

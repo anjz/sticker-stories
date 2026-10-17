@@ -1,0 +1,130 @@
+{
+  "id": "shell-wobble",
+  "sticker": "hermit-crab",
+  "kind": "action",
+  "description": "the hermit crab wiggles, its shell wobbling from side to side on its back, and it giggles.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.30469,
+    "width": 0.5,
+    "height": 0.39063
+  },
+  "puppet": {
+    "rig": "anims/hermit-crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "x": -2,
+            "y": -2
+          },
+          "shell": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "x": 2,
+            "y": -2
+          },
+          "shell": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "x": -2,
+            "y": -2
+          },
+          "shell": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "x": 2,
+            "y": -2
+          },
+          "shell": {
+            "r": 5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "x": -2,
+            "y": -2
+          },
+          "shell": {
+            "r": -5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

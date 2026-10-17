@@ -1,0 +1,105 @@
+{
+  "id": "wave",
+  "sticker": "seaweed",
+  "kind": "action",
+  "description": "the seaweed waves hello with one of its fronds.",
+  "stickerBox": {
+    "x": 0.25781,
+    "y": 0.20052,
+    "width": 0.48438,
+    "height": 0.59896
+  },
+  "puppet": {
+    "rig": "anims/seaweed.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "frondFace": {
+            "r": -2
+          },
+          "frondRight": {
+            "r": 14
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "frondFace": {
+            "r": -2
+          },
+          "frondRight": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "frondFace": {
+            "r": -2
+          },
+          "frondRight": {
+            "r": 16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "frondFace": {
+            "r": -2
+          },
+          "frondRight": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "frondFace": {
+            "r": -2
+          },
+          "frondRight": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

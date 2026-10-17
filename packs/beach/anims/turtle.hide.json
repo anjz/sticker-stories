@@ -1,0 +1,145 @@
+{
+  "id": "hide",
+  "sticker": "turtle",
+  "kind": "action",
+  "description": "the sea turtle pulls its head and flippers into its shell and stays hidden for a while, then pops out with a smile.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.27604,
+    "width": 0.59896,
+    "height": 0.44792
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the sea turtle hidden in its shell, only the shell showing"
+  },
+  "puppet": {
+    "rig": "anims/turtle.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armR": {
+            "x": -15
+          },
+          "head": {
+            "x": -20,
+            "y": 3
+          }
+        },
+        "slots": {
+          "eyeL": "none",
+          "eyeLBack": "closed",
+          "eyeR": "none",
+          "eyeRBack": "closed",
+          "head": "none",
+          "headBack": "head",
+          "mouth": "none",
+          "mouthBack": "o"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": 18,
+            "x": -8
+          },
+          "armR": {
+            "r": -20,
+            "x": -95,
+            "y": -8
+          },
+          "belly": {
+            "sy": 0.97
+          },
+          "head": {
+            "x": -140,
+            "y": 22,
+            "sx": 0.78,
+            "sy": 0.78
+          },
+          "legB": {
+            "r": -12,
+            "x": 8
+          }
+        },
+        "slots": {
+          "eyeL": "none",
+          "eyeLBack": "closed",
+          "eyeR": "none",
+          "eyeRBack": "closed",
+          "head": "none",
+          "headBack": "head",
+          "mouth": "none",
+          "mouthBack": "o"
+        }
+      },
+      {
+        "hold": 1.4,
+        "bones": {
+          "armL": {
+            "r": 18,
+            "x": -8
+          },
+          "armR": {
+            "r": -20,
+            "x": -95,
+            "y": -8
+          },
+          "belly": {
+            "sy": 0.96
+          },
+          "head": {
+            "x": -140,
+            "y": 22,
+            "sx": 0.78,
+            "sy": 0.78
+          },
+          "legB": {
+            "r": -12,
+            "x": 8
+          }
+        },
+        "slots": {
+          "eyeL": "none",
+          "eyeLBack": "closed",
+          "eyeR": "none",
+          "eyeRBack": "closed",
+          "head": "none",
+          "headBack": "head",
+          "mouth": "none",
+          "mouthBack": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "head": {
+            "x": 6,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

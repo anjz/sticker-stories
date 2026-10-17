@@ -1,0 +1,2783 @@
+{
+  "sticker": "starfish",
+  "skeleton": "starfish standing on its two lower arms, facing the viewer: root on the ground between the lower arm tips; roll (at the starfish's centre: everything hangs on it, so the cartwheel turns about the middle); body with a belly bone carrying the centre; face on the body with eyes, mouth and brows; five arms at their bases on the centre: top, armL/armR (the side arms, which wave), legL/legR (the lower arms it stands on).",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a cheerful orange starfish character standing on its two lower arms. Draw this exact starfish as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the starfish's middle alone: ONLY the round central disc of the starfish, where its five arms meet — a plump, rounded five-sided shape about as wide as the face area in image 1 — with NO arms at all: each arm is cut off right where it begins, leaving only a short, smooth, rounded bump. A completely blank face — no eyes, no mouth — keep the rosy cheeks.\n2. one arm: the arm on the right of image 1 alone, with its bumps and dots, drawn pointing straight down: its wide base at the top, a full rounded edge, tapering to its rounded tip at the bottom.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or another part) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a cheerful orange starfish character standing on its two lower arms; image 2 shows the same starfish cut into puppet parts, with a blank face. Draw the starfish's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the starfish in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the left eye (on the right of image 1) as it is in image 1: a big dark brown eye with a white sparkle, looking a little to the side.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the same eye squeezed shut, crying: a tight, creased, downward-curving closed line.\n7. the mouth as it is in image 1: a small happy smile line.\n8. the mouth wide open in a big happy laugh, the inside pink.\n9. the mouth open in a small round 'o'.\n10. the mouth in a small sad frown.\n11. the mouth open in a wobbly crying wail, its corners turned down, the inside pink.\n12. one eyebrow: a small, thin, softly curved dark brown line.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "middle": {
+      "sheet": "parts",
+      "at": [
+        529,
+        471
+      ]
+    },
+    "arm": {
+      "sheet": "parts",
+      "at": [
+        1264,
+        529
+      ],
+      "fadeTop": 0.3
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        127,
+        354
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        396,
+        356
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        651,
+        388
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        908,
+        361
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1166,
+        371
+      ]
+    },
+    "eyeCry": {
+      "sheet": "face",
+      "at": [
+        1414,
+        374
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        132,
+        684
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        400,
+        689
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        647,
+        690
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        891,
+        687
+      ]
+    },
+    "mouthCry": {
+      "sheet": "face",
+      "at": [
+        1162,
+        684
+      ]
+    },
+    "brow": {
+      "sheet": "face",
+      "at": [
+        1428,
+        674
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 386,
+      "y": 588
+    },
+    {
+      "id": "roll",
+      "parent": "root",
+      "x": 385,
+      "y": 395
+    },
+    {
+      "id": "body",
+      "parent": "roll",
+      "x": 385,
+      "y": 470
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 385,
+      "y": 470
+    },
+    {
+      "id": "top",
+      "parent": "body",
+      "x": 382,
+      "y": 312
+    },
+    {
+      "id": "armL",
+      "parent": "body",
+      "x": 306,
+      "y": 354
+    },
+    {
+      "id": "armR",
+      "parent": "body",
+      "x": 462,
+      "y": 356
+    },
+    {
+      "id": "legL",
+      "parent": "roll",
+      "x": 340,
+      "y": 438
+    },
+    {
+      "id": "legR",
+      "parent": "roll",
+      "x": 434,
+      "y": 442
+    },
+    {
+      "id": "face",
+      "parent": "body",
+      "x": 383,
+      "y": 370
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 341,
+      "y": 353
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 426,
+      "y": 358
+    },
+    {
+      "id": "browL",
+      "parent": "face",
+      "x": 336,
+      "y": 322
+    },
+    {
+      "id": "browR",
+      "parent": "face",
+      "x": 430,
+      "y": 327
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 380,
+      "y": 387
+    }
+  ],
+  "slots": [
+    {
+      "id": "middle",
+      "bone": "belly",
+      "default": "middle",
+      "attachments": {
+        "middle": {
+          "part": "middle",
+          "x": 384,
+          "y": 373,
+          "scale": 0.355
+        }
+      }
+    },
+    {
+      "id": "top",
+      "bone": "top",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "arm",
+          "x": 385.7,
+          "y": 249.2,
+          "scale": 0.27,
+          "scaleY": 0.708,
+          "rotate": -176.2
+        }
+      }
+    },
+    {
+      "id": "armL",
+      "bone": "armL",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "arm",
+          "x": 245.1,
+          "y": 338.8,
+          "scale": 0.27,
+          "scaleY": 0.707,
+          "rotate": -255.5
+        }
+      }
+    },
+    {
+      "id": "armR",
+      "bone": "armR",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "arm",
+          "x": 525.6,
+          "y": 349.1,
+          "scale": 0.27,
+          "scaleY": 0.72,
+          "rotate": -95.7
+        }
+      }
+    },
+    {
+      "id": "legL",
+      "bone": "legL",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "arm",
+          "x": 308.6,
+          "y": 510.2,
+          "scale": 0.27,
+          "scaleY": 0.886,
+          "rotate": 23.1,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "legR",
+      "bone": "legR",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "arm",
+          "x": 466.5,
+          "y": 512.3,
+          "scale": 0.27,
+          "scaleY": 0.872,
+          "rotate": -24.4
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 341,
+          "y": 353,
+          "scale": 0.27
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 341,
+          "y": 353,
+          "scale": 0.27
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 341,
+          "y": 357,
+          "scale": 0.28,
+          "flip": true
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 341,
+          "y": 351,
+          "scale": 0.27
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 341,
+          "y": 355,
+          "scale": 0.29,
+          "flip": true
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 341,
+          "y": 355,
+          "scale": 0.29,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 426,
+          "y": 358,
+          "scale": 0.27
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 426,
+          "y": 358,
+          "scale": 0.27
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 426,
+          "y": 362,
+          "scale": 0.28
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 426,
+          "y": 356,
+          "scale": 0.27
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 426,
+          "y": 360,
+          "scale": 0.29
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 426,
+          "y": 360,
+          "scale": 0.29
+        }
+      }
+    },
+    {
+      "id": "browL",
+      "bone": "browL",
+      "default": "none",
+      "attachments": {
+        "sad": {
+          "part": "brow",
+          "x": 339,
+          "y": 327,
+          "scale": 0.24,
+          "rotate": -22
+        },
+        "up": {
+          "part": "brow",
+          "x": 336,
+          "y": 314,
+          "scale": 0.24
+        }
+      }
+    },
+    {
+      "id": "browR",
+      "bone": "browR",
+      "default": "none",
+      "attachments": {
+        "sad": {
+          "part": "brow",
+          "x": 427,
+          "y": 332,
+          "scale": 0.24,
+          "rotate": 22,
+          "flip": true
+        },
+        "up": {
+          "part": "brow",
+          "x": 430,
+          "y": 319,
+          "scale": 0.24,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 380,
+          "y": 387,
+          "scale": 0.26
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 380,
+          "y": 393,
+          "scale": 0.22
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 380,
+          "y": 391,
+          "scale": 0.26
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 380,
+          "y": 390,
+          "scale": 0.25
+        },
+        "cry": {
+          "part": "mouthCry",
+          "x": 380,
+          "y": 392,
+          "scale": 0.23
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad",
+      "browL": "sad",
+      "browR": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o",
+      "browL": "up",
+      "browR": "up"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "wave",
+      "kind": "action",
+      "description": "the starfish waves hello and wiggles its arms",
+      "pause": {
+        "frame": 5,
+        "shows": "the starfish waving its raised arm high, smiling"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "armR": {
+              "r": -50
+            },
+            "body": {
+              "r": -2
+            },
+            "armL": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "armR": {
+              "r": -35
+            },
+            "body": {
+              "r": -2
+            },
+            "armL": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "armR": {
+              "r": -60
+            },
+            "body": {
+              "r": -2
+            },
+            "armL": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "armR": {
+              "r": -35
+            },
+            "body": {
+              "r": -2
+            },
+            "armL": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "armR": {
+              "r": -62
+            },
+            "body": {
+              "r": -2
+            },
+            "armL": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -10
+            },
+            "top": {
+              "r": -6
+            },
+            "legL": {
+              "r": 4
+            },
+            "legR": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "armL": {
+              "r": -8
+            },
+            "armR": {
+              "r": 8
+            },
+            "top": {
+              "r": 6
+            },
+            "legL": {
+              "r": -3
+            },
+            "legR": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "cartwheel",
+      "kind": "move",
+      "description": "the starfish cartwheels along to the left, turning over and over on its arm tips, then stops upright.",
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "facing": "left",
+      "stride": 2.6,
+      "keys": [
+        {
+          "hold": 0.15,
+          "bones": {
+            "belly": {
+              "sy": 0.96
+            }
+          }
+        },
+        {
+          "hold": 0.55,
+          "ease": "linear",
+          "bones": {
+            "roll": {
+              "r": 0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.55,
+          "ease": "linear",
+          "bones": {
+            "roll": {
+              "r": -90
+            },
+            "root": {
+              "y": -14
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.55,
+          "ease": "linear",
+          "bones": {
+            "roll": {
+              "r": -180
+            },
+            "root": {
+              "y": -22
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.55,
+          "ease": "linear",
+          "bones": {
+            "roll": {
+              "r": -270
+            },
+            "root": {
+              "y": -14
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.05,
+          "ease": "step",
+          "bones": {
+            "roll": {
+              "r": -360
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "kind": "action",
+      "description": "the starfish crouches, jumps up high for joy with all its arms flung out, and lands with a little squash.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 8
+            },
+            "belly": {
+              "sx": 1.05,
+              "sy": 0.93
+            },
+            "armL": {
+              "r": -10
+            },
+            "armR": {
+              "r": 10
+            },
+            "legL": {
+              "r": 8
+            },
+            "legR": {
+              "r": -8
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -80
+            },
+            "armL": {
+              "r": 25
+            },
+            "armR": {
+              "r": -25
+            },
+            "legL": {
+              "r": 12
+            },
+            "legR": {
+              "r": -12
+            },
+            "belly": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -85
+            },
+            "armL": {
+              "r": 25
+            },
+            "armR": {
+              "r": -25
+            },
+            "legL": {
+              "r": 12
+            },
+            "legR": {
+              "r": -12
+            },
+            "belly": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "root": {
+              "y": 4
+            },
+            "belly": {
+              "sx": 1.06,
+              "sy": 0.92
+            },
+            "legL": {
+              "r": 5
+            },
+            "legR": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "dance",
+      "kind": "action",
+      "description": "the starfish does a happy little dance, swaying from side to side and waving its arms.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "roll": {
+              "r": -7
+            },
+            "root": {
+              "x": -12
+            },
+            "armL": {
+              "r": 30
+            },
+            "armR": {
+              "r": 5
+            },
+            "legL": {
+              "r": 8,
+              "y": -8
+            },
+            "top": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "roll": {
+              "r": 7
+            },
+            "root": {
+              "x": 12,
+              "y": -6
+            },
+            "armL": {
+              "r": -5
+            },
+            "armR": {
+              "r": -30
+            },
+            "legR": {
+              "r": -8,
+              "y": -8
+            },
+            "top": {
+              "r": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "roll": {
+              "r": -7
+            },
+            "root": {
+              "x": -12
+            },
+            "armL": {
+              "r": 30
+            },
+            "armR": {
+              "r": 5
+            },
+            "legL": {
+              "r": 8,
+              "y": -8
+            },
+            "top": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "roll": {
+              "r": 7
+            },
+            "root": {
+              "x": 12,
+              "y": -6
+            },
+            "armL": {
+              "r": -5
+            },
+            "armR": {
+              "r": -30
+            },
+            "legR": {
+              "r": -8,
+              "y": -8
+            },
+            "top": {
+              "r": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "roll": {
+              "r": -7
+            },
+            "root": {
+              "x": -12
+            },
+            "armL": {
+              "r": 30
+            },
+            "armR": {
+              "r": 5
+            },
+            "legL": {
+              "r": 8,
+              "y": -8
+            },
+            "top": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "roll": {
+              "r": 7
+            },
+            "root": {
+              "x": 12,
+              "y": -6
+            },
+            "armL": {
+              "r": -5
+            },
+            "armR": {
+              "r": -30
+            },
+            "legR": {
+              "r": -8,
+              "y": -8
+            },
+            "top": {
+              "r": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "stretch",
+      "kind": "action",
+      "description": "the starfish stretches all five arms out long and wide with a big yawn, then settles back down.",
+      "pause": {
+        "frame": 3,
+        "shows": "the starfish stretched out wide and tall, yawning"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "top": {
+              "sy": 1.0899999999999999
+            },
+            "armL": {
+              "sx": 1.075,
+              "r": 8
+            },
+            "armR": {
+              "sx": 1.075,
+              "r": -8
+            },
+            "legL": {
+              "sy": 1.03
+            },
+            "legR": {
+              "sy": 1.03
+            },
+            "belly": {
+              "sy": 1.025,
+              "sx": 1.0150000000000001
+            },
+            "root": {
+              "y": -8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "top": {
+              "sy": 1.18
+            },
+            "armL": {
+              "sx": 1.15,
+              "r": 8
+            },
+            "armR": {
+              "sx": 1.15,
+              "r": -8
+            },
+            "legL": {
+              "sy": 1.06
+            },
+            "legR": {
+              "sy": 1.06
+            },
+            "belly": {
+              "sy": 1.05,
+              "sx": 1.03
+            },
+            "root": {
+              "y": -8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "top": {
+              "sy": 1.18
+            },
+            "armL": {
+              "sx": 1.15,
+              "r": 8
+            },
+            "armR": {
+              "sx": 1.15,
+              "r": -8
+            },
+            "legL": {
+              "sy": 1.06
+            },
+            "legR": {
+              "sy": 1.06
+            },
+            "belly": {
+              "sy": 1.05,
+              "sx": 1.03
+            },
+            "root": {
+              "y": -8
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "belly": {
+              "sy": 0.97
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "twirl",
+      "kind": "action",
+      "description": "the starfish twirls right round on the spot.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.94
+            }
+          }
+        },
+        {
+          "hold": 0.32,
+          "bones": {
+            "root": {
+              "sx": -1,
+              "y": -26
+            },
+            "armL": {
+              "r": 15
+            },
+            "armR": {
+              "r": -15
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.32,
+          "bones": {
+            "root": {
+              "sx": 1,
+              "y": 0
+            },
+            "armL": {
+              "r": 15
+            },
+            "armR": {
+              "r": -15
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "belly": {
+              "sy": 0.94,
+              "sx": 1.04
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "laugh",
+      "kind": "action",
+      "description": "the starfish laughs and laughs, bouncing with giggles.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "armL": {
+              "r": 8
+            },
+            "armR": {
+              "r": -8
+            },
+            "top": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "armL": {
+              "r": -3
+            },
+            "armR": {
+              "r": 3
+            },
+            "top": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "armL": {
+              "r": 8
+            },
+            "armR": {
+              "r": -8
+            },
+            "top": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "armL": {
+              "r": -3
+            },
+            "armR": {
+              "r": 3
+            },
+            "top": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "armL": {
+              "r": 8
+            },
+            "armR": {
+              "r": -8
+            },
+            "top": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "armL": {
+              "r": -3
+            },
+            "armR": {
+              "r": 3
+            },
+            "top": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "armL": {
+              "r": 8
+            },
+            "armR": {
+              "r": -8
+            },
+            "top": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "armL": {
+              "r": -3
+            },
+            "armR": {
+              "r": 3
+            },
+            "top": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "kind": "action",
+      "description": "the starfish talks, its mouth moving, its arms bobbing a little.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": -2
+            },
+            "top": {
+              "r": -2
+            },
+            "armR": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": -2
+            },
+            "top": {
+              "r": -2
+            },
+            "armR": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": -2
+            },
+            "top": {
+              "r": -2
+            },
+            "armR": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": -2
+            },
+            "top": {
+              "r": -2
+            },
+            "armR": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": -2
+            },
+            "top": {
+              "r": -2
+            },
+            "armR": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "kind": "action",
+      "description": "the starfish nods yes, twice.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 8
+            },
+            "top": {
+              "r": 0,
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.97
+            },
+            "roll": {
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": -3
+            },
+            "top": {
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 8
+            },
+            "top": {
+              "r": 0,
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.97
+            },
+            "roll": {
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": -3
+            },
+            "top": {
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "shake-head",
+      "kind": "action",
+      "description": "the starfish shakes its head no, its top arm swinging.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "face": {
+              "x": -10
+            },
+            "top": {
+              "r": -9
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "x": 10
+            },
+            "top": {
+              "r": 9
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "x": -10
+            },
+            "top": {
+              "r": -9
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "x": 10
+            },
+            "top": {
+              "r": 9
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "look-around",
+      "kind": "action",
+      "idle": true,
+      "description": "the starfish looks one way, then the other, then back.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "face": {
+              "x": -12
+            },
+            "top": {
+              "r": -5
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "face": {
+              "x": -12
+            },
+            "top": {
+              "r": -5
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "face": {
+              "x": 12
+            },
+            "top": {
+              "r": 5
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "face": {
+              "x": 12
+            },
+            "top": {
+              "r": 5
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "shiver",
+      "kind": "action",
+      "description": "the starfish shivers and trembles, cold or scared, its arms pulled in.",
+      "keys": [
+        {
+          "hold": 0.1,
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "armL": {
+              "r": -12,
+              "sx": 0.92
+            },
+            "armR": {
+              "r": 12,
+              "sx": 0.92
+            },
+            "top": {
+              "sy": 0.92,
+              "r": -2
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "armL": {
+              "r": -12,
+              "sx": 0.92
+            },
+            "armR": {
+              "r": 12,
+              "sx": 0.92
+            },
+            "top": {
+              "sy": 0.92,
+              "r": 2
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "armL": {
+              "r": -12,
+              "sx": 0.92
+            },
+            "armR": {
+              "r": 12,
+              "sx": 0.92
+            },
+            "top": {
+              "sy": 0.92,
+              "r": -2
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "armL": {
+              "r": -12,
+              "sx": 0.92
+            },
+            "armR": {
+              "r": 12,
+              "sx": 0.92
+            },
+            "top": {
+              "sy": 0.92,
+              "r": 2
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "armL": {
+              "r": -12,
+              "sx": 0.92
+            },
+            "armR": {
+              "r": 12,
+              "sx": 0.92
+            },
+            "top": {
+              "sy": 0.92,
+              "r": -2
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "armL": {
+              "r": -12,
+              "sx": 0.92
+            },
+            "armR": {
+              "r": 12,
+              "sx": 0.92
+            },
+            "top": {
+              "sy": 0.92,
+              "r": 2
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "armL": {
+              "r": -12,
+              "sx": 0.92
+            },
+            "armR": {
+              "r": 12,
+              "sx": 0.92
+            },
+            "top": {
+              "sy": 0.92,
+              "r": -2
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "armL": {
+              "r": -12,
+              "sx": 0.92
+            },
+            "armR": {
+              "r": 12,
+              "sx": 0.92
+            },
+            "top": {
+              "sy": 0.92,
+              "r": 2
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "armL": {
+              "r": -12,
+              "sx": 0.92
+            },
+            "armR": {
+              "r": 12,
+              "sx": 0.92
+            },
+            "top": {
+              "sy": 0.92,
+              "r": -2
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "armL": {
+              "r": -12,
+              "sx": 0.92
+            },
+            "armR": {
+              "r": 12,
+              "sx": 0.92
+            },
+            "top": {
+              "sy": 0.92,
+              "r": 2
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "armL": {
+              "r": -12,
+              "sx": 0.92
+            },
+            "armR": {
+              "r": 12,
+              "sx": 0.92
+            },
+            "top": {
+              "sy": 0.92,
+              "r": -2
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "armL": {
+              "r": -12,
+              "sx": 0.92
+            },
+            "armR": {
+              "r": 12,
+              "sx": 0.92
+            },
+            "top": {
+              "sy": 0.92,
+              "r": 2
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "armL": {
+              "r": -12,
+              "sx": 0.92
+            },
+            "armR": {
+              "r": 12,
+              "sx": 0.92
+            },
+            "top": {
+              "sy": 0.92,
+              "r": -2
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "armL": {
+              "r": -12,
+              "sx": 0.92
+            },
+            "armR": {
+              "r": 12,
+              "sx": 0.92
+            },
+            "top": {
+              "sy": 0.92,
+              "r": 2
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "cry",
+      "kind": "action",
+      "description": "the starfish cries, its arms drooping, shaking with little sobs.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "top": {
+              "r": 8,
+              "y": 4
+            },
+            "armL": {
+              "r": -18
+            },
+            "armR": {
+              "r": 18
+            },
+            "belly": {
+              "sy": 1
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "top": {
+              "r": 8,
+              "y": 4
+            },
+            "armL": {
+              "r": -18
+            },
+            "armR": {
+              "r": 18
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "top": {
+              "r": 8,
+              "y": 4
+            },
+            "armL": {
+              "r": -18
+            },
+            "armR": {
+              "r": 18
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "top": {
+              "r": 8,
+              "y": 4
+            },
+            "armL": {
+              "r": -18
+            },
+            "armR": {
+              "r": 18
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "top": {
+              "r": 8,
+              "y": 4
+            },
+            "armL": {
+              "r": -18
+            },
+            "armR": {
+              "r": 18
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "top": {
+              "r": 8,
+              "y": 4
+            },
+            "armL": {
+              "r": -18
+            },
+            "armR": {
+              "r": 18
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "top": {
+              "r": 8,
+              "y": 4
+            },
+            "armL": {
+              "r": -18
+            },
+            "armR": {
+              "r": 18
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "top": {
+              "r": 8,
+              "y": 4
+            },
+            "armL": {
+              "r": -18
+            },
+            "armR": {
+              "r": 18
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "top": {
+              "r": 8,
+              "y": 4
+            },
+            "armL": {
+              "r": -18
+            },
+            "armR": {
+              "r": 18
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "top": {
+              "r": 8,
+              "y": 4
+            },
+            "armL": {
+              "r": -18
+            },
+            "armR": {
+              "r": 18
+            },
+            "belly": {
+              "sy": 1
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "kind": "action",
+      "description": "the starfish gives a big yawn, lets its arms droop and falls asleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the starfish fast asleep, eyes shut, its arms drooping"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            },
+            "armL": {
+              "r": 20
+            },
+            "armR": {
+              "r": -20
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            },
+            "armL": {
+              "r": 20
+            },
+            "armR": {
+              "r": -20
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "top": {
+              "r": 14,
+              "y": 4
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.02
+            },
+            "root": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "top": {
+              "r": 14,
+              "y": 4
+            },
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.02
+            },
+            "root": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

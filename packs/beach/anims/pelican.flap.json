@@ -1,0 +1,178 @@
+{
+  "id": "flap",
+  "sticker": "pelican",
+  "description": "the pelican spreads its big wings and flaps them slowly in place, its feet staying on the ground.",
+  "stickerBox": {
+    "x": 0.18359,
+    "y": 0.13932,
+    "width": 0.63281,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the pelican with its big wings spread wide"
+  },
+  "puppet": {
+    "rig": "anims/pelican.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {},
+          "root": {},
+          "wingL": {
+            "r": -10
+          },
+          "wingR": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {},
+          "root": {},
+          "wingL": {
+            "r": -24
+          },
+          "wingR": {
+            "r": 24
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "y": -1
+          },
+          "root": {
+            "y": 2
+          },
+          "wingL": {
+            "r": 26
+          },
+          "wingR": {
+            "r": -26
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "y": 1.5
+          },
+          "root": {
+            "y": -3
+          },
+          "wingL": {
+            "r": -24
+          },
+          "wingR": {
+            "r": 24
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "y": -1
+          },
+          "root": {
+            "y": 2
+          },
+          "wingL": {
+            "r": 26
+          },
+          "wingR": {
+            "r": -26
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "head": {
+            "y": 1.5
+          },
+          "root": {
+            "y": -3
+          },
+          "wingL": {
+            "r": -24
+          },
+          "wingR": {
+            "r": 24
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {},
+          "root": {},
+          "wingL": {
+            "r": 6
+          },
+          "wingR": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.97
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

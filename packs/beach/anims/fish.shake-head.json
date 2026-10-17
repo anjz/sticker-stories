@@ -1,0 +1,75 @@
+{
+  "id": "shake-head",
+  "sticker": "fish",
+  "description": "the little fish shakes its head no, wiggling from side to side.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27734,
+    "width": 0.5,
+    "height": 0.44401
+  },
+  "puppet": {
+    "rig": "anims/fish.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "sx": 0.97
+          },
+          "face": {
+            "x": -8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "sx": 1.02
+          },
+          "face": {
+            "x": 6
+          },
+          "tail": {
+            "r": -8
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "body": {
+            "sx": 0.97
+          },
+          "face": {
+            "x": -8
+          },
+          "tail": {
+            "r": 8
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "face": {
+            "x": 5
+          },
+          "tail": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "id": "talk",
+  "sticker": "seaweed",
+  "kind": "action",
+  "description": "the seaweed talks, its mouth moving, its big frond bobbing a little.",
+  "stickerBox": {
+    "x": 0.25781,
+    "y": 0.20052,
+    "width": 0.48438,
+    "height": 0.59896
+  },
+  "puppet": {
+    "rig": "anims/seaweed.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "frondFace": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "frondFace": {}
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "frondFace": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "frondFace": {}
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "frondFace": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "frondFace": {}
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "frondFace": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "frondFace": {}
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "frondFace": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "frondFace": {}
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,653 @@
+{
+  "sticker": "umbrella",
+  "called": "the beach umbrella",
+  "skeleton": "a beach umbrella standing upright: root at the pole's tip in the sand; pole on it; canopy on a bone at the top of the pole (the open canopy, a turned canopy with its frill fluttering, and the closed canopy for opening, which slides along the pole).",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a beach umbrella. Draw it as a cut-out paper puppet: its separate pieces laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every piece at the size it has in image 1 (if they do not all fit, draw them all a little smaller, at the same scale as each other).\n\nDraw each piece on its own, spread out over the sheet with wide empty gaps between them, no piece touching or overlapping another:\n1. the open canopy alone, as in image 1: its red-and-white striped top, the knob on top and its scalloped frilled edge, seen as in image 1, without the pole.\n2. the same open canopy turned round a little on its pole so that its red and white panels have swapped places, its frill fluttering: the scallops lifted and rippling in a breeze. Without the pole.\n3. the wooden pole alone: from just under the canopy, with its collar and the two thin struts that reach up from the collar, down to its rounded tip.\n4. the canopy closed: furled tight into a slim red-and-white bundle with its frill tucked in and its knob on top, as a beach umbrella is before it opens, without the pole.\n\nEvery piece is drawn whole, including what is normally hidden behind another piece, with its edges clean and smooth. It is an object, not a character: no face, no eyes, no mouth. No text, no labels, no numbers, no outline around the pieces beyond the drawing's own line, no shadows, no water, no sand, no splashes or drops. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "canopy": {
+      "sheet": "parts",
+      "at": [
+        383,
+        213
+      ]
+    },
+    "turned": {
+      "sheet": "parts",
+      "at": [
+        1152,
+        218
+      ]
+    },
+    "pole": {
+      "sheet": "parts",
+      "at": [
+        389,
+        720
+      ]
+    },
+    "closed": {
+      "sheet": "parts",
+      "at": [
+        1092,
+        699
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 384,
+      "y": 688
+    },
+    {
+      "id": "pole",
+      "parent": "root",
+      "x": 384,
+      "y": 688
+    },
+    {
+      "id": "canopy",
+      "parent": "pole",
+      "x": 384,
+      "y": 330
+    }
+  ],
+  "slots": [
+    {
+      "id": "canopy",
+      "bone": "canopy",
+      "default": "canopy",
+      "attachments": {
+        "canopy": {
+          "part": "canopy",
+          "x": 383,
+          "y": 227,
+          "scale": 0.835,
+          "scaleY": 0.975
+        },
+        "turned": {
+          "part": "turned",
+          "x": 391,
+          "y": 232,
+          "scale": 0.835,
+          "scaleY": 0.975
+        }
+      }
+    },
+    {
+      "id": "pole",
+      "bone": "pole",
+      "default": "pole",
+      "attachments": {
+        "pole": {
+          "part": "pole",
+          "x": 383.5,
+          "y": 512.5,
+          "scale": 0.7,
+          "scaleY": 0.905
+        }
+      }
+    },
+    {
+      "id": "closed",
+      "bone": "canopy",
+      "default": "none",
+      "attachments": {
+        "closed": {
+          "part": "closed",
+          "x": 383,
+          "y": 225,
+          "scale": 0.6
+        }
+      }
+    }
+  ],
+  "animations": [
+    {
+      "id": "spin",
+      "kind": "action",
+      "description": "the beach umbrella spins in the breeze",
+      "pause": {
+        "frame": 5,
+        "shows": "the beach umbrella with its canopy turned and its frill fluttering"
+      },
+      "keys": [
+        {
+          "hold": 0.3
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "canopy": {
+              "r": -3,
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "canopy": "turned"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "canopy": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "canopy": {
+              "r": -3,
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "canopy": "turned"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "canopy": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "canopy": {
+              "r": -2,
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "canopy": "turned"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "canopy": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "canopy": {
+              "r": -3,
+              "sx": 0.97
+            }
+          },
+          "slots": {
+            "canopy": "turned"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "canopy": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "open",
+      "kind": "move",
+      "description": "the beach umbrella pops open: the closed canopy slides up its pole and spreads out.",
+      "keys": [
+        {
+          "hold": 0.02,
+          "ease": "step"
+        },
+        {
+          "hold": 0.55,
+          "ease": "out",
+          "bones": {
+            "canopy": {
+              "y": 200
+            }
+          },
+          "slots": {
+            "canopy": "none",
+            "closed": "closed"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "canopy": {}
+          },
+          "slots": {
+            "canopy": "none",
+            "closed": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "canopy": {
+              "sx": 0.3,
+              "sy": 0.9
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "canopy": {
+              "sx": 1.06,
+              "sy": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "canopy": {
+              "sx": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sway",
+      "kind": "action",
+      "description": "the beach umbrella sways gently in the breeze.",
+      "idle": true,
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "root": {
+              "r": 2
+            },
+            "canopy": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "root": {
+              "r": -2
+            },
+            "canopy": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.55,
+          "bones": {
+            "root": {
+              "r": 1.5
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "flutter",
+      "kind": "action",
+      "description": "a gust of wind catches the beach umbrella: its canopy lifts a little and its frill flutters, then it settles.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "canopy": {
+              "r": -2,
+              "sx": 1.02,
+              "sy": 1.03,
+              "y": -6
+            }
+          },
+          "slots": {
+            "canopy": "turned"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "canopy": {
+              "r": 2,
+              "sy": 1.02,
+              "y": -4
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "canopy": {
+              "r": -2,
+              "sx": 1.02,
+              "sy": 1.03,
+              "y": -6
+            }
+          },
+          "slots": {
+            "canopy": "turned"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "canopy": {
+              "r": 1,
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "canopy": {
+              "r": -1,
+              "sx": 1.01,
+              "sy": 1.01,
+              "y": -3
+            }
+          },
+          "slots": {
+            "canopy": "turned"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "wobble",
+      "kind": "action",
+      "description": "the beach umbrella wobbles on its pole, then settles.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "root": {
+              "r": 4
+            },
+            "canopy": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "root": {
+              "r": -4
+            },
+            "canopy": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.28,
+          "bones": {
+            "root": {
+              "r": 3
+            },
+            "canopy": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "root": {
+              "r": -1.5
+            }
+          }
+        },
+        {
+          "hold": 0.25
+        }
+      ]
+    },
+    {
+      "id": "tip",
+      "kind": "action",
+      "description": "a gust tips the beach umbrella over to one side, nearly blowing it down, then it swings back upright.",
+      "pause": {
+        "frame": 2,
+        "shows": "the beach umbrella tipped over to one side in a gust"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.6,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "r": 12
+            },
+            "canopy": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "canopy": "turned"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "root": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "canopy": "turned"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "root": {
+              "r": 12.5
+            }
+          },
+          "slots": {
+            "canopy": "turned"
+          }
+        },
+        {
+          "hold": 0.4,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "root": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "pop",
+      "kind": "action",
+      "description": "the beach umbrella folds itself shut, then pops open again.",
+      "pause": {
+        "frame": 2,
+        "shows": "the beach umbrella folded shut"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "ease": "in",
+          "bones": {
+            "canopy": {
+              "sx": 0.3,
+              "sy": 0.95
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "canopy": {}
+          },
+          "slots": {
+            "canopy": "none",
+            "closed": "closed"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "canopy": {}
+          },
+          "slots": {
+            "canopy": "none",
+            "closed": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "canopy": {
+              "sx": 0.3,
+              "sy": 0.9
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "canopy": {
+              "sx": 1.06,
+              "sy": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "canopy": {
+              "sx": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "bounce",
+      "kind": "action",
+      "description": "the beach umbrella hops up out of the sand, its canopy bouncing, and lands back where it was.",
+      "particles": [
+        {
+          "frame": 2,
+          "effect": "dust-puff",
+          "x": 0.5,
+          "y": 0.9,
+          "intensity": 0.3
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -35
+            },
+            "canopy": {
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.24,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "canopy": {
+              "sy": 1.03
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "canopy": {
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "canopy": {
+              "sy": 1.01
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

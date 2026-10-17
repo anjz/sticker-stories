@@ -2,62 +2,154 @@
   "id": "scoop",
   "sticker": "pelican",
   "description": "the pelican scoops with its big pouch and gulps",
-  "sheet": "anims/pelican.scoop.webp",
-  "frame": {
-    "width": 504,
-    "height": 563
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.11111,
-    "y": 0.11012,
-    "width": 0.83929,
-    "height": 0.85613
-  },
   "stickerBox": {
     "x": 0.18359,
     "y": 0.13932,
     "width": 0.63281,
     "height": 0.72005
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.7,
-    0.2,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 4,
     "shows": "the pelican with its pouch full and round, its head tipped back"
   },
   "particles": [
     {
-      "frame": 3,
+      "frame": 2,
       "effect": "spray",
-      "x": 0.5,
-      "y": 0.4993,
+      "x": 0.3,
+      "y": 0.62,
       "intensity": 0.4
     }
-  ]
+  ],
+  "puppet": {
+    "rig": "anims/pelican.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "body": {
+            "r": -8
+          },
+          "head": {
+            "r": -30
+          }
+        },
+        "slots": {
+          "beak": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -14,
+            "y": 4
+          },
+          "head": {
+            "r": -48,
+            "y": 6
+          },
+          "wingL": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "inOut",
+        "bones": {
+          "body": {
+            "r": -14,
+            "y": 4
+          },
+          "head": {
+            "r": -36,
+            "y": 6
+          },
+          "wingL": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "beak": "full"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "r": 4
+          },
+          "head": {
+            "r": 24,
+            "y": -4
+          }
+        },
+        "slots": {
+          "beak": "full"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 22,
+            "y": -8
+          }
+        },
+        "slots": {
+          "beak": "closed",
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 12
+          }
+        },
+        "slots": {
+          "beak": "closed",
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
 }

@@ -1,0 +1,3042 @@
+{
+  "sticker": "octopus",
+  "skeleton": "octopus facing the viewer: root under the middle of its arms; body (the round head and the skirt where the arms meet) with belly squash; face on the body carrying both eyes, brows and mouth; six arms from the skirt's edge — armL/armR curled up high, sideL/sideR out at the sides, lowL/lowR down at the bottom — and a front arm in the middle; a pair of hugging arms shown only in a hug or hiding.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of an octopus character. Draw this exact octopus character as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the body: the big round orange head with its darker spots and the short skirt below it where all the arms meet, facing the viewer as in image 1, without any arms, with a completely blank face — no eyes, no brows, no mouth — keep the two rosy cheeks; the skirt's bottom edge rounded.\n2. an arm curled up high: one orange arm with its pale suckers, rising up and curling over at the tip, like the upper arm on the left of image 1, drawn whole, with a rounded base.\n3. an arm out to the side: one orange arm with its pale suckers, reaching out sideways and curling down at the tip, like the arm on the far left of image 1, drawn whole, with a rounded base.\n4. an arm reaching down: one orange arm with its pale suckers, reaching down and curling round at the tip, like the lower arms in image 1, drawn whole, with a rounded base.\n5. the front arm: the arm in the middle at the bottom of image 1, curling round in a loop, drawn whole, with a rounded base.\n6. the hugging arms: two orange arms with their pale suckers crossed over each other in front, wrapping round in a hug, drawn as one piece.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of an octopus character; image 2 shows the same octopus cut into puppet parts, with a blank face. Draw the octopus's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the octopus in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the octopus's eye as it is in image 1: a big dark brown round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: the pupil looking down, its upper lid drooping and tilted, a thin shine of a welling tear along the bottom rim.\n6. the same eye crying: gently squeezed shut, a soft downward-curving line (a sad closed eye, not a smile), a few small lashes, and one small light-blue teardrop just below it.\n7. the brow: the short brown curved brow line above an eye in image 1.\n8. the mouth as it is in image 1: a small happy smile.\n9. the mouth laughing: open wide, a little pink inside.\n10. the mouth a small round \"o\".\n11. the mouth sad: a small downturned frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "armUp": {
+      "sheet": "parts",
+      "at": [
+        214,
+        286
+      ]
+    },
+    "body": {
+      "sheet": "parts",
+      "at": [
+        659,
+        303
+      ]
+    },
+    "armSide": {
+      "sheet": "parts",
+      "at": [
+        1227,
+        328
+      ]
+    },
+    "armDown": {
+      "sheet": "parts",
+      "at": [
+        229,
+        766
+      ]
+    },
+    "armFront": {
+      "sheet": "parts",
+      "at": [
+        666,
+        790
+      ]
+    },
+    "hugArms": {
+      "sheet": "parts",
+      "at": [
+        1198,
+        745
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        160,
+        246
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        478,
+        244
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        787,
+        278
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        1071,
+        236
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1370,
+        249
+      ]
+    },
+    "eyeCry": {
+      "sheet": "face",
+      "at": [
+        221,
+        565
+      ]
+    },
+    "brow": {
+      "sheet": "face",
+      "at": [
+        604,
+        547
+      ]
+    },
+    "tear": {
+      "sheet": "face",
+      "at": [
+        288,
+        624
+      ]
+    },
+    "mouthSmile": {
+      "sheet": "face",
+      "at": [
+        239,
+        858
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        593,
+        837
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        971,
+        837
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1338,
+        810
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 400,
+      "y": 565
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 400,
+      "y": 440
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 400,
+      "y": 440
+    },
+    {
+      "id": "face",
+      "parent": "body",
+      "x": 372,
+      "y": 315
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 325,
+      "y": 310
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 418,
+      "y": 335
+    },
+    {
+      "id": "browL",
+      "parent": "face",
+      "x": 333,
+      "y": 267
+    },
+    {
+      "id": "browR",
+      "parent": "face",
+      "x": 437,
+      "y": 291
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 360,
+      "y": 350
+    },
+    {
+      "id": "armL",
+      "parent": "body",
+      "x": 296,
+      "y": 395
+    },
+    {
+      "id": "armR",
+      "parent": "body",
+      "x": 512,
+      "y": 410
+    },
+    {
+      "id": "sideL",
+      "parent": "body",
+      "x": 305,
+      "y": 410
+    },
+    {
+      "id": "sideR",
+      "parent": "body",
+      "x": 458,
+      "y": 425
+    },
+    {
+      "id": "lowL",
+      "parent": "body",
+      "x": 345,
+      "y": 440
+    },
+    {
+      "id": "lowR",
+      "parent": "body",
+      "x": 450,
+      "y": 445
+    },
+    {
+      "id": "front",
+      "parent": "body",
+      "x": 395,
+      "y": 440
+    },
+    {
+      "id": "hug",
+      "parent": "body",
+      "x": 400,
+      "y": 430
+    }
+  ],
+  "slots": [
+    {
+      "id": "armL",
+      "bone": "armL",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "armUp",
+          "x": 255,
+          "y": 325,
+          "scale": 0.34
+        }
+      }
+    },
+    {
+      "id": "armR",
+      "bone": "armR",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "armUp",
+          "x": 546,
+          "y": 360,
+          "scale": 0.31,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "sideL",
+      "bone": "sideL",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "armSide",
+          "x": 238,
+          "y": 422,
+          "scale": 0.27,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "sideR",
+      "bone": "sideR",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "armSide",
+          "x": 534,
+          "y": 441,
+          "scale": 0.27,
+          "rotate": 10
+        }
+      }
+    },
+    {
+      "id": "lowL",
+      "bone": "lowL",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "armDown",
+          "x": 291,
+          "y": 484,
+          "scale": 0.34
+        }
+      }
+    },
+    {
+      "id": "lowR",
+      "bone": "lowR",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "armDown",
+          "x": 494,
+          "y": 474,
+          "scale": 0.33,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "front",
+      "bone": "front",
+      "default": "arm",
+      "attachments": {
+        "arm": {
+          "part": "armFront",
+          "x": 396,
+          "y": 503,
+          "scale": 0.4
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "body",
+          "x": 402,
+          "y": 321,
+          "scale": 0.45
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "default",
+      "attachments": {
+        "default": {
+          "part": "eye",
+          "x": 325,
+          "y": 310,
+          "scale": 0.21
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 325,
+          "y": 309,
+          "scale": 0.1785
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 325,
+          "y": 316,
+          "scale": 0.1785
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 325,
+          "y": 310,
+          "scale": 0.1785
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 325,
+          "y": 310,
+          "scale": 0.19949999999999998,
+          "flip": true
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 325,
+          "y": 316,
+          "scale": 0.189
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "default",
+      "attachments": {
+        "default": {
+          "part": "eye",
+          "x": 418,
+          "y": 335,
+          "scale": 0.22
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 418,
+          "y": 334,
+          "scale": 0.187
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 418,
+          "y": 341,
+          "scale": 0.187
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 418,
+          "y": 335,
+          "scale": 0.187
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 418,
+          "y": 335,
+          "scale": 0.209,
+          "flip": false
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 418,
+          "y": 341,
+          "scale": 0.198
+        }
+      }
+    },
+    {
+      "id": "tearL",
+      "bone": "eyeL",
+      "default": "none",
+      "attachments": {
+        "drop": {
+          "part": "tear",
+          "x": 336,
+          "y": 336,
+          "scale": 0.3
+        }
+      }
+    },
+    {
+      "id": "tearR",
+      "bone": "eyeR",
+      "default": "none",
+      "attachments": {
+        "drop": {
+          "part": "tear",
+          "x": 430,
+          "y": 362,
+          "scale": 0.3
+        }
+      }
+    },
+    {
+      "id": "browL",
+      "bone": "browL",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "brow",
+          "x": 333,
+          "y": 267,
+          "scale": 0.13,
+          "rotate": -8
+        },
+        "sad": {
+          "part": "brow",
+          "x": 333,
+          "y": 265,
+          "scale": 0.13,
+          "rotate": -25
+        }
+      }
+    },
+    {
+      "id": "browR",
+      "bone": "browR",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "brow",
+          "x": 437,
+          "y": 294,
+          "scale": 0.13,
+          "rotate": 30
+        },
+        "sad": {
+          "part": "brow",
+          "x": 434,
+          "y": 292,
+          "scale": 0.13,
+          "rotate": 12
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouthSmile",
+          "x": 360,
+          "y": 350,
+          "scale": 0.18
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 360,
+          "y": 354,
+          "scale": 0.16
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 360,
+          "y": 354,
+          "scale": 0.16
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 360,
+          "y": 354,
+          "scale": 0.16
+        }
+      }
+    },
+    {
+      "id": "hug",
+      "bone": "hug",
+      "default": "none",
+      "attachments": {
+        "arms": {
+          "part": "hugArms",
+          "x": 400,
+          "y": 420,
+          "scale": 0.36
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad",
+      "browL": "sad",
+      "browR": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "wave",
+      "description": "the octopus waves all its arms",
+      "pause": {
+        "frame": 3,
+        "shows": "the octopus with its arms curled up high around it, waving, smiling"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "armL": {
+              "r": 12
+            },
+            "armR": {
+              "r": -12
+            },
+            "sideL": {
+              "r": 34
+            },
+            "sideR": {
+              "r": -34
+            },
+            "lowL": {
+              "r": 28
+            },
+            "lowR": {
+              "r": -28
+            },
+            "front": {
+              "r": 8
+            },
+            "root": {
+              "y": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "armL": {
+              "r": -12
+            },
+            "armR": {
+              "r": 12
+            },
+            "sideL": {
+              "r": 6
+            },
+            "sideR": {
+              "r": -6
+            },
+            "lowL": {
+              "r": 8
+            },
+            "lowR": {
+              "r": -8
+            },
+            "front": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "armL": {
+              "r": 12
+            },
+            "armR": {
+              "r": -12
+            },
+            "sideL": {
+              "r": 34
+            },
+            "sideR": {
+              "r": -34
+            },
+            "lowL": {
+              "r": 28
+            },
+            "lowR": {
+              "r": -28
+            },
+            "front": {
+              "r": 8
+            },
+            "belly": {
+              "sy": 1.03
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "armL": {
+              "r": -12
+            },
+            "armR": {
+              "r": 12
+            },
+            "sideL": {
+              "r": 6
+            },
+            "sideR": {
+              "r": -6
+            },
+            "lowL": {
+              "r": 8
+            },
+            "lowR": {
+              "r": -8
+            },
+            "front": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "armL": {
+              "r": 12
+            },
+            "armR": {
+              "r": -12
+            },
+            "sideL": {
+              "r": 34
+            },
+            "sideR": {
+              "r": -34
+            },
+            "lowL": {
+              "r": 28
+            },
+            "lowR": {
+              "r": -28
+            },
+            "front": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "armL": {
+              "r": -12
+            },
+            "armR": {
+              "r": 12
+            },
+            "sideL": {
+              "r": 6
+            },
+            "sideR": {
+              "r": -6
+            },
+            "lowL": {
+              "r": 8
+            },
+            "lowR": {
+              "r": -8
+            },
+            "front": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "swim",
+      "kind": "move",
+      "description": "the octopus swims along to the left, its arms pulsing together and streaming out behind, then stops.",
+      "facing": "left",
+      "on": [
+        "pool"
+      ],
+      "waterline": 0.35,
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "stride": 0.6,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "belly": {
+              "sx": 0.94,
+              "sy": 1.05
+            },
+            "root": {
+              "y": -6
+            },
+            "armL": {
+              "r": 14
+            },
+            "armR": {
+              "r": -14
+            },
+            "sideL": {
+              "r": -14
+            },
+            "sideR": {
+              "r": 14
+            },
+            "lowL": {
+              "r": -14
+            },
+            "lowR": {
+              "r": 14
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "armL": {
+              "r": -6
+            },
+            "armR": {
+              "r": 6
+            },
+            "sideL": {
+              "r": 6
+            },
+            "sideR": {
+              "r": -6
+            },
+            "lowL": {
+              "r": 6
+            },
+            "lowR": {
+              "r": -6
+            },
+            "root": {
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "belly": {
+              "sx": 0.94,
+              "sy": 1.05
+            },
+            "root": {
+              "y": -6
+            },
+            "armL": {
+              "r": 14
+            },
+            "armR": {
+              "r": -14
+            },
+            "sideL": {
+              "r": -14
+            },
+            "sideR": {
+              "r": 14
+            },
+            "lowL": {
+              "r": -14
+            },
+            "lowR": {
+              "r": 14
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "armL": {
+              "r": -6
+            },
+            "armR": {
+              "r": 6
+            },
+            "sideL": {
+              "r": 6
+            },
+            "sideR": {
+              "r": -6
+            },
+            "lowL": {
+              "r": 6
+            },
+            "lowR": {
+              "r": -6
+            },
+            "root": {
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "armL": {
+              "r": -2
+            },
+            "armR": {
+              "r": 2
+            },
+            "sideL": {
+              "r": 2
+            },
+            "sideR": {
+              "r": -2
+            },
+            "lowL": {
+              "r": 2
+            },
+            "lowR": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "hide",
+      "description": "the shy octopus squeezes itself small and hides its face behind two arms, then peeks out over them and smiles.",
+      "pause": {
+        "frame": 3,
+        "shows": "the octopus squeezed small, hiding its face behind its arms"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "belly": {
+              "sx": 0.94,
+              "sy": 0.9
+            },
+            "root": {
+              "y": 10
+            },
+            "armL": {
+              "r": 12
+            },
+            "armR": {
+              "r": -12
+            },
+            "sideL": {
+              "r": -12
+            },
+            "sideR": {
+              "r": 12
+            },
+            "lowL": {
+              "r": -12
+            },
+            "lowR": {
+              "r": 12
+            },
+            "hug": {
+              "y": -40
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o",
+            "hug": "arms"
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "inOut",
+          "bones": {
+            "belly": {
+              "sx": 0.94,
+              "sy": 0.9
+            },
+            "root": {
+              "y": 10
+            },
+            "armL": {
+              "r": 18
+            },
+            "armR": {
+              "r": -18
+            },
+            "sideL": {
+              "r": -18
+            },
+            "sideR": {
+              "r": 18
+            },
+            "lowL": {
+              "r": -18
+            },
+            "lowR": {
+              "r": 18
+            },
+            "hug": {
+              "y": -102
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "hug": "arms"
+          }
+        },
+        {
+          "hold": 0.9,
+          "bones": {
+            "belly": {
+              "sx": 0.94,
+              "sy": 0.89
+            },
+            "root": {
+              "y": 10
+            },
+            "armL": {
+              "r": 18
+            },
+            "armR": {
+              "r": -18
+            },
+            "sideL": {
+              "r": -18
+            },
+            "sideR": {
+              "r": 18
+            },
+            "lowL": {
+              "r": -18
+            },
+            "lowR": {
+              "r": 18
+            },
+            "hug": {
+              "y": -104
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "hug": "arms"
+          }
+        },
+        {
+          "hold": 0.4,
+          "ease": "inOut",
+          "bones": {
+            "belly": {
+              "sx": 0.94,
+              "sy": 0.9
+            },
+            "root": {
+              "y": 10
+            },
+            "armL": {
+              "r": 14
+            },
+            "armR": {
+              "r": -14
+            },
+            "sideL": {
+              "r": -14
+            },
+            "sideR": {
+              "r": 14
+            },
+            "lowL": {
+              "r": -14
+            },
+            "lowR": {
+              "r": 14
+            },
+            "hug": {
+              "y": -78
+            }
+          },
+          "slots": {
+            "eyeL": "default",
+            "eyeR": "default",
+            "hug": "arms"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "belly": {
+              "sx": 0.94,
+              "sy": 0.9
+            },
+            "root": {
+              "y": 10
+            },
+            "armL": {
+              "r": 12
+            },
+            "armR": {
+              "r": -12
+            },
+            "sideL": {
+              "r": -12
+            },
+            "sideR": {
+              "r": 12
+            },
+            "lowL": {
+              "r": -12
+            },
+            "lowR": {
+              "r": 12
+            },
+            "hug": {
+              "y": -76
+            },
+            "face": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "hug": "arms"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "armL": {
+              "r": 4
+            },
+            "armR": {
+              "r": -4
+            },
+            "sideL": {
+              "r": -4
+            },
+            "sideR": {
+              "r": 4
+            },
+            "lowL": {
+              "r": -4
+            },
+            "lowR": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "hug",
+      "description": "the octopus wraps two arms round in a big warm hug and squeezes tight, swaying happily.",
+      "pause": {
+        "frame": 3,
+        "shows": "the octopus hugging, two arms wrapped round, eyes closed happily"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "armL": {
+              "r": -14
+            },
+            "armR": {
+              "r": 14
+            },
+            "sideL": {
+              "r": 14
+            },
+            "sideR": {
+              "r": -14
+            },
+            "lowL": {
+              "r": 14
+            },
+            "lowR": {
+              "r": -14
+            },
+            "hug": {
+              "y": 6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "hug": "none"
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "inOut",
+          "bones": {
+            "belly": {
+              "sx": 1.0,
+              "sy": 1.0
+            },
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -10
+            },
+            "sideL": {
+              "r": -10
+            },
+            "sideR": {
+              "r": 10
+            },
+            "lowL": {
+              "r": -10
+            },
+            "lowR": {
+              "r": 10
+            },
+            "hug": {
+              "y": 0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "hug": "arms"
+          }
+        },
+        {
+          "hold": 0.8,
+          "bones": {
+            "belly": {
+              "sx": 0.96,
+              "sy": 1.04
+            },
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -10
+            },
+            "sideL": {
+              "r": -10
+            },
+            "sideR": {
+              "r": 10
+            },
+            "lowL": {
+              "r": -10
+            },
+            "lowR": {
+              "r": 10
+            },
+            "body": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "hug": "arms",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.5,
+          "ease": "inOut",
+          "bones": {
+            "belly": {
+              "sx": 0.96,
+              "sy": 1.04
+            },
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -10
+            },
+            "sideL": {
+              "r": -10
+            },
+            "sideR": {
+              "r": 10
+            },
+            "lowL": {
+              "r": -10
+            },
+            "lowR": {
+              "r": 10
+            },
+            "body": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "hug": "arms",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "belly": {
+              "sx": 1.0,
+              "sy": 1.0
+            },
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -10
+            },
+            "sideL": {
+              "r": -10
+            },
+            "sideR": {
+              "r": 10
+            },
+            "lowL": {
+              "r": -10
+            },
+            "lowR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "hug": "arms"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "description": "the octopus nods yes, twice.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "y": 8
+            },
+            "belly": {
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "y": 8
+            },
+            "belly": {
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "y": -1
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "shake-head",
+      "description": "the octopus shakes its head no.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "face": {
+              "x": -12
+            },
+            "body": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "x": 10
+            },
+            "body": {
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "x": -12
+            },
+            "body": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "face": {
+              "x": 8
+            },
+            "body": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "laugh",
+      "description": "the octopus laughs and laughs, bouncing with giggles, its arms wiggling.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "armL": {
+              "r": -8
+            },
+            "armR": {
+              "r": 8
+            },
+            "sideL": {
+              "r": 8
+            },
+            "sideR": {
+              "r": -8
+            },
+            "lowL": {
+              "r": 8
+            },
+            "lowR": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "armL": {
+              "r": 4
+            },
+            "armR": {
+              "r": -4
+            },
+            "sideL": {
+              "r": -4
+            },
+            "sideR": {
+              "r": 4
+            },
+            "lowL": {
+              "r": -4
+            },
+            "lowR": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "armL": {
+              "r": -8
+            },
+            "armR": {
+              "r": 8
+            },
+            "sideL": {
+              "r": 8
+            },
+            "sideR": {
+              "r": -8
+            },
+            "lowL": {
+              "r": 8
+            },
+            "lowR": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "armL": {
+              "r": 4
+            },
+            "armR": {
+              "r": -4
+            },
+            "sideL": {
+              "r": -4
+            },
+            "sideR": {
+              "r": 4
+            },
+            "lowL": {
+              "r": -4
+            },
+            "lowR": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "armL": {
+              "r": -8
+            },
+            "armR": {
+              "r": 8
+            },
+            "sideL": {
+              "r": 8
+            },
+            "sideR": {
+              "r": -8
+            },
+            "lowL": {
+              "r": 8
+            },
+            "lowR": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "armL": {
+              "r": 4
+            },
+            "armR": {
+              "r": -4
+            },
+            "sideL": {
+              "r": -4
+            },
+            "sideR": {
+              "r": 4
+            },
+            "lowL": {
+              "r": -4
+            },
+            "lowR": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "armL": {
+              "r": -8
+            },
+            "armR": {
+              "r": 8
+            },
+            "sideL": {
+              "r": 8
+            },
+            "sideR": {
+              "r": -8
+            },
+            "lowL": {
+              "r": 8
+            },
+            "lowR": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "armL": {
+              "r": 4
+            },
+            "armR": {
+              "r": -4
+            },
+            "sideL": {
+              "r": -4
+            },
+            "sideR": {
+              "r": 4
+            },
+            "lowL": {
+              "r": -4
+            },
+            "lowR": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "description": "the octopus talks, its mouth moving, its arms gesturing a little.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": -2
+            },
+            "armL": {
+              "r": -6
+            },
+            "armR": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": -2
+            },
+            "armL": {
+              "r": -6
+            },
+            "armR": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": -2
+            },
+            "armL": {
+              "r": -6
+            },
+            "armR": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "face": {
+              "y": 0
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "cry",
+      "description": "the octopus cries, its arms drooping, shaking with little sobs.",
+      "pause": {
+        "frame": 3,
+        "shows": "the octopus crying, eyes squeezed shut with tears, arms drooping"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "root": {
+              "y": 6
+            },
+            "face": {
+              "y": 5
+            },
+            "belly": {
+              "sy": 0.97
+            },
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -10
+            },
+            "sideL": {
+              "r": -10
+            },
+            "sideR": {
+              "r": 10
+            },
+            "lowL": {
+              "r": -10
+            },
+            "lowR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 9
+            },
+            "face": {
+              "y": 5
+            },
+            "belly": {
+              "sy": 1.02
+            },
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -10
+            },
+            "sideL": {
+              "r": -10
+            },
+            "sideR": {
+              "r": 10
+            },
+            "lowL": {
+              "r": -10
+            },
+            "lowR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad",
+            "tearL": "drop",
+            "tearR": "drop"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 6
+            },
+            "face": {
+              "y": 5
+            },
+            "belly": {
+              "sy": 0.97
+            },
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -10
+            },
+            "sideL": {
+              "r": -10
+            },
+            "sideR": {
+              "r": 10
+            },
+            "lowL": {
+              "r": -10
+            },
+            "lowR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad",
+            "tearL": "drop",
+            "tearR": "drop"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 9
+            },
+            "face": {
+              "y": 5
+            },
+            "belly": {
+              "sy": 1.02
+            },
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -10
+            },
+            "sideL": {
+              "r": -10
+            },
+            "sideR": {
+              "r": 10
+            },
+            "lowL": {
+              "r": -10
+            },
+            "lowR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad",
+            "tearL": "drop",
+            "tearR": "drop"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 6
+            },
+            "face": {
+              "y": 5
+            },
+            "belly": {
+              "sy": 0.97
+            },
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -10
+            },
+            "sideL": {
+              "r": -10
+            },
+            "sideR": {
+              "r": 10
+            },
+            "lowL": {
+              "r": -10
+            },
+            "lowR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad",
+            "tearL": "drop",
+            "tearR": "drop"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 9
+            },
+            "face": {
+              "y": 5
+            },
+            "belly": {
+              "sy": 1.02
+            },
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -10
+            },
+            "sideL": {
+              "r": -10
+            },
+            "sideR": {
+              "r": 10
+            },
+            "lowL": {
+              "r": -10
+            },
+            "lowR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad",
+            "tearL": "drop",
+            "tearR": "drop"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 6
+            },
+            "face": {
+              "y": 5
+            },
+            "belly": {
+              "sy": 0.97
+            },
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -10
+            },
+            "sideL": {
+              "r": -10
+            },
+            "sideR": {
+              "r": 10
+            },
+            "lowL": {
+              "r": -10
+            },
+            "lowR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad",
+            "tearL": "drop",
+            "tearR": "drop"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "root": {
+              "y": 9
+            },
+            "face": {
+              "y": 5
+            },
+            "belly": {
+              "sy": 1.02
+            },
+            "armL": {
+              "r": 10
+            },
+            "armR": {
+              "r": -10
+            },
+            "sideL": {
+              "r": -10
+            },
+            "sideR": {
+              "r": 10
+            },
+            "lowL": {
+              "r": -10
+            },
+            "lowR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad",
+            "tearL": "drop",
+            "tearR": "drop"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "root": {
+              "y": 2
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "description": "the octopus gives a big yawn, curls its arms in and falls asleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the octopus fast asleep, arms curled in, eyes shut"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            },
+            "armL": {
+              "r": -10
+            },
+            "armR": {
+              "r": 10
+            },
+            "sideL": {
+              "r": 10
+            },
+            "sideR": {
+              "r": -10
+            },
+            "lowL": {
+              "r": 10
+            },
+            "lowR": {
+              "r": -10
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            },
+            "armL": {
+              "r": -12
+            },
+            "armR": {
+              "r": 12
+            },
+            "sideL": {
+              "r": 12
+            },
+            "sideR": {
+              "r": -12
+            },
+            "lowL": {
+              "r": 12
+            },
+            "lowR": {
+              "r": -12
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "root": {
+              "y": 8
+            },
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.96,
+              "sx": 1.03
+            },
+            "armL": {
+              "r": 12
+            },
+            "armR": {
+              "r": -12
+            },
+            "sideL": {
+              "r": -12
+            },
+            "sideR": {
+              "r": 12
+            },
+            "lowL": {
+              "r": -12
+            },
+            "lowR": {
+              "r": 12
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.8,
+          "bones": {
+            "root": {
+              "y": 8
+            },
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.98,
+              "sx": 1.03
+            },
+            "armL": {
+              "r": 12
+            },
+            "armR": {
+              "r": -12
+            },
+            "sideL": {
+              "r": -12
+            },
+            "sideR": {
+              "r": 12
+            },
+            "lowL": {
+              "r": -12
+            },
+            "lowR": {
+              "r": 12
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "face": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "description": "the octopus squashes down, springs up high for joy with its arms flung out and lands with a little squash.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 8
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.9
+            },
+            "armL": {
+              "r": 8
+            },
+            "armR": {
+              "r": -8
+            },
+            "sideL": {
+              "r": -8
+            },
+            "sideR": {
+              "r": 8
+            },
+            "lowL": {
+              "r": -8
+            },
+            "lowR": {
+              "r": 8
+            }
+          }
+        },
+        {
+          "hold": 0.24,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -76
+            },
+            "belly": {
+              "sx": 0.95,
+              "sy": 1.06
+            },
+            "armL": {
+              "r": -16
+            },
+            "armR": {
+              "r": 16
+            },
+            "sideL": {
+              "r": 6
+            },
+            "sideR": {
+              "r": -6
+            },
+            "lowL": {
+              "r": 6
+            },
+            "lowR": {
+              "r": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -82
+            },
+            "armL": {
+              "r": -10
+            },
+            "armR": {
+              "r": 10
+            },
+            "sideL": {
+              "r": 4
+            },
+            "sideR": {
+              "r": -4
+            },
+            "lowL": {
+              "r": 4
+            },
+            "lowR": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": 5
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.9
+            },
+            "armL": {
+              "r": 6
+            },
+            "armR": {
+              "r": -6
+            },
+            "sideL": {
+              "r": -6
+            },
+            "sideR": {
+              "r": 6
+            },
+            "lowL": {
+              "r": -6
+            },
+            "lowR": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "dance",
+      "description": "the octopus does a happy little dance, swaying from side to side and wiggling all its arms.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -7
+            },
+            "root": {
+              "x": -12,
+              "y": 0
+            },
+            "armL": {
+              "r": 12
+            },
+            "armR": {
+              "r": -12
+            },
+            "sideL": {
+              "r": 34
+            },
+            "sideR": {
+              "r": -34
+            },
+            "lowL": {
+              "r": 28
+            },
+            "lowR": {
+              "r": -28
+            },
+            "front": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 7
+            },
+            "root": {
+              "x": 12,
+              "y": -10
+            },
+            "armL": {
+              "r": -12
+            },
+            "armR": {
+              "r": 12
+            },
+            "sideL": {
+              "r": 6
+            },
+            "sideR": {
+              "r": -6
+            },
+            "lowL": {
+              "r": 8
+            },
+            "lowR": {
+              "r": -8
+            },
+            "front": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -7
+            },
+            "root": {
+              "x": -12,
+              "y": 0
+            },
+            "armL": {
+              "r": 12
+            },
+            "armR": {
+              "r": -12
+            },
+            "sideL": {
+              "r": 34
+            },
+            "sideR": {
+              "r": -34
+            },
+            "lowL": {
+              "r": 28
+            },
+            "lowR": {
+              "r": -28
+            },
+            "front": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 7
+            },
+            "root": {
+              "x": 12,
+              "y": -10
+            },
+            "armL": {
+              "r": -12
+            },
+            "armR": {
+              "r": 12
+            },
+            "sideL": {
+              "r": 6
+            },
+            "sideR": {
+              "r": -6
+            },
+            "lowL": {
+              "r": 8
+            },
+            "lowR": {
+              "r": -8
+            },
+            "front": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": -7
+            },
+            "root": {
+              "x": -12,
+              "y": 0
+            },
+            "armL": {
+              "r": 12
+            },
+            "armR": {
+              "r": -12
+            },
+            "sideL": {
+              "r": 34
+            },
+            "sideR": {
+              "r": -34
+            },
+            "lowL": {
+              "r": 28
+            },
+            "lowR": {
+              "r": -28
+            },
+            "front": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "body": {
+              "r": 7
+            },
+            "root": {
+              "x": 12,
+              "y": -10
+            },
+            "armL": {
+              "r": -12
+            },
+            "armR": {
+              "r": 12
+            },
+            "sideL": {
+              "r": 6
+            },
+            "sideR": {
+              "r": -6
+            },
+            "lowL": {
+              "r": 8
+            },
+            "lowR": {
+              "r": -8
+            },
+            "front": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shiver",
+      "template": "common.shiver",
+      "description": "the octopus shivers and trembles, cold or scared, its arms pulled in."
+    },
+    {
+      "id": "twirl",
+      "description": "the octopus twirls right round on the spot, its arms swirling out.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.94
+            }
+          }
+        },
+        {
+          "hold": 0.32,
+          "ease": "inOut",
+          "bones": {
+            "root": {
+              "sx": -1,
+              "y": -24
+            },
+            "armL": {
+              "r": -12
+            },
+            "armR": {
+              "r": 12
+            },
+            "sideL": {
+              "r": 12
+            },
+            "sideR": {
+              "r": -12
+            },
+            "lowL": {
+              "r": 12
+            },
+            "lowR": {
+              "r": -12
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.32,
+          "ease": "inOut",
+          "bones": {
+            "root": {
+              "sx": 1,
+              "y": 0
+            },
+            "armL": {
+              "r": -6
+            },
+            "armR": {
+              "r": 6
+            },
+            "sideL": {
+              "r": 6
+            },
+            "sideR": {
+              "r": -6
+            },
+            "lowL": {
+              "r": 6
+            },
+            "lowR": {
+              "r": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "belly": {
+              "sy": 0.94,
+              "sx": 1.04
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "look-around",
+      "idle": true,
+      "description": "the octopus looks one way, then the other, then back.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "face": {
+              "x": -14
+            },
+            "body": {
+              "r": -3
+            },
+            "armL": {
+              "r": -6
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "face": {
+              "x": -14
+            },
+            "body": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "face": {
+              "x": 14
+            },
+            "body": {
+              "r": 3
+            },
+            "armR": {
+              "r": 6
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "face": {
+              "x": 14
+            },
+            "body": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    }
+  ]
+}

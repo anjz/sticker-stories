@@ -1,0 +1,176 @@
+{
+  "id": "jump",
+  "sticker": "crab",
+  "kind": "action",
+  "description": "the crab crouches, jumps up high for joy with its claws in the air, and lands with a little squash.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.21745,
+    "width": 0.59896,
+    "height": 0.5651
+  },
+  "puppet": {
+    "rig": "anims/crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.92
+          },
+          "clawL": {
+            "r": 8
+          },
+          "clawR": {
+            "r": -8
+          },
+          "root": {
+            "y": 8
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.05
+          },
+          "clawL": {
+            "r": -16
+          },
+          "clawR": {
+            "r": 16
+          },
+          "legL1": {
+            "r": 8.399999999999999,
+            "y": -5.6
+          },
+          "legL2": {
+            "r": 8.399999999999999,
+            "y": -5.6
+          },
+          "legL3": {
+            "r": 8.399999999999999,
+            "y": -5.6
+          },
+          "legL4": {
+            "r": 8.399999999999999,
+            "y": -5.6
+          },
+          "legR1": {
+            "r": -8.399999999999999,
+            "y": -5.6
+          },
+          "legR2": {
+            "r": -8.399999999999999,
+            "y": -5.6
+          },
+          "legR3": {
+            "r": -8.399999999999999,
+            "y": -5.6
+          },
+          "legR4": {
+            "r": -8.399999999999999,
+            "y": -5.6
+          },
+          "root": {
+            "y": -75
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "belly": {
+            "sx": 0.97,
+            "sy": 1.05
+          },
+          "clawL": {
+            "r": -16
+          },
+          "clawR": {
+            "r": 16
+          },
+          "legL1": {
+            "r": 8.399999999999999,
+            "y": -5.6
+          },
+          "legL2": {
+            "r": 8.399999999999999,
+            "y": -5.6
+          },
+          "legL3": {
+            "r": 8.399999999999999,
+            "y": -5.6
+          },
+          "legL4": {
+            "r": 8.399999999999999,
+            "y": -5.6
+          },
+          "legR1": {
+            "r": -8.399999999999999,
+            "y": -5.6
+          },
+          "legR2": {
+            "r": -8.399999999999999,
+            "y": -5.6
+          },
+          "legR3": {
+            "r": -8.399999999999999,
+            "y": -5.6
+          },
+          "legR4": {
+            "r": -8.399999999999999,
+            "y": -5.6
+          },
+          "root": {
+            "y": -80
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.07,
+            "sy": 0.9
+          },
+          "root": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

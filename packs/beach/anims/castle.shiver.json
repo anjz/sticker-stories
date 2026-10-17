@@ -1,0 +1,79 @@
+{
+  "id": "shiver",
+  "sticker": "castle",
+  "kind": "action",
+  "description": "the sand castle trembles as a wave comes near, then holds firm.",
+  "stickerBox": {
+    "x": 0.13932,
+    "y": 0.14974,
+    "width": 0.72005,
+    "height": 0.70052
+  },
+  "puppet": {
+    "rig": "anims/castle.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.08,
+        "bones": {
+          "root": {
+            "x": -3
+          }
+        }
+      },
+      {
+        "hold": 0.08,
+        "bones": {
+          "root": {
+            "x": 3
+          }
+        }
+      },
+      {
+        "hold": 0.08,
+        "bones": {
+          "root": {
+            "x": -3
+          }
+        }
+      },
+      {
+        "hold": 0.08,
+        "bones": {
+          "root": {
+            "x": 3
+          }
+        }
+      },
+      {
+        "hold": 0.08,
+        "bones": {
+          "root": {
+            "x": -2
+          }
+        }
+      },
+      {
+        "hold": 0.08,
+        "bones": {
+          "root": {
+            "x": 2
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "root": {
+            "x": -1
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

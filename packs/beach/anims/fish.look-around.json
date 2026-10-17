@@ -1,0 +1,83 @@
+{
+  "id": "look-around",
+  "sticker": "fish",
+  "description": "the little fish looks up, then turns right round to look behind it, then turns back and looks ahead again.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27734,
+    "width": 0.5,
+    "height": 0.44401
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the fish turned round, looking behind it"
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/fish.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": -8
+          },
+          "tail": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "body": {
+            "r": -8
+          },
+          "tail": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "ease": "inOut",
+        "bones": {
+          "root": {
+            "x": -80,
+            "sx": -1
+          },
+          "tail": {
+            "r": 10
+          }
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "root": {
+            "x": -80,
+            "sx": -1
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "ease": "inOut",
+        "bones": {
+          "tail": {
+            "r": -8
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

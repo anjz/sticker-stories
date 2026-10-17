@@ -1,0 +1,93 @@
+{
+  "id": "toot",
+  "sticker": "fishing-boat",
+  "kind": "action",
+  "description": "the fishing boat gives a happy toot of its horn: it bobs up with a little rock, and settles.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.14583,
+    "width": 0.83984,
+    "height": 0.70833
+  },
+  "puppet": {
+    "rig": "anims/fishing-boat.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "rock": {
+            "r": -1,
+            "y": 4
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "net": {
+            "r": 4
+          },
+          "rock": {
+            "r": -3,
+            "y": -12
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "net": {
+            "r": -3
+          },
+          "rock": {
+            "r": 2,
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "net": {
+            "r": -4
+          },
+          "rock": {
+            "r": 3,
+            "y": -12
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "net": {
+            "r": 3
+          },
+          "rock": {
+            "r": -1.5,
+            "y": 2
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "net": {
+            "r": -1
+          },
+          "rock": {
+            "r": 0.5
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "id": "stretch-neck",
+  "sticker": "turtle",
+  "kind": "action",
+  "description": "the sea turtle stretches its neck up long to look far away, then pulls it back in.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.27604,
+    "width": 0.59896,
+    "height": 0.44792
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the sea turtle with its neck stretched up high, looking far away"
+  },
+  "puppet": {
+    "rig": "anims/turtle.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "armR": {
+            "r": -4,
+            "x": 2,
+            "y": -32
+          },
+          "body": {
+            "r": -2
+          },
+          "head": {
+            "r": -8,
+            "x": 10,
+            "y": -34
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "armR": {
+            "r": -4,
+            "x": 2,
+            "y": -36
+          },
+          "body": {
+            "r": -2
+          },
+          "face": {
+            "x": 4
+          },
+          "head": {
+            "r": -10,
+            "x": 12,
+            "y": -38
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "head": {
+            "x": 2,
+            "y": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.25
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "id": "sleep",
+  "sticker": "urchin",
+  "kind": "action",
+  "description": "the sea urchin gives a big yawn, settles down and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26953,
+    "width": 0.5,
+    "height": 0.45964
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the sea urchin fast asleep, eyes shut, settled low"
+  },
+  "puppet": {
+    "rig": "anims/urchin.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.95
+          },
+          "face": {
+            "y": 8
+          },
+          "spines": {
+            "sx": 0.98,
+            "sy": 0.96
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.95
+          },
+          "face": {
+            "y": 8
+          },
+          "spines": {
+            "sx": 0.98,
+            "sy": 0.96
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

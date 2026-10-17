@@ -1,0 +1,90 @@
+{
+  "id": "shake-head",
+  "sticker": "shrimp",
+  "description": "the shrimp shakes its head no, its feelers swishing.",
+  "stickerBox": {
+    "x": 0.25651,
+    "y": 0.25,
+    "width": 0.48568,
+    "height": 0.5
+  },
+  "puppet": {
+    "rig": "anims/shrimp.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "antennaL": {
+            "r": 6
+          },
+          "antennaR": {
+            "r": -4.8
+          },
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "x": -6
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "antennaL": {
+            "r": -6
+          },
+          "antennaR": {
+            "r": 4.8
+          },
+          "body": {
+            "r": 3
+          },
+          "face": {
+            "x": 5
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "antennaL": {
+            "r": 6
+          },
+          "antennaR": {
+            "r": -4.8
+          },
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "x": -6
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "antennaL": {
+            "r": -4
+          },
+          "antennaR": {
+            "r": 3.2
+          },
+          "body": {
+            "r": 2
+          },
+          "face": {
+            "x": 4
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

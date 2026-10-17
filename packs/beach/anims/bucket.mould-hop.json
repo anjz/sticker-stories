@@ -1,0 +1,69 @@
+{
+  "id": "mould-hop",
+  "sticker": "bucket",
+  "kind": "action",
+  "description": "the starfish mould hops up, turns right round in the air, and lands back against the bucket.",
+  "stickerBox": {
+    "x": 0.25911,
+    "y": 0.20052,
+    "width": 0.48047,
+    "height": 0.59896
+  },
+  "particles": [
+    {
+      "frame": 2,
+      "effect": "dust-puff",
+      "x": 0.62,
+      "y": 0.77,
+      "intensity": 0.25
+    }
+  ],
+  "puppet": {
+    "rig": "anims/bucket.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "mould": {
+            "r": 180,
+            "y": -90
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "in",
+        "bones": {
+          "mould": {
+            "r": 360
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "mould": {
+            "r": 360,
+            "y": -10
+          }
+        }
+      },
+      {
+        "hold": 0.02,
+        "ease": "step",
+        "bones": {
+          "mould": {
+            "r": 360
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,2330 @@
+{
+  "sticker": "urchin",
+  "called": "the sea urchin",
+  "skeleton": "round sea urchin facing the viewer: root on the ground under the ball; body with a belly bone carrying the spiny ball (squash; turns a little so the spines wiggle); face on the body with eyes, mouth and brows. A fanned-spines ball and a spines-tucked ball swap in for the body.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a cheerful round purple sea urchin character. Draw this exact sea urchin as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the sea urchin: the round purple sea urchin with all its soft pink-tipped spines, as in image 1, with a completely blank face — no eyes, no mouth — keep the rosy cheeks.\n2. the same sea urchin with its spines fanned out wide: every spine longer and straighter, spread out all round like a starburst, with the same blank face and rosy cheeks.\n3. the same sea urchin with its spines folded down flat and close against its round body, smaller and smooth, with the same blank face and rosy cheeks.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or another part) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a cheerful round purple sea urchin character; image 2 shows the same sea urchin cut into puppet parts, with a blank face. Draw the sea urchin's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the sea urchin in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the left eye (on the right of image 1) as it is in image 1: a dark round eye with a big white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the same eye squeezed shut, crying: a tight, creased, downward-curving closed line.\n7. the mouth as it is in image 1: a small happy smile line.\n8. the mouth wide open in a big happy laugh, the inside pink.\n9. the mouth open in a small round 'o'.\n10. the mouth in a small sad frown.\n11. the mouth open in a wobbly crying wail, its corners turned down, the inside pink.\n12. one eyebrow: a small, thin, softly curved dark brown line.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "urchin": {
+      "sheet": "parts",
+      "at": [
+        333,
+        342
+      ]
+    },
+    "fanned": {
+      "sheet": "parts",
+      "at": [
+        1141,
+        387
+      ]
+    },
+    "tucked": {
+      "sheet": "parts",
+      "at": [
+        669,
+        834
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        140,
+        363
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        393,
+        354
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        655,
+        383
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        905,
+        359
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1169,
+        367
+      ]
+    },
+    "eyeCry": {
+      "sheet": "face",
+      "at": [
+        1406,
+        375
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        141,
+        702
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        396,
+        701
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        645,
+        704
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        890,
+        694
+      ]
+    },
+    "mouthCry": {
+      "sheet": "face",
+      "at": [
+        1141,
+        698
+      ]
+    },
+    "brow": {
+      "sheet": "face",
+      "at": [
+        1403,
+        675
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 378,
+      "y": 556
+    },
+    {
+      "id": "roll",
+      "parent": "root",
+      "x": 378,
+      "y": 390
+    },
+    {
+      "id": "body",
+      "parent": "roll",
+      "x": 378,
+      "y": 556
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 378,
+      "y": 556
+    },
+    {
+      "id": "spines",
+      "parent": "belly",
+      "x": 378,
+      "y": 390
+    },
+    {
+      "id": "face",
+      "parent": "body",
+      "x": 378,
+      "y": 405
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 330,
+      "y": 392
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 431,
+      "y": 405
+    },
+    {
+      "id": "browL",
+      "parent": "face",
+      "x": 326,
+      "y": 352
+    },
+    {
+      "id": "browR",
+      "parent": "face",
+      "x": 434,
+      "y": 364
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 373,
+      "y": 423
+    }
+  ],
+  "slots": [
+    {
+      "id": "body",
+      "bone": "spines",
+      "default": "urchin",
+      "attachments": {
+        "urchin": {
+          "part": "urchin",
+          "x": 378,
+          "y": 391,
+          "scale": 0.555
+        },
+        "fanned": {
+          "part": "fanned",
+          "x": 378,
+          "y": 393,
+          "scale": 0.555
+        },
+        "tucked": {
+          "part": "tucked",
+          "x": 378,
+          "y": 418,
+          "scale": 0.72
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 330,
+          "y": 392,
+          "scale": 0.3
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 330,
+          "y": 392,
+          "scale": 0.3
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 330,
+          "y": 396,
+          "scale": 0.3,
+          "flip": true
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 330,
+          "y": 390,
+          "scale": 0.3
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 330,
+          "y": 394,
+          "scale": 0.31,
+          "flip": true
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 330,
+          "y": 394,
+          "scale": 0.32,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 431,
+          "y": 405,
+          "scale": 0.3
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 431,
+          "y": 405,
+          "scale": 0.3
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 431,
+          "y": 409,
+          "scale": 0.3
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 431,
+          "y": 403,
+          "scale": 0.3
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 431,
+          "y": 407,
+          "scale": 0.31
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 431,
+          "y": 407,
+          "scale": 0.32
+        }
+      }
+    },
+    {
+      "id": "browL",
+      "bone": "browL",
+      "default": "none",
+      "attachments": {
+        "sad": {
+          "part": "brow",
+          "x": 329,
+          "y": 357,
+          "scale": 0.24,
+          "rotate": -22
+        },
+        "up": {
+          "part": "brow",
+          "x": 326,
+          "y": 344,
+          "scale": 0.24
+        }
+      }
+    },
+    {
+      "id": "browR",
+      "bone": "browR",
+      "default": "none",
+      "attachments": {
+        "sad": {
+          "part": "brow",
+          "x": 431,
+          "y": 369,
+          "scale": 0.24,
+          "rotate": 22,
+          "flip": true
+        },
+        "up": {
+          "part": "brow",
+          "x": 434,
+          "y": 356,
+          "scale": 0.24,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 373,
+          "y": 423,
+          "scale": 0.2
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 373,
+          "y": 429,
+          "scale": 0.25
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 373,
+          "y": 427,
+          "scale": 0.23
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 373,
+          "y": 426,
+          "scale": 0.2
+        },
+        "cry": {
+          "part": "mouthCry",
+          "x": 373,
+          "y": 428,
+          "scale": 0.21
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad",
+      "browL": "sad",
+      "browR": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o",
+      "browL": "up",
+      "browR": "up"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "wiggle",
+      "kind": "action",
+      "description": "the sea urchin wiggles its soft spines",
+      "pause": {
+        "frame": 6,
+        "shows": "the sea urchin with all its soft spines fanned out wide, smiling"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "spines": {
+              "r": -5
+            },
+            "belly": {
+              "sx": 0.975,
+              "sy": 1.025
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "spines": {
+              "r": 5
+            },
+            "belly": {
+              "sx": 1.025,
+              "sy": 0.975
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "spines": {
+              "r": -5
+            },
+            "belly": {
+              "sx": 0.975,
+              "sy": 1.025
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "spines": {
+              "r": 5
+            },
+            "belly": {
+              "sx": 1.025,
+              "sy": 0.975
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "spines": {
+              "sx": 0.82,
+              "sy": 0.82
+            }
+          },
+          "slots": {
+            "body": "fanned",
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.7,
+          "slots": {
+            "body": "fanned",
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "spines": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "body": "fanned",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "spines": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "body": "fanned",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "spines": {
+              "sx": 0.82,
+              "sy": 0.82
+            }
+          },
+          "slots": {
+            "body": "fanned",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "creep",
+      "kind": "move",
+      "description": "the sea urchin creeps slowly along to the left on its tiny tube feet, its spines swaying, then stops.",
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "facing": "left",
+      "stride": 0.25,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.17,
+          "bones": {
+            "belly": {
+              "sx": 1.04,
+              "sy": 0.96
+            },
+            "spines": {
+              "r": -3
+            },
+            "face": {
+              "x": -3
+            }
+          }
+        },
+        {
+          "hold": 0.17,
+          "bones": {
+            "belly": {
+              "sx": 0.98,
+              "sy": 1.02
+            },
+            "spines": {
+              "r": 0
+            },
+            "root": {
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.17,
+          "bones": {
+            "belly": {
+              "sx": 1.04,
+              "sy": 0.96
+            },
+            "spines": {
+              "r": 3
+            },
+            "face": {
+              "x": -3
+            }
+          }
+        },
+        {
+          "hold": 0.17,
+          "bones": {
+            "belly": {
+              "sx": 0.98,
+              "sy": 1.02
+            },
+            "spines": {
+              "r": 0
+            },
+            "root": {
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "belly": {
+              "sy": 0.97,
+              "sx": 1.02
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "bristle",
+      "kind": "action",
+      "description": "the sea urchin gets a fright and bristles, its spines shooting out wide, then smooths them down again with a sigh.",
+      "pause": {
+        "frame": 3,
+        "shows": "the sea urchin bristling in surprise, all its spines sticking out"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "belly": {
+              "sy": 0.94,
+              "sx": 1.04
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o",
+            "browL": "up",
+            "browR": "up"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "out",
+          "bones": {
+            "spines": {
+              "sx": 0.85,
+              "sy": 0.85
+            },
+            "root": {
+              "y": -6
+            }
+          },
+          "slots": {
+            "body": "fanned",
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o",
+            "browL": "up",
+            "browR": "up"
+          }
+        },
+        {
+          "hold": 0.8,
+          "bones": {
+            "spines": {
+              "sx": 1.02,
+              "sy": 1.02
+            },
+            "root": {
+              "y": -6
+            }
+          },
+          "slots": {
+            "body": "fanned",
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o",
+            "browL": "up",
+            "browR": "up"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "spines": {
+              "sx": 0.85,
+              "sy": 0.85
+            }
+          },
+          "slots": {
+            "body": "fanned",
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "belly": {
+              "sy": 0.97
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "tuck",
+      "kind": "action",
+      "description": "the sea urchin folds its spines down flat and makes itself small and shy, then slowly fans them out again and smiles.",
+      "pause": {
+        "frame": 3,
+        "shows": "the sea urchin small and shy, its spines folded down flat"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "spines": {
+              "sx": 0.9,
+              "sy": 0.9
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "spines": {
+              "sx": 1.08,
+              "sy": 1.08
+            },
+            "face": {
+              "y": 10
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "body": "tucked",
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "smile"
+          }
+        },
+        {
+          "hold": 0.9,
+          "bones": {
+            "face": {
+              "y": 10
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "body": "tucked",
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "face": {
+              "y": 10
+            },
+            "belly": {
+              "sy": 0.98
+            }
+          },
+          "slots": {
+            "body": "tucked"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "spines": {
+              "sx": 0.92,
+              "sy": 0.92
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "roll",
+      "kind": "action",
+      "description": "the sea urchin rolls a little way along like a ball, rolls back, and giggles, dizzy.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.96
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.7,
+          "ease": "inOut",
+          "bones": {
+            "roll": {
+              "r": -45
+            },
+            "root": {
+              "x": -130
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "roll": {
+              "r": -45
+            },
+            "root": {
+              "x": -130
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.7,
+          "ease": "inOut",
+          "bones": {
+            "roll": {
+              "r": 0
+            },
+            "root": {
+              "x": 0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "roll": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "roll": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "kind": "action",
+      "description": "the sea urchin crouches, bounces up high for joy with its spines fanned, and lands with a little squash.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 6
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.9
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -75
+            },
+            "belly": {
+              "sx": 0.96,
+              "sy": 1.05
+            },
+            "spines": {
+              "sx": 0.85,
+              "sy": 0.85
+            }
+          },
+          "slots": {
+            "body": "fanned",
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -80
+            },
+            "belly": {
+              "sx": 0.96,
+              "sy": 1.05
+            },
+            "spines": {
+              "sx": 0.85,
+              "sy": 0.85
+            }
+          },
+          "slots": {
+            "body": "fanned",
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "root": {
+              "y": 4
+            },
+            "belly": {
+              "sx": 1.08,
+              "sy": 0.9
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "laugh",
+      "kind": "action",
+      "description": "the sea urchin laughs and laughs, bouncing with giggles, its spines jiggling.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "spines": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "spines": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "spines": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "spines": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "spines": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "spines": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": -6
+            },
+            "belly": {
+              "sy": 1.04,
+              "sx": 0.98
+            },
+            "spines": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "spines": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "kind": "action",
+      "description": "the sea urchin talks, its mouth moving, bobbing a little.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "belly": {
+              "sy": 1.02
+            },
+            "face": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "belly": {
+              "sy": 0.99
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "belly": {
+              "sy": 1.02
+            },
+            "face": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "belly": {
+              "sy": 0.99
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "belly": {
+              "sy": 1.02
+            },
+            "face": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "belly": {
+              "sy": 0.99
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "belly": {
+              "sy": 1.02
+            },
+            "face": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "belly": {
+              "sy": 0.99
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "belly": {
+              "sy": 1.02
+            },
+            "face": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "belly": {
+              "sy": 0.99
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shiver",
+      "kind": "action",
+      "description": "the sea urchin shivers and trembles, cold or scared, its spines quivering.",
+      "keys": [
+        {
+          "hold": 0.1,
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "spines": {
+              "r": -2,
+              "sx": 0.96,
+              "sy": 0.96
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "spines": {
+              "r": 2,
+              "sx": 0.96,
+              "sy": 0.96
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "spines": {
+              "r": -2,
+              "sx": 0.96,
+              "sy": 0.96
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "spines": {
+              "r": 2,
+              "sx": 0.96,
+              "sy": 0.96
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "spines": {
+              "r": -2,
+              "sx": 0.96,
+              "sy": 0.96
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "spines": {
+              "r": 2,
+              "sx": 0.96,
+              "sy": 0.96
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "spines": {
+              "r": -2,
+              "sx": 0.96,
+              "sy": 0.96
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "spines": {
+              "r": 2,
+              "sx": 0.96,
+              "sy": 0.96
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "spines": {
+              "r": -2,
+              "sx": 0.96,
+              "sy": 0.96
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "spines": {
+              "r": 2,
+              "sx": 0.96,
+              "sy": 0.96
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "spines": {
+              "r": -2,
+              "sx": 0.96,
+              "sy": 0.96
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "spines": {
+              "r": 2,
+              "sx": 0.96,
+              "sy": 0.96
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "spines": {
+              "r": -2,
+              "sx": 0.96,
+              "sy": 0.96
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "spines": {
+              "r": 2,
+              "sx": 0.96,
+              "sy": 0.96
+            },
+            "belly": {
+              "sx": 0.98
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "cry",
+      "kind": "action",
+      "description": "the sea urchin cries, its spines drooping, shaking with little sobs.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.0,
+              "sx": 1.0
+            },
+            "spines": {
+              "sx": 0.97,
+              "sy": 0.95
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.03,
+              "sx": 0.985
+            },
+            "spines": {
+              "sx": 0.97,
+              "sy": 0.95
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.98,
+              "sx": 1.01
+            },
+            "spines": {
+              "sx": 0.97,
+              "sy": 0.95
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.03,
+              "sx": 0.985
+            },
+            "spines": {
+              "sx": 0.97,
+              "sy": 0.95
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.98,
+              "sx": 1.01
+            },
+            "spines": {
+              "sx": 0.97,
+              "sy": 0.95
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.03,
+              "sx": 0.985
+            },
+            "spines": {
+              "sx": 0.97,
+              "sy": 0.95
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.98,
+              "sx": 1.01
+            },
+            "spines": {
+              "sx": 0.97,
+              "sy": 0.95
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1.03,
+              "sx": 0.985
+            },
+            "spines": {
+              "sx": 0.97,
+              "sy": 0.95
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 0.98,
+              "sx": 1.01
+            },
+            "spines": {
+              "sx": 0.97,
+              "sy": 0.95
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "face": {
+              "y": 6
+            },
+            "belly": {
+              "sy": 1,
+              "sx": 1.0
+            },
+            "spines": {
+              "sx": 0.97,
+              "sy": 0.95
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad",
+            "browL": "sad",
+            "browR": "sad"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "kind": "action",
+      "description": "the sea urchin gives a big yawn, settles down and falls asleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the sea urchin fast asleep, eyes shut, settled low"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "face": {
+              "y": 8
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "spines": {
+              "sx": 0.98,
+              "sy": 0.96
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "face": {
+              "y": 8
+            },
+            "belly": {
+              "sy": 0.95,
+              "sx": 1.03
+            },
+            "spines": {
+              "sx": 0.98,
+              "sy": 0.96
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "dance",
+      "kind": "action",
+      "description": "the sea urchin does a happy little dance, rocking from side to side and wiggling its spines.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "roll": {
+              "r": -8
+            },
+            "root": {
+              "x": -12
+            },
+            "spines": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "roll": {
+              "r": 8
+            },
+            "root": {
+              "x": 12,
+              "y": -8
+            },
+            "spines": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "roll": {
+              "r": -8
+            },
+            "root": {
+              "x": -12
+            },
+            "spines": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "roll": {
+              "r": 8
+            },
+            "root": {
+              "x": 12,
+              "y": -8
+            },
+            "spines": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "roll": {
+              "r": -8
+            },
+            "root": {
+              "x": -12
+            },
+            "spines": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "roll": {
+              "r": 8
+            },
+            "root": {
+              "x": 12,
+              "y": -8
+            },
+            "spines": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "look-around",
+      "kind": "action",
+      "idle": true,
+      "description": "the sea urchin looks one way, then the other, then back.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "face": {
+              "x": -14
+            },
+            "roll": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "face": {
+              "x": -14
+            },
+            "roll": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "face": {
+              "x": 14
+            },
+            "roll": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "face": {
+              "x": 14
+            },
+            "roll": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "kind": "action",
+      "description": "the sea urchin nods yes, twice.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 9
+            },
+            "belly": {
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": 9
+            },
+            "belly": {
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "face": {
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    }
+  ]
+}

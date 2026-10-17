@@ -1,0 +1,133 @@
+{
+  "id": "sleep",
+  "sticker": "fish",
+  "description": "the little fish gives a big yawn, closes its eyes and drifts off to sleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27734,
+    "width": 0.5,
+    "height": 0.44401
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the fish fast asleep, eyes shut, floating still"
+  },
+  "puppet": {
+    "rig": "anims/fish.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "body": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eye": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "body": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eye": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.98
+          },
+          "body": {
+            "r": 4
+          },
+          "finSide": {
+            "r": 8
+          },
+          "finTop": {
+            "r": -10
+          },
+          "root": {
+            "y": 14
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.8,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 1.01
+          },
+          "body": {
+            "r": 4
+          },
+          "finSide": {
+            "r": 8
+          },
+          "finTop": {
+            "r": -10
+          },
+          "root": {
+            "y": 14
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "root": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "eye": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

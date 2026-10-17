@@ -1,54 +1,208 @@
 {
   "id": "peek",
   "sticker": "turtle",
+  "kind": "action",
   "description": "the turtle hides its head in its shell, then peeks out",
-  "sheet": "anims/turtle.peek.webp",
-  "frame": {
-    "width": 553,
-    "height": 389
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.03797,
-    "y": 0.0437,
-    "width": 0.87161,
-    "height": 0.91517
-  },
   "stickerBox": {
     "x": 0.20052,
     "y": 0.27604,
     "width": 0.59896,
     "height": 0.44792
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.7,
-    0.2,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 3,
     "shows": "the turtle with its head tucked inside its shell"
+  },
+  "puppet": {
+    "rig": "anims/turtle.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": 6
+          },
+          "armR": {
+            "r": -10,
+            "x": -30
+          },
+          "head": {
+            "x": -40,
+            "y": 6,
+            "sx": 0.95,
+            "sy": 0.95
+          }
+        },
+        "slots": {
+          "eyeL": "none",
+          "eyeLBack": "closed",
+          "eyeR": "none",
+          "eyeRBack": "closed",
+          "head": "none",
+          "headBack": "head",
+          "mouth": "none",
+          "mouthBack": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": 18,
+            "x": -8
+          },
+          "armR": {
+            "r": -20,
+            "x": -95,
+            "y": -8
+          },
+          "belly": {
+            "sy": 0.97
+          },
+          "head": {
+            "x": -140,
+            "y": 22,
+            "sx": 0.78,
+            "sy": 0.78
+          },
+          "legB": {
+            "r": -12,
+            "x": 8
+          }
+        },
+        "slots": {
+          "eyeL": "none",
+          "eyeLBack": "closed",
+          "eyeR": "none",
+          "eyeRBack": "closed",
+          "head": "none",
+          "headBack": "head",
+          "mouth": "none",
+          "mouthBack": "o"
+        }
+      },
+      {
+        "hold": 0.9,
+        "bones": {
+          "armL": {
+            "r": 18,
+            "x": -8
+          },
+          "armR": {
+            "r": -20,
+            "x": -95,
+            "y": -8
+          },
+          "belly": {
+            "sy": 0.97
+          },
+          "head": {
+            "x": -140,
+            "y": 22,
+            "sx": 0.78,
+            "sy": 0.78
+          },
+          "legB": {
+            "r": -12,
+            "x": 8
+          }
+        },
+        "slots": {
+          "eyeL": "none",
+          "eyeLBack": "closed",
+          "eyeR": "none",
+          "eyeRBack": "closed",
+          "head": "none",
+          "headBack": "head",
+          "mouth": "none",
+          "mouthBack": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": -14,
+            "x": -50,
+            "y": -4
+          },
+          "head": {
+            "x": -85,
+            "y": 12,
+            "sx": 0.88,
+            "sy": 0.88
+          }
+        },
+        "slots": {
+          "eyeL": "none",
+          "eyeLBack": "wide",
+          "eyeR": "none",
+          "eyeRBack": "wide",
+          "head": "none",
+          "headBack": "head",
+          "mouth": "none",
+          "mouthBack": "smile"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 10
+          },
+          "armR": {
+            "r": -14,
+            "x": -50,
+            "y": -4
+          },
+          "head": {
+            "x": -85,
+            "y": 12,
+            "sx": 0.88,
+            "sy": 0.88
+          }
+        },
+        "slots": {
+          "eyeL": "none",
+          "eyeLBack": "wide",
+          "eyeR": "none",
+          "eyeRBack": "wide",
+          "head": "none",
+          "headBack": "head",
+          "mouth": "none",
+          "mouthBack": "smile"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "head": {
+            "x": 4,
+            "y": -2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
   }
 }

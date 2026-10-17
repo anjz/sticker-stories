@@ -3,47 +3,110 @@
   "sticker": "fish",
   "kind": "move",
   "description": "the little fish swims along to the right, swishing its tail, then stops.",
-  "sheet": "anims/fish.swim.webp",
-  "frame": {
-    "width": 480,
-    "height": 417
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.05833,
-    "y": 0.04556,
-    "width": 0.89583,
-    "height": 0.91127
-  },
   "stickerBox": {
     "x": 0.25,
     "y": 0.27734,
     "width": 0.5,
     "height": 0.44401
   },
-  "hold": [
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "right",
   "stride": 0.7,
   "on": [
     "pool",
     "sea"
-  ]
+  ],
+  "waterline": 0.3,
+  "puppet": {
+    "rig": "anims/fish.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "finSide": {
+            "r": -12
+          },
+          "finTop": {
+            "r": -4.5
+          },
+          "root": {
+            "y": -3
+          },
+          "tail": {
+            "r": 18
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {},
+          "finSide": {},
+          "finTop": {},
+          "root": {},
+          "tail": {}
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "finSide": {
+            "r": 10
+          },
+          "finTop": {
+            "r": 4.5
+          },
+          "root": {
+            "y": -3
+          },
+          "tail": {
+            "r": -18
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {},
+          "finSide": {},
+          "finTop": {},
+          "root": {},
+          "tail": {}
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {},
+          "finSide": {
+            "r": -4
+          },
+          "finTop": {
+            "r": -1.5
+          },
+          "root": {
+            "y": -1
+          },
+          "tail": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
 }

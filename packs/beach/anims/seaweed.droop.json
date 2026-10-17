@@ -1,0 +1,171 @@
+{
+  "id": "droop",
+  "sticker": "seaweed",
+  "kind": "action",
+  "description": "the seaweed droops sadly, its fronds sagging, then slowly lifts itself up again.",
+  "stickerBox": {
+    "x": 0.25781,
+    "y": 0.20052,
+    "width": 0.48438,
+    "height": 0.59896
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the seaweed drooping sadly, its fronds sagging"
+  },
+  "puppet": {
+    "rig": "anims/seaweed.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "frondFace": {
+            "r": -6,
+            "sy": 0.975
+          },
+          "frondLeft": {
+            "r": -8,
+            "sy": 0.96
+          },
+          "frondMid": {
+            "r": 6,
+            "sy": 0.9650000000000001
+          },
+          "frondRight": {
+            "r": 8,
+            "sy": 0.96
+          },
+          "frondTall": {
+            "r": -4,
+            "sy": 0.97
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "frondFace": {
+            "r": -12,
+            "sy": 0.95
+          },
+          "frondLeft": {
+            "r": -16,
+            "sy": 0.92
+          },
+          "frondMid": {
+            "r": 12,
+            "sy": 0.93
+          },
+          "frondRight": {
+            "r": 16,
+            "sy": 0.92
+          },
+          "frondTall": {
+            "r": -8,
+            "sy": 0.94
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 1,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "frondFace": {
+            "r": -12,
+            "sy": 0.95
+          },
+          "frondLeft": {
+            "r": -16,
+            "sy": 0.92
+          },
+          "frondMid": {
+            "r": 12,
+            "sy": 0.93
+          },
+          "frondRight": {
+            "r": 16,
+            "sy": 0.92
+          },
+          "frondTall": {
+            "r": -8,
+            "sy": 0.94
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad",
+          "eyeL": "sad",
+          "eyeR": "sad",
+          "mouth": "sad"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "frondFace": {
+            "r": -6,
+            "sy": 0.975
+          },
+          "frondLeft": {
+            "r": -8,
+            "sy": 0.96
+          },
+          "frondMid": {
+            "r": 6,
+            "sy": 0.9650000000000001
+          },
+          "frondRight": {
+            "r": 8,
+            "sy": 0.96
+          },
+          "frondTall": {
+            "r": -4,
+            "sy": 0.97
+          }
+        },
+        "slots": {
+          "browL": "sad",
+          "browR": "sad"
+        }
+      },
+      {
+        "hold": 0.4,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

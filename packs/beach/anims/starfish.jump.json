@@ -1,0 +1,134 @@
+{
+  "id": "jump",
+  "sticker": "starfish",
+  "kind": "action",
+  "description": "the starfish crouches, jumps up high for joy with all its arms flung out, and lands with a little squash.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20182,
+    "width": 0.59896,
+    "height": 0.59505
+  },
+  "puppet": {
+    "rig": "anims/starfish.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "armL": {
+            "r": -10
+          },
+          "armR": {
+            "r": 10
+          },
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.93
+          },
+          "legL": {
+            "r": 8
+          },
+          "legR": {
+            "r": -8
+          },
+          "root": {
+            "y": 8
+          }
+        }
+      },
+      {
+        "hold": 0.22,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 25
+          },
+          "armR": {
+            "r": -25
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "legL": {
+            "r": 12
+          },
+          "legR": {
+            "r": -12
+          },
+          "root": {
+            "y": -80
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "in",
+        "bones": {
+          "armL": {
+            "r": 25
+          },
+          "armR": {
+            "r": -25
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "legL": {
+            "r": 12
+          },
+          "legR": {
+            "r": -12
+          },
+          "root": {
+            "y": -85
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "belly": {
+            "sx": 1.06,
+            "sy": 0.92
+          },
+          "legL": {
+            "r": 5
+          },
+          "legR": {
+            "r": -5
+          },
+          "root": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "id": "sleep",
+  "sticker": "seaweed",
+  "kind": "action",
+  "description": "the seaweed gives a big yawn, lets its fronds settle and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.25781,
+    "y": 0.20052,
+    "width": 0.48438,
+    "height": 0.59896
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the seaweed fast asleep, eyes shut, its fronds settled"
+  },
+  "puppet": {
+    "rig": "anims/seaweed.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "frondFace": {
+            "sy": 1.04
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "frondFace": {
+            "sy": 1.04
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "frondFace": {
+            "r": -6,
+            "sy": 0.97
+          },
+          "frondLeft": {
+            "r": -8,
+            "sy": 0.96
+          },
+          "frondMid": {
+            "r": 6
+          },
+          "frondRight": {
+            "r": 8,
+            "sy": 0.96
+          },
+          "frondTall": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "frondFace": {
+            "r": -6,
+            "sy": 0.97
+          },
+          "frondLeft": {
+            "r": -8,
+            "sy": 0.96
+          },
+          "frondMid": {
+            "r": 6
+          },
+          "frondRight": {
+            "r": 8,
+            "sy": 0.96
+          },
+          "frondTall": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

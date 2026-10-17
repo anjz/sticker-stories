@@ -1,0 +1,2168 @@
+{
+  "sticker": "pelican",
+  "skeleton": "pelican standing in three-quarter view facing left: root between the webbed feet; body (with the long neck) with belly squash; head at the top of the neck, face carrying the single eye, brow and the big beak with its pouch (swapped for open and full); near wing folded on the back (open in flight), the far wing shown only open in flight (flipped, shaded); legL/legR at the hips.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a pelican character. Draw this exact pelican character as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the body: the fluffy white body with its long curved neck, facing left as in image 1, without head, wings or legs; the top of the neck, normally under the head, rounded.\n2. the head: the round white head with its little tuft of feathers on top, facing left as in image 1, with a completely blank face — no eye, no brow, no beak — keep the rosy cheek; its bottom edge rounded.\n3. the beak: the long orange beak with its big pale orange pouch hanging under it, closed, as in image 1, with a rounded base.\n4. the beak open: the same beak with its top bill lifted wide open and the empty pouch hanging below it, with a rounded base.\n5. the beak full: the same beak closed, its pouch swollen big, round and heavy, full of water, with a rounded base.\n6. the folded wing: the grey-and-white wing with its dark tips, folded as it lies on the body in image 1, drawn whole, with a rounded shoulder.\n7. the open wing: the same wing spread out wide as in flight, its long grey and dark flight feathers fanned, with a rounded shoulder.\n8. one leg: an orange leg with its big webbed foot, drawn whole from the top of the leg, with a rounded top.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or the head) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a pelican character; image 2 shows the same pelican cut into puppet parts, with a blank face. Draw the pelican's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the pelican in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the pelican's eye as it is in image 1: a dark brown round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: the pupil looking down, its upper lid drooping and tilted, a thin shine of a welling tear along the bottom rim.\n6. the same eye crying: gently squeezed shut, a soft downward-curving line (a sad closed eye, not a smile), a few small lashes, and one small light-blue teardrop just below it.\n7. the brow: the short brown curved brow line above the eye in image 1.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "head": {
+      "sheet": "parts",
+      "at": [
+        191,
+        233
+      ]
+    },
+    "beak": {
+      "sheet": "parts",
+      "at": [
+        570,
+        281
+      ]
+    },
+    "beakOpen": {
+      "sheet": "parts",
+      "at": [
+        951,
+        261
+      ]
+    },
+    "beakFull": {
+      "sheet": "parts",
+      "at": [
+        1347,
+        295
+      ]
+    },
+    "body": {
+      "sheet": "parts",
+      "at": [
+        273,
+        689
+      ]
+    },
+    "wingFolded": {
+      "sheet": "parts",
+      "at": [
+        664,
+        720
+      ]
+    },
+    "wingOpen": {
+      "sheet": "parts",
+      "at": [
+        1064,
+        725
+      ]
+    },
+    "leg": {
+      "sheet": "parts",
+      "at": [
+        1404,
+        800
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        179,
+        310
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        552,
+        287
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        954,
+        336
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        1357,
+        287
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        299,
+        734
+      ]
+    },
+    "eyeCry": {
+      "sheet": "face",
+      "at": [
+        746,
+        719
+      ]
+    },
+    "brow": {
+      "sheet": "face",
+      "at": [
+        1221,
+        673
+      ]
+    },
+    "tear": {
+      "sheet": "face",
+      "at": [
+        799,
+        818
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 380,
+      "y": 625
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 405,
+      "y": 530
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 405,
+      "y": 530
+    },
+    {
+      "id": "head",
+      "parent": "body",
+      "x": 372,
+      "y": 275
+    },
+    {
+      "id": "face",
+      "parent": "head",
+      "x": 340,
+      "y": 210
+    },
+    {
+      "id": "eye",
+      "parent": "face",
+      "x": 368,
+      "y": 196
+    },
+    {
+      "id": "brow",
+      "parent": "face",
+      "x": 382,
+      "y": 166
+    },
+    {
+      "id": "beak",
+      "parent": "face",
+      "x": 345,
+      "y": 222
+    },
+    {
+      "id": "wingR",
+      "parent": "body",
+      "x": 405,
+      "y": 400
+    },
+    {
+      "id": "wingL",
+      "parent": "body",
+      "x": 410,
+      "y": 372
+    },
+    {
+      "id": "legL",
+      "parent": "root",
+      "x": 360,
+      "y": 505
+    },
+    {
+      "id": "legR",
+      "parent": "root",
+      "x": 432,
+      "y": 512
+    }
+  ],
+  "slots": [
+    {
+      "id": "wingR",
+      "bone": "wingR",
+      "default": "none",
+      "attachments": {
+        "open": {
+          "part": "wingOpen",
+          "x": 312,
+          "y": 330,
+          "scale": 0.5,
+          "flip": true,
+          "rotate": 30,
+          "shade": 0.22
+        }
+      }
+    },
+    {
+      "id": "legL",
+      "bone": "legL",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 336,
+          "y": 553,
+          "scale": 0.47,
+          "shade": 0.12
+        }
+      }
+    },
+    {
+      "id": "legR",
+      "bone": "legR",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 422,
+          "y": 563,
+          "scale": 0.47
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "body",
+          "x": 414,
+          "y": 398,
+          "scale": 0.58
+        }
+      }
+    },
+    {
+      "id": "wingL",
+      "bone": "wingL",
+      "default": "folded",
+      "attachments": {
+        "folded": {
+          "part": "wingFolded",
+          "x": 486,
+          "y": 453,
+          "scale": 0.64
+        }
+      }
+    },
+    {
+      "id": "wingOpen",
+      "bone": "wingL",
+      "default": "none",
+      "attachments": {
+        "open": {
+          "part": "wingOpen",
+          "x": 505,
+          "y": 300,
+          "scale": 0.5,
+          "rotate": -30
+        }
+      }
+    },
+    {
+      "id": "head",
+      "bone": "head",
+      "default": "head",
+      "attachments": {
+        "head": {
+          "part": "head",
+          "x": 383,
+          "y": 207,
+          "scale": 0.565
+        }
+      }
+    },
+    {
+      "id": "beak",
+      "bone": "beak",
+      "default": "closed",
+      "attachments": {
+        "closed": {
+          "part": "beak",
+          "x": 262,
+          "y": 268,
+          "scale": 0.56
+        },
+        "open": {
+          "part": "beakOpen",
+          "x": 268,
+          "y": 248,
+          "scale": 0.56
+        },
+        "full": {
+          "part": "beakFull",
+          "x": 262,
+          "y": 272,
+          "scale": 0.56
+        }
+      }
+    },
+    {
+      "id": "eye",
+      "bone": "eye",
+      "default": "default",
+      "attachments": {
+        "default": {
+          "part": "eye",
+          "x": 369,
+          "y": 196,
+          "scale": 0.17
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 369,
+          "y": 194,
+          "scale": 0.16
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 369,
+          "y": 201,
+          "scale": 0.15
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 369,
+          "y": 196,
+          "scale": 0.15
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 369,
+          "y": 198,
+          "scale": 0.18,
+          "flip": true
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 369,
+          "y": 200,
+          "scale": 0.17
+        }
+      }
+    },
+    {
+      "id": "tear",
+      "bone": "eye",
+      "default": "none",
+      "attachments": {
+        "drop": {
+          "part": "tear",
+          "x": 380,
+          "y": 222,
+          "scale": 0.22
+        }
+      }
+    },
+    {
+      "id": "brow",
+      "bone": "brow",
+      "default": "brow",
+      "attachments": {
+        "brow": {
+          "part": "brow",
+          "x": 382,
+          "y": 166,
+          "scale": 0.17,
+          "rotate": -6
+        },
+        "sad": {
+          "part": "brow",
+          "x": 380,
+          "y": 164,
+          "scale": 0.17,
+          "rotate": 18
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eye": "happy"
+    },
+    "sad": {
+      "eye": "sad",
+      "brow": "sad"
+    },
+    "sleeping": {
+      "eye": "closed"
+    },
+    "surprised": {
+      "eye": "wide",
+      "beak": "open"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eye": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "scoop",
+      "description": "the pelican scoops with its big pouch and gulps",
+      "pause": {
+        "frame": 4,
+        "shows": "the pelican with its pouch full and round, its head tipped back"
+      },
+      "particles": [
+        {
+          "frame": 2,
+          "effect": "spray",
+          "x": 0.3,
+          "y": 0.62,
+          "intensity": 0.4
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "body": {
+              "r": -8
+            },
+            "head": {
+              "r": -30
+            }
+          },
+          "slots": {
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "r": -14,
+              "y": 4
+            },
+            "head": {
+              "r": -48,
+              "y": 6
+            },
+            "wingL": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "beak": "open",
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.4,
+          "ease": "inOut",
+          "bones": {
+            "body": {
+              "r": -14,
+              "y": 4
+            },
+            "head": {
+              "r": -36,
+              "y": 6
+            },
+            "wingL": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "beak": "full"
+          }
+        },
+        {
+          "hold": 0.9,
+          "bones": {
+            "body": {
+              "r": 4
+            },
+            "head": {
+              "r": 24,
+              "y": -4
+            },
+            "belly": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "beak": "full"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "r": 3
+            },
+            "head": {
+              "r": 22,
+              "y": -8
+            },
+            "belly": {
+              "sy": 1.05
+            }
+          },
+          "slots": {
+            "beak": "closed",
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "r": 2
+            },
+            "head": {
+              "r": 12
+            },
+            "belly": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "beak": "closed",
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "fly",
+      "kind": "move",
+      "description": "the pelican flies along to the left on big slow wingbeats, then glides down and lands.",
+      "facing": "left",
+      "flies": true,
+      "wings": [
+        "wingL",
+        "wingR"
+      ],
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "stride": 1.1,
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingL": {
+              "r": -28
+            },
+            "wingR": {
+              "r": 28
+            },
+            "body": {
+              "r": -6,
+              "y": -4
+            },
+            "head": {
+              "r": 6
+            },
+            "legL": {
+              "r": -35,
+              "y": -26
+            },
+            "legR": {
+              "r": -35,
+              "y": -26
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "wingL": {
+              "r": 0
+            },
+            "wingR": {
+              "r": 0
+            },
+            "body": {
+              "r": -6,
+              "y": -10
+            },
+            "head": {
+              "r": 6
+            },
+            "legL": {
+              "r": -35,
+              "y": -26
+            },
+            "legR": {
+              "r": -35,
+              "y": -26
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingL": {
+              "r": 30
+            },
+            "wingR": {
+              "r": -30
+            },
+            "body": {
+              "r": -6,
+              "y": -14
+            },
+            "head": {
+              "r": 6
+            },
+            "legL": {
+              "r": -35,
+              "y": -26
+            },
+            "legR": {
+              "r": -35,
+              "y": -26
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "wingL": {
+              "r": 0
+            },
+            "wingR": {
+              "r": 0
+            },
+            "body": {
+              "r": -6,
+              "y": -10
+            },
+            "head": {
+              "r": 6
+            },
+            "legL": {
+              "r": -35,
+              "y": -26
+            },
+            "legR": {
+              "r": -35,
+              "y": -26
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "wingL": {
+              "r": 8
+            },
+            "wingR": {
+              "r": -8
+            },
+            "body": {
+              "r": -2,
+              "y": -6
+            },
+            "legL": {
+              "r": 12,
+              "y": -10
+            },
+            "legR": {
+              "r": 12,
+              "y": -10
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingL": {
+              "r": -24
+            },
+            "wingR": {
+              "r": 24
+            },
+            "body": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 2
+            },
+            "belly": {
+              "sx": 1.04,
+              "sy": 0.95
+            },
+            "head": {
+              "y": 6
+            }
+          }
+        },
+        {
+          "hold": 0.45
+        }
+      ]
+    },
+    {
+      "id": "float",
+      "kind": "move",
+      "description": "the pelican floats along to the left on the sea, paddling gently, then stops.",
+      "facing": "left",
+      "on": [
+        "sea"
+      ],
+      "stays": true,
+      "waterline": 0.2,
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "stride": 0.4,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "legL": {
+              "r": 18
+            },
+            "legR": {
+              "r": -18
+            },
+            "root": {
+              "y": 0
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "legL": {
+              "r": 0
+            },
+            "legR": {
+              "r": 0
+            },
+            "root": {
+              "y": 3
+            },
+            "body": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "legL": {
+              "r": -18
+            },
+            "legR": {
+              "r": 18
+            },
+            "root": {
+              "y": 0
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "legL": {
+              "r": 0
+            },
+            "legR": {
+              "r": 0
+            },
+            "root": {
+              "y": 3
+            },
+            "body": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "root": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.45
+        }
+      ]
+    },
+    {
+      "id": "gulp",
+      "description": "the pelican tips its head back and gulps, gulp, gulp, its pouch squeezing down, then smacks its beak happily.",
+      "pause": {
+        "frame": 2,
+        "shows": "the pelican with its head tipped back and its pouch full, about to gulp"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "r": 22,
+              "y": -4
+            },
+            "body": {
+              "r": 2
+            },
+            "belly": {
+              "sy": 1.0
+            }
+          },
+          "slots": {
+            "beak": "full"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "head": {
+              "r": 26,
+              "y": -4
+            },
+            "body": {
+              "r": 2
+            },
+            "belly": {
+              "sy": 1.01
+            }
+          },
+          "slots": {
+            "beak": "full"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": 24,
+              "y": -4
+            },
+            "body": {
+              "r": 2
+            },
+            "belly": {
+              "sy": 1.05
+            }
+          },
+          "slots": {
+            "beak": "full",
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": 26,
+              "y": -4
+            },
+            "body": {
+              "r": 2
+            },
+            "belly": {
+              "sy": 1.0
+            }
+          },
+          "slots": {
+            "beak": "full"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": 22,
+              "y": -4
+            },
+            "body": {
+              "r": 2
+            },
+            "belly": {
+              "sy": 1.06
+            }
+          },
+          "slots": {
+            "beak": "closed",
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": 10,
+              "y": -4
+            },
+            "body": {
+              "r": 2
+            },
+            "belly": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "beak": "closed"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": 2
+            }
+          },
+          "slots": {
+            "beak": "open",
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "head": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "beak": "closed",
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "flap",
+      "description": "the pelican spreads its big wings and flaps them slowly in place, its feet staying on the ground.",
+      "pause": {
+        "frame": 2,
+        "shows": "the pelican with its big wings spread wide"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "wingL": {
+              "r": -10
+            },
+            "wingR": {
+              "r": 10
+            },
+            "root": {
+              "y": 0
+            },
+            "head": {
+              "y": 0.0
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "wingL": {
+              "r": -24
+            },
+            "wingR": {
+              "r": 24
+            },
+            "root": {
+              "y": 0
+            },
+            "head": {
+              "y": 0.0
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open",
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "wingL": {
+              "r": 26
+            },
+            "wingR": {
+              "r": -26
+            },
+            "root": {
+              "y": 2
+            },
+            "head": {
+              "y": -1.0
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "wingL": {
+              "r": -24
+            },
+            "wingR": {
+              "r": 24
+            },
+            "root": {
+              "y": -3
+            },
+            "head": {
+              "y": 1.5
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "wingL": {
+              "r": 26
+            },
+            "wingR": {
+              "r": -26
+            },
+            "root": {
+              "y": 2
+            },
+            "head": {
+              "y": -1.0
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "wingL": {
+              "r": -24
+            },
+            "wingR": {
+              "r": 24
+            },
+            "root": {
+              "y": -3
+            },
+            "head": {
+              "y": 1.5
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "wingL": {
+              "r": 6
+            },
+            "wingR": {
+              "r": -6
+            },
+            "root": {
+              "y": 0
+            },
+            "head": {
+              "y": 0.0
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open"
+          }
+        },
+        {
+          "hold": 0.15,
+          "bones": {
+            "belly": {
+              "sx": 1.03,
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "peck",
+      "idle": true,
+      "description": "the pelican bends down and pecks at the ground with the hooked tip of its long beak, peck-peck-peck, then looks up happily.",
+      "pause": {
+        "frame": 2,
+        "shows": "the pelican bent forward, beak down to the ground"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "body": {
+              "r": -14,
+              "y": 4
+            },
+            "head": {
+              "r": -50,
+              "y": 8
+            },
+            "legL": {
+              "y": -4
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "r": -14,
+              "y": 4
+            },
+            "head": {
+              "r": -50,
+              "y": 8
+            },
+            "legL": {
+              "y": -4
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "body": {
+              "r": -18,
+              "y": 4
+            },
+            "head": {
+              "r": -58,
+              "y": 8
+            },
+            "legL": {
+              "y": -4
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "body": {
+              "r": -14,
+              "y": 4
+            },
+            "head": {
+              "r": -50,
+              "y": 8
+            },
+            "legL": {
+              "y": -4
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "body": {
+              "r": -18,
+              "y": 4
+            },
+            "head": {
+              "r": -58,
+              "y": 8
+            },
+            "legL": {
+              "y": -4
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "body": {
+              "r": -14,
+              "y": 4
+            },
+            "head": {
+              "r": -50,
+              "y": 8
+            },
+            "legL": {
+              "y": -4
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "body": {
+              "r": -18,
+              "y": 4
+            },
+            "head": {
+              "r": -58,
+              "y": 8
+            },
+            "legL": {
+              "y": -4
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "body": {
+              "r": -3
+            },
+            "head": {
+              "r": -8
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": 6,
+              "y": -3
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "preen",
+      "idle": true,
+      "description": "the pelican tucks its long beak down and nibbles through the feathers of its chest, lifts its wing a little to tidy it, then fluffs up and smooths itself down.",
+      "pause": {
+        "frame": 2,
+        "shows": "the pelican with its beak tucked down in its chest feathers, preening"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "r": -42,
+              "y": 10
+            },
+            "body": {
+              "r": -2
+            },
+            "wingL": {
+              "r": 0
+            }
+          },
+          "slots": {
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "head": {
+              "r": -46,
+              "y": 10
+            },
+            "body": {
+              "r": -2
+            },
+            "wingL": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -40,
+              "y": 10
+            },
+            "body": {
+              "r": -2
+            },
+            "wingL": {
+              "r": -8
+            }
+          },
+          "slots": {
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -46,
+              "y": 10
+            },
+            "body": {
+              "r": -2
+            },
+            "wingL": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -40,
+              "y": 10
+            },
+            "body": {
+              "r": -2
+            },
+            "wingL": {
+              "r": -10
+            }
+          },
+          "slots": {
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": -20,
+              "y": 10
+            },
+            "body": {
+              "r": -2
+            },
+            "wingL": {
+              "r": -14
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "belly": {
+              "sx": 1.06,
+              "sy": 1.04
+            },
+            "wingL": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "belly": {
+              "sx": 0.99
+            },
+            "root": {
+              "x": -2
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "belly": {
+              "sx": 1.02
+            },
+            "root": {
+              "x": 2
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "look-around",
+      "idle": true,
+      "description": "the pelican looks up, then turns right round to look behind it, then turns back and looks ahead again.",
+      "pause": {
+        "frame": 4,
+        "shows": "the pelican turned round, looking behind it"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "r": 10,
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "head": {
+              "r": 10,
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "ease": "inOut",
+          "bones": {
+            "root": {
+              "sx": -1,
+              "x": 30
+            },
+            "head": {
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "root": {
+              "sx": -1,
+              "x": 30
+            },
+            "head": {
+              "r": 6,
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.45,
+          "ease": "inOut",
+          "bones": {
+            "head": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "template": "common.nod"
+    },
+    {
+      "id": "shake-head",
+      "template": "common.shake-head"
+    },
+    {
+      "id": "laugh",
+      "template": "common.laugh"
+    },
+    {
+      "id": "talk",
+      "template": "common.talk"
+    },
+    {
+      "id": "cry",
+      "description": "the pelican cries, its head and long beak hanging low, its shoulders shaking with little sobs.",
+      "pause": {
+        "frame": 3,
+        "shows": "the pelican crying, head hanging, eye squeezed shut with a tear"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "r": -14,
+              "y": 10
+            },
+            "body": {
+              "r": -2
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "wingL": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eye": "sad",
+            "brow": "sad"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": -14,
+              "y": 13
+            },
+            "body": {
+              "r": -2
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "wingL": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eye": "cry",
+            "tear": "drop",
+            "brow": "sad",
+            "beak": "closed"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": -14,
+              "y": 10
+            },
+            "body": {
+              "r": -2
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "wingL": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eye": "cry",
+            "tear": "drop",
+            "brow": "sad",
+            "beak": "closed"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": -14,
+              "y": 13
+            },
+            "body": {
+              "r": -2
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "wingL": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eye": "cry",
+            "tear": "drop",
+            "brow": "sad",
+            "beak": "closed"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": -14,
+              "y": 10
+            },
+            "body": {
+              "r": -2
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "wingL": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eye": "cry",
+            "tear": "drop",
+            "brow": "sad",
+            "beak": "closed"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": -14,
+              "y": 13
+            },
+            "body": {
+              "r": -2
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "wingL": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eye": "cry",
+            "tear": "drop",
+            "brow": "sad",
+            "beak": "closed"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": -14,
+              "y": 10
+            },
+            "body": {
+              "r": -2
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "wingL": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eye": "cry",
+            "tear": "drop",
+            "brow": "sad",
+            "beak": "closed"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": -14,
+              "y": 13
+            },
+            "body": {
+              "r": -2
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "wingL": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "eye": "cry",
+            "tear": "drop",
+            "brow": "sad",
+            "beak": "closed"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "eye": "sad",
+            "brow": "sad"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "description": "the pelican gives a big yawn, rests its long beak on its chest and falls asleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the pelican fast asleep, its beak resting on its chest, eye shut"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "head": {
+              "r": 16,
+              "y": -4
+            },
+            "belly": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "eye": "closed",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "head": {
+              "r": 16,
+              "y": -4
+            },
+            "belly": {
+              "sy": 1.04
+            }
+          },
+          "slots": {
+            "eye": "closed",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "head": {
+              "r": -22,
+              "y": 14
+            },
+            "body": {
+              "r": 2
+            },
+            "belly": {
+              "sy": 0.98,
+              "sx": 1.02
+            },
+            "wingL": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.8,
+          "bones": {
+            "head": {
+              "r": -22,
+              "y": 14
+            },
+            "body": {
+              "r": 2
+            },
+            "belly": {
+              "sy": 1.0,
+              "sx": 1.02
+            },
+            "wingL": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "y": -2
+            }
+          },
+          "slots": {
+            "eye": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eye": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "description": "the pelican lifts its big wing and waves hello.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "wingL": {
+              "r": -10
+            },
+            "head": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingL": {
+              "r": 10
+            },
+            "head": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingL": {
+              "r": -14
+            },
+            "head": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingL": {
+              "r": 10
+            },
+            "head": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "wingL": {
+              "r": -14
+            },
+            "head": {
+              "r": 4
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "description": "the pelican crouches, jumps up for joy with its wings out and lands with a little squash.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 8
+            },
+            "belly": {
+              "sx": 1.06,
+              "sy": 0.92
+            },
+            "head": {
+              "y": 6
+            }
+          }
+        },
+        {
+          "hold": 0.24,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -70
+            },
+            "belly": {
+              "sx": 0.97,
+              "sy": 1.05
+            },
+            "wingL": {
+              "r": -14
+            },
+            "wingR": {
+              "r": 14
+            },
+            "legL": {
+              "r": 14,
+              "y": -6
+            },
+            "legR": {
+              "r": 14,
+              "y": -6
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open",
+            "eye": "happy",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.16,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -76
+            },
+            "wingL": {
+              "r": 10
+            },
+            "wingR": {
+              "r": -10
+            },
+            "legL": {
+              "r": 14,
+              "y": -6
+            },
+            "legR": {
+              "r": 14,
+              "y": -6
+            }
+          },
+          "slots": {
+            "wingL": "none",
+            "wingOpen": "open",
+            "wingR": "open",
+            "eye": "happy",
+            "beak": "open"
+          }
+        },
+        {
+          "hold": 0.12,
+          "bones": {
+            "root": {
+              "y": 5
+            },
+            "belly": {
+              "sx": 1.07,
+              "sy": 0.9
+            },
+            "head": {
+              "y": 6
+            }
+          },
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eye": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

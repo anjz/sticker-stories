@@ -3,53 +3,155 @@
   "sticker": "girl",
   "kind": "move",
   "description": "the girl skips along to the right across the sand, the kite bobbing behind her on its string, then stops and stands.",
-  "sheet": "anims/girl.skip.webp",
-  "frame": {
-    "width": 391,
-    "height": 522
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.05371,
-    "y": 0.04406,
-    "width": 0.89514,
-    "height": 0.92337
-  },
   "stickerBox": {
-    "x": 0.23698,
+    "x": 0.25651,
     "y": 0.13932,
-    "width": 0.52604,
+    "width": 0.48568,
     "height": 0.72005
   },
-  "hold": [
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "right",
   "stride": 0.55,
   "hops": true,
   "particles": [
     {
-      "frame": 4,
+      "frame": 3,
       "effect": "dust-puff",
       "x": 0.5,
       "y": 0.8594,
       "intensity": 0.3
     }
-  ]
+  ],
+  "puppet": {
+    "rig": "anims/girl.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "kite": {
+            "r": 3
+          },
+          "legL": {
+            "r": -4
+          },
+          "legR": {
+            "r": 4
+          },
+          "root": {
+            "y": 4
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 4
+          },
+          "armR": {
+            "r": -12
+          },
+          "head": {
+            "r": 2
+          },
+          "kite": {
+            "r": -6,
+            "y": -4
+          },
+          "legL": {
+            "r": -18
+          },
+          "legR": {
+            "r": 7
+          },
+          "root": {
+            "y": -30
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "kite": {
+            "r": 4
+          },
+          "legL": {
+            "r": 4
+          },
+          "legR": {
+            "r": -4
+          },
+          "root": {
+            "y": 4
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": -3
+          },
+          "armR": {
+            "r": 10
+          },
+          "head": {
+            "r": 2
+          },
+          "kite": {
+            "r": 6,
+            "y": -4
+          },
+          "legL": {
+            "r": 7
+          },
+          "legR": {
+            "r": -18
+          },
+          "root": {
+            "y": -30
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "kite": {
+            "r": -3
+          },
+          "root": {
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.35
+      }
+    ]
+  }
 }

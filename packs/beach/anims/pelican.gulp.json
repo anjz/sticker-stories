@@ -1,0 +1,166 @@
+{
+  "id": "gulp",
+  "sticker": "pelican",
+  "description": "the pelican tips its head back and gulps, gulp, gulp, its pouch squeezing down, then smacks its beak happily.",
+  "stickerBox": {
+    "x": 0.18359,
+    "y": 0.13932,
+    "width": 0.63281,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the pelican with its head tipped back and its pouch full, about to gulp"
+  },
+  "puppet": {
+    "rig": "anims/pelican.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "belly": {
+            "sy": 1
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 22,
+            "y": -4
+          }
+        },
+        "slots": {
+          "beak": "full"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.01
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 26,
+            "y": -4
+          }
+        },
+        "slots": {
+          "beak": "full"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 24,
+            "y": -4
+          }
+        },
+        "slots": {
+          "beak": "full",
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sy": 1
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 26,
+            "y": -4
+          }
+        },
+        "slots": {
+          "beak": "full"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 1.06
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 22,
+            "y": -4
+          }
+        },
+        "slots": {
+          "beak": "closed",
+          "eye": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 10,
+            "y": -4
+          }
+        },
+        "slots": {
+          "beak": "closed"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "head": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "beak": "closed",
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

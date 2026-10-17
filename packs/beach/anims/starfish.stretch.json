@@ -1,0 +1,148 @@
+{
+  "id": "stretch",
+  "sticker": "starfish",
+  "kind": "action",
+  "description": "the starfish stretches all five arms out long and wide with a big yawn, then settles back down.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20182,
+    "width": 0.59896,
+    "height": 0.59505
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the starfish stretched out wide and tall, yawning"
+  },
+  "puppet": {
+    "rig": "anims/starfish.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "armL": {
+            "r": 8,
+            "sx": 1.075
+          },
+          "armR": {
+            "r": -8,
+            "sx": 1.075
+          },
+          "belly": {
+            "sx": 1.0150000000000001,
+            "sy": 1.025
+          },
+          "legL": {
+            "sy": 1.03
+          },
+          "legR": {
+            "sy": 1.03
+          },
+          "root": {
+            "y": -8
+          },
+          "top": {
+            "sy": 1.0899999999999999
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "armL": {
+            "r": 8,
+            "sx": 1.15
+          },
+          "armR": {
+            "r": -8,
+            "sx": 1.15
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 1.05
+          },
+          "legL": {
+            "sy": 1.06
+          },
+          "legR": {
+            "sy": 1.06
+          },
+          "root": {
+            "y": -8
+          },
+          "top": {
+            "sy": 1.18
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "armL": {
+            "r": 8,
+            "sx": 1.15
+          },
+          "armR": {
+            "r": -8,
+            "sx": 1.15
+          },
+          "belly": {
+            "sx": 1.03,
+            "sy": 1.05
+          },
+          "legL": {
+            "sy": 1.06
+          },
+          "legR": {
+            "sy": 1.06
+          },
+          "root": {
+            "y": -8
+          },
+          "top": {
+            "sy": 1.18
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

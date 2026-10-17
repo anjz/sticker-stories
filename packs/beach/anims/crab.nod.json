@@ -1,0 +1,97 @@
+{
+  "id": "nod",
+  "sticker": "crab",
+  "kind": "action",
+  "description": "the crab nods yes, twice, bobbing its eye stalks.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.21745,
+    "width": 0.59896,
+    "height": 0.5651
+  },
+  "puppet": {
+    "rig": "anims/crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "body": {
+            "y": 4
+          },
+          "eyeL": {
+            "sy": 1.136
+          },
+          "eyeR": {
+            "sy": 1.136
+          },
+          "face": {
+            "y": 4
+          },
+          "stalkL": {
+            "sy": 0.88
+          },
+          "stalkR": {
+            "sy": 0.88
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "y": -2
+          },
+          "face": {
+            "y": -1
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "body": {
+            "y": 4
+          },
+          "eyeL": {
+            "sy": 1.136
+          },
+          "eyeR": {
+            "sy": 1.136
+          },
+          "face": {
+            "y": 4
+          },
+          "stalkL": {
+            "sy": 0.88
+          },
+          "stalkR": {
+            "sy": 0.88
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "y": -2
+          },
+          "face": {
+            "y": -1
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

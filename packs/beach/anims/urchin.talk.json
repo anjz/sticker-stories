@@ -1,0 +1,143 @@
+{
+  "id": "talk",
+  "sticker": "urchin",
+  "kind": "action",
+  "description": "the sea urchin talks, its mouth moving, bobbing a little.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26953,
+    "width": 0.5,
+    "height": 0.45964
+  },
+  "puppet": {
+    "rig": "anims/urchin.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "face": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 0.99
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "face": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 0.99
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "face": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 0.99
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "face": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 0.99
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 1.02
+          },
+          "face": {
+            "y": -2
+          }
+        },
+        "slots": {
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "step",
+        "bones": {
+          "belly": {
+            "sy": 0.99
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

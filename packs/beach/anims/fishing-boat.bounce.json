@@ -1,0 +1,78 @@
+{
+  "id": "bounce",
+  "sticker": "fishing-boat",
+  "kind": "action",
+  "description": "the fishing boat rides over a big wave: its bow lifts, then dips with a splash, and it settles.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.14583,
+    "width": 0.83984,
+    "height": 0.70833
+  },
+  "particles": [
+    {
+      "frame": 2,
+      "effect": "spray",
+      "x": 0.86,
+      "y": 0.72,
+      "intensity": 0.4
+    }
+  ],
+  "puppet": {
+    "rig": "anims/fishing-boat.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "net": {
+            "r": 6
+          },
+          "rock": {
+            "r": -8,
+            "y": -14
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "net": {
+            "r": -5
+          },
+          "rock": {
+            "r": 6,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "net": {
+            "r": 3
+          },
+          "rock": {
+            "r": -3,
+            "y": -3
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "rock": {
+            "r": 1,
+            "y": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

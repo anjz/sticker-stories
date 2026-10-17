@@ -1,0 +1,110 @@
+{
+  "id": "tug",
+  "sticker": "girl",
+  "kind": "action",
+  "description": "the girl tugs her kite string twice, and the kite bobs up higher each time.",
+  "stickerBox": {
+    "x": 0.25651,
+    "y": 0.13932,
+    "width": 0.48568,
+    "height": 0.72005
+  },
+  "puppet": {
+    "rig": "anims/girl.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "r": -10
+          },
+          "head": {
+            "r": -3
+          },
+          "kite": {
+            "r": 10,
+            "y": -8
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armL": {
+            "r": 6
+          },
+          "head": {
+            "r": -3
+          },
+          "kite": {
+            "r": -4,
+            "y": -6
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "r": -12
+          },
+          "head": {
+            "r": -4
+          },
+          "kite": {
+            "r": 12,
+            "y": -20
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "head": {
+            "r": -4
+          },
+          "kite": {
+            "r": -3,
+            "y": -16
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 3
+          },
+          "kite": {
+            "r": 2,
+            "y": -6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

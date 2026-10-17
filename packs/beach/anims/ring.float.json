@@ -1,0 +1,57 @@
+{
+  "id": "float",
+  "sticker": "ring",
+  "kind": "action",
+  "description": "the rubber ring bobs gently up and down.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.24089,
+    "width": 0.59896,
+    "height": 0.51693
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/ring.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 1.5
+          },
+          "root": {
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -1.5
+          },
+          "root": {
+            "y": -4
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "root": {
+            "y": 4
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

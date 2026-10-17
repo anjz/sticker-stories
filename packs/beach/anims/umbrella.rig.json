@@ -1,0 +1,137 @@
+{
+  "sticker": "umbrella",
+  "atlas": "anims/umbrella.rig.webp",
+  "size": 768,
+  "parts": {
+    "canopy": {
+      "rect": [
+        0,
+        395,
+        619,
+        317
+      ],
+      "border": [
+        621,
+        395,
+        659,
+        357
+      ],
+      "pad": 20
+    },
+    "closed": {
+      "rect": [
+        1560,
+        0,
+        145,
+        318
+      ],
+      "border": [
+        1707,
+        0,
+        185,
+        358
+      ],
+      "pad": 20
+    },
+    "pole": {
+      "rect": [
+        0,
+        0,
+        117,
+        353
+      ],
+      "border": [
+        119,
+        0,
+        157,
+        393
+      ],
+      "pad": 20
+    },
+    "turned": {
+      "rect": [
+        278,
+        0,
+        619,
+        325
+      ],
+      "border": [
+        899,
+        0,
+        659,
+        365
+      ],
+      "pad": 20
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 384,
+      "y": 688
+    },
+    {
+      "id": "pole",
+      "parent": "root",
+      "x": 384,
+      "y": 688
+    },
+    {
+      "id": "canopy",
+      "parent": "pole",
+      "x": 384,
+      "y": 330
+    }
+  ],
+  "slots": [
+    {
+      "id": "canopy",
+      "bone": "canopy",
+      "default": "canopy",
+      "attachments": {
+        "canopy": {
+          "part": "canopy",
+          "x": 73.63,
+          "y": 68.65,
+          "w": 618.74,
+          "h": 316.69
+        },
+        "turned": {
+          "part": "turned",
+          "x": 81.63,
+          "y": 69.99,
+          "w": 618.74,
+          "h": 324.02
+        }
+      }
+    },
+    {
+      "id": "pole",
+      "bone": "pole",
+      "default": "pole",
+      "attachments": {
+        "pole": {
+          "part": "pole",
+          "x": 325.4,
+          "y": 336.39,
+          "w": 116.2,
+          "h": 352.23
+        }
+      }
+    },
+    {
+      "id": "closed",
+      "bone": "canopy",
+      "default": "none",
+      "attachments": {
+        "closed": {
+          "part": "closed",
+          "x": 310.7,
+          "y": 66.3,
+          "w": 144.6,
+          "h": 317.4
+        }
+      }
+    }
+  ]
+}

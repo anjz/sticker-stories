@@ -1,0 +1,51 @@
+{
+  "sticker": "ball",
+  "atlas": "anims/ball.rig.webp",
+  "size": 768,
+  "parts": {
+    "ball": {
+      "rect": [
+        0,
+        0,
+        425,
+        429
+      ],
+      "border": [
+        427,
+        0,
+        465,
+        469
+      ],
+      "pad": 20
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 384,
+      "y": 594
+    },
+    {
+      "id": "spin",
+      "parent": "root",
+      "x": 384,
+      "y": 384
+    }
+  ],
+  "slots": [
+    {
+      "id": "ball",
+      "bone": "spin",
+      "default": "ball",
+      "attachments": {
+        "ball": {
+          "part": "ball",
+          "x": 171.62,
+          "y": 170.1,
+          "w": 424.75,
+          "h": 428.8
+        }
+      }
+    }
+  ]
+}

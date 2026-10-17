@@ -3,43 +3,113 @@
   "sticker": "starfish",
   "kind": "move",
   "description": "the starfish cartwheels along to the left, turning over and over on its arm tips, then stops upright.",
-  "sheet": "anims/starfish.cartwheel.webp",
-  "frame": {
-    "width": 608,
-    "height": 556
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.07072,
-    "y": 0.10252,
-    "width": 0.78454,
-    "height": 0.86691
-  },
   "stickerBox": {
-    "x": 0.20313,
-    "y": 0.20052,
-    "width": 0.59375,
-    "height": 0.59896
+    "x": 0.20052,
+    "y": 0.20182,
+    "width": 0.59896,
+    "height": 0.59505
   },
-  "hold": [
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "left",
-  "stride": 0.8
+  "stride": 2.6,
+  "puppet": {
+    "rig": "anims/starfish.rig.json",
+    "keys": [
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sy": 0.96
+          }
+        }
+      },
+      {
+        "hold": 0.55,
+        "ease": "linear",
+        "bones": {
+          "roll": {}
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.55,
+        "ease": "linear",
+        "bones": {
+          "roll": {
+            "r": -90
+          },
+          "root": {
+            "y": -14
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.55,
+        "ease": "linear",
+        "bones": {
+          "roll": {
+            "r": -180
+          },
+          "root": {
+            "y": -22
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.55,
+        "ease": "linear",
+        "bones": {
+          "roll": {
+            "r": -270
+          },
+          "root": {
+            "y": -14
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "step",
+        "bones": {
+          "roll": {
+            "r": -360
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "bones": {
+          "belly": {
+            "sx": 1.03,
+            "sy": 0.95
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
 }

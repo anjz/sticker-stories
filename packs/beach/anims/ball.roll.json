@@ -3,43 +3,104 @@
   "sticker": "ball",
   "kind": "move",
   "description": "the beach ball rolls along to the left, turning over and over, then rocks to a stop.",
-  "sheet": "anims/ball.roll.webp",
-  "frame": {
-    "width": 526,
-    "height": 519
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.04373,
-    "y": 0.04046,
-    "width": 0.91255,
-    "height": 0.92871
-  },
   "stickerBox": {
     "x": 0.20052,
     "y": 0.20052,
     "width": 0.59766,
     "height": 0.59896
   },
-  "hold": [
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "left",
-  "stride": 0.9
+  "stride": 0.9,
+  "puppet": {
+    "rig": "anims/ball.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.15,
+        "ease": "linear",
+        "bones": {
+          "spin": {}
+        }
+      },
+      {
+        "hold": 0.15,
+        "ease": "linear",
+        "bones": {
+          "spin": {
+            "r": -90
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "ease": "linear",
+        "bones": {
+          "spin": {
+            "r": -180
+          }
+        }
+      },
+      {
+        "hold": 0.15,
+        "ease": "linear",
+        "bones": {
+          "spin": {
+            "r": -270
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "ease": "out",
+        "bones": {
+          "root": {
+            "x": -44
+          },
+          "spin": {
+            "r": -372
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "root": {
+            "x": 18
+          },
+          "spin": {
+            "r": -355
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "root": {
+            "x": -7
+          },
+          "spin": {
+            "r": -362
+          }
+        }
+      },
+      {
+        "hold": 0.02,
+        "ease": "step",
+        "bones": {
+          "spin": {
+            "r": -360
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
 }

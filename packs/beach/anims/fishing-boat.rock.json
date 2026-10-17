@@ -1,0 +1,60 @@
+{
+  "id": "rock",
+  "sticker": "fishing-boat",
+  "kind": "action",
+  "description": "the fishing boat rocks gently on the waves.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.14583,
+    "width": 0.83984,
+    "height": 0.70833
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/fishing-boat.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "net": {
+            "r": -2
+          },
+          "rock": {
+            "r": 2.5,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "net": {
+            "r": 2
+          },
+          "rock": {
+            "r": -2.5,
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.55,
+        "bones": {
+          "net": {
+            "r": -1
+          },
+          "rock": {
+            "r": 2,
+            "y": 2
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

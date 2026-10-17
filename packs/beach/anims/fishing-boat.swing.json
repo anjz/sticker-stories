@@ -1,0 +1,74 @@
+{
+  "id": "swing",
+  "sticker": "fishing-boat",
+  "kind": "action",
+  "description": "the net swings out over the side on its rope and back, to and fro.",
+  "stickerBox": {
+    "x": 0.07943,
+    "y": 0.14583,
+    "width": 0.83984,
+    "height": 0.70833
+  },
+  "puppet": {
+    "rig": "anims/fishing-boat.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "net": {
+            "r": 20,
+            "x": -20
+          },
+          "rock": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "net": {
+            "r": -10
+          },
+          "rock": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.45,
+        "bones": {
+          "net": {
+            "r": 12,
+            "x": -10
+          },
+          "rock": {
+            "r": -0.5
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "net": {
+            "r": -5
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "net": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

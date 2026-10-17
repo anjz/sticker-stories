@@ -1,0 +1,89 @@
+{
+  "id": "bounce",
+  "sticker": "ball",
+  "kind": "action",
+  "description": "the beach ball bounces up and down on the spot, each bounce a little lower, then settles.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20052,
+    "width": 0.59766,
+    "height": 0.59896
+  },
+  "puppet": {
+    "rig": "anims/ball.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "root": {
+            "sx": 1.05,
+            "sy": 0.93
+          }
+        }
+      },
+      {
+        "hold": 0.36,
+        "ease": "in",
+        "bones": {
+          "root": {
+            "y": -90
+          }
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "out",
+        "bones": {
+          "root": {
+            "sx": 1.05,
+            "sy": 0.93
+          }
+        }
+      },
+      {
+        "hold": 0.28,
+        "ease": "in",
+        "bones": {
+          "root": {
+            "y": -50
+          }
+        }
+      },
+      {
+        "hold": 0.24,
+        "ease": "out",
+        "bones": {
+          "root": {
+            "sx": 1.03,
+            "sy": 0.96
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "ease": "in",
+        "bones": {
+          "root": {
+            "y": -20
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "root": {
+            "sx": 1.01,
+            "sy": 0.99
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

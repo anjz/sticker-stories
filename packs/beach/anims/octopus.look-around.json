@@ -1,0 +1,73 @@
+{
+  "id": "look-around",
+  "sticker": "octopus",
+  "description": "the octopus looks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.23047,
+    "width": 0.59896,
+    "height": 0.53906
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/octopus.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": -6
+          },
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "x": -14
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": -3
+          },
+          "face": {
+            "x": -14
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "armR": {
+            "r": 6
+          },
+          "body": {
+            "r": 3
+          },
+          "face": {
+            "x": 14
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "face": {
+            "x": 14
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}

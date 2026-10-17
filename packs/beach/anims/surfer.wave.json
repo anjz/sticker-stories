@@ -1,54 +1,174 @@
 {
   "id": "wave",
   "sticker": "surfer",
+  "kind": "action",
   "description": "the surfer boy waves and lifts his surfboard",
-  "sheet": "anims/surfer.wave.webp",
-  "frame": {
-    "width": 413,
-    "height": 525
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.10654,
-    "y": 0.04952,
-    "width": 0.81598,
-    "height": 0.9181
-  },
   "stickerBox": {
-    "x": 0.24609,
+    "x": 0.26302,
     "y": 0.13932,
-    "width": 0.50651,
+    "width": 0.47266,
     "height": 0.72005
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.7,
-    0.2,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 5,
     "shows": "the surfer boy holding his surfboard a little off the ground, waving, grinning"
+  },
+  "puppet": {
+    "rig": "anims/surfer.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "r": 40
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {},
+          "armR": {
+            "r": -5
+          },
+          "board": {
+            "y": -14
+          },
+          "head": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "armL": "wave",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": -10
+          },
+          "armR": {
+            "r": -6
+          },
+          "board": {
+            "y": -16
+          },
+          "head": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "armL": "wave",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "armR": {
+            "r": -6
+          },
+          "board": {
+            "y": -16
+          },
+          "head": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "armL": "wave",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -10
+          },
+          "armR": {
+            "r": -6
+          },
+          "board": {
+            "y": -16
+          },
+          "head": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "armL": "wave"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": 8
+          },
+          "armR": {
+            "r": -6
+          },
+          "board": {
+            "y": -16
+          },
+          "head": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "armL": "wave",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {},
+          "armR": {
+            "r": -3
+          },
+          "board": {
+            "y": -8
+          }
+        },
+        "slots": {
+          "armL": "wave",
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": 40
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
   }
 }

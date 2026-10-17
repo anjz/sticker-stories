@@ -2,53 +2,185 @@
   "id": "squawk",
   "sticker": "seagull",
   "description": "the seagull squawks loudly",
-  "sheet": "anims/seagull.squawk.webp",
-  "frame": {
-    "width": 482,
-    "height": 517
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.1971,
-    "y": 0.02901,
-    "width": 0.74274,
-    "height": 0.9323
-  },
   "stickerBox": {
     "x": 0.27474,
     "y": 0.20052,
     "width": 0.45052,
     "height": 0.59896
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.7,
-    0.2,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 3,
     "shows": "the seagull squawking, its beak wide open and its wings half open"
+  },
+  "puppet": {
+    "rig": "anims/seagull.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 1.04
+          },
+          "head": {
+            "r": -4,
+            "y": 3
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 1
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 14,
+            "y": -6
+          },
+          "wingL": {
+            "r": 14
+          },
+          "wingR": {
+            "r": -14
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sy": 0.99
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 16,
+            "y": -6
+          },
+          "wingL": {
+            "r": 16
+          },
+          "wingR": {
+            "r": -16
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 6,
+            "y": -6
+          },
+          "wingL": {
+            "r": 6
+          },
+          "wingR": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "beak": "closed",
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sy": 0.99
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 16,
+            "y": -6
+          },
+          "wingL": {
+            "r": 18
+          },
+          "wingR": {
+            "r": -18
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 0.99
+          },
+          "body": {
+            "r": 2
+          },
+          "head": {
+            "r": 16,
+            "y": -6
+          },
+          "wingL": {
+            "r": 18
+          },
+          "wingR": {
+            "r": -18
+          }
+        },
+        "slots": {
+          "beak": "open",
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "head": {
+            "r": 2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
   }
 }

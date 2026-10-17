@@ -1,0 +1,121 @@
+{
+  "id": "luff",
+  "sticker": "sailboat",
+  "kind": "action",
+  "description": "the wind drops and the sailboat's sails flap loose, then a puff of wind fills them again.",
+  "stickerBox": {
+    "x": 0.11719,
+    "y": 0.07943,
+    "width": 0.76563,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/sailboat.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "jib": {
+            "sx": 0.92
+          },
+          "main": {
+            "sx": 0.93
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "jib": {
+            "sx": 0.98
+          },
+          "main": {
+            "sx": 0.97
+          },
+          "pennant": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "jib": {
+            "sx": 0.91
+          },
+          "main": {
+            "sx": 0.92
+          },
+          "pennant": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "jib": {
+            "sx": 0.97
+          },
+          "main": {
+            "sx": 0.98
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "jib": {
+            "sx": 1.02
+          },
+          "main": {
+            "sx": 1.02
+          },
+          "pennant": {
+            "r": -5
+          },
+          "rock": {
+            "r": -3
+          }
+        },
+        "slots": {
+          "jib": "full",
+          "main": "full",
+          "pennant": "rippled"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "rock": {
+            "r": -2
+          }
+        },
+        "slots": {
+          "jib": "full",
+          "main": "full"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "jib": {
+            "sx": 0.98
+          },
+          "main": {
+            "sx": 0.98
+          },
+          "rock": {
+            "r": 1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "id": "flick",
+  "sticker": "fish",
+  "description": "the little fish curls its tail round and flicks it hard, swish, darting forward a little, then wriggles happily.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.27734,
+    "width": 0.5,
+    "height": 0.44401
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the fish curled round, its tail swept forward, about to flick"
+  },
+  "puppet": {
+    "rig": "anims/fish.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -4
+          },
+          "root": {
+            "x": -6
+          },
+          "tail": {
+            "r": 30
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -5
+          },
+          "finSide": {
+            "r": -10
+          },
+          "root": {
+            "x": -8
+          },
+          "tail": {
+            "r": 38
+          }
+        },
+        "slots": {
+          "eye": "wide"
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "finSide": {
+            "r": 14
+          },
+          "root": {
+            "x": 22
+          },
+          "tail": {
+            "r": -24
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "root": {
+            "x": 26
+          },
+          "tail": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "inOut",
+        "bones": {
+          "root": {
+            "x": 10
+          },
+          "tail": {
+            "r": -6
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "tail": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "id": "tip",
+  "sticker": "bucket",
+  "kind": "action",
+  "description": "the bucket tips over to one side, nearly falling, wobbles there, then rocks back upright.",
+  "stickerBox": {
+    "x": 0.25911,
+    "y": 0.20052,
+    "width": 0.48047,
+    "height": 0.59896
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the bucket tipped over to one side, nearly falling"
+  },
+  "puppet": {
+    "rig": "anims/bucket.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.55,
+        "ease": "out",
+        "bones": {
+          "spade": {
+            "r": -6
+          },
+          "tip": {
+            "r": -14
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "tip": {
+            "r": -12
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "spade": {
+            "r": -4
+          },
+          "tip": {
+            "r": -15
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "in",
+        "bones": {
+          "tip": {
+            "r": 1.5
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "tip": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

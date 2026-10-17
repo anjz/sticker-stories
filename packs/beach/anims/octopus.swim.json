@@ -3,46 +3,166 @@
   "sticker": "octopus",
   "kind": "move",
   "description": "the octopus swims along to the left, its arms pulsing together and streaming out behind, then stops.",
-  "sheet": "anims/octopus.swim.webp",
-  "frame": {
-    "width": 570,
-    "height": 465
-  },
-  "columns": 6,
-  "count": 12,
-  "rest": {
-    "x": 0.03509,
-    "y": 0.03441,
-    "width": 0.84561,
-    "height": 0.93118
-  },
   "stickerBox": {
     "x": 0.20052,
     "y": 0.23047,
     "width": 0.59896,
     "height": 0.53906
   },
-  "hold": [
-    0.1,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.09,
-    0.15,
-    0.16,
-    0.45
-  ],
   "loop": {
     "from": 1,
-    "to": 8
+    "to": 4
   },
   "facing": "left",
   "stride": 0.6,
   "on": [
     "pool"
-  ]
+  ],
+  "waterline": 0.35,
+  "puppet": {
+    "rig": "anims/octopus.rig.json",
+    "keys": [
+      {
+        "hold": 0.1
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": -14
+          },
+          "belly": {
+            "sx": 0.94,
+            "sy": 1.05
+          },
+          "lowL": {
+            "r": -14
+          },
+          "lowR": {
+            "r": 14
+          },
+          "root": {
+            "y": -6
+          },
+          "sideL": {
+            "r": -14
+          },
+          "sideR": {
+            "r": 14
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": -6
+          },
+          "armR": {
+            "r": 6
+          },
+          "lowL": {
+            "r": 6
+          },
+          "lowR": {
+            "r": -6
+          },
+          "root": {
+            "y": -3
+          },
+          "sideL": {
+            "r": 6
+          },
+          "sideR": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "armL": {
+            "r": 14
+          },
+          "armR": {
+            "r": -14
+          },
+          "belly": {
+            "sx": 0.94,
+            "sy": 1.05
+          },
+          "lowL": {
+            "r": -14
+          },
+          "lowR": {
+            "r": 14
+          },
+          "root": {
+            "y": -6
+          },
+          "sideL": {
+            "r": -14
+          },
+          "sideR": {
+            "r": 14
+          }
+        }
+      },
+      {
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": -6
+          },
+          "armR": {
+            "r": 6
+          },
+          "lowL": {
+            "r": 6
+          },
+          "lowR": {
+            "r": -6
+          },
+          "root": {
+            "y": -3
+          },
+          "sideL": {
+            "r": 6
+          },
+          "sideR": {
+            "r": -6
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "armL": {
+            "r": -2
+          },
+          "armR": {
+            "r": 2
+          },
+          "lowL": {
+            "r": 2
+          },
+          "lowR": {
+            "r": -2
+          },
+          "sideL": {
+            "r": 2
+          },
+          "sideR": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
 }

@@ -1,0 +1,2592 @@
+{
+  "sticker": "hermit-crab",
+  "called": "the hermit crab",
+  "skeleton": "hermit crab in its spiral shell, three-quarter view facing right: root on the ground under the shell's opening; shell (behind) on the root; body (the little crab: head and body in one) with belly squash, coming out of the shell's opening; face on the body with eyeL/eyeR (eye balls on the head) and mouth; clawL/clawR at the front of the body; legs at the sides (legL1-2, legR1-2). A tucked-in piece (only claw tips in the opening) and the empty shell swap in to hide.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a little orange hermit crab character living in a striped spiral shell. Draw this exact hermit crab as a cut-out paper puppet: its separate body parts laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. the empty shell: the striped pink-and-cream spiral shell alone, as in image 1, with nobody in it: its round opening on the right a dark, empty hollow.\n2. the shell with the hermit crab hidden deep inside it: the same shell as in image 1, only the tips of the crab's two little claws showing in the dark opening.\n3. the crab's body: the little round orange body and head, facing the viewer as in image 1, with a completely blank face — no eyes, no mouth — keep the rosy cheeks; without eyes, claws or legs; drawn whole, its top (normally under the shell's rim) a full rounded edge.\n4. one claw: the claw on the left of image 1 with its short arm, its pincers closed, the arm's end rounded.\n5. one walking leg: a little slim, curved, jointed orange leg with a pointed tip, its top end rounded.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end (where it tucks under the body or another part) is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "face",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a little orange hermit crab character living in a striped spiral shell; image 2 shows the same hermit crab cut into puppet parts, with a blank face. Draw the hermit crab's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the hermit crab in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. one of the hermit crab's eyes as it is in image 1: only the round eye ball — the white eye with its big dark pupil and white sparkle, in its thin orange rim — the ball alone, with NO stalk or head below it, its bottom edge a full round curve like the rest of the ball. Every eye below is this same ball, alone.\n2. the same ball with the eye wide open and surprised: the pupil smaller, the white bigger, with its sparkle.\n3. the same ball with the eye gently closed in sleep: an orange lid shut over it, a soft downward-curving line with a few lashes.\n4. the same ball with the eye closed in a happy smile: an orange lid, an upward-curving arc.\n5. the same ball with the eye sad: looking down, its orange upper lid drooping, tilted towards the middle.\n6. the same ball with the eye squeezed shut, crying: an orange lid shut tight in a creased, downward-curving line.\n7. the mouth as it is in image 1: a small happy smile line.\n8. the mouth wide open in a big happy laugh, the inside pink.\n9. the mouth open in a small round 'o'.\n10. the mouth in a small sad frown.\n11. the mouth open in a wobbly crying wail, its corners turned down, the inside pink.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "shell": {
+      "sheet": "parts",
+      "at": [
+        393,
+        332
+      ]
+    },
+    "tucked": {
+      "sheet": "parts",
+      "at": [
+        1146,
+        331
+      ]
+    },
+    "body": {
+      "sheet": "parts",
+      "at": [
+        373,
+        819
+      ]
+    },
+    "claw": {
+      "sheet": "parts",
+      "at": [
+        935,
+        833
+      ],
+      "fadeTop": 0.22
+    },
+    "leg": {
+      "sheet": "parts",
+      "at": [
+        1331,
+        835
+      ]
+    },
+    "eye": {
+      "sheet": "face",
+      "at": [
+        129,
+        313
+      ]
+    },
+    "eyeWide": {
+      "sheet": "face",
+      "at": [
+        384,
+        313
+      ]
+    },
+    "eyeClosed": {
+      "sheet": "face",
+      "at": [
+        639,
+        312
+      ]
+    },
+    "eyeHappy": {
+      "sheet": "face",
+      "at": [
+        894,
+        313
+      ]
+    },
+    "eyeSad": {
+      "sheet": "face",
+      "at": [
+        1148,
+        313
+      ]
+    },
+    "eyeCry": {
+      "sheet": "face",
+      "at": [
+        1403,
+        312
+      ]
+    },
+    "mouth": {
+      "sheet": "face",
+      "at": [
+        187,
+        678
+      ]
+    },
+    "mouthLaugh": {
+      "sheet": "face",
+      "at": [
+        489,
+        684
+      ]
+    },
+    "mouthO": {
+      "sheet": "face",
+      "at": [
+        763,
+        684
+      ]
+    },
+    "mouthSad": {
+      "sheet": "face",
+      "at": [
+        1017,
+        680
+      ]
+    },
+    "mouthCry": {
+      "sheet": "face",
+      "at": [
+        1335,
+        693
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 448,
+      "y": 498
+    },
+    {
+      "id": "shell",
+      "parent": "root",
+      "x": 372,
+      "y": 476
+    },
+    {
+      "id": "body",
+      "parent": "root",
+      "x": 450,
+      "y": 466
+    },
+    {
+      "id": "belly",
+      "parent": "body",
+      "x": 450,
+      "y": 466
+    },
+    {
+      "id": "legL2",
+      "parent": "body",
+      "x": 392,
+      "y": 462
+    },
+    {
+      "id": "legR2",
+      "parent": "body",
+      "x": 496,
+      "y": 446
+    },
+    {
+      "id": "legL1",
+      "parent": "body",
+      "x": 388,
+      "y": 452
+    },
+    {
+      "id": "legR1",
+      "parent": "body",
+      "x": 500,
+      "y": 432
+    },
+    {
+      "id": "clawL",
+      "parent": "body",
+      "x": 393,
+      "y": 434
+    },
+    {
+      "id": "clawR",
+      "parent": "body",
+      "x": 486,
+      "y": 438
+    },
+    {
+      "id": "face",
+      "parent": "body",
+      "x": 465,
+      "y": 395
+    },
+    {
+      "id": "eyeL",
+      "parent": "face",
+      "x": 439,
+      "y": 382
+    },
+    {
+      "id": "eyeR",
+      "parent": "face",
+      "x": 491,
+      "y": 380
+    },
+    {
+      "id": "mouth",
+      "parent": "face",
+      "x": 470,
+      "y": 413
+    }
+  ],
+  "slots": [
+    {
+      "id": "shell",
+      "bone": "shell",
+      "default": "shell",
+      "attachments": {
+        "shell": {
+          "part": "shell",
+          "x": 367,
+          "y": 371,
+          "scale": 0.418,
+          "scaleY": 0.9
+        },
+        "tucked": {
+          "part": "tucked",
+          "x": 367,
+          "y": 371,
+          "scale": 0.418,
+          "scaleY": 0.9
+        }
+      }
+    },
+    {
+      "id": "legL2",
+      "bone": "legL2",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 367.6,
+          "y": 484.1,
+          "scale": 0.298,
+          "rotate": 74.4,
+          "shade": 0.18
+        }
+      }
+    },
+    {
+      "id": "legR2",
+      "bone": "legR2",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 520.9,
+          "y": 472.2,
+          "scale": 0.327,
+          "rotate": -70.1,
+          "flip": true,
+          "shade": 0.18
+        }
+      }
+    },
+    {
+      "id": "legL1",
+      "bone": "legL1",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 356.5,
+          "y": 474.0,
+          "scale": 0.347,
+          "rotate": 81.6
+        }
+      }
+    },
+    {
+      "id": "legR1",
+      "bone": "legR1",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 527.6,
+          "y": 452.5,
+          "scale": 0.311,
+          "rotate": -80.0,
+          "flip": true
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "body",
+          "x": 447,
+          "y": 418,
+          "scale": 0.36,
+          "scaleY": 0.93
+        }
+      }
+    },
+    {
+      "id": "clawL",
+      "bone": "clawL",
+      "default": "claw",
+      "attachments": {
+        "claw": {
+          "part": "claw",
+          "x": 420,
+          "y": 460,
+          "scale": 0.29
+        }
+      }
+    },
+    {
+      "id": "clawR",
+      "bone": "clawR",
+      "default": "claw",
+      "attachments": {
+        "claw": {
+          "part": "claw",
+          "x": 512,
+          "y": 463,
+          "scale": 0.27
+        }
+      }
+    },
+    {
+      "id": "eyeL",
+      "bone": "eyeL",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 439,
+          "y": 382,
+          "scale": 0.2
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 439,
+          "y": 382,
+          "scale": 0.2
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 439,
+          "y": 382,
+          "scale": 0.2
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 439,
+          "y": 382,
+          "scale": 0.2
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 439,
+          "y": 382,
+          "scale": 0.2,
+          "flip": true
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 439,
+          "y": 382,
+          "scale": 0.2
+        }
+      }
+    },
+    {
+      "id": "eyeR",
+      "bone": "eyeR",
+      "default": "calm",
+      "attachments": {
+        "calm": {
+          "part": "eye",
+          "x": 491,
+          "y": 380,
+          "scale": 0.188
+        },
+        "wide": {
+          "part": "eyeWide",
+          "x": 491,
+          "y": 380,
+          "scale": 0.188
+        },
+        "closed": {
+          "part": "eyeClosed",
+          "x": 491,
+          "y": 380,
+          "scale": 0.188
+        },
+        "happy": {
+          "part": "eyeHappy",
+          "x": 491,
+          "y": 380,
+          "scale": 0.188
+        },
+        "sad": {
+          "part": "eyeSad",
+          "x": 491,
+          "y": 380,
+          "scale": 0.188
+        },
+        "cry": {
+          "part": "eyeCry",
+          "x": 491,
+          "y": 380,
+          "scale": 0.188
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "bone": "mouth",
+      "default": "smile",
+      "attachments": {
+        "smile": {
+          "part": "mouth",
+          "x": 470,
+          "y": 413,
+          "scale": 0.28
+        },
+        "open": {
+          "part": "mouthLaugh",
+          "x": 470,
+          "y": 418,
+          "scale": 0.22
+        },
+        "o": {
+          "part": "mouthO",
+          "x": 470,
+          "y": 416,
+          "scale": 0.22
+        },
+        "sad": {
+          "part": "mouthSad",
+          "x": 470,
+          "y": 416,
+          "scale": 0.21
+        },
+        "cry": {
+          "part": "mouthCry",
+          "x": 470,
+          "y": 417,
+          "scale": 0.2
+        }
+      }
+    }
+  ],
+  "faces": {
+    "happy": {
+      "eyeL": "happy",
+      "eyeR": "happy",
+      "mouth": "open"
+    },
+    "sad": {
+      "eyeL": "sad",
+      "eyeR": "sad",
+      "mouth": "sad"
+    },
+    "sleeping": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    },
+    "surprised": {
+      "eyeL": "wide",
+      "eyeR": "wide",
+      "mouth": "o"
+    }
+  },
+  "idle": {
+    "breathe": "belly",
+    "blink": {
+      "eyeL": "closed",
+      "eyeR": "closed"
+    }
+  },
+  "animations": [
+    {
+      "id": "hide",
+      "kind": "action",
+      "description": "the hermit crab hides inside its shell, then peeks out",
+      "pause": {
+        "frame": 4,
+        "shows": "only the spiral shell, the hermit crab hidden right inside it, the shell's opening dark"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 0.96
+            },
+            "clawL": {
+              "r": 10
+            },
+            "clawR": {
+              "r": 10
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.25,
+          "ease": "in",
+          "bones": {
+            "body": {
+              "x": -12,
+              "y": -42,
+              "sx": 0.55,
+              "sy": 0.55
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "x": -12,
+              "y": -42,
+              "sx": 0.55,
+              "sy": 0.55
+            },
+            "shell": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "body": "none",
+            "clawL": "none",
+            "clawR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "mouth": "none",
+            "legL1": "none",
+            "legL2": "none",
+            "legR1": "none",
+            "legR2": "none",
+            "shell": "tucked"
+          }
+        },
+        {
+          "hold": 1.0,
+          "slots": {
+            "body": "none",
+            "clawL": "none",
+            "clawR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "mouth": "none",
+            "legL1": "none",
+            "legL2": "none",
+            "legR1": "none",
+            "legR2": "none"
+          }
+        },
+        {
+          "hold": 0.4,
+          "slots": {
+            "body": "none",
+            "clawL": "none",
+            "clawR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "mouth": "none",
+            "legL1": "none",
+            "legL2": "none",
+            "legR1": "none",
+            "legR2": "none",
+            "shell": "tucked"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "body": {
+              "x": -6,
+              "y": -20,
+              "sx": 0.75,
+              "sy": 0.75
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "body": {
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "scuttle",
+      "kind": "move",
+      "description": "the hermit crab scuttles along to the right on its little legs, carrying its shell, then stops.",
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "facing": "right",
+      "stride": 0.4,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.13,
+          "bones": {
+            "legL1": {
+              "r": 8,
+              "y": -6
+            },
+            "legR2": {
+              "r": -8,
+              "y": -6
+            },
+            "body": {
+              "y": -3
+            },
+            "shell": {
+              "r": 1.5,
+              "y": -3
+            },
+            "clawL": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.13,
+          "bones": {
+            "body": {
+              "y": 0
+            },
+            "shell": {
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.13,
+          "bones": {
+            "legL2": {
+              "r": 8,
+              "y": -6
+            },
+            "legR1": {
+              "r": -8,
+              "y": -6
+            },
+            "body": {
+              "y": -3
+            },
+            "shell": {
+              "r": -1.5,
+              "y": -3
+            },
+            "clawR": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.13,
+          "bones": {
+            "body": {
+              "y": 0
+            },
+            "shell": {
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "belly": {
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "peek",
+      "kind": "action",
+      "description": "the hermit crab tucks itself away in its shell, then peeks out with just its eyes, looking this way and that, and comes out smiling.",
+      "pause": {
+        "frame": 4,
+        "shows": "only the hermit crab's eyes peeking out of the dark opening of its shell"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.25,
+          "ease": "in",
+          "bones": {
+            "body": {
+              "x": -12,
+              "y": -42,
+              "sx": 0.55,
+              "sy": 0.55
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "slots": {
+            "body": "none",
+            "clawL": "none",
+            "clawR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "mouth": "none",
+            "legL1": "none",
+            "legL2": "none",
+            "legR1": "none",
+            "legR2": "none",
+            "shell": "tucked"
+          }
+        },
+        {
+          "hold": 0.4,
+          "slots": {
+            "body": "none",
+            "clawL": "none",
+            "clawR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "mouth": "none",
+            "legL1": "none",
+            "legL2": "none",
+            "legR1": "none",
+            "legR2": "none"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "body": {
+              "y": 6
+            },
+            "face": {
+              "x": -6
+            }
+          },
+          "slots": {
+            "body": "none",
+            "clawL": "none",
+            "clawR": "none",
+            "mouth": "none",
+            "legL1": "none",
+            "legL2": "none",
+            "legR1": "none",
+            "legR2": "none",
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "body": {
+              "y": 6
+            },
+            "face": {
+              "x": 6
+            }
+          },
+          "slots": {
+            "body": "none",
+            "clawL": "none",
+            "clawR": "none",
+            "mouth": "none",
+            "legL1": "none",
+            "legL2": "none",
+            "legR1": "none",
+            "legR2": "none",
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "body": {
+              "y": 6
+            }
+          },
+          "slots": {
+            "body": "none",
+            "clawL": "none",
+            "clawR": "none",
+            "mouth": "none",
+            "legL1": "none",
+            "legL2": "none",
+            "legR1": "none",
+            "legR2": "none"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "body": {
+              "x": -6,
+              "y": -20,
+              "sx": 0.75,
+              "sy": 0.75
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shell-wobble",
+      "kind": "action",
+      "description": "the hermit crab wiggles, its shell wobbling from side to side on its back, and it giggles.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "shell": {
+              "r": -5
+            },
+            "body": {
+              "x": -2,
+              "y": -2
+            },
+            "belly": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "shell": {
+              "r": 5
+            },
+            "body": {
+              "x": 2,
+              "y": -2
+            },
+            "belly": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "shell": {
+              "r": -5
+            },
+            "body": {
+              "x": -2,
+              "y": -2
+            },
+            "belly": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "shell": {
+              "r": 5
+            },
+            "body": {
+              "x": 2,
+              "y": -2
+            },
+            "belly": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "shell": {
+              "r": -5
+            },
+            "body": {
+              "x": -2,
+              "y": -2
+            },
+            "belly": {
+              "sy": 1.02
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "kind": "action",
+      "description": "the hermit crab waves hello with one little claw.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "clawR": {
+              "r": -55,
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "clawR": {
+              "r": -40,
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "clawR": {
+              "r": -60,
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "clawR": {
+              "r": -40,
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "clawR": {
+              "r": -55,
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "look-around",
+      "kind": "action",
+      "idle": true,
+      "description": "the hermit crab looks one way, then the other, then back.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "face": {
+              "x": -7
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "face": {
+              "x": -7
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "face": {
+              "x": 6
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "face": {
+              "x": 6
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "kind": "action",
+      "description": "the hermit crab crouches and gives a happy hop, shell and all, landing with a little squash.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "root": {
+              "y": 6
+            },
+            "belly": {
+              "sx": 1.05,
+              "sy": 0.93
+            },
+            "shell": {
+              "y": 3
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -55
+            },
+            "clawL": {
+              "r": -14
+            },
+            "clawR": {
+              "r": -14
+            },
+            "legL1": {
+              "r": 8,
+              "y": -6
+            },
+            "legR2": {
+              "r": -8,
+              "y": -6
+            },
+            "legL2": {
+              "r": 8,
+              "y": -6
+            },
+            "legR1": {
+              "r": -8,
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": -58
+            },
+            "clawL": {
+              "r": -14
+            },
+            "clawR": {
+              "r": -14
+            },
+            "legL1": {
+              "r": 8,
+              "y": -6
+            },
+            "legR2": {
+              "r": -8,
+              "y": -6
+            },
+            "legL2": {
+              "r": 8,
+              "y": -6
+            },
+            "legR1": {
+              "r": -8,
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "root": {
+              "y": 3
+            },
+            "belly": {
+              "sx": 1.06,
+              "sy": 0.92
+            },
+            "shell": {
+              "y": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "laugh",
+      "kind": "action",
+      "description": "the hermit crab laughs and laughs, bouncing with giggles.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "body": {
+              "y": -4,
+              "r": -2
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "shell": {
+              "r": -1.5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "body": {
+              "y": 1
+            },
+            "belly": {
+              "sy": 0.96
+            },
+            "shell": {
+              "r": 0.5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "body": {
+              "y": -4,
+              "r": -2
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "shell": {
+              "r": -1.5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "body": {
+              "y": 1
+            },
+            "belly": {
+              "sy": 0.96
+            },
+            "shell": {
+              "r": 0.5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "body": {
+              "y": -4,
+              "r": -2
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "shell": {
+              "r": -1.5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "body": {
+              "y": 1
+            },
+            "belly": {
+              "sy": 0.96
+            },
+            "shell": {
+              "r": 0.5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "body": {
+              "y": -4,
+              "r": -2
+            },
+            "belly": {
+              "sy": 1.03
+            },
+            "shell": {
+              "r": -1.5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "body": {
+              "y": 1
+            },
+            "belly": {
+              "sy": 0.96
+            },
+            "shell": {
+              "r": 0.5
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "kind": "action",
+      "description": "the hermit crab talks, its mouth moving, its head bobbing a little.",
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": -2,
+              "r": -1
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": -2,
+              "r": -1
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": -2,
+              "r": -1
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": -2,
+              "r": -1
+            }
+          },
+          "slots": {
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": -2,
+              "r": -1
+            }
+          },
+          "slots": {
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.14,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shiver",
+      "kind": "action",
+      "description": "the hermit crab shivers and trembles, cold or scared, pulling in close to its shell.",
+      "keys": [
+        {
+          "hold": 0.1,
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "body": {
+              "x": -8,
+              "y": -4
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "body": {
+              "x": -8,
+              "y": -4
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "body": {
+              "x": -8,
+              "y": -4
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "body": {
+              "x": -8,
+              "y": -4
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "body": {
+              "x": -8,
+              "y": -4
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "body": {
+              "x": -8,
+              "y": -4
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "body": {
+              "x": -8,
+              "y": -4
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "body": {
+              "x": -8,
+              "y": -4
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "body": {
+              "x": -8,
+              "y": -4
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "body": {
+              "x": -8,
+              "y": -4
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "body": {
+              "x": -8,
+              "y": -4
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "body": {
+              "x": -8,
+              "y": -4
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": -3
+            },
+            "body": {
+              "x": -8,
+              "y": -4
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.06,
+          "ease": "linear",
+          "bones": {
+            "root": {
+              "x": 3
+            },
+            "body": {
+              "x": -8,
+              "y": -4
+            },
+            "belly": {
+              "sx": 0.97
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    },
+    {
+      "id": "cry",
+      "kind": "action",
+      "description": "the hermit crab cries, head down, its little body shaking with sobs.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "y": 4
+            },
+            "face": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 1.02
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": 4
+            },
+            "face": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": 4
+            },
+            "face": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": 4
+            },
+            "face": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": 4
+            },
+            "face": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": 4
+            },
+            "face": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": 4
+            },
+            "face": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": 4
+            },
+            "face": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 1.04
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": 4
+            },
+            "face": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 0.98
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "cry",
+            "eyeR": "cry",
+            "mouth": "cry"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "y": 4
+            },
+            "face": {
+              "y": 3
+            },
+            "belly": {
+              "sy": 1
+            },
+            "clawL": {
+              "r": 8
+            },
+            "clawR": {
+              "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "sad",
+            "eyeR": "sad",
+            "mouth": "sad"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "kind": "action",
+      "description": "the hermit crab gives a big yawn, snuggles back into its shell and falls asleep, then wakes up, blinks and smiles.",
+      "pause": {
+        "frame": 4,
+        "shows": "the hermit crab fast asleep, snuggled into its shell, eyes shut"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            },
+            "body": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "belly": {
+              "sy": 1.05
+            },
+            "body": {
+              "y": -3
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "body": {
+              "x": -6,
+              "y": 2,
+              "sx": 0.94,
+              "sy": 0.92
+            },
+            "face": {
+              "y": 3
+            },
+            "clawL": {
+              "r": 6
+            },
+            "clawR": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "body": {
+              "x": -6,
+              "y": 2,
+              "sx": 0.94,
+              "sy": 0.92
+            },
+            "face": {
+              "y": 3
+            },
+            "clawL": {
+              "r": 6
+            },
+            "clawR": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.25,
+          "slots": {
+            "eyeL": "closed",
+            "eyeR": "closed"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "dance",
+      "kind": "action",
+      "description": "the hermit crab does a happy little dance, swaying its shell from side to side and waving its claws.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "root": {
+              "x": -8
+            },
+            "shell": {
+              "r": -4
+            },
+            "body": {
+              "r": -4
+            },
+            "clawL": {
+              "r": -30
+            },
+            "legL1": {
+              "r": 8,
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "root": {
+              "x": 8,
+              "y": -5
+            },
+            "shell": {
+              "r": 4
+            },
+            "body": {
+              "r": 4
+            },
+            "clawR": {
+              "r": -40
+            },
+            "legR1": {
+              "r": -8,
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "root": {
+              "x": -8
+            },
+            "shell": {
+              "r": -4
+            },
+            "body": {
+              "r": -4
+            },
+            "clawL": {
+              "r": -30
+            },
+            "legL1": {
+              "r": 8,
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "root": {
+              "x": 8,
+              "y": -5
+            },
+            "shell": {
+              "r": 4
+            },
+            "body": {
+              "r": 4
+            },
+            "clawR": {
+              "r": -40
+            },
+            "legR1": {
+              "r": -8,
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "root": {
+              "x": -8
+            },
+            "shell": {
+              "r": -4
+            },
+            "body": {
+              "r": -4
+            },
+            "clawL": {
+              "r": -30
+            },
+            "legL1": {
+              "r": 8,
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.24,
+          "bones": {
+            "root": {
+              "x": 8,
+              "y": -5
+            },
+            "shell": {
+              "r": 4
+            },
+            "body": {
+              "r": 4
+            },
+            "clawR": {
+              "r": -40
+            },
+            "legR1": {
+              "r": -8,
+              "y": -6
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "kind": "action",
+      "description": "the hermit crab nods yes, twice.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": 5
+            },
+            "face": {
+              "y": 5
+            },
+            "belly": {
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": -2
+            },
+            "face": {
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": 5
+            },
+            "face": {
+              "y": 5
+            },
+            "belly": {
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "body": {
+              "y": -2
+            },
+            "face": {
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    }
+  ]
+}

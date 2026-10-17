@@ -1,0 +1,147 @@
+{
+  "id": "dance",
+  "sticker": "urchin",
+  "kind": "action",
+  "description": "the sea urchin does a happy little dance, rocking from side to side and wiggling its spines.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.26953,
+    "width": 0.5,
+    "height": 0.45964
+  },
+  "puppet": {
+    "rig": "anims/urchin.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "roll": {
+            "r": -8
+          },
+          "root": {
+            "x": -12
+          },
+          "spines": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "roll": {
+            "r": 8
+          },
+          "root": {
+            "x": 12,
+            "y": -8
+          },
+          "spines": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "roll": {
+            "r": -8
+          },
+          "root": {
+            "x": -12
+          },
+          "spines": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "roll": {
+            "r": 8
+          },
+          "root": {
+            "x": 12,
+            "y": -8
+          },
+          "spines": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "roll": {
+            "r": -8
+          },
+          "root": {
+            "x": -12
+          },
+          "spines": {
+            "r": -4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.24,
+        "bones": {
+          "roll": {
+            "r": 8
+          },
+          "root": {
+            "x": 12,
+            "y": -8
+          },
+          "spines": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,698 @@
+{
+  "sticker": "castle",
+  "called": "the sand castle",
+  "skeleton": "a sand castle: root at the middle of its base; base (the sandy mound in front, with its shells and starfish) on the root; towerL, towerR and keep (the tall middle tower with the doorway and the flagpole) each on a bone at its foot, behind the base; flag on a bone where it ties to the pole.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a sand castle. Draw it as a cut-out paper puppet: its separate pieces laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every piece at the size it has in image 1 (if they do not all fit, draw them all a little smaller, at the same scale as each other).\n\nDraw each piece on its own, spread out over the sheet with wide empty gaps between them, no piece touching or overlapping another:\n1. the tall middle tower alone, with its notched top, arched doorway and pressed-in shells, and the wooden flagpole standing in its top, WITHOUT the flag; drawn down to its foot, with a straight bottom edge.\n2. the left tower alone, whole, including the part hidden behind the middle tower in image 1, down to its foot, with a straight bottom edge.\n3. the right tower alone, whole, including the part hidden behind the middle tower in image 1, down to its foot, with a straight bottom edge.\n4. the sandy base alone: the low mound of golden sand at the castle's foot with its pebbles, shells and the red starfish, its top edge a soft wavy line, without any towers.\n5. the small red flag alone, as in image 1, its short left edge straight where it ties to the pole.\n6. the same red flag rippling the other way: its wave reversed, its tip curling down.\n\nEvery piece is drawn whole, including what is normally hidden behind another piece, with its edges clean and smooth. It is an object, not a character: no face, no eyes, no mouth. No text, no labels, no numbers, no outline around the pieces beyond the drawing's own line, no shadows, no water, no sand, no splashes or drops. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "flag": {
+      "sheet": "parts",
+      "at": [
+        385,
+        154
+      ]
+    },
+    "flag2": {
+      "sheet": "parts",
+      "at": [
+        1235,
+        156
+      ]
+    },
+    "keep": {
+      "sheet": "parts",
+      "at": [
+        784,
+        375
+      ]
+    },
+    "towerL": {
+      "sheet": "parts",
+      "at": [
+        253,
+        511
+      ]
+    },
+    "towerR": {
+      "sheet": "parts",
+      "at": [
+        1283,
+        510
+      ]
+    },
+    "base": {
+      "sheet": "parts",
+      "at": [
+        763,
+        877
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 380,
+      "y": 615
+    },
+    {
+      "id": "lean",
+      "parent": "root",
+      "x": 610,
+      "y": 610
+    },
+    {
+      "id": "base",
+      "parent": "lean",
+      "x": 380,
+      "y": 625
+    },
+    {
+      "id": "towerL",
+      "parent": "lean",
+      "x": 236,
+      "y": 535
+    },
+    {
+      "id": "towerR",
+      "parent": "lean",
+      "x": 534,
+      "y": 535
+    },
+    {
+      "id": "keep",
+      "parent": "lean",
+      "x": 385,
+      "y": 545
+    },
+    {
+      "id": "flag",
+      "parent": "keep",
+      "x": 383,
+      "y": 195
+    }
+  ],
+  "slots": [
+    {
+      "id": "flag",
+      "bone": "flag",
+      "default": "flag",
+      "attachments": {
+        "flag": {
+          "part": "flag",
+          "x": 455,
+          "y": 201,
+          "scale": 0.52,
+          "scaleY": 1.07,
+          "rotate": -2.5
+        },
+        "flag2": {
+          "part": "flag2",
+          "x": 455,
+          "y": 201,
+          "scale": 0.52,
+          "scaleY": 1.07,
+          "rotate": -2.5
+        }
+      }
+    },
+    {
+      "id": "towerL",
+      "bone": "towerL",
+      "default": "towerL",
+      "attachments": {
+        "towerL": {
+          "part": "towerL",
+          "x": 236,
+          "y": 422,
+          "scale": 0.44,
+          "scaleY": 1.06
+        }
+      }
+    },
+    {
+      "id": "towerR",
+      "bone": "towerR",
+      "default": "towerR",
+      "attachments": {
+        "towerR": {
+          "part": "towerR",
+          "x": 534,
+          "y": 423,
+          "scale": 0.44,
+          "scaleY": 1.045
+        }
+      }
+    },
+    {
+      "id": "keep",
+      "bone": "keep",
+      "default": "keep",
+      "attachments": {
+        "keep": {
+          "part": "keep",
+          "x": 381,
+          "y": 343,
+          "scale": 0.5,
+          "scaleY": 1.18
+        }
+      }
+    },
+    {
+      "id": "base",
+      "bone": "base",
+      "default": "base",
+      "attachments": {
+        "base": {
+          "part": "base",
+          "x": 378,
+          "y": 566,
+          "scale": 0.45,
+          "scaleY": 1.3
+        }
+      }
+    }
+  ],
+  "animations": [
+    {
+      "id": "flag",
+      "kind": "action",
+      "description": "the flag on the sand castle flutters in the breeze",
+      "pause": {
+        "frame": 5,
+        "shows": "the sand castle with its little flag streaming out in the breeze"
+      },
+      "keys": [
+        {
+          "hold": 0.3
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "flag": {
+              "r": -6,
+              "sx": 0.9,
+              "sy": 1.06
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "flag": {
+              "r": 4,
+              "sx": 1.06,
+              "sy": 0.95
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "flag": {
+              "r": -5,
+              "sx": 0.92,
+              "sy": 1.05
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "flag": {
+              "r": 3,
+              "sx": 1.05,
+              "sy": 0.96
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "flag": {
+              "r": -2,
+              "sx": 1.1,
+              "sy": 0.95
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "flag": {
+              "r": 5,
+              "sx": 0.92,
+              "sy": 1.05
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "flag": {
+              "r": -4,
+              "sx": 1.04,
+              "sy": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "flag": {
+              "r": 2,
+              "sx": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.25
+        }
+      ]
+    },
+    {
+      "id": "build",
+      "kind": "move",
+      "description": "the sand castle builds itself up from the sand: the base, then the walls, the towers and the flag.",
+      "keys": [
+        {
+          "hold": 0.02,
+          "ease": "step"
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "base": {
+              "sy": 0.05,
+              "sx": 0.6
+            },
+            "keep": {
+              "sy": 0.02
+            },
+            "towerL": {
+              "sy": 0.02
+            },
+            "towerR": {
+              "sy": 0.02
+            }
+          },
+          "slots": {
+            "towerL": "none",
+            "towerR": "none",
+            "keep": "none",
+            "flag": "none"
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "keep": {
+              "sy": 0.02
+            },
+            "towerL": {
+              "sy": 0.02
+            },
+            "towerR": {
+              "sy": 0.02
+            }
+          },
+          "slots": {
+            "towerL": "none",
+            "towerR": "none",
+            "flag": "none"
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "keep": {
+              "sy": 1.04
+            },
+            "towerL": {
+              "sy": 0.02
+            },
+            "towerR": {
+              "sy": 0.02
+            },
+            "flag": {
+              "sx": 0.02
+            }
+          },
+          "slots": {
+            "flag": "none"
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "towerL": {
+              "sy": 1.04
+            },
+            "towerR": {
+              "sy": 1.04
+            },
+            "flag": {
+              "sx": 0.02
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "flag": {
+              "sx": 1.08,
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "flag": {
+              "r": 3,
+              "sx": 0.96
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wobble",
+      "kind": "action",
+      "description": "the sand castle wobbles a little, as if it might crumble, then holds firm.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "root": {
+              "r": 3
+            },
+            "flag": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "root": {
+              "r": -3
+            },
+            "flag": {
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.28,
+          "bones": {
+            "root": {
+              "r": 2
+            },
+            "flag": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "root": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.25
+        }
+      ]
+    },
+    {
+      "id": "bounce",
+      "kind": "action",
+      "description": "the sand castle gives a little hop and lands with a soft thump, its flag bouncing.",
+      "particles": [
+        {
+          "frame": 2,
+          "effect": "dust-puff",
+          "x": 0.5,
+          "y": 0.8,
+          "intensity": 0.35
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -30
+            },
+            "flag": {
+              "r": 5
+            }
+          }
+        },
+        {
+          "hold": 0.24,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "flag": {
+              "r": -6
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "flag": {
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "flag": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "shiver",
+      "kind": "action",
+      "description": "the sand castle trembles as a wave comes near, then holds firm.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.08,
+          "bones": {
+            "root": {
+              "x": -3
+            }
+          }
+        },
+        {
+          "hold": 0.08,
+          "bones": {
+            "root": {
+              "x": 3
+            }
+          }
+        },
+        {
+          "hold": 0.08,
+          "bones": {
+            "root": {
+              "x": -3
+            }
+          }
+        },
+        {
+          "hold": 0.08,
+          "bones": {
+            "root": {
+              "x": 3
+            }
+          }
+        },
+        {
+          "hold": 0.08,
+          "bones": {
+            "root": {
+              "x": -2
+            }
+          }
+        },
+        {
+          "hold": 0.08,
+          "bones": {
+            "root": {
+              "x": 2
+            }
+          }
+        },
+        {
+          "hold": 0.1,
+          "bones": {
+            "root": {
+              "x": -1
+            }
+          }
+        },
+        {
+          "hold": 0.25
+        }
+      ]
+    },
+    {
+      "id": "lean",
+      "kind": "action",
+      "description": "the sand castle leans over to one side, wobbles there, then settles back upright.",
+      "pause": {
+        "frame": 2,
+        "shows": "the sand castle leaning over to one side"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.55,
+          "ease": "out",
+          "bones": {
+            "lean": {
+              "r": 7
+            },
+            "flag": {
+              "r": -5
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "lean": {
+              "r": 6
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "lean": {
+              "r": 7.5
+            },
+            "flag": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "in",
+          "bones": {
+            "lean": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "lean": {
+              "r": 0.5
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "kind": "action",
+      "description": "the flag waves to and fro on its pole, as if waving hello.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "flag": {
+              "r": -14,
+              "sx": 0.9
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "flag": {
+              "r": 12,
+              "sx": 1.04
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "flag": {
+              "r": -12,
+              "sx": 0.92
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "flag": {
+              "r": 10,
+              "sx": 1.03
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "flag": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

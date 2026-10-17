@@ -1,0 +1,609 @@
+{
+  "sticker": "bottle",
+  "called": "the bottle",
+  "skeleton": "a glass bottle lying tilted, its neck up to the right: root under its lowest point; body at its middle; cork at the neck's mouth (pops along the neck); a thin rolled note behind the bottle slides out of the neck.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a message in a bottle. Draw it as a cut-out paper puppet: its separate pieces laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every piece at the size it has in image 1 (if they do not all fit, draw them all a little smaller, at the same scale as each other).\n\nDraw each piece on its own, spread out over the sheet with wide empty gaps between them, no piece touching or overlapping another:\n1. the green glass bottle as in image 1, with the rolled note inside it, but WITHOUT its cork: the neck open, its round mouth showing.\n2. the cork alone, whole: its top as in image 1 and its lower end, which goes into the neck, drawn too.\n3. a rolled paper note alone, rolled up tight into a thin scroll and tied round the middle with string, thin enough to slide out of the bottle's neck.\n\nEvery piece is drawn whole, including what is normally hidden behind another piece, with its edges clean and smooth. It is an object, not a character: no face, no eyes, no mouth. No text, no labels, no numbers, no outline around the pieces beyond the drawing's own line, no shadows, no water, no sand, no splashes or drops. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "bottle": {
+      "sheet": "parts",
+      "at": [
+        576,
+        513
+      ]
+    },
+    "cork": {
+      "sheet": "parts",
+      "at": [
+        1304,
+        272
+      ]
+    },
+    "note": {
+      "sheet": "parts",
+      "at": [
+        1224,
+        762
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 330,
+      "y": 522
+    },
+    {
+      "id": "tip",
+      "parent": "root",
+      "x": 222,
+      "y": 470
+    },
+    {
+      "id": "body",
+      "parent": "tip",
+      "x": 374,
+      "y": 393
+    },
+    {
+      "id": "cork",
+      "parent": "body",
+      "x": 519,
+      "y": 277
+    },
+    {
+      "id": "note",
+      "parent": "body",
+      "x": 505,
+      "y": 298
+    }
+  ],
+  "slots": [
+    {
+      "id": "note",
+      "bone": "note",
+      "default": "none",
+      "attachments": {
+        "note": {
+          "part": "note",
+          "x": 458,
+          "y": 345,
+          "scale": 0.24,
+          "rotate": -16
+        }
+      }
+    },
+    {
+      "id": "bottle",
+      "bone": "body",
+      "default": "bottle",
+      "attachments": {
+        "bottle": {
+          "part": "bottle",
+          "x": 374,
+          "y": 393,
+          "scale": 0.315,
+          "rotate": 1.5
+        }
+      }
+    },
+    {
+      "id": "cork",
+      "bone": "cork",
+      "default": "cork",
+      "attachments": {
+        "cork": {
+          "part": "cork",
+          "x": 519,
+          "y": 277,
+          "scale": 0.29
+        }
+      }
+    }
+  ],
+  "animations": [
+    {
+      "id": "pop",
+      "kind": "action",
+      "description": "the cork pops and the message peeks out of the bottle",
+      "pause": {
+        "frame": 5,
+        "shows": "the bottle with its cork popped up and the rolled note peeking out of its neck"
+      },
+      "keys": [
+        {
+          "hold": 0.35
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.14,
+          "bones": {
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.12,
+          "ease": "out",
+          "bones": {
+            "body": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "ease": "out",
+          "bones": {
+            "cork": {
+              "x": 55,
+              "y": -120,
+              "r": 40
+            },
+            "note": {
+              "x": 21.2,
+              "y": -21.2
+            }
+          },
+          "slots": {
+            "note": "note"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "cork": {
+              "x": 70,
+              "y": -140,
+              "r": 55
+            },
+            "note": {
+              "x": 55.1,
+              "y": -55.1
+            }
+          },
+          "slots": {
+            "note": "note"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "cork": {
+              "x": 74,
+              "y": -136,
+              "r": 60
+            },
+            "note": {
+              "x": 56.6,
+              "y": -56.6
+            }
+          },
+          "slots": {
+            "note": "note"
+          }
+        },
+        {
+          "hold": 0.4,
+          "ease": "in",
+          "bones": {
+            "cork": {
+              "x": 50,
+              "y": -110,
+              "r": 30
+            },
+            "note": {
+              "x": 7.1,
+              "y": -7.1
+            }
+          },
+          "slots": {
+            "note": "note"
+          }
+        },
+        {
+          "hold": 0.16,
+          "ease": "out",
+          "bones": {
+            "cork": {
+              "x": -2.1,
+              "y": 2.1
+            },
+            "body": {
+              "r": 1.5
+            }
+          }
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "body": {
+              "r": -1
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "bob",
+      "kind": "move",
+      "description": "the bottle bobs along to the right on the waves, then stops.",
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "facing": "right",
+      "stride": 0.35,
+      "on": [
+        "sea"
+      ],
+      "waterline": 0.35,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "body": {
+              "r": -5
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "root": {
+              "y": 7
+            },
+            "body": {
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "body": {
+              "r": 5
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "bones": {
+            "root": {
+              "y": -6
+            },
+            "body": {
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "root": {
+              "y": 4
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wobble",
+      "kind": "action",
+      "description": "the bottle wobbles from side to side, then settles.",
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "root": {
+              "r": 6
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "root": {
+              "r": -6
+            }
+          }
+        },
+        {
+          "hold": 0.28,
+          "bones": {
+            "root": {
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.26,
+          "bones": {
+            "root": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.25
+        }
+      ]
+    },
+    {
+      "id": "bounce",
+      "kind": "action",
+      "description": "the bottle hops up off the sand and lands with a little bump, twice.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -50
+            },
+            "body": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.26,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "body": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.26,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -30
+            },
+            "body": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.22,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "body": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "body": {
+              "r": -0.5
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "tip",
+      "kind": "action",
+      "description": "the bottle tips up on its bottom end until it nearly stands up, wobbles there, then rolls back down.",
+      "pause": {
+        "frame": 2,
+        "shows": "the bottle tipped up on its bottom end, nearly standing"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.6,
+          "ease": "out",
+          "bones": {
+            "tip": {
+              "r": -30
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "tip": {
+              "r": -27
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "tip": {
+              "r": -31
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "in",
+          "bones": {
+            "tip": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "tip": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "wiggle-cork",
+      "kind": "action",
+      "description": "the cork wiggles in the bottle's neck, lifts a little, and squeaks back in.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "cork": {
+              "r": 8
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "cork": {
+              "r": -8
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "cork": {
+              "r": 6
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "ease": "out",
+          "bones": {
+            "cork": {
+              "x": 11.3,
+              "y": -11.3,
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "cork": {
+              "x": 12.7,
+              "y": -12.7,
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.18,
+          "ease": "in",
+          "bones": {
+            "cork": {
+              "x": -1.4,
+              "y": 1.4
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "rock",
+      "kind": "action",
+      "description": "the bottle rocks gently back and forth.",
+      "idle": true,
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.55,
+          "bones": {
+            "root": {
+              "r": 3
+            }
+          }
+        },
+        {
+          "hold": 0.55,
+          "bones": {
+            "root": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "root": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
+    }
+  ]
+}

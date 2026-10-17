@@ -1,0 +1,64 @@
+{
+  "id": "wobble",
+  "sticker": "umbrella",
+  "kind": "action",
+  "description": "the beach umbrella wobbles on its pole, then settles.",
+  "stickerBox": {
+    "x": 0.08203,
+    "y": 0.07943,
+    "width": 0.83594,
+    "height": 0.83984
+  },
+  "puppet": {
+    "rig": "anims/umbrella.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "canopy": {
+            "r": -2
+          },
+          "root": {
+            "r": 4
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "canopy": {
+            "r": 2
+          },
+          "root": {
+            "r": -4
+          }
+        }
+      },
+      {
+        "hold": 0.28,
+        "bones": {
+          "canopy": {
+            "r": -1
+          },
+          "root": {
+            "r": 3
+          }
+        }
+      },
+      {
+        "hold": 0.26,
+        "bones": {
+          "root": {
+            "r": -1.5
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

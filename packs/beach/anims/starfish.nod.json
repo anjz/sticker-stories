@@ -1,0 +1,75 @@
+{
+  "id": "nod",
+  "sticker": "starfish",
+  "kind": "action",
+  "description": "the starfish nods yes, twice.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.20182,
+    "width": 0.59896,
+    "height": 0.59505
+  },
+  "puppet": {
+    "rig": "anims/starfish.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "face": {
+            "y": 8
+          },
+          "roll": {},
+          "top": {
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -3
+          },
+          "top": {
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "face": {
+            "y": 8
+          },
+          "roll": {},
+          "top": {
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "face": {
+            "y": -3
+          },
+          "top": {
+            "y": -2
+          }
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
+  }
+}

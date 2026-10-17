@@ -1,0 +1,796 @@
+{
+  "sticker": "sailboat",
+  "called": "the sailboat",
+  "skeleton": "a sailing boat seen from the side, bow to the left: root under the keel; hull on it (with the mast and boom); jib (the big sail on the left, to the bow) and main (the sail between the mast and the boom) on bones at the mast, behind it, each with a filled variant; pennant on a bone at the mast top.",
+  "sheets": [
+    {
+      "id": "parts",
+      "size": "1536x1024",
+      "prompt": "Image 1 is a sticker of a small sailing boat. Draw it as a cut-out paper puppet: its separate pieces laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every piece at the size it has in image 1 (if they do not all fit, draw them all a little smaller, at the same scale as each other).\n\nDraw each piece on its own, spread out over the sheet with wide empty gaps between them, no piece touching or overlapping another:\n1. the boat without any sails and without the pennant: the red wooden hull with its cream deck and benches, the tall wooden mast with its round knob on top, the wooden boom and the round knob at the bow.\n2. the big white sail on the left alone, as in image 1, from the mast top down to the bow.\n3. the same left sail filled with wind: its outer edge bellied out in a full, round curve.\n4. the smaller white sail on the right alone, as in image 1, between the mast and the boom.\n5. the same right sail filled with wind: its outer edge bellied out in a full, round curve.\n6. the small red pennant alone, as in image 1, its short left edge straight where it ties to the mast.\n7. the same red pennant streaming with its ripple the other way, its tip flicking down.\n\nEvery piece is drawn whole, including what is normally hidden behind another piece, with its edges clean and smooth. It is an object, not a character: no face, no eyes, no mouth. No text, no labels, no numbers, no outline around the pieces beyond the drawing's own line, no shadows, no water, no sand, no splashes or drops. Fully transparent background."
+    },
+    {
+      "id": "boat",
+      "size": "1024x1536",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a small sailing boat; image 2 shows its sails and pennant cut out as puppet pieces. Draw ONE piece on its own, the same drawing style, colours, texture and line as image 1, with exactly the proportions of image 1: the boat WITHOUT its sails and WITHOUT its pennant — the red wooden hull with its cream deck and benches, the round knob at the bow, the wooden boom, and the tall wooden mast with its round knob on top. The mast is as tall as in image 1: from the deck up to its knob it is about three times as tall as the hull is deep, reaching as high as the tops of the sails in image 1. Nothing else. It is an object, not a character: no face, no eyes, no mouth. No text, no labels, no shadows, no water. Fully transparent background."
+    }
+  ],
+  "parts": {
+    "jib": {
+      "sheet": "parts",
+      "at": [
+        203,
+        260
+      ]
+    },
+    "jibFull": {
+      "sheet": "parts",
+      "at": [
+        616,
+        267
+      ]
+    },
+    "main": {
+      "sheet": "parts",
+      "at": [
+        1022,
+        279
+      ]
+    },
+    "mainFull": {
+      "sheet": "parts",
+      "at": [
+        1357,
+        273
+      ]
+    },
+    "pennant": {
+      "sheet": "parts",
+      "at": [
+        1042,
+        742
+      ]
+    },
+    "rippled": {
+      "sheet": "parts",
+      "at": [
+        1367,
+        759
+      ]
+    },
+    "boat": {
+      "sheet": "boat",
+      "at": [
+        517,
+        747
+      ]
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 390,
+      "y": 685
+    },
+    {
+      "id": "rock",
+      "parent": "root",
+      "x": 390,
+      "y": 610
+    },
+    {
+      "id": "jib",
+      "parent": "rock",
+      "x": 389,
+      "y": 330
+    },
+    {
+      "id": "main",
+      "parent": "rock",
+      "x": 404,
+      "y": 330
+    },
+    {
+      "id": "pennant",
+      "parent": "rock",
+      "x": 396,
+      "y": 132
+    }
+  ],
+  "slots": [
+    {
+      "id": "pennant",
+      "bone": "pennant",
+      "default": "pennant",
+      "attachments": {
+        "pennant": {
+          "part": "pennant",
+          "x": 495,
+          "y": 138,
+          "scale": 0.76,
+          "scaleY": 1.1,
+          "rotate": 1.8
+        },
+        "rippled": {
+          "part": "rippled",
+          "x": 494,
+          "y": 155,
+          "scale": 0.76,
+          "scaleY": 1.1,
+          "rotate": 1.8
+        }
+      }
+    },
+    {
+      "id": "jib",
+      "bone": "jib",
+      "default": "jib",
+      "attachments": {
+        "jib": {
+          "part": "jib",
+          "x": 259.2,
+          "y": 336.1,
+          "scale": 0.8589,
+          "rotate": -3.5
+        },
+        "full": {
+          "part": "jibFull",
+          "x": 283.6,
+          "y": 349.9,
+          "scale": 0.932,
+          "rotate": 1.5
+        }
+      }
+    },
+    {
+      "id": "boat",
+      "bone": "rock",
+      "default": "boat",
+      "attachments": {
+        "boat": {
+          "part": "boat",
+          "x": 391,
+          "y": 380,
+          "scale": 0.545,
+          "scaleY": 0.87
+        }
+      }
+    },
+    {
+      "id": "main",
+      "bone": "main",
+      "default": "main",
+      "attachments": {
+        "main": {
+          "part": "main",
+          "x": 527.8,
+          "y": 337.1,
+          "scale": 0.825,
+          "scaleY": 1.131
+        },
+        "full": {
+          "part": "mainFull",
+          "x": 527.1,
+          "y": 338,
+          "scale": 0.852,
+          "scaleY": 1.113
+        }
+      }
+    }
+  ],
+  "animations": [
+    {
+      "id": "sails",
+      "kind": "action",
+      "description": "the wind fills the sailboat's sails and it rocks gently",
+      "pause": {
+        "frame": 4,
+        "shows": "the sailboat with both sails full of wind, its pennant streaming"
+      },
+      "keys": [
+        {
+          "hold": 0.3
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "jib": {
+              "sx": 0.94
+            },
+            "main": {
+              "sx": 0.94
+            },
+            "pennant": {
+              "r": 6
+            }
+          },
+          "slots": {
+            "pennant": "rippled"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "pennant": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "rock": {
+              "r": -3
+            },
+            "jib": {
+              "sx": 0.97
+            },
+            "main": {
+              "sx": 0.97
+            },
+            "pennant": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "jib": "full",
+            "main": "full",
+            "pennant": "rippled"
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "rock": {
+              "r": -4
+            },
+            "jib": {
+              "sx": 1.03
+            },
+            "main": {
+              "sx": 1.03
+            },
+            "pennant": {
+              "r": -6,
+              "sx": 1.05
+            }
+          },
+          "slots": {
+            "jib": "full",
+            "main": "full"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "rock": {
+              "r": -2
+            },
+            "pennant": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "jib": "full",
+            "main": "full",
+            "pennant": "rippled"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "rock": {
+              "r": 1
+            },
+            "pennant": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "jib": "full",
+            "main": "full"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "rock": {
+              "r": 1
+            },
+            "jib": {
+              "sx": 0.97
+            },
+            "main": {
+              "sx": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sail",
+      "kind": "move",
+      "description": "the sailboat sails along to the left with its sails full, bobbing gently over the waves, then slows and stops.",
+      "loop": {
+        "from": 1,
+        "to": 4
+      },
+      "facing": "left",
+      "stride": 0.6,
+      "on": [
+        "sea"
+      ],
+      "waterline": 0.12,
+      "keys": [
+        {
+          "hold": 0.1
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "rock": {
+              "r": -2
+            },
+            "pennant": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "jib": "full",
+            "main": "full"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "rock": {
+              "y": 5
+            },
+            "pennant": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "jib": "full",
+            "main": "full",
+            "pennant": "rippled"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "rock": {
+              "r": 2
+            },
+            "pennant": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "jib": "full",
+            "main": "full"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "rock": {
+              "y": -4
+            },
+            "pennant": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "jib": "full",
+            "main": "full",
+            "pennant": "rippled"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "rock": {
+              "r": -1,
+              "y": 2
+            }
+          },
+          "slots": {
+            "jib": "full",
+            "main": "full"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "rock": {
+              "r": 1
+            },
+            "jib": {
+              "sx": 0.97
+            },
+            "main": {
+              "sx": 0.97
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "luff",
+      "kind": "action",
+      "description": "the wind drops and the sailboat's sails flap loose, then a puff of wind fills them again.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "jib": {
+              "sx": 0.92
+            },
+            "main": {
+              "sx": 0.93
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "jib": {
+              "sx": 0.98
+            },
+            "main": {
+              "sx": 0.97
+            },
+            "pennant": {
+              "r": 4
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "jib": {
+              "sx": 0.91
+            },
+            "main": {
+              "sx": 0.92
+            },
+            "pennant": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "jib": {
+              "sx": 0.97
+            },
+            "main": {
+              "sx": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "rock": {
+              "r": -3
+            },
+            "jib": {
+              "sx": 1.02
+            },
+            "main": {
+              "sx": 1.02
+            },
+            "pennant": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "jib": "full",
+            "main": "full",
+            "pennant": "rippled"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "rock": {
+              "r": -2
+            }
+          },
+          "slots": {
+            "jib": "full",
+            "main": "full"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "rock": {
+              "r": 1
+            },
+            "jib": {
+              "sx": 0.98
+            },
+            "main": {
+              "sx": 0.98
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "flutter",
+      "kind": "action",
+      "description": "the little red pennant at the top of the mast flutters in the breeze.",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "pennant": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "pennant": "rippled"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "pennant": {
+              "r": 4,
+              "sx": 1.04
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "pennant": {
+              "r": -5
+            }
+          },
+          "slots": {
+            "pennant": "rippled"
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "pennant": {
+              "r": 4,
+              "sx": 1.04
+            }
+          }
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "pennant": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "pennant": "rippled"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "rock",
+      "kind": "action",
+      "description": "the sailboat rocks gently on the waves.",
+      "idle": true,
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "rock": {
+              "r": 3,
+              "y": 3
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "rock": {
+              "r": -3,
+              "y": -2
+            }
+          }
+        },
+        {
+          "hold": 0.55,
+          "bones": {
+            "rock": {
+              "r": 2,
+              "y": 2
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
+    },
+    {
+      "id": "bounce",
+      "kind": "action",
+      "description": "the sailboat rides over a big wave: its bow lifts, then dips, and it settles.",
+      "particles": [
+        {
+          "frame": 2,
+          "effect": "spray",
+          "x": 0.2,
+          "y": 0.72,
+          "intensity": 0.35
+        }
+      ],
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.4,
+          "ease": "out",
+          "bones": {
+            "rock": {
+              "r": 8,
+              "y": -14
+            },
+            "pennant": {
+              "r": -4
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "rock": {
+              "r": -6,
+              "y": 6
+            },
+            "pennant": {
+              "r": 5
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "rock": {
+              "r": 3,
+              "y": -3
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "rock": {
+              "r": -1,
+              "y": 1
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "tip",
+      "kind": "action",
+      "description": "a gust of wind tips the sailboat over to one side; it leans there, then rights itself.",
+      "pause": {
+        "frame": 2,
+        "shows": "the sailboat leaning over to one side in a gust"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.6,
+          "ease": "out",
+          "bones": {
+            "rock": {
+              "r": 10
+            },
+            "jib": {
+              "sx": 1.02
+            },
+            "main": {
+              "sx": 1.02
+            },
+            "pennant": {
+              "r": -6
+            }
+          },
+          "slots": {
+            "jib": "full",
+            "main": "full"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "rock": {
+              "r": 9
+            },
+            "pennant": {
+              "r": -4
+            }
+          },
+          "slots": {
+            "jib": "full",
+            "main": "full",
+            "pennant": "rippled"
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "rock": {
+              "r": 10.5
+            },
+            "pennant": {
+              "r": -6
+            }
+          },
+          "slots": {
+            "jib": "full",
+            "main": "full"
+          }
+        },
+        {
+          "hold": 0.45,
+          "ease": "in",
+          "bones": {
+            "rock": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "rock": {
+              "r": 1
+            }
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    }
+  ]
+}

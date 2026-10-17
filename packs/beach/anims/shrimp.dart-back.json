@@ -1,0 +1,146 @@
+{
+  "id": "dart-back",
+  "sticker": "shrimp",
+  "description": "the shrimp gives a big flick of its tail under itself and shoots backwards, whoosh, then settles and peeks out happily.",
+  "stickerBox": {
+    "x": 0.25651,
+    "y": 0.25,
+    "width": 0.48568,
+    "height": 0.5
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the shrimp shot back, its tail tucked under it, feelers streaming"
+  },
+  "puppet": {
+    "rig": "anims/shrimp.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "fan": {
+            "r": -9
+          },
+          "tail": {
+            "r": -3
+          },
+          "tail2": {
+            "r": -6.6
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "ease": "out",
+        "bones": {
+          "antennaL": {
+            "r": -10
+          },
+          "antennaR": {
+            "r": 8
+          },
+          "body": {
+            "r": -6
+          },
+          "fan": {
+            "r": 36
+          },
+          "root": {
+            "x": 40,
+            "y": -6
+          },
+          "tail": {
+            "r": 12
+          },
+          "tail2": {
+            "r": 26.4
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "antennaL": {
+            "r": -8
+          },
+          "antennaR": {
+            "r": 6.4
+          },
+          "body": {
+            "r": -4
+          },
+          "fan": {
+            "r": 27
+          },
+          "root": {
+            "x": 56,
+            "y": -8
+          },
+          "tail": {
+            "r": 9
+          },
+          "tail2": {
+            "r": 19.8
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.5,
+        "ease": "inOut",
+        "bones": {
+          "antennaL": {
+            "r": 4
+          },
+          "antennaR": {
+            "r": -3.2
+          },
+          "fan": {
+            "r": 6
+          },
+          "root": {
+            "x": 30
+          },
+          "tail": {
+            "r": 2
+          },
+          "tail2": {
+            "r": 4.4
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "inOut",
+        "bones": {
+          "antennaL": {
+            "r": -2
+          },
+          "antennaR": {
+            "r": 1.6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

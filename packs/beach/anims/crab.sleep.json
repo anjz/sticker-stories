@@ -1,0 +1,204 @@
+{
+  "id": "sleep",
+  "sticker": "crab",
+  "kind": "action",
+  "description": "the crab gives a big yawn, lowers its claws and eye stalks and falls asleep, then wakes up, blinks and smiles.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.21745,
+    "width": 0.59896,
+    "height": 0.5651
+  },
+  "pause": {
+    "frame": 4,
+    "shows": "the crab fast asleep, eyes shut, eye stalks and claws drooping"
+  },
+  "puppet": {
+    "rig": "anims/crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "clawL": {
+            "r": -14
+          },
+          "clawR": {
+            "r": 14
+          },
+          "eyeL": {
+            "sy": 0.87
+          },
+          "eyeR": {
+            "sy": 0.87
+          },
+          "stalkL": {
+            "sy": 1.15
+          },
+          "stalkR": {
+            "sy": 1.15
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sy": 1.05
+          },
+          "clawL": {
+            "r": -14
+          },
+          "clawR": {
+            "r": 14
+          },
+          "eyeL": {
+            "sy": 0.87
+          },
+          "eyeR": {
+            "sy": 0.87
+          },
+          "stalkL": {
+            "sy": 1.15
+          },
+          "stalkR": {
+            "sy": 1.15
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed",
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "clawL": {
+            "r": -18,
+            "y": 12
+          },
+          "clawR": {
+            "r": 18,
+            "y": 12
+          },
+          "eyeL": {
+            "r": 14,
+            "sy": 1.25
+          },
+          "eyeR": {
+            "r": -14,
+            "sy": 1.25
+          },
+          "root": {
+            "y": 5
+          },
+          "stalkL": {
+            "r": -14,
+            "sy": 0.8
+          },
+          "stalkR": {
+            "r": 14,
+            "sy": 0.8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "belly": {
+            "sx": 1.02,
+            "sy": 0.97
+          },
+          "clawL": {
+            "r": -18,
+            "y": 12
+          },
+          "clawR": {
+            "r": 18,
+            "y": 12
+          },
+          "eyeL": {
+            "r": 14,
+            "sy": 1.25
+          },
+          "eyeR": {
+            "r": -14,
+            "sy": 1.25
+          },
+          "root": {
+            "y": 5
+          },
+          "stalkL": {
+            "r": -14,
+            "sy": 0.8
+          },
+          "stalkR": {
+            "r": 14,
+            "sy": 0.8
+          }
+        },
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "eyeL": {
+            "sy": 0.926
+          },
+          "eyeR": {
+            "sy": 0.926
+          },
+          "stalkL": {
+            "sy": 1.08
+          },
+          "stalkR": {
+            "sy": 1.08
+          }
+        },
+        "slots": {
+          "eyeL": "wide",
+          "eyeR": "wide"
+        }
+      },
+      {
+        "hold": 0.25,
+        "slots": {
+          "eyeL": "closed",
+          "eyeR": "closed"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

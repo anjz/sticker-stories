@@ -1,54 +1,143 @@
 {
   "id": "pop",
   "sticker": "bottle",
+  "kind": "action",
   "description": "the cork pops and the message peeks out of the bottle",
-  "sheet": "anims/bottle.pop.webp",
-  "frame": {
-    "width": 545,
-    "height": 567
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.03853,
-    "y": 0.28042,
-    "width": 0.8422,
-    "height": 0.69136
-  },
   "stickerBox": {
     "x": 0.25,
     "y": 0.29297,
     "width": 0.5,
     "height": 0.41276
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.7,
-    0.2,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 5,
     "shows": "the bottle with its cork popped up and the rolled note peeking out of its neck"
+  },
+  "puppet": {
+    "rig": "anims/bottle.rig.json",
+    "keys": [
+      {
+        "hold": 0.35
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "cork": {
+            "r": 40,
+            "x": 55,
+            "y": -120
+          },
+          "note": {
+            "x": 21.2,
+            "y": -21.2
+          }
+        },
+        "slots": {
+          "note": "note"
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "cork": {
+            "r": 55,
+            "x": 70,
+            "y": -140
+          },
+          "note": {
+            "x": 55.1,
+            "y": -55.1
+          }
+        },
+        "slots": {
+          "note": "note"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "cork": {
+            "r": 60,
+            "x": 74,
+            "y": -136
+          },
+          "note": {
+            "x": 56.6,
+            "y": -56.6
+          }
+        },
+        "slots": {
+          "note": "note"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "in",
+        "bones": {
+          "cork": {
+            "r": 30,
+            "x": 50,
+            "y": -110
+          },
+          "note": {
+            "x": 7.1,
+            "y": -7.1
+          }
+        },
+        "slots": {
+          "note": "note"
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "out",
+        "bones": {
+          "body": {
+            "r": 1.5
+          },
+          "cork": {
+            "x": -2.1,
+            "y": 2.1
+          }
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "body": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
   }
 }

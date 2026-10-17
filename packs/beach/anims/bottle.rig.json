@@ -1,0 +1,129 @@
+{
+  "sticker": "bottle",
+  "atlas": "anims/bottle.rig.webp",
+  "size": 768,
+  "parts": {
+    "bottle": {
+      "rect": [
+        0,
+        0,
+        333,
+        267
+      ],
+      "border": [
+        335,
+        0,
+        373,
+        307
+      ],
+      "pad": 20
+    },
+    "cork": {
+      "rect": [
+        1016,
+        0,
+        84,
+        84
+      ],
+      "border": [
+        1102,
+        0,
+        124,
+        124
+      ],
+      "pad": 20
+    },
+    "note": {
+      "rect": [
+        710,
+        0,
+        131,
+        88
+      ],
+      "border": [
+        843,
+        0,
+        171,
+        128
+      ],
+      "pad": 20
+    }
+  },
+  "bones": [
+    {
+      "id": "root",
+      "x": 330,
+      "y": 522
+    },
+    {
+      "id": "tip",
+      "parent": "root",
+      "x": 222,
+      "y": 470
+    },
+    {
+      "id": "body",
+      "parent": "tip",
+      "x": 374,
+      "y": 393
+    },
+    {
+      "id": "cork",
+      "parent": "body",
+      "x": 519,
+      "y": 277
+    },
+    {
+      "id": "note",
+      "parent": "body",
+      "x": 505,
+      "y": 298
+    }
+  ],
+  "slots": [
+    {
+      "id": "note",
+      "bone": "note",
+      "default": "none",
+      "attachments": {
+        "note": {
+          "part": "note",
+          "x": 392.6,
+          "y": 301.32,
+          "w": 130.8,
+          "h": 87.36,
+          "rotate": -16
+        }
+      }
+    },
+    {
+      "id": "bottle",
+      "bone": "body",
+      "default": "bottle",
+      "attachments": {
+        "bottle": {
+          "part": "bottle",
+          "x": 207.52,
+          "y": 259.76,
+          "w": 332.96,
+          "h": 266.49,
+          "rotate": 1.5
+        }
+      }
+    },
+    {
+      "id": "cork",
+      "bone": "cork",
+      "default": "cork",
+      "attachments": {
+        "cork": {
+          "part": "cork",
+          "x": 477.24,
+          "y": 235.1,
+          "w": 83.52,
+          "h": 83.81
+        }
+      }
+    }
+  ]
+}

@@ -2,53 +2,157 @@
   "id": "wiggle",
   "sticker": "fish",
   "description": "the little fish wiggles its tail and flutters its fins",
-  "sheet": "anims/fish.wiggle.webp",
-  "frame": {
-    "width": 507,
-    "height": 446
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.04931,
-    "y": 0.0426,
-    "width": 0.90335,
-    "height": 0.90807
-  },
   "stickerBox": {
     "x": 0.25,
     "y": 0.27734,
     "width": 0.5,
     "height": 0.44401
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.7,
-    0.2,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 5,
     "shows": "the fish with its fins spread wide and its tail fanned, smiling"
+  },
+  "puppet": {
+    "rig": "anims/fish.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "finSide": {
+            "r": -10
+          },
+          "tail": {
+            "r": 14
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 2
+          },
+          "finSide": {
+            "r": 8
+          },
+          "tail": {
+            "r": -14
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": -2
+          },
+          "finSide": {
+            "r": -10
+          },
+          "tail": {
+            "r": 14
+          }
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "body": {
+            "r": 1
+          },
+          "tail": {
+            "r": -10
+          }
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "belly": {
+            "sy": 1.03
+          },
+          "finBack": {
+            "r": 10
+          },
+          "finFront": {
+            "r": 10
+          },
+          "finTop": {
+            "r": -10
+          },
+          "tail": {
+            "sx": 1.06,
+            "sy": 1.12
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "finSide": "open",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "finBack": {
+            "r": 6
+          },
+          "finFront": {
+            "r": 6
+          },
+          "finTop": {
+            "r": -6
+          },
+          "tail": {
+            "r": 10
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "finSide": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "finBack": {
+            "r": 3
+          },
+          "finFront": {
+            "r": 3
+          },
+          "finTop": {
+            "r": -3
+          },
+          "tail": {
+            "r": -10
+          }
+        },
+        "slots": {
+          "eye": "happy",
+          "finSide": "open"
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "tail": {
+            "r": 4
+          }
+        },
+        "slots": {
+          "eye": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
   }
 }

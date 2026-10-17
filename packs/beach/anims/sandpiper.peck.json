@@ -2,53 +2,140 @@
   "id": "peck",
   "sticker": "sandpiper",
   "description": "the sandpiper pecks at the wet sand",
-  "sheet": "anims/sandpiper.peck.webp",
-  "frame": {
-    "width": 551,
-    "height": 499
-  },
-  "columns": 6,
-  "count": 24,
-  "rest": {
-    "x": 0.04537,
-    "y": 0.0521,
-    "width": 0.87477,
-    "height": 0.90982
-  },
   "stickerBox": {
     "x": 0.25,
     "y": 0.26302,
     "width": 0.5,
     "height": 0.47266
   },
-  "hold": [
-    0.45,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.7,
-    0.2,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.1,
-    0.45
-  ],
   "pause": {
-    "frame": 11,
+    "frame": 2,
     "shows": "the sandpiper with its beak down to the ground, pecking"
+  },
+  "puppet": {
+    "rig": "anims/sandpiper.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": 12,
+            "y": 4
+          },
+          "head": {
+            "r": 40,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "body": {
+            "r": 12,
+            "y": 4
+          },
+          "head": {
+            "r": 40,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": 17,
+            "y": 4
+          },
+          "head": {
+            "r": 50,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": 12,
+            "y": 4
+          },
+          "head": {
+            "r": 40,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": 17,
+            "y": 4
+          },
+          "head": {
+            "r": 50,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.14,
+        "bones": {
+          "body": {
+            "r": 12,
+            "y": 4
+          },
+          "head": {
+            "r": 40,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "body": {
+            "r": 17,
+            "y": 4
+          },
+          "head": {
+            "r": 50,
+            "y": 6
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "body": {
+            "r": 3
+          },
+          "head": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "head": {
+            "r": -6,
+            "y": -3
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3
+      }
+    ]
   }
 }

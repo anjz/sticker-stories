@@ -1,0 +1,129 @@
+{
+  "id": "snap",
+  "sticker": "clam",
+  "kind": "action",
+  "description": "the clam claps its shells open and shut, snap, snap, snap, and giggles.",
+  "stickerBox": {
+    "x": 0.25521,
+    "y": 0.25,
+    "width": 0.48958,
+    "height": 0.5
+  },
+  "puppet": {
+    "rig": "anims/clam.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "lid": {
+            "sy": 0.5
+          },
+          "soft": {
+            "y": 8,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "soft": "none"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "lid": {
+            "y": -10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "lid": {
+            "sy": 0.5
+          },
+          "soft": {
+            "y": 8,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "soft": "none"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "lid": {
+            "y": -10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.18,
+        "bones": {
+          "belly": {
+            "sy": 0.97
+          },
+          "lid": {
+            "sy": 0.5
+          },
+          "soft": {
+            "y": 8,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "soft": "none"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "lid": {
+            "y": -10
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

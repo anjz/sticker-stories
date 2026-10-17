@@ -1,0 +1,133 @@
+{
+  "id": "jump",
+  "sticker": "shrimp",
+  "description": "the shrimp crouches, springs up high for joy with a flick of its tail and lands with a little squash.",
+  "stickerBox": {
+    "x": 0.25651,
+    "y": 0.25,
+    "width": 0.48568,
+    "height": 0.5
+  },
+  "puppet": {
+    "rig": "anims/shrimp.rig.json",
+    "keys": [
+      {
+        "hold": 0.12
+      },
+      {
+        "hold": 0.16,
+        "bones": {
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.93
+          },
+          "fan": {
+            "r": 15
+          },
+          "root": {
+            "y": 6
+          },
+          "tail": {
+            "r": 5
+          },
+          "tail2": {
+            "r": 11
+          }
+        }
+      },
+      {
+        "hold": 0.24,
+        "ease": "out",
+        "bones": {
+          "antennaL": {
+            "r": -8
+          },
+          "antennaR": {
+            "r": 6.4
+          },
+          "belly": {
+            "sy": 1.04
+          },
+          "fan": {
+            "r": -9
+          },
+          "root": {
+            "y": -70
+          },
+          "tail": {
+            "r": -3
+          },
+          "tail2": {
+            "r": -6.6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.16,
+        "ease": "in",
+        "bones": {
+          "antennaL": {
+            "r": -4
+          },
+          "antennaR": {
+            "r": 3.2
+          },
+          "fan": {
+            "r": 3
+          },
+          "root": {
+            "y": -76
+          },
+          "tail": {
+            "r": 1
+          },
+          "tail2": {
+            "r": 2.2
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.12,
+        "bones": {
+          "antennaL": {
+            "r": 6
+          },
+          "antennaR": {
+            "r": -4.8
+          },
+          "belly": {
+            "sx": 1.05,
+            "sy": 0.93
+          },
+          "root": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

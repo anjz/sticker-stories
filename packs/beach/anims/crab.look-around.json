@@ -1,0 +1,104 @@
+{
+  "id": "look-around",
+  "sticker": "crab",
+  "kind": "action",
+  "description": "the crab turns its eye stalks one way, then the other, then back.",
+  "stickerBox": {
+    "x": 0.20052,
+    "y": 0.21745,
+    "width": 0.59896,
+    "height": 0.5651
+  },
+  "idle": true,
+  "puppet": {
+    "rig": "anims/crab.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "eyeL": {
+            "r": 16
+          },
+          "eyeR": {
+            "r": 16
+          },
+          "face": {
+            "x": -5
+          },
+          "stalkL": {
+            "r": -16
+          },
+          "stalkR": {
+            "r": -16
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "eyeL": {
+            "r": 16
+          },
+          "eyeR": {
+            "r": 16
+          },
+          "face": {
+            "x": -5
+          },
+          "stalkL": {
+            "r": -16
+          },
+          "stalkR": {
+            "r": -16
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "eyeL": {
+            "r": -16
+          },
+          "eyeR": {
+            "r": -16
+          },
+          "face": {
+            "x": 5
+          },
+          "stalkL": {
+            "r": 16
+          },
+          "stalkR": {
+            "r": 16
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "eyeL": {
+            "r": -16
+          },
+          "eyeR": {
+            "r": -16
+          },
+          "face": {
+            "x": 5
+          },
+          "stalkL": {
+            "r": 16
+          },
+          "stalkR": {
+            "r": 16
+          }
+        }
+      },
+      {
+        "hold": 0.4
+      }
+    ]
+  }
+}
