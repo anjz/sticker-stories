@@ -81,7 +81,10 @@ they are what make a wobble a wobble — and are not authorable.
 Particles already born live out their lifetime after the effect ends; that
 is intended. Particle size follows the size of the sticker's **drawing**,
 and they come from the drawing (its feet, for dust), not its image's box —
-so sparkles on a tiny flower are tiny.
+so sparkles on a tiny flower are tiny — down to a minimum that stays
+readable: drops, dust and sparks from a small or far-off sticker (a
+duckling at the back of the pond) are drawn as for one about 110 points
+tall, bubbles as for one 150 points tall.
 
 **The physical particles follow the pack's world** (`docs/pack-format.md`,
 "World"): `spray`, `sparks` and the grains of a `dust-puff` fall under

@@ -1,5 +1,5 @@
 {
-  "_comment": "Tuning data for the particle emitters behind sparkle / hearts / dust-puff / spray / sparks / bubble-puff (docs/effects.md). Content cannot ship emitters or set these values; only intensity, duration and color reach them. Conventions are SpriteKit's: angles in degrees counterclockwise with 0 = right (90 = up); gravity is points/s\u00b2 with y up; scale is relative to the sticker's rendered size at the reference height. Emitters with \"worldGravity\" are tuned for Earth: the app scales their gravity by the pack world's (PackWorld) and lets them live longer where it is weak. An emitter with \"mirrored\" is drawn as a pair, itself and its mirror image across the vertical (emission angle and sideways gravity flipped): a cloud that billows out both ways. \"with\" names emitters that fire along with it, at the same spot, intensity and colour (the dust cloud's grains). \"wobble\" is [amplitude in points at the reference height, seconds per sway]: each particle sways side to side as it goes (bubbles). \"minSize\" is the least size factor an emitter is drawn at (default 0.4): a tiny sticker's bubbles stay readable. \"overScene\" draws it over the scene's planes and every sticker (under the weather) rather than at its sticker's depth.",
+  "_comment": "Tuning data for the particle emitters behind sparkle / hearts / dust-puff / spray / sparks / bubble-puff (docs/effects.md). Content cannot ship emitters or set these values; only intensity, duration and color reach them. Conventions are SpriteKit's: angles in degrees counterclockwise with 0 = right (90 = up); gravity is points/s\u00b2 with y up; scale is relative to the sticker's rendered size at the reference height. Emitters with \"worldGravity\" are tuned for Earth: the app scales their gravity by the pack world's (PackWorld) and lets them live longer where it is weak. An emitter with \"mirrored\" is drawn as a pair, itself and its mirror image across the vertical (emission angle and sideways gravity flipped): a cloud that billows out both ways. \"with\" names emitters that fire along with it, at the same spot, intensity and colour (the dust cloud's grains). \"wobble\" is [amplitude in points at the reference height, seconds per sway]: each particle sways side to side as it goes (bubbles). \"minSize\" is the least size factor an emitter is drawn at (default 0.4): particles on a small or far sticker are true to its size down to it, then stay readable (drops, dust and sparks at 0.75, bubbles at 1). \"overScene\" draws it over the scene's planes and every sticker (under the weather) rather than at its sticker's depth.",
   "sparkles": {
     "texture": "star",
     "blend": "add",
@@ -122,7 +122,8 @@
     "mirrored": true,
     "with": [
       "dustGrains"
-    ]
+    ],
+    "minSize": 0.75
   },
   "dustGrains": {
     "texture": "dot",
@@ -163,10 +164,11 @@
     "defaultColor": "#9C7B55",
     "maxParticles": 25,
     "inFront": true,
-    "worldGravity": true
+    "worldGravity": true,
+    "minSize": 0.75
   },
   "spray": {
-    "texture": "dot",
+    "texture": "waterDrop",
     "blend": "alpha",
     "birthRate": 110,
     "lifetime": {
@@ -204,7 +206,8 @@
     "defaultColor": "#CFE8FF",
     "maxParticles": 70,
     "inFront": true,
-    "worldGravity": true
+    "worldGravity": true,
+    "minSize": 0.75
   },
   "sparks": {
     "texture": "dot",
@@ -245,7 +248,8 @@
     "defaultColor": "#FFD27A",
     "maxParticles": 50,
     "inFront": true,
-    "worldGravity": true
+    "worldGravity": true,
+    "minSize": 0.75
   },
   "bubbles": {
     "texture": "bubblePuff",

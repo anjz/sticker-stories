@@ -3,7 +3,7 @@ import UIKit
 
 /// Particle and canvas-effect textures drawn once with CoreGraphics.
 /// Placeholder-art era: swap for PNGs when real art lands, keeping the same
-/// names (`star`, `dot`, `heart`, `bubblePuff` for the emitters in `emitters.json`;
+/// names (`star`, `dot`, `heart`, `bubblePuff`, `waterDrop` for the emitters in `emitters.json`;
 /// `drop`, `fog`, `ray`, `skyglow`, `rainbow`, `vignette`, `moon`, `moonglow`
 /// for `CanvasEffectLayer`; `band` and the rest below for the painters in
 /// `Canvas/`; `foam` for `surf-wave`).
@@ -46,6 +46,7 @@ enum EffectTextures {
                 case "heart": drawHeart(in: rect, cg)
                 case "foam": drawFoam(in: rect, cg)
                 case "bubblePuff": drawBubble(in: rect, cg)
+                case "waterDrop": drawWaterDrop(in: rect, cg)
                 default: drawDot(in: rect, cg)
                 }
             }
@@ -312,6 +313,17 @@ enum EffectTextures {
         cg.strokeEllipse(in: r)
         cg.setFillColor(UIColor.white.cgColor)
         cg.fillEllipse(in: CGRect(x: r.minX + r.width * 0.2, y: r.minY + r.height * 0.18, width: r.width * 0.26, height: r.height * 0.26))
+    }
+
+    /// A drop of `spray`: white with a thin darker rim, so a splash reads
+    /// over pale water as well as over grass. Drawn white and tinted by
+    /// the emitter, so the rim is a shade of the drop's own colour.
+    private static func drawWaterDrop(in rect: CGRect, _ cg: CGContext) {
+        let r = rect.insetBy(dx: rect.width * 0.14, dy: rect.height * 0.14)
+        cg.setFillColor(UIColor(white: 0.55, alpha: 0.9).cgColor)
+        cg.fillEllipse(in: r)
+        cg.setFillColor(UIColor.white.cgColor)
+        cg.fillEllipse(in: r.insetBy(dx: r.width * 0.16, dy: r.height * 0.16))
     }
 
     /// A four-point twinkle with a faint core glow.
