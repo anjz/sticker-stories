@@ -398,9 +398,23 @@ extension StageDirectorTests {
     }
 }
 
-/// Plans every story of the real Forest pack on an empty canvas and on a
-/// crowded one, and checks the stage keeps its rules all the way through.
-@Suite struct ForestStagingTests {
+/// Plans every story of each real pack with a space on an empty canvas and
+/// on a crowded one, and checks the stage keeps its rules all the way through.
+@Suite struct PackStagingTests {
+    /// A pack to stage: the stickers the child has also placed on the
+    /// crowded canvas, and how many goes to someone its stories make.
+    struct Staged: Sendable, CustomStringConvertible {
+        let id: String
+        let extras: [String]
+        let goesToSomeone: Int
+        var description: String { id }
+    }
+
+    static let packs = [
+        Staged(id: "forest", extras: ["bear", "deer", "mushroom", "hedgehog"], goesToSomeone: 150),
+        Staged(id: "beach", extras: ["umbrella", "castle", "dog", "sailboat"], goesToSomeone: 50),
+    ]
+
     struct Pack {
         let manifest: PackManifest
         let dir: URL
@@ -409,11 +423,11 @@ extension StageDirectorTests {
         var ratios: [String: Double] = [:]
     }
 
-    static func load() throws -> Pack? {
+    static func load(_ id: String) throws -> Pack? {
         let root = URL(fileURLWithPath: #filePath)
             .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
             .deletingLastPathComponent().deletingLastPathComponent()
-        let dir = root.appendingPathComponent("packs/forest")
+        let dir = root.appendingPathComponent("packs/\(id)")
         guard let data = try? Data(contentsOf: dir.appendingPathComponent("manifest.json")) else { return nil }
         var pack = Pack(manifest: try JSONDecoder().decode(PackManifest.self, from: data), dir: dir)
         for sticker in pack.manifest.stickers {
@@ -443,10 +457,10 @@ extension StageDirectorTests {
         return pack
     }
 
-    @Test func everyStoryKeepsTheStagesRules() throws {
-        guard let pack = try Self.load(), let space = pack.manifest.space else { return }
+    @Test(arguments: packs) func everyStoryKeepsTheStagesRules(_ staged: Staged) throws {
+        guard let pack = try Self.load(staged.id), let space = pack.manifest.space else { return }
         var world = StageWorld(space: space, aspect: 4.0 / 3, wide: false, frame: StageSize(width: 1024, height: 768))
-        // What the trees, the reeds and the foreground hide.
+        // What the scene's layers and the foreground hide.
         var arts = ["foreground": pack.manifest.foreground]
         for layer in pack.manifest.layers { arts[layer.id] = layer.image }
         for (art, path) in arts {
@@ -473,6 +487,7 @@ extension StageDirectorTests {
             visible: StageRect(minX: 0, minY: 0, maxX: 1024, maxY: 768),
             avoid: [StageRect(minX: 0, minY: 10, maxX: 1024, maxY: 65)], window: narrowWidth)
         let waterPlaces = Set(world.grounds.filter(\.water).map(\.place))
+        let shallowPlaces = Set(world.grounds.filter(\.shallow).map(\.place))
         let stickers = Dictionary(uniqueKeysWithValues: pack.manifest.stickers.map { ($0.id, $0) })
         var problems: [String] = []
         var backwards: [String] = []
@@ -493,7 +508,7 @@ extension StageDirectorTests {
                 // child has placed its stickers (and a few more) here and there.
                 var actors: [StageActor] = []
                 let placed: [String] = crowded
-                    ? Array(Set(story.requiredStickers + story.optionalStickers + ["bear", "deer", "mushroom", "hedgehog"])).sorted() : []
+                    ? Array(Set(story.requiredStickers + story.optionalStickers + staged.extras)).sorted() : []
                 for (k, id) in placed.enumerated() {
                     guard let s = stickers[id] else { continue }
                     let feet = SceneSpace.Point(0.08 + 0.84 * Double((k * 37) % 11) / 10, 0.1 + 0.4 * Double((k * 53) % 7) / 6)
@@ -628,9 +643,11 @@ extension StageDirectorTests {
                         if land, onFoot, !settling, let water = world.water(at: s.position.ground) {
                             problems.append("\(tag): in the \(water) at \(String(format: "%.1f", t))")
                         }
-                        // In the water only afloat, its feet under it (never standing in it).
+                        // In the water only afloat, its feet under it (never standing in it)
+                        // — but on the bottom of shallow water it belongs in, seen whole.
                         if !land, onFoot, !settling, let water = world.water(at: s.position.ground),
-                            !a.moves.contains(where: { $0.waterline > 0 && $0.on.contains(water) })
+                            !a.moves.contains(where: { $0.waterline > 0 && $0.on.contains(water) }),
+                            !(shallowPlaces.contains(water) && (a.stage.on + a.moves.flatMap(\.on)).contains(water))
                         {
                             problems.append("\(tag): standing in the \(water) at \(String(format: "%.1f", t))")
                         }
@@ -653,11 +670,14 @@ extension StageDirectorTests {
                             let id = leg.move, let move = a.moves.first(where: { $0.id == id }), !move.flies, onFoot
                         {
                             let water = world.water(at: s.position.ground)
-                            if let water, !move.on.contains(water), a.moves.contains(where: { $0.on.contains(water) }) {
+                            // Its feet on the waterline are on both (it turns there,
+                            // steps in): an edge point is in or out by a hair.
+                            let waterline = world.grounds.contains { $0.water && $0.polygon.distance(to: s.position.ground) < 0.01 }
+                            if !waterline, let water, !move.on.contains(water), a.moves.contains(where: { $0.on.contains(water) }) {
                                 problems.append("\(tag): \(id) in the \(water) at \(String(format: "%.1f", t))")
                             }
                             let seen = world.drawing(at: s.position, size: a.size, ratio: a.ratio)
-                            if water == nil, move.on.contains(where: waterPlaces.contains), seen.maxX > screen.clear.minX, seen.minX < screen.clear.maxX {
+                            if !waterline, water == nil, move.on.contains(where: waterPlaces.contains), seen.maxX > screen.clear.minX, seen.minX < screen.clear.maxX {
                                 problems.append("\(tag): \(id) on land at \(String(format: "%.1f", t))")
                             }
                         }
@@ -689,12 +709,12 @@ extension StageDirectorTests {
             let parts = p.split(separator: ":", maxSplits: 1)
             return parts[0] + ":" + (parts.count > 1 ? String(parts[1].split(separator: " at ")[0]) : "")
         }.map { "\($0.key) ×\($0.value.count) — first \($0.value.first!.split(separator: ":", maxSplits: 1).last!)" }.sorted()
-        // The birds, the owl and the woodpecker are left in the air now and then.
+        // The birds are left in the air now and then.
         #expect(circling > 0)
         // Sent to someone, it gets there soon: it comes in near them, and
         // a walk to someone takes at most `maxTravelToSomeone`.
         let meanArrival = lags.reduce(0, +) / Double(max(lags.count, 1))
-        #expect(lags.count > 150 && meanArrival < 4.2, "mean arrival \(meanArrival) s over \(lags.count) goes")
+        #expect(lags.count > staged.goesToSomeone && meanArrival < 4.2, "mean arrival \(meanArrival) s over \(lags.count) goes")
         let turned = Dictionary(grouping: backwards) { $0.components(separatedBy: " at ")[0] }
             .map { "\($0.key) ×\($0.value.count) — first at \($0.value[0].components(separatedBy: " at ").last!)" }.sorted()
         #expect(backwards.isEmpty, "\(turned.count) travel backwards:\n\(turned.joined(separator: "\n"))")

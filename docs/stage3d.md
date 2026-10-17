@@ -170,9 +170,33 @@ on them — beating (`PuppetPose.flying`).
 Only a sticker with a way that belongs to the water goes into it (a move
 with that water in its `on`: the duckling `by swim`); anyone else stops
 on the bank and walks round it. Its water way keeps it in the water: it
-walks to the edge, swims in without crossing the bank on the way, and
-leaving by its usual way it swims to the bank first, then walks; the
-Forest staging test fails a swim over land or a walk in the water. In
+walks to the edge, turns there the way it will swim, swims in straight
+from the edge without crossing the bank on the way, and leaving by its
+usual way it swims to the bank first, then walks. Sent by its water way
+to someone in that water (the turtle `by swim` to the fish), it swims to
+their side in the water; anyone else sent to someone out in water stops
+on the land on its way to them (the ball by the seal out at sea).
+Coming in or going off the stage it does so through its water when it
+swims (Beach's turtle through the sea, from the side the sea runs on
+past the art), and never through water it does not belong in (Beach's
+rock pool runs on past the art's right edge): the other side, or the
+nearest depth at that side that will do.
+
+A sticker **every one of whose moves is a water move** (a fish, a boat,
+Beach's bottle and ring bobbing) is *water-bound*: it is never on or
+across land. One the child left on land, or in water it cannot move in
+(the octopus in the sea), fades into the nearest of its own water as
+the story starts (the settle), at a spot where it is seen and hides
+no one. Sent to a place or someone out of its water, it goes to the
+nearest spot of its water it is seen at — at a place on land (the
+shore) that is in its water by it, at the waterline; to a place or
+someone its water does not reach (the little fish from the rock pool to
+the sea and home), it fades across: out where it is, in at the nearest
+point of its own water, or of the target's. Coming in or going off where
+its water runs nowhere off the stage, it fades in or out where it is.
+The pack staging test (every
+pack with a space) fails a swim over land or a walk in the water — a
+hair off the waterline counts as either. In
 the water it floats: its move's
 `waterline` (`docs/pack-format.md`) is how much of its drawing, from its
 feet, is under the water. Whatever it does there — swims, quacks, naps —
@@ -181,8 +205,10 @@ much, so the waterline lies where its feet were, and ripples ring it
 there, the far half behind it and the near half in front
 (`StageWorld.afloat`, `StickerNode.float`). It sinks in over its first
 half-height into the water and rises as it climbs out. A sticker in water
-without a waterline would stand on the water, so the Forest staging test
-fails one.
+without a waterline would stand on the water, so the pack staging test
+fails one — except in **shallow** water (Beach's rock pool, `shallow` in
+the space): whoever belongs there sits on its clear bottom, seen whole,
+and nobody floats there, whatever its waterline.
 
 ## Alive at rest
 
