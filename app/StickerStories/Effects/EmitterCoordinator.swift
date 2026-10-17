@@ -13,6 +13,10 @@ final class EmitterCoordinator {
     static let referenceHeight: CGFloat = 150
     static let rampIn: TimeInterval = 0.1
     static let rampOut: TimeInterval = 0.3
+    /// Where an `overScene` emitter sits in the scene: over the nearest
+    /// plane and sticker (`StoryStage.nearZ`, the front sticker layer),
+    /// under the canvas effects (`CanvasEffectLayer.overlayZ`).
+    static let overSceneZ: CGFloat = 495
 
     private struct Budget {
         let maxEmitters: Int
@@ -33,6 +37,7 @@ final class EmitterCoordinator {
         let effect: ActiveEffect
         let anchor: EffectAnchor
         let inFront: Bool
+        let overScene: Bool
         var dying = false
         var retiredAt: CFTimeInterval?
     }
@@ -88,7 +93,7 @@ final class EmitterCoordinator {
             let ramp = entry.dying ? 0 : ramp(for: entry.effect, at: time)
             for (emitter, base) in zip(entry.nodes, entry.baseBirthRates) {
                 emitter.position = at
-                emitter.zPosition = node.zPosition + (entry.inFront ? 0.5 : -0.5)
+                emitter.zPosition = Self.z(entry.overScene, inFront: entry.inFront, on: node)
                 emitter.isPaused = paused
                 if !entry.dying {
                     emitter.particleBirthRate = base * ramp
@@ -141,7 +146,7 @@ final class EmitterCoordinator {
             nodes: parts.map(\.0), baseBirthRates: parts.map { $0.1.birthRate * factor },
             lifetime: parts.map { Double($0.0.particleLifetime + $0.0.particleLifetimeRange / 2) }.max() ?? 0,
             effect: effect, anchor: EffectDefinition.definition(for: effect.name).anchor,
-            inFront: spec.inFront)
+            inFront: spec.inFront, overScene: spec.overScene == true)
     }
 
     /// One short burst of a particle effect from a point of a sticker (in
@@ -159,7 +164,7 @@ final class EmitterCoordinator {
         let duration = options.duration ?? EffectDefinition.definition(for: name).defaultDuration
         for (emitter, part) in parts {
             emitter.position = node.convert(point, to: parent)
-            emitter.zPosition = node.zPosition + (spec.inFront ? 0.5 : -0.5)
+            emitter.zPosition = Self.z(spec.overScene == true, inFront: spec.inFront, on: node)
             emitter.particleBirthRate = CGFloat(part.birthRate * Self.intensityFactor(options.intensity, damped: false))
             parent.addChild(emitter)
             let fade = Double(emitter.particleLifetime + emitter.particleLifetimeRange / 2) + 0.1
@@ -198,13 +203,15 @@ final class EmitterCoordinator {
     ) -> SKEmitterNode {
         let intensity = options.intensity
         // Sized on the drawing, not its image's box (a sticker drawn at its size).
-        let renderedHeight = node.size.height * node.content.height * CGFloat(node.placement.scale)
-        let renderedWidth = node.size.width * node.content.width * CGFloat(node.placement.scale)
+        // (`size` already carries the node's scale: the unscaled size times
+        // its placement's scale is its drawing on screen, counted once.)
+        let renderedHeight = node.unscaledSize.height * node.content.height * CGFloat(node.placement.scale)
+        let renderedWidth = node.unscaledSize.width * node.content.width * CGFloat(node.placement.scale)
         // The physical particles fall under the world's gravity and hang
         // longer where it is weak (the Moon: a sixth, about 2.4× as long).
         let gravity = spec.worldGravity == true ? CGFloat(max(world.gravity, 0.02)) : 1
         let hang = spec.worldGravity == true ? min(2.5, 1 / sqrt(gravity)) : 1
-        let sizeFactor = (renderedHeight / Self.referenceHeight).clamped(to: 0.4...2)
+        let sizeFactor = (renderedHeight / Self.referenceHeight).clamped(to: CGFloat(spec.minSize ?? 0.4)...2)
         let rise: CGFloat = name == .bubblePuff && underwater ? 1.8 : 1
 
         let emitter = SKEmitterNode()
@@ -252,6 +259,12 @@ final class EmitterCoordinator {
         emitter.particleColorBlendFactor = 1
         emitter.targetNode = node.parent  // particles live in scene space, not on the sticker
         return emitter
+    }
+
+    /// An emitter's z in its sticker's layer: just in front of (or behind)
+    /// the sticker, or over the whole scene.
+    private static func z(_ overScene: Bool, inFront: Bool, on node: StickerNode) -> CGFloat {
+        overScene ? overSceneZ - (node.parent?.zPosition ?? 0) : node.zPosition + (inFront ? 0.5 : -0.5)
     }
 
     /// A colour 40 % of the way to white: dust against the ground it came from.

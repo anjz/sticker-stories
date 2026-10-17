@@ -50,6 +50,14 @@ struct EmitterSpec: Decodable {
     /// Each particle sways side to side as it goes: amplitude in points at
     /// the reference height, seconds per sway (bubbles rising).
     var wobble: [Double]?
+    /// The least size factor (rendered height over the reference height)
+    /// it is drawn at: a tiny sticker's bubbles stay big enough to see and
+    /// rise clear of it. Default 0.4.
+    var minSize: Double?
+    /// Drawn over the scene's planes and every sticker (under the weather),
+    /// not at its sticker's depth: bubbles from a clam the pool's rocks
+    /// half hide still show.
+    var overScene: Bool?
 
     var color: RGBA { RGBA(hex: defaultColor) ?? .white }
 
