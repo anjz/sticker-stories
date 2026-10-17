@@ -1,0 +1,448 @@
+{
+  "id": "play-sand",
+  "sticker": "girl",
+  "kind": "action",
+  "description": "the girl crouches and scoops and pats the sand with both hands, building a little heap, smiling, then pats it flat and stands up.",
+  "stickerBox": {
+    "x": 0.28516,
+    "y": 0.13932,
+    "width": 0.42969,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 5,
+    "shows": "the girl crouched over a little heap of sand, patting it with both hands"
+  },
+  "puppet": {
+    "rig": "anims/girl.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sy": 0.94
+          },
+          "body": {
+            "y": 30
+          },
+          "head": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 5,
+            "x": 6.3,
+            "y": 8.3
+          },
+          "armR": {
+            "r": -5,
+            "x": -1.4,
+            "y": 16.6
+          },
+          "body": {
+            "y": 158.5
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -3,
+            "y": 20
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "reach",
+          "armR": "none",
+          "armRF": "reach",
+          "body": "none",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "squat": "squat"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": -3,
+            "x": 6.3,
+            "y": 8.3
+          },
+          "armR": {
+            "r": 3,
+            "x": -1.4,
+            "y": 16.6
+          },
+          "body": {
+            "y": 158.5
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -3,
+            "y": 20
+          },
+          "sand": {
+            "sx": 0.25,
+            "sy": 0.25
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "reach",
+          "armR": "none",
+          "armRF": "reach",
+          "body": "none",
+          "legL": "none",
+          "legR": "none",
+          "mouth": "o",
+          "sand": "heap",
+          "squat": "squat"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": 15,
+            "x": 6.3,
+            "y": 13.3
+          },
+          "armR": {
+            "r": -15,
+            "x": -1.4,
+            "y": 21.6
+          },
+          "body": {
+            "y": 158.5
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -3,
+            "y": 20
+          },
+          "sand": {
+            "sx": 0.45,
+            "sy": 0.45
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "reach",
+          "armR": "none",
+          "armRF": "reach",
+          "body": "none",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "mouth": "open",
+          "sand": "heap",
+          "squat": "squat"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": -1,
+            "x": 6.3,
+            "y": 8.3
+          },
+          "armR": {
+            "r": 1,
+            "x": -1.4,
+            "y": 16.6
+          },
+          "body": {
+            "y": 158.5
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -3,
+            "y": 20
+          },
+          "sand": {
+            "sx": 0.65,
+            "sy": 0.65
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "reach",
+          "armR": "none",
+          "armRF": "reach",
+          "body": "none",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "sand": "heap",
+          "squat": "squat"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": 15,
+            "x": 6.3,
+            "y": 13.3
+          },
+          "armR": {
+            "r": -15,
+            "x": -1.4,
+            "y": 21.6
+          },
+          "body": {
+            "y": 158.5
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -3,
+            "y": 20
+          },
+          "sand": {
+            "sx": 0.8,
+            "sy": 0.8
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "reach",
+          "armR": "none",
+          "armRF": "reach",
+          "body": "none",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "mouth": "open",
+          "sand": "heap",
+          "squat": "squat"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": -1,
+            "x": 6.3,
+            "y": 8.3
+          },
+          "armR": {
+            "r": 1,
+            "x": -1.4,
+            "y": 16.6
+          },
+          "body": {
+            "y": 158.5
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -3,
+            "y": 20
+          },
+          "sand": {
+            "sx": 1,
+            "sy": 1
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "reach",
+          "armR": "none",
+          "armRF": "reach",
+          "body": "none",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "sand": "heap",
+          "squat": "squat"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": 15,
+            "x": 6.3,
+            "y": 13.3
+          },
+          "armR": {
+            "r": -15,
+            "x": -1.4,
+            "y": 21.6
+          },
+          "body": {
+            "y": 158.5
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -3,
+            "y": 20
+          },
+          "sand": {
+            "sx": 1,
+            "sy": 1
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "reach",
+          "armR": "none",
+          "armRF": "reach",
+          "body": "none",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "mouth": "open",
+          "sand": "heap",
+          "squat": "squat"
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "armL": {
+            "r": 9,
+            "x": 6.3,
+            "y": 13.3
+          },
+          "armR": {
+            "r": -9,
+            "x": -1.4,
+            "y": 21.6
+          },
+          "body": {
+            "y": 158.5
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -3,
+            "y": 20
+          },
+          "sand": {
+            "sx": 0.5,
+            "sy": 0.5
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "reach",
+          "armR": "none",
+          "armRF": "reach",
+          "body": "none",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "sand": "heap",
+          "squat": "squat"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": 13,
+            "x": 6.3,
+            "y": 13.3
+          },
+          "armR": {
+            "r": -13,
+            "x": -1.4,
+            "y": 21.6
+          },
+          "body": {
+            "y": 158.5
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -3,
+            "y": 20
+          },
+          "sand": {
+            "sx": 0.25,
+            "sy": 0.25
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "reach",
+          "armR": "none",
+          "armRF": "reach",
+          "body": "none",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "sand": "heap",
+          "squat": "squat"
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sy": 0.95
+          },
+          "body": {
+            "y": 30
+          },
+          "head": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

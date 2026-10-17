@@ -1,0 +1,144 @@
+{
+  "id": "crouch",
+  "sticker": "girl",
+  "kind": "action",
+  "description": "the girl squats down low on her heels, knees bent, and stays there, then stands back up.",
+  "stickerBox": {
+    "x": 0.28516,
+    "y": 0.13932,
+    "width": 0.42969,
+    "height": 0.72005
+  },
+  "pause": {
+    "frame": 3,
+    "shows": "the girl crouched low on her heels, knees bent, hands resting in front of her"
+  },
+  "puppet": {
+    "rig": "anims/girl.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "belly": {
+            "sy": 0.94
+          },
+          "body": {
+            "y": 30
+          },
+          "head": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "armL": {
+            "r": 5,
+            "x": 6.3,
+            "y": 8.3
+          },
+          "armR": {
+            "r": -5,
+            "x": -1.4,
+            "y": 16.6
+          },
+          "body": {
+            "y": 158.5
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -3,
+            "y": 20
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "reach",
+          "armR": "none",
+          "armRF": "reach",
+          "body": "none",
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "legL": "none",
+          "legR": "none",
+          "squat": "squat"
+        }
+      },
+      {
+        "hold": 1.2,
+        "bones": {
+          "armL": {
+            "r": 5,
+            "x": 6.3,
+            "y": 8.3
+          },
+          "armR": {
+            "r": -5,
+            "x": -1.4,
+            "y": 16.6
+          },
+          "body": {
+            "y": 158.5
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -5,
+            "y": 24
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "reach",
+          "armR": "none",
+          "armRF": "reach",
+          "body": "none",
+          "legL": "none",
+          "legR": "none",
+          "squat": "squat"
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "out",
+        "bones": {
+          "belly": {
+            "sy": 0.95
+          },
+          "body": {
+            "y": 30
+          },
+          "head": {
+            "y": 4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.2
+      }
+    ]
+  }
+}

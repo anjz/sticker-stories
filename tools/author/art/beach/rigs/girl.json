@@ -22,6 +22,22 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a little girl flying a kite; image 2 shows the same girl and kite cut into puppet parts. Draw two more cut-out puppet parts on one sheet: the same drawing style, colours, texture and line as in the images, each at the size it has in image 1.\n\nDraw each part on its own, far apart on the sheet, nothing touching:\n1. the kite alone: the same colourful diamond kite with its ribbon tail of little bows, exactly as in image 1, WITHOUT any string.\n2. the kite string alone: one long, thin, perfectly straight dark-brown line, standing upright, about two thirds as tall as the sheet, nothing else on it.\n\nNo text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "crouchparts",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a little girl; image 2 shows the same girl cut into puppet parts. Draw more cut-out puppet parts of this exact girl on one sheet: the same drawing style, colours, texture, line and proportions as in images 1 and 2, every part at the size it has in image 1.\n\nDraw each part on its own, spread out over the sheet with wide empty gaps between them, no part touching or overlapping another:\n1. her near arm (on the left of image 1) as it is in image 1: drawn whole from the top of the shoulder down to the hand, bent at the elbow, the empty hand resting relaxed on her chest; its top the full, smooth, rounded curve of the shoulder.\n2. one arm reaching straight down and a little forward to the ground, drawn whole from the top of the shoulder to the open hand, its palm flat facing down as if patting sand; its top the full rounded curve of the shoulder.\n3. her two legs in a deep squat, crouching low on her heels, drawn together as one piece seen from the front as in image 1: knees bent up and apart, thighs folded down onto her calves, both bare feet flat on the ground; from the tops of the thighs (normally hidden under the swimsuit's frill) down to the feet; the tops of the thighs one smooth rounded edge. Low and wide: from the tops of the thighs to the soles, about a third as tall as her standing legs.\n4. a small heap of golden beach sand, a soft rounded mound with a few grains around its foot, about as wide as her two hands.\n\nEvery part is drawn whole, including what is normally hidden behind another part, and each joint end is a full, smooth, rounded edge. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "squat",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a little girl; image 2 shows the same girl cut into puppet parts. Draw more cut-out puppet parts of this exact girl on one sheet: the same drawing style, colours, texture, line and proportions as in images 1 and 2, every part at the size it has in image 1.\n\nDraw each part on its own, far apart on the sheet, nothing touching:\n1. her whole body crouching down on the sand, WITHOUT HER HEAD, seen from the same three-quarter view as image 1: her torso in the blue polka-dot swimsuit with its ruffled frill, leaning forward a little; both knees bent up high in front of her tummy, her shins coming down to her bare feet resting flat on the ground, the feet a little apart; her arms NOT drawn (no arms, no hands); her neck at the top ending in a smooth rounded edge where the head will sit. The swimsuit, both knees, both shins and both feet clearly visible. From the neck to the soles about two thirds as tall as her body is from neck to soles in image 1.\n2. one arm reaching down and forward to the ground, drawn whole from the top of the shoulder to the open hand, the palm flat facing down as if patting sand, bent a little at the elbow; its top the full rounded curve of the shoulder.\n\nEvery part drawn whole, each joint end a full, smooth, rounded edge. No sand, no ground line, no text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -215,128 +231,185 @@
         486
       ],
       "fadeTop": 0.06
+    },
+    "armChest": {
+      "sheet": "crouchparts",
+      "at": [
+        346,
+        251
+      ]
+    },
+    "armDown": {
+      "sheet": "crouchparts",
+      "at": [
+        1013,
+        363
+      ]
+    },
+    "legsCrouch": {
+      "sheet": "crouchparts",
+      "at": [
+        444,
+        736
+      ]
+    },
+    "sand": {
+      "sheet": "crouchparts",
+      "at": [
+        1145,
+        833
+      ]
+    },
+    "armChestF": {
+      "sheet": "crouchparts",
+      "at": [
+        346,
+        251
+      ],
+      "fadeTop": 0.12
+    },
+    "squatBody": {
+      "sheet": "squat",
+      "at": [
+        538,
+        554
+      ]
+    },
+    "armReach": {
+      "sheet": "squat",
+      "at": [
+        1202,
+        591
+      ],
+      "fadeTop": 0.07
     }
   },
   "bones": [
     {
       "id": "root",
-      "x": 400,
-      "y": 630
+      "x": 348.6,
+      "y": 624.8
+    },
+    {
+      "id": "sand",
+      "parent": "root",
+      "x": 346.5,
+      "y": 638
     },
     {
       "id": "body",
       "parent": "root",
-      "x": 390,
-      "y": 490
+      "x": 336.5,
+      "y": 454.8
     },
     {
       "id": "belly",
       "parent": "body",
-      "x": 390,
-      "y": 490
+      "x": 336.5,
+      "y": 454.8
     },
     {
       "id": "legL",
       "parent": "root",
-      "x": 368,
-      "y": 478
+      "x": 309.7,
+      "y": 440.2
     },
     {
       "id": "legR",
       "parent": "root",
-      "x": 412,
-      "y": 478
+      "x": 363.2,
+      "y": 440.2
     },
     {
       "id": "armL",
       "parent": "body",
-      "x": 360,
-      "y": 387
+      "x": 300.0,
+      "y": 329.8
     },
     {
       "id": "kite",
       "parent": "armL",
-      "x": 323,
-      "y": 372
+      "x": 255.1,
+      "y": 311.5
     },
     {
       "id": "string",
       "parent": "kite",
-      "x": 323,
-      "y": 372
+      "x": 255.1,
+      "y": 311.5
     },
     {
       "id": "kiteTip",
       "parent": "kite",
-      "x": 298,
-      "y": 249
+      "x": 224.8,
+      "y": 162.2
     },
     {
       "id": "armR",
       "parent": "body",
-      "x": 424,
-      "y": 386
+      "x": 377.7,
+      "y": 328.5
     },
     {
       "id": "head",
       "parent": "body",
-      "x": 394,
-      "y": 372
+      "x": 341.3,
+      "y": 311.5
     },
     {
       "id": "face",
       "parent": "head",
-      "x": 392,
-      "y": 318
+      "x": 338.9,
+      "y": 246.0
     },
     {
       "id": "eyeL",
       "parent": "face",
-      "x": 372,
-      "y": 303
+      "x": 314.6,
+      "y": 227.8
     },
     {
       "id": "eyeR",
       "parent": "face",
-      "x": 418,
-      "y": 323
+      "x": 370.5,
+      "y": 252.1
     },
     {
       "id": "browL",
       "parent": "face",
-      "x": 378,
-      "y": 281
+      "x": 321.9,
+      "y": 201.1
     },
     {
       "id": "browR",
       "parent": "face",
-      "x": 428,
-      "y": 304
+      "x": 382.6,
+      "y": 229.0
     },
     {
       "id": "nose",
       "parent": "face",
-      "x": 385,
-      "y": 319
+      "x": 330.4,
+      "y": 247.2
     },
     {
       "id": "mouth",
       "parent": "face",
-      "x": 385,
-      "y": 336
+      "x": 330.4,
+      "y": 267.8
     }
   ],
   "slots": [
     {
       "id": "kite",
       "bone": "kiteTip",
-      "default": "kite",
+      "default": "none",
       "attachments": {
         "kite": {
           "part": "kiteAlone",
-          "x": 284.8,
-          "y": 245.8,
-          "scale": 0.314,
+          "x": 208.7,
+          "y": 158.3,
+          "scale": 0.3812,
           "rotate": -2.5999999999999943
         }
       }
@@ -348,9 +421,9 @@
       "attachments": {
         "leg": {
           "part": "legL",
-          "x": 357.9,
-          "y": 562.3,
-          "scale": 0.399,
+          "x": 297.5,
+          "y": 542.6,
+          "scale": 0.4844,
           "rotate": 1.9000000000000057
         }
       }
@@ -362,9 +435,9 @@
       "attachments": {
         "leg": {
           "part": "legR",
-          "x": 435.3,
-          "y": 558.2,
-          "scale": 0.436,
+          "x": 391.5,
+          "y": 537.6,
+          "scale": 0.5294,
           "rotate": 0.5
         }
       }
@@ -372,14 +445,21 @@
     {
       "id": "armL",
       "bone": "armL",
-      "default": "kite",
+      "default": "none",
       "attachments": {
         "kite": {
           "part": "armKite",
-          "x": 346.0,
-          "y": 398.0,
-          "scale": 0.36,
+          "x": 283.0,
+          "y": 343.1,
+          "scale": 0.4371,
           "rotate": 3.0999999999999943
+        },
+        "down": {
+          "part": "armDown",
+          "x": 303.9,
+          "y": 389.8,
+          "scale": 0.235,
+          "rotate": 14
         }
       }
     },
@@ -390,18 +470,26 @@
       "attachments": {
         "hang": {
           "part": "armHangA",
-          "x": 447.8,
-          "y": 439.5,
-          "scale": 0.31,
+          "x": 406.6,
+          "y": 393.5,
+          "scale": 0.3764,
           "scaleY": 1.38,
           "rotate": -26.599999999999994
         },
         "point": {
           "part": "armPoint",
-          "x": 465.3,
-          "y": 421.4,
-          "scale": 0.5,
+          "x": 427.9,
+          "y": 371.5,
+          "scale": 0.6071,
           "rotate": 12
+        },
+        "down": {
+          "part": "armDown",
+          "x": 373.8,
+          "y": 388.5,
+          "scale": 0.235,
+          "rotate": -14,
+          "flip": true
         }
       }
     },
@@ -412,26 +500,66 @@
       "attachments": {
         "body": {
           "part": "body",
-          "x": 388.3,
-          "y": 430.9,
-          "scale": 0.33,
+          "x": 334.4,
+          "y": 383.1,
+          "scale": 0.4007,
           "scaleY": 1.12,
           "rotate": 4
         }
       }
     },
     {
+      "id": "squat",
+      "bone": "root",
+      "default": "none",
+      "attachments": {
+        "squat": {
+          "part": "squatBody",
+          "x": 350.7,
+          "y": 553.7,
+          "scale": 0.28
+        }
+      }
+    },
+    {
+      "id": "legsCrouch",
+      "bone": "root",
+      "default": "none",
+      "attachments": {
+        "crouch": {
+          "part": "legsCrouch",
+          "x": 342.7,
+          "y": 558.7,
+          "scale": 0.4,
+          "scaleY": 0.85
+        }
+      }
+    },
+    {
       "id": "armLF",
       "bone": "armL",
-      "default": "none",
+      "default": "chest",
       "attachments": {
         "straight": {
           "part": "armHangBF",
-          "x": 337.0,
-          "y": 439.4,
-          "scale": 0.31,
+          "x": 272.1,
+          "y": 393.4,
+          "scale": 0.3764,
           "scaleY": 1.38,
           "rotate": 22
+        },
+        "chest": {
+          "part": "armChestF",
+          "x": 283.6,
+          "y": 359.2,
+          "scale": 0.24,
+          "rotate": -4.900000000000006
+        },
+        "reach": {
+          "part": "armReach",
+          "x": 287.5,
+          "y": 385.5,
+          "scale": 0.28
         }
       }
     },
@@ -442,11 +570,18 @@
       "attachments": {
         "straight": {
           "part": "armHangAF",
-          "x": 450.5,
-          "y": 445.6,
-          "scale": 0.31,
+          "x": 409.9,
+          "y": 400.9,
+          "scale": 0.3764,
           "scaleY": 1.38,
           "rotate": -22
+        },
+        "reach": {
+          "part": "armReach",
+          "x": 390.2,
+          "y": 384.2,
+          "scale": 0.28,
+          "flip": true
         }
       }
     },
@@ -457,9 +592,9 @@
       "attachments": {
         "head": {
           "part": "head",
-          "x": 427.8,
-          "y": 319.4,
-          "scale": 0.457,
+          "x": 382.4,
+          "y": 247.7,
+          "scale": 0.5549,
           "rotate": 0.8000000000000114
         }
       }
@@ -471,15 +606,15 @@
       "attachments": {
         "brow": {
           "part": "brow",
-          "x": 378,
-          "y": 281,
-          "scale": 0.1
+          "x": 321.9,
+          "y": 201.1,
+          "scale": 0.1214
         },
         "sad": {
           "part": "browSad",
-          "x": 378,
-          "y": 279,
-          "scale": 0.12
+          "x": 321.9,
+          "y": 198.6,
+          "scale": 0.1457
         }
       }
     },
@@ -490,15 +625,15 @@
       "attachments": {
         "brow": {
           "part": "brow",
-          "x": 428,
-          "y": 304,
-          "scale": 0.1
+          "x": 382.6,
+          "y": 229.0,
+          "scale": 0.1214
         },
         "sad": {
           "part": "browSad",
-          "x": 428,
-          "y": 302,
-          "scale": 0.12,
+          "x": 382.6,
+          "y": 226.6,
+          "scale": 0.1457,
           "flip": true
         }
       }
@@ -510,43 +645,43 @@
       "attachments": {
         "calm": {
           "part": "eye",
-          "x": 372,
-          "y": 303,
-          "scale": 0.165
+          "x": 314.6,
+          "y": 227.8,
+          "scale": 0.2003
         },
         "wide": {
           "part": "eyeWide",
-          "x": 372,
-          "y": 302,
-          "scale": 0.165,
+          "x": 314.6,
+          "y": 226.6,
+          "scale": 0.2003,
           "flip": true
         },
         "closed": {
           "part": "eyeClosed",
-          "x": 372,
-          "y": 308,
-          "scale": 0.15,
+          "x": 314.6,
+          "y": 233.8,
+          "scale": 0.1821,
           "flip": true
         },
         "happy": {
           "part": "eyeHappy",
-          "x": 372,
-          "y": 305,
-          "scale": 0.15,
+          "x": 314.6,
+          "y": 230.2,
+          "scale": 0.1821,
           "flip": true
         },
         "sad": {
           "part": "eyeSad",
-          "x": 372,
-          "y": 304,
-          "scale": 0.165,
+          "x": 314.6,
+          "y": 229.0,
+          "scale": 0.2003,
           "flip": true
         },
         "cry": {
           "part": "eyeCry",
-          "x": 371,
-          "y": 310,
-          "scale": 0.15,
+          "x": 313.4,
+          "y": 236.3,
+          "scale": 0.1821,
           "flip": true
         }
       }
@@ -558,40 +693,40 @@
       "attachments": {
         "calm": {
           "part": "eye",
-          "x": 418,
-          "y": 323,
-          "scale": 0.18,
+          "x": 370.5,
+          "y": 252.1,
+          "scale": 0.2185,
           "flip": true
         },
         "wide": {
           "part": "eyeWide",
-          "x": 418,
-          "y": 322,
-          "scale": 0.18
+          "x": 370.5,
+          "y": 250.8,
+          "scale": 0.2185
         },
         "closed": {
           "part": "eyeClosed",
-          "x": 418,
-          "y": 328,
-          "scale": 0.165
+          "x": 370.5,
+          "y": 258.1,
+          "scale": 0.2003
         },
         "happy": {
           "part": "eyeHappy",
-          "x": 418,
-          "y": 325,
-          "scale": 0.165
+          "x": 370.5,
+          "y": 254.5,
+          "scale": 0.2003
         },
         "sad": {
           "part": "eyeSad",
-          "x": 418,
-          "y": 324,
-          "scale": 0.18
+          "x": 370.5,
+          "y": 253.3,
+          "scale": 0.2185
         },
         "cry": {
           "part": "eyeCry",
-          "x": 419,
-          "y": 331,
-          "scale": 0.165
+          "x": 371.7,
+          "y": 261.8,
+          "scale": 0.2003
         }
       }
     },
@@ -602,9 +737,9 @@
       "attachments": {
         "nose": {
           "part": "nose",
-          "x": 385,
-          "y": 319,
-          "scale": 0.1
+          "x": 330.4,
+          "y": 247.2,
+          "scale": 0.1214
         }
       }
     },
@@ -615,46 +750,46 @@
       "attachments": {
         "smile": {
           "part": "mouth",
-          "x": 385,
-          "y": 336,
-          "scale": 0.13
+          "x": 330.4,
+          "y": 267.8,
+          "scale": 0.1578
         },
         "open": {
           "part": "mouthLaugh",
-          "x": 385,
-          "y": 338,
-          "scale": 0.12
+          "x": 330.4,
+          "y": 270.3,
+          "scale": 0.1457
         },
         "o": {
           "part": "mouthO",
-          "x": 385,
-          "y": 338,
-          "scale": 0.12
+          "x": 330.4,
+          "y": 270.3,
+          "scale": 0.1457
         },
         "sad": {
           "part": "mouthSad",
-          "x": 385,
-          "y": 338,
-          "scale": 0.13
+          "x": 330.4,
+          "y": 270.3,
+          "scale": 0.1578
         },
         "sob": {
           "part": "mouthSob",
-          "x": 385,
-          "y": 338,
-          "scale": 0.12
+          "x": 330.4,
+          "y": 270.3,
+          "scale": 0.1457
         }
       }
     },
     {
       "id": "string",
       "bone": "string",
-      "default": "string",
+      "default": "none",
       "attachments": {
         "string": {
           "part": "string",
-          "x": 310.5,
-          "y": 310.5,
-          "scale": 0.1111,
+          "x": 239.9,
+          "y": 236.9,
+          "scale": 0.1349,
           "rotate": -11.5,
           "scaleY": 1.449
         }
@@ -667,10 +802,23 @@
       "attachments": {
         "cut": {
           "part": "string",
-          "x": 900,
-          "y": 900,
-          "scale": 4.444,
+          "x": 955.7,
+          "y": 952.6,
+          "scale": 5.3956,
           "scaleY": 0.0354
+        }
+      }
+    },
+    {
+      "id": "sand",
+      "bone": "sand",
+      "default": "none",
+      "attachments": {
+        "heap": {
+          "part": "sand",
+          "x": 346.6,
+          "y": 613.5,
+          "scale": 0.3
         }
       }
     }
@@ -707,12 +855,37 @@
       "kind": "action",
       "description": "the girl flies her kite: it swoops and loops above her",
       "pause": {
-        "frame": 5,
+        "frame": 6,
         "shows": "the girl holding the string up high, the kite riding high above her, its tail fluttering"
       },
       "keys": [
         {
           "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "armL": {
+              "r": 4
+            },
+            "kite": {
+              "r": -7
+            },
+            "string": {
+              "sy": 0.3
+            },
+            "kiteTip": {
+              "y": 104.5,
+              "sx": 0.3,
+              "sy": 0.3
+            }
+          },
+          "slots": {
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
+          }
         },
         {
           "hold": 0.45,
@@ -727,10 +900,10 @@
               "r": -21
             },
             "string": {
-              "sy": 1.5
+              "sy": 1.22
             },
             "kiteTip": {
-              "y": -61.5,
+              "y": -32.8,
               "r": -8
             },
             "head": {
@@ -743,7 +916,11 @@
           },
           "slots": {
             "eyeL": "happy",
-            "eyeR": "happy"
+            "eyeR": "happy",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -759,10 +936,10 @@
               "r": -21
             },
             "string": {
-              "sy": 2.0
+              "sy": 1.44
             },
             "kiteTip": {
-              "y": -123.0,
+              "y": -65.7,
               "r": 10
             },
             "head": {
@@ -776,7 +953,11 @@
           "slots": {
             "eyeL": "happy",
             "eyeR": "happy",
-            "mouth": "open"
+            "mouth": "open",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -792,10 +973,10 @@
               "r": -24
             },
             "string": {
-              "sy": 2.1
+              "sy": 1.48
             },
             "kiteTip": {
-              "y": -135.3,
+              "y": -71.7,
               "r": -10
             },
             "head": {
@@ -809,7 +990,11 @@
           "slots": {
             "eyeL": "happy",
             "eyeR": "happy",
-            "mouth": "open"
+            "mouth": "open",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -825,10 +1010,10 @@
               "r": -24
             },
             "string": {
-              "sy": 2.2
+              "sy": 1.53
             },
             "kiteTip": {
-              "y": -147.6,
+              "y": -79.1,
               "r": 8
             },
             "head": {
@@ -845,7 +1030,11 @@
           "slots": {
             "eyeL": "happy",
             "eyeR": "happy",
-            "mouth": "open"
+            "mouth": "open",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -861,10 +1050,10 @@
               "r": -29
             },
             "string": {
-              "sy": 2.3
+              "sy": 1.57
             },
             "kiteTip": {
-              "y": -159.9,
+              "y": -85.1,
               "r": -4
             },
             "head": {
@@ -881,7 +1070,11 @@
           "slots": {
             "eyeL": "happy",
             "eyeR": "happy",
-            "mouth": "open"
+            "mouth": "open",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -897,10 +1090,10 @@
               "r": -30
             },
             "string": {
-              "sy": 2.1
+              "sy": 1.48
             },
             "kiteTip": {
-              "y": -135.3,
+              "y": -71.7,
               "r": -16
             },
             "head": {
@@ -914,7 +1107,11 @@
           "slots": {
             "eyeL": "happy",
             "eyeR": "happy",
-            "mouth": "o"
+            "mouth": "o",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -930,10 +1127,10 @@
               "r": -15
             },
             "string": {
-              "sy": 2.2
+              "sy": 1.53
             },
             "kiteTip": {
-              "y": -147.6,
+              "y": -79.1,
               "r": -8
             },
             "head": {
@@ -945,7 +1142,11 @@
           },
           "slots": {
             "eyeL": "happy",
-            "eyeR": "happy"
+            "eyeR": "happy",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -961,10 +1162,10 @@
               "r": -20
             },
             "string": {
-              "sy": 2.3
+              "sy": 1.57
             },
             "kiteTip": {
-              "y": -159.9,
+              "y": -85.1,
               "r": 14
             },
             "head": {
@@ -978,7 +1179,11 @@
           "slots": {
             "eyeL": "happy",
             "eyeR": "happy",
-            "mouth": "open"
+            "mouth": "open",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -994,10 +1199,10 @@
               "r": -21
             },
             "string": {
-              "sy": 2.0
+              "sy": 1.44
             },
             "kiteTip": {
-              "y": -123.0,
+              "y": -65.7,
               "r": 4
             },
             "head": {
@@ -1010,7 +1215,11 @@
           },
           "slots": {
             "eyeL": "happy",
-            "eyeR": "happy"
+            "eyeR": "happy",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -1026,10 +1235,10 @@
               "r": -20
             },
             "string": {
-              "sy": 1.5
+              "sy": 1.22
             },
             "kiteTip": {
-              "y": -61.5,
+              "y": -32.8,
               "r": -6
             },
             "head": {
@@ -1038,7 +1247,11 @@
           },
           "slots": {
             "eyeL": "happy",
-            "eyeR": "happy"
+            "eyeR": "happy",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -1054,16 +1267,45 @@
               "r": -9
             },
             "string": {
-              "sy": 1.15
+              "sy": 1.06
             },
             "kiteTip": {
-              "y": -18.4,
+              "y": -9.0,
               "r": -2
             }
           },
           "slots": {
             "eyeL": "happy",
-            "eyeR": "happy"
+            "eyeR": "happy",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "armL": {
+              "r": 4
+            },
+            "kite": {
+              "r": -7
+            },
+            "string": {
+              "sy": 0.3
+            },
+            "kiteTip": {
+              "y": 104.5,
+              "sx": 0.3,
+              "sy": 0.3
+            }
+          },
+          "slots": {
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -1074,7 +1316,7 @@
     {
       "id": "skip",
       "kind": "move",
-      "description": "the girl skips along to the right across the sand, the kite bobbing behind her on its string, then stops and stands.",
+      "description": "the girl skips along to the right across the sand, then stops and stands.",
       "loop": {
         "from": 1,
         "to": 4
@@ -1232,6 +1474,31 @@
             "armL": {
               "r": 4
             },
+            "kite": {
+              "r": -7
+            },
+            "string": {
+              "sy": 0.3
+            },
+            "kiteTip": {
+              "y": 104.5,
+              "sx": 0.3,
+              "sy": 0.3
+            }
+          },
+          "slots": {
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "armL": {
+              "r": 4
+            },
             "armR": {
               "r": 0
             },
@@ -1242,13 +1509,17 @@
               "sy": 1.1
             },
             "kiteTip": {
-              "y": -12.3,
+              "y": -14.9,
               "r": 4
             }
           },
           "slots": {
             "eyeL": "happy",
-            "eyeR": "happy"
+            "eyeR": "happy",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -1267,7 +1538,7 @@
               "sy": 1.35
             },
             "kiteTip": {
-              "y": -43.1,
+              "y": -52.3,
               "r": -8
             },
             "root": {
@@ -1278,7 +1549,11 @@
             }
           },
           "slots": {
-            "mouth": "o"
+            "mouth": "o",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -1297,7 +1572,7 @@
               "sy": 1.4
             },
             "kiteTip": {
-              "y": -49.2,
+              "y": -59.7,
               "r": 10
             },
             "head": {
@@ -1307,7 +1582,11 @@
           "slots": {
             "eyeL": "happy",
             "eyeR": "happy",
-            "mouth": "open"
+            "mouth": "open",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -1326,7 +1605,7 @@
               "sy": 1.65
             },
             "kiteTip": {
-              "y": -79.9,
+              "y": -97.0,
               "r": -10
             },
             "root": {
@@ -1337,7 +1616,11 @@
             }
           },
           "slots": {
-            "mouth": "o"
+            "mouth": "o",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -1356,7 +1639,7 @@
               "sy": 1.7
             },
             "kiteTip": {
-              "y": -86.1,
+              "y": -104.5,
               "r": 8
             },
             "head": {
@@ -1370,7 +1653,11 @@
           "slots": {
             "eyeL": "happy",
             "eyeR": "happy",
-            "mouth": "open"
+            "mouth": "open",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -1389,13 +1676,42 @@
               "sy": 1.3
             },
             "kiteTip": {
-              "y": -36.9,
+              "y": -44.8,
               "r": -3
             }
           },
           "slots": {
             "eyeL": "happy",
-            "eyeR": "happy"
+            "eyeR": "happy",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "armL": {
+              "r": 4
+            },
+            "kite": {
+              "r": -7
+            },
+            "string": {
+              "sy": 0.3
+            },
+            "kiteTip": {
+              "y": 104.5,
+              "sx": 0.3,
+              "sy": 0.3
+            }
+          },
+          "slots": {
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -1408,12 +1724,37 @@
       "kind": "action",
       "description": "the kite dives down to one side and the girl pulls it back up just in time, phew!",
       "pause": {
-        "frame": 3,
+        "frame": 4,
         "shows": "the kite diving low beside the girl, her eyes wide"
       },
       "keys": [
         {
           "hold": 0.15
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "armL": {
+              "r": 4
+            },
+            "kite": {
+              "r": -7
+            },
+            "string": {
+              "sy": 0.3
+            },
+            "kiteTip": {
+              "y": 104.5,
+              "sx": 0.3,
+              "sy": 0.3
+            }
+          },
+          "slots": {
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
+          }
         },
         {
           "hold": 0.4,
@@ -1431,7 +1772,7 @@
               "sy": 1.5
             },
             "kiteTip": {
-              "y": -61.5,
+              "y": -74.7,
               "r": 6
             },
             "head": {
@@ -1440,7 +1781,11 @@
           },
           "slots": {
             "eyeL": "happy",
-            "eyeR": "happy"
+            "eyeR": "happy",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -1460,7 +1805,7 @@
               "sy": 1.4
             },
             "kiteTip": {
-              "y": -49.2,
+              "y": -59.7,
               "r": -40
             },
             "head": {
@@ -1473,7 +1818,11 @@
           "slots": {
             "eyeL": "wide",
             "eyeR": "wide",
-            "mouth": "o"
+            "mouth": "o",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -1492,7 +1841,7 @@
               "sy": 1.3
             },
             "kiteTip": {
-              "y": -36.9,
+              "y": -44.8,
               "r": -50
             },
             "head": {
@@ -1508,7 +1857,11 @@
           "slots": {
             "eyeL": "wide",
             "eyeR": "wide",
-            "mouth": "o"
+            "mouth": "o",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -1528,7 +1881,7 @@
               "sy": 1.55
             },
             "kiteTip": {
-              "y": -67.7,
+              "y": -82.1,
               "r": -10
             },
             "head": {
@@ -1539,7 +1892,11 @@
             }
           },
           "slots": {
-            "mouth": "o"
+            "mouth": "o",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -1558,7 +1915,7 @@
               "sy": 1.6
             },
             "kiteTip": {
-              "y": -73.8,
+              "y": -89.6,
               "r": 8
             },
             "head": {
@@ -1568,7 +1925,11 @@
           "slots": {
             "eyeL": "happy",
             "eyeR": "happy",
-            "mouth": "open"
+            "mouth": "open",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -1587,13 +1948,42 @@
               "sy": 1.2
             },
             "kiteTip": {
-              "y": -24.6,
+              "y": -29.9,
               "r": -2
             }
           },
           "slots": {
             "eyeL": "happy",
-            "eyeR": "happy"
+            "eyeR": "happy",
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "armL": {
+              "r": 4
+            },
+            "kite": {
+              "r": -7
+            },
+            "string": {
+              "sy": 0.3
+            },
+            "kiteTip": {
+              "y": 104.5,
+              "sx": 0.3,
+              "sy": 0.3
+            }
+          },
+          "slots": {
+            "armL": "kite",
+            "armLF": "none",
+            "kite": "kite",
+            "string": "string"
           }
         },
         {
@@ -1781,7 +2171,7 @@
     {
       "id": "clap",
       "kind": "action",
-      "description": "the girl claps her hands, the kite string still in them.",
+      "description": "the girl claps her hands.",
       "keys": [
         {
           "hold": 0.15
@@ -1794,11 +2184,6 @@
             },
             "armR": {
               "r": 28
-            },
-            "kite": {
-              "x": -7.5,
-              "y": 122.0,
-              "r": 0
             }
           },
           "slots": {
@@ -1818,11 +2203,6 @@
             },
             "armR": {
               "r": 38
-            },
-            "kite": {
-              "x": -6.1,
-              "y": 122.4,
-              "r": 10
             }
           },
           "slots": {
@@ -1843,11 +2223,6 @@
             },
             "armR": {
               "r": 28
-            },
-            "kite": {
-              "x": -7.5,
-              "y": 122.0,
-              "r": 0
             }
           },
           "slots": {
@@ -1868,11 +2243,6 @@
             },
             "armR": {
               "r": 38
-            },
-            "kite": {
-              "x": -6.1,
-              "y": 122.4,
-              "r": 10
             }
           },
           "slots": {
@@ -1893,11 +2263,6 @@
             },
             "armR": {
               "r": 28
-            },
-            "kite": {
-              "x": -7.5,
-              "y": 122.0,
-              "r": 0
             }
           },
           "slots": {
@@ -1918,11 +2283,6 @@
             },
             "armR": {
               "r": 38
-            },
-            "kite": {
-              "x": -6.1,
-              "y": 122.4,
-              "r": 10
             }
           },
           "slots": {
@@ -1943,11 +2303,6 @@
             },
             "armR": {
               "r": 28
-            },
-            "kite": {
-              "x": -7.5,
-              "y": 122.0,
-              "r": 0
             }
           },
           "slots": {
@@ -2412,6 +2767,578 @@
             },
             "kite": {
               "r": 8
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "crouch",
+      "kind": "action",
+      "description": "the girl squats down low on her heels, knees bent, and stays there, then stands back up.",
+      "pause": {
+        "frame": 3,
+        "shows": "the girl crouched low on her heels, knees bent, hands resting in front of her"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "y": 30
+            },
+            "belly": {
+              "sy": 0.94
+            },
+            "head": {
+              "y": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.4,
+          "ease": "out",
+          "bones": {
+            "body": {
+              "y": 158.5
+            },
+            "head": {
+              "y": 20,
+              "r": -3
+            },
+            "face": {
+              "y": 3
+            },
+            "armL": {
+              "x": 6.3,
+              "y": 8.3,
+              "r": 5
+            },
+            "armR": {
+              "x": -1.4,
+              "y": 16.6,
+              "r": -5
+            }
+          },
+          "slots": {
+            "legL": "none",
+            "legR": "none",
+            "body": "none",
+            "squat": "squat",
+            "armL": "none",
+            "armLF": "reach",
+            "armR": "none",
+            "armRF": "reach",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 1.2,
+          "bones": {
+            "body": {
+              "y": 158.5
+            },
+            "head": {
+              "y": 24,
+              "r": -5
+            },
+            "face": {
+              "y": 3
+            },
+            "armL": {
+              "x": 6.3,
+              "y": 8.3,
+              "r": 5
+            },
+            "armR": {
+              "x": -1.4,
+              "y": 16.6,
+              "r": -5
+            }
+          },
+          "slots": {
+            "legL": "none",
+            "legR": "none",
+            "body": "none",
+            "squat": "squat",
+            "armL": "none",
+            "armLF": "reach",
+            "armR": "none",
+            "armRF": "reach"
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "out",
+          "bones": {
+            "body": {
+              "y": 30
+            },
+            "belly": {
+              "sy": 0.95
+            },
+            "head": {
+              "y": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
+    },
+    {
+      "id": "play-sand",
+      "kind": "action",
+      "description": "the girl crouches and scoops and pats the sand with both hands, building a little heap, smiling, then pats it flat and stands up.",
+      "pause": {
+        "frame": 5,
+        "shows": "the girl crouched over a little heap of sand, patting it with both hands"
+      },
+      "keys": [
+        {
+          "hold": 0.15
+        },
+        {
+          "hold": 0.25,
+          "bones": {
+            "body": {
+              "y": 30
+            },
+            "belly": {
+              "sy": 0.94
+            },
+            "head": {
+              "y": 4
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.4,
+          "ease": "out",
+          "bones": {
+            "body": {
+              "y": 158.5
+            },
+            "head": {
+              "y": 20,
+              "r": -3
+            },
+            "face": {
+              "y": 3
+            },
+            "armL": {
+              "x": 6.3,
+              "y": 8.3,
+              "r": 5
+            },
+            "armR": {
+              "x": -1.4,
+              "y": 16.6,
+              "r": -5
+            }
+          },
+          "slots": {
+            "legL": "none",
+            "legR": "none",
+            "body": "none",
+            "squat": "squat",
+            "armL": "none",
+            "armLF": "reach",
+            "armR": "none",
+            "armRF": "reach",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "y": 158.5
+            },
+            "head": {
+              "y": 20,
+              "r": -3
+            },
+            "face": {
+              "y": 3
+            },
+            "armL": {
+              "x": 6.3,
+              "y": 8.3,
+              "r": -3
+            },
+            "armR": {
+              "x": -1.4,
+              "y": 16.6,
+              "r": 3
+            },
+            "sand": {
+              "sx": 0.25,
+              "sy": 0.25
+            }
+          },
+          "slots": {
+            "legL": "none",
+            "legR": "none",
+            "body": "none",
+            "squat": "squat",
+            "armL": "none",
+            "armLF": "reach",
+            "armR": "none",
+            "armRF": "reach",
+            "sand": "heap",
+            "mouth": "o"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "y": 158.5
+            },
+            "head": {
+              "y": 20,
+              "r": -3
+            },
+            "face": {
+              "y": 3
+            },
+            "armL": {
+              "x": 6.3,
+              "y": 13.3,
+              "r": 15
+            },
+            "armR": {
+              "x": -1.4,
+              "y": 21.6,
+              "r": -15
+            },
+            "sand": {
+              "sx": 0.45,
+              "sy": 0.45
+            }
+          },
+          "slots": {
+            "legL": "none",
+            "legR": "none",
+            "body": "none",
+            "squat": "squat",
+            "armL": "none",
+            "armLF": "reach",
+            "armR": "none",
+            "armRF": "reach",
+            "sand": "heap",
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "body": {
+              "y": 158.5
+            },
+            "head": {
+              "y": 20,
+              "r": -3
+            },
+            "face": {
+              "y": 3
+            },
+            "armL": {
+              "x": 6.3,
+              "y": 8.3,
+              "r": -1
+            },
+            "armR": {
+              "x": -1.4,
+              "y": 16.6,
+              "r": 1
+            },
+            "sand": {
+              "sx": 0.65,
+              "sy": 0.65
+            }
+          },
+          "slots": {
+            "legL": "none",
+            "legR": "none",
+            "body": "none",
+            "squat": "squat",
+            "armL": "none",
+            "armLF": "reach",
+            "armR": "none",
+            "armRF": "reach",
+            "sand": "heap",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "y": 158.5
+            },
+            "head": {
+              "y": 20,
+              "r": -3
+            },
+            "face": {
+              "y": 3
+            },
+            "armL": {
+              "x": 6.3,
+              "y": 13.3,
+              "r": 15
+            },
+            "armR": {
+              "x": -1.4,
+              "y": 21.6,
+              "r": -15
+            },
+            "sand": {
+              "sx": 0.8,
+              "sy": 0.8
+            }
+          },
+          "slots": {
+            "legL": "none",
+            "legR": "none",
+            "body": "none",
+            "squat": "squat",
+            "armL": "none",
+            "armLF": "reach",
+            "armR": "none",
+            "armRF": "reach",
+            "sand": "heap",
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "y": 158.5
+            },
+            "head": {
+              "y": 20,
+              "r": -3
+            },
+            "face": {
+              "y": 3
+            },
+            "armL": {
+              "x": 6.3,
+              "y": 8.3,
+              "r": -1
+            },
+            "armR": {
+              "x": -1.4,
+              "y": 16.6,
+              "r": 1
+            },
+            "sand": {
+              "sx": 1.0,
+              "sy": 1.0
+            }
+          },
+          "slots": {
+            "legL": "none",
+            "legR": "none",
+            "body": "none",
+            "squat": "squat",
+            "armL": "none",
+            "armLF": "reach",
+            "armR": "none",
+            "armRF": "reach",
+            "sand": "heap",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "y": 158.5
+            },
+            "head": {
+              "y": 20,
+              "r": -3
+            },
+            "face": {
+              "y": 3
+            },
+            "armL": {
+              "x": 6.3,
+              "y": 13.3,
+              "r": 15
+            },
+            "armR": {
+              "x": -1.4,
+              "y": 21.6,
+              "r": -15
+            },
+            "sand": {
+              "sx": 1.0,
+              "sy": 1.0
+            }
+          },
+          "slots": {
+            "legL": "none",
+            "legR": "none",
+            "body": "none",
+            "squat": "squat",
+            "armL": "none",
+            "armLF": "reach",
+            "armR": "none",
+            "armRF": "reach",
+            "sand": "heap",
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "body": {
+              "y": 158.5
+            },
+            "head": {
+              "y": 20,
+              "r": -3
+            },
+            "face": {
+              "y": 3
+            },
+            "armL": {
+              "x": 6.3,
+              "y": 13.3,
+              "r": 9
+            },
+            "armR": {
+              "x": -1.4,
+              "y": 21.6,
+              "r": -9
+            },
+            "sand": {
+              "sx": 0.5,
+              "sy": 0.5
+            }
+          },
+          "slots": {
+            "legL": "none",
+            "legR": "none",
+            "body": "none",
+            "squat": "squat",
+            "armL": "none",
+            "armLF": "reach",
+            "armR": "none",
+            "armRF": "reach",
+            "sand": "heap",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "body": {
+              "y": 158.5
+            },
+            "head": {
+              "y": 20,
+              "r": -3
+            },
+            "face": {
+              "y": 3
+            },
+            "armL": {
+              "x": 6.3,
+              "y": 13.3,
+              "r": 13
+            },
+            "armR": {
+              "x": -1.4,
+              "y": 21.6,
+              "r": -13
+            },
+            "sand": {
+              "sx": 0.25,
+              "sy": 0.25
+            }
+          },
+          "slots": {
+            "legL": "none",
+            "legR": "none",
+            "body": "none",
+            "squat": "squat",
+            "armL": "none",
+            "armLF": "reach",
+            "armR": "none",
+            "armRF": "reach",
+            "sand": "heap",
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.35,
+          "ease": "out",
+          "bones": {
+            "body": {
+              "y": 30
+            },
+            "belly": {
+              "sy": 0.95
+            },
+            "head": {
+              "y": 4
             }
           },
           "slots": {
