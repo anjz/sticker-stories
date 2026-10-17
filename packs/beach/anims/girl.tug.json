@@ -16,50 +16,50 @@
         "hold": 0.15
       },
       {
-        "hold": 0.25,
+        "hold": 0.3,
         "bones": {
           "armL": {
-            "r": -10
+            "r": 4
           },
-          "head": {
-            "r": -3
-          },
+          "armR": {},
           "kite": {
-            "r": 10,
-            "y": -8
+            "r": -5
+          },
+          "kiteTip": {
+            "r": 4,
+            "y": -12.3
+          },
+          "string": {
+            "sy": 1.1
           }
         },
         "slots": {
-          "mouth": "o"
+          "eyeL": "happy",
+          "eyeR": "happy"
         }
       },
       {
-        "hold": 0.35,
-        "bones": {
-          "armL": {
-            "r": 6
-          },
-          "head": {
-            "r": -3
-          },
-          "kite": {
-            "r": -4,
-            "y": -6
-          }
-        }
-      },
-      {
-        "hold": 0.25,
+        "hold": 0.22,
         "bones": {
           "armL": {
             "r": -12
           },
+          "armR": {},
           "head": {
-            "r": -4
+            "r": -3
           },
           "kite": {
-            "r": 12,
-            "y": -20
+            "r": 6
+          },
+          "kiteTip": {
+            "r": -8,
+            "y": -43.1
+          },
+          "root": {
+            "y": 3
+          },
+          "string": {
+            "sy": 1.35
           }
         },
         "slots": {
@@ -70,14 +70,84 @@
         "hold": 0.4,
         "bones": {
           "armL": {
-            "r": 8
+            "r": 14
+          },
+          "armR": {
+            "r": -30
           },
           "head": {
             "r": -4
           },
           "kite": {
-            "r": -3,
-            "y": -16
+            "r": -13
+          },
+          "kiteTip": {
+            "r": 10,
+            "y": -49.2
+          },
+          "string": {
+            "sy": 1.4
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy",
+          "mouth": "open"
+        }
+      },
+      {
+        "hold": 0.22,
+        "bones": {
+          "armL": {
+            "r": -10
+          },
+          "armR": {},
+          "head": {
+            "r": -3
+          },
+          "kite": {
+            "r": 3
+          },
+          "kiteTip": {
+            "r": -10,
+            "y": -79.9
+          },
+          "root": {
+            "y": 3
+          },
+          "string": {
+            "sy": 1.65
+          }
+        },
+        "slots": {
+          "mouth": "o"
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "armL": {
+            "r": 18
+          },
+          "armR": {
+            "r": -45
+          },
+          "face": {
+            "x": -2,
+            "y": -2
+          },
+          "head": {
+            "r": -5
+          },
+          "kite": {
+            "r": -18
+          },
+          "kiteTip": {
+            "r": 8,
+            "y": -86.1
+          },
+          "string": {
+            "sy": 1.7
           }
         },
         "slots": {
@@ -90,11 +160,20 @@
         "hold": 0.4,
         "bones": {
           "armL": {
-            "r": 3
+            "r": 8
+          },
+          "armR": {
+            "r": -15
           },
           "kite": {
-            "r": 2,
-            "y": -6
+            "r": -11
+          },
+          "kiteTip": {
+            "r": -3,
+            "y": -36.9
+          },
+          "string": {
+            "sy": 1.3
           }
         },
         "slots": {
