@@ -204,7 +204,8 @@ func shoreWorld() -> StageWorld {
             let s = p.sample(at: t)
             let mine = world.drawing(at: s.position, size: 0.12, ratio: 1)
             let h = s.position.z < girlAt.z ? StageWorld.hidden(theirs, behind: [mine]) : StageWorld.hidden(mine, behind: [theirs])
-            #expect(s.position.y > 0.01 && h <= 0.15, "t \(t)")
+            // Aloft by her, well up off the sand.
+            #expect(s.position.y > 0.35 * 0.4 && h <= 0.15, "t \(t)")
         }
     }
 

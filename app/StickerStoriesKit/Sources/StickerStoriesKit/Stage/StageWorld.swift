@@ -242,6 +242,24 @@ public struct StageWorld: Sendable {
         return self.water(at: groundPoint(screen: middle)) == water
     }
 
+    /// How much of a drawing (world points) shows over `water`, as the
+    /// viewer sees it (0…1): the share of it whose ground behind lies in
+    /// the water — the rest is over its rim (the boulders round a pool).
+    public func overWaterShare(_ water: String, drawing r: StageRect) -> Double {
+        let n = 5
+        var over = 0
+        for i in 0..<n {
+            for j in 0..<n {
+                let p = StagePoint(
+                    x: r.minX + (r.maxX - r.minX) * (Double(i) + 0.5) / Double(n),
+                    y: r.minY + (r.maxY - r.minY) * (Double(j) + 0.5) / Double(n))
+                let a = SceneSpace.Point(p.x / max(frame.width, 1), p.y / max(frame.height, 1))
+                if space.isGround(artY: a.v), self.water(at: groundPoint(a)) == water { over += 1 }
+            }
+        }
+        return Double(over) / Double(n * n)
+    }
+
     /// Whether a walker that belongs in `belongs` crosses, going straight
     /// from `p` to `q`, water it does not belong in or a plane's footprint.
     public func crossesBlocked(from p: Vec2, to q: Vec2, belongsIn belongs: Set<String>) -> Bool {

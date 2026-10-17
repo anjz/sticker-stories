@@ -108,4 +108,15 @@ import Testing
         back.slots["mouth"] = PuppetRig.hidden
         #expect(back.wearingFace(of: laugh, rig: rig).slots == back.slots)
     }
+
+    @Test func anActionOverAMoveThatGoesOnSkipsItsStillEnds() {
+        // Riding a wave (12 keys) over paddling: never standing still on
+        // the water, going in or coming out.
+        let into = StageActing.overMove(LiveTween(frame: 0, next: 1, progress: 0.5), keys: 12)
+        #expect(into == LiveTween(frame: 1, next: 1, progress: 0))
+        let riding = LiveTween(frame: 5, next: 6, progress: 0.3)
+        #expect(StageActing.overMove(riding, keys: 12) == riding)
+        #expect(StageActing.overMove(LiveTween(frame: 10, next: 11, progress: 0.1), keys: 12) == nil)
+        #expect(StageActing.overMove(LiveTween(frame: 11, next: 11, progress: 0), keys: 12) == nil)
+    }
 }

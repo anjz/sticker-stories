@@ -39,6 +39,29 @@ import Testing
         #expect(x - 300 <= 100 && x + 300 >= 200)
     }
 
+    @Test func whatIsPlayingKeepsTheCamera() {
+        // Nico rides the wave far right; the seal comes in and claps far
+        // left meanwhile: the ride keeps the camera till it is over.
+        let seal = StoryCamera.Focus(minX: 100, maxX: 200, since: 9, playing: true)
+        let ride = StoryCamera.Focus(minX: 1300, maxX: 1400, since: 8, playing: true)
+        let x = StoryCamera.target(center: 1100, view: 600, world: world, focus: [seal, ride], margin: 40)
+        #expect(x - 300 <= 1300 && x + 300 >= 1400)
+        // Coming in is not playing: the ride keeps it over that too.
+        var coming = seal
+        coming.playing = false
+        coming.since = 12
+        let y = StoryCamera.target(center: 1100, view: 600, world: world, focus: [coming, ride], margin: 40)
+        #expect(y - 300 <= 1300 && y + 300 >= 1400)
+        // An action or an effect plays from its start to its end; a face
+        // does not hold it.
+        let beats = StoryCamera.beats(
+            live: [LiveAnimationTrigger(at: 8, stickerID: "surfer", animationID: "ride")], duration: { _ in 4 },
+            faces: [ExpressionTrigger(at: 8, stickerID: "seal", expression: "happy")], effects: [])
+        #expect(beats.first { $0.stickerID == "surfer" }?.playing(at: 10) == true)
+        #expect(beats.first { $0.stickerID == "surfer" }?.playing(at: 12.5) == false)
+        #expect(beats.first { $0.stickerID == "seal" }?.playing(at: 8.5) == false)
+    }
+
     @Test func keepsTheRestOfTheCastWholeWhenItCan() {
         // Nico waits out at sea while the turtle swims: the turtle first,
         // and Nico in view too when both fit.

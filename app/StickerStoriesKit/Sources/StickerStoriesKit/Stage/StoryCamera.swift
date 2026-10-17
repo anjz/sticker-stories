@@ -17,13 +17,20 @@ public enum StoryCamera {
         public var instance: UUID?
         public var from: TimeInterval
         public var to: TimeInterval
+        /// An action or an effect: while it plays it keeps the camera
+        /// (`Focus.playing`).
+        public var holds: Bool
 
-        public init(stickerID: String, instance: UUID? = nil, from: TimeInterval, to: TimeInterval) {
+        public init(stickerID: String, instance: UUID? = nil, from: TimeInterval, to: TimeInterval, holds: Bool = false) {
             self.stickerID = stickerID
             self.instance = instance
             self.from = from
             self.to = max(to, from)
+            self.holds = holds
         }
+
+        /// Whether it is playing at `time` and keeps the camera.
+        public func playing(at time: TimeInterval) -> Bool { holds && time >= from && time <= to }
     }
 
     /// What the camera should show: a span across the world, and when
@@ -32,11 +39,15 @@ public enum StoryCamera {
         public var minX: Double
         public var maxX: Double
         public var since: TimeInterval
+        /// An action or effect under way (the surfer riding a wave): it
+        /// keeps the camera before anything that begins meanwhile.
+        public var playing: Bool
 
-        public init(minX: Double, maxX: Double, since: TimeInterval) {
+        public init(minX: Double, maxX: Double, since: TimeInterval, playing: Bool = false) {
             self.minX = min(minX, maxX)
             self.maxX = max(minX, maxX)
             self.since = since
+            self.playing = playing
         }
     }
 
@@ -69,7 +80,7 @@ public enum StoryCamera {
         var out: [Beat] = []
         for trigger in live {
             let length = duration(LiveAnimationKey(stickerID: trigger.stickerID, animationID: trigger.animationID)) ?? 2
-            out.append(Beat(stickerID: trigger.stickerID, from: trigger.at, to: trigger.at + min(length, 6)))
+            out.append(Beat(stickerID: trigger.stickerID, from: trigger.at, to: trigger.at + min(length, 6), holds: true))
         }
         // Going back to its own face is not news.
         for face in faces where face.expression != ExpressionTrigger.normal {
@@ -77,7 +88,7 @@ public enum StoryCamera {
         }
         for effect in effects {
             let length = min(effect.options.duration ?? effectSpan, 6)
-            out.append(Beat(stickerID: effect.stickerID, from: effect.at, to: effect.at + length))
+            out.append(Beat(stickerID: effect.stickerID, from: effect.at, to: effect.at + length, holds: true))
         }
         return out.sorted { $0.from < $1.from }
     }
@@ -109,7 +120,12 @@ public enum StoryCamera {
         func onWorld(_ x: Double) -> Double { min(max(x, first), last) }
         let room = max(view - 2 * margin, 0)
         var span: (lo: Double, hi: Double)?
-        for f in focus.sorted(by: { $0.since > $1.since }) {
+        // What is under way first, the one that began first keeping it (the
+        // wave he rides crashes in view); then the rest, latest first.
+        let order = focus.sorted { a, b in
+            a.playing != b.playing ? a.playing : a.playing ? a.since < b.since : a.since > b.since
+        }
+        for f in order {
             guard let s = span else {
                 span = (f.minX, f.maxX)
                 continue

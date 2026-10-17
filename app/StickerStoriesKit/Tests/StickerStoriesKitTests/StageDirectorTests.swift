@@ -544,6 +544,7 @@ extension StageDirectorTests {
             for (crowded, seed, narrowWindow, onPhone) in [
                 (false, 11, false, false), (true, 11, false, false), (false, 7777, false, false), (true, 7777, false, false),
                 (false, 11, true, false), (true, 11, true, false), (false, 11, false, true), (true, 11, false, true),
+                (false, 7777, false, true),
             ] where !onPhone || (staged.phone && wideWorld != nil) {
                 let screen = onPhone ? phone : narrowWindow ? narrow : landscape
                 let world = onPhone ? wideWorld ?? baseWorld : baseWorld
@@ -774,8 +775,10 @@ extension StageDirectorTests {
                             let r = world.drawing(at: s.position, size: a.size, ratio: a.ratio)
                             // On a shallow bottom it belongs on, seen in the water
                             // (the fish in the rock pool, not up on its rim).
+                            // (One that lives in it: whose places are all water.)
                             if onFoot, let water = world.water(at: s.position.ground), shallowPlaces.contains(water),
-                                (a.stage.on + a.moves.flatMap(\.on)).contains(water), !world.overWater(water, drawing: r)
+                                !a.stage.on.isEmpty, a.stage.on.allSatisfy(waterPlaces.contains),
+                                world.overWaterShare(water, drawing: r) < 0.75
                             {
                                 problems.append("\(tag): on the \(water)'s rim at \(String(format: "%.1f", t))")
                             }

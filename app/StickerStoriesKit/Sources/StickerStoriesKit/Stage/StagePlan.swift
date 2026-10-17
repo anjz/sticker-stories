@@ -354,7 +354,7 @@ public struct StagePlan: Equatable, Sendable {
 
     /// The narrowest a turning sticker is drawn (its facing's size): a
     /// turn flips through edge-on in a blink, never showing a sliver.
-    public static let narrowest = 0.3
+    public static let narrowest = 0.5
 
     /// Where a circling flyer is on its loop, `since` seconds after `leg`
     /// got it to its spot (from it), and the way it faces: it swings out

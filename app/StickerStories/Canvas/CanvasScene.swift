@@ -1704,16 +1704,17 @@ final class CanvasScene: SKScene {
         let nodes = allStickerNodes()
         var focus: [StoryCamera.Focus] = []
         var inFocus = Set<UUID>()
-        func span(_ node: StickerNode, since: TimeInterval) -> StoryCamera.Focus {
+        func span(_ node: StickerNode, since: TimeInterval, playing: Bool = false) -> StoryCamera.Focus {
             let half = node.frame.width * node.content.width / 2
-            return StoryCamera.Focus(minX: Double(node.position.x - half), maxX: Double(node.position.x + half), since: since)
+            return StoryCamera.Focus(
+                minX: Double(node.position.x - half), maxX: Double(node.position.x + half), since: since, playing: playing)
         }
         for beat in StoryCamera.current(session.beats, at: time) {
             for node in nodes {
                 guard beat.instance.map({ $0 == node.instanceID }) ?? (node.stickerID == beat.stickerID) else { continue }
                 // Someone not on the stage yet is in focus only on its way in.
                 guard beat.instance != nil || node.alpha > 0.05 else { continue }
-                focus.append(span(node, since: beat.from))
+                focus.append(span(node, since: beat.from, playing: beat.playing(at: time)))
                 inFocus.insert(node.instanceID)
             }
         }
@@ -2309,6 +2310,15 @@ final class CanvasScene: SKScene {
                     // Once it is over, a move that stays goes on (on the
                     // stage in space).
                     shown = acting ?? (session.stage != nil ? moving : nil)
+                    // Over a move that goes on through it (afloat, aloft),
+                    // without its still first and last keys: from the move
+                    // into the action and straight back.
+                    if session.stage != nil, travel?.stays == true, let acting, let moving, let tween = acting.2,
+                        let keys = acting.0.puppet?.keys.count, let move = moving.0.puppet,
+                        acting.0.puppet?.rig.atlas == move.rig.atlas
+                    {
+                        shown = StageActing.overMove(tween, keys: keys).map { (acting.0, acting.1, $0) } ?? moving
+                    }
                     // Up in the air, a flyer's wings beat on through it.
                     if session.stage != nil, travel?.stays == true, let acting, let moving,
                         let bones = moving.0.animation.puppet?.wings, !bones.isEmpty,

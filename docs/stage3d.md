@@ -238,18 +238,25 @@ other way.
 **Beside someone.** Each one more already on that side of them stands a
 step further out (two sent to the bottle never share a spot), and whoever
 else stands by them in front counts as hiding them too. A flyer by them
-stays clear of them — beside someone bigger on the ground, up by their
-middle — and one that cannot hover loops out away from them, turning
+stays clear of them, aloft — beside someone bigger on the ground, up by
+their shoulders (the gull flew up beside Lola), never down by their feet — and one that cannot hover loops out away from them, turning
 away as it gets there, never across them (a lap that fits nowhere
 shrinks to beating its wings where it is).
 
-**On a shallow bottom** a sticker is seen in the water: the middle of its
-drawing over the water (`StageWorld.overWater`), not up on the rocks at
-the pool's back rim. A child's sticker never takes a perch it would be off
+**On a shallow bottom** a sticker is seen in the water: (nearly) all of
+its drawing over the water where there is room to choose
+(`StageWorld.overWaterShare`), else its middle (`overWater`) — not up on
+the rocks at the pool's rim, even if that means sitting by the story
+pill's corner. Wherever the director chooses, it never puts a sticker on
+top of, in front of or behind someone already there, nor mostly behind the
+scene's planes (a clam behind the pool's front rocks), just to keep clear
+of the pill; and "another part" of a place with no such spot leaves it
+where it is. The staging test (Beach also on a phone in landscape) fails a
+water dweller with more than a quarter of its drawing over the rim. A child's sticker never takes a perch it would be off
 screen or hidden on (the far trunk at a phone's edge).
 
 **Turning.** A turning sticker is never drawn narrower than
-`StagePlan.narrowest` (0.3 of its width): it flips through edge-on in a
+`StagePlan.narrowest` (half its width): it flips through edge-on in a
 blink, never showing a sliver.
 
 **Its back to us going out.** A move can name another as its `away`
@@ -258,6 +265,12 @@ blink, never showing a sliver.
 the character's back to us (the surfer paddling out, `paddle`'s
 `paddle-out`); resting there, or coming back, it plays its own, looking
 at us (`StageLeg.away`, `StagePlan.travel`).
+
+**Acting over a move that goes on** (afloat on a move that stays, or
+aloft): the action's first and last keys — the sticker's still pose — are
+left out (`StageActing.overMove`): it blends from the move's pose straight
+into the action and back to the move as the action heads for its end,
+never standing still on the water or in the air.
 
 **Acting in the water** (`StageActing`). While a move that `stays` keeps
 a sticker in water (the surfer paddling, a seal swimming, a pelican
@@ -294,7 +307,10 @@ follows the story's **beats**: each action, face (not the return to the
 usual one) and sticker effect the story cues, from 0.8 s before it to
 0.6 s after, and each sticker's way in and moves, all the way along (not
 the child's stickers settling, nor making room). Idle life is not a beat.
-Each frame it takes the least move that brings every current beat's
+An action or an effect under way keeps the camera before anything that
+begins meanwhile (the wave Nico rides crashes in view while the seal comes
+in), the one that began first keeping it (`Focus.playing`). Each frame it
+takes the least move that brings every current beat's
 sticker into the window, a margin in from its sides; when they do not
 all fit it goes with the beat that began last, then adds as many of the
 others as still fit. Then it takes in as many of the other stickers on

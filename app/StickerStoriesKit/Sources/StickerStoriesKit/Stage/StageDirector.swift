@@ -597,7 +597,8 @@ public enum StageDirector {
             for o in states.indices where o != i && !except.contains(o) && states[o].visible && states[o].hasEntered {
                 let q = states[o].pose.position
                 let theirs = drawing(o, at: q)
-                if q.z < p.z - 1e-6 {
+                // (One at its very depth hides it as much: two on one spot.)
+                if q.z <= p.z + 1e-6 {
                     nearer.append(theirs)
                 } else if q.z > p.z + 1e-6 {
                     hides = max(hides, StageWorld.hidden(theirs, behind: [mine]) * weight(o))
@@ -880,6 +881,14 @@ public enum StageDirector {
                 // sees it too — its drawing's middle over the water, not up
                 // on the rocks at its back rim (`StageWorld.overWater`).
                 if into, ground.water, ground.shallow {
+                    // (Nearly) all of it over the water where it can be — before keeping
+                    // clear of the story's pill — else most, else its middle.
+                    let share = { (p: StagePose) in world.overWaterShare(name, drawing: drawing(i, at: p.position)) }
+                    // (Enough of them on screen to choose among.)
+                    for least in [0.85, 0.75] {
+                        let under = out.filter { share($0) >= least }
+                        if under.filter({ onScreen(i, at: $0.position) }).count >= 6 { return under }
+                    }
                     let under = out.filter { world.overWater(name, drawing: drawing(i, at: $0.position)) }
                     if !under.isEmpty { return under }
                 }
@@ -943,8 +952,16 @@ public enum StageDirector {
                     return max(max(hi, r.maxX) - min(lo, r.minX) - window * 0.8, 0) / window * StageDirector.togetherPull
                 }
             }
-            let uncovered = visible.filter { !covered(i, at: $0.position) }
-            let pool = uncovered.isEmpty ? visible : uncovered
+            // Never on top of someone already there, nor in front of or
+            // behind them, nor mostly behind the scene's planes (a clam
+            // behind the pool's front rocks), to keep clear of the pill:
+            // clear of it where it can be, else by its corner.
+            let free = visible.filter {
+                clearance($0.position) > -me.width * 0.25 && blocking(i, at: $0.position) < 0.3 && hidden(i, at: $0.position) < 0.3
+            }
+            let room = free.isEmpty ? visible : free
+            let uncovered = room.filter { !covered(i, at: $0.position) }
+            let pool = uncovered.isEmpty ? room : uncovered
             // Small characters to the front; nobody behind the trees.
             let stand = world.space.stand
             let scored = pool.map { pose -> (StagePose, Double) in
@@ -1252,9 +1269,11 @@ public enum StageDirector {
                 if !facingPlace || go.unlessThere { return }
             }
             if atPlace || go.another {
-                // Another part of it on screen; none: it stays where it is.
+                // Another part of it on screen, where it neither hides nor is
+                // hidden by anyone; none: it stays where it is.
                 let elsewhere = spots.filter {
                     ($0.position - here.position).length > max(threshold, 0.3) && onScreen(i, at: $0.position)
+                        && blocking(i, at: $0.position) < 0.3
                 }
                 if elsewhere.isEmpty { return }
                 spots = elsewhere
@@ -1283,7 +1302,9 @@ public enum StageDirector {
                 // Into it from out of it: somewhere near, not across it (the
                 // sea from the sand: just out past the waves).
                 let sorted = spots.sorted { ($0.position - here.position).length < ($1.position - here.position).length }
-                spots = Array(sorted.prefix(max(8, min(16, sorted.count / 4))))
+                // (The nearest where it is seen and hides no one, when any.)
+                let seen = sorted.filter { blocking(i, at: $0.position) < 0.2 && hiddenWithHeadroom(i, at: $0.position) < 0.2 }
+                spots = Array((seen.isEmpty ? sorted : seen).prefix(max(8, min(16, sorted.count / 4))))
             }
             // A place it faces into (bark): the nearest spot. Elsewhere: the
             // freest, a little nearer preferred.
@@ -1359,9 +1380,10 @@ public enum StageDirector {
                 if flies {
                     let low = pushedOnScreen(i, Vec3(x, t.y + them.size * 0.15, z))
                     if t.y < 0.01, them.size >= me.size * 1.5 {
-                        // Beside someone bigger on the ground, up by their
-                        // middle (not up into the trees' leaves).
-                        let mid = pushedOnScreen(i, Vec3(x, t.y + them.size * 0.35, z))
+                        // Beside someone bigger on the ground, up in the air
+                        // by their shoulders (the gull flew up beside Lola),
+                        // never down by their feet; not up into the leaves.
+                        let mid = pushedOnScreen(i, Vec3(x, t.y + max(them.size * 0.5, me.size * 0.6), z))
                         return hidden(i, at: mid) > hidden(i, at: low) + 0.05 ? low : mid
                     }
                     guard t.y < 0.01 else { return low }
@@ -1374,7 +1396,16 @@ public enum StageDirector {
                     // Water-bound: by them in its water (a fish by the ring
                     // afloat), else as near them as its water is.
                     let mine = waters(i)
+                    let world = self.world
+                    // (On a shallow bottom, seen in the water.)
+                    let seenIn = { (p: Vec2) -> Bool in
+                        guard let w = world.water(at: p), mine.contains(w) else { return false }
+                        return !world.grounds.contains { $0.place == w && $0.shallow }
+                            || world.overWaterShare(w, drawing: drawing(i, at: p.onGround)) >= 0.75
+                    }
                     let near = world.nearestStand(to: ground, belongsIn: belongs.union(mine), reach: 0.6, accept: {
+                        onScreen(i, at: $0.onGround) && seenIn($0)
+                    }) ?? world.nearestStand(to: ground, belongsIn: belongs.union(mine), reach: 0.6, accept: {
                         onScreen(i, at: $0.onGround) && world.water(at: $0).map(mine.contains) == true
                     })
                     if let spot = near?.onGround ?? waterSpot(i, near: ground) { return spot }
@@ -1803,7 +1834,7 @@ public enum StageDirector {
                 let widthPoints = world.drawnHeight(size: me.size, atDepth: from.z) * me.ratio
                 // Backwards, when the story says so: facing away from its way.
                 let art = (travels == .right ? 1.0 : -1.0) * (states[i].backwards && !shuffle ? -1 : 1)
-                ways = self.ways(along: path, art: art, width: widthPoints, shuffle: shuffle)
+                ways = self.ways(along: path, art: art, width: widthPoints, shuffle: shuffle, from: states[i].pose.facing)
                 if let last = ways.last { facing = last.facing }
                 if ways.count < 2 { ways = [] }
             }
@@ -1840,7 +1871,9 @@ public enum StageDirector {
         /// less than a fifth of its `width` — a tenth for the whole way;
         /// a quarter for a shuffle, which can sidestep) keep the way before.
         /// Empty when nothing goes far enough across to turn for.
-        func ways(along path: [Vec3], art: Double, width: Double, shuffle: Bool) -> [StageLeg.Way] {
+        /// `from`: the way it faces as it sets off, kept over a short run
+        /// before the first long one.
+        func ways(along path: [Vec3], art: Double, width: Double, shuffle: Bool, from: Double? = nil) -> [StageLeg.Way] {
             guard path.count > 1 else { return [] }
             let xs = path.map { world.screen($0).x }
             let lengths = zip(path, path.dropFirst()).map { ($1 - $0).length }
@@ -1861,6 +1894,10 @@ public enum StageDirector {
             var ways: [StageLeg.Way] = []
             for run in runs where abs(run.dx) > least {
                 let facing = (run.dx > 0) == (art > 0) ? 1.0 : -1.0
+                // A short way first the way it faces: on so, then it turns.
+                if ways.isEmpty, run.k > 0, let from, (from < 0) != (facing < 0), (runs.first!.dx > 0) == (art * from > 0) {
+                    ways.append(StageLeg.Way(k: 0, facing: from < 0 ? -1 : 1))
+                }
                 if ways.last?.facing != facing { ways.append(StageLeg.Way(k: ways.isEmpty ? 0 : run.k, facing: facing)) }
             }
             return ways

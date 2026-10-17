@@ -31,3 +31,19 @@ public enum StageActing {
         return StagePlan.unsquashed(facing + (target - facing) * eased)
     }
 }
+
+extension StageActing {
+    /// An action played over a move that goes on through it — afloat on a
+    /// move that stays (the surfer riding a wave out at sea), or aloft (a
+    /// bird talking on the wing): its first and last keys are the
+    /// sticker's still pose, so they are left out. It goes from the move's
+    /// pose straight into the action, and back to the move as the action
+    /// heads for its last key (nil: show the move), never through standing
+    /// still on the water or in the air. `keys`: how many the action has.
+    public static func overMove(_ tween: LiveTween, keys: Int) -> LiveTween? {
+        guard keys >= 4 else { return tween }
+        if tween.frame >= keys - 2 { return nil }
+        if tween.frame == 0 { return LiveTween(frame: 1, next: 1, progress: 0) }
+        return tween
+    }
+}
