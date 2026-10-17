@@ -106,6 +106,10 @@ public struct StageLeg: Equatable, Sendable {
     public var kind: Kind
     /// The move whose frames play along, if any.
     public var move: String?
+    /// The time of the cue that made it (an entrance, a go; 0 for settling
+    /// as the story starts): an action cued before it does not wait for
+    /// it (`StageDirector.delayed`).
+    public var cue: TimeInterval = 0
     /// The move played instead while it is on its way, when the way goes
     /// away from the viewer (`StageMove.away`): its back to us.
     public var away: String?
@@ -343,10 +347,14 @@ public struct StagePlan: Equatable, Sendable {
         return (min(q + left / moving, 1), facing)
     }
 
-    /// Never quite edge-on, so the art never vanishes.
+    /// Never narrower than `narrowest`, so the art never vanishes.
     static func unsquashed(_ value: Double) -> Double {
-        abs(value) < 0.05 ? (value < 0 ? -0.05 : 0.05) : value
+        abs(value) < narrowest ? (value < 0 ? -narrowest : narrowest) : value
     }
+
+    /// The narrowest a turning sticker is drawn (its facing's size): a
+    /// turn flips through edge-on in a blink, never showing a sliver.
+    public static let narrowest = 0.3
 
     /// Where a circling flyer is on its loop, `since` seconds after `leg`
     /// got it to its spot (from it), and the way it faces: it swings out
@@ -401,6 +409,12 @@ public struct StagePlan: Equatable, Sendable {
             remaining -= l
         }
         return path.last!
+    }
+
+    /// Every move whose frames the plan plays (each leg's, and the one it
+    /// plays going away, `StageLeg.away`): what to load before it plays.
+    public var movesPlayed: Set<String> {
+        Set(legs.filter(\.travels).flatMap { [$0.move, $0.away].compactMap { $0 } })
     }
 
     /// The move whose frames play at `time`, if any: the latest leg's, on

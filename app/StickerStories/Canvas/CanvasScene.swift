@@ -245,6 +245,10 @@ final class CanvasScene: SKScene {
     /// Every live animation the pack declares (`StickerAnimation`), read
     /// once; the sheets themselves load per story (`liveLoaded`).
     private lazy var liveAnimations = StickerAnimation.available(in: pack)
+    /// Each action's timing as it plays, before its frames load: how long
+    /// the director lets it play before a later move (`StageAction`).
+    private lazy var actionTimings: [LiveAnimationKey: LiveFrames] = Dictionary(
+        liveAnimations.filter { $0.kind == .action }.map { ($0.liveKey, $0.frames) }, uniquingKeysWith: { a, _ in a })
     /// When each sticker's puppet began taking over at rest, this story.
     private var idleBegan: [UUID: TimeInterval] = [:]
     /// The current story's live animations, loaded when play starts and let
@@ -820,6 +824,7 @@ final class CanvasScene: SKScene {
     private func emitterCoordinator() -> EmitterCoordinator {
         let emitters = EmitterCoordinator()
         emitters.world = pack.manifest.effectiveWorld
+        emitters.underwater = pack.manifest.setting == .underwater
         return emitters
     }
 
@@ -1572,7 +1577,10 @@ final class CanvasScene: SKScene {
             entrances: triggers.entrances, goes: triggers.goes, live: triggers.live, faces: triggers.faces,
             effects: triggers.sticker)
         let stage = pack.manifest.space.map {
-            planStage($0, entrances: triggers.entrances, goes: triggers.goes + placing, cast: cast, policy: policy)
+            planStage(
+                $0, entrances: triggers.entrances, goes: triggers.goes + placing, cast: cast,
+                actions: policy.allowsLiveAnimations ? StageAction.of(triggers.live, frames: { [actionTimings] in actionTimings[$0] }) : [],
+                policy: policy)
         }
         let motions = stage == nil ? planMotions(triggers.goes + placing, visitors: visitors, policy: policy) : [:]
         var storyLive = stage.map {
@@ -1587,9 +1595,17 @@ final class CanvasScene: SKScene {
                 face.at = StageDirector.reaction(at: face.at, of: face.stickerID, plans: stage.plans, stickers: stickerOf)
                 return face
             })
+            let cued = triggers.live, played = storyLive
             stickerTriggers = stickerTriggers.map { effect in
                 var effect = effect
+                let original = effect.at
                 effect.at = StageDirector.reaction(at: effect.at, of: effect.stickerID, plans: stage.plans, stickers: stickerOf)
+                // Cued with an action of its sticker, it goes with that
+                // action, when that waits for it to get there (the wave
+                // rises as the surfer rides it, out in the sea).
+                if let with = StageDirector.withAction(original, cued: effect.stickerID, actions: cued, played: played) {
+                    effect.at = max(effect.at, with)
+                }
                 return effect
             }
         }
@@ -1629,9 +1645,8 @@ final class CanvasScene: SKScene {
         }
         for (id, plan) in stage?.plans ?? [:] {
             guard let sticker = stickerOf[id] else { continue }
-            for leg in plan.legs where leg.travels {
-                if let move = leg.move { wanted.insert(LiveAnimationKey(stickerID: sticker, animationID: move)) }
-            }
+            // Its moves, and those it plays going away (`StageLeg.away`).
+            for move in plan.movesPlayed { wanted.insert(LiveAnimationKey(stickerID: sticker, animationID: move)) }
         }
         if policy.allowsLiveAnimations, !wanted.isEmpty {
             liveLoad = Task { [weak self, pack, liveAnimations] in
@@ -1688,20 +1703,27 @@ final class CanvasScene: SKScene {
         guard worldOverflows, pans.isEmpty, sceneTime >= cameraHandsOffUntil else { return }
         let nodes = allStickerNodes()
         var focus: [StoryCamera.Focus] = []
+        var inFocus = Set<UUID>()
+        func span(_ node: StickerNode, since: TimeInterval) -> StoryCamera.Focus {
+            let half = node.frame.width * node.content.width / 2
+            return StoryCamera.Focus(minX: Double(node.position.x - half), maxX: Double(node.position.x + half), since: since)
+        }
         for beat in StoryCamera.current(session.beats, at: time) {
             for node in nodes {
                 guard beat.instance.map({ $0 == node.instanceID }) ?? (node.stickerID == beat.stickerID) else { continue }
                 // Someone not on the stage yet is in focus only on its way in.
                 guard beat.instance != nil || node.alpha > 0.05 else { continue }
-                let half = node.frame.width * node.content.width / 2
-                focus.append(StoryCamera.Focus(
-                    minX: Double(node.position.x - half), maxX: Double(node.position.x + half), since: beat.from))
+                focus.append(span(node, since: beat.from))
+                inFocus.insert(node.instanceID)
             }
         }
+        // Everyone else on show: in view too when there is room, and never
+        // left cut by the window's edge.
+        let cast = nodes.filter { !inFocus.contains($0.instanceID) && $0.alpha > 0.05 }.map { span($0, since: 0) }
         let view = Double(size.width)
         let target = StoryCamera.target(
             center: Double(cameraNode.position.x), view: view,
-            world: Double(worldExtent.minX)...Double(worldExtent.maxX), focus: focus,
+            world: Double(worldExtent.minX)...Double(worldExtent.maxX), focus: focus, cast: cast,
             margin: Double(min(size.width * 0.06, stickerBaseSize * 0.3)))
         // Under Reduce Motion it cuts instead of gliding.
         let x = livePolicy.reduceMotion
@@ -1767,7 +1789,8 @@ final class CanvasScene: SKScene {
     /// Plans the story in space (`StageDirector`): the stage as the window
     /// shows it, every sticker on it, the story's entrances and moves.
     private func planStage(
-        _ space: SceneSpace, entrances: [EntranceTrigger], goes: [GoTrigger], cast: Set<String>, policy: EffectPolicy
+        _ space: SceneSpace, entrances: [EntranceTrigger], goes: [GoTrigger], cast: Set<String>, actions: [StageAction],
+        policy: EffectPolicy
     ) -> StoryStage {
         let aspect = baseArtPixelSize.height > 0 ? Double(baseArtPixelSize.width / baseArtPixelSize.height) : 4.0 / 3
         var world = StageWorld(
@@ -1787,7 +1810,7 @@ final class CanvasScene: SKScene {
         var random = SystemRandomNumberGenerator()
         let plans = StageDirector.plan(
             world: world, screen: screen, actors: actors, entrances: entrances, goes: goes, policy: policy, cast: cast,
-            random: &random)
+            actions: actions, random: &random)
         return StoryStage(world: world, plans: plans, moves: stageMoves, nodes: nodes, drawing: drawing)
     }
 
@@ -1881,10 +1904,11 @@ final class CanvasScene: SKScene {
     /// rest wholly inside it. The scene's points are the view's.
     private func clearStageRect(_ visible: CGRect) -> StageRect {
         let insets = view?.safeAreaInsets ?? .zero
-        let pad = 4.0
+        // A little more beside a cut-out, so nothing rests against it.
+        let pad = { (inset: CGFloat) in inset > 0 ? 12.0 : 4.0 }
         return StageRect(
-            minX: visible.minX + insets.left + pad, minY: visible.minY + insets.bottom,
-            maxX: visible.maxX - insets.right - pad, maxY: visible.maxY - insets.top)
+            minX: visible.minX + insets.left + pad(insets.left), minY: visible.minY + insets.bottom,
+            maxX: visible.maxX - insets.right - pad(insets.right), maxY: visible.maxY - insets.top)
     }
 
     /// How far each sticker's drawing reaches below its centre, as a

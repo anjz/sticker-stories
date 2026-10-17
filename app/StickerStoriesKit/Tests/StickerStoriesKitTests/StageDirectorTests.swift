@@ -407,12 +407,16 @@ extension StageDirectorTests {
         let id: String
         let extras: [String]
         let goesToSomeone: Int
+        /// Also staged on a phone in landscape (the wide art, its safe
+        /// area). Forest is not yet: its woodpecker's trunks on the wide art
+        /// lie under the phone's side margins.
+        var phone = false
         var description: String { id }
     }
 
     static let packs = [
         Staged(id: "forest", extras: ["bear", "deer", "mushroom", "hedgehog"], goesToSomeone: 150),
-        Staged(id: "beach", extras: ["umbrella", "castle", "dog", "sailboat"], goesToSomeone: 50),
+        Staged(id: "beach", extras: ["umbrella", "castle", "dog", "sailboat"], goesToSomeone: 50, phone: true),
     ]
 
     struct Pack {
@@ -421,6 +425,8 @@ extension StageDirectorTests {
         var moves: [String: [StageMove]] = [:]
         var places: [LiveAnimationKey: [String]] = [:]
         var ratios: [String: Double] = [:]
+        /// Each action's timing, as it plays.
+        var actionFrames: [LiveAnimationKey: LiveFrames] = [:]
     }
 
     static func load(_ id: String) throws -> Pack? {
@@ -438,12 +444,23 @@ extension StageDirectorTests {
                 let id = json["id"] as? String ?? ""
                 if (json["kind"] as? String) == "move" {
                     let loop = json["loop"] != nil
+                    // Its frames after the loop, bringing it to rest.
+                    let holds = ((json["puppet"] as? [String: Any])?["keys"] as? [[String: Any]])?.compactMap { $0["hold"] as? Double }
+                        ?? json["hold"] as? [Double] ?? []
+                    let last = (json["loop"] as? [String: Any])?["to"] as? Int
+                    let tail = last.map { holds.dropFirst($0 + 1).reduce(0, +) } ?? 0
                     pack.moves[sticker.id, default: []].append(StageMove(
                         id: id, cycle: loop ? 0.8 : nil, stride: json["stride"] as? Double ?? 0,
                         hops: json["hops"] as? Bool ?? false, flies: json["flies"] as? Bool ?? false,
                         hovers: json["hovers"] as? Bool ?? false, on: json["on"] as? [String] ?? [], stays: json["stays"] as? Bool ?? false,
                         waterline: json["waterline"] as? Double ?? 0, facing: (json["facing"] as? String).flatMap(StageMove.Facing.init(rawValue:)), seconds: loop ? 0 : 1,
-                        away: json["away"] as? String))
+                        away: json["away"] as? String, tail: tail))
+                }
+                if (json["kind"] as? String ?? "action") == "action" {
+                    let puppet = json["puppet"] as? [String: Any]
+                    let holds = (puppet?["keys"] as? [[String: Any]])?.compactMap { $0["hold"] as? Double } ?? json["hold"] as? [Double] ?? []
+                    let pause = (json["pause"] as? [String: Any])?["frame"] as? Int
+                    pack.actionFrames[LiveAnimationKey(stickerID: sticker.id, animationID: id)] = LiveFrames(holds: holds, pause: pause)
                 }
                 if let place = json["place"] as? [String] {
                     pack.places[LiveAnimationKey(stickerID: sticker.id, animationID: id)] = place
@@ -460,7 +477,7 @@ extension StageDirectorTests {
 
     @Test(arguments: packs) func everyStoryKeepsTheStagesRules(_ staged: Staged) throws {
         guard let pack = try Self.load(staged.id), let space = pack.manifest.space else { return }
-        var world = StageWorld(space: space, aspect: 4.0 / 3, wide: false, frame: StageSize(width: 1024, height: 768))
+        var baseWorld = StageWorld(space: space, aspect: 4.0 / 3, wide: false, frame: StageSize(width: 1024, height: 768))
         // What the scene's layers and the foreground hide.
         var arts = ["foreground": pack.manifest.foreground]
         for layer in pack.manifest.layers { arts[layer.id] = layer.image }
@@ -469,9 +486,33 @@ extension StageDirectorTests {
                 let image = CGImageSourceCreateImageAtIndex(source, 0, nil), let grid = OpaqueGrid.of(image),
                 let depth = space.planeDepth(art)
             else { continue }
-            world.covers.append(.init(depth: depth, grid: grid, area: StageRect(minX: 0, minY: 0, maxX: 1, maxY: 1)))
+            baseWorld.covers.append(.init(depth: depth, grid: grid, area: StageRect(minX: 0, minY: 0, maxX: 1, maxY: 1)))
         }
-        #expect(world.covers.count == pack.manifest.layers.count + 1)
+        #expect(baseWorld.covers.count == pack.manifest.layers.count + 1)
+        // A phone in landscape draws the wide art, all of it across, less a
+        // little top and bottom; the camera cut-out and the home indicator
+        // keep stickers in from its sides and its bottom, and the pill sits
+        // at the bottom right.
+        var wideWorld: StageWorld?
+        if let foregroundWide = pack.manifest.foregroundWide {
+            var wide = StageWorld(space: space, aspect: 4.0 / 3, wide: true, frame: StageSize(width: 1024, height: 768))
+            var wideArts = ["foreground": foregroundWide]
+            for layer in pack.manifest.layers { wideArts[layer.id] = layer.imageWide }
+            for (art, path) in wideArts {
+                guard let source = CGImageSourceCreateWithURL(pack.dir.appendingPathComponent(path) as CFURL, nil),
+                    let image = CGImageSourceCreateImageAtIndex(source, 0, nil), let grid = OpaqueGrid.of(image),
+                    let depth = space.planeDepth(art, wide: true)
+                else { continue }
+                let across = Double(image.width) / Double(image.height) / (4.0 / 3)
+                wide.covers.append(.init(
+                    depth: depth, grid: grid, area: StageRect(minX: 0.5 - across / 2, minY: 0, maxX: 0.5 + across / 2, maxY: 1)))
+            }
+            wideWorld = wide
+        }
+        let phone = StageScreen(
+            visible: StageRect(minX: -256, minY: 30, maxX: 1280, maxY: 738),
+            clear: StageRect(minX: -256 + 106, minY: 30 + 38, maxX: 1280 - 106, maxY: 738),
+            avoid: [StageRect(minX: 780, minY: 30, maxX: 1090, maxY: 100)])
         // An iPad's landscape window shows the art less a few percent top and bottom.
         let landscape = StageScreen(
             visible: StageRect(minX: 0, minY: 30, maxX: 1024, maxY: 738),
@@ -487,8 +528,8 @@ extension StageDirectorTests {
         let narrow = StageScreen(
             visible: StageRect(minX: 0, minY: 0, maxX: 1024, maxY: 768),
             avoid: [StageRect(minX: 0, minY: 10, maxX: 1024, maxY: 65)], window: narrowWidth)
-        let waterPlaces = Set(world.grounds.filter(\.water).map(\.place))
-        let shallowPlaces = Set(world.grounds.filter(\.shallow).map(\.place))
+        let waterPlaces = Set(baseWorld.grounds.filter(\.water).map(\.place))
+        let shallowPlaces = Set(baseWorld.grounds.filter(\.shallow).map(\.place))
         let stickers = Dictionary(uniqueKeysWithValues: pack.manifest.stickers.map { ($0.id, $0) })
         var problems: [String] = []
         var backwards: [String] = []
@@ -500,10 +541,13 @@ extension StageDirectorTests {
                 let file = try? EffectTriggerFile(data: data)
             else { continue }
             // Spots are chosen with a little chance: two draws of each.
-            for (crowded, seed, narrowWindow) in [
-                (false, 11, false), (true, 11, false), (false, 7777, false), (true, 7777, false), (false, 11, true), (true, 11, true),
-            ] {
-                let screen = narrowWindow ? narrow : landscape
+            for (crowded, seed, narrowWindow, onPhone) in [
+                (false, 11, false, false), (true, 11, false, false), (false, 7777, false, false), (true, 7777, false, false),
+                (false, 11, true, false), (true, 11, true, false), (false, 11, false, true), (true, 11, false, true),
+            ] where !onPhone || (staged.phone && wideWorld != nil) {
+                let screen = onPhone ? phone : narrowWindow ? narrow : landscape
+                let world = onPhone ? wideWorld ?? baseWorld : baseWorld
+                let config = "\(crowded ? " (crowded)" : "")\(narrowWindow ? " (narrow)" : "")\(onPhone ? " (phone)" : "")"
                 var random = SeededGenerator(state: UInt64(seed))
                 // The story's cast as visitors; on the crowded canvas the
                 // child has placed its stickers (and a few more) here and there.
@@ -530,7 +574,48 @@ extension StageDirectorTests {
                     faces: file.expressionTriggers, effects: file.triggers)
                 let plans = StageDirector.plan(
                     world: world, screen: screen, actors: actors, entrances: file.entranceTriggers, goes: goes,
-                    policy: .standard, cast: cast, random: &random)
+                    policy: .standard, cast: cast, actions: StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }),
+                    random: &random)
+                // A move cued after an action waits for it to end; an action
+                // waits only for the moves cued before it.
+                let ids = Dictionary(uniqueKeysWithValues: actors.map { ($0.id, $0.stickerID) })
+                let played = StageDirector.delayed(file.liveTriggers, plans: plans, stickers: ids, places: Set(pack.places.keys))
+                for action in StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }) {
+                    guard let k = file.liveTriggers.firstIndex(where: { $0.stickerID == action.stickerID && $0.at == action.at }),
+                        let a = actors.first(where: { $0.stickerID == action.stickerID }), let plan = plans[a.id]
+                    else { continue }
+                    let start = played[k].at
+                    for leg in plan.legs where leg.cue > action.at + 1e-6 && leg.at < start + action.duration - 1e-6 {
+                        problems.append("\(story.id)\(config) \(a.stickerID): moves during its \(file.liveTriggers[k].animationID) at \(String(format: "%.1f", leg.at))")
+                    }
+                }
+                // Sent somewhere that way (`toward`), it goes that way — or
+                // stays, with nowhere further that way (never the other way).
+                for go in goes where go.kind == .to && go.toward != nil && go.target.map({ space.places[$0] != nil }) == true {
+                    guard let a = actors.first(where: { $0.stickerID == go.stickerID }), let plan = plans[a.id] else { continue }
+                    let mine = plan.legs.filter { $0.cue == go.at }
+                    let before = mine.first?.path.first ?? plan.sample(at: go.at).position
+                    let after = plan.sample(at: (mine.map(\.end).max() ?? go.at) + 0.01).position
+                    let width = world.drawnHeight(size: a.size, atDepth: before.z) * a.ratio
+                    let sign: Double = go.toward == .right ? 1 : -1
+                    let gone = (world.screen(after).x - world.screen(before).x) * sign
+                    if !mine.isEmpty, gone < -width * 0.25 {
+                        problems.append("\(story.id)\(config) \(a.stickerID): does not go \(go.toward!) at \(go.at)")
+                    }
+                }
+                // Afloat by the shore, it goes off out to sea, not along the waterline.
+                for a in actors {
+                    guard let plan = plans[a.id] else { continue }
+                    for leg in plan.legs where leg.support == .off && leg.gait != .fade {
+                        guard let from = leg.path.first, let to = leg.path.last, let water = world.water(at: from.ground),
+                            a.moves.contains(where: { $0.waterline > 0 && $0.on.contains(water) }), !shallowPlaces.contains(water),
+                            !world.inOpenWater(from.ground)
+                        else { continue }
+                        if !world.inOpenWater(to.ground) {
+                            problems.append("\(story.id)\(config) \(a.stickerID): goes off along the waterline at \(leg.at)")
+                        }
+                    }
+                }
                 // How long after its cue a sticker sent to another gets there.
                 for go in goes where go.target.map({ t in actors.contains { $0.stickerID == t } }) == true && go.kind != .away && go.kind != .back {
                     guard let mover = actors.first(where: { $0.stickerID == go.stickerID }), let plan = plans[mover.id] else { continue }
@@ -558,7 +643,10 @@ extension StageDirectorTests {
                         guard let plan = plans[a.id] else { return nil }
                         let s = plan.sample(at: t0)
                         guard s.opacity > 0.5, s.support != .off else { return nil }
+                        // (Between two legs of one move — the surf in, then
+                        // the walk up the sand — it is still on its way.)
                         let still = !plan.legs.contains { $0.at <= t0 && t0 < $0.end }
+                            && !zip(plan.legs, plan.legs.dropFirst()).contains { a, b in a.cue == b.cue && a.end <= t0 && t0 < b.at }
                         return (a, s, world.drawing(at: s.position, size: a.size, ratio: a.ratio), still)
                     }
                     for (a, s, r, still) in shown where still && cast.contains(a.stickerID) {
@@ -576,7 +664,7 @@ extension StageDirectorTests {
                         }
                         let h = StageWorld.hidden(r, behind: front.map(\.2))
                         if h > 0.5 {
-                            let tag = "\(story.id)\(crowded ? " (crowded)" : "")\(narrowWindow ? " (narrow)" : "") \(a.stickerID)"
+                            let tag = "\(story.id)\(config) \(a.stickerID)"
                             let who = front.filter { StageWorld.hidden(r, behind: [$0.2]) > 0.1 }.map(\.0.stickerID).sorted()
                             problems.append("\(tag): behind \(who.joined(separator: "+")) at \(String(format: "%.1f", t0))")
                         }
@@ -625,7 +713,7 @@ extension StageDirectorTests {
                         let looks = (art == .right ? 1.0 : -1.0) * (s.facing < 0 ? -1 : 1)
                         if looks * dx < 0 {
                             let what = leg.map { $0.end > t ? "\($0.kind) \($0.gait)" : "after \($0.kind) \($0.gait)" } ?? "start"
-                            backwards.append("\(story.id)\(crowded ? " (crowded)" : "")\(narrowWindow ? " (narrow)" : "") \(a.stickerID): \(what) at \(String(format: "%.1f", t))")
+                            backwards.append("\(story.id)\(config) \(a.stickerID): \(what) at \(String(format: "%.1f", t))")
                         }
                     }
                 }
@@ -637,7 +725,7 @@ extension StageDirectorTests {
                         defer { t += 0.1 }
                         let s = plan.sample(at: t)
                         guard s.opacity > 0.5 else { continue }
-                        let tag = "\(story.id)\(crowded ? " (crowded)" : "")\(narrowWindow ? " (narrow)" : "") \(a.stickerID)"
+                        let tag = "\(story.id)\(config) \(a.stickerID)"
                         let onFoot = s.position.y < 0.01 && t >= StageDirector.settle
                         // A child's sticker left in the water wades out as the story starts.
                         let settling = plan.legs.contains { $0.kind == .settle && $0.at <= t && t < $0.end }
@@ -684,6 +772,25 @@ extension StageDirectorTests {
                         }
                         if !moving, t >= StageDirector.settle, s.support != .off {
                             let r = world.drawing(at: s.position, size: a.size, ratio: a.ratio)
+                            // On a shallow bottom it belongs on, seen in the water
+                            // (the fish in the rock pool, not up on its rim).
+                            if onFoot, let water = world.water(at: s.position.ground), shallowPlaces.contains(water),
+                                (a.stage.on + a.moves.flatMap(\.on)).contains(water), !world.overWater(water, drawing: r)
+                            {
+                                problems.append("\(tag): on the \(water)'s rim at \(String(format: "%.1f", t))")
+                            }
+                            // A flyer by someone, in the air: clear of them,
+                            // never across them (the gull by Lola).
+                            if s.position.y > 0.01, case .beside(let id) = s.support, let b = actors.first(where: { $0.id == id }),
+                                let them = plans[id]?.sample(at: t), plans[id]?.legs.contains(where: { $0.at <= t && t < $0.end }) == false
+                            {
+                                let theirs = world.drawing(at: them.position, size: b.size, ratio: b.ratio)
+                                let h = s.position.z < them.position.z
+                                    ? StageWorld.hidden(theirs, behind: [r]) : StageWorld.hidden(r, behind: [theirs])
+                                if h > 0.15 {
+                                    problems.append("\(tag): flies across \(b.stickerID) at \(String(format: "%.1f", t))")
+                                }
+                            }
                             let c = screen.clear
                             if r.minX < c.minX - 2 || r.maxX > c.maxX + 2 || r.minY < c.minY - 2 || r.maxY > c.maxY + 2 {
                                 problems.append("\(tag): not wholly on screen at \(String(format: "%.1f", t)) \(r)")

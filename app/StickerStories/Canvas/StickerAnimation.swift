@@ -123,7 +123,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     }
 
     /// One burst: when `frame` first shows, `effect` (`dust-puff`, `spray`,
-    /// `sparks`) from the point `x`, `y` of the sticker's image (fractions,
+    /// `sparks`, `bubble-puff`) from the point `x`, `y` of the sticker's image (fractions,
     /// top-left origin, like `stickerBox`).
     struct ParticleCue: Decodable, Equatable {
         var frame: Int
@@ -189,7 +189,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         idle = kind == .action && ((try? c.decodeIfPresent(Bool.self, forKey: .idle)) ?? nil) == true
         let cues = (try? c.decodeIfPresent([LenientCue].self, forKey: .particles)) ?? nil
         let frames = count
-        particles = (cues ?? []).compactMap(\.cue).filter { $0.effect.followsWorld && $0.frame >= 0 && $0.frame < frames }
+        particles = (cues ?? []).compactMap(\.cue).filter { $0.effect.firesFromFrames && $0.frame >= 0 && $0.frame < frames }
     }
 
     /// The animation as its puppet plays it: the keys' timing in place of
@@ -233,7 +233,8 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
             return StageMove(
                 id: id, cycle: timing.loopDuration, stride: stride, hops: hops ?? false, flies: flies ?? false,
                 hovers: hovers ?? false, on: on ?? [], stays: stays ?? false,
-                waterline: min(max(waterline ?? 0, 0), 0.95), facing: facing, away: away)
+                waterline: min(max(waterline ?? 0, 0), 0.95), facing: facing, away: away,
+                tail: timing.loop.map { timing.holds.dropFirst($0.upperBound + 1).reduce(0, +) } ?? 0)
         }
         return StageMove(id: id, seconds: timing.duration(.move(travel: 0)) ?? 0)
     }

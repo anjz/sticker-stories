@@ -241,7 +241,7 @@ public struct MotionPlan: Equatable, Sendable {
         func blend(_ a: Double, _ b: Double, _ k: Double) -> Double {
             let k = min(max(k, 0), 1)
             let value = a + (b - a) * (k * k * (3 - 2 * k))
-            return abs(value) < 0.05 ? (value < 0 ? -0.05 : 0.05) : value
+            return abs(value) < StagePlan.narrowest ? (value < 0 ? -StagePlan.narrowest : StagePlan.narrowest) : value
         }
         let way = leg.heading ?? leg.facingTo
         let first = (leg.facingFrom < 0) != (way < 0), last = (way < 0) != (leg.facingTo < 0)

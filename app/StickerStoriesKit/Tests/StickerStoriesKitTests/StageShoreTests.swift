@@ -18,7 +18,7 @@ func shoreWorld() -> StageWorld {
             "pool": .init(
                 ground: [.init(0.85, 0.08), .init(1.3, 0.08), .init(1.3, 0.28), .init(0.85, 0.28)], water: true, shallow: true),
         ],
-        sizes: ["fox": 0.3, "turtle": 0.15, "ball": 0.1, "seal": 0.25, "fish": 0.1, "boat": 0.6, "bottle": 0.08])
+        sizes: ["fox": 0.3, "turtle": 0.15, "ball": 0.1, "seal": 0.25, "fish": 0.1, "boat": 0.6, "bottle": 0.08, "girl": 0.35, "gull": 0.12, "crab": 0.08])
     return StageWorld(space: space, aspect: 4.0 / 3, wide: false, frame: StageSize(width: 1000, height: 750))
 }
 
@@ -26,6 +26,7 @@ func shoreWorld() -> StageWorld {
     let world = shoreWorld()
     let screen = StageScreen(visible: StageRect(minX: 0, minY: 0, maxX: 1000, maxY: 750))
     let fox = UUID(), turtle = UUID(), ball = UUID(), seal = UUID(), fish = UUID(), boat = UUID(), bottle = UUID()
+    let girl = UUID(), gull = UUID(), crab = UUID()
 
     let trot = [StageMove(id: "trot", cycle: 0.8, stride: 0.6, facing: .right)]
     let turtleMoves = [
@@ -165,5 +166,125 @@ func shoreWorld() -> StageWorld {
         #expect(legs.first?.move == "bob" && world.water(at: landed) == "sea" && sand.polygon.distance(to: landed) < 0.2)
         // In and off through the sea, never over the sand.
         for leg in legs { #expect(waters(along: leg).allSatisfy { $0 == "sea" }) }
+    }
+
+    // MARK: The simulator review (Beach v13)
+
+    @Test func aBoatSentOnThatWayGoesThatWayWithinTheSea() throws {
+        let plans = plan(
+            [actor(boat, "boat", at: .init(0.15, 0.36), on: ["sea"], moves: sail)],
+            goes: [GoTrigger(at: 1, stickerID: "boat", kind: .to, target: "sea", toward: .right)])
+        let leg = try #require(plans[boat]?.legs.last)
+        let first = try #require(leg.path.first), last = try #require(leg.path.last)
+        let from = world.screen(first).x, to = world.screen(last).x
+        #expect(leg.at >= 1 && to - from > world.drawnHeight(size: 0.6, atDepth: first.z) * 0.5)
+    }
+
+    @Test func twoSentToTheSameOneStandApart() throws {
+        let plans = plan(
+            [actor(bottle, "bottle", at: .init(0.5, 0.2), moves: trot), actor(fox, "fox", at: .init(0.1, 0.15), moves: trot),
+             actor(ball, "ball", at: .init(0.15, 0.1), moves: trot)],
+            goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "bottle"),
+                   GoTrigger(at: 1, stickerID: "ball", kind: .to, target: "bottle")])
+        let a = try #require(plans[fox]?.sample(at: 20).position), b = try #require(plans[ball]?.sample(at: 20).position)
+        #expect(abs(world.screen(a).x - world.screen(b).x) > world.drawnHeight(size: 0.1, atDepth: b.z) * 0.5)
+    }
+
+    @Test func aFlyerBySomeoneBiggerStaysClearOfThem() throws {
+        let flight = [StageMove(id: "fly", cycle: 0.5, stride: 1.2, flies: true, facing: .left)]
+        let plans = plan(
+            [actor(girl, "girl", at: .init(0.4, 0.15), moves: trot),
+             StageActor(id: gull, stickerID: "gull", size: 0.12, ratio: 1, stage: StickerStage(entrance: .fly, on: ["sand"]),
+                        moves: flight, placed: .init(0.8, 0.2))],
+            goes: [GoTrigger(at: 1, stickerID: "gull", kind: .to, target: "girl")])
+        let p = try #require(plans[gull])
+        let girlAt = try #require(plans[girl]).sample(at: 10).position
+        let theirs = world.drawing(at: girlAt, size: 0.35, ratio: 1)
+        for t in stride(from: 6.0, through: 16, by: 0.25) {
+            let s = p.sample(at: t)
+            let mine = world.drawing(at: s.position, size: 0.12, ratio: 1)
+            let h = s.position.z < girlAt.z ? StageWorld.hidden(theirs, behind: [mine]) : StageWorld.hidden(mine, behind: [theirs])
+            #expect(s.position.y > 0.01 && h <= 0.15, "t \(t)")
+        }
+    }
+
+    @Test func afloatByTheShoreItGoesOffOutToSea() throws {
+        let plans = plan(
+            [actor(bottle, "bottle", at: .init(0.3, 0.305), on: ["sea"], moves: bob)],
+            goes: [GoTrigger(at: 1, stickerID: "bottle", kind: .away, toward: .left)])
+        let leg = try #require(plans[bottle]?.legs.last)
+        let end = try #require(leg.path.last)
+        #expect(leg.support == .off && world.inOpenWater(end.ground))
+    }
+
+    @Test func onAShallowBottomItIsSeenInTheWater() throws {
+        // The crab in the rock pool: the middle of its drawing over the water,
+        // not up on the sand behind its back rim.
+        var random = SeededGenerator(state: 5)
+        for _ in 0..<6 {
+            let crabber = StageActor(
+                id: crab, stickerID: "crab", size: 0.08, ratio: 1.4, stage: StickerStage(entrance: .hop, on: ["pool", "sand"]),
+                moves: [StageMove(id: "scuttle", cycle: 0.8, stride: 0.4, facing: .left)])
+            let plans = StageDirector.plan(
+                world: world, screen: screen, actors: [crabber], entrances: [EntranceTrigger(at: 0, stickerID: "crab")], goes: [],
+                policy: .standard, random: &random)
+            let at = try #require(plans[crab]?.legs.last?.path.last)
+            #expect(world.water(at: at.ground) == "pool" && world.overWater("pool", drawing: world.drawing(at: at, size: 0.08, ratio: 1.4)))
+        }
+    }
+
+    @Test func aMoveCuedAfterAnActionWaitsForIt() throws {
+        // Paddling out as the ride is cued; coming in after it: he rides the
+        // wave once he is out, then comes in.
+        let surf = [
+            StageMove(id: "walk", cycle: 0.8, stride: 0.45, facing: .left),
+            StageMove(id: "paddle", cycle: 0.8, stride: 0.5, on: ["sea"], stays: true, waterline: 0.3, facing: .left),
+        ]
+        let goes = [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "sea", by: "paddle"),
+                    GoTrigger(at: 6, stickerID: "fox", kind: .to, target: "sand")]
+        let ride = LiveAnimationTrigger(at: 3, stickerID: "fox", animationID: "ride")
+        var random = SeededGenerator(state: 3)
+        let actor = StageActor(
+            id: fox, stickerID: "fox", size: 0.3, ratio: 0.6, stage: StickerStage(entrance: .hop, on: ["sand"]), moves: surf,
+            placed: .init(0.3, 0.12))
+        let plans = StageDirector.plan(
+            world: world, screen: screen, actors: [actor], entrances: [], goes: goes, policy: .standard,
+            actions: [StageAction(stickerID: "fox", at: 3, duration: 4)], random: &random)
+        let plan = try #require(plans[fox])
+        let out = plan.legs.filter { $0.cue == 1 }, back = plan.legs.filter { $0.cue == 6 }
+        let played = try #require(StageDirector.delayed([ride], plans: plans, stickers: [fox: "fox"], places: []).first)
+        let arrived = try #require(out.map(\.end).max()), home = try #require(back.first)
+        #expect(played.at == arrived)
+        #expect(home.at >= played.at + 4 - 1e-9)
+        // A wave cued with the ride rises with it.
+        #expect(StageDirector.withAction(3, cued: "fox", actions: [ride], played: [played]) == played.at)
+    }
+
+    @Test func outOfTheWaterItComesToRestBeforeItWalks() throws {
+        let surf = [
+            StageMove(id: "walk", cycle: 0.8, stride: 0.45, facing: .left),
+            StageMove(id: "surf", cycle: 0.8, stride: 0.9, on: ["sea"], waterline: 0.1, facing: .left, tail: 0.5),
+        ]
+        var random = SeededGenerator(state: 3)
+        let actor = StageActor(
+            id: fox, stickerID: "fox", size: 0.3, ratio: 0.6, stage: StickerStage(entrance: .hop, on: ["sand"]), moves: surf,
+            placed: .init(0.3, 0.2))
+        let plans = StageDirector.plan(
+            world: world, screen: screen, actors: [actor], entrances: [],
+            goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "sea", by: "surf"),
+                   GoTrigger(at: 20, stickerID: "fox", kind: .to, target: "sand", by: "surf")],
+            policy: .standard, random: &random)
+        let legs = try #require(plans[fox]?.legs.filter { $0.cue == 20 })
+        try #require(legs.count == 2)
+        #expect(legs[0].move == "surf" && legs[1].move == "walk")
+        #expect(abs(legs[1].at - (legs[0].end + 0.5)) < 1e-9)
+    }
+
+    @Test func aTurnNeverShowsASliver() throws {
+        let plans = plan(
+            [actor(fox, "fox", at: .init(0.8, 0.15), moves: trot), actor(ball, "ball", at: .init(0.2, 0.15), moves: trot)],
+            goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "ball")])
+        let p = try #require(plans[fox])
+        for t in stride(from: 0.0, through: 8, by: 0.01) { #expect(abs(p.sample(at: t).facing) >= StagePlan.narrowest - 1e-9) }
     }
 }

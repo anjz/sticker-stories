@@ -234,6 +234,14 @@ public struct StageWorld: Sendable {
         (outInWater(p) ?? 0) >= Self.openWater
     }
 
+    /// Whether a drawing (world points) on a shallow bottom shows in
+    /// the water: its middle is over `water` as the viewer sees it, not up
+    /// on whatever lies at the water's back rim.
+    public func overWater(_ water: String, drawing r: StageRect) -> Bool {
+        let middle = StagePoint(x: (r.minX + r.maxX) / 2, y: (r.minY + r.maxY) / 2)
+        return self.water(at: groundPoint(screen: middle)) == water
+    }
+
     /// Whether a walker that belongs in `belongs` crosses, going straight
     /// from `p` to `q`, water it does not belong in or a plane's footprint.
     public func crossesBlocked(from p: Vec2, to q: Vec2, belongsIn belongs: Set<String>) -> Bool {

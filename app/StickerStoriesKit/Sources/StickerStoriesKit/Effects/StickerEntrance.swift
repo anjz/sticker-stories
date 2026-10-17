@@ -293,13 +293,18 @@ public struct StageMove: Equatable, Sendable {
     /// his back to us: `paddle`'s `paddle-out`); resting, or coming back,
     /// it plays this one.
     public var away: String?
+    /// How long its frames after the loop take to bring it to rest (a
+    /// surfer stepping off his board): played before it sets off another
+    /// way (`StageDirector`).
+    public var tail: TimeInterval
 
     public init(
         id: String = "", cycle: TimeInterval? = nil, stride: Double = 0, hops: Bool = false, flies: Bool = false,
         hovers: Bool = false, on: [String] = [], stays: Bool = false, waterline: Double = 0, facing: Facing? = nil,
-        seconds: TimeInterval = 0, away: String? = nil
+        seconds: TimeInterval = 0, away: String? = nil, tail: TimeInterval = 0
     ) {
         self.away = away
+        self.tail = tail
         self.id = id
         self.cycle = cycle
         self.stride = stride

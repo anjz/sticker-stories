@@ -29,6 +29,8 @@ import Testing
         let out = try #require(p.legs.last)
         #expect(out.move == "paddle" && out.away == "paddle-out")
         #expect(p.travel(at: (out.at + out.end) / 2)?.move == "paddle-out")
+        // Loaded before the story plays: both.
+        #expect(p.movesPlayed.isSuperset(of: ["paddle", "paddle-out"]))
         // There, afloat, paddling on — looking at us.
         let there = try #require(p.travel(at: out.end + 2))
         #expect(there.move == "paddle" && there.stays)

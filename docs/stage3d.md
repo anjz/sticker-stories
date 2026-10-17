@@ -134,7 +134,14 @@ Plans the whole story at once, from the cast and the story's triggers:
    onto or under it wait until they get there, 4 s at most — the mushroom
    giggles once the ladybug's feet are on her cap. The Forest staging
    test keeps the mean time from a go to someone to the arrival under
-   4.2 s.
+   4.2 s. An action waits only for the moves cued **before** it; a move
+   the story cues after it waits for it to end (`StageAction`: the
+   surfer rides the wave, then comes in). One move's legs carry on
+   through the pause between them (`StageLeg.cue`): a way brought to rest
+   (`StageMove.tail`: off his board in the shallows) before it sets off
+   the next way on foot. An effect cued on a sticker at the same moment
+   as one of its actions goes with that action (`StageDirector.withAction`:
+   the wave rises as he rides it, out in the sea).
 5. **Actions in their place** (the woodpecker on the bark) go there first,
    as before (`PlacementPlanner`).
 6. **Out of the story's way.** The director plans the story once to see
@@ -217,7 +224,33 @@ measured up the art at that spot from the water's near edge (0) to its
 far edge (1) (`StageWorld.outInWater`, `inOpenWater`). A wave rises only
 that far out too. A water-bound sticker sent to a place on land (the
 bottle "to shore") still stops at the waterline; a child's sticker the
-child put in the water stays where the child put it.
+child put in the water stays where the child put it. Going off from by
+the shore, one afloat heads out to open water (the bottle bobbing away
+out to sea), not along the waterline.
+
+**Going to a place, and that way.** Sent into a place from outside it, a
+sticker goes somewhere near in it, not across it (the sea from the sand:
+just out past the waves). Sent that way (`toward`) it goes well on that
+way within the place — the boats racing across the sea, though they are
+in it already — or stays where nothing lies further that way; never the
+other way.
+
+**Beside someone.** Each one more already on that side of them stands a
+step further out (two sent to the bottle never share a spot), and whoever
+else stands by them in front counts as hiding them too. A flyer by them
+stays clear of them — beside someone bigger on the ground, up by their
+middle — and one that cannot hover loops out away from them, turning
+away as it gets there, never across them (a lap that fits nowhere
+shrinks to beating its wings where it is).
+
+**On a shallow bottom** a sticker is seen in the water: the middle of its
+drawing over the water (`StageWorld.overWater`), not up on the rocks at
+the pool's back rim. A child's sticker never takes a perch it would be off
+screen or hidden on (the far trunk at a phone's edge).
+
+**Turning.** A turning sticker is never drawn narrower than
+`StagePlan.narrowest` (0.3 of its width): it flips through edge-on in a
+blink, never showing a sliver.
 
 **Its back to us going out.** A move can name another as its `away`
 (`docs/pack-format.md`): while a leg that way goes away from the viewer
@@ -264,7 +297,12 @@ the child's stickers settling, nor making room). Idle life is not a beat.
 Each frame it takes the least move that brings every current beat's
 sticker into the window, a margin in from its sides; when they do not
 all fit it goes with the beat that began last, then adds as many of the
-others as still fit. It eases there, never faster than 0.9 window widths
+others as still fit. Then it takes in as many of the other stickers on
+show (the cast) as still fit, nearest first, and it leaves nobody cut by
+the window's edge when it can help it: a sticker it cannot take in whole
+it leaves wholly out, as long as that keeps the beats in view (Nico
+waiting at sea while the turtle swims stays whole, or out of the window,
+never half). It eases there, never faster than 0.9 window widths
 a second, and never past the art's edges. Under Reduce Motion it cuts
 instead of gliding. While the child pans by hand, and for 4 s after, it
 leaves the view where they put it. A window as wide as the art never
