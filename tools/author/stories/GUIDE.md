@@ -199,7 +199,7 @@ the stories.
 
 ## Using sticker effects
 
-The app has exactly 16 sticker effects (`docs/effects/effects.json`,
+The app has exactly 17 sticker effects (`docs/effects/effects.json`,
 `effects`; human reference in `docs/effects.md`) — read the catalogue, not
 this list, for what each means and accepts:
 
@@ -213,12 +213,13 @@ this list, for what each means and accepts:
 | `float` | anything airborne or afloat; `loop` at the start for quiet life |
 | `fade-in` / `fade-out` | arriving / leaving, waking / falling asleep; `hold` to stay gone |
 | `glow` | magic, warmth, a wish, the sun on something |
-| `tint #RRGGBB` | blushing (pink), cold (blue), cross (red); colour required |
+| `tint #RRGGBB` | blushing (pink), cold (blue), cross (red); colour required; `1 hold` turns it all that colour (to stone) |
 | `sparkle` | delight, magic, treasure, a good idea |
 | `hearts` | friendship, a hug, kindness |
 | `dust-puff` | a cloud of dust the words make: a stamp, a skid, a dig (landings and touchdowns already puff on their own) |
 | `spray` | a splash, a shake of wet fur, water flying |
 | `sparks` | a tool on metal, a machine starting — never fire or danger |
+| `bubble-puff` | a few bubbles from someone in the water: a fish blowing, a bubbly giggle (the fish's `blow` already puffs its own) |
 | `surf-wave` | riding a wave: the surfer, a boat or the seal **out in the water** (on the sand or at the water's edge it draws nothing); a wave swells behind it, pitches and crashes into foam (about 4 s) |
 
 Cue grammar is in `FORMAT.md`.

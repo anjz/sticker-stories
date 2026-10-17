@@ -37,10 +37,13 @@ public struct EffectPolicy: Equatable, Sendable {
             result.intensity = min(result.intensity, 0.3)
         case .fadeIn, .fadeOut, .glow, .tint:
             break  // carry story meaning; run at full
-        case .sparkle, .hearts, .dustPuff, .spray, .sparks, .surfWave:
+        case .sparkle, .hearts, .dustPuff, .spray, .sparks, .bubblePuff, .surfWave:
             result.intensity = min(result.intensity, 0.4)
         }
-        if calmMode { result.intensity *= calmIntensityMultiplier }
+        // A coloured wash is meaning, not stimulation: a grey stone stays
+        // grey in calm mode. A white one is a flash, and is damped.
+        let wash = name == .tint && options.color?.isWhite == false
+        if calmMode, !wash { result.intensity *= calmIntensityMultiplier }
         return result
     }
 

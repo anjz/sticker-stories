@@ -166,7 +166,9 @@ public enum EffectEvaluator {
         var delta = delta
         switch effect.name {
         case .glow: delta.glowColor = effect.options.color
-        case .tint: delta.tintColor = effect.options.color
+        case .tint:
+            delta.tintColor = effect.options.color
+            if effect.options.color?.isWhite == true { delta.tintAmount = min(delta.tintAmount, EffectDefinition.whiteTintCap) }
         default: break
         }
         return delta

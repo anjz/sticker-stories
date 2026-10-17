@@ -1,5 +1,5 @@
 {
-  "_comment": "Tuning data for the particle emitters behind sparkle / hearts / dust-puff / spray / sparks (docs/effects.md). Content cannot ship emitters or set these values; only intensity, duration and color reach them. Conventions are SpriteKit's: angles in degrees counterclockwise with 0 = right (90 = up); gravity is points/s² with y up; scale is relative to the sticker's rendered size at the reference height. Emitters with \"worldGravity\" are tuned for Earth: the app scales their gravity by the pack world's (PackWorld) and lets them live longer where it is weak. An emitter with \"mirrored\" is drawn as a pair, itself and its mirror image across the vertical (emission angle and sideways gravity flipped): a cloud that billows out both ways. \"with\" names emitters that fire along with it, at the same spot, intensity and colour (the dust cloud's grains).",
+  "_comment": "Tuning data for the particle emitters behind sparkle / hearts / dust-puff / spray / sparks / bubble-puff (docs/effects.md). Content cannot ship emitters or set these values; only intensity, duration and color reach them. Conventions are SpriteKit's: angles in degrees counterclockwise with 0 = right (90 = up); gravity is points/s\u00b2 with y up; scale is relative to the sticker's rendered size at the reference height. Emitters with \"worldGravity\" are tuned for Earth: the app scales their gravity by the pack world's (PackWorld) and lets them live longer where it is weak. An emitter with \"mirrored\" is drawn as a pair, itself and its mirror image across the vertical (emission angle and sideways gravity flipped): a cloud that billows out both ways. \"with\" names emitters that fire along with it, at the same spot, intensity and colour (the dust cloud's grains). \"wobble\" is [amplitude in points at the reference height, seconds per sway]: each particle sways side to side as it goes (bubbles).",
   "sparkles": {
     "texture": "star",
     "blend": "add",
@@ -246,5 +246,49 @@
     "maxParticles": 50,
     "inFront": true,
     "worldGravity": true
+  },
+  "bubbles": {
+    "texture": "bubblePuff",
+    "blend": "alpha",
+    "birthRate": 20,
+    "lifetime": {
+      "value": 1.1,
+      "variance": 0.3
+    },
+    "speed": {
+      "value": 32,
+      "variance": 12
+    },
+    "emissionAngle": {
+      "value": 90,
+      "range": 40
+    },
+    "gravity": [
+      0,
+      28
+    ],
+    "positionSpread": [
+      0.04,
+      0.02
+    ],
+    "scale": {
+      "start": 0.63,
+      "end": 0.85,
+      "variance": 0.15
+    },
+    "alpha": {
+      "start": 0.0,
+      "peak": 1.0,
+      "end": 0.0,
+      "peakAt": 0.12
+    },
+    "rotationSpeed": 0,
+    "defaultColor": "#EAF8FF",
+    "maxParticles": 16,
+    "inFront": true,
+    "wobble": [
+      5,
+      0.8
+    ]
   }
 }

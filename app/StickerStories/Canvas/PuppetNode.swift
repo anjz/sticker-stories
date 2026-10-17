@@ -83,6 +83,9 @@ final class PuppetNode: SKEffectNode {
     private var parkedAt: TimeInterval?
     private var bones: [String: SKNode] = [:]
     private var slots: [String: SlotNodes] = [:]
+    /// The sticker effect's tint on the art (`setTint`), kept so a part
+    /// that comes on show later (a hand, a face swapped in) is tinted too.
+    private var tint: (color: UIColor, amount: CGFloat)?
     /// What the bones and slots show now, and the tween it came from — to
     /// tell a jump (a move's loop cut short as the character arrives) and
     /// ease over it instead of popping.
@@ -255,9 +258,8 @@ final class PuppetNode: SKEffectNode {
                 sprite.xScale = attachment.flip ? -1 : 1
             }
             if let art = nodes.art {
-                art.color = .black
-                art.colorBlendFactor = attachment.shade
                 art.userData = ["shade": attachment.shade]
+                paint(art)
             }
         }
     }
@@ -284,17 +286,21 @@ final class PuppetNode: SKEffectNode {
     }
 
     /// Tints the art (a sticker effect's tint), keeping a part's shade.
+    /// It stays on every part, those that come on show later included,
+    /// until it is set again.
     func setTint(_ color: UIColor?, amount: CGFloat) {
+        tint = color.flatMap { amount > 0 ? ($0, amount) : nil }
         for nodes in slots.values {
-            guard let art = nodes.art else { continue }
-            let shade = art.userData?["shade"] as? Double ?? 0
-            if let color, amount > 0 {
-                art.color = color
-                art.colorBlendFactor = amount
-            } else {
-                art.color = .black
-                art.colorBlendFactor = shade
-            }
+            if let art = nodes.art { paint(art) }
+        }
+    }
+
+    /// A part's art in the tint, or else in its own shade.
+    private func paint(_ art: SKSpriteNode) {
+        if let tint {
+            art.showTint(tint.color, amount: tint.amount)
+        } else {
+            art.clearTint(color: .black, factor: CGFloat(art.userData?["shade"] as? Double ?? 0))
         }
     }
 }

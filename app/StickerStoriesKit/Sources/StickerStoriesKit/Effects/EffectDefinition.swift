@@ -27,6 +27,19 @@ public struct EffectDefinition: Sendable {
         return delta
     }
 
+    /// How much of its colour `tint` washes over the sticker at its peak:
+    /// half the intensity up to 0.6 (a blush, a cold blue), then rising
+    /// to the whole colour at 1 — a stone-grey octopus. White never goes
+    /// past half (`whiteTintCap`): a flash stays a soft one.
+    public static func tintStrength(_ intensity: Double) -> Double {
+        let i = intensity.clamped(to: 0...1)
+        let t = ((i - 0.6) / 0.4).clamped(to: 0...1)
+        return 0.5 * i * (1 + t * t * (3 - 2 * t))
+    }
+
+    /// The most of a white tint ever shown.
+    public static let whiteTintCap = 0.5
+
     public static func definition(for name: EffectName) -> EffectDefinition {
         library[name]!
     }
@@ -134,10 +147,10 @@ public struct EffectDefinition: Sendable {
 
         EffectDefinition(
             name: .tint, defaultDuration: 0.8, anchor: .center, defaultColor: nil,
-            summary: "A colour washes over the sticker and drains away. White + short duration = a flash."
+            summary: "A colour washes over the sticker and drains away; at full intensity it covers it whole. White + short duration = a flash."
         ) { phase, i, _ in
             var d = EffectDelta()
-            d.tintAmount = 0.5 * i * Easing.upAndDown(phase, Easing.inOut)
+            d.tintAmount = tintStrength(i) * Easing.upAndDown(phase, Easing.inOut)
             return d
         },
 
@@ -169,6 +182,11 @@ public struct EffectDefinition: Sendable {
         EffectDefinition(
             name: .sparks, defaultDuration: 0.4, anchor: .center, defaultColor: RGBA(hex: "#FFD27A"),
             summary: "A few tiny bright sparks that fly out, fall and fade."
+        ) { _, _, _ in EffectDelta() },
+
+        EffectDefinition(
+            name: .bubblePuff, defaultDuration: 0.6, anchor: EffectAnchor(x: 0.5, y: 0.35), defaultColor: nil,
+            summary: "A few bubbles rise from the sticker, wobbling, and pop: a little way out of water, further in an underwater pack."
         ) { _, _, _ in EffectDelta() },
 
         // MARK: Water (the delta is identity; the wave is painted behind the sticker, `SurfWave`)

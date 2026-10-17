@@ -4,8 +4,8 @@ Small, charming things that happen while a story plays. Two kinds, two
 closed libraries:
 
 - **Sticker effects** — one placed sticker does something: a sparkle, a
-  wobble, a glow, a fade, a puff of dust at its feet, a wave to ride.
-  Sixteen of them.
+  wobble, a glow, a fade, a puff of dust at its feet, bubbles, a wave to
+  ride. Seventeen of them.
 - **Canvas effects** — the weather or the light changes over the whole
   scene: fog, rain, sunshine, a rainbow, night falling, the lights going low,
   and their counterparts indoors, in space and under the sea. Each suits
@@ -41,7 +41,7 @@ test. Tooling should read that file rather than parse this one.
    skipped with a log line; a pack authored against a future library plays
    with fewer effects.
 
-## The sticker library (16 effects, closed)
+## The sticker library (17 effects, closed)
 
 `i` is the trigger's `intensity` (default 0.6). At `intensity: 0` every effect
 is visually identical to no effect. Anchors and easing are fixed per effect —
@@ -65,7 +65,7 @@ they are what make a wobble a wobble — and are not authorable.
 | `fade-in` | Appears from nothing. **One-way.** | Arrivals, waking up. Pair with `sparkle`. | 0.6 s | full |
 | `fade-out` | Fades away. **One-way.** | Leaving, hiding, falling asleep. `hold: true` keeps it gone. | 0.6 s | full |
 | `glow` | A soft bloom rises around the sticker and falls away. `color` default `#FFF3C4`. | Magic, warmth, a wish, the sun. `hold: true` keeps the bloom on. | 1.0 s | full |
-| `tint` | A colour washes over the sticker and drains away. `color` **required**. | Blushing (pink), cold (blue), cross (red). White + `duration: 0.2` is a flash. | 0.8 s | full |
+| `tint` | A colour washes over the sticker and drains away. `color` **required**. Up to the default intensity it is a light wash (half the intensity, as it always was); above it, it deepens until at `1` the sticker is all that colour, still with its own light and dark — with `hold`, an octopus turned stone grey until the story ends. White never goes past half: a flash stays soft. | Blushing (pink), cold (blue), cross (red); at `1` with `hold`, turned to stone or snow. White + `duration: 0.2` is a flash. | 0.8 s | full (calm mode keeps a coloured wash full too; a white one is damped) |
 
 ### Particles
 
@@ -76,6 +76,7 @@ they are what make a wobble a wobble — and are not authorable.
 | `dust-puff` | A puff of dust kicked up from the ground at its feet: the cloud billows out sideways both ways and rises a little as it fades, while a few grains thrown up fall back under the world's gravity. `color` default: the pack's ground, a shade lighter. | A landing, a stamp, a wheel spinning, a rocket touching down, a dig. | 0.4 s | runs at ≤0.4 |
 | `spray` | Water drops thrown up that arc and fall. `color` default `#CFE8FF`. | A splash, a shake of wet fur, a fountain, watering. | 0.4 s | runs at ≤0.4 |
 | `sparks` | A few tiny bright sparks that fly out, fall and fade. `color` default `#FFD27A`. | A tool on metal, a connection made, a machine starting — never fire or danger. | 0.4 s | runs at ≤0.4 |
+| `bubble-puff` | A few bubbles rise from the sticker, wobbling side to side, and pop. Out of the water, or in a shallow pool seen whole, they rise only a little way — about to the surface — and pop; in an `underwater` pack they rise much further through the water. No colour. Not the canvas `bubbles` (bubbles over the whole scene): the two lists share one namespace in a trigger file. | A fish blowing bubbles, breathing out under water, a bubbly giggle in a pool. | 0.6 s | runs at ≤0.4 |
 
 Particles already born live out their lifetime after the effect ends; that
 is intended. Particle size follows the size of the sticker's **drawing**,
@@ -131,6 +132,9 @@ animations").
 Removed in 2026-09 and not to be reused (older content that names them is
 skipped): `sway` (a slow tilt of trees and flowers — it read as the scenery
 wobbling), `blink` (hard-edged flashing) and `puff` (smoke at the feet).
+`bubble-puff` (2026-10) was asked for by the user so a fish's blow
+shows its bubbles where it is, which the scene-wide canvas `bubbles`
+cannot; animation frames fire it like dust and spray.
 `dust-puff` (2026-10) is not `puff` back: that was a fixed smoke cloud;
 this is a physical emitter that follows each pack's gravity and ground,
 added when stickers stopped drawing particles of their own.
@@ -159,7 +163,7 @@ system that shares the clock and the trigger file but not this vocabulary
 
 | Key | Required | Default | Meaning |
 |---|---|---|---|
-| `effect` | yes | | One of the 16 names above. |
+| `effect` | yes | | One of the 17 names above. |
 | `sticker` | yes | | Sticker ID from the manifest, or `all` for every sticker on the canvas that can feel something — those with faces (`expressions`), or every sticker in a pack without faces (`PackManifest.characters`). Every placed instance is affected. |
 | `at` | yes | | Seconds into **this language's** narration when the effect starts. |
 | `cue` | no | | Free label for authoring traceability (the word it lines up with). The app ignores it. |
@@ -419,7 +423,7 @@ snail tucked inside its shell"); `storycheck` lists them.
   trigger whose animation is not in yet shows the still sticker until it
   is.
 - **Particles from frames**: an animation's sidecar can say a frame fires
-  a burst of `dust-puff`, `spray` or `sparks` from a point of the sticker
+  a burst of `dust-puff`, `spray`, `sparks` or `bubble-puff` from a point of the sticker
   (`docs/pack-format.md`, the sidecar's `particles`) — a landing kicks up
   dust every time the lope lands, a ship's touchdown raises a cloud
   (`surf-wave` is not one of them: a story cues it). It
@@ -690,7 +694,9 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
   under Reduce Motion or calm mode; the sticker stays still, and a held
   one never shows.
 - **Calm mode** (main menu gear → Settings) applies the same policy plus a global
-  intensity multiplier of 0.6, for children who are easily overstimulated.
+  intensity multiplier of 0.6, for children who are easily overstimulated —
+  except a coloured `tint`, which is meaning rather than stimulation (a
+  stone-grey octopus stays grey); a white one, a flash, is damped.
 - Flashes (white `tint`) are capped at 3 per second regardless of
   settings.
 

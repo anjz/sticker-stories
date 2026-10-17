@@ -4,7 +4,7 @@
 // so anything this package rejects would merely be ignored on device — but
 // silently broken content is exactly what validation exists to catch.
 //
-// The libraries are closed: 16 sticker effects (Names) and the canvas
+// The libraries are closed: 17 sticker effects (Names) and the canvas
 // effects (CanvasNames), each suited to one or more pack settings.
 // docs/effects/effects.json is the shared catalogue; a test checks the names
 // here match it.
@@ -27,7 +27,7 @@ const SupportedSchema = 1
 var Names = []string{
 	"pulse", "wobble", "shake", "hop", "spin", "float",
 	"fade-in", "fade-out", "glow", "tint",
-	"sparkle", "hearts", "dust-puff", "spray", "sparks",
+	"sparkle", "hearts", "dust-puff", "spray", "sparks", "bubble-puff",
 	"surf-wave",
 }
 

@@ -108,7 +108,7 @@ lines" below):
 ```
 
 - `sticker` is an ID from the manifest and must be in `featured` or
-  `supporting` — or the reserved `all`. `effect` is one of the 16 names in `docs/effects/effects.json`
+  `supporting` — or the reserved `all`. `effect` is one of the 17 names in `docs/effects/effects.json`
   (`effects`); which parameters each accepts is listed there (`repeat` is
   ignored by `fade-in`/`fade-out`, `color` only for `glow`/`tint`/`sparkle`
   and required by `tint`, `hold` only for the four that support it, a

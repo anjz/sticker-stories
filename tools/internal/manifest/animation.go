@@ -136,7 +136,7 @@ type StickerAnimation struct {
 }
 
 // AnimationParticle is one burst an animation fires: when Frame (0-based)
-// first shows, the particle effect Effect (dust-puff, spray, sparks) from
+// first shows, the particle effect Effect (dust-puff, spray, sparks, bubble-puff) from
 // the point X, Y of the sticker image — fractions with a top-left origin,
 // like StickerBox; a little outside it is fine (a flame's tip) — at its
 // Intensity (0–1, default 0.6) and Color (#RRGGBB, default the effect's).
@@ -150,7 +150,7 @@ type AnimationParticle struct {
 }
 
 // ParticleEffects are the effects an animation's frames may fire.
-var ParticleEffects = []string{"dust-puff", "spray", "sparks"}
+var ParticleEffects = []string{"dust-puff", "spray", "sparks", "bubble-puff"}
 
 // Animation kinds.
 const (

@@ -170,8 +170,9 @@ struct EffectsGalleryView: View {
                 scene.playCanvas(groups.filter { !$0.isEmpty })
             }
             // `-effectDemo dust-puff,spray [-gallerySticker woman]
-            // [-effectDemoIntensity 0.6]`: loop just those sticker effects
-            // on that sticker, at full strength unless it says.
+            // [-effectDemoIntensity 0.6] [-effectDemoColor 9C948C]
+            // [-effectDemoDuration 3]`: loop just those sticker effects on
+            // that sticker, at full strength unless it says.
             if let index = arguments.firstIndex(of: "-gallerySticker"), index + 1 < arguments.count {
                 stickerID = arguments[index + 1]
             }
@@ -180,7 +181,14 @@ struct EffectsGalleryView: View {
                 let strength = arguments.firstIndex(of: "-effectDemoIntensity").flatMap {
                     $0 + 1 < arguments.count ? Double(arguments[$0 + 1]) : nil
                 }
-                scene.playEffects(effects, intensity: strength ?? 1)
+                var options = EffectOptions(intensity: strength ?? 1)
+                options.color = arguments.firstIndex(of: "-effectDemoColor").flatMap {
+                    $0 + 1 < arguments.count ? RGBA(hex: "#" + arguments[$0 + 1]) : nil
+                }
+                options.duration = arguments.firstIndex(of: "-effectDemoDuration").flatMap {
+                    $0 + 1 < arguments.count ? Double(arguments[$0 + 1]) : nil
+                }
+                scene.playEffects(effects, options: options)
             }
             // `-liveDemo [sticker | sticker.animation]`: loop a live animation
             // on its sticker (the first one, the named sticker's first, or
@@ -288,6 +296,7 @@ final class EffectsGalleryScene: SKScene {
         pendingStickerID = stickerID
         super.init(size: CGSize(width: 700, height: 700))
         emitters.world = pack.manifest.effectiveWorld
+        emitters.underwater = pack.manifest.setting == .underwater
         // The gallery has no stage: its sticker is in the water only when
         // it is shown afloat (`-galleryAfloat`).
         waves.inWater = { _, _ in ProcessInfo.processInfo.arguments.contains("-galleryAfloat") }
@@ -469,13 +478,16 @@ final class EffectsGalleryScene: SKScene {
 
     /// Loops the given sticker effects (at full strength unless told), at
     /// least 2.5 s apart.
-    func playEffects(_ effects: [EffectName], intensity: Double = 1) {
+    func playEffects(_ effects: [EffectName], options: EffectOptions = EffectOptions(intensity: 1)) {
         guard !effects.isEmpty else { return }
         stopAll()
         var steps: [SKAction] = []
         for effect in effects {
-            steps.append(.run { [weak self] in self?.play(effect, options: EffectOptions(intensity: intensity)) })
-            steps.append(.wait(forDuration: max(2.5, EffectDefinition.definition(for: effect).defaultDuration + 0.5)))
+            var options = options
+            if effect == .tint, options.color == nil { options.color = RGBA(hex: "#FF6B8A") }
+            steps.append(.run { [weak self] in self?.play(effect, options: options) })
+            let cycle = options.duration ?? EffectDefinition.definition(for: effect).defaultDuration
+            steps.append(.wait(forDuration: max(2.5, cycle + 0.5)))
         }
         run(.repeatForever(.sequence(steps)), withKey: "play-all")
     }

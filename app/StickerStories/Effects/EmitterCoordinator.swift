@@ -3,7 +3,7 @@ import StickerStoriesKit
 
 /// The one stateful piece of the sticker effects system: the SpriteKit
 /// emitters behind the particle effects (`sparkle`, `hearts`, `dust-puff`,
-/// `spray`, `sparks`). Reconciled every frame against
+/// `spray`, `sparks`, `bubble-puff`). Reconciled every frame against
 /// the runner's active effects — emitters are created for new particle
 /// effects, ramped in/out, frozen while the clock is paused, dropped when
 /// their effect is gone, and kept within the device budget.
@@ -40,6 +40,9 @@ final class EmitterCoordinator {
     /// The pack's world: the physical particles fall under its gravity, and
     /// dust is the colour of its ground.
     var world = PackWorld.defaults(for: .none)
+    /// An underwater pack: bubbles rise on up through the water, where out
+    /// of it (or in a shallow pool) they rise a little and pop.
+    var underwater = false
 
     private var live: [EffectHandle: Live] = [:]
     /// Bursts fired by animation frames (each its emitters), until their
@@ -202,12 +205,13 @@ final class EmitterCoordinator {
         let gravity = spec.worldGravity == true ? CGFloat(max(world.gravity, 0.02)) : 1
         let hang = spec.worldGravity == true ? min(2.5, 1 / sqrt(gravity)) : 1
         let sizeFactor = (renderedHeight / Self.referenceHeight).clamped(to: 0.4...2)
+        let rise: CGFloat = name == .bubblePuff && underwater ? 1.8 : 1
 
         let emitter = SKEmitterNode()
         emitter.particleTexture = EffectTextures.texture(named: spec.texture)
         emitter.particleBlendMode = spec.blend == "add" ? .add : .alpha
-        emitter.particleLifetime = CGFloat(spec.lifetime.value) * hang
-        emitter.particleLifetimeRange = CGFloat(spec.lifetime.variance * 2) * hang
+        emitter.particleLifetime = CGFloat(spec.lifetime.value) * hang * rise
+        emitter.particleLifetimeRange = CGFloat(spec.lifetime.variance * 2) * hang * rise
         emitter.particleSpeed = CGFloat(spec.speed.value) * sizeFactor
         emitter.particleSpeedRange = CGFloat(spec.speed.variance * 2) * sizeFactor
         // Mirrored across the vertical: the other half of a cloud.
@@ -222,7 +226,19 @@ final class EmitterCoordinator {
         let particleScale = CGFloat(spec.scale.start) * sizeFactor * CGFloat(0.6 + 0.4 * intensity)
         emitter.particleScale = particleScale
         emitter.particleScaleRange = CGFloat(spec.scale.variance) * sizeFactor
-        emitter.particleScaleSpeed = (CGFloat(spec.scale.end) * sizeFactor * CGFloat(0.6 + 0.4 * intensity) - particleScale) / (CGFloat(spec.lifetime.value) * hang)
+        emitter.particleScaleSpeed = (CGFloat(spec.scale.end) * sizeFactor * CGFloat(0.6 + 0.4 * intensity) - particleScale) / (CGFloat(spec.lifetime.value) * hang * rise)
+        if let wobble = spec.wobble, wobble.count == 2, wobble[1] > 0 {
+            let swing = CGFloat(wobble[0]) * sizeFactor, quarter = wobble[1] / 4
+            let out = SKAction.moveBy(x: swing, y: 0, duration: quarter)
+            out.timingMode = .easeOut
+            let back = SKAction.moveBy(x: -swing, y: 0, duration: quarter)
+            back.timingMode = .easeIn
+            let away = SKAction.moveBy(x: -swing, y: 0, duration: quarter)
+            away.timingMode = .easeOut
+            let home = SKAction.moveBy(x: swing, y: 0, duration: quarter)
+            home.timingMode = .easeIn
+            emitter.particleAction = .repeatForever(.sequence([out, back, away, home]))
+        }
         emitter.particleRotationRange = .pi * 2
         emitter.particleRotationSpeed = CGFloat(spec.rotationSpeed)
         emitter.particleAlphaSequence = SKKeyframeSequence(

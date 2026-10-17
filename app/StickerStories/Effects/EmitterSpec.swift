@@ -47,6 +47,9 @@ struct EmitterSpec: Decodable {
     /// Emitters that fire along with it, at the same spot, intensity and
     /// colour (the dust cloud's grains).
     var with: [String]?
+    /// Each particle sways side to side as it goes: amplitude in points at
+    /// the reference height, seconds per sway (bubbles rising).
+    var wobble: [Double]?
 
     var color: RGBA { RGBA(hex: defaultColor) ?? .white }
 
@@ -58,6 +61,7 @@ struct EmitterSpec: Decodable {
         case .dustPuff: "dust"
         case .spray: "spray"
         case .sparks: "sparks"
+        case .bubblePuff: "bubbles"
         default: nil
         }
     }
@@ -71,6 +75,7 @@ struct EmitterSpec: Decodable {
         var dustGrains: EmitterSpec
         var spray: EmitterSpec
         var sparks: EmitterSpec
+        var bubbles: EmitterSpec
     }
 
     /// All emitters from the bundled data file, keyed by name.
@@ -83,7 +88,7 @@ struct EmitterSpec: Decodable {
         }
         do {
             let file = try JSONDecoder().decode(File.self, from: data)
-            return ["sparkles": file.sparkles, "hearts": file.hearts, "dust": file.dust, "dustGrains": file.dustGrains, "spray": file.spray, "sparks": file.sparks]
+            return ["sparkles": file.sparkles, "hearts": file.hearts, "dust": file.dust, "dustGrains": file.dustGrains, "spray": file.spray, "sparks": file.sparks, "bubbles": file.bubbles]
         } catch {
             assertionFailure("emitters.json undecodable: \(error)")
             return [:]

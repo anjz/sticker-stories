@@ -3,7 +3,7 @@ import UIKit
 
 /// Particle and canvas-effect textures drawn once with CoreGraphics.
 /// Placeholder-art era: swap for PNGs when real art lands, keeping the same
-/// names (`star`, `dot`, `heart` for the emitters in `emitters.json`;
+/// names (`star`, `dot`, `heart`, `bubblePuff` for the emitters in `emitters.json`;
 /// `drop`, `fog`, `ray`, `skyglow`, `rainbow`, `vignette`, `moon`, `moonglow`
 /// for `CanvasEffectLayer`; `band` and the rest below for the painters in
 /// `Canvas/`; `foam` for `surf-wave`).
@@ -45,6 +45,7 @@ enum EffectTextures {
                 case "star": drawStar(in: rect, cg)
                 case "heart": drawHeart(in: rect, cg)
                 case "foam": drawFoam(in: rect, cg)
+                case "bubblePuff": drawBubble(in: rect, cg)
                 default: drawDot(in: rect, cg)
                 }
             }
@@ -293,6 +294,24 @@ enum EffectTextures {
         guard let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colors, locations: [0, 0.55, 1]) else { return }
         let center = CGPoint(x: rect.midX, y: rect.midY)
         cg.drawRadialGradient(gradient, startCenter: center, startRadius: 0, endCenter: center, endRadius: rect.width / 2, options: [])
+    }
+
+    /// A bubble a sticker blows (`bubble-puff`): a pale, see-through body,
+    /// a bright rim and a highlight, so it reads over water and sand alike.
+    private static func drawBubble(in rect: CGRect, _ cg: CGContext) {
+        let r = rect.insetBy(dx: rect.width * 0.1, dy: rect.height * 0.1)
+        cg.setFillColor(UIColor(white: 1, alpha: 0.3).cgColor)
+        cg.fillEllipse(in: r)
+        // A soft blue-grey line just outside the white rim, so the bubble
+        // reads over pale sand as well as over the sea.
+        cg.setStrokeColor(UIColor(red: 0.25, green: 0.45, blue: 0.6, alpha: 0.45).cgColor)
+        cg.setLineWidth(rect.width * 0.05)
+        cg.strokeEllipse(in: r.insetBy(dx: -rect.width * 0.05, dy: -rect.height * 0.05))
+        cg.setStrokeColor(UIColor.white.cgColor)
+        cg.setLineWidth(rect.width * 0.1)
+        cg.strokeEllipse(in: r)
+        cg.setFillColor(UIColor.white.cgColor)
+        cg.fillEllipse(in: CGRect(x: r.minX + r.width * 0.2, y: r.minY + r.height * 0.18, width: r.width * 0.26, height: r.height * 0.26))
     }
 
     /// A four-point twinkle with a faint core glow.

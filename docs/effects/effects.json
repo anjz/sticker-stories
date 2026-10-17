@@ -3,7 +3,7 @@
   "triggerSchema": 1,
   "notes": [
     "Machine-readable catalogue of the effect library. Human reference: docs/effects.md.",
-    "Two closed lists: `effects` (16 sticker effects, each on one sticker) and `canvasEffects` (canvas effects: weather and light over the whole scene, each suited to one or more pack settings).",
+    "Two closed lists: `effects` (17 sticker effects, each on one sticker) and `canvasEffects` (canvas effects: weather and light over the whole scene, each suited to one or more pack settings).",
     "A Kit test asserts this file matches the compiled library (EffectDefinition.library, CanvasEffectDefinition.library); edit both together.",
     "Story tooling should read this file to learn which effects exist, what they mean, which parameters each accepts, and which canvas effects suit a pack's setting."
   ],
@@ -379,7 +379,7 @@
     {
       "name": "tint",
       "category": "opacity-and-color",
-      "summary": "A colour washes over the sticker and drains away. White + short duration = a flash.",
+      "summary": "A colour washes over the sticker and drains away; at full intensity it covers it whole. White + short duration = a flash.",
       "use": "Blushing (pink), cold (blue), angry (red), a camera flash (white, duration 0.2). color is required.",
       "animates": [
         "tint"
@@ -547,6 +547,34 @@
       "oneWay": false,
       "hold": false,
       "defaultColor": "#FFD27A",
+      "requiresColor": false,
+      "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "bubble-puff",
+      "category": "particle",
+      "summary": "A few bubbles rise from the sticker, wobbling, and pop: a little way out of water, further in an underwater pack.",
+      "use": "A fish blowing bubbles, someone breathing out under the water, a bubbly giggle in a pool. Not the canvas `bubbles` (bubbles over the whole scene). Also fired by animation frames (a fish's blow).",
+      "animates": [
+        "particles"
+      ],
+      "defaultDuration": 0.6,
+      "anchor": [
+        0.5,
+        0.35
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "repeat",
+        "duration",
+        "intensity"
+      ],
+      "oneWay": false,
+      "hold": false,
+      "defaultColor": null,
       "requiresColor": false,
       "reduceMotion": "damped-0.4"
     },

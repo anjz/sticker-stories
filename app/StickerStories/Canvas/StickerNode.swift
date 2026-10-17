@@ -304,11 +304,9 @@ final class StickerNode: SKSpriteNode {
         let targets: [SKSpriteNode] = texture == nil ? live : [self]
         for sprite in [self] + live {
             if let tint, targets.contains(sprite) {
-                sprite.color = UIColor(tint)
-                sprite.colorBlendFactor = amount
+                sprite.showTint(UIColor(tint), amount: amount)
             } else {
-                sprite.color = .clear
-                sprite.colorBlendFactor = 0
+                sprite.clearTint()
             }
         }
     }
@@ -343,8 +341,8 @@ final class StickerNode: SKSpriteNode {
         zRotation = CGFloat(base.rotation)
         setScale(CGFloat(base.scale))
         alpha = CGFloat(base.alpha)
-        color = .clear
-        colorBlendFactor = 0
+        // No tint left on the sprite, the frames or the puppet's parts.
+        setTint(nil, amount: 0)
         glowNode?.isHidden = true
         effectBase = nil
     }

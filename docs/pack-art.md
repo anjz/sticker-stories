@@ -87,8 +87,8 @@ moves, moves.
 - **Never draw particles** — no dust, sand, soil, drops, sparks, smoke or
   debris in any frame (the scaffold prompt forbids them). Where a frame
   needs them (a landing, a touchdown, a splash, a drill biting), mark it in
-  anim.json's `particles` and the app fires `dust-puff`, `spray` or
-  `sparks` there, in the pack's `world` (gravity, ground colour). Engine
+  anim.json's `particles` and the app fires `dust-puff`, `spray`,
+  `sparks` or `bubble-puff` there, in the pack's `world` (gravity, ground colour). Engine
   flames are part of the vehicle and stay drawn.
 - Draw them **over a scaffold** (`"scaffold": true` in anim.json): the
   model re-poses the sticker cell by cell instead of redrawing it, which

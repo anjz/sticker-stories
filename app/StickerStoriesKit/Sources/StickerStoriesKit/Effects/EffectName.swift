@@ -4,7 +4,7 @@ import Foundation
 /// effects (weather and light over the whole scene) are a separate, equally
 /// closed list: `CanvasEffectName`.
 ///
-/// Sixteen. Adding one later is easy (unknown names are skipped by older
+/// Seventeen. Adding one later is easy (unknown names are skipped by older
 /// builds, so it is not a breaking change); removing one from shipped
 /// content is not, so do not add casually and never repurpose a name.
 /// `sway`, `blink` and `puff` were removed in 2026-09 — do not reuse them.
@@ -26,12 +26,15 @@ public enum EffectName: String, CaseIterable, Codable, Sendable, Hashable {
     case fadeOut = "fade-out"
     case glow
     case tint
-    // Particles (5)
+    // Particles (6)
     case sparkle
     case hearts
     case dustPuff = "dust-puff"
     case spray
     case sparks
+    /// Not `bubbles`: that is a canvas effect, and the two lists share one
+    /// namespace in a trigger file (`EffectTriggerFile`).
+    case bubblePuff = "bubble-puff"
     // Water (1)
     case surfWave = "surf-wave"
 
@@ -46,7 +49,7 @@ public enum EffectName: String, CaseIterable, Codable, Sendable, Hashable {
         switch self {
         case .pulse, .wobble, .shake, .hop, .spin, .float: .motion
         case .fadeIn, .fadeOut, .glow, .tint: .opacityAndColor
-        case .sparkle, .hearts, .dustPuff, .spray, .sparks: .particle
+        case .sparkle, .hearts, .dustPuff, .spray, .sparks, .bubblePuff: .particle
         case .surfWave: .water
         }
     }
@@ -76,6 +79,11 @@ public enum EffectName: String, CaseIterable, Codable, Sendable, Hashable {
     /// hang longer where it is weak (`PackWorld`): kicked-up dust, water
     /// drops, sparks. Sparkles and hearts float the same everywhere.
     public var followsWorld: Bool { self == .dustPuff || self == .spray || self == .sparks }
+
+    /// The particle effects an animation's frames may fire
+    /// (`docs/pack-format.md`, the sidecar's `particles`): the physical
+    /// ones and the bubbles a fish blows.
+    public var firesFromFrames: Bool { followsWorld || self == .bubblePuff }
 
     /// `tint` has no sensible default colour; a trigger without one is skipped.
     public var requiresColor: Bool { self == .tint }
