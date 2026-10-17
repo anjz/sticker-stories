@@ -17,10 +17,10 @@
     "rig": "anims/girl.rig.json",
     "keys": [
       {
-        "hold": 0.15
+        "hold": 0.2
       },
       {
-        "hold": 0.3,
+        "hold": 0.04,
         "bones": {
           "belly": {
             "sy": 0.9
@@ -35,7 +35,7 @@
         }
       },
       {
-        "hold": 0.06,
+        "hold": 0.25,
         "bones": {
           "armL": {
             "r": 5,
@@ -106,7 +106,7 @@
         }
       },
       {
-        "hold": 1.2,
+        "hold": 1,
         "bones": {
           "armL": {
             "r": 5,
@@ -141,7 +141,42 @@
         }
       },
       {
-        "hold": 0.3,
+        "hold": 0.2,
+        "bones": {
+          "armL": {
+            "r": 5,
+            "x": 6.3,
+            "y": 8.3
+          },
+          "armR": {
+            "r": -5,
+            "x": -1.4,
+            "y": 16.6
+          },
+          "body": {
+            "y": 158.5
+          },
+          "face": {
+            "y": 3
+          },
+          "head": {
+            "r": -5,
+            "y": 24
+          }
+        },
+        "slots": {
+          "armL": "none",
+          "armLF": "reach",
+          "armR": "none",
+          "armRF": "reach",
+          "body": "none",
+          "legL": "none",
+          "legR": "none",
+          "squat": "squat"
+        }
+      },
+      {
+        "hold": 0.04,
         "bones": {
           "armL": {
             "r": 5,
@@ -174,7 +209,7 @@
         }
       },
       {
-        "hold": 0.06,
+        "hold": 0.25,
         "bones": {
           "belly": {
             "sy": 0.9
