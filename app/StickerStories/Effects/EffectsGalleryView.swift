@@ -288,7 +288,6 @@ final class EffectsGalleryScene: SKScene {
         pendingStickerID = stickerID
         super.init(size: CGSize(width: 700, height: 700))
         emitters.world = pack.manifest.effectiveWorld
-        waves.facings = SurfWaveCoordinator.facings(of: StickerAnimation.available(in: pack))
         // The gallery has no stage: its sticker is in the water only when
         // it is shown afloat (`-galleryAfloat`).
         waves.inWater = { _, _ in ProcessInfo.processInfo.arguments.contains("-galleryAfloat") }

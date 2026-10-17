@@ -16,9 +16,10 @@ import Foundation
 /// so a seek or a replay shows exactly the same wave. The app draws what
 /// `shape` returns (`SurfWaveCoordinator`); nothing here knows SpriteKit.
 ///
-/// Units: the sticker's drawn height at its depth. `x` runs forward — the
-/// way the sticker's art faces — from its waterline point; `y` runs up
-/// from it. The wave is level with the sea whatever the sticker does: it
+/// Units: the sticker's drawn height at its depth. `x` runs forward —
+/// always left to right on screen, the way the painted waves roll, so the
+/// sticker rides ahead of the break on its right — from its waterline
+/// point; `y` runs up from it. The wave is level with the sea whatever the sticker does: it
 /// never turns, tilts or flips with it. The body and the foam over it are drawn behind the
 /// sticker, `frontFoam` in front of it, so the wave never covers it.
 public enum SurfWave {
@@ -92,11 +93,12 @@ public enum SurfWave {
 
     // MARK: - Where
 
-    /// Whether a sticker at `p` on the stage is in the water (afloat, or
-    /// standing in a water place such as a shallow pool): only then does a
-    /// `surf-wave` cued on it rise. Decided once, when it is cued.
+    /// Whether a sticker at `p` on the stage is out in open water — on the
+    /// water and as far out from its edge as afloat stickers rest
+    /// (`StageWorld.inOpenWater`). Only then does a `surf-wave` cued on it
+    /// rise. Decided once, when it is cued.
     public static func rises(at p: Vec3, in world: StageWorld) -> Bool {
-        p.y < 0.01 && world.water(at: p.ground) != nil
+        p.y < 0.01 && world.inOpenWater(p.ground)
     }
 
     // MARK: - The timeline
@@ -176,23 +178,28 @@ public enum SurfWave {
         )
         // Under the lip, the face sweeps down to the foot: a rounded swell
         // at first, hollowing a little under the overhang as it pitches.
-        // As it crashes the overhang closes: the lip comes down as a curtain.
-        let open = Point(x: cx + 0.25 * reach, y: hy - 0.55 * drop - 0.1 * hy * pitch)
-        let closing = smooth(0.46, impact, p)
-        let throat = Point(
-            x: open.x + (tip.x - 0.06 * hx - open.x) * closing, y: open.y + (tip.y + 0.12 * hy - open.y) * closing)
+        let throat = Point(x: cx + 0.25 * reach, y: hy - 0.55 * drop - 0.1 * hy * pitch)
         let frontFoot = Point(x: max(tip.x, cx + 0.2 * hx) + hx * (0.12 + 0.6 * (1 - pitch)), y: -0.02 * full)
         let face = (
             throat,
-            Point(
-                x: throat.x + 0.4 * hx * (1 - pitch) - 0.06 * hx * pitch * (1 - closing) + 0.1 * hx * closing,
-                y: throat.y - (0.02 + 0.28 * pitch) * hy),
+            Point(x: throat.x + 0.4 * hx * (1 - pitch) - 0.06 * hx * pitch, y: throat.y - (0.02 + 0.28 * pitch) * hy),
             Point(x: frontFoot.x - 0.4 * (frontFoot.x - throat.x), y: 0.02 * hy), frontFoot
         )
+        let underside = cubic(
+            tip, Point(x: tip.x - 0.03 * hx, y: tip.y + 0.08 * hy), Point(x: throat.x + 0.15 * reach, y: throat.y + 0.02 * hy),
+            throat, steps: 8)
+        let overhang = underside + cubic(face.0, face.1, face.2, face.3).dropFirst()
+        // As the lip comes down the overhang closes smoothly into one
+        // curtain from the tip to the foot — no notch as it lands.
+        let curtain = cubic(
+            tip, Point(x: tip.x + 0.05 * hx, y: tip.y * 0.5),
+            Point(x: frontFoot.x - 0.35 * (frontFoot.x - tip.x), y: 0.02 * hy), frontFoot, steps: overhang.count - 1)
+        let closing = smooth(0.42, impact, p)
         var body = cubic(backSlope.0, backSlope.1, backSlope.2, backSlope.3)
         body += cubic(lip.0, lip.1, lip.2, lip.3).dropFirst()
-        body += cubic(tip, Point(x: tip.x - 0.03 * hx, y: tip.y + 0.08 * hy), Point(x: throat.x + 0.15 * reach, y: throat.y + 0.02 * hy), throat, steps: 8).dropFirst()
-        body += cubic(face.0, face.1, face.2, face.3).dropFirst()
+        body += zip(overhang, curtain).dropFirst().map { o, c in
+            Point(x: o.x + (c.x - o.x) * closing, y: o.y + (c.y - o.y) * closing)
+        }
         let bodyOpacity = 1 - smooth(0.66, 0.88, p)
 
         // Light in the lip, deeper water under it: soft rounds, no edges.

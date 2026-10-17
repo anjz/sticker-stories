@@ -99,9 +99,10 @@ an animation's frames ("Live animations").
 |---|---|---|---|---|
 | `surf-wave` | A wave rises **behind** a sticker in the water, at its waterline: it swells into a smooth, rounded body, rolls along with the sticker, its lip pitches forward in a short hook and crashes down — a quick burst of white foam and spray thrown forward and up — and the wave collapses into a churning band of whitewater that spreads and fizzles out. Nothing in it plays backwards. Teal-blue with a puffy white lip, like Beach's painted sea, and a low foam line in front of the sticker's base so it sits in the water. On land the cue draws nothing. | Riding a wave: the surfer, a boat or the seal out at sea, a big wave rolling in. | 4.0 s | runs at ≤0.4 |
 
-It rises only on a sticker **in the water** when the wave is cued: afloat,
-or standing in a water place (`SurfWave.rises`, from where the stage has
-the sticker then); on the sand the cue draws nothing, and a sticker that
+It rises only on a sticker **out in the water** when the wave is cued:
+on the water and as far out as afloat stickers rest
+(`StageWorld.inOpenWater`, a third of the way out from the waterline;
+`SurfWave.rises`, from where the stage has the sticker then); on the sand or by the edge the cue draws nothing, and a sticker that
 walks into the water later does not get one for that cue. The wave is
 painted, not emitted: everything about it at a moment is a pure function
 of the timeline (`SurfWave` in the Kit, drawn by `SurfWaveCoordinator`),
@@ -111,8 +112,11 @@ where the sticker is and its size at its depth — its crest about
 two-thirds of the drawing's height at the default intensity, a little
 taller behind a long, low sticker such as the seal — but never its
 rotation, its puppet's poses or a flip, so it stays level with the sea
-while the surfer tilts on his board. It rolls and pitches the way the
-sticker's art faces (its usual move's `facing`, turned with it). It
+while the surfer tilts on his board. It always rolls and pitches **left to
+right**, the way the scene's painted waves roll, so the sticker rides
+ahead of the break on its right, whichever way it faces. The water's
+outline is softened like a wet watercolour edge, and the lip closes
+smoothly into the curtain it lands as. It
 never covers the sticker: the water, its foam and its spray are behind
 it, and only the thin foam line, over the very bottom of its drawing, is
 in front. Afloat, the stage sinks the sticker so its waterline lies

@@ -96,13 +96,15 @@ struct SurfWaveTests {
         }
     }
 
-    @Test func risesOnlyInTheWater() {
+    @Test func risesOnlyOutInTheWater() {
         let w = testWorld()
         let pond = w.groundPoint(.init(0.55, 0.25)).onGround, meadow = w.groundPoint(.init(0.55, 0.12)).onGround
+        let edge = w.groundPoint(.init(0.55, 0.2)), nearEdge = (edge + (pond.ground - edge) * 0.05).onGround
         #expect(SurfWave.rises(at: pond, in: w))
+        // Not on land, not above the water, not by the water's edge.
         #expect(!SurfWave.rises(at: meadow, in: w))
-        // Above the water (a bird flying over the pond) is not in it.
         #expect(!SurfWave.rises(at: pond + Vec3(0, 0.2, 0), in: w))
+        #expect(!SurfWave.rises(at: nearEdge, in: w))
     }
 
     @Test func readsAsAPitchingWaveNotAFin() {

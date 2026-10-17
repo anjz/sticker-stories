@@ -1,3 +1,4 @@
+import CoreImage
 import SpriteKit
 import StickerStoriesKit
 
@@ -13,12 +14,10 @@ import StickerStoriesKit
 /// the sticker in z (the foam line just in front): it follows the sticker's
 /// placement — where it is and its size at its depth — but never its
 /// rotation, its puppet's poses or a flip, so it stays level with the sea
-/// while the surfer tilts.
+/// while the surfer tilts. It always rolls left to right, like the painted
+/// waves, so the sticker rides ahead of the break on its right.
 @MainActor
 final class SurfWaveCoordinator {
-    /// Which way each sticker's art faces (its usual move's `facing`): 1
-    /// right, -1 left. The wave rolls and pitches that way, behind its back.
-    var facings: [String: CGFloat] = [:]
     /// Whether a sticker is in the water at a time: asked once per wave, at
     /// the time it is cued. Without an answer no wave rises.
     var inWater: (StickerNode, TimeInterval) -> Bool = { _, _ in false }
@@ -26,17 +25,6 @@ final class SurfWaveCoordinator {
     private var waves: [EffectHandle: SurfWaveNode] = [:]
     /// Cued on a sticker on land: nothing is drawn for them.
     private var dry: Set<EffectHandle> = []
-
-    /// The facings of a pack's stickers from their moves, the usual one
-    /// first (`StickerAnimation.stageMove`).
-    static func facings(of animations: [StickerAnimation]) -> [String: CGFloat] {
-        var result: [String: CGFloat] = [:]
-        for animation in animations where animation.kind == .move && result[animation.sticker] == nil {
-            guard let facing = animation.facing else { continue }
-            result[animation.sticker] = facing == .left ? -1 : 1
-        }
-        return result
-    }
 
     func reconcile(_ active: [ActiveEffect], at time: TimeInterval, nodes: [UUID: StickerNode]) {
         var shown = Set<EffectHandle>()
@@ -55,7 +43,7 @@ final class SurfWaveCoordinator {
                 layer.addChild(wave)
             }
             waves[effect.handle] = wave
-            wave.show(frame, for: node, facing: (facings[node.stickerID] ?? 1) * (node.facing < 0 ? -1 : 1))
+            wave.show(frame, for: node)
         }
         for (handle, wave) in waves where !shown.contains(handle) {
             wave.removeFromParent()
@@ -87,6 +75,9 @@ final class SurfWaveNode: SKNode {
     private let behind = SKNode()
     private let front = SKNode()
     private let body = SKShapeNode()
+    /// Softens the water's outline against the sky and the sea, like a
+    /// wet watercolour edge (the foam over it stays crisp and puffy).
+    private let soft = SKEffectNode()
     private var streaks: [SKSpriteNode] = []
     private var glow: [SKSpriteNode] = []
     private var shade: [SKSpriteNode] = []
@@ -111,17 +102,20 @@ final class SurfWaveNode: SKNode {
         body.fillColor = .white
         body.strokeColor = .clear
         body.lineWidth = 0
-        behind.addChild(body)
+        soft.filter = CIFilter(name: "CIGaussianBlur")
+        soft.shouldEnableEffects = true
+        soft.addChild(body)
+        behind.addChild(soft)
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError("not used") }
 
     /// Paints `frame` at `node`'s waterline, in its layer's space, rolling
-    /// the way `facing` says on screen. Only the sticker's placement counts
-    /// (where the story has it and its size at its depth, `effectBase`):
-    /// not its rotation, effects, puppet poses or flip.
-    func show(_ frame: SurfWave.Frame, for node: StickerNode, facing: CGFloat) {
+    /// left to right. Only the sticker's placement counts (where the story
+    /// has it and its size at its depth, `effectBase`): not its rotation,
+    /// effects, puppet poses or flip.
+    func show(_ frame: SurfWave.Frame, for node: StickerNode) {
         let base = node.effectBase ?? node.placement
         let scale = CGFloat(base.scale)
         let unit = node.unscaledSize, c = node.content
@@ -137,12 +131,14 @@ final class SurfWaveNode: SKNode {
             x: CGFloat(base.x) + (c.midX - 0.5) * unit.width * scale * mirror,
             y: CGFloat(base.y) + (c.minY - 0.5) * unit.height * scale)
         func point(_ x: Double, _ y: Double) -> CGPoint {
-            CGPoint(x: facing * CGFloat(x) * height, y: CGFloat(y) * height)
+            CGPoint(x: CGFloat(x) * height, y: CGFloat(y) * height)
         }
 
         let water = CGFloat(shape.bodyOpacity)
         body.path = Self.path(shape.body.map { point($0.x, $0.y) }, closed: true)
         body.alpha = water
+        // A blur of a few points, in proportion to the wave on screen.
+        soft.filter?.setValue(max(1.5, 0.025 * height), forKey: kCIInputRadiusKey)
         place(shape.streaks, in: &streaks, on: behind, z: 0.01, color: Self.streakColor, fade: water, point: point, height: height)
         place(shape.glow, in: &glow, on: behind, z: 0.015, color: Self.glowColor, fade: water, point: point, height: height)
         place(shape.shade, in: &shade, on: behind, z: 0.02, color: Self.shadeColor, fade: water, point: point, height: height)
