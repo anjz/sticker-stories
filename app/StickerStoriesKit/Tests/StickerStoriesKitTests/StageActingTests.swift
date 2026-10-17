@@ -29,6 +29,10 @@ import Testing
         let out = try #require(p.legs.last)
         #expect(out.move == "paddle" && out.away == "paddle-out")
         #expect(p.travel(at: (out.at + out.end) / 2)?.move == "paddle-out")
+        // From its back to the front as it gets there: a quick squash
+        // through edge-on, never a cut.
+        #expect(abs(abs(p.sample(at: out.end).facing) - StagePlan.narrowest) < 1e-6)
+        #expect(abs(p.sample(at: out.end - StagePlan.turn).facing) == 1 && abs(p.sample(at: out.end + StagePlan.turn).facing) == 1)
         // Loaded before the story plays: both.
         #expect(p.movesPlayed.isSuperset(of: ["paddle", "paddle-out"]))
         // There, afloat, paddling on — looking at us.

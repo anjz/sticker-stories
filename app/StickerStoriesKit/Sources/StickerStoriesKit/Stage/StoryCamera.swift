@@ -146,16 +146,22 @@ public enum StoryCamera {
         // Against the art's edge there is no room for the margin: as near as it gets.
         guard lo <= hi else { return onWorld(min(max(center, s.hi + margin - half), s.lo - margin + half)) }
         var x = min(max(center, lo), hi)
-        // Nobody cut by the edge: whoever straddles one goes wholly out,
-        // the least way that keeps the rest in.
+        // Nobody cut by the edge: whoever straddles one goes wholly out or
+        // comes wholly in, the least way that keeps the rest in — giving
+        // up the margin when that is the only way (Nico at the window's
+        // edge while the seal plays).
+        let loose = (lo: max(first, s.hi - half), hi: min(last, s.lo + half))
         for _ in 0..<3 {
             var moved = false
             for f in focus + cast {
                 let left = x - half, right = x + half
                 let cutLeft = f.minX < left && f.maxX > left, cutRight = f.minX < right && f.maxX > right
                 guard cutLeft || cutRight else { continue }
-                let options = [f.maxX + half, f.minX - half].filter { $0 >= lo && $0 <= hi }
-                guard let best = options.min(by: { abs($0 - x) < abs($1 - x) }) else { continue }
+                // Out past either edge, or wholly in.
+                let options = [f.maxX + half, f.minX - half, cutLeft ? f.minX + half : f.maxX - half]
+                let best = options.filter { $0 >= lo && $0 <= hi }.min(by: { abs($0 - x) < abs($1 - x) })
+                    ?? options.filter { $0 >= loose.lo && $0 <= loose.hi }.min(by: { abs($0 - x) < abs($1 - x) })
+                guard let best else { continue }
                 x = best
                 moved = true
             }

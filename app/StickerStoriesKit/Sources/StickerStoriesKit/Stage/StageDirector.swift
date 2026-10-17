@@ -73,6 +73,10 @@ public enum StageDirector {
     /// Under a host on the ground, a guest taller than this share of it
     /// shelters just behind it, its head under the canopy (`relayout`).
     static let shelteredFrom = 0.55
+    /// How soon after it gets under someone its next action must come to
+    /// take it back under the canopy, and how long that step takes.
+    static let shelterSoon: TimeInterval = 1
+    static let shelterStep: TimeInterval = 0.35
     /// Two sharing a spot overlap by this much of the narrower one.
     static let sharedOverlap = 0.25
     /// How much a visitor's spot is pulled towards whom the story soon
@@ -191,7 +195,10 @@ public enum StageDirector {
                 // (One move's legs go on after a pause, its way brought to
                 // rest before it sets off the next way.)
                 var going: TimeInterval?
-                for leg in plan.legs where leg.travels && start < leg.end && leg.cue <= trigger.at + 1e-6
+                // (A step it takes as it acts — back under a canopy — is
+                // no move to wait for.)
+                for leg in plan.legs where leg.travels && !(leg.kind == .shuffle && leg.move == nil)
+                    && start < leg.end && leg.cue <= trigger.at + 1e-6
                     && (leg.at <= start + 1e-6 || leg.cue == going)
                 {
                     start = leg.end
@@ -258,6 +265,10 @@ public enum StageDirector {
         /// The side it went off by (−1 left, 1 right).
         var leftBy: Double = 1
         var hasEntered: Bool
+        /// Come to shelter under someone (`relayout`): standing in front of
+        /// them, beside the pole, it steps back under the canopy as its
+        /// next action takes it down — this is where.
+        var shelter: Vec3?
     }
 
     struct Director {
@@ -326,9 +337,45 @@ public enum StageDirector {
                     }
                 case .action(let action):
                     // It plays once it gets where it is going (`delayed`),
-                    // and a move cued after it waits for it to end.
+                    // and a move cued after it waits for it to end — over a
+                    // move that goes on, for its way back to the still,
+                    // which is left out (`StageActing.overMove`).
                     for i in states.indices where states[i].actor.stickerID == action.stickerID && states[i].hasEntered {
-                        states[i].busyUntil = max(action.at, states[i].busyUntil) + action.duration
+                        let start = max(action.at, states[i].busyUntil)
+                        // Come to shelter, it steps back under the canopy as
+                        // this action — cued as it gets there — takes it down.
+                        if let behind = states[i].shelter {
+                            states[i].shelter = nil
+                            if start - states[i].busyUntil <= StageDirector.shelterSoon {
+                                let here = states[i].pose
+                                var step = StageLeg(
+                                    at: start, duration: StageDirector.shelterStep, path: [here.position, behind], gait: .walk,
+                                    kind: .shuffle, facingFrom: here.facing, facingTo: here.facing, support: here.support)
+                                step.move = nil
+                                states[i].legs.append(step)
+                                states[i].pose.position = behind
+                            }
+                        }
+                        let last = states[i].legs.last
+                        let over = last.map { $0.stays && $0.travels } ?? false
+                        let end = start + max(action.duration - (over ? action.tail : 0), 0)
+                        states[i].busyUntil = end
+                        // Facing on screen as it did (riding the wave, right)
+                        // when it is over: no turn back unless a move asks.
+                        if let faces = action.faces, let sign = sign(faces, for: i), (sign < 0) != (states[i].pose.facing < 0) {
+                            states[i].pose.facing = sign
+                            let here = states[i].pose
+                            var hold = over ? last! : StageLeg(at: 0, duration: 0, path: [here.position], gait: .fade)
+                            hold.at = end
+                            hold.duration = 0
+                            hold.path = [here.position]
+                            hold.ways = []
+                            hold.away = nil
+                            hold.facingFrom = sign
+                            hold.facingTo = sign
+                            hold.support = here.support
+                            states[i].legs.append(hold)
+                        }
                     }
                 }
             }
@@ -1171,6 +1218,7 @@ public enum StageDirector {
 
         mutating func apply<R: RandomNumberGenerator>(_ go: GoTrigger, to i: Int, random: inout R) {
             let begin = max(go.at, states[i].busyUntil)
+            states[i].shelter = nil
             let left = leaveGroup(i)
             let wasBeside = states[i].beside
             states[i].beside = nil
@@ -1543,10 +1591,31 @@ public enum StageDirector {
                 let target = StagePose(
                     position: pushedOnScreen(m, Vec3(centre, y, shelters(m) ? behind : z)),
                     support: on ? .on(them.id) : .under(them.id), facing: states[m].pose.facing)
-                if m == mover {
+                if m == mover, shelters(m) {
+                    // It comes in beside the pole in front of the canopy
+                    // line, standing, and steps back under it only as its
+                    // next action (crouching) takes it down.
+                    var front = target
+                    front.position = pushedOnScreen(m, Vec3(centre, y, z))
+                    goWalking(m, to: front, begin: start)
+                    states[m].shelter = target.position
+                } else if m == mover, (target.position - states[m].pose.position).length < states[m].actor.width * 0.25 {
+                    // There already, near enough (the dog back by the
+                    // umbrella from Lola's side): no shuffle back.
+                    states[m].pose.support = target.support
+                } else if m == mover {
                     goWalking(m, to: target, begin: start)
-                } else if (target.position - states[m].pose.position).length > 0.01 {
-                    travel(m, to: target, begin: max(start, states[m].busyUntil), kind: .shuffle)
+                } else {
+                    // One still waiting to step back under (no action yet)
+                    // shuffles over in front, as it stands.
+                    var target = target
+                    if shelters(m), states[m].shelter != nil {
+                        states[m].shelter = target.position
+                        target.position = pushedOnScreen(m, Vec3(centre, y, z))
+                    }
+                    if (target.position - states[m].pose.position).length > 0.01 {
+                        travel(m, to: target, begin: max(start, states[m].busyUntil), kind: .shuffle)
+                    }
                 }
             }
         }
@@ -1963,11 +2032,22 @@ public struct StageAction: Equatable, Sendable {
     public var stickerID: String
     public var at: TimeInterval
     public var duration: TimeInterval
+    /// How long its way back to the still pose takes at its end — left out
+    /// over a move that goes on (`StageActing.overMove`), so the next move
+    /// takes over from the action straight away.
+    public var tail: TimeInterval
+    /// The way it faces on screen while it plays (`faces`): it faces so
+    /// after it too, until something turns it.
+    public var faces: StageMove.Facing?
 
-    public init(stickerID: String, at: TimeInterval, duration: TimeInterval) {
+    public init(
+        stickerID: String, at: TimeInterval, duration: TimeInterval, tail: TimeInterval = 0, faces: StageMove.Facing? = nil
+    ) {
         self.stickerID = stickerID
         self.at = at
         self.duration = duration
+        self.tail = tail
+        self.faces = faces
     }
 }
 
@@ -1976,10 +2056,13 @@ extension StageAction {
     /// it plays (`frames`: an animation's timing; nil leaves it out). A
     /// hold lasts until the story resumes it, so only its way to the pause
     /// counts.
-    public static func of(_ live: [LiveAnimationTrigger], frames: (LiveAnimationKey) -> LiveFrames?) -> [StageAction] {
+    public static func of(
+        _ live: [LiveAnimationTrigger], frames: (LiveAnimationKey) -> LiveFrames?,
+        faces: (LiveAnimationKey) -> StageMove.Facing? = { _ in nil }
+    ) -> [StageAction] {
         live.compactMap { trigger in
-            guard let timing = frames(LiveAnimationKey(stickerID: trigger.stickerID, animationID: trigger.animationID))
-            else { return nil }
+            let key = LiveAnimationKey(stickerID: trigger.stickerID, animationID: trigger.animationID)
+            guard let timing = frames(key) else { return nil }
             let part: LivePart
             switch trigger.mode {
             case .whole: part = .whole
@@ -1987,7 +2070,10 @@ extension StageAction {
             case .resume: part = .fromPause(held: true)
             }
             guard let duration = timing.duration(part), duration > 0 else { return nil }
-            return StageAction(stickerID: trigger.stickerID, at: trigger.at, duration: duration)
+            // Its last two keys: from its last pose back to the still.
+            let n = timing.holds.count
+            let tail = part == .whole && n >= 4 ? timing.holds[n - 2] + timing.holds[n - 1] : 0
+            return StageAction(stickerID: trigger.stickerID, at: trigger.at, duration: duration, tail: tail, faces: faces(key))
         }
     }
 }

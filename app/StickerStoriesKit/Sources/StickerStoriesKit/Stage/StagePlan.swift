@@ -245,7 +245,7 @@ public struct StagePlan: Equatable, Sendable {
         let p = leg.duration > 0 ? min(max((time - leg.at) / leg.duration, 0), 1) : 1
         // How far along its way it is, and the way it faces: it turns
         // round on the spot wherever it has to, never stepping backwards.
-        let (q, facing) = way(leg, at: time, from: lapBefore?.facing)
+        let (q, wayFacing) = way(leg, at: time, from: lapBefore?.facing)
         let arrived = legs[...index].filter { $0.end <= time }.map(\.end).max() ?? 0
         var opacity = 1.0, growth = 1.0
         var position: Vec3
@@ -288,6 +288,14 @@ public struct StagePlan: Equatable, Sendable {
         if p >= 1, off { opacity = 0 }
         // A visitor is not there until it comes in.
         if leg.kind == .entrance, time < leg.at { opacity = 0 }
+        // Turning from its back to us (its `away` move) to the front as it
+        // gets there: a quick squash through edge-on, like any turn.
+        var facing = wayFacing
+        if let turned = legs.first(where: { $0.away != nil && abs(time - $0.end) < Self.turn / 2 }) {
+            let k = abs(time - turned.end) / (Self.turn / 2)
+            let squash = Self.narrowest + (1 - Self.narrowest) * k * k * (3 - 2 * k)
+            facing = (facing < 0 ? -1 : 1) * min(abs(facing), squash)
+        }
         return Sample(
             position: position, facing: facing, opacity: opacity, growth: growth,
             support: p >= 1 ? leg.support : (index > 0 ? legs[index - 1].support : start.support), arrivedAt: arrived)

@@ -141,7 +141,11 @@ Plans the whole story at once, from the cast and the story's triggers:
    (`StageMove.tail`: off his board in the shallows) before it sets off
    the next way on foot. An effect cued on a sticker at the same moment
    as one of its actions goes with that action (`StageDirector.withAction`:
-   the wave rises as he rides it, out in the sea).
+   the wave rises as he rides it, out in the sea). Over a move that goes
+   on, an action's way back to its still pose is left out, so a move cued
+   after it takes over straight away; and an action that `faces` a way
+   leaves it facing so (`StageAction.faces`) — no turn back, nor a turn
+   at the next move's start if that goes the same way.
 5. **Actions in their place** (the woodpecker on the bark) go there first,
    as before (`PlacementPlanner`).
 6. **Out of the story's way.** The director plans the story once to see
@@ -249,7 +253,11 @@ behind them in depth — they are drawn in front, their canopy coming over
 the top of its head, its face or middle showing below — and across the
 screen beside the pole or stalk, a third of its own width off their
 middle on the side it came from (one about as wide as them, the frog by
-the mushroom, by their edge). A small one that fits under them whole
+the mushroom, by their edge). It walks in standing beside the pole in
+front of the canopy line, and steps back under it only as its next action
+— cued within a second of its getting there (Lola crouching) — takes it
+down, that action playing as it steps; with none, it stays in front. A
+small one that fits under them whole
 stands in front, as before; both keep their sizes. The staging test fails
 one sheltering so that neither its face nor its middle shows past its
 host's painted shape; being partly behind its own host is no fault there.
@@ -275,7 +283,9 @@ blink, never showing a sliver.
 — deeper into the scene more than across it — that move plays instead,
 the character's back to us (the surfer paddling out, `paddle`'s
 `paddle-out`); resting there, or coming back, it plays its own, looking
-at us (`StageLeg.away`, `StagePlan.travel`).
+at us (`StageLeg.away`, `StagePlan.travel`). From its back to the front
+it turns like any turn: a quick squash through edge-on round the moment
+it gets there (`StagePlan.sample`), never a cut.
 
 **Acting over a move that goes on** (afloat on a move that stays, or
 aloft): the action's first and last keys — the sticker's still pose — are
@@ -320,7 +330,10 @@ usual one) and sticker effect the story cues, from 0.8 s before it to
 the child's stickers settling, nor making room). Idle life is not a beat.
 An action or an effect under way keeps the camera before anything that
 begins meanwhile (the wave Nico rides crashes in view while the seal comes
-in), the one that began first keeping it (`Focus.playing`). Each frame it
+in), the one that began first keeping it (`Focus.playing`). Anyone the
+window's edge would cut goes wholly out or comes wholly in, giving up the
+margin if that is the only way; a puppet counts as wide as its pose is
+drawn (lying on his board is wider than standing). Each frame it
 takes the least move that brings every current beat's
 sticker into the window, a margin in from its sides; when they do not
 all fit it goes with the beat that began last, then adds as many of the

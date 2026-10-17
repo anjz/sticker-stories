@@ -297,25 +297,69 @@ func shoreWorld() -> StageWorld {
                 id: id, stickerID: name, size: size, ratio: ratio, stage: StickerStage(entrance: .hop, on: ["sand"]), moves: walk,
                 placed: .init(u, 0.12))
         }
-        var random = SeededGenerator(state: 3)
-        let plans = StageDirector.plan(
-            world: world, screen: screen,
-            actors: [
-                StageActor(id: umbrella, stickerID: "umbrella", size: 0.343, ratio: 0.9, stage: StickerStage(entrance: .grow, on: ["sand"]),
-                           placed: .init(0.5, 0.2)),
-                guest(girl, "girl", 0.317, 0.45, at: 0.2), guest(crab, "crab", 0.095, 1.4, at: 0.85),
-            ],
-            entrances: [],
-            goes: [GoTrigger(at: 1, stickerID: "girl", kind: .under, target: "umbrella"),
-                   GoTrigger(at: 1, stickerID: "crab", kind: .under, target: "umbrella")],
-            policy: .standard, random: &random)
+        func staged(crouch: Bool) -> [UUID: StagePlan] {
+            var random = SeededGenerator(state: 3)
+            return StageDirector.plan(
+                world: world, screen: screen,
+                actors: [
+                    StageActor(id: umbrella, stickerID: "umbrella", size: 0.343, ratio: 0.9, stage: StickerStage(entrance: .grow, on: ["sand"]),
+                               placed: .init(0.5, 0.2)),
+                    guest(girl, "girl", 0.317, 0.45, at: 0.2), guest(crab, "crab", 0.095, 1.4, at: 0.85),
+                ],
+                entrances: [],
+                goes: [GoTrigger(at: 1, stickerID: "girl", kind: .under, target: "umbrella"),
+                       GoTrigger(at: 1, stickerID: "crab", kind: .under, target: "umbrella")],
+                policy: .standard,
+                actions: crouch ? [StageAction(stickerID: "girl", at: 2, duration: 2)] : [], random: &random)
+        }
+        let plans = staged(crouch: true)
         let host = try #require(plans[umbrella]).sample(at: 20).position
-        let lola = try #require(plans[girl]).sample(at: 20), crabby = try #require(plans[crab]).sample(at: 20)
-        // Lola, whose head reaches the canopy: just behind it, a third of
-        // her width off the pole on the side she came from.
-        #expect(lola.support == .under(umbrella) && lola.position.z > host.z)
-        #expect(lola.position.x < host.x - 0.317 * 0.45 / 3 + 1e-6)
+        let lola = try #require(plans[girl]), crabby = try #require(plans[crab]).sample(at: 20)
+        // Lola, whose head reaches the canopy, walks in beside the pole in
+        // front of it, standing; as she crouches she steps back under it,
+        // a third of her width off the pole on the side she came from.
+        let step = try #require(lola.legs.last)
+        let arrived = try #require(lola.legs.first { $0.kind == .move })
+        #expect(try #require(arrived.path.last).z < host.z)
+        #expect(step.kind == .shuffle && step.move == nil && abs(step.at - arrived.end) < 1e-9)
+        let under = lola.sample(at: 20)
+        #expect(under.support == .under(umbrella) && under.position.z > host.z)
+        #expect(under.position.x < host.x - 0.317 * 0.45 / 3 + 1e-6)
+        // The crouch waits for no step.
+        let played = StageDirector.delayed(
+            [LiveAnimationTrigger(at: 2, stickerID: "girl", animationID: "crouch")], plans: plans, stickers: [girl: "girl"], places: [])
+        #expect(played.first?.at == arrived.end)
+        // No action as she gets there: she stays in front, beside the pole.
+        let standing = try #require(staged(crouch: false)[girl]).sample(at: 20)
+        #expect(standing.support == .under(umbrella) && standing.position.z < host.z)
         // The crab, under it whole: in front, as before.
         #expect(crabby.support == .under(umbrella) && crabby.position.z < host.z)
+    }
+
+    @Test func afterAnActionThatFacesAWayTheNextMoveGoesStraightOn() throws {
+        // Riding the wave (faces right) out at sea, then in to the sand:
+        // the move takes over as the ride heads back to its still, facing
+        // right still, with no turn if it goes that way.
+        let surf = [
+            StageMove(id: "walk", cycle: 0.8, stride: 0.45, facing: .left),
+            StageMove(id: "paddle", cycle: 0.8, stride: 0.5, on: ["sea"], stays: true, waterline: 0.3, facing: .left),
+        ]
+        var random = SeededGenerator(state: 3)
+        let actor = StageActor(
+            id: fox, stickerID: "fox", size: 0.3, ratio: 0.6, stage: StickerStage(entrance: .hop, on: ["sand"]), moves: surf,
+            placed: .init(0.3, 0.12))
+        let ride = StageAction(stickerID: "fox", at: 15, duration: 4, tail: 0.6, faces: .right)
+        let plans = StageDirector.plan(
+            world: world, screen: screen, actors: [actor], entrances: [],
+            goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "sea", by: "paddle"),
+                   GoTrigger(at: 16, stickerID: "fox", kind: .to, target: "sea", toward: .right)],
+            policy: .standard, actions: [ride], random: &random)
+        let plan = try #require(plans[fox])
+        let next = try #require(plan.legs.first { $0.cue == 16 })
+        #expect(abs(next.at - (15 + 4 - 0.6)) < 1e-9)
+        // Its art looks left: facing right is mirrored, from the end of the
+        // ride on (during it the action turns it so on screen).
+        #expect(plan.sample(at: next.at).facing == -1 && next.facingFrom == -1 && next.facingTo == -1)
+        #expect(plan.sample(at: next.at + 0.1).facing == -1)
     }
 }

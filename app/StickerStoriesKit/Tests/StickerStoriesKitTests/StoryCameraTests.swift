@@ -81,6 +81,17 @@ import Testing
         }
     }
 
+    @Test func someoneTheEdgeWouldCutComesWhollyIn() {
+        // The seal and the ring play across most of the window; Nico
+        // paddles just left of them, cut by its edge, and neither out nor
+        // in fits the margin: he comes wholly in, the margin given up.
+        let focus = [StoryCamera.Focus(minX: 560, maxX: 1080, since: 5, playing: true)]
+        let nico = [StoryCamera.Focus(minX: 500, maxX: 560, since: 0)]
+        let x = StoryCamera.target(center: 820, view: 600, world: world, focus: focus, cast: nico, margin: 40)
+        let left = x - 300, right = x + 300
+        #expect((left <= 500 || left >= 560) && right >= 1080 && left <= 560)
+    }
+
     @Test func aBeatCutByTheEdgeGoesWhollyOut() {
         // The latest beat wins; an earlier one it cannot take in is not
         // left half on screen.

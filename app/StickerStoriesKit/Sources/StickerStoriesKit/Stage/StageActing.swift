@@ -20,13 +20,16 @@ public enum StageActing {
     /// an action that `faces` a way on screen plays: turned to it over
     /// its first moments, whatever way it faced, and back as it ends.
     /// `art`: the way its art looks; `duration` nil for one that holds.
+    /// `after`: the way it faces once the action is over; facing the
+    /// action's way already, it does not turn back.
     public static func facing(
-        _ facing: Double, art: StageMove.Facing?, faces: StageMove.Facing?, elapsed: TimeInterval, duration: TimeInterval?
+        _ facing: Double, art: StageMove.Facing?, faces: StageMove.Facing?, elapsed: TimeInterval, duration: TimeInterval?,
+        after: Double? = nil
     ) -> Double {
         guard let art, let faces else { return facing }
         let target: Double = art == faces ? 1 : -1
         var k = min(max(elapsed / StagePlan.turn, 0), 1)
-        if let duration { k = min(k, min(max((duration - elapsed) / StagePlan.turn, 0), 1)) }
+        if let duration, (after ?? facing) * target < 0 { k = min(k, min(max((duration - elapsed) / StagePlan.turn, 0), 1)) }
         let eased = k * k * (3 - 2 * k)
         return StagePlan.unsquashed(facing + (target - facing) * eased)
     }

@@ -249,6 +249,9 @@ final class CanvasScene: SKScene {
     /// the director lets it play before a later move (`StageAction`).
     private lazy var actionTimings: [LiveAnimationKey: LiveFrames] = Dictionary(
         liveAnimations.filter { $0.kind == .action }.map { ($0.liveKey, $0.frames) }, uniquingKeysWith: { a, _ in a })
+    /// The way each action faces on screen while it plays (`faces`).
+    private lazy var actionFaces: [LiveAnimationKey: StageMove.Facing] = Dictionary(
+        liveAnimations.compactMap { a in a.faces.map { (a.liveKey, $0) } }, uniquingKeysWith: { a, _ in a })
     /// When each sticker's puppet began taking over at rest, this story.
     private var idleBegan: [UUID: TimeInterval] = [:]
     /// The current story's live animations, loaded when play starts and let
@@ -1579,7 +1582,10 @@ final class CanvasScene: SKScene {
         let stage = pack.manifest.space.map {
             planStage(
                 $0, entrances: triggers.entrances, goes: triggers.goes + placing, cast: cast,
-                actions: policy.allowsLiveAnimations ? StageAction.of(triggers.live, frames: { [actionTimings] in actionTimings[$0] }) : [],
+                actions: policy.allowsLiveAnimations
+                    ? StageAction.of(
+                        triggers.live, frames: { [actionTimings] in actionTimings[$0] }, faces: { [actionFaces] in actionFaces[$0] })
+                    : [],
                 policy: policy)
         }
         let motions = stage == nil ? planMotions(triggers.goes + placing, visitors: visitors, policy: policy) : [:]
@@ -1706,8 +1712,17 @@ final class CanvasScene: SKScene {
         var inFocus = Set<UUID>()
         func span(_ node: StickerNode, since: TimeInterval, playing: Bool = false) -> StoryCamera.Focus {
             let half = node.frame.width * node.content.width / 2
-            return StoryCamera.Focus(
-                minX: Double(node.position.x - half), maxX: Double(node.position.x + half), since: since, playing: playing)
+            var lo = node.position.x - half, hi = node.position.x + half
+            // A puppet in a pose wider than its still drawing (lying on his
+            // board, paddling): as wide as it is drawn now.
+            if let puppet = node.puppetNode, puppet.settled, let parent = node.parent {
+                let box = puppet.calculateAccumulatedFrame()
+                let a = parent.convert(node.convert(CGPoint(x: box.minX, y: box.midY), to: parent), to: self)
+                let b = parent.convert(node.convert(CGPoint(x: box.maxX, y: box.midY), to: parent), to: self)
+                lo = min(lo, min(a.x, b.x))
+                hi = max(hi, max(a.x, b.x))
+            }
+            return StoryCamera.Focus(minX: Double(lo), maxX: Double(hi), since: since, playing: playing)
         }
         for beat in StoryCamera.current(session.beats, at: time) {
             for node in nodes {
@@ -2396,9 +2411,15 @@ final class CanvasScene: SKScene {
             // Its move comes first while it is on its way.
             if let travel, action.since < travel.at || (session.stage != nil && travel.isMoving(at: time)) { continue }
             if keepsToFace(node, loaded, travel: travel, in: session, at: time) { continue }
+            let duration = loaded.timing.duration(action.part)
+            // The way it faces once the action is over (the stage keeps it
+            // facing the action's way until a move turns it).
+            let after = duration.flatMap { d in
+                session.stage?.plans[node.instanceID]?.sample(at: time - action.elapsed + d + 0.05).facing
+            }
             node.facing = CGFloat(StageActing.facing(
                 Double(node.facing), art: stageMoves[node.stickerID]?.first?.facing, faces: faces, elapsed: action.elapsed,
-                duration: loaded.timing.duration(action.part)))
+                duration: duration, after: after))
         }
     }
 

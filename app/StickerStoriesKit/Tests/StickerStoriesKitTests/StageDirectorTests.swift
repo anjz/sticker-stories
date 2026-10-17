@@ -427,6 +427,8 @@ extension StageDirectorTests {
         var ratios: [String: Double] = [:]
         /// Each action's timing, as it plays.
         var actionFrames: [LiveAnimationKey: LiveFrames] = [:]
+        /// The way each action faces on screen (`faces`), if it says.
+        var actionFaces: [LiveAnimationKey: StageMove.Facing] = [:]
         /// Each sticker's painted shape and its drawing's box in its image
         /// (fractions, origin bottom-left).
         var shapes: [String: (grid: OpaqueGrid, box: CGRect)] = [:]
@@ -464,6 +466,9 @@ extension StageDirectorTests {
                     let holds = (puppet?["keys"] as? [[String: Any]])?.compactMap { $0["hold"] as? Double } ?? json["hold"] as? [Double] ?? []
                     let pause = (json["pause"] as? [String: Any])?["frame"] as? Int
                     pack.actionFrames[LiveAnimationKey(stickerID: sticker.id, animationID: id)] = LiveFrames(holds: holds, pause: pause)
+                    if let faces = (json["faces"] as? String).flatMap(StageMove.Facing.init(rawValue:)) {
+                        pack.actionFaces[LiveAnimationKey(stickerID: sticker.id, animationID: id)] = faces
+                    }
                 }
                 if let place = json["place"] as? [String] {
                     pack.places[LiveAnimationKey(stickerID: sticker.id, animationID: id)] = place
@@ -579,18 +584,18 @@ extension StageDirectorTests {
                     faces: file.expressionTriggers, effects: file.triggers)
                 let plans = StageDirector.plan(
                     world: world, screen: screen, actors: actors, entrances: file.entranceTriggers, goes: goes,
-                    policy: .standard, cast: cast, actions: StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }),
+                    policy: .standard, cast: cast, actions: StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] }),
                     random: &random)
                 // A move cued after an action waits for it to end; an action
                 // waits only for the moves cued before it.
                 let ids = Dictionary(uniqueKeysWithValues: actors.map { ($0.id, $0.stickerID) })
                 let played = StageDirector.delayed(file.liveTriggers, plans: plans, stickers: ids, places: Set(pack.places.keys))
-                for action in StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }) {
+                for action in StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] }) {
                     guard let k = file.liveTriggers.firstIndex(where: { $0.stickerID == action.stickerID && $0.at == action.at }),
                         let a = actors.first(where: { $0.stickerID == action.stickerID }), let plan = plans[a.id]
                     else { continue }
                     let start = played[k].at
-                    for leg in plan.legs where leg.cue > action.at + 1e-6 && leg.at < start + action.duration - 1e-6 {
+                    for leg in plan.legs where leg.cue > action.at + 1e-6 && leg.at < start + action.duration - action.tail - 1e-6 {
                         problems.append("\(story.id)\(config) \(a.stickerID): moves during its \(file.liveTriggers[k].animationID) at \(String(format: "%.1f", leg.at))")
                     }
                 }
@@ -702,7 +707,9 @@ extension StageDirectorTests {
                     while t <= end {
                         defer { t += step }
                         let s = plan.sample(at: t), next = plan.sample(at: t + step)
-                        guard s.opacity > 0.5, next.opacity > 0.5 else { continue }
+                        // (Not across the moment it turns — an action that
+                        // faced it about hands over to the plan's facing.)
+                        guard s.opacity > 0.5, next.opacity > 0.5, (s.facing < 0) == (next.facing < 0) else { continue }
                         let leg = plan.legs.last { $0.at <= t }
                         let art = StageMove.pick(a.moves, by: leg?.move).flatMap(\.facing) ?? a.moves.first?.facing
                         guard let art else { continue }
