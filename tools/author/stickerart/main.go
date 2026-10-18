@@ -259,7 +259,15 @@ type sceneEdit struct {
 // foreground: out/art/layer-<id>.png and its wide rendition.
 type sceneLayer struct {
 	ID     string `json:"id"`
-	Prompt string `json:"prompt"`
+	Prompt string `json:"prompt,omitempty"`
+	// Cut (optional, instead of Prompt) makes the layer from the finished
+	// background itself, nothing painted: a mask image in the art
+	// directory, white where the layer is, at the 4:3 picture's size, laid
+	// over the 4:3 background and the wide one's centre. Something the
+	// background already shows (the boulders on a rock pool's rim) then
+	// stands in front of the stickers behind it in a story, and looks just
+	// the same while the child plays.
+	Cut string `json:"cut,omitempty"`
 	// Wide is extra direction for widening it to the 2:1 rendition
 	// (optional), like ForegroundWide.
 	Wide string `json:"wide,omitempty"`
@@ -1086,7 +1094,8 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 	wide := fmt.Sprintf("%dx%d", wideW, baseH)
 	framing := "Compose it as a complete picture: framing elements such as the nearest trees at the left and right edges of THIS image, an open middle for the stickers. " + sceneSafeArea
 	extend := "Extend the attached scene seamlessly into the transparent side bands, continuing the same style, lighting, horizon and ground line, adding more of the same scenery beyond the current edges. Do not change the existing centre."
-	if len(cfg.Scene.Layers) > 0 {
+	painted := slices.ContainsFunc(cfg.Scene.Layers, func(l sceneLayer) bool { return l.Cut == "" })
+	if painted {
 		framing = "Paint only the far part of the scene: no framing elements at the edges and nothing close to the viewer — those are painted later on their own layers in front of it. The ground and the far scenery run right to the left and right edges, with an open middle for the stickers. " + sceneSafeArea
 	}
 	if neutral := sceneNeutral(r.c.pack.EffectiveSetting()); neutral != "" {
@@ -1095,7 +1104,7 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 	}
 
 	bgFP := hashOf(toolVersion, "background", sheetFP, cfg.Style, cfg.Scene.Background, r.o.quality, "4")
-	if len(cfg.Scene.Layers) > 0 {
+	if painted {
 		bgFP = hashOf(bgFP, "far only")
 	}
 	bgRefs := [][]byte{sheet}
@@ -1144,6 +1153,14 @@ func (r *renderer) scene(sheet []byte, sheetFP string) error {
 	// foreground then goes over them all.
 	behindFP, behind, behindWide := bgFP, []string{bgBase}, []string{bgWide}
 	for _, l := range cfg.Scene.Layers {
+		if l.Cut != "" {
+			// Nothing new is painted: what is in front was painted against
+			// the same picture.
+			if err := r.cutLayer(l, bgBase, bgWide); err != nil {
+				return err
+			}
+			continue
+		}
 		fp, err := r.sceneLayer(l, behindFP, behind, sheet, extend, size, wide)
 		if err != nil {
 			return err
@@ -1389,6 +1406,84 @@ func layInto(element *image.RGBA, box stickerimg.FaceBox, w, h int, toBottom flo
 	draw.Draw(out, image.Rect(left, top, left+sw, top+sh), scaled, image.Point{}, draw.Over)
 	return out, nil
 }
+
+// cutLayer makes a layer from the finished background through its mask
+// (sceneLayer.Cut), on both renditions, unless it is up to date.
+func (r *renderer) cutLayer(l sceneLayer, bgBase, bgWide string) error {
+	name := "layer " + l.ID
+	if l.Prompt != "" || l.Area != nil {
+		return fmt.Errorf("%s: a cut layer has no prompt or area", name)
+	}
+	maskData, err := os.ReadFile(filepath.Join(r.c.artDir, l.Cut))
+	if err != nil {
+		return fmt.Errorf("%s: %w", name, err)
+	}
+	sum := sha256.Sum256(maskData)
+	fp := hashOf("cut layer", cutLayerVersion, hex.EncodeToString(sum[:]), r.fps[bgBase], r.fps[bgWide])
+	base, wideOut := r.out("art", "layer-"+l.ID+".png"), r.out("art", "layer-"+l.ID+"-wide.png")
+	if r.upToDate(base, fp) && r.upToDate(wideOut, fp) {
+		r.say("· %s up to date", name)
+		return nil
+	}
+	if r.o.dry {
+		r.planned = append(r.planned, name+" (cut from the background, no API call)")
+		return nil
+	}
+	mask, err := stickerimg.Decode(maskData)
+	if err != nil {
+		return fmt.Errorf("%s: %w", name, err)
+	}
+	for _, out := range []struct{ bg, path string }{{bgBase, base}, {bgWide, wideOut}} {
+		data, err := os.ReadFile(out.bg)
+		if err != nil {
+			return fmt.Errorf("%s needs the background first: %w", name, err)
+		}
+		bg, err := stickerimg.Decode(data)
+		if err != nil {
+			return err
+		}
+		cut, err := cutThrough(bg, mask)
+		if err != nil {
+			return fmt.Errorf("%s: %w", name, err)
+		}
+		enc, err := stickerimg.Encode(cut)
+		if err != nil {
+			return err
+		}
+		if err := os.WriteFile(out.path, enc, 0o644); err != nil {
+			return err
+		}
+		r.done(out.path, fp)
+	}
+	r.say("✓ %s (cut) + wide", name)
+	return nil
+}
+
+// cutThrough is the picture where the mask is white, transparent elsewhere:
+// the mask, at the 4:3 picture's size, centred on a wider picture.
+func cutThrough(pic, mask image.Image) (*image.RGBA, error) {
+	pb, mb := pic.Bounds(), mask.Bounds()
+	if mb.Dy() != pb.Dy() || mb.Dx() > pb.Dx() {
+		return nil, fmt.Errorf("the mask is %dx%d, the picture %dx%d: make it the 4:3 picture's size", mb.Dx(), mb.Dy(), pb.Dx(), pb.Dy())
+	}
+	off := image.Pt(pb.Min.X+(pb.Dx()-mb.Dx())/2, pb.Min.Y)
+	out := image.NewRGBA(pb)
+	for y := 0; y < mb.Dy(); y++ {
+		for x := 0; x < mb.Dx(); x++ {
+			mr, _, _, _ := mask.At(mb.Min.X+x, mb.Min.Y+y).RGBA()
+			if mr == 0 {
+				continue
+			}
+			c := color.NRGBAModel.Convert(pic.At(off.X+x, off.Y+y)).(color.NRGBA)
+			c.A = uint8(uint32(c.A) * mr / 0xffff)
+			out.Set(off.X+x, off.Y+y, c)
+		}
+	}
+	return out, nil
+}
+
+// cutLayerVersion changes whenever how a cut layer is made changes.
+const cutLayerVersion = "1"
 
 // lowerImage writes src moved down by `fraction` of its height (its bottom
 // cut off, transparent above) to dst.

@@ -67,8 +67,15 @@ magenta, to check that treetops and ridges are left out.
   tree's foot — down past the picture's bottom edge, the rest where it
   is, so a sticker the child puts behind it never shows below it (Forest's
   oak and birch, 0.1); it re-lays the layer for free and leaves the
-  planes in front as they are. With layers the background is only the far part of the
-  scene, with no framing elements. `install` copies them to
+  planes in front as they are. A layer with `cut` (a mask image in the
+  art directory, white where the layer is, at the 4:3 picture's size)
+  instead of a prompt is cut from the finished background itself, on
+  both renditions, for free: something the background already shows
+  (Beach's boulders on the rock pool's rim, `art/beach/cuts/`, traced by
+  `trace.py` there) then stands in front of the stickers behind it in a
+  story and looks just the same while the child plays; it changes
+  nothing painted before or after it. With painted layers the background
+  is only the far part of the scene, with no framing elements. `install` copies them to
   `art/layer-<id>.webp` (and `-wide`) and lists them in the manifest's
   `layers`; it also copies `space.json` (`author/scenespace`), without the
   tools' preview and line-up, into the manifest's `space`.
