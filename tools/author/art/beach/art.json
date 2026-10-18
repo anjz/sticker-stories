@@ -825,9 +825,29 @@
           "width": 0.42,
           "height": 0.48
         }
+      },
+      {
+        "prompt": "Repaint this strip at the bottom-right of the beach as plain golden sand with a few tiny scattered pebbles, continuing the sand around it seamlessly — the same colour, texture and light. No rocks, no boulders, no shells, no seaweed in it, except that the big pinkish-grey boulder reaching into its top-left corner stays exactly as it is, and the rock pool's water above it ends in a low rim of small flat stones level with the sand. Same gouache style, outlines and light as the rest of the picture. No animals, no people.",
+        "area": {
+          "x": 0.74,
+          "y": 0.885,
+          "width": 0.26,
+          "height": 0.115
+        }
       }
     ],
-    "foregroundWideOwn": "the same small rock pool at the very bottom-LEFT corner of this wide picture, cut by its bottom and left edges, the same size relative to the picture's height as in the second image (no more than the left seventh of this wider picture's width and the bottom fifth of its height); the granite pebbles and shell at the very bottom-RIGHT corner of this wide picture. Nothing else: the rest of the picture stays transparent so the beach shows."
+    "foregroundWideOwn": "the same small rock pool at the very bottom-LEFT corner of this wide picture, cut by its bottom and left edges, the same size relative to the picture's height as in the second image (no more than the left seventh of this wider picture's width and the bottom fifth of its height); the granite pebbles and shell at the very bottom-RIGHT corner of this wide picture. Nothing else: the rest of the picture stays transparent so the beach shows.",
+    "foregroundDown": 0.05,
+    "layers": [
+      {
+        "id": "boulder-middle",
+        "cut": "cuts/boulder-middle.png"
+      },
+      {
+        "id": "boulder-front",
+        "cut": "cuts/boulder-front.png"
+      }
+    ]
   },
   "notes": {
     "stickers": "Every character faces slightly left, whole body visible. Living things get faces; nothing inorganic does. Edit prompts freely; a changed prompt re-renders only that sticker."
