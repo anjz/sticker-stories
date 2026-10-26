@@ -1,7 +1,7 @@
 {
   "sticker": "bucket",
   "called": "the bucket",
-  "skeleton": "a bucket standing on the sand: root at its foot; body (the bucket) on it; spade on a bone at the bottom of its blade, inside the bucket, layered between the bucket and a front-rim piece (a second spade slot in front of everything shows it while it digs outside); mould (the starfish) on its own bone at its foot, leaning on the bucket.",
+  "skeleton": "a bucket standing on the sand, a spade resting in it and a starfish mould leaning on its side: root at its foot; tip at the bottom's left corner and tipR at its right corner (it rocks on one or the other); body (the bucket) on them; the spade on a bone inside the bucket, layered between the bucket and a front-rim piece, and never keyed: nothing holds it, so it only goes where the bucket goes; mould (the starfish) on its own bone at its foot on the sand, leaning on the bucket, so it leans after the bucket when it tips.",
   "sheets": [
     {
       "id": "parts",
@@ -39,13 +39,6 @@
         655
       ]
     },
-    "sand": {
-      "sheet": "parts",
-      "at": [
-        937,
-        657
-      ]
-    },
     "mould": {
       "sheet": "parts",
       "at": [
@@ -63,12 +56,18 @@
     {
       "id": "tip",
       "parent": "root",
-      "x": 262,
-      "y": 578
+      "x": 272,
+      "y": 572
+    },
+    {
+      "id": "tipR",
+      "parent": "tip",
+      "x": 455,
+      "y": 572
     },
     {
       "id": "body",
-      "parent": "tip",
+      "parent": "tipR",
       "x": 372,
       "y": 578
     },
@@ -81,8 +80,8 @@
     {
       "id": "mould",
       "parent": "root",
-      "x": 474,
-      "y": 506
+      "x": 492,
+      "y": 588
     }
   ],
   "slots": [
@@ -106,13 +105,6 @@
       "attachments": {
         "spade": {
           "part": "spade",
-          "x": 419,
-          "y": 312,
-          "scale": 0.48,
-          "rotate": 7.5
-        },
-        "sand": {
-          "part": "sand",
           "x": 419,
           "y": 312,
           "scale": 0.48,
@@ -148,181 +140,13 @@
           "rotate": -3.2
         }
       }
-    },
-    {
-      "id": "spadeOut",
-      "bone": "spade",
-      "default": "none",
-      "attachments": {
-        "spade": {
-          "part": "spade",
-          "x": 419,
-          "y": 312,
-          "scale": 0.48,
-          "rotate": 7.5
-        },
-        "sand": {
-          "part": "sand",
-          "x": 419,
-          "y": 312,
-          "scale": 0.48,
-          "rotate": 7.5
-        }
-      }
     }
   ],
   "animations": [
     {
-      "id": "dig",
-      "kind": "action",
-      "description": "the spade digs and fills the bucket",
-      "pause": {
-        "frame": 6,
-        "shows": "the spade lifted up above the bucket, tipping a scoop into it"
-      },
-      "particles": [
-        {
-          "frame": 3,
-          "effect": "dust-puff",
-          "x": 0.25,
-          "y": 0.78,
-          "intensity": 0.4
-        },
-        {
-          "frame": 7,
-          "effect": "dust-puff",
-          "x": 0.48,
-          "y": 0.43,
-          "intensity": 0.4
-        }
-      ],
-      "keys": [
-        {
-          "hold": 0.3
-        },
-        {
-          "hold": 0.45,
-          "bones": {
-            "spade": {
-              "y": -165
-            }
-          },
-          "slots": {
-            "spade": "none",
-            "spadeOut": "spade"
-          }
-        },
-        {
-          "hold": 0.45,
-          "bones": {
-            "spade": {
-              "x": -190,
-              "y": 40,
-              "r": -12
-            }
-          },
-          "slots": {
-            "spade": "none",
-            "spadeOut": "spade"
-          }
-        },
-        {
-          "hold": 0.3,
-          "ease": "in",
-          "bones": {
-            "spade": {
-              "x": -195,
-              "y": 128,
-              "r": -12
-            }
-          },
-          "slots": {
-            "spade": "none",
-            "spadeOut": "spade"
-          }
-        },
-        {
-          "hold": 0.4,
-          "bones": {
-            "spade": {
-              "x": -190,
-              "y": 110,
-              "r": 14
-            }
-          },
-          "slots": {
-            "spade": "none",
-            "spadeOut": "sand"
-          }
-        },
-        {
-          "hold": 0.55,
-          "bones": {
-            "spade": {
-              "x": -30,
-              "y": -190,
-              "r": 8
-            }
-          },
-          "slots": {
-            "spade": "none",
-            "spadeOut": "sand"
-          }
-        },
-        {
-          "hold": 0.45,
-          "bones": {
-            "spade": {
-              "x": 10,
-              "y": -150,
-              "r": -62
-            }
-          },
-          "slots": {
-            "spade": "none",
-            "spadeOut": "sand"
-          }
-        },
-        {
-          "hold": 0.4,
-          "bones": {
-            "spade": {
-              "x": 12,
-              "y": -146,
-              "r": -74
-            }
-          },
-          "slots": {
-            "spade": "none",
-            "spadeOut": "spade"
-          }
-        },
-        {
-          "hold": 0.35,
-          "bones": {
-            "spade": {
-              "y": -165
-            }
-          }
-        },
-        {
-          "hold": 0.4,
-          "ease": "in",
-          "bones": {
-            "spade": {
-              "y": -20
-            }
-          }
-        },
-        {
-          "hold": 0.2
-        }
-      ]
-    },
-    {
       "id": "plonk",
       "kind": "move",
-      "description": "the bucket and spade are set down on the sand: they wobble and settle.",
+      "description": "the bucket and spade are set down on the sand: the bucket rocks on its bottom and settles.",
       "particles": [
         {
           "frame": 3,
@@ -370,9 +194,6 @@
             "root": {
               "r": -2.5
             },
-            "spade": {
-              "r": 5
-            },
             "mould": {
               "y": -8
             }
@@ -383,9 +204,6 @@
           "bones": {
             "root": {
               "r": 1.5
-            },
-            "spade": {
-              "r": -3
             }
           }
         },
@@ -405,52 +223,52 @@
     {
       "id": "wobble",
       "kind": "action",
-      "description": "the bucket wobbles from side to side, its spade rattling, then settles.",
+      "description": "a bump rocks the bucket from one edge of its bottom to the other, then it settles.",
       "keys": [
         {
           "hold": 0.15
         },
         {
-          "hold": 0.25,
+          "hold": 0.28,
           "bones": {
-            "root": {
-              "r": 5
-            },
-            "spade": {
+            "tip": {
               "r": -4
+            },
+            "mould": {
+              "r": -2.5
             }
           }
         },
         {
           "hold": 0.3,
           "bones": {
-            "root": {
-              "r": -5
+            "tipR": {
+              "r": 3
             },
-            "spade": {
-              "r": 5
+            "mould": {
+              "r": 1.5
             }
           }
         },
         {
           "hold": 0.28,
           "bones": {
-            "root": {
-              "r": 3
+            "tip": {
+              "r": -2
             },
-            "spade": {
-              "r": -3
+            "mould": {
+              "r": -1.2
             }
           }
         },
         {
-          "hold": 0.26,
+          "hold": 0.25,
           "bones": {
-            "root": {
-              "r": -1.5
+            "tipR": {
+              "r": 1
             },
-            "spade": {
-              "r": 2
+            "mould": {
+              "r": 0.5
             }
           }
         },
@@ -460,79 +278,12 @@
       ]
     },
     {
-      "id": "bounce",
-      "kind": "action",
-      "description": "the bucket hops up off the sand and lands with a bump, its spade rattling.",
-      "particles": [
-        {
-          "frame": 2,
-          "effect": "dust-puff",
-          "x": 0.4993,
-          "y": 0.7995,
-          "intensity": 0.3
-        }
-      ],
-      "keys": [
-        {
-          "hold": 0.12
-        },
-        {
-          "hold": 0.3,
-          "ease": "out",
-          "bones": {
-            "root": {
-              "y": -45
-            },
-            "spade": {
-              "y": -10,
-              "r": -4
-            }
-          }
-        },
-        {
-          "hold": 0.24,
-          "ease": "in",
-          "bones": {
-            "root": {
-              "y": 0
-            },
-            "spade": {
-              "y": -14,
-              "r": 3
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "spade": {
-              "r": -4
-            },
-            "mould": {
-              "y": -6
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "spade": {
-              "r": 2
-            }
-          }
-        },
-        {
-          "hold": 0.2
-        }
-      ]
-    },
-    {
       "id": "tip",
       "kind": "action",
-      "description": "the bucket tips over to one side, nearly falling, wobbles there, then rocks back upright.",
+      "description": "a knock tips the bucket up on one edge until it nearly falls over; it teeters there, then rocks back down upright.",
       "pause": {
         "frame": 2,
-        "shows": "the bucket tipped over to one side, nearly falling"
+        "shows": "the bucket tipped up on one edge, nearly falling over"
       },
       "keys": [
         {
@@ -545,8 +296,8 @@
             "tip": {
               "r": -14
             },
-            "spade": {
-              "r": -6
+            "mould": {
+              "r": -9
             }
           }
         },
@@ -555,6 +306,9 @@
           "bones": {
             "tip": {
               "r": -12
+            },
+            "mould": {
+              "r": -7.5
             }
           }
         },
@@ -564,8 +318,8 @@
             "tip": {
               "r": -15
             },
-            "spade": {
-              "r": -4
+            "mould": {
+              "r": -9.5
             }
           }
         },
@@ -574,7 +328,21 @@
           "ease": "in",
           "bones": {
             "tip": {
+              "r": 0
+            },
+            "mould": {
+              "r": 0
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "tipR": {
               "r": 1.5
+            },
+            "mould": {
+              "r": 1
             }
           }
         },
@@ -582,7 +350,7 @@
           "hold": 0.2,
           "bones": {
             "tip": {
-              "r": -1
+              "r": -0.6
             }
           }
         },
@@ -592,69 +360,70 @@
       ]
     },
     {
-      "id": "swing-spade",
+      "id": "gust",
       "kind": "action",
-      "description": "the spade swings from side to side in the bucket, like a little flag waving.",
+      "description": "a gust of wind blows a puff of sand off the bucket's rim, and the bucket gives a tiny shudder.",
+      "particles": [
+        {
+          "frame": 1,
+          "effect": "dust-puff",
+          "x": 0.5,
+          "y": 0.43,
+          "intensity": 0.3
+        }
+      ],
       "keys": [
         {
           "hold": 0.2
         },
         {
-          "hold": 0.4,
+          "hold": 0.09,
           "bones": {
-            "spade": {
-              "r": -12
+            "tipR": {
+              "r": 0.8
             }
           }
         },
         {
-          "hold": 0.45,
+          "hold": 0.09,
           "bones": {
-            "spade": {
-              "r": 10
+            "tip": {
+              "r": -0.8
             }
           }
         },
         {
-          "hold": 0.45,
+          "hold": 0.09,
           "bones": {
-            "spade": {
-              "r": -10
+            "tipR": {
+              "r": 0.5
             }
           }
         },
         {
-          "hold": 0.45,
+          "hold": 0.1,
           "bones": {
-            "spade": {
-              "r": 8
+            "tip": {
+              "r": -0.3
             }
           }
         },
         {
-          "hold": 0.3,
-          "bones": {
-            "spade": {
-              "r": -2
-            }
-          }
-        },
-        {
-          "hold": 0.2
+          "hold": 0.6
         }
       ]
     },
     {
-      "id": "mould-hop",
+      "id": "wash",
       "kind": "action",
-      "description": "the starfish mould hops up, turns right round in the air, and lands back against the bucket.",
+      "description": "a little wave washes round the bucket's foot with a splash: the bucket lifts a little, tilts, and settles back down on the sand.",
       "particles": [
         {
-          "frame": 2,
-          "effect": "dust-puff",
-          "x": 0.62,
-          "y": 0.77,
-          "intensity": 0.25
+          "frame": 1,
+          "effect": "spray",
+          "x": 0.5,
+          "y": 0.78,
+          "intensity": 0.35
         }
       ],
       "keys": [
@@ -665,9 +434,22 @@
           "hold": 0.4,
           "ease": "out",
           "bones": {
-            "mould": {
-              "y": -90,
-              "r": 180
+            "root": {
+              "y": -8
+            },
+            "tip": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "root": {
+              "y": -10
+            },
+            "tipR": {
+              "r": 2
             }
           }
         },
@@ -675,32 +457,24 @@
           "hold": 0.35,
           "ease": "in",
           "bones": {
-            "mould": {
-              "y": 0,
-              "r": 360
+            "root": {
+              "y": 0
+            },
+            "tip": {
+              "r": -1
             }
           }
         },
         {
-          "hold": 0.15,
+          "hold": 0.25,
           "bones": {
-            "mould": {
-              "y": -10,
-              "r": 360
+            "tipR": {
+              "r": 0.6
             }
           }
         },
         {
-          "hold": 0.02,
-          "ease": "step",
-          "bones": {
-            "mould": {
-              "r": 360
-            }
-          }
-        },
-        {
-          "hold": 0.2
+          "hold": 0.25
         }
       ]
     }

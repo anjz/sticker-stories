@@ -1,7 +1,7 @@
 {
   "sticker": "turtle",
   "called": "the sea turtle",
-  "skeleton": "small sea turtle crawling, three-quarter view facing right, head raised on its neck: root on the ground under the shell; body (the shell with its cream underside) with belly squash; head at the neck (behind the shell's front rim when it hides), face with eyes and mouth; flipperFL/flipperFR (front flippers: the far one on the right behind, shaded; the near one on the left in front) and flipperB (back flipper) at their roots under the shell, armL/armR the front flippers in the shared names; a copy of the shell (shellCover) shown over the head while it hides.",
+  "skeleton": "small sea turtle crawling, three-quarter view facing right, head raised on its neck: root on the ground under the shell; body (the shell with its cream underside) with belly squash; head at the neck, behind the shell's front rim so the neck's end is always hidden under the shell, face with eyes and mouth; flipperFL/flipperFR (front flippers: the far one on the right behind, shaded; the near one on the left in front) and flipperB (back flipper) at their roots under the shell, armL/armR the front flippers in the shared names; a copy of the shell (shellCover) shown over the head while it hides.",
   "sheets": [
     {
       "id": "parts",
@@ -304,20 +304,6 @@
       }
     },
     {
-      "id": "body",
-      "bone": "belly",
-      "default": "body",
-      "attachments": {
-        "body": {
-          "part": "body",
-          "x": 331.3,
-          "y": 334.9,
-          "scale": 0.29,
-          "rotate": -7.199999999999989
-        }
-      }
-    },
-    {
       "id": "head",
       "bone": "head",
       "default": "head",
@@ -463,6 +449,21 @@
           "x": 512,
           "y": 345,
           "scale": 0.22
+        }
+      }
+    },
+    {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "body",
+          "x": 328,
+          "y": 357,
+          "scale": 0.33,
+          "rotate": -11,
+          "scaleY": 1.06
         }
       }
     },
@@ -1287,9 +1288,6 @@
               "y": -36,
               "r": -4
             },
-            "face": {
-              "x": 4
-            },
             "body": {
               "r": -2
             }
@@ -1312,9 +1310,6 @@
               "x": 2,
               "y": -36,
               "r": -4
-            },
-            "face": {
-              "x": 4
             },
             "body": {
               "r": -2
@@ -1937,9 +1932,6 @@
             "head": {
               "y": 9,
               "sy": 0.97
-            },
-            "face": {
-              "y": 4.8
             }
           }
         },
@@ -1948,9 +1940,6 @@
           "bones": {
             "head": {
               "y": -3
-            },
-            "face": {
-              "y": -1.8
             }
           }
         },
@@ -1960,9 +1949,6 @@
             "head": {
               "y": 9,
               "sy": 0.97
-            },
-            "face": {
-              "y": 4.8
             }
           }
         },
@@ -1971,9 +1957,6 @@
           "bones": {
             "head": {
               "y": -2
-            },
-            "face": {
-              "y": -1.2
             }
           }
         },
@@ -1995,9 +1978,6 @@
           "bones": {
             "head": {
               "r": -7
-            },
-            "face": {
-              "x": -6.0
             }
           }
         },
@@ -2006,9 +1986,6 @@
           "bones": {
             "head": {
               "r": 7
-            },
-            "face": {
-              "x": 6.0
             }
           }
         },
@@ -2017,9 +1994,6 @@
           "bones": {
             "head": {
               "r": -7
-            },
-            "face": {
-              "x": -6.0
             }
           }
         },
@@ -2028,9 +2002,6 @@
           "bones": {
             "head": {
               "r": 6
-            },
-            "face": {
-              "x": 5.0
             }
           }
         },
@@ -2054,9 +2025,6 @@
             "head": {
               "r": -6
             },
-            "face": {
-              "x": -8.0
-            },
             "body": {
               "r": -2
             }
@@ -2067,9 +2035,6 @@
           "bones": {
             "head": {
               "r": -6
-            },
-            "face": {
-              "x": -8.0
             },
             "body": {
               "r": -2
@@ -2082,9 +2047,6 @@
             "head": {
               "r": 6
             },
-            "face": {
-              "x": 8.0
-            },
             "body": {
               "r": 2
             }
@@ -2095,9 +2057,6 @@
           "bones": {
             "head": {
               "r": 6
-            },
-            "face": {
-              "x": 8.0
             },
             "body": {
               "r": 2

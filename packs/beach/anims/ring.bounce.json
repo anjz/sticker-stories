@@ -2,7 +2,7 @@
   "id": "bounce",
   "sticker": "ring",
   "kind": "action",
-  "description": "the rubber ring bounces up and down on the spot, squishing a little each time it lands, then settles.",
+  "description": "a wave lifts the rubber ring and drops it back with a little squish, twice, then it settles.",
   "stickerBox": {
     "x": 0.20052,
     "y": 0.24089,
@@ -20,45 +20,45 @@
         "ease": "out",
         "bones": {
           "root": {
-            "sx": 1.04,
-            "sy": 0.93
+            "sx": 1.03,
+            "sy": 0.95
           }
         }
       },
       {
-        "hold": 0.34,
+        "hold": 0.4,
         "ease": "in",
         "bones": {
           "root": {
-            "y": -80
+            "y": -32
+          }
+        }
+      },
+      {
+        "hold": 0.32,
+        "ease": "out",
+        "bones": {
+          "root": {
+            "sx": 1.03,
+            "sy": 0.95
           }
         }
       },
       {
         "hold": 0.3,
-        "ease": "out",
-        "bones": {
-          "root": {
-            "sx": 1.04,
-            "sy": 0.93
-          }
-        }
-      },
-      {
-        "hold": 0.26,
         "ease": "in",
         "bones": {
           "root": {
-            "y": -40
+            "y": -16
           }
         }
       },
       {
-        "hold": 0.22,
+        "hold": 0.24,
         "bones": {
           "root": {
-            "sx": 1.02,
-            "sy": 0.96
+            "sx": 1.015,
+            "sy": 0.97
           }
         }
       },

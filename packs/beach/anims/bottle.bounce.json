@@ -2,12 +2,12 @@
   "id": "bounce",
   "sticker": "bottle",
   "kind": "action",
-  "description": "the bottle hops up off the sand and lands with a little bump, twice.",
+  "description": "a wave washes under the bottle, lifts it and sets it down with a little bump, twice.",
   "stickerBox": {
     "x": 0.25,
-    "y": 0.29297,
+    "y": 0.39714,
     "width": 0.5,
-    "height": 0.41276
+    "height": 0.20443
   },
   "puppet": {
     "rig": "anims/bottle.rig.json",
@@ -16,19 +16,22 @@
         "hold": 0.12
       },
       {
-        "hold": 0.3,
+        "hold": 0.32,
         "ease": "out",
         "bones": {
           "body": {
-            "r": -4
+            "r": -3
+          },
+          "note": {
+            "x": -2
           },
           "root": {
-            "y": -50
+            "y": -30
           }
         }
       },
       {
-        "hold": 0.26,
+        "hold": 0.28,
         "ease": "in",
         "bones": {
           "body": {
@@ -38,23 +41,26 @@
         }
       },
       {
-        "hold": 0.26,
+        "hold": 0.28,
         "ease": "out",
         "bones": {
           "body": {
-            "r": -3
+            "r": -2
+          },
+          "note": {
+            "x": -1
           },
           "root": {
-            "y": -30
+            "y": -16
           }
         }
       },
       {
-        "hold": 0.22,
+        "hold": 0.24,
         "ease": "in",
         "bones": {
           "body": {
-            "r": 1
+            "r": 0.5
           },
           "root": {}
         }
@@ -63,7 +69,7 @@
         "hold": 0.2,
         "bones": {
           "body": {
-            "r": -0.5
+            "r": -0.4
           }
         }
       },

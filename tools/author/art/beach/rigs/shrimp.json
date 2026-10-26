@@ -1,6 +1,6 @@
 {
   "sticker": "shrimp",
-  "skeleton": "shrimp side view facing left, its tail curled under on the right: root under the middle; body is the head-shell (with belly squash) carrying the face (both eyes, mouth) and the two long feelers at the nose; a tail chain tail1 → tail2 → fan curling down and round behind; the near and far rows of little legs under the shell.",
+  "skeleton": "shrimp side view facing left, its tail curled under on the right: root under the middle; body is the head-shell (with belly squash) carrying the face (both eyes, mouth) and the two long feelers at the nose (each bone at its feeler's base, the base tucked behind the head shell so the shell's outline is the join); a tail chain tail1 → tail2 → fan curling down and round behind; the near and far rows of little legs under the shell.",
   "sheets": [
     {
       "id": "parts",
@@ -182,14 +182,14 @@
     {
       "id": "antennaR",
       "parent": "body",
-      "x": 268,
-      "y": 322
+      "x": 257,
+      "y": 335
     },
     {
       "id": "antennaL",
       "parent": "body",
-      "x": 262,
-      "y": 328
+      "x": 251,
+      "y": 337
     },
     {
       "id": "legsFar",
@@ -230,10 +230,11 @@
       "attachments": {
         "feeler": {
           "part": "feeler",
-          "x": 365,
-          "y": 288,
-          "scale": 0.26,
-          "scaleY": 1.35,
+          "x": 350.4,
+          "y": 292.9,
+          "scale": 0.25,
+          "scaleY": 1.52,
+          "rotate": -4,
           "shade": 0.12
         }
       }
@@ -306,6 +307,21 @@
       }
     },
     {
+      "id": "antennaL",
+      "bone": "antennaL",
+      "default": "feeler",
+      "attachments": {
+        "feeler": {
+          "part": "feeler",
+          "x": 353.5,
+          "y": 266.4,
+          "scale": 0.3,
+          "scaleY": 1.667,
+          "rotate": -12
+        }
+      }
+    },
+    {
       "id": "body",
       "bone": "belly",
       "default": "shell",
@@ -315,20 +331,6 @@
           "x": 330,
           "y": 350,
           "scale": 0.36
-        }
-      }
-    },
-    {
-      "id": "antennaL",
-      "bone": "antennaL",
-      "default": "feeler",
-      "attachments": {
-        "feeler": {
-          "part": "feeler",
-          "x": 357,
-          "y": 262,
-          "scale": 0.32,
-          "scaleY": 1.65
         }
       }
     },

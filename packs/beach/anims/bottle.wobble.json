@@ -2,12 +2,12 @@
   "id": "wobble",
   "sticker": "bottle",
   "kind": "action",
-  "description": "the bottle wobbles from side to side, then settles.",
+  "description": "the bottle wobbles from side to side, the note inside sliding to and fro, then settles.",
   "stickerBox": {
     "x": 0.25,
-    "y": 0.29297,
+    "y": 0.39714,
     "width": 0.5,
-    "height": 0.41276
+    "height": 0.20443
   },
   "puppet": {
     "rig": "anims/bottle.rig.json",
@@ -16,34 +16,46 @@
         "hold": 0.15
       },
       {
-        "hold": 0.25,
+        "hold": 0.3,
         "bones": {
+          "note": {
+            "x": 4
+          },
           "root": {
-            "r": 6
+            "r": 5
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "bones": {
+          "note": {
+            "x": -4
+          },
+          "root": {
+            "r": -5
           }
         }
       },
       {
         "hold": 0.3,
         "bones": {
+          "note": {
+            "x": 3
+          },
           "root": {
-            "r": -6
+            "r": 3
           }
         }
       },
       {
         "hold": 0.28,
         "bones": {
+          "note": {
+            "x": -1
+          },
           "root": {
-            "r": 4
-          }
-        }
-      },
-      {
-        "hold": 0.26,
-        "bones": {
-          "root": {
-            "r": -2
+            "r": -1.5
           }
         }
       },

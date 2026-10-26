@@ -1,6 +1,6 @@
 {
   "sticker": "clam",
-  "skeleton": "clam facing the viewer: root on the ground under the shell; body with a belly bone (squash); lid: the top shell, pivot at the hinge behind the bottom shell, stretched down to close and lifted to open; inside, soft and pearl between the shells; the bottom shell in front carries the face (eyes, brows, mouth).",
+  "skeleton": "clam facing the viewer: root on the ground under the shell; body with a belly bone (squash); lid: the top shell, pivot at the hinge behind the bottom shell, stretched down to close and lifted to open; the soft body and the pearl between the shells (opening, the soft body swells up with the pearl on it — the sheet's separate 'inside' oval is not used: drawn over the top shell it read as a second clam); the bottom shell in front carries the face (eyes, brows, mouth).",
   "sheets": [
     {
       "id": "parts",
@@ -22,13 +22,6 @@
       "at": [
         432,
         295
-      ]
-    },
-    "inside": {
-      "sheet": "parts",
-      "at": [
-        1183,
-        316
       ]
     },
     "bottom": {
@@ -221,20 +214,6 @@
           "x": 376,
           "y": 318,
           "scale": 0.432
-        }
-      }
-    },
-    {
-      "id": "inside",
-      "bone": "lid",
-      "default": "none",
-      "attachments": {
-        "inside": {
-          "part": "inside",
-          "x": 385,
-          "y": 405,
-          "scale": 0.4,
-          "scaleY": 0.8
         }
       }
     },
@@ -522,19 +501,19 @@
           "bones": {
             "lid": {
               "y": -16,
-              "sy": 1.02
+              "sy": 1.03
             },
             "soft": {
-              "y": 3
+              "y": -6,
+              "sy": 1.08
             },
             "pearl": {
-              "y": 12,
+              "y": -22,
               "sx": 0.6,
               "sy": 0.6
             }
           },
           "slots": {
-            "inside": "inside",
             "pearl": "pearl",
             "eyeL": "wide",
             "eyeR": "wide"
@@ -544,15 +523,19 @@
           "hold": 0.3,
           "bones": {
             "lid": {
-              "y": -26,
-              "sy": 1.04
+              "y": -30,
+              "sy": 1.06
             },
             "soft": {
-              "y": 6
+              "y": -12,
+              "sy": 1.15,
+              "sx": 1.03
+            },
+            "pearl": {
+              "y": -44
             }
           },
           "slots": {
-            "inside": "inside",
             "pearl": "pearl",
             "eyeL": "happy",
             "eyeR": "happy",
@@ -563,15 +546,19 @@
           "hold": 0.8,
           "bones": {
             "lid": {
-              "y": -26,
-              "sy": 1.04
+              "y": -30,
+              "sy": 1.06
             },
             "soft": {
-              "y": 6
+              "y": -12,
+              "sy": 1.15,
+              "sx": 1.03
+            },
+            "pearl": {
+              "y": -44
             }
           },
           "slots": {
-            "inside": "inside",
             "pearl": "pearl",
             "eyeL": "happy",
             "eyeR": "happy",
@@ -584,10 +571,18 @@
           "bones": {
             "lid": {
               "y": -10
+            },
+            "soft": {
+              "y": -3,
+              "sy": 1.04
+            },
+            "pearl": {
+              "y": -14,
+              "sx": 0.6,
+              "sy": 0.6
             }
           },
           "slots": {
-            "inside": "inside",
             "pearl": "pearl",
             "eyeL": "wide",
             "eyeR": "wide",

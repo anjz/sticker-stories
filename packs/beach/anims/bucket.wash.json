@@ -1,0 +1,73 @@
+{
+  "id": "wash",
+  "sticker": "bucket",
+  "kind": "action",
+  "description": "a little wave washes round the bucket's foot with a splash: the bucket lifts a little, tilts, and settles back down on the sand.",
+  "stickerBox": {
+    "x": 0.25911,
+    "y": 0.20052,
+    "width": 0.48047,
+    "height": 0.59896
+  },
+  "particles": [
+    {
+      "frame": 1,
+      "effect": "spray",
+      "x": 0.5,
+      "y": 0.78,
+      "intensity": 0.35
+    }
+  ],
+  "puppet": {
+    "rig": "anims/bucket.rig.json",
+    "keys": [
+      {
+        "hold": 0.15
+      },
+      {
+        "hold": 0.4,
+        "ease": "out",
+        "bones": {
+          "root": {
+            "y": -8
+          },
+          "tip": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.4,
+        "bones": {
+          "root": {
+            "y": -10
+          },
+          "tipR": {
+            "r": 2
+          }
+        }
+      },
+      {
+        "hold": 0.35,
+        "ease": "in",
+        "bones": {
+          "root": {},
+          "tip": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.25,
+        "bones": {
+          "tipR": {
+            "r": 0.6
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

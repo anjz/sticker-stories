@@ -1,0 +1,69 @@
+{
+  "id": "tilt",
+  "sticker": "bottle",
+  "kind": "action",
+  "description": "a wave tips the bottle neck-down and the note inside slides along to the neck; then the bottle levels and the note slides back.",
+  "stickerBox": {
+    "x": 0.25,
+    "y": 0.39714,
+    "width": 0.5,
+    "height": 0.20443
+  },
+  "pause": {
+    "frame": 2,
+    "shows": "the bottle tipped neck-down, the note inside slid up to its neck"
+  },
+  "puppet": {
+    "rig": "anims/bottle.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "note": {
+            "x": 4
+          },
+          "root": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.7,
+        "bones": {
+          "note": {
+            "x": 12
+          },
+          "root": {
+            "r": 6
+          }
+        }
+      },
+      {
+        "hold": 0.6,
+        "bones": {
+          "note": {
+            "x": 10
+          },
+          "root": {
+            "r": -2
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "note": {},
+          "root": {
+            "r": -1
+          }
+        }
+      },
+      {
+        "hold": 0.25
+      }
+    ]
+  }
+}

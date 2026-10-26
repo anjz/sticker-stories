@@ -1,6 +1,6 @@
 {
   "sticker": "starfish",
-  "skeleton": "starfish standing on its two lower arms, facing the viewer: root on the ground between the lower arm tips; roll (at the starfish's centre: everything hangs on it, so the cartwheel turns about the middle); body with a belly bone carrying the centre; face on the body with eyes, mouth and brows; five arms at their bases on the centre: top, armL/armR (the side arms, which wave), legL/legR (the lower arms it stands on).",
+  "skeleton": "starfish standing on its two lower arms, facing the viewer: root on the ground between the lower arm tips; roll (at the starfish's centre: everything hangs on it, so the cartwheel turns about the middle); body with a belly bone carrying the round centre (a disc drawn without an outline, from the 'centre' sheet) over the five arms, whose wide bases tuck behind it so no outline shows where they meet; face on the body with eyes, mouth and brows; five arms with their bones where each comes out from under the disc: top, armL/armR (the side arms, which wave), legL/legR (the lower arms it stands on).",
   "sheets": [
     {
       "id": "parts",
@@ -14,16 +14,17 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a cheerful orange starfish character standing on its two lower arms; image 2 shows the same starfish cut into puppet parts, with a blank face. Draw the starfish's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the starfish in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the left eye (on the right of image 1) as it is in image 1: a big dark brown eye with a white sparkle, looking a little to the side.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the same eye squeezed shut, crying: a tight, creased, downward-curving closed line.\n7. the mouth as it is in image 1: a small happy smile line.\n8. the mouth wide open in a big happy laugh, the inside pink.\n9. the mouth open in a small round 'o'.\n10. the mouth in a small sad frown.\n11. the mouth open in a wobbly crying wail, its corners turned down, the inside pink.\n12. one eyebrow: a small, thin, softly curved dark brown line.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    },
+    {
+      "id": "centre",
+      "size": "1536x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a cheerful orange starfish character standing on its two lower arms; image 2 shows an earlier cut of the same starfish into puppet parts. Draw two new cut-out puppet parts of this exact starfish on one sheet: the same drawing style, colours, texture and dots as in image 1, every part at the size it has in image 1.\n\nDraw each part on its own, far apart, nothing touching:\n1. the starfish's round centre: a perfectly round disc, about as wide as the starfish's face area in image 1 (from cheek to cheek, a little wider), filled with the same soft colours as the middle of the starfish in image 1 — pale golden yellow-orange in the middle, warming smoothly to the same deep orange as the arms at its rim, a few small darker orange dots near the rim, the two rosy cheeks — with a completely blank face: no eyes, no mouth. This disc has NO outline at all: no dark line, no border, no rim line around it; its edge is simply where the orange colour stops, soft and clean.\n2. one arm: one orange arm of the starfish with its round yellow bumps and dots, perfectly straight and symmetric, pointing straight down: wide at its top end and tapering evenly to a rounded tip at the bottom, with the dark brown outline of image 1 along both sides and round the tip; its top end a full, wide, smooth semicircle, outlined too. As long as an arm of image 1 measured from the very middle of the starfish to the arm's tip.\n\nNo text, no labels, no numbers, no shadows, no face features. Fully transparent background."
     }
   ],
   "parts": {
-    "middle": {
-      "sheet": "parts",
-      "at": [
-        529,
-        471
-      ]
-    },
     "arm": {
       "sheet": "parts",
       "at": [
@@ -115,6 +116,20 @@
         1428,
         674
       ]
+    },
+    "disc": {
+      "sheet": "centre",
+      "at": [
+        489,
+        502
+      ]
+    },
+    "armLong": {
+      "sheet": "centre",
+      "at": [
+        1191,
+        506
+      ]
     }
   },
   "bones": [
@@ -144,32 +159,32 @@
     {
       "id": "top",
       "parent": "body",
-      "x": 382,
-      "y": 312
+      "x": 380,
+      "y": 304
     },
     {
       "id": "armL",
       "parent": "body",
-      "x": 306,
-      "y": 354
+      "x": 290,
+      "y": 369
     },
     {
       "id": "armR",
       "parent": "body",
-      "x": 462,
-      "y": 356
+      "x": 477,
+      "y": 368
     },
     {
       "id": "legL",
       "parent": "roll",
-      "x": 340,
-      "y": 438
+      "x": 327,
+      "y": 486
     },
     {
       "id": "legR",
       "parent": "roll",
-      "x": 434,
-      "y": 442
+      "x": 441,
+      "y": 486
     },
     {
       "id": "face",
@@ -210,30 +225,17 @@
   ],
   "slots": [
     {
-      "id": "middle",
-      "bone": "belly",
-      "default": "middle",
-      "attachments": {
-        "middle": {
-          "part": "middle",
-          "x": 384,
-          "y": 373,
-          "scale": 0.355
-        }
-      }
-    },
-    {
       "id": "top",
       "bone": "top",
       "default": "arm",
       "attachments": {
         "arm": {
-          "part": "arm",
-          "x": 385.7,
-          "y": 249.2,
-          "scale": 0.27,
-          "scaleY": 0.708,
-          "rotate": -176.2
+          "part": "armLong",
+          "x": 378.0,
+          "y": 255.9,
+          "scale": 0.37,
+          "scaleY": 0.54,
+          "rotate": 177.7
         }
       }
     },
@@ -243,12 +245,12 @@
       "default": "arm",
       "attachments": {
         "arm": {
-          "part": "arm",
-          "x": 245.1,
-          "y": 338.8,
-          "scale": 0.27,
-          "scaleY": 0.707,
-          "rotate": -255.5
+          "part": "armLong",
+          "x": 250.5,
+          "y": 353.4,
+          "scale": 0.37,
+          "scaleY": 0.54,
+          "rotate": 110.7
         }
       }
     },
@@ -258,12 +260,12 @@
       "default": "arm",
       "attachments": {
         "arm": {
-          "part": "arm",
-          "x": 525.6,
-          "y": 349.1,
-          "scale": 0.27,
-          "scaleY": 0.72,
-          "rotate": -95.7
+          "part": "armLong",
+          "x": 516.7,
+          "y": 352.9,
+          "scale": 0.37,
+          "scaleY": 0.54,
+          "rotate": -111.1
         }
       }
     },
@@ -273,13 +275,12 @@
       "default": "arm",
       "attachments": {
         "arm": {
-          "part": "arm",
-          "x": 308.6,
-          "y": 510.2,
-          "scale": 0.27,
-          "scaleY": 0.886,
-          "rotate": 23.1,
-          "flip": true
+          "part": "armLong",
+          "x": 302.1,
+          "y": 521.9,
+          "scale": 0.326,
+          "scaleY": 0.614,
+          "rotate": 34.8
         }
       }
     },
@@ -289,12 +290,25 @@
       "default": "arm",
       "attachments": {
         "arm": {
-          "part": "arm",
-          "x": 466.5,
-          "y": 512.3,
-          "scale": 0.27,
-          "scaleY": 0.872,
-          "rotate": -24.4
+          "part": "armLong",
+          "x": 465.7,
+          "y": 521.0,
+          "scale": 0.326,
+          "scaleY": 0.614,
+          "rotate": -34.9
+        }
+      }
+    },
+    {
+      "id": "disc",
+      "bone": "belly",
+      "default": "disc",
+      "attachments": {
+        "disc": {
+          "part": "disc",
+          "x": 384,
+          "y": 392,
+          "scale": 0.333
         }
       }
     },

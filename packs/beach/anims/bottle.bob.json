@@ -2,12 +2,12 @@
   "id": "bob",
   "sticker": "bottle",
   "kind": "move",
-  "description": "the bottle bobs along to the right on the waves, then stops.",
+  "description": "the bottle bobs along to the right on the waves, the note inside sliding a little as it tips, then stops.",
   "stickerBox": {
     "x": 0.25,
-    "y": 0.29297,
+    "y": 0.39714,
     "width": 0.5,
-    "height": 0.41276
+    "height": 0.20443
   },
   "loop": {
     "from": 1,
@@ -31,6 +31,9 @@
           "body": {
             "r": -5
           },
+          "note": {
+            "x": -4
+          },
           "root": {}
         }
       },
@@ -48,6 +51,9 @@
         "bones": {
           "body": {
             "r": 5
+          },
+          "note": {
+            "x": 4
           },
           "root": {}
         }
@@ -67,6 +73,9 @@
           "body": {
             "r": -2
           },
+          "note": {
+            "x": -1.6
+          },
           "root": {
             "y": 4
           }
@@ -77,6 +86,9 @@
         "bones": {
           "body": {
             "r": 1
+          },
+          "note": {
+            "x": 0.8
           }
         }
       },

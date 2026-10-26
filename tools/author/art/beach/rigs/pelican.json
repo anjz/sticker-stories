@@ -1,6 +1,6 @@
 {
   "sticker": "pelican",
-  "skeleton": "pelican standing in three-quarter view facing left: root between the webbed feet; body (with the long neck) with belly squash; head at the top of the neck, face carrying the single eye, brow and the big beak with its pouch (swapped for open and full); near wing folded on the back (open in flight), the far wing shown only open in flight (flipped, shaded); legL/legR at the hips.",
+  "skeleton": "pelican standing in three-quarter view facing left: root between the webbed feet; body (with the long neck) with belly squash; head at the top of the neck, face carrying the single eye, brow and the big beak with its pouch (swapped for open and full); near wing folded on the back; open (in flight) both wings rise from behind the back, each bone at its shoulder where the open wing's root sits (the far wing flipped, shaded); legL/legR at the hips.",
   "sheets": [
     {
       "id": "parts",
@@ -181,13 +181,13 @@
     {
       "id": "wingR",
       "parent": "body",
-      "x": 405,
-      "y": 400
+      "x": 380,
+      "y": 358
     },
     {
       "id": "wingL",
       "parent": "body",
-      "x": 410,
+      "x": 395,
       "y": 372
     },
     {
@@ -211,8 +211,8 @@
       "attachments": {
         "open": {
           "part": "wingOpen",
-          "x": 312,
-          "y": 330,
+          "x": 273,
+          "y": 339.5,
           "scale": 0.5,
           "flip": true,
           "rotate": 30,
@@ -248,6 +248,20 @@
       }
     },
     {
+      "id": "wingOpen",
+      "bone": "wingL",
+      "default": "none",
+      "attachments": {
+        "open": {
+          "part": "wingOpen",
+          "x": 502,
+          "y": 353.5,
+          "scale": 0.5,
+          "rotate": -30
+        }
+      }
+    },
+    {
       "id": "body",
       "bone": "belly",
       "default": "body",
@@ -270,20 +284,6 @@
           "x": 486,
           "y": 453,
           "scale": 0.64
-        }
-      }
-    },
-    {
-      "id": "wingOpen",
-      "bone": "wingL",
-      "default": "none",
-      "attachments": {
-        "open": {
-          "part": "wingOpen",
-          "x": 505,
-          "y": 300,
-          "scale": 0.5,
-          "rotate": -30
         }
       }
     },

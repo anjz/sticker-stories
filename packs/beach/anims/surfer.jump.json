@@ -22,14 +22,34 @@
             "r": -8
           },
           "belly": {
-            "sx": 1.04,
-            "sy": 0.93
+            "sx": 1,
+            "sy": 0.9
+          },
+          "body": {
+            "y": 8
+          },
+          "elbowL": {
+            "r": 2
           },
           "head": {
-            "y": 4
+            "y": 3
+          },
+          "kneeL": {
+            "r": -25.6
+          },
+          "kneeR": {
+            "r": 25.6
+          },
+          "legL": {
+            "r": 12.8,
+            "y": 8
+          },
+          "legR": {
+            "r": -12.8,
+            "y": 8
           },
           "root": {
-            "y": 8
+            "y": -6.8
           }
         }
       },
@@ -38,19 +58,25 @@
         "ease": "out",
         "bones": {
           "armL": {
-            "r": 45
-          },
-          "armR": {
-            "r": -6
+            "r": 101
           },
           "belly": {
-            "sy": 1.04
+            "sy": 1
+          },
+          "elbowL": {
+            "r": 22
+          },
+          "kneeL": {
+            "r": -52
+          },
+          "kneeR": {
+            "r": -40
           },
           "legL": {
-            "r": 10
+            "r": 24
           },
           "legR": {
-            "r": -10
+            "r": 6
           },
           "root": {
             "y": -70
@@ -59,6 +85,7 @@
         "slots": {
           "eyeL": "happy",
           "eyeR": "happy",
+          "foreL": "wave",
           "mouth": "open"
         }
       },
@@ -67,19 +94,25 @@
         "ease": "in",
         "bones": {
           "armL": {
-            "r": 45
-          },
-          "armR": {
-            "r": -6
+            "r": 95
           },
           "belly": {
-            "sy": 1.04
+            "sy": 1
+          },
+          "elbowL": {
+            "r": 22
+          },
+          "kneeL": {
+            "r": -52
+          },
+          "kneeR": {
+            "r": -40
           },
           "legL": {
-            "r": 10
+            "r": 24
           },
           "legR": {
-            "r": -10
+            "r": 6
           },
           "root": {
             "y": -74
@@ -88,21 +121,45 @@
         "slots": {
           "eyeL": "happy",
           "eyeR": "happy",
+          "foreL": "wave",
           "mouth": "open"
         }
       },
       {
         "hold": 0.1,
         "bones": {
+          "armL": {
+            "r": 23
+          },
           "belly": {
-            "sx": 1.05,
-            "sy": 0.92
+            "sx": 1.1,
+            "sy": 0.9
+          },
+          "body": {
+            "y": 6
+          },
+          "elbowL": {
+            "r": 10
           },
           "head": {
-            "y": 4
+            "y": 3
+          },
+          "kneeL": {
+            "r": -19.2
+          },
+          "kneeR": {
+            "r": 19.2
+          },
+          "legL": {
+            "r": 9.6,
+            "y": 6
+          },
+          "legR": {
+            "r": -9.6,
+            "y": 6
           },
           "root": {
-            "y": 5
+            "y": -5.8
           }
         },
         "slots": {

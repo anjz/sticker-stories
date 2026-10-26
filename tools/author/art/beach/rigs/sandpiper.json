@@ -1,6 +1,6 @@
 {
   "sticker": "sandpiper",
-  "skeleton": "sandpiper side view facing right, mid-step: root between the feet; body with belly squash; head at the neck, face carrying the single eye and the long thin beak; near wing folded on the side (open in flight), the far wing shown only open in flight (flipped, shaded); legL (back) and legR (front) at the hip.",
+  "skeleton": "sandpiper side view facing right, mid-step: root between the feet; body with belly squash; head at the neck, face carrying the single eye and the long thin beak; near wing folded on the side (open in flight), the far wing shown only open in flight (shaded); both wing bones at the shoulder inside the body, below the head, with the open wings' roots there; legL (back) and legR (front) at the hip.",
   "sheets": [
     {
       "id": "parts",
@@ -187,14 +187,14 @@
     {
       "id": "wingR",
       "parent": "body",
-      "x": 425,
-      "y": 318
+      "x": 400,
+      "y": 345
     },
     {
       "id": "wingL",
       "parent": "body",
-      "x": 405,
-      "y": 322
+      "x": 400,
+      "y": 345
     },
     {
       "id": "legL",
@@ -217,8 +217,8 @@
       "attachments": {
         "open": {
           "part": "wingOpen",
-          "x": 505,
-          "y": 262,
+          "x": 492,
+          "y": 321,
           "scale": 0.3,
           "shade": 0.22
         }
@@ -286,8 +286,8 @@
       "attachments": {
         "open": {
           "part": "wingOpen",
-          "x": 322,
-          "y": 268,
+          "x": 309,
+          "y": 327,
           "scale": 0.3,
           "flip": true
         }
@@ -688,10 +688,10 @@
           "hold": 0.12,
           "bones": {
             "wingL": {
-              "r": -26
+              "r": -14
             },
             "wingR": {
-              "r": 26
+              "r": 14
             },
             "body": {
               "r": 6,
@@ -1098,10 +1098,10 @@
           "hold": 0.18,
           "bones": {
             "wingL": {
-              "r": -24
+              "r": -14
             },
             "wingR": {
-              "r": 24
+              "r": 14
             },
             "root": {
               "y": 2
@@ -1142,10 +1142,10 @@
           "hold": 0.18,
           "bones": {
             "wingL": {
-              "r": -24
+              "r": -14
             },
             "wingR": {
-              "r": 24
+              "r": 14
             },
             "root": {
               "y": 2
@@ -1186,10 +1186,10 @@
           "hold": 0.18,
           "bones": {
             "wingL": {
-              "r": -24
+              "r": -14
             },
             "wingR": {
-              "r": 24
+              "r": 14
             },
             "root": {
               "y": 2

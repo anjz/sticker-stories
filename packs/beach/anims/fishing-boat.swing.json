@@ -2,7 +2,7 @@
   "id": "swing",
   "sticker": "fishing-boat",
   "kind": "action",
-  "description": "the net swings out over the side on its rope and back, to and fro.",
+  "description": "the wind swings the net to and fro on its rope, then it settles back against the mast.",
   "stickerBox": {
     "x": 0.07943,
     "y": 0.14583,
@@ -19,11 +19,28 @@
         "hold": 0.5,
         "bones": {
           "net": {
-            "r": 20,
-            "x": -20
+            "y": -18.8
+          },
+          "rope": {
+            "sy": 0.85
+          }
+        }
+      },
+      {
+        "hold": 0.55,
+        "bones": {
+          "net": {
+            "r": -9,
+            "y": -18.8
           },
           "rock": {
-            "r": -1
+            "r": -0.5
+          },
+          "rope": {
+            "sy": 0.85
+          },
+          "swing": {
+            "r": 14
           }
         }
       },
@@ -31,10 +48,31 @@
         "hold": 0.5,
         "bones": {
           "net": {
-            "r": -10
+            "y": -18.8
           },
           "rock": {
-            "r": 1
+            "r": 0.5
+          },
+          "rope": {
+            "sy": 0.85
+          },
+          "swing": {
+            "r": -3
+          }
+        }
+      },
+      {
+        "hold": 0.5,
+        "bones": {
+          "net": {
+            "r": -6,
+            "y": -18.8
+          },
+          "rope": {
+            "sy": 0.85
+          },
+          "swing": {
+            "r": 10
           }
         }
       },
@@ -42,11 +80,14 @@
         "hold": 0.45,
         "bones": {
           "net": {
-            "r": 12,
-            "x": -10
+            "r": -1,
+            "y": -15
           },
-          "rock": {
-            "r": -0.5
+          "rope": {
+            "sy": 0.88
+          },
+          "swing": {
+            "r": -1
           }
         }
       },
@@ -54,17 +95,19 @@
         "hold": 0.4,
         "bones": {
           "net": {
-            "r": -5
+            "r": -2,
+            "y": -6.3
+          },
+          "rope": {
+            "sy": 0.95
+          },
+          "swing": {
+            "r": 3
           }
         }
       },
       {
-        "hold": 0.3,
-        "bones": {
-          "net": {
-            "r": 2
-          }
-        }
+        "hold": 0.3
       },
       {
         "hold": 0.2
