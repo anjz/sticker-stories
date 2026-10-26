@@ -903,7 +903,7 @@ func (p *puppet) check(sticker string, anims []*manifest.StickerAnimation, o che
 			a, b := sh[e], sh[pair]
 			sa, la := look(e, a)
 			sb, lb := look(pair, b)
-			if la == nil || lb == nil || math.Abs(sa) < o.Skew || math.Abs(sb) < o.Skew || (sa > 0) == (sb > 0) {
+			if gazeless(a) || gazeless(b) || la == nil || lb == nil || math.Abs(sa) < o.Skew || math.Abs(sb) < o.Skew || (sa > 0) == (sb > 0) {
 				continue
 			}
 			what := f
@@ -924,7 +924,7 @@ func (p *puppet) check(sticker string, anims []*manifest.StickerAnimation, o che
 		}
 		var bad []string
 		for _, att := range sortedKeys(s.Attachments) {
-			if att == s.Default || s.Attachments[att].Flip == s.Attachments[s.Default].Flip {
+			if att == s.Default || gazeless(att) || s.Attachments[att].Flip == s.Attachments[s.Default].Flip {
 				continue
 			}
 			if sa, l := look(e, att); l != nil && math.Abs(sa) >= o.Skew && (sa > 0) != (s0 > 0) {
@@ -1149,4 +1149,17 @@ func sortedKeys[V any](m map[string]V) []string {
 	}
 	sort.Strings(out)
 	return out
+}
+
+// gazeless reports whether an eye attachment is shut (closed, a blink,
+// asleep, a happy or crying squint): it looks nowhere, and its lashes or
+// tear belong at each eye's outer corner, so a flip for the other side is
+// right, not a mirrored gaze.
+func gazeless(att string) bool {
+	for _, w := range []string{"closed", "blink", "sleep", "happy", "cry", "squint", "shut"} {
+		if strings.Contains(att, w) {
+			return true
+		}
+	}
+	return false
 }
