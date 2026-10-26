@@ -1,6 +1,6 @@
 {
   "sticker": "hedgehog",
-  "skeleton": "hedgehog standing, three-quarter view facing left: root on the ground; body (the spiny back) with belly squash; head (the cream face and snout) at the front-left, face with eyes and mouth; four little feet under the body; a curled-up ball piece swaps in for everything when it curls.",
+  "skeleton": "hedgehog standing, three-quarter view facing left: root on the ground; body (the spiny back) with belly squash; head (the cream face and snout, with its neck running down over the cream chest and ending in soft fur with no outline: the neck sheet) at the front-left, face with eyes and mouth; four little feet under the body; a curled-up ball piece swaps in for everything when it curls.",
   "sheets": [
     {
       "id": "parts",
@@ -14,6 +14,14 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a hedgehog character; image 2 shows the same hedgehog cut into puppet parts, with a blank face. Draw the hedgehog's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the hedgehog in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the hedgehog's left eye (on the right of image 1) as it is in image 1: a dark round eye with a white sparkle and a slightly worried brow.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a small smile.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    },
+    {
+      "id": "neck",
+      "size": "1024x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a hedgehog character; image 2 shows the same hedgehog cut into puppet parts, with a blank face. Draw one single piece, centred on the sheet: the hedgehog's head together with its neck, as one piece. It is exactly the head of image 2 — the same cream face and snout with its black nose, its two small round ears and its rosy cheek, facing left, without spines, the same completely blank face (no eyes, no eyebrows, no mouth), the same drawing style, colours, texture and line — but there is no chin line under it: the soft cream fur of the throat carries straight on down below the face, as wide as the face, for about half the head's height, the way the face flows into the cream chest in image 1, and ends in a soft, ragged edge of fur with no outline across it — the drawing's line runs down the neck's sides only. At the size the head has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -127,6 +135,13 @@
       "at": [
         1279,
         736
+      ]
+    },
+    "headNeck": {
+      "sheet": "neck",
+      "at": [
+        525,
+        521
       ]
     }
   },
@@ -297,11 +312,11 @@
       "default": "head",
       "attachments": {
         "head": {
-          "part": "head",
-          "x": 240,
-          "y": 335,
-          "scale": 0.9,
-          "rotate": -10
+          "part": "headNeck",
+          "x": 244.7,
+          "y": 375.7,
+          "scale": 0.5051,
+          "rotate": -7.7
         }
       }
     },
@@ -1299,11 +1314,127 @@
     },
     {
       "id": "shake-head",
-      "template": "common.shake-head"
+      "template": "common.shake-head",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "head": {
+              "r": -7
+            },
+            "face": {
+              "x": -3
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": 7
+            },
+            "face": {
+              "x": 10
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": -7
+            },
+            "face": {
+              "x": -3
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": 6
+            },
+            "face": {
+              "x": 8
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
     },
     {
       "id": "look-around",
-      "template": "common.look-around"
+      "template": "common.look-around",
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": -7
+            },
+            "face": {
+              "x": -4
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "head": {
+              "r": -7
+            },
+            "face": {
+              "x": -4
+            },
+            "body": {
+              "r": -2
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "head": {
+              "r": 6
+            },
+            "face": {
+              "x": 14
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.6,
+          "bones": {
+            "head": {
+              "r": 6
+            },
+            "face": {
+              "x": 14
+            },
+            "body": {
+              "r": 2
+            }
+          }
+        },
+        {
+          "hold": 0.4
+        }
+      ]
     },
     {
       "id": "laugh",

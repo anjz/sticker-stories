@@ -1,6 +1,6 @@
 {
   "sticker": "duckling",
-  "skeleton": "duckling waddling, facing right: root at the feet; body (with its tail fluff) with belly squash; head on the body, face with eye and beak; wing (folded / open) at the shoulder; footL/footR on the root.",
+  "skeleton": "duckling waddling, facing right: root at the feet; body (with its tail fluff) with belly squash; head at the neck (the head-and-neck piece of the neck sheet, between the body and a copy of the body whose top fades in, so no chin line shows), face with eye and beak; wing (folded / open) at the shoulder; footL/footR on the root.",
   "sheets": [
     {
       "id": "parts",
@@ -14,6 +14,14 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a duckling character; image 2 shows the same duckling cut into puppet parts, with a blank face. Draw the duckling's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the duckling in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the duckling's eye as it is in image 1: a dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the beak as it is in image 1: the flat orange beak, closed.\n7. the beak wide open, quacking.\n8. the beak a little open.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    },
+    {
+      "id": "neck",
+      "size": "1024x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a fluffy yellow duckling; image 2 shows the same duckling cut into puppet parts, with a blank face. Draw one single piece, centred on the sheet: the duckling's head together with its neck, as one piece. It is exactly the head of image 2 — the same round fluffy yellow head with its tuft on top, the same rosy cheek, the same completely blank face (no eyes, no bill), facing right the same way, the same drawing style, colours, fluffy texture and line — but there is no chin line under it: the fluffy yellow throat and the back of the neck carry straight on down below the head, as wide as the head, for about half the head's height, the way the head flows into the body in image 1, and end in a smooth rounded bottom edge. At the size the head has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -107,6 +115,21 @@
         1281,
         698
       ]
+    },
+    "headNeck": {
+      "sheet": "neck",
+      "at": [
+        552,
+        516
+      ]
+    },
+    "bodyFront": {
+      "sheet": "parts",
+      "at": [
+        515,
+        722
+      ],
+      "fadeTop": 0.3
     }
   },
   "bones": [
@@ -250,6 +273,33 @@
       }
     },
     {
+      "id": "head",
+      "bone": "head",
+      "default": "head",
+      "attachments": {
+        "head": {
+          "part": "headNeck",
+          "x": 413.0,
+          "y": 257.9,
+          "scale": 0.4466
+        }
+      }
+    },
+    {
+      "id": "bodyFront",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "bodyFront",
+          "x": 363,
+          "y": 508,
+          "scale": 0.54,
+          "rotate": 4
+        }
+      }
+    },
+    {
       "id": "wingL",
       "bone": "wingL",
       "default": "folded",
@@ -265,19 +315,6 @@
           "x": 296,
           "y": 445,
           "scale": 0.6
-        }
-      }
-    },
-    {
-      "id": "head",
-      "bone": "head",
-      "default": "head",
-      "attachments": {
-        "head": {
-          "part": "head",
-          "x": 413,
-          "y": 220,
-          "scale": 0.58
         }
       }
     },

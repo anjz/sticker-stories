@@ -1,6 +1,6 @@
 {
   "sticker": "beaver",
-  "skeleton": "standing beaver, upright on its two short hind legs, three-quarter view turned slightly left, holding its stick upright-diagonal in both paws in front of its tummy: root at the feet; body (pivot at the hips) with belly squash; head at the neck, face with eyes, brows and mouth (big front teeth; gnawing, laughing, yawning mouths); armL (the far arm, viewer's left) and armR (the near arm reaching across the tummy) at the shoulders, both paws on the stick; the stick a prop on its own bone, a child of armR (the near paw); legL/legR at the hips, tucked behind the body's round seat so only the feet show; flat scaly tail at the rump, lying on the ground behind (slaps).",
+  "skeleton": "standing beaver, upright on its two short hind legs, three-quarter view turned slightly left, holding its stick upright-diagonal in both paws in front of its tummy: root at the feet; body (pivot at the hips) with belly squash; head at the neck (the head-and-neck piece of the neck sheet, between the body and a copy of the body whose top fades in, so no chin line shows), face with eyes, brows and mouth (big front teeth; gnawing, laughing, yawning mouths); armL (the far arm, viewer's left) and armR (the near arm reaching across the tummy) at the shoulders, both paws on the stick; the stick a prop on its own bone, a child of armR (the near paw); legL/legR at the hips, tucked behind the body's round seat so only the feet show; flat scaly tail at the rump, lying on the ground behind (slaps).",
   "sheets": [
     {
       "id": "parts",
@@ -14,6 +14,14 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a beaver character standing upright and holding a stick; image 2 shows the same beaver cut into puppet parts, with a blank face. Draw the beaver's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the beaver in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the beaver's left eye (the bigger one, on the right of image 1) as it is in image 1: a big dark round eye with a white sparkle and a little white around it.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the eyebrow as in image 1: a short thin dark-brown arc.\n7. the mouth as it is in image 1: a happy smile with the two big white front teeth showing below it.\n8. the mouth gnawing: lips drawn back, the two big front teeth bared and biting, a little open.\n9. the mouth chomping: the same, the mouth a little wider open, the two big front teeth showing, cheeks pushed up.\n10. the mouth wide open in a big happy laugh, the inside pink, the two big front teeth at the top.\n11. the mouth wide open in a big sleepy yawn: a tall oval, the inside pink, the two big front teeth at the top.\n12. the mouth open in a small round 'o', the two front teeth just showing at the top.\n13. the mouth in a small sad frown, the two front teeth just showing.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    },
+    {
+      "id": "neck",
+      "size": "1024x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a beaver character; image 2 shows the same beaver cut into puppet parts, with a blank face. Draw one single piece, centred on the sheet: the beaver's head together with its neck, as one piece. It is exactly the head of image 2 — the same big round brown head with its two small round ears, dark nose, cream muzzle and rosy cheeks, turned slightly left, the same completely blank face (no eyes, no eyebrows, no mouth, no teeth), the same drawing style, colours, texture and line — but there is no chin line under it: the cream throat and the brown fur at the sides of the neck carry straight on down below the head, as wide as the neck is in image 1, for about half the head's height, the way the head flows into the chest in image 1, and end in a soft rounded edge of fur with no outline across it — the drawing's line runs down the neck's sides only. At the size the head has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -165,6 +173,21 @@
         1189,
         822
       ]
+    },
+    "headNeck": {
+      "sheet": "neck",
+      "at": [
+        522,
+        522
+      ]
+    },
+    "bodyFront": {
+      "sheet": "parts",
+      "at": [
+        263,
+        450
+      ],
+      "fadeTop": 0.3
     }
   },
   "bones": [
@@ -314,7 +337,7 @@
       "attachments": {
         "wave": {
           "part": "armWave",
-          "x": 560,
+          "x": 535,
           "y": 300,
           "scale": 0.6,
           "flip": true,
@@ -341,10 +364,24 @@
       "default": "head",
       "attachments": {
         "head": {
-          "part": "head",
-          "x": 359,
-          "y": 187,
-          "scale": 0.665
+          "part": "headNeck",
+          "x": 357.5,
+          "y": 226.3,
+          "scale": 0.3837,
+          "rotate": 0.9
+        }
+      }
+    },
+    {
+      "id": "bodyFront",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "bodyFront",
+          "x": 347,
+          "y": 447,
+          "scale": 0.79
         }
       }
     },

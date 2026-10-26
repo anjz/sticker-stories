@@ -14,6 +14,14 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a badger character; image 2 shows the same badger cut into puppet parts, with a blank face. Draw the badger's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the badger in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the badger's eye (draw it once: it serves for both eyes) as it is in image 1: a dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a small happy smile under the nose.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    },
+    {
+      "id": "neck",
+      "size": "1024x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a badger character; image 2 shows the same badger cut into puppet parts, with a blank face. Draw one single piece, centred on the sheet: the badger's head together with its neck, as one piece. It is exactly the head of image 2 — the same black-and-white striped head with its two small rounded ears, black nose and rosy cheek, facing left and a little down, the same completely blank face (no eyes, no eyebrows, no mouth), the same drawing style, colours, texture and line — but there is no line at the back of the head: behind the ears and the cheek, the badger's neck carries straight on to the right and a little up, as tall as the head, for about half the head's width, its white stripe and dark fur running on the way the head flows into the grey body and the dark shoulder in image 1, and it ends in a soft, ragged edge of fur with no outline across it — the drawing's line runs along the neck's top and bottom only. At the size the head has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -92,6 +100,13 @@
       "at": [
         1348,
         700
+      ]
+    },
+    "headNeck": {
+      "sheet": "neck",
+      "at": [
+        534,
+        547
       ]
     }
   },
@@ -270,10 +285,11 @@
       "default": "head",
       "attachments": {
         "head": {
-          "part": "head",
-          "x": 220,
-          "y": 437,
-          "scale": 0.645
+          "part": "headNeck",
+          "x": 240.4,
+          "y": 438.1,
+          "scale": 0.4303,
+          "rotate": 0.7
         }
       }
     },

@@ -1,6 +1,6 @@
 {
   "sticker": "fox",
-  "skeleton": "four-legged fox standing in a walking stance, three-quarter side view facing left, big tail out behind: root on the ground under the body; body (chest to rump) with belly squash; head at the neck (front-left), face with eyes, brows and mouth; earL/earR on the head; four legs at shoulders and hips (legFF/legBF far, behind the body, shaded; legFN/legBN near); tail at the rump. Swapped-in poses: the body lying down (legs folded, leg slots hidden), the tail curled round to the front (tailFront slot, in front of the head), a near front paw lifted and bent, and the head turned back over its shoulder (face drawn on).",
+  "skeleton": "four-legged fox standing in a walking stance, three-quarter side view facing left, big tail out behind: root on the ground under the body; body (chest to rump) with belly squash; head at the neck (front-left; the head-and-neck piece of the neck sheet, between the body and a copy of the body whose top fades in, so no chin line shows), face with eyes, brows and mouth; earL/earR on the head; four legs at shoulders and hips (legFF/legBF far, behind the body, shaded; legFN/legBN near, over the body copy with faded tops); tail at the rump. Swapped-in poses: the body lying down (legs folded, leg slots hidden), the tail curled round to the front (tailFront slot, in front of the head; the curl sheet, its base soft with no outline), a near front paw lifted and bent, and the head turned back over its shoulder (face drawn on).",
   "sheets": [
     {
       "id": "parts",
@@ -14,6 +14,22 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a young fox; image 2 shows the same fox cut into puppet parts, with a blank face. Draw the fox's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the fox in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the fox's left eye (the bigger eye, on the right of image 1) as it is in image 1: a big dark round eye with a white sparkle and a cream rim.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the same eye squeezed tight shut, as just before a sneeze: a short crinkled zigzag line.\n7. the eyebrow as it is in image 1: a thin dark arched line.\n8. the same eyebrow sad: tilted up at its inner end.\n9. the mouth as it is in image 1: a small closed happy smile, just the dark line.\n10. the mouth wide open in a big happy laugh, the inside pink.\n11. the mouth open in a small round 'o'.\n12. the mouth in a small sad frown.\n13. the jaws open wide, as in a big yawn or a snap: a tall open mouth with a pink tongue and two rows of small white teeth.\n\nNo text, no labels, no numbers, no shadows, no nose, no face or head around the pieces. Fully transparent background."
+    },
+    {
+      "id": "neck",
+      "size": "1024x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a young fox; image 2 shows the same fox cut into puppet parts, with a blank face. Draw one single piece, centred on the sheet: the fox's head together with its neck, as one piece. It is exactly the head of image 2 (the first part, top left) — the same head with its cream cheeks, rosy cheeks and black nose, facing left, without ears, the same completely blank face (no eyes, no eyebrows, no mouth), the same drawing style, colours, texture and line — but there is no chin line under it: the fluffy cream throat and the orange fur at the back of the neck carry straight on down below the head, as wide as the neck is in image 1, for about half the head's height, the way the head flows into the cream bib and chest in image 1, and end in a soft rounded edge of fur with no outline across it — the drawing's line runs down the neck's sides only. At the size the head has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
+    },
+    {
+      "id": "curl",
+      "size": "1024x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a young fox; image 2 shows the same fox cut into puppet parts. Draw one single piece, centred on the sheet: the fox's big bushy tail curled round, exactly as the curled tail of image 2 (the orange tail curving round with its cream-white tip curling up, in the second row on the right) — the same shape, colours, fur texture and line — except at its base: the thick orange end where the tail joins the body has no outline across it; the fur there ends in a soft, ragged edge, and the drawing's line runs along the tail's sides only. At the size the curled tail has in image 2. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -51,7 +67,7 @@
         222,
         548
       ],
-      "fadeTop": 0.33
+      "fadeTop": 0.55
     },
     "frontLegFar": {
       "sheet": "parts",
@@ -84,10 +100,10 @@
       "fadeTop": 0.18
     },
     "tailCurl": {
-      "sheet": "parts",
+      "sheet": "curl",
       "at": [
-        1256,
-        547
+        533,
+        521
       ]
     },
     "bodyLying": {
@@ -194,6 +210,21 @@
         1378,
         763
       ]
+    },
+    "headNeck": {
+      "sheet": "neck",
+      "at": [
+        499,
+        517
+      ]
+    },
+    "bodyFront": {
+      "sheet": "parts",
+      "at": [
+        854,
+        200
+      ],
+      "fadeTop": 0.3
     }
   },
   "bones": [
@@ -371,40 +402,6 @@
       }
     },
     {
-      "id": "legBN",
-      "bone": "legBN",
-      "default": "leg",
-      "attachments": {
-        "leg": {
-          "part": "backLeg",
-          "x": 443,
-          "y": 554,
-          "scale": 0.82,
-          "rotate": -25
-        }
-      }
-    },
-    {
-      "id": "legFN",
-      "bone": "legFN",
-      "default": "leg",
-      "attachments": {
-        "leg": {
-          "part": "frontLeg",
-          "x": 260,
-          "y": 534,
-          "scale": 0.9,
-          "rotate": 3
-        },
-        "lift": {
-          "part": "frontLegLift",
-          "x": 262,
-          "y": 509,
-          "scale": 0.9
-        }
-      }
-    },
-    {
       "id": "earL",
       "bone": "earL",
       "default": "ear",
@@ -440,16 +437,65 @@
       "default": "head",
       "attachments": {
         "head": {
-          "part": "head",
-          "x": 193,
-          "y": 258,
-          "scale": 0.8
+          "part": "headNeck",
+          "x": 196.0,
+          "y": 318.0,
+          "scale": 0.414,
+          "rotate": 0.7
         },
         "back": {
           "part": "headBack",
           "x": 235,
           "y": 245,
           "scale": 0.75
+        }
+      }
+    },
+    {
+      "id": "bodyFront",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "bodyFront",
+          "x": 303,
+          "y": 430,
+          "scale": 0.76,
+          "scaleY": 0.92
+        }
+      }
+    },
+    {
+      "id": "legBN",
+      "bone": "legBN",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "backLeg",
+          "x": 443,
+          "y": 554,
+          "scale": 0.82,
+          "rotate": -25
+        }
+      }
+    },
+    {
+      "id": "legFN",
+      "bone": "legFN",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "frontLeg",
+          "x": 260,
+          "y": 534,
+          "scale": 0.9,
+          "rotate": 3
+        },
+        "lift": {
+          "part": "frontLegLift",
+          "x": 262,
+          "y": 509,
+          "scale": 0.9
         }
       }
     },
@@ -625,9 +671,10 @@
       "attachments": {
         "curl": {
           "part": "tailCurl",
-          "x": 250,
-          "y": 540,
-          "scale": 0.7,
+          "x": 252.9,
+          "y": 532.9,
+          "scale": 0.3384,
+          "rotate": -10.2,
           "flip": true
         }
       }
@@ -3874,7 +3921,8 @@
             "tailFront": "curl",
             "eyeL": "closed",
             "eyeR": "closed",
-            "mouth": "smile"
+            "mouth": "smile",
+            "bodyFront": "none"
           }
         },
         {
@@ -3905,7 +3953,8 @@
             "tailFront": "curl",
             "eyeL": "closed",
             "eyeR": "closed",
-            "mouth": "smile"
+            "mouth": "smile",
+            "bodyFront": "none"
           }
         },
         {
@@ -3939,7 +3988,8 @@
             "tailFront": "curl",
             "eyeL": "closed",
             "eyeR": "closed",
-            "mouth": "smile"
+            "mouth": "smile",
+            "bodyFront": "none"
           }
         },
         {
@@ -3968,7 +4018,8 @@
             "tailFront": "curl",
             "eyeL": "happy",
             "eyeR": "happy",
-            "mouth": "smile"
+            "mouth": "smile",
+            "bodyFront": "none"
           }
         },
         {
@@ -3997,7 +4048,8 @@
             "tailFront": "curl",
             "eyeL": "happy",
             "eyeR": "happy",
-            "mouth": "open"
+            "mouth": "open",
+            "bodyFront": "none"
           }
         },
         {

@@ -1,6 +1,6 @@
 {
   "sticker": "bird",
-  "skeleton": "bird standing facing right: root at the feet; body with belly squash; head on the body, face with the eye and beak; wing (folded at rest, open to fly) at the shoulder; the far wing shown only open in flight (flipped, shaded); tail at the rump; footL/footR on the root.",
+  "skeleton": "bird standing facing right: root at the feet; body with belly squash; head at the neck (the head-and-neck piece of the neck sheet, between the body and a copy of the body whose top fades in, so no chin line shows), face with the eye and beak; wing (folded at rest, open to fly) at the shoulder; the far wing shown only open in flight (flipped, shaded); tail at the rump; footL/footR on the root.",
   "sheets": [
     {
       "id": "parts",
@@ -14,6 +14,14 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a little bluebird character; image 2 shows the same bird cut into puppet parts, with a blank face. Draw the bird's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the bird in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the bird's eye as it is in image 1: a big dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the beak as it is in image 1: open, chirping.\n7. the beak closed.\n8. the beak wide open, singing a long note.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    },
+    {
+      "id": "neck",
+      "size": "1024x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a little bluebird character; image 2 shows the same bird cut into puppet parts, with a blank face. Draw one single piece, centred on the sheet: the bird's head together with its neck, as one piece. It is exactly the head of image 2 — the same round fluffy blue head with its cream face patch and its tufts on top, the same rosy cheek, the same completely blank face (no eye, no beak), facing right the same way, the same drawing style, colours, texture and line — but there is no chin line under it: the cream throat and the blue back of the neck carry straight on down below the head, as wide as the head, for about half the head's height, the way the head flows into the peach chest in image 1, and end in a smooth rounded bottom edge. At the size the head has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -114,6 +122,21 @@
         1154,
         690
       ]
+    },
+    "headNeck": {
+      "sheet": "neck",
+      "at": [
+        523,
+        521
+      ]
+    },
+    "bodyFront": {
+      "sheet": "parts",
+      "at": [
+        1057,
+        363
+      ],
+      "fadeTop": 0.45
     }
   },
   "bones": [
@@ -191,8 +214,8 @@
     {
       "id": "footR",
       "parent": "root",
-      "x": 525,
-      "y": 612
+      "x": 562,
+      "y": 615
     }
   ],
   "slots": [
@@ -266,6 +289,33 @@
       }
     },
     {
+      "id": "head",
+      "bone": "head",
+      "default": "head",
+      "attachments": {
+        "head": {
+          "part": "headNeck",
+          "x": 495.0,
+          "y": 268.6,
+          "scale": 0.504,
+          "rotate": -4
+        }
+      }
+    },
+    {
+      "id": "bodyFront",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "bodyFront",
+          "x": 492,
+          "y": 450,
+          "scale": 0.7
+        }
+      }
+    },
+    {
       "id": "wingL",
       "bone": "wingL",
       "default": "folded",
@@ -275,20 +325,6 @@
           "x": 338,
           "y": 478,
           "scale": 0.7
-        }
-      }
-    },
-    {
-      "id": "head",
-      "bone": "head",
-      "default": "head",
-      "attachments": {
-        "head": {
-          "part": "head",
-          "x": 494,
-          "y": 201,
-          "scale": 0.7,
-          "rotate": -12
         }
       }
     },

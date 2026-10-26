@@ -1,7 +1,7 @@
 {
   "sticker": "deer",
   "called": "the fawn",
-  "skeleton": "four-legged fawn standing, three-quarter view facing left with its head turned towards the viewer: root on the ground; body with neck (belly squash on the body); head on the neck, face with eyes and brows (the mouth on the head, with the drawn nose, so a face turn never parts them); earL/earR behind the head (flick); far legs (legFF/legBF, own pieces) behind the body, shaded; near legs (legFN/legBN) in front of the body, their tops faded into its fur (fadeTop) so no outline shows at the joint; little tail at the rump (wags).",
+  "skeleton": "four-legged fawn standing, three-quarter view facing left with its head turned towards the viewer: root on the ground; body with neck (belly squash on the body); head on the neck (the head-and-neck piece of the neck sheet: its neck runs down over the body's neck and ends in soft fur with no outline, so no chin line shows), face with eyes and brows (the mouth on the head, with the drawn nose, so a face turn never parts them); earL/earR behind the head (flick); far legs (legFF/legBF, own pieces) behind the body, shaded; near legs (legFN/legBN) in front of the body, their tops faded into its fur (fadeTop) so no outline shows at the joint; little tail at the rump (wags).",
   "sheets": [
     {
       "id": "parts",
@@ -15,6 +15,14 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a fawn character; image 2 shows the same fawn cut into puppet parts, with a blank face. Draw the fawn's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the fawn in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the fawn's left eye (on the right of image 1) as it is in image 1: a big dark round eye with a white sparkle and its little eyelashes at the outer corner.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle and eyelashes.\n3. the same eye gently closed in sleep: a soft downward-curving line with its eyelashes.\n4. the same eye closed in a happy smile: an upward-curving arc with its eyelashes.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle, with its eyelashes.\n6. a small thin dark-brown eyebrow: a short soft arc.\n7. the mouth as it is in image 1: a small happy smile line, on its own, without the nose.\n8. the mouth wide open in a big happy laugh, the inside pink, without the nose.\n9. the mouth open in a small round 'o', without the nose.\n10. the mouth in a small sad frown, without the nose.\n\nThe nose is already on the head in image 2: never draw a nose, the mouths are the mouth lines alone.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    },
+    {
+      "id": "neck",
+      "size": "1024x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a fawn character; image 2 shows the same fawn cut into puppet parts, with a blank face. Draw one single piece, centred on the sheet: the fawn's head together with the top of its neck, as one piece. It is exactly the head of image 2 — the same head turned towards the viewer with its black nose, rosy cheeks and the lighter fur round the eyes and muzzle, without ears, the same completely blank face (no eyes, no eyelashes, no mouth), the same drawing style, colours, texture and line — but there is no chin or jaw line under it: the cream throat and the orange fur at the back of the neck carry straight on down below the head, as wide as the neck is in image 1, for about half the head's height, the way the head flows into the neck in image 1, and end in a soft rounded edge of fur with no outline across it — the drawing's line runs down the neck's sides only. At the size the head has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -152,6 +160,13 @@
         1340,
         706
       ]
+    },
+    "headNeck": {
+      "sheet": "neck",
+      "at": [
+        507,
+        526
+      ]
     }
   },
   "bones": [
@@ -199,8 +214,8 @@
     {
       "id": "legFN",
       "parent": "body",
-      "x": 345,
-      "y": 425
+      "x": 343,
+      "y": 452
     },
     {
       "id": "head",
@@ -384,12 +399,11 @@
       "default": "head",
       "attachments": {
         "head": {
-          "part": "head",
-          "x": 284,
-          "y": 209,
-          "scale": 0.574,
-          "scaleY": 1.03,
-          "rotate": 7
+          "part": "headNeck",
+          "x": 279.6,
+          "y": 253.3,
+          "scale": 0.3416,
+          "rotate": 8
         }
       }
     },
@@ -619,8 +633,8 @@
             },
             "legFN": {
               "r": 13.0,
-              "x": 10.1,
-              "y": -18.2
+              "x": 4.0,
+              "y": -19.4
             },
             "legBF": {
               "r": 13.0,
@@ -666,8 +680,8 @@
             },
             "legFN": {
               "r": 26.0,
-              "x": 23.9,
-              "y": -33.7
+              "x": 12.3,
+              "y": -37.3
             },
             "legBF": {
               "r": 26.0,
@@ -712,8 +726,8 @@
             },
             "legFN": {
               "r": 26.0,
-              "x": 23.9,
-              "y": -33.7
+              "x": 12.3,
+              "y": -37.3
             },
             "legBF": {
               "r": 26.0,
@@ -761,8 +775,8 @@
             },
             "legFN": {
               "r": 26.0,
-              "x": 23.9,
-              "y": -33.7
+              "x": 12.3,
+              "y": -37.3
             },
             "legBF": {
               "r": 26.0,
@@ -807,8 +821,8 @@
             },
             "legFN": {
               "r": 26.0,
-              "x": 23.9,
-              "y": -33.7
+              "x": 12.3,
+              "y": -37.3
             },
             "legBF": {
               "r": 26.0,
@@ -856,8 +870,8 @@
             },
             "legFN": {
               "r": 26.0,
-              "x": 23.9,
-              "y": -33.7
+              "x": 12.3,
+              "y": -37.3
             },
             "legBF": {
               "r": 26.0,
