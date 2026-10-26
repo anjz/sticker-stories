@@ -731,9 +731,8 @@ packs animate their stickers: each animation is a sidecar **without a
 sheet**, whose `puppet` keys are its frames — its `pause`, `loop` and
 `particles` count keys, and stories cue it like any other. A sidecar can
 also carry a `puppet` beside a sheet (the same animation, with its own
-pause and loop in keys): the app plays the puppet, and the sheet only
-when a developer switch in debug builds turns puppets off, for
-comparison. An older build skips a sidecar without a sheet.
+pause and loop in keys): the app always plays the puppet. An older
+build skips a sidecar without a sheet.
 
 The rig (`anims/<stickerID>.rig.json`):
 

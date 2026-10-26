@@ -116,12 +116,6 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         var wings: [String]?
     }
 
-    /// Whether stories play the puppets where the pack has them (a
-    /// developer switch in Settings, on by default; `-developer.puppets NO`).
-    static var puppetsEnabled: Bool {
-        UserDefaults.standard.object(forKey: "developer.puppets") as? Bool ?? true
-    }
-
     /// One burst: when `frame` first shows, `effect` (`dust-puff`, `spray`,
     /// `sparks`, `bubble-puff`) from the point `x`, `y` of the sticker's image (fractions,
     /// top-left origin, like `stickerBox`).
@@ -252,8 +246,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
                     print("StickerAnimation: skipping \(path) (undecodable or not \(sticker.id)'s)")
                     return nil
                 }
-                // One without a sheet has nothing else to play.
-                if puppetsEnabled || animation.puppetOnly, let played = animation.playedByPuppet() {
+                if let played = animation.playedByPuppet() {
                     return played
                 }
                 animation.puppet = nil
