@@ -1,6 +1,6 @@
 {
   "sticker": "sandpiper",
-  "skeleton": "sandpiper side view facing right, mid-step: root between the feet; body with belly squash; head at the neck, face carrying the single eye and the long thin beak; near wing folded on the side (open in flight), the far wing shown only open in flight (shaded); both wing bones at the shoulder inside the body, below the head, with the open wings' roots there; legL (back) and legR (front) at the hip.",
+  "skeleton": "sandpiper side view facing right, mid-step: root between the feet; body with belly squash; head at the neck (the head-and-neck piece of the neck sheet, between the body and a copy of the body whose top fades in, so no chin line shows), face carrying the single eye and the long thin beak; near wing folded on the side (open in flight), the far wing shown only open in flight (shaded); both wing bones at the shoulder inside the body, below the head, with the open wings' roots there; legL (back) and legR (front) at the hip.",
   "sheets": [
     {
       "id": "parts",
@@ -14,6 +14,14 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a sandpiper character; image 2 shows the same sandpiper cut into puppet parts, with a blank face. Draw the sandpiper's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the sandpiper in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the sandpiper's eye as it is in image 1: a dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: the pupil looking down, its upper lid drooping and tilted, a thin shine of a welling tear along the bottom rim.\n6. the same eye crying: gently squeezed shut, a soft downward-curving line (a sad closed eye, not a smile), a few small lashes, and one small light-blue teardrop just below it.\n7. the beak as it is in image 1: the long thin dark beak, closed.\n8. the same beak a little open, peeping.\n9. the same beak wide open, peeping loudly.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    },
+    {
+      "id": "neck",
+      "size": "1024x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a sandpiper character; image 2 shows the same sandpiper cut into puppet parts, with a blank face. Draw one single piece, centred on the sheet: the sandpiper's head together with its neck, as one piece. It is exactly the head of image 2 — the same round speckled head, the same rosy cheek, the same completely blank face (no eye, no beak), facing right the same way, the same drawing style, colours, texture and line — but there is no chin line under it: the pale cream throat and the speckled back of the neck carry straight on down below the head, as wide as the head, for about half the head's height, the way the head flows into the body in image 1, and end in a smooth rounded bottom edge. At the size the head has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -36,7 +44,8 @@
       "at": [
         320,
         771
-      ]
+      ],
+      "fadeTop": 0.2
     },
     "wingOpen": {
       "sheet": "parts",
@@ -128,6 +137,21 @@
         1256,
         724
       ]
+    },
+    "headNeck": {
+      "sheet": "neck",
+      "at": [
+        562,
+        535
+      ]
+    },
+    "bodyFront": {
+      "sheet": "parts",
+      "at": [
+        471,
+        333
+      ],
+      "fadeTop": 0.3
     }
   },
   "bones": [
@@ -267,15 +291,42 @@
       }
     },
     {
+      "id": "head",
+      "bone": "head",
+      "default": "head",
+      "attachments": {
+        "head": {
+          "part": "headNeck",
+          "x": 442,
+          "y": 307,
+          "scale": 0.21
+        }
+      }
+    },
+    {
+      "id": "bodyFront",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "bodyFront",
+          "x": 362,
+          "y": 372,
+          "scale": 0.35
+        }
+      }
+    },
+    {
       "id": "wingL",
       "bone": "wingL",
       "default": "folded",
       "attachments": {
         "folded": {
           "part": "wingFolded",
-          "x": 317,
-          "y": 357,
-          "scale": 0.36
+          "x": 322.0,
+          "y": 361.0,
+          "scale": 0.36,
+          "rotate": -3.0
         }
       }
     },
@@ -290,19 +341,6 @@
           "y": 327,
           "scale": 0.3,
           "flip": true
-        }
-      }
-    },
-    {
-      "id": "head",
-      "bone": "head",
-      "default": "head",
-      "attachments": {
-        "head": {
-          "part": "head",
-          "x": 452,
-          "y": 275,
-          "scale": 0.32
         }
       }
     },
@@ -1487,7 +1525,60 @@
     },
     {
       "id": "shake-head",
-      "template": "common.shake-head"
+      "kind": "action",
+      "description": "the sandpiper shakes its head no.",
+      "keys": [
+        {
+          "hold": 0.12
+        },
+        {
+          "hold": 0.16,
+          "bones": {
+            "head": {
+              "r": -7
+            },
+            "face": {
+              "x": -10
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": 7
+            },
+            "face": {
+              "x": 3
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": -7
+            },
+            "face": {
+              "x": -10
+            }
+          }
+        },
+        {
+          "hold": 0.2,
+          "bones": {
+            "head": {
+              "r": 6
+            },
+            "face": {
+              "x": 3
+            }
+          }
+        },
+        {
+          "hold": 0.3
+        }
+      ]
     },
     {
       "id": "laugh",
