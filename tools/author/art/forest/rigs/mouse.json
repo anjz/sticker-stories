@@ -1,6 +1,6 @@
 {
   "sticker": "mouse",
-  "skeleton": "mouse standing on its hind legs, three-quarter view facing left: root at the feet; body with belly squash; head on the body, face with eyes and mouth; earL/earR on the head; armL/armR (paws at the chest) at the shoulders; legL/legR at the hips; long tail at the rump.",
+  "skeleton": "mouse standing on its hind legs, three-quarter view facing left: root at the feet; body with belly squash; head on the body, face with eyes, brows (the brows sheet, one per side) and mouth; earL/earR on the head; armL/armR (paws at the chest) at the shoulders; legL/legR at the hips; long tail at the rump.",
   "sheets": [
     {
       "id": "parts",
@@ -14,6 +14,14 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a mouse character; image 2 shows the same mouse cut into puppet parts, with a blank face. Draw the mouse's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the mouse in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the mouse's left eye (on the right of image 1) as it is in image 1: a dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a small happy smile.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    },
+    {
+      "id": "brows",
+      "size": "1024x1024",
+      "references": [
+        "face"
+      ],
+      "prompt": "Image 1 is a sticker of a mouse character; image 2 shows the same mouse's face pieces (eyes and mouths). Draw the mouse's eyebrows as separate pieces on one sheet, in the same drawing style, dark brown colour and line as the eyebrows in image 1, every piece at the size it has on the mouse in image 1, spread out in a tidy row with wide empty gaps between them, nothing touching:\n1. the eyebrow over the eye on the left of image 1, exactly as it is in image 1: a short, thin, dark brown arc curving up in the middle.\n2. the eyebrow over the eye on the right of image 1, exactly as it is in image 1: a short, thin, dark brown arc curving up in the middle.\n3. the first eyebrow sad: the same short thin arc, tilted so its inner end (the end towards the other eye, its right end) is raised and its outer end lower.\n4. the second eyebrow sad: the same short thin arc, tilted so its inner end (the end towards the other eye, its left end) is raised and its outer end lower.\n\nNo text, no labels, no numbers, no shadows, no eyes, no face or head around the pieces. Fully transparent background."
     }
   ],
   "parts": {
@@ -121,6 +129,34 @@
         1303,
         698
       ]
+    },
+    "brow": {
+      "sheet": "brows",
+      "at": [
+        118,
+        487
+      ]
+    },
+    "browRight": {
+      "sheet": "brows",
+      "at": [
+        394,
+        487
+      ]
+    },
+    "browSad": {
+      "sheet": "brows",
+      "at": [
+        660,
+        491
+      ]
+    },
+    "browRightSad": {
+      "sheet": "brows",
+      "at": [
+        906,
+        491
+      ]
     }
   },
   "bones": [
@@ -186,14 +222,14 @@
     {
       "id": "browL",
       "parent": "face",
-      "x": 300,
-      "y": 192
+      "x": 291,
+      "y": 190
     },
     {
       "id": "browR",
       "parent": "face",
-      "x": 396,
-      "y": 232
+      "x": 397,
+      "y": 233
     },
     {
       "id": "mouth",
@@ -405,17 +441,17 @@
       "default": "brow",
       "attachments": {
         "brow": {
-          "part": "mouthSad",
-          "x": 300,
-          "y": 192,
-          "scale": 0.14
+          "part": "brow",
+          "x": 291,
+          "y": 190,
+          "scale": 0.235,
+          "rotate": 5.6
         },
         "sad": {
-          "part": "mouthSad",
-          "x": 300,
-          "y": 188,
-          "scale": 0.14,
-          "rotate": -22
+          "part": "browSad",
+          "x": 292,
+          "y": 186,
+          "scale": 0.235
         }
       }
     },
@@ -425,17 +461,18 @@
       "default": "brow",
       "attachments": {
         "brow": {
-          "part": "mouthSad",
-          "x": 396,
-          "y": 232,
-          "scale": 0.14
+          "part": "browRight",
+          "x": 398,
+          "y": 233,
+          "scale": 0.26,
+          "rotate": 20
         },
         "sad": {
-          "part": "mouthSad",
+          "part": "browRightSad",
           "x": 396,
-          "y": 228,
-          "scale": 0.14,
-          "rotate": 22
+          "y": 229,
+          "scale": 0.26,
+          "rotate": 10
         }
       }
     },

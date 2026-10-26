@@ -14,6 +14,14 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a frog character; image 2 shows the same frog cut into puppet parts, with a blank face. Draw the frog's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the frog in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the frog's left eye (on the right of image 1) as it is in image 1: a big dark round eye with a white sparkle, filling its eye dome.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a wide-open happy smile, the inside pink.\n7. the mouth closed in a wide calm smile.\n8. the mouth wide open in a big happy laugh, the inside pink.\n9. the mouth open in a small round 'o'.\n10. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    },
+    {
+      "id": "eyes",
+      "size": "1536x1024",
+      "references": [
+        "face"
+      ],
+      "prompt": "Image 1 is a sticker of a frog character; image 2 shows its face pieces as separate stickers. Draw the frog's two eyes again, each drawn for its own side, as separate stickers on one sheet: exactly the same drawing style, line, colours and size as the first eye in image 2 — a big cream eye white with a dark brown outline, a big round dark-brown pupil and a white sparkle at the upper right of the pupil.\n\nIn image 1 the frog looks at the viewer, so its two pupils sit towards each other: in the eye on the left of image 1 the pupil sits in the right half of the eye; in the eye on the right of image 1 the pupil sits in the left half of the eye.\n\nDraw each piece on its own, in two tidy rows with wide empty gaps between them, nothing touching:\nTop row, the eye on the left of image 1, its pupil in the right half of the eye:\n1. as it is in image 1.\n2. wide open and surprised: the eye white bigger and rounder, the pupil smaller, still in the right half, with its white sparkle.\n3. sad: the pupil low in the eye and in its right half, the upper lid drooping over the top of the eye, tilted down towards the left end.\nBottom row, the eye on the right of image 1, its pupil in the left half of the eye:\n4. as it is in image 1.\n5. wide open and surprised: the eye white bigger and rounder, the pupil smaller, still in the left half, with its white sparkle.\n6. sad: the pupil low in the eye and in its left half, the upper lid drooping over the top of the eye, tilted down towards the right end.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
     }
   ],
   "parts": {
@@ -120,6 +128,48 @@
       "at": [
         1376,
         699
+      ]
+    },
+    "eyeLs": {
+      "sheet": "eyes",
+      "at": [
+        263,
+        281
+      ]
+    },
+    "eyeWideLs": {
+      "sheet": "eyes",
+      "at": [
+        772,
+        271
+      ]
+    },
+    "eyeSadLs": {
+      "sheet": "eyes",
+      "at": [
+        1277,
+        287
+      ]
+    },
+    "eyeRs": {
+      "sheet": "eyes",
+      "at": [
+        257,
+        750
+      ]
+    },
+    "eyeWideRs": {
+      "sheet": "eyes",
+      "at": [
+        762,
+        742
+      ]
+    },
+    "eyeSadRs": {
+      "sheet": "eyes",
+      "at": [
+        1274,
+        750
       ]
     }
   },
@@ -250,16 +300,16 @@
       "default": "calm",
       "attachments": {
         "calm": {
-          "part": "eye",
+          "part": "eyeLs",
           "x": 292,
           "y": 145,
-          "scale": 0.48
+          "scale": 0.362
         },
         "wide": {
-          "part": "eyeWide",
+          "part": "eyeWideLs",
           "x": 292,
           "y": 145,
-          "scale": 0.48
+          "scale": 0.368
         },
         "closed": {
           "part": "eyeClosed",
@@ -274,11 +324,10 @@
           "scale": 0.48
         },
         "sad": {
-          "part": "eyeSad",
+          "part": "eyeSadLs",
           "x": 292,
           "y": 147,
-          "scale": 0.48,
-          "flip": true
+          "scale": 0.36
         }
       }
     },
@@ -288,18 +337,16 @@
       "default": "calm",
       "attachments": {
         "calm": {
-          "part": "eye",
+          "part": "eyeRs",
           "x": 557,
           "y": 210,
-          "scale": 0.5,
-          "flip": true
+          "scale": 0.38
         },
         "wide": {
-          "part": "eyeWide",
+          "part": "eyeWideRs",
           "x": 557,
           "y": 210,
-          "scale": 0.5,
-          "flip": true
+          "scale": 0.386
         },
         "closed": {
           "part": "eyeClosed",
@@ -316,10 +363,10 @@
           "flip": true
         },
         "sad": {
-          "part": "eyeSad",
+          "part": "eyeSadRs",
           "x": 557,
           "y": 212,
-          "scale": 0.5
+          "scale": 0.38
         }
       }
     },
