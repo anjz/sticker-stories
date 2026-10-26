@@ -84,9 +84,7 @@ xcodebuild -project app/StickerStories.xcodeproj -scheme StickerStories \
   sticker (stories cue `{fox:live jump}`, or `hold` one on its pause pose
   and `resume` it) and its moves (walk/hop/flight/sprout, played by
   entrances); a rig file per sticker in `author/art/<pack>/rigs/`,
-  shared actions in `stickerrig/templates/`, skill `/puppet`;
-  `stickeranim` = the older live-sticker sprite sheets (no pack uses them now),
-  spec in `author/art/<pack>/anim.json`; `uiart` =
+  shared actions in `stickerrig/templates/`, skill `/puppet`; `uiart` =
   the app's own art — menu background, title, pack covers, the canvas
   hints' hand — as
   alternatives to pick from, prompts in `author/art/app/ui.json`;

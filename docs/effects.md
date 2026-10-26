@@ -393,10 +393,9 @@ app never parses text.
 
 ## Live animations
 
-Every sticker carries **live actions** — its puppet's keyframes (older
-packs: frames drawn from its art): the snail hides in its shell, the frog
-catches a fly, the bear cub yawns and nods off, and most characters also
-jump, nod, laugh, wave… (`docs/pack-format.md`, "Live animations",
+Every sticker carries **live actions** — its puppet's keyframes: the
+snail hides in its shell, the frog catches a fly, the bear cub yawns and
+nods off, and most characters also jump, nod, laugh, wave… (`docs/pack-format.md`, "Live animations",
 "Puppets") — and a **move** that entrances play ("Entrances" below). Each
 action's sidecar says what it shows (`description`), how long it plays
 (1–5 s) and, for many, the key it can pause on (`pause.shows`: "the
@@ -421,7 +420,7 @@ snail tucked inside its shell"); `storycheck` lists them.
   it resumes (`storycheck` warns).
 - A story loads only the animations its triggers name for stickers on
   the canvas (a puppet's rig and atlas once, however many of its
-  animations play; a sheet each), and the moves of the stickers it brings
+  animations play), and the moves of the stickers it brings
   in, off the main thread as play starts, and drops them when it ends. A
   trigger whose animation is not in yet shows the still sticker until it
   is.

@@ -435,3 +435,78 @@ func clampInt(v, lo, hi int) int {
 }
 
 func clampF(v, lo, hi float64) float64 { return math.Max(lo, math.Min(hi, v)) }
+
+// StripEdgeCrumbs clears connected blobs of alpha that touch the image
+// edge and are either small (less than maxFraction of the image's opaque
+// pixels) or thin (reaching in from an edge they touch less than maxDepth
+// of the image's size): small smudges a generator leaves on the edges go,
+// while art that fills the image to the edge reaches deep into it and is
+// kept.
+func StripEdgeCrumbs(img *image.RGBA, threshold uint8, maxFraction, maxDepth float64) {
+	b := img.Bounds()
+	w, h := b.Dx(), b.Dy()
+	opaque := func(x, y int) bool { return img.Pix[img.PixOffset(x+b.Min.X, y+b.Min.Y)+3] > threshold }
+	total := 0
+	for y := 0; y < h; y++ {
+		for x := 0; x < w; x++ {
+			if opaque(x, y) {
+				total++
+			}
+		}
+	}
+	seen := make([]bool, w*h)
+	var stack, blob []int
+	for y := 0; y < h; y++ {
+		for x := 0; x < w; x++ {
+			if seen[y*w+x] || !opaque(x, y) {
+				continue
+			}
+			stack, blob = append(stack[:0], y*w+x), blob[:0]
+			seen[y*w+x] = true
+			touches := false
+			minX, minY, maxX, maxY := w, h, -1, -1
+			for len(stack) > 0 {
+				i := stack[len(stack)-1]
+				stack = stack[:len(stack)-1]
+				blob = append(blob, i)
+				px, py := i%w, i/w
+				if px == 0 || py == 0 || px == w-1 || py == h-1 {
+					touches = true
+				}
+				minX, minY, maxX, maxY = min(minX, px), min(minY, py), max(maxX, px), max(maxY, py)
+				for _, d := range [4][2]int{{1, 0}, {-1, 0}, {0, 1}, {0, -1}} {
+					nx, ny := px+d[0], py+d[1]
+					if nx < 0 || ny < 0 || nx >= w || ny >= h || seen[ny*w+nx] || !opaque(nx, ny) {
+						continue
+					}
+					seen[ny*w+nx] = true
+					stack = append(stack, ny*w+nx)
+				}
+			}
+			if !touches {
+				continue
+			}
+			small := float64(len(blob)) < maxFraction*float64(total)
+			// Thin: on every edge it touches, it reaches in less than maxDepth.
+			thin := true
+			if minY == 0 && float64(maxY+1) >= maxDepth*float64(h) {
+				thin = false
+			}
+			if maxY == h-1 && float64(h-minY) >= maxDepth*float64(h) {
+				thin = false
+			}
+			if minX == 0 && float64(maxX+1) >= maxDepth*float64(w) {
+				thin = false
+			}
+			if maxX == w-1 && float64(w-minX) >= maxDepth*float64(w) {
+				thin = false
+			}
+			if small || thin {
+				for _, i := range blob {
+					o := img.PixOffset(i%w+b.Min.X, i/w+b.Min.Y)
+					img.Pix[o], img.Pix[o+1], img.Pix[o+2], img.Pix[o+3] = 0, 0, 0, 0
+				}
+			}
+		}
+	}
+}

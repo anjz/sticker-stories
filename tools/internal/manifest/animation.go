@@ -5,20 +5,16 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"path"
 	"path/filepath"
 	"slices"
 	"strings"
 )
 
 // StickerAnimation is a live-animation sidecar (docs/pack-format.md, "Live
-// animations"): a sprite sheet of frames the app plays over the placed
-// sticker, with the timing and the mapping of its rest frame onto the
-// sticker — or, without a sheet, keys the sticker's puppet plays
-// (Puppet; docs/pack-format.md, "Puppets"), whose keys are then its
-// frames: Pause, Loop and Particles count keys. stickeranim writes sheet
-// sidecars and stickerrig puppet ones; the packager validates them
-// strictly; the app reads them leniently.
+// animations"): keys the sticker's puppet plays (Puppet;
+// docs/pack-format.md, "Puppets"), which are its frames — Pause, Loop and
+// Particles count keys. stickerrig writes them; the packager validates
+// them strictly; the app reads them leniently.
 type StickerAnimation struct {
 	ID      string `json:"id"`
 	Sticker string `json:"sticker"`
@@ -35,26 +31,9 @@ type StickerAnimation struct {
 	// cues it ({bear:live}) on the words that tell that moment. The app
 	// ignores it.
 	Description string `json:"description"`
-	// Sheet is the pack-relative path of the sprite sheet: Columns frames
-	// per row, Count frames read left to right, top to bottom, each
-	// Frame.Width×Frame.Height px. Empty for a puppet's animation.
-	Sheet string `json:"sheet,omitempty"`
-	Frame struct {
-		Width  int `json:"width"`
-		Height int `json:"height"`
-	} `json:"frame,omitzero"`
-	Columns int `json:"columns,omitempty"`
-	Count   int `json:"count,omitempty"`
-	// Rest is the first frame's bordered art within a frame and StickerBox
-	// the same art within the sticker image, both as fractions of their
-	// image with a top-left origin: the app scales and offsets the frames
-	// so Rest lands on StickerBox. A puppet's animation has no Rest; its
-	// StickerBox is the sticker's drawing in its image all the same.
-	Rest       UnitBox `json:"rest,omitzero"`
+	// StickerBox is the sticker's drawing within its image, as fractions
+	// of the image with a top-left origin.
 	StickerBox UnitBox `json:"stickerBox"`
-	// Hold is how long each frame shows, in seconds, one entry per frame
-	// (a puppet's keys carry their own).
-	Hold []float64 `json:"hold,omitempty"`
 	// Pause is the frame an action can stop on and stay ({snail:live
 	// hold}) until the story resumes it ({snail:live resume}) or ends:
 	// the snail tucked inside its shell. Actions only; optional.
@@ -123,15 +102,12 @@ type StickerAnimation struct {
 	// its belly). The app hides that part and draws a ripple where it
 	// meets the water, whatever the character does there. Needs On.
 	Waterline float64 `json:"waterline,omitempty"`
-	// Particles are bursts the frames fire as they come on show — a
+	// Particles are bursts the keys fire as they come on show — a
 	// landing's dust, a splash — since stickers never draw particles
 	// themselves (docs/effects.md, "Particles"). Optional.
 	Particles []AnimationParticle `json:"particles,omitempty"`
-	// Puppet is the animation played on the sticker's puppet
-	// (docs/pack-format.md, "Puppets"): keyframes the app poses its parts
-	// with. Beside a sheet it is the same animation, played instead of the
-	// sheet's frames; without one it is the animation. Written by
-	// stickerrig.
+	// Puppet is the animation: keyframes the app poses the sticker's
+	// puppet with (docs/pack-format.md, "Puppets"). Required.
 	Puppet *AnimationPuppet `json:"puppet,omitempty"`
 }
 
@@ -226,14 +202,10 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	if a.Sticker != stickerID {
 		fail("sticker %q does not match the declaring sticker %q", a.Sticker, stickerID)
 	}
-	if a.PuppetOnly() {
-		// The keys are the frames: their holds are checked with the puppet.
-		if a.Frame.Width != 0 || a.Frame.Height != 0 || a.Columns != 0 || a.Count != 0 || len(a.Hold) > 0 || a.Rest != (UnitBox{}) {
-			fail("frame, columns, count, rest and hold belong to a sheet; a puppet's keys are its frames")
-		}
-	} else {
-		a.validateSheet(dir, fail)
+	if a.Puppet == nil {
+		fail("puppet must give the animation's keys")
 	}
+	// The keys are the frames: their holds are checked with the puppet.
 	count := a.Frames()
 	switch a.EffectiveKind() {
 	case KindAction:
@@ -261,7 +233,7 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 		if l := a.Loop; l != nil {
 			if l.From < 0 || l.To < l.From || l.To >= count {
 				fail("loop %d–%d must be frames within 0–%d", l.From, l.To, count-1)
-			} else if a.PuppetOnly() && l.From < 1 {
+			} else if l.From < 1 {
 				fail("loop %d–%d must start after key 0, the rest pose", l.From, l.To)
 			}
 			if a.Facing != "left" && a.Facing != "right" {
@@ -294,14 +266,8 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	default:
 		fail("kind %q must be action or move", a.Kind)
 	}
-	boxes := map[string]UnitBox{"stickerBox": a.StickerBox}
-	if !a.PuppetOnly() {
-		boxes["rest"] = a.Rest
-	}
-	for name, b := range boxes {
-		if b.Width <= 0 || b.Height <= 0 || b.X < 0 || b.Y < 0 || b.X+b.Width > 1.0001 || b.Y+b.Height > 1.0001 {
-			fail("%s must be a non-empty box inside the unit square, got %+v", name, b)
-		}
+	if b := a.StickerBox; b.Width <= 0 || b.Height <= 0 || b.X < 0 || b.Y < 0 || b.X+b.Width > 1.0001 || b.Y+b.Height > 1.0001 {
+		fail("stickerBox must be a non-empty box inside the unit square, got %+v", b)
 	}
 	if a.Puppet != nil {
 		errs = append(errs, a.validatePuppet(dir)...)
@@ -327,47 +293,11 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	return errs
 }
 
-// validateSheet checks a sheet sidecar's sheet, frames and holds.
-func (a *StickerAnimation) validateSheet(dir string, fail func(string, ...any)) {
-	switch ext := path.Ext(a.Sheet); {
-	case a.Sheet == "":
-		fail("sheet must not be empty (or give a puppet instead)")
-	case filepath.IsAbs(a.Sheet) || pathEscapes(a.Sheet):
-		fail("sheet: path %q must be pack-relative and must not escape the pack", a.Sheet)
-	case ext != ".png" && ext != ".webp":
-		fail("sheet: %q must be a .png or .webp file", a.Sheet)
-	default:
-		if _, err := os.Stat(filepath.Join(dir, filepath.FromSlash(a.Sheet))); err != nil {
-			fail("sheet: file %q not found in pack", a.Sheet)
-		}
-	}
-	if a.Frame.Width < 1 || a.Frame.Height < 1 {
-		fail("frame size must be positive, got %dx%d", a.Frame.Width, a.Frame.Height)
-	}
-	if a.Columns < 1 {
-		fail("columns must be >= 1, got %d", a.Columns)
-	}
-	if a.Count < 1 {
-		fail("count must be >= 1, got %d", a.Count)
-	}
-	if len(a.Hold) != a.Count {
-		fail("hold has %d entries for %d frames", len(a.Hold), a.Count)
-	}
-	for i, h := range a.Hold {
-		if h < MinHold || h > MaxHold {
-			fail("hold[%d] = %g is outside %g–%g s", i, h, MinHold, MaxHold)
-		}
-	}
-}
-
-// PuppetOnly says the animation is its puppet's keys, with no sheet.
-func (a *StickerAnimation) PuppetOnly() bool { return a.Sheet == "" && a.Puppet != nil }
-
-// Holds is how long each frame shows: the sheet's holds, or a puppet's
-// keys' (each key's hold is the time from it to the next).
+// Holds is how long each frame shows: its puppet's keys' holds (each
+// key's hold is the time from it to the next).
 func (a *StickerAnimation) Holds() []float64 {
-	if !a.PuppetOnly() {
-		return a.Hold
+	if a.Puppet == nil {
+		return nil
 	}
 	holds := make([]float64, len(a.Puppet.Keys))
 	for i, k := range a.Puppet.Keys {
@@ -376,12 +306,12 @@ func (a *StickerAnimation) Holds() []float64 {
 	return holds
 }
 
-// Frames is how many frames the animation has (a puppet's: its keys).
+// Frames is how many frames the animation has: its puppet's keys.
 func (a *StickerAnimation) Frames() int {
-	if a.PuppetOnly() {
-		return len(a.Puppet.Keys)
+	if a.Puppet == nil {
+		return 0
 	}
-	return a.Count
+	return len(a.Puppet.Keys)
 }
 
 // Duration is how long the animation plays, in seconds: the sum of its

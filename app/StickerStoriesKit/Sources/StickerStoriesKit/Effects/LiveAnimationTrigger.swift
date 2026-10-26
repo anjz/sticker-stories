@@ -2,8 +2,8 @@ import Foundation
 
 /// One resolved live-animation trigger: at `at` seconds into the narration,
 /// every placed instance of `stickerID` plays its action `animationID`
-/// (the sticker's own frames — the bear cub yawning, the snail hiding in
-/// its shell; `docs/pack-format.md`, "Live animations"), whole, up to its
+/// (its puppet's keys — the bear cub yawning, the snail hiding in its
+/// shell; `docs/pack-format.md`, "Live animations"), whole, up to its
 /// pause frame and staying there (`hold`), or on from the pause frame to
 /// the end (`resume`). Character animation is its own system beside the
 /// effects library: the sticker effects keep running around it.
@@ -33,7 +33,7 @@ public struct LiveAnimationTrigger: Equatable, Sendable {
     }
 }
 
-/// A sticker's animation, as the scene caches its sprite sheet.
+/// A sticker's animation, as the scene loads it per story.
 public struct LiveAnimationKey: Hashable, Sendable {
     public var stickerID: String
     public var animationID: String

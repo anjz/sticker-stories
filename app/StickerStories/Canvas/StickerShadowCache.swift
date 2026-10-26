@@ -22,7 +22,6 @@ final class StickerShadowCache {
     nonisolated static let blurFraction: CGFloat = 0.014
 
     private var shadows: [String: Shadow] = [:]
-    private var sheets: [String: SKTexture] = [:]
     private let context = CIContext(options: [.useSoftwareRenderer: false])
 
     func shadow(for stickerID: String, image: () -> UIImage?) -> Shadow? {
@@ -30,40 +29,6 @@ final class StickerShadowCache {
         guard let uiImage = image(), let shadow = build(from: uiImage) else { return nil }
         shadows[stickerID] = shadow
         return shadow
-    }
-
-    /// The shadow of a live animation (`StickerAnimation`): its whole sprite
-    /// sheet as one blurred silhouette at half resolution, so a frame's
-    /// shadow is cut with the same rect as the frame. The blur matches the
-    /// sticker's own shadow at the frames' on-screen scale; the frames'
-    /// margin holds it, so no padding is needed.
-    func shadowSheet(for animation: StickerAnimation, image: () -> UIImage?) -> SKTexture? {
-        if let cached = sheets[animation.key] { return cached }
-        guard let uiImage = image(), let input = CIImage(image: uiImage),
-            let cgImage = Self.shadowSheetImage(for: animation, input: input, context: context)
-        else { return nil }
-        let texture = SKTexture(cgImage: cgImage)
-        sheets[animation.key] = texture
-        return texture
-    }
-
-    /// The same shadow sheet as a bitmap, off the main thread (a story
-    /// preloads the animations it will play; `LiveAnimationLoader`).
-    nonisolated static func shadowSheetImage(for animation: StickerAnimation, sheet: CGImage) -> CGImage? {
-        shadowSheetImage(for: animation, input: CIImage(cgImage: sheet), context: CIContext(options: [.useSoftwareRenderer: false]))
-    }
-
-    private nonisolated static func shadowSheetImage(for animation: StickerAnimation, input: CIImage, context: CIContext) -> CGImage? {
-        let radius = blurFraction * animation.rest.width * CGFloat(animation.frame.width) / animation.stickerBox.width
-        guard let blurred = blurredSilhouette(of: input, radius: radius) else { return nil }
-        let output = blurred.cropped(to: input.extent).transformed(by: CGAffineTransform(scaleX: 0.5, y: 0.5))
-        return context.createCGImage(output, from: output.extent)
-    }
-
-    /// Drops the shadow sheets (a sheet is a large texture; the gallery
-    /// lets go of them when it moves to another sticker).
-    func forgetShadowSheets() {
-        sheets.removeAll()
     }
 
     private func build(from image: UIImage) -> Shadow? {

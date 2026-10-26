@@ -62,17 +62,9 @@ func runPreview(args []string) error {
 			if a.Puppet == nil {
 				continue
 			}
-			// Beside a sheet the puppet has its own pause and loop; alone,
-			// the sidecar's count its keys.
-			v := anim{ID: a.ID, Kind: a.EffectiveKind(), Description: a.Description, Keys: a.Puppet.Keys, Pause: a.Puppet.Pause, Loop: a.Puppet.Loop}
-			if a.PuppetOnly() {
-				v.Loop = a.Loop
-				if a.Pause != nil {
-					v.Pause = &a.Pause.Frame
-				}
-			}
+			v := anim{ID: a.ID, Kind: a.EffectiveKind(), Description: a.Description, Keys: a.Puppet.Keys, Loop: a.Loop}
 			if a.Pause != nil {
-				v.Shows = a.Pause.Shows
+				v.Pause, v.Shows = &a.Pause.Frame, a.Pause.Shows
 			}
 			anims = append(anims, v)
 		}

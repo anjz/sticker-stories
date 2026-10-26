@@ -25,8 +25,7 @@ picks the best match for the device (see "Language resolution" below).
     <stickerID>.<expr>.webp  # optional face variant ("Expressions" below)
   anims/
     <stickerID>.<animID>.json  # live animation sidecar, declared in stickers[].animations
-    <stickerID>.<animID>.webp  # its sprite sheet, unless the puppet plays it ("Live animations" below)
-    <stickerID>.rig.json   # optional puppet: its rig ("Puppets" below)
+    <stickerID>.rig.json   # the sticker's puppet: its rig ("Puppets" below)
     <stickerID>.rig.webp   # the puppet's parts (atlas)
   audio/
     <lang>/<storyID>.m4a           # pre-rendered narration, AAC, one folder per language
@@ -44,7 +43,7 @@ decodes natively through ImageIO, so nothing else may appear in a pack.
 Ship **WebP, lossy at quality 90 with a lossless alpha channel**: on
 painted art the colour error is below what the eye picks up while files
 come out ~85 % smaller than PNG, and the lossless alpha keeps a sticker's
-die-cut edge pixel-exact. `stickerart install` and `stickeranim install`
+die-cut edge pixel-exact. `stickerart install` and `stickerrig install`
 produce exactly that from the lossless PNGs kept in their `out/`; PNG
 remains valid for placeholders and hand-made packs. Measured on Forest:
 42 MB of PNG → 6 MB of WebP.
@@ -262,16 +261,13 @@ never letterboxes:
 12. Every `stickers[].animations` entry is a `.json` file inside the pack.
     The packager validates the sidecar **strictly** (unknown keys, a
     `sticker` other than the declaring one, an empty `description`, an
-    `id` the sticker already uses, a missing or non-image sheet
-    (unless the sidecar is a puppet's alone, which has no `sheet`,
-    `frame`, `columns`, `count`, `rest` or `hold`),
-    a `hold` list that does not match `count`, holds outside 0.02–5 s,
-    boxes outside the unit square, a `kind` other than `action`/`move`,
+    `id` the sticker already uses, no `puppet`,
+    a `stickerBox` outside the unit square, a `kind` other than `action`/`move`,
     a second move for one sticker without a `loop`, a `pause` on a move
     or a `perched`, `place` or `faces` on a move, a `place` naming no feature, an area `facing` other than left/right or on a stage area, a `pause` outside the middle frames or without `shows`, a `loop`, `facing`,
     `stride`, `hops`, `flies`, `hovers`, `stays`, `waterline` or `away`
     on an action, any of them or `on` on a move without a loop, a loop
-    outside the frames, a
+    outside the keys or starting on key 0, a
     looping move without `facing` left/right or with a `stride` outside
     0–5, `hops` with `flies`, `hovers` without `flies`, `stays` or
     `waterline` without `on`, a `waterline` outside 0–1 (1 excluded), an
@@ -280,17 +276,15 @@ never letterboxes:
     `left`/`right` are
     errors); the app checks the file exists and reads it **leniently**
     (an undecodable sidecar is skipped with a log, never fatal; a pause
-    or loop it cannot use is dropped). A `puppet` is checked against its
+    or loop it cannot use is dropped). The `puppet` is checked against its
     rig, which is read strictly too ("Puppets": the atlas exists, every
     bone comes after its parent, slots hang on bones and show the rig's
     parts, faces and the idle blink name real attachments; keys are at
     least two, with holds in 0.02–5 s, known eases, bones and attachments
-    of the rig, stretches not 0 and at most 4 either way; beside a sheet its
-    `pause` and `loop` match the sidecar's, and without one it has none:
-    the sidecar's `pause`, `loop` and `particles` count its keys, and a
-    loop starts after key 0; `wings` only on a move that flies, naming
-    bones of the rig); an undecodable puppet is ignored by the
-    app, which plays the sheet (or, without one, skips the sidecar).
+    of the rig, stretches not 0 and at most 4 either way — the sidecar's
+    `pause`, `loop` and `particles` count its keys; `wings` only on a
+    move that flies, naming bones of the rig); the app skips a sidecar
+    whose puppet does not decode or has fewer than two keys.
 13. Every `stickers[].expressions` key is lowercase `a-z0-9-` and not
     `normal`; every value is an image inside the pack (`.png` or `.webp`)
     that exists. No sticker is called `all`.
@@ -445,7 +439,7 @@ of its square image**, centred, with the rest of the image left empty:
 So stickers dropped from the tray already look roughly their size next to
 each other, and the empty room around a drawing is where its animations
 reach — dust, sparks, a raised arm — without the sticker ever shrinking
-to make room (`tools/author/stickeranim`). `stickerart` draws to these
+to make room. `stickerart` draws to these
 (`sizeInArt` in `art.json`) and its install writes each sticker's
 `content`; the app then:
 
@@ -632,21 +626,21 @@ change skips stickers without that face.
 
 ## Live animations
 
-Every sticker carries animations: short frame sequences drawn from its
-own art that bring it to life. Two kinds (`kind`):
+Every sticker carries animations: short runs of keyframes its puppet
+plays ("Puppets" below) that bring it to life. Two kinds (`kind`):
 
 - an **action** — what the character does at a moment of a story: the
   snail hides in its shell, the frog catches a fly, the bear cub yawns and
   nods off. Stories cue it on the words that tell it (`docs/effects.md`,
-  "Live animations"). Most actions have a **pause frame** (`pause`): the
+  "Live animations"). Most actions have a **pause key** (`pause`): the
   pose they can stop in and stay — the snail tucked in its shell, the
   bear cub asleep — for as long as the story needs, until the story
   resumes it or ends.
 - a **move** — how the character gets about: a walk or a waddle, a hop,
   a crawl, a flight, a plant sprouting. It plays while a story brings the
   sticker into the scene or moves it (`docs/effects.md`, "Entrances",
-  "Movement"): a **loop** of frames repeated while it travels, then a few
-  frames that bring it to rest in its sticker pose. A plant's sprout has
+  "Movement"): a **loop** of keys repeated while it travels, then a few
+  keys that bring it to rest in its sticker pose. A plant's sprout has
   no loop and plays once. A character that gets about more than one way
   has a move for each — the ladybug crawls and flies, the duckling
   waddles and swims: its **first** declared move is its usual way, and
@@ -657,36 +651,29 @@ own art that bring it to life. Two kinds (`kind`):
 **Every pack gives every sticker one action and one move** (the authoring
 target, like the story count; not a validation rule), and a second move
 to a character that plainly gets about two ways. A puppet's animations
-cost no image generation, so a sticker with a puppet gets **many
-actions** — a jump, a nod, a wave, a little dance, whatever its body can
-do and stories are likely to tell ("Puppets"). The motions are
-small and unhurried — nothing fast, nothing that reaches far from the
-sticker — and smooth: about 10–12 frames a second, with frames drawn
-close enough together that each step is small (an action is typically
-24 frames over 2–3 s, a walk cycle 8 frames at 12 fps).
+cost no image generation, so every sticker gets **many actions** — a
+jump, a nod, a wave, a little dance, whatever its body can do and
+stories are likely to tell ("Puppets"). The motions are small and
+unhurried — nothing fast, nothing that reaches far from the sticker.
 
-Each animation is a sidecar declared in `stickers[].animations`, with
-either a sprite sheet made by `tools/author/stickeranim` or the keys of
-the sticker's puppet made by `tools/author/stickerrig` ("Puppets"; then
-`sheet`, `frame`, `columns`, `count`, `rest` and `hold` are absent, and
-`pause`, `loop` and `particles` count keys instead of frames):
+Each animation is a sidecar declared in `stickers[].animations`, holding
+the keys of the sticker's puppet made by `tools/author/stickerrig`
+("Puppets"). The keys are the animation's frames: `pause`, `loop` and
+`particles` count them, 0-based:
 
 | Key | Meaning |
 |---|---|
 | `id`, `sticker` | the animation's id (unique per sticker) and the sticker it belongs to (must match the declaring sticker) |
 | `kind` | `action` (the default when absent) or `move` |
 | `description` | one plain sentence saying what the animation shows ("the snail pulls its head and eye stalks into its shell, waits, then slowly peeks out"), for story authors; required, ignored by the app |
-| `sheet` | pack-relative path of the sheet (PNG or WebP): `columns` frames per row, `count` frames read left to right then top to bottom, each `frame.width` × `frame.height` px |
-| `rest` | the first frame's bordered art within a frame, as fractions of the frame (top-left origin) |
-| `stickerBox` | the same art within the sticker image, as fractions of the image |
-| `hold` | seconds each frame shows, one entry per frame (0.02–5) |
+| `stickerBox` | the sticker's drawing within its image, as fractions of the image (top-left origin) |
 | `place` | actions only, optional: feature ids the action happens at (the woodpecker's tap: `["trunks"]`). Before it plays, the app takes the character to the nearest spot on one (its front on a `facing` area, facing it) unless it is there already — wherever a child put it — and the action waits until it arrives; storycheck errors on a story that took it elsewhere first |
 | `perched` | actions only, optional: `true` when the character sits on something in it (the butterfly folding its wings to rest, the owl dozing off); stories land a flyer before they play it, never in a feature marked `air` (checked by storycheck; the app ignores it) |
 | `faces` | actions only, optional: `left` or `right`, the way the character faces on screen while the action plays (the surfer riding a wave: `right`, the way the wave rolls). The app turns the whole puppet to it as the action starts — mirroring it as needed, whatever way it faced — and back as it ends; never the head alone (`docs/stage3d.md`, "In the water") |
 | `idle` | actions only, optional: `true` for a small, gentle action (a look around, an ear flick, a sniff) the app plays now and then on its own while a story leaves the character be — never while it moves, holds a pose, sleeps or hovers — so everyone on the stage looks alive (`docs/stage3d.md`, "Alive at rest") |
-| `pause` | actions only, optional: `{ "frame": 11, "shows": "the snail tucked inside its shell" }` — the 0-based frame the action can stop on (not the first or last) and what it shows, for story authors |
-| `loop` | moves only, optional: `{ "from": 1, "to": 8 }` — the frames (0-based, both included) repeated while the character travels; the frames after it bring it to rest. Without it the move plays once (a sprout) |
-| `facing` | moves with a loop: `left` or `right`, the way the frames travel (the app mirrors a sticker that has to come in the other way) |
+| `pause` | actions only, optional: `{ "frame": 11, "shows": "the snail tucked inside its shell" }` — the 0-based key the action can stop on (not the first or last) and what it shows, for story authors |
+| `loop` | moves only, optional: `{ "from": 1, "to": 8 }` — the keys (0-based, both included; after key 0, the rest pose) repeated while the character travels; the keys after it bring it to rest. Without it the move plays once (a sprout) |
+| `facing` | moves with a loop: `left` or `right`, the way the keys travel (the app mirrors a sticker that has to come in the other way) |
 | `stride` | moves with a loop: how far one loop carries the character, in multiples of the sticker's width (above 0, at most 5), so it travels at the pace of its legs |
 | `hops` | moves with a loop, optional: `true` when the loop is a hop drawn in place; the app lifts the character in an arc once per loop |
 | `flies` | moves with a loop, optional: `true` when the loop is a flight; the app glides the character along with a gentle bob and stops it beside others at their height (not with `hops`) |
@@ -695,44 +682,35 @@ the sticker's puppet made by `tools/author/stickerrig` ("Puppets"; then
 | `away` | moves with a loop, optional: the id of another of the sticker's looping moves, played instead while a leg this way goes away from the viewer — deeper into the scene more than across it — showing the character's back (`paddle`'s `"paddle-out"`). Resting there, or coming back, it plays this move |
 | `stays` | moves with a loop and `on`, optional: `true` when the character stays in its element once this way has taken it into one of `on` — the surfer out on the waves, a pelican afloat: the app keeps the loop going where it is instead of settling into the sticker pose, which would stand it on the water (`docs/effects.md`, "Movement"). A perch place in its `on` (bark) is one the character takes to that way whenever it gets there, by any way, and keeps it while there: the woodpecker's `cling` (`docs/stage3d.md`, "Moves") |
 | `waterline` | moves with a loop and `on`, optional: how deep the character floats while it is in water among `on` (a feature `water` in the space, "Space"), as a fraction of its drawing's height from its feet — the duckling swimming, `0.3`: its feet and the bottom of its belly are under water. Whatever it does there (swims, quacks, naps), the app hides that part of it and its shadow, sinking it in as it enters and out as it leaves, and draws a ripple where it meets the water (`docs/stage3d.md`, "In the water"). Packs with a space only |
-| `particles` | optional: bursts the frames fire as they first come on show — `[{ "frame": 6, "effect": "dust-puff", "x": 0.5, "y": 0.86, "intensity"?: 0.5, "color"?: "#RRGGBB" }]`: the 0-based frame, a particle effect (`dust-puff`, `spray`, `sparks` or `bubble-puff`, `docs/effects.md`), the point of the **sticker image** it comes from (fractions, top-left origin like `stickerBox`; −0.5–1.5 so a flame's tip can be just outside), and optional intensity (0–1) and colour. A landing's dust, a touchdown, a splash: the frames never draw particles themselves (`docs/pack-art.md`). The physical ones follow the pack's `world` ("World"); bubbles rise and play wherever the animation plays — an action, an entrance, a move — but not under Reduce Motion or calm mode, where live animations don't play |
-| `puppet` | the animation as keyframes for the sticker's puppet ("Puppets" below) — `{ "rig": "anims/owl.rig.json", "keys": [...] }`. Required without a sheet. Beside a sheet it is optional and plays instead of the frames, with its own `"pause"?: 11, "loop"?: { "from": 1, "to": 4 }, "stride"?: 1.2`, counted in keys: `pause` given exactly when the sidecar has one and `loop` exactly when it has one. A move that `flies` can name its `"wings"?: ["wingL", "wingR"]`: bones of the rig its flight keeps going — with every bone hanging on them and their slots — whatever else the character does while it is in the air (it talks, laughs or holds a pose and its wings beat on) |
+| `particles` | optional: bursts the keys fire as they first come on show — `[{ "frame": 6, "effect": "dust-puff", "x": 0.5, "y": 0.86, "intensity"?: 0.5, "color"?: "#RRGGBB" }]`: the 0-based key, a particle effect (`dust-puff`, `spray`, `sparks` or `bubble-puff`, `docs/effects.md`), the point of the **sticker image** it comes from (fractions, top-left origin like `stickerBox`; −0.5–1.5 so a flame's tip can be just outside), and optional intensity (0–1) and colour. A landing's dust, a touchdown, a splash: the art never draws particles itself (`docs/pack-art.md`). The physical ones follow the pack's `world` ("World"); bubbles rise and play wherever the animation plays — an action, an entrance, a move — but not under Reduce Motion or calm mode, where live animations don't play |
+| `puppet` | required: the animation as keyframes for the sticker's puppet ("Puppets" below) — `{ "rig": "anims/owl.rig.json", "keys": [...] }`, at least two keys. A move that `flies` can name its `"wings"?: ["wingL", "wingR"]`: bones of the rig its flight keeps going — with every bone hanging on them and their slots — whatever else the character does while it is in the air (it talks, laughs or holds a pose and its wings beat on) |
 
-The frames are registered on the part that stays still (the feet, the
-shell's base) — a move's frames on the character's body, feet on the
-ground — carry the same border and finish as the sticker, and an action's
-first and last frames (a move's first) are the sticker's own art, so the
-app can dissolve from the still sticker into the frames and back. The app
-scales and offsets the frames so `rest` lands exactly on `stickerBox` over
-the placed sticker, and derives the frames' drop shadow from the sheet.
-A move's first frame is only that anchor; it plays from the second.
+An action's first and last keys (a move's first) are the puppet at rest,
+which matches the sticker's own art, so the app can dissolve from the
+still sticker into the puppet and back. A move's first key is only that
+anchor; it plays from the second.
 
 Stories play actions: the authoring cue `{snail:live}` becomes a trigger
 `{ "at", "sticker": "snail", "animation": "hide" }` in the story's effects
 sidecar (`docs/effects.md`, "Live animations"), `{snail:live hold}` and
 `{snail:live resume}` the same with `"mode": "hold"` / `"resume"`; the
 packager checks them against the actions the sticker declares (and
-`hold`/`resume` against its pause frame). A move is never cued on its
+`hold`/`resume` against its pause key). A move is never cued on its
 own: entrances and moves (`{fox:go to rabbit}`) play it, the usual one
 unless the cue names another (`{ladybug:go on flower by fly}` becomes
-`"by": "fly"`, checked against the sticker's moves). The developer effects gallery plays any. A sheet decodes to width
-× height × 4 bytes of texture whatever its file size — keep that in mind
-before adding frames; a story loads only the sheets it plays.
+`"by": "fly"`, checked against the sticker's moves). The developer effects gallery plays any. A story loads
+only the puppets it plays.
 
 ## Puppets
 
-A sticker can carry a **puppet**: its drawing cut into parts — body,
-head, wings, feet, eyes, beak — hanging on a skeleton, so the app moves
-the parts instead of showing drawn frames. An animation is then a
-handful of keyframes (data), and a new one costs no image generation.
-`tools/author/stickerrig` makes it from sheets the image model draws
-from the sticker's own art (the parts, the face pieces). This is how new
-packs animate their stickers: each animation is a sidecar **without a
-sheet**, whose `puppet` keys are its frames — its `pause`, `loop` and
-`particles` count keys, and stories cue it like any other. A sidecar can
-also carry a `puppet` beside a sheet (the same animation, with its own
-pause and loop in keys): the app always plays the puppet. An older
-build skips a sidecar without a sheet.
+An animated sticker has a **puppet**: its drawing cut into parts —
+body, head, wings, feet, eyes, beak — hanging on a skeleton, which the
+app moves. An animation is a handful of keyframes (data), and a new one
+costs no image generation. `tools/author/stickerrig` makes the puppet
+from sheets the image model draws from the sticker's own art (the
+parts, the face pieces). This is the only way stickers animate: each
+animation is a sidecar whose `puppet` keys are its frames — its
+`pause`, `loop` and `particles` count keys.
 
 The rig (`anims/<stickerID>.rig.json`):
 
@@ -757,7 +735,7 @@ attachments swap on their key. A move's loop goes round from its last
 key back to its first.
 
 Once a story has the puppet take over from the still sticker (dissolving
-in over it, like frames), it stays on show — idling between animations,
+in over it), it stays on show — idling between animations,
 showing the story's faces — until the story ends, so the still art and
 the puppet hand over once rather than at every cue. The drop shadow is
 the puppet's own, posed with it.
@@ -805,7 +783,10 @@ same device preference.
   bump); sidecars without a sheet, played by the puppet alone (an
   older build skips them; no bump); 2026-10-17: optional sidecar
   `away` (moves) and `faces` (actions), and `on` on actions (additive,
-  no bump).
+  no bump); 2026-10-26: sprite sheets removed — a sidecar's `puppet` is
+  required and `sheet`, `frame`, `columns`, `count`, `rest`, `hold` and
+  the puppet's own `pause`, `loop` and `stride` are gone (no pack used
+  them; no bump).
 - Any schema change must update this document, the Go validator
   (`tools/internal/manifest`), and the Swift decoder in the **same commit**.
 - `version` (pack content revision) is bumped whenever any asset or story in a

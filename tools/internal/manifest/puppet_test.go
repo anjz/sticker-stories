@@ -33,15 +33,23 @@ func validRig(t *testing.T, dir string, mutate func(r *PuppetRig)) {
 }
 
 func puppetFor(keys int) *AnimationPuppet {
+	holds := make([]float64, keys)
+	for i := range holds {
+		holds[i] = 0.3
+	}
+	return puppetHolding(holds...)
+}
+
+// puppetHolding is a puppet on the fox's rig with a key for each hold.
+func puppetHolding(holds ...float64) *AnimationPuppet {
 	p := &AnimationPuppet{Rig: "anims/fox.rig.json"}
-	for i := 0; i < keys; i++ {
-		p.Keys = append(p.Keys, PuppetKey{Hold: 0.3})
+	for _, h := range holds {
+		p.Keys = append(p.Keys, PuppetKey{Hold: h})
 	}
 	return p
 }
 
 func TestPuppetsValidate(t *testing.T) {
-	one := 1.2
 	cases := []struct {
 		name   string
 		rig    func(r *PuppetRig)
@@ -68,56 +76,43 @@ func TestPuppetsValidate(t *testing.T) {
 		}, ""},
 		{"key of no attachment", nil, func(a *StickerAnimation) { a.Puppet.Keys[2].Slots = map[string]string{"eye": "wink"} }, `"wink"`},
 		{"unknown ease", nil, func(a *StickerAnimation) { a.Puppet.Keys[0].Ease = "bounce" }, "ease"},
-		{"pause without the sheet's", nil, func(a *StickerAnimation) { p := 2; a.Puppet.Pause = &p }, "pause"},
-		{"loop on an action", nil, func(a *StickerAnimation) { a.Puppet.Loop = &FrameRange{From: 1, To: 2} }, "belong to a move"},
-		{"a move's loop", nil, func(a *StickerAnimation) {
-			a.Kind, a.Loop, a.Facing, a.Stride = KindMove, &FrameRange{From: 1, To: 6}, "right", 0.5
-			a.Puppet.Loop, a.Puppet.Stride = &FrameRange{From: 1, To: 3}, one
-		}, ""},
-		{"a move's loop without stride", nil, func(a *StickerAnimation) {
-			a.Kind, a.Loop, a.Facing, a.Stride = KindMove, &FrameRange{From: 1, To: 6}, "right", 0.5
-			a.Puppet.Loop = &FrameRange{From: 1, To: 3}
-		}, "stride"},
-		{"wings of a flight", nil, sheetless(func(a *StickerAnimation) {
+		{"wings of a flight", nil, func(a *StickerAnimation) {
 			a.Kind, a.Loop, a.Facing, a.Stride, a.Flies, a.Hovers = KindMove, &FrameRange{From: 1, To: 3}, "right", 0.5, true, true
 			a.Puppet.Wings = []string{"head"}
-		}), ""},
-		{"wings of no bone", nil, sheetless(func(a *StickerAnimation) {
+		}, ""},
+		{"wings of no bone", nil, func(a *StickerAnimation) {
 			a.Kind, a.Loop, a.Facing, a.Stride, a.Flies = KindMove, &FrameRange{From: 1, To: 3}, "right", 0.5, true
 			a.Puppet.Wings = []string{"wingL"}
-		}), `wings: bone "wingL"`},
-		{"wings on a walk", nil, sheetless(func(a *StickerAnimation) {
+		}, `wings: bone "wingL"`},
+		{"wings on a walk", nil, func(a *StickerAnimation) {
 			a.Kind, a.Loop, a.Facing, a.Stride = KindMove, &FrameRange{From: 1, To: 3}, "right", 0.5
 			a.Puppet.Wings = []string{"head"}
-		}), "move that flies"},
+		}, "move that flies"},
 		{"rig not json", nil, func(a *StickerAnimation) { a.Puppet.Rig = "anims/fox.rig.webp" }, ".json"},
-		// Without a sheet the keys are the frames.
-		{"puppet only", nil, sheetless(nil), ""},
-		{"puppet only, paused on a key", nil, sheetless(func(a *StickerAnimation) { a.Pause = &AnimationPause{Frame: 3, Shows: "asleep"} }), ""},
-		{"puppet only, paused past the keys", nil, sheetless(func(a *StickerAnimation) { a.Pause = &AnimationPause{Frame: 4, Shows: "asleep"} }), "middle frame (1–3)"},
-		{"puppet only, its own pause", nil, sheetless(func(a *StickerAnimation) { p := 2; a.Puppet.Pause = &p }), "sidecar's own"},
-		{"puppet only with frames", nil, sheetless(func(a *StickerAnimation) { a.Hold = []float64{0.3} }), "belong to a sheet"},
-		{"puppet only, a move", nil, sheetless(func(a *StickerAnimation) {
+		// The keys are the frames.
+		{"paused on a key", nil, func(a *StickerAnimation) { a.Pause = &AnimationPause{Frame: 3, Shows: "asleep"} }, ""},
+		{"paused past the keys", nil, func(a *StickerAnimation) { a.Pause = &AnimationPause{Frame: 4, Shows: "asleep"} }, "middle frame (1–3)"},
+		{"a move", nil, func(a *StickerAnimation) {
 			a.Kind, a.Loop, a.Facing, a.Stride = KindMove, &FrameRange{From: 1, To: 3}, "right", 0.5
-		}), ""},
-		{"puppet only, a loop from rest", nil, sheetless(func(a *StickerAnimation) {
+		}, ""},
+		{"a loop from rest", nil, func(a *StickerAnimation) {
 			a.Kind, a.Loop, a.Facing, a.Stride = KindMove, &FrameRange{From: 0, To: 3}, "right", 0.5
-		}), "after key 0"},
-		{"puppet only, a particle past the keys", nil, sheetless(func(a *StickerAnimation) {
+		}, "after key 0"},
+		{"a particle past the keys", nil, func(a *StickerAnimation) {
 			a.Particles = []AnimationParticle{{Frame: 5, Effect: "dust-puff", X: 0.5, Y: 0.9}}
-		}), "not one of the 5 frames"},
-		{"neither sheet nor puppet", nil, func(a *StickerAnimation) { a.Sheet, a.Puppet = "", nil }, "sheet must not be empty"},
+		}, "not one of the 5 frames"},
+		{"no puppet", nil, func(a *StickerAnimation) { a.Puppet = nil }, "puppet must give"},
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
 			dir := t.TempDir()
-			validRig(t, dir, tc.rig)
 			rel := validAnimation(t, dir, func(a *StickerAnimation) {
 				a.Puppet = puppetFor(5)
 				if tc.anim != nil {
 					tc.anim(a)
 				}
 			})
+			validRig(t, dir, tc.rig)
 			a, err := LoadStickerAnimation(filepath.Join(dir, rel))
 			if err != nil {
 				t.Fatal(err)
@@ -139,29 +134,12 @@ func TestPuppetsValidate(t *testing.T) {
 	}
 }
 
-// sheetless makes the animation its puppet's alone: no sheet, no frames.
-func sheetless(mutate func(a *StickerAnimation)) func(a *StickerAnimation) {
-	return func(a *StickerAnimation) {
-		a.Sheet, a.Columns, a.Count, a.Hold, a.Rest = "", 0, 0, nil, UnitBox{}
-		a.Frame.Width, a.Frame.Height = 0, 0
-		if mutate != nil {
-			mutate(a)
-		}
-	}
-}
-
-func TestPuppetOnlyTiming(t *testing.T) {
+func TestPuppetTiming(t *testing.T) {
 	a := StickerAnimation{Puppet: &AnimationPuppet{Keys: []PuppetKey{{Hold: 0.25}, {Hold: 0.5}, {Hold: 1}, {Hold: 0.25}}}, Pause: &AnimationPause{Frame: 2}}
-	if !a.PuppetOnly() || a.Frames() != 4 || a.Duration() != 2 {
-		t.Fatalf("puppet only %v, frames %d, duration %g", a.PuppetOnly(), a.Frames(), a.Duration())
+	if a.Frames() != 4 || a.Duration() != 2 {
+		t.Fatalf("frames %d, duration %g", a.Frames(), a.Duration())
 	}
 	if to, from := a.PlaySeconds(); to != 0.75 || from != 0.25 {
 		t.Fatalf("play seconds %g, %g; want 0.75, 0.25", to, from)
-	}
-	data, _ := json.Marshal(a)
-	for _, field := range []string{`"frame":{`, `"rest"`, `"hold":[`, `"columns"`, `"sheet"`} {
-		if strings.Contains(string(data), field) {
-			t.Fatalf("a puppet's sidecar writes %s: %s", field, data)
-		}
 	}
 }

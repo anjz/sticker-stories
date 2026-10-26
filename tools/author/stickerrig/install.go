@@ -21,8 +21,7 @@ import (
 // runInstall cuts every rig's parts out of its sheets into the pack's
 // atlas (anims/<sticker>.rig.webp, each part with its border silhouette),
 // writes the rig (anims/<sticker>.rig.json) and every animation's sidecar
-// (anims/<sticker>.<id>.json, played by the puppet alone: a sprite sheet
-// it replaces is deleted), and sets the sticker's animations in the
+// (anims/<sticker>.<id>.json), and sets the sticker's animations in the
 // manifest to the rig's, in its order.
 func runInstall(args []string) error {
 	fs := flag.NewFlagSet("install", flag.ExitOnError)
@@ -129,10 +128,6 @@ func (c *ctxt) install(r *rigSpec, templates map[string]animSpec, drop bool) err
 	for i, a := range anims {
 		side := sidecar(r.Sticker, a, box)
 		path := filepath.Join(c.packDir, filepath.FromSlash(paths[i]))
-		if old, err := manifest.LoadStickerAnimation(path); err == nil && old.Sheet != "" {
-			// The puppet plays it now: the sheet goes.
-			os.Remove(filepath.Join(c.packDir, filepath.FromSlash(old.Sheet)))
-		}
 		if err := writeJSON(path, side); err != nil {
 			return err
 		}

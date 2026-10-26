@@ -47,7 +47,7 @@ import (
 	"stickerstories/tools/internal/stickerimg"
 )
 
-// The OpenAI edits model, as stickerart and stickeranim use it (with
+// The OpenAI edits model, as stickerart uses it (with
 // -local, the local model's ID).
 var editModel = "gpt-image-2.5-sunburst"
 
