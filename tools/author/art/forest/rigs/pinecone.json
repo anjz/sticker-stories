@@ -551,16 +551,16 @@
       "description": "the pinecone rolls along to the right, tumbling over and over, then rocks to a stop upright.",
       "loop": {
         "from": 1,
-        "to": 6
+        "to": 12
       },
       "facing": "right",
-      "stride": 0.9,
+      "stride": 2.95,
       "keys": [
         {
           "hold": 0.1
         },
         {
-          "hold": 0.1,
+          "hold": 0.15,
           "ease": "linear",
           "bones": {
             "spin": {
@@ -573,14 +573,30 @@
           }
         },
         {
-          "hold": 0.1,
+          "hold": 0.15,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": 30
+            },
+            "root": {
+              "y": 36.0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.15,
           "ease": "linear",
           "bones": {
             "spin": {
               "r": 60
             },
             "root": {
-              "y": 65
+              "y": 65.0
             }
           },
           "slots": {
@@ -589,14 +605,30 @@
           }
         },
         {
-          "hold": 0.1,
+          "hold": 0.15,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": 90
+            },
+            "root": {
+              "y": 20.0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.15,
           "ease": "linear",
           "bones": {
             "spin": {
               "r": 120
             },
             "root": {
-              "y": -23
+              "y": -23.0
             }
           },
           "slots": {
@@ -605,14 +637,30 @@
           }
         },
         {
-          "hold": 0.1,
+          "hold": 0.15,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": 150
+            },
+            "root": {
+              "y": -19.0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.15,
           "ease": "linear",
           "bones": {
             "spin": {
               "r": 180
             },
             "root": {
-              "y": 32
+              "y": 31.0
             }
           },
           "slots": {
@@ -621,14 +669,30 @@
           }
         },
         {
-          "hold": 0.1,
+          "hold": 0.15,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": 210
+            },
+            "root": {
+              "y": 64.0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.15,
           "ease": "linear",
           "bones": {
             "spin": {
               "r": 240
             },
             "root": {
-              "y": 56
+              "y": 56.0
             }
           },
           "slots": {
@@ -637,14 +701,46 @@
           }
         },
         {
-          "hold": 0.1,
+          "hold": 0.15,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": 270
+            },
+            "root": {
+              "y": 8.0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.15,
           "ease": "linear",
           "bones": {
             "spin": {
               "r": 300
             },
             "root": {
-              "y": -26
+              "y": -25.0
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.15,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": 330
+            },
+            "root": {
+              "y": -26.0
             }
           },
           "slots": {

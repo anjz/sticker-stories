@@ -751,171 +751,26 @@
       "id": "crawl",
       "kind": "move",
       "description": "the sea turtle crawls along to the right on its flippers, slow and steady, then stops.",
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "facing": "right",
       "stride": 0.35,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.22,
-          "bones": {
-            "armL": {
-              "r": 18
-            },
-            "armR": {
-              "r": -10
-            },
-            "legB": {
-              "r": -10
-            },
-            "body": {
-              "r": -1.5
-            },
-            "root": {
-              "y": -3
-            },
-            "head": {
-              "r": -2
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "root": {
-              "y": 0
-            }
-          }
-        },
-        {
-          "hold": 0.22,
-          "bones": {
-            "armL": {
-              "r": -10
-            },
-            "armR": {
-              "r": 14
-            },
-            "legB": {
-              "r": 10
-            },
-            "body": {
-              "r": 1.5
-            },
-            "root": {
-              "y": -3
-            },
-            "head": {
-              "r": 2
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "root": {
-              "y": 0
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "belly": {
-              "sy": 0.98
-            }
-          }
-        },
-        {
-          "hold": 0.4
-        }
-      ]
+      "gait": {
+        "style": "turtle.crawl"
+      }
     },
     {
       "id": "swim",
       "kind": "move",
       "description": "the sea turtle swims along to the right, its front flippers sweeping like wings, then stops.",
-      "loop": {
-        "from": 1,
-        "to": 2
-      },
       "facing": "right",
-      "stride": 0.7,
+      "stride": 0.9,
       "on": [
         "sea"
       ],
       "stays": true,
       "waterline": 0.4,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.4,
-          "bones": {
-            "armL": {
-              "r": 30
-            },
-            "armR": {
-              "r": -28
-            },
-            "legB": {
-              "r": -14
-            },
-            "body": {
-              "r": -3
-            },
-            "root": {
-              "y": -6
-            },
-            "head": {
-              "r": -2
-            }
-          }
-        },
-        {
-          "hold": 0.4,
-          "bones": {
-            "armL": {
-              "r": -22
-            },
-            "armR": {
-              "r": 22
-            },
-            "legB": {
-              "r": 12
-            },
-            "body": {
-              "r": 2
-            },
-            "root": {
-              "y": 4
-            },
-            "head": {
-              "r": 2
-            }
-          }
-        },
-        {
-          "hold": 0.3,
-          "bones": {
-            "armL": {
-              "r": 4
-            },
-            "armR": {
-              "r": -4
-            }
-          }
-        },
-        {
-          "hold": 0.4
-        }
-      ]
+      "gait": {
+        "style": "turtle.swim"
+      }
     },
     {
       "id": "hide",

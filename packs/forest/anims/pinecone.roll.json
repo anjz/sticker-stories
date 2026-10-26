@@ -11,10 +11,10 @@
   },
   "loop": {
     "from": 1,
-    "to": 6
+    "to": 12
   },
   "facing": "right",
-  "stride": 0.9,
+  "stride": 2.95,
   "puppet": {
     "rig": "anims/pinecone.rig.json",
     "keys": [
@@ -22,7 +22,7 @@
         "hold": 0.1
       },
       {
-        "hold": 0.1,
+        "hold": 0.15,
         "ease": "linear",
         "bones": {
           "spin": {}
@@ -33,7 +33,23 @@
         }
       },
       {
-        "hold": 0.1,
+        "hold": 0.15,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": 36
+          },
+          "spin": {
+            "r": 30
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
         "ease": "linear",
         "bones": {
           "root": {
@@ -49,7 +65,23 @@
         }
       },
       {
-        "hold": 0.1,
+        "hold": 0.15,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": 20
+          },
+          "spin": {
+            "r": 90
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
         "ease": "linear",
         "bones": {
           "root": {
@@ -65,11 +97,27 @@
         }
       },
       {
-        "hold": 0.1,
+        "hold": 0.15,
         "ease": "linear",
         "bones": {
           "root": {
-            "y": 32
+            "y": -19
+          },
+          "spin": {
+            "r": 150
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": 31
           },
           "spin": {
             "r": 180
@@ -81,7 +129,23 @@
         }
       },
       {
-        "hold": 0.1,
+        "hold": 0.15,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": 64
+          },
+          "spin": {
+            "r": 210
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
         "ease": "linear",
         "bones": {
           "root": {
@@ -97,14 +161,46 @@
         }
       },
       {
-        "hold": 0.1,
+        "hold": 0.15,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": 8
+          },
+          "spin": {
+            "r": 270
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
+        "ease": "linear",
+        "bones": {
+          "root": {
+            "y": -25
+          },
+          "spin": {
+            "r": 300
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.15,
         "ease": "linear",
         "bones": {
           "root": {
             "y": -26
           },
           "spin": {
-            "r": 300
+            "r": 330
           }
         },
         "slots": {

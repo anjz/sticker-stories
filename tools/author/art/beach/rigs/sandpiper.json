@@ -646,210 +646,86 @@
       "kind": "move",
       "description": "the sandpiper flies along to the right on quick little wingbeats, then lands.",
       "facing": "right",
-      "flies": true,
       "wings": [
         "wingL",
         "wingR"
       ],
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "stride": 1.2,
-      "keys": [
-        {
-          "hold": 0.1
+      "gait": {
+        "style": "bird.flyquick",
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
         },
-        {
-          "hold": 0.12,
-          "bones": {
-            "wingL": {
-              "r": 24
+        "then": [
+          {
+            "hold": 0.28,
+            "bones": {
+              "wingL": {
+                "r": -6
+              },
+              "wingR": {
+                "r": 6
+              },
+              "body": {
+                "r": 2,
+                "y": -6
+              },
+              "legL": {
+                "r": 10,
+                "y": -8
+              },
+              "legR": {
+                "r": 10,
+                "y": -8
+              }
             },
-            "wingR": {
-              "r": -24
-            },
-            "body": {
-              "r": 6,
-              "y": -4
-            },
-            "head": {
-              "r": -4
-            },
-            "legL": {
-              "r": 35,
-              "y": -24
-            },
-            "legR": {
-              "r": 35,
-              "y": -24
+            "slots": {
+              "wingL": "none",
+              "wingOpen": "open",
+              "wingR": "open"
             }
           },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.12,
-          "bones": {
-            "wingL": {
-              "r": 0
+          {
+            "hold": 0.2,
+            "bones": {
+              "wingL": {
+                "r": 22
+              },
+              "wingR": {
+                "r": -22
+              },
+              "body": {
+                "r": -4
+              }
             },
-            "wingR": {
-              "r": 0
-            },
-            "body": {
-              "r": 6,
-              "y": -10
-            },
-            "head": {
-              "r": -4
-            },
-            "legL": {
-              "r": 35,
-              "y": -24
-            },
-            "legR": {
-              "r": 35,
-              "y": -24
+            "slots": {
+              "wingL": "none",
+              "wingOpen": "open",
+              "wingR": "open"
             }
           },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.12,
-          "bones": {
-            "wingL": {
-              "r": -14
-            },
-            "wingR": {
-              "r": 14
-            },
-            "body": {
-              "r": 6,
-              "y": -14
-            },
-            "head": {
-              "r": -4
-            },
-            "legL": {
-              "r": 35,
-              "y": -24
-            },
-            "legR": {
-              "r": 35,
-              "y": -24
+          {
+            "hold": 0.16,
+            "bones": {
+              "root": {
+                "y": 2
+              },
+              "belly": {
+                "sx": 1.04,
+                "sy": 0.95
+              },
+              "head": {
+                "y": 6
+              }
             }
           },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
+          {
+            "hold": 0.45
           }
-        },
-        {
-          "hold": 0.12,
-          "bones": {
-            "wingL": {
-              "r": 0
-            },
-            "wingR": {
-              "r": 0
-            },
-            "body": {
-              "r": 6,
-              "y": -10
-            },
-            "head": {
-              "r": -4
-            },
-            "legL": {
-              "r": 35,
-              "y": -24
-            },
-            "legR": {
-              "r": 35,
-              "y": -24
-            }
-          },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.28,
-          "bones": {
-            "wingL": {
-              "r": -6
-            },
-            "wingR": {
-              "r": 6
-            },
-            "body": {
-              "r": 2,
-              "y": -6
-            },
-            "legL": {
-              "r": 10,
-              "y": -8
-            },
-            "legR": {
-              "r": 10,
-              "y": -8
-            }
-          },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "wingL": {
-              "r": 22
-            },
-            "wingR": {
-              "r": -22
-            },
-            "body": {
-              "r": -4
-            }
-          },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "root": {
-              "y": 2
-            },
-            "belly": {
-              "sx": 1.04,
-              "sy": 0.95
-            },
-            "head": {
-              "y": 6
-            }
-          }
-        },
-        {
-          "hold": 0.45
-        }
-      ]
+        ]
+      }
     },
     {
       "id": "run",
@@ -860,111 +736,9 @@
         "shore",
         "sand"
       ],
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
-      "stride": 0.5,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.12,
-          "bones": {
-            "legR": {
-              "r": -14
-            },
-            "legL": {
-              "r": 22
-            },
-            "root": {
-              "y": -5
-            },
-            "body": {
-              "r": 4
-            },
-            "head": {
-              "r": -3
-            }
-          }
-        },
-        {
-          "hold": 0.12,
-          "bones": {
-            "legR": {
-              "r": 18
-            },
-            "legL": {
-              "r": 0
-            },
-            "root": {
-              "y": 0
-            },
-            "body": {
-              "r": 4
-            },
-            "head": {
-              "r": -3
-            }
-          }
-        },
-        {
-          "hold": 0.12,
-          "bones": {
-            "legR": {
-              "r": 26
-            },
-            "legL": {
-              "r": -24
-            },
-            "root": {
-              "y": -5
-            },
-            "body": {
-              "r": 4
-            },
-            "head": {
-              "r": -3
-            }
-          }
-        },
-        {
-          "hold": 0.12,
-          "bones": {
-            "legR": {
-              "r": 4
-            },
-            "legL": {
-              "r": 0
-            },
-            "root": {
-              "y": 0
-            },
-            "body": {
-              "r": 4
-            },
-            "head": {
-              "r": -3
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "body": {
-              "r": 1
-            },
-            "belly": {
-              "sx": 1.03,
-              "sy": 0.97
-            }
-          }
-        },
-        {
-          "hold": 0.45
-        }
-      ]
+      "gait": {
+        "style": "wader.run"
+      }
     },
     {
       "id": "bob",

@@ -576,210 +576,86 @@
       "kind": "move",
       "description": "the pelican flies along to the left on big slow wingbeats, then glides down and lands.",
       "facing": "left",
-      "flies": true,
       "wings": [
         "wingL",
         "wingR"
       ],
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "stride": 1.1,
-      "keys": [
-        {
-          "hold": 0.12
+      "gait": {
+        "style": "bird.soarslow",
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
         },
-        {
-          "hold": 0.2,
-          "bones": {
-            "wingL": {
-              "r": -28
+        "then": [
+          {
+            "hold": 0.3,
+            "bones": {
+              "wingL": {
+                "r": 8
+              },
+              "wingR": {
+                "r": -8
+              },
+              "body": {
+                "r": -2,
+                "y": -6
+              },
+              "legL": {
+                "r": 12,
+                "y": -10
+              },
+              "legR": {
+                "r": 12,
+                "y": -10
+              }
             },
-            "wingR": {
-              "r": 28
-            },
-            "body": {
-              "r": -6,
-              "y": -4
-            },
-            "head": {
-              "r": 6
-            },
-            "legL": {
-              "r": -35,
-              "y": -26
-            },
-            "legR": {
-              "r": -35,
-              "y": -26
+            "slots": {
+              "wingL": "none",
+              "wingOpen": "open",
+              "wingR": "open"
             }
           },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.18,
-          "bones": {
-            "wingL": {
-              "r": 0
+          {
+            "hold": 0.2,
+            "bones": {
+              "wingL": {
+                "r": -24
+              },
+              "wingR": {
+                "r": 24
+              },
+              "body": {
+                "r": 4
+              }
             },
-            "wingR": {
-              "r": 0
-            },
-            "body": {
-              "r": -6,
-              "y": -10
-            },
-            "head": {
-              "r": 6
-            },
-            "legL": {
-              "r": -35,
-              "y": -26
-            },
-            "legR": {
-              "r": -35,
-              "y": -26
+            "slots": {
+              "wingL": "none",
+              "wingOpen": "open",
+              "wingR": "open"
             }
           },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "wingL": {
-              "r": 30
-            },
-            "wingR": {
-              "r": -30
-            },
-            "body": {
-              "r": -6,
-              "y": -14
-            },
-            "head": {
-              "r": 6
-            },
-            "legL": {
-              "r": -35,
-              "y": -26
-            },
-            "legR": {
-              "r": -35,
-              "y": -26
+          {
+            "hold": 0.16,
+            "bones": {
+              "root": {
+                "y": 2
+              },
+              "belly": {
+                "sx": 1.04,
+                "sy": 0.95
+              },
+              "head": {
+                "y": 6
+              }
             }
           },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
+          {
+            "hold": 0.45
           }
-        },
-        {
-          "hold": 0.18,
-          "bones": {
-            "wingL": {
-              "r": 0
-            },
-            "wingR": {
-              "r": 0
-            },
-            "body": {
-              "r": -6,
-              "y": -10
-            },
-            "head": {
-              "r": 6
-            },
-            "legL": {
-              "r": -35,
-              "y": -26
-            },
-            "legR": {
-              "r": -35,
-              "y": -26
-            }
-          },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.3,
-          "bones": {
-            "wingL": {
-              "r": 8
-            },
-            "wingR": {
-              "r": -8
-            },
-            "body": {
-              "r": -2,
-              "y": -6
-            },
-            "legL": {
-              "r": 12,
-              "y": -10
-            },
-            "legR": {
-              "r": 12,
-              "y": -10
-            }
-          },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "wingL": {
-              "r": -24
-            },
-            "wingR": {
-              "r": 24
-            },
-            "body": {
-              "r": 4
-            }
-          },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "root": {
-              "y": 2
-            },
-            "belly": {
-              "sx": 1.04,
-              "sy": 0.95
-            },
-            "head": {
-              "y": 6
-            }
-          }
-        },
-        {
-          "hold": 0.45
-        }
-      ]
+        ]
+      }
     },
     {
       "id": "float",
@@ -791,95 +667,11 @@
       ],
       "stays": true,
       "waterline": 0.2,
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "stride": 0.4,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "legL": {
-              "r": 18
-            },
-            "legR": {
-              "r": -18
-            },
-            "root": {
-              "y": 0
-            },
-            "body": {
-              "r": -2
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "legL": {
-              "r": 0
-            },
-            "legR": {
-              "r": 0
-            },
-            "root": {
-              "y": 3
-            },
-            "body": {
-              "r": -1
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "legL": {
-              "r": -18
-            },
-            "legR": {
-              "r": 18
-            },
-            "root": {
-              "y": 0
-            },
-            "body": {
-              "r": -2
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "legL": {
-              "r": 0
-            },
-            "legR": {
-              "r": 0
-            },
-            "root": {
-              "y": 3
-            },
-            "body": {
-              "r": -1
-            }
-          }
-        },
-        {
-          "hold": 0.25,
-          "bones": {
-            "root": {
-              "y": 1
-            }
-          }
-        },
-        {
-          "hold": 0.45
-        }
-      ]
+      "gait": {
+        "style": "bird.paddle",
+        "cycle": 1.0
+      }
     },
     {
       "id": "gulp",

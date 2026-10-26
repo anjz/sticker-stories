@@ -644,96 +644,11 @@
       "id": "scuttle",
       "kind": "move",
       "description": "the hermit crab scuttles along to the right on its little legs, carrying its shell, then stops.",
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "facing": "right",
-      "stride": 0.4,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.13,
-          "bones": {
-            "legL1": {
-              "r": 8,
-              "y": -6
-            },
-            "legR2": {
-              "r": -8,
-              "y": -6
-            },
-            "body": {
-              "y": -3
-            },
-            "shell": {
-              "r": 1.5,
-              "y": -3
-            },
-            "clawL": {
-              "r": -4
-            }
-          }
-        },
-        {
-          "hold": 0.13,
-          "bones": {
-            "body": {
-              "y": 0
-            },
-            "shell": {
-              "r": 0
-            }
-          }
-        },
-        {
-          "hold": 0.13,
-          "bones": {
-            "legL2": {
-              "r": 8,
-              "y": -6
-            },
-            "legR1": {
-              "r": -8,
-              "y": -6
-            },
-            "body": {
-              "y": -3
-            },
-            "shell": {
-              "r": -1.5,
-              "y": -3
-            },
-            "clawR": {
-              "r": 4
-            }
-          }
-        },
-        {
-          "hold": 0.13,
-          "bones": {
-            "body": {
-              "y": 0
-            },
-            "shell": {
-              "r": 0
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "belly": {
-              "sy": 0.97
-            }
-          }
-        },
-        {
-          "hold": 0.3
-        }
-      ]
+      "stride": 0.14,
+      "gait": {
+        "style": "crab.hermit"
+      }
     },
     {
       "id": "peek",

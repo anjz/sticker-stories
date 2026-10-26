@@ -11,7 +11,7 @@
   },
   "loop": {
     "from": 1,
-    "to": 4
+    "to": 12
   },
   "facing": "right",
   "stride": 0.7,
@@ -24,88 +24,354 @@
     "rig": "anims/fish.rig.json",
     "keys": [
       {
-        "hold": 0.1
+        "hold": 0.2
       },
       {
-        "hold": 0.16,
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "body": {},
+          "finBack": {
+            "r": -4.85
+          },
+          "finFront": {
+            "r": -4.87
+          },
+          "finSide": {
+            "r": -5.75
+          },
+          "finTop": {
+            "r": 3.64
+          },
+          "root": {
+            "y": -1.13
+          },
+          "tail": {
+            "r": -16.75
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
         "bones": {
           "body": {
-            "r": -2
+            "r": 1.1
+          },
+          "finBack": {
+            "r": -5.97
+          },
+          "finFront": {
+            "r": -4.78
+          },
+          "finSide": {
+            "r": 0.28
+          },
+          "finTop": {
+            "r": 3.98
+          },
+          "root": {
+            "y": -1.8
+          },
+          "tail": {
+            "r": -14.16
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 1.91
+          },
+          "finBack": {
+            "r": -5.48
+          },
+          "finFront": {
+            "r": -3.42
+          },
+          "finSide": {
+            "r": 6.24
+          },
+          "finTop": {
+            "r": 3.26
+          },
+          "root": {
+            "y": -1.99
+          },
+          "tail": {
+            "r": -7.78
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 2.2
+          },
+          "finBack": {
+            "r": -3.53
+          },
+          "finFront": {
+            "r": -1.14
+          },
+          "finSide": {
+            "r": 10.53
+          },
+          "finTop": {
+            "r": 1.66
+          },
+          "root": {
+            "y": -1.65
+          },
+          "tail": {
+            "r": 0.69
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 1.91
+          },
+          "finBack": {
+            "r": -0.63
+          },
+          "finFront": {
+            "r": 1.45
           },
           "finSide": {
             "r": 12
           },
           "finTop": {
-            "r": -4.5
+            "r": -0.38
           },
           "root": {
-            "y": -3
+            "y": -0.86
           },
           "tail": {
-            "r": 18
+            "r": 8.97
           }
         }
       },
       {
-        "hold": 0.16,
-        "bones": {
-          "body": {},
-          "finSide": {},
-          "finTop": {},
-          "root": {},
-          "tail": {}
-        }
-      },
-      {
-        "hold": 0.16,
+        "hold": 0.05,
+        "ease": "linear",
         "bones": {
           "body": {
-            "r": 2
+            "r": 1.1
+          },
+          "finBack": {
+            "r": 2.44
+          },
+          "finFront": {
+            "r": 3.65
           },
           "finSide": {
-            "r": -10
+            "r": 10.25
           },
           "finTop": {
-            "r": 4.5
+            "r": -2.32
           },
           "root": {
-            "y": -3
+            "y": 0.15
           },
           "tail": {
-            "r": -18
+            "r": 14.85
           }
         }
       },
       {
-        "hold": 0.16,
+        "hold": 0.05,
+        "ease": "linear",
         "bones": {
           "body": {},
-          "finSide": {},
-          "finTop": {},
-          "root": {},
-          "tail": {}
-        }
-      },
-      {
-        "hold": 0.25,
-        "bones": {
-          "body": {},
+          "finBack": {
+            "r": 4.85
+          },
+          "finFront": {
+            "r": 4.87
+          },
           "finSide": {
-            "r": 4
+            "r": 5.75
           },
           "finTop": {
-            "r": -1.5
+            "r": -3.64
           },
           "root": {
-            "y": -1
+            "y": 1.13
           },
           "tail": {
-            "r": 6
+            "r": 16.75
           }
         }
       },
       {
-        "hold": 0.4
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -1.1
+          },
+          "finBack": {
+            "r": 5.97
+          },
+          "finFront": {
+            "r": 4.78
+          },
+          "finSide": {
+            "r": -0.28
+          },
+          "finTop": {
+            "r": -3.98
+          },
+          "root": {
+            "y": 1.8
+          },
+          "tail": {
+            "r": 14.16
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -1.91
+          },
+          "finBack": {
+            "r": 5.48
+          },
+          "finFront": {
+            "r": 3.42
+          },
+          "finSide": {
+            "r": -6.24
+          },
+          "finTop": {
+            "r": -3.26
+          },
+          "root": {
+            "y": 1.99
+          },
+          "tail": {
+            "r": 7.78
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -2.2
+          },
+          "finBack": {
+            "r": 3.53
+          },
+          "finFront": {
+            "r": 1.14
+          },
+          "finSide": {
+            "r": -10.53
+          },
+          "finTop": {
+            "r": -1.66
+          },
+          "root": {
+            "y": 1.65
+          },
+          "tail": {
+            "r": -0.69
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -1.91
+          },
+          "finBack": {
+            "r": 0.63
+          },
+          "finFront": {
+            "r": -1.45
+          },
+          "finSide": {
+            "r": -12
+          },
+          "finTop": {
+            "r": 0.38
+          },
+          "root": {
+            "y": 0.86
+          },
+          "tail": {
+            "r": -8.97
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -1.1
+          },
+          "finBack": {
+            "r": -2.44
+          },
+          "finFront": {
+            "r": -3.65
+          },
+          "finSide": {
+            "r": -10.25
+          },
+          "finTop": {
+            "r": 2.32
+          },
+          "root": {
+            "y": -0.15
+          },
+          "tail": {
+            "r": -14.85
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {},
+          "finBack": {
+            "r": -1.7
+          },
+          "finFront": {
+            "r": -1.7
+          },
+          "finSide": {
+            "r": -2.01
+          },
+          "finTop": {
+            "r": 1.27
+          },
+          "root": {
+            "y": -0.4
+          },
+          "tail": {
+            "r": -5.86
+          }
+        }
+      },
+      {
+        "hold": 0.35
       }
     ]
   }

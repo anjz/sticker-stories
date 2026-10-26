@@ -910,104 +910,12 @@
       "id": "scamper",
       "kind": "move",
       "description": "the squirrel bounds along to the left, its big bushy tail waving, then sits up with its nut.",
-      "loop": {
-        "from": 1,
-        "to": 3
-      },
       "facing": "left",
       "stride": 0.8,
-      "hops": true,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.19,
-          "bones": {
-            "root": {
-              "y": 5
-            },
-            "belly": {
-              "sx": 1.05,
-              "sy": 0.93
-            },
-            "head": {
-              "y": 6
-            },
-            "tail": {
-              "r": 6
-            }
-          }
-        },
-        {
-          "hold": 0.19,
-          "ease": "out",
-          "bones": {
-            "root": {
-              "y": -46
-            },
-            "body": {
-              "r": -8
-            },
-            "head": {
-              "r": -3
-            },
-            "legL": {
-              "r": 18,
-              "x": 10
-            },
-            "legR": {
-              "r": 18,
-              "x": 10
-            },
-            "armL": {
-              "r": -12
-            },
-            "armR": {
-              "r": -12
-            },
-            "tail": {
-              "r": -10
-            },
-            "belly": {
-              "sy": 1.04
-            }
-          }
-        },
-        {
-          "hold": 0.19,
-          "ease": "in",
-          "bones": {
-            "root": {
-              "y": 0
-            },
-            "body": {
-              "r": -3
-            },
-            "belly": {
-              "sy": 0.95,
-              "sx": 1.03
-            },
-            "tail": {
-              "r": 8
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "belly": {
-              "sy": 0.97
-            },
-            "tail": {
-              "r": 4
-            }
-          }
-        },
-        {
-          "hold": 0.4
-        }
-      ]
+      "gait": {
+        "style": "hopper.bound",
+        "cycle": 0.7
+      }
     },
     {
       "id": "nibble",

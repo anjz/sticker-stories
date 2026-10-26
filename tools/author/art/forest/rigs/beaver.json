@@ -1035,119 +1035,15 @@
       "id": "waddle",
       "kind": "move",
       "description": "the beaver waddles along to the left on its hind legs holding its stick, flat tail dragging, then stops.",
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "facing": "left",
-      "stride": 0.4,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.21,
-          "bones": {
-            "root": {
-              "y": -3
-            },
-            "body": {
-              "r": 4,
-              "y": -4
-            },
-            "head": {
-              "r": -3
-            },
-            "legL": {
-              "y": -18,
-              "x": -7,
-              "r": 9
-            },
-            "legR": {
-              "x": 3
-            },
-            "tail": {
-              "r": 2,
-              "x": 3
-            },
-            "belly": {
-              "sy": 1.02
-            }
-          }
-        },
-        {
-          "hold": 0.19,
-          "bones": {
-            "body": {
-              "y": 2
-            },
-            "belly": {
-              "sy": 0.98,
-              "sx": 1.01
-            },
-            "tail": {
-              "x": 1
-            }
-          }
-        },
-        {
-          "hold": 0.21,
-          "bones": {
-            "root": {
-              "y": -3
-            },
-            "body": {
-              "r": -4,
-              "y": -4
-            },
-            "head": {
-              "r": 3
-            },
-            "legR": {
-              "y": -18,
-              "x": -7,
-              "r": 9
-            },
-            "legL": {
-              "x": 3
-            },
-            "tail": {
-              "r": -2,
-              "x": 3
-            },
-            "belly": {
-              "sy": 1.02
-            }
-          }
-        },
-        {
-          "hold": 0.19,
-          "bones": {
-            "body": {
-              "y": 2
-            },
-            "belly": {
-              "sy": 0.98,
-              "sx": 1.01
-            },
-            "tail": {
-              "x": 1
-            }
-          }
-        },
-        {
-          "hold": 0.25,
-          "bones": {
-            "belly": {
-              "sy": 0.97,
-              "sx": 1.02
-            }
-          }
-        },
-        {
-          "hold": 0.3
-        }
-      ]
+      "gait": {
+        "style": "upright.waddle",
+        "still": [
+          "armL",
+          "armR",
+          "stick"
+        ]
+      }
     },
     {
       "id": "tail-slap",

@@ -709,325 +709,101 @@
       "kind": "move",
       "description": "the seagull flies along to the left flapping its long wings, then glides down and lands.",
       "facing": "left",
-      "flies": true,
       "wings": [
         "wingL",
         "wingR"
       ],
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "stride": 1.2,
-      "keys": [
-        {
-          "hold": 0.1
+      "gait": {
+        "style": "bird.soar",
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
         },
-        {
-          "hold": 0.18,
-          "bones": {
-            "wingL": {
-              "r": -24
+        "then": [
+          {
+            "hold": 0.28,
+            "bones": {
+              "wingL": {
+                "r": 6
+              },
+              "wingR": {
+                "r": -6
+              },
+              "body": {
+                "r": -2,
+                "y": -6
+              },
+              "legL": {
+                "r": -10,
+                "y": -8
+              },
+              "legR": {
+                "r": -10,
+                "y": -8
+              }
             },
-            "wingR": {
-              "r": 24
-            },
-            "body": {
-              "r": -6,
-              "y": -4
-            },
-            "head": {
-              "r": 4
-            },
-            "legL": {
-              "r": -35,
-              "y": -24
-            },
-            "legR": {
-              "r": -35,
-              "y": -24
+            "slots": {
+              "wingL": "none",
+              "wingOpen": "open",
+              "wingR": "open"
             }
           },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "wingL": {
-              "r": 0
+          {
+            "hold": 0.2,
+            "bones": {
+              "wingL": {
+                "r": -22
+              },
+              "wingR": {
+                "r": 22
+              },
+              "body": {
+                "r": 4
+              }
             },
-            "wingR": {
-              "r": 0
-            },
-            "body": {
-              "r": -6,
-              "y": -10
-            },
-            "head": {
-              "r": 4
-            },
-            "legL": {
-              "r": -35,
-              "y": -24
-            },
-            "legR": {
-              "r": -35,
-              "y": -24
+            "slots": {
+              "wingL": "none",
+              "wingOpen": "open",
+              "wingR": "open"
             }
           },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.18,
-          "bones": {
-            "wingL": {
-              "r": 26
-            },
-            "wingR": {
-              "r": -26
-            },
-            "body": {
-              "r": -6,
-              "y": -14
-            },
-            "head": {
-              "r": 4
-            },
-            "legL": {
-              "r": -35,
-              "y": -24
-            },
-            "legR": {
-              "r": -35,
-              "y": -24
+          {
+            "hold": 0.16,
+            "bones": {
+              "root": {
+                "y": 2
+              },
+              "belly": {
+                "sx": 1.04,
+                "sy": 0.95
+              },
+              "head": {
+                "y": 6
+              }
             }
           },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
+          {
+            "hold": 0.45
           }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "wingL": {
-              "r": 0
-            },
-            "wingR": {
-              "r": 0
-            },
-            "body": {
-              "r": -6,
-              "y": -10
-            },
-            "head": {
-              "r": 4
-            },
-            "legL": {
-              "r": -35,
-              "y": -24
-            },
-            "legR": {
-              "r": -35,
-              "y": -24
-            }
-          },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.28,
-          "bones": {
-            "wingL": {
-              "r": 6
-            },
-            "wingR": {
-              "r": -6
-            },
-            "body": {
-              "r": -2,
-              "y": -6
-            },
-            "legL": {
-              "r": -10,
-              "y": -8
-            },
-            "legR": {
-              "r": -10,
-              "y": -8
-            }
-          },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "wingL": {
-              "r": -22
-            },
-            "wingR": {
-              "r": 22
-            },
-            "body": {
-              "r": 4
-            }
-          },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "root": {
-              "y": 2
-            },
-            "belly": {
-              "sx": 1.04,
-              "sy": 0.95
-            },
-            "head": {
-              "y": 6
-            }
-          }
-        },
-        {
-          "hold": 0.45
-        }
-      ]
+        ]
+      }
     },
     {
       "id": "hop",
       "kind": "move",
       "description": "the seagull hops along to the left on both feet, wings folded, then stops.",
       "facing": "left",
-      "hops": true,
       "on": [
         "sand",
         "rocks"
       ],
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "stride": 0.45,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.14,
-          "bones": {
-            "root": {
-              "y": 5
-            },
-            "belly": {
-              "sx": 1.07,
-              "sy": 0.93
-            },
-            "legL": {
-              "r": 0,
-              "y": 0
-            },
-            "legR": {
-              "r": 0,
-              "y": 0
-            }
-          }
-        },
-        {
-          "hold": 0.16,
-          "ease": "out",
-          "bones": {
-            "root": {
-              "y": -26
-            },
-            "belly": {
-              "sx": 0.95,
-              "sy": 1.05
-            },
-            "legL": {
-              "r": -14,
-              "y": -4.333
-            },
-            "legR": {
-              "r": -14,
-              "y": -4.333
-            }
-          }
-        },
-        {
-          "hold": 0.14,
-          "ease": "in",
-          "bones": {
-            "root": {
-              "y": -22
-            },
-            "belly": {
-              "sx": 0.97,
-              "sy": 1.03
-            },
-            "legL": {
-              "r": -10,
-              "y": -3.667
-            },
-            "legR": {
-              "r": -10,
-              "y": -3.667
-            }
-          }
-        },
-        {
-          "hold": 0.12,
-          "bones": {
-            "root": {
-              "y": 3
-            },
-            "belly": {
-              "sx": 1.05,
-              "sy": 0.95
-            },
-            "legL": {
-              "r": 0,
-              "y": 0
-            },
-            "legR": {
-              "r": 0,
-              "y": 0
-            }
-          }
-        },
-        {
-          "hold": 0.15,
-          "bones": {
-            "belly": {
-              "sx": 1.02,
-              "sy": 0.98
-            }
-          }
-        },
-        {
-          "hold": 0.45
-        }
-      ]
+      "gait": {
+        "style": "bird.hop",
+        "cycle": 0.6
+      }
     },
     {
       "id": "flap",

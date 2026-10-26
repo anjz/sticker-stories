@@ -727,91 +727,10 @@
       "kind": "move",
       "description": "the caterpillar crawls along to the left, a hump rippling through its body, then stops.",
       "facing": "left",
-      "stride": 0.35,
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "seg4": {
-              "y": -22,
-              "r": -6
-            },
-            "seg3": {
-              "y": 22,
-              "r": 6
-            },
-            "head": {
-              "y": -2
-            }
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "seg3": {
-              "y": -24
-            },
-            "seg2": {
-              "y": 24
-            },
-            "seg4": {
-              "x": -4
-            },
-            "head": {
-              "y": 2
-            }
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "seg2": {
-              "y": -24
-            },
-            "body": {
-              "y": 24
-            },
-            "seg4": {
-              "x": -8
-            },
-            "head": {
-              "y": -2
-            }
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "body": {
-              "y": -16,
-              "r": 3
-            },
-            "head": {
-              "y": -4,
-              "r": -3
-            },
-            "seg4": {
-              "x": -4
-            },
-            "belly": {
-              "sx": 1.03
-            }
-          }
-        },
-        {
-          "hold": 0.2
-        },
-        {
-          "hold": 0.3
-        }
-      ]
+      "stride": 0.08,
+      "gait": {
+        "style": "caterpillar.crawl"
+      }
     },
     {
       "id": "wiggle",

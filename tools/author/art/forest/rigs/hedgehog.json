@@ -851,97 +851,10 @@
       "id": "scurry",
       "kind": "move",
       "description": "the hedgehog scurries along to the left on its tiny feet, then stops.",
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "facing": "left",
-      "stride": 0.4,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.14,
-          "bones": {
-            "legFN": {
-              "x": -14,
-              "y": -10
-            },
-            "legBF": {
-              "x": -12,
-              "y": -8
-            },
-            "legFF": {
-              "x": 8
-            },
-            "legBN": {
-              "x": 8
-            },
-            "body": {
-              "y": -6,
-              "r": -1
-            },
-            "head": {
-              "r": 1
-            }
-          }
-        },
-        {
-          "hold": 0.14,
-          "bones": {
-            "body": {
-              "y": 0
-            }
-          }
-        },
-        {
-          "hold": 0.14,
-          "bones": {
-            "legFF": {
-              "x": -14,
-              "y": -10
-            },
-            "legBN": {
-              "x": -12,
-              "y": -10
-            },
-            "legFN": {
-              "x": 8
-            },
-            "legBF": {
-              "x": 8
-            },
-            "body": {
-              "y": -6,
-              "r": 1
-            },
-            "head": {
-              "r": -1
-            }
-          }
-        },
-        {
-          "hold": 0.14,
-          "bones": {
-            "body": {
-              "y": 0
-            }
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "belly": {
-              "sy": 0.97,
-              "sx": 1.02
-            }
-          }
-        },
-        {
-          "hold": 0.45
-        }
-      ]
+      "gait": {
+        "style": "quadruped.scurry"
+      }
     },
     {
       "id": "sniff",

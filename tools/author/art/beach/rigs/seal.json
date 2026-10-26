@@ -807,163 +807,26 @@
       "id": "flop",
       "kind": "move",
       "description": "the seal flops along to the left on its belly, humping forward, then stops.",
-      "loop": {
-        "from": 1,
-        "to": 2
-      },
       "facing": "left",
       "stride": 0.4,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.3,
-          "ease": "out",
-          "bones": {
-            "body": {
-              "r": 5
-            },
-            "belly": {
-              "sx": 0.95,
-              "sy": 1.06
-            },
-            "head": {
-              "r": -3,
-              "y": -6
-            },
-            "armR": {
-              "r": 18
-            },
-            "armL": {
-              "r": -10
-            },
-            "tail": {
-              "r": -14
-            },
-            "root": {
-              "y": -10
-            }
-          }
-        },
-        {
-          "hold": 0.3,
-          "bones": {
-            "body": {
-              "r": -3
-            },
-            "belly": {
-              "sx": 1.06,
-              "sy": 0.94
-            },
-            "head": {
-              "r": 3,
-              "y": 4
-            },
-            "armR": {
-              "r": -12
-            },
-            "armL": {
-              "r": 12
-            },
-            "tail": {
-              "r": 10
-            },
-            "root": {
-              "y": 0
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "belly": {
-              "sy": 0.98
-            }
-          }
-        },
-        {
-          "hold": 0.3
-        }
-      ]
+      "gait": {
+        "style": "seal.galumph"
+      }
     },
     {
       "id": "swim",
       "kind": "move",
       "description": "the seal swims along to the left, its head up and its flippers paddling, then stops.",
-      "loop": {
-        "from": 1,
-        "to": 2
-      },
       "facing": "left",
-      "stride": 0.7,
+      "stride": 0.9,
       "on": [
         "sea"
       ],
       "stays": true,
       "waterline": 0.4,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.35,
-          "bones": {
-            "body": {
-              "r": -3
-            },
-            "head": {
-              "r": -4
-            },
-            "armR": {
-              "r": 28
-            },
-            "armL": {
-              "r": -16
-            },
-            "tail": {
-              "r": -18
-            },
-            "root": {
-              "y": -4
-            }
-          }
-        },
-        {
-          "hold": 0.35,
-          "bones": {
-            "body": {
-              "r": 2
-            },
-            "head": {
-              "r": 2
-            },
-            "armR": {
-              "r": -14
-            },
-            "armL": {
-              "r": 10
-            },
-            "tail": {
-              "r": 14
-            },
-            "root": {
-              "y": 3
-            }
-          }
-        },
-        {
-          "hold": 0.25,
-          "bones": {
-            "head": {
-              "r": -1
-            }
-          }
-        },
-        {
-          "hold": 0.3
-        }
-      ]
+      "gait": {
+        "style": "seal.swim"
+      }
     },
     {
       "id": "bask",

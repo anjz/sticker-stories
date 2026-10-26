@@ -11,83 +11,256 @@
   },
   "loop": {
     "from": 1,
-    "to": 4
+    "to": 12
   },
   "facing": "left",
-  "stride": 0.25,
+  "stride": 0.15,
   "puppet": {
     "rig": "anims/urchin.rig.json",
     "keys": [
       {
-        "hold": 0.1
+        "hold": 0.2
       },
       {
-        "hold": 0.17,
+        "hold": 0.1,
+        "ease": "linear",
         "bones": {
           "belly": {
-            "sx": 1.04,
-            "sy": 0.96
+            "sx": 1,
+            "sy": 1
+          },
+          "face": {
+            "x": -1.5
+          },
+          "root": {},
+          "spines": {
+            "r": -2.15
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.017,
+            "sy": 0.983
+          },
+          "face": {
+            "x": -2.25
+          },
+          "root": {
+            "y": -0.37
+          },
+          "spines": {
+            "r": -0.82
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.017,
+            "sy": 0.983
+          },
+          "face": {
+            "x": -2.8
+          },
+          "root": {
+            "y": -1.12
+          },
+          "spines": {
+            "r": 0.73
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1,
+            "sy": 1
           },
           "face": {
             "x": -3
           },
+          "root": {
+            "y": -1.5
+          },
           "spines": {
-            "r": -3
+            "r": 2.09
           }
         }
       },
       {
-        "hold": 0.17,
+        "hold": 0.1,
+        "ease": "linear",
         "bones": {
           "belly": {
-            "sx": 0.98,
-            "sy": 1.02
-          },
-          "root": {
-            "y": -3
-          },
-          "spines": {}
-        }
-      },
-      {
-        "hold": 0.17,
-        "bones": {
-          "belly": {
-            "sx": 1.04,
-            "sy": 0.96
+            "sx": 0.983,
+            "sy": 1.017
           },
           "face": {
-            "x": -3
-          },
-          "spines": {
-            "r": 3
-          }
-        }
-      },
-      {
-        "hold": 0.17,
-        "bones": {
-          "belly": {
-            "sx": 0.98,
-            "sy": 1.02
+            "x": -2.8
           },
           "root": {
-            "y": -3
+            "y": -1.13
           },
-          "spines": {}
-        }
-      },
-      {
-        "hold": 0.2,
-        "bones": {
-          "belly": {
-            "sx": 1.02,
-            "sy": 0.97
+          "spines": {
+            "r": 2.89
           }
         }
       },
       {
-        "hold": 0.3
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 0.983,
+            "sy": 1.017
+          },
+          "face": {
+            "x": -2.25
+          },
+          "root": {
+            "y": -0.38
+          },
+          "spines": {
+            "r": 2.91
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1,
+            "sy": 1
+          },
+          "face": {
+            "x": -1.5
+          },
+          "root": {},
+          "spines": {
+            "r": 2.15
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.017,
+            "sy": 0.983
+          },
+          "face": {
+            "x": -0.75
+          },
+          "root": {
+            "y": -0.38
+          },
+          "spines": {
+            "r": 0.82
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1.017,
+            "sy": 0.983
+          },
+          "face": {
+            "x": -0.2
+          },
+          "root": {
+            "y": -1.12
+          },
+          "spines": {
+            "r": -0.73
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 1,
+            "sy": 1
+          },
+          "face": {},
+          "root": {
+            "y": -1.5
+          },
+          "spines": {
+            "r": -2.09
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 0.983,
+            "sy": 1.017
+          },
+          "face": {
+            "x": -0.2
+          },
+          "root": {
+            "y": -1.12
+          },
+          "spines": {
+            "r": -2.89
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "ease": "linear",
+        "bones": {
+          "belly": {
+            "sx": 0.983,
+            "sy": 1.017
+          },
+          "face": {
+            "x": -0.75
+          },
+          "root": {
+            "y": -0.38
+          },
+          "spines": {
+            "r": -2.91
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "belly": {
+            "sx": 1,
+            "sy": 1
+          },
+          "face": {
+            "x": -0.52
+          },
+          "root": {},
+          "spines": {
+            "r": -0.75
+          }
+        }
+      },
+      {
+        "hold": 0.35
       }
     ]
   }

@@ -11,7 +11,7 @@
   },
   "loop": {
     "from": 1,
-    "to": 4
+    "to": 12
   },
   "facing": "left",
   "stride": 0.4,
@@ -24,74 +24,237 @@
     "rig": "anims/pelican.rig.json",
     "keys": [
       {
-        "hold": 0.1
+        "hold": 0.2
       },
       {
-        "hold": 0.2,
+        "hold": 0.083,
+        "ease": "linear",
         "bones": {
           "body": {
-            "r": -2
+            "r": -0.2
           },
           "legL": {
-            "r": 18
+            "r": -1
           },
           "legR": {
-            "r": -18
+            "r": -1
           },
           "root": {}
         }
       },
       {
-        "hold": 0.2,
+        "hold": 0.083,
+        "ease": "linear",
         "bones": {
           "body": {
-            "r": -1
+            "r": -0.6
           },
-          "legL": {},
-          "legR": {},
+          "legL": {
+            "r": -12.19
+          },
+          "legR": {
+            "r": 6.71
+          },
+          "root": {
+            "y": 0.75
+          }
+        }
+      },
+      {
+        "hold": 0.083,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -1.4
+          },
+          "legL": {
+            "r": -19.25
+          },
+          "legR": {
+            "r": 13.2
+          },
+          "root": {
+            "y": 2.25
+          }
+        }
+      },
+      {
+        "hold": 0.083,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -1.8
+          },
+          "legL": {
+            "r": -19.25
+          },
+          "legR": {
+            "r": 17.25
+          },
           "root": {
             "y": 3
           }
         }
       },
       {
-        "hold": 0.2,
+        "hold": 0.083,
+        "ease": "linear",
         "bones": {
           "body": {
-            "r": -2
+            "r": -1.4
           },
           "legL": {
-            "r": -18
+            "r": -15.2
           },
           "legR": {
-            "r": 18
+            "r": 17.25
+          },
+          "root": {
+            "y": 2.25
+          }
+        }
+      },
+      {
+        "hold": 0.083,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -0.6
+          },
+          "legL": {
+            "r": -8.71
+          },
+          "legR": {
+            "r": 10.19
+          },
+          "root": {
+            "y": 0.75
+          }
+        }
+      },
+      {
+        "hold": 0.083,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -0.2
+          },
+          "legL": {
+            "r": -1
+          },
+          "legR": {
+            "r": -1
           },
           "root": {}
         }
       },
       {
-        "hold": 0.2,
+        "hold": 0.083,
+        "ease": "linear",
         "bones": {
           "body": {
-            "r": -1
+            "r": -0.6
           },
-          "legL": {},
-          "legR": {},
+          "legL": {
+            "r": 6.71
+          },
+          "legR": {
+            "r": -12.19
+          },
+          "root": {
+            "y": 0.75
+          }
+        }
+      },
+      {
+        "hold": 0.083,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -1.4
+          },
+          "legL": {
+            "r": 13.2
+          },
+          "legR": {
+            "r": -19.25
+          },
+          "root": {
+            "y": 2.25
+          }
+        }
+      },
+      {
+        "hold": 0.083,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -1.8
+          },
+          "legL": {
+            "r": 17.25
+          },
+          "legR": {
+            "r": -19.25
+          },
           "root": {
             "y": 3
           }
         }
       },
       {
-        "hold": 0.25,
+        "hold": 0.083,
+        "ease": "linear",
         "bones": {
+          "body": {
+            "r": -1.4
+          },
+          "legL": {
+            "r": 17.25
+          },
+          "legR": {
+            "r": -15.2
+          },
           "root": {
-            "y": 1
+            "y": 2.25
           }
         }
       },
       {
-        "hold": 0.45
+        "hold": 0.083,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": -0.6
+          },
+          "legL": {
+            "r": 10.19
+          },
+          "legR": {
+            "r": -8.71
+          },
+          "root": {
+            "y": 0.75
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "body": {
+            "r": -0.07
+          },
+          "legL": {
+            "r": -0.35
+          },
+          "legR": {
+            "r": -0.35
+          },
+          "root": {}
+        }
+      },
+      {
+        "hold": 0.35
       }
     ]
   }

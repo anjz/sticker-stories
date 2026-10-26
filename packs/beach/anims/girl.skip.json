@@ -11,173 +11,52 @@
   },
   "loop": {
     "from": 1,
-    "to": 4
+    "to": 16
   },
   "facing": "right",
-  "stride": 0.55,
-  "hops": true,
-  "particles": [
-    {
-      "frame": 3,
-      "effect": "dust-puff",
-      "x": 0.5,
-      "y": 0.8594,
-      "intensity": 0.3
-    }
-  ],
+  "stride": 0.66,
   "puppet": {
     "rig": "anims/girl.rig.json",
     "keys": [
       {
-        "hold": 0.1
+        "hold": 0.2
       },
       {
-        "hold": 0.16,
+        "hold": 0.069,
+        "ease": "linear",
         "bones": {
           "armL": {
-            "r": 6
+            "r": 17.03
           },
           "armR": {
-            "r": -6
-          },
-          "belly": {
-            "sy": 1
+            "r": -17.03
           },
           "body": {
-            "y": 4
+            "r": 2.28
           },
           "elbowL": {
-            "r": -2
+            "r": -25
           },
           "elbowR": {
-            "r": -4
-          },
-          "kneeL": {
-            "r": -33.5
-          },
-          "kneeR": {
-            "r": 33.5
-          },
-          "legL": {
-            "r": 16.7,
-            "y": 4
-          },
-          "legR": {
-            "r": -16.7,
-            "y": 4
-          }
-        }
-      },
-      {
-        "hold": 0.2,
-        "ease": "out",
-        "bones": {
-          "armL": {
-            "r": 14
-          },
-          "armR": {
-            "r": -38
-          },
-          "elbowL": {
-            "r": -4
-          },
-          "elbowR": {
-            "r": -40
+            "r": -42.03
           },
           "head": {
-            "r": 2
+            "r": -3.24
           },
           "kneeL": {
-            "r": -70
-          },
-          "kneeR": {
-            "r": -2
-          },
-          "legL": {
-            "r": 38
-          },
-          "legR": {
-            "r": 4
-          },
-          "root": {
-            "y": -30
-          }
-        },
-        "slots": {
-          "eyeL": "happy",
-          "eyeR": "happy"
-        }
-      },
-      {
-        "hold": 0.16,
-        "bones": {
-          "armL": {
-            "r": 6
-          },
-          "armR": {
-            "r": -6
-          },
-          "belly": {
-            "sy": 1
-          },
-          "body": {
-            "y": 4
-          },
-          "elbowL": {
-            "r": -2
-          },
-          "elbowR": {
-            "r": -4
-          },
-          "kneeL": {
-            "r": -33.5
-          },
-          "kneeR": {
-            "r": 33.5
-          },
-          "legL": {
-            "r": 16.7,
-            "y": 4
-          },
-          "legR": {
-            "r": -16.7,
-            "y": 4
-          }
-        }
-      },
-      {
-        "hold": 0.2,
-        "ease": "out",
-        "bones": {
-          "armL": {
-            "r": 28
-          },
-          "armR": {
             "r": 8
           },
-          "elbowL": {
-            "r": -2
-          },
-          "elbowR": {
-            "r": -2
-          },
-          "head": {
-            "r": 2
-          },
-          "kneeL": {
-            "r": 2
-          },
           "kneeR": {
-            "r": 70
+            "r": 46.48
           },
           "legL": {
-            "r": -4
+            "r": -16
           },
           "legR": {
-            "r": -38
+            "r": 6.71
           },
           "root": {
-            "y": -30
+            "y": 6.15
           }
         },
         "slots": {
@@ -186,28 +65,690 @@
         }
       },
       {
-        "hold": 0.16,
+        "hold": 0.069,
+        "ease": "linear",
         "bones": {
-          "belly": {
-            "sy": 1
+          "armL": {
+            "r": 0.46
+          },
+          "armR": {
+            "r": -0.46
           },
           "body": {
-            "y": 3
+            "r": 3.42
+          },
+          "elbowL": {
+            "r": -25
+          },
+          "elbowR": {
+            "r": -25.46
+          },
+          "head": {
+            "r": -2.86
           },
           "kneeL": {
-            "r": -33.5
+            "r": 18.97
           },
           "kneeR": {
-            "r": 33.5
+            "r": 64.28
           },
           "legL": {
-            "r": 16.7,
-            "y": 3
+            "r": -9.26
           },
           "legR": {
-            "r": -16.7,
-            "y": 3
+            "r": -8.64
+          },
+          "root": {
+            "y": 7.07
           }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.069,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -4.79
+          },
+          "armR": {
+            "r": 4.79
+          },
+          "body": {
+            "r": 4.31
+          },
+          "elbowL": {
+            "r": -44.15
+          },
+          "elbowR": {
+            "r": -25
+          },
+          "head": {
+            "r": -2.56
+          },
+          "kneeL": {
+            "r": 22.7
+          },
+          "kneeR": {
+            "r": 82.36
+          },
+          "legL": {
+            "r": -3.57
+          },
+          "legR": {
+            "r": -29.1
+          },
+          "root": {
+            "y": 10.23
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.069,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -8.78
+          },
+          "armR": {
+            "r": 8.78
+          },
+          "body": {
+            "r": 4.44
+          },
+          "elbowL": {
+            "r": -60.12
+          },
+          "elbowR": {
+            "r": -25
+          },
+          "head": {
+            "r": -2.52
+          },
+          "kneeL": {
+            "r": 13.15
+          },
+          "kneeR": {
+            "r": 92.47
+          },
+          "legL": {
+            "r": 1.73
+          },
+          "legR": {
+            "r": -45.1
+          },
+          "root": {
+            "y": 6
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.069,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -10.29
+          },
+          "armR": {
+            "r": 10.29
+          },
+          "body": {
+            "r": 3.72
+          },
+          "elbowL": {
+            "r": -66.18
+          },
+          "elbowR": {
+            "r": -25
+          },
+          "head": {
+            "r": -2.76
+          },
+          "kneeL": {
+            "r": 9.5
+          },
+          "kneeR": {
+            "r": 91.23
+          },
+          "legL": {
+            "r": 6.6
+          },
+          "legR": {
+            "r": -48.31
+          },
+          "root": {
+            "y": 2.07
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.069,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -10.47
+          },
+          "armR": {
+            "r": 10.47
+          },
+          "body": {
+            "r": 2.58
+          },
+          "elbowL": {
+            "r": -66.86
+          },
+          "elbowR": {
+            "r": -25
+          },
+          "head": {
+            "r": -3.14
+          },
+          "kneeL": {
+            "r": 9.63
+          },
+          "kneeR": {
+            "r": 80.06
+          },
+          "legL": {
+            "r": 10.85
+          },
+          "legR": {
+            "r": -44.96
+          },
+          "root": {
+            "y": -12.74
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.069,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -9.61
+          },
+          "armR": {
+            "r": 9.61
+          },
+          "body": {
+            "r": 1.69
+          },
+          "elbowL": {
+            "r": -63.44
+          },
+          "elbowR": {
+            "r": -25
+          },
+          "head": {
+            "r": -3.44
+          },
+          "kneeL": {
+            "r": 15.68
+          },
+          "kneeR": {
+            "r": 52.46
+          },
+          "legL": {
+            "r": 15.62
+          },
+          "legR": {
+            "r": -35.63
+          },
+          "root": {
+            "y": 3.67
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.069,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -7.77
+          },
+          "armR": {
+            "r": 7.77
+          },
+          "body": {
+            "r": 1.56
+          },
+          "elbowL": {
+            "r": -56.09
+          },
+          "elbowR": {
+            "r": -25
+          },
+          "head": {
+            "r": -3.48
+          },
+          "kneeL": {
+            "r": 28.17
+          },
+          "kneeR": {
+            "r": 18.99
+          },
+          "legL": {
+            "r": 16.16
+          },
+          "legR": {
+            "r": -25.29
+          },
+          "root": {
+            "y": 13.98
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.069,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -4.26
+          },
+          "armR": {
+            "r": 4.26
+          },
+          "body": {
+            "r": 2.28
+          },
+          "elbowL": {
+            "r": -42.03
+          },
+          "elbowR": {
+            "r": -25
+          },
+          "head": {
+            "r": -3.24
+          },
+          "kneeL": {
+            "r": 46.48
+          },
+          "kneeR": {
+            "r": 8
+          },
+          "legL": {
+            "r": 6.71
+          },
+          "legR": {
+            "r": -16
+          },
+          "root": {
+            "y": 8.37
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.069,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": -0.12
+          },
+          "armR": {
+            "r": 0.12
+          },
+          "body": {
+            "r": 3.42
+          },
+          "elbowL": {
+            "r": -25.46
+          },
+          "elbowR": {
+            "r": -25
+          },
+          "head": {
+            "r": -2.86
+          },
+          "kneeL": {
+            "r": 64.28
+          },
+          "kneeR": {
+            "r": 18.97
+          },
+          "legL": {
+            "r": -8.64
+          },
+          "legR": {
+            "r": -9.26
+          },
+          "root": {
+            "y": 7.64
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.069,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 19.15
+          },
+          "armR": {
+            "r": -19.15
+          },
+          "body": {
+            "r": 4.31
+          },
+          "elbowL": {
+            "r": -25
+          },
+          "elbowR": {
+            "r": -44.15
+          },
+          "head": {
+            "r": -2.56
+          },
+          "kneeL": {
+            "r": 82.36
+          },
+          "kneeR": {
+            "r": 22.7
+          },
+          "legL": {
+            "r": -29.1
+          },
+          "legR": {
+            "r": -3.57
+          },
+          "root": {
+            "y": 10.93
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.069,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 35.12
+          },
+          "armR": {
+            "r": -35.12
+          },
+          "body": {
+            "r": 4.44
+          },
+          "elbowL": {
+            "r": -25
+          },
+          "elbowR": {
+            "r": -60.12
+          },
+          "head": {
+            "r": -2.52
+          },
+          "kneeL": {
+            "r": 92.47
+          },
+          "kneeR": {
+            "r": 13.15
+          },
+          "legL": {
+            "r": -45.1
+          },
+          "legR": {
+            "r": 1.73
+          },
+          "root": {
+            "y": 6.41
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.069,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 41.18
+          },
+          "armR": {
+            "r": -41.18
+          },
+          "body": {
+            "r": 3.72
+          },
+          "elbowL": {
+            "r": -25
+          },
+          "elbowR": {
+            "r": -66.18
+          },
+          "head": {
+            "r": -2.76
+          },
+          "kneeL": {
+            "r": 91.23
+          },
+          "kneeR": {
+            "r": 9.5
+          },
+          "legL": {
+            "r": -48.31
+          },
+          "legR": {
+            "r": 6.6
+          },
+          "root": {
+            "y": 2.37
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.069,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 41.86
+          },
+          "armR": {
+            "r": -41.86
+          },
+          "body": {
+            "r": 2.58
+          },
+          "elbowL": {
+            "r": -25
+          },
+          "elbowR": {
+            "r": -66.86
+          },
+          "head": {
+            "r": -3.14
+          },
+          "kneeL": {
+            "r": 80.06
+          },
+          "kneeR": {
+            "r": 9.63
+          },
+          "legL": {
+            "r": -44.96
+          },
+          "legR": {
+            "r": 10.85
+          },
+          "root": {
+            "y": -12.43
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.069,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 38.44
+          },
+          "armR": {
+            "r": -38.44
+          },
+          "body": {
+            "r": 1.69
+          },
+          "elbowL": {
+            "r": -25
+          },
+          "elbowR": {
+            "r": -63.44
+          },
+          "head": {
+            "r": -3.44
+          },
+          "kneeL": {
+            "r": 52.46
+          },
+          "kneeR": {
+            "r": 15.68
+          },
+          "legL": {
+            "r": -35.63
+          },
+          "legR": {
+            "r": 15.62
+          },
+          "root": {
+            "y": 4.17
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.069,
+        "ease": "linear",
+        "bones": {
+          "armL": {
+            "r": 31.09
+          },
+          "armR": {
+            "r": -31.09
+          },
+          "body": {
+            "r": 1.56
+          },
+          "elbowL": {
+            "r": -25
+          },
+          "elbowR": {
+            "r": -56.09
+          },
+          "head": {
+            "r": -3.48
+          },
+          "kneeL": {
+            "r": 18.99
+          },
+          "kneeR": {
+            "r": 28.17
+          },
+          "legL": {
+            "r": -25.29
+          },
+          "legR": {
+            "r": 30.16
+          },
+          "root": {
+            "y": 13.46
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "armL": {
+            "r": 5.96
+          },
+          "armR": {
+            "r": -5.96
+          },
+          "body": {
+            "r": 0.8
+          },
+          "elbowL": {
+            "r": -8.75
+          },
+          "elbowR": {
+            "r": -14.71
+          },
+          "head": {
+            "r": -1.13
+          },
+          "kneeL": {
+            "r": 2.8
+          },
+          "kneeR": {
+            "r": 16.27
+          },
+          "legL": {
+            "r": -5.6
+          },
+          "legR": {
+            "r": 2.35
+          },
+          "root": {
+            "y": 1.22
+          }
+        },
+        "slots": {
+          "eyeL": "happy",
+          "eyeR": "happy"
         }
       },
       {
