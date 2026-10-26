@@ -9,6 +9,7 @@
 //	stickerrig parts   -pack ../packs/forest [-only owl]
 //	stickerrig install -pack ../packs/forest [-only owl] [-bump]
 //	stickerrig preview -pack ../packs/forest [-only owl] [-png]
+//	stickerrig check   -pack ../packs/forest [-only owl] [-tuck 17 …]
 //
 // A sticker's rig file (tools/author/art/<packID>/rigs/<sticker>.json)
 // holds the sheets the edits model draws from the sticker's raw art (the
@@ -66,6 +67,8 @@ func main() {
 		err = runInstall(os.Args[2:])
 	case "preview":
 		err = runPreview(os.Args[2:])
+	case "check":
+		err = runCheck(os.Args[2:])
 	default:
 		usage()
 	}
@@ -76,7 +79,7 @@ func main() {
 }
 
 func usage() {
-	fmt.Fprintln(os.Stderr, "usage: stickerrig draw|parts|install|preview -pack <pack-dir> [flags]  (see -h on each)")
+	fmt.Fprintln(os.Stderr, "usage: stickerrig draw|parts|install|preview|check -pack <pack-dir> [flags]  (see -h on each)")
 	os.Exit(2)
 }
 

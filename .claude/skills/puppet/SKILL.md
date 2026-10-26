@@ -24,19 +24,23 @@ drawing anything:
 - **The bones**: root where it touches the ground (a flyer's at its
   centre); body (pivot at its base) with a `belly` child carrying the
   body's art (squash, breathing); head at the neck; a `face` bone on
-  the head carrying eyes, brows, mouth or beak (shifting it sideways
-  turns the face); each limb at its shoulder or hip; tail at its base;
+  the head carrying eyes, brows, mouth or beak (it moves with the head;
+  keys never slide it off it); each limb at its shoulder or hip; tail at its base;
   ears, antennae, wings at their roots. Use the standard names
   (README, "Templates") so the shared actions fit.
 - **The parts** it needs drawn: body without head or limbs; head with a
-  blank face; each limb once and whole, from the top of its thigh or
-  shoulder to the paw (the other side is the same piece flipped, or
-  shaded behind the body) — a leg cut off at the body's edge shows its
-  seam; and a piece for every pose a
-  turn cannot make — a wing open, hands clasped, a closed bud, a
-  curled-up ball, the open scales — plus props it holds or uses (a
-  stick, a nut, a tongue, a fly).
-- **The face pieces**: one eye as in the sticker, wide, closed in sleep,
+  blank face; each limb whole, from the top of its thigh or shoulder to
+  the paw — a leg cut off at the body's edge shows its seam; and a piece
+  for every pose a turn cannot make — a wing open, hands clasped, a
+  closed bud, a curled-up ball, the open scales — plus props it holds
+  or uses (a stick, a nut, a tongue, a fly). Draw them by the README's
+  "Drawing the parts": joint ends with no outline, the head with its
+  neck, a person's limbs in two parts with their clothing, each side's
+  limb (and eye) drawn for its side, containers empty with their
+  contents apart, a radial body's unoutlined centre over its arms.
+- **The face pieces**: each eye **for its own side** (the left eye, then
+  the right), both looking the way the sticker's eyes look — never one
+  eye mirrored for the other — as in the sticker, wide, closed in sleep,
   closed happy, sad; the mouth (or beak) as in the sticker, laughing
   open, a small "o", sad, and any the actions need (a yawn, nibbling
   teeth, a beak open in song); the nose and brows if the sticker has
@@ -45,10 +49,13 @@ drawing anything:
 
 Write the rig file `tools/author/art/<pack>/rigs/<id>.json` with
 `sticker`, `called` if "the <id>" reads wrong, `skeleton` (one sentence),
-and the two `sheets`. Adapt the prompts of an existing rig file: the
+and the `sheets`. Adapt the prompts of an existing rig file: the
 character's own words for each part, "drawn whole, including what is
-normally hidden", rounded joint ends, nothing touching, no text,
+normally hidden", joint ends as above, nothing touching, no text,
 transparent background; the face sheet references the parts sheet.
+Beach's rig files are the worked examples: `girl` (two-part limbs, an
+eye row per side), `seal` (head and neck), `starfish` (the round
+centre), `bottle` (empty, its note apart).
 
 For a **new pack**, the still comes first (`stickerart`, one image per
 sticker, assumed fine): draw it in a pose that rigs well — the whole
@@ -82,17 +89,21 @@ and foot is. Then write:
   head, face pieces, props in front), each attachment by its centre,
   its `scale` from the piece's size on the sheet (the `parts` listing
   gives the boxes) to its size on the sticker, `rotate` for a tilt,
-  `flip` for the other side, `shade` (0.15–0.25) for a far limb, `none`
+  `flip` only for a piece truly the same both ways (eyes never), `shade`
+  (0.15–0.25) for a far limb, `none`
   as the default of a slot that shows only in some poses;
 - `faces`: the pack's expressions (`happy`, `sad`, `sleeping`,
   `surprised`) as slot attachments;
 - `idle`: `{ "breathe": "belly", "blink": { "eyeL": "closed", … } }`.
 
 Layer so joints never show: a limb's joint end tucks **behind** the
-body (or under the part that covers it), so the body's outline is the
-only line where they meet; a joint end drawn over the body shows its
-outline as a seam. Each bone sits at the real joint (the shoulder, the
-hip, a stalk's base), so turning it never pulls the part out of its
+body (or under the part that covers it) by at least ~17 px, so the
+body's outline is the only line where they meet; a joint end drawn over
+the body shows its outline as a seam (a limb that must lie in front
+gets `fadeTop`). Each bone sits at the real joint **as measured on the
+sticker** (the shoulder, the hip, a stalk's base, a feeler's root at
+the nose), inside the piece's joint end — never where the piece happens
+to start on the sheet — so turning it never pulls the part out of its
 socket.
 
 Install, then `preview -png -anim none` and read `out/rigs/<id>.rest.png`:
@@ -101,7 +112,9 @@ is sticker only, green puppet only). Adjust centres, scales and turns
 until the shapes agree to within a few pixels at the edges and every
 feature sits where the sticker has it; small differences are fine, a
 gap, a doubled outline or a floating part is not. Check the five faces
-read as the expression they name.
+read as the expression they name. Install runs `stickerrig check` and
+prints its warnings (README, "check"): fix each seam, bone, eye or
+mirror warning, or know why it is wrong.
 
 ## 5. Keep its animations
 
@@ -147,6 +160,10 @@ them:
   character's rest pose makes the shared keys wrong (an arm already
   raised, a head facing left, no head bone at all).
 
+The face moves with the head: turn or nod the `head` bone; shift the
+`face` sideways only as far as the eyes stay on the head (`check` warns
+when they slide off), and never turn an eye on its own.
+
 Motion rules: small, unhurried, smooth — nothing fast that a four-year-
 old can't follow, nothing that tears the puppet (a limb's joint end
 must stay hidden: turn limbs at most ~60° unless the joint end is
@@ -163,7 +180,9 @@ detached or out of its socket, no seam where a limb meets the body, no
 arm flung past the face, left and right where they belong, both wings
 of a flyer visible in flight (the far one spread behind, shaded),
 nothing pointing the wrong way (signs: turns are clockwise, y
-is down; an arm on the viewer's left rises with +r). Fix what reads
+is down; an arm on the viewer's left rises with +r). Run
+`stickerrig check -pack ../packs/<pack> -only <id>`: it names the keys
+where a joint end shows or the face slides off the head. Fix what reads
 wrong and look again.
 
 ## 8. In the app, then commit

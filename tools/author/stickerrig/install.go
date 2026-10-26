@@ -51,6 +51,7 @@ func runInstall(args []string) error {
 			return fmt.Errorf("%s: %w", r.Sticker, err)
 		}
 	}
+	c.warnChecks()
 	if *bump {
 		c.pack.Version++
 	}
