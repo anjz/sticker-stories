@@ -139,6 +139,10 @@ them:
   the style of the existing ones ("the fox pounces forward on its front
   paws and wags its tail"), and a `pause` (`frame` and `shows`) where
   there is a pose a story would hold (asleep, hiding, listening).
+- An object's actions are only what wind, waves, water or a bump could
+  do to it (sway, bob, wobble, tip, roll, spin on the water) — never
+  something it would need a hand or a life for (a spade digging, a
+  bucket hopping).
 - Copy a template's keys into the rig file and tune them wherever the
   character's rest pose makes the shared keys wrong (an arm already
   raised, a head facing left, no head bone at all).

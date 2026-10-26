@@ -56,6 +56,9 @@ into parts on a skeleton, every animation keyframes. What the art needs:
   piece apart with rounded joint ends; redraw only what is broken.
 - **Many actions**: they cost nothing, so every living character gets
   the shared ones its body can do (jump, nod, laugh, wave…) and its own.
+- **Objects move only as the world could move them**: wind, waves,
+  water, a bump — a bucket wobbles in the breeze, a bottle bobs. Nothing
+  inanimate acts by itself (a spade never digs alone, a bucket never hops).
 - **Motions stay small and unhurried**, start and end at rest, and never
   show a limb's joint end. Travel is the app's job, as below.
 - The puppet lies on the still at rest (the preview's mismatch view):

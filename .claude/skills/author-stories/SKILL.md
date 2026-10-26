@@ -111,7 +111,9 @@ Constraints (the validator checks them on the finished set):
   most stories play two to four actions, on the words that tell them, and
   hold one on its pause pose where the story lingers in it (a hiding
   snail, a sleeping bear, a wishing acorn) — about half the stories use a
-  hold;
+  hold; an object never acts by itself in the words either (the spade
+  doesn't dig, the bucket doesn't hop): the wind, the waves or a
+  character moves it;
 - **about 40 % of the rows carry a `learning` fact** (GUIDE "Learning"):
   one concrete, true, observable thing about how the pack's world works,
   each fact used once, spread across the cast; the other rows stay pure
