@@ -849,6 +849,10 @@ func (p *puppet) check(sticker string, anims []*manifest.StickerAnimation, o che
 			}
 		}
 		jx, jy := world[s.Bone].apply(0, 0)
+		// A stalk turning where the whole thing stands (a flower's stem at
+		// the ground) grows from there, not from the parts it overlaps.
+		rx, ry := world[p.rig.Bones[0].ID].apply(0, 0)
+		atBase := math.Hypot(jx-rx, jy-ry) < o.BoneOut
 		for _, att := range sortedKeys(s.Attachments) {
 			l := p.draw(i, att, world, s.Attachments[att].Flip)
 			if l == nil || l.opaque < 100 {
@@ -862,7 +866,7 @@ func (p *puppet) check(sticker string, anims []*manifest.StickerAnimation, o che
 				add("", "bone", fmt.Sprintf("%s: the %s bone is %.0f px outside its piece (put it inside the joint end, at the joint)", slotAtt(s.ID+"/"+att), s.Bone, out))
 				continue
 			}
-			if float64(l.opaque) > 0.6*float64(trunkArea) {
+			if atBase || float64(l.opaque) > 0.6*float64(trunkArea) {
 				continue // the whole body in another pose: it meets everything
 			}
 			if d, on := boneGap(l, jx, jy, overlapping(parents, l.r)); on != "" && d > o.BoneGap {
@@ -906,11 +910,14 @@ func (p *puppet) check(sticker string, anims []*manifest.StickerAnimation, o che
 			if gazeless(a) || gazeless(b) || la == nil || lb == nil || math.Abs(sa) < o.Skew || math.Abs(sb) < o.Skew || (sa > 0) == (sb > 0) {
 				continue
 			}
-			what := f
-			if la.flip != lb.flip && p.rig.Slots[p.slot[e]].Attachments[a].Part == p.rig.Slots[p.slot[pair]].Attachments[b].Part {
-				what += " (one mirrored)"
+			// Eyes drawn for their own sides may look opposite ways, as
+			// the sticker's do when they look in at us (the mirror rule
+			// still holds each one to the sticker); only one piece
+			// mirrored for the other side is wrong.
+			if la.flip == lb.flip || p.rig.Slots[p.slot[e]].Attachments[a].Part != p.rig.Slots[p.slot[pair]].Attachments[b].Part {
+				continue
 			}
-			bad = append(bad, what)
+			bad = append(bad, f+" (one mirrored)")
 		}
 		if len(bad) > 0 {
 			add("", "eyes", fmt.Sprintf("%s and %s look opposite ways in %s: draw each eye for its side, looking the sticker's way, never mirrored", e, pair, strings.Join(bad, ", ")))
