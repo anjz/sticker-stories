@@ -127,7 +127,11 @@ moves, moves.
   bottom runs off the bottom edge** — the foreground's plants, the
   plants at a tree's foot — so a sticker the child puts behind them never
   shows its feet below them (`scene.foregroundDown`, a layer's
-  `toBottom`).
+  `toBottom`). Something big the background already shows in the
+  middle of the ground (the boulders on Beach's rock pool) can be a
+  plane of its own cut from it (a layer's `cut`): stickers behind it in
+  a story pass behind it, and while the child plays every sticker stays
+  in front of it.
 - **Every window shape plays the whole picture.** A portrait iPad, Split
   View or a narrow phone shows about half the art across (a third, or
   less, in a narrow Split View) and the camera follows the story there

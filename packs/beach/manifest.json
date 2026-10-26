@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "beach",
-  "version": 17,
+  "version": 18,
   "languages": [
     "en-US",
     "es-ES"
@@ -23,6 +23,18 @@
   "foreground": "art/foreground.webp",
   "backgroundWide": "art/background-wide.webp",
   "foregroundWide": "art/foreground-wide.webp",
+  "layers": [
+    {
+      "id": "boulder-middle",
+      "image": "art/layer-boulder-middle.webp",
+      "imageWide": "art/layer-boulder-middle-wide.webp"
+    },
+    {
+      "id": "boulder-front",
+      "image": "art/layer-boulder-front.webp",
+      "imageWide": "art/layer-boulder-front-wide.webp"
+    }
+  ],
   "sky": {
     "image": "art/sky.webp",
     "imageWide": "art/sky-wide.webp"
@@ -37,6 +49,34 @@
     },
     "floor": 0.04,
     "layers": [
+      {
+        "id": "boulder-middle",
+        "art": "boulder-middle",
+        "depth": 1.54,
+        "footprint": [
+          [
+            0.607,
+            0.242
+          ],
+          [
+            0.728,
+            0.232
+          ],
+          [
+            0.728,
+            0.27
+          ],
+          [
+            0.612,
+            0.278
+          ]
+        ]
+      },
+      {
+        "id": "boulder-front",
+        "art": "boulder-front",
+        "depth": 1.18
+      },
       {
         "id": "foreground",
         "depth": 1
