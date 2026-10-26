@@ -50,9 +50,14 @@ struct MainMenuView: View {
                         .accessibilityLabel("More stories")
                     }
                     .scrollTargetLayout()
-                    .padding(.horizontal, max(24, (geo.size.width - cardWidth) / 2 - 26))
                     .padding(.vertical, 20)
                 }
+                // A content margin, not padding: view-aligned snapping lines
+                // each card up with the margin, so every card rests where the
+                // first one starts. With padding the snap points sat a card's
+                // leading edge on the screen's edge, and the scroll sprang
+                // between those and the ends.
+                .contentMargins(.horizontal, max(24, (geo.size.width - cardWidth) / 2 - 26), for: .scrollContent)
                 .scrollTargetBehavior(.viewAligned)
                 // The cards' shadows fall outside the scroll view's bounds.
                 .scrollClipDisabled()
