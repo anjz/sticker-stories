@@ -102,7 +102,9 @@ way (Beach's rig files say it in full: `girl`, `seal`, `starfish`,
 - **Head and neck one piece**, the neck running down into the chest as
   wide as it is there, no chin line; it lies between the body and a
   copy of the body whose top fades in (`fadeTop`), so throat and chest
-  flow on as in the sticker.
+  flow on as in the sticker. Only when the user sees a line there (Beach's
+  seal and seagull): retrofitted onto Forest's approved puppets it
+  squashed heads into bodies and broke the deer's graze, and was undone.
 - **People: two-part limbs** — upper arm, forearm with hand, thigh,
   lower leg with foot — each with its clothing on it (sleeve, shorts
   leg); the torso drawn without sleeves or shorts legs, so the elbows
@@ -127,7 +129,10 @@ way (Beach's rig files say it in full: `girl`, `seal`, `starfish`,
 `check` poses each installed puppet as the app does and measures the
 parts' alpha masks against each other and the sticker. It only warns
 (`install` prints the same after installing), per sticker and per
-animation key:
+animation key. A warning is a place to look, not a target: the user's
+eye decides, and a puppet the user has approved is never reworked just
+to silence one (clearing every Forest warning made the puppets much
+worse, 2026-10-26).
 
 - `seam` — a joint end (a piece hung on a joint: a limb, a head, a wing)
   tucks less than `-tuck` (17 px) under the parts above it and shows at

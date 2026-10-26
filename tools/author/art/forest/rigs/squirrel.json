@@ -163,14 +163,6 @@
         1369,
         732
       ]
-    },
-    "armNear": {
-      "sheet": "parts",
-      "at": [
-        640,
-        355
-      ],
-      "fadeTop": 0.35
     }
   },
   "bones": [
@@ -266,8 +258,8 @@
     {
       "id": "tail",
       "parent": "root",
-      "x": 445,
-      "y": 628
+      "x": 430,
+      "y": 640
     }
   ],
   "slots": [
@@ -598,7 +590,7 @@
       "default": "arm",
       "attachments": {
         "arm": {
-          "part": "armNear",
+          "part": "arm",
           "x": 268,
           "y": 477,
           "scale": 0.43,
@@ -724,10 +716,10 @@
           "hold": 0.25,
           "bones": {
             "face": {
-              "x": -3
+              "x": -12
             },
             "head": {
-              "r": -7
+              "r": -5
             }
           }
         },
@@ -735,10 +727,10 @@
           "hold": 0.35,
           "bones": {
             "face": {
-              "x": -3
+              "x": -12
             },
             "head": {
-              "r": -7
+              "r": -5
             }
           },
           "slots": {
@@ -752,10 +744,10 @@
           "hold": 0.3,
           "bones": {
             "face": {
-              "x": 8
+              "x": 10
             },
             "head": {
-              "r": 6
+              "r": 5
             }
           }
         },
@@ -763,10 +755,10 @@
           "hold": 0.3,
           "bones": {
             "face": {
-              "x": 8
+              "x": 10
             },
             "head": {
-              "r": 6
+              "r": 5
             }
           },
           "slots": {
@@ -1584,130 +1576,11 @@
     },
     {
       "id": "shake-head",
-      "kind": "action",
-      "description": "{the} shakes its head no.",
-      "keys": [
-        {
-          "hold": 0.12
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "head": {
-              "r": -7
-            },
-            "face": {
-              "x": -3
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "head": {
-              "r": 7
-            },
-            "face": {
-              "x": 8
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "head": {
-              "r": -7
-            },
-            "face": {
-              "x": -3
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "head": {
-              "r": 6
-            },
-            "face": {
-              "x": 7
-            }
-          }
-        },
-        {
-          "hold": 0.3
-        }
-      ]
+      "template": "common.shake-head"
     },
     {
       "id": "look-around",
-      "kind": "action",
-      "description": "{the} looks one way, then the other, then back.",
-      "idle": true,
-      "keys": [
-        {
-          "hold": 0.2
-        },
-        {
-          "hold": 0.3,
-          "bones": {
-            "head": {
-              "r": -7
-            },
-            "face": {
-              "x": -4
-            },
-            "body": {
-              "r": -2
-            }
-          }
-        },
-        {
-          "hold": 0.6,
-          "bones": {
-            "head": {
-              "r": -7
-            },
-            "face": {
-              "x": -4
-            },
-            "body": {
-              "r": -2
-            }
-          }
-        },
-        {
-          "hold": 0.35,
-          "bones": {
-            "head": {
-              "r": 6
-            },
-            "face": {
-              "x": 12
-            },
-            "body": {
-              "r": 2
-            }
-          }
-        },
-        {
-          "hold": 0.6,
-          "bones": {
-            "head": {
-              "r": 6
-            },
-            "face": {
-              "x": 12
-            },
-            "body": {
-              "r": 2
-            }
-          }
-        },
-        {
-          "hold": 0.4
-        }
-      ]
+      "template": "common.look-around"
     },
     {
       "id": "laugh",

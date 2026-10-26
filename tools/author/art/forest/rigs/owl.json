@@ -1,6 +1,6 @@
 {
   "sticker": "owl",
-  "skeleton": "bird standing facing the viewer: root at the feet, body with a belly bone for squash, head at the neck (the head-and-neck piece of the neck sheet, between the body and the chest piece of the chest sheet, whose top edge has no outline, so no chin line shows), a face bone carrying eyes, brows and beak; a folded/open right wing, the far (left) wing shown only open in flight; two feet on the root.",
+  "skeleton": "bird standing facing the viewer: root at the feet, body with a belly bone for squash, head on the body, a face bone carrying eyes, brows and beak; a folded/open right wing, the far (left) wing shown only open in flight; two feet on the root.",
   "sheets": [
     {
       "id": "parts",
@@ -14,22 +14,6 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of an owl character; image 2 shows the same owl cut into puppet parts, with its head drawn with a blank face. Draw the owl's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the owl in image 1, so it fits the blank head in image 2.\n\nDraw each piece on its own, spread out in two tidy rows with wide empty gaps between them, nothing touching:\n1. the owl's left eye (on the right of image 1) as it is in image 1: calm and sleepy, a dark brown eye with a white sparkle under a heavy, half-closed tan eyelid, with its thin dark lashes and the small curved brow above it.\n2. the same eye wide open and alert: a big round dark eye with a white sparkle, no eyelid over it, the same brow raised a little.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes on a tan eyelid, the same brow.\n4. the same eye closed in a happy smile: an upward-curving arc, the same brow.\n5. the same eye sad: a big round dark eye looking down, its brow tilted up in the middle.\n6. the beak, closed, as in image 1: small, yellow-orange, pointing down.\n7. the beak wide open in a big yawn: the upper and lower beak wide apart, the inside of the mouth pink.\n8. the beak a little open in a soft round 'hoo'.\n\nNo text, no labels, no numbers, no shadows, no face around the pieces. Fully transparent background."
-    },
-    {
-      "id": "neck",
-      "size": "1024x1024",
-      "references": [
-        "parts"
-      ],
-      "prompt": "Image 1 is a sticker of an owl character; image 2 shows the same owl cut into puppet parts, with a blank face. Draw one single piece, centred on the sheet: the owl's head together with its neck, as one piece. It is exactly the head of image 2 — the same round head with its ear tufts, the same pale facial disc with its brown rim, the same rosy cheeks, the same completely blank face (no eyes, no eyelids, no brows, no beak), facing the viewer the same way, the same drawing style, colours, feather texture and line — but there is no chin line under it: below the facial disc the brown feathered sides and the cream speckled chest carry straight on down below the head, as wide as the head, for about half the head's height, the way the head flows into the body in image 1, and end in a smooth rounded bottom edge. At the size the head has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
-    },
-    {
-      "id": "chest",
-      "size": "1024x1024",
-      "references": [
-        "parts"
-      ],
-      "prompt": "Image 1 is a sticker of an owl character; image 2 shows the same owl cut into puppet parts. Draw one single piece, centred on the sheet: the owl's lower body, as one piece. It is exactly the body piece of image 2 — the round chubby body with its cream speckled belly and the same narrow band of brown feathers down each side, facing the viewer, the same drawing style, colours, feather texture and line — with no head, no feet and no wings: the folded wings are separate pieces, so do not draw a wing on either side. It is only the body from the middle of the chest down: its top is cut across the chest about a third of the way down the body, and that top edge has no outline at all — the cream speckled feathers and the brown side feathers just end there in a soft, slightly ragged feathery edge, the way the chest carries on up under the head in image 1. Its sides and its rounded bottom keep their outline, as in image 2. At the size the body has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -136,20 +120,6 @@
       "at": [
         1132,
         744
-      ]
-    },
-    "headNeck": {
-      "sheet": "neck",
-      "at": [
-        503,
-        512
-      ]
-    },
-    "chest": {
-      "sheet": "chest",
-      "at": [
-        513,
-        574
       ]
     }
   },
@@ -295,42 +265,14 @@
       }
     },
     {
-      "id": "head",
-      "bone": "head",
-      "default": "head",
-      "attachments": {
-        "head": {
-          "part": "headNeck",
-          "x": 379.2,
-          "y": 316.3,
-          "scale": 0.5538,
-          "rotate": 4
-        }
-      }
-    },
-    {
-      "id": "chest",
-      "bone": "belly",
-      "default": "body",
-      "attachments": {
-        "body": {
-          "part": "chest",
-          "x": 389.3,
-          "y": 512.3,
-          "scale": 0.6162,
-          "scaleY": 0.72
-        }
-      }
-    },
-    {
       "id": "wingR",
       "bone": "wingR",
       "default": "folded",
       "attachments": {
         "folded": {
           "part": "wingFolded",
-          "x": 520.0,
-          "y": 508.0,
+          "x": 524,
+          "y": 532,
           "scale": 0.63,
           "rotate": -20
         },
@@ -339,6 +281,20 @@
           "x": 584.5,
           "y": 456.5,
           "scale": 0.48
+        }
+      }
+    },
+    {
+      "id": "head",
+      "bone": "head",
+      "default": "head",
+      "attachments": {
+        "head": {
+          "part": "head",
+          "x": 379,
+          "y": 227,
+          "scale": 0.71,
+          "rotate": 4
         }
       }
     },

@@ -22,14 +22,6 @@
         "face"
       ],
       "prompt": "Image 1 is a sticker of a rabbit character; image 2 shows its face pieces as separate stickers. Draw four more face pieces for this rabbit, for a gentle, sweet cry, as separate stickers on one sheet: exactly the same drawing style, line, colours and size as the eyes and mouths in image 2.\n\nDraw each piece on its own, spread out in one tidy row with wide empty gaps between them, nothing touching:\n1. the eye sad: the same dark round eye with its white sparkle as the first eye in image 2, the pupil looking straight down (centred at the bottom of the eye, not to either side), its upper lid drooping over the top of the eye and tilted, higher on the left end than the right, and a thin shine of a welling tear along the bottom rim.\n2. the eye crying: gently squeezed shut, a soft downward-curving line (like a sad closed eye, not a smile), a few small lashes, and one small light-blue teardrop just below its right end.\n3. the eye crying, the same as 2 but without the teardrop.\n4. the mouth sobbing: the same muzzle as the mouths in image 2 (pale cheek pads with the small pink-brown nose on top), its mouth a small open downturned frown with a little pink inside, trembling.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
-    },
-    {
-      "id": "neck",
-      "size": "1024x1024",
-      "references": [
-        "parts"
-      ],
-      "prompt": "Image 1 is a sticker of a rabbit; image 2 shows the same rabbit cut into puppet parts, with a blank face. Draw one single piece, centred on the sheet: the rabbit's head together with its neck, as one piece. It is exactly the head of image 2 — the same fluffy brown head with its cream muzzle and cheeks, the same small pink-brown nose and rosy cheeks, the same completely blank face (no eyes, no mouth), without ears, turned the same way (facing left), the same drawing style, colours, fur texture and line — but there is no chin line under it: the cream furry throat and the brown fur at the sides of the neck carry straight on down below the head, as wide as the head, for about half the head's height, the way the head flows into the chest in image 1, and end in a smooth rounded bottom edge. At the size the head has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -172,37 +164,6 @@
         1344,
         491
       ]
-    },
-    "pawNear": {
-      "sheet": "parts",
-      "at": [
-        1295,
-        352
-      ],
-      "fadeTop": 0.3
-    },
-    "legNear": {
-      "sheet": "parts",
-      "at": [
-        926,
-        778
-      ],
-      "fadeTop": 0.2
-    },
-    "headNeck": {
-      "sheet": "neck",
-      "at": [
-        512,
-        510
-      ]
-    },
-    "bodyFront": {
-      "sheet": "parts",
-      "at": [
-        409,
-        745
-      ],
-      "fadeTop": 0.2
     }
   },
   "bones": [
@@ -373,6 +334,19 @@
       }
     },
     {
+      "id": "legR",
+      "bone": "legR",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "leg",
+          "x": 428,
+          "y": 617,
+          "scale": 0.52
+        }
+      }
+    },
+    {
       "id": "earR",
       "bone": "earR",
       "default": "ear",
@@ -392,37 +366,9 @@
       "default": "head",
       "attachments": {
         "head": {
-          "part": "headNeck",
-          "x": 329.5,
-          "y": 377.0,
-          "scale": 0.41,
-          "rotate": 6.0
-        }
-      }
-    },
-    {
-      "id": "bodyFront",
-      "bone": "belly",
-      "default": "body",
-      "attachments": {
-        "body": {
-          "part": "bodyFront",
-          "x": 358,
-          "y": 545,
-          "scale": 0.57,
-          "scaleY": 1.15
-        }
-      }
-    },
-    {
-      "id": "legR",
-      "bone": "legR",
-      "default": "leg",
-      "attachments": {
-        "leg": {
-          "part": "legNear",
-          "x": 428,
-          "y": 617,
+          "part": "head",
+          "x": 334,
+          "y": 306,
           "scale": 0.52
         }
       }
@@ -592,7 +538,7 @@
       "default": "paw",
       "attachments": {
         "paw": {
-          "part": "pawNear",
+          "part": "paw",
           "x": 355,
           "y": 510,
           "scale": 0.44

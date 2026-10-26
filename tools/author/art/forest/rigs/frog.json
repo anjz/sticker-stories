@@ -14,22 +14,6 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a frog character; image 2 shows the same frog cut into puppet parts, with a blank face. Draw the frog's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the frog in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the frog's left eye (on the right of image 1) as it is in image 1: a big dark round eye with a white sparkle, filling its eye dome.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a wide-open happy smile, the inside pink.\n7. the mouth closed in a wide calm smile.\n8. the mouth wide open in a big happy laugh, the inside pink.\n9. the mouth open in a small round 'o'.\n10. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
-    },
-    {
-      "id": "legs",
-      "size": "1536x1024",
-      "references": [
-        "parts"
-      ],
-      "prompt": "Image 1 is a sticker of a frog character sitting and facing the viewer; image 2 shows the same frog cut into puppet parts. Draw the frog's two front legs again as cut-out puppet parts, each drawn for its own side, exactly as each front leg is in image 1: the same drawing style, colours, spots, texture, line and proportions, each at the size and thickness it has in image 1 — a simple chubby green spotted leg with no elbow bump and no shoulder ball, slanting down to its spread webbed toes on the ground.\n\nDraw each piece on its own, far apart on the sheet, nothing touching:\n1. the frog's front leg on the left of image 1, exactly as in image 1.\n2. the frog's front leg on the right of image 1, exactly as in image 1.\n\nEach leg goes on upward above where it meets the body into a soft, rounded top of plain green skin, as it would carry on into the body. That top end has NO dark outline: the drawing's dark line runs down the leg's two sides and round the toes only, and stops below the top; the top is soft green with no line at all. No text, no labels, no numbers, no outline around the pieces beyond the drawing's own line, no shadows. Fully transparent background."
-    },
-    {
-      "id": "eyes",
-      "size": "1536x1024",
-      "references": [
-        "face"
-      ],
-      "prompt": "Image 1 is a sticker of a frog character; image 2 shows its face pieces as separate stickers. Draw the frog's two eyes again, each drawn for its own side, as separate stickers on one sheet: exactly the same drawing style, line, colours and size as the first eye in image 2 — a big cream eye white with a dark brown outline, a big round dark-brown pupil and a white sparkle at the upper right of the pupil.\n\nIn image 1 the frog looks at the viewer, so its two pupils sit towards each other: in the eye on the left of image 1 the pupil sits in the right half of the eye; in the eye on the right of image 1 the pupil sits in the left half of the eye.\n\nDraw each piece on its own, in two tidy rows with wide empty gaps between them, nothing touching:\nTop row, the eye on the left of image 1, its pupil in the right half of the eye:\n1. as it is in image 1.\n2. wide open and surprised: the eye white bigger and rounder, the pupil smaller, still in the right half, with its white sparkle.\n3. sad: the pupil low in the eye and in its right half, the upper lid drooping over the top of the eye, tilted down towards the left end.\nBottom row, the eye on the right of image 1, its pupil in the left half of the eye:\n4. as it is in image 1.\n5. wide open and surprised: the eye white bigger and rounder, the pupil smaller, still in the left half, with its white sparkle.\n6. sad: the pupil low in the eye and in its left half, the upper lid drooping over the top of the eye, tilted down towards the right end.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
     }
   ],
   "parts": {
@@ -137,64 +121,6 @@
         1376,
         699
       ]
-    },
-    "armLs": {
-      "sheet": "legs",
-      "at": [
-        370,
-        573
-      ],
-      "fadeTop": 0.15
-    },
-    "armRs": {
-      "sheet": "legs",
-      "at": [
-        1163,
-        578
-      ],
-      "fadeTop": 0.15
-    },
-    "eyeLs": {
-      "sheet": "eyes",
-      "at": [
-        263,
-        281
-      ]
-    },
-    "eyeWideLs": {
-      "sheet": "eyes",
-      "at": [
-        772,
-        271
-      ]
-    },
-    "eyeSadLs": {
-      "sheet": "eyes",
-      "at": [
-        1277,
-        287
-      ]
-    },
-    "eyeRs": {
-      "sheet": "eyes",
-      "at": [
-        257,
-        750
-      ]
-    },
-    "eyeWideRs": {
-      "sheet": "eyes",
-      "at": [
-        762,
-        742
-      ]
-    },
-    "eyeSadRs": {
-      "sheet": "eyes",
-      "at": [
-        1274,
-        750
-      ]
     }
   },
   "bones": [
@@ -260,14 +186,14 @@
     {
       "id": "armL",
       "parent": "body",
-      "x": 252,
-      "y": 458
+      "x": 238,
+      "y": 440
     },
     {
       "id": "armR",
       "parent": "body",
-      "x": 533,
-      "y": 470
+      "x": 552,
+      "y": 446
     },
     {
       "id": "fly",
@@ -324,16 +250,16 @@
       "default": "calm",
       "attachments": {
         "calm": {
-          "part": "eyeLs",
+          "part": "eye",
           "x": 292,
           "y": 145,
-          "scale": 0.362
+          "scale": 0.48
         },
         "wide": {
-          "part": "eyeWideLs",
+          "part": "eyeWide",
           "x": 292,
           "y": 145,
-          "scale": 0.368
+          "scale": 0.48
         },
         "closed": {
           "part": "eyeClosed",
@@ -348,10 +274,11 @@
           "scale": 0.48
         },
         "sad": {
-          "part": "eyeSadLs",
+          "part": "eyeSad",
           "x": 292,
           "y": 147,
-          "scale": 0.36
+          "scale": 0.48,
+          "flip": true
         }
       }
     },
@@ -361,16 +288,18 @@
       "default": "calm",
       "attachments": {
         "calm": {
-          "part": "eyeRs",
+          "part": "eye",
           "x": 557,
           "y": 210,
-          "scale": 0.38
+          "scale": 0.5,
+          "flip": true
         },
         "wide": {
-          "part": "eyeWideRs",
+          "part": "eyeWide",
           "x": 557,
           "y": 210,
-          "scale": 0.386
+          "scale": 0.5,
+          "flip": true
         },
         "closed": {
           "part": "eyeClosed",
@@ -387,10 +316,10 @@
           "flip": true
         },
         "sad": {
-          "part": "eyeSadRs",
+          "part": "eyeSad",
           "x": 557,
           "y": 212,
-          "scale": 0.38
+          "scale": 0.5
         }
       }
     },
@@ -455,11 +384,10 @@
       "default": "arm",
       "attachments": {
         "arm": {
-          "part": "armLs",
-          "x": 262.0,
-          "y": 569.0,
-          "scale": 0.435,
-          "rotate": -1.5
+          "part": "arm",
+          "x": 285,
+          "y": 566,
+          "scale": 0.62
         }
       }
     },
@@ -469,11 +397,11 @@
       "default": "arm",
       "attachments": {
         "arm": {
-          "part": "armRs",
-          "x": 524.0,
-          "y": 582.5,
-          "scale": 0.41,
-          "rotate": -1.5
+          "part": "arm",
+          "x": 492,
+          "y": 568,
+          "scale": 0.62,
+          "flip": true
         }
       }
     },

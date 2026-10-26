@@ -13,7 +13,7 @@
       "references": [
         "parts"
       ],
-      "prompt": "Image 1 is a sticker of a butterfly character; image 2 shows the same butterfly cut into puppet parts, with a blank face. Draw the butterfly's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the butterfly in image 1, so it fits the blank face in image 2. In image 1 the butterfly looks at us, its two eyes turned in towards each other: the eye on the LEFT of image 1 has its dark iris towards its right with the white on its left and its sparkle at the top right; the eye on the RIGHT of image 1 has its dark iris towards its left with the white on its right and its sparkle at the top left.\n\nDraw each piece on its own, upright, in three tidy rows with wide empty gaps between them, nothing touching:\nRow 1, the eye on the LEFT of image 1, five times:\n1. as it is in image 1: a dark oval iris with a white sparkle, the iris towards its right (the middle of the face), the white on its left.\n2. wide open and surprised: bigger and rounder, looking the same way, with its white sparkle.\n3. gently closed in sleep: a soft downward-curving line with a few little lashes at its outer (left) end.\n4. closed in a happy smile: an upward-curving arc, like an upside-down U.\n5. sad: looking down and towards the middle (the iris low and towards its right), its upper lid drooping down at its outer (left) corner and raised at its inner (right) corner.\nRow 2, the eye on the RIGHT of image 1, the same five in the same order, mirrored in where they look: open, its iris towards its left (the middle of the face), the white on its right, its sparkle at the top left; asleep, its lashes at its outer (right) end; sad, looking down and towards the middle, its upper lid drooping down at its outer (right) corner and raised at its inner (left) corner.\nRow 3: 11. the mouth as it is in image 1: a small happy smile. 12. the mouth wide open in a big happy laugh, the inside pink. 13. the mouth open in a small round 'o'. 14. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+      "prompt": "Image 1 is a sticker of a butterfly character; image 2 shows the same butterfly cut into puppet parts, with a blank face. Draw the butterfly's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the butterfly in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the butterfly's left eye (on the right of image 1) as it is in image 1: a dark round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle.\n6. the mouth as it is in image 1: a small happy smile.\n7. the mouth wide open in a big happy laugh, the inside pink.\n8. the mouth open in a small round 'o'.\n9. the mouth in a small sad frown.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
     }
   ],
   "parts": {
@@ -52,102 +52,67 @@
         785
       ]
     },
-    "eyeL": {
+    "eye": {
       "sheet": "face",
       "at": [
-        167,
-        231
+        181,
+        372
       ]
     },
-    "eyeLWide": {
+    "eyeWide": {
       "sheet": "face",
       "at": [
-        457,
-        212
+        482,
+        362
       ]
     },
-    "eyeLClosed": {
+    "eyeClosed": {
       "sheet": "face",
       "at": [
-        747,
-        251
+        801,
+        393
       ]
     },
-    "eyeLHappy": {
+    "eyeHappy": {
       "sheet": "face",
       "at": [
-        1055,
-        210
+        1096,
+        359
       ]
     },
-    "eyeLSad": {
+    "eyeSad": {
       "sheet": "face",
       "at": [
-        1364,
-        245
-      ]
-    },
-    "eyeR": {
-      "sheet": "face",
-      "at": [
-        169,
-        581
-      ]
-    },
-    "eyeRWide": {
-      "sheet": "face",
-      "at": [
-        458,
-        560
-      ]
-    },
-    "eyeRClosed": {
-      "sheet": "face",
-      "at": [
-        772,
-        597
-      ]
-    },
-    "eyeRHappy": {
-      "sheet": "face",
-      "at": [
-        1055,
-        553
-      ]
-    },
-    "eyeRSad": {
-      "sheet": "face",
-      "at": [
-        1366,
-        584
+        1385,
+        370
       ]
     },
     "mouth": {
       "sheet": "face",
       "at": [
         265,
-        868
+        720
       ]
     },
     "mouthLaugh": {
       "sheet": "face",
       "at": [
-        588,
-        865
+        615,
+        717
       ]
     },
     "mouthO": {
       "sheet": "face",
       "at": [
-        940,
-        864
+        938,
+        716
       ]
     },
     "mouthSad": {
       "sheet": "face",
       "at": [
-        1255,
-        858
+        1259,
+        701
       ]
     }
   },
@@ -172,26 +137,26 @@
     {
       "id": "wingL",
       "parent": "body",
-      "x": 343,
-      "y": 399
+      "x": 352,
+      "y": 420
     },
     {
       "id": "wingR",
       "parent": "body",
-      "x": 423,
-      "y": 399
+      "x": 414,
+      "y": 420
     },
     {
       "id": "wingL2",
       "parent": "wingL",
-      "x": 326,
-      "y": 440
+      "x": 352,
+      "y": 430
     },
     {
       "id": "wingR2",
       "parent": "wingR",
-      "x": 440,
-      "y": 440
+      "x": 414,
+      "y": 430
     },
     {
       "id": "head",
@@ -256,10 +221,10 @@
       "attachments": {
         "wing": {
           "part": "wingLow",
-          "x": 241.2,
-          "y": 555.9,
-          "scale": 0.591,
-          "rotate": -28,
+          "x": 226,
+          "y": 562,
+          "scale": 0.56,
+          "rotate": -38,
           "flip": true
         }
       }
@@ -271,10 +236,10 @@
       "attachments": {
         "wing": {
           "part": "wingLow",
-          "x": 524.8,
-          "y": 555.9,
-          "scale": 0.591,
-          "rotate": 28
+          "x": 540,
+          "y": 562,
+          "scale": 0.56,
+          "rotate": 38
         }
       }
     },
@@ -285,11 +250,11 @@
       "attachments": {
         "wing": {
           "part": "wing",
-          "x": 210.0,
-          "y": 284.5,
-          "scale": 0.581,
+          "x": 192,
+          "y": 280,
+          "scale": 0.55,
           "scaleY": 1.04,
-          "rotate": 8,
+          "rotate": 13,
           "flip": true
         }
       }
@@ -301,11 +266,11 @@
       "attachments": {
         "wing": {
           "part": "wing",
-          "x": 556.0,
-          "y": 284.5,
-          "scale": 0.581,
+          "x": 574,
+          "y": 280,
+          "scale": 0.55,
           "scaleY": 1.04,
-          "rotate": -8
+          "rotate": -13
         }
       }
     },
@@ -370,36 +335,36 @@
       "default": "calm",
       "attachments": {
         "calm": {
-          "part": "eyeL",
+          "part": "eye",
           "x": 340,
           "y": 330,
-          "scale": 0.218,
+          "scale": 0.195,
           "scaleY": 1.08
         },
         "wide": {
-          "part": "eyeLWide",
+          "part": "eyeWide",
           "x": 340,
           "y": 330,
-          "scale": 0.227
+          "scale": 0.195
         },
         "closed": {
-          "part": "eyeLClosed",
+          "part": "eyeClosed",
           "x": 340,
           "y": 336,
-          "scale": 0.188
+          "scale": 0.195
         },
         "happy": {
-          "part": "eyeLHappy",
+          "part": "eyeHappy",
           "x": 340,
           "y": 329,
-          "scale": 0.216
+          "scale": 0.195
         },
         "sad": {
-          "part": "eyeLSad",
+          "part": "eyeSad",
           "x": 340,
           "y": 332,
-          "scale": 0.212,
-          "rotate": -24
+          "scale": 0.195,
+          "flip": true
         }
       }
     },
@@ -409,36 +374,35 @@
       "default": "calm",
       "attachments": {
         "calm": {
-          "part": "eyeR",
+          "part": "eye",
           "x": 420,
           "y": 330,
-          "scale": 0.219,
+          "scale": 0.195,
           "scaleY": 1.08
         },
         "wide": {
-          "part": "eyeRWide",
+          "part": "eyeWide",
           "x": 420,
           "y": 330,
-          "scale": 0.219
+          "scale": 0.195
         },
         "closed": {
-          "part": "eyeRClosed",
+          "part": "eyeClosed",
           "x": 420,
           "y": 336,
-          "scale": 0.186
+          "scale": 0.195
         },
         "happy": {
-          "part": "eyeRHappy",
+          "part": "eyeHappy",
           "x": 420,
           "y": 329,
-          "scale": 0.216
+          "scale": 0.195
         },
         "sad": {
-          "part": "eyeRSad",
+          "part": "eyeSad",
           "x": 420,
           "y": 332,
-          "scale": 0.2,
-          "rotate": 24
+          "scale": 0.195
         }
       }
     },
@@ -448,17 +412,17 @@
       "default": "brow",
       "attachments": {
         "brow": {
-          "part": "eyeLHappy",
+          "part": "eyeHappy",
           "x": 346,
           "y": 288,
-          "scale": 0.133,
+          "scale": 0.12,
           "rotate": -8
         },
         "sad": {
-          "part": "eyeLHappy",
+          "part": "eyeHappy",
           "x": 346,
           "y": 285,
-          "scale": 0.133,
+          "scale": 0.12,
           "rotate": -24
         }
       }
@@ -469,17 +433,17 @@
       "default": "brow",
       "attachments": {
         "brow": {
-          "part": "eyeRHappy",
+          "part": "eyeHappy",
           "x": 430,
           "y": 290,
-          "scale": 0.133,
+          "scale": 0.12,
           "rotate": 8
         },
         "sad": {
-          "part": "eyeRHappy",
+          "part": "eyeHappy",
           "x": 430,
           "y": 287,
-          "scale": 0.133,
+          "scale": 0.12,
           "rotate": 24
         }
       }
@@ -493,25 +457,25 @@
           "part": "mouth",
           "x": 376,
           "y": 360,
-          "scale": 0.205
+          "scale": 0.18
         },
         "open": {
           "part": "mouthLaugh",
           "x": 376,
           "y": 366,
-          "scale": 0.22
+          "scale": 0.17
         },
         "o": {
           "part": "mouthO",
           "x": 376,
           "y": 364,
-          "scale": 0.2
+          "scale": 0.16
         },
         "sad": {
           "part": "mouthSad",
           "x": 376,
           "y": 364,
-          "scale": 0.19
+          "scale": 0.16
         }
       }
     }

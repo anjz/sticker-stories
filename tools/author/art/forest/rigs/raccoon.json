@@ -1,6 +1,6 @@
 {
   "sticker": "raccoon",
-  "skeleton": "raccoon standing upright, three-quarter view facing left, tail on the right: root at the feet; body with belly squash; head on the body (the head-and-neck piece of the neck sheet, between the body and a copy of the body whose top fades in, so no chin line shows), face with eyes and mouth (the mask is on the head); earL/earR; armL/armR at the shoulders (folded, paws at the chest; swapped for a raised arm 'up' to wave or cheer and a raised bent arm 'bent' whose paw covers an eye); legL/legR at the hips; ringed tail at the rump.",
+  "skeleton": "raccoon standing upright, three-quarter view facing left, tail on the right: root at the feet; body with belly squash; head on the body, face with eyes and mouth (the mask is on the head); earL/earR; armL/armR at the shoulders (folded, paws at the chest; swapped for a raised arm 'up' to wave or cheer and a raised bent arm 'bent' whose paw covers an eye); legL/legR at the hips; ringed tail at the rump.",
   "sheets": [
     {
       "id": "parts",
@@ -22,14 +22,6 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a raccoon character; image 2 shows the same raccoon cut into puppet parts (body, head, ear, a folded arm, a leg, the tail). Draw two more arm parts for this puppet, in exactly the same drawing style, colours, fur texture and dark outline as images 1 and 2, as thick as the arm in image 2, with the same dark paw.\n\nDraw each part on its own, far apart on the sheet, nothing touching:\n1. one arm raised straight up: the raccoon's grey-brown arm unfolded and lifted, from a full, smooth, rounded shoulder at the bottom, bent only a little at the elbow, ending at the top in its dark paw, open, its little fingers spread and pointing up. Laid out straight like this the arm is about twice as long as the folded arm in image 2 is tall (upper arm, forearm and paw end to end).\n2. one arm raised and bent: from a full, smooth, rounded shoulder at the bottom, the upper arm goes up and a little outward to the elbow, the forearm bends back inward and up, ending in the dark paw, open, fingers up and tilted inward, as if about to cover an eye. The same length of arm as part 1, only bent.\n\nEach part is drawn whole, with its shoulder end a full rounded edge. No body, no head, no text, no labels, no numbers, no shadows. Fully transparent background."
-    },
-    {
-      "id": "neck",
-      "size": "1024x1024",
-      "references": [
-        "parts"
-      ],
-      "prompt": "Image 1 is a sticker of a raccoon character; image 2 shows the same raccoon cut into puppet parts, with a blank face. Draw one single piece, centred on the sheet: the raccoon's head together with its neck, as one piece. It is exactly the head of image 2 — the same head with its dark mask band, black nose and rosy cheeks, facing left, without ears, the same completely blank face (the dark mask stays, but no eyes, no eyebrows, no mouth), the same drawing style, colours, texture and line — but there is no chin line under it: the cream throat and the brown fur at the sides of the neck carry straight on down below the head, as wide as the neck is in image 1, for about half the head's height, the way the head flows into the chest in image 1, and end in a soft rounded edge of fur with no outline across it — the drawing's line runs down the neck's sides only. At the size the head has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -151,21 +143,6 @@
         1198,
         569
       ]
-    },
-    "headNeck": {
-      "sheet": "neck",
-      "at": [
-        525,
-        529
-      ]
-    },
-    "bodyFront": {
-      "sheet": "parts",
-      "at": [
-        824,
-        675
-      ],
-      "fadeTop": 0.3
     }
   },
   "bones": [
@@ -207,8 +184,8 @@
     {
       "id": "earR",
       "parent": "head",
-      "x": 458,
-      "y": 222
+      "x": 432,
+      "y": 235
     },
     {
       "id": "face",
@@ -348,25 +325,10 @@
       "default": "head",
       "attachments": {
         "head": {
-          "part": "headNeck",
-          "x": 302.0,
-          "y": 291.5,
-          "scale": 0.4758,
-          "rotate": 0.5
-        }
-      }
-    },
-    {
-      "id": "bodyFront",
-      "bone": "belly",
-      "default": "body",
-      "attachments": {
-        "body": {
-          "part": "bodyFront",
-          "x": 314,
-          "y": 510,
-          "scale": 0.68,
-          "scaleY": 0.87
+          "part": "head",
+          "x": 301,
+          "y": 237,
+          "scale": 0.615
         }
       }
     },

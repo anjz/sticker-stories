@@ -23,14 +23,6 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a bear cub character; image 2 shows the same bear cub cut into puppet parts. Draw only the body piece of image 2 again, alone in the middle of the sheet, at the same size and in exactly the same drawing style, colours, fur texture and line: the standing body with its cream tummy, facing the viewer, without head, arms or legs, its top (the neck) rounded and its sides smooth.\n\nIts bottom is one single smooth, full, round curve, like the bottom of a round, chubby belly: no dip, notch or cleft in the middle, not two lobes, not heart-shaped — one even round arc from side to side.\n\nNo text, no labels, no shadow, nothing else on the sheet. Fully transparent background."
-    },
-    {
-      "id": "arms",
-      "size": "1536x1024",
-      "references": [
-        "parts"
-      ],
-      "prompt": "Image 1 is a sticker of a bear cub character standing on its hind legs; image 2 shows the same bear cub cut into puppet parts. Draw the cub's two arms again as cut-out puppet parts, each drawn for its own side, exactly as each arm is in image 1: the same drawing style, colours, fur texture, line and proportions, each at the size and thickness it has in image 1.\n\nDraw each piece on its own, far apart on the sheet, nothing touching:\n1. the cub's arm on the left of image 1, hanging down a little away from the body with its paw, exactly as in image 1.\n2. the cub's arm on the right of image 1, hanging down a little away from the body with its paw, exactly as in image 1.\n\nEach arm goes on upward above the shoulder into a soft, rounded top of plain brown fur, as it would carry on under the head and into the body. That top end has NO dark outline: the drawing's dark line runs down the arm's outer side and round the paw, and along its inner side only from the armpit down, exactly where image 1 shows a line; above the armpit the inner side and the whole top are soft brown fur with no line at all. No text, no labels, no numbers, no outline around the pieces beyond the drawing's own line, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -144,20 +136,6 @@
       "at": [
         1364,
         663
-      ]
-    },
-    "armLs": {
-      "sheet": "arms",
-      "at": [
-        347,
-        484
-      ]
-    },
-    "armRs": {
-      "sheet": "arms",
-      "at": [
-        1184,
-        494
       ]
     }
   },
@@ -325,11 +303,12 @@
       "default": "arm",
       "attachments": {
         "arm": {
-          "part": "armLs",
-          "x": 250.0,
-          "y": 434.0,
-          "scale": 0.29,
-          "rotate": 0.0
+          "part": "arm",
+          "x": 256.7,
+          "y": 431.3,
+          "scale": 0.55,
+          "rotate": 6,
+          "flip": true
         }
       }
     },
@@ -339,11 +318,11 @@
       "default": "arm",
       "attachments": {
         "arm": {
-          "part": "armRs",
-          "x": 505,
-          "y": 435,
-          "scale": 0.29,
-          "rotate": 0
+          "part": "arm",
+          "x": 502.4,
+          "y": 437.2,
+          "scale": 0.572,
+          "rotate": -10
         }
       }
     },
@@ -517,11 +496,12 @@
       "default": "none",
       "attachments": {
         "arm": {
-          "part": "armLs",
-          "x": 250.0,
-          "y": 434.0,
-          "scale": 0.29,
-          "rotate": 0.0
+          "part": "arm",
+          "x": 256.7,
+          "y": 431.3,
+          "scale": 0.55,
+          "rotate": 6,
+          "flip": true
         }
       }
     }
