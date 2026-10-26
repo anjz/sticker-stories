@@ -28,7 +28,9 @@ final class PackLibrary {
                 failures.append("\(directory.lastPathComponent): \(error)")
             }
         }
-        packs = found.sorted { $0.id < $1.id }
+        // The bundled pack (Forest) always leads; the rest follow by ID.
+        // TODO: purchase order once packs are delivered separately.
+        packs = found.sorted { ($0.source == .bundled ? 0 : 1, $0.id) < ($1.source == .bundled ? 0 : 1, $1.id) }
         loadFailures = failures
     }
 
