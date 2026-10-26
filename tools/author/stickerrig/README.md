@@ -15,6 +15,7 @@ go run ./author/stickerrig parts   -pack ../packs/forest -only fox            # 
 go run ./author/stickerrig install -pack ../packs/forest -only fox            # atlas + rig + sidecars + manifest
 go run ./author/stickerrig preview -pack ../packs/forest -only fox -png       # out/rigs/fox.*.png to look at
 go run ./author/stickerrig check   -pack ../packs/forest -only fox            # seams, bones, eyes, faces (install runs it too)
+go run ./author/stickerrig film    -pack ../packs/forest -only fox -anim trot # the move as the app plays it: GIF + contact strip
 go run ./packager validate ../packs/forest
 ```
 
@@ -60,7 +61,8 @@ One file per sticker, so several can be rigged at once:
   `kind`, `description`, `pause` (`{ "frame": key, "shows" }`), `loop`,
   `facing`, `stride`, `hops`, `flies`, `hovers`, `wings` (the
   sidecar's `puppet.wings`), `on`, `stays`, `waterline`, `away`,
-  `place`, `perched`, `faces`, `idle`, `particles` — and its `keys`.
+  `place`, `perched`, `faces`, `idle`, `particles` — and its `keys`,
+  or for a move a `gait` instead (below).
   Pause, loop and particles count keys. In the water: a move's `away`
   names the move it plays going away from us (`"paddle"` with
   `"away": "paddle-out"`, his back to us); an action's `on` names the
@@ -154,6 +156,40 @@ worse, 2026-10-26).
 - `face` — a key that slides an eye or a brow off the head (`-slide`,
   10 % more of it off than at rest); `turn` — a key turning an eye on
   the face by more than `-turn` (4°).
+
+## Gaits
+
+A move can be made from how a body of its kind moves instead of keys
+written by hand: `"gait": {"style": "human.walk"}` in place of `keys`,
+`loop` and `stride`. Each style (`gait_<body>.go`: `human.walk`,
+`human.run`, `human.skip`, …) turns every limb along curves over the
+loop taken from how real bodies move — the knee bends one way, the arms
+swing against the legs, a four-legged walk puts its feet down in their
+order — and install samples them into evenly spaced keys that move on
+linearly (hand keys ease in and out of every key, which reads as stop
+and start). It keeps the planted foot on its ground line (each foot its
+own line: in a three-quarter view the far foot stands higher; a foot
+reaches as far as its leg along the slant it is drawn with), so the body
+rises over the planted foot and dips between steps; brings a swinging
+leg forward where its toes would drag; and measures `stride` from the
+planted foot's speed back under the body, so the feet do not slide as
+the app carries the character along. Without feet on the ground (flying,
+swimming) the move's own `stride` is kept.
+
+`gait` fields: `style`; `cycle` (seconds a loop, the style's by
+default); `swing`, `arms`, `lift` (scale the legs', the arms' or front
+limbs', and a hop's or flight's height); `samples` (keys a loop);
+`still` (bones it leaves alone: the surfer's arm holding the board);
+`pose` (added to every key: that arm's grip); `slots` (shown through
+the loop: happy eyes on a skip); `bones` (the rig's bone for a role the
+style names otherwise); `ground: false` (float as posed, no feet down).
+
+`film` plays an installed animation as the app does — the keys eased, a
+move's loop going round while it travels at its stride, a hop's arc —
+into `<sticker>.<anim>.gif`, and a `.strip.png` of frames 0.08 s apart
+to read as a still; `-before <copy of the pack>` plays the old one above
+it. Install into a copy of the pack to compare before touching the real
+one.
 
 ## Templates (`templates/<type>.json`)
 

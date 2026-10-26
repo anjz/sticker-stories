@@ -90,7 +90,17 @@ func (c *ctxt) install(r *rigSpec, templates map[string]animSpec, drop bool) err
 	}
 	// Resolve every animation before writing anything.
 	var anims []animSpec
+	posed := newPuppet(rig, art, nil)
 	for _, a := range r.Animations {
+		if a.Gait != nil {
+			var notes []string
+			if a, notes, err = c.gaitAnim(r, a, posed, box); err != nil {
+				return err
+			}
+			if len(notes) > 0 {
+				fmt.Printf("  %s (gait %s): the rig has no %s\n", a.ID, a.Gait.Style, strings.Join(notes, ", "))
+			}
+		}
 		resolved, notes, err := r.resolve(a, templates)
 		if err != nil {
 			return err

@@ -129,6 +129,10 @@ the app keeps circling while it is up there — and `wings`, the bones
 its flight keeps beating whatever else it does in the air (`["wingL",
 "wingR"]`, the ladybug's `shell` too; whatever hangs on them goes with
 them).
+Make a move from a **gait** where its body has one (README, "Gaits":
+`"gait": {"style": "human.walk"}`): the limbs move as the real animal's
+do, the feet stay planted and the stride is measured. Write keys by
+hand only for what no gait covers, and watch the result with `film`.
 Read the old sidecar for its `description` and `pause.shows` — stories
 were written to them — and make the keys tell exactly that, about as
 long (an action 2–5 s, a move's loop a step or a wingbeat cycle of
