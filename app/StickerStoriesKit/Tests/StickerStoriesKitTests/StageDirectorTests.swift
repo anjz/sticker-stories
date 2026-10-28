@@ -455,7 +455,9 @@ extension StageDirectorTests {
         let root = URL(fileURLWithPath: #filePath)
             .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
             .deletingLastPathComponent().deletingLastPathComponent()
-        let dir = root.appendingPathComponent("packs/\(id)")
+        // (STAGE_PACKS: another copy of the packs, for the report.)
+        let dir = ProcessInfo.processInfo.environment["STAGE_PACKS"].map { URL(fileURLWithPath: $0).appendingPathComponent(id) }
+            ?? root.appendingPathComponent("packs/\(id)")
         guard let data = try? Data(contentsOf: dir.appendingPathComponent("manifest.json")) else { return nil }
         var pack = Pack(manifest: try JSONDecoder().decode(PackManifest.self, from: data), dir: dir)
         for sticker in pack.manifest.stickers {
@@ -470,9 +472,12 @@ extension StageDirectorTests {
                     let holds = ((json["puppet"] as? [String: Any])?["keys"] as? [[String: Any]])?.compactMap { $0["hold"] as? Double }
                         ?? json["hold"] as? [Double] ?? []
                     let last = (json["loop"] as? [String: Any])?["to"] as? Int
+                    let first = (json["loop"] as? [String: Any])?["from"] as? Int
                     let tail = last.map { holds.dropFirst($0 + 1).reduce(0, +) } ?? 0
+                    // One pass of its loop, as the app times it.
+                    let cycle = first.flatMap { a in last.map { LiveFrames(holds: holds, loop: a...$0).loopDuration } }
                     pack.moves[sticker.id, default: []].append(StageMove(
-                        id: id, cycle: loop ? 0.8 : nil, stride: json["stride"] as? Double ?? 0,
+                        id: id, cycle: loop ? cycle ?? 0.8 : nil, stride: json["stride"] as? Double ?? 0,
                         hops: json["hops"] as? Bool ?? false, flies: json["flies"] as? Bool ?? false,
                         hovers: json["hovers"] as? Bool ?? false, on: json["on"] as? [String] ?? [], stays: json["stays"] as? Bool ?? false,
                         waterline: json["waterline"] as? Double ?? 0, facing: (json["facing"] as? String).flatMap(StageMove.Facing.init(rawValue:)), seconds: loop ? 0 : 1,
@@ -602,7 +607,7 @@ extension StageDirectorTests {
                 let plans = StageDirector.plan(
                     world: world, screen: screen, actors: actors, entrances: file.entranceTriggers, goes: goes,
                     policy: .standard, cast: cast, actions: StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] }),
-                    random: &random)
+                    live: file.liveTriggers, random: &random)
                 // A move cued after an action waits for it to end; an action
                 // waits only for the moves cued before it.
                 let ids = Dictionary(uniqueKeysWithValues: actors.map { ($0.id, $0.stickerID) })
@@ -728,6 +733,12 @@ extension StageDirectorTests {
                         // faced it about hands over to the plan's facing.)
                         guard s.opacity > 0.5, next.opacity > 0.5, (s.facing < 0) == (next.facing < 0) else { continue }
                         let leg = plan.legs.last { $0.at <= t }
+                        // (Backwards when the story says so: the shrimp across the pool.)
+                        if let going = plan.legs.last(where: { $0.at <= t + step }),
+                            goes.contains(where: { $0.backwards && $0.stickerID == a.stickerID && abs($0.at - going.cue) < 1e-6 })
+                        {
+                            continue
+                        }
                         let art = StageMove.pick(a.moves, by: leg?.move).flatMap(\.facing) ?? a.moves.first?.facing
                         guard let art else { continue }
                         let dx = world.screen(next.position).x - world.screen(s.position).x

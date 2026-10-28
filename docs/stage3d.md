@@ -130,7 +130,14 @@ Plans the whole story at once, from the cast and the story's triggers:
    take to cover the way, its frames played a little faster or slower
    (0.6–2.5×) to keep near the usual times — its feet always keep pace with
    the ground, so nobody glides — 6 s at most, 4 s to someone, who is
-   waiting for it (`maxTravelToSomeone`). A go to someone it already
+   waiting for it (`maxTravelToSomeone`). **It gets there in time for the
+   words**: by the story's next cue that needs it (`Director.needed`: its
+   own next action or move, or an action of whom it goes to; one cued
+   with the move — "Lola crouched under the umbrella" — as soon as it
+   can), its frames faster, at 1.5 s at the shortest; a move's later legs
+   (the swim after the walk to the pond) in what time is left. The
+   staging report (`StoryTimingReport`, below) measures how late each
+   action lands after its words. A go to someone it already
    stands beside is no move. A flyer left in the air keeps flying
    ("In the air" below). On a perch one of its ways `stays` on (the
    woodpecker's `cling`, `on: ["trunks"]`), it takes to that way as it
@@ -166,6 +173,23 @@ Plans the whole story at once, from the cast and the story's triggers:
    not use that stands in the way walks (or fades) to the freest land on
    screen away from the cast (one that never moves stays: 1), the further back and nearer the sides the
    better, as the story starts; then the story is planned again round it.
+
+**The staging report.** `StoryTimingReport` (a test that only runs with
+`STAGE_REPORT` set) stages every story of the packs on an empty iPad
+canvas and writes, per story and by narration time, each entrance and
+move with when it arrives and the gap left to whom it went to (in
+widths of the wider), each action with how late it plays after its
+words, and `far:` for two characters cued within 2.5 s of each other
+standing far apart:
+
+```sh
+cd app/StickerStoriesKit
+STAGE_REPORT=/tmp/stage-{pack}.txt swift test --filter StoryTimingReport
+# STAGE_LEGS=<story id>: every leg of that story too; STAGE_PACKS=<dir>: other copies of the packs
+```
+
+It is how story authors check that the stage shows what the words say
+(`tools/author/stories/README.md`, step 3: the staging pass).
 
 ## Not too many
 

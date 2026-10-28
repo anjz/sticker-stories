@@ -113,6 +113,9 @@ public enum StageDirector {
     /// The longest a walk to someone takes (`maxTravel` elsewhere): they
     /// are waiting for it, and the story goes on.
     static let maxTravelToSomeone: TimeInterval = 4
+    /// The shortest a move is squeezed to so it gets there by the story's
+    /// next cue on it (`Director.needed`).
+    static let minTravelForCue: TimeInterval = 1.5
     /// A flyer that cannot hover circles this many of its widths either
     /// side of its spot, and comes this much of its depth nearer.
     static let lapAcross = 0.9
@@ -126,13 +129,19 @@ public enum StageDirector {
     /// - Parameter actions: the actions the story cues, each with how long
     ///   it plays: a move cued after one waits for it to end (it rides the
     ///   wave, then comes in).
+    /// - Parameter live: every live cue of the story (holds too): a move
+    ///   gets there by its sticker's next one.
     public static func plan<R: RandomNumberGenerator>(
         world: StageWorld, screen: StageScreen, actors: [StageActor], entrances: [EntranceTrigger],
-        goes: [GoTrigger], policy: EffectPolicy, cast: Set<String>? = nil, actions: [StageAction] = [], random: inout R
+        goes: [GoTrigger], policy: EffectPolicy, cast: Set<String>? = nil, actions: [StageAction] = [],
+        live: [LiveAnimationTrigger] = [], random: inout R
     ) -> [UUID: StagePlan] {
         var director = Director(world: world, screen: screen, policy: policy, actors: actors)
         director.cast = cast
         director.actions = actions
+        // (Live animations off: no actions to be in time for.)
+        director.live = policy.allowsLiveAnimations ? live : []
+        for go in goes { director.goesAt[go.stickerID, default: []].append((go.at, go.target)) }
         director.settleThePlaced()
         if let cast {
             // Where the story's cast will be and pass, from a first run;
@@ -255,7 +264,8 @@ public enum StageDirector {
         guard !mine.isEmpty else { return time }
         var until = time
         for (id, plan) in plans where !mine.contains(id) {
-            for leg in plan.legs where leg.travels && leg.at <= time + 1e-6 && time < leg.end {
+            // (Not whoever only steps aside to make room there.)
+            for leg in plan.legs where leg.travels && leg.kind != .shuffle && leg.at <= time + 1e-6 && time < leg.end {
                 switch leg.support {
                 case .beside(let to), .on(let to), .under(let to):
                     if mine.contains(to) { until = max(until, leg.end) }
@@ -304,6 +314,13 @@ public enum StageDirector {
         var groups: [String: [Int]] = [:]
         /// The story's actions and how long each plays (`StageAction`).
         var actions: [StageAction] = []
+        /// When the story moves each sticker, and its live cues (holds
+        /// too): a move gets there by the next (`needed`).
+        var goesAt: [String: [(at: TimeInterval, to: String?)]] = [:]
+        var live: [LiveAnimationTrigger] = []
+        /// When the cue being planned comes: every leg it makes gets there
+        /// by the story's next need after it.
+        var now: TimeInterval = 0
 
         init(world: StageWorld, screen: StageScreen, policy: EffectPolicy, actors: [StageActor]) {
             self.world = world
@@ -330,6 +347,11 @@ public enum StageDirector {
                     (a.element.at, a.element.order, a.offset) < (b.element.at, b.element.order, b.offset)
                 }.map(\.element.cue)
             for cue in cues {
+                switch cue {
+                case .entrance(let entrance): now = entrance.at
+                case .go(let go): now = go.at
+                case .action(let action): now = action.at
+                }
                 // The legs each cue makes carry its time (`StageLeg.cue`).
                 let before = states.map(\.legs.count)
                 defer {
@@ -581,9 +603,10 @@ public enum StageDirector {
             // Nor round in front of whom it flies by (a bird by the snail).
             var partner: Int?
             if case .beside(let id) = leg.support { partner = states.firstIndex { $0.actor.id == id } }
+            // (Where they are as it gets there, not where the story leaves them.)
+            let q = partner.map { position(of: $0, at: leg.end) }
             let hidesPartner = { (p: Vec3) -> Bool in
-                guard let j = partner else { return false }
-                let q = states[j].pose.position
+                guard let j = partner, let q else { return false }
                 let theirs = drawing(j, at: q), mine = drawing(i, at: p)
                 // Neither across them nor behind them.
                 return (p.z < q.z ? StageWorld.hidden(theirs, behind: [mine]) : StageWorld.hidden(mine, behind: [theirs])) > 0.1
@@ -615,7 +638,16 @@ public enum StageDirector {
                 let move = states[i].actor.moves.first(where: { $0.id == id })
             else { return false }
             let way = (leg.facingTo < 0 ? -1.0 : 1.0) * (move.facing == .left ? -1.0 : 1.0)
-            return (world.screen(states[j].pose.position).x - world.screen(spot).x) * way > 0
+            return (world.screen(position(of: j, at: leg.end)).x - world.screen(spot).x) * way > 0
+        }
+
+        /// Where a sticker is at a moment of the story planned so far — on
+        /// its way somewhere then, where it stops.
+        func position(of j: Int, at time: TimeInterval) -> Vec3 {
+            let state = states[j]
+            let then = state.legs.first { $0.travels && $0.at <= time && time < $0.end }?.end ?? time
+            return StagePlan(start: state.start, startsVisible: state.startsVisible, legs: state.legs, size: state.actor.size)
+                .sample(at: then).position
         }
 
         /// The move it flies by, when its frames may play.
@@ -1130,11 +1162,29 @@ public enum StageDirector {
             if let partner, partner.go.stickerID == entrance.stickerID, partner.go.kind == .to,
                 partner.go.at - entrance.at <= StageDirector.straightToPartner, partner.go.by == nil || partner.go.by == entrance.by
             {
-                // Sent to them as it comes in: it comes straight to their side.
+                // Sent to them as it comes in: it comes straight to their side
+                // — when the way it comes in gets there (a seal swimming in to
+                // a ball on the sand swims in, then goes up to it on foot).
+                let was = states[i].pose
                 states[i].pose.position = offstagePoint(i, side: nearerSide(states[partner.j].pose.position), at: states[partner.j].pose.position)
-                landing = besideSpot(i, partner.j, toward: partner.go.toward)
-                states[i].beside = "beside:\(states[partner.j].actor.id)"
-                made.insert(Director.key(partner.go))
+                let spot = besideSpot(i, partner.j, toward: partner.go.toward)
+                let waters = move?.on ?? []
+                if waters.isEmpty || move?.flies == true || world.water(at: spot.position.ground).map(waters.contains) == true {
+                    landing = spot
+                    states[i].beside = "beside:\(states[partner.j].actor.id)"
+                    made.insert(Director.key(partner.go))
+                } else {
+                    states[i].pose = was
+                }
+            }
+            // With someone the story soon puts it with: in whichever of its
+            // places is nearest them (the clam on the sand by the digging
+            // dog, not over in the pool).
+            if landing == nil, arrival == nil, let j = partner?.j, stage.on.count > 1 {
+                let there = states[j].pose.position
+                landing = stage.on.compactMap { place in
+                    choose(spots(place, for: i, move: move), for: i, at: entrance.at, near: nil, partner: j, random: &random)
+                }.min { ($0.position - there).length < ($1.position - there).length }
             }
             for place in stage.on where landing == nil {
                 landing = choose(
@@ -1304,11 +1354,16 @@ public enum StageDirector {
                     goToPlace(name, i, go: go, begin: begin, random: &random)
                 } else if let j = nearest(name, to: i) {
                     let key = "beside:\(states[j].actor.id)"
-                    if wasBeside == key, go.toward == nil {
+                    let spot = besideSpot(i, j, toward: go.toward)
+                    // Still by their side: it stays (unless they went off
+                    // somewhere — the butterfly up into the sky, the bee
+                    // bobbing along beside her).
+                    if wasBeside == key, go.toward == nil,
+                        (spot.position - states[i].pose.position).length < me.width * 0.5
+                    {
                         states[i].beside = key
                         break
                     }
-                    let spot = besideSpot(i, j, toward: go.toward)
                     states[i].beside = key
                     // By their side already (it came in there): it stays.
                     if go.toward == nil, (spot.position - states[i].pose.position).length < me.width * 0.25 {
@@ -1506,7 +1561,10 @@ public enum StageDirector {
                     return hidden(i, at: up) > hidden(i, at: low) + 0.05 ? low : up
                 }
                 let ground = Vec2(x, z)
-                if onlyGetsAboutInWater(i) {
+                // Swimming there, as the story says (`by`): it stays in the water.
+                let water = Set(world.grounds.filter(\.water).map(\.place))
+                let swimming = states[i].by != nil && way(i).move.map { $0.id == states[i].by && !$0.on.isEmpty && $0.on.allSatisfy(water.contains) } == true
+                if onlyGetsAboutInWater(i) || swimming {
                     // Water-bound: by them in its water (a fish by the ring
                     // afloat), else as near them as its water is.
                     let mine = waters(i)
@@ -1871,6 +1929,28 @@ public enum StageDirector {
         /// The leg from where it is to `target`: the path (round the water
         /// and roots on foot, straight through the air), its gait and its
         /// time from the distance and the way it gets about.
+        /// When the story next needs a sticker setting off at `start` where
+        /// it is going: its own next action or move, or the next action or
+        /// move of whom it goes to — one cued with the move ("Lola crouched under
+        /// the umbrella") as soon as it can. Nil when nothing does.
+        func needed(_ i: Int, after start: TimeInterval, to target: StageSupport) -> TimeInterval? {
+            var who = [states[i].actor.stickerID]
+            var with: UUID?
+            switch target {
+            case .beside(let id), .on(let id), .under(let id): with = id
+            default:
+                // (A leg on the way there: to the water's edge, then up to them.)
+                let key = states[i].beside ?? groupKey(of: i)
+                with = key.flatMap { $0.split(separator: ":").last.flatMap { UUID(uuidString: String($0)) } }
+            }
+            if let with, let them = states.first(where: { $0.actor.id == with })?.actor.stickerID { who.append(them) }
+            let acts = live.filter { who.contains($0.stickerID) && $0.at > start - 0.05 }.map(\.at)
+            // (Its own next move; theirs too: there before the ball it is
+            // to push rolls off — unless they come to it.)
+            let moves = who.flatMap { goesAt[$0] ?? [] }.filter { $0.at > start + 0.05 && $0.to != who[0] }.map(\.at)
+            return (acts + moves).min()
+        }
+
         func makeLeg(_ i: Int, to target: StagePose, start: TimeInterval, kind: StageLeg.Kind, forceFly: Bool = false) -> StageLeg {
             let me = states[i].actor
             let from = states[i].pose.position
@@ -1946,6 +2026,12 @@ public enum StageDirector {
             let length = zip(path, path.dropFirst()).reduce(0) { $0 + ($1.1 - $1.0).length }
             let widths = length / max(me.width, 0.01)
             let shuffle = kind == .shuffle
+            // There by the story's next cue on it, unless that is too soon
+            // to get anywhere (then as soon as it can); a move's later legs
+            // (into the pond after the walk to it) in what time is left. (A
+            // step aside making room is never hurried.)
+            let soonest = kind == .settle || shuffle ? .infinity : needed(i, after: min(now, start), to: target.support)
+                .map { max($0 - start, start > now + 0.05 ? 0.6 : StageDirector.minTravelForCue) } ?? .infinity
             var gait: StageLeg.Gait
             var duration: TimeInterval
             var rate = 1.0
@@ -1956,7 +2042,7 @@ public enum StageDirector {
                 moveID = nil
             } else if flies {
                 gait = .fly
-                duration = min(max(widths * 0.3 + 0.6, shuffle ? 0.6 : 1.2), 3.4)
+                duration = min(max(widths * 0.3 + 0.6, shuffle ? 0.6 : 1.2), 3.4, soonest)
                 if !(move?.flies ?? false) { moveID = me.moves.first { $0.flies }?.id ?? move?.id }
             } else if let move, let cycle = move.cycle, cycle > 0, move.stride > 0, policy.allowsLiveAnimations {
                 // As long as its steps take to cover the way, the frames a
@@ -1969,6 +2055,7 @@ public enum StageDirector {
                 case .beside, .on, .under: if kind == .move { most = StageDirector.maxTravelToSomeone }
                 default: break
                 }
+                most = min(most, soonest)
                 duration = min(max(natural, shuffle ? 0.5 : StageDirector.minTravel), most)
                 if natural > 0 {
                     // A long way for short legs (a caterpillar across the
@@ -1979,7 +2066,7 @@ public enum StageDirector {
                 gait = move.hops ? .hops(cycle: cycle / rate) : .walk
             } else {
                 gait = .bounce
-                duration = min(max(widths * 0.35, shuffle ? 0.5 : StageDirector.minTravel), 3.2)
+                duration = min(max(widths * 0.35, shuffle ? 0.5 : StageDirector.minTravel), 3.2, soonest)
                 moveID = nil
             }
             if !policy.allowsLiveAnimations { moveID = nil }

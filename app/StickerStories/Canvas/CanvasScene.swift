@@ -1588,7 +1588,7 @@ final class CanvasScene: SKScene {
                     ? StageAction.of(
                         triggers.live, frames: { [actionTimings] in actionTimings[$0] }, faces: { [actionFaces] in actionFaces[$0] })
                     : [],
-                policy: policy)
+                live: triggers.live, policy: policy)
         }
         let motions = stage == nil ? planMotions(triggers.goes + placing, visitors: visitors, policy: policy) : [:]
         var storyLive = stage.map {
@@ -1808,7 +1808,7 @@ final class CanvasScene: SKScene {
     /// shows it, every sticker on it, the story's entrances and moves.
     private func planStage(
         _ space: SceneSpace, entrances: [EntranceTrigger], goes: [GoTrigger], cast: Set<String>, actions: [StageAction],
-        policy: EffectPolicy
+        live: [LiveAnimationTrigger], policy: EffectPolicy
     ) -> StoryStage {
         let aspect = baseArtPixelSize.height > 0 ? Double(baseArtPixelSize.width / baseArtPixelSize.height) : 4.0 / 3
         var world = StageWorld(
@@ -1828,7 +1828,7 @@ final class CanvasScene: SKScene {
         var random = SystemRandomNumberGenerator()
         let plans = StageDirector.plan(
             world: world, screen: screen, actors: actors, entrances: entrances, goes: goes, policy: policy, cast: cast,
-            actions: actions, random: &random)
+            actions: actions, live: live, random: &random)
         return StoryStage(world: world, plans: plans, moves: stageMoves, nodes: nodes, drawing: drawing)
     }
 
