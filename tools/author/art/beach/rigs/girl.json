@@ -138,13 +138,6 @@
         152
       ]
     },
-    "eyeLSad": {
-      "sheet": "face",
-      "at": [
-        884,
-        174
-      ]
-    },
     "eyeLCry": {
       "sheet": "face",
       "at": [
@@ -178,13 +171,6 @@
       "at": [
         661,
         451
-      ]
-    },
-    "eyeRSad": {
-      "sheet": "face",
-      "at": [
-        902,
-        464
       ]
     },
     "eyeRCry": {
@@ -763,10 +749,11 @@
           "scale": 0.19
         },
         "sad": {
-          "part": "eyeLSad",
+          "part": "eyeL",
           "x": 311,
-          "y": 228,
-          "scale": 0.2
+          "y": 227,
+          "scale": 0.205,
+          "scaleY": 1.1
         },
         "cry": {
           "part": "eyeLCry",
@@ -808,10 +795,11 @@
           "scale": 0.21
         },
         "sad": {
-          "part": "eyeRSad",
+          "part": "eyeR",
           "x": 370,
-          "y": 252,
-          "scale": 0.22
+          "y": 251,
+          "scale": 0.228,
+          "scaleY": 1.12
         },
         "cry": {
           "part": "eyeRCry",
@@ -1467,7 +1455,7 @@
       "id": "skip",
       "kind": "move",
       "description": "the girl skips along to the right across the sand, then stops and stands.",
-      "facing": "right",
+      "facing": "left",
       "gait": {
         "style": "upright.skip",
         "slots": {
