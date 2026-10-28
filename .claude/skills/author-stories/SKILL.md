@@ -180,6 +180,11 @@ exactly per `FORMAT.md`:
   write a way the sticker has no move for; **what the wind carries goes
   right** (`go away right`, `go to <place> right`: the wind effect blows
   left to right); **where the words put a character, a move takes it**
+  and **where the words put two characters together** (pushing, giving,
+  hugging, whispering to, sitting by, playing with, following) **a move
+  brings one to the other first** (`{seal:go to ball}` before "she
+  pushed the ball with her nose"; FORMAT "Move cues") — the stage never
+  guesses who is with whom
   (`{bird:enter} {bird:go to branches} Bird flew down onto a branch` — a
   sticker the child placed in the meadow goes there; one already there
   stays; `another` for "the next tree"); **an action with a place happens there** (the
@@ -291,7 +296,11 @@ When the count is reached and the action pass is done: run `storycheck` once mor
 clean with full coverage, and report to the user: how many stories, the
 coverage table, the effects-used, faces, live-sticker, audio-tag and sound
 tables, that every story's entrances are clean, the learning share, the mood mix, and anything you chose not to write and why. Do not
-build step 2 (audio); it is a separate tool.
+build step 2 (audio); it is a separate tool. Once it is built, the
+**staging pass** (stories README, step 3) checks every story on the
+stage: characters the words put together are together, actions land
+on their words; fix what it shows with cue-only edits (free) and
+measure again.
 
 ## Never
 
