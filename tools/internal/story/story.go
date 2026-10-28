@@ -9,6 +9,7 @@ package story
 import (
 	"encoding/json"
 	"fmt"
+	"maps"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -208,8 +209,8 @@ const (
 	// CanvasStop ends a canvas effect on the word it is on ({canvas:rain
 	// stop}): the effect started before it clears from there, so it lasts
 	// exactly as long as the words keep it.
-	CanvasStop = "stop"
-	SoundTarget  = "sfx"
+	CanvasStop  = "stop"
+	SoundTarget = "sfx"
 )
 
 // LiveEffect is the reserved cue effect that plays one of a sticker's live
@@ -323,6 +324,7 @@ type Cue struct {
 	Toward     string // the side a move goes toward: left, right ("" = where it goes decides)
 	Another    bool   // go to a place: another part of it than where it is ("on to the next tree")
 	Backwards  bool   // a move: backwards, facing away from the way it goes (only when the words say so)
+	Prop       string // go to a sticker: beside a prop it holds out ({seagull:go to girl kite})
 	Sound      bool
 	Solo       bool
 	Effect     string
@@ -751,6 +753,8 @@ func parseCue(inner string) (Cue, error) {
 			c.Toward = p
 		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind != "" && c.Target == "" && idPattern.MatchString(p):
 			c.Target = p
+		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind == GoTo && c.Target != "" && c.Prop == "" && idPattern.MatchString(p) && !numericParam.MatchString(p):
+			c.Prop = p
 		case c.Effect == FaceEffect && c.Sticker != "" && idPattern.MatchString(p) && !numericParam.MatchString(p):
 			if c.Expression != "" {
 				return c, fmt.Errorf("a face cue names one expression")
@@ -943,6 +947,9 @@ type Animation struct {
 	// Place: the features an action happens at (the woodpecker taps on
 	// the trunks).
 	Place []string
+	// Props: what an action holds out in its paused frame (the girl's
+	// kite), where a flyer can go while it is held.
+	Props []string
 }
 
 // PackManifest reads what story validation needs from a loaded pack
@@ -982,7 +989,7 @@ func PackManifest(m *manifest.Manifest, dir string) (Manifest, error) {
 	}
 	for id, list := range anims {
 		for _, a := range list {
-			anim := Animation{ID: a.ID, Description: a.Description, Seconds: a.Duration(), Flies: a.Flies, On: a.On, Perched: a.Perched, Place: a.Place}
+			anim := Animation{ID: a.ID, Description: a.Description, Seconds: a.Duration(), Flies: a.Flies, On: a.On, Perched: a.Perched, Place: a.Place, Props: slices.Sorted(maps.Keys(a.Props))}
 			if a.EffectiveKind() == manifest.KindMove {
 				pack.Moves[id] = append(pack.Moves[id], anim)
 				continue
@@ -1237,8 +1244,11 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 				continue
 			}
 			if c.Effect == GoEffect {
-				shape = append(shape, c.Sticker+":go:"+c.GoKind+":"+c.Target+":"+c.By+":"+c.Toward+":"+fmt.Sprint(c.Another)+":"+fmt.Sprint(c.Backwards))
+				shape = append(shape, c.Sticker+":go:"+c.GoKind+":"+c.Target+":"+c.By+":"+c.Toward+":"+fmt.Sprint(c.Another)+":"+fmt.Sprint(c.Backwards)+":"+c.Prop)
 				validateGoCue(&is, lang, c, m, inStory, enterAt)
+				if c.Prop != "" {
+					validatePropGo(&is, lang, c, m, held[c.Target])
+				}
 				switch c.GoKind {
 				case GoTo:
 					if _, isPlace := m.Features[c.Target]; isPlace {
@@ -1760,6 +1770,35 @@ func validateGoCue(is *Issues, lang string, c Cue, m Manifest, inStory map[strin
 		is.errorf("%s: cue %s: left and right are for go to and go away (the way it goes across the screen)", lang, c.Raw)
 	}
 	validateBy(is, lang, c, m)
+}
+
+// validatePropGo checks a move to a prop another sticker holds out
+// ({seagull:go to girl kite}): a flyer, to a sticker holding (paused, held
+// is that action) an action that holds out that prop — the kite is only
+// up there while the girl holds it.
+func validatePropGo(is *Issues, lang string, c Cue, m Manifest, held string) {
+	if _, place := m.Features[c.Target]; place {
+		is.errorf("%s: cue %s: %s is a place; a prop is something a character holds out (go to girl kite)", lang, c.Raw, c.Target)
+		return
+	}
+	if !m.fliesBy(c.Sticker, c.By) {
+		is.errorf("%s: cue %s: only a flyer goes to %s's %s, up where it is held out", lang, c.Raw, c.Target, c.Prop)
+	}
+	var holders []string
+	for _, a := range m.Animations[c.Target] {
+		if slices.Contains(a.Props, c.Prop) {
+			holders = append(holders, a.ID)
+		}
+	}
+	switch {
+	case len(holders) == 0:
+		is.errorf("%s: cue %s: %s holds out no %s in any action", lang, c.Raw, c.Target, c.Prop)
+	case !slices.Contains(holders, held):
+		is.errorf("%s: cue %s: %s's %s is only out while %s holds its %s — {%s:%s %s %s} a few words before", lang, c.Raw, c.Target, c.Prop, c.Target, holders[0], c.Target, LiveEffect, holders[0], LiveHold)
+	}
+	if c.Toward != "" || c.Another {
+		is.errorf("%s: cue %s: going to a prop takes no side and no another", lang, c.Raw)
+	}
 }
 
 // validateBy checks the way an entrance or a move names (by fly): one of

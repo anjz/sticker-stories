@@ -590,7 +590,10 @@ func (m *Manifest) Validate(dir string) []error {
 					fail("%s: place: %q is not a feature of the pack", field, f)
 				}
 			}
-			animations[st.ID] = append(animations[st.ID], effects.Animation{ID: anim.ID, Pausable: anim.Pause != nil, Move: anim.EffectiveKind() == KindMove})
+			animations[st.ID] = append(animations[st.ID], effects.Animation{
+				ID: anim.ID, Pausable: anim.Pause != nil, Move: anim.EffectiveKind() == KindMove,
+				Props: slices.Sorted(maps.Keys(anim.Props)),
+			})
 		}
 		// A move's away is another looping move of the same sticker's.
 		for _, a := range aways {

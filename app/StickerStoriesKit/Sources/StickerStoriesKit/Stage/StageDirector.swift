@@ -1298,8 +1298,10 @@ public enum StageDirector {
         func partner(of i: Int, entrance: EntranceTrigger, goes: [GoTrigger]) -> (go: GoTrigger, j: Int)? {
             let me = entrance.stickerID
             let window = entrance.at - 0.01...entrance.at + StageDirector.partnerWindow
+            // (Not up to what someone holds out: the gull flying up to the
+            // kite comes in on its own way, not to the girl's side.)
             let toSomeone = { (go: GoTrigger) -> Bool in
-                go.kind == .to || go.kind == .on || go.kind == .under
+                (go.kind == .to || go.kind == .on || go.kind == .under) && go.held == nil
             }
             let mine = goes.filter { $0.stickerID == me && window.contains($0.at) }.min { $0.at < $1.at }
             var best: (go: GoTrigger, j: Int)?
@@ -1350,7 +1352,10 @@ public enum StageDirector {
                 relayout(key, start: begin, mover: i)
             case .to:
                 guard let name = go.target else { break }
-                if world.space.places[name] != nil, !states.contains(where: { $0.actor.stickerID == name }) {
+                if let held = go.held, policy.allowsLiveAnimations, way(i).flies, let j = nearest(name, to: i) {
+                    // Up by what they hold out (the gull by the girl's kite).
+                    goWalking(i, to: heldSpot(i, j, held), begin: begin)
+                } else if world.space.places[name] != nil, !states.contains(where: { $0.actor.stickerID == name }) {
                     goToPlace(name, i, go: go, begin: begin, random: &random)
                 } else if let j = nearest(name, to: i) {
                     let key = "beside:\(states[j].actor.id)"
@@ -1517,6 +1522,24 @@ public enum StageDirector {
         /// (the other when that is taken or off screen), a little
         /// overlapping; a flyer hovers by it; a walker by someone up a tree
         /// or in water it does not belong in stands on the nearest land.
+        /// In the air beside what `j` holds out (`GoTrigger.Held`: the
+        /// girl's kite up on its string), level with it, on its side away
+        /// from them — clear of the string they hold it by — unless that
+        /// side is off the screen.
+        func heldSpot(_ i: Int, _ j: Int, _ held: GoTrigger.Held) -> StagePose {
+            let me = states[i].actor, them = states[j].actor
+            let t = states[j].pose.position
+            let mirror = states[j].pose.facing < 0 ? -1.0 : 1.0
+            let prop = Vec3(t.x + held.across * them.width * mirror, t.y + held.up * them.size, t.z)
+            var side: Double = held.across * mirror < 0 ? -1 : 1
+            let z = max(t.z - StageDirector.inFront, 0.1)
+            // Its middle level with the prop, a little more than half its
+            // width out from it.
+            let at = { (side: Double) in Vec3(prop.x + side * me.width * 0.8, max(prop.y - me.size * 0.5, 0.01), z) }
+            if !onScreen(i, at: at(side)), onScreen(i, at: at(-side)) { side = -side }
+            return StagePose(position: pushedOnScreen(i, at(side)), support: .air(""), facing: states[i].pose.facing)
+        }
+
         func besideSpot(_ i: Int, _ j: Int, toward: GoTrigger.Side?) -> StagePose {
             let me = states[i].actor, them = states[j].actor
             let t = states[j].pose.position

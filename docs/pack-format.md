@@ -264,7 +264,7 @@ never letterboxes:
     `id` the sticker already uses, no `puppet`,
     a `stickerBox` outside the unit square, a `kind` other than `action`/`move`,
     a second move for one sticker without a `loop`, a `pause` on a move
-    or a `perched`, `place` or `faces` on a move, a `place` naming no feature, an area `facing` other than left/right or on a stage area, a `pause` outside the middle frames or without `shows`, a `loop`, `facing`,
+    or a `perched`, `place`, `faces` or `props` on a move, `props` on an action without a `pause`, a prop named otherwise than lowercase words joined by hyphens or outside −2–3 of the image, a `place` naming no feature, an area `facing` other than left/right or on a stage area, a `pause` outside the middle frames or without `shows`, a `loop`, `facing`,
     `stride`, `hops`, `flies`, `hovers`, `stays`, `waterline` or `away`
     on an action, any of them or `on` on a move without a loop, a loop
     outside the keys or starting on key 0, a
@@ -667,6 +667,7 @@ the keys of the sticker's puppet made by `tools/author/stickerrig`
 | `kind` | `action` (the default when absent) or `move` |
 | `description` | one plain sentence saying what the animation shows ("the snail pulls its head and eye stalks into its shell, waits, then slowly peeks out"), for story authors; required, ignored by the app |
 | `stickerBox` | the sticker's drawing within its image, as fractions of the image (top-left origin) |
+| `props` | actions with a `pause` only, optional: what the character holds out in the paused frame, by name, and where it is then — `{ "kite": { "x": 0.204, "y": -0.618 } }`, fractions of the sticker image with a top-left origin like `stickerBox`, anywhere from −2 to 3 (the girl's kite flies far above her). While the action is held, a story can send a flyer to it (`"prop"` on a move trigger, `docs/effects.md`, "Movement"); `stickerrig` writes it from the rig's `props` |
 | `place` | actions only, optional: feature ids the action happens at (the woodpecker's tap: `["trunks"]`). Before it plays, the app takes the character to the nearest spot on one (its front on a `facing` area, facing it) unless it is there already — wherever a child put it — and the action waits until it arrives; storycheck errors on a story that took it elsewhere first |
 | `perched` | actions only, optional: `true` when the character sits on something in it (the butterfly folding its wings to rest, the owl dozing off); stories land a flyer before they play it, never in a feature marked `air` (checked by storycheck; the app ignores it) |
 | `faces` | actions only, optional: `left` or `right`, the way the character faces on screen while the action plays (the surfer riding a wave: `right`, the way the wave rolls). The app turns the whole puppet to it as the action starts — mirroring it as needed, whatever way it faced — and back as it ends; never the head alone (`docs/stage3d.md`, "In the water") |

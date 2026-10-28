@@ -95,6 +95,32 @@ import Testing
         #expect(plans[bird]?.legs.last?.gait == .fly)
     }
 
+    @Test func aFlyerGoesUpBesideWhatSomeoneHoldsOut() throws {
+        // The fox holds something out up over its head, to its left (a kite
+        // on its string); the bird flies up to it, not to the fox's side.
+        let held = GoTrigger.Held(across: -0.3, up: 1.6)
+        let plans = plan(
+            [actor(fox, "fox", at: .init(0.5, 0.2), moves: trot),
+             actor(bird, "bird", at: .init(0.85, 0.6), stage: StickerStage(entrance: .fly, on: ["sky"]), moves: flight)],
+            goes: [GoTrigger(at: 1, stickerID: "bird", kind: .to, target: "fox", prop: "kite", held: held)])
+        let end = try #require(plans[bird]?.legs.last)
+        #expect(end.support == .air(""))
+        let foxAt = try #require(plans[fox]?.sample(at: 10).position)
+        let fox = actor(self.fox, "fox"), bird = actor(self.bird, "bird")
+        let prop = Vec3(foxAt.x + held.across * fox.width, foxAt.y + held.up * fox.size, foxAt.z)
+        let spot = try #require(end.path.last)
+        // Level with it (its middle), out beside it on its side away from
+        // the fox.
+        #expect(abs(spot.y + bird.size * 0.5 - prop.y) < 0.02)
+        #expect(spot.x < prop.x && prop.x - spot.x < bird.width)
+        // Without knowing where it is held out: beside the fox.
+        let plain = plan(
+            [actor(self.fox, "fox", at: .init(0.5, 0.2), moves: trot),
+             actor(self.bird, "bird", at: .init(0.85, 0.6), stage: StickerStage(entrance: .fly, on: ["sky"]), moves: flight)],
+            goes: [GoTrigger(at: 1, stickerID: "bird", kind: .to, target: "fox", prop: "kite")])
+        #expect(plain[self.bird]?.legs.last?.support == .beside(self.fox))
+    }
+
     @Test func aVisitorComesInFromTheSideOntoLandOnScreen() throws {
         let plans = plan([actor(fox, "fox", moves: trot)], entrances: [EntranceTrigger(at: 2, stickerID: "fox")])
         let p = try #require(plans[fox])

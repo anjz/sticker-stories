@@ -1825,6 +1825,20 @@ final class CanvasScene: SKScene {
             nodes, space: space, world: world, stages: stages, moves: stageMoves, fronts: stickerFronts,
             statures: Dictionary(uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.size.map { (s.id, $0) } }),
             drawing: drawing)
+        // Where each prop a move goes to is held out (the girl's kite):
+        // from its action's sidecar, on its holder's drawing.
+        let goes = goes.map { go -> GoTrigger in
+            var go = go
+            if let prop = go.prop, let target = go.target, policy.allowsLiveAnimations,
+                let point = liveAnimations.lazy.compactMap({ $0.sticker == target ? $0.props?[prop] : nil }).first
+            {
+                let box = drawingBox(of: target)
+                go.held = GoTrigger.Held(
+                    across: (point.x - Double(box.midX)) / max(Double(box.width), 1e-6),
+                    up: (1 - point.y - Double(box.minY)) / max(Double(box.height), 1e-6))
+            }
+            return go
+        }
         var random = SystemRandomNumberGenerator()
         let plans = StageDirector.plan(
             world: world, screen: screen, actors: actors, entrances: entrances, goes: goes, policy: policy, cast: cast,

@@ -186,7 +186,7 @@ func load(packDir, storiesDir string) (*ctxt, error) {
 	c.animations = effects.Animations{}
 	for id, anims := range c.story.Animations {
 		for _, a := range anims {
-			c.animations[id] = append(c.animations[id], effects.Animation{ID: a.ID, Pausable: a.Pause != ""})
+			c.animations[id] = append(c.animations[id], effects.Animation{ID: a.ID, Pausable: a.Pause != "", Props: a.Props})
 		}
 	}
 	for id, moves := range c.story.Moves {

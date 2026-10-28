@@ -180,7 +180,7 @@ func TestPerchedIsForActions(t *testing.T) {
 	m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) {
 		a.Kind, a.Perched, a.Loop, a.Facing, a.Stride = KindMove, true, &FrameRange{From: 1, To: 2}, "left", 0.5
 	})}
-	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "perched, idle and place belong to an action") {
+	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "perched, idle, place and props belong to an action") {
 		t.Errorf("a perched move: %v", errs)
 	}
 }
@@ -269,5 +269,23 @@ func TestActionOnFacesAndMoveAway(t *testing.T) {
 				t.Errorf("no error mentioning %q in %v", tc.wantSub, errs)
 			}
 		})
+	}
+}
+
+func TestPropsAreWhereAPausedActionHoldsThem(t *testing.T) {
+	dir := t.TempDir()
+	m := validManifest(t, dir)
+	m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) {
+		a.Pause = &AnimationPause{Frame: 2, Shows: "the kite up high"}
+		a.Props = map[string]AnimationPoint{"kite": {X: 0.2, Y: -0.6}}
+	})}
+	if errs := m.Validate(dir); len(errs) != 0 {
+		t.Errorf("a kite held out high above the image: %v", errs)
+	}
+	m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) {
+		a.Props = map[string]AnimationPoint{"kite": {X: 0.2, Y: -0.6}}
+	})}
+	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "props need a pause") {
+		t.Errorf("props without a pause: %v", errs)
 	}
 }

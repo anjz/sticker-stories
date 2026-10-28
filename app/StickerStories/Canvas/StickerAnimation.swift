@@ -70,6 +70,10 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// An action that happens in one place: the features it needs (the
     /// woodpecker's tap: the trunks).
     var place: [String]?
+    /// What an action holds out in its paused frame, by name, where it is
+    /// then (fractions of the image, top-left origin, like `stickerBox`):
+    /// a flyer a story sends to it goes up beside it (`GoTrigger.held`).
+    var props: [String: Point]?
     /// A small, gentle action it plays now and then on its own while a
     /// story leaves it be (`IdleLife`).
     var idle: Bool
@@ -91,6 +95,11 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// One burst: when `frame` first shows, `effect` (`dust-puff`, `spray`,
     /// `sparks`, `bubble-puff`) from the point `x`, `y` of the sticker's image (fractions,
     /// top-left origin, like `stickerBox`).
+    struct Point: Decodable, Equatable {
+        var x: Double
+        var y: Double
+    }
+
     struct ParticleCue: Decodable, Equatable {
         var frame: Int
         var effect: EffectName
@@ -102,7 +111,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
 
     private enum CodingKeys: String, CodingKey {
         case id, sticker, kind, stickerBox, pause, loop, facing, stride, hops, flies, hovers, on, stays, waterline,
-            place, idle, particles, puppet, away, faces
+            place, idle, particles, puppet, away, faces, props
     }
 
     /// A particle cue that decodes or is skipped (an effect this build
@@ -136,6 +145,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         stays = try? c.decodeIfPresent(Bool.self, forKey: .stays)
         waterline = try? c.decodeIfPresent(Double.self, forKey: .waterline)
         place = try? c.decodeIfPresent([String].self, forKey: .place)
+        props = kind == .action ? (try? c.decodeIfPresent([String: Point].self, forKey: .props)) ?? nil : nil
         idle = kind == .action && ((try? c.decodeIfPresent(Bool.self, forKey: .idle)) ?? nil) == true
         let cues = (try? c.decodeIfPresent([LenientCue].self, forKey: .particles)) ?? nil
         let frames = puppet.keys.count

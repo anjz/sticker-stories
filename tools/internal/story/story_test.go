@@ -209,7 +209,11 @@ func TestValidationFailures(t *testing.T) {
 		{"canvas effect for the wrong setting", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:dimlight}"; s.Languages["en-US"] = l }, `suits indoors packs; this pack's setting is "outdoors"`},
 		{"canvas cue with sticker params", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain loop}"; s.Languages["en-US"] = l }, "only an intensity and a duration"},
 		{"stop with nothing running", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain stop}"; s.Languages["en-US"] = l }, "no rain is running to stop"},
-		{"stop with a duration", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain} rain {canvas:rain stop 4s}"; s.Languages["en-US"] = l }, "a stop takes nothing else"},
+		{"stop with a duration", func(s *Story) {
+			l := s.Languages["en-US"]
+			l.Text += " {canvas:rain} rain {canvas:rain stop 4s}"
+			s.Languages["en-US"] = l
+		}, "a stop takes nothing else"},
 		{"canvas cue too short", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain 0.5s}"; s.Languages["en-US"] = l }, "stays on for 1–120 s"},
 	}
 	for _, tc := range cases {
@@ -981,5 +985,39 @@ func TestCharacterLinesAreValidated(t *testing.T) {
 		if !strings.Contains(fmt.Sprint(is.Errors, is.Warnings), c.want) {
 			t.Errorf("%s: want %q in errors %v / warnings %v", name, c.want, is.Errors, is.Warnings)
 		}
+	}
+}
+
+func TestGoToAProp(t *testing.T) {
+	cues, _, errs := ParseCues("{owl:go to fox kite} a {owl:go to fox 2s} b")
+	if len(errs) != 0 || cues[0].Target != "fox" || cues[0].Prop != "kite" || cues[1].Prop != "" {
+		t.Fatalf("a prop after the target: %+v %v", cues, errs)
+	}
+	cat := testCatalog(t)
+	pack := forest
+	pack.Stages = map[string]string{"fox": "hop", "rabbit": "hop", "owl": "fly", "flower": "grow", "tree": "grow"}
+	pack.Moves = map[string][]Animation{"owl": {{ID: "fly", Flies: true}}, "fox": {{ID: "trot"}}}
+	pack.Animations = map[string][]Animation{"fox": {{ID: "kite", Pause: "the kite up high", ToPause: 1, FromPause: 1, Props: []string{"kite"}}}}
+	story := func(en string) *Story {
+		s := goodStory()
+		s.Supporting = append(s.Supporting, "owl")
+		for _, lang := range []string{"en-US", "es-ES"} {
+			l := s.Languages[lang]
+			l.Text += en
+			s.Languages[lang] = l
+		}
+		return s
+	}
+	held := " {owl:enter} Owl came. {fox:live kite hold} Up went the kite. {owl:go to fox kite} Owl flew up beside it."
+	if is := Validate(story(held), pack, cat); len(is.Errors) != 0 {
+		t.Fatalf("to the kite while it is held out: %v", is.Errors)
+	}
+	notHeld := " {owl:enter} Owl came. {owl:go to fox kite} Owl flew up beside it."
+	if is := Validate(story(notHeld), pack, cat); !strings.Contains(strings.Join(is.Errors, "\n"), "only out while fox holds its kite") {
+		t.Fatalf("the kite is only up while it is held: %v", is.Errors)
+	}
+	walker := " {fox:live kite hold} Up went the kite. {rabbit:go to fox kite} Rabbit went to it."
+	if is := Validate(story(walker), pack, cat); !strings.Contains(strings.Join(is.Errors, "\n"), "only a flyer") {
+		t.Fatalf("a walker cannot go up to the kite: %v", is.Errors)
 	}
 }

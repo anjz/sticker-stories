@@ -545,12 +545,13 @@ without one stage them.
 A story can move any sticker that walks or flies (its manifest `stage`
 entrance is `hop` or `fly`; things that grow — a flower, a mushroom — stay
 put), placed by the child or visiting, when the words say it goes
-somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "toward"?, "another"?, "backwards"? }`:
+somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "toward"?, "another"?, "backwards"?, "prop"? }`:
 
 | `go` | `target` | where it goes |
 |---|---|---|
 | `to` | a sticker | beside it, on the side it comes from (the other side when the screen has no room there), a little overlapping, feet on the same line (a flyer hovers beside it); a walker going to a sticker with a `door` (a lander's ladder, a ship's elevator; `docs/pack-format.md`) stands at it, in front, while nobody else does |
 | `to` | a feature | the freest spot on screen in that place of the scene (`docs/pack-format.md`, "Features": the pond, the branches; in a pack whose places hold feet, standing on it) — in it when the sticker belongs there (its stage lands on it, or the move it goes by does: the frog, the duckling `by swim`), else at its `edge` when it has one (a mouse or the waddling duckling stops at the water's edge); never under the playing story's pill while the place has room elsewhere |
+| `to` + `prop` | a sticker | up in the air beside what it holds out in a held action (`{seagull:go to girl kite}`: the girl's kite on its string), level with it, on its side away from the holder — where the action's sidecar `props` says it is. Flyers only, while the action is held (storycheck); with live animations off nothing is held out, and it goes beside the sticker |
 | `on` | a sticker | on top of it: a bee on the flower's head |
 | `under` | a sticker | under it, in front of its base: a mouse under the mushroom's cap |
 | `away` | — | off the canvas by the nearer side; it is gone until it comes back |

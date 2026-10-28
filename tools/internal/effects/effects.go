@@ -16,6 +16,7 @@ import (
 	"math"
 	"os"
 	"regexp"
+	"slices"
 	"sort"
 	"strings"
 )
@@ -93,7 +94,7 @@ var (
 	knownLiveKeys   = set("at", "cue", "sticker", "animation", "mode")
 	knownFaceKeys   = set("at", "cue", "sticker", "expression")
 	knownEnterKeys  = set("at", "cue", "sticker", "enter", "by")
-	knownGoKeys     = set("at", "cue", "sticker", "go", "target", "by", "toward", "another", "backwards")
+	knownGoKeys     = set("at", "cue", "sticker", "go", "target", "by", "toward", "another", "backwards", "prop")
 	colorPattern    = regexp.MustCompile(`^#[0-9A-Fa-f]{6}$`)
 )
 
@@ -138,11 +139,13 @@ const Normal = "normal"
 type Animations map[string][]Animation
 
 // Animation is one animation a trigger may name: an action, and whether
-// it has a frame it can pause on ("mode": "hold"), or a move.
+// it has a frame it can pause on ("mode": "hold") and the props it holds
+// out there (a move may go to one: "prop"), or a move.
 type Animation struct {
 	ID       string
 	Pausable bool
 	Move     bool
+	Props    []string
 }
 
 func (a Animations) find(sticker, id string) (Animation, bool) {
@@ -478,6 +481,21 @@ func validateGoTrigger(label string, fields map[string]json.RawMessage, declared
 		}
 	}
 	validateBy(label, sticker, fields, animations, fail)
+	if raw, ok := fields["prop"]; ok {
+		var prop string
+		switch {
+		case json.Unmarshal(raw, &prop) != nil || prop == "":
+			fail("%s: prop must be a non-empty string", label)
+		case kind != "to":
+			fail("%s: prop is only for go to", label)
+		case target != "" && declared != nil && !declared[target]:
+			fail("%s: prop %q needs a sticker target, not a place", label, prop)
+		case target != "" && animations != nil && !slices.ContainsFunc(animations[target], func(a Animation) bool {
+			return slices.Contains(a.Props, prop)
+		}):
+			fail("%s: sticker %q has no action holding out a prop %q", label, target, prop)
+		}
+	}
 	if raw, ok := fields["another"]; ok {
 		var another bool
 		if err := json.Unmarshal(raw, &another); err != nil {

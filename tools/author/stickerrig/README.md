@@ -63,6 +63,9 @@ One file per sticker, so several can be rigged at once:
   `facing`, `stride`, `hops`, `flies`, `hovers`, `wings` (the
   sidecar's `puppet.wings`), `on`, `stays`, `waterline`, `away`,
   `place`, `perched`, `faces`, `idle`, `particles` — and its `keys`,
+  `props` (what a paused action holds out, each the slot that draws it:
+  the girl's kite, `{"kite": "kite"}`; install writes where it is in
+  the paused key, so a story can send a flyer to it),
   or for a move a `gait` instead (below).
   Pause, loop and particles count keys. In the water: a move's `away`
   names the move it plays going away from us (`"paddle"` with

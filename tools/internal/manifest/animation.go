@@ -4,8 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"maps"
 	"os"
 	"path/filepath"
+	"regexp"
 	"slices"
 	"strings"
 )
@@ -47,6 +49,11 @@ type StickerAnimation struct {
 	// app plays now and then on its own while the story leaves the
 	// character be, so it looks alive. Actions only; optional.
 	Idle bool `json:"idle,omitempty"`
+	// Props are things the character holds out in the action's paused
+	// frame, by name, where they are then (the girl's kite up on its
+	// string): a story can send a flyer to one while the action is held
+	// ({seagull:go to girl kite}). Actions with a pause only; optional.
+	Props map[string]AnimationPoint `json:"props,omitempty"`
 	// Place are the features an action happens at (the woodpecker's tap:
 	// the trunks). Before it plays, the app takes the character to the
 	// nearest spot on one unless it is there; stories that move it
@@ -124,6 +131,17 @@ type AnimationParticle struct {
 	Intensity *float64 `json:"intensity,omitempty"`
 	Color     string   `json:"color,omitempty"`
 }
+
+// AnimationPoint is a point of the sticker image, as fractions with a
+// top-left origin like StickerBox; it may lie well outside the image (a
+// kite flown high above the girl).
+type AnimationPoint struct {
+	X float64 `json:"x"`
+	Y float64 `json:"y"`
+}
+
+// propName is a prop's name: lowercase words joined by hyphens.
+var propName = regexp.MustCompile(`^[a-z]+(-[a-z]+)*$`)
 
 // ParticleEffects are the effects an animation's frames may fire.
 var ParticleEffects = []string{"dust-puff", "spray", "sparks", "bubble-puff"}
@@ -222,10 +240,21 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 			if strings.TrimSpace(p.Shows) == "" {
 				fail("pause.shows must say what the paused frame shows")
 			}
+		} else if len(a.Props) > 0 {
+			fail("props need a pause: they are where things are in the paused frame")
+		}
+		for _, name := range slices.Sorted(maps.Keys(a.Props)) {
+			pt := a.Props[name]
+			if !propName.MatchString(name) {
+				fail("props: %q must be lowercase words joined by hyphens", name)
+			}
+			if pt.X < -2 || pt.X > 3 || pt.Y < -2 || pt.Y > 3 {
+				fail("props: %s must be within -2–3 of the sticker image on x and y, got %g, %g", name, pt.X, pt.Y)
+			}
 		}
 	case KindMove:
-		if a.Pause != nil || a.Perched || a.Idle || len(a.Place) > 0 {
-			fail("pause, perched, idle and place belong to an action, not a move")
+		if a.Pause != nil || a.Perched || a.Idle || len(a.Place) > 0 || len(a.Props) > 0 {
+			fail("pause, perched, idle, place and props belong to an action, not a move")
 		}
 		if a.Faces != "" {
 			fail("faces belongs to an action, not a move")

@@ -333,6 +333,14 @@ Off {fox:go away} ran Fox, out of the meadow.      off the canvas
   storycheck warns when a sentence names a place (the pack's features'
   `words`: branch, pond, trunk…) with a character that can be there and no
   move has taken it there.
+- **To what someone holds out**: a flyer can go up to a prop another
+  character holds out in a held action — the girl's kite on its string —
+  with the prop's name after the target: `{girl:live kite hold} Up went
+  the kite … {seagull:go to girl kite} Gull flew up beside the kite`.
+  The prop is only there while the action is held, so the hold comes
+  first (storycheck errors otherwise), and the words should say the prop
+  is up there whenever the story names it — never "her kite" while it is
+  not out.
 - **Which way it goes**: add `left` or `right` to `go to` and `go away`
   when the words say which way across the screen — above all when **the
   wind** carries something: the wind effect blows from left to right, so

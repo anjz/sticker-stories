@@ -47,16 +47,40 @@ public struct GoTrigger: Equatable, Sendable {
     /// says so (`{crab:go to rock backwards}`); otherwise it turns to face
     /// its way.
     public var backwards: Bool
+    /// To a sticker: beside a prop it holds out in a held action, not
+    /// beside it (`{seagull:go to girl kite}`: up by the girl's kite).
+    public var prop: String?
+    /// Where that prop is, filled in by the app from the action's sidecar
+    /// (`props`) — nil while it is not known, or live animations are off
+    /// and nothing is held out: then it goes beside the sticker.
+    public var held: Held?
 
     public enum Side: String, Equatable, Sendable {
         case left, right
     }
 
+    /// A held-out prop's place on its holder's drawing: `across` its
+    /// width from the middle (the drawing's own way: + to the right of
+    /// the art as drawn), `up` its height from its feet (above 1: over
+    /// its head).
+    public struct Held: Equatable, Sendable {
+        public var across: Double
+        public var up: Double
+
+        public init(across: Double, up: Double) {
+            self.across = across
+            self.up = up
+        }
+    }
+
     public init(
         at: TimeInterval, cue: String? = nil, stickerID: String, kind: Kind, target: String? = nil, by: String? = nil,
-        toward: Side? = nil, unlessThere: Bool = false, another: Bool = false, backwards: Bool = false
+        toward: Side? = nil, unlessThere: Bool = false, another: Bool = false, backwards: Bool = false,
+        prop: String? = nil, held: Held? = nil
     ) {
         self.backwards = backwards
+        self.prop = prop
+        self.held = held
         self.unlessThere = unlessThere
         self.another = another
         self.at = at
