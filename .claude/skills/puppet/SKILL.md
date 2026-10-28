@@ -115,7 +115,10 @@ is sticker only, green puppet only). Adjust centres, scales and turns
 until the shapes agree to within a few pixels at the edges and every
 feature sits where the sticker has it; small differences are fine, a
 gap, a doubled outline or a floating part is not. Check the five faces
-read as the expression they name. Install runs `stickerrig check` and
+read as the expression they name. On a head drawn tilted, run
+`stickerrig faceroll -sheet` and give the level shapes (shut eyes,
+mouths) the turns it proposes where the sheet reads better (README,
+"faceroll"). Install runs `stickerrig check` and
 prints its warnings (README, "check"): look at what each one names and
 fix it only where you can see the defect; never rework a puppet the
 user has approved just to silence a warning.

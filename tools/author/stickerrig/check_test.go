@@ -193,3 +193,31 @@ func TestCheckFindsAMoveTravellingAgainstTheFace(t *testing.T) {
 		t.Fatalf("no nose, mouth or beak: no way to tell:\n%s", rules(found))
 	}
 }
+
+func TestFaceRollTurnsOnlyShapesDrawnLevel(t *testing.T) {
+	for _, c := range []struct {
+		slot, att, def string
+		want           bool
+	}{
+		{"eyeL", "happy", "calm", true},
+		{"eyeR", "closed", "calm", true},
+		{"eyeL", "cry", "calm", true},
+		{"eyeL", "wide", "calm", false}, // open: drawn from the sticker
+		{"eyeL", "calm", "calm", false},
+		{"mouth", "open", "smile", true},
+		{"mouth", "smile", "smile", false}, // the rest mouth leans already
+		{"browL", "sad", "brow", false},    // set by hand
+		{"beak", "open", "closed", false},  // part of the head
+	} {
+		if got := turnsWithFace(c.slot, c.att, c.def); got != c.want {
+			t.Errorf("%s %s: turns %v, want %v", c.slot, c.att, got, c.want)
+		}
+	}
+}
+
+func TestFaceRollNeedsAHeadThatTilts(t *testing.T) {
+	// The test puppet's eyes hang on a face bone on the body: no head.
+	if testPuppet(true, 128).headTilts() {
+		t.Error("eyes on a body, no head bone: a face drawn on the body, not a tilted head")
+	}
+}

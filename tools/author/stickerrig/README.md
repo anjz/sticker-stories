@@ -16,6 +16,7 @@ go run ./author/stickerrig install -pack ../packs/forest -only fox            # 
 go run ./author/stickerrig preview -pack ../packs/forest -only fox -png       # out/rigs/fox.*.png to look at
 go run ./author/stickerrig check   -pack ../packs/forest -only fox            # seams, bones, eyes, faces (install runs it too)
 go run ./author/stickerrig film    -pack ../packs/forest -only fox -anim trot # the move as the app plays it: GIF + contact strip
+go run ./author/stickerrig faceroll -pack ../packs/forest -only fox -sheet /tmp/f.png # face shapes turned with a tilted head
 go run ./packager validate ../packs/forest
 ```
 
@@ -162,6 +163,23 @@ worse, 2026-10-26).
 - `face` — a key that slides an eye or a brow off the head (`-slide`,
   10 % more of it off than at rest); `turn` — a key turning an eye on
   the face by more than `-turn` (4°).
+
+## faceroll
+
+The face pieces are drawn upright on their sheet. The rest face's (the
+eyes and mouth as in the sticker) come out leaning with the sticker's
+head, but the shapes drawn on their own — a happy or closed eye's arc, a
+crying eye, a laughing or sad mouth — come out level, and on a head
+drawn tilted they look pasted on (the girl's happy eyes, 2026-10-28).
+`faceroll` measures the tilt as the line through the rest eyes and
+proposes `rotate` for those shapes (`-sheet` draws each face before and
+after). It only proposes for a head that tilts: eyes on a `head` bone,
+no beak (a bird in profile's far eye is not level with its near one),
+no eye stalks; a face seen from the front on a round body (the crab,
+the acorn) is left alone. Read the sheet and copy the turns you agree
+with into the rig file (the flower's frontal face was left out by eye).
+Open eyes, the rest pieces, brows and attachments with a `rotate`
+already are never proposed.
 
 ## Gaits
 
