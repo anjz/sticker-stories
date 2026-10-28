@@ -48,12 +48,16 @@ type checkOptions struct {
 	Slide float64
 	// Turn is how far (degrees) an eye may turn on its own.
 	Turn float64
+	// Turned is how far the nose, mouth or beak must sit off the middle
+	// of the eyes (a fraction of the face's width) to say which way the
+	// drawing faces.
+	Turned float64
 	// Keys also checks every key of every animation (seams, the face).
 	Keys bool
 }
 
 func defaultCheckOptions() checkOptions {
-	return checkOptions{Tuck: 17, Seam: 40, BoneOut: 12, BoneGap: 60, Skew: 0.06, Mirror: 0.15, Slide: 0.1, Turn: 4, Keys: true}
+	return checkOptions{Tuck: 17, Seam: 40, BoneOut: 12, BoneGap: 60, Skew: 0.06, Mirror: 0.15, Slide: 0.1, Turn: 4, Turned: 0.12, Keys: true}
 }
 
 // A finding is one warning: the sticker, where (an animation and its keys,
@@ -93,6 +97,7 @@ func runCheck(args []string) error {
 	fs.Float64Var(&o.Mirror, "mirror", o.Mirror, "how much better a mirrored piece must match the sticker (correlation)")
 	fs.Float64Var(&o.Slide, "slide", o.Slide, "fraction more of a face piece that may leave the head in a key")
 	fs.Float64Var(&o.Turn, "turn", o.Turn, "degrees an eye may turn on its own")
+	fs.Float64Var(&o.Turned, "turned", o.Turned, "how far the nose, mouth or beak sits off the eyes' middle to say which way the drawing faces (fraction of the face's width)")
 	fs.BoolVar(&o.Keys, "keys", o.Keys, "check every animation key too")
 	fs.Parse(args)
 	c, err := load(*packDir, *artDir, *only)
@@ -965,6 +970,23 @@ func (p *puppet) check(sticker string, anims []*manifest.StickerAnimation, o che
 		}
 	}
 
+	// Moves travel the way the drawing faces: walking the other way, the
+	// character walks backwards and its knees bend the wrong way (the
+	// app mirrors it to go the other way).
+	if drawn, why := drawnFacing(rest, an, o); drawn != "" {
+		away := map[string]bool{}
+		for _, a := range anims {
+			if a.Away != "" {
+				away[a.Away] = true
+			}
+		}
+		for _, a := range anims {
+			if a.Facing != "" && a.Facing != drawn && !away[a.ID] {
+				add(a.ID, "facing", fmt.Sprintf("travels %s, but the drawing faces %s (%s): set facing %s — the app mirrors it to go %s", a.Facing, drawn, why, drawn, a.Facing))
+			}
+		}
+	}
+
 	if !o.Keys {
 		return out
 	}
@@ -1156,6 +1178,55 @@ func sortedKeys[V any](m map[string]V) []string {
 	}
 	sort.Strings(out)
 	return out
+}
+
+// drawnFacing says which way the drawing at rest faces, "left" or "right",
+// from how its face is turned: the nose, mouth or beak off the middle of
+// the eyes (a three-quarter face, a profile), by at least o.Turned of
+// the face's width, with the eyes, when they look one way, not looking
+// the other. "" for a face drawn from the front, or none.
+func drawnFacing(rest []*layer, an *anatomy, o checkOptions) (string, string) {
+	var eyes, feats []*layer
+	for _, l := range rest {
+		id := strings.ToLower(l.id)
+		switch {
+		case slices.Contains(an.eyes, l.id):
+			eyes = append(eyes, l)
+		case strings.HasPrefix(id, "nose") || strings.HasPrefix(id, "mouth") || strings.HasPrefix(id, "beak") ||
+			strings.HasPrefix(id, "snout") || strings.HasPrefix(id, "muzzle") || strings.HasPrefix(id, "bill"):
+			feats = append(feats, l)
+		}
+	}
+	if len(eyes) == 0 || len(feats) == 0 {
+		return "", ""
+	}
+	span := image.Rectangle{}
+	var ex, fx, gaze float64
+	for _, l := range eyes {
+		span = span.Union(l.r)
+		ex += l.cx
+		gaze += skew(l)
+	}
+	for _, l := range feats {
+		span = span.Union(l.r)
+		fx += l.cx
+	}
+	ex /= float64(len(eyes))
+	fx /= float64(len(feats))
+	gaze /= float64(len(eyes))
+	turn := (fx - ex) / float64(max(span.Dx(), 1))
+	if math.Abs(turn) < o.Turned || (math.Abs(gaze) >= o.Skew && (gaze > 0) != (turn > 0)) {
+		return "", ""
+	}
+	way := "left"
+	if turn > 0 {
+		way = "right"
+	}
+	why := fmt.Sprintf("its face turned %.0f %% of its width that way", 100*math.Abs(turn))
+	if math.Abs(gaze) >= o.Skew {
+		why += ", its eyes looking that way"
+	}
+	return way, why
 }
 
 // gazeless reports whether an eye attachment is shut (closed, a blink,

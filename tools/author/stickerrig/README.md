@@ -153,6 +153,12 @@ worse, 2026-10-26).
   least `-skew` of its width).
 - `mirror` — a flipped piece or an eye that matches the sticker better
   the other way round (luma correlation, by `-mirror` 0.15).
+- `facing` — a move travelling against the way the drawing faces: its
+  nose, mouth or beak off the middle of its eyes by `-turned` (12 %) of
+  the face's width, its eyes not looking the other way. It would walk
+  backwards, knees bending the wrong way: set `facing` to the side the
+  face is turned (the app mirrors it to go the other way). A face drawn
+  from the front says nothing; a move going away (`away`) is left out.
 - `face` — a key that slides an eye or a brow off the head (`-slide`,
   10 % more of it off than at rest); `turn` — a key turning an eye on
   the face by more than `-turn` (4°).
@@ -214,6 +220,14 @@ file to tune them where it doesn't.
   sticker's style, first time.
 - Ask for the head with a **blank face** and the features on their own
   sheet: eyes and mouths swap per expression and blink.
+- A move's `facing` is the way the drawing faces, never carried over
+  unread: the girl's skip said `right` while she is drawn turned to the
+  left, so she skipped backwards with her knees bent the wrong way
+  (2026-10-28). `check` now says so.
+- Sad eyes drawn with a lid slanting down towards the nose read angry or
+  sly next to sad brows (the girl, 2026-10-28): ask for them as the
+  sticker's sad variant has them, or use the calm eyes and let the
+  brows and mouth carry the sadness.
 - One eye drawn for both sides and flipped for the other made eyes
   look opposite ways, and flips that differed between expressions of a
   slot (2026-10 Beach review): ask for each side's eyes.
