@@ -194,7 +194,8 @@ style names otherwise); `ground: false` (float as posed, no feet down).
 move's loop going round while it travels at its stride, a hop's arc —
 into `<sticker>.<anim>.gif`, and a `.strip.png` of frames 0.08 s apart
 to read as a still; `-before <copy of the pack>` plays the old one above
-it. Install into a copy of the pack to compare before touching the real
+it; `-above 1` leaves that much sky over the sticker's box (a fraction of
+its size) for what reaches past it. Install into a copy of the pack to compare before touching the real
 one.
 
 ## Templates (`templates/<type>.json`)
@@ -224,6 +225,11 @@ file to tune them where it doesn't.
   unread: the girl's skip said `right` while she is drawn turned to the
   left, so she skipped backwards with her knees bent the wrong way
   (2026-10-28). `check` now says so.
+- A puppet may reach past its sticker's box (the app does not clip it):
+  the girl's kite flies far above her on a long string, smaller as it
+  climbs (2026-10-28). A bone stretches at most 4×: draw a long
+  stretchy part (the string) longer at rest, hidden, so its keys stay
+  within it. Film it with `-above`.
 - Sad eyes drawn with a lid slanting down towards the nose read angry or
   sly next to sad brows (the girl, 2026-10-28): ask for them as the
   sticker's sad variant has them, or use the calm eyes and let the
