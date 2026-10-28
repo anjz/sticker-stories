@@ -53,53 +53,27 @@ into parts on a skeleton, every animation keyframes. What the art needs:
   turn on them, and the poses a turn cannot make (a wing open, hands
   clasped, a curled-up ball) — each one a piece on the parts sheet.
 - **One parts sheet and one face sheet**, drawn from the still, every
-  piece apart with rounded joint ends; redraw only what is broken.
+  piece apart; redraw only what is broken. Drawn so no seam shows and
+  nothing faces the wrong way (stickerrig README, "Drawing the parts"):
+  joint ends with no outline, tucked under what they join; the head with
+  its neck running into the chest; a person's limbs in two parts with
+  their clothing on them; each eye drawn for its own side, never
+  mirrored; containers empty, their contents apart; a radial body's
+  centre unoutlined over its arms; every bone at the joint measured on
+  the still.
 - **Many actions**: they cost nothing, so every living character gets
   the shared ones its body can do (jump, nod, laugh, wave…) and its own.
+- **Objects move only as the world could move them**: wind, waves,
+  water, a bump — a bucket wobbles in the breeze, a bottle bobs. Nothing
+  inanimate acts by itself (a spade never digs alone, a bucket never hops).
 - **Motions stay small and unhurried**, start and end at rest, and never
-  show a limb's joint end. Travel is the app's job, as below.
+  show a limb's joint end. Travel is the app's job: moves play in
+  place. Never draw particles (dust, drops, sparks): a key's `particles`
+  has the app fire them.
 - The puppet lies on the still at rest (the preview's mismatch view):
   the app hands over from one to the other once per story.
-
-## 3b. Sprite sheets hold their size (`stickeranim`, no pack uses them now)
-
-The rule: **the sticker is the same size in every frame**, and only what
-moves, moves.
-
-- Frames are drawn **in the sticker's box at the sticker's scale**; extras
-  (dust, sparks, a thrown pebble) go into the room around the drawing,
-  never by shrinking it. A frame whose subject is a different size from
-  the rest pose is a defect, not a style.
-- **Motions stay small** — nothing reaches far from the sticker; travel
-  is the app's job (moves are drawn in place, "on a treadmill").
-- **A walk is a real walk cycle.** The app slides a walker along while
-  its loop plays, so a loop whose legs barely change reads as a statue
-  gliding (Beach's first surfer walk). Write every walk, run, crawl and
-  scuttle frame by frame as contact → down → passing → up, then the same
-  with the other leg, each frame's legs clearly different from the one
-  before, the free arm swinging against the front leg — and mark the
-  move `"steps": true` in anim.json: the check then flags a loop whose
-  lower half changes less than 7 % a frame (`frozen loop`). Things that
-  glide (a snail, an urchin on its tube feet) leave it off.
-- Rigid things (machines, spacecraft, buildings) must keep their exact
-  outline: only the moving part changes (a hatch, a wheel, an arm). Use
-  `restFromSticker: false` for them.
-- **Never draw particles** — no dust, sand, soil, drops, sparks, smoke or
-  debris in any frame (the scaffold prompt forbids them). Where a frame
-  needs them (a landing, a touchdown, a splash, a drill biting), mark it in
-  anim.json's `particles` and the app fires `dust-puff`, `spray`,
-  `sparks` or `bubble-puff` there, in the pack's `world` (gravity, ground colour). Engine
-  flames are part of the vehicle and stay drawn.
-- Draw them **over a scaffold** (`"scaffold": true` in anim.json): the
-  model re-poses the sticker cell by cell instead of redrawing it, which
-  keeps one size and the same proportions across a sheet. Give an
-  animation `room` when it must reach past the sticker's box (a flame
-  under a huge ship). Flights register on their `body`.
-- Every animation is **reviewed by eye** before install, at real speed,
-  with its per-frame size check: `stickeranim review` (flagged frames in
-  orange). A flagged frame is either a real defect (redo the sheet, or add
-  a `hint`) or an intended change (a puff of dust, a crouch) — decide by
-  eye, never by number alone.
+  `stickerrig check` (run by install) warns of seams, misplaced bones,
+  mirrored eyes and faces sliding off heads.
 
 ## 4. The scene
 

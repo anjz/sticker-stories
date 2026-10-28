@@ -40,10 +40,9 @@ final class StickerNode: SKSpriteNode {
     /// (1 = none).
     private let shadowTexture: SKTexture
     private let shadowSizeMultiplier: CGFloat
-    /// While a live animation plays (`showLive`), the shadows are sized to
-    /// its frames and centred on its sprite instead of on this one.
+    /// While a puppet plays (`showLive`), the shadow layers are its shadow
+    /// puppets' hosts, with no size of their own.
     private var liveShadowSize: CGSize?
-    private var liveShadowAnchor: CGPoint = .zero
     private var contactPose = StickerNode.restingContact
     private var castPose = StickerNode.restingCast
     /// Additive bloom behind the sprite for the `glow` effect; created on
@@ -143,8 +142,8 @@ final class StickerNode: SKSpriteNode {
         let scaleY = yScale != 0 ? yScale : 1
         for (layer, pose) in [(contactShadow, contactPose), (castShadow, castPose)] {
             let local = CGPoint(
-                x: liveShadowAnchor.x + (pose.offset.x * c - pose.offset.y * s) / scaleX,
-                y: liveShadowAnchor.y + (pose.offset.x * s + pose.offset.y * c) / scaleY)
+                x: (pose.offset.x * c - pose.offset.y * s) / scaleX,
+                y: (pose.offset.x * s + pose.offset.y * c) / scaleY)
             if animated {
                 layer.removeAllActions()
                 layer.run(.group([
@@ -168,27 +167,11 @@ final class StickerNode: SKSpriteNode {
         castShadow.size = size
     }
 
-    /// Hands the shadows to a live animation: sized to its frames and
-    /// centred on its sprite (`anchor`, in this node's unscaled space);
-    /// `setLiveShadow(_:)` then swaps the silhouette per frame.
-    func beginLiveShadow(size: CGSize, anchor: CGPoint) {
-        liveShadowSize = size
-        liveShadowAnchor = anchor
-        layoutShadows()
-        applyShadowPoses(animated: false)
-    }
-
-    func setLiveShadow(_ texture: SKTexture) {
-        contactShadow.texture = texture
-        castShadow.texture = texture
-    }
-
     /// Hands the shadows to a puppet (`PuppetNode`): each shadow layer
     /// shows a shadow puppet in place of its silhouette, keeping its
     /// offset, alpha and scale.
     func beginPuppetShadow(_ contact: PuppetNode, _ cast: PuppetNode) {
         liveShadowSize = .zero
-        liveShadowAnchor = .zero
         layoutShadows()
         applyShadowPoses(animated: false)
         for (layer, puppet) in [(contactShadow, contact), (castShadow, cast)] {
@@ -214,7 +197,6 @@ final class StickerNode: SKSpriteNode {
     /// The still art's own shadow again.
     func endLiveShadow() {
         liveShadowSize = nil
-        liveShadowAnchor = .zero
         contactShadow.texture = shadowTexture
         castShadow.texture = shadowTexture
         layoutShadows()
@@ -300,7 +282,7 @@ final class StickerNode: SKSpriteNode {
     /// Tints the art on show. While a live animation plays, the sprite has
     /// no texture of its own (its art moves to a child, `showLive`), and a
     /// texture-less sprite draws its `color` as a solid rectangle — so the
-    /// sprite stays clear and the tint goes onto the frames and the still
+    /// sprite stays clear and the tint goes onto the puppet and the still
     /// art underneath instead. With no tint, every colour goes back to
     /// clear, never left over from an earlier tint.
     private func setTint(_ tint: RGBA?, amount: CGFloat) {

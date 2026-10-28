@@ -397,7 +397,7 @@
           "y": 322,
           "scale": 0.302,
           "scaleY": 1.2,
-          "flip": true
+          "rotate": -24
         }
       }
     },
@@ -2316,218 +2316,72 @@
       "id": "fly",
       "kind": "move",
       "description": "the bee buzzes along to the left, wings a blur, bobbing a little, then hovers in place.",
-      "loop": {
-        "from": 1,
-        "to": 6
-      },
       "facing": "left",
       "stride": 1,
-      "flies": true,
       "hovers": true,
-      "wings": ["wingL", "wingR"],
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.08,
-          "ease": "linear",
-          "bones": {
-            "root": {
-              "y": -4
-            },
-            "body": {
-              "r": -4
-            },
-            "antennaL": {
-              "r": 5
-            },
-            "antennaR": {
-              "r": 5
-            },
-            "wingL": {
-              "r": -16
-            },
-            "wingR": {
-              "r": -18
+      "wings": [
+        "wingL",
+        "wingR"
+      ],
+      "gait": {
+        "style": "bee.fly",
+        "then": [
+          {
+            "hold": 0.07,
+            "ease": "linear",
+            "bones": {
+              "body": {
+                "r": -2
+              },
+              "wingL": {
+                "r": -12
+              },
+              "wingR": {
+                "r": -14
+              }
             }
-          }
-        },
-        {
-          "hold": 0.08,
-          "ease": "linear",
-          "bones": {
-            "root": {
-              "y": -8
-            },
-            "body": {
-              "r": -4
-            },
-            "antennaL": {
-              "r": 5
-            },
-            "antennaR": {
-              "r": 5
-            },
-            "wingL": {
-              "r": 10
-            },
-            "wingR": {
-              "r": 12
+          },
+          {
+            "hold": 0.07,
+            "ease": "linear",
+            "bones": {
+              "wingL": {
+                "r": 8
+              },
+              "wingR": {
+                "r": 10
+              }
             }
-          }
-        },
-        {
-          "hold": 0.08,
-          "ease": "linear",
-          "bones": {
-            "root": {
-              "y": -10
-            },
-            "body": {
-              "r": -4
-            },
-            "antennaL": {
-              "r": 5
-            },
-            "antennaR": {
-              "r": 5
-            },
-            "wingL": {
-              "r": -16
-            },
-            "wingR": {
-              "r": -18
+          },
+          {
+            "hold": 0.07,
+            "ease": "linear",
+            "bones": {
+              "wingL": {
+                "r": -10
+              },
+              "wingR": {
+                "r": -12
+              }
             }
-          }
-        },
-        {
-          "hold": 0.08,
-          "ease": "linear",
-          "bones": {
-            "root": {
-              "y": -8
-            },
-            "body": {
-              "r": -4
-            },
-            "antennaL": {
-              "r": 5
-            },
-            "antennaR": {
-              "r": 5
-            },
-            "wingL": {
-              "r": 10
-            },
-            "wingR": {
-              "r": 12
+          },
+          {
+            "hold": 0.07,
+            "ease": "linear",
+            "bones": {
+              "wingL": {
+                "r": 6
+              },
+              "wingR": {
+                "r": 8
+              }
             }
+          },
+          {
+            "hold": 0.3
           }
-        },
-        {
-          "hold": 0.08,
-          "ease": "linear",
-          "bones": {
-            "root": {
-              "y": -4
-            },
-            "body": {
-              "r": -4
-            },
-            "antennaL": {
-              "r": 5
-            },
-            "antennaR": {
-              "r": 5
-            },
-            "wingL": {
-              "r": -16
-            },
-            "wingR": {
-              "r": -18
-            }
-          }
-        },
-        {
-          "hold": 0.08,
-          "ease": "linear",
-          "bones": {
-            "root": {
-              "y": 0
-            },
-            "body": {
-              "r": -4
-            },
-            "antennaL": {
-              "r": 5
-            },
-            "antennaR": {
-              "r": 5
-            },
-            "wingL": {
-              "r": 10
-            },
-            "wingR": {
-              "r": 12
-            }
-          }
-        },
-        {
-          "hold": 0.07,
-          "ease": "linear",
-          "bones": {
-            "body": {
-              "r": -2
-            },
-            "wingL": {
-              "r": -12
-            },
-            "wingR": {
-              "r": -14
-            }
-          }
-        },
-        {
-          "hold": 0.07,
-          "ease": "linear",
-          "bones": {
-            "wingL": {
-              "r": 8
-            },
-            "wingR": {
-              "r": 10
-            }
-          }
-        },
-        {
-          "hold": 0.07,
-          "ease": "linear",
-          "bones": {
-            "wingL": {
-              "r": -10
-            },
-            "wingR": {
-              "r": -12
-            }
-          }
-        },
-        {
-          "hold": 0.07,
-          "ease": "linear",
-          "bones": {
-            "wingL": {
-              "r": 6
-            },
-            "wingR": {
-              "r": 8
-            }
-          }
-        },
-        {
-          "hold": 0.3
-        }
-      ]
+        ]
+      }
     },
     {
       "id": "buzz-around",

@@ -32,7 +32,4 @@ func TestModelIDFollowsWhatChangesThePictures(t *testing.T) {
 	if got := id(`{"model": {"name": "flux2-klein-4b", "path": "/a", "quantize": 8}, "qualities": {"high": {"steps": 4}, "low": {"steps": 2}}}`); got == base {
 		t.Error("quantizing did not change the ID")
 	}
-	if got := id(`{"animation": "sheets", "model": {"name": "flux2-klein-4b", "path": "/a"}, "qualities": {"high": {"steps": 4}, "low": {"steps": 2}}}`); got == base {
-		t.Error("drawing whole sheets did not change the ID")
-	}
 }

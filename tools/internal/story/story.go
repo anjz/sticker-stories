@@ -1793,7 +1793,8 @@ func validatePlaceMentions(is *Issues, lang string, nar Narration, m Manifest, i
 	if len(m.PlaceWords) == 0 {
 		return
 	}
-	at := map[string]string{} // where the story's moves have put each sticker
+	at := map[string]string{}   // where the story's moves have put each sticker
+	with := map[string]string{} // whom a move has put it with (beside, on, under)
 	canBe := func(id, place string) bool {
 		if e := m.Stages[id]; e != "hop" && e != "fly" {
 			return false
@@ -1823,10 +1824,14 @@ func validatePlaceMentions(is *Issues, lang string, nar Narration, m Manifest, i
 			}
 			mentioned[c.Sticker] = true
 			if c.Effect == GoEffect {
+				with[c.Sticker] = ""
 				if _, place := m.Features[c.Target]; place && c.GoKind == GoTo {
 					at[c.Sticker] = c.Target
 				} else {
 					at[c.Sticker] = ""
+					if inStory[c.Target] {
+						with[c.Sticker] = c.Target
+					}
 				}
 			}
 		}
@@ -1851,8 +1856,13 @@ func validatePlaceMentions(is *Issues, lang string, nar Narration, m Manifest, i
 			if !named {
 				continue
 			}
+			// By someone there (Nico by his bucket on the sand), it is there too.
+			there := func(id string) bool {
+				t := with[id]
+				return at[id] == place || t != "" && (at[t] == place || at[t] == "" && slices.Contains(m.LandsOn[t], place))
+			}
 			for _, id := range ids {
-				if at[id] != place && canBe(id, place) {
+				if !there(id) && canBe(id, place) {
 					snippet := strings.Join(words[:min(len(words), 9)], " ")
 					is.warnf("%s: %q… puts %s at the %s, but no move takes it there — cue {%s:go to %s} (a sticker already there stays; one the child put elsewhere goes)", lang, snippet, id, place, id, place)
 				}

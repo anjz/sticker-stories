@@ -3,16 +3,14 @@ import SpriteKit
 import StickerStoriesKit
 import UIKit
 
-/// A pre-rendered frame animation that brings a sticker to life: a sprite
-/// sheet the tooling drew from the sticker's own art
-/// (`tools/author/stickeranim`), every frame registered on the part that
-/// stays still, bordered and finished like the sticker, plus the mapping
-/// that lays its rest frame exactly over the placed sticker. The sidecar
-/// contract is `docs/pack-format.md`, "Live animations"; the manifest
-/// declares each sticker's sidecars and this reads them leniently (a
-/// sidecar that does not decode is skipped). A sidecar without a sheet is
-/// its puppet's alone (`docs/pack-format.md`, "Puppets"): the keys are its
-/// frames.
+/// A moment of a sticker's life, played on its puppet: keyframes the
+/// tooling (`tools/author/stickerrig`) wrote for the sticker's drawing cut
+/// into parts on a skeleton, plus where the drawing sits in the sticker's
+/// image. The sidecar contract is `docs/pack-format.md`, "Live
+/// animations" and "Puppets"; the manifest declares each sticker's
+/// sidecars and this reads them leniently (a sidecar that does not decode
+/// is skipped). The puppet's keys are the animation's frames: `pause`,
+/// `loop` and `particles` count keys.
 ///
 /// An **action** is a moment a story cues (`LiveTimeline`: whole, or held
 /// on its pause frame and resumed); a **move** is how the character gets
@@ -23,11 +21,6 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// A box as fractions of its image, top-left origin.
     struct UnitBox: Decodable, Sendable {
         var x, y, width, height: Double
-        var centre: CGPoint { CGPoint(x: x + width / 2, y: y + height / 2) }
-    }
-
-    struct FrameSize: Decodable, Sendable {
-        var width, height: Int
     }
 
     struct Pause: Decodable, Sendable {
@@ -45,20 +38,8 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     var id: String
     var sticker: String
     var kind: Kind
-    /// Pack-relative path of the sheet PNG: `columns` frames per row,
-    /// `count` frames read left to right, top to bottom. Empty when the
-    /// puppet alone plays it (`puppetOnly`).
-    var sheet: String
-    var frame: FrameSize
-    var columns: Int
-    var count: Int
-    /// The first frame's bordered art within a frame, and the same art
-    /// within the sticker image: the frames are scaled and offset so that
-    /// `rest` lands on `stickerBox`.
-    var rest: UnitBox
+    /// The sticker's drawing within its image.
     var stickerBox: UnitBox
-    /// Seconds each frame shows, one per frame.
-    var hold: [Double]
     /// An action's pause frame (`{snail:live hold}`).
     var pause: Pause?
     /// A move's loop, the way its frames travel, how far one loop carries
@@ -92,34 +73,19 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// A small, gentle action it plays now and then on its own while a
     /// story leaves it be (`IdleLife`).
     var idle: Bool
-    /// Particle bursts the frames fire as they show (a landing's dust, a
-    /// splash): stickers never draw particles themselves.
+    /// Particle bursts the keys fire as they come on show (a landing's
+    /// dust, a splash): stickers never draw particles themselves.
     var particles: [ParticleCue]
     /// The animation as keyframes for the sticker's puppet
-    /// (`docs/pack-format.md`, "Puppets"). Beside a sheet, when puppets
-    /// are on and it decodes, `available(in:)` takes its timing for the
-    /// animation's and the loader poses the puppet instead of cutting the
-    /// sheet; without one it is the animation.
-    var puppet: Puppet?
-    /// The puppet alone plays it: there is no sheet, and the keys are the
-    /// frames (`pause`, `loop` and `particles` count keys).
-    var puppetOnly: Bool { sheet.isEmpty }
+    /// (`docs/pack-format.md`, "Puppets"), at least two.
+    var puppet: Puppet
 
     struct Puppet: Decodable, Sendable {
         var rig: String
         var keys: [PuppetKey]
-        var pause: Int?
-        var loop: FrameRange?
-        var stride: Double?
         /// The bones a flight keeps going while the character does
         /// anything else in the air (`PuppetPose.flying`).
         var wings: [String]?
-    }
-
-    /// Whether stories play the puppets where the pack has them (a
-    /// developer switch in Settings, on by default; `-developer.puppets NO`).
-    static var puppetsEnabled: Bool {
-        UserDefaults.standard.object(forKey: "developer.puppets") as? Bool ?? true
     }
 
     /// One burst: when `frame` first shows, `effect` (`dust-puff`, `spray`,
@@ -135,8 +101,8 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id, sticker, kind, sheet, frame, columns, count, rest, stickerBox, hold, pause, loop, facing, stride, hops,
-            flies, hovers, on, stays, waterline, place, idle, particles, puppet, away, faces
+        case id, sticker, kind, stickerBox, pause, loop, facing, stride, hops, flies, hovers, on, stays, waterline,
+            place, idle, particles, puppet, away, faces
     }
 
     /// A particle cue that decodes or is skipped (an effect this build
@@ -153,25 +119,9 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         // An unknown kind is not an action a story may cue by mistake.
         kind = try c.decodeIfPresent(Kind.self, forKey: .kind) ?? .action
         stickerBox = try c.decode(UnitBox.self, forKey: .stickerBox)
-        puppet = try? c.decodeIfPresent(Puppet.self, forKey: .puppet)
-        if let sheet = try c.decodeIfPresent(String.self, forKey: .sheet) {
-            self.sheet = sheet
-            frame = try c.decode(FrameSize.self, forKey: .frame)
-            columns = try c.decode(Int.self, forKey: .columns)
-            count = try c.decode(Int.self, forKey: .count)
-            rest = try c.decode(UnitBox.self, forKey: .rest)
-            hold = try c.decode([Double].self, forKey: .hold)
-        } else {
-            // The puppet's alone: its keys are the frames.
-            guard let puppet, puppet.keys.count >= 2 else {
-                throw DecodingError.dataCorruptedError(forKey: .puppet, in: c, debugDescription: "no sheet and no puppet keys")
-            }
-            sheet = ""
-            frame = FrameSize(width: 0, height: 0)
-            columns = 1
-            count = puppet.keys.count
-            rest = stickerBox
-            hold = puppet.keys.map(\.hold)
+        puppet = try c.decode(Puppet.self, forKey: .puppet)
+        guard puppet.keys.count >= 2 else {
+            throw DecodingError.dataCorruptedError(forKey: .puppet, in: c, debugDescription: "fewer than two puppet keys")
         }
         pause = try? c.decodeIfPresent(Pause.self, forKey: .pause)
         loop = try? c.decodeIfPresent(FrameRange.self, forKey: .loop)
@@ -188,40 +138,22 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         place = try? c.decodeIfPresent([String].self, forKey: .place)
         idle = kind == .action && ((try? c.decodeIfPresent(Bool.self, forKey: .idle)) ?? nil) == true
         let cues = (try? c.decodeIfPresent([LenientCue].self, forKey: .particles)) ?? nil
-        let frames = count
+        let frames = puppet.keys.count
         particles = (cues ?? []).compactMap(\.cue).filter { $0.effect.firesFromFrames && $0.frame >= 0 && $0.frame < frames }
     }
 
-    /// The animation as its puppet plays it: the keys' timing in place of
-    /// the frames' (each key's hold is the time to the next), its pause,
-    /// loop and stride. Particles fire on frames, so they stay with the
-    /// sheet. One without a sheet is already its puppet's.
-    func playedByPuppet() -> StickerAnimation? {
-        guard let puppet, puppet.keys.count >= 2 else { return nil }
-        if puppetOnly { return self }
-        var copy = self
-        copy.count = puppet.keys.count
-        copy.hold = puppet.keys.map(\.hold)
-        copy.pause = puppet.pause.map { Pause(frame: $0) }
-        copy.loop = puppet.loop
-        copy.stride = puppet.stride ?? stride
-        copy.particles = []
-        return copy
-    }
-
-    /// Whether the puppet plays it (`available(in:)` keeps `puppet` only then).
-    var usesPuppet: Bool { puppet != nil }
-
     var key: String { "\(sticker).\(id)" }
     var liveKey: LiveAnimationKey { LiveAnimationKey(stickerID: sticker, animationID: id) }
-    var rows: Int { (count + columns - 1) / columns }
 
-    /// The frame timing the timelines play (`LiveFrames`); a pause or loop
-    /// outside the frames is dropped.
+    /// The frame timing the timelines play (`LiveFrames`): each key's hold
+    /// is the time from it to the next. A pause or loop outside the keys is
+    /// dropped.
     var frames: LiveFrames {
+        let count = puppet.keys.count
         let validPause = pause.map(\.frame).flatMap { (1..<max(count - 1, 1)).contains($0) ? $0 : nil }
         let validLoop = loop.flatMap { $0.from >= 0 && $0.from <= $0.to && $0.to < count ? $0.from...$0.to : nil }
-        return LiveFrames(holds: hold, pause: kind == .action ? validPause : nil, loop: kind == .move ? validLoop : nil)
+        return LiveFrames(
+            holds: puppet.keys.map(\.hold), pause: kind == .action ? validPause : nil, loop: kind == .move ? validLoop : nil)
     }
 
     /// The move as the stage planner needs it.
@@ -245,110 +177,43 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         return pack.manifest.stickers.flatMap { sticker in
             sticker.animations.compactMap { path -> StickerAnimation? in
                 guard let data = try? Data(contentsOf: pack.url(forAssetPath: path)),
-                    var animation = try? decoder.decode(StickerAnimation.self, from: data),
-                    animation.sticker == sticker.id, animation.count > 0, animation.columns > 0,
-                    animation.hold.count == animation.count
+                    let animation = try? decoder.decode(StickerAnimation.self, from: data),
+                    animation.sticker == sticker.id
                 else {
                     print("StickerAnimation: skipping \(path) (undecodable or not \(sticker.id)'s)")
                     return nil
                 }
-                // One without a sheet has nothing else to play.
-                if puppetsEnabled || animation.puppetOnly, let played = animation.playedByPuppet() {
-                    return played
-                }
-                animation.puppet = nil
                 return animation
             }
         }
     }
-
-    /// One `SKTexture` per frame, cut from the sheet.
-    func frameTextures(from sheet: SKTexture) -> [SKTexture] {
-        let width = 1 / CGFloat(columns), height = 1 / CGFloat(rows)
-        return (0..<count).map { index in
-            let column = index % columns, row = index / columns
-            // Texture rects are unit, origin bottom-left; the sheet's first row is at the top.
-            let rect = CGRect(x: CGFloat(column) * width, y: 1 - CGFloat(row + 1) * height, width: width, height: height)
-            return SKTexture(rect: rect, in: sheet)
-        }
-    }
 }
 
-/// A live animation ready to play: its frames and their shadows as
-/// textures, cut from the sheet and the shadow sheet once.
+/// A live animation ready to play: its timing and the puppet that plays it.
 struct LoadedLiveAnimation {
     let animation: StickerAnimation
     let timing: LiveFrames
-    let frames: [SKTexture]
-    let shadowFrames: [SKTexture]?
-    /// The puppet that plays it instead of frames (`usesPuppet`).
-    let puppet: LoadedPuppet?
-
-    init(animation: StickerAnimation, sheet: SKTexture, shadowSheet: SKTexture?) {
-        self.animation = animation
-        timing = animation.frames
-        frames = animation.frameTextures(from: sheet)
-        shadowFrames = shadowSheet.map { animation.frameTextures(from: $0) }
-        puppet = nil
-    }
+    let puppet: LoadedPuppet
 
     init(animation: StickerAnimation, puppet: LoadedPuppet) {
         self.animation = animation
         timing = animation.frames
-        frames = []
-        shadowFrames = nil
         self.puppet = puppet
     }
 }
 
-/// Loads the live animations a story is about to play. A sheet is a large
-/// texture (width × height × 4 bytes), so a story loads only the ones its
+/// Loads the live animations a story is about to play: only the ones its
 /// triggers name for stickers on the canvas and the moves of the stickers
-/// it brings in, off the main thread while the music lead-in plays, and
-/// lets go of them when the story ends.
+/// it brings in, off the main thread while the music lead-in plays; the
+/// story lets go of them when it ends. Each rig and its atlas is read
+/// once, however many of its animations the story plays.
 enum LiveAnimationLoader {
     @MainActor
     static func load(
         _ keys: Set<LiveAnimationKey>, from available: [StickerAnimation], pack: LoadedPack
     ) async -> [LiveAnimationKey: LoadedLiveAnimation] {
-        let wanted = available.filter { keys.contains($0.liveKey) && !$0.usesPuppet }
-        var loaded = await loadPuppets(available.filter { keys.contains($0.liveKey) && $0.usesPuppet }, pack: pack)
-        let decoded = await withTaskGroup(of: (StickerAnimation, CGImage?, CGImage?).self) { group in
-            for animation in wanted {
-                let url = pack.url(forAssetPath: animation.sheet)
-                group.addTask {
-                    guard let sheet = PackTextureLoader.decode(url) else { return (animation, nil, nil) }
-                    return (animation, sheet, StickerShadowCache.shadowSheetImage(for: animation, sheet: sheet))
-                }
-            }
-            var results: [(StickerAnimation, CGImage?, CGImage?)] = []
-            for await result in group { results.append(result) }
-            return results
-        }
-        var textures: [SKTexture] = []
-        for (animation, sheet, shadow) in decoded {
-            guard let sheet else {
-                print("LiveAnimationLoader: could not decode \(animation.sheet)")
-                continue
-            }
-            let sheetTexture = SKTexture(cgImage: sheet)
-            let shadowTexture = shadow.map(SKTexture.init(cgImage:))
-            textures.append(sheetTexture)
-            if let shadowTexture { textures.append(shadowTexture) }
-            loaded[animation.liveKey] = LoadedLiveAnimation(
-                animation: animation, sheet: sheetTexture, shadowSheet: shadowTexture)
-        }
-        await withCheckedContinuation { continuation in
-            SKTexture.preload(textures) { continuation.resume() }
-        }
-        return loaded
-    }
-
-    /// The puppets that play some of the animations: each rig and its
-    /// atlas read once, however many of its animations the story plays.
-    @MainActor
-    private static func loadPuppets(_ wanted: [StickerAnimation], pack: LoadedPack) async -> [LiveAnimationKey: LoadedLiveAnimation] {
-        let rigPaths = Set(wanted.compactMap { $0.puppet?.rig })
+        let wanted = available.filter { keys.contains($0.liveKey) }
+        let rigPaths = Set(wanted.map(\.puppet.rig))
         let rigs = await withTaskGroup(of: (String, PuppetRig?, CGImage?).self) { group in
             for path in rigPaths {
                 let url = pack.url(forAssetPath: path)
@@ -371,9 +236,9 @@ enum LiveAnimationLoader {
         }
         var loaded: [LiveAnimationKey: LoadedLiveAnimation] = [:]
         for animation in wanted {
-            guard let puppet = animation.puppet, let (rig, _) = rigs[puppet.rig], let atlas = atlases[puppet.rig] else { continue }
+            guard let (rig, _) = rigs[animation.puppet.rig], let atlas = atlases[animation.puppet.rig] else { continue }
             loaded[animation.liveKey] = LoadedLiveAnimation(
-                animation: animation, puppet: LoadedPuppet(rig: rig, keys: puppet.keys, atlas: atlas))
+                animation: animation, puppet: LoadedPuppet(rig: rig, keys: animation.puppet.keys, atlas: atlas))
         }
         return loaded
     }
@@ -384,15 +249,10 @@ extension StickerNode {
     static let liveStillName = "live-still"
 
     /// Shows one moment of a live animation over this sticker
-    /// (`LiveFrames.state`): its frame, and how opaque the frames and the
-    /// still art under them are while one dissolves into the other. The
-    /// frames fade in over the still art, which stays opaque underneath
-    /// (two half-faded layers would let the background show through), and
-    /// then the still art dissolves away beneath them, so the first frame
-    /// need not be the sticker's exact drawing; the end is the same in
-    /// reverse. The frames are a child, so a pinched, turned, mirrored or
-    /// effect-driven sticker animates in place. With shadow frames the
-    /// drop shadow follows the frames.
+    /// (`LiveFrames.state`): its puppet's pose, and how opaque the puppet
+    /// and the still art under it are while one dissolves into the other
+    /// (`beginPuppet`, `showPuppet`). The puppet is a child, so a pinched,
+    /// turned, mirrored or effect-driven sticker animates in place.
     /// Returns the frame when it is a new one (it has just come on show),
     /// for what fires on a frame (`StickerAnimation.particles`).
     @discardableResult
@@ -402,92 +262,23 @@ extension StickerNode {
     ) -> Int? {
         if liveKey != loaded.animation.key, !continuePuppet(loaded) {
             stopLive()
-            beginLive(loaded)
+            beginPuppet(loaded.puppet, key: loaded.animation.key)
             liveFrame = nil
         }
-        if loaded.puppet != nil {
-            return showPuppet(state: state, tween: tween, wings: wings, faceOver: faceOver)
-        }
-        guard let live = childNode(withName: Self.liveNodeName) as? SKSpriteNode else { return nil }
-        let index = min(max(state.frame, 0), loaded.frames.count - 1)
-        defer { liveFrame = index }
-        if live.texture !== loaded.frames[index] {
-            live.texture = loaded.frames[index]
-            if let shadows = loaded.shadowFrames { setLiveShadow(shadows[index]) }
-        }
-        live.alpha = CGFloat(state.liveAlpha)
-        childNode(withName: Self.liveStillName)?.alpha = CGFloat(state.stillAlpha)
-        return index != liveFrame ? index : nil
+        return showPuppet(state: state, tween: tween, wings: wings, faceOver: faceOver)
     }
 
-    /// The live frames and the still art under them, while they are on
-    /// show (the tint reaches them there; `setTint`).
+    /// The still art under a live animation, while one is on show (the
+    /// tint reaches it there; `setTint`).
     var liveSprites: [SKSpriteNode] {
-        [Self.liveNodeName, Self.liveStillName].compactMap { childNode(withName: $0) as? SKSpriteNode }
-    }
-
-    private func beginLive(_ loaded: LoadedLiveAnimation) {
-        if let puppet = loaded.puppet {
-            return beginPuppet(puppet, key: loaded.animation.key)
-        }
-        let animation = loaded.animation
-        guard let first = loaded.frames.first, let stillTexture = texture else { return }
-        // Scale the frame so the rest art is as wide as the sticker's art,
-        // then offset it so the two arts' centres coincide (in the sprite's
-        // own, unscaled space, y up).
-        let base = unscaledSize
-        let frameW = CGFloat(animation.frame.width), frameH = CGFloat(animation.frame.height)
-        let scale = (animation.stickerBox.width * base.width) / (animation.rest.width * frameW)
-        let restCentre = animation.rest.centre, stickerCentre = animation.stickerBox.centre
-        let live = SKSpriteNode(texture: first)
-        live.name = Self.liveNodeName
-        live.size = CGSize(width: frameW * scale, height: frameH * scale)
-        live.position = CGPoint(
-            x: (stickerCentre.x - 0.5) * base.width - (restCentre.x - 0.5) * frameW * scale,
-            y: (0.5 - stickerCentre.y) * base.height - (0.5 - restCentre.y) * frameH * scale)
-        live.zPosition = 0.5  // over the sprite's own art, under nothing else of the node's
-        live.alpha = 0
-        addChild(live)
-        // The still art moves to a child of its own for the crossfade: a
-        // node's own texture cannot fade separately from its children.
-        let still = SKSpriteNode(texture: stillTexture, size: base)
-        still.name = Self.liveStillName
-        still.zPosition = 0.4
-        addChild(still)
-        // The frames and the still art take over the sprite's tint; the
-        // sprite, now without a texture, must stay clear or it draws a
-        // solid box in its colour.
-        for sprite in [live, still] {
-            sprite.color = color
-            sprite.colorBlendFactor = colorBlendFactor
-        }
-        texture = nil
-        color = .clear
-        colorBlendFactor = 0
-        liveStillTexture = stillTexture
-        liveKey = animation.key
-        if let shadows = loaded.shadowFrames {
-            beginLiveShadow(size: live.size, anchor: live.position)
-            setLiveShadow(shadows[0])
-        }
+        [childNode(withName: Self.liveStillName) as? SKSpriteNode].compactMap { $0 }
     }
 
     /// Ends a live animation: the still art is back at once (with the face
-    /// it should show now — it may have changed while the frames played).
+    /// it should show now — it may have changed while the puppet played).
     func stopLive() {
         liveKey = nil
         liveFrame = nil
-        if stopPuppet() { return }
-        guard let live = childNode(withName: Self.liveNodeName) else { return }
-        live.removeFromParent()
-        childNode(withName: Self.liveStillName)?.removeFromParent()
-        if let liveStillTexture { texture = liveStillTexture }
-        // The sprite's own art is back: a running tint returns to it.
-        if let frames = live as? SKSpriteNode, frames.colorBlendFactor > 0 {
-            color = frames.color
-            colorBlendFactor = frames.colorBlendFactor
-        }
-        liveStillTexture = nil
-        endLiveShadow()
+        stopPuppet()
     }
 }

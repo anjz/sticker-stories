@@ -106,6 +106,9 @@ type animSpec struct {
 	Waterline   float64                      `json:"waterline,omitempty"`
 	Particles   []manifest.AnimationParticle `json:"particles,omitempty"`
 	Keys        []manifest.PuppetKey         `json:"keys,omitempty"`
+	// Gait makes a move's keys, loop and stride from how a body of its
+	// kind moves (gait.go) instead of keys written by hand.
+	Gait *gaitSpec `json:"gait,omitempty"`
 }
 
 // templateFile is templates/<type>.json: animations any rig with that

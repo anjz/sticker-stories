@@ -1,80 +1,73 @@
 {
   "sticker": "bottle",
   "called": "the bottle",
-  "skeleton": "a glass bottle lying tilted, its neck up to the right: root under its lowest point; body at its middle; cork at the neck's mouth (pops along the neck); a thin rolled note behind the bottle slides out of the neck.",
+  "skeleton": "a straight glass bottle lying level on its side, neck to the right: root under the middle of its underside; body at its centre carries the empty glass; the rolled note inside on its own bone (it slides a little along the bottle when it tips); the cork on a bone at the neck's lip, drawn behind the glass so the lip covers its plug.",
   "sheets": [
     {
       "id": "parts",
       "size": "1536x1024",
-      "prompt": "Image 1 is a sticker of a message in a bottle. Draw it as a cut-out paper puppet: its separate pieces laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every piece at the size it has in image 1 (if they do not all fit, draw them all a little smaller, at the same scale as each other).\n\nDraw each piece on its own, spread out over the sheet with wide empty gaps between them, no piece touching or overlapping another:\n1. the green glass bottle as in image 1, with the rolled note inside it, but WITHOUT its cork: the neck open, its round mouth showing.\n2. the cork alone, whole: its top as in image 1 and its lower end, which goes into the neck, drawn too.\n3. a rolled paper note alone, rolled up tight into a thin scroll and tied round the middle with string, thin enough to slide out of the bottle's neck.\n\nEvery piece is drawn whole, including what is normally hidden behind another piece, with its edges clean and smooth. It is an object, not a character: no face, no eyes, no mouth. No text, no labels, no numbers, no outline around the pieces beyond the drawing's own line, no shadows, no water, no sand, no splashes or drops. Fully transparent background."
+      "prompt": "Image 1 is a sticker of a message in a bottle. Draw it as a cut-out paper puppet: its separate pieces laid out on one sheet, the same drawing style, colours, texture, line and proportions as in image 1, every piece at the size it has in image 1 and lying level the way it lies in image 1 (if they do not all fit, draw them all a little smaller, at the same scale as each other).\n\nDraw each piece on its own, spread out over the sheet with wide empty gaps between them, no piece touching or overlapping another:\n1. the green glass bottle exactly as in image 1, straight, lying level, neck to the right, but EMPTY: no note and nothing else inside it, just the clear green glass with its shine, and WITHOUT its cork: the neck open at its lip.\n2. the cork alone, whole: the top that shows in image 1 and its lower end that goes into the neck, drawn too, lying level as in image 1.\n3. the rolled paper note alone, tied round the middle with string, exactly as it looks inside the bottle in image 1: the same size, lying level, the same colours as seen through the green glass.\n\nEvery piece is drawn whole, including what is normally hidden behind another piece, with its edges clean and smooth. It is an object, not a character: no face, no eyes, no mouth. No text, no labels, no numbers, no outline around the pieces beyond the drawing's own line, no shadows, no water, no sand, no splashes or drops. Fully transparent background."
     }
   ],
   "parts": {
     "bottle": {
       "sheet": "parts",
       "at": [
-        576,
-        513
-      ]
-    },
-    "cork": {
-      "sheet": "parts",
-      "at": [
-        1304,
-        272
+        764,
+        387
       ]
     },
     "note": {
       "sheet": "parts",
       "at": [
-        1224,
-        762
+        564,
+        806
+      ]
+    },
+    "cork": {
+      "sheet": "parts",
+      "at": [
+        1280,
+        808
       ]
     }
   },
   "bones": [
     {
       "id": "root",
-      "x": 330,
-      "y": 522
-    },
-    {
-      "id": "tip",
-      "parent": "root",
-      "x": 222,
-      "y": 470
+      "x": 371,
+      "y": 441
     },
     {
       "id": "body",
-      "parent": "tip",
-      "x": 374,
-      "y": 393
+      "parent": "root",
+      "x": 371,
+      "y": 383
+    },
+    {
+      "id": "note",
+      "parent": "body",
+      "x": 348,
+      "y": 391
     },
     {
       "id": "cork",
       "parent": "body",
-      "x": 519,
-      "y": 277
-    },
-    {
-      "id": "note",
-      "parent": "body",
-      "x": 505,
-      "y": 298
+      "x": 533,
+      "y": 384
     }
   ],
   "slots": [
     {
-      "id": "note",
-      "bone": "note",
-      "default": "none",
+      "id": "cork",
+      "bone": "cork",
+      "default": "cork",
       "attachments": {
-        "note": {
-          "part": "note",
-          "x": 458,
-          "y": 345,
-          "scale": 0.24,
-          "rotate": -16
+        "cork": {
+          "part": "cork",
+          "x": 527.5,
+          "y": 384,
+          "scale": 0.254
         }
       }
     },
@@ -85,23 +78,24 @@
       "attachments": {
         "bottle": {
           "part": "bottle",
-          "x": 374,
-          "y": 393,
-          "scale": 0.315,
-          "rotate": 1.5
+          "x": 373.5,
+          "y": 384.5,
+          "scale": 0.233,
+          "scaleY": 1.04
         }
       }
     },
     {
-      "id": "cork",
-      "bone": "cork",
-      "default": "cork",
+      "id": "note",
+      "bone": "note",
+      "default": "note",
       "attachments": {
-        "cork": {
-          "part": "cork",
-          "x": 519,
-          "y": 277,
-          "scale": 0.29
+        "note": {
+          "part": "note",
+          "x": 348.5,
+          "y": 391.5,
+          "scale": 0.236,
+          "scaleY": 0.94
         }
       }
     }
@@ -110,20 +104,20 @@
     {
       "id": "pop",
       "kind": "action",
-      "description": "the cork pops and the message peeks out of the bottle",
+      "description": "the cork pops out of the bottle's neck and lands beside it, and the note inside slides up to the open neck; then the cork goes back in.",
       "pause": {
-        "frame": 5,
-        "shows": "the bottle with its cork popped up and the rolled note peeking out of its neck"
+        "frame": 6,
+        "shows": "the bottle with its cork popped out, lying beside its open neck, and the rolled note slid up to the neck"
       },
       "keys": [
         {
-          "hold": 0.35
+          "hold": 0.3
         },
         {
           "hold": 0.14,
           "bones": {
             "body": {
-              "r": -2
+              "r": -1.2
             }
           }
         },
@@ -131,7 +125,7 @@
           "hold": 0.14,
           "bones": {
             "body": {
-              "r": 2
+              "r": 1.2
             }
           }
         },
@@ -140,98 +134,103 @@
           "ease": "out",
           "bones": {
             "body": {
-              "r": -1
+              "r": -0.6
+            },
+            "cork": {
+              "x": 5
             }
           }
         },
         {
-          "hold": 0.4,
+          "hold": 0.35,
           "ease": "out",
           "bones": {
-            "cork": {
-              "x": 55,
-              "y": -120,
-              "r": 40
+            "body": {
+              "r": -1.5
             },
-            "note": {
-              "x": 21.2,
-              "y": -21.2
-            }
-          },
-          "slots": {
-            "note": "note"
-          }
-        },
-        {
-          "hold": 0.6,
-          "bones": {
             "cork": {
-              "x": 70,
-              "y": -140,
-              "r": 55
-            },
-            "note": {
-              "x": 55.1,
-              "y": -55.1
+              "x": 45,
+              "y": -95,
+              "r": 70
             }
-          },
-          "slots": {
-            "note": "note"
-          }
-        },
-        {
-          "hold": 0.5,
-          "bones": {
-            "cork": {
-              "x": 74,
-              "y": -136,
-              "r": 60
-            },
-            "note": {
-              "x": 56.6,
-              "y": -56.6
-            }
-          },
-          "slots": {
-            "note": "note"
           }
         },
         {
           "hold": 0.4,
           "ease": "in",
           "bones": {
+            "root": {
+              "r": 2
+            },
             "cork": {
-              "x": 50,
-              "y": -110,
-              "r": 30
+              "x": 82,
+              "y": -60,
+              "r": 140
             },
             "note": {
-              "x": 7.1,
-              "y": -7.1
+              "x": 6
             }
-          },
-          "slots": {
-            "note": "note"
           }
         },
         {
-          "hold": 0.16,
+          "hold": 1.0,
+          "bones": {
+            "root": {
+              "r": 3
+            },
+            "cork": {
+              "x": 96,
+              "y": 32,
+              "r": 180
+            },
+            "note": {
+              "x": 12
+            }
+          }
+        },
+        {
+          "hold": 0.4,
+          "bones": {
+            "root": {
+              "r": 1
+            },
+            "cork": {
+              "x": 96,
+              "y": 32,
+              "r": 180
+            },
+            "note": {
+              "x": 4
+            }
+          }
+        },
+        {
+          "hold": 0.35,
           "ease": "out",
           "bones": {
             "cork": {
-              "x": -2.1,
-              "y": 2.1
-            },
-            "body": {
-              "r": 1.5
+              "x": 70,
+              "y": -70,
+              "r": 110
             }
           }
         },
         {
-          "hold": 0.16,
+          "hold": 0.3,
+          "ease": "in",
+          "bones": {
+            "cork": {
+              "x": 8,
+              "y": -6,
+              "r": 10
+            }
+          }
+        },
+        {
+          "hold": 0.15,
           "bones": {
             "body": {
-              "r": -1
+              "r": 0.8
             }
           }
         },
@@ -243,7 +242,7 @@
     {
       "id": "bob",
       "kind": "move",
-      "description": "the bottle bobs along to the right on the waves, then stops.",
+      "description": "the bottle bobs along to the right on the waves, the note inside sliding a little as it tips, then stops.",
       "loop": {
         "from": 1,
         "to": 4
@@ -266,6 +265,9 @@
             },
             "body": {
               "r": -5
+            },
+            "note": {
+              "x": -4.0
             }
           }
         },
@@ -288,6 +290,9 @@
             },
             "body": {
               "r": 5
+            },
+            "note": {
+              "x": 4.0
             }
           }
         },
@@ -310,6 +315,9 @@
             },
             "body": {
               "r": -2
+            },
+            "note": {
+              "x": -1.6
             }
           }
         },
@@ -318,6 +326,9 @@
           "bones": {
             "body": {
               "r": 1
+            },
+            "note": {
+              "x": 0.8
             }
           }
         },
@@ -329,16 +340,30 @@
     {
       "id": "wobble",
       "kind": "action",
-      "description": "the bottle wobbles from side to side, then settles.",
+      "description": "the bottle wobbles from side to side, the note inside sliding to and fro, then settles.",
       "keys": [
         {
           "hold": 0.15
         },
         {
-          "hold": 0.25,
+          "hold": 0.3,
           "bones": {
             "root": {
-              "r": 6
+              "r": 5
+            },
+            "note": {
+              "x": 4
+            }
+          }
+        },
+        {
+          "hold": 0.35,
+          "bones": {
+            "root": {
+              "r": -5
+            },
+            "note": {
+              "x": -4
             }
           }
         },
@@ -346,7 +371,10 @@
           "hold": 0.3,
           "bones": {
             "root": {
-              "r": -6
+              "r": 3
+            },
+            "note": {
+              "x": 3
             }
           }
         },
@@ -354,15 +382,10 @@
           "hold": 0.28,
           "bones": {
             "root": {
-              "r": 4
-            }
-          }
-        },
-        {
-          "hold": 0.26,
-          "bones": {
-            "root": {
-              "r": -2
+              "r": -1.5
+            },
+            "note": {
+              "x": -1
             }
           }
         },
@@ -374,37 +397,13 @@
     {
       "id": "bounce",
       "kind": "action",
-      "description": "the bottle hops up off the sand and lands with a little bump, twice.",
+      "description": "a wave washes under the bottle, lifts it and sets it down with a little bump, twice.",
       "keys": [
         {
           "hold": 0.12
         },
         {
-          "hold": 0.3,
-          "ease": "out",
-          "bones": {
-            "root": {
-              "y": -50
-            },
-            "body": {
-              "r": -4
-            }
-          }
-        },
-        {
-          "hold": 0.26,
-          "ease": "in",
-          "bones": {
-            "root": {
-              "y": 0
-            },
-            "body": {
-              "r": 1
-            }
-          }
-        },
-        {
-          "hold": 0.26,
+          "hold": 0.32,
           "ease": "out",
           "bones": {
             "root": {
@@ -412,11 +411,14 @@
             },
             "body": {
               "r": -3
+            },
+            "note": {
+              "x": -2
             }
           }
         },
         {
-          "hold": 0.22,
+          "hold": 0.28,
           "ease": "in",
           "bones": {
             "root": {
@@ -428,10 +430,37 @@
           }
         },
         {
+          "hold": 0.28,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "y": -16
+            },
+            "body": {
+              "r": -2
+            },
+            "note": {
+              "x": -1
+            }
+          }
+        },
+        {
+          "hold": 0.24,
+          "ease": "in",
+          "bones": {
+            "root": {
+              "y": 0
+            },
+            "body": {
+              "r": 0.5
+            }
+          }
+        },
+        {
           "hold": 0.2,
           "bones": {
             "body": {
-              "r": -0.5
+              "r": -0.4
             }
           }
         },
@@ -441,129 +470,63 @@
       ]
     },
     {
-      "id": "tip",
+      "id": "tilt",
       "kind": "action",
-      "description": "the bottle tips up on its bottom end until it nearly stands up, wobbles there, then rolls back down.",
+      "description": "a wave tips the bottle neck-down and the note inside slides along to the neck; then the bottle levels and the note slides back.",
       "pause": {
         "frame": 2,
-        "shows": "the bottle tipped up on its bottom end, nearly standing"
+        "shows": "the bottle tipped neck-down, the note inside slid up to its neck"
       },
       "keys": [
         {
-          "hold": 0.15
+          "hold": 0.2
         },
         {
           "hold": 0.6,
-          "ease": "out",
           "bones": {
-            "tip": {
-              "r": -30
-            }
-          }
-        },
-        {
-          "hold": 0.3,
-          "bones": {
-            "tip": {
-              "r": -27
-            }
-          }
-        },
-        {
-          "hold": 0.3,
-          "bones": {
-            "tip": {
-              "r": -31
-            }
-          }
-        },
-        {
-          "hold": 0.35,
-          "ease": "in",
-          "bones": {
-            "tip": {
-              "r": 2
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "tip": {
-              "r": -2
-            }
-          }
-        },
-        {
-          "hold": 0.2
-        }
-      ]
-    },
-    {
-      "id": "wiggle-cork",
-      "kind": "action",
-      "description": "the cork wiggles in the bottle's neck, lifts a little, and squeaks back in.",
-      "keys": [
-        {
-          "hold": 0.2
-        },
-        {
-          "hold": 0.18,
-          "bones": {
-            "cork": {
-              "r": 8
-            }
-          }
-        },
-        {
-          "hold": 0.18,
-          "bones": {
-            "cork": {
-              "r": -8
-            }
-          }
-        },
-        {
-          "hold": 0.18,
-          "bones": {
-            "cork": {
+            "root": {
               "r": 6
+            },
+            "note": {
+              "x": 4
             }
           }
         },
         {
-          "hold": 0.3,
-          "ease": "out",
+          "hold": 0.7,
           "bones": {
-            "cork": {
-              "x": 11.3,
-              "y": -11.3,
-              "r": -4
+            "root": {
+              "r": 6
+            },
+            "note": {
+              "x": 12
             }
           }
         },
         {
-          "hold": 0.3,
+          "hold": 0.6,
           "bones": {
-            "cork": {
-              "x": 12.7,
-              "y": -12.7,
-              "r": 3
+            "root": {
+              "r": -2
+            },
+            "note": {
+              "x": 10
             }
           }
         },
         {
-          "hold": 0.18,
-          "ease": "in",
+          "hold": 0.5,
           "bones": {
-            "cork": {
-              "x": -1.4,
-              "y": 1.4
+            "root": {
+              "r": -1
+            },
+            "note": {
+              "x": 0
             }
           }
         },
         {
-          "hold": 0.2
+          "hold": 0.25
         }
       ]
     },
@@ -581,6 +544,9 @@
           "bones": {
             "root": {
               "r": 3
+            },
+            "note": {
+              "x": 2
             }
           }
         },
@@ -589,6 +555,9 @@
           "bones": {
             "root": {
               "r": -3
+            },
+            "note": {
+              "x": -2
             }
           }
         },
@@ -597,6 +566,9 @@
           "bones": {
             "root": {
               "r": 2
+            },
+            "note": {
+              "x": 1
             }
           }
         },

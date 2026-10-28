@@ -2,7 +2,7 @@
   "id": "wobble",
   "sticker": "bucket",
   "kind": "action",
-  "description": "the bucket wobbles from side to side, its spade rattling, then settles.",
+  "description": "a bump rocks the bucket from one edge of its bottom to the other, then it settles.",
   "stickerBox": {
     "x": 0.25911,
     "y": 0.20052,
@@ -16,12 +16,12 @@
         "hold": 0.15
       },
       {
-        "hold": 0.25,
+        "hold": 0.28,
         "bones": {
-          "root": {
-            "r": 5
+          "mould": {
+            "r": -2.5
           },
-          "spade": {
+          "tip": {
             "r": -4
           }
         }
@@ -29,33 +29,33 @@
       {
         "hold": 0.3,
         "bones": {
-          "root": {
-            "r": -5
+          "mould": {
+            "r": 1.5
           },
-          "spade": {
-            "r": 5
+          "tipR": {
+            "r": 3
           }
         }
       },
       {
         "hold": 0.28,
         "bones": {
-          "root": {
-            "r": 3
+          "mould": {
+            "r": -1.2
           },
-          "spade": {
-            "r": -3
+          "tip": {
+            "r": -2
           }
         }
       },
       {
-        "hold": 0.26,
+        "hold": 0.25,
         "bones": {
-          "root": {
-            "r": -1.5
+          "mould": {
+            "r": 0.5
           },
-          "spade": {
-            "r": 2
+          "tipR": {
+            "r": 1
           }
         }
       },

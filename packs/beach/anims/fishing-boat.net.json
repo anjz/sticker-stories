@@ -2,7 +2,7 @@
   "id": "net",
   "sticker": "fishing-boat",
   "kind": "action",
-  "description": "the fishing boat hauls up its net",
+  "description": "the fishing boat swings its net out over the stern on its rope, lowers it into the sea and hauls it up, dripping, then swings it back on board.",
   "stickerBox": {
     "x": 0.07943,
     "y": 0.14583,
@@ -10,23 +10,23 @@
     "height": 0.70833
   },
   "pause": {
-    "frame": 5,
-    "shows": "the fishing boat with its net hauled up high on the mast"
+    "frame": 6,
+    "shows": "the fishing boat with its wet net hauled up high on its rope over the stern"
   },
   "particles": [
     {
-      "frame": 2,
+      "frame": 3,
       "effect": "spray",
-      "x": 0.16,
-      "y": 0.72,
-      "intensity": 0.35
+      "x": 0.04,
+      "y": 0.76,
+      "intensity": 0.4
     },
     {
-      "frame": 4,
+      "frame": 5,
       "effect": "spray",
-      "x": 0.16,
-      "y": 0.6,
-      "intensity": 0.4
+      "x": 0.05,
+      "y": 0.72,
+      "intensity": 0.3
     }
   ],
   "puppet": {
@@ -36,103 +36,131 @@
         "hold": 0.3
       },
       {
-        "hold": 0.55,
+        "hold": 0.5,
         "bones": {
           "net": {
-            "r": 22,
-            "x": -120,
-            "y": 10
+            "y": -22.5
           },
           "rock": {
-            "r": -1
+            "r": -0.5
+          },
+          "rope": {
+            "sy": 0.82
           }
         }
       },
       {
         "hold": 0.6,
-        "ease": "in",
         "bones": {
           "net": {
-            "r": 6,
-            "x": -150,
-            "y": 140
-          },
-          "rock": {
-            "r": -2
-          }
-        }
-      },
-      {
-        "hold": 0.5,
-        "bones": {
-          "net": {
-            "r": 2,
-            "x": 34,
-            "y": 160
+            "r": -17
           },
           "rock": {
             "r": -1
+          },
+          "swing": {
+            "r": 24
           }
-        },
-        "slots": {
-          "net": "open"
+        }
+      },
+      {
+        "hold": 0.6,
+        "ease": "out",
+        "bones": {
+          "net": {
+            "r": -34,
+            "y": 275
+          },
+          "rock": {
+            "r": -2
+          },
+          "rope": {
+            "sy": 3.2
+          },
+          "swing": {
+            "r": 34
+          }
         }
       },
       {
         "hold": 0.5,
-        "ease": "out",
         "bones": {
           "net": {
-            "r": -3,
-            "x": 34,
-            "y": -20
+            "r": -36,
+            "y": 287.5
           },
           "rock": {
-            "r": 1
+            "r": -1.5
+          },
+          "rope": {
+            "sy": 3.3
+          },
+          "swing": {
+            "r": 34
           }
-        },
-        "slots": {
-          "net": "open"
         }
       },
       {
         "hold": 0.7,
         "bones": {
           "net": {
-            "r": -3,
-            "x": 12,
-            "y": -110
+            "r": -34,
+            "y": 100
           },
           "rock": {
-            "r": 1.5
+            "r": -1
+          },
+          "rope": {
+            "sy": 1.8
+          },
+          "swing": {
+            "r": 30
           }
         }
       },
       {
-        "hold": 0.4,
+        "hold": 0.8,
         "bones": {
           "net": {
-            "r": 4,
-            "x": 10,
-            "y": -104
+            "r": -20,
+            "y": -25
+          },
+          "rock": {
+            "r": 0.5
+          },
+          "rope": {
+            "sy": 0.8
+          },
+          "swing": {
+            "r": 22
           }
         }
       },
       {
         "hold": 0.55,
-        "ease": "inOut",
         "bones": {
           "net": {
-            "r": -2,
-            "y": -20
+            "y": -22.5
+          },
+          "rock": {
+            "r": 0.5
+          },
+          "rope": {
+            "sy": 0.82
+          },
+          "swing": {
+            "r": -3
           }
         }
       },
       {
-        "hold": 0.2,
+        "hold": 0.3,
         "bones": {
           "net": {
-            "r": 2
+            "r": -1
+          },
+          "swing": {
+            "r": 1
           }
         }
       },

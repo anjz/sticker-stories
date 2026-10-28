@@ -792,112 +792,9 @@
       "kind": "move",
       "description": "the duckling waddles along to the right on its orange feet, wiggling its tail, then stops.",
       "facing": "right",
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
-      "stride": 0.4,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "footR": {
-              "x": 10,
-              "y": -14,
-              "r": -12
-            },
-            "footL": {
-              "x": -4
-            },
-            "body": {
-              "r": 5
-            },
-            "root": {
-              "y": -4
-            },
-            "wingL": {
-              "r": 6
-            },
-            "wingR": {
-              "r": -6
-            },
-            "head": {
-              "r": -3
-            }
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "footR": {
-              "x": 10
-            },
-            "body": {
-              "r": 1
-            },
-            "root": {
-              "y": 0
-            }
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "footL": {
-              "x": 16,
-              "y": -14,
-              "r": -12
-            },
-            "footR": {
-              "x": -4
-            },
-            "body": {
-              "r": -5
-            },
-            "root": {
-              "y": -4
-            },
-            "wingL": {
-              "r": 6
-            },
-            "wingR": {
-              "r": -6
-            },
-            "head": {
-              "r": 3
-            }
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "footL": {
-              "x": 16
-            },
-            "body": {
-              "r": -1
-            },
-            "root": {
-              "y": 0
-            }
-          }
-        },
-        {
-          "hold": 0.14,
-          "bones": {
-            "belly": {
-              "sx": 1.03,
-              "sy": 0.97
-            }
-          }
-        },
-        {
-          "hold": 0.45
-        }
-      ]
+      "gait": {
+        "style": "duck.waddle"
+      }
     },
     {
       "id": "swim",
@@ -908,124 +805,18 @@
         "pond"
       ],
       "waterline": 0.25,
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "stride": 0.5,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.18,
-          "bones": {
-            "root": {
-              "y": 16
-            },
-            "body": {
-              "r": -3
-            },
-            "footL": {
-              "r": 25,
-              "x": -8,
-              "y": -6
-            },
-            "footR": {
-              "r": -20,
-              "x": 6,
-              "y": -12
-            },
-            "head": {
-              "r": -2
-            }
+      "gait": {
+        "style": "bird.paddle",
+        "pose": {
+          "root": {
+            "y": 18
+          },
+          "body": {
+            "r": -2
           }
-        },
-        {
-          "hold": 0.18,
-          "bones": {
-            "root": {
-              "y": 20
-            },
-            "body": {
-              "r": -2
-            },
-            "footL": {
-              "r": 5,
-              "y": -8
-            },
-            "footR": {
-              "r": 5,
-              "y": -10
-            },
-            "belly": {
-              "sx": 1.02,
-              "sy": 0.98
-            }
-          }
-        },
-        {
-          "hold": 0.18,
-          "bones": {
-            "root": {
-              "y": 16
-            },
-            "body": {
-              "r": -3
-            },
-            "footL": {
-              "r": -20,
-              "x": 8,
-              "y": -12
-            },
-            "footR": {
-              "r": 25,
-              "x": -6,
-              "y": -6
-            },
-            "head": {
-              "r": -2
-            }
-          }
-        },
-        {
-          "hold": 0.18,
-          "bones": {
-            "root": {
-              "y": 20
-            },
-            "body": {
-              "r": -2
-            },
-            "footL": {
-              "r": 5,
-              "y": -8
-            },
-            "footR": {
-              "r": 5,
-              "y": -10
-            },
-            "belly": {
-              "sx": 1.02,
-              "sy": 0.98
-            }
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "root": {
-              "y": 8
-            },
-            "body": {
-              "r": -1
-            }
-          }
-        },
-        {
-          "hold": 0.45
         }
-      ]
+      }
     },
     {
       "id": "quack",

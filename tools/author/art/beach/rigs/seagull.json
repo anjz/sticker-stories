@@ -1,6 +1,6 @@
 {
   "sticker": "seagull",
-  "skeleton": "seagull standing in three-quarter view, its head turned to the viewer's left: root between the feet; body with belly squash; head at the neck, face carrying both eyes, brows and the beak; near wing folded on the right side (open in flight), the far wing shown only open in flight (flipped, shaded); legL/legR at the hips.",
+  "skeleton": "seagull standing in three-quarter view, its head turned to the viewer's left: root between the feet; body with belly squash; head at the neck (the head-and-neck piece of the neck sheet, between the body and a copy of the body whose top fades in, so no chin line shows), face carrying both eyes, brows and the beak; near wing folded on the right side (open in flight), the far wing shown only open in flight (flipped, shaded); legL/legR at the hips.",
   "sheets": [
     {
       "id": "parts",
@@ -14,6 +14,14 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a seagull character; image 2 shows the same seagull cut into puppet parts, with a blank face. Draw the seagull's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the seagull in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the seagull's eye as it is in image 1: a dark brown round eye with a white sparkle.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: the pupil looking down, its upper lid drooping and tilted, a thin shine of a welling tear along the bottom rim.\n6. the same eye crying: gently squeezed shut, a soft downward-curving line (a sad closed eye, not a smile), a few small lashes, and one small light-blue teardrop just below it.\n7. the brow: the short brown curved brow line above an eye in image 1.\n8. the beak as it is in image 1: the yellow-orange beak, closed, with its little smile.\n9. the same beak wide open, squawking loudly, a little pink inside.\n10. the same beak a little open.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    },
+    {
+      "id": "neck",
+      "size": "1024x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a seagull; image 2 shows the same seagull cut into puppet parts, with a blank face. Draw one single piece, centred on the sheet: the seagull's head together with its neck, as one piece. It is exactly the head of image 2 — the same round fluffy cream-white head, the same tufts on top, the same rosy cheeks, the same completely blank face (no eyes, no eyebrows, no beak), turned the same way, the same drawing style, colours, texture and line — but there is no chin line under it: the fluffy white throat and neck carry straight on down below the head, as wide as the head, for about half the head's height, the way the head flows into the chest in image 1, and end in a smooth rounded bottom edge. At the size the head has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -29,7 +37,8 @@
       "at": [
         984,
         279
-      ]
+      ],
+      "fadeTop": 0.15
     },
     "leg": {
       "sheet": "parts",
@@ -120,6 +129,21 @@
       "at": [
         1245,
         733
+      ]
+    },
+    "bodyFront": {
+      "sheet": "parts",
+      "at": [
+        603,
+        668
+      ],
+      "fadeTop": 0.3
+    },
+    "headNeck": {
+      "sheet": "neck",
+      "at": [
+        517,
+        519
       ]
     }
   },
@@ -266,6 +290,32 @@
       }
     },
     {
+      "id": "head",
+      "bone": "head",
+      "default": "head",
+      "attachments": {
+        "head": {
+          "part": "headNeck",
+          "x": 337,
+          "y": 285,
+          "scale": 0.25
+        }
+      }
+    },
+    {
+      "id": "bodyFront",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "bodyFront",
+          "x": 343,
+          "y": 376,
+          "scale": 0.45
+        }
+      }
+    },
+    {
       "id": "wingL",
       "bone": "wingL",
       "default": "folded",
@@ -290,19 +340,6 @@
           "y": 290,
           "scale": 0.4,
           "rotate": -25
-        }
-      }
-    },
-    {
-      "id": "head",
-      "bone": "head",
-      "default": "head",
-      "attachments": {
-        "head": {
-          "part": "head",
-          "x": 337,
-          "y": 255,
-          "scale": 0.37
         }
       }
     },
@@ -339,8 +376,7 @@
           "part": "eyeSad",
           "x": 314,
           "y": 223,
-          "scale": 0.1615,
-          "flip": true
+          "scale": 0.1615
         },
         "cry": {
           "part": "eyeCry",
@@ -673,325 +709,101 @@
       "kind": "move",
       "description": "the seagull flies along to the left flapping its long wings, then glides down and lands.",
       "facing": "left",
-      "flies": true,
       "wings": [
         "wingL",
         "wingR"
       ],
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "stride": 1.2,
-      "keys": [
-        {
-          "hold": 0.1
+      "gait": {
+        "style": "bird.soar",
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
         },
-        {
-          "hold": 0.18,
-          "bones": {
-            "wingL": {
-              "r": -24
+        "then": [
+          {
+            "hold": 0.28,
+            "bones": {
+              "wingL": {
+                "r": 6
+              },
+              "wingR": {
+                "r": -6
+              },
+              "body": {
+                "r": -2,
+                "y": -6
+              },
+              "legL": {
+                "r": -10,
+                "y": -8
+              },
+              "legR": {
+                "r": -10,
+                "y": -8
+              }
             },
-            "wingR": {
-              "r": 24
-            },
-            "body": {
-              "r": -6,
-              "y": -4
-            },
-            "head": {
-              "r": 4
-            },
-            "legL": {
-              "r": -35,
-              "y": -24
-            },
-            "legR": {
-              "r": -35,
-              "y": -24
+            "slots": {
+              "wingL": "none",
+              "wingOpen": "open",
+              "wingR": "open"
             }
           },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "wingL": {
-              "r": 0
+          {
+            "hold": 0.2,
+            "bones": {
+              "wingL": {
+                "r": -22
+              },
+              "wingR": {
+                "r": 22
+              },
+              "body": {
+                "r": 4
+              }
             },
-            "wingR": {
-              "r": 0
-            },
-            "body": {
-              "r": -6,
-              "y": -10
-            },
-            "head": {
-              "r": 4
-            },
-            "legL": {
-              "r": -35,
-              "y": -24
-            },
-            "legR": {
-              "r": -35,
-              "y": -24
+            "slots": {
+              "wingL": "none",
+              "wingOpen": "open",
+              "wingR": "open"
             }
           },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.18,
-          "bones": {
-            "wingL": {
-              "r": 26
-            },
-            "wingR": {
-              "r": -26
-            },
-            "body": {
-              "r": -6,
-              "y": -14
-            },
-            "head": {
-              "r": 4
-            },
-            "legL": {
-              "r": -35,
-              "y": -24
-            },
-            "legR": {
-              "r": -35,
-              "y": -24
+          {
+            "hold": 0.16,
+            "bones": {
+              "root": {
+                "y": 2
+              },
+              "belly": {
+                "sx": 1.04,
+                "sy": 0.95
+              },
+              "head": {
+                "y": 6
+              }
             }
           },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
+          {
+            "hold": 0.45
           }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "wingL": {
-              "r": 0
-            },
-            "wingR": {
-              "r": 0
-            },
-            "body": {
-              "r": -6,
-              "y": -10
-            },
-            "head": {
-              "r": 4
-            },
-            "legL": {
-              "r": -35,
-              "y": -24
-            },
-            "legR": {
-              "r": -35,
-              "y": -24
-            }
-          },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.28,
-          "bones": {
-            "wingL": {
-              "r": 6
-            },
-            "wingR": {
-              "r": -6
-            },
-            "body": {
-              "r": -2,
-              "y": -6
-            },
-            "legL": {
-              "r": -10,
-              "y": -8
-            },
-            "legR": {
-              "r": -10,
-              "y": -8
-            }
-          },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "wingL": {
-              "r": -22
-            },
-            "wingR": {
-              "r": 22
-            },
-            "body": {
-              "r": 4
-            }
-          },
-          "slots": {
-            "wingL": "none",
-            "wingOpen": "open",
-            "wingR": "open"
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "root": {
-              "y": 2
-            },
-            "belly": {
-              "sx": 1.04,
-              "sy": 0.95
-            },
-            "head": {
-              "y": 6
-            }
-          }
-        },
-        {
-          "hold": 0.45
-        }
-      ]
+        ]
+      }
     },
     {
       "id": "hop",
       "kind": "move",
       "description": "the seagull hops along to the left on both feet, wings folded, then stops.",
       "facing": "left",
-      "hops": true,
       "on": [
         "sand",
         "rocks"
       ],
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "stride": 0.45,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.14,
-          "bones": {
-            "root": {
-              "y": 5
-            },
-            "belly": {
-              "sx": 1.07,
-              "sy": 0.93
-            },
-            "legL": {
-              "r": 0,
-              "y": 0
-            },
-            "legR": {
-              "r": 0,
-              "y": 0
-            }
-          }
-        },
-        {
-          "hold": 0.16,
-          "ease": "out",
-          "bones": {
-            "root": {
-              "y": -26
-            },
-            "belly": {
-              "sx": 0.95,
-              "sy": 1.05
-            },
-            "legL": {
-              "r": -14,
-              "y": -4.333
-            },
-            "legR": {
-              "r": -14,
-              "y": -4.333
-            }
-          }
-        },
-        {
-          "hold": 0.14,
-          "ease": "in",
-          "bones": {
-            "root": {
-              "y": -22
-            },
-            "belly": {
-              "sx": 0.97,
-              "sy": 1.03
-            },
-            "legL": {
-              "r": -10,
-              "y": -3.667
-            },
-            "legR": {
-              "r": -10,
-              "y": -3.667
-            }
-          }
-        },
-        {
-          "hold": 0.12,
-          "bones": {
-            "root": {
-              "y": 3
-            },
-            "belly": {
-              "sx": 1.05,
-              "sy": 0.95
-            },
-            "legL": {
-              "r": 0,
-              "y": 0
-            },
-            "legR": {
-              "r": 0,
-              "y": 0
-            }
-          }
-        },
-        {
-          "hold": 0.15,
-          "bones": {
-            "belly": {
-              "sx": 1.02,
-              "sy": 0.98
-            }
-          }
-        },
-        {
-          "hold": 0.45
-        }
-      ]
+      "gait": {
+        "style": "bird.hop",
+        "cycle": 0.6
+      }
     },
     {
       "id": "flap",

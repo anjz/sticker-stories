@@ -243,7 +243,7 @@ final class CanvasScene: SKScene {
     private var cameraHandsOffUntil: TimeInterval = 0
     private var cameraSteppedAt: TimeInterval?
     /// Every live animation the pack declares (`StickerAnimation`), read
-    /// once; the sheets themselves load per story (`liveLoaded`).
+    /// once; their puppets load per story (`liveLoaded`).
     private lazy var liveAnimations = StickerAnimation.available(in: pack)
     /// Each action's timing as it plays, before its frames load: how long
     /// the director lets it play before a later move (`StageAction`).
@@ -255,7 +255,7 @@ final class CanvasScene: SKScene {
     /// When each sticker's puppet began taking over at rest, this story.
     private var idleBegan: [UUID: TimeInterval] = [:]
     /// The current story's live animations, loaded when play starts and let
-    /// go of when it ends; a trigger whose sheet is not in yet is skipped.
+    /// go of when it ends; a trigger whose puppet is not in yet is skipped.
     private var liveLoaded: [LiveAnimationKey: LoadedLiveAnimation] = [:]
     private var liveLoad: Task<Void, Never>?
     /// Reduce Motion / calm mode for the story playing: no frames at all.
@@ -1588,7 +1588,7 @@ final class CanvasScene: SKScene {
                     ? StageAction.of(
                         triggers.live, frames: { [actionTimings] in actionTimings[$0] }, faces: { [actionFaces] in actionFaces[$0] })
                     : [],
-                policy: policy)
+                live: triggers.live, policy: policy)
         }
         let motions = stage == nil ? planMotions(triggers.goes + placing, visitors: visitors, policy: policy) : [:]
         var storyLive = stage.map {
@@ -1752,7 +1752,7 @@ final class CanvasScene: SKScene {
 
     /// Each sticker's idle actions (`IdleLife`), from its sidecars.
     private lazy var idleActions: [String: [IdleLife.Action]] = Dictionary(grouping: liveAnimations.filter {
-        $0.idle && $0.usesPuppet
+        $0.idle
     }, by: \.sticker).mapValues { list in
         list.map { IdleLife.Action(id: $0.id, duration: $0.frames.duration(.whole) ?? 0) }
     }
@@ -1808,7 +1808,7 @@ final class CanvasScene: SKScene {
     /// shows it, every sticker on it, the story's entrances and moves.
     private func planStage(
         _ space: SceneSpace, entrances: [EntranceTrigger], goes: [GoTrigger], cast: Set<String>, actions: [StageAction],
-        policy: EffectPolicy
+        live: [LiveAnimationTrigger], policy: EffectPolicy
     ) -> StoryStage {
         let aspect = baseArtPixelSize.height > 0 ? Double(baseArtPixelSize.width / baseArtPixelSize.height) : 4.0 / 3
         var world = StageWorld(
@@ -1828,7 +1828,7 @@ final class CanvasScene: SKScene {
         var random = SystemRandomNumberGenerator()
         let plans = StageDirector.plan(
             world: world, screen: screen, actors: actors, entrances: entrances, goes: goes, policy: policy, cast: cast,
-            actions: actions, random: &random)
+            actions: actions, live: live, random: &random)
         return StoryStage(world: world, plans: plans, moves: stageMoves, nodes: nodes, drawing: drawing)
     }
 
@@ -2301,7 +2301,7 @@ final class CanvasScene: SKScene {
     /// Puts on every sticker the frame of its live animation now: a visitor
     /// on its way in plays its move (unless the story cues an action on it
     /// after its entrance), anyone else the action the story has it playing
-    /// (`LiveTimeline`), or its still art. An animation whose sheet is not
+    /// (`LiveTimeline`), or its still art. An animation whose puppet is not
     /// in yet leaves the still art. On the stage in space a sticker on its
     /// way somewhere always plays its move until it stops (its actions wait
     /// for it, `StageDirector.delayed`); there, once an action is over, a
@@ -2322,13 +2322,13 @@ final class CanvasScene: SKScene {
                     else { return nil }
                     let (part, elapsed) = travel.part(at: time)
                     guard let state = move.timing.state(part, at: elapsed) else { return nil }
-                    // A puppet moves between its keys; frames only show.
-                    return (move, state, move.puppet.flatMap { _ in move.timing.tween(part, at: elapsed) })
+                    // A puppet moves between its keys.
+                    return (move, state, move.timing.tween(part, at: elapsed))
                 }
                 let acting: (LoadedLiveAnimation, LiveFrameState, LiveTween?)? = action.flatMap { action in
                     guard let loaded = liveLoaded[action.key], let state = loaded.timing.state(action.part, at: action.elapsed)
                     else { return nil }
-                    return (loaded, state, loaded.puppet.flatMap { _ in loaded.timing.tween(action.part, at: action.elapsed) })
+                    return (loaded, state, loaded.timing.tween(action.part, at: action.elapsed))
                 }
                 let actionIsNewer = action.map { $0.since >= (travel?.at ?? -1) } ?? false
                 if session.stage != nil, let travel, travel.isMoving(at: time), let moving {
@@ -2338,10 +2338,8 @@ final class CanvasScene: SKScene {
                     // there shows only its face over the move: the surfer
                     // laughs as he paddles on.
                     shown = moving
-                    if let action = acting.0.puppet, let tween = acting.2, let move = moving.0.puppet,
-                        action.rig.atlas == move.rig.atlas
-                    {
-                        faceOver = PuppetNode.FaceOver(action: action, tween: tween)
+                    if let tween = acting.2, acting.0.puppet.rig.atlas == moving.0.puppet.rig.atlas {
+                        faceOver = PuppetNode.FaceOver(action: acting.0.puppet, tween: tween)
                     }
                 } else if actionIsNewer {
                     // Once it is over, a move that stays goes on (on the
@@ -2351,18 +2349,16 @@ final class CanvasScene: SKScene {
                     // without its still first and last keys: from the move
                     // into the action and straight back.
                     if session.stage != nil, travel?.stays == true, let acting, let moving, let tween = acting.2,
-                        let keys = acting.0.puppet?.keys.count, let move = moving.0.puppet,
-                        acting.0.puppet?.rig.atlas == move.rig.atlas
+                        acting.0.puppet.rig.atlas == moving.0.puppet.rig.atlas
                     {
-                        shown = StageActing.overMove(tween, keys: keys).map { (acting.0, acting.1, $0) } ?? moving
+                        shown = StageActing.overMove(tween, keys: acting.0.puppet.keys.count).map { (acting.0, acting.1, $0) } ?? moving
                     }
                     // Up in the air, a flyer's wings beat on through it.
                     if session.stage != nil, travel?.stays == true, let acting, let moving,
-                        let bones = moving.0.animation.puppet?.wings, !bones.isEmpty,
-                        let flight = moving.0.puppet, let tween = moving.2,
-                        acting.0.puppet?.rig.atlas == flight.rig.atlas
+                        let bones = moving.0.animation.puppet.wings, !bones.isEmpty, let tween = moving.2,
+                        acting.0.puppet.rig.atlas == moving.0.puppet.rig.atlas
                     {
-                        wings = PuppetNode.Wings(flight: flight, tween: tween, bones: bones)
+                        wings = PuppetNode.Wings(flight: moving.0.puppet, tween: tween, bones: bones)
                     }
                 } else {
                     shown = moving ?? acting

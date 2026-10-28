@@ -280,10 +280,6 @@ final class EffectsGalleryScene: SKScene {
     /// A `playAll` requested before the scene was presented (SwiftUI's
     /// `onAppear` fires before `didMove(to:)`).
     private var pendingPlayAll: (intensity: Double, repeating: Bool)?
-    /// Sprite sheets of the sticker on show, loaded on first play and let
-    /// go of when the gallery moves to another sticker (each is a large
-    /// texture; ten animated stickers must not pile up).
-    private var sheets: [String: SKTexture] = [:]
     /// A `playLive` requested before its sticker was on show.
     private var pendingLive: (animation: StickerAnimation, part: LivePart, repeating: Bool)?
     /// The animation on show, which part, since when (scene time) and
@@ -362,8 +358,6 @@ final class EffectsGalleryScene: SKScene {
         pendingStickerID = stickerID
         guard background.parent != nil else { return }
         stopEffects()
-        sheets.removeAll()
-        shadows.forgetShadowSheets()
         sticker?.removeFromParent()
         guard let definition = pack.sticker(withID: stickerID),
             let image = UIImage(contentsOfFile: pack.url(forAssetPath: definition.image).path)
@@ -397,28 +391,11 @@ final class EffectsGalleryScene: SKScene {
             pendingLive = (animation, part, repeating)
             return
         }
-        if animation.usesPuppet {
-            Task { @MainActor [weak self, pack] in
-                let loaded = await LiveAnimationLoader.load([animation.liveKey], from: [animation], pack: pack)
-                guard let self, let puppet = loaded[animation.liveKey] else { return }
-                self.liveRun = (puppet, part, self.sceneTime, repeating)
-            }
-            return
+        Task { @MainActor [weak self, pack] in
+            let loaded = await LiveAnimationLoader.load([animation.liveKey], from: [animation], pack: pack)
+            guard let self, let puppet = loaded[animation.liveKey] else { return }
+            self.liveRun = (puppet, part, self.sceneTime, repeating)
         }
-        let sheet: SKTexture
-        var image: UIImage?
-        if let cached = sheets[animation.key] {
-            sheet = cached
-        } else {
-            guard let loaded = UIImage(contentsOfFile: pack.url(forAssetPath: animation.sheet).path) else { return }
-            image = loaded
-            sheet = SKTexture(image: loaded)
-            sheets[animation.key] = sheet
-        }
-        let shadowSheet = shadows.shadowSheet(for: animation) {
-            image ?? UIImage(contentsOfFile: pack.url(forAssetPath: animation.sheet).path)
-        }
-        liveRun = (LoadedLiveAnimation(animation: animation, sheet: sheet, shadowSheet: shadowSheet), part, sceneTime, repeating)
     }
 
     func play(_ effect: EffectName, options: EffectOptions) {
@@ -512,7 +489,7 @@ final class EffectsGalleryScene: SKScene {
         guard let sticker else { return }
         if let run = liveRun {
             if let state = run.loaded.timing.state(run.part, at: currentTime - run.start) {
-                let tween = run.loaded.puppet.flatMap { _ in run.loaded.timing.tween(run.part, at: currentTime - run.start) }
+                let tween = run.loaded.timing.tween(run.part, at: currentTime - run.start)
                 if let frame = sticker.showLive(run.loaded, state: state, tween: tween) {
                     emitters.fire(run.loaded.animation, frame: frame, on: sticker)
                 }

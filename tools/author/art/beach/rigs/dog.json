@@ -1,6 +1,6 @@
 {
   "sticker": "dog",
-  "skeleton": "scruffy four-legged dog standing, three-quarter view facing right, head turned to the viewer, tail curled up behind: root on the ground under the body; body (chest with collar to rump) with belly squash; head at the neck, face with eyes, brows and mouth (tongue out); floppy earL/earR on the head, behind it; four legs at shoulders and hips (legFF/legBF far, behind the body, shaded; legFN/legBN near, over the body with faded tops); tail at the rump; a ball on its own bone at the mouth for fetch.",
+  "skeleton": "scruffy four-legged dog standing, three-quarter view facing right, head turned to the viewer, tail curled up behind: root on the ground under the body; body (chest with collar to rump) with belly squash; head at the neck (the head-and-neck piece of the neck sheet, between the body and a copy of the body whose top fades in, so no chin line shows), face with eyes, brows and mouth (tongue out); floppy earL/earR on the head, behind it; four legs at shoulders and hips (legFF/legBF far, behind the body, shaded; legFN/legBN near, over the body copy with faded tops); tail at the rump; a ball on its own bone at the mouth for fetch.",
   "sheets": [
     {
       "id": "parts",
@@ -14,6 +14,14 @@
         "parts"
       ],
       "prompt": "Image 1 is a sticker of a scruffy dog; image 2 shows the same dog cut into puppet parts, with a blank face. Draw the dog's face pieces as separate stickers on one sheet: the same drawing style, colours and line as in image 1, every piece at the size it has on the dog in image 1, so it fits the blank face in image 2.\n\nDraw each piece on its own, spread out in tidy rows with wide empty gaps between them, nothing touching:\n1. the dog's left eye (on the right of image 1): a dark round eye with a white sparkle, as it is in image 1.\n2. the same eye wide open and surprised: bigger and rounder, with its white sparkle.\n3. the same eye gently closed in sleep: a soft downward-curving line with a few lashes.\n4. the same eye closed in a happy smile: an upward-curving arc.\n5. the same eye sad: looking down, its upper lid tilted up towards the middle, a thin shine of a welling tear along its bottom rim.\n6. the same eye crying: gently squeezed shut, a soft downward-curving line (a sad closed eye, not a smile), a few small lashes, and one small light-blue teardrop just below its outer end.\n7. its eyebrow as it is in image 1: a short soft brown arched tuft.\n8. the same eyebrow sad: tilted up at its inner end.\n9. the mouth as it is in image 1: a happy open pant with the pink tongue hanging out, without the nose.\n10. the mouth closed in a gentle smile: just the curved line, no tongue, without the nose.\n11. the mouth wide open in a big happy bark, the inside pink, without the nose.\n12. the mouth open in a small round 'o', without the nose.\n13. the mouth in a small sad frown, without the nose.\n14. the mouth sobbing: a small open downturned frown with a little pink inside, trembling, without the nose.\n\nNo text, no labels, no numbers, no shadows, no face or head around the pieces. Fully transparent background."
+    },
+    {
+      "id": "neck",
+      "size": "1024x1024",
+      "references": [
+        "parts"
+      ],
+      "prompt": "Image 1 is a sticker of a scruffy dog; image 2 shows the same dog cut into puppet parts, with a blank face. Draw one single piece, centred on the sheet: the dog's head together with its neck, as one piece. It is exactly the head of image 2 — the same scruffy head with its white muzzle, black nose, brown patches and rosy cheeks, the same completely blank face (no eyes, no eyebrows, no mouth, no tongue), without ears, turned the same way, the same drawing style, colours, texture and line — but there is no chin line under it: the white furry throat and the brown fur at the sides of the neck carry straight on down below the head, as wide as the head, for about half the head's height, the way the head flows into the chest in image 1, with no collar, and end in a smooth rounded bottom edge. At the size the head has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -177,7 +185,7 @@
         178,
         732
       ],
-      "fadeTop": 0.42
+      "fadeTop": 0.28
     },
     "backLegNear": {
       "sheet": "parts",
@@ -185,7 +193,22 @@
         1327,
         730
       ],
-      "fadeTop": 0.25
+      "fadeTop": 0.36
+    },
+    "headNeck": {
+      "sheet": "neck",
+      "at": [
+        531,
+        515
+      ]
+    },
+    "bodyFront": {
+      "sheet": "parts",
+      "at": [
+        742,
+        635
+      ],
+      "fadeTop": 0.3
     }
   },
   "bones": [
@@ -234,7 +257,7 @@
       "id": "legFN",
       "parent": "body",
       "x": 410,
-      "y": 452
+      "y": 470
     },
     {
       "id": "head",
@@ -320,10 +343,11 @@
         "leg": {
           "part": "frontLeg",
           "x": 528.6,
-          "y": 532.0,
+          "y": 538.0,
           "scale": 0.336,
           "rotate": -13.0,
-          "shade": 0.07
+          "shade": 0.07,
+          "scaleY": 1.06
         }
       }
     },
@@ -335,24 +359,11 @@
         "leg": {
           "part": "backLeg",
           "x": 335.0,
-          "y": 522.8,
+          "y": 528.8,
           "scale": 0.268,
           "rotate": -5.0,
-          "shade": 0.12
-        }
-      }
-    },
-    {
-      "id": "legBN",
-      "bone": "legBN",
-      "default": "leg",
-      "attachments": {
-        "leg": {
-          "part": "backLeg",
-          "x": 238.5,
-          "y": 514.6,
-          "scale": 0.403,
-          "rotate": 13.699999999999989
+          "shade": 0.12,
+          "scaleY": 1.06
         }
       }
     },
@@ -364,23 +375,10 @@
         "body": {
           "part": "body",
           "x": 376.2,
-          "y": 433.4,
-          "scale": 0.556,
-          "rotate": -7.099999999999994
-        }
-      }
-    },
-    {
-      "id": "legFN",
-      "bone": "legFN",
-      "default": "leg",
-      "attachments": {
-        "leg": {
-          "part": "frontLegNear",
-          "x": 412.8,
-          "y": 537.2,
-          "scale": 0.376,
-          "rotate": -4.800000000000011
+          "y": 412,
+          "scale": 0.53,
+          "rotate": -7.099999999999994,
+          "scaleY": 0.82
         }
       }
     },
@@ -418,11 +416,55 @@
       "default": "head",
       "attachments": {
         "head": {
-          "part": "head",
-          "x": 500.5,
-          "y": 232.6,
-          "scale": 0.498,
-          "rotate": -0.09999999999999432
+          "part": "headNeck",
+          "x": 496,
+          "y": 268,
+          "scale": 0.295
+        }
+      }
+    },
+    {
+      "id": "bodyFront",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "bodyFront",
+          "x": 376.2,
+          "y": 412,
+          "scale": 0.53,
+          "rotate": -7.099999999999994,
+          "scaleY": 0.82
+        }
+      }
+    },
+    {
+      "id": "legBN",
+      "bone": "legBN",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "backLegNear",
+          "x": 244,
+          "y": 520.6,
+          "scale": 0.403,
+          "rotate": 13.699999999999989,
+          "scaleY": 1.06
+        }
+      }
+    },
+    {
+      "id": "legFN",
+      "bone": "legFN",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "frontLegNear",
+          "x": 412.8,
+          "y": 543.2,
+          "scale": 0.376,
+          "rotate": -4.800000000000011,
+          "scaleY": 1.06
         }
       }
     },
@@ -544,8 +586,7 @@
           "part": "eyeSad",
           "x": 515,
           "y": 214,
-          "scale": 0.22,
-          "flip": true
+          "scale": 0.22
         },
         "cry": {
           "part": "eyeCry",
@@ -698,9 +739,6 @@
             "head": {
               "r": -9
             },
-            "face": {
-              "x": -3
-            },
             "earL": {
               "r": 22
             },
@@ -733,9 +771,6 @@
             },
             "head": {
               "r": 9
-            },
-            "face": {
-              "x": 3
             },
             "earL": {
               "r": -6
@@ -770,9 +805,6 @@
             "head": {
               "r": -9
             },
-            "face": {
-              "x": -3
-            },
             "earL": {
               "r": 22
             },
@@ -805,9 +837,6 @@
             },
             "head": {
               "r": 9
-            },
-            "face": {
-              "x": 3
             },
             "earL": {
               "r": -6
@@ -842,9 +871,6 @@
             "head": {
               "r": -9
             },
-            "face": {
-              "x": -3
-            },
             "earL": {
               "r": 22
             },
@@ -878,9 +904,6 @@
             "head": {
               "r": 9
             },
-            "face": {
-              "x": 3
-            },
             "earL": {
               "r": -6
             },
@@ -913,9 +936,6 @@
             },
             "head": {
               "r": -9
-            },
-            "face": {
-              "x": -3
             },
             "earL": {
               "r": 22
@@ -964,194 +984,10 @@
       "id": "run",
       "kind": "move",
       "description": "the dog runs along to the right, ears bouncing and tail up, then stops.",
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "facing": "right",
-      "stride": 0.7,
-      "particles": [
-        {
-          "frame": 2,
-          "effect": "dust-puff",
-          "x": 0.5,
-          "y": 0.8594,
-          "intensity": 0.3
-        }
-      ],
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.15,
-          "ease": "out",
-          "bones": {
-            "legFN": {
-              "r": -26
-            },
-            "legFF": {
-              "r": -20
-            },
-            "legBN": {
-              "r": 22
-            },
-            "legBF": {
-              "r": 18
-            },
-            "root": {
-              "y": -14
-            },
-            "body": {
-              "r": -2
-            },
-            "earL": {
-              "r": -10
-            },
-            "earR": {
-              "r": -8
-            },
-            "tail": {
-              "r": -12
-            },
-            "head": {
-              "r": -2
-            }
-          }
-        },
-        {
-          "hold": 0.15,
-          "bones": {
-            "legFN": {
-              "r": 14
-            },
-            "legFF": {
-              "r": 18
-            },
-            "legBN": {
-              "r": -14
-            },
-            "legBF": {
-              "r": -10
-            },
-            "root": {
-              "y": 0
-            },
-            "body": {
-              "r": 3
-            },
-            "earL": {
-              "r": 6
-            },
-            "earR": {
-              "r": 6
-            },
-            "tail": {
-              "r": -4
-            },
-            "head": {
-              "r": 2
-            },
-            "belly": {
-              "sy": 0.98
-            }
-          }
-        },
-        {
-          "hold": 0.15,
-          "ease": "out",
-          "bones": {
-            "legFN": {
-              "r": -26
-            },
-            "legFF": {
-              "r": -20
-            },
-            "legBN": {
-              "r": 22
-            },
-            "legBF": {
-              "r": 18
-            },
-            "root": {
-              "y": -14
-            },
-            "body": {
-              "r": -2
-            },
-            "earL": {
-              "r": -10
-            },
-            "earR": {
-              "r": -8
-            },
-            "tail": {
-              "r": -12
-            },
-            "head": {
-              "r": -2
-            }
-          }
-        },
-        {
-          "hold": 0.15,
-          "bones": {
-            "legFN": {
-              "r": 14
-            },
-            "legFF": {
-              "r": 18
-            },
-            "legBN": {
-              "r": -14
-            },
-            "legBF": {
-              "r": -10
-            },
-            "root": {
-              "y": 0
-            },
-            "body": {
-              "r": 3
-            },
-            "earL": {
-              "r": 6
-            },
-            "earR": {
-              "r": 6
-            },
-            "tail": {
-              "r": -4
-            },
-            "head": {
-              "r": 2
-            },
-            "belly": {
-              "sy": 0.98
-            }
-          }
-        },
-        {
-          "hold": 0.18,
-          "bones": {
-            "root": {
-              "y": 2
-            },
-            "belly": {
-              "sy": 0.97
-            },
-            "earL": {
-              "r": 4
-            },
-            "earR": {
-              "r": 4
-            }
-          }
-        },
-        {
-          "hold": 0.35
-        }
-      ]
+      "gait": {
+        "style": "quadruped.canter"
+      }
     },
     {
       "id": "sniff",
@@ -2434,9 +2270,6 @@
             "head": {
               "y": 9,
               "sy": 0.97
-            },
-            "face": {
-              "y": 8.0
             }
           }
         },
@@ -2445,9 +2278,6 @@
           "bones": {
             "head": {
               "y": -3
-            },
-            "face": {
-              "y": -3.0
             }
           }
         },
@@ -2457,9 +2287,6 @@
             "head": {
               "y": 9,
               "sy": 0.97
-            },
-            "face": {
-              "y": 8.0
             }
           }
         },
@@ -2468,9 +2295,6 @@
           "bones": {
             "head": {
               "y": -2
-            },
-            "face": {
-              "y": -2.0
             }
           }
         },
@@ -2492,9 +2316,6 @@
           "bones": {
             "head": {
               "r": -7
-            },
-            "face": {
-              "x": -8.4
             }
           }
         },
@@ -2503,9 +2324,6 @@
           "bones": {
             "head": {
               "r": 7
-            },
-            "face": {
-              "x": 8.4
             }
           }
         },
@@ -2514,9 +2332,6 @@
           "bones": {
             "head": {
               "r": -7
-            },
-            "face": {
-              "x": -8.4
             }
           }
         },
@@ -2525,9 +2340,6 @@
           "bones": {
             "head": {
               "r": 6
-            },
-            "face": {
-              "x": 7.0
             }
           }
         },
@@ -2551,9 +2363,6 @@
             "head": {
               "r": -6
             },
-            "face": {
-              "x": -9.6
-            },
             "body": {
               "r": -2
             }
@@ -2564,9 +2373,6 @@
           "bones": {
             "head": {
               "r": -6
-            },
-            "face": {
-              "x": -9.6
             },
             "body": {
               "r": -2
@@ -2579,9 +2385,6 @@
             "head": {
               "r": 6
             },
-            "face": {
-              "x": 9.6
-            },
             "body": {
               "r": 2
             }
@@ -2592,9 +2395,6 @@
           "bones": {
             "head": {
               "r": 6
-            },
-            "face": {
-              "x": 9.6
             },
             "body": {
               "r": 2

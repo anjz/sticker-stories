@@ -93,9 +93,7 @@ magenta, to check that treetops and ridges are left out.
   tiny 50 %), centred, with room around it for its animations; install
   writes each sticker's `content` into the manifest. Every sticker then
   needs a `size`. Turning it on for drawn stickers only re-finishes the
-  kept raws (no API calls); re-assemble their animations afterwards
-  (`stickeranim render`, also free) so the frames land on the new
-  drawings.
+  kept raws (no API calls).
 - `stickerSize` (768 — `docs/pack-format.md`, "Image formats"), `border`
   (white outline as a fraction of the size, 0.025) and `margin` (0.03).
 - `finish` (optional): the printed-sticker material the post-processing
@@ -137,7 +135,7 @@ magenta, to check that treetops and ridges are left out.
    its own pixels outside the box. The result, `<id>.noprop.png`, is what
    everything downstream uses: the finished sticker, the expressions'
    composite (their generations are kept; only the composite is redone,
-   free) and `stickeranim`'s reference. Make the box generous: anything
+   free). Make the box generous: anything
    of the prop in the fade margin just outside it stays faintly.
 2b. **Expressions** (`expressions` in art.json, e.g. `happy`, `sad`,
    `sleeping`, `surprised`), for every sticker with a `face` box

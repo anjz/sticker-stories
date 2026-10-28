@@ -77,3 +77,21 @@ aligns the cues — sticker and canvas — to the spoken words, and emits the
 copies them into the pack and merges the manifest story entries. Nothing in
 step 1 depends on how step 2 is built; the contract between them is
 `FORMAT.md`.
+
+## Step 3 — the staging pass
+
+Once the sidecars are in the pack, stage every story as the app does and
+read what the stage shows against the words (`docs/stage3d.md`, "The
+staging report"):
+
+```
+cd app/StickerStoriesKit && STAGE_REPORT=/tmp/stage-{pack}.txt swift test --filter StoryTimingReport
+```
+
+Wherever the words have characters together (pushing, giving, hugging,
+whispering to, sitting by, playing with, following) or at a place, a
+move must have brought them there (FORMAT "Move cues"); a `gap` over
+about 1 after a go to someone, a `far:` pair the words put together, or
+an action `LATE` by more than 1.5 s is a cue to fix. Cue-only edits cost
+nothing: `storyaudio render` re-mixes from the cached narration, then
+`install`, and measure again.

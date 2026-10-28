@@ -676,89 +676,10 @@
       "id": "walk",
       "kind": "move",
       "description": "the acorn toddles along to the right on its little feet, swinging its arms, then stops and faces front.",
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "facing": "right",
-      "stride": 0.45,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "footL": {
-              "x": 14,
-              "y": -12,
-              "r": -10
-            },
-            "footR": {
-              "x": -8
-            },
-            "body": {
-              "r": 4
-            },
-            "root": {
-              "y": -6
-            },
-            "armL": {
-              "r": 12
-            },
-            "armR": {
-              "r": -12
-            }
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "root": {
-              "y": 0
-            }
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "footR": {
-              "x": 14,
-              "y": -12,
-              "r": -10
-            },
-            "footL": {
-              "x": -8
-            },
-            "body": {
-              "r": -4
-            },
-            "root": {
-              "y": -6
-            },
-            "armL": {
-              "r": -12
-            },
-            "armR": {
-              "r": 12
-            }
-          }
-        },
-        {
-          "hold": 0.16,
-          "bones": {
-            "root": {
-              "y": 0
-            }
-          }
-        },
-        {
-          "hold": 0.2
-        },
-        {
-          "hold": 0.3
-        }
-      ]
+      "gait": {
+        "style": "upright.toddle"
+      }
     },
     {
       "id": "jump",

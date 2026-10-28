@@ -11,10 +11,10 @@
   },
   "loop": {
     "from": 1,
-    "to": 4
+    "to": 18
   },
   "facing": "left",
-  "stride": 0.5,
+  "stride": 0.65,
   "on": [
     "pool"
   ],
@@ -23,118 +23,572 @@
     "rig": "anims/shrimp.rig.json",
     "keys": [
       {
-        "hold": 0.1
+        "hold": 0.2
       },
       {
-        "hold": 0.15,
+        "hold": 0.05,
+        "ease": "linear",
         "bones": {
           "antennaL": {
-            "r": -3
+            "r": -5.49
           },
           "antennaR": {
-            "r": -3
+            "r": -5.27
           },
+          "body": {},
           "fan": {
-            "r": 6
+            "r": -0.96
           },
           "legs": {
             "r": 14
           },
           "legsFar": {
-            "r": -14
+            "r": 1.88
           },
-          "root": {
-            "y": -2
-          },
+          "root": {},
+          "tail": {},
           "tail2": {
-            "r": 6
+            "r": -0.72
           }
         }
       },
       {
-        "hold": 0.15,
+        "hold": 0.05,
+        "ease": "linear",
         "bones": {
           "antennaL": {
-            "r": -3
+            "r": -4.09
           },
           "antennaR": {
-            "r": -3
+            "r": -5.04
           },
-          "fan": {},
-          "legs": {},
-          "legsFar": {},
-          "root": {},
-          "tail2": {}
+          "body": {},
+          "fan": {
+            "r": -0.3
+          },
+          "legs": {
+            "r": 3.62
+          },
+          "legsFar": {
+            "r": -10.96
+          },
+          "root": {
+            "y": -1.3
+          },
+          "tail": {},
+          "tail2": {
+            "r": -0.23
+          }
         }
       },
       {
-        "hold": 0.15,
+        "hold": 0.05,
+        "ease": "linear",
         "bones": {
           "antennaL": {
-            "r": -3
+            "r": -1.6
           },
           "antennaR": {
-            "r": -3
+            "r": -2.76
           },
+          "body": {},
           "fan": {
-            "r": -4
+            "r": 0.39
           },
           "legs": {
-            "r": -14
+            "r": -12.12
           },
           "legsFar": {
+            "r": -9.95
+          },
+          "root": {
+            "y": -1.3
+          },
+          "tail": {},
+          "tail2": {
+            "r": 0.3
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -0.51
+          },
+          "antennaR": {
+            "r": -0.73
+          },
+          "body": {},
+          "fan": {
+            "r": 1.04
+          },
+          "legs": {
+            "r": -12.12
+          },
+          "legsFar": {
+            "r": -1.25
+          },
+          "root": {},
+          "tail": {},
+          "tail2": {
+            "r": 0.78
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -1.91
+          },
+          "antennaR": {
+            "r": -0.96
+          },
+          "body": {},
+          "fan": {
+            "r": 1.56
+          },
+          "legs": {
+            "r": -2.43
+          },
+          "legsFar": {
+            "r": 8.34
+          },
+          "root": {
+            "y": 1.3
+          },
+          "tail": {},
+          "tail2": {
+            "r": 1.17
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -4.4
+          },
+          "antennaR": {
+            "r": -3.24
+          },
+          "body": {},
+          "fan": {
+            "r": 1.9
+          },
+          "legs": {
+            "r": 9
+          },
+          "legsFar": {
+            "r": 11.93
+          },
+          "root": {
+            "y": 1.3
+          },
+          "tail": {},
+          "tail2": {
+            "r": 1.42
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -5.49
+          },
+          "antennaR": {
+            "r": -5.27
+          },
+          "body": {},
+          "fan": {
+            "r": 2
+          },
+          "legs": {
             "r": 14
           },
-          "root": {
-            "y": -2
+          "legsFar": {
+            "r": 1.88
           },
+          "root": {},
+          "tail": {},
           "tail2": {
-            "r": -4
+            "r": 1.5
           }
         }
       },
       {
-        "hold": 0.15,
+        "hold": 0.05,
+        "ease": "linear",
         "bones": {
           "antennaL": {
-            "r": -3
+            "r": -4.09
           },
           "antennaR": {
-            "r": -3
+            "r": -5.04
           },
-          "fan": {},
-          "legs": {},
-          "legsFar": {},
-          "root": {},
-          "tail2": {}
-        }
-      },
-      {
-        "hold": 0.25,
-        "bones": {
-          "antennaL": {
-            "r": -3
-          },
-          "antennaR": {
-            "r": -3
-          },
+          "body": {},
           "fan": {
-            "r": 2
+            "r": 1.86
           },
           "legs": {
-            "r": 4
+            "r": 3.62
           },
           "legsFar": {
-            "r": -4
+            "r": -10.96
           },
-          "root": {},
+          "root": {
+            "y": -1.3
+          },
+          "tail": {},
           "tail2": {
-            "r": 2
+            "r": 1.4
           }
         }
       },
       {
-        "hold": 0.4
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -1.6
+          },
+          "antennaR": {
+            "r": -2.76
+          },
+          "body": {},
+          "fan": {
+            "r": 1.5
+          },
+          "legs": {
+            "r": -12.12
+          },
+          "legsFar": {
+            "r": -9.95
+          },
+          "root": {
+            "y": -1.3
+          },
+          "tail": {},
+          "tail2": {
+            "r": 1.13
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -0.51
+          },
+          "antennaR": {
+            "r": -0.73
+          },
+          "body": {},
+          "fan": {
+            "r": 0.96
+          },
+          "legs": {
+            "r": -12.12
+          },
+          "legsFar": {
+            "r": -1.25
+          },
+          "root": {},
+          "tail": {},
+          "tail2": {
+            "r": 0.72
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -1.91
+          },
+          "antennaR": {
+            "r": -0.96
+          },
+          "body": {},
+          "fan": {
+            "r": 0.33
+          },
+          "legs": {
+            "r": -2.43
+          },
+          "legsFar": {
+            "r": 8.34
+          },
+          "root": {
+            "y": 1.29
+          },
+          "tail": {
+            "r": 0.01
+          },
+          "tail2": {
+            "r": 0.25
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -4.4
+          },
+          "antennaR": {
+            "r": -3.24
+          },
+          "body": {
+            "r": -0.43
+          },
+          "fan": {
+            "r": 3.17
+          },
+          "legs": {
+            "r": 9
+          },
+          "legsFar": {
+            "r": 11.93
+          },
+          "root": {
+            "y": 0.23
+          },
+          "tail": {
+            "r": 1.43
+          },
+          "tail2": {
+            "r": 2.2
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -5.49
+          },
+          "antennaR": {
+            "r": -5.27
+          },
+          "body": {
+            "r": -1.06
+          },
+          "fan": {
+            "r": 7.79
+          },
+          "legs": {
+            "r": 14
+          },
+          "legsFar": {
+            "r": 1.88
+          },
+          "root": {
+            "y": -2.65
+          },
+          "tail": {
+            "r": 3.53
+          },
+          "tail2": {
+            "r": 5.4
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -4.09
+          },
+          "antennaR": {
+            "r": -5.04
+          },
+          "body": {
+            "r": -1.14
+          },
+          "fan": {
+            "r": 7.91
+          },
+          "legs": {
+            "r": 3.62
+          },
+          "legsFar": {
+            "r": -10.96
+          },
+          "root": {
+            "y": -4.14
+          },
+          "tail": {
+            "r": 3.79
+          },
+          "tail2": {
+            "r": 5.46
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -1.6
+          },
+          "antennaR": {
+            "r": -2.76
+          },
+          "body": {
+            "r": -0.57
+          },
+          "fan": {
+            "r": 2.81
+          },
+          "legs": {
+            "r": -12.12
+          },
+          "legsFar": {
+            "r": -9.95
+          },
+          "root": {
+            "y": -2.71
+          },
+          "tail": {
+            "r": 1.88
+          },
+          "tail2": {
+            "r": 1.88
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -0.51
+          },
+          "antennaR": {
+            "r": -0.73
+          },
+          "body": {
+            "r": -0.04
+          },
+          "fan": {
+            "r": -1.7
+          },
+          "legs": {
+            "r": -12.12
+          },
+          "legsFar": {
+            "r": -1.25
+          },
+          "root": {
+            "y": -0.09
+          },
+          "tail": {
+            "r": 0.12
+          },
+          "tail2": {
+            "r": -1.29
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -1.91
+          },
+          "antennaR": {
+            "r": -0.96
+          },
+          "body": {},
+          "fan": {
+            "r": -1.86
+          },
+          "legs": {
+            "r": -2.43
+          },
+          "legsFar": {
+            "r": 8.34
+          },
+          "root": {
+            "y": 1.3
+          },
+          "tail": {},
+          "tail2": {
+            "r": -1.4
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -4.4
+          },
+          "antennaR": {
+            "r": -3.24
+          },
+          "body": {},
+          "fan": {
+            "r": -1.5
+          },
+          "legs": {
+            "r": 9
+          },
+          "legsFar": {
+            "r": 11.93
+          },
+          "root": {
+            "y": 1.3
+          },
+          "tail": {},
+          "tail2": {
+            "r": -1.13
+          }
+        }
+      },
+      {
+        "hold": 0.3,
+        "bones": {
+          "antennaL": {
+            "r": -1.92
+          },
+          "antennaR": {
+            "r": -1.85
+          },
+          "body": {},
+          "fan": {
+            "r": -0.34
+          },
+          "legs": {
+            "r": 4.9
+          },
+          "legsFar": {
+            "r": 0.66
+          },
+          "root": {},
+          "tail": {},
+          "tail2": {
+            "r": -0.25
+          }
+        }
+      },
+      {
+        "hold": 0.35
       }
     ]
   }

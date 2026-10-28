@@ -91,20 +91,12 @@ type PuppetAttachment struct {
 }
 
 // AnimationPuppet is an animation as the sticker's puppet plays it
-// (StickerAnimation.Puppet): keyframes, with the same meaning of hold,
-// pause and loop as a sheet's frames — each key's Hold is the time from
-// that pose to the next — so stories cue it the same way. Beside a sheet
-// it carries its own pause, loop and stride; without one the sidecar's
-// count its keys.
+// (StickerAnimation.Puppet): keyframes, each key's Hold the time from that
+// pose to the next. The keys are the animation's frames: the sidecar's
+// pause, loop and particles count them.
 type AnimationPuppet struct {
 	Rig  string      `json:"rig"`
 	Keys []PuppetKey `json:"keys"`
-	// Pause is the key an action can stop on (0-based, a middle one),
-	// beside a sheet.
-	Pause *int `json:"pause,omitempty"`
-	// Loop and Stride are a looping move's, as for its sheet, beside one.
-	Loop   *FrameRange `json:"loop,omitempty"`
-	Stride float64     `json:"stride,omitempty"`
 	// Wings are the bones a flight keeps going (with every bone hanging
 	// on them, and their slots) whatever else the character does in the
 	// air: a butterfly's wings beat on while it talks. A move that flies.
@@ -298,38 +290,6 @@ func (a *StickerAnimation) validatePuppet(dir string) []error {
 	}
 	if len(p.Wings) > 0 && (a.EffectiveKind() != KindMove || !a.Flies) {
 		fail("wings belong to a move that flies")
-	}
-	if a.PuppetOnly() {
-		// The sidecar's own pause, loop and stride count the keys.
-		if p.Pause != nil || p.Loop != nil || p.Stride != 0 {
-			fail("pause, loop and stride are the sidecar's own when there is no sheet")
-		}
-		return errs
-	}
-	switch a.EffectiveKind() {
-	case KindAction:
-		if p.Loop != nil || p.Stride != 0 {
-			fail("loop and stride belong to a move")
-		}
-		if (p.Pause == nil) != (a.Pause == nil) {
-			fail("pause must be given exactly when the sheet has one")
-		} else if p.Pause != nil && (*p.Pause < 1 || *p.Pause > n-2) {
-			fail("pause %d must be a middle key (1–%d)", *p.Pause, n-2)
-		}
-	case KindMove:
-		if p.Pause != nil {
-			fail("pause belongs to an action")
-		}
-		if (p.Loop == nil) != (a.Loop == nil) {
-			fail("loop must be given exactly when the sheet has one")
-		} else if l := p.Loop; l != nil {
-			if l.From < 1 || l.To < l.From || l.To >= n {
-				fail("loop %d–%d must be keys within 1–%d (key 0 is the rest pose)", l.From, l.To, n-1)
-			}
-			if p.Stride <= 0 || p.Stride > 5 {
-				fail("stride %g must be above 0 and at most 5 sticker widths", p.Stride)
-			}
-		}
 	}
 	return errs
 }

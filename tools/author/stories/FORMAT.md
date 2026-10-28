@@ -304,6 +304,18 @@ Off {fox:go away} ran Fox, out of the meadow.      off the canvas
   (they stand side by side under it, overlapping a little).
 - After `go away` a sticker is gone: cue nothing else on it until `go
   back` (a warning).
+- **When the words put two characters together, a move brings them
+  together first.** The stage keeps everyone where they came in or were
+  put: "Seal gave the ball a push with her nose" needs the seal by the
+  ball, so `{seal:go to ball}` comes on the words where she gets there
+  (a few words before the push, or right after her entrance: a go within
+  3 s of it comes straight to their side). The same for giving, hugging,
+  whispering to, sitting by, playing with, following, splashing someone.
+  Move the one the words have moving, else the one that can move (never
+  a sticker that stays put), and never send one where it cannot go (a
+  ball out to a seal at sea: bring the seal to the ball). Every move
+  arrives in time for the next cue on it (the app hurries it), so put
+  the go a few words before the beat that needs it.
 - **When the words put a character somewhere, move it there.** "Bird flew
   down onto a branch", "Frog came hopping to the pond", "Woodpecker clung
   to the trunk": a visitor comes in there, but a sticker the child put in

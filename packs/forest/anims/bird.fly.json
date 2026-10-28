@@ -11,7 +11,7 @@
   },
   "loop": {
     "from": 1,
-    "to": 4
+    "to": 12
   },
   "facing": "right",
   "stride": 1.2,
@@ -20,14 +20,14 @@
     "rig": "anims/bird.rig.json",
     "keys": [
       {
-        "hold": 0.1
+        "hold": 0.2
       },
       {
-        "hold": 0.14,
+        "hold": 0.038,
+        "ease": "linear",
         "bones": {
           "body": {
-            "r": 8,
-            "y": -2
+            "r": 8.67
           },
           "footL": {
             "r": 35,
@@ -38,13 +38,52 @@
             "y": -28
           },
           "head": {
-            "r": 4
+            "r": -3.67
+          },
+          "root": {
+            "y": 5.14
+          },
+          "tail": {
+            "r": -4.14
+          },
+          "wingL": {},
+          "wingR": {}
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.038,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 7.75
+          },
+          "footL": {
+            "r": 35,
+            "y": -28
+          },
+          "footR": {
+            "r": 35,
+            "y": -28
+          },
+          "head": {
+            "r": -3.03
+          },
+          "root": {
+            "y": 1.64
+          },
+          "tail": {
+            "r": -2.3
           },
           "wingL": {
-            "r": 50
+            "r": -19.59
           },
           "wingR": {
-            "r": -50
+            "r": 19.59
           }
         },
         "slots": {
@@ -54,11 +93,11 @@
         }
       },
       {
-        "hold": 0.14,
+        "hold": 0.038,
+        "ease": "linear",
         "bones": {
           "body": {
-            "r": 8,
-            "y": -8
+            "r": 7.05
           },
           "footL": {
             "r": 35,
@@ -69,47 +108,19 @@
             "y": -28
           },
           "head": {
-            "r": 4
+            "r": -2.54
           },
-          "wingL": {
-            "r": 18
+          "root": {
+            "y": -1.93
           },
-          "wingR": {
-            "r": -14
-          }
-        },
-        "slots": {
-          "wingL": "none",
-          "wingOpen": "open",
-          "wingR": "open"
-        }
-      },
-      {
-        "hold": 0.14,
-        "bones": {
-          "belly": {
-            "sy": 0.98
-          },
-          "body": {
-            "r": 8,
-            "y": -14
-          },
-          "footL": {
-            "r": 35,
-            "y": -28
-          },
-          "footR": {
-            "r": 35,
-            "y": -28
-          },
-          "head": {
-            "r": 4
+          "tail": {
+            "r": -0.9
           },
           "wingL": {
             "r": -28
           },
           "wingR": {
-            "r": 22
+            "r": 28
           }
         },
         "slots": {
@@ -119,11 +130,11 @@
         }
       },
       {
-        "hold": 0.14,
+        "hold": 0.038,
+        "ease": "linear",
         "bones": {
           "body": {
-            "r": 8,
-            "y": -8
+            "r": 6.88
           },
           "footL": {
             "r": 35,
@@ -134,13 +145,315 @@
             "y": -28
           },
           "head": {
-            "r": 4
+            "r": -2.41
+          },
+          "root": {
+            "y": -4.25
+          },
+          "tail": {
+            "r": -0.55
           },
           "wingL": {
-            "r": 20
+            "r": -24.17
           },
           "wingR": {
-            "r": -16
+            "r": 24.17
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.038,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 7.11
+          },
+          "footL": {
+            "r": 35,
+            "y": -28
+          },
+          "footR": {
+            "r": 35,
+            "y": -28
+          },
+          "head": {
+            "r": -2.58
+          },
+          "root": {
+            "y": -4.34
+          },
+          "tail": {
+            "r": -1.03
+          },
+          "wingL": {
+            "r": -14.13
+          },
+          "wingR": {
+            "r": 14.13
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.038,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 7.57
+          },
+          "footL": {
+            "r": 35,
+            "y": -28
+          },
+          "footR": {
+            "r": 35,
+            "y": -28
+          },
+          "head": {
+            "r": -2.9
+          },
+          "root": {
+            "y": -3.11
+          },
+          "tail": {
+            "r": -1.95
+          },
+          "wingL": {
+            "r": -0.27
+          },
+          "wingR": {
+            "r": 0.27
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.038,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 8.16
+          },
+          "footL": {
+            "r": 35,
+            "y": -28
+          },
+          "footR": {
+            "r": 35,
+            "y": -28
+          },
+          "head": {
+            "r": -3.31
+          },
+          "root": {
+            "y": -1.08
+          },
+          "tail": {
+            "r": -3.12
+          },
+          "wingL": {
+            "r": 15.03
+          },
+          "wingR": {
+            "r": -15.03
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.038,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 8.78
+          },
+          "footL": {
+            "r": 35,
+            "y": -28
+          },
+          "footR": {
+            "r": 35,
+            "y": -28
+          },
+          "head": {
+            "r": -3.75
+          },
+          "root": {
+            "y": 1.34
+          },
+          "tail": {
+            "r": -4.36
+          },
+          "wingL": {
+            "r": 29.4
+          },
+          "wingR": {
+            "r": -29.4
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.038,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 9.34
+          },
+          "footL": {
+            "r": 35,
+            "y": -28
+          },
+          "footR": {
+            "r": 35,
+            "y": -28
+          },
+          "head": {
+            "r": -4.13
+          },
+          "root": {
+            "y": 3.79
+          },
+          "tail": {
+            "r": -5.47
+          },
+          "wingL": {
+            "r": 40.46
+          },
+          "wingR": {
+            "r": -40.46
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.038,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 9.73
+          },
+          "footL": {
+            "r": 35,
+            "y": -28
+          },
+          "footR": {
+            "r": 35,
+            "y": -28
+          },
+          "head": {
+            "r": -4.41
+          },
+          "root": {
+            "y": 5.86
+          },
+          "tail": {
+            "r": -6.26
+          },
+          "wingL": {
+            "r": 45.82
+          },
+          "wingR": {
+            "r": -45.82
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.038,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 9.86
+          },
+          "footL": {
+            "r": 35,
+            "y": -28
+          },
+          "footR": {
+            "r": 35,
+            "y": -28
+          },
+          "head": {
+            "r": -4.5
+          },
+          "root": {
+            "y": 7.19
+          },
+          "tail": {
+            "r": -6.53
+          },
+          "wingL": {
+            "r": 40.61
+          },
+          "wingR": {
+            "r": -40.61
+          }
+        },
+        "slots": {
+          "wingL": "none",
+          "wingOpen": "open",
+          "wingR": "open"
+        }
+      },
+      {
+        "hold": 0.038,
+        "ease": "linear",
+        "bones": {
+          "body": {
+            "r": 9.48
+          },
+          "footL": {
+            "r": 35,
+            "y": -28
+          },
+          "footR": {
+            "r": 35,
+            "y": -28
+          },
+          "head": {
+            "r": -4.24
+          },
+          "root": {
+            "y": 7.27
+          },
+          "tail": {
+            "r": -5.76
+          },
+          "wingL": {
+            "r": 22.74
+          },
+          "wingR": {
+            "r": -22.74
           }
         },
         "slots": {

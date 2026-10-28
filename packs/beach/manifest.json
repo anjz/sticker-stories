@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "beach",
-  "version": 18,
+  "version": 22,
   "languages": [
     "en-US",
     "es-ES"
@@ -482,13 +482,13 @@
       "crab": 0.095,
       "dog": 0.188,
       "fish": 0.176,
-      "fishing-boat": 0.799,
+      "fishing-boat": 0.679,
       "girl": 0.317,
       "hermit-crab": 0.093,
       "octopus": 0.14,
       "pelican": 0.198,
       "ring": 0.145,
-      "sailboat": 0.737,
+      "sailboat": 0.626,
       "sandpiper": 0.095,
       "seagull": 0.156,
       "seal": 0.231,
@@ -762,8 +762,8 @@
     }
   },
   "narrationPacks": {
-    "en-US": "beach-narration-en-b75d6252",
-    "es-ES": "beach-narration-es-0987d737"
+    "en-US": "beach-narration-en-f49a7f50",
+    "es-ES": "beach-narration-es-bc9e5c3a"
   },
   "stickers": [
     {
@@ -812,8 +812,7 @@
         "anims/bottle.bob.json",
         "anims/bottle.wobble.json",
         "anims/bottle.bounce.json",
-        "anims/bottle.tip.json",
-        "anims/bottle.wiggle-cork.json",
+        "anims/bottle.tilt.json",
         "anims/bottle.rock.json"
       ],
       "stage": {
@@ -829,8 +828,8 @@
           0.75
         ],
         "y": [
-          0.2943,
-          0.707
+          0.3984,
+          0.6029
         ]
       }
     },
@@ -842,13 +841,11 @@
       },
       "image": "stickers/bucket.webp",
       "animations": [
-        "anims/bucket.dig.json",
         "anims/bucket.plonk.json",
         "anims/bucket.wobble.json",
-        "anims/bucket.bounce.json",
         "anims/bucket.tip.json",
-        "anims/bucket.swing-spade.json",
-        "anims/bucket.mould-hop.json"
+        "anims/bucket.gust.json",
+        "anims/bucket.wash.json"
       ],
       "stage": {
         "entrance": "grow",
@@ -1500,7 +1497,7 @@
         "anims/seal.clap.json",
         "anims/seal.flop.json",
         "anims/seal.swim.json",
-        "anims/seal.balance.json",
+        "anims/seal.bask.json",
         "anims/seal.roll.json",
         "anims/seal.bark.json",
         "anims/seal.wave.json",
@@ -1880,13 +1877,13 @@
       "localizations": {
         "en-US": {
           "title": "A Bigger House",
-          "text": "Hermit Crab came scuttling over the sand, and he sighed. His striped shell felt a little bit tight. It was a borrowed shell, like every hermit crab's: an empty one he had found and moved into. And now he was growing. Time for a bigger one! So Hermit Crab went house hunting. First, the red bucket. He peeked inside. It was enormous! Hello… hello… hello… went the echo. Far too big. Next, the sand castle, with its little red flag. He tried the door. Crumble, crumble. Far too sandy. Then the spade in the bucket went scoop! Hermit Crab was so surprised that he tucked himself right inside his own shell. And inside… it was cosy. Just the right size, for today. He peeked out, and smiled. A bigger house could wait.",
+          "text": "Hermit Crab came scuttling over the sand, and he sighed. His striped shell felt a little bit tight. It was a borrowed shell, like every hermit crab's: an empty one he had found and moved into. And now he was growing. Time for a bigger one! So Hermit Crab went house hunting. First, the red bucket. He peeked inside. It was enormous! Hello… hello… hello… went the echo. Far too big. Next, the sand castle, with its little red flag. He tried the door. Crumble, crumble. Far too sandy. Then a little wave came rushing up, splash, all around the bucket! Hermit Crab was so surprised that he tucked himself right inside his own shell. And inside… it was cosy. Just the right size, for today. He peeked out, and smiled. A bigger house could wait.",
           "audio": "audio/en-US/a-bigger-house.m4a",
           "effects": "audio/en-US/a-bigger-house.effects.json"
         },
         "es-ES": {
           "title": "Una casa más grande",
-          "text": "Cangrejo Ermitaño llegó correteando por la arena, y suspiró. Su concha de rayas le quedaba un poquito justa. Era una concha prestada, como las de todos los ermitaños: una vacía que había encontrado para vivir dentro. Y ahora estaba creciendo. ¡Tocaba buscar una más grande! Así que Ermitaño salió a buscar casa. Primero, el cubo rojo. Se asomó dentro. ¡Era enorme! Hola… hola… hola…, contestaba el eco. Demasiado grande. Después, el castillo de arena, con su banderita roja. Probó la puerta. Cruc, cruc, se desmoronaba. Demasiado arenoso. Entonces la pala del cubo hizo ¡zas! Ermitaño se sorprendió tanto que se metió del todo en su propia concha. Y dentro… se estaba de maravilla. Justo de su tamaño, por hoy. Se asomó, y sonrió. La casa grande podía esperar.",
+          "text": "Cangrejo Ermitaño llegó correteando por la arena, y suspiró. Su concha de rayas le quedaba un poquito justa. Era una concha prestada, como las de todos los ermitaños: una vacía que había encontrado para vivir dentro. Y ahora estaba creciendo. ¡Tocaba buscar una más grande! Así que Ermitaño salió a buscar casa. Primero, el cubo rojo. Se asomó dentro. ¡Era enorme! Hola… hola… hola…, contestaba el eco. Demasiado grande. Después, el castillo de arena, con su banderita roja. Probó la puerta. Cruc, cruc, se desmoronaba. Demasiado arenoso. Entonces llegó corriendo una olita y, ¡chof!, salpicó todo el cubo. Ermitaño se sorprendió tanto que se metió del todo en su propia concha. Y dentro… se estaba de maravilla. Justo de su tamaño, por hoy. Se asomó, y sonrió. La casa grande podía esperar.",
           "audio": "audio/es-ES/a-bigger-house.m4a",
           "effects": "audio/es-ES/a-bigger-house.effects.json"
         }
@@ -2080,13 +2077,13 @@
       "localizations": {
         "en-US": {
           "title": "Dig, Dig, Dig",
-          "text": "Dig, dig, dig! Dog loved digging more than anything. Sand flew everywhere, all round the sand castle. Careful, Dog! Then, bonk. His nose found something hard and round. It was Clam! She opened up to say hello, and closed again with a snap. You like digging? said Clam. Me too! Watch this. She pushed out one strong foot, and wriggle, wriggle, wriggle… she dug herself right down out of sight. Gone! Dog dug and dug. The spade in the bucket dug too, scoop, scoop. Dog shook the sand off his nose. Then, pop! Up came Clam. Found you! said Dog. And they dug together all afternoon: one big paw, and one small, strong foot.",
+          "text": "Dig, dig, dig! Dog loved digging more than anything. Sand flew everywhere, all round the sand castle. Careful, Dog! Then, bonk. His nose found something hard and round. It was Clam! She opened up to say hello, and closed again with a snap. You like digging? said Clam. Me too! Watch this. She pushed out one strong foot, and wriggle, wriggle, wriggle… she dug herself right down out of sight. Gone! Dog dug and dug. Sand flew everywhere, all over the bucket. It teetered and tottered, and stayed up. Dog shook the sand off his nose. Then, pop! Up came Clam. Found you! said Dog. And they dug together all afternoon: one big paw, and one small, strong foot.",
           "audio": "audio/en-US/dig-dig-dig.m4a",
           "effects": "audio/en-US/dig-dig-dig.effects.json"
         },
         "es-ES": {
           "title": "Cava, cava, cava",
-          "text": "¡Cava, cava, cava! A Perro le encantaba cavar más que nada en el mundo. La arena volaba por todas partes, alrededor del castillo de arena. ¡Cuidado, Perro! Entonces, ¡bonc! Su hocico encontró algo duro y redondo. ¡Era Almeja! Se abrió para saludar, y se volvió a cerrar. ¿Te gusta cavar?, dijo Almeja. ¡A mí también! Mira esto. Sacó un pie fuerte, y meneo, meneo, meneo… se enterró hasta desaparecer. ¡Ya no está! Perro cavó y cavó. La pala del cubo cavó también, zas, zas. Perro se sacudió la arena del hocico. Entonces, ¡pop! Salió Almeja. ¡Te encontré!, dijo Perro. Y cavaron juntos toda la tarde: una pata grande, y un pie pequeño y fuerte.",
+          "text": "¡Cava, cava, cava! A Perro le encantaba cavar más que nada en el mundo. La arena volaba por todas partes, alrededor del castillo de arena. ¡Cuidado, Perro! Entonces, ¡bonc! Su hocico encontró algo duro y redondo. ¡Era Almeja! Se abrió para saludar, y se volvió a cerrar. ¿Te gusta cavar?, dijo Almeja. ¡A mí también! Mira esto. Sacó un pie fuerte, y meneo, meneo, meneo… se enterró hasta desaparecer. ¡Ya no está! Perro cavó y cavó. La arena volaba por todas partes, hasta el cubo. Se tambaleó, se bamboleó, y aguantó de pie. Perro se sacudió la arena del hocico. Entonces, ¡pop! Salió Almeja. ¡Te encontré!, dijo Perro. Y cavaron juntos toda la tarde: una pata grande, y un pie pequeño y fuerte.",
           "audio": "audio/es-ES/dig-dig-dig.m4a",
           "effects": "audio/es-ES/dig-dig-dig.effects.json"
         }
@@ -2851,13 +2848,13 @@
       "localizations": {
         "en-US": {
           "title": "The Gull on the Castle",
-          "text": "There stood a sand castle, with three towers and a little red flag. The flag fluttered in the breeze. Gull saw it from the sky. What a perfect place to sit! Down she swooped, onto the tallest tower. Wobble, wobble. Oh dear… The tower began to crumble. Gull squawked! Then the bucket and spade got busy. Scoop! Pat! Scoop! Pat! More sand for the tower, patted nice and firm. The tower stood straight and strong again. Gull fluffed up her feathers. From the top of the tallest tower, she could see far across the water. And from that day on, Gull was the guard of the sand castle. The very best guard. And the loudest.",
+          "text": "There stood a sand castle, with three towers and a little red flag. The flag fluttered in the breeze. Gull saw it from the sky. What a perfect place to sit! Down she swooped, onto the tallest tower. Wobble, wobble. Oh dear… The tower began to crumble. Gull squawked! Then a little wave rolled up round the bucket, and left wet sand behind. Gull knew just what to do. Peck! Pat! Peck! Pat! Wet sand for the tower, patted nice and firm. The tower stood straight and strong again. Gull fluffed up her feathers. From the top of the tallest tower, she could see far across the water. And from that day on, Gull was the guard of the sand castle. The very best guard. And the loudest.",
           "audio": "audio/en-US/the-gull-on-the-castle.m4a",
           "effects": "audio/en-US/the-gull-on-the-castle.effects.json"
         },
         "es-ES": {
           "title": "La gaviota del castillo",
-          "text": "Allí estaba un castillo de arena, con tres torres y una banderita roja. La bandera ondeaba con la brisa. Gaviota lo vio desde el cielo. ¡Qué sitio perfecto para sentarse! Bajó en picado, hasta la torre más alta. Tambaleo, tambaleo. Ay, madre… La torre empezó a desmoronarse. ¡Gaviota graznó! Entonces el cubo y la pala se pusieron manos a la obra. ¡Zas! ¡Plas! ¡Zas! ¡Plas! Más arena para la torre, bien apretada. La torre volvió a estar derecha y fuerte. Gaviota ahuecó las plumas. Desde lo alto de la torre más alta, veía muy lejos sobre el agua. Y desde aquel día, Gaviota fue la guardiana del castillo. La mejor guardiana. Y la que más gritaba.",
+          "text": "Allí estaba un castillo de arena, con tres torres y una banderita roja. La bandera ondeaba con la brisa. Gaviota lo vio desde el cielo. ¡Qué sitio perfecto para sentarse! Bajó en picado, hasta la torre más alta. Tambaleo, tambaleo. Ay, madre… La torre empezó a desmoronarse. ¡Gaviota graznó! Entonces llegó una olita hasta el cubo, y dejó arena mojada. Gaviota supo qué hacer. ¡Pic! ¡Plas! ¡Pic! ¡Plas! Arena mojada para la torre, bien apretada. La torre volvió a estar derecha y fuerte. Gaviota ahuecó las plumas. Desde lo alto de la torre más alta, veía muy lejos sobre el agua. Y desde aquel día, Gaviota fue la guardiana del castillo. La mejor guardiana. Y la que más gritaba.",
           "audio": "audio/es-ES/the-gull-on-the-castle.m4a",
           "effects": "audio/es-ES/the-gull-on-the-castle.effects.json"
         }

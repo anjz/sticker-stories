@@ -1,7 +1,7 @@
 {
   "sticker": "ring",
   "called": "the rubber ring",
-  "skeleton": "an inflatable ring tilted towards us: root under its lowest point; body at its centre (a second piece, the ring turned by one stripe, swaps in for the turn).",
+  "skeleton": "an inflatable ring tilted towards us: root under its lowest point; tip at its right edge (it tips up on one side); body at its centre; spin and turn at the centre too, so a turn of spin between body squashed to the ring's tilt and turn stretched back (sy 0.86 and 1/0.86) turns the ring round flat on the water, its outline unchanged and only its stripes going round.",
   "sheets": [
     {
       "id": "parts",
@@ -15,13 +15,6 @@
       "at": [
         366,
         593
-      ]
-    },
-    "turned": {
-      "sheet": "parts",
-      "at": [
-        1149,
-        598
       ]
     }
   },
@@ -42,25 +35,30 @@
       "parent": "tip",
       "x": 384,
       "y": 384
+    },
+    {
+      "id": "spin",
+      "parent": "body",
+      "x": 384,
+      "y": 384
+    },
+    {
+      "id": "turn",
+      "parent": "spin",
+      "x": 384,
+      "y": 384
     }
   ],
   "slots": [
     {
       "id": "ring",
-      "bone": "body",
+      "bone": "turn",
       "default": "ring",
       "attachments": {
         "ring": {
           "part": "ring",
           "x": 384,
           "y": 384,
-          "scale": 0.575,
-          "scaleY": 0.93
-        },
-        "turned": {
-          "part": "turned",
-          "x": 384,
-          "y": 383,
           "scale": 0.575,
           "scaleY": 0.93
         }
@@ -71,130 +69,73 @@
     {
       "id": "spin",
       "kind": "action",
-      "description": "the rubber ring turns round slowly",
+      "description": "the rubber ring turns slowly round on the spot, once, its stripes going round.",
       "pause": {
-        "frame": 3,
-        "shows": "the rubber ring turned, its stripes in other places"
+        "frame": 2,
+        "shows": "the rubber ring turned half way round, its stripes in other places"
       },
       "keys": [
         {
-          "hold": 0.35,
+          "hold": 0.6,
           "ease": "in"
         },
         {
-          "hold": 0.02,
-          "ease": "step",
-          "bones": {
-            "body": {
-              "r": 22.5
-            }
-          }
-        },
-        {
-          "hold": 0.4,
+          "hold": 1.2,
           "ease": "linear",
           "bones": {
             "body": {
-              "r": -22.5
+              "sy": 0.86
+            },
+            "spin": {
+              "r": 60
+            },
+            "turn": {
+              "sy": 1.1628
             }
-          },
-          "slots": {
-            "ring": "turned"
           }
         },
         {
-          "hold": 0.4,
+          "hold": 1.2,
           "ease": "linear",
           "bones": {
             "body": {
-              "r": 0
-            }
-          },
-          "slots": {
-            "ring": "turned"
-          }
-        },
-        {
-          "hold": 0.02,
-          "ease": "step",
-          "bones": {
-            "body": {
-              "r": 22.5
-            }
-          },
-          "slots": {
-            "ring": "turned"
-          }
-        },
-        {
-          "hold": 0.4,
-          "ease": "linear",
-          "bones": {
-            "body": {
-              "r": -22.5
+              "sy": 0.86
+            },
+            "spin": {
+              "r": 180
+            },
+            "turn": {
+              "sy": 1.1628
             }
           }
         },
         {
-          "hold": 0.4,
-          "ease": "linear",
-          "bones": {
-            "body": {
-              "r": 0
-            }
-          }
-        },
-        {
-          "hold": 0.02,
-          "ease": "step",
-          "bones": {
-            "body": {
-              "r": 22.5
-            }
-          }
-        },
-        {
-          "hold": 0.4,
-          "ease": "linear",
-          "bones": {
-            "body": {
-              "r": -22.5
-            }
-          },
-          "slots": {
-            "ring": "turned"
-          }
-        },
-        {
-          "hold": 0.4,
-          "ease": "linear",
-          "bones": {
-            "body": {
-              "r": 0
-            }
-          },
-          "slots": {
-            "ring": "turned"
-          }
-        },
-        {
-          "hold": 0.02,
-          "ease": "step",
-          "bones": {
-            "body": {
-              "r": 22.5
-            }
-          },
-          "slots": {
-            "ring": "turned"
-          }
-        },
-        {
-          "hold": 0.4,
+          "hold": 0.6,
           "ease": "out",
           "bones": {
             "body": {
-              "r": -22.5
+              "sy": 0.86
+            },
+            "spin": {
+              "r": 300
+            },
+            "turn": {
+              "sy": 1.1628
+            }
+          }
+        },
+        {
+          "hold": 0.05,
+          "ease": "step",
+          "bones": {
+            "body": {
+              "sy": 0.86
+            },
+            "spin": {
+              "r": 360
+            },
+            "turn": {
+              "sy": 1.1628
             }
           }
         },
@@ -292,7 +233,7 @@
     {
       "id": "bounce",
       "kind": "action",
-      "description": "the rubber ring bounces up and down on the spot, squishing a little each time it lands, then settles.",
+      "description": "a wave lifts the rubber ring and drops it back with a little squish, twice, then it settles.",
       "keys": [
         {
           "hold": 0.1
@@ -302,45 +243,45 @@
           "ease": "out",
           "bones": {
             "root": {
-              "sx": 1.04,
-              "sy": 0.93
+              "sx": 1.03,
+              "sy": 0.95
             }
           }
         },
         {
-          "hold": 0.34,
+          "hold": 0.4,
           "ease": "in",
           "bones": {
             "root": {
-              "y": -80
+              "y": -32
+            }
+          }
+        },
+        {
+          "hold": 0.32,
+          "ease": "out",
+          "bones": {
+            "root": {
+              "sx": 1.03,
+              "sy": 0.95
             }
           }
         },
         {
           "hold": 0.3,
-          "ease": "out",
-          "bones": {
-            "root": {
-              "sx": 1.04,
-              "sy": 0.93
-            }
-          }
-        },
-        {
-          "hold": 0.26,
           "ease": "in",
           "bones": {
             "root": {
-              "y": -40
+              "y": -16
             }
           }
         },
         {
-          "hold": 0.22,
+          "hold": 0.24,
           "bones": {
             "root": {
-              "sx": 1.02,
-              "sy": 0.96
+              "sx": 1.015,
+              "sy": 0.97
             }
           }
         },
@@ -352,7 +293,7 @@
     {
       "id": "wobble",
       "kind": "action",
-      "description": "the rubber ring wobbles from side to side, then settles.",
+      "description": "the rubber ring wobbles from side to side on the water, then settles.",
       "keys": [
         {
           "hold": 0.15
@@ -405,7 +346,7 @@
     {
       "id": "tip",
       "kind": "action",
-      "description": "the rubber ring tips up on one side, wobbles there, then flops back down flat with a little bounce.",
+      "description": "a gust of wind lifts the rubber ring up on one side; it wobbles there, then flops back down flat with a little bounce.",
       "pause": {
         "frame": 2,
         "shows": "the rubber ring tipped up on one side"

@@ -1,15 +1,14 @@
 # localimage — the art tools on a local model
 
-`stickerart`, `stickeranim` and `uiart` draw with the OpenAI Images API.
+`stickerart`, `stickerrig` and `uiart` draw with the OpenAI Images API.
 With `-local` they draw on this Mac instead, with an open image model, at
 no cost per image. Everything else stays the same: the same art.json and
-anim.json, prompts, fingerprints, post-processing and outputs.
+rig files, prompts, fingerprints, post-processing and outputs.
 
 ```sh
 cd tools
 go run ./author/stickerart  render -pack ../packs/forest -only owl -options 4 -local
 go run ./author/stickerart  render -pack ../packs/forest -only owl -local
-go run ./author/stickeranim render -pack ../packs/forest -only owl -local
 go run ./author/uiart       render -only title -local
 ```
 
@@ -37,7 +36,6 @@ default 8-bit model it holds about 10 GB.
 | `references.maxPixels` | default reference size |
 | `matte` | the plain `background` colour transparent images are drawn on, and the colour `tolerance` of the cut-out |
 | `inpaint` | `feather` of the mask's edge (px at 1024), `minSteps`, and `reference`: what the model sees of the area it repaints (below) |
-| `animation` | `frames` (default) or `sheets` (below) |
 
 Every setting that changes the pictures goes into the fingerprint, as the
 model's ID `local:<name>:<hash>`. That includes the quality's profile, the
@@ -60,7 +58,7 @@ own sampling loop:
 - **Transparent backgrounds**: the model draws on plain white, and the
   subject is cut out with Apple Vision's subject lifting (on-device,
   0.2 s). A flood fill from the edges adds back anything Vision dropped:
-  a fern beside a stump, or a frame of a sheet. The white is then
+  a fern beside a stump. The white is then
   decontaminated from the edges. The tools' "fully transparent background"
   becomes "plain flat white background" in the prompt; FLUX would draw a
   checkerboard otherwise.
@@ -78,31 +76,6 @@ The tools send these hints in a `local` field that only the local client
 sends (`openai.ImageRequest.Hints`). A request's `local` field can override
 any quality setting, which is handy for experiments:
 `{"steps": 8, "maxPixels": 1638400, "drawLarger": true}`.
-
-## Animations: a frame at a time
-
-FLUX.2 [klein] 4B cannot draw a whole sheet the way the hosted model does,
-twelve poses in order in one picture: it ignores the poses and corrupts
-part of the sheet. So with `"animation": "frames"`, `stickeranim -local`
-draws each frame as its own edit (`stickeranim/frames.go`):
-
-- The rest pose is image 1 (the scaffold's rest cell when the pack has a
-  scaffold), and the frame before is image 2, so the motion carries on.
-- Rest frames take the sticker's own art and cost no call; a later sheet
-  starts on the frame the one before ended on.
-- The prompt keeps the sticker's description, without the clauses that
-  name a removed prop. Without the description, colours drift toward the
-  style's palette along the chain; with "perched on a short branch" in
-  it, the branch comes back.
-- Only the main drawing of each frame is kept, so a second character the
-  model sometimes adds cannot ride the chain.
-- The frames are laid out on the sheet's exact grid and assembled exactly
-  as usual. Each frame is kept (`<key>.sheet<n>.f<k>.raw.png`), so a run
-  that stops part way picks up where it was.
-
-About 11–17 s a frame at 768 px. A 24-frame action takes 4–6 minutes and
-a 12-frame move about 3. Use `"animation": "sheets"` for a model that can
-do whole sheets.
 
 ## The Owl, measured (M5 Pro, 48 GB, 8-bit)
 

@@ -306,8 +306,9 @@ final class PuppetNode: SKEffectNode {
 }
 
 extension StickerNode {
-    /// The puppet takes over from the still art the way frames do
-    /// (`showLive`): it fades in over the still art, which then dissolves
+    /// The puppet takes over from the still art (`showLive`): it fades in
+    /// over the still art, which stays opaque underneath (two half-faded
+    /// layers would let the background show through) and then dissolves
     /// away beneath it, and the drop shadow becomes the puppet's own.
     func beginPuppet(_ puppet: LoadedPuppet, key: String) {
         guard let stillTexture = texture else { return }
@@ -441,7 +442,8 @@ extension StickerNode {
     /// Whether `showLive` can hand this animation to the puppet already on
     /// show (the same rig) rather than starting over from the still art.
     func continuePuppet(_ loaded: LoadedLiveAnimation) -> Bool {
-        guard let puppet = loaded.puppet, let node = puppetNode, node.puppet.rig.atlas == puppet.rig.atlas else {
+        let puppet = loaded.puppet
+        guard let node = puppetNode, node.puppet.rig.atlas == puppet.rig.atlas else {
             return false
         }
         node.adopt(puppet)
@@ -463,8 +465,8 @@ extension StickerNode {
 
     /// Ends a puppet on show, if one is: the still art is back underneath
     /// at once and the puppet fades off it.
-    func stopPuppet() -> Bool {
-        guard let node = puppetNode else { return false }
+    func stopPuppet() {
+        guard let node = puppetNode else { return }
         node.name = nil
         node.run(.sequence([.fadeOut(withDuration: 0.25), .removeFromParent()]))
         if let still = childNode(withName: Self.liveStillName) as? SKSpriteNode {
@@ -477,6 +479,5 @@ extension StickerNode {
         if let liveStillTexture { texture = liveStillTexture }
         liveStillTexture = nil
         endPuppetShadow()
-        return true
     }
 }

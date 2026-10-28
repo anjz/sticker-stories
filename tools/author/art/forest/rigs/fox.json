@@ -869,175 +869,19 @@
       "id": "trot",
       "kind": "move",
       "description": "the fox trots along on all four legs, its big tail streaming behind, then stops.",
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "facing": "left",
-      "stride": 0.6,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.17,
-          "bones": {
-            "legFN": {
-              "r": 15
-            },
-            "legBF": {
-              "r": 12
-            },
-            "legFF": {
-              "r": -36
-            },
-            "legBN": {
-              "r": 4
-            },
-            "root": {
-              "y": 0
-            },
-            "head": {
-              "r": 1
-            },
-            "belly": {
-              "sy": 0.99
-            },
-            "tail": {
-              "r": 10
-            },
-            "earL": {
-              "r": -4
-            },
-            "earR": {
-              "r": 5
-            }
+      "gait": {
+        "style": "quadruped.trot",
+        "swing": 1.5,
+        "pose": {
+          "legFF": {
+            "r": -22
+          },
+          "legBN": {
+            "r": 18
           }
-        },
-        {
-          "hold": 0.17,
-          "bones": {
-            "legFN": {
-              "r": 0
-            },
-            "legBF": {
-              "r": -2
-            },
-            "legFF": {
-              "r": -22,
-              "y": -12
-            },
-            "legBN": {
-              "r": 19,
-              "y": -12
-            },
-            "root": {
-              "y": -8
-            },
-            "head": {
-              "r": -1
-            },
-            "tail": {
-              "r": 14
-            },
-            "earL": {
-              "r": -4
-            },
-            "earR": {
-              "r": 5
-            }
-          }
-        },
-        {
-          "hold": 0.17,
-          "bones": {
-            "legFN": {
-              "r": -15
-            },
-            "legBF": {
-              "r": -17
-            },
-            "legFF": {
-              "r": -7
-            },
-            "legBN": {
-              "r": 32
-            },
-            "root": {
-              "y": 0
-            },
-            "head": {
-              "r": 1
-            },
-            "belly": {
-              "sy": 0.99
-            },
-            "tail": {
-              "r": 10
-            },
-            "earL": {
-              "r": -4
-            },
-            "earR": {
-              "r": 5
-            }
-          }
-        },
-        {
-          "hold": 0.17,
-          "bones": {
-            "legFN": {
-              "r": 0,
-              "y": -12
-            },
-            "legBF": {
-              "r": -2,
-              "y": -12
-            },
-            "legFF": {
-              "r": -22
-            },
-            "legBN": {
-              "r": 19
-            },
-            "root": {
-              "y": -8
-            },
-            "head": {
-              "r": -1
-            },
-            "tail": {
-              "r": 6
-            },
-            "earL": {
-              "r": -4
-            },
-            "earR": {
-              "r": 5
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "legFF": {
-              "r": -8
-            },
-            "legBN": {
-              "r": 8
-            },
-            "root": {
-              "y": -2
-            },
-            "tail": {
-              "r": 4
-            }
-          }
-        },
-        {
-          "hold": 0.45
         }
-      ]
+      }
     },
     {
       "id": "pounce",

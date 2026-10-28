@@ -9,19 +9,17 @@ import (
 	"testing"
 )
 
-// validAnimation writes a sidecar for the fox (with its sheet) under dir
-// and returns the sidecar's pack-relative path.
+// validAnimation writes a sidecar for the fox (with its rig, eight keys)
+// under dir and returns the sidecar's pack-relative path.
 func validAnimation(t *testing.T, dir string, mutate func(a *StickerAnimation)) string {
 	t.Helper()
-	a := StickerAnimation{ID: "yawn", Sticker: "fox", Description: "the fox yawns and stretches.", Sheet: "anims/fox.yawn.webp", Columns: 4, Count: 8,
-		Rest: UnitBox{X: 0.03, Y: 0.2, Width: 0.9, Height: 0.75}, StickerBox: UnitBox{X: 0.03, Y: 0.04, Width: 0.94, Height: 0.92},
-		Hold: []float64{0.3, 0.2, 0.1, 0.1, 0.1, 0.2, 0.2, 0.3}}
-	a.Frame.Width, a.Frame.Height = 712, 808
+	validRig(t, dir, nil)
+	a := StickerAnimation{ID: "yawn", Sticker: "fox", Description: "the fox yawns and stretches.",
+		StickerBox: UnitBox{X: 0.03, Y: 0.04, Width: 0.94, Height: 0.92},
+		Puppet:     puppetHolding(0.3, 0.2, 0.1, 0.1, 0.1, 0.2, 0.2, 0.3)}
 	if mutate != nil {
 		mutate(&a)
 	}
-	os.MkdirAll(filepath.Join(dir, "anims"), 0o755)
-	os.WriteFile(filepath.Join(dir, "anims", "fox.yawn.webp"), []byte("x"), 0o644)
 	data, _ := json.Marshal(a)
 	os.WriteFile(filepath.Join(dir, "anims", "fox.yawn.json"), data, 0o644)
 	return "anims/fox.yawn.json"
@@ -44,14 +42,10 @@ func TestAnimationsValidate(t *testing.T) {
 		wantSub string
 	}{
 		{"wrong sticker", func(a *StickerAnimation) { a.Sticker = "mushroom" }, "does not match"},
-		{"missing sheet", func(a *StickerAnimation) { a.Sheet = "anims/nope.webp" }, "not found"},
-		{"sheet not an image", func(a *StickerAnimation) { a.Sheet = "anims/fox.yawn.json" }, ".png or .webp"},
-		{"hold count", func(a *StickerAnimation) { a.Hold = a.Hold[:3] }, "hold has 3 entries"},
-		{"hold too short", func(a *StickerAnimation) { a.Hold[2] = 0.001 }, "outside"},
-		{"no frames", func(a *StickerAnimation) { a.Count = 0; a.Hold = nil }, "count must be"},
-		{"box outside", func(a *StickerAnimation) { a.Rest.Width = 1.5 }, "unit square"},
+		{"no puppet", func(a *StickerAnimation) { a.Puppet = nil }, "puppet must give"},
+		{"hold too short", func(a *StickerAnimation) { a.Puppet.Keys[2].Hold = 0.001 }, "outside"},
+		{"box outside", func(a *StickerAnimation) { a.StickerBox.Width = 1.5 }, "unit square"},
 		{"no description", func(a *StickerAnimation) { a.Description = " " }, "description"},
-		{"empty frame", func(a *StickerAnimation) { a.Frame.Height = 0 }, "frame size"},
 		{"unknown kind", func(a *StickerAnimation) { a.Kind = "dance" }, "action or move"},
 		{"pause on the first frame", func(a *StickerAnimation) { a.Pause = &AnimationPause{Frame: 0, Shows: "x"} }, "middle frame"},
 		{"pause without shows", func(a *StickerAnimation) { a.Pause = &AnimationPause{Frame: 3} }, "pause.shows"},
@@ -113,10 +107,9 @@ func TestAnimationsValidate(t *testing.T) {
 			a.Pause = &AnimationPause{Frame: 3, Shows: "the fox asleep"}
 		})}
 		walk := func(id string, mutate ...func(*StickerAnimation)) string {
-			a := StickerAnimation{ID: id, Sticker: "fox", Kind: KindMove, Description: "the fox trots.", Sheet: "anims/fox.yawn.webp", Columns: 4, Count: 8,
-				Rest: UnitBox{X: 0.1, Y: 0.1, Width: 0.8, Height: 0.8}, StickerBox: UnitBox{X: 0.1, Y: 0.1, Width: 0.8, Height: 0.8},
-				Hold: []float64{0.1, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.3}, Loop: &FrameRange{From: 1, To: 6}, Facing: "left", Stride: 0.6, Hops: true}
-			a.Frame.Width, a.Frame.Height = 400, 400
+			a := StickerAnimation{ID: id, Sticker: "fox", Kind: KindMove, Description: "the fox trots.",
+				StickerBox: UnitBox{X: 0.1, Y: 0.1, Width: 0.8, Height: 0.8}, Puppet: puppetHolding(0.1, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.3),
+				Loop: &FrameRange{From: 1, To: 6}, Facing: "left", Stride: 0.6, Hops: true}
 			for _, f := range mutate {
 				f(&a)
 			}
@@ -158,7 +151,7 @@ func TestAnimationsValidate(t *testing.T) {
 		dir := t.TempDir()
 		m := validManifest(t, dir)
 		validAnimation(t, dir, nil)
-		m.Stickers[1].Animations = []string{"anims/fox.yawn.webp"}
+		m.Stickers[1].Animations = []string{"anims/fox.rig.webp"}
 		if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), ".json") {
 			t.Errorf("got %v", errs)
 		}
@@ -226,10 +219,9 @@ func TestPlaceNamesFeatures(t *testing.T) {
 func TestActionOnFacesAndMoveAway(t *testing.T) {
 	water := map[string]Feature{"sea": {Description: "The sea.", Areas: []StageArea{{X: []float64{0.1, 0.9}, Y: []float64{0.5, 0.6}}}}}
 	move := func(dir, id string, mutate func(*StickerAnimation)) string {
-		a := StickerAnimation{ID: id, Sticker: "fox", Kind: KindMove, Description: "the fox paddles.", Sheet: "anims/fox.yawn.webp", Columns: 4, Count: 8,
-			Rest: UnitBox{X: 0.1, Y: 0.1, Width: 0.8, Height: 0.8}, StickerBox: UnitBox{X: 0.1, Y: 0.1, Width: 0.8, Height: 0.8},
-			Hold: []float64{0.1, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.3}, Loop: &FrameRange{From: 1, To: 6}, Facing: "left", Stride: 0.6}
-		a.Frame.Width, a.Frame.Height = 400, 400
+		a := StickerAnimation{ID: id, Sticker: "fox", Kind: KindMove, Description: "the fox paddles.",
+			StickerBox: UnitBox{X: 0.1, Y: 0.1, Width: 0.8, Height: 0.8}, Puppet: puppetHolding(0.1, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.3),
+			Loop: &FrameRange{From: 1, To: 6}, Facing: "left", Stride: 0.6}
 		if mutate != nil {
 			mutate(&a)
 		}

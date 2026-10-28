@@ -11,7 +11,7 @@
   },
   "loop": {
     "from": 1,
-    "to": 6
+    "to": 16
   },
   "facing": "left",
   "stride": 1,
@@ -21,147 +21,513 @@
     "rig": "anims/bee.rig.json",
     "keys": [
       {
-        "hold": 0.1
+        "hold": 0.2
       },
       {
-        "hold": 0.08,
+        "hold": 0.04,
         "ease": "linear",
         "bones": {
           "antennaL": {
-            "r": 5
+            "r": -7.85
           },
           "antennaR": {
-            "r": 5
+            "r": -7.85
           },
           "body": {
             "r": -4
           },
-          "root": {
-            "y": -4
+          "legL1": {
+            "r": 2.38
           },
-          "wingL": {
-            "r": -16
+          "legL2": {
+            "r": -1.62
           },
-          "wingR": {
-            "r": -18
-          }
-        }
-      },
-      {
-        "hold": 0.08,
-        "ease": "linear",
-        "bones": {
-          "antennaL": {
-            "r": 5
-          },
-          "antennaR": {
-            "r": 5
-          },
-          "body": {
-            "r": -4
-          },
-          "root": {
-            "y": -8
-          },
-          "wingL": {
-            "r": 10
-          },
-          "wingR": {
-            "r": 12
-          }
-        }
-      },
-      {
-        "hold": 0.08,
-        "ease": "linear",
-        "bones": {
-          "antennaL": {
-            "r": 5
-          },
-          "antennaR": {
-            "r": 5
-          },
-          "body": {
-            "r": -4
-          },
-          "root": {
-            "y": -10
-          },
-          "wingL": {
-            "r": -16
-          },
-          "wingR": {
-            "r": -18
-          }
-        }
-      },
-      {
-        "hold": 0.08,
-        "ease": "linear",
-        "bones": {
-          "antennaL": {
-            "r": 5
-          },
-          "antennaR": {
-            "r": 5
-          },
-          "body": {
-            "r": -4
-          },
-          "root": {
-            "y": -8
-          },
-          "wingL": {
-            "r": 10
-          },
-          "wingR": {
-            "r": 12
-          }
-        }
-      },
-      {
-        "hold": 0.08,
-        "ease": "linear",
-        "bones": {
-          "antennaL": {
-            "r": 5
-          },
-          "antennaR": {
-            "r": 5
-          },
-          "body": {
-            "r": -4
-          },
-          "root": {
-            "y": -4
-          },
-          "wingL": {
-            "r": -16
-          },
-          "wingR": {
-            "r": -18
-          }
-        }
-      },
-      {
-        "hold": 0.08,
-        "ease": "linear",
-        "bones": {
-          "antennaL": {
-            "r": 5
-          },
-          "antennaR": {
-            "r": 5
-          },
-          "body": {
-            "r": -4
+          "legL3": {
+            "r": -7.62
           },
           "root": {},
+          "wingL": {},
+          "wingR": {}
+        }
+      },
+      {
+        "hold": 0.04,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -7.28
+          },
+          "antennaR": {
+            "r": -7.28
+          },
+          "body": {
+            "r": -4.46
+          },
+          "legL1": {
+            "r": 2.96
+          },
+          "legL2": {
+            "r": -1.04
+          },
+          "legL3": {
+            "r": -7.04
+          },
+          "root": {
+            "y": -2.3
+          },
           "wingL": {
-            "r": 10
+            "r": 10.01
           },
           "wingR": {
-            "r": 12
+            "r": 10.01
+          }
+        }
+      },
+      {
+        "hold": 0.04,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -6.36
+          },
+          "antennaR": {
+            "r": -6.36
+          },
+          "body": {
+            "r": -4.85
+          },
+          "legL1": {
+            "r": 3.69
+          },
+          "legL2": {
+            "r": -0.31
+          },
+          "legL3": {
+            "r": -6.31
+          },
+          "root": {
+            "y": -4.24
+          },
+          "wingL": {
+            "r": -3.34
+          },
+          "wingR": {
+            "r": -3.34
+          }
+        }
+      },
+      {
+        "hold": 0.04,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -5.24
+          },
+          "antennaR": {
+            "r": -5.24
+          },
+          "body": {
+            "r": -5.11
+          },
+          "legL1": {
+            "r": 4.47
+          },
+          "legL2": {
+            "r": 0.47
+          },
+          "legL3": {
+            "r": -5.53
+          },
+          "root": {
+            "y": -5.54
+          },
+          "wingL": {
+            "r": -14.82
+          },
+          "wingR": {
+            "r": -14.82
+          }
+        }
+      },
+      {
+        "hold": 0.04,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -4.07
+          },
+          "antennaR": {
+            "r": -4.07
+          },
+          "body": {
+            "r": -5.2
+          },
+          "legL1": {
+            "r": 5.18
+          },
+          "legL2": {
+            "r": 1.18
+          },
+          "legL3": {
+            "r": -4.82
+          },
+          "root": {
+            "y": -6
+          },
+          "wingL": {},
+          "wingR": {}
+        }
+      },
+      {
+        "hold": 0.04,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -3.05
+          },
+          "antennaR": {
+            "r": -3.05
+          },
+          "body": {
+            "r": -5.11
+          },
+          "legL1": {
+            "r": 5.71
+          },
+          "legL2": {
+            "r": 1.71
+          },
+          "legL3": {
+            "r": -4.29
+          },
+          "root": {
+            "y": -5.54
+          },
+          "wingL": {
+            "r": 10.01
+          },
+          "wingR": {
+            "r": 10.01
+          }
+        }
+      },
+      {
+        "hold": 0.04,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -2.33
+          },
+          "antennaR": {
+            "r": -2.33
+          },
+          "body": {
+            "r": -4.85
+          },
+          "legL1": {
+            "r": 5.98
+          },
+          "legL2": {
+            "r": 1.98
+          },
+          "legL3": {
+            "r": -4.02
+          },
+          "root": {
+            "y": -4.24
+          },
+          "wingL": {
+            "r": -3.34
+          },
+          "wingR": {
+            "r": -3.34
+          }
+        }
+      },
+      {
+        "hold": 0.04,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -2.01
+          },
+          "antennaR": {
+            "r": -2.01
+          },
+          "body": {
+            "r": -4.46
+          },
+          "legL1": {
+            "r": 5.94
+          },
+          "legL2": {
+            "r": 1.94
+          },
+          "legL3": {
+            "r": -4.06
+          },
+          "root": {
+            "y": -2.3
+          },
+          "wingL": {
+            "r": -14.82
+          },
+          "wingR": {
+            "r": -14.82
+          }
+        }
+      },
+      {
+        "hold": 0.04,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -2.15
+          },
+          "antennaR": {
+            "r": -2.15
+          },
+          "body": {
+            "r": -4
+          },
+          "legL1": {
+            "r": 5.62
+          },
+          "legL2": {
+            "r": 1.62
+          },
+          "legL3": {
+            "r": -4.38
+          },
+          "root": {},
+          "wingL": {},
+          "wingR": {}
+        }
+      },
+      {
+        "hold": 0.04,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -2.72
+          },
+          "antennaR": {
+            "r": -2.72
+          },
+          "body": {
+            "r": -3.54
+          },
+          "legL1": {
+            "r": 5.04
+          },
+          "legL2": {
+            "r": 1.04
+          },
+          "legL3": {
+            "r": -4.96
+          },
+          "root": {
+            "y": 2.3
+          },
+          "wingL": {
+            "r": 10.01
+          },
+          "wingR": {
+            "r": 10.01
+          }
+        }
+      },
+      {
+        "hold": 0.04,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -3.64
+          },
+          "antennaR": {
+            "r": -3.64
+          },
+          "body": {
+            "r": -3.15
+          },
+          "legL1": {
+            "r": 4.31
+          },
+          "legL2": {
+            "r": 0.31
+          },
+          "legL3": {
+            "r": -5.69
+          },
+          "root": {
+            "y": 4.24
+          },
+          "wingL": {
+            "r": -3.34
+          },
+          "wingR": {
+            "r": -3.34
+          }
+        }
+      },
+      {
+        "hold": 0.04,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -4.76
+          },
+          "antennaR": {
+            "r": -4.76
+          },
+          "body": {
+            "r": -2.89
+          },
+          "legL1": {
+            "r": 3.53
+          },
+          "legL2": {
+            "r": -0.47
+          },
+          "legL3": {
+            "r": -6.47
+          },
+          "root": {
+            "y": 5.54
+          },
+          "wingL": {
+            "r": -14.82
+          },
+          "wingR": {
+            "r": -14.82
+          }
+        }
+      },
+      {
+        "hold": 0.04,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -5.93
+          },
+          "antennaR": {
+            "r": -5.93
+          },
+          "body": {
+            "r": -2.8
+          },
+          "legL1": {
+            "r": 2.82
+          },
+          "legL2": {
+            "r": -1.18
+          },
+          "legL3": {
+            "r": -7.18
+          },
+          "root": {
+            "y": 6
+          },
+          "wingL": {},
+          "wingR": {}
+        }
+      },
+      {
+        "hold": 0.04,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -6.95
+          },
+          "antennaR": {
+            "r": -6.95
+          },
+          "body": {
+            "r": -2.89
+          },
+          "legL1": {
+            "r": 2.29
+          },
+          "legL2": {
+            "r": -1.71
+          },
+          "legL3": {
+            "r": -7.71
+          },
+          "root": {
+            "y": 5.54
+          },
+          "wingL": {
+            "r": 10.01
+          },
+          "wingR": {
+            "r": 10.01
+          }
+        }
+      },
+      {
+        "hold": 0.04,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -7.67
+          },
+          "antennaR": {
+            "r": -7.67
+          },
+          "body": {
+            "r": -3.15
+          },
+          "legL1": {
+            "r": 2.02
+          },
+          "legL2": {
+            "r": -1.98
+          },
+          "legL3": {
+            "r": -7.98
+          },
+          "root": {
+            "y": 4.24
+          },
+          "wingL": {
+            "r": -3.34
+          },
+          "wingR": {
+            "r": -3.34
+          }
+        }
+      },
+      {
+        "hold": 0.04,
+        "ease": "linear",
+        "bones": {
+          "antennaL": {
+            "r": -7.99
+          },
+          "antennaR": {
+            "r": -7.99
+          },
+          "body": {
+            "r": -3.54
+          },
+          "legL1": {
+            "r": 2.06
+          },
+          "legL2": {
+            "r": -1.94
+          },
+          "legL3": {
+            "r": -7.94
+          },
+          "root": {
+            "y": 2.3
+          },
+          "wingL": {
+            "r": -14.82
+          },
+          "wingR": {
+            "r": -14.82
           }
         }
       },

@@ -2,7 +2,7 @@
   "id": "spin",
   "sticker": "ring",
   "kind": "action",
-  "description": "the rubber ring turns round slowly",
+  "description": "the rubber ring turns slowly round on the spot, once, its stripes going round.",
   "stickerBox": {
     "x": 0.20052,
     "y": 0.24089,
@@ -10,124 +10,73 @@
     "height": 0.51693
   },
   "pause": {
-    "frame": 3,
-    "shows": "the rubber ring turned, its stripes in other places"
+    "frame": 2,
+    "shows": "the rubber ring turned half way round, its stripes in other places"
   },
   "puppet": {
     "rig": "anims/ring.rig.json",
     "keys": [
       {
-        "hold": 0.35,
+        "hold": 0.6,
         "ease": "in"
       },
       {
-        "hold": 0.02,
-        "ease": "step",
-        "bones": {
-          "body": {
-            "r": 22.5
-          }
-        }
-      },
-      {
-        "hold": 0.4,
+        "hold": 1.2,
         "ease": "linear",
         "bones": {
           "body": {
-            "r": -22.5
+            "sy": 0.86
+          },
+          "spin": {
+            "r": 60
+          },
+          "turn": {
+            "sy": 1.1628
           }
-        },
-        "slots": {
-          "ring": "turned"
         }
       },
       {
-        "hold": 0.4,
-        "ease": "linear",
-        "bones": {
-          "body": {}
-        },
-        "slots": {
-          "ring": "turned"
-        }
-      },
-      {
-        "hold": 0.02,
-        "ease": "step",
-        "bones": {
-          "body": {
-            "r": 22.5
-          }
-        },
-        "slots": {
-          "ring": "turned"
-        }
-      },
-      {
-        "hold": 0.4,
+        "hold": 1.2,
         "ease": "linear",
         "bones": {
           "body": {
-            "r": -22.5
+            "sy": 0.86
+          },
+          "spin": {
+            "r": 180
+          },
+          "turn": {
+            "sy": 1.1628
           }
         }
       },
       {
-        "hold": 0.4,
-        "ease": "linear",
-        "bones": {
-          "body": {}
-        }
-      },
-      {
-        "hold": 0.02,
-        "ease": "step",
-        "bones": {
-          "body": {
-            "r": 22.5
-          }
-        }
-      },
-      {
-        "hold": 0.4,
-        "ease": "linear",
-        "bones": {
-          "body": {
-            "r": -22.5
-          }
-        },
-        "slots": {
-          "ring": "turned"
-        }
-      },
-      {
-        "hold": 0.4,
-        "ease": "linear",
-        "bones": {
-          "body": {}
-        },
-        "slots": {
-          "ring": "turned"
-        }
-      },
-      {
-        "hold": 0.02,
-        "ease": "step",
-        "bones": {
-          "body": {
-            "r": 22.5
-          }
-        },
-        "slots": {
-          "ring": "turned"
-        }
-      },
-      {
-        "hold": 0.4,
+        "hold": 0.6,
         "ease": "out",
         "bones": {
           "body": {
-            "r": -22.5
+            "sy": 0.86
+          },
+          "spin": {
+            "r": 300
+          },
+          "turn": {
+            "sy": 1.1628
+          }
+        }
+      },
+      {
+        "hold": 0.05,
+        "ease": "step",
+        "bones": {
+          "body": {
+            "sy": 0.86
+          },
+          "spin": {
+            "r": 360
+          },
+          "turn": {
+            "sy": 1.1628
           }
         }
       },

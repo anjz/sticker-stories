@@ -2,10 +2,10 @@
 
 A puppet is a sticker's drawing cut into parts that hang on a skeleton
 (`docs/pack-format.md`, "Puppets"). The app moves the parts, so an
-animation is a few keyframes of data instead of a sprite sheet: two
-image generations per character, then any number of animations for
-free. This is how stickers animate: each animation is a sidecar without
-a sheet, which stories cue like any other (`{fox:live jump}`).
+animation is a few keyframes of data: two image generations per
+character, then any number of animations for free. This is how stickers
+animate: each animation is a sidecar of keys, which stories cue
+(`{fox:live jump}`).
 
 ```sh
 cd tools
@@ -14,6 +14,8 @@ go run ./author/stickerrig parts   -pack ../packs/forest -only fox            # 
 # … name the parts, measure the sticker, write bones, slots, faces, idle, animations …
 go run ./author/stickerrig install -pack ../packs/forest -only fox            # atlas + rig + sidecars + manifest
 go run ./author/stickerrig preview -pack ../packs/forest -only fox -png       # out/rigs/fox.*.png to look at
+go run ./author/stickerrig check   -pack ../packs/forest -only fox            # seams, bones, eyes, faces (install runs it too)
+go run ./author/stickerrig film    -pack ../packs/forest -only fox -anim trot # the move as the app plays it: GIF + contact strip
 go run ./packager validate ../packs/forest
 ```
 
@@ -36,11 +38,12 @@ One file per sticker, so several can be rigged at once:
   sticker's raw art (stickerart's `out/stickers/<id>.noprop.png`, else
   `.raw.png`) plus the sheets it lists in `references`. Two work: the
   **parts** (body without head or limbs; head with a blank face; each
-  limb once, with rounded joint ends; a variant per pose that rotation
-  cannot make — a wing open, hands clasped, a curled-up ball; props it
-  holds) and the **face pieces** (one eye in five states, mouths or
-  beaks). Ask for every piece apart, nothing touching, no text, a
-  transparent background.
+  limb whole; a variant per pose that rotation cannot make — a wing
+  open, hands clasped, a curled-up ball; props it holds) and the **face
+  pieces** (each eye in five states, mouths or beaks), drawn as below.
+  Ask for every piece apart, nothing touching, no text, a transparent
+  background; a third sheet when a part needs redrawing alone (the
+  seal's `neck`, the girl's `limbs`).
 - `parts`: `{ name: { "sheet", "at": [x, y] } }` — the piece of a sheet
   at (or nearest) that point. `parts` lists every piece with a point
   inside it and writes `<sticker>.<sheet>.pieces.png`, every piece boxed
@@ -58,7 +61,8 @@ One file per sticker, so several can be rigged at once:
   `kind`, `description`, `pause` (`{ "frame": key, "shows" }`), `loop`,
   `facing`, `stride`, `hops`, `flies`, `hovers`, `wings` (the
   sidecar's `puppet.wings`), `on`, `stays`, `waterline`, `away`,
-  `place`, `perched`, `faces`, `idle`, `particles` — and its `keys`.
+  `place`, `perched`, `faces`, `idle`, `particles` — and its `keys`,
+  or for a move a `gait` instead (below).
   Pause, loop and particles count keys. In the water: a move's `away`
   names the move it plays going away from us (`"paddle"` with
   `"away": "paddle-out"`, his back to us); an action's `on` names the
@@ -74,8 +78,8 @@ One file per sticker, so several can be rigged at once:
 `install` cuts every part out at the largest size an attachment shows it,
 grows each by the pack's border into a white silhouette, packs them all
 into `anims/<sticker>.rig.webp`, writes `anims/<sticker>.rig.json` and
-every animation's sidecar `anims/<sticker>.<id>.json` (deleting a sprite
-sheet one replaces), sets the sticker's `animations` in the manifest to
+every animation's sidecar `anims/<sticker>.<id>.json`, sets the
+sticker's `animations` in the manifest to
 the rig's, and validates the pack. It refuses to leave out an animation
 the sticker has now — stories may cue it — unless `-drop`. Installs take
 a lock, so several can run at once.
@@ -87,12 +91,112 @@ with headless Chrome: `<sticker>.rest.png` (rest, a mismatch view —
 sticker only magenta, puppet only green — and the faces) and
 `<sticker>.<animation>.png` (its keys, large); `-anim <id>` for one.
 
+## Drawing the parts
+
+What the prompts ask for, so no seam shows and nothing faces the wrong
+way (Beach's rig files say it in full: `girl`, `seal`, `starfish`,
+`bottle`):
+
+- **Joint ends without outline.** A limb, a neck, a tail or a feeler
+  ends where it joins in a soft rounded end with no line across it —
+  the drawing's line runs down its sides only. It tucks ≥ ~17 px under
+  the part that covers it; a closed outline there shows as a seam.
+- **Head and neck one piece**, the neck running down into the chest as
+  wide as it is there, no chin line; it lies between the body and a
+  copy of the body whose top fades in (`fadeTop`), so throat and chest
+  flow on as in the sticker. Only when the user sees a line there (Beach's
+  seal and seagull): retrofitted onto Forest's approved puppets it
+  squashed heads into bodies and broke the deer's graze, and was undone.
+- **People: two-part limbs** — upper arm, forearm with hand, thigh,
+  lower leg with foot — each with its clothing on it (sleeve, shorts
+  leg); the torso drawn without sleeves or shorts legs, so the elbows
+  and knees bend and no limb is cut where its clothing ends.
+- **Eyes for each side**: a row for the left eye and a row for the
+  right, both looking the sticker's way (say which way its irises sit),
+  never one mirrored for the other. Likewise a limb that differs left
+  and right (a claw, a fin) is drawn for its side; `flip` only what is
+  the same both ways.
+- **Containers empty**: the bottle without its note, the bucket without
+  its spade; each thing that moves in it one piece of its own, layered
+  in.
+- **Radial bodies** (starfish, octopus): a centre with no outline drawn
+  over the arms, each arm's base tucked behind it.
+- **Bones at the measured joint**: read each joint on a grid over the
+  sticker (shoulder, hip, wing root, the feeler's root at the nose) and
+  put the bone there, inside the piece's joint end — not where the
+  piece starts on the sheet.
+
+## check
+
+`check` poses each installed puppet as the app does and measures the
+parts' alpha masks against each other and the sticker. It only warns
+(`install` prints the same after installing), per sticker and per
+animation key. A warning is a place to look, not a target: the user's
+eye decides, and a puppet the user has approved is never reworked just
+to silence one (clearing every Forest warning made the puppets much
+worse, 2026-10-26).
+
+- `seam` — a joint end (a piece hung on a joint: a limb, a head, a wing)
+  tucks less than `-tuck` (17 px) under the parts above it and shows at
+  least `-seam` (40 px) of outline over the part it hangs on (its
+  bone's ancestors and the body) where the sticker has none; in a key,
+  that much more than the same parts show at rest.
+- `fade` — a part's outline showing through another's faded end
+  (`fadeTop`) where the sticker has none: the outlined centre of a
+  radial body.
+- `bone` — a bone more than `-bone-out` (12 px) outside its piece, or
+  more than `-bone-gap` (60 px) from where the piece meets what it hangs
+  on. Objects (no eyes) are left out: their pieces rest and lean.
+- `eyes`, `flip` — eyeL and eyeR looking opposite ways in a face, or a
+  slot's expression flipped otherwise than its default and looking the
+  other way (which way: the eye's dark pixels off its middle by at
+  least `-skew` of its width).
+- `mirror` — a flipped piece or an eye that matches the sticker better
+  the other way round (luma correlation, by `-mirror` 0.15).
+- `face` — a key that slides an eye or a brow off the head (`-slide`,
+  10 % more of it off than at rest); `turn` — a key turning an eye on
+  the face by more than `-turn` (4°).
+
+## Gaits
+
+A move can be made from how a body of its kind moves instead of keys
+written by hand: `"gait": {"style": "human.walk"}` in place of `keys`,
+`loop` and `stride`. Each style (`gait_<body>.go`: `human.walk`,
+`human.run`, `human.skip`, …) turns every limb along curves over the
+loop taken from how real bodies move — the knee bends one way, the arms
+swing against the legs, a four-legged walk puts its feet down in their
+order — and install samples them into evenly spaced keys that move on
+linearly (hand keys ease in and out of every key, which reads as stop
+and start). It keeps the planted foot on its ground line (each foot its
+own line: in a three-quarter view the far foot stands higher; a foot
+reaches as far as its leg along the slant it is drawn with), so the body
+rises over the planted foot and dips between steps; brings a swinging
+leg forward where its toes would drag; and measures `stride` from the
+planted foot's speed back under the body, so the feet do not slide as
+the app carries the character along. Without feet on the ground (flying,
+swimming) the move's own `stride` is kept.
+
+`gait` fields: `style`; `cycle` (seconds a loop, the style's by
+default); `swing`, `arms`, `lift` (scale the legs', the arms' or front
+limbs', and a hop's or flight's height); `samples` (keys a loop);
+`still` (bones it leaves alone: the surfer's arm holding the board);
+`pose` (added to every key: that arm's grip); `slots` (shown through
+the loop: happy eyes on a skip); `bones` (the rig's bone for a role the
+style names otherwise); `ground: false` (float as posed, no feet down).
+
+`film` plays an installed animation as the app does — the keys eased, a
+move's loop going round while it travels at its stride, a hop's arc —
+into `<sticker>.<anim>.gif`, and a `.strip.png` of frames 0.08 s apart
+to read as a still; `-before <copy of the pack>` plays the old one above
+it. Install into a copy of the pack to compare before touching the real
+one.
+
 ## Templates (`templates/<type>.json`)
 
 Shared animations written against standard bone and slot names (the
 file lists them): `root` (the ground contact), `body`, `belly` (the
 body's art alone, for squash and breathing), `head`, `face` (on the
-head; carries the eyes and mouth — a sideways shift turns the face),
+head; carries the eyes and mouth — a small sideways shift turns the face, as long as the eyes stay on the head),
 `eyeL`/`eyeR`, `browL`/`browR`, `mouth` or `beak`, `armL`/`armR`,
 `legL`/`legR`, `footL`/`footR`, `earL`/`earR`, `tail`, `wingL`/`wingR`,
 `antennaL`/`antennaR`; L is the viewer's left. Eye attachments `wide`,
@@ -110,8 +214,9 @@ file to tune them where it doesn't.
   sticker's style, first time.
 - Ask for the head with a **blank face** and the features on their own
   sheet: eyes and mouths swap per expression and blink.
-- The sheet draws eyes for one side, but not always the same side:
-  check each and flip per attachment.
+- One eye drawn for both sides and flipped for the other made eyes
+  look opposite ways, and flips that differed between expressions of a
+  slot (2026-10 Beach review): ask for each side's eyes.
 - Give squash its own bone (`belly`, the body's art only) so a body can
   swell without squashing the head on it.
 - Place parts by eye on a grid over the sticker, then check the

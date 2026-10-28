@@ -16,9 +16,6 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var isShowingGallery = false
     @State private var isShowingStoryGallery = false
-    /// Stories play the puppets where the pack has them
-    /// (`StickerAnimation.puppetsEnabled`), else the drawn frames.
-    @AppStorage("developer.puppets") private var puppets = true
 
     /// nil = follow the device language.
     private let choices: [(override: String?, label: Text)] = [
@@ -122,12 +119,6 @@ struct SettingsView: View {
                             }
                             .fullScreenCover(isPresented: $isShowingStoryGallery) {
                                 StoryGalleryView(packs: galleryPacks, preferredLanguages: settings.preferredLanguages)
-                            }
-                            developerRow(
-                                title: "Puppet animations",
-                                symbol: puppets ? "checkmark.circle.fill" : "circle"
-                            ) {
-                                puppets.toggle()
                             }
                         }
                         #endif

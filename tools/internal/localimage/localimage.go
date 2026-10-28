@@ -38,13 +38,8 @@ type Config struct {
 		Name string `json:"name"`
 		Path string `json:"path"`
 	} `json:"model"`
-	// Animation is how stickeranim draws a sprite sheet: "frames" (the
-	// default: one edit of the sticker per frame, laid out as the sheet)
-	// or "sheets" (the whole sheet in one picture, as the hosted model
-	// does — for a model that can keep twelve poses in order).
-	Animation string `json:"animation,omitempty"`
-	path      string
-	raw       map[string]json.RawMessage
+	path string
+	raw  map[string]json.RawMessage
 }
 
 // Load reads the config.
@@ -85,13 +80,13 @@ func (c *Config) ModelID(quality string) string {
 	delete(model, "path")
 	var qualities map[string]json.RawMessage
 	json.Unmarshal(c.raw["qualities"], &qualities)
-	parts, _ := json.Marshal([]any{adaptVersion, model, qualities[quality], c.raw["references"], c.raw["matte"], c.raw["inpaint"], c.FrameByFrame()})
+	// The last entry was whether sprite sheets were drawn a frame at a
+	// time (always, by default); it stays so the IDs, and with them the
+	// fingerprints of art drawn locally, do not change.
+	parts, _ := json.Marshal([]any{adaptVersion, model, qualities[quality], c.raw["references"], c.raw["matte"], c.raw["inpaint"], true})
 	h := sha256.Sum256(parts)
 	return "local:" + c.Model.Name + ":" + hex.EncodeToString(h[:])[:10]
 }
-
-// FrameByFrame reports whether sprite sheets are drawn a frame at a time.
-func (c *Config) FrameByFrame() bool { return c.Animation != "sheets" }
 
 func (c *Config) url() string { return "http://" + c.Listen }
 

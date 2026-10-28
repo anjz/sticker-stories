@@ -888,6 +888,11 @@ func TestWordsThatPutACharacterSomewhereNeedAMove(t *testing.T) {
 	if w := warns(withText(" {fox:hop} Fox sat by the pond.", " {fox:hop} Zorro se sentó junto a la charca.")); strings.Contains(w, "puts fox") {
 		t.Errorf("no edge, and the fox's stage is not the pond: %s", w)
 	}
+	// By someone at the pond, it is at the pond too.
+	if w := pondWarns(withText(" {rabbit:go to pond} Rabbit went. {fox:go to rabbit} Fox sat by the pond.",
+		" {rabbit:go to pond} Conejo fue. {fox:go to rabbit} Zorro se sentó junto a la charca.")); strings.Contains(w, "puts fox") {
+		t.Errorf("beside the rabbit at the pond: %s", w)
+	}
 	if cues, _, errs := ParseCues("{crab:go to rock backwards} a"); len(errs) != 0 || !cues[0].Backwards || cues[0].Target != "rock" {
 		t.Fatalf("backwards parsed wrong: %+v %v", cues, errs)
 	}

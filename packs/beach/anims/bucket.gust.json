@@ -1,0 +1,64 @@
+{
+  "id": "gust",
+  "sticker": "bucket",
+  "kind": "action",
+  "description": "a gust of wind blows a puff of sand off the bucket's rim, and the bucket gives a tiny shudder.",
+  "stickerBox": {
+    "x": 0.25911,
+    "y": 0.20052,
+    "width": 0.48047,
+    "height": 0.59896
+  },
+  "particles": [
+    {
+      "frame": 1,
+      "effect": "dust-puff",
+      "x": 0.5,
+      "y": 0.43,
+      "intensity": 0.3
+    }
+  ],
+  "puppet": {
+    "rig": "anims/bucket.rig.json",
+    "keys": [
+      {
+        "hold": 0.2
+      },
+      {
+        "hold": 0.09,
+        "bones": {
+          "tipR": {
+            "r": 0.8
+          }
+        }
+      },
+      {
+        "hold": 0.09,
+        "bones": {
+          "tip": {
+            "r": -0.8
+          }
+        }
+      },
+      {
+        "hold": 0.09,
+        "bones": {
+          "tipR": {
+            "r": 0.5
+          }
+        }
+      },
+      {
+        "hold": 0.1,
+        "bones": {
+          "tip": {
+            "r": -0.3
+          }
+        }
+      },
+      {
+        "hold": 0.6
+      }
+    ]
+  }
+}

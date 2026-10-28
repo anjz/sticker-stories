@@ -107,16 +107,16 @@
       "description": "the beach ball rolls along to the left, turning over and over, then rocks to a stop.",
       "loop": {
         "from": 1,
-        "to": 4
+        "to": 8
       },
       "facing": "left",
-      "stride": 0.9,
+      "stride": 2.89,
       "keys": [
         {
           "hold": 0.1
         },
         {
-          "hold": 0.15,
+          "hold": 0.225,
           "ease": "linear",
           "bones": {
             "spin": {
@@ -125,34 +125,91 @@
           }
         },
         {
-          "hold": 0.15,
+          "hold": 0.225,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": -45
+            },
+            "root": {
+              "y": 3.0
+            }
+          }
+        },
+        {
+          "hold": 0.225,
           "ease": "linear",
           "bones": {
             "spin": {
               "r": -90
+            },
+            "root": {
+              "y": 3.0
             }
           }
         },
         {
-          "hold": 0.15,
+          "hold": 0.225,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": -135
+            },
+            "root": {
+              "y": 4.0
+            }
+          }
+        },
+        {
+          "hold": 0.225,
           "ease": "linear",
           "bones": {
             "spin": {
               "r": -180
+            },
+            "root": {
+              "y": 3.0
             }
           }
         },
         {
-          "hold": 0.15,
+          "hold": 0.225,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": -225
+            },
+            "root": {
+              "y": 5.0
+            }
+          }
+        },
+        {
+          "hold": 0.225,
           "ease": "linear",
           "bones": {
             "spin": {
               "r": -270
+            },
+            "root": {
+              "y": 3.0
             }
           }
         },
         {
-          "hold": 0.3,
+          "hold": 0.225,
+          "ease": "linear",
+          "bones": {
+            "spin": {
+              "r": -315
+            },
+            "root": {
+              "y": 2.0
+            }
+          }
+        },
+        {
+          "hold": 0.45,
           "ease": "out",
           "bones": {
             "spin": {

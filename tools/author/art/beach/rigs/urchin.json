@@ -251,8 +251,7 @@
           "part": "eyeSad",
           "x": 330,
           "y": 394,
-          "scale": 0.31,
-          "flip": true
+          "scale": 0.31
         },
         "cry": {
           "part": "eyeCry",
@@ -575,89 +574,11 @@
       "id": "creep",
       "kind": "move",
       "description": "the sea urchin creeps slowly along to the left on its tiny tube feet, its spines swaying, then stops.",
-      "loop": {
-        "from": 1,
-        "to": 4
-      },
       "facing": "left",
-      "stride": 0.25,
-      "keys": [
-        {
-          "hold": 0.1
-        },
-        {
-          "hold": 0.17,
-          "bones": {
-            "belly": {
-              "sx": 1.04,
-              "sy": 0.96
-            },
-            "spines": {
-              "r": -3
-            },
-            "face": {
-              "x": -3
-            }
-          }
-        },
-        {
-          "hold": 0.17,
-          "bones": {
-            "belly": {
-              "sx": 0.98,
-              "sy": 1.02
-            },
-            "spines": {
-              "r": 0
-            },
-            "root": {
-              "y": -3
-            }
-          }
-        },
-        {
-          "hold": 0.17,
-          "bones": {
-            "belly": {
-              "sx": 1.04,
-              "sy": 0.96
-            },
-            "spines": {
-              "r": 3
-            },
-            "face": {
-              "x": -3
-            }
-          }
-        },
-        {
-          "hold": 0.17,
-          "bones": {
-            "belly": {
-              "sx": 0.98,
-              "sy": 1.02
-            },
-            "spines": {
-              "r": 0
-            },
-            "root": {
-              "y": -3
-            }
-          }
-        },
-        {
-          "hold": 0.2,
-          "bones": {
-            "belly": {
-              "sy": 0.97,
-              "sx": 1.02
-            }
-          }
-        },
-        {
-          "hold": 0.3
-        }
-      ]
+      "stride": 0.15,
+      "gait": {
+        "style": "urchin.creep"
+      }
     },
     {
       "id": "bristle",

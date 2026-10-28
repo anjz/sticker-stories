@@ -9,7 +9,7 @@
 #   "pyobjc-framework-Quartz",
 # ]
 # ///
-"""Local image server for the art tools (stickerart, stickeranim, uiart).
+"""Local image server for the art tools (stickerart, stickerrig, uiart).
 
 Speaks the subset of the OpenAI Images API the tools use —
 POST /v1/images/generations (JSON) and POST /v1/images/edits (multipart:
@@ -276,8 +276,8 @@ def matte(img, bg, tol):
         alpha = subject_ff.astype(np.float32)
         alpha = ndimage.gaussian_filter(alpha, 0.7)
     else:
-        # Whatever Vision dropped (a fern beside the stump, a frame of a
-        # sheet) but the flood fill says is drawn: add it back.
+        # Whatever Vision dropped (a fern beside the stump) but the flood
+        # fill says is drawn: add it back.
         lab2, n2 = ndimage.label(subject_ff)
         if n2:
             idx = np.arange(1, n2 + 1)
