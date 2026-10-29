@@ -1116,6 +1116,62 @@
       }
     },
     {
+      "id": "foreLB",
+      "bone": "elbowL",
+      "default": "none",
+      "attachments": {
+        "clap": {
+          "part": "foreRelax",
+          "x": 221.52,
+          "y": 390.18,
+          "w": 42.57,
+          "h": 107.25,
+          "rotate": 22.1,
+          "flip": true
+        },
+        "grip": {
+          "part": "foreGrip",
+          "x": 224.29,
+          "y": 390.63,
+          "w": 37.62,
+          "h": 103.95,
+          "rotate": 27.8
+        },
+        "hold": {
+          "part": "foreGripSolid",
+          "x": 224.29,
+          "y": 390.63,
+          "w": 37.62,
+          "h": 103.95,
+          "rotate": 27.8
+        },
+        "point": {
+          "part": "forePoint",
+          "x": 221.63,
+          "y": 388.85,
+          "w": 37.95,
+          "h": 108.9,
+          "rotate": 31.9
+        },
+        "relax": {
+          "part": "foreRelax",
+          "x": 222.02,
+          "y": 390.38,
+          "w": 42.57,
+          "h": 107.25,
+          "rotate": 31.9
+        },
+        "wave": {
+          "part": "foreWave",
+          "x": 213.24,
+          "y": 387.88,
+          "w": 54.12,
+          "h": 108.24,
+          "rotate": 31.1
+        }
+      }
+    },
+    {
       "id": "boardCarry",
       "bone": "body",
       "default": "none",
@@ -1127,6 +1183,31 @@
           "w": 140.76,
           "h": 452.09,
           "rotate": -80
+        }
+      }
+    },
+    {
+      "id": "upperRF",
+      "bone": "armR",
+      "default": "none",
+      "attachments": {
+        "arm": {
+          "part": "upperArm",
+          "x": 399,
+          "y": 264.7,
+          "w": 44.2,
+          "h": 143.2,
+          "rotate": -88.8,
+          "flip": true
+        },
+        "free": {
+          "part": "upperArm",
+          "x": 385.8,
+          "y": 285.19,
+          "w": 44.2,
+          "h": 103.02,
+          "rotate": -87.6,
+          "flip": true
         }
       }
     },

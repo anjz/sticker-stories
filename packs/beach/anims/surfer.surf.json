@@ -2,7 +2,7 @@
   "id": "surf",
   "sticker": "surfer",
   "kind": "move",
-  "description": "the surfer boy rides his surfboard along to the left, crouched with his arms out for balance, bobbing over the waves.",
+  "description": "the surfer boy rides his surfboard in on a wave, crouched with his arms out for balance, then steps off and tucks it under his arm.",
   "stickerBox": {
     "x": 0.26302,
     "y": 0.13932,
@@ -59,7 +59,7 @@
           },
           "body": {
             "r": -3,
-            "y": -4.2
+            "y": -14
           },
           "elbowL": {
             "r": 14.5
@@ -73,20 +73,21 @@
             "r": -3
           },
           "kneeL": {
-            "r": -80.5
+            "r": -70
           },
           "kneeR": {
-            "r": 76
+            "r": -58
           },
           "legL": {
-            "r": 41,
-            "y": -4.2
+            "r": 35,
+            "y": -14
           },
           "legR": {
-            "r": -40.7,
-            "y": -4.2
+            "r": 12,
+            "y": -14
           },
           "root": {
+            "r": 6,
             "y": -3
           }
         },
@@ -114,7 +115,7 @@
           },
           "body": {
             "r": -6,
-            "y": -0.8
+            "y": -13.3
           },
           "elbowL": {
             "r": 16.5
@@ -128,20 +129,21 @@
             "r": -3
           },
           "kneeL": {
-            "r": -83.8
+            "r": -70.8
           },
           "kneeR": {
-            "r": 79.2
+            "r": -58.6
           },
           "legL": {
-            "r": 43,
-            "y": -0.8
+            "r": 35.8,
+            "y": -13.3
           },
           "legR": {
-            "r": -42.4,
-            "y": -0.8
+            "r": 12.6,
+            "y": -13.3
           },
           "root": {
+            "r": 6,
             "y": 5
           }
         },
@@ -170,7 +172,7 @@
           },
           "body": {
             "r": -3,
-            "y": -4.2
+            "y": -14
           },
           "elbowL": {
             "r": 14.5
@@ -184,20 +186,21 @@
             "r": -3
           },
           "kneeL": {
-            "r": -80.5
+            "r": -70
           },
           "kneeR": {
-            "r": 76
+            "r": -58
           },
           "legL": {
-            "r": 41,
-            "y": -4.2
+            "r": 35,
+            "y": -14
           },
           "legR": {
-            "r": -40.7,
-            "y": -4.2
+            "r": 12,
+            "y": -14
           },
           "root": {
+            "r": 6,
             "y": -3
           }
         },
@@ -225,7 +228,7 @@
           },
           "body": {
             "r": -6,
-            "y": -0.8
+            "y": -13.3
           },
           "elbowL": {
             "r": 16.5
@@ -239,20 +242,21 @@
             "r": -3
           },
           "kneeL": {
-            "r": -83.8
+            "r": -70.8
           },
           "kneeR": {
-            "r": 79.2
+            "r": -58.6
           },
           "legL": {
-            "r": 43,
-            "y": -0.8
+            "r": 35.8,
+            "y": -13.3
           },
           "legR": {
-            "r": -42.4,
-            "y": -0.8
+            "r": 12.6,
+            "y": -13.3
           },
           "root": {
+            "r": 6,
             "y": 5
           }
         },
@@ -278,7 +282,7 @@
           },
           "body": {
             "r": -3,
-            "y": -2.9
+            "y": -13.8
           },
           "elbowL": {
             "r": 12.5
@@ -292,18 +296,21 @@
             "r": -2
           },
           "kneeL": {
-            "r": -81.8
+            "r": -70.3
           },
           "kneeR": {
-            "r": 77.2
+            "r": -58.2
           },
           "legL": {
-            "r": 41.8,
-            "y": -2.9
+            "r": 35.3,
+            "y": -13.8
           },
           "legR": {
-            "r": -41.3,
-            "y": -2.9
+            "r": 12.2,
+            "y": -13.8
+          },
+          "root": {
+            "r": 6
           }
         },
         "slots": {
@@ -317,7 +324,28 @@
         }
       },
       {
-        "hold": 0.3
+        "hold": 0.3,
+        "bones": {
+          "armR": {
+            "r": 78
+          },
+          "elbowR": {
+            "r": 62,
+            "x": -29.1,
+            "y": 1
+          }
+        },
+        "slots": {
+          "board": "none",
+          "boardCarry": "carry",
+          "foreL": "none",
+          "foreLB": "relax",
+          "foreR": "none",
+          "foreRF": "grip",
+          "shinR": "step",
+          "upperR": "none",
+          "upperRF": "free"
+        }
       }
     ]
   }
