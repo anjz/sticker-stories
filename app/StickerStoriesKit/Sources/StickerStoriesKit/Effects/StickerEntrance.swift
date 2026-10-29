@@ -297,14 +297,23 @@ public struct StageMove: Equatable, Sendable {
     /// surfer stepping off his board): played before it sets off another
     /// way (`StageDirector`).
     public var tail: TimeInterval
+    /// The way it faces on screen whichever way it goes (the surfer on his
+    /// board: the way the waves roll); nil to face the way it goes.
+    public var faces: Facing?
+    /// Another of its moves played while it rests where this way keeps it
+    /// (`stays`): the surfer sits on his board waiting for a wave
+    /// (`paddle`'s `wait`), never paddling on the spot.
+    public var rest: String?
 
     public init(
         id: String = "", cycle: TimeInterval? = nil, stride: Double = 0, hops: Bool = false, flies: Bool = false,
         hovers: Bool = false, on: [String] = [], stays: Bool = false, waterline: Double = 0, facing: Facing? = nil,
-        seconds: TimeInterval = 0, away: String? = nil, tail: TimeInterval = 0
+        seconds: TimeInterval = 0, away: String? = nil, tail: TimeInterval = 0, faces: Facing? = nil, rest: String? = nil
     ) {
         self.away = away
         self.tail = tail
+        self.faces = faces
+        self.rest = rest
         self.id = id
         self.cycle = cycle
         self.stride = stride

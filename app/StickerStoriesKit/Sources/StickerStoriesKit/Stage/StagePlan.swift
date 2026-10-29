@@ -121,6 +121,9 @@ public struct StageLeg: Equatable, Sendable {
     public var away: String?
     /// The move's loop goes on once it is there (`StageMove.stays`).
     public var stays: Bool
+    /// The move played instead once it is there and stays
+    /// (`StageMove.rest`): the surfer sitting on his board.
+    public var rest: String?
     /// A flyer that cannot hover, left in the air: from its arrival it
     /// keeps flying a slow loop round its spot until its next leg.
     public var circling: Circling?
@@ -436,13 +439,17 @@ public struct StagePlan: Equatable, Sendable {
     /// Every move whose frames the plan plays (each leg's, and the one it
     /// plays going away, `StageLeg.away`): what to load before it plays.
     public var movesPlayed: Set<String> {
-        Set(legs.filter(\.travels).flatMap { [$0.move, $0.away].compactMap { $0 } })
+        Set(legs.filter(\.travels).flatMap { [$0.move, $0.away, $0.stays ? $0.rest : nil].compactMap { $0 } })
     }
 
     /// The move whose frames play at `time`, if any: the latest leg's, on
     /// its way or settling (or going on, for one that stays).
     public func travel(at time: TimeInterval) -> StageTravel? {
         guard let leg = legs.last(where: { $0.at <= time }), leg.travels else { return nil }
+        // Resting where it stays, its `rest` move from its first frame.
+        if time >= leg.end, leg.stays, let rest = leg.rest {
+            return StageTravel(at: leg.end, duration: 0, move: rest, stays: true)
+        }
         // Going away its `away` move; there, its own again.
         let move = time < leg.end ? leg.away ?? leg.move : leg.move
         return StageTravel(at: leg.at, duration: leg.duration, move: move, stays: leg.stays, rate: leg.rate)

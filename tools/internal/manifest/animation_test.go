@@ -245,7 +245,10 @@ func TestActionOnFacesAndMoveAway(t *testing.T) {
 		}
 		return m, dir
 	}
-	m, dir := setup(t, func(a *StickerAnimation) { a.On, a.Faces = []string{"sea"}, "right" }, nil)
+	m, dir := setup(t, func(a *StickerAnimation) {
+		a.On, a.Faces = []string{"sea"}, "right"
+		a.Effects = []AnimationEffect{{Frame: 1, Effect: "surf-wave"}}
+	}, func(a *StickerAnimation) { a.Faces, a.Rest = "right", "paddle-out" })
 	if errs := m.Validate(dir); len(errs) != 0 {
 		t.Fatalf("an action done in the sea facing right, and a paddle that paddles out, rejected: %v", errs)
 	}
@@ -256,7 +259,12 @@ func TestActionOnFacesAndMoveAway(t *testing.T) {
 	}{
 		{"an action on no feature", func(a *StickerAnimation) { a.On = []string{"moon"} }, nil, `on: "moon" is not a feature`},
 		{"faces up", func(a *StickerAnimation) { a.Faces = "up" }, nil, "faces must be left or right"},
-		{"faces on a move", nil, func(a *StickerAnimation) { a.Faces = "right" }, "faces belongs to an action"},
+		{"faces up on a move", nil, func(a *StickerAnimation) { a.Faces = "up" }, "faces must be left or right"},
+		{"rest on an action", func(a *StickerAnimation) { a.Rest = "paddle" }, nil, "belong to a move"},
+		{"rest without stays", nil, func(a *StickerAnimation) { a.Stays, a.Rest = false, "paddle-out" }, "rest needs stays"},
+		{"rest to no move", nil, func(a *StickerAnimation) { a.Rest = "sit" }, `rest: "sit" is not another looping move`},
+		{"an effect a frame cannot start", func(a *StickerAnimation) { a.Effects = []AnimationEffect{{Frame: 1, Effect: "hop"}} }, nil, `effect "hop" must be one of surf-wave`},
+		{"an effect past the frames", func(a *StickerAnimation) { a.Effects = []AnimationEffect{{Frame: 40, Effect: "surf-wave"}} }, nil, "frame 40 is not one of"},
 		{"away on an action", func(a *StickerAnimation) { a.Away = "paddle" }, nil, "belong to a move"},
 		{"away to no move", nil, func(a *StickerAnimation) { a.Away = "swim" }, `away: "swim" is not another looping move`},
 		{"away to itself", nil, func(a *StickerAnimation) { a.Away = "paddle" }, "must be another move"},

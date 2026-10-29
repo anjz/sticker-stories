@@ -251,7 +251,7 @@ final class CanvasScene: SKScene {
         liveAnimations.filter { $0.kind == .action }.map { ($0.liveKey, $0.frames) }, uniquingKeysWith: { a, _ in a })
     /// The way each action faces on screen while it plays (`faces`).
     private lazy var actionFaces: [LiveAnimationKey: StageMove.Facing] = Dictionary(
-        liveAnimations.compactMap { a in a.faces.map { (a.liveKey, $0) } }, uniquingKeysWith: { a, _ in a })
+        liveAnimations.filter { $0.kind == .action }.compactMap { a in a.faces.map { (a.liveKey, $0) } }, uniquingKeysWith: { a, _ in a })
     /// When each sticker's puppet began taking over at rest, this story.
     private var idleBegan: [UUID: TimeInterval] = [:]
     /// The current story's live animations, loaded when play starts and let
@@ -2395,6 +2395,12 @@ final class CanvasScene: SKScene {
             if let (loaded, state, tween) = shown {
                 if let frame = node.showLive(loaded, state: state, tween: tween, wings: wings, faceOver: faceOver) {
                     session.emitters.fire(loaded.animation, frame: frame, on: node)
+                    // The wave rising behind him as he stands up on his board.
+                    for cue in loaded.animation.effects where cue.frame == frame
+                        && !session.runner.active.contains(where: { $0.name == cue.effect && $0.target == node.instanceID && $0.stopTime == nil })
+                    {
+                        session.runner.play(cue.effect, on: node.instanceID, options: EffectOptions(intensity: cue.intensity ?? EffectOptions.defaultIntensity))
+                    }
                 }
             } else if node.liveKey != nil || node.puppetNode != nil {
                 node.parkLive()

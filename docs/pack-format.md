@@ -264,16 +264,18 @@ never letterboxes:
     `id` the sticker already uses, no `puppet`,
     a `stickerBox` outside the unit square, a `kind` other than `action`/`move`,
     a second move for one sticker without a `loop`, a `pause` on a move
-    or a `perched`, `place`, `faces` or `props` on a move, `props` on an action without a `pause`, a prop named otherwise than lowercase words joined by hyphens or outside −2–3 of the image, a `place` naming no feature, an area `facing` other than left/right or on a stage area, a `pause` outside the middle frames or without `shows`, a `loop`, `facing`,
-    `stride`, `hops`, `flies`, `hovers`, `stays`, `waterline` or `away`
-    on an action, any of them or `on` on a move without a loop, a loop
+    or a `perched`, `place` or `props` on a move, `props` on an action without a `pause`, a prop named otherwise than lowercase words joined by hyphens or outside −2–3 of the image, a `place` naming no feature, an area `facing` other than left/right or on a stage area, a `pause` outside the middle frames or without `shows`, a `loop`, `facing`,
+    `stride`, `hops`, `flies`, `hovers`, `stays`, `waterline`, `away` or `rest`
+    on an action, any of them or `on` or `faces` on a move without a loop, a loop
     outside the keys or starting on key 0, a
     looping move without `facing` left/right or with a `stride` outside
     0–5, `hops` with `flies`, `hovers` without `flies`, `stays` or
     `waterline` without `on`, a `waterline` outside 0–1 (1 excluded), an
-    `on` (a move's or an action's) naming no feature, an `away` that is
-    not another looping move of the same sticker, a `faces` other than
-    `left`/`right` are
+    `on` (a move's or an action's) naming no feature, an `away` or a
+    `rest` that is not another looping move of the same sticker, a `rest`
+    without `stays`, a `faces` other than `left`/`right`, an `effects`
+    entry with an effect other than `surf-wave`, a frame outside the keys
+    or an intensity outside 0–1 are
     errors); the app checks the file exists and reads it **leniently**
     (an undecodable sidecar is skipped with a log, never fatal; a pause
     or loop it cannot use is dropped). The `puppet` is checked against its
@@ -670,7 +672,7 @@ the keys of the sticker's puppet made by `tools/author/stickerrig`
 | `props` | actions with a `pause` only, optional: what the character holds out in the paused frame, by name, and where it is then — `{ "kite": { "x": 0.204, "y": -0.618 } }`, fractions of the sticker image with a top-left origin like `stickerBox`, anywhere from −2 to 3 (the girl's kite flies far above her). While the action is held, a story can send a flyer to it (`"prop"` on a move trigger, `docs/effects.md`, "Movement"); `stickerrig` writes it from the rig's `props` |
 | `place` | actions only, optional: feature ids the action happens at (the woodpecker's tap: `["trunks"]`). Before it plays, the app takes the character to the nearest spot on one (its front on a `facing` area, facing it) unless it is there already — wherever a child put it — and the action waits until it arrives; storycheck errors on a story that took it elsewhere first |
 | `perched` | actions only, optional: `true` when the character sits on something in it (the butterfly folding its wings to rest, the owl dozing off); stories land a flyer before they play it, never in a feature marked `air` (checked by storycheck; the app ignores it) |
-| `faces` | actions only, optional: `left` or `right`, the way the character faces on screen while the action plays (the surfer riding a wave: `right`, the way the wave rolls). The app turns the whole puppet to it as the action starts — mirroring it as needed, whatever way it faced — and back as it ends; never the head alone (`docs/stage3d.md`, "In the water") |
+| `faces` | actions and moves with a loop, optional: `left` or `right`, the way the character faces on screen while the action plays (the surfer riding a wave: `right`, the way the wave rolls). The app turns the whole puppet to it as the action starts — mirroring it as needed, whatever way it faced — and back as it ends; never the head alone (`docs/stage3d.md`, "In the water"). On a move, the way it faces whichever way the move takes it, there and resting (the surfer on his board faces the way the waves roll, drifting the other way if he must) |
 | `idle` | actions only, optional: `true` for a small, gentle action (a look around, an ear flick, a sniff) the app plays now and then on its own while a story leaves the character be — never while it moves, holds a pose, sleeps or hovers — so everyone on the stage looks alive (`docs/stage3d.md`, "Alive at rest") |
 | `pause` | actions only, optional: `{ "frame": 11, "shows": "the snail tucked inside its shell" }` — the 0-based key the action can stop on (not the first or last) and what it shows, for story authors |
 | `loop` | moves only, optional: `{ "from": 1, "to": 8 }` — the keys (0-based, both included; after key 0, the rest pose) repeated while the character travels; the keys after it bring it to rest. Without it the move plays once (a sprout) |
@@ -681,9 +683,11 @@ the keys of the sticker's puppet made by `tools/author/stickerrig`
 | `hovers` | moves with `flies`, optional: `true` when the flight can hold still in the air (a bee, a butterfly): resting in the air, it stays put with a gentle bob, its loop going. Without it the character cannot hover (a bird, an owl): the app keeps it flying a slow loop round its spot, turning as it goes, for as long as the story leaves it in the air (`docs/stage3d.md`, "In the air") |
 | `on` | moves with a loop, optional: feature ids (`features` above) a story that brings the character in this way lands it on, in order of preference — the duckling swimming in lands on the pond; empty for its `stage`'s. **Actions**, optional: the places the action is done in (the surfer riding a wave: `["sea"]`). While a move that `stays` keeps the character in water, an action whose `on` does not name that water does not play its body: the move's loop goes on and the action shows only its face — the eye, mouth and brow attachments its keys swap, over the move's pose (the surfer laughs as he paddles on). One whose `on` names it plays as usual; out of the water every action does (`docs/stage3d.md`, "In the water") |
 | `away` | moves with a loop, optional: the id of another of the sticker's looping moves, played instead while a leg this way goes away from the viewer — deeper into the scene more than across it — showing the character's back (`paddle`'s `"paddle-out"`). Resting there, or coming back, it plays this move |
+| `rest` | moves with `stays`, optional: the id of another of the sticker's looping moves, played instead of this one's loop while the character rests where this way keeps it — the surfer sits on his board waiting for a wave rather than paddling on the spot (`paddle`'s `"wait"`). It faces as that move says |
 | `stays` | moves with a loop and `on`, optional: `true` when the character stays in its element once this way has taken it into one of `on` — the surfer out on the waves, a pelican afloat: the app keeps the loop going where it is instead of settling into the sticker pose, which would stand it on the water (`docs/effects.md`, "Movement"). A perch place in its `on` (bark) is one the character takes to that way whenever it gets there, by any way, and keeps it while there: the woodpecker's `cling` (`docs/stage3d.md`, "Moves") |
 | `waterline` | moves with a loop and `on`, optional: how deep the character floats while it is in water among `on` (a feature `water` in the space, "Space"), as a fraction of its drawing's height from its feet — the duckling swimming, `0.3`: its feet and the bottom of its belly are under water. Whatever it does there (swims, quacks, naps), the app hides that part of it and its shadow, sinking it in as it enters and out as it leaves, and draws a ripple where it meets the water (`docs/stage3d.md`, "In the water"). Packs with a space only |
 | `particles` | optional: bursts the keys fire as they first come on show — `[{ "frame": 6, "effect": "dust-puff", "x": 0.5, "y": 0.86, "intensity"?: 0.5, "color"?: "#RRGGBB" }]`: the 0-based key, a particle effect (`dust-puff`, `spray`, `sparks` or `bubble-puff`, `docs/effects.md`), the point of the **sticker image** it comes from (fractions, top-left origin like `stickerBox`; −0.5–1.5 so a flame's tip can be just outside), and optional intensity (0–1) and colour. A landing's dust, a touchdown, a splash: the art never draws particles itself (`docs/pack-art.md`). The physical ones follow the pack's `world` ("World"); bubbles rise and play wherever the animation plays — an action, an entrance, a move — but not under Reduce Motion or calm mode, where live animations don't play |
+| `effects` | optional: sticker effects the keys start on the character as they first come on show — `[{ "frame": 5, "effect": "surf-wave", "intensity"?: 0.7 }]`: the 0-based key and the effect (only `surf-wave`, `docs/effects.md`: the wave rising behind the surfer as he stands up on his board, so a ride always has its wave), with an optional intensity (0–1). One already running on the character (a story's own `{surfer:surf-wave}`) is not started again; on land the wave draws nothing |
 | `puppet` | required: the animation as keyframes for the sticker's puppet ("Puppets" below) — `{ "rig": "anims/owl.rig.json", "keys": [...] }`, at least two keys. A move that `flies` can name its `"wings"?: ["wingL", "wingR"]`: bones of the rig its flight keeps going — with every bone hanging on them and their slots — whatever else the character does while it is in the air (it talks, laughs or holds a pose and its wings beat on) |
 
 An action's first and last keys (a move's first) are the puppet at rest,
@@ -787,7 +791,8 @@ same device preference.
   no bump); 2026-10-26: sprite sheets removed — a sidecar's `puppet` is
   required and `sheet`, `frame`, `columns`, `count`, `rest`, `hold` and
   the puppet's own `pause`, `loop` and `stride` are gone (no pack used
-  them; no bump).
+  them; no bump); 2026-10-29: `faces` on looping moves, and optional
+  sidecar `rest` (moves) and `effects` (additive, no bump).
 - Any schema change must update this document, the Go validator
   (`tools/internal/manifest`), and the Swift decoder in the **same commit**.
 - `version` (pack content revision) is bumped whenever any asset or story in a

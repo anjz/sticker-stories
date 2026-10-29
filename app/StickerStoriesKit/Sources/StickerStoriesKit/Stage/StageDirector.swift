@@ -1337,7 +1337,7 @@ public enum StageDirector {
             let left = leaveGroup(i)
             let wasBeside = states[i].beside
             states[i].beside = nil
-            states[i].by = go.by
+            states[i].by = go.by ?? placeWay(go, for: i)
             states[i].backwards = go.backwards
             defer { states[i].backwards = false }
             let me = states[i].actor
@@ -1764,6 +1764,17 @@ public enum StageDirector {
             }
         }
 
+        /// The way it gets into the water where an action of its happens
+        /// (`PlacementPlanner`; the surfer riding a wave: paddling out to
+        /// the sea), when its usual way does not go in; nil otherwise.
+        func placeWay(_ go: GoTrigger, for i: Int) -> String? {
+            guard go.unlessThere, go.kind == .to, let place = go.target,
+                world.grounds.contains(where: { $0.place == place && $0.water }),
+                StageMove.pick(states[i].actor.moves, by: nil)?.on.contains(place) != true
+            else { return nil }
+            return states[i].actor.moves.first { $0.cycle != nil && !$0.flies && $0.on.contains(place) }?.id
+        }
+
         /// Goes to `target` its way — through the water ways' rules: a way
         /// that belongs to the water only takes it about in it, walking the
         /// rest; a sticker that only gets about in water stays in it.
@@ -1859,7 +1870,7 @@ public enum StageDirector {
                 let me = states[i].actor
                 // A swim in too short to turn for faces the way it goes
                 // all the same: it never slides in backwards.
-                if swim.ways.isEmpty, let a = swim.path.first, let b = swim.path.last,
+                if swim.ways.isEmpty, let a = swim.path.first, let b = swim.path.last, StageMove.pick(me.moves, by: swim.move)?.faces == nil,
                     let art = StageMove.pick(me.moves, by: swim.move)?.facing, abs(world.screen(b).x - world.screen(a).x) > 0.5
                 {
                     swim.facingTo = (world.screen(b).x > world.screen(a).x) == (art == .right) ? 1 : -1
@@ -2117,10 +2128,18 @@ public enum StageDirector {
                 if ways.isEmpty, sign != facing { ways = [StageLeg.Way(k: 0, facing: facing)] }
                 facing = sign
             }
+            // A way that faces one way on screen (the surfer on his board:
+            // the way the waves roll) faces it whichever way it goes.
+            let way = StageMove.pick(me.moves, by: moveID)
+            if gait != .fade, moveID != nil, let fixed = way?.faces, let art = me.moves.first?.facing {
+                ways = []
+                facing = fixed == art ? 1 : -1
+            }
             var leg = StageLeg(
                 at: start, duration: duration, path: path, gait: gait, kind: kind, move: moveID,
                 facingFrom: states[i].pose.facing, facingTo: facing, support: target.support, rate: rate)
             leg.ways = ways
+            leg.rest = way?.rest.flatMap { id in me.moves.contains { $0.id == id } ? id : nil }
             // Mostly away from the viewer, deeper into the scene: the move
             // that shows its back, when its way has one.
             if gait != .fade, gait != .fly, let id = moveID, let a = path.first, let b = path.last,

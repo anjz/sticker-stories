@@ -62,8 +62,12 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     var away: String?
     /// The way an action faces on screen while it plays (riding a wave:
     /// right); the whole puppet is mirrored to it and back
-    /// (`StageActing.facing`).
+    /// (`StageActing.facing`). A move's: the way it faces whichever way it
+    /// goes (`StageMove.faces`).
     var faces: StageMove.Facing?
+    /// A move's other move played while it rests where it stays
+    /// (`StageMove.rest`).
+    var rest: String?
     /// How deep it floats in water among `on` (`StageMove.waterline`).
     var waterline: Double?
     var stays: Bool?
@@ -80,6 +84,9 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// Particle bursts the keys fire as they come on show (a landing's
     /// dust, a splash): stickers never draw particles themselves.
     var particles: [ParticleCue]
+    /// Sticker effects the keys start on the character as they come on
+    /// show (the wave behind a surfer standing up), unless one is running.
+    var effects: [EffectCue]
     /// The animation as keyframes for the sticker's puppet
     /// (`docs/pack-format.md`, "Puppets"), at least two.
     var puppet: Puppet
@@ -100,6 +107,12 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         var y: Double
     }
 
+    struct EffectCue: Decodable, Equatable {
+        var frame: Int
+        var effect: EffectName
+        var intensity: Double?
+    }
+
     struct ParticleCue: Decodable, Equatable {
         var frame: Int
         var effect: EffectName
@@ -111,7 +124,13 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
 
     private enum CodingKeys: String, CodingKey {
         case id, sticker, kind, stickerBox, pause, loop, facing, stride, hops, flies, hovers, on, stays, waterline,
-            place, idle, particles, puppet, away, faces, props
+            place, idle, particles, puppet, away, faces, props, rest, effects
+    }
+
+    /// An effect cue that decodes or is skipped, like a particle cue.
+    private struct LenientEffect: Decodable {
+        var cue: EffectCue?
+        init(from decoder: any Decoder) throws { cue = try? EffectCue(from: decoder) }
     }
 
     /// A particle cue that decodes or is skipped (an effect this build
@@ -141,7 +160,8 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         hovers = try? c.decodeIfPresent(Bool.self, forKey: .hovers)
         on = try? c.decodeIfPresent([String].self, forKey: .on)
         away = kind == .move ? (try? c.decodeIfPresent(String.self, forKey: .away)) ?? nil : nil
-        faces = kind == .action ? (try? c.decodeIfPresent(StageMove.Facing.self, forKey: .faces)) ?? nil : nil
+        faces = (try? c.decodeIfPresent(StageMove.Facing.self, forKey: .faces)) ?? nil
+        rest = kind == .move ? (try? c.decodeIfPresent(String.self, forKey: .rest)) ?? nil : nil
         stays = try? c.decodeIfPresent(Bool.self, forKey: .stays)
         waterline = try? c.decodeIfPresent(Double.self, forKey: .waterline)
         place = try? c.decodeIfPresent([String].self, forKey: .place)
@@ -150,6 +170,8 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         let cues = (try? c.decodeIfPresent([LenientCue].self, forKey: .particles)) ?? nil
         let frames = puppet.keys.count
         particles = (cues ?? []).compactMap(\.cue).filter { $0.effect.firesFromFrames && $0.frame >= 0 && $0.frame < frames }
+        let started = (try? c.decodeIfPresent([LenientEffect].self, forKey: .effects)) ?? nil
+        effects = (started ?? []).compactMap(\.cue).filter { $0.effect == .surfWave && $0.frame >= 0 && $0.frame < frames }
     }
 
     var key: String { "\(sticker).\(id)" }
@@ -176,7 +198,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
                 id: id, cycle: timing.loopDuration, stride: stride, hops: hops ?? false, flies: flies ?? false,
                 hovers: hovers ?? false, on: on ?? [], stays: stays ?? false,
                 waterline: min(max(waterline ?? 0, 0), 0.95), facing: facing, away: away,
-                tail: timing.loop.map { timing.holds.dropFirst($0.upperBound + 1).reduce(0, +) } ?? 0)
+                tail: timing.loop.map { timing.holds.dropFirst($0.upperBound + 1).reduce(0, +) } ?? 0, faces: faces, rest: rest)
         }
         return StageMove(id: id, seconds: timing.duration(.move(travel: 0)) ?? 0)
     }

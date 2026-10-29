@@ -415,7 +415,7 @@ func sidecar(sticker string, a animSpec, box manifest.UnitBox) manifest.StickerA
 		ID: a.ID, Sticker: sticker, Kind: a.Kind, Description: a.Description, StickerBox: box,
 		Pause: a.Pause, Perched: a.Perched, Idle: a.Idle, Place: a.Place, Loop: a.Loop, Facing: a.Facing, Stride: a.Stride,
 		Hops: a.Hops, Flies: a.Flies, Hovers: a.Hovers, On: a.On, Away: a.Away, Faces: a.Faces, Stays: a.Stays,
-		Waterline: a.Waterline, Particles: a.Particles,
+		Waterline: a.Waterline, Particles: a.Particles, Rest: a.Rest, Effects: a.Effects,
 		Puppet: &manifest.AnimationPuppet{Rig: "anims/" + sticker + ".rig.json", Keys: a.Keys, Wings: a.Wings},
 	}
 }

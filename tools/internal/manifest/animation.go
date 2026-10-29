@@ -96,9 +96,14 @@ type StickerAnimation struct {
 	Away string `json:"away,omitempty"`
 	// Faces is the way the character faces on screen while the action
 	// plays ("left" or "right"; riding a wave: right): the app mirrors the
-	// whole puppet as needed and turns it back after. Actions only;
-	// optional.
+	// whole puppet as needed and turns it back after. On a looping move,
+	// the way it faces whichever way the move takes it (the surfer on his
+	// board: the way the waves roll). Optional.
 	Faces string `json:"faces,omitempty"`
+	// Rest is another looping move of the sticker's, played while it
+	// rests where this way keeps it (Stays): the surfer sits on his board
+	// waiting for a wave instead of paddling on the spot. Optional.
+	Rest string `json:"rest,omitempty"`
 	// Stays says that once this way has taken the character into one of
 	// On (the surfer out on the waves), the loop keeps going where it is
 	// instead of settling into the sticker pose. Needs On.
@@ -113,6 +118,11 @@ type StickerAnimation struct {
 	// landing's dust, a splash — since stickers never draw particles
 	// themselves (docs/effects.md, "Particles"). Optional.
 	Particles []AnimationParticle `json:"particles,omitempty"`
+	// Effects are sticker effects the keys start on the character as they
+	// first come on show — the wave rising behind a surfer as he stands up
+	// (StartEffects); one already running on it is not started again.
+	// Optional.
+	Effects []AnimationEffect `json:"effects,omitempty"`
 	// Puppet is the animation: keyframes the app poses the sticker's
 	// puppet with (docs/pack-format.md, "Puppets"). Required.
 	Puppet *AnimationPuppet `json:"puppet,omitempty"`
@@ -132,6 +142,15 @@ type AnimationParticle struct {
 	Color     string   `json:"color,omitempty"`
 }
 
+// AnimationEffect is a sticker effect an animation starts: when Frame
+// (0-based) first shows, Effect on the character, at its Intensity (0–1,
+// default the effect's).
+type AnimationEffect struct {
+	Frame     int      `json:"frame"`
+	Effect    string   `json:"effect"`
+	Intensity *float64 `json:"intensity,omitempty"`
+}
+
 // AnimationPoint is a point of the sticker image, as fractions with a
 // top-left origin like StickerBox; it may lie well outside the image (a
 // kite flown high above the girl).
@@ -145,6 +164,10 @@ var propName = regexp.MustCompile(`^[a-z]+(-[a-z]+)*$`)
 
 // ParticleEffects are the effects an animation's frames may fire.
 var ParticleEffects = []string{"dust-puff", "spray", "sparks", "bubble-puff"}
+
+// StartEffects are the sticker effects an animation's frames may start on
+// the character (Effects).
+var StartEffects = []string{"surf-wave"}
 
 // Animation kinds.
 const (
@@ -227,11 +250,8 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	count := a.Frames()
 	switch a.EffectiveKind() {
 	case KindAction:
-		if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || a.Hovers || a.Stays || a.Waterline != 0 || a.Away != "" {
-			fail("loop, facing, stride, hops, flies, hovers, stays, waterline and away belong to a move, not an action")
-		}
-		if a.Faces != "" && a.Faces != "left" && a.Faces != "right" {
-			fail("faces must be left or right, got %q", a.Faces)
+		if a.Loop != nil || a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || a.Hovers || a.Stays || a.Waterline != 0 || a.Away != "" || a.Rest != "" {
+			fail("loop, facing, stride, hops, flies, hovers, stays, waterline, away and rest belong to a move, not an action")
 		}
 		if p := a.Pause; p != nil {
 			if p.Frame < 1 || p.Frame > count-2 {
@@ -255,9 +275,6 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	case KindMove:
 		if a.Pause != nil || a.Perched || a.Idle || len(a.Place) > 0 || len(a.Props) > 0 {
 			fail("pause, perched, idle, place and props belong to an action, not a move")
-		}
-		if a.Faces != "" {
-			fail("faces belongs to an action, not a move")
 		}
 		if l := a.Loop; l != nil {
 			if l.From < 0 || l.To < l.From || l.To >= count {
@@ -289,8 +306,14 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 			if a.Away != "" && a.Away == a.ID {
 				fail("away %q must be another move, not this one", a.Away)
 			}
-		} else if a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || a.Hovers || len(a.On) > 0 || a.Stays || a.Waterline != 0 || a.Away != "" {
-			fail("facing, stride, hops, flies, hovers, on, stays, waterline and away need a loop")
+			if a.Rest != "" && !a.Stays {
+				fail("rest needs stays: it is how the character rests where this way keeps it")
+			}
+			if a.Rest != "" && a.Rest == a.ID {
+				fail("rest %q must be another move, not this one", a.Rest)
+			}
+		} else if a.Facing != "" || a.Stride != 0 || a.Hops || a.Flies || a.Hovers || len(a.On) > 0 || a.Stays || a.Waterline != 0 || a.Away != "" || a.Rest != "" || a.Faces != "" {
+			fail("facing, faces, stride, hops, flies, hovers, on, stays, waterline, away and rest need a loop")
 		}
 	default:
 		fail("kind %q must be action or move", a.Kind)
@@ -298,8 +321,23 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	if b := a.StickerBox; b.Width <= 0 || b.Height <= 0 || b.X < 0 || b.Y < 0 || b.X+b.Width > 1.0001 || b.Y+b.Height > 1.0001 {
 		fail("stickerBox must be a non-empty box inside the unit square, got %+v", b)
 	}
+	if a.Faces != "" && a.Faces != "left" && a.Faces != "right" {
+		fail("faces must be left or right, got %q", a.Faces)
+	}
 	if a.Puppet != nil {
 		errs = append(errs, a.validatePuppet(dir)...)
+	}
+	for i, e := range a.Effects {
+		field := fmt.Sprintf("effects[%d]", i)
+		if e.Frame < 0 || e.Frame >= count {
+			fail("%s: frame %d is not one of the %d frames (0-based)", field, e.Frame, count)
+		}
+		if !slices.Contains(StartEffects, e.Effect) {
+			fail("%s: effect %q must be one of %s", field, e.Effect, strings.Join(StartEffects, ", "))
+		}
+		if e.Intensity != nil && (*e.Intensity < 0 || *e.Intensity > 1) {
+			fail("%s: intensity %g must be 0–1", field, *e.Intensity)
+		}
 	}
 	for i, p := range a.Particles {
 		field := fmt.Sprintf("particles[%d]", i)

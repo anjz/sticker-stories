@@ -333,6 +333,18 @@ at us (`StageLeg.away`, `StagePlan.travel`). From its back to the front
 it turns like any turn: a quick squash through edge-on round the moment
 it gets there (`StagePlan.sample`), never a cut.
 
+**On his board** (`StageMove.faces`, `StageMove.rest`). A move that
+`faces` a way on screen faces it whichever way it goes — the surfer
+paddling and riding faces the way the waves roll, drifting the other way
+if he must — and one with a `rest` move plays that one while it rests
+where it stays: the surfer sits on his board waiting for a wave rather
+than paddling on the spot (`StageLeg.rest`, `StagePlan.travel`). An
+action that happens in the water (its `place`: riding a wave) takes
+whoever is not there out to it by their water way first
+(`placeWay`): he paddles out, then rides. Its keys can start a sticker
+effect on him (`effects`): the wave rises behind him as he stands up,
+unless the story's own is running.
+
 **Acting over a move that goes on** (afloat on a move that stays, or
 aloft): the action's first and last keys — the sticker's still pose — are
 left out (`StageActing.overMove`): it blends from the move's pose straight

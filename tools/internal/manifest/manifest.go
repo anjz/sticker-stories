@@ -540,7 +540,7 @@ func (m *Manifest) Validate(dir string) []error {
 		checkImage(fmt.Sprintf("sticker %q image", st.ID), st.Image)
 		// Rule 12: live-animation sidecars exist and are valid.
 		loopingMoves := map[string]bool{}
-		var aways [][2]string
+		var aways, rests [][2]string
 		for j, rel := range st.Animations {
 			field := fmt.Sprintf("sticker %q animations[%d]", st.ID, j)
 			checkFile(field, rel)
@@ -579,6 +579,9 @@ func (m *Manifest) Validate(dir string) []error {
 				if anim.Away != "" {
 					aways = append(aways, [2]string{field, anim.Away})
 				}
+				if anim.Rest != "" {
+					rests = append(rests, [2]string{field, anim.Rest})
+				}
 			}
 			for _, f := range anim.On {
 				if _, ok := m.Features[f]; !ok {
@@ -595,10 +598,15 @@ func (m *Manifest) Validate(dir string) []error {
 				Props: slices.Sorted(maps.Keys(anim.Props)),
 			})
 		}
-		// A move's away is another looping move of the same sticker's.
+		// A move's away and rest are other looping moves of the same sticker's.
 		for _, a := range aways {
 			if !loopingMoves[a[1]] {
 				fail("%s: away: %q is not another looping move of sticker %q", a[0], a[1], st.ID)
+			}
+		}
+		for _, a := range rests {
+			if !loopingMoves[a[1]] {
+				fail("%s: rest: %q is not another looping move of sticker %q", a[0], a[1], st.ID)
 			}
 		}
 		// Rule 13: expression variants are images of the sticker; "normal"
