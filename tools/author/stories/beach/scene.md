@@ -30,8 +30,11 @@ island, no cave, no cliff to climb near us, no dunes, no beach huts,
 no trees, palms or grass on the beach; no path, steps, road or town; no
 people painted; no lifeguard tower; no sun, moon, stars or birds painted
 (the effects and the stickers bring them); no tide-line marks, no
-puddles. Nothing changes the picture's water level: never say the tide
-came in over the sand or the sea covered the castle on screen.
+puddles. Nothing changes the picture's water level for good: never say the tide
+came in over the sand or the sea covered the castle on screen. A single
+big wave can wash up the beach and back (`{x:wash}` on whom it reaches:
+the rock pool, a castle, someone's toes); a pool creature sent to the sea
+as it draws back rides it out.
 
 ## What the canvas effects can and cannot change
 
