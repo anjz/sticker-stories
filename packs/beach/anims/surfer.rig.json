@@ -869,6 +869,21 @@
       }
     },
     {
+      "id": "boardCarry",
+      "bone": "body",
+      "default": "none",
+      "attachments": {
+        "carry": {
+          "part": "board",
+          "x": 281.62,
+          "y": 191.96,
+          "w": 140.76,
+          "h": 452.09,
+          "rotate": -80
+        }
+      }
+    },
+    {
       "id": "boardFlat",
       "bone": "board",
       "default": "none",
@@ -1002,17 +1017,26 @@
       }
     },
     {
-      "id": "body",
-      "bone": "belly",
-      "default": "body",
+      "id": "shinR",
+      "bone": "kneeR",
+      "default": "shin",
       "attachments": {
-        "body": {
-          "part": "torso",
-          "x": 293.25,
-          "y": 300.86,
-          "w": 95.49,
-          "h": 154.28,
-          "rotate": -4
+        "shin": {
+          "part": "shinR",
+          "x": 363.92,
+          "y": 529.16,
+          "w": 66.96,
+          "h": 119.88,
+          "rotate": -6.5
+        },
+        "step": {
+          "part": "shinR",
+          "x": 340.92,
+          "y": 529.16,
+          "w": 66.96,
+          "h": 119.88,
+          "rotate": -6.5,
+          "flip": true
         }
       }
     },
@@ -1032,17 +1056,17 @@
       }
     },
     {
-      "id": "shinR",
-      "bone": "kneeR",
+      "id": "shinL",
+      "bone": "kneeL",
       "default": "shin",
       "attachments": {
         "shin": {
-          "part": "shinR",
-          "x": 363.92,
-          "y": 529.16,
-          "w": 66.96,
-          "h": 119.88,
-          "rotate": -6.5
+          "part": "shinL",
+          "x": 239.48,
+          "y": 520.64,
+          "w": 64.44,
+          "h": 119.52,
+          "rotate": 24.5
         }
       }
     },
@@ -1062,17 +1086,17 @@
       }
     },
     {
-      "id": "shinL",
-      "bone": "kneeL",
-      "default": "shin",
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
       "attachments": {
-        "shin": {
-          "part": "shinL",
-          "x": 239.48,
-          "y": 520.64,
-          "w": 64.44,
-          "h": 119.52,
-          "rotate": 24.5
+        "body": {
+          "part": "torso",
+          "x": 293.25,
+          "y": 300.86,
+          "w": 95.49,
+          "h": 154.28,
+          "rotate": -4
         }
       }
     },

@@ -156,32 +156,28 @@
       "at": [
         364,
         748
-      ],
-      "fadeTop": 0.16
+      ]
     },
     "thighR": {
       "sheet": "limbs",
       "at": [
         620,
         748
-      ],
-      "fadeTop": 0.16
+      ]
     },
     "shinL": {
       "sheet": "limbs",
       "at": [
         879,
         792
-      ],
-      "fadeTop": 0.24
+      ]
     },
     "shinR": {
       "sheet": "limbs",
       "at": [
         1199,
         790
-      ],
-      "fadeTop": 0.24
+      ]
     },
     "eyeL": {
       "sheet": "face",
@@ -582,6 +578,20 @@
       }
     },
     {
+      "id": "boardCarry",
+      "bone": "body",
+      "default": "none",
+      "attachments": {
+        "carry": {
+          "part": "board",
+          "x": 352,
+          "y": 418,
+          "scale": 0.552,
+          "rotate": -80
+        }
+      }
+    },
+    {
       "id": "boardFlat",
       "bone": "board",
       "default": "none",
@@ -707,17 +717,24 @@
       }
     },
     {
-      "id": "body",
-      "bone": "belly",
-      "default": "body",
+      "id": "shinR",
+      "bone": "kneeR",
+      "default": "shin",
       "attachments": {
-        "body": {
-          "part": "torso",
-          "x": 341,
-          "y": 378,
-          "scale": 0.355,
-          "scaleY": 1.06,
-          "rotate": -4
+        "shin": {
+          "part": "shinR",
+          "x": 397.4,
+          "y": 589.1,
+          "scale": 0.36,
+          "rotate": -6.5
+        },
+        "step": {
+          "part": "shinR",
+          "x": 374.4,
+          "y": 589.1,
+          "scale": 0.36,
+          "rotate": -6.5,
+          "flip": true
         }
       }
     },
@@ -737,16 +754,16 @@
       }
     },
     {
-      "id": "shinR",
-      "bone": "kneeR",
+      "id": "shinL",
+      "bone": "kneeL",
       "default": "shin",
       "attachments": {
         "shin": {
-          "part": "shinR",
-          "x": 397.4,
-          "y": 589.1,
+          "part": "shinL",
+          "x": 271.7,
+          "y": 580.4,
           "scale": 0.36,
-          "rotate": -6.5
+          "rotate": 24.5
         }
       }
     },
@@ -766,16 +783,17 @@
       }
     },
     {
-      "id": "shinL",
-      "bone": "kneeL",
-      "default": "shin",
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
       "attachments": {
-        "shin": {
-          "part": "shinL",
-          "x": 271.7,
-          "y": 580.4,
-          "scale": 0.36,
-          "rotate": 24.5
+        "body": {
+          "part": "torso",
+          "x": 341,
+          "y": 378,
+          "scale": 0.355,
+          "scaleY": 1.06,
+          "rotate": -4
         }
       }
     },
@@ -1311,14 +1329,28 @@
     {
       "id": "walk",
       "kind": "move",
-      "description": "the surfer boy walks along to the left with his surfboard at his side, legs swinging step by step, then stops.",
+      "description": "the surfer boy walks along to the left with his surfboard tucked flat under his arm, legs swinging step by step, then stops.",
       "facing": "left",
       "gait": {
         "style": "human.walk",
         "still": [
           "armR",
           "elbowR"
-        ]
+        ],
+        "slots": {
+          "board": "none",
+          "boardCarry": "carry",
+          "shinR": "step",
+          "foreR": "none"
+        },
+        "pose": {
+          "armR": {
+            "r": 80
+          },
+          "elbowR": {
+            "r": -40
+          }
+        }
       }
     },
     {
