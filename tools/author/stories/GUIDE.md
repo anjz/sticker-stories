@@ -325,6 +325,13 @@ entrance before an action on that sticker.
   before the first word that names it (its manifest name, or the name
   the story gives it) and before any other cue on that word. `storycheck`
   errors when one is missing and warns when the name comes earlier.
+- **Things that cannot move are there from the start.** A sticker that
+  grows in where it stands (`stage.entrance: grow`: Beach's bucket,
+  umbrella, sandcastle, clam and seaweed) cannot walk on later, so its
+  `{x:enter}` goes at the very start of the text, before the first word
+  — it is simply there when the story begins — unless the story makes
+  it appear: a sandcastle being built, a clam the dog digs up, a shell
+  Lola finds. (The user's rule, 2026-10-29.)
 - **Name every featured and supporting sticker** somewhere in the words:
   the entrance needs a word to sit on, and the child should hear who has
   arrived.
