@@ -1513,7 +1513,7 @@
     {
       "id": "paddle",
       "kind": "move",
-      "description": "the surfer boy lies on his surfboard and paddles out across the water with his hands, head up and smiling.",
+      "description": "the surfer boy lies on his surfboard and paddles out to sea with his hands, seen from behind as he heads away over the water.",
       "loop": {
         "from": 1,
         "to": 16
@@ -1534,39 +1534,38 @@
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
+            "bArmL": {
+              "r": 26,
+              "sy": 0.88
             },
-            "head": {
-              "r": 0.76,
-              "x": 61.4,
-              "y": 163.1
-            },
-            "pArmL": {
-              "r": 4,
-              "sy": 1.1
-            },
-            "pArmR": {
-              "r": 3.38,
-              "sy": 0.845
+            "bArmR": {
+              "r": 14.32,
+              "sy": 1.04
             },
             "prone": {
-              "r": 37.05,
-              "y": 1.21
+              "r": -61.95,
+              "y": 1.21,
+              "x": 75
             }
           },
           "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
             "board": "none",
             "boardFlat": "none",
             "body": "none",
-            "bodyFront": "front",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
             "foreL": "none",
             "foreR": "none",
             "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
             "shinL": "none",
             "shinR": "none",
             "thighL": "none",
@@ -1579,534 +1578,38 @@
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
+            "bArmL": {
+              "r": 22.3,
+              "sy": 0.895
             },
-            "head": {
-              "r": 0.61,
-              "x": 60.8,
-              "y": 162.9
-            },
-            "pArmL": {
-              "r": 1.5,
-              "sy": 1.085
-            },
-            "pArmR": {
-              "r": -2.44,
-              "sy": 0.881
-            },
-            "prone": {
-              "r": 37.24,
-              "y": 0.23
-            }
-          },
-          "slots": {
-            "board": "none",
-            "boardFlat": "none",
-            "body": "none",
-            "bodyFront": "front",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
-          }
-        },
-        {
-          "hold": 0.069,
-          "ease": "linear",
-          "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
-            },
-            "head": {
-              "r": 0.36,
-              "x": 60.1,
-              "y": 162.7
-            },
-            "pArmL": {
-              "r": -0.09,
-              "sy": 1.06
-            },
-            "pArmR": {
-              "r": -8.45,
-              "sy": 0.908
-            },
-            "prone": {
-              "r": 37.55,
-              "y": -0.88
-            }
-          },
-          "slots": {
-            "board": "none",
-            "boardFlat": "none",
-            "body": "none",
-            "bodyFront": "front",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
-          }
-        },
-        {
-          "hold": 0.069,
-          "ease": "linear",
-          "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
-            },
-            "head": {
-              "r": 0.06,
-              "x": 59.7,
-              "y": 162.6
-            },
-            "pArmL": {
-              "r": -1.33,
-              "sy": 1.027
-            },
-            "pArmR": {
-              "r": -15.48,
-              "sy": 0.926
-            },
-            "prone": {
-              "r": 37.92,
-              "y": -1.48
-            }
-          },
-          "slots": {
-            "board": "none",
-            "boardFlat": "none",
-            "body": "none",
-            "bodyFront": "front",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
-          }
-        },
-        {
-          "hold": 0.069,
-          "ease": "linear",
-          "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
-            },
-            "head": {
-              "r": -0.25,
-              "x": 59.9,
-              "y": 162.6
-            },
-            "pArmL": {
-              "r": -2.76,
-              "sy": 0.985
-            },
-            "pArmR": {
-              "r": -20,
-              "sy": 0.947
-            },
-            "prone": {
-              "r": 38.31,
-              "y": -1.21
-            }
-          },
-          "slots": {
-            "board": "none",
-            "boardFlat": "none",
-            "body": "none",
-            "bodyFront": "front",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
-          }
-        },
-        {
-          "hold": 0.069,
-          "ease": "linear",
-          "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
-            },
-            "head": {
-              "r": -0.52,
-              "x": 60.5,
-              "y": 162.8
-            },
-            "pArmL": {
-              "r": -4.62,
-              "sy": 0.932
-            },
-            "pArmR": {
-              "r": -19.28,
-              "sy": 0.98
-            },
-            "prone": {
-              "r": 38.65,
-              "y": -0.23
-            }
-          },
-          "slots": {
-            "board": "none",
-            "boardFlat": "none",
-            "body": "none",
-            "bodyFront": "front",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
-          }
-        },
-        {
-          "hold": 0.069,
-          "ease": "linear",
-          "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
-            },
-            "head": {
-              "r": -0.71,
-              "x": 61.2,
-              "y": 163.1
-            },
-            "pArmL": {
-              "r": -6.08,
-              "sy": 0.881
-            },
-            "pArmR": {
-              "r": -15.65,
-              "sy": 1.027
-            },
-            "prone": {
-              "r": 38.89,
-              "y": 0.88
-            }
-          },
-          "slots": {
-            "board": "none",
-            "boardFlat": "none",
-            "body": "none",
-            "bodyFront": "front",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
-          }
-        },
-        {
-          "hold": 0.069,
-          "ease": "linear",
-          "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
-            },
-            "head": {
-              "r": -0.8,
-              "x": 61.5,
-              "y": 163.2
-            },
-            "pArmL": {
-              "r": -6.22,
-              "sy": 0.844
-            },
-            "pArmR": {
-              "r": -10.34,
-              "sy": 1.072
-            },
-            "prone": {
-              "r": 39,
-              "y": 1.48
-            }
-          },
-          "slots": {
-            "board": "none",
-            "boardFlat": "none",
-            "body": "none",
-            "bodyFront": "front",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
-          }
-        },
-        {
-          "hold": 0.069,
-          "ease": "linear",
-          "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
-            },
-            "head": {
-              "r": -0.76,
-              "x": 61.4,
-              "y": 163.1
-            },
-            "pArmL": {
-              "r": -3.38,
-              "sy": 0.845
-            },
-            "pArmR": {
-              "r": -4,
-              "sy": 1.1
-            },
-            "prone": {
-              "r": 38.95,
-              "y": 1.21
-            }
-          },
-          "slots": {
-            "board": "none",
-            "boardFlat": "none",
-            "body": "none",
-            "bodyFront": "front",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
-          }
-        },
-        {
-          "hold": 0.069,
-          "ease": "linear",
-          "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
-            },
-            "head": {
-              "r": -0.61,
-              "x": 60.8,
-              "y": 162.9
-            },
-            "pArmL": {
-              "r": 2.44,
-              "sy": 0.881
-            },
-            "pArmR": {
-              "r": -1.5,
-              "sy": 1.085
-            },
-            "prone": {
-              "r": 38.76,
-              "y": 0.23
-            }
-          },
-          "slots": {
-            "board": "none",
-            "boardFlat": "none",
-            "body": "none",
-            "bodyFront": "front",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
-          }
-        },
-        {
-          "hold": 0.069,
-          "ease": "linear",
-          "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
-            },
-            "head": {
-              "r": -0.36,
-              "x": 60.1,
-              "y": 162.7
-            },
-            "pArmL": {
-              "r": 8.45,
-              "sy": 0.908
-            },
-            "pArmR": {
-              "r": 0.09,
-              "sy": 1.06
-            },
-            "prone": {
-              "r": 38.45,
-              "y": -0.88
-            }
-          },
-          "slots": {
-            "board": "none",
-            "boardFlat": "none",
-            "body": "none",
-            "bodyFront": "front",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
-          }
-        },
-        {
-          "hold": 0.069,
-          "ease": "linear",
-          "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
-            },
-            "head": {
-              "r": -0.06,
-              "x": 59.7,
-              "y": 162.6
-            },
-            "pArmL": {
-              "r": 15.48,
-              "sy": 0.926
-            },
-            "pArmR": {
-              "r": 1.33,
-              "sy": 1.027
-            },
-            "prone": {
-              "r": 38.08,
-              "y": -1.48
-            }
-          },
-          "slots": {
-            "board": "none",
-            "boardFlat": "none",
-            "body": "none",
-            "bodyFront": "front",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
-          }
-        },
-        {
-          "hold": 0.069,
-          "ease": "linear",
-          "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
-            },
-            "head": {
-              "r": 0.25,
-              "x": 59.9,
-              "y": 162.6
-            },
-            "pArmL": {
-              "r": 20,
-              "sy": 0.947
-            },
-            "pArmR": {
-              "r": 2.76,
+            "bArmR": {
+              "r": 10.92,
               "sy": 0.985
             },
             "prone": {
-              "r": 37.69,
-              "y": -1.21
+              "r": -61.76,
+              "y": 0.23,
+              "x": 75
             }
           },
           "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
             "board": "none",
             "boardFlat": "none",
             "body": "none",
-            "bodyFront": "front",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
             "foreL": "none",
             "foreR": "none",
             "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
             "shinL": "none",
             "shinR": "none",
             "thighL": "none",
@@ -2119,39 +1622,38 @@
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
+            "bArmL": {
+              "r": 16.96,
+              "sy": 0.913
             },
-            "head": {
-              "r": 0.52,
-              "x": 60.5,
-              "y": 162.8
-            },
-            "pArmL": {
-              "r": 19.28,
-              "sy": 0.98
-            },
-            "pArmR": {
-              "r": 4.62,
-              "sy": 0.932
+            "bArmR": {
+              "r": 5.79,
+              "sy": 0.951
             },
             "prone": {
-              "r": 37.35,
-              "y": -0.23
+              "r": -61.45,
+              "y": -0.88,
+              "x": 75
             }
           },
           "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
             "board": "none",
             "boardFlat": "none",
             "body": "none",
-            "bodyFront": "front",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
             "foreL": "none",
             "foreR": "none",
             "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
             "shinL": "none",
             "shinR": "none",
             "thighL": "none",
@@ -2164,39 +1666,38 @@
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
+            "bArmL": {
+              "r": 11.13,
+              "sy": 0.935
             },
-            "head": {
-              "r": 0.71,
-              "x": 61.2,
-              "y": 163.1
-            },
-            "pArmL": {
-              "r": 15.65,
-              "sy": 1.027
-            },
-            "pArmR": {
-              "r": 6.08,
-              "sy": 0.881
+            "bArmR": {
+              "r": -1.22,
+              "sy": 0.936
             },
             "prone": {
-              "r": 37.11,
-              "y": 0.88
+              "r": -61.08,
+              "y": -1.48,
+              "x": 75
             }
           },
           "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
             "board": "none",
             "boardFlat": "none",
             "body": "none",
-            "bodyFront": "front",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
             "foreL": "none",
             "foreR": "none",
             "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
             "shinL": "none",
             "shinR": "none",
             "thighL": "none",
@@ -2209,39 +1710,522 @@
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
+            "bArmL": {
+              "r": 5.02,
+              "sy": 0.965
             },
-            "head": {
-              "r": 0.8,
-              "x": 61.5,
-              "y": 163.2
-            },
-            "pArmL": {
-              "r": 10.34,
-              "sy": 1.072
-            },
-            "pArmR": {
-              "r": 6.22,
-              "sy": 0.844
+            "bArmR": {
+              "r": -8.76,
+              "sy": 0.926
             },
             "prone": {
-              "r": 37,
-              "y": 1.48
+              "r": -60.69,
+              "y": -1.21,
+              "x": 75
             }
           },
           "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
             "board": "none",
             "boardFlat": "none",
             "body": "none",
-            "bodyFront": "front",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
             "foreL": "none",
             "foreR": "none",
             "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
+            "shinL": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "thighR": "none",
+            "upperL": "none",
+            "upperR": "none"
+          }
+        },
+        {
+          "hold": 0.069,
+          "ease": "linear",
+          "bones": {
+            "bArmL": {
+              "r": -1.98,
+              "sy": 1.003
+            },
+            "bArmR": {
+              "r": -15.12,
+              "sy": 0.911
+            },
+            "prone": {
+              "r": -60.35,
+              "y": -0.23,
+              "x": 75
+            }
+          },
+          "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
+            "board": "none",
+            "boardFlat": "none",
+            "body": "none",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "foreL": "none",
+            "foreR": "none",
+            "foreRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
+            "shinL": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "thighR": "none",
+            "upperL": "none",
+            "upperR": "none"
+          }
+        },
+        {
+          "hold": 0.069,
+          "ease": "linear",
+          "bones": {
+            "bArmL": {
+              "r": -8.56,
+              "sy": 1.039
+            },
+            "bArmR": {
+              "r": -20.29,
+              "sy": 0.891
+            },
+            "prone": {
+              "r": -60.11,
+              "y": 0.88,
+              "x": 75
+            }
+          },
+          "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
+            "board": "none",
+            "boardFlat": "none",
+            "body": "none",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "foreL": "none",
+            "foreR": "none",
+            "foreRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
+            "shinL": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "thighR": "none",
+            "upperL": "none",
+            "upperR": "none"
+          }
+        },
+        {
+          "hold": 0.069,
+          "ease": "linear",
+          "bones": {
+            "bArmL": {
+              "r": -13.37,
+              "sy": 1.059
+            },
+            "bArmR": {
+              "r": -24.55,
+              "sy": 0.877
+            },
+            "prone": {
+              "r": -60.0,
+              "y": 1.48,
+              "x": 75
+            }
+          },
+          "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
+            "board": "none",
+            "boardFlat": "none",
+            "body": "none",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "foreL": "none",
+            "foreR": "none",
+            "foreRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
+            "shinL": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "thighR": "none",
+            "upperL": "none",
+            "upperR": "none"
+          }
+        },
+        {
+          "hold": 0.069,
+          "ease": "linear",
+          "bones": {
+            "bArmL": {
+              "r": -14.32,
+              "sy": 1.04
+            },
+            "bArmR": {
+              "r": -26,
+              "sy": 0.88
+            },
+            "prone": {
+              "r": -60.05,
+              "y": 1.21,
+              "x": 75
+            }
+          },
+          "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
+            "board": "none",
+            "boardFlat": "none",
+            "body": "none",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "foreL": "none",
+            "foreR": "none",
+            "foreRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
+            "shinL": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "thighR": "none",
+            "upperL": "none",
+            "upperR": "none"
+          }
+        },
+        {
+          "hold": 0.069,
+          "ease": "linear",
+          "bones": {
+            "bArmL": {
+              "r": -10.92,
+              "sy": 0.985
+            },
+            "bArmR": {
+              "r": -22.3,
+              "sy": 0.895
+            },
+            "prone": {
+              "r": -60.24,
+              "y": 0.23,
+              "x": 75
+            }
+          },
+          "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
+            "board": "none",
+            "boardFlat": "none",
+            "body": "none",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "foreL": "none",
+            "foreR": "none",
+            "foreRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
+            "shinL": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "thighR": "none",
+            "upperL": "none",
+            "upperR": "none"
+          }
+        },
+        {
+          "hold": 0.069,
+          "ease": "linear",
+          "bones": {
+            "bArmL": {
+              "r": -5.79,
+              "sy": 0.951
+            },
+            "bArmR": {
+              "r": -16.96,
+              "sy": 0.913
+            },
+            "prone": {
+              "r": -60.55,
+              "y": -0.88,
+              "x": 75
+            }
+          },
+          "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
+            "board": "none",
+            "boardFlat": "none",
+            "body": "none",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "foreL": "none",
+            "foreR": "none",
+            "foreRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
+            "shinL": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "thighR": "none",
+            "upperL": "none",
+            "upperR": "none"
+          }
+        },
+        {
+          "hold": 0.069,
+          "ease": "linear",
+          "bones": {
+            "bArmL": {
+              "r": 1.22,
+              "sy": 0.936
+            },
+            "bArmR": {
+              "r": -11.13,
+              "sy": 0.935
+            },
+            "prone": {
+              "r": -60.92,
+              "y": -1.48,
+              "x": 75
+            }
+          },
+          "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
+            "board": "none",
+            "boardFlat": "none",
+            "body": "none",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "foreL": "none",
+            "foreR": "none",
+            "foreRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
+            "shinL": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "thighR": "none",
+            "upperL": "none",
+            "upperR": "none"
+          }
+        },
+        {
+          "hold": 0.069,
+          "ease": "linear",
+          "bones": {
+            "bArmL": {
+              "r": 8.76,
+              "sy": 0.926
+            },
+            "bArmR": {
+              "r": -5.02,
+              "sy": 0.965
+            },
+            "prone": {
+              "r": -61.31,
+              "y": -1.21,
+              "x": 75
+            }
+          },
+          "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
+            "board": "none",
+            "boardFlat": "none",
+            "body": "none",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "foreL": "none",
+            "foreR": "none",
+            "foreRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
+            "shinL": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "thighR": "none",
+            "upperL": "none",
+            "upperR": "none"
+          }
+        },
+        {
+          "hold": 0.069,
+          "ease": "linear",
+          "bones": {
+            "bArmL": {
+              "r": 15.12,
+              "sy": 0.911
+            },
+            "bArmR": {
+              "r": 1.98,
+              "sy": 1.003
+            },
+            "prone": {
+              "r": -61.65,
+              "y": -0.23,
+              "x": 75
+            }
+          },
+          "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
+            "board": "none",
+            "boardFlat": "none",
+            "body": "none",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "foreL": "none",
+            "foreR": "none",
+            "foreRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
+            "shinL": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "thighR": "none",
+            "upperL": "none",
+            "upperR": "none"
+          }
+        },
+        {
+          "hold": 0.069,
+          "ease": "linear",
+          "bones": {
+            "bArmL": {
+              "r": 20.29,
+              "sy": 0.891
+            },
+            "bArmR": {
+              "r": 8.56,
+              "sy": 1.039
+            },
+            "prone": {
+              "r": -61.89,
+              "y": 0.88,
+              "x": 75
+            }
+          },
+          "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
+            "board": "none",
+            "boardFlat": "none",
+            "body": "none",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "foreL": "none",
+            "foreR": "none",
+            "foreRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
+            "shinL": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "thighR": "none",
+            "upperL": "none",
+            "upperR": "none"
+          }
+        },
+        {
+          "hold": 0.069,
+          "ease": "linear",
+          "bones": {
+            "bArmL": {
+              "r": 24.55,
+              "sy": 0.877
+            },
+            "bArmR": {
+              "r": 13.37,
+              "sy": 1.059
+            },
+            "prone": {
+              "r": -62.0,
+              "y": 1.48,
+              "x": 75
+            }
+          },
+          "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
+            "board": "none",
+            "boardFlat": "none",
+            "body": "none",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
+            "foreL": "none",
+            "foreR": "none",
+            "foreRF": "none",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
             "shinL": "none",
             "shinR": "none",
             "thighL": "none",
@@ -2253,39 +2237,38 @@
         {
           "hold": 0.3,
           "bones": {
-            "face": {
-              "x": 25,
-              "y": 2
+            "bArmL": {
+              "r": 9.1,
+              "sy": 0.88
             },
-            "head": {
-              "r": 0.27,
-              "x": 60.9,
-              "y": 163.0
-            },
-            "pArmL": {
-              "r": 1.4,
-              "sy": 1.1
-            },
-            "pArmR": {
-              "r": 1.18,
-              "sy": 0.845
+            "bArmR": {
+              "r": 5.01,
+              "sy": 1.04
             },
             "prone": {
-              "r": 37.67,
-              "y": 0.42
+              "r": -61.67,
+              "y": 0.42,
+              "x": 75
             }
           },
           "slots": {
+            "bArmL": "back",
+            "bArmR": "back",
             "board": "none",
             "boardFlat": "none",
             "body": "none",
-            "bodyFront": "front",
+            "bodyBack": "back",
+            "browL": "none",
+            "browR": "none",
+            "eyeL": "none",
+            "eyeR": "none",
             "foreL": "none",
             "foreR": "none",
             "foreRF": "none",
-            "head": "front",
-            "pArmL": "front",
-            "pArmR": "front",
+            "head": "none",
+            "headBack": "back",
+            "mouth": "none",
+            "nose": "none",
             "shinL": "none",
             "shinR": "none",
             "thighL": "none",
@@ -2295,7 +2278,8 @@
           }
         },
         {
-          "hold": 0.35
+          "hold": 0.35,
+          "ease": "step"
         }
       ],
       "faces": "left",
