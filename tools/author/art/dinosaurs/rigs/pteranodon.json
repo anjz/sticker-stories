@@ -1,6 +1,6 @@
 {
   "sticker": "pteranodon",
-  "skeleton": "pteranodon standing in three-quarter view facing left on two little feet: root between the feet; body with belly squash; head with its neck and crest at the base of the neck (the head-and-neck piece between the body and a copy of the body whose top fades in, so no chin line shows), face carrying both eyes (the far one smaller, by the beak's base), brows and the long beak (swapped for open, sad and a small o); wingL (far, viewer's left, behind the body) and wingR (near, in front) folded at the shoulders, each swapped for its own open wing in flight (the far one shaded behind the body); legL/legR at the hips.",
+  "skeleton": "pteranodon standing in three-quarter view facing left on two little feet: root between the feet; body with belly squash; head with its neck and crest at the base of the neck (the head-and-neck piece between the body and a wider, flatter copy of the body whose top fades in, so the neck flows into the chest with no chin line), face carrying both eyes (the far one smaller, by the beak's base), brows and the long beak (swapped for open, sad and a small o); wingL (far, viewer's left, in front of the body's edge as drawn) and wingR (near, in front) folded at the shoulders, each swapped for its own open wing in flight (the far one shaded behind the body); legL/legR at the hips.",
   "sheets": [
     {
       "id": "parts",
@@ -37,7 +37,7 @@
         722,
         341
       ],
-      "fadeTop": 0.3
+      "fadeTop": 0.33
     },
     "wingNear": {
       "sheet": "parts",
@@ -243,7 +243,7 @@
     {
       "id": "head",
       "x": 383,
-      "y": 388,
+      "y": 402,
       "parent": "body"
     },
     {
@@ -284,8 +284,8 @@
     },
     {
       "id": "wingL",
-      "x": 355,
-      "y": 402,
+      "x": 345,
+      "y": 405,
       "parent": "body"
     },
     {
@@ -338,27 +338,13 @@
       }
     },
     {
-      "id": "wingL",
-      "bone": "wingL",
-      "default": "folded",
-      "attachments": {
-        "folded": {
-          "part": "wingFar",
-          "x": 329,
-          "y": 479,
-          "scale": 0.47,
-          "shade": 0.12
-        }
-      }
-    },
-    {
       "id": "legL",
       "bone": "legL",
       "default": "leg",
       "attachments": {
         "leg": {
           "part": "legFar",
-          "x": 362,
+          "x": 366,
           "y": 538,
           "scale": 0.47,
           "shade": 0.12
@@ -386,9 +372,10 @@
       "attachments": {
         "body": {
           "part": "body",
-          "x": 411,
+          "x": 399,
           "y": 444,
-          "scale": 0.4
+          "scale": 0.34,
+          "scaleY": 1.18
         }
       }
     },
@@ -412,9 +399,25 @@
       "attachments": {
         "body": {
           "part": "bodyFront",
-          "x": 411,
-          "y": 444,
-          "scale": 0.4
+          "x": 387.0,
+          "y": 454.0,
+          "scale": 0.5,
+          "scaleY": 0.7
+        }
+      }
+    },
+    {
+      "id": "wingL",
+      "bone": "wingL",
+      "default": "folded",
+      "attachments": {
+        "folded": {
+          "part": "wingFar",
+          "x": 321.0,
+          "y": 479,
+          "scale": 0.4,
+          "shade": 0.12,
+          "scaleY": 1.18
         }
       }
     },
@@ -1152,12 +1155,12 @@
           "hold": 0.45,
           "bones": {
             "head": {
-              "r": -40,
+              "r": -34,
               "x": 4,
               "y": 8
             },
             "body": {
-              "r": -3
+              "r": -8
             },
             "wingL": {
               "r": 4
@@ -1172,12 +1175,12 @@
           "hold": 0.3,
           "bones": {
             "head": {
-              "r": -44,
+              "r": -38,
               "x": 4,
               "y": 8
             },
             "body": {
-              "r": -3
+              "r": -8
             },
             "wingL": {
               "r": 6
@@ -1192,12 +1195,12 @@
           "hold": 0.2,
           "bones": {
             "head": {
-              "r": -40,
+              "r": -34,
               "x": 4,
               "y": 8
             },
             "body": {
-              "r": -3
+              "r": -8
             },
             "wingL": {
               "r": 8
@@ -1212,12 +1215,12 @@
           "hold": 0.2,
           "bones": {
             "head": {
-              "r": -44,
+              "r": -38,
               "x": 4,
               "y": 8
             },
             "body": {
-              "r": -3
+              "r": -8
             },
             "wingL": {
               "r": 6
@@ -1232,12 +1235,12 @@
           "hold": 0.2,
           "bones": {
             "head": {
-              "r": -40,
+              "r": -34,
               "x": 4,
               "y": 8
             },
             "body": {
-              "r": -3
+              "r": -8
             },
             "wingL": {
               "r": 8
@@ -1514,11 +1517,11 @@
           "hold": 0.45,
           "bones": {
             "body": {
-              "r": -20,
+              "r": -24,
               "y": 6
             },
             "head": {
-              "r": -46,
+              "r": -38,
               "y": 6
             }
           }
@@ -1527,11 +1530,11 @@
           "hold": 0.25,
           "bones": {
             "body": {
-              "r": -20,
+              "r": -24,
               "y": 6
             },
             "head": {
-              "r": -46,
+              "r": -38,
               "y": 6
             }
           }
@@ -1540,11 +1543,11 @@
           "hold": 0.16,
           "bones": {
             "body": {
-              "r": -23,
+              "r": -27,
               "y": 6
             },
             "head": {
-              "r": -54,
+              "r": -44,
               "y": 6
             }
           }
@@ -1553,11 +1556,11 @@
           "hold": 0.18,
           "bones": {
             "body": {
-              "r": -20,
+              "r": -24,
               "y": 6
             },
             "head": {
-              "r": -46,
+              "r": -38,
               "y": 6
             }
           }
@@ -1566,11 +1569,11 @@
           "hold": 0.16,
           "bones": {
             "body": {
-              "r": -23,
+              "r": -27,
               "y": 6
             },
             "head": {
-              "r": -54,
+              "r": -44,
               "y": 6
             }
           }
@@ -1579,11 +1582,11 @@
           "hold": 0.18,
           "bones": {
             "body": {
-              "r": -20,
+              "r": -24,
               "y": 6
             },
             "head": {
-              "r": -46,
+              "r": -38,
               "y": 6
             }
           }
@@ -1592,11 +1595,11 @@
           "hold": 0.16,
           "bones": {
             "body": {
-              "r": -23,
+              "r": -27,
               "y": 6
             },
             "head": {
-              "r": -54,
+              "r": -44,
               "y": 6
             }
           }
