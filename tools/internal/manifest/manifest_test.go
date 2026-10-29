@@ -170,6 +170,23 @@ func TestStageIsOptional(t *testing.T) {
 	}
 }
 
+func TestUnderwaterIsAShare(t *testing.T) {
+	dir := t.TempDir()
+	m := validManifest(t, dir)
+	m.Features = map[string]Feature{"pool": {Description: "The rock pool.", Areas: []StageArea{{X: []float64{0.7, 0.9}, Y: []float64{0.2, 0.3}}}}}
+	m.Stickers[0].Stage = &Stage{Entrance: "hop", On: []string{"pool"}, Underwater: 0.6}
+	if errs := m.Validate(dir); len(errs) != 0 {
+		t.Fatalf("an octopus with its head out rejected: %v", errs)
+	}
+	if data, _ := json.Marshal(m); !strings.Contains(string(data), `"underwater":0.6`) {
+		t.Errorf("underwater lost on write: %s", data)
+	}
+	m.Stickers[0].Stage.Underwater = 1.5
+	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "underwater 1.5 must be above 0 and at most 1") {
+		t.Errorf("underwater past its drawing: %v", errs)
+	}
+}
+
 func TestLoadRoundTrip(t *testing.T) {
 	dir := t.TempDir()
 	m := validManifest(t, dir)

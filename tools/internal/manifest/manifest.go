@@ -168,6 +168,11 @@ type Stage struct {
 	// screen (or when On is empty), in fractions of the base art (origin
 	// bottom-left, like saved sticker positions).
 	Area *StageArea `json:"area,omitempty"`
+	// Underwater (optional, above 0 and at most 1) is how much of the
+	// sticker's drawing, from its feet up, is under the water while it is
+	// in a shallow, clear water (a rock pool): the app shows that part
+	// through the water — a fish wholly (1), an octopus with its head out.
+	Underwater float64 `json:"underwater,omitempty"`
 }
 
 // Feature is a named place in the pack's art: one or more areas (the
@@ -643,6 +648,9 @@ func (m *Manifest) Validate(dir string) []error {
 					fail("%s: on lists %q twice", field, id)
 				}
 				seen[id] = true
+			}
+			if u := st.Stage.Underwater; u < 0 || u > 1 {
+				fail("%s: underwater %g must be above 0 and at most 1", field, u)
 			}
 			if st.Stage.Area != nil {
 				checkArea(field+": area", *st.Stage.Area, fail)

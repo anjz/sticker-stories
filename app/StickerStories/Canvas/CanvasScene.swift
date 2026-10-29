@@ -2023,6 +2023,97 @@ final class CanvasScene: SKScene {
         }
         return depths
     }
+    // MARK: Under water
+
+    /// The water over each sticker's part under a shallow water
+    /// (`StickerStage.underwater`), by instance: the pool's own art laid
+    /// over it, see-through, clipped to the pool and to below its waterline
+    /// — a fish in the rock pool seen through the water. Off the sticker
+    /// the copy matches the art beneath it exactly, so only the creature
+    /// shows the water.
+    private var underwaterVeils: [UUID: UnderwaterVeil] = [:]
+    private static let underwaterAlpha: CGFloat = 0.5
+
+    private struct UnderwaterVeil {
+        /// Undoes the sticker's scale, then (`turn`) its rotation, so the
+        /// art inside lies in scene points.
+        let root: SKNode
+        let turn: SKNode
+        let mask: SKShapeNode
+        let art: SKSpriteNode
+    }
+
+    /// The shallow waters' outlines (`SceneSpace.Place.shallow`), in
+    /// fractions of the base art.
+    private lazy var shallowWaters: [[CGPoint]] = (pack.manifest.space?.places.values ?? [:].values).compactMap { place in
+        guard place.water == true, place.shallow == true, let ground = place.ground, ground.count >= 3 else { return nil }
+        return ground.map { CGPoint(x: $0.u, y: $0.v) }
+    }
+
+    /// Lays the water over every sticker partly under a shallow water, and
+    /// takes it off any that has left it.
+    private func updateUnderwater() {
+        var kept = Set<UUID>()
+        defer {
+            for (id, veil) in underwaterVeils where !kept.contains(id) {
+                veil.root.removeFromParent()
+                underwaterVeils[id] = nil
+            }
+        }
+        guard !shallowWaters.isEmpty, worldSize.width > 0, let texture = backgroundArt.texture else { return }
+        let waters = shallowWaters.map { outline -> CGPath in
+            let path = CGMutablePath()
+            path.addLines(between: outline.map { CGPoint(x: $0.x * worldSize.width, y: $0.y * worldSize.height) })
+            path.closeSubpath()
+            return path
+        }
+        for node in allStickerNodes() {
+            guard let share = stages[node.stickerID]?.underwater, share > 0, node.xScale != 0, node.yScale != 0 else { continue }
+            let box = drawingBox(of: node.stickerID), base = node.unscaledSize
+            let feet = CGPoint(x: (box.midX - 0.5) * base.width, y: (box.minY - 0.5) * base.height)
+            guard let water = waters.first(where: { $0.contains(node.convert(feet, to: self)) }) else { continue }
+            // Below its waterline, with room for a fin or an arm swung out.
+            let pad = 0.25 * max(box.width * base.width, box.height * base.height)
+            let line = feet.y + CGFloat(share) * box.height * base.height
+            let left = (box.minX - 0.5) * base.width - pad, right = (box.maxX - 0.5) * base.width + pad
+            let corners = [CGPoint(x: left, y: feet.y - pad), CGPoint(x: right, y: feet.y - pad), CGPoint(x: right, y: line), CGPoint(x: left, y: line)]
+            let under = CGMutablePath()
+            under.addLines(between: corners.map { node.convert($0, to: self) })
+            under.closeSubpath()
+            let shape = under.intersection(water)
+            guard !shape.isEmpty else { continue }
+            let veil = underwaterVeils[node.instanceID] ?? {
+                let root = SKNode(), turn = SKNode(), crop = SKCropNode(), mask = SKShapeNode()
+                mask.fillColor = .white
+                mask.strokeColor = .clear
+                crop.maskNode = mask
+                let art = SKSpriteNode(texture: texture)
+                art.alpha = Self.underwaterAlpha
+                crop.addChild(art)
+                turn.addChild(crop)
+                root.addChild(turn)
+                // Over its art and its puppet, under nothing else of its own.
+                root.zPosition = 0.8
+                return UnderwaterVeil(root: root, turn: turn, mask: mask, art: art)
+            }()
+            if veil.root.parent !== node {
+                veil.root.removeFromParent()
+                node.addChild(veil.root)
+            }
+            veil.root.xScale = 1 / node.xScale
+            veil.root.yScale = 1 / node.yScale
+            veil.turn.zRotation = -node.zRotation
+            let origin = node.convert(CGPoint.zero, from: self)
+            veil.turn.position = CGPoint(x: origin.x * node.xScale, y: origin.y * node.yScale)
+            veil.mask.path = shape
+            veil.art.texture = texture
+            veil.art.size = backgroundArt.size
+            veil.art.position = backgroundArt.position
+            underwaterVeils[node.instanceID] = veil
+            kept.insert(node.instanceID)
+        }
+    }
+
     private lazy var stages: [String: StickerStage] = Dictionary(
         uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.stage.map { (s.id, $0) } })
     /// Each sticker's moves (its walk, flight or sprout), its usual one
@@ -2201,6 +2292,8 @@ final class CanvasScene: SKScene {
 
     override func update(_ currentTime: TimeInterval) {
         sceneTime = currentTime
+        // (Last, once the stickers are where this frame puts them.)
+        defer { updateUnderwater() }
         updateHints()
         guard let session = playSession else { return }
         let time = session.clock.now()
