@@ -140,7 +140,12 @@ Plans the whole story at once, from the cast and the story's triggers:
    words name it (up to 10 s, never before the story starts, never there
    before its cue, and not when it comes to someone's side, who may be
    elsewhere by then; `earlyEntrance`), and comes in at its own pace, taking up to 12 s
-   (`maxEntrance`): the boats glide in while the story goes on. Up out
+   (`maxEntrance`): the boats glide in while the story goes on. A move
+   the story's next cue would hurry likewise sets off up to 3 s before
+   its words, once the sticker is free (`earlyMove`), and one sent to a
+   place with little time goes to a part of it it reaches at about its
+   own pace, else one of the nearest (the dog dashing to the water and
+   back). Up out
    of the water its water way to a place on land (the surfer riding in to
    the sand), it goes a step or two on from the edge, no further. The
    staging report (`StoryTimingReport`, below) measures how late each

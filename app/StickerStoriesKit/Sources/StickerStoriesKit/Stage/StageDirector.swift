@@ -118,6 +118,10 @@ public enum StageDirector {
     static let minTravelForCue: TimeInterval = 1.5
     /// How long before its cue a visitor may set off, rather than hurry in.
     static let earlyEntrance: TimeInterval = 10
+    /// How long before its cue a hurried move may set off, and the rest
+    /// it keeps after what it did before.
+    static let earlyMove: TimeInterval = 3
+    static let earlyRest: TimeInterval = 0.4
     /// The longest an entrance set off early takes.
     static let maxEntrance: TimeInterval = 12
     /// A flyer that cannot hover circles this many of its widths either
@@ -1382,6 +1386,35 @@ public enum StageDirector {
         // MARK: Moves
 
         mutating func apply<R: RandomNumberGenerator>(_ go: GoTrigger, to i: Int, random: inout R) {
+            let begin = max(go.at, states[i].busyUntil)
+            // Hurried, its next cue too soon for its own pace (the dog
+            // dashing to the water and back): it sets off a little before
+            // its words, once it is free, and goes at its own pace.
+            if go.kind == .to, begin == go.at, !policy.isCalm {
+                let free = max(states[i].busyUntil, states[i].legs.last?.end ?? 0) + StageDirector.earlyRest
+                let legs = states[i].legs.count
+                var trial = self, dice = random
+                trial.apply(go, to: i, begin: begin, random: &dice)
+                if let first = trial.states[i].legs.dropFirst(legs).first(where: {
+                    if case .hops = $0.gait { return true }
+                    return $0.gait == .walk && $0.move != nil
+                }),
+                    first.rate > 1.05,
+                    // (Cut short by the story's next cue, not by the longest
+                    // a move takes: setting off sooner would not help that.)
+                    abs(first.duration - StageDirector.maxTravel) > 0.05, abs(first.duration - StageDirector.maxTravelToSomeone) > 0.05
+                {
+                    let early = max(go.at - StageDirector.earlyMove, free, go.at - first.duration * (first.rate - 1), 0)
+                    if early < go.at - 0.1 {
+                        apply(go, to: i, begin: early, random: &random)
+                        return
+                    }
+                }
+            }
+            apply(go, to: i, begin: begin, random: &random)
+        }
+
+        mutating func apply<R: RandomNumberGenerator>(_ go: GoTrigger, to i: Int, begin: TimeInterval, random: inout R) {
             var go = go
             // A way that faces one way on screen (the surfer on his board)
             // goes that way too, never sliding backwards to where it goes.
@@ -1393,7 +1426,6 @@ public enum StageDirector {
                 leaning = faces == .right ? 1 : -1
             }
             defer { leaning = nil }
-            let begin = max(go.at, states[i].busyUntil)
             states[i].shelter = nil
             let left = leaveGroup(i)
             let wasBeside = states[i].beside
@@ -1571,6 +1603,22 @@ public enum StageDirector {
                     ($0.position - here.position).length < ($1.position - here.position).length
                 } ?? spots.first
             } else {
+                // With little time before the story needs it again (the dog
+                // dashing to the water and back): somewhere it gets to at
+                // about its own pace, else among the nearest.
+                if go.toward == nil, let move, let cycle = move.cycle, cycle > 0, move.stride > 0,
+                    let deadline = needed(i, after: begin, to: .ground)
+                {
+                    let speed = move.stride * states[i].actor.width / cycle
+                    let reach = speed * max(deadline - begin, StageDirector.minTravelForCue) * 1.25
+                    let far = { (p: StagePose) in (p.position - here.position).length }
+                    let near = spots.filter { far($0) <= reach }
+                    if !near.isEmpty {
+                        spots = near
+                    } else if spots.count > 4 {
+                        spots = Array(spots.sorted { far($0) < far($1) }.prefix(max(4, spots.count / 4)))
+                    }
+                }
                 chosen = choose(spots, for: i, at: begin, near: here.position, random: &random)
             }
             guard let target = chosen else { return }
@@ -2109,10 +2157,12 @@ public enum StageDirector {
                 with = key.flatMap { $0.split(separator: ":").last.flatMap { UUID(uuidString: String($0)) } }
             }
             if let with, let them = states.first(where: { $0.actor.id == with })?.actor.stickerID { who.append(them) }
-            let acts = live.filter { who.contains($0.stickerID) && $0.at > start - 0.05 }.map(\.at)
+            // (Set off early, before its cue: what comes after the cue.)
+            let after = max(start, now)
+            let acts = live.filter { who.contains($0.stickerID) && $0.at > after - 0.05 }.map(\.at)
             // (Its own next move; theirs too: there before the ball it is
             // to push rolls off — unless they come to it.)
-            let moves = who.flatMap { goesAt[$0] ?? [] }.filter { $0.at > start + 0.05 && $0.to != who[0] }.map(\.at)
+            let moves = who.flatMap { goesAt[$0] ?? [] }.filter { $0.at > after + 0.05 && $0.to != who[0] }.map(\.at)
             return (acts + moves).min()
         }
 
