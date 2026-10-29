@@ -2033,6 +2033,19 @@ final class CanvasScene: SKScene {
     /// shows the water.
     private var underwaterVeils: [UUID: UnderwaterVeil] = [:]
     private static let underwaterAlpha: CGFloat = 0.5
+    /// How much of a sticker without its own `underwater` is in a shallow
+    /// water's water: its legs, its bottom.
+    static let defaultUnderwater = 0.3
+
+    /// How much of each sticker is under a shallow water it is in: its
+    /// own `underwater`, else `defaultUnderwater` — never for a big or huge
+    /// one, bigger than such a pool.
+    private lazy var underwaterShares: [String: Double] = Dictionary(
+        uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in
+            if let share = s.stage?.underwater { return (s.id, share) }
+            if s.size == .big || s.size == .huge { return nil }
+            return (s.id, Self.defaultUnderwater)
+        })
 
     private struct UnderwaterVeil {
         /// Undoes the sticker's scale, then (`turn`) its rotation, so the
@@ -2068,7 +2081,13 @@ final class CanvasScene: SKScene {
             return path
         }
         for node in allStickerNodes() {
-            guard let share = stages[node.stickerID]?.underwater, share > 0, node.xScale != 0, node.yScale != 0 else { continue }
+            guard let share = underwaterShares[node.stickerID], node.xScale != 0, node.yScale != 0 else { continue }
+            // (Up in the air over it in a story: dry.)
+            if let session = playSession, let plan = session.stage?.plans[node.instanceID],
+                plan.sample(at: session.clock.now()).position.y > 0.01
+            {
+                continue
+            }
             let box = drawingBox(of: node.stickerID), base = node.unscaledSize
             let feet = CGPoint(x: (box.midX - 0.5) * base.width, y: (box.minY - 0.5) * base.height)
             guard let water = waters.first(where: { $0.contains(node.convert(feet, to: self)) }) else { continue }
