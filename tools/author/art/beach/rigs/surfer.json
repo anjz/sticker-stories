@@ -156,28 +156,32 @@
       "at": [
         364,
         748
-      ]
+      ],
+      "fadeTop": 0.08
     },
     "thighR": {
       "sheet": "limbs",
       "at": [
         620,
         748
-      ]
+      ],
+      "fadeTop": 0.08
     },
     "shinL": {
       "sheet": "limbs",
       "at": [
         879,
         792
-      ]
+      ],
+      "fadeTop": 0.15
     },
     "shinR": {
       "sheet": "limbs",
       "at": [
         1199,
         790
-      ]
+      ],
+      "fadeTop": 0.15
     },
     "eyeL": {
       "sheet": "face",
@@ -333,6 +337,14 @@
         315
       ],
       "fadeTop": 0.25
+    },
+    "upperArmF": {
+      "sheet": "limbs",
+      "at": [
+        462,
+        284
+      ],
+      "fadeTop": 0.15
     }
   },
   "bones": [
@@ -703,16 +715,46 @@
       }
     },
     {
+      "id": "body",
+      "bone": "belly",
+      "default": "body",
+      "attachments": {
+        "body": {
+          "part": "torso",
+          "x": 341,
+          "y": 378,
+          "scale": 0.355,
+          "scaleY": 1.06,
+          "rotate": -4
+        }
+      }
+    },
+    {
       "id": "upperL",
       "bone": "armL",
       "default": "arm",
       "attachments": {
         "arm": {
-          "part": "upperArm",
+          "part": "upperArmF",
           "x": 280.5,
           "y": 370.2,
           "scale": 0.34,
           "rotate": 22.6
+        }
+      }
+    },
+    {
+      "id": "thighR",
+      "bone": "legR",
+      "default": "leg",
+      "attachments": {
+        "leg": {
+          "part": "thighR",
+          "x": 374.6,
+          "y": 497.2,
+          "scale": 0.38,
+          "scaleY": 0.84,
+          "rotate": -2.6
         }
       }
     },
@@ -739,35 +781,6 @@
       }
     },
     {
-      "id": "thighR",
-      "bone": "legR",
-      "default": "leg",
-      "attachments": {
-        "leg": {
-          "part": "thighR",
-          "x": 374.6,
-          "y": 497.2,
-          "scale": 0.38,
-          "scaleY": 0.84,
-          "rotate": -2.6
-        }
-      }
-    },
-    {
-      "id": "shinL",
-      "bone": "kneeL",
-      "default": "shin",
-      "attachments": {
-        "shin": {
-          "part": "shinL",
-          "x": 271.7,
-          "y": 580.4,
-          "scale": 0.36,
-          "rotate": 24.5
-        }
-      }
-    },
-    {
       "id": "thighL",
       "bone": "legL",
       "default": "leg",
@@ -783,17 +796,16 @@
       }
     },
     {
-      "id": "body",
-      "bone": "belly",
-      "default": "body",
+      "id": "shinL",
+      "bone": "kneeL",
+      "default": "shin",
       "attachments": {
-        "body": {
-          "part": "torso",
-          "x": 341,
-          "y": 378,
-          "scale": 0.355,
-          "scaleY": 1.06,
-          "rotate": -4
+        "shin": {
+          "part": "shinL",
+          "x": 271.7,
+          "y": 580.4,
+          "scale": 0.36,
+          "rotate": 24.5
         }
       }
     },
