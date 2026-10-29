@@ -345,6 +345,13 @@
         284
       ],
       "fadeTop": 0.15
+    },
+    "foreGripSolid": {
+      "sheet": "limbs",
+      "at": [
+        838,
+        317
+      ]
     }
   },
   "bones": [
@@ -590,20 +597,6 @@
       }
     },
     {
-      "id": "boardCarry",
-      "bone": "body",
-      "default": "none",
-      "attachments": {
-        "carry": {
-          "part": "board",
-          "x": 352,
-          "y": 418,
-          "scale": 0.552,
-          "rotate": -80
-        }
-      }
-    },
-    {
       "id": "boardFlat",
       "bone": "board",
       "default": "none",
@@ -810,6 +803,20 @@
       }
     },
     {
+      "id": "boardCarry",
+      "bone": "body",
+      "default": "none",
+      "attachments": {
+        "carry": {
+          "part": "board",
+          "x": 352,
+          "y": 446,
+          "scale": 0.552,
+          "rotate": -80
+        }
+      }
+    },
+    {
       "id": "foreRF",
       "bone": "elbowR",
       "default": "none",
@@ -915,6 +922,13 @@
           "scale": 0.33,
           "rotate": 22.1,
           "flip": true
+        },
+        "hold": {
+          "part": "foreGripSolid",
+          "x": 243.1,
+          "y": 442.6,
+          "scale": 0.33,
+          "rotate": 27.8
         }
       }
     },
@@ -1341,11 +1355,13 @@
     {
       "id": "walk",
       "kind": "move",
-      "description": "the surfer boy walks along to the left with his surfboard tucked flat under his arm, legs swinging step by step, then stops.",
+      "description": "the surfer boy walks along to the left with his surfboard tucked flat under his arm in front of him, legs swinging step by step, then stops.",
       "facing": "left",
       "gait": {
         "style": "human.walk",
         "still": [
+          "armL",
+          "elbowL",
           "armR",
           "elbowR"
         ],
@@ -1353,14 +1369,16 @@
           "board": "none",
           "boardCarry": "carry",
           "shinR": "step",
-          "foreR": "none"
+          "upperR": "none",
+          "foreR": "none",
+          "foreL": "hold"
         },
         "pose": {
-          "armR": {
-            "r": 80
+          "armL": {
+            "r": -6
           },
-          "elbowR": {
-            "r": -40
+          "elbowL": {
+            "r": -72
           }
         }
       }
