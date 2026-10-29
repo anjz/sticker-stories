@@ -507,7 +507,8 @@ extension StageDirectorTests {
                         hops: json["hops"] as? Bool ?? false, flies: json["flies"] as? Bool ?? false,
                         hovers: json["hovers"] as? Bool ?? false, on: json["on"] as? [String] ?? [], stays: json["stays"] as? Bool ?? false,
                         waterline: json["waterline"] as? Double ?? 0, facing: (json["facing"] as? String).flatMap(StageMove.Facing.init(rawValue:)), seconds: loop ? 0 : 1,
-                        away: json["away"] as? String, tail: tail))
+                        away: json["away"] as? String, tail: tail,
+                        faces: (json["faces"] as? String).flatMap(StageMove.Facing.init(rawValue:)), rest: json["rest"] as? String))
                 }
                 if (json["kind"] as? String ?? "action") == "action" {
                     let puppet = json["puppet"] as? [String: Any]
@@ -775,6 +776,11 @@ extension StageDirectorTests {
                         if let now = plan.legs.last(where: { $0.at <= t + step }), now.kind == .shuffle,
                             let a0 = now.path.first, let a1 = now.path.last,
                             abs(world.screen(a1).x - world.screen(a0).x) < width * 0.25
+                        { continue }
+                        // (A run too short to show keeps the way before, as
+                        // the director plans it: the first fifth of a width.)
+                        if let now = plan.legs.last(where: { $0.at <= t + step }), let a0 = now.path.first,
+                            abs(world.screen(next.position).x - world.screen(a0).x) < width * 0.2
                         { continue }
                         let looks = (art == .right ? 1.0 : -1.0) * (s.facing < 0 ? -1 : 1)
                         if looks * dx < 0 {

@@ -831,6 +831,22 @@ func TestPlacedActionsHappenInTheirPlace(t *testing.T) {
 			t.Errorf("%s: ok = %v, want %v (%s)", tc.text, got, tc.ok, errs)
 		}
 	}
+	// Coming in by a way that lands it there (the surfer paddling in on
+	// the sea), it is there already.
+	pack.LandsOn = map[string][]string{"owl": {"meadow"}}
+	pack.Moves = map[string][]Animation{"owl": {{ID: "fly", Flies: true}, {ID: "cling", On: []string{"trunks"}}}}
+	for text, ok := range map[string]bool{" {owl:enter by cling} Owl {owl:live} tapped.": true, " {owl:enter} Owl {owl:live} tapped.": false} {
+		story := *s
+		story.Languages = map[string]Localization{}
+		for lang, l := range s.Languages {
+			l.Text += text
+			story.Languages[lang] = l
+		}
+		errs := strings.Join(Validate(&story, pack, cat).Errors, "\n")
+		if got := !strings.Contains(errs, "happens only on the trunks"); got != ok {
+			t.Errorf("%s: ok = %v, want %v (%s)", text, got, ok, errs)
+		}
+	}
 }
 
 func TestPerchedActionsNeedALanding(t *testing.T) {

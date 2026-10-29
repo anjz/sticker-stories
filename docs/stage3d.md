@@ -334,9 +334,10 @@ it turns like any turn: a quick squash through edge-on round the moment
 it gets there (`StagePlan.sample`), never a cut.
 
 **On his board** (`StageMove.faces`, `StageMove.rest`). A move that
-`faces` a way on screen faces it whichever way it goes — the surfer
-paddling and riding faces the way the waves roll, drifting the other way
-if he must — and one with a `rest` move plays that one while it rests
+`faces` a way on screen goes that way and faces it — sent to a place,
+it goes a little that way, to its part a few of its widths over on that
+side when there is one (a story's own `right` goes well on): the surfer always paddles out right to left and rides
+the waves in left to right, the way the sea and the waves run — and one with a `rest` move plays that one while it rests
 where it stays: the surfer sits on his board waiting for a wave rather
 than paddling on the spot (`StageLeg.rest`, `StagePlan.travel`). An
 action that happens in the water (its `place`: riding a wave) takes

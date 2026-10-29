@@ -321,6 +321,10 @@ public enum StageDirector {
         /// When the cue being planned comes: every leg it makes gets there
         /// by the story's next need after it.
         var now: TimeInterval = 0
+        /// The move under way has its way from the move that faces it (the
+        /// surfer on his board), not from the story: a little that way,
+        /// never right across the screen.
+        var leaning = false
 
         init(world: StageWorld, screen: StageScreen, policy: EffectPolicy, actors: [StageActor]) {
             self.world = world
@@ -1332,6 +1336,17 @@ public enum StageDirector {
         // MARK: Moves
 
         mutating func apply<R: RandomNumberGenerator>(_ go: GoTrigger, to i: Int, random: inout R) {
+            var go = go
+            // A way that faces one way on screen (the surfer on his board)
+            // goes that way too, never sliding backwards to where it goes.
+            leaning = false
+            if go.toward == nil, go.kind == .to || go.kind == .away,
+                let by = go.by ?? placeWay(go, for: i), let faces = StageMove.pick(states[i].actor.moves, by: by)?.faces
+            {
+                go.toward = faces == .right ? .right : .left
+                leaning = true
+            }
+            defer { leaning = false }
             let begin = max(go.at, states[i].busyUntil)
             states[i].shelter = nil
             let left = leaveGroup(i)
@@ -1437,7 +1452,7 @@ public enum StageDirector {
             let atPlace = isAt(name, i)
             // Sent somewhere that way (`toward`), it goes that way within
             // the place it is in (the boats racing across the sea).
-            if atPlace, !go.another, go.toward == nil {
+            if atPlace, !go.another, go.toward == nil || leaning {
                 // A story sending it to the bark it is at: the next tree.
                 let facingPlace = world.perches.contains { $0.place == name && $0.facing != nil }
                 if !facingPlace || go.unlessThere { return }
@@ -1454,13 +1469,21 @@ public enum StageDirector {
             }
             if let toward = go.toward {
                 // That way on screen: well on, the far half of the way there
-                // is to go (else the farthest that way).
+                // is to go (else the farthest that way). Leaning that way
+                // (its move faces it), just a little: the nearest spots at
+                // least a width that way.
                 let sign: Double = toward == .right ? 1 : -1
                 let world = self.world, x0 = world.screen(here.position).x
                 let gone = { (p: StagePose) in (world.screen(p.position).x - x0) * sign }
                 let mine = drawing(i, at: here.position), width = mine.maxX - mine.minX
                 let side = spots.filter { gone($0) >= width }
-                if let most = side.map(gone).max() {
+                // (Leaning: no more than a few widths that way, when it can.)
+                let near = side.filter { gone($0) <= 3 * width }
+                if leaning, !side.isEmpty {
+                    let sorted = (near.isEmpty ? side : near).sorted { ($0.position - here.position).length < ($1.position - here.position).length }
+                    let seen = sorted.filter { blocking(i, at: $0.position) < 0.2 && hiddenWithHeadroom(i, at: $0.position) < 0.2 }
+                    spots = Array((seen.isEmpty ? sorted : seen).prefix(max(8, min(16, sorted.count / 4))))
+                } else if let most = side.map(gone).max() {
                     // Seen there, though: where the far half has no clear
                     // spot, anywhere that way.
                     let far = side.filter { gone($0) >= max(width, most / 2) }
@@ -1847,7 +1870,7 @@ public enum StageDirector {
                         states[i].by = nil
                     }
                 } else if !inElement, !onlyGetsAboutInWater(i),
-                    let entry = shore(of: element, near: states[i].pose.position.ground, from: target.position.ground)
+                    let entry = shore(of: element, near: states[i].pose.position.ground, from: target.position.ground, leaningTo: target)
                 {
                     // Into the water from the land: to its edge its usual way
                     // first, then in.
@@ -1899,20 +1922,25 @@ public enum StageDirector {
         }
 
         /// The point of the water's edge nearest `near` (a little on the
-        /// land side), heading for `from`.
-        func shore(of element: [String], near p: Vec2, from q: Vec2) -> Vec2? {
+        /// land side), heading for `from`. Going in a way that leans one way
+        /// (`leaning`, to `leaningTo`), one it goes on that way from.
+        func shore(of element: [String], near p: Vec2, from q: Vec2, leaningTo target: StagePose? = nil) -> Vec2? {
             let polygons = world.grounds.filter { element.contains($0.place) }.map(\.polygon)
             var best: (Vec2, Double)?
+            let sign: Double? = leaning ? target.map { world.screen($0.position).x >= world.screen(p.onGround).x ? 1 : -1 } : nil
             for polygon in polygons {
                 for (k, a) in polygon.points.enumerated() {
                     let b = polygon.points[(k + 1) % polygon.points.count]
                     for s in 0...8 {
                         let e = a + (b - a) * (Double(s) / 8)
+                        if let sign, let target, (world.screen(target.position).x - world.screen(e.onGround).x) * sign < 0 { continue }
                         let d = e.distance(to: p) + 0.3 * e.distance(to: q)
                         if d < (best?.1 ?? .infinity) { best = (e, d) }
                     }
                 }
             }
+            // (No edge that way: the nearest, as ever.)
+            if best == nil, sign != nil { return shore(of: element, near: p, from: q) }
             return best?.0
         }
 
@@ -2113,7 +2141,15 @@ public enum StageDirector {
                 let widthPoints = world.drawnHeight(size: me.size, atDepth: from.z) * me.ratio
                 // Backwards, when the story says so: facing away from its way.
                 let art = (travels == .right ? 1.0 : -1.0) * (states[i].backwards && !shuffle ? -1 : 1)
-                ways = self.ways(along: path, art: art, width: widthPoints, shuffle: shuffle, from: states[i].pose.facing)
+                // Off a way that faced one way whatever it did (the surfer
+                // stepping off his board), a short way faces where it goes.
+                var before = states[i].pose.facing
+                if let last = states[i].legs.last, StageMove.pick(me.moves, by: last.move)?.faces != nil,
+                    let a = path.first, let b = path.last, world.screen(b).x != world.screen(a).x
+                {
+                    before = (world.screen(b).x > world.screen(a).x) == (art > 0) ? 1 : -1
+                }
+                ways = self.ways(along: path, art: art, width: widthPoints, shuffle: shuffle, from: before)
                 if let last = ways.last { facing = last.facing }
                 if ways.count < 2 { ways = [] }
             }
@@ -2129,11 +2165,18 @@ public enum StageDirector {
                 facing = sign
             }
             // A way that faces one way on screen (the surfer on his board:
-            // the way the waves roll) faces it whichever way it goes.
+            // the way the waves roll) faces it as it goes — unless the scene
+            // sends it well the other way (in from the only side the sea
+            // runs on): then it faces its way, never going backwards.
             let way = StageMove.pick(me.moves, by: moveID)
-            if gait != .fade, moveID != nil, let fixed = way?.faces, let art = me.moves.first?.facing {
-                ways = []
-                facing = fixed == art ? 1 : -1
+            if gait != .fade, moveID != nil, let fixed = way?.faces, let art = me.moves.first?.facing,
+                let a = path.first, let b = path.last
+            {
+                let across = (world.screen(b).x - world.screen(a).x) * (fixed == .right ? 1 : -1)
+                if across > -world.drawnHeight(size: me.size, atDepth: a.z) * me.ratio * 0.5 {
+                    ways = []
+                    facing = fixed == art ? 1 : -1
+                }
             }
             var leg = StageLeg(
                 at: start, duration: duration, path: path, gait: gait, kind: kind, move: moveID,

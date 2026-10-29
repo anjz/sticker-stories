@@ -116,7 +116,7 @@ import Testing
             if ProcessInfo.processInfo.environment["STAGE_LEGS"] == story.id {
                 for a in actors {
                     for leg in plans[a.id]?.legs ?? [] {
-                        events.append((leg.at, "    leg \(a.stickerID) \(leg.kind) \(leg.gait) cue \(f(leg.cue)) \(f(leg.at))–\(f(leg.end)) rate \(f(leg.rate)) move \(leg.move ?? "-") \(leg.support)"))
+                        events.append((leg.at, "    leg \(a.stickerID) \(leg.kind) \(leg.gait) cue \(f(leg.cue)) \(f(leg.at))–\(f(leg.end)) rate \(f(leg.rate)) move \(leg.move ?? "-") \(leg.support) x \(f(world.screen(leg.path.first ?? Vec3(0, 0, 1)).x))→\(f(world.screen(leg.path.last ?? Vec3(0, 0, 1)).x)) facing \(f(leg.facingTo))"))
                     }
                 }
             }

@@ -70,6 +70,9 @@ import Testing
             let p = try #require(plan([GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "sea", by: "paddle")], at: feet))
             let out = try #require(p.legs.last)
             #expect(out.move == "paddle" && out.facingTo == -1 && out.ways.isEmpty)
+            // And he goes the way he faces: never paddling backwards.
+            let a = try #require(out.path.first), b = try #require(out.path.last)
+            #expect(world.screen(b).x >= world.screen(a).x - 1)
             // There, he sits on his board facing the same way.
             let there = try #require(p.travel(at: out.end + 2))
             #expect(there.move == "wait" && there.stays && p.sample(at: out.end + 2).facing == -1)

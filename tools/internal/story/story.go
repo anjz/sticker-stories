@@ -1248,6 +1248,13 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 					} else {
 						enterAt[c.Sticker] = c.WordIndex
 						aloft[c.Sticker] = m.landsInAir(c.Sticker, c.By)
+						// Coming in by a way that lands it somewhere (paddling
+						// in: the sea), it is there.
+						for _, mv := range m.Moves[c.Sticker] {
+							if mv.ID == c.By && len(mv.On) > 0 {
+								place[c.Sticker] = mv.On[0]
+							}
+						}
 					}
 				}
 				if c.Repeat > 0 || c.Loop || c.Hold || c.Color != "" || c.Duration > 0 || c.Intensity != 0 {
