@@ -1021,10 +1021,14 @@ public enum StageDirector {
                     }
                 }
                 // Afloat in it (not on a shallow bottom): out in open water,
-                // never hugging the shore (`StageWorld.openWater`).
+                // never hugging the shore (`StageWorld.openWater`); a boat
+                // further out, in deep water (`StageWorld.deepWater`).
                 if open, into, ground.water, !ground.shallow, floats(i, in: name) {
-                    let out2 = out.filter { world.inOpenWater($0.position.ground) }
-                    if !out2.isEmpty { return out2 }
+                    let boat = [.big, .huge].contains(me.stature)
+                    for least in boat ? [StageWorld.deepWater, StageWorld.openWater] : [StageWorld.openWater] {
+                        let out2 = out.filter { (world.outInWater($0.position.ground) ?? 0) >= least }
+                        if !out2.isEmpty { return out2 }
+                    }
                 }
                 // On a shallow bottom, seen whole: in the water as the viewer
                 // sees it too — its drawing's middle over the water, not up

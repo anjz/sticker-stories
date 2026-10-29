@@ -271,8 +271,10 @@ and nobody floats there, whatever its waterline.
 to it (not on a shallow bottom) stops well out from the waterline, never
 hugging the shore: at least a third of the way out (`StageWorld.openWater`),
 measured up the art at that spot from the water's near edge (0) to its
-far edge (1) (`StageWorld.outInWater`, `inOpenWater`). A wave rises only
-that far out too. A water-bound sticker sent to a place on land (the
+far edge (1) (`StageWorld.outInWater`, `inOpenWater`). A boat (a
+sticker afloat whose size class is `big` or `huge`) goes further out, into
+deep water: at least 65 % of the way (`StageWorld.deepWater`), when there
+is such a spot. A wave rises only a third of the way out too. A water-bound sticker sent to a place on land (the
 bottle "to shore") still stops at the waterline; a child's sticker the
 child put in the water stays where the child put it. Going off from by
 the shore, one afloat heads out to open water (the bottle bobbing away

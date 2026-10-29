@@ -113,7 +113,7 @@ import Testing
                     if let g = gap(a, b, u + 1), g > 1.5 { events.append((u, "  far: \(a)–\(b) \(f(g)) widths apart")) }
                 }
             }
-            if ProcessInfo.processInfo.environment["STAGE_LEGS"] == story.id {
+            if (ProcessInfo.processInfo.environment["STAGE_LEGS"] ?? "").split(separator: ",").contains(Substring(story.id)) {
                 for a in actors {
                     for leg in plans[a.id]?.legs ?? [] {
                         events.append((leg.at, "    leg \(a.stickerID) \(leg.kind) \(leg.gait) cue \(f(leg.cue)) \(f(leg.at))–\(f(leg.end)) rate \(f(leg.rate)) move \(leg.move ?? "-") \(leg.support) x \(f(world.screen(leg.path.first ?? Vec3(0, 0, 1)).x))→\(f(world.screen(leg.path.last ?? Vec3(0, 0, 1)).x)) facing \(f(leg.facingTo))\(world.outInWater((leg.path.last ?? Vec3(0, 0, 1)).ground).map { " out \(f($0 * 100))%" } ?? "")"))
