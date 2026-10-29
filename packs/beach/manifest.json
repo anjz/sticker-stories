@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "beach",
-  "version": 43,
+  "version": 44,
   "languages": [
     "en-US",
     "es-ES"
@@ -762,8 +762,8 @@
     }
   },
   "narrationPacks": {
-    "en-US": "beach-narration-en-f4a9b421",
-    "es-ES": "beach-narration-es-965f7036"
+    "en-US": "beach-narration-en-e25e9a97",
+    "es-ES": "beach-narration-es-4e88666c"
   },
   "stickers": [
     {
@@ -929,7 +929,8 @@
         "on": [
           "pool",
           "sand"
-        ]
+        ],
+        "underwater": 1
       },
       "size": "tiny",
       "content": {
@@ -979,7 +980,8 @@
           "rocks",
           "pool",
           "sand"
-        ]
+        ],
+        "underwater": 0.35
       },
       "size": "small",
       "content": {
@@ -1078,7 +1080,8 @@
         "on": [
           "pool",
           "sea"
-        ]
+        ],
+        "underwater": 1
       },
       "size": "tiny",
       "content": {
@@ -1210,7 +1213,8 @@
         "on": [
           "pool",
           "sand"
-        ]
+        ],
+        "underwater": 0.5
       },
       "size": "tiny",
       "content": {
@@ -1258,7 +1262,8 @@
         "entrance": "hop",
         "on": [
           "pool"
-        ]
+        ],
+        "underwater": 0.6
       },
       "size": "small",
       "content": {
@@ -1566,7 +1571,8 @@
         "on": [
           "pool",
           "rocks"
-        ]
+        ],
+        "underwater": 0.75
       },
       "size": "small",
       "content": {
@@ -1614,7 +1620,8 @@
         "entrance": "hop",
         "on": [
           "pool"
-        ]
+        ],
+        "underwater": 1
       },
       "size": "tiny",
       "content": {
@@ -1662,7 +1669,8 @@
         "on": [
           "pool",
           "rocks"
-        ]
+        ],
+        "underwater": 0.9
       },
       "size": "small",
       "content": {
@@ -1845,7 +1853,8 @@
         "entrance": "hop",
         "on": [
           "pool"
-        ]
+        ],
+        "underwater": 1
       },
       "size": "tiny",
       "content": {
@@ -2316,35 +2325,6 @@
           "text": "¡Al escondite en la charca! Pececito contaba. Cangrejo y Pulpo se fueron a esconder. Cangrejo se escondió detrás de una piedra, pero sus grandes pinzas rojas asomaban. ¡Te pillé, Cangrejo! ¿Y dónde estaba Pulpo? Pececito buscó por todas partes. Debajo de las piedras. Detrás de los pedruscos. Almeja se abrió para mirar también. Ni rastro de Pulpo. Entonces, una piedra gris… parpadeó. ¡Esa piedra tiene OJOS! El gris se volvió naranja rosado, y allí estaba Pulpo, riéndose. Soy un pulpo, dijo. ¡Puedo ponerme del color de lo que tengo al lado! Movió sus ocho brazos. Cangrejo chocó las pinzas. Ahora me escondo yo, dijo Pececito. ¿Me enseñas a ser una piedra?",
           "audio": "audio/es-ES/octopus-hide-and-seek.m4a",
           "effects": "audio/es-ES/octopus-hide-and-seek.effects.json"
-        }
-      }
-    },
-    {
-      "id": "octopus-says-hello",
-      "requiredStickers": [
-        "girl",
-        "octopus",
-        "starfish"
-      ],
-      "optionalStickers": [],
-      "weight": 1,
-      "tags": [
-        "curiosity",
-        "funny",
-        "learning"
-      ],
-      "localizations": {
-        "en-US": {
-          "title": "Octopus Says Hello",
-          "text": "Lola knelt at the edge of the rock pool. \"Hello? Is anybody home?\" Out came Octopus, orange and curly. He waved all eight arms. Then he reached out the tip of one arm… and touched Lola's finger. \"That tickles!\" I'm tasting you, said Octopus. I taste things with the little suckers on my arms. \"What do I taste like?\" Octopus thought. Hmm… like salt, and sand, and sandwiches. Starfish, watching nearby, waved one arm hello. \"Can I taste you back?\" Octopus wiggled. I'll just shake your hand, he said. So he did. Eight times.",
-          "audio": "audio/en-US/octopus-says-hello.m4a",
-          "effects": "audio/en-US/octopus-says-hello.effects.json"
-        },
-        "es-ES": {
-          "title": "Pulpo dice hola",
-          "text": "Lola se arrodilló al borde de la charca. «¿Hola? ¿Hay alguien en casa?» Salió Pulpo, naranja y rizado. Saludó con sus ocho brazos. Luego estiró la punta de un brazo… y tocó el dedo de Lola. «¡Me hace cosquillas!» Te estoy probando, dijo Pulpo. Yo saboreo las cosas con las ventosas de mis brazos. «¿Y a qué sé?» Pulpo se lo pensó. Mmm… a sal, a arena y a bocadillo. Estrella, que miraba al lado, saludó con un brazo. «¿Puedo probarte yo a ti?» Pulpo se meneó. Mejor te doy la mano, dijo. Y eso hizo. Ocho veces.",
-          "audio": "audio/es-ES/octopus-says-hello.m4a",
-          "effects": "audio/es-ES/octopus-says-hello.effects.json"
         }
       }
     },
@@ -3230,6 +3210,35 @@
           "text": "Ni una pizca de viento. El velero estaba quieto en el mar azul y liso, con las velas blancas colgando. Lola esperaba y esperaba. «Venga, viento.» Gaviota estaba sentada en la arena, sin ganas ni de volar. Entonces… una ondita. Un aleteo. ¡Fiuuu! ¡Ya llegaba el viento! Las velas se hincharon, redondas y llenas. «¡Mira! ¡El viento empuja la vela!» Lola soltó hilo, y arriba subió su cometa. Gaviota se despertó y subió volando junto a la cometa. Y el velero cruzó la bahía, empujado por el viento. Viento para el barco, viento para la cometa, viento bajo las alas de Gaviota. Todos estaban esperando lo mismo.",
           "audio": "audio/es-ES/waiting-for-the-wind.m4a",
           "effects": "audio/es-ES/waiting-for-the-wind.effects.json"
+        }
+      }
+    },
+    {
+      "id": "who-has-the-most-arms",
+      "requiredStickers": [
+        "girl",
+        "octopus",
+        "starfish"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Who Has the Most Arms?",
+          "text": "Lola came to the edge of the rock pool and peeked in. \"Who's at home today?\" Up came Octopus, orange and curly. Then Starfish, smiling. \"Let's play a game. Who has the most arms?\" Lola went first. One, two. Two arms! Starfish stretched out wide. One, two, three, four, five. Five arms! Then Octopus wiggled all of his. \"One, two, three, four, five, six, seven… EIGHT!\" Eight arms! Every octopus has eight. \"You win, Octopus!\" But two arms are just right for clapping, said Octopus. So Lola clapped, Starfish cheered, and Octopus twirled round and round, all eight arms swirling.",
+          "audio": "audio/en-US/who-has-the-most-arms.m4a",
+          "effects": "audio/en-US/who-has-the-most-arms.effects.json"
+        },
+        "es-ES": {
+          "title": "¿Quién tiene más brazos?",
+          "text": "Lola se acercó a la charca de las rocas y miró dentro. «¿Quién hay hoy en casa?» Salió Pulpo, naranja y rizado. Y luego Estrella, muy sonriente. «¡Vamos a jugar! ¿Quién tiene más brazos?» Empezó Lola. Uno, dos. ¡Dos brazos! Estrella se estiró bien. Uno, dos, tres, cuatro, cinco. ¡Cinco brazos! Entonces Pulpo meneó todos los suyos. «Uno, dos, tres, cuatro, cinco, seis, siete… ¡OCHO!» ¡Ocho brazos! Todos los pulpos tienen ocho. «¡Has ganado, Pulpo!» Pero dos brazos son perfectos para aplaudir, dijo Pulpo. Así que Lola aplaudió, Estrella lo celebró y Pulpo giró y giró, con sus ocho brazos al vuelo.",
+          "audio": "audio/es-ES/who-has-the-most-arms.m4a",
+          "effects": "audio/es-ES/who-has-the-most-arms.effects.json"
         }
       }
     },
