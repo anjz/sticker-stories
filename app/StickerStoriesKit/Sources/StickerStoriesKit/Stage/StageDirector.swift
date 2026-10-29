@@ -324,7 +324,7 @@ public enum StageDirector {
         /// The move under way has its way from the move that faces it (the
         /// surfer on his board), not from the story: a little that way,
         /// never right across the screen.
-        var leaning = false
+        var leaning: Double?
 
         init(world: StageWorld, screen: StageScreen, policy: EffectPolicy, actors: [StageActor]) {
             self.world = world
@@ -1339,14 +1339,14 @@ public enum StageDirector {
             var go = go
             // A way that faces one way on screen (the surfer on his board)
             // goes that way too, never sliding backwards to where it goes.
-            leaning = false
+            leaning = nil
             if go.toward == nil, go.kind == .to || go.kind == .away,
                 let by = go.by ?? placeWay(go, for: i), let faces = StageMove.pick(states[i].actor.moves, by: by)?.faces
             {
                 go.toward = faces == .right ? .right : .left
-                leaning = true
+                leaning = faces == .right ? 1 : -1
             }
-            defer { leaning = false }
+            defer { leaning = nil }
             let begin = max(go.at, states[i].busyUntil)
             states[i].shelter = nil
             let left = leaveGroup(i)
@@ -1452,7 +1452,7 @@ public enum StageDirector {
             let atPlace = isAt(name, i)
             // Sent somewhere that way (`toward`), it goes that way within
             // the place it is in (the boats racing across the sea).
-            if atPlace, !go.another, go.toward == nil || leaning {
+            if atPlace, !go.another, go.toward == nil || leaning != nil {
                 // A story sending it to the bark it is at: the next tree.
                 let facingPlace = world.perches.contains { $0.place == name && $0.facing != nil }
                 if !facingPlace || go.unlessThere { return }
@@ -1476,13 +1476,23 @@ public enum StageDirector {
                 let world = self.world, x0 = world.screen(here.position).x
                 let gone = { (p: StagePose) in (world.screen(p.position).x - x0) * sign }
                 let mine = drawing(i, at: here.position), width = mine.maxX - mine.minX
-                let side = spots.filter { gone($0) >= width }
-                // (Leaning: no more than a few widths that way, when it can.)
-                let near = side.filter { gone($0) <= 3 * width }
-                if leaning, !side.isEmpty {
-                    let sorted = (near.isEmpty ? side : near).sorted { ($0.position - here.position).length < ($1.position - here.position).length }
+                // (Leaning: well out in open water, where the waves are, and
+                // no more than a few widths that way, when it can.)
+                let thatWay = spots.filter { gone($0) >= width }
+                let out = { (least: Double) in thatWay.filter { (world.outInWater($0.position.ground) ?? 0) >= least } }
+                let side = thatWay
+                // (Seen there comes first: the farthest out where it is.)
+                var leaned: [StagePose]?
+                for tier in [out(0.7), out(0.5), out(StageWorld.openWater), thatWay] where leaning != nil && leaned == nil {
+                    let near = tier.filter { gone($0) <= 3 * width }
+                    let sorted = (near.isEmpty ? tier : near).sorted { ($0.position - here.position).length < ($1.position - here.position).length }
                     let seen = sorted.filter { blocking(i, at: $0.position) < 0.2 && hiddenWithHeadroom(i, at: $0.position) < 0.2 }
-                    spots = Array((seen.isEmpty ? sorted : seen).prefix(max(8, min(16, sorted.count / 4))))
+                    if !seen.isEmpty { leaned = Array(seen.prefix(max(8, min(16, sorted.count / 4)))) }
+                }
+                if leaning != nil, let leaned {
+                    spots = leaned
+                } else if leaning != nil, !side.isEmpty {
+                    spots = Array(side.sorted { ($0.position - here.position).length < ($1.position - here.position).length }.prefix(16))
                 } else if let most = side.map(gone).max() {
                     // Seen there, though: where the far half has no clear
                     // spot, anywhere that way.
@@ -1854,7 +1864,7 @@ public enum StageDirector {
                             target.position = water.onGround
                         }
                     } else {
-                        if inElement, let exit = shore(of: element, near: target.position.ground, from: states[i].pose.position.ground) {
+                        if inElement, let exit = shore(of: element, near: target.position.ground, from: states[i].pose.position.ground, after: states[i].pose.position) {
                             // Out of the water its water way, then on foot —
                             // once that way has brought it to rest. Where it is
                             // going lies right at the edge: it swims there.
@@ -1870,7 +1880,7 @@ public enum StageDirector {
                         states[i].by = nil
                     }
                 } else if !inElement, !onlyGetsAboutInWater(i),
-                    let entry = shore(of: element, near: states[i].pose.position.ground, from: target.position.ground, leaningTo: target)
+                    let entry = shore(of: element, near: states[i].pose.position.ground, from: target.position.ground, before: target.position)
                 {
                     // Into the water from the land: to its edge its usual way
                     // first, then in.
@@ -1922,18 +1932,20 @@ public enum StageDirector {
         }
 
         /// The point of the water's edge nearest `near` (a little on the
-        /// land side), heading for `from`. Going in a way that leans one way
-        /// (`leaning`, to `leaningTo`), one it goes on that way from.
-        func shore(of element: [String], near p: Vec2, from q: Vec2, leaningTo target: StagePose? = nil) -> Vec2? {
+        /// land side), heading for `from`. Going a way that leans one way
+        /// (`leaning`): into the water, one it goes on that way from to
+        /// `before`; out of it, one that way from `after`.
+        func shore(of element: [String], near p: Vec2, from q: Vec2, before target: Vec3? = nil, after start: Vec3? = nil) -> Vec2? {
             let polygons = world.grounds.filter { element.contains($0.place) }.map(\.polygon)
             var best: (Vec2, Double)?
-            let sign: Double? = leaning ? target.map { world.screen($0.position).x >= world.screen(p.onGround).x ? 1 : -1 } : nil
+            let sign = leaning
             for polygon in polygons {
                 for (k, a) in polygon.points.enumerated() {
                     let b = polygon.points[(k + 1) % polygon.points.count]
                     for s in 0...8 {
                         let e = a + (b - a) * (Double(s) / 8)
-                        if let sign, let target, (world.screen(target.position).x - world.screen(e.onGround).x) * sign < 0 { continue }
+                        if let sign, let target, (world.screen(target).x - world.screen(e.onGround).x) * sign < 0 { continue }
+                        if let sign, let start, (world.screen(e.onGround).x - world.screen(start).x) * sign < 0 { continue }
                         let d = e.distance(to: p) + 0.3 * e.distance(to: q)
                         if d < (best?.1 ?? .infinity) { best = (e, d) }
                     }
