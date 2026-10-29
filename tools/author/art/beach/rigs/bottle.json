@@ -1,7 +1,7 @@
 {
   "sticker": "bottle",
   "called": "the bottle",
-  "skeleton": "a straight glass bottle lying level on its side, neck to the right: root under the middle of its underside; body at its centre carries the empty glass; the rolled note inside on its own bone (it slides a little along the bottle when it tips); the cork on a bone at the neck's lip, drawn behind the glass so the lip covers its plug.",
+  "skeleton": "a straight glass bottle lying on its side, tilted with its neck up to the right: root under the middle of its underside; body at its centre carries the empty glass; the rolled note inside on its own bone (it slides a little along the bottle when it tips); the cork on a bone at the neck's lip, drawn behind the glass so the lip covers its plug.",
   "sheets": [
     {
       "id": "parts",
@@ -35,26 +35,26 @@
   "bones": [
     {
       "id": "root",
-      "x": 371,
-      "y": 441
+      "x": 398.4,
+      "y": 432.0
     },
     {
       "id": "body",
       "parent": "root",
-      "x": 371,
-      "y": 383
+      "x": 372.9,
+      "y": 377.3
     },
     {
       "id": "note",
       "parent": "body",
-      "x": 348,
-      "y": 391
+      "x": 354.7,
+      "y": 395.0
     },
     {
       "id": "cork",
       "parent": "body",
-      "x": 533,
-      "y": 384
+      "x": 526.1,
+      "y": 307.0
     }
   ],
   "slots": [
@@ -65,9 +65,10 @@
       "attachments": {
         "cork": {
           "part": "cork",
-          "x": 527.5,
-          "y": 384,
-          "scale": 0.254
+          "x": 520.9,
+          "y": 309.4,
+          "scale": 0.2643,
+          "rotate": -25
         }
       }
     },
@@ -78,10 +79,11 @@
       "attachments": {
         "bottle": {
           "part": "bottle",
-          "x": 373.5,
-          "y": 384.5,
-          "scale": 0.233,
-          "scaleY": 1.04
+          "x": 375.9,
+          "y": 377.6,
+          "scale": 0.2425,
+          "scaleY": 1.04,
+          "rotate": -25
         }
       }
     },
@@ -92,10 +94,11 @@
       "attachments": {
         "note": {
           "part": "note",
-          "x": 348.5,
-          "y": 391.5,
-          "scale": 0.236,
-          "scaleY": 0.94
+          "x": 355.4,
+          "y": 395.2,
+          "scale": 0.2456,
+          "scaleY": 0.94,
+          "rotate": -25
         }
       }
     }
@@ -137,7 +140,8 @@
               "r": -0.6
             },
             "cork": {
-              "x": 5
+              "x": 4.7,
+              "y": -2.2
             }
           }
         },
@@ -149,8 +153,8 @@
               "r": -1.5
             },
             "cork": {
-              "x": 45,
-              "y": -95,
+              "x": 0.7,
+              "y": -109.4,
               "r": 70
             }
           }
@@ -163,12 +167,13 @@
               "r": 2
             },
             "cork": {
-              "x": 82,
-              "y": -60,
+              "x": 51.0,
+              "y": -92.7,
               "r": 140
             },
             "note": {
-              "x": 6
+              "x": 5.7,
+              "y": -2.6
             }
           }
         },
@@ -179,12 +184,13 @@
               "r": 3
             },
             "cork": {
-              "x": 96,
-              "y": 32,
-              "r": 180
+              "x": 84,
+              "y": 159,
+              "r": 205
             },
             "note": {
-              "x": 12
+              "x": 11.3,
+              "y": -5.3
             }
           }
         },
@@ -195,12 +201,13 @@
               "r": 1
             },
             "cork": {
-              "x": 96,
-              "y": 32,
-              "r": 180
+              "x": 84,
+              "y": 159,
+              "r": 205
             },
             "note": {
-              "x": 4
+              "x": 3.8,
+              "y": -1.8
             }
           }
         },
@@ -209,8 +216,8 @@
           "ease": "out",
           "bones": {
             "cork": {
-              "x": 70,
-              "y": -70,
+              "x": 35.2,
+              "y": -96.8,
               "r": 110
             }
           }
@@ -220,8 +227,8 @@
           "ease": "in",
           "bones": {
             "cork": {
-              "x": 8,
-              "y": -6,
+              "x": 4.9,
+              "y": -9.2,
               "r": 10
             }
           }
@@ -267,7 +274,8 @@
               "r": -5
             },
             "note": {
-              "x": -4.0
+              "x": -3.8,
+              "y": 1.8
             }
           }
         },
@@ -292,7 +300,8 @@
               "r": 5
             },
             "note": {
-              "x": 4.0
+              "x": 3.8,
+              "y": -1.8
             }
           }
         },
@@ -317,7 +326,8 @@
               "r": -2
             },
             "note": {
-              "x": -1.6
+              "x": -1.5,
+              "y": 0.7
             }
           }
         },
@@ -328,7 +338,8 @@
               "r": 1
             },
             "note": {
-              "x": 0.8
+              "x": 0.8,
+              "y": -0.4
             }
           }
         },
@@ -352,7 +363,8 @@
               "r": 5
             },
             "note": {
-              "x": 4
+              "x": 3.8,
+              "y": -1.8
             }
           }
         },
@@ -363,7 +375,8 @@
               "r": -5
             },
             "note": {
-              "x": -4
+              "x": -3.8,
+              "y": 1.8
             }
           }
         },
@@ -374,7 +387,8 @@
               "r": 3
             },
             "note": {
-              "x": 3
+              "x": 2.8,
+              "y": -1.3
             }
           }
         },
@@ -385,7 +399,8 @@
               "r": -1.5
             },
             "note": {
-              "x": -1
+              "x": -0.9,
+              "y": 0.4
             }
           }
         },
@@ -413,7 +428,8 @@
               "r": -3
             },
             "note": {
-              "x": -2
+              "x": -1.9,
+              "y": 0.9
             }
           }
         },
@@ -440,7 +456,8 @@
               "r": -2
             },
             "note": {
-              "x": -1
+              "x": -0.9,
+              "y": 0.4
             }
           }
         },
@@ -488,7 +505,8 @@
               "r": 6
             },
             "note": {
-              "x": 4
+              "x": 3.8,
+              "y": -1.8
             }
           }
         },
@@ -499,7 +517,8 @@
               "r": 6
             },
             "note": {
-              "x": 12
+              "x": 11.3,
+              "y": -5.3
             }
           }
         },
@@ -510,7 +529,8 @@
               "r": -2
             },
             "note": {
-              "x": 10
+              "x": 9.4,
+              "y": -4.4
             }
           }
         },
@@ -520,9 +540,7 @@
             "root": {
               "r": -1
             },
-            "note": {
-              "x": 0
-            }
+            "note": {}
           }
         },
         {
@@ -546,7 +564,8 @@
               "r": 3
             },
             "note": {
-              "x": 2
+              "x": 1.9,
+              "y": -0.9
             }
           }
         },
@@ -557,7 +576,8 @@
               "r": -3
             },
             "note": {
-              "x": -2
+              "x": -1.9,
+              "y": 0.9
             }
           }
         },
@@ -568,7 +588,8 @@
               "r": 2
             },
             "note": {
-              "x": 1
+              "x": 0.9,
+              "y": -0.4
             }
           }
         },

@@ -5,9 +5,9 @@
   "description": "the bottle wobbles from side to side, the note inside sliding to and fro, then settles.",
   "stickerBox": {
     "x": 0.25,
-    "y": 0.39714,
+    "y": 0.33333,
     "width": 0.5,
-    "height": 0.20443
+    "height": 0.33333
   },
   "puppet": {
     "rig": "anims/bottle.rig.json",
@@ -19,7 +19,8 @@
         "hold": 0.3,
         "bones": {
           "note": {
-            "x": 4
+            "x": 3.8,
+            "y": -1.8
           },
           "root": {
             "r": 5
@@ -30,7 +31,8 @@
         "hold": 0.35,
         "bones": {
           "note": {
-            "x": -4
+            "x": -3.8,
+            "y": 1.8
           },
           "root": {
             "r": -5
@@ -41,7 +43,8 @@
         "hold": 0.3,
         "bones": {
           "note": {
-            "x": 3
+            "x": 2.8,
+            "y": -1.3
           },
           "root": {
             "r": 3
@@ -52,7 +55,8 @@
         "hold": 0.28,
         "bones": {
           "note": {
-            "x": -1
+            "x": -0.9,
+            "y": 0.4
           },
           "root": {
             "r": -1.5
