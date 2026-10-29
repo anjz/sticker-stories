@@ -37,7 +37,7 @@ public struct EffectPolicy: Equatable, Sendable {
             result.intensity = min(result.intensity, 0.3)
         case .fadeIn, .fadeOut, .glow, .tint:
             break  // carry story meaning; run at full
-        case .sparkle, .hearts, .dustPuff, .spray, .sparks, .bubblePuff, .surfWave:
+        case .sparkle, .hearts, .dustPuff, .spray, .sparks, .bubblePuff, .surfWave, .wash:
             result.intensity = min(result.intensity, 0.4)
         }
         // A coloured wash is meaning, not stimulation: a grey stone stays

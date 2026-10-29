@@ -56,10 +56,10 @@ import Testing
             let cast = StageDirector.cast(
                 entrances: file.entranceTriggers, goes: file.goTriggers, live: file.liveTriggers,
                 faces: file.expressionTriggers, effects: file.triggers)
-            let actions = StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] })
+            let actions = StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] }, drift: { pack.actionDrifts[$0] })
             let plans = StageDirector.plan(
                 world: world, screen: screen, actors: actors, entrances: file.entranceTriggers, goes: goes,
-                policy: .standard, cast: cast, actions: actions, live: file.liveTriggers, random: &random)
+                policy: .standard, cast: cast, actions: actions, live: file.liveTriggers, washes: StageWash.of(file.triggers), random: &random)
             let ids = Dictionary(uniqueKeysWithValues: actors.map { ($0.id, $0.stickerID) })
             let played = StageDirector.delayed(file.liveTriggers, plans: plans, stickers: ids, places: Set(pack.places.keys))
             func actor(_ id: String) -> StageActor? { actors.first { $0.stickerID == id } }
@@ -113,10 +113,10 @@ import Testing
                     if let g = gap(a, b, u + 1), g > 1.5 { events.append((u, "  far: \(a)–\(b) \(f(g)) widths apart")) }
                 }
             }
-            if ProcessInfo.processInfo.environment["STAGE_LEGS"] == story.id {
+            if (ProcessInfo.processInfo.environment["STAGE_LEGS"] ?? "").split(separator: ",").contains(Substring(story.id)) {
                 for a in actors {
                     for leg in plans[a.id]?.legs ?? [] {
-                        events.append((leg.at, "    leg \(a.stickerID) \(leg.kind) \(leg.gait) cue \(f(leg.cue)) \(f(leg.at))–\(f(leg.end)) rate \(f(leg.rate)) move \(leg.move ?? "-") \(leg.support)"))
+                        events.append((leg.at, "    leg \(a.stickerID) \(leg.kind) \(leg.gait) cue \(f(leg.cue)) \(f(leg.at))–\(f(leg.end)) rate \(f(leg.rate)) move \(leg.move ?? "-") \(leg.support) x \(f(world.screen(leg.path.first ?? Vec3(0, 0, 1)).x))→\(f(world.screen(leg.path.last ?? Vec3(0, 0, 1)).x)) facing \(f(leg.facingTo))\(world.outInWater((leg.path.last ?? Vec3(0, 0, 1)).ground).map { " out \(f($0 * 100))%" } ?? "")"))
                     }
                 }
             }

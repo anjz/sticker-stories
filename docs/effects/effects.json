@@ -113,6 +113,12 @@
         120
       ],
       "description": "Seconds the effect stays on, ramps included. There is no repeat, colour or hold."
+    },
+    "toward": {
+      "type": "\"left\"|\"right\"",
+      "required": false,
+      "default": "right",
+      "description": "The way a flowing effect blows (those that list it: wind, current). Another trigger of it while it blows turns it; things without a face that a story moves meanwhile go its way."
     }
   },
   "reduceMotionValues": {
@@ -605,6 +611,34 @@
       "defaultColor": null,
       "requiresColor": false,
       "reduceMotion": "damped-0.4"
+    },
+    {
+      "name": "wash",
+      "category": "water",
+      "summary": "A big wave washes up the whole beach from the left and back, running furthest to the sticker (a little past its feet), leaving the sand wet for a while; a water creature sent off as it draws back rides it across. Out at sea or up in the air the cue draws nothing.",
+      "use": "A big wave washing up the beach to a sticker on the sand or in the rock pool: reaching the pool, a sandcastle, someone's toes. A creature of the water the story sends to the sea while it draws back rides it there (Little Fish carried out of the pool). Cued on whom it reaches; only with open water above it on screen. On the ground, under every sticker.",
+      "animates": [
+        "painted"
+      ],
+      "defaultDuration": 5.0,
+      "anchor": [
+        0.5,
+        1.0
+      ],
+      "durationRange": [
+        0.05,
+        30
+      ],
+      "parameters": [
+        "repeat",
+        "duration",
+        "intensity"
+      ],
+      "oneWay": false,
+      "hold": false,
+      "defaultColor": null,
+      "requiresColor": false,
+      "reduceMotion": "damped-0.4"
     }
   ],
   "canvasEffects": [
@@ -784,7 +818,8 @@
       "rampOut": 1.5,
       "parameters": [
         "intensity",
-        "duration"
+        "duration",
+        "toward"
       ],
       "reduceMotion": "damped-0.4"
     },
@@ -1247,7 +1282,8 @@
       "rampOut": 1.5,
       "parameters": [
         "intensity",
-        "duration"
+        "duration",
+        "toward"
       ],
       "reduceMotion": "damped-0.4"
     },

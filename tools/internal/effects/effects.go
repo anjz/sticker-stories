@@ -16,6 +16,7 @@ import (
 	"math"
 	"os"
 	"regexp"
+	"slices"
 	"sort"
 	"strings"
 )
@@ -28,7 +29,7 @@ var Names = []string{
 	"pulse", "wobble", "shake", "hop", "spin", "float",
 	"fade-in", "fade-out", "glow", "tint",
 	"sparkle", "hearts", "dust-puff", "spray", "sparks", "bubble-puff",
-	"surf-wave",
+	"surf-wave", "wash",
 }
 
 // CanvasNames lists every canvas effect (weather and light over the whole
@@ -41,6 +42,10 @@ var CanvasNames = []string{
 	"dust", "floodlights", "glints", "sunrays", "ripples",
 	"deepwater", "glowplankton", "current", "sandcloud",
 }
+
+// CanvasFlows are the canvas effects that blow one way across the scene
+// (toward): what they carry goes that way.
+var CanvasFlows = set("wind", "current")
 
 // CanvasSettings maps each canvas effect to the pack settings it suits
 // (docs/pack-format.md, "setting"). A pack whose setting is "none" gets no
@@ -89,11 +94,11 @@ var (
 	known           = set(Names...)
 	knownCanvas     = set(CanvasNames...)
 	knownKeys       = set("at", "cue", "sticker", "effect", "repeat", "duration", "intensity", "color", "hold")
-	knownCanvasKeys = set("at", "cue", "effect", "intensity", "duration")
+	knownCanvasKeys = set("at", "cue", "effect", "intensity", "duration", "toward")
 	knownLiveKeys   = set("at", "cue", "sticker", "animation", "mode")
 	knownFaceKeys   = set("at", "cue", "sticker", "expression")
 	knownEnterKeys  = set("at", "cue", "sticker", "enter", "by")
-	knownGoKeys     = set("at", "cue", "sticker", "go", "target", "by", "toward", "another", "backwards")
+	knownGoKeys     = set("at", "cue", "sticker", "go", "target", "by", "toward", "another", "backwards", "prop")
 	colorPattern    = regexp.MustCompile(`^#[0-9A-Fa-f]{6}$`)
 )
 
@@ -138,11 +143,13 @@ const Normal = "normal"
 type Animations map[string][]Animation
 
 // Animation is one animation a trigger may name: an action, and whether
-// it has a frame it can pause on ("mode": "hold"), or a move.
+// it has a frame it can pause on ("mode": "hold") and the props it holds
+// out there (a move may go to one: "prop"), or a move.
 type Animation struct {
 	ID       string
 	Pausable bool
 	Move     bool
+	Props    []string
 }
 
 func (a Animations) find(sticker, id string) (Animation, bool) {
@@ -347,8 +354,8 @@ func validateTrigger(label string, fields map[string]json.RawMessage, declared m
 }
 
 // validateCanvasTrigger checks a trigger whose effect is a canvas effect:
-// no sticker, only intensity and duration, and an effect that suits the
-// pack's setting.
+// no sticker, only intensity and duration (and the way a flowing one
+// blows), and an effect that suits the pack's setting.
 func validateCanvasTrigger(label, effect string, fields map[string]json.RawMessage, setting string, fail func(string, ...any)) {
 	for _, k := range sortedKeys(fields) {
 		if !knownCanvasKeys[k] {
@@ -381,6 +388,15 @@ func validateCanvasTrigger(label, effect string, fields map[string]json.RawMessa
 	if raw, ok := fields["intensity"]; ok {
 		if v, ok := number(raw); !ok || v < 0 || v > 1 {
 			fail("%s: intensity must be a number in 0..1", label)
+		}
+	}
+	if raw, ok := fields["toward"]; ok {
+		var s string
+		switch {
+		case !CanvasFlows[effect]:
+			fail("%s: canvas effect %q does not blow a way; remove toward", label, effect)
+		case json.Unmarshal(raw, &s) != nil || (s != "left" && s != "right"):
+			fail("%s: toward must be \"left\" or \"right\"", label)
 		}
 	}
 }
@@ -478,6 +494,21 @@ func validateGoTrigger(label string, fields map[string]json.RawMessage, declared
 		}
 	}
 	validateBy(label, sticker, fields, animations, fail)
+	if raw, ok := fields["prop"]; ok {
+		var prop string
+		switch {
+		case json.Unmarshal(raw, &prop) != nil || prop == "":
+			fail("%s: prop must be a non-empty string", label)
+		case kind != "to":
+			fail("%s: prop is only for go to", label)
+		case target != "" && declared != nil && !declared[target]:
+			fail("%s: prop %q needs a sticker target, not a place", label, prop)
+		case target != "" && animations != nil && !slices.ContainsFunc(animations[target], func(a Animation) bool {
+			return slices.Contains(a.Props, prop)
+		}):
+			fail("%s: sticker %q has no action holding out a prop %q", label, target, prop)
+		}
+	}
 	if raw, ok := fields["another"]; ok {
 		var another bool
 		if err := json.Unmarshal(raw, &another); err != nil {

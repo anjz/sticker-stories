@@ -71,6 +71,8 @@ func main() {
 		err = runCheck(os.Args[2:])
 	case "film":
 		err = runFilm(os.Args[2:])
+	case "faceroll":
+		err = runFaceroll(os.Args[2:])
 	default:
 		usage()
 	}
@@ -81,7 +83,7 @@ func main() {
 }
 
 func usage() {
-	fmt.Fprintln(os.Stderr, "usage: stickerrig draw|parts|install|preview|check|film -pack <pack-dir> [flags]  (see -h on each)")
+	fmt.Fprintln(os.Stderr, "usage: stickerrig draw|parts|install|preview|check|film|faceroll -pack <pack-dir> [flags]  (see -h on each)")
 	os.Exit(2)
 }
 

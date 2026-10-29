@@ -407,3 +407,44 @@ func TestStopEndsACanvasEffectOnItsWord(t *testing.T) {
 		t.Errorf("night lasts %g s, want %g", tr[0].Duration, want)
 	}
 }
+
+func TestTheWindTurnsAndCarriesWhatHasNoFace(t *testing.T) {
+	cat, err := story.LoadCatalog("../../../docs/effects/effects.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	pack := story.Manifest{Expressions: map[string][]string{"girl": {"happy"}}}
+	tr := []Trigger{
+		{At: 2, Effect: "wind", Duration: 20},
+		{At: 5, Sticker: "ball", Go: story.GoTo, Target: "shore"},
+		{At: 6, Sticker: "girl", Go: story.GoTo, Target: "ball"},
+		{At: 7, Sticker: "ring", Go: story.GoAway, Toward: story.GoLeft},
+		{At: 9, Sticker: "ball", Go: story.GoBack},
+		{At: 12, Effect: "wind", Toward: story.GoLeft, Duration: 20},
+		{At: 14, Sticker: "ball", Go: story.GoTo, Target: "sand"},
+		{At: 40, Sticker: "bottle", Go: story.GoAway},
+	}
+	stopCanvas(tr, "wind", 30)
+	TurnFlows(tr, cat)
+	RangeStops(tr, cat)
+	CarryWithFlows(tr, pack, cat)
+	// The first wind gives way to the second where it turns.
+	if want := 12 - 2 + cat.Canvas["wind"].RampOut; tr[0].Duration != want {
+		t.Errorf("the first wind lasts %g s, want %g", tr[0].Duration, want)
+	}
+	for i, want := range []string{
+		1: story.GoRight, // the ball, while it blows right
+		2: "",            // the girl has a face: she goes her own way
+		3: story.GoLeft,  // the story's own way
+		4: "",            // back to its spot: no way to choose
+		6: story.GoLeft,  // the ball, once it has turned
+		7: "",            // the bottle, after the wind
+	} {
+		if i == 0 || i == 5 {
+			continue
+		}
+		if tr[i].Toward != want {
+			t.Errorf("triggers[%d] (%s %s) goes %q, want %q", i, tr[i].Sticker, tr[i].Go, tr[i].Toward, want)
+		}
+	}
+}

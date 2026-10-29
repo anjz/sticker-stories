@@ -135,7 +135,19 @@ Plans the whole story at once, from the cast and the story's triggers:
    own next action or move, or an action of whom it goes to; one cued
    with the move — "Lola crouched under the umbrella" — as soon as it
    can), its frames faster, at 1.5 s at the shortest; a move's later legs
-   (the swim after the walk to the pond) in what time is left. The
+   (the swim after the walk to the pond) in what time is left. A visitor
+   whose entrance would hurry so sets off earlier instead, before the
+   words name it (up to 10 s, never before the story starts, never there
+   before its cue, and not when it comes to someone's side, who may be
+   elsewhere by then; `earlyEntrance`), and comes in at its own pace, taking up to 12 s
+   (`maxEntrance`): the boats glide in while the story goes on. A move
+   the story's next cue would hurry likewise sets off up to 3 s before
+   its words, once the sticker is free (`earlyMove`), and one sent to a
+   place with little time goes to a part of it it reaches at about its
+   own pace, else one of the nearest (the dog dashing to the water and
+   back). Up out
+   of the water its water way to a place on land (the surfer riding in to
+   the sand), it goes a step or two on from the edge, no further. The
    staging report (`StoryTimingReport`, below) measures how late each
    action lands after its words. A go to someone it already
    stands beside is no move. A flyer left in the air keeps flying
@@ -271,8 +283,10 @@ and nobody floats there, whatever its waterline.
 to it (not on a shallow bottom) stops well out from the waterline, never
 hugging the shore: at least a third of the way out (`StageWorld.openWater`),
 measured up the art at that spot from the water's near edge (0) to its
-far edge (1) (`StageWorld.outInWater`, `inOpenWater`). A wave rises only
-that far out too. A water-bound sticker sent to a place on land (the
+far edge (1) (`StageWorld.outInWater`, `inOpenWater`). A boat (a
+sticker afloat whose size class is `big` or `huge`) goes further out, into
+deep water: at least 80 % of the way (`StageWorld.deepWater`), when there
+is such a spot — beyond where the surfer waits, who keeps short of it. A wave rises only a third of the way out too. A water-bound sticker sent to a place on land (the
 bottle "to shore") still stops at the waterline; a child's sticker the
 child put in the water stays where the child put it. Going off from by
 the shore, one afloat heads out to open water (the bottle bobbing away
@@ -332,6 +346,24 @@ the character's back to us (the surfer paddling out, `paddle`'s
 at us (`StageLeg.away`, `StagePlan.travel`). From its back to the front
 it turns like any turn: a quick squash through edge-on round the moment
 it gets there (`StagePlan.sample`), never a cut.
+
+**On his board** (`StageMove.faces`, `StageMove.rest`). A move that
+`faces` a way on screen goes that way and faces it — sent to a place,
+it goes a little that way, to its part a few of its widths over on that
+side when there is one (a story's own `right` goes well on): the surfer always paddles out right to left and rides
+the waves in left to right, the way the sea and the waves run — and one with a `rest` move plays that one while it rests
+where it stays: the surfer sits on his board waiting for a wave rather
+than paddling on the spot (`StageLeg.rest`, `StagePlan.travel`). An
+action that happens in the water (its `place`: riding a wave) takes
+whoever is not there out to it by their water way first
+(`placeWay`): he paddles out, then rides. Its keys can start a sticker
+effect on him (`effects`): the wave rises behind him as he stands up,
+unless the story's own is running. One that `drift`s (riding a wave)
+carries him in towards the shore as it plays — between its keys, part of
+the way down to the water's edge and on the way it faces, never past
+where the waves rise (`StageAction.carry`, `shoreward`) — the action
+playing on as he goes (a leg with no move), and he rests on his board
+where it leaves him: surfing always brings him a little nearer the sand.
 
 **Acting over a move that goes on** (afloat on a move that stays, or
 aloft): the action's first and last keys — the sticker's still pose — are

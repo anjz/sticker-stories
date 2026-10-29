@@ -16,6 +16,7 @@ go run ./author/stickerrig install -pack ../packs/forest -only fox            # 
 go run ./author/stickerrig preview -pack ../packs/forest -only fox -png       # out/rigs/fox.*.png to look at
 go run ./author/stickerrig check   -pack ../packs/forest -only fox            # seams, bones, eyes, faces (install runs it too)
 go run ./author/stickerrig film    -pack ../packs/forest -only fox -anim trot # the move as the app plays it: GIF + contact strip
+go run ./author/stickerrig faceroll -pack ../packs/forest -only fox -sheet /tmp/f.png # face shapes turned with a tilted head
 go run ./packager validate ../packs/forest
 ```
 
@@ -62,6 +63,9 @@ One file per sticker, so several can be rigged at once:
   `facing`, `stride`, `hops`, `flies`, `hovers`, `wings` (the
   sidecar's `puppet.wings`), `on`, `stays`, `waterline`, `away`,
   `place`, `perched`, `faces`, `idle`, `particles` — and its `keys`,
+  `props` (what a paused action holds out, each the slot that draws it:
+  the girl's kite, `{"kite": "kite"}`; install writes where it is in
+  the paused key, so a story can send a flyer to it),
   or for a move a `gait` instead (below).
   Pause, loop and particles count keys. In the water: a move's `away`
   names the move it plays going away from us (`"paddle"` with
@@ -153,9 +157,32 @@ worse, 2026-10-26).
   least `-skew` of its width).
 - `mirror` — a flipped piece or an eye that matches the sticker better
   the other way round (luma correlation, by `-mirror` 0.15).
+- `facing` — a move travelling against the way the drawing faces: its
+  nose, mouth or beak off the middle of its eyes by `-turned` (12 %) of
+  the face's width, its eyes not looking the other way. It would walk
+  backwards, knees bending the wrong way: set `facing` to the side the
+  face is turned (the app mirrors it to go the other way). A face drawn
+  from the front says nothing; a move going away (`away`) is left out.
 - `face` — a key that slides an eye or a brow off the head (`-slide`,
   10 % more of it off than at rest); `turn` — a key turning an eye on
   the face by more than `-turn` (4°).
+
+## faceroll
+
+The face pieces are drawn upright on their sheet. The rest face's (the
+eyes and mouth as in the sticker) come out leaning with the sticker's
+head, but the shapes drawn on their own — a happy or closed eye's arc, a
+crying eye, a laughing or sad mouth — come out level, and on a head
+drawn tilted they look pasted on (the girl's happy eyes, 2026-10-28).
+`faceroll` measures the tilt as the line through the rest eyes and
+proposes `rotate` for those shapes (`-sheet` draws each face before and
+after). It only proposes for a head that tilts: eyes on a `head` bone,
+no beak (a bird in profile's far eye is not level with its near one),
+no eye stalks; a face seen from the front on a round body (the crab,
+the acorn) is left alone. Read the sheet and copy the turns you agree
+with into the rig file (the flower's frontal face was left out by eye).
+Open eyes, the rest pieces, brows and attachments with a `rotate`
+already are never proposed.
 
 ## Gaits
 
@@ -188,7 +215,8 @@ style names otherwise); `ground: false` (float as posed, no feet down).
 move's loop going round while it travels at its stride, a hop's arc —
 into `<sticker>.<anim>.gif`, and a `.strip.png` of frames 0.08 s apart
 to read as a still; `-before <copy of the pack>` plays the old one above
-it. Install into a copy of the pack to compare before touching the real
+it; `-above 1` leaves that much sky over the sticker's box (a fraction of
+its size) for what reaches past it. Install into a copy of the pack to compare before touching the real
 one.
 
 ## Templates (`templates/<type>.json`)
@@ -214,6 +242,19 @@ file to tune them where it doesn't.
   sticker's style, first time.
 - Ask for the head with a **blank face** and the features on their own
   sheet: eyes and mouths swap per expression and blink.
+- A move's `facing` is the way the drawing faces, never carried over
+  unread: the girl's skip said `right` while she is drawn turned to the
+  left, so she skipped backwards with her knees bent the wrong way
+  (2026-10-28). `check` now says so.
+- A puppet may reach past its sticker's box (the app does not clip it):
+  the girl's kite flies far above her on a long string, smaller as it
+  climbs (2026-10-28). A bone stretches at most 4×: draw a long
+  stretchy part (the string) longer at rest, hidden, so its keys stay
+  within it. Film it with `-above`.
+- Sad eyes drawn with a lid slanting down towards the nose read angry or
+  sly next to sad brows (the girl, 2026-10-28): ask for them as the
+  sticker's sad variant has them, or use the calm eyes and let the
+  brows and mouth carry the sadness.
 - One eye drawn for both sides and flipped for the other made eyes
   look opposite ways, and flips that differed between expressions of a
   slot (2026-10 Beach review): ask for each side's eyes.

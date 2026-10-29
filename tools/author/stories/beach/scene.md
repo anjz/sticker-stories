@@ -30,8 +30,11 @@ island, no cave, no cliff to climb near us, no dunes, no beach huts,
 no trees, palms or grass on the beach; no path, steps, road or town; no
 people painted; no lifeguard tower; no sun, moon, stars or birds painted
 (the effects and the stickers bring them); no tide-line marks, no
-puddles. Nothing changes the picture's water level: never say the tide
-came in over the sand or the sea covered the castle on screen.
+puddles. Nothing changes the picture's water level for good: never say the tide
+came in over the sand or the sea covered the castle on screen. A single
+big wave can wash up the beach and back (`{x:wash}` on whom it reaches:
+the rock pool, a castle, someone's toes); a pool creature sent to the sea
+as it draws back rides it out.
 
 ## What the canvas effects can and cannot change
 
@@ -42,7 +45,9 @@ used here: `snow` (not a beach day), `leaves` (no trees), `fireflies`
 
 - `sunshine`: warm light over everything, a bright sunny day.
 - `clouds`: soft cloud shadows drift over; the painted clouds stay.
-- `wind`: blows left to right; anything carried by it goes right.
+- `wind`: blows left to right, or right to left with `left`; a `wind` cue
+  the other way turns it. Anything carried by it goes its way (anything
+  without a face does so by itself).
 - `rain` / `rainbow`: rain falls over the scene, a rainbow arcs after.
   The sand stays golden: no puddles, no mud.
 - `fog`: a sea mist over the scene; the lighthouse fades but stays painted.

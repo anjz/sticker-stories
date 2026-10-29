@@ -186,7 +186,7 @@ func load(packDir, storiesDir string) (*ctxt, error) {
 	c.animations = effects.Animations{}
 	for id, anims := range c.story.Animations {
 		for _, a := range anims {
-			c.animations[id] = append(c.animations[id], effects.Animation{ID: a.ID, Pausable: a.Pause != ""})
+			c.animations[id] = append(c.animations[id], effects.Animation{ID: a.ID, Pausable: a.Pause != "", Props: a.Props})
 		}
 	}
 	for id, moves := range c.story.Moves {
@@ -891,8 +891,12 @@ func (r *renderer) renderOne(s *story.Story, lang string, log *strings.Builder) 
 	// it (the light changes, the sun comes out) or ends (the file ends after
 	// the narrator and the tail).
 	render.HoldLights(triggers, r.leadIn()+voiceClip.Duration()+tailOut, r.c.catalog)
+	// A wind cue while the wind blows the other way turns it.
+	render.TurnFlows(triggers, r.c.catalog)
 	// A {canvas:… stop} ends its effect on the stop word, whatever it is.
 	render.RangeStops(triggers, r.c.catalog)
+	// What has no face goes the way the wind blows when it moves.
+	render.CarryWithFlows(triggers, r.c.story, r.c.catalog)
 	liveOverlaps := render.LiveOverlaps(triggers, r.c.story)
 	features := map[string]bool{}
 	for id := range r.c.pack.Features {

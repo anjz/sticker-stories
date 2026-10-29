@@ -56,6 +56,28 @@ struct CanvasEffectsRunnerTests {
         #expect(s.count == 2)
     }
 
+    // The wind blows its way; a later wind turns it, easing round, and what
+    // it carries goes on from where it was.
+    @Test func aLaterWindTurnsTheFlow() {
+        let right = ActiveCanvasEffect(name: .wind, startTime: 2, options: CanvasEffectOptions(duration: 20), sequence: 1)
+        let left = ActiveCanvasEffect(name: .wind, startTime: 10, options: CanvasEffectOptions(duration: 20, toward: .left), sequence: 2)
+        #expect(CanvasEffectEvaluator.flow(of: .wind, in: [right, left], at: 1) == nil)
+        #expect(CanvasEffectEvaluator.flow(of: .wind, in: [right, left], at: 6) == CanvasFlow(heading: 1, travel: 4))
+        let turning = CanvasEffectEvaluator.flow(of: .wind, in: [right, left], at: 10.75)!
+        #expect(abs(turning.heading) < 1e-9)
+        #expect(turning.travel > 8 && turning.travel < 8.75)
+        // Turned: half the turn each way cancels out, then it goes back.
+        let turned = CanvasEffectEvaluator.flow(of: .wind, in: [right, left], at: 13.5)!
+        #expect(turned.heading == -1)
+        #expect(abs(turned.travel - (8 + 0 - 2)) < 1e-9)
+        // Blowing left from the start.
+        #expect(CanvasEffectEvaluator.flow(of: .wind, in: [left], at: 12) == CanvasFlow(heading: -1, travel: -2))
+        // After a wind has died down, the next blows its own way at once.
+        let short = ActiveCanvasEffect(name: .wind, startTime: 2, options: CanvasEffectOptions(duration: 5), sequence: 1)
+        #expect(CanvasEffectEvaluator.flow(of: .wind, in: [short, left], at: 10.5) == CanvasFlow(heading: -1, travel: 8 - 0.5))
+        #expect(!CanvasEffectName.rain.flows && CanvasEffectName.wind.flows && CanvasEffectName.current.flows)
+    }
+
     @Test func triggersFireAtTheirTimeAndRetire() {
         let r = runner([
             CanvasEffectTrigger(at: 1, cue: "rain", effect: .rain, options: CanvasEffectOptions(intensity: 1, duration: 4)),

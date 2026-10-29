@@ -510,7 +510,7 @@ final class CanvasEffectLayer: SKNode {
 
     /// Renders the given strengths (0...1 per effect kind, absent = off) at
     /// timeline time `time`; a time that does not advance pauses the rain.
-    func apply(_ strengths: [CanvasEffectName: Double], at time: TimeInterval) {
+    func apply(_ strengths: [CanvasEffectName: Double], at time: TimeInterval, flows: [CanvasEffectName: CanvasFlow] = [:]) {
         let paused = time == lastTime
         lastTime = time
         guard world.width > 0 else { return }
@@ -571,7 +571,7 @@ final class CanvasEffectLayer: SKNode {
             if off && !painter.node.isHidden { painter.didTurnOff() }
             painter.node.isHidden = off
             painter.sky?.isHidden = off
-            if !off { painter.apply(strength: strength, at: time) }
+            if !off { painter.apply(strength: strength, at: time, flow: flows[name]) }
         }
         // An empty sky costs nothing either (the crop draws its mask).
         sky.isHidden = rainStrength <= 0 && rainbow.alpha <= 0 && nightStrength <= 0
@@ -608,6 +608,10 @@ protocol CanvasEffectPainter: AnyObject {
     /// Renders the effect at `strength` (0 < strength ≤ 1, intensity ×
     /// envelope) at timeline time `time`. Not called while the effect is off.
     func apply(strength: Double, at time: TimeInterval)
+    /// The same, for an effect that blows one way (`CanvasEffectName.flows`):
+    /// `flow` is which way it blows now and how far it has carried things
+    /// (`CanvasEffectEvaluator.flow`). Optional: by default `apply` above.
+    func apply(strength: Double, at time: TimeInterval, flow: CanvasFlow?)
     /// The effect has cleared (or was stopped): the next `apply` is a new
     /// start. Optional.
     func didTurnOff()
@@ -615,5 +619,6 @@ protocol CanvasEffectPainter: AnyObject {
 
 extension CanvasEffectPainter {
     var sky: SKNode? { nil }
+    func apply(strength: Double, at time: TimeInterval, flow: CanvasFlow?) { apply(strength: strength, at: time) }
     func didTurnOff() {}
 }

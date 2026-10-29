@@ -95,6 +95,32 @@ import Testing
         #expect(plans[bird]?.legs.last?.gait == .fly)
     }
 
+    @Test func aFlyerGoesUpBesideWhatSomeoneHoldsOut() throws {
+        // The fox holds something out up over its head, to its left (a kite
+        // on its string); the bird flies up to it, not to the fox's side.
+        let held = GoTrigger.Held(across: -0.3, up: 1.6)
+        let plans = plan(
+            [actor(fox, "fox", at: .init(0.5, 0.2), moves: trot),
+             actor(bird, "bird", at: .init(0.85, 0.6), stage: StickerStage(entrance: .fly, on: ["sky"]), moves: flight)],
+            goes: [GoTrigger(at: 1, stickerID: "bird", kind: .to, target: "fox", prop: "kite", held: held)])
+        let end = try #require(plans[bird]?.legs.last)
+        #expect(end.support == .air(""))
+        let foxAt = try #require(plans[fox]?.sample(at: 10).position)
+        let fox = actor(self.fox, "fox"), bird = actor(self.bird, "bird")
+        let prop = Vec3(foxAt.x + held.across * fox.width, foxAt.y + held.up * fox.size, foxAt.z)
+        let spot = try #require(end.path.last)
+        // Level with it (its middle), out beside it on its side away from
+        // the fox.
+        #expect(abs(spot.y + bird.size * 0.5 - prop.y) < 0.02)
+        #expect(spot.x < prop.x && prop.x - spot.x < bird.width)
+        // Without knowing where it is held out: beside the fox.
+        let plain = plan(
+            [actor(self.fox, "fox", at: .init(0.5, 0.2), moves: trot),
+             actor(self.bird, "bird", at: .init(0.85, 0.6), stage: StickerStage(entrance: .fly, on: ["sky"]), moves: flight)],
+            goes: [GoTrigger(at: 1, stickerID: "bird", kind: .to, target: "fox", prop: "kite")])
+        #expect(plain[self.bird]?.legs.last?.support == .beside(self.fox))
+    }
+
     @Test func aVisitorComesInFromTheSideOntoLandOnScreen() throws {
         let plans = plan([actor(fox, "fox", moves: trot)], entrances: [EntranceTrigger(at: 2, stickerID: "fox")])
         let p = try #require(plans[fox])
@@ -446,6 +472,7 @@ extension StageDirectorTests {
         var actionFrames: [LiveAnimationKey: LiveFrames] = [:]
         /// The way each action faces on screen (`faces`), if it says.
         var actionFaces: [LiveAnimationKey: StageMove.Facing] = [:]
+        var actionDrifts: [LiveAnimationKey: StageAction.Drift] = [:]
         /// Each sticker's painted shape and its drawing's box in its image
         /// (fractions, origin bottom-left).
         var shapes: [String: (grid: OpaqueGrid, box: CGRect)] = [:]
@@ -481,7 +508,8 @@ extension StageDirectorTests {
                         hops: json["hops"] as? Bool ?? false, flies: json["flies"] as? Bool ?? false,
                         hovers: json["hovers"] as? Bool ?? false, on: json["on"] as? [String] ?? [], stays: json["stays"] as? Bool ?? false,
                         waterline: json["waterline"] as? Double ?? 0, facing: (json["facing"] as? String).flatMap(StageMove.Facing.init(rawValue:)), seconds: loop ? 0 : 1,
-                        away: json["away"] as? String, tail: tail))
+                        away: json["away"] as? String, tail: tail,
+                        faces: (json["faces"] as? String).flatMap(StageMove.Facing.init(rawValue:)), rest: json["rest"] as? String))
                 }
                 if (json["kind"] as? String ?? "action") == "action" {
                     let puppet = json["puppet"] as? [String: Any]
@@ -490,6 +518,12 @@ extension StageDirectorTests {
                     pack.actionFrames[LiveAnimationKey(stickerID: sticker.id, animationID: id)] = LiveFrames(holds: holds, pause: pause)
                     if let faces = (json["faces"] as? String).flatMap(StageMove.Facing.init(rawValue:)) {
                         pack.actionFaces[LiveAnimationKey(stickerID: sticker.id, animationID: id)] = faces
+                    }
+                    if let d = json["drift"] as? [String: Any], let from = d["from"] as? Int, let to = d["to"] as? Int,
+                        let shoreward = d["shoreward"] as? Double
+                    {
+                        pack.actionDrifts[LiveAnimationKey(stickerID: sticker.id, animationID: id)] = StageAction.Drift(
+                            from: from, to: to, shoreward: shoreward)
                     }
                 }
                 if let place = json["place"] as? [String] {
@@ -606,13 +640,13 @@ extension StageDirectorTests {
                     faces: file.expressionTriggers, effects: file.triggers)
                 let plans = StageDirector.plan(
                     world: world, screen: screen, actors: actors, entrances: file.entranceTriggers, goes: goes,
-                    policy: .standard, cast: cast, actions: StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] }),
-                    live: file.liveTriggers, random: &random)
+                    policy: .standard, cast: cast, actions: StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] }, drift: { pack.actionDrifts[$0] }),
+                    live: file.liveTriggers, washes: StageWash.of(file.triggers), random: &random)
                 // A move cued after an action waits for it to end; an action
                 // waits only for the moves cued before it.
                 let ids = Dictionary(uniqueKeysWithValues: actors.map { ($0.id, $0.stickerID) })
                 let played = StageDirector.delayed(file.liveTriggers, plans: plans, stickers: ids, places: Set(pack.places.keys))
-                for action in StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] }) {
+                for action in StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] }, drift: { pack.actionDrifts[$0] }) {
                     guard let k = file.liveTriggers.firstIndex(where: { $0.stickerID == action.stickerID && $0.at == action.at }),
                         let a = actors.first(where: { $0.stickerID == action.stickerID }), let plan = plans[a.id]
                     else { continue }
@@ -750,6 +784,11 @@ extension StageDirectorTests {
                             let a0 = now.path.first, let a1 = now.path.last,
                             abs(world.screen(a1).x - world.screen(a0).x) < width * 0.25
                         { continue }
+                        // (A run too short to show keeps the way before, as
+                        // the director plans it: the first fifth of a width.)
+                        if let now = plan.legs.last(where: { $0.at <= t + step }), let a0 = now.path.first,
+                            abs(world.screen(next.position).x - world.screen(a0).x) < width * 0.2
+                        { continue }
                         let looks = (art == .right ? 1.0 : -1.0) * (s.facing < 0 ? -1 : 1)
                         if looks * dx < 0 {
                             let what = leg.map { $0.end > t ? "\($0.kind) \($0.gait)" : "after \($0.kind) \($0.gait)" } ?? "start"
@@ -795,7 +834,7 @@ extension StageDirectorTests {
                         }
                         // On its way in the water by its water way (a duckling swims, never
                         // waddles, afloat); on its way over land by a way that walks it.
-                        if let leg = plan.legs.last(where: { $0.at <= t && t < $0.end && $0.gait.carries }), leg.kind != .settle,
+                        if let leg = plan.legs.last(where: { $0.at <= t && t < $0.end && $0.gait.carries }), leg.kind != .settle, leg.kind != .ride,
                             let id = leg.move, let move = a.moves.first(where: { $0.id == id }), !move.flies, onFoot
                         {
                             let water = world.water(at: s.position.ground)

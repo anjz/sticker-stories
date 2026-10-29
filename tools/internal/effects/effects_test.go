@@ -64,8 +64,12 @@ func TestNamesMatchCatalog(t *testing.T) {
 		if strings.Join(e.Settings, ",") != strings.Join(CanvasSettings[e.Name], ",") {
 			t.Errorf("%s: settings disagree with the catalogue: %v vs %v", e.Name, e.Settings, CanvasSettings[e.Name])
 		}
-		if strings.Join(e.Parameters, ",") != "intensity,duration" {
-			t.Errorf("%s: canvas effects take intensity and duration only, catalogue says %v", e.Name, e.Parameters)
+		want := "intensity,duration"
+		if CanvasFlows[e.Name] {
+			want += ",toward"
+		}
+		if strings.Join(e.Parameters, ",") != want {
+			t.Errorf("%s: canvas effect takes %s, catalogue says %v", e.Name, want, e.Parameters)
 		}
 		if len(e.DurationRange) != 2 || e.DurationRange[0] != CanvasMinDuration || e.DurationRange[1] != CanvasMaxDuration {
 			t.Errorf("%s: duration range disagrees with the catalogue: %v", e.Name, e.DurationRange)
@@ -78,6 +82,7 @@ func TestCanvasTriggersAreValidated(t *testing.T) {
 	  { "at": 4.5, "cue": "rain", "effect": "rain", "intensity": 0.8, "duration": 20 },
 	  { "at": 0, "effect": "fog" },
 	  { "at": 30, "effect": "rainbow", "duration": 1 },
+	  { "at": 31, "effect": "wind", "toward": "left" },
 	  { "at": 1, "sticker": "fox", "effect": "hop" }
 	] }`)
 	if errs := Validate(good, set("fox"), nil, nil, nil, "outdoors"); len(errs) != 0 {
@@ -100,6 +105,8 @@ func TestCanvasTriggersAreValidated(t *testing.T) {
 		{"duration too short", `{"schema": 1, "triggers": [{"at": 0, "effect": "rain", "duration": 0.5}]}`, "outdoors", "duration must be a number in 1..120"},
 		{"duration too long", `{"schema": 1, "triggers": [{"at": 0, "effect": "rain", "duration": 500}]}`, "outdoors", "duration must be"},
 		{"intensity out of range", `{"schema": 1, "triggers": [{"at": 0, "effect": "rain", "intensity": 3}]}`, "outdoors", "intensity must be"},
+		{"toward on rain", `{"schema": 1, "triggers": [{"at": 0, "effect": "rain", "toward": "left"}]}`, "outdoors", `"rain" does not blow a way`},
+		{"toward up", `{"schema": 1, "triggers": [{"at": 0, "effect": "wind", "toward": "up"}]}`, "outdoors", `toward must be "left" or "right"`},
 	}
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {

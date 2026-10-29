@@ -5,7 +5,7 @@ closed libraries:
 
 - **Sticker effects** — one placed sticker does something: a sparkle, a
   wobble, a glow, a fade, a puff of dust at its feet, bubbles, a wave to
-  ride. Seventeen of them.
+  ride, the sea washing up to one. Eighteen of them.
 - **Canvas effects** — the weather or the light changes over the whole
   scene: fog, rain, sunshine, a rainbow, night falling, the lights going low,
   and their counterparts indoors, in space and under the sea. Each suits
@@ -41,7 +41,7 @@ test. Tooling should read that file rather than parse this one.
    skipped with a log line; a pack authored against a future library plays
    with fewer effects.
 
-## The sticker library (17 effects, closed)
+## The sticker library (18 effects, closed)
 
 `i` is the trigger's `intensity` (default 0.6). At `intensity: 0` every effect
 is visually identical to no effect. Anchors and easing are fixed per effect —
@@ -102,6 +102,7 @@ an animation's frames ("Live animations").
 | Effect | What it looks like | Good for | Default cycle | Reduce Motion |
 |---|---|---|---|---|
 | `surf-wave` | A wave rises **behind** a sticker in the water, at its waterline: it swells into a smooth, rounded body, rolls along with the sticker, its lip pitches forward in a short hook and crashes down — a quick burst of white foam and spray thrown forward and up — and the wave collapses into a churning band of whitewater that spreads and fizzles out. Nothing in it plays backwards. Teal-blue with a puffy white lip, like Beach's painted sea, and a low foam line in front of the sticker's base so it sits in the water. On land the cue draws nothing. | Riding a wave: the surfer, a boat or the seal out at sea, a big wave rolling in. | 4.0 s | runs at ≤0.4 |
+| `wash` | A big wave washes up the beach and back: along the whole shore the water rushes up the sand, coming in from the left and sweeping to the right like the painted waves, a thin clear sheet with a lacy foam front, runs furthest where the sticker is (a little past its feet), laps, and slides back into the sea, leaving the sand it covered darker and wet, drying. It lies on the ground in the beach's plane, under every sticker and the scene's layers, never over the rocks round a pool; where rocks stop it short of the sticker it breaks over them in a burst of foam. Out at sea, up in the air, or with no open water above it, the cue draws nothing. | A big wave washing up the beach: reaching the rock pool, a sandcastle, someone's toes; a fish in the pool carried off to the sea. | 5.0 s | runs at ≤0.4 |
 
 It rises only on a sticker **out in the water** when the wave is cued:
 on the water and as far out as afloat stickers rest
@@ -130,6 +131,14 @@ rises from the waterline. `intensity` is a swell to a big wave;
 (`{surfer:surf-wave}`); an animation's frames cannot fire it ("Live
 animations").
 
+`wash` runs where the sticker stands when it is cued (an open water —
+a `space` place with `water` and not `shallow` — above it). A creature
+of the water (every way it gets about is in water) that the story
+sends off over land while it draws back where it is — the last 45 % of
+its column's part of the cycle, the left end first — rides it across the sand to where it goes instead of fading
+across (`docs/stage3d.md`): Little Fish carried out of the rock pool
+into the sea. `intensity` only dims it; `duration` paces it; no colour.
+
 ### Deliberately not in the library
 
 Removed in 2026-09 and not to be reused (older content that names them is
@@ -144,6 +153,9 @@ added when stickers stopped drawing particles of their own.
 `surf-wave` (2026-10) was asked for by the user, as a sticker effect
 rather than a canvas effect: a wave one sticker rides, not the sea
 changing — the canvas list stays closed to waves.
+`wash` (2026-10) followed for the same reason: the user asked for the sea
+washing up the sand to the rock pool and carrying the fish off; kept a
+sticker effect, cued on whom it reaches, like `surf-wave`.
 
 Recorded so nobody re-adds them by accident: entrances/exits beyond fade,
 squash and stretch, keyframe authoring, scene shake and parallax,
@@ -246,7 +258,7 @@ or fantastical places) gets no canvas effects at all.
 | `snow` | outdoors | Soft snowflakes drift down at different sizes and speeds; the top of the sky turns white (behind the scenery) and the light a little cooler and brighter. It keeps falling until `sunshine`, `sunrays` or `rain` or the story's end (held, like the time of day), and it **settles**: a snow cover builds while it falls — on the **whole ground** up to its far edge (the scene's `space`; without one, all of the background that is not sky), in perspective (its patches and the flakes lying in it smaller and closer together towards the horizon, the far snow a little thinner), never on water (a `space` place with `water: true`) — in patches that join up, with a cap along the top of the painted treeline or ridge, and **caps on the upward-facing edges of every plane with alpha** (the layers and the foreground: Forest's oak, birch, reeds), a few points thick, following their shape and standing with their plane in the depth stack; all under the stickers (worked out once per pack as it loads, `SnowScenery`), stays after the snowfall, and melts under `sunshine`/`sunrays` (~6 s) or `rain` (~9 s). The cover is a pure function of the timeline (`CanvasEffectsRunner.snowCover`), so seeks and fast playback show it right. | Winter, a snow day, the first flakes, a quiet hush. `intensity` is a few flakes to a thick flurry. | 12 s | 2 / 2.5 s | runs at ≤0.4 |
 | `sunset` | outdoors | A warm orange-pink glow spreads from the horizon while the top of the sky deepens to violet. | The end of the day, going home, a calm golden moment. Followed by `night` it makes a gentle bedtime. Builds slowly — cue it a beat early. | 10 s | 2.5 / 2.5 s | full |
 | `clouds` | outdoors | Big soft clouds drift slowly across the sky behind the scenery; the light dims a little. | A cloudy day, "a cloud shaped like…", the grey before rain, the sun going in. | 12 s | 2.5 / 2.5 s | full |
-| `wind` | outdoors | Pale wisps of air sweep across the scene from left to right, with a few specks tumbling along. | A windy day, a kite, something blown away, a whoosh. `intensity` is a breeze to a gust. | 8 s | 1 / 1.5 s | runs at ≤0.4 |
+| `wind` | outdoors | Pale wisps of air sweep across the scene the way it blows (`toward`: left to right by default), with a few specks tumbling along. | A windy day, a kite, something blown away, a whoosh. `intensity` is a breeze to a gust. | 8 s | 1 / 1.5 s | runs at ≤0.4 |
 | `fireflies` | outdoors | Tiny warm lights drift and pulse slowly, mostly in the lower half of the scene. | A summer evening, a little magic in the dark, lighting the way. Lovely layered over `night` or `sunset`. | 12 s | 2 / 2 s | runs at ≤0.4 |
 | `leaves` | outdoors | Autumn leaves in warm colours flutter down, turning over and drifting sideways. | Autumn, a gust shaking the trees, change, a leaf pile. Only for packs whose scenery has trees. | 10 s | 1.5 / 2 s | runs at ≤0.4 |
 | `shootingstars` | outdoors | Now and then a shooting star streaks across the sky behind the scenery. | Making a wish on a clear night, wonder, "look!". Best over `night`. `intensity` is a single one now and then to a meteor shower. | 10 s | 1 / 1.5 s | runs at ≤0.4 |
@@ -269,7 +281,7 @@ or fantastical places) gets no canvas effects at all.
 | `ripples` | underwater | A net of rippling light plays over the whole scene, brightest near the sea floor. | Shallow water, a sunny lagoon, calm and playful. Layers nicely with `sunrays`. | 12 s | 2 / 2 s | full |
 | `deepwater` | underwater | The water darkens to a deep blue, most of all toward the edges and the surface. | Diving deeper, exploring, bedtime under the sea. Never darkness as a threat. Builds slowly — cue it a beat early. | 12 s | 2.5 / 2.5 s | full |
 | `glowplankton` | underwater | Tiny blue-green lights twinkle and drift slowly through the water. | A little magic in the dark sea, a night swim. Lovely layered over `deepwater`. | 12 s | 2 / 2 s | runs at ≤0.4 |
-| `current` | underwater | A gentle current sweeps specks, wisps and bits of green across the scene from left to right. | Swimming along, being carried away, a whoosh under the sea. `intensity` is a drift to a strong current. | 8 s | 1.2 / 1.5 s | runs at ≤0.4 |
+| `current` | underwater | A gentle current sweeps specks, wisps and bits of green across the scene the way it flows (`toward`: left to right by default). | Swimming along, being carried away, a whoosh under the sea. `intensity` is a drift to a strong current. | 8 s | 1.2 / 1.5 s | runs at ≤0.4 |
 | `sandcloud` | underwater | A cloud of sand swirls up from the sea floor and slowly settles again. | Something stirs, hide and seek, a big fish swishing past, digging in the sand. | 6 s | 1.5 / 2.5 s | runs at ≤0.4 |
 
 - Ramps never eat more than a third of the duration each, so a 3 s effect
@@ -289,6 +301,7 @@ or fantastical places) gets no canvas effects at all.
 | `cue` | no | | Free authoring label; the app ignores it. |
 | `intensity` | no | `0.6` | 0–1. How strong. 0 is visually identical to no effect. |
 | `duration` | no | per effect | Seconds the effect stays on, ramps included, 1–120. |
+| `toward` | no | `right` | `wind` and `current` only: the way it blows, `left` or `right`. A later trigger of it while it blows turns it (over 1.5 s; `storyaudio` ends the earlier one there), and what it carries drifts back the new way. |
 
 ## Trigger file
 
@@ -545,12 +558,13 @@ without one stage them.
 A story can move any sticker that walks or flies (its manifest `stage`
 entrance is `hop` or `fly`; things that grow — a flower, a mushroom — stay
 put), placed by the child or visiting, when the words say it goes
-somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "toward"?, "another"?, "backwards"? }`:
+somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "toward"?, "another"?, "backwards"?, "prop"? }`:
 
 | `go` | `target` | where it goes |
 |---|---|---|
 | `to` | a sticker | beside it, on the side it comes from (the other side when the screen has no room there), a little overlapping, feet on the same line (a flyer hovers beside it); a walker going to a sticker with a `door` (a lander's ladder, a ship's elevator; `docs/pack-format.md`) stands at it, in front, while nobody else does |
 | `to` | a feature | the freest spot on screen in that place of the scene (`docs/pack-format.md`, "Features": the pond, the branches; in a pack whose places hold feet, standing on it) — in it when the sticker belongs there (its stage lands on it, or the move it goes by does: the frog, the duckling `by swim`), else at its `edge` when it has one (a mouse or the waddling duckling stops at the water's edge); never under the playing story's pill while the place has room elsewhere |
+| `to` + `prop` | a sticker | up in the air beside what it holds out in a held action (`{seagull:go to girl kite}`: the girl's kite on its string), level with it, on its side away from the holder — where the action's sidecar `props` says it is. Flyers only, while the action is held (storycheck); with live animations off nothing is held out, and it goes beside the sticker |
 | `on` | a sticker | on top of it: a bee on the flower's head |
 | `under` | a sticker | under it, in front of its base: a mouse under the mushroom's cap |
 | `away` | — | off the canvas by the nearer side; it is gone until it comes back |
@@ -594,10 +608,12 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
   the side that has them arrive facing it.
 - **Which way across the screen**: `toward` (`left` or `right`, on `to`
   and `away` only) says the way it goes when the story says — above all
-  what the wind carries, which goes right, the way the `wind` canvas
-  effect blows: `away` leaves by that side, `to` a place lands on the
-  part of it at least a sticker's width that way (or its far end), `to`
-  a sticker stands on that side of it. Authored `{leaf:go away right}`.
+  what the wind carries, which goes the way the `wind` canvas effect
+  blows then (right unless it blows `left`; for a sticker with no face
+  `storyaudio` sets it from the wind, "Canvas effect parameters"):
+  `away` leaves by that side, `to` a place lands on the part of it at
+  least a sticker's width that way (or its far end), `to` a sticker
+  stands on that side of it. Authored `{leaf:go away right}`.
 - **The way the words say**: a sticker that gets about more than one way
   (`docs/pack-format.md`, "Live animations": the ladybug crawls and
   flies, the bird flies and hops, the duckling waddles and swims) goes its
@@ -688,7 +704,7 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
 
 - **Reduce Motion** (system setting) is observed live: `shake`, `hop`,
   `spin` and `float` do not run; `pulse` and `wobble` run at
-  intensity ≤0.3; particles, `surf-wave` and the canvas effects that fall or drift
+  intensity ≤0.3; particles, `surf-wave`, `wash` and the canvas effects that fall or drift
   (`rain`, `snow` and the others marked in the canvas table) at ≤0.4;
   fades, `glow`, `tint` and the other canvas effects (slow washes of light)
   run in full because they carry story meaning.
@@ -715,7 +731,8 @@ frame from the narrator's playback time (`Narrator.playbackTime`,
 interpolated between resyncs), renders glow from a cached blurred mask,
 drives the particle emitters defined in
 `app/StickerStories/Effects/emitters.json`, paints `surf-wave` behind its
-sticker (`SurfWaveCoordinator`, in the sticker's layer, level with the sea), and renders canvas effects in
+sticker (`SurfWaveCoordinator`, in the sticker's layer, level with the sea)
+and `wash` on the sand under everyone (`WashCoordinator`), and renders canvas effects in
 `CanvasEffectLayer` (a rain emitter, drifting fog sprites, a sky glow with light shafts, a
 rainbow arc, a vignette and a moon with a halo, all procedurally textured, sized to the pack's
 art frame — the tuning numbers live in that file; every effect added after

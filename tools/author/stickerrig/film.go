@@ -33,6 +33,7 @@ func runFilm(args []string) error {
 	outDir := fs.String("out", "", "where the GIFs go (default <art>/out/rigs)")
 	loops := fs.Int("loops", 3, "times a move's loop goes round")
 	scale := fs.Float64("scale", 0.45, "the film's pixels per rig pixel")
+	above := fs.Float64("above", 0, "sky over the sticker's box, a fraction of its size (a kite flown high)")
 	fs.Parse(args)
 	c, err := load(*packDir, *artDir, *only)
 	if err != nil {
@@ -77,7 +78,7 @@ func runFilm(args []string) error {
 				}
 			}
 			path := filepath.Join(dir, r.Sticker+"."+a.ID+".gif")
-			if err := film(path, rows, *loops, *scale); err != nil {
+			if err := film(path, rows, *loops, *scale, *above); err != nil {
 				return err
 			}
 			fmt.Printf("✓ %s\n", path)
@@ -212,7 +213,7 @@ func easeApply(ease string, t float64) float64 {
 }
 
 // film writes the rows playing together, one above the other.
-func film(path string, rows []filmRow, loops int, s float64) error {
+func film(path string, rows []filmRow, loops int, s, above float64) error {
 	const fps = 25.0
 	var lines [][]filmPose
 	frames, reach := 0, 0.0
@@ -224,7 +225,8 @@ func film(path string, rows []filmRow, loops int, s float64) error {
 	}
 	size := rows[0].p.rig.Size
 	w := int((size + reach) * s)
-	h := int(size * s)
+	top := int(above * size * s)
+	h := int(size*s) + top
 	var images []*image.Paletted
 	var delays []int
 	// The strip: frames 0.08 s apart through the first loops, each cut
@@ -252,11 +254,11 @@ func film(path string, rows []filmRow, loops int, s float64) error {
 			if dir < 0 {
 				start = reach
 			}
-			ground := int((r.p.rig.Bones[0].Y)*s) + h*i
+			ground := int((r.p.rig.Bones[0].Y)*s) + top + h*i
 			for x := 0; x < w; x++ {
 				frame.Set(x, ground, color.RGBA{180, 170, 150, 255})
 			}
-			off := mat{a: s, d: s, e: (start + dir*fp.dx) * s, f: float64(h*i) - fp.dy*s}
+			off := mat{a: s, d: s, e: (start + dir*fp.dx) * s, f: float64(h*i+top) - fp.dy*s}
 			r.p.paint(frame, off, fp.bones, r.p.shown("", fp.slots))
 		}
 		if cell, ok := stripAt[f]; ok {

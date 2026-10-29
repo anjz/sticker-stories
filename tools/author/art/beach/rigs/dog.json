@@ -18,10 +18,8 @@
     {
       "id": "neck",
       "size": "1024x1024",
-      "references": [
-        "parts"
-      ],
-      "prompt": "Image 1 is a sticker of a scruffy dog; image 2 shows the same dog cut into puppet parts, with a blank face. Draw one single piece, centred on the sheet: the dog's head together with its neck, as one piece. It is exactly the head of image 2 — the same scruffy head with its white muzzle, black nose, brown patches and rosy cheeks, the same completely blank face (no eyes, no eyebrows, no mouth, no tongue), without ears, turned the same way, the same drawing style, colours, texture and line — but there is no chin line under it: the white furry throat and the brown fur at the sides of the neck carry straight on down below the head, as wide as the head, for about half the head's height, the way the head flows into the chest in image 1, with no collar, and end in a smooth rounded bottom edge. At the size the head has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
+      "references": [],
+      "prompt": "Image 1 is a sticker of a scruffy dog. Draw one single cut-out puppet piece, centred on the sheet: this dog's head together with its neck, as one piece, exactly as the head is in image 1 — turned the same way as in image 1 (three-quarters, looking towards the viewer with the muzzle and the black nose to the right of the middle of the face), the same white blaze, white muzzle, brown patches and rosy cheeks where image 1 has them, the same drawing style, colours, texture and line — but with a completely blank face: keep the black nose and the rosy cheeks; no eyes, no eyebrows, no mouth, no tongue; without ears. There is no chin line under it: the throat and the neck carry straight on down below the head for about half the head's height, coloured as the dog's neck and chest are in image 1 — white fluffy fur at the front and on the right side, brown only where image 1 has brown — with no collar, ending in a smooth rounded bottom edge. At the size the head has in image 1. Nothing else on the sheet. No text, no labels, no numbers, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -198,8 +196,8 @@
     "headNeck": {
       "sheet": "neck",
       "at": [
-        531,
-        515
+        554,
+        511
       ]
     },
     "bodyFront": {
@@ -274,8 +272,8 @@
     {
       "id": "earR",
       "parent": "head",
-      "x": 540,
-      "y": 152
+      "x": 522,
+      "y": 162
     },
     {
       "id": "face",
@@ -328,8 +326,8 @@
       "attachments": {
         "tail": {
           "part": "tail",
-          "x": 243.1,
-          "y": 281.0,
+          "x": 238.1,
+          "y": 296.0,
           "scale": 0.44,
           "rotate": 5.300000000000011
         }
@@ -347,7 +345,8 @@
           "scale": 0.336,
           "rotate": -13.0,
           "shade": 0.07,
-          "scaleY": 1.06
+          "scaleY": 1.06,
+          "flip": true
         }
       }
     },
@@ -403,8 +402,8 @@
       "attachments": {
         "ear": {
           "part": "earR",
-          "x": 581.3,
-          "y": 192.6,
+          "x": 563.3,
+          "y": 202.6,
           "scale": 0.398,
           "rotate": -4.300000000000011
         }
@@ -417,9 +416,9 @@
       "attachments": {
         "head": {
           "part": "headNeck",
-          "x": 496,
-          "y": 268,
-          "scale": 0.295
+          "x": 473.2,
+          "y": 283.3,
+          "scale": 0.305
         }
       }
     },
@@ -464,7 +463,8 @@
           "y": 543.2,
           "scale": 0.376,
           "rotate": -4.800000000000011,
-          "scaleY": 1.06
+          "scaleY": 1.06,
+          "flip": true
         }
       }
     },
@@ -529,14 +529,16 @@
           "x": 437,
           "y": 246,
           "scale": 0.24,
-          "flip": true
+          "flip": true,
+          "rotate": -19
         },
         "happy": {
           "part": "eyeHappy",
           "x": 437,
           "y": 243,
           "scale": 0.24,
-          "flip": true
+          "flip": true,
+          "rotate": -19
         },
         "sad": {
           "part": "eyeSad",
@@ -549,7 +551,8 @@
           "x": 435,
           "y": 250,
           "scale": 0.24,
-          "flip": true
+          "flip": true,
+          "rotate": -19
         }
       }
     },
@@ -574,13 +577,15 @@
           "part": "eyeClosed",
           "x": 515,
           "y": 218,
-          "scale": 0.2
+          "scale": 0.2,
+          "rotate": -19
         },
         "happy": {
           "part": "eyeHappy",
           "x": 515,
           "y": 215,
-          "scale": 0.2
+          "scale": 0.2,
+          "rotate": -19
         },
         "sad": {
           "part": "eyeSad",
@@ -592,7 +597,8 @@
           "part": "eyeCry",
           "x": 517,
           "y": 222,
-          "scale": 0.2
+          "scale": 0.2,
+          "rotate": -19
         }
       }
     },
@@ -611,31 +617,36 @@
           "part": "mouthSmile",
           "x": 500,
           "y": 292,
-          "scale": 0.28
+          "scale": 0.28,
+          "rotate": -19
         },
         "open": {
           "part": "mouthLaugh",
           "x": 502,
           "y": 305,
-          "scale": 0.3
+          "scale": 0.3,
+          "rotate": -19
         },
         "o": {
           "part": "mouthO",
           "x": 502,
           "y": 300,
-          "scale": 0.25
+          "scale": 0.25,
+          "rotate": -19
         },
         "sad": {
           "part": "mouthSad",
           "x": 500,
           "y": 295,
-          "scale": 0.26
+          "scale": 0.26,
+          "rotate": -19
         },
         "sob": {
           "part": "mouthSob",
           "x": 500,
           "y": 298,
-          "scale": 0.26
+          "scale": 0.26,
+          "rotate": -19
         }
       }
     },
@@ -986,7 +997,8 @@
       "description": "the dog runs along to the right, ears bouncing and tail up, then stops.",
       "facing": "right",
       "gait": {
-        "style": "quadruped.canter"
+        "style": "quadruped.canter",
+        "swing": 1.7
       }
     },
     {

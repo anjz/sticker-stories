@@ -180,7 +180,7 @@ func TestPerchedIsForActions(t *testing.T) {
 	m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) {
 		a.Kind, a.Perched, a.Loop, a.Facing, a.Stride = KindMove, true, &FrameRange{From: 1, To: 2}, "left", 0.5
 	})}
-	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "perched, idle and place belong to an action") {
+	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "perched, idle, place, props and drift belong to an action") {
 		t.Errorf("a perched move: %v", errs)
 	}
 }
@@ -245,7 +245,11 @@ func TestActionOnFacesAndMoveAway(t *testing.T) {
 		}
 		return m, dir
 	}
-	m, dir := setup(t, func(a *StickerAnimation) { a.On, a.Faces = []string{"sea"}, "right" }, nil)
+	m, dir := setup(t, func(a *StickerAnimation) {
+		a.On, a.Faces = []string{"sea"}, "right"
+		a.Effects = []AnimationEffect{{Frame: 1, Effect: "surf-wave"}}
+		a.Drift = &AnimationDrift{From: 1, To: 2, Shoreward: 0.5}
+	}, func(a *StickerAnimation) { a.Faces, a.Rest = "right", "paddle-out" })
 	if errs := m.Validate(dir); len(errs) != 0 {
 		t.Fatalf("an action done in the sea facing right, and a paddle that paddles out, rejected: %v", errs)
 	}
@@ -256,7 +260,20 @@ func TestActionOnFacesAndMoveAway(t *testing.T) {
 	}{
 		{"an action on no feature", func(a *StickerAnimation) { a.On = []string{"moon"} }, nil, `on: "moon" is not a feature`},
 		{"faces up", func(a *StickerAnimation) { a.Faces = "up" }, nil, "faces must be left or right"},
-		{"faces on a move", nil, func(a *StickerAnimation) { a.Faces = "right" }, "faces belongs to an action"},
+		{"faces up on a move", nil, func(a *StickerAnimation) { a.Faces = "up" }, "faces must be left or right"},
+		{"rest on an action", func(a *StickerAnimation) { a.Rest = "paddle" }, nil, "belong to a move"},
+		{"rest without stays", nil, func(a *StickerAnimation) { a.Stays, a.Rest = false, "paddle-out" }, "rest needs stays"},
+		{"rest to no move", nil, func(a *StickerAnimation) { a.Rest = "sit" }, `rest: "sit" is not another looping move`},
+		{"an effect a frame cannot start", func(a *StickerAnimation) { a.Effects = []AnimationEffect{{Frame: 1, Effect: "hop"}} }, nil, `effect "hop" must be one of surf-wave`},
+		{"an effect past the frames", func(a *StickerAnimation) { a.Effects = []AnimationEffect{{Frame: 40, Effect: "surf-wave"}} }, nil, "frame 40 is not one of"},
+		{"a drift back in time", func(a *StickerAnimation) {
+			a.On, a.Drift = []string{"sea"}, &AnimationDrift{From: 2, To: 1, Shoreward: 0.5}
+		}, nil, "drift: keys 2–1"},
+		{"a drift past the shore", func(a *StickerAnimation) {
+			a.On, a.Drift = []string{"sea"}, &AnimationDrift{From: 1, To: 2, Shoreward: 1.5}
+		}, nil, "shoreward 1.5 must be"},
+		{"a drift out of the water", func(a *StickerAnimation) { a.Drift = &AnimationDrift{From: 1, To: 2, Shoreward: 0.5} }, nil, "drift needs on"},
+		{"a drift on a move", nil, func(a *StickerAnimation) { a.Drift = &AnimationDrift{From: 1, To: 2, Shoreward: 0.5} }, "belong to an action"},
 		{"away on an action", func(a *StickerAnimation) { a.Away = "paddle" }, nil, "belong to a move"},
 		{"away to no move", nil, func(a *StickerAnimation) { a.Away = "swim" }, `away: "swim" is not another looping move`},
 		{"away to itself", nil, func(a *StickerAnimation) { a.Away = "paddle" }, "must be another move"},
@@ -269,5 +286,23 @@ func TestActionOnFacesAndMoveAway(t *testing.T) {
 				t.Errorf("no error mentioning %q in %v", tc.wantSub, errs)
 			}
 		})
+	}
+}
+
+func TestPropsAreWhereAPausedActionHoldsThem(t *testing.T) {
+	dir := t.TempDir()
+	m := validManifest(t, dir)
+	m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) {
+		a.Pause = &AnimationPause{Frame: 2, Shows: "the kite up high"}
+		a.Props = map[string]AnimationPoint{"kite": {X: 0.2, Y: -0.6}}
+	})}
+	if errs := m.Validate(dir); len(errs) != 0 {
+		t.Errorf("a kite held out high above the image: %v", errs)
+	}
+	m.Stickers[1].Animations = []string{validAnimation(t, dir, func(a *StickerAnimation) {
+		a.Props = map[string]AnimationPoint{"kite": {X: 0.2, Y: -0.6}}
+	})}
+	if errs := m.Validate(dir); len(errs) != 1 || !strings.Contains(errs[0].Error(), "props need a pause") {
+		t.Errorf("props without a pause: %v", errs)
 	}
 }

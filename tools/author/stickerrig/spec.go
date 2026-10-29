@@ -102,10 +102,17 @@ type animSpec struct {
 	On          []string                     `json:"on,omitempty"`
 	Away        string                       `json:"away,omitempty"`
 	Faces       string                       `json:"faces,omitempty"`
+	Rest        string                       `json:"rest,omitempty"`
 	Stays       bool                         `json:"stays,omitempty"`
 	Waterline   float64                      `json:"waterline,omitempty"`
 	Particles   []manifest.AnimationParticle `json:"particles,omitempty"`
+	Effects     []manifest.AnimationEffect   `json:"effects,omitempty"`
+	Drift       *manifest.AnimationDrift     `json:"drift,omitempty"`
 	Keys        []manifest.PuppetKey         `json:"keys,omitempty"`
+	// Props names what the action holds out in its paused key, each the
+	// slot that draws it (the girl's kite: "kite"): install writes where
+	// it is then (the sidecar's props), so a flyer can go to it.
+	Props map[string]string `json:"props,omitempty"`
 	// Gait makes a move's keys, loop and stride from how a body of its
 	// kind moves (gait.go) instead of keys written by hand.
 	Gait *gaitSpec `json:"gait,omitempty"`

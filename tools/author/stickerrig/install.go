@@ -138,6 +138,9 @@ func (c *ctxt) install(r *rigSpec, templates map[string]animSpec, drop bool) err
 	fmt.Printf("✓ %s: %d parts in a %dx%d atlas, %d bones, %d slots\n", r.Sticker, len(rig.Parts), art.Bounds().Dx(), art.Bounds().Dy(), len(rig.Bones), len(rig.Slots))
 	for i, a := range anims {
 		side := sidecar(r.Sticker, a, box)
+		if side.Props, err = propsAt(rig, a); err != nil {
+			return fmt.Errorf("animation %s: %w", a.ID, err)
+		}
 		path := filepath.Join(c.packDir, filepath.FromSlash(paths[i]))
 		if err := writeJSON(path, side); err != nil {
 			return err
@@ -372,6 +375,39 @@ func silhouette(art *image.RGBA, radius int) *image.RGBA {
 	return out
 }
 
+// propsAt is where each prop the action holds out is in its paused key:
+// the centre of the attachment its slot shows then, as fractions of the
+// sticker image (top-left origin).
+func propsAt(rig *manifest.PuppetRig, a animSpec) (map[string]manifest.AnimationPoint, error) {
+	if len(a.Props) == 0 {
+		return nil, nil
+	}
+	if a.Pause == nil || a.Pause.Frame < 0 || a.Pause.Frame >= len(a.Keys) {
+		return nil, errors.New("props need a pause key: they are where things are held out then")
+	}
+	p := newPuppet(rig, nil, nil)
+	key := a.Keys[a.Pause.Frame]
+	world := p.world(key.Bones)
+	shown := p.shown("", key.Slots)
+	out := map[string]manifest.AnimationPoint{}
+	for name, slot := range a.Props {
+		i, ok := p.slot[slot]
+		if !ok {
+			return nil, fmt.Errorf("prop %s: no slot %q", name, slot)
+		}
+		s := rig.Slots[i]
+		att, ok := s.Attachments[shown[slot]]
+		if !ok {
+			return nil, fmt.Errorf("prop %s: slot %s shows nothing in the paused key", name, slot)
+		}
+		b := p.bone[s.Bone]
+		x, y := world[s.Bone].mul(translate(att.X+att.W/2-b.X, att.Y+att.H/2-b.Y)).apply(0, 0)
+		round := func(v float64) float64 { return math.Round(v/rig.Size*1000) / 1000 }
+		out[name] = manifest.AnimationPoint{X: round(x), Y: round(y)}
+	}
+	return out, nil
+}
+
 // sidecar is the pack's sidecar for one of the rig's animations: every
 // field the rig file gives it, the keys played on the sticker's rig.
 func sidecar(sticker string, a animSpec, box manifest.UnitBox) manifest.StickerAnimation {
@@ -379,7 +415,7 @@ func sidecar(sticker string, a animSpec, box manifest.UnitBox) manifest.StickerA
 		ID: a.ID, Sticker: sticker, Kind: a.Kind, Description: a.Description, StickerBox: box,
 		Pause: a.Pause, Perched: a.Perched, Idle: a.Idle, Place: a.Place, Loop: a.Loop, Facing: a.Facing, Stride: a.Stride,
 		Hops: a.Hops, Flies: a.Flies, Hovers: a.Hovers, On: a.On, Away: a.Away, Faces: a.Faces, Stays: a.Stays,
-		Waterline: a.Waterline, Particles: a.Particles,
+		Waterline: a.Waterline, Particles: a.Particles, Rest: a.Rest, Effects: a.Effects, Drift: a.Drift,
 		Puppet: &manifest.AnimationPuppet{Rig: "anims/" + sticker + ".rig.json", Keys: a.Keys, Wings: a.Wings},
 	}
 }

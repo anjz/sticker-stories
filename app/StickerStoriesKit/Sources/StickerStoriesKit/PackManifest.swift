@@ -493,11 +493,16 @@ public struct StickerStage: Codable, Equatable, Sendable {
     public var on: [String]
     /// Where to land when none of `on` is on screen, or when `on` is empty.
     public var area: Area?
+    /// How much of its drawing, from its feet up, is under the water while
+    /// it is in a shallow, clear water (a rock pool): that part shows
+    /// through the water. Nil or 0: none of it.
+    public var underwater: Double?
 
-    public init(entrance: StickerEntrance, on: [String] = [], area: Area? = nil) {
+    public init(entrance: StickerEntrance, on: [String] = [], area: Area? = nil, underwater: Double? = nil) {
         self.entrance = entrance
         self.on = on
         self.area = area
+        self.underwater = underwater
     }
 
     /// For a sticker the manifest gives no stage: it grows in, somewhere
@@ -505,7 +510,7 @@ public struct StickerStage: Codable, Equatable, Sendable {
     public static let `default` = StickerStage(
         entrance: .grow, area: Area(x: [0.1, 0.9], y: [0.18, 0.45]))
 
-    private enum CodingKeys: String, CodingKey { case entrance, on, area }
+    private enum CodingKeys: String, CodingKey { case entrance, on, area, underwater }
 
     public init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
@@ -518,6 +523,8 @@ public struct StickerStage: Codable, Equatable, Sendable {
         self.entrance = entrance
         on = try c.decodeIfPresent([String].self, forKey: .on) ?? []
         area = try c.decodeIfPresent(Area.self, forKey: .area)
+        // Out of range: none of it (lenient, like the rest of the stage).
+        underwater = (try? c.decodeIfPresent(Double.self, forKey: .underwater)).flatMap { $0 }.flatMap { $0 > 0 && $0 <= 1 ? $0 : nil }
     }
 }
 

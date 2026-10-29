@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "beach",
-  "version": 22,
+  "version": 51,
   "languages": [
     "en-US",
     "es-ES"
@@ -225,7 +225,23 @@
           ],
           [
             1,
-            0.4
+            0.352
+          ],
+          [
+            0.97,
+            0.35
+          ],
+          [
+            0.88,
+            0.35
+          ],
+          [
+            0.85,
+            0.346
+          ],
+          [
+            0.835,
+            0.375
           ],
           [
             0.8,
@@ -475,13 +491,13 @@
     },
     "sizes": {
       "ball": 0.12,
-      "bottle": 0.089,
+      "bottle": 0.071,
       "bucket": 0.132,
       "castle": 0.122,
       "clam": 0.071,
       "crab": 0.095,
       "dog": 0.188,
-      "fish": 0.176,
+      "fish": 0.098,
       "fishing-boat": 0.679,
       "girl": 0.317,
       "hermit-crab": 0.093,
@@ -762,8 +778,8 @@
     }
   },
   "narrationPacks": {
-    "en-US": "beach-narration-en-f49a7f50",
-    "es-ES": "beach-narration-es-bc9e5c3a"
+    "en-US": "beach-narration-en-e3488af7",
+    "es-ES": "beach-narration-es-6fac2942"
   },
   "stickers": [
     {
@@ -828,8 +844,8 @@
           0.75
         ],
         "y": [
-          0.3984,
-          0.6029
+          0.3333,
+          0.6667
         ]
       }
     },
@@ -929,7 +945,8 @@
         "on": [
           "pool",
           "sand"
-        ]
+        ],
+        "underwater": 1
       },
       "size": "tiny",
       "content": {
@@ -979,7 +996,8 @@
           "rocks",
           "pool",
           "sand"
-        ]
+        ],
+        "underwater": 0.35
       },
       "size": "small",
       "content": {
@@ -1076,9 +1094,9 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "pool",
-          "sea"
-        ]
+          "pool"
+        ],
+        "underwater": 1
       },
       "size": "tiny",
       "content": {
@@ -1162,7 +1180,8 @@
         "entrance": "hop",
         "on": [
           "sand"
-        ]
+        ],
+        "underwater": 0.4
       },
       "size": "medium",
       "content": {
@@ -1210,7 +1229,8 @@
         "on": [
           "pool",
           "sand"
-        ]
+        ],
+        "underwater": 0.5
       },
       "size": "tiny",
       "content": {
@@ -1258,7 +1278,8 @@
         "entrance": "hop",
         "on": [
           "pool"
-        ]
+        ],
+        "underwater": 0.6
       },
       "size": "small",
       "content": {
@@ -1566,7 +1587,8 @@
         "on": [
           "pool",
           "rocks"
-        ]
+        ],
+        "underwater": 0.75
       },
       "size": "small",
       "content": {
@@ -1614,7 +1636,8 @@
         "entrance": "hop",
         "on": [
           "pool"
-        ]
+        ],
+        "underwater": 1
       },
       "size": "tiny",
       "content": {
@@ -1662,7 +1685,8 @@
         "on": [
           "pool",
           "rocks"
-        ]
+        ],
+        "underwater": 0.9
       },
       "size": "small",
       "content": {
@@ -1689,6 +1713,7 @@
         "anims/surfer.paddle.json",
         "anims/surfer.surf.json",
         "anims/surfer.paddle-out.json",
+        "anims/surfer.wait.json",
         "anims/surfer.ride-wave.json",
         "anims/surfer.clap.json",
         "anims/surfer.point.json",
@@ -1712,7 +1737,8 @@
         "entrance": "hop",
         "on": [
           "sand"
-        ]
+        ],
+        "underwater": 0.4
       },
       "size": "medium",
       "content": {
@@ -1844,7 +1870,8 @@
         "entrance": "hop",
         "on": [
           "pool"
-        ]
+        ],
+        "underwater": 1
       },
       "size": "tiny",
       "content": {
@@ -2217,13 +2244,13 @@
       "localizations": {
         "en-US": {
           "title": "Lola's Kite",
-          "text": "Whoosh! The wind was blowing just right. Lola came skipping along with her kite. \"Up you go!\" Up went the kite, red and yellow, blue and green, its ribbon tail dancing. Even the umbrella popped open in the breeze, and then it spun round and round. Then Gull flew down onto the rocks. She stared. A new bird? A bright diamond bird with a ribbon tail? Gull squawked hello. The kite said nothing. It just looped and swooped. Gull hopped and flapped. \"It's a kite, Gull! But you can fly with it.\" So Gull flew up beside Lola, and danced on the wind. Dog barked and wagged his tail. Lola held the string up high. And that is how Gull made friends with a kite.",
+          "text": "Whoosh! The wind was blowing just right. Lola came skipping along. \"Up you go!\" Up went the kite, red and yellow, blue and green, its ribbon tail dancing. Even the umbrella popped open in the breeze, and then it spun round and round. Then Gull flew down onto the rocks. She stared. A new bird? A bright diamond bird with a ribbon tail? Gull squawked hello. The kite said nothing. It just looped and swooped. Gull hopped and flapped. \"It's a kite, Gull! But you can fly with it.\" So Gull flew up beside the kite, and danced on the wind. Dog barked and wagged his tail. Lola held the string up high. And that is how Gull made friends with a kite.",
           "audio": "audio/en-US/lolas-kite.m4a",
           "effects": "audio/en-US/lolas-kite.effects.json"
         },
         "es-ES": {
           "title": "La cometa de Lola",
-          "text": "¡Fiuuu! El viento soplaba justo como hacía falta. Lola llegó dando saltitos con su cometa. «¡Arriba!» Arriba subió la cometa, roja y amarilla, azul y verde, con su cola de cintas bailando. Hasta la sombrilla se abrió con la brisa, y entonces dio vueltas y más vueltas. Entonces Gaviota bajó volando hasta las rocas. Se quedó mirando. ¿Un pájaro nuevo? ¿Un pájaro de colores, con forma de rombo y cola de cintas? Gaviota graznó para saludar. La cometa no dijo nada. Solo daba vueltas y piruetas. Gaviota saltó y aleteó. «¡Es una cometa, Gaviota! Pero puedes volar con ella.» Así que Gaviota subió volando junto a Lola, y bailó con el viento. Perro ladró y movió la cola. Lola sostuvo el hilo bien alto. Y así fue como Gaviota se hizo amiga de una cometa.",
+          "text": "¡Fiuuu! El viento soplaba justo como hacía falta. Lola llegó dando saltitos. «¡Arriba!» Arriba subió la cometa, roja y amarilla, azul y verde, con su cola de cintas bailando. Hasta la sombrilla se abrió con la brisa, y entonces dio vueltas y más vueltas. Entonces Gaviota bajó volando hasta las rocas. Se quedó mirando. ¿Un pájaro nuevo? ¿Un pájaro de colores, con forma de rombo y cola de cintas? Gaviota graznó para saludar. La cometa no dijo nada. Solo daba vueltas y piruetas. Gaviota saltó y aleteó. «¡Es una cometa, Gaviota! Pero puedes volar con ella.» Así que Gaviota subió volando junto a la cometa, y bailó con el viento. Perro ladró y movió la cola. Lola sostuvo el hilo bien alto. Y así fue como Gaviota se hizo amiga de una cometa.",
           "audio": "audio/es-ES/lolas-kite.m4a",
           "effects": "audio/es-ES/lolas-kite.effects.json"
         }
@@ -2275,13 +2302,13 @@
       "localizations": {
         "en-US": {
           "title": "Nico's Big Wave",
-          "text": "It was a perfect morning for surfing. Nico came down the beach with his yellow board. \"Today I'm riding the BIGGEST wave!\" Out on the bay, the sailboat bobbed along, its sails puffing in the breeze. Then a wave rose up, tall and white and foamy. Nico stopped. That wave was very big. His knees went wobbly. Seal flopped up onto the rocks. She clapped her flippers. Arf, arf! As if to say: start small. So Nico waited for a little wave. Swoosh! He was up! Turtle swam alongside, smiling. Nico rode the little wave all the way back to the sand. Then another. And another. Nico waved to Seal and held up his board. \"Thanks, Seal! The big one can wait till tomorrow.\"",
+          "text": "It was a perfect morning for surfing. Nico came down the beach with his yellow board. \"Today I'm riding the BIGGEST wave!\" Out on the bay, the sailboat bobbed along, its sails puffing in the breeze. Then a wave rose up, tall and white and foamy. Nico stopped. That wave was very big. His knees went wobbly. Seal flopped up onto the rocks. She clapped her flippers. As if to say: start small. So Nico waited for a little wave. Swoosh! He was up! Turtle swam alongside, smiling. Nico rode the little wave all the way back to the sand. Then another. And another. Nico waved to Seal and held up his board. \"Thanks, Seal! The big one can wait till tomorrow.\"",
           "audio": "audio/en-US/nicos-big-wave.m4a",
           "effects": "audio/en-US/nicos-big-wave.effects.json"
         },
         "es-ES": {
           "title": "La gran ola de Nico",
-          "text": "Era una mañana perfecta para hacer surf. Nico bajó por la playa con su tabla amarilla. «¡Hoy voy a coger la ola MÁS GRANDE!» En la bahía, el velero se mecía, con las velas hinchadas por la brisa. Entonces se levantó una ola alta, blanca y llena de espuma. Nico se paró. Aquella ola era muy grande. Le temblaban las rodillas. Foca subió a las rocas dando saltitos. Dio palmadas con las aletas. ¡Arf, arf! Como diciendo: empieza por las pequeñas. Así que Nico esperó una ola pequeñita. ¡Zas! ¡Ya estaba de pie! Tortuga nadaba a su lado, sonriendo. Nico se dejó llevar por la ola hasta la arena. Luego otra. Y otra más. Nico saludó a Foca con la tabla en alto. «¡Gracias, Foca! La grande puede esperar a mañana.»",
+          "text": "Era una mañana perfecta para hacer surf. Nico bajó por la playa con su tabla amarilla. «¡Hoy voy a coger la ola MÁS GRANDE!» En la bahía, el velero se mecía, con las velas hinchadas por la brisa. Entonces se levantó una ola alta, blanca y llena de espuma. Nico se paró. Aquella ola era muy grande. Le temblaban las rodillas. Foca subió a las rocas dando saltitos. Dio palmadas con las aletas. Como diciendo: empieza por las pequeñas. Así que Nico esperó una ola pequeñita. ¡Zas! ¡Ya estaba de pie! Tortuga nadaba a su lado, sonriendo. Nico se dejó llevar por la ola hasta la arena. Luego otra. Y otra más. Nico saludó a Foca con la tabla en alto. «¡Gracias, Foca! La grande puede esperar a mañana.»",
           "audio": "audio/es-ES/nicos-big-wave.m4a",
           "effects": "audio/es-ES/nicos-big-wave.effects.json"
         }
@@ -2315,35 +2342,6 @@
           "text": "¡Al escondite en la charca! Pececito contaba. Cangrejo y Pulpo se fueron a esconder. Cangrejo se escondió detrás de una piedra, pero sus grandes pinzas rojas asomaban. ¡Te pillé, Cangrejo! ¿Y dónde estaba Pulpo? Pececito buscó por todas partes. Debajo de las piedras. Detrás de los pedruscos. Almeja se abrió para mirar también. Ni rastro de Pulpo. Entonces, una piedra gris… parpadeó. ¡Esa piedra tiene OJOS! El gris se volvió naranja rosado, y allí estaba Pulpo, riéndose. Soy un pulpo, dijo. ¡Puedo ponerme del color de lo que tengo al lado! Movió sus ocho brazos. Cangrejo chocó las pinzas. Ahora me escondo yo, dijo Pececito. ¿Me enseñas a ser una piedra?",
           "audio": "audio/es-ES/octopus-hide-and-seek.m4a",
           "effects": "audio/es-ES/octopus-hide-and-seek.effects.json"
-        }
-      }
-    },
-    {
-      "id": "octopus-says-hello",
-      "requiredStickers": [
-        "girl",
-        "octopus",
-        "starfish"
-      ],
-      "optionalStickers": [],
-      "weight": 1,
-      "tags": [
-        "curiosity",
-        "funny",
-        "learning"
-      ],
-      "localizations": {
-        "en-US": {
-          "title": "Octopus Says Hello",
-          "text": "Lola knelt at the edge of the rock pool. \"Hello? Is anybody home?\" Out came Octopus, orange and curly. He waved all eight arms. Then he reached out the tip of one arm… and touched Lola's finger. \"That tickles!\" I'm tasting you, said Octopus. I taste things with the little suckers on my arms. \"What do I taste like?\" Octopus thought. Hmm… like salt, and sand, and sandwiches. Starfish, watching nearby, waved one arm hello. \"Can I taste you back?\" Octopus wiggled. I'll just shake your hand, he said. So he did. Eight times.",
-          "audio": "audio/en-US/octopus-says-hello.m4a",
-          "effects": "audio/en-US/octopus-says-hello.effects.json"
-        },
-        "es-ES": {
-          "title": "Pulpo dice hola",
-          "text": "Lola se arrodilló al borde de la charca. «¿Hola? ¿Hay alguien en casa?» Salió Pulpo, naranja y rizado. Saludó con sus ocho brazos. Luego estiró la punta de un brazo… y tocó el dedo de Lola. «¡Me hace cosquillas!» Te estoy probando, dijo Pulpo. Yo saboreo las cosas con las ventosas de mis brazos. «¿Y a qué sé?» Pulpo se lo pensó. Mmm… a sal, a arena y a bocadillo. Estrella, que miraba al lado, saludó con un brazo. «¿Puedo probarte yo a ti?» Pulpo se meneó. Mejor te doy la mano, dijo. Y eso hizo. Ocho veces.",
-          "audio": "audio/es-ES/octopus-says-hello.m4a",
-          "effects": "audio/es-ES/octopus-says-hello.effects.json"
         }
       }
     },
@@ -2510,13 +2508,13 @@
       "localizations": {
         "en-US": {
           "title": "Slow on Sand, Fast in Sea",
-          "text": "Turtle was crawling across the sand. Flip… flop… ever so slowly. Nico came by with his yellow board. \"Turtle, you're SO slow!\" Turtle tucked her head in, and peeked out again, smiling. On land, I'm slow, she said. But in the water? Race you! \"You're on!\" Pelican landed on the rocks to watch. Ready, steady… GO! Nico paddled out and stood up on his board. Turtle slid into the water and WHOOSH! She flew through the waves like a bird through the sky. Pelican was so amazed he scooped up a beakful of water. By the time Nico rode a wave back in, Turtle was already waiting. \"Okay, Turtle. You're the fastest swimmer here!\"",
+          "text": "Turtle was crawling across the sand. Flip… flop… ever so slowly. Nico came by with his yellow board. \"Turtle, you're SO slow!\" Turtle tucked her head in, and peeked out again, smiling. On land, I'm slow, she said. But in the water? Race you! \"You're on!\" Pelican landed on the rocks to watch. Ready, steady… GO! Nico paddled out as fast as he could. Turtle slid into the water and WHOOSH! She flew through the waves like a bird through the sky. Pelican was so amazed he scooped up a beakful of water. By the time Nico rode a wave back in, Turtle was already waiting. \"Okay, Turtle. You're the fastest swimmer here!\"",
           "audio": "audio/en-US/slow-on-sand-fast-in-sea.m4a",
           "effects": "audio/en-US/slow-on-sand-fast-in-sea.effects.json"
         },
         "es-ES": {
           "title": "Lenta en tierra, rápida nadando",
-          "text": "Tortuga cruzaba la arena arrastrándose. Flip… flop… despacito, despacito. Nico pasó con su tabla amarilla. «¡Tortuga, qué LENTA eres!» Tortuga escondió la cabeza y la volvió a asomar, sonriendo. En tierra soy lenta, dijo. ¿Pero en el agua? ¡Te echo una carrera! «¡Vale!» Pelícano se posó en las rocas para mirar. Preparados, listos… ¡YA! Nico remó y se puso de pie en su tabla. Tortuga se deslizó en el agua y ¡FIUUU! Volaba entre las olas como un pájaro por el cielo. Pelícano se quedó tan asombrado que recogió un buen trago de agua. Cuando Nico volvió cogiendo una ola hasta la arena, Tortuga ya lo estaba esperando. «Vale, Tortuga. ¡Eres la que nada más rápido de aquí!»",
+          "text": "Tortuga cruzaba la arena arrastrándose. Flip… flop… despacito, despacito. Nico pasó con su tabla amarilla. «¡Tortuga, qué LENTA eres!» Tortuga escondió la cabeza y la volvió a asomar, sonriendo. En tierra soy lenta, dijo. ¿Pero en el agua? ¡Te echo una carrera! «¡Vale!» Pelícano se posó en las rocas para mirar. Preparados, listos… ¡YA! Nico remó tan rápido como pudo. Tortuga se deslizó en el agua y ¡FIUUU! Volaba entre las olas como un pájaro por el cielo. Pelícano se quedó tan asombrado que recogió un buen trago de agua. Cuando Nico volvió cogiendo una ola hasta la arena, Tortuga ya lo estaba esperando. «Vale, Tortuga. ¡Eres la que nada más rápido de aquí!»",
           "audio": "audio/es-ES/slow-on-sand-fast-in-sea.m4a",
           "effects": "audio/es-ES/slow-on-sand-fast-in-sea.effects.json"
         }
@@ -2649,13 +2647,13 @@
       "localizations": {
         "en-US": {
           "title": "The Boat Comes Home",
-          "text": "The sun was going down, golden and pink. Seal sat on the rocks, looking out at the water. Her friend was late. Then, far away, she saw a white shape flying round and round. It was Gull! Whenever a boat goes fishing, the gulls follow it home, hoping for a snack. So if Gull was here… Chug, chug, chug. Here came the fishing boat, blue and white, with Gull flying right behind. Seal clapped her flippers. Arf! The boat hauled up its net, all wet and dripping, and rocked gently. Gull came down to rest. The sky turned deep blue. The moon came up. Gull tucked her head under her wing. Seal closed her eyes. And the fishing boat, home at last, rocked gently in the dark. Swish… swash…",
+          "text": "The sun was going down, golden and pink. Seal sat on the rocks, looking out at the water. Her friend was late. Then, far away, she saw a white shape flying round and round. It was Gull! Whenever a boat goes fishing, the gulls follow it home, hoping for a snack. So if Gull was here… Chug, chug, chug. Here came the fishing boat, blue and white, with Gull flying right behind. Seal clapped her flippers. The boat hauled up its net, all wet and dripping, and rocked gently. Gull came down to rest. The sky turned deep blue. The moon came up. Gull tucked her head under her wing. Seal closed her eyes. And the fishing boat, home at last, rocked gently in the dark. Swish… swash…",
           "audio": "audio/en-US/the-boat-comes-home.m4a",
           "effects": "audio/en-US/the-boat-comes-home.effects.json"
         },
         "es-ES": {
           "title": "La barca vuelve a casa",
-          "text": "El sol se escondía, dorado y rosa. Foca estaba en las rocas, mirando el agua. Su amiga llegaba tarde. Entonces, a lo lejos, vio una figura blanca que volaba en círculos. ¡Era Gaviota! Cuando un barco sale a pescar, las gaviotas lo siguen hasta casa, por si cae algo de comer. Así que si Gaviota estaba aquí… Chuc, chuc, chuc. Ahí llegaba la barca de pesca, azul y blanca, con Gaviota volando justo detrás. Foca dio palmadas con las aletas. ¡Arf! La barca subió su red, chorreando, y se meció despacio. Gaviota bajó a descansar. El cielo se puso azul oscuro. Salió la luna. Gaviota metió la cabeza bajo el ala. Foca cerró los ojos. Y la barca, por fin en casa, se mecía despacito en la oscuridad. Chis… chas…",
+          "text": "El sol se escondía, dorado y rosa. Foca estaba en las rocas, mirando el agua. Su amiga llegaba tarde. Entonces, a lo lejos, vio una figura blanca que volaba en círculos. ¡Era Gaviota! Cuando un barco sale a pescar, las gaviotas lo siguen hasta casa, por si cae algo de comer. Así que si Gaviota estaba aquí… Chuc, chuc, chuc. Ahí llegaba la barca de pesca, azul y blanca, con Gaviota volando justo detrás. Foca dio palmadas con las aletas. La barca subió su red, chorreando, y se meció despacio. Gaviota bajó a descansar. El cielo se puso azul oscuro. Salió la luna. Gaviota metió la cabeza bajo el ala. Foca cerró los ojos. Y la barca, por fin en casa, se mecía despacito en la oscuridad. Chis… chas…",
           "audio": "audio/es-ES/the-boat-comes-home.m4a",
           "effects": "audio/es-ES/the-boat-comes-home.effects.json"
         }
@@ -3077,13 +3075,13 @@
       "localizations": {
         "en-US": {
           "title": "The Seal Who Wanted to Surf",
-          "text": "Nico grabbed his board and paddled out. Whoosh! Up he stood, riding a wave. Seal watched from the rocks. She clapped her flippers. Arf! She wanted to surf too! The rubber ring came bobbing by. Seal swam over to try riding it. The ring spun round, and round, and round… and SPLOSH! Off slid Seal. Nico called from his board. \"Seal! You don't need a board. You can surf all by yourself!\" So Seal tried. She stretched out long and smooth, and when the next wave came… she rode it, whoosh, like a grey, whiskery surfboard! Side by side, they rode the wave all the way in. Nico waved his board in the air. \"Again?\" Arf, arf!",
+          "text": "Nico grabbed his board and paddled out. Whoosh! Up he stood, riding a wave. Seal watched from the rocks. She clapped her flippers. She wanted to surf too! The rubber ring came bobbing by. Seal swam over to try riding it. The ring spun round, and round, and round… and SPLOSH! Off slid Seal. Nico called from his board. \"Seal! You don't need a board. You can surf all by yourself!\" So Seal tried. She stretched out long and smooth, and when the next wave came… she rode it, whoosh, like a grey, whiskery surfboard! Side by side, they rode the wave all the way in. Nico waved his board in the air. \"Again?\" Seal couldn't wait.",
           "audio": "audio/en-US/the-seal-who-wanted-to-surf.m4a",
           "effects": "audio/en-US/the-seal-who-wanted-to-surf.effects.json"
         },
         "es-ES": {
           "title": "La foca que quería hacer surf",
-          "text": "Nico cogió su tabla y remó mar adentro. ¡Fiuuu! Se puso de pie sobre una ola. Foca lo miraba desde las rocas. Dio palmadas con las aletas. ¡Arf! ¡Ella también quería hacer surf! El flotador pasó meciéndose. Foca nadó hasta él para probar a subirse. El flotador dio vueltas, y vueltas, y vueltas… y ¡CHOF! Foca resbaló al agua. Nico la llamó desde su tabla. «¡Foca! No te hace falta tabla. ¡Tú puedes surfear sola!» Así que Foca lo intentó. Se estiró, larga y suave, y cuando llegó la siguiente ola… ¡la cabalgó, fiuuu, como una tabla de surf gris y con bigotes! Juntos, cabalgaron la ola hasta la orilla. Nico agitó su tabla en el aire. «¿Otra vez?» ¡Arf, arf!",
+          "text": "Nico cogió su tabla y remó mar adentro. ¡Fiuuu! Se puso de pie sobre una ola. Foca lo miraba desde las rocas. Dio palmadas con las aletas. ¡Ella también quería hacer surf! El flotador pasó meciéndose. Foca nadó hasta él para probar a subirse. El flotador dio vueltas, y vueltas, y vueltas… y ¡CHOF! Foca resbaló al agua. Nico la llamó desde su tabla. «¡Foca! No te hace falta tabla. ¡Tú puedes surfear sola!» Así que Foca lo intentó. Se estiró, larga y suave, y cuando llegó la siguiente ola… ¡la cabalgó, fiuuu, como una tabla de surf gris y con bigotes! Juntos, cabalgaron la ola hasta la orilla. Nico agitó su tabla en el aire. «¿Otra vez?» ¡Foca estaba encantada!",
           "audio": "audio/es-ES/the-seal-who-wanted-to-surf.m4a",
           "effects": "audio/es-ES/the-seal-who-wanted-to-surf.effects.json"
         }
@@ -3220,15 +3218,44 @@
       "localizations": {
         "en-US": {
           "title": "Waiting for the Wind",
-          "text": "Not a breath of wind. The sailboat sat still on the flat blue sea, its white sails hanging down. Lola stood holding her kite. The kite hung down too. \"Come on, wind.\" Gull sat on the sand, not even bothering to fly. Then… a ripple. A flutter. Whoosh! Here came the wind! The sails puffed out, round and full. \"Look! The wind's pushing the sail, just like it lifts my kite!\" Lola let out the string, and up went her kite. Gull woke up and flew up beside her. And off went the sailboat across the bay, pushed along by the wind. Wind for the boat, wind for the kite, wind under Gull's wings. Everyone had been waiting for the very same thing.",
+          "text": "Not a breath of wind. The sailboat sat still on the flat blue sea, its white sails hanging down. Lola stood and waited. \"Come on, wind.\" Gull sat on the sand, not even bothering to fly. Then… a ripple. A flutter. Whoosh! Here came the wind! The sails puffed out, round and full. \"Look! The wind's pushing the sail!\" Lola let out the string, and up went her kite. Gull woke up and flew up beside the kite. And off went the sailboat across the bay, pushed along by the wind. Wind for the boat, wind for the kite, wind under Gull's wings. Everyone had been waiting for the very same thing.",
           "audio": "audio/en-US/waiting-for-the-wind.m4a",
           "effects": "audio/en-US/waiting-for-the-wind.effects.json"
         },
         "es-ES": {
           "title": "Esperando al viento",
-          "text": "Ni una pizca de viento. El velero estaba quieto en el mar azul y liso, con las velas blancas colgando. Lola sujetaba su cometa. La cometa también colgaba. «Venga, viento.» Gaviota estaba sentada en la arena, sin ganas ni de volar. Entonces… una ondita. Un aleteo. ¡Fiuuu! ¡Ya llegaba el viento! Las velas se hincharon, redondas y llenas. «¡Mira! ¡El viento empuja la vela, igual que levanta mi cometa!» Lola soltó hilo, y arriba subió su cometa. Gaviota se despertó y subió volando a su lado. Y el velero cruzó la bahía, empujado por el viento. Viento para el barco, viento para la cometa, viento bajo las alas de Gaviota. Todos estaban esperando lo mismo.",
+          "text": "Ni una pizca de viento. El velero estaba quieto en el mar azul y liso, con las velas blancas colgando. Lola esperaba y esperaba. «Venga, viento.» Gaviota estaba sentada en la arena, sin ganas ni de volar. Entonces… una ondita. Un aleteo. ¡Fiuuu! ¡Ya llegaba el viento! Las velas se hincharon, redondas y llenas. «¡Mira! ¡El viento empuja la vela!» Lola soltó hilo, y arriba subió su cometa. Gaviota se despertó y subió volando junto a la cometa. Y el velero cruzó la bahía, empujado por el viento. Viento para el barco, viento para la cometa, viento bajo las alas de Gaviota. Todos estaban esperando lo mismo.",
           "audio": "audio/es-ES/waiting-for-the-wind.m4a",
           "effects": "audio/es-ES/waiting-for-the-wind.effects.json"
+        }
+      }
+    },
+    {
+      "id": "who-has-the-most-arms",
+      "requiredStickers": [
+        "girl",
+        "octopus",
+        "starfish"
+      ],
+      "optionalStickers": [],
+      "weight": 1,
+      "tags": [
+        "curiosity",
+        "funny",
+        "learning"
+      ],
+      "localizations": {
+        "en-US": {
+          "title": "Who Has the Most Arms?",
+          "text": "Lola came to the edge of the rock pool and peeked in. \"Who's at home today?\" Up came Octopus, orange and curly. Then Starfish, smiling. \"Let's play a game. Who has the most arms?\" Lola went first. One, two. Two arms! Starfish stretched out wide. One, two, three, four, five. Five arms! Then Octopus wiggled all of his. \"One, two, three, four, five, six, seven… EIGHT!\" Eight arms! Every octopus has eight. \"You win, Octopus!\" But two arms are just right for clapping, said Octopus. So Lola clapped, Starfish cheered, and Octopus twirled round and round, all eight arms swirling.",
+          "audio": "audio/en-US/who-has-the-most-arms.m4a",
+          "effects": "audio/en-US/who-has-the-most-arms.effects.json"
+        },
+        "es-ES": {
+          "title": "¿Quién tiene más brazos?",
+          "text": "Lola se acercó a la charca de las rocas y miró dentro. «¿Quién hay hoy en casa?» Salió Pulpo, naranja y rizado. Y luego Estrella, muy sonriente. «¡Vamos a jugar! ¿Quién tiene más brazos?» Empezó Lola. Uno, dos. ¡Dos brazos! Estrella se estiró bien. Uno, dos, tres, cuatro, cinco. ¡Cinco brazos! Entonces Pulpo meneó todos los suyos. «Uno, dos, tres, cuatro, cinco, seis, siete… ¡OCHO!» ¡Ocho brazos! Todos los pulpos tienen ocho. «¡Has ganado, Pulpo!» Pero dos brazos son perfectos para aplaudir, dijo Pulpo. Así que Lola aplaudió, Estrella lo celebró y Pulpo giró y giró, con sus ocho brazos al vuelo.",
+          "audio": "audio/es-ES/who-has-the-most-arms.m4a",
+          "effects": "audio/es-ES/who-has-the-most-arms.effects.json"
         }
       }
     },

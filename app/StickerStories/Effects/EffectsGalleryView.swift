@@ -513,7 +513,7 @@ final class EffectsGalleryScene: SKScene {
             sticker.float(depth, drawing: sticker.content)
         }
         waves.reconcile(runner.active, at: time, nodes: nodes)
-        canvasEffects.apply(canvasRunner.tick(time), at: time)
+        canvasEffects.apply(canvasRunner.tick(time), at: time, flows: canvasRunner.flows())
         canvasEffects.applySnowCover(canvasRunner.snowCover)
     }
 }

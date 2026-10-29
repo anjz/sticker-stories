@@ -168,6 +168,11 @@ type Stage struct {
 	// screen (or when On is empty), in fractions of the base art (origin
 	// bottom-left, like saved sticker positions).
 	Area *StageArea `json:"area,omitempty"`
+	// Underwater (optional, above 0 and at most 1) is how much of the
+	// sticker's drawing, from its feet up, is under the water while it is
+	// in a shallow, clear water (a rock pool): the app shows that part
+	// through the water — a fish wholly (1), an octopus with its head out.
+	Underwater float64 `json:"underwater,omitempty"`
 }
 
 // Feature is a named place in the pack's art: one or more areas (the
@@ -540,7 +545,7 @@ func (m *Manifest) Validate(dir string) []error {
 		checkImage(fmt.Sprintf("sticker %q image", st.ID), st.Image)
 		// Rule 12: live-animation sidecars exist and are valid.
 		loopingMoves := map[string]bool{}
-		var aways [][2]string
+		var aways, rests [][2]string
 		for j, rel := range st.Animations {
 			field := fmt.Sprintf("sticker %q animations[%d]", st.ID, j)
 			checkFile(field, rel)
@@ -579,6 +584,9 @@ func (m *Manifest) Validate(dir string) []error {
 				if anim.Away != "" {
 					aways = append(aways, [2]string{field, anim.Away})
 				}
+				if anim.Rest != "" {
+					rests = append(rests, [2]string{field, anim.Rest})
+				}
 			}
 			for _, f := range anim.On {
 				if _, ok := m.Features[f]; !ok {
@@ -590,12 +598,20 @@ func (m *Manifest) Validate(dir string) []error {
 					fail("%s: place: %q is not a feature of the pack", field, f)
 				}
 			}
-			animations[st.ID] = append(animations[st.ID], effects.Animation{ID: anim.ID, Pausable: anim.Pause != nil, Move: anim.EffectiveKind() == KindMove})
+			animations[st.ID] = append(animations[st.ID], effects.Animation{
+				ID: anim.ID, Pausable: anim.Pause != nil, Move: anim.EffectiveKind() == KindMove,
+				Props: slices.Sorted(maps.Keys(anim.Props)),
+			})
 		}
-		// A move's away is another looping move of the same sticker's.
+		// A move's away and rest are other looping moves of the same sticker's.
 		for _, a := range aways {
 			if !loopingMoves[a[1]] {
 				fail("%s: away: %q is not another looping move of sticker %q", a[0], a[1], st.ID)
+			}
+		}
+		for _, a := range rests {
+			if !loopingMoves[a[1]] {
+				fail("%s: rest: %q is not another looping move of sticker %q", a[0], a[1], st.ID)
 			}
 		}
 		// Rule 13: expression variants are images of the sticker; "normal"
@@ -632,6 +648,9 @@ func (m *Manifest) Validate(dir string) []error {
 					fail("%s: on lists %q twice", field, id)
 				}
 				seen[id] = true
+			}
+			if u := st.Stage.Underwater; u < 0 || u > 1 {
+				fail("%s: underwater %g must be above 0 and at most 1", field, u)
 			}
 			if st.Stage.Area != nil {
 				checkArea(field+": area", *st.Stage.Area, fail)

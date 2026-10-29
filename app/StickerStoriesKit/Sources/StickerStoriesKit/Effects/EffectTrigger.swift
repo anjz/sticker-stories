@@ -195,7 +195,8 @@ public struct EffectTriggerFile: Equatable, Sendable {
             at: at, cue: fields["cue"] as? String, stickerID: stickerID, kind: kind,
             target: kind == .away || kind == .back ? nil : target, by: way(fields, label: label, warnings: &warnings),
             toward: side(fields, kind: kind, label: label, warnings: &warnings),
-            another: kind == .to && (fields["another"] as? Bool ?? false), backwards: fields["backwards"] as? Bool ?? false)
+            another: kind == .to && (fields["another"] as? Bool ?? false), backwards: fields["backwards"] as? Bool ?? false,
+            prop: kind == .to ? (fields["prop"] as? String).flatMap { $0.isEmpty ? nil : $0 } : nil)
     }
 
     /// The side a move goes toward (`"toward": "right"`), on `to` and `away`.
@@ -308,8 +309,8 @@ public struct EffectTriggerFile: Equatable, Sendable {
             options: options.clamped)
     }
 
-    /// Canvas triggers take `intensity` and `duration` only; the sticker
-    /// keys are reported and ignored.
+    /// Canvas triggers take `intensity` and `duration` (and `toward`, the
+    /// way a flowing one blows); the sticker keys are reported and ignored.
     private static func decodeCanvasTrigger(_ effect: CanvasEffectName, _ fields: [String: Any], label: String, warnings: inout [String]) -> CanvasEffectTrigger? {
         guard let at = number(fields["at"]), at.isFinite, at >= 0 else {
             warnings.append("\(label): missing or invalid at; skipped")
@@ -332,6 +333,15 @@ public struct EffectTriggerFile: Equatable, Sendable {
                 options.intensity = i
             } else {
                 warnings.append("\(label): intensity must be a number; using the default")
+            }
+        }
+        if let raw = fields["toward"] {
+            if !effect.flows {
+                warnings.append("\(label): toward is ignored by canvas effect \(effect.rawValue)")
+            } else if let way = (raw as? String).flatMap(GoTrigger.Side.init(rawValue:)) {
+                options.toward = way
+            } else {
+                warnings.append("\(label): toward must be left or right; using right")
             }
         }
         for key in ["sticker", "repeat", "color", "hold"] where fields[key] != nil {

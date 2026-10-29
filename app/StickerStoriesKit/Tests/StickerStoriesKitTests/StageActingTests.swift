@@ -49,6 +49,40 @@ import Testing
         #expect(!home.isEmpty && home.allSatisfy { $0.away == nil })
     }
 
+    @Test func onHisBoardHeFacesTheWayTheWavesRollAndSitsWaiting() throws {
+        // His art faces left; on the board he faces right, sitting to wait.
+        let moves = [
+            StageMove(id: "walk", cycle: 0.8, stride: 0.45, facing: .left),
+            StageMove(
+                id: "paddle", cycle: 0.8, stride: 0.5, on: ["sea"], stays: true, waterline: 0.3, facing: .left,
+                faces: .right, rest: "wait"),
+            StageMove(id: "wait", cycle: 2, stride: 0.1, on: ["sea"], stays: true, waterline: 0.3, facing: .left, faces: .right),
+        ]
+        func plan(_ goes: [GoTrigger], at feet: SceneSpace.Point) -> StagePlan? {
+            var random = SeededGenerator(state: 3)
+            let actor = StageActor(
+                id: surfer, stickerID: "fox", size: 0.3, ratio: 0.6, stage: StickerStage(entrance: .hop, on: ["sand"]),
+                moves: moves, placed: feet)
+            return StageDirector.plan(
+                world: world, screen: screen, actors: [actor], entrances: [], goes: goes, policy: .standard, random: &random)[surfer]
+        }
+        for feet in [SceneSpace.Point(0.2, 0.12), SceneSpace.Point(0.8, 0.12)] {
+            let p = try #require(plan([GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "sea", by: "paddle")], at: feet))
+            let out = try #require(p.legs.last)
+            #expect(out.move == "paddle" && out.facingTo == -1 && out.ways.isEmpty)
+            // And he goes the way he faces: never paddling backwards.
+            let a = try #require(out.path.first), b = try #require(out.path.last)
+            #expect(world.screen(b).x >= world.screen(a).x - 1)
+            // There, he sits on his board facing the same way.
+            let there = try #require(p.travel(at: out.end + 2))
+            #expect(there.move == "wait" && there.stays && p.sample(at: out.end + 2).facing == -1)
+            #expect(p.movesPlayed.contains("wait"))
+        }
+        // An action that happens in the sea takes him out there paddling.
+        let p = try #require(plan([GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "sea", unlessThere: true)], at: .init(0.3, 0.12)))
+        #expect(p.legs.last?.move == "paddle")
+    }
+
     @Test func openWaterIsAThirdOfTheWayOut() throws {
         // The sea runs from v 0.3 (its waterline) to 0.42 at u 0.3.
         let near = world.groundPoint(.init(0.3, 0.31)), far = world.groundPoint(.init(0.3, 0.4))

@@ -14,8 +14,8 @@ func testCatalog(t *testing.T) *Catalog {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(c.Effects) != 17 {
-		t.Fatalf("catalogue has %d effects, want 17", len(c.Effects))
+	if len(c.Effects) != 18 {
+		t.Fatalf("catalogue has %d effects, want 18", len(c.Effects))
 	}
 	if len(c.Canvas) != 33 {
 		t.Fatalf("catalogue has %d canvas effects, want 33", len(c.Canvas))
@@ -108,6 +108,9 @@ func TestParseCanvasCues(t *testing.T) {
 	}
 	if !cues[1].Canvas || cues[1].Effect != "sunshine" || cues[1].WordIndex != 6 {
 		t.Errorf("sunshine cue parsed wrong: %+v", cues[1])
+	}
+	if cues, _, errs := ParseCues("{canvas:wind 0.7 left} Whoosh."); len(errs) != 0 || cues[0].Toward != GoLeft || cues[0].Intensity != 0.7 {
+		t.Errorf("wind blowing left parsed wrong: %+v %v", cues, errs)
 	}
 }
 
@@ -209,7 +212,12 @@ func TestValidationFailures(t *testing.T) {
 		{"canvas effect for the wrong setting", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:dimlight}"; s.Languages["en-US"] = l }, `suits indoors packs; this pack's setting is "outdoors"`},
 		{"canvas cue with sticker params", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain loop}"; s.Languages["en-US"] = l }, "only an intensity and a duration"},
 		{"stop with nothing running", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain stop}"; s.Languages["en-US"] = l }, "no rain is running to stop"},
-		{"stop with a duration", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain} rain {canvas:rain stop 4s}"; s.Languages["en-US"] = l }, "a stop takes nothing else"},
+		{"stop with a duration", func(s *Story) {
+			l := s.Languages["en-US"]
+			l.Text += " {canvas:rain} rain {canvas:rain stop 4s}"
+			s.Languages["en-US"] = l
+		}, "a stop takes nothing else"},
+		{"a way on rain", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain left}"; s.Languages["en-US"] = l }, "rain does not blow a way; only current and wind"},
 		{"canvas cue too short", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain 0.5s}"; s.Languages["en-US"] = l }, "stays on for 1–120 s"},
 	}
 	for _, tc := range cases {
@@ -364,6 +372,25 @@ func TestCanvasCuesFollowTheSetting(t *testing.T) {
 	named.Stickers = append(named.Stickers, "canvas")
 	if is := Validate(goodStory(), named, cat); len(is.Errors) == 0 || !strings.Contains(is.Errors[0], "reserved") {
 		t.Errorf("a sticker called canvas must be rejected: %v", is.Errors)
+	}
+}
+
+func TestWhatHasNoFaceGoesWithTheWind(t *testing.T) {
+	cat := testCatalog(t)
+	s := goodStory()
+	for _, lang := range []string{"en-US", "es-ES"} {
+		l := s.Languages[lang]
+		l.Text += " {canvas:wind 0.6 left} Whoosh! {fox:go away left} And {canvas:wind right} back {fox:go back}"
+		s.Languages[lang] = l
+	}
+	if is := Validate(s, forest, cat); len(is.Errors) != 0 || strings.Contains(strings.Join(is.Warnings, "\n"), "goes with it") {
+		t.Fatalf("going with the wind, and turning it: %v %v", is.Errors, is.Warnings)
+	}
+	l := s.Languages["en-US"]
+	l.Text += " {fox:go away left}"
+	s.Languages["en-US"] = l
+	if w := strings.Join(Validate(s, forest, cat).Warnings, "\n"); !strings.Contains(w, "the wind blows right, and fox goes with it") {
+		t.Errorf("against the wind should warn: %v", w)
 	}
 }
 
@@ -804,6 +831,22 @@ func TestPlacedActionsHappenInTheirPlace(t *testing.T) {
 			t.Errorf("%s: ok = %v, want %v (%s)", tc.text, got, tc.ok, errs)
 		}
 	}
+	// Coming in by a way that lands it there (the surfer paddling in on
+	// the sea), it is there already.
+	pack.LandsOn = map[string][]string{"owl": {"meadow"}}
+	pack.Moves = map[string][]Animation{"owl": {{ID: "fly", Flies: true}, {ID: "cling", On: []string{"trunks"}}}}
+	for text, ok := range map[string]bool{" {owl:enter by cling} Owl {owl:live} tapped.": true, " {owl:enter} Owl {owl:live} tapped.": false} {
+		story := *s
+		story.Languages = map[string]Localization{}
+		for lang, l := range s.Languages {
+			l.Text += text
+			story.Languages[lang] = l
+		}
+		errs := strings.Join(Validate(&story, pack, cat).Errors, "\n")
+		if got := !strings.Contains(errs, "happens only on the trunks"); got != ok {
+			t.Errorf("%s: ok = %v, want %v (%s)", text, got, ok, errs)
+		}
+	}
 }
 
 func TestPerchedActionsNeedALanding(t *testing.T) {
@@ -981,5 +1024,39 @@ func TestCharacterLinesAreValidated(t *testing.T) {
 		if !strings.Contains(fmt.Sprint(is.Errors, is.Warnings), c.want) {
 			t.Errorf("%s: want %q in errors %v / warnings %v", name, c.want, is.Errors, is.Warnings)
 		}
+	}
+}
+
+func TestGoToAProp(t *testing.T) {
+	cues, _, errs := ParseCues("{owl:go to fox kite} a {owl:go to fox 2s} b")
+	if len(errs) != 0 || cues[0].Target != "fox" || cues[0].Prop != "kite" || cues[1].Prop != "" {
+		t.Fatalf("a prop after the target: %+v %v", cues, errs)
+	}
+	cat := testCatalog(t)
+	pack := forest
+	pack.Stages = map[string]string{"fox": "hop", "rabbit": "hop", "owl": "fly", "flower": "grow", "tree": "grow"}
+	pack.Moves = map[string][]Animation{"owl": {{ID: "fly", Flies: true}}, "fox": {{ID: "trot"}}}
+	pack.Animations = map[string][]Animation{"fox": {{ID: "kite", Pause: "the kite up high", ToPause: 1, FromPause: 1, Props: []string{"kite"}}}}
+	story := func(en string) *Story {
+		s := goodStory()
+		s.Supporting = append(s.Supporting, "owl")
+		for _, lang := range []string{"en-US", "es-ES"} {
+			l := s.Languages[lang]
+			l.Text += en
+			s.Languages[lang] = l
+		}
+		return s
+	}
+	held := " {owl:enter} Owl came. {fox:live kite hold} Up went the kite. {owl:go to fox kite} Owl flew up beside it."
+	if is := Validate(story(held), pack, cat); len(is.Errors) != 0 {
+		t.Fatalf("to the kite while it is held out: %v", is.Errors)
+	}
+	notHeld := " {owl:enter} Owl came. {owl:go to fox kite} Owl flew up beside it."
+	if is := Validate(story(notHeld), pack, cat); !strings.Contains(strings.Join(is.Errors, "\n"), "only out while fox holds its kite") {
+		t.Fatalf("the kite is only up while it is held: %v", is.Errors)
+	}
+	walker := " {fox:live kite hold} Up went the kite. {rabbit:go to fox kite} Rabbit went to it."
+	if is := Validate(story(walker), pack, cat); !strings.Contains(strings.Join(is.Errors, "\n"), "only a flyer") {
+		t.Fatalf("a walker cannot go up to the kite: %v", is.Errors)
 	}
 }

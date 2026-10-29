@@ -41,7 +41,10 @@ drawing anything:
 - **The face pieces**: each eye **for its own side** (the left eye, then
   the right), both looking the way the sticker's eyes look — never one
   eye mirrored for the other — as in the sticker, wide, closed in sleep,
-  closed happy, sad; the mouth (or beak) as in the sticker, laughing
+  closed happy, sad (as the sticker's sad variant draws it: open, looking
+  down or away, the sadness in the brows and mouth — never a lid
+  slanting down towards the nose, which reads angry or sly); the mouth
+  (or beak) as in the sticker, laughing
   open, a small "o", sad, and any the actions need (a yawn, nibbling
   teeth, a beak open in song); the nose and brows if the sticker has
   them. Never stand one piece in for another (an eye as a nose).
@@ -112,7 +115,10 @@ is sticker only, green puppet only). Adjust centres, scales and turns
 until the shapes agree to within a few pixels at the edges and every
 feature sits where the sticker has it; small differences are fine, a
 gap, a doubled outline or a floating part is not. Check the five faces
-read as the expression they name. Install runs `stickerrig check` and
+read as the expression they name. On a head drawn tilted, run
+`stickerrig faceroll -sheet` and give the level shapes (shut eyes,
+mouths) the turns it proposes where the sheet reads better (README,
+"faceroll"). Install runs `stickerrig check` and
 prints its warnings (README, "check"): look at what each one names and
 fix it only where you can see the defect; never rework a puppet the
 user has approved just to silence a warning.
@@ -120,8 +126,20 @@ user has approved just to silence a warning.
 ## 5. Keep its animations
 
 The rig must carry every animation the sticker has (install refuses
-otherwise): same ids, same kind, and for a move the same `facing`,
-`loop` (now in keys), `hops`/`flies`/`on`/`stays`, a similar stride.
+otherwise): same ids, same kind, and for a move the same `facing`
+(unless it is the wrong way, below), `loop` (now in keys),
+`hops`/`flies`/`on`/`stays`, a similar stride.
+
+**A move travels the way the drawing faces.** Read the sticker before
+writing `facing`: which way its face is turned (the nose, mouth or beak
+off the middle of the eyes), where its eyes look, which way its toes,
+knees and chest point in a three-quarter view. `facing` is that side;
+the app mirrors the whole puppet to go the other way, and reads the
+first move's `facing` as the way the art faces (to turn it towards a
+partner). A move the other way walks backwards, its knees bending the
+wrong way (the girl's skip, 2026-10-28). A drawing seen from the front
+(the frog, the owl) can go either way: take the side its body or feet
+lean. `check` warns (`facing`) when the face says otherwise.
 A flying move also says how it flies (`docs/stage3d.md`, "In the air"):
 `hovers: true` when the creature can hold still in the air (insects,
 a hummingbird) — leave it out for one that cannot (most birds), which

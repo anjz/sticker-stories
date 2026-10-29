@@ -4,7 +4,7 @@ import Foundation
 /// effects (weather and light over the whole scene) are a separate, equally
 /// closed list: `CanvasEffectName`.
 ///
-/// Seventeen. Adding one later is easy (unknown names are skipped by older
+/// Eighteen. Adding one later is easy (unknown names are skipped by older
 /// builds, so it is not a breaking change); removing one from shipped
 /// content is not, so do not add casually and never repurpose a name.
 /// `sway`, `blink` and `puff` were removed in 2026-09 — do not reuse them.
@@ -12,7 +12,8 @@ import Foundation
 /// the pack's world — its gravity and ground (`PackWorld`): stickers never
 /// draw particles themselves. `surf-wave` (2026-10) is painted, not
 /// emitted: a wave behind the sticker, a pure function of the timeline
-/// (`SurfWave`).
+/// (`SurfWave`). `wash` (2026-10), painted too: a wave washing up the
+/// sand to a sticker and back, a water creature riding it (`Wash`).
 public enum EffectName: String, CaseIterable, Codable, Sendable, Hashable {
     // Motion (6)
     case pulse
@@ -35,8 +36,9 @@ public enum EffectName: String, CaseIterable, Codable, Sendable, Hashable {
     /// Not `bubbles`: that is a canvas effect, and the two lists share one
     /// namespace in a trigger file (`EffectTriggerFile`).
     case bubblePuff = "bubble-puff"
-    // Water (1)
+    // Water (2)
     case surfWave = "surf-wave"
+    case wash
 
     public enum Category: String, Sendable, Codable {
         case motion
@@ -50,7 +52,7 @@ public enum EffectName: String, CaseIterable, Codable, Sendable, Hashable {
         case .pulse, .wobble, .shake, .hop, .spin, .float: .motion
         case .fadeIn, .fadeOut, .glow, .tint: .opacityAndColor
         case .sparkle, .hearts, .dustPuff, .spray, .sparks, .bubblePuff: .particle
-        case .surfWave: .water
+        case .surfWave, .wash: .water
         }
     }
 

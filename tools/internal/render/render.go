@@ -7,6 +7,7 @@
 package render
 
 import (
+	"cmp"
 	"encoding/json"
 	"fmt"
 	"math"
@@ -186,7 +187,8 @@ func normalizeWord(s string) string {
 }
 
 // Trigger is one entry of the effects sidecar: a sticker trigger, or a
-// canvas trigger (no sticker; intensity and duration only).
+// canvas trigger (no sticker; intensity and duration, and the way a
+// flowing one blows).
 type Trigger struct {
 	At         float64 `json:"at"`
 	Cue        string  `json:"cue,omitempty"`
@@ -199,9 +201,10 @@ type Trigger struct {
 	Go         string  `json:"go,omitempty"`         // a move: no effect
 	Target     string  `json:"target,omitempty"`     // a move's target
 	By         string  `json:"by,omitempty"`         // the move an entrance or a move goes by
-	Toward     string  `json:"toward,omitempty"`     // the side a move goes toward
+	Toward     string  `json:"toward,omitempty"`     // the side a move goes toward; the way the wind blows
 	Another    bool    `json:"another,omitempty"`    // a move to another part of a place
 	Backwards  bool    `json:"backwards,omitempty"`  // a move made backwards, facing away from its way
+	Prop       string  `json:"prop,omitempty"`       // a move to a sticker: beside a prop it holds out (the kite)
 	Repeat     any     `json:"repeat,omitempty"`     // int or "loop"
 	Duration   float64 `json:"duration,omitempty"`
 	Intensity  float64 `json:"intensity,omitempty"`
@@ -250,7 +253,7 @@ func Triggers(cues []story.Cue, tl *Timeline, pack story.Manifest) ([]Trigger, e
 			continue
 		}
 		if c.Effect == story.GoEffect && !c.Canvas {
-			t := Trigger{At: at, Sticker: c.Sticker, Go: c.GoKind, Target: c.Target, By: c.By, Toward: c.Toward, Another: c.Another, Backwards: c.Backwards}
+			t := Trigger{At: at, Sticker: c.Sticker, Go: c.GoKind, Target: c.Target, By: c.By, Toward: c.Toward, Another: c.Another, Backwards: c.Backwards, Prop: c.Prop}
 			if c.WordIndex < len(tl.Words) {
 				t.Cue = normalizeWord(tl.Words[c.WordIndex].Text)
 			}
@@ -284,7 +287,9 @@ func Triggers(cues []story.Cue, tl *Timeline, pack story.Manifest) ([]Trigger, e
 			continue
 		}
 		t := Trigger{At: at, Sticker: c.Sticker, Effect: c.Effect, Duration: c.Duration}
-		if !c.Canvas {
+		if c.Canvas {
+			t.Toward = c.Toward
+		} else {
 			t.Color, t.Hold = c.Color, c.Hold
 			if c.Loop {
 				t.Repeat = "loop"
@@ -337,6 +342,66 @@ func RangeStops(triggers []Trigger, cat *story.Catalog) {
 		}
 		triggers[i].Duration = d
 	}
+}
+
+// TurnFlows ends a flowing canvas effect (the wind) where the next of it
+// starts while it still blows, the other way: the wind turns, the one
+// easing out as the other builds. Run it before RangeStops.
+func TurnFlows(triggers []Trigger, cat *story.Catalog) {
+	for i := range triggers {
+		t := &triggers[i]
+		if t.Sticker != "" || !cat.Canvas[t.Effect].Flows() {
+			continue
+		}
+		next := -1
+		for j, n := range triggers {
+			if n.Sticker == "" && n.Effect == t.Effect && n.At > t.At && (next < 0 || n.At < triggers[next].At) {
+				next = j
+			}
+		}
+		if next < 0 || cmp.Or(triggers[next].Toward, story.GoRight) == cmp.Or(t.Toward, story.GoRight) {
+			continue
+		}
+		if at := triggers[next].At; at < canvasEnd(*t, cat) && (t.StopAt == 0 || at < t.StopAt) {
+			t.StopAt = at
+		}
+	}
+}
+
+// CarryWithFlows sends what has no face (a ball, a bottle, a boat) the way
+// a flowing canvas effect blows while one does, when its move to a place
+// or a sticker, or off the canvas, does not say which way: the wind
+// carries it. Run it after RangeStops, on the final timeline.
+func CarryWithFlows(triggers []Trigger, pack story.Manifest, cat *story.Catalog) {
+	for i := range triggers {
+		t := &triggers[i]
+		if t.Go != story.GoTo && t.Go != story.GoAway || t.Toward != "" || len(pack.Expressions[t.Sticker]) > 0 {
+			continue
+		}
+		var flow *Trigger
+		for j := range triggers {
+			f := &triggers[j]
+			if f.Sticker == "" && cat.Canvas[f.Effect].Flows() && f.At <= t.At && t.At < canvasEnd(*f, cat) && (flow == nil || f.At >= flow.At) {
+				flow = f
+			}
+		}
+		if flow != nil {
+			t.Toward = cmp.Or(flow.Toward, story.GoRight)
+		}
+	}
+}
+
+// canvasEnd is when a canvas trigger has cleared: its stop (with the
+// ramp-out), else its duration.
+func canvasEnd(t Trigger, cat *story.Catalog) float64 {
+	fx := cat.Canvas[t.Effect]
+	switch {
+	case t.StopAt > 0:
+		return t.StopAt + fx.RampOut
+	case t.Duration > 0:
+		return t.At + t.Duration
+	}
+	return t.At + fx.DefaultDuration
 }
 
 // LightChanges are the canvas effects that change the light: a held light

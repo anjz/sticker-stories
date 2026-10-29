@@ -224,6 +224,7 @@ final class CanvasScene: SKScene {
         let applier: EffectApplier
         let emitters: EmitterCoordinator
         let waves: SurfWaveCoordinator
+        let washes: WashCoordinator
         let clock: PlaybackClock
         let live: LiveTimeline
         let faces: ExpressionTimeline
@@ -251,7 +252,10 @@ final class CanvasScene: SKScene {
         liveAnimations.filter { $0.kind == .action }.map { ($0.liveKey, $0.frames) }, uniquingKeysWith: { a, _ in a })
     /// The way each action faces on screen while it plays (`faces`).
     private lazy var actionFaces: [LiveAnimationKey: StageMove.Facing] = Dictionary(
-        liveAnimations.compactMap { a in a.faces.map { (a.liveKey, $0) } }, uniquingKeysWith: { a, _ in a })
+        liveAnimations.filter { $0.kind == .action }.compactMap { a in a.faces.map { (a.liveKey, $0) } }, uniquingKeysWith: { a, _ in a })
+    /// How each action carries its sticker towards the shore (`drift`).
+    private lazy var actionDrifts: [LiveAnimationKey: StageAction.Drift] = Dictionary(
+        liveAnimations.filter { $0.kind == .action }.compactMap { a in a.drift.map { (a.liveKey, $0) } }, uniquingKeysWith: { a, _ in a })
     /// When each sticker's puppet began taking over at rest, this story.
     private var idleBegan: [UUID: TimeInterval] = [:]
     /// The current story's live animations, loaded when play starts and let
@@ -838,6 +842,49 @@ final class CanvasScene: SKScene {
         // Only in the water, when it is cued: a pack without a stage has none.
         waves.inWater = { [weak self] node, time in self?.playSession?.stage?.inWater(node, at: time) ?? false }
         return waves
+    }
+
+    /// A coordinator for this story's washes (`wash`): the sea washing up
+    /// the sand to a sticker and back.
+    private func washCoordinator() -> WashCoordinator {
+        let washes = WashCoordinator()
+        // Only with the sea above it, when it is cued: a pack without a stage has none.
+        washes.beach = { [weak self] node, time in
+            guard let self, self.worldSize.width > 0 else { return nil }
+            // The whole width of the art drawn (the wide art's too).
+            let range = self.worldExtent.minX / self.worldSize.width...self.worldExtent.maxX / self.worldSize.width
+            return self.playSession?.stage?.washBeach(node, at: time, across: Double(range.lowerBound)...Double(range.upperBound))
+        }
+        washes.land = { [weak self] in self?.washedLand() }
+        washes.art = { [weak self] in self?.worldSize ?? .zero }
+        return washes
+    }
+
+    /// The land the sea washes over (`wash`), in scene points: the places
+    /// on the ground lying by an open water (a water that is not shallow)
+    /// — the shore and the beach, not the rocks round a rock pool.
+    private func washedLand() -> CGPath? {
+        guard let places = pack.manifest.space?.places, worldSize.width > 0 else { return nil }
+        let outline = { (ground: [SceneSpace.Point]) in ground.map { CGPoint(x: $0.u, y: $0.v) } }
+        let open = places.values.compactMap { $0.water == true && $0.shallow != true ? $0.ground.map(outline) : nil }
+        func distance(_ p: CGPoint, _ polygon: [CGPoint]) -> CGFloat {
+            zip(polygon, polygon.dropFirst() + polygon.prefix(1)).map { a, b in
+                let ab = CGPoint(x: b.x - a.x, y: b.y - a.y), ap = CGPoint(x: p.x - a.x, y: p.y - a.y)
+                let t = max(0, min(1, (ap.x * ab.x + ap.y * ab.y) / max(ab.x * ab.x + ab.y * ab.y, 1e-12)))
+                return hypot(ap.x - ab.x * t, ap.y - ab.y * t)
+            }.min() ?? .infinity
+        }
+        var land: CGPath?
+        for place in places.values where place.water != true {
+            guard let ground = place.ground, ground.count >= 3 else { continue }
+            let polygon = outline(ground)
+            guard open.contains(where: { water in polygon.contains { distance($0, water) < 0.05 } }) else { continue }
+            let path = CGMutablePath()
+            path.addLines(between: polygon.map { CGPoint(x: $0.x * worldSize.width, y: $0.y * worldSize.height) })
+            path.closeSubpath()
+            land = land.map { $0.union(path) } ?? path
+        }
+        return land
     }
 
     /// The pack's stickers by id.
@@ -1586,9 +1633,10 @@ final class CanvasScene: SKScene {
                 $0, entrances: triggers.entrances, goes: triggers.goes + placing, cast: cast,
                 actions: policy.allowsLiveAnimations
                     ? StageAction.of(
-                        triggers.live, frames: { [actionTimings] in actionTimings[$0] }, faces: { [actionFaces] in actionFaces[$0] })
+                        triggers.live, frames: { [actionTimings] in actionTimings[$0] }, faces: { [actionFaces] in actionFaces[$0] },
+                        drift: { [actionDrifts] in actionDrifts[$0] })
                     : [],
-                live: triggers.live, policy: policy)
+                live: triggers.live, washes: StageWash.of(triggers.sticker), policy: policy)
         }
         let motions = stage == nil ? planMotions(triggers.goes + placing, visitors: visitors, policy: policy) : [:]
         var storyLive = stage.map {
@@ -1667,7 +1715,7 @@ final class CanvasScene: SKScene {
             triggers: triggers.canvas, setting: pack.manifest.setting, policy: policy)
         playSession = PlaySession(
             runner: runner, canvasRunner: canvasRunner, applier: applier, emitters: emitterCoordinator(),
-            waves: surfWaveCoordinator(), clock: clock,
+            waves: surfWaveCoordinator(), washes: washCoordinator(), clock: clock,
             live: live, faces: faces, visitors: visitors, motions: motions, stage: stage, beats: beats)
         cameraHandsOffUntil = 0
         cameraSteppedAt = nil
@@ -1808,7 +1856,7 @@ final class CanvasScene: SKScene {
     /// shows it, every sticker on it, the story's entrances and moves.
     private func planStage(
         _ space: SceneSpace, entrances: [EntranceTrigger], goes: [GoTrigger], cast: Set<String>, actions: [StageAction],
-        live: [LiveAnimationTrigger], policy: EffectPolicy
+        live: [LiveAnimationTrigger], washes: [StageWash], policy: EffectPolicy
     ) -> StoryStage {
         let aspect = baseArtPixelSize.height > 0 ? Double(baseArtPixelSize.width / baseArtPixelSize.height) : 4.0 / 3
         var world = StageWorld(
@@ -1825,10 +1873,24 @@ final class CanvasScene: SKScene {
             nodes, space: space, world: world, stages: stages, moves: stageMoves, fronts: stickerFronts,
             statures: Dictionary(uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.size.map { (s.id, $0) } }),
             drawing: drawing)
+        // Where each prop a move goes to is held out (the girl's kite):
+        // from its action's sidecar, on its holder's drawing.
+        let goes = goes.map { go -> GoTrigger in
+            var go = go
+            if let prop = go.prop, let target = go.target, policy.allowsLiveAnimations,
+                let point = liveAnimations.lazy.compactMap({ $0.sticker == target ? $0.props?[prop] : nil }).first
+            {
+                let box = drawingBox(of: target)
+                go.held = GoTrigger.Held(
+                    across: (point.x - Double(box.midX)) / max(Double(box.width), 1e-6),
+                    up: (1 - point.y - Double(box.minY)) / max(Double(box.height), 1e-6))
+            }
+            return go
+        }
         var random = SystemRandomNumberGenerator()
         let plans = StageDirector.plan(
             world: world, screen: screen, actors: actors, entrances: entrances, goes: goes, policy: policy, cast: cast,
-            actions: actions, live: live, random: &random)
+            actions: actions, live: live, washes: washes, random: &random)
         return StoryStage(world: world, plans: plans, moves: stageMoves, nodes: nodes, drawing: drawing)
     }
 
@@ -2005,6 +2067,116 @@ final class CanvasScene: SKScene {
         }
         return depths
     }
+    // MARK: Under water
+
+    /// The water over each sticker's part under a shallow water
+    /// (`StickerStage.underwater`), by instance: the pool's own art laid
+    /// over it, see-through, clipped to the pool and to below its waterline
+    /// — a fish in the rock pool seen through the water. Off the sticker
+    /// the copy matches the art beneath it exactly, so only the creature
+    /// shows the water.
+    private var underwaterVeils: [UUID: UnderwaterVeil] = [:]
+    private static let underwaterAlpha: CGFloat = 0.5
+    /// How much of a sticker without its own `underwater` is in a shallow
+    /// water's water: its legs, its bottom.
+    static let defaultUnderwater = 0.3
+
+    /// How much of each sticker is under a shallow water it is in: its
+    /// own `underwater`, else `defaultUnderwater` — never for a big or huge
+    /// one, bigger than such a pool.
+    private lazy var underwaterShares: [String: Double] = Dictionary(
+        uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in
+            if let share = s.stage?.underwater { return (s.id, share) }
+            if s.size == .big || s.size == .huge { return nil }
+            return (s.id, Self.defaultUnderwater)
+        })
+
+    private struct UnderwaterVeil {
+        /// Undoes the sticker's scale, then (`turn`) its rotation, so the
+        /// art inside lies in scene points.
+        let root: SKNode
+        let turn: SKNode
+        let mask: SKShapeNode
+        let art: SKSpriteNode
+    }
+
+    /// The shallow waters' outlines (`SceneSpace.Place.shallow`), in
+    /// fractions of the base art.
+    private lazy var shallowWaters: [[CGPoint]] = (pack.manifest.space?.places.values ?? [:].values).compactMap { place in
+        guard place.water == true, place.shallow == true, let ground = place.ground, ground.count >= 3 else { return nil }
+        return ground.map { CGPoint(x: $0.u, y: $0.v) }
+    }
+
+    /// Lays the water over every sticker partly under a shallow water, and
+    /// takes it off any that has left it.
+    private func updateUnderwater() {
+        var kept = Set<UUID>()
+        defer {
+            for (id, veil) in underwaterVeils where !kept.contains(id) {
+                veil.root.removeFromParent()
+                underwaterVeils[id] = nil
+            }
+        }
+        guard !shallowWaters.isEmpty, worldSize.width > 0, let texture = backgroundArt.texture else { return }
+        let waters = shallowWaters.map { outline -> CGPath in
+            let path = CGMutablePath()
+            path.addLines(between: outline.map { CGPoint(x: $0.x * worldSize.width, y: $0.y * worldSize.height) })
+            path.closeSubpath()
+            return path
+        }
+        for node in allStickerNodes() {
+            guard let share = underwaterShares[node.stickerID], node.xScale != 0, node.yScale != 0 else { continue }
+            // (Up in the air over it in a story: dry.)
+            if let session = playSession, let plan = session.stage?.plans[node.instanceID],
+                plan.sample(at: session.clock.now()).position.y > 0.01
+            {
+                continue
+            }
+            let box = drawingBox(of: node.stickerID), base = node.unscaledSize
+            let feet = CGPoint(x: (box.midX - 0.5) * base.width, y: (box.minY - 0.5) * base.height)
+            guard let water = waters.first(where: { $0.contains(node.convert(feet, to: self)) }) else { continue }
+            // Below its waterline, with room for a fin or an arm swung out.
+            let pad = 0.25 * max(box.width * base.width, box.height * base.height)
+            let line = feet.y + CGFloat(share) * box.height * base.height
+            let left = (box.minX - 0.5) * base.width - pad, right = (box.maxX - 0.5) * base.width + pad
+            let corners = [CGPoint(x: left, y: feet.y - pad), CGPoint(x: right, y: feet.y - pad), CGPoint(x: right, y: line), CGPoint(x: left, y: line)]
+            let under = CGMutablePath()
+            under.addLines(between: corners.map { node.convert($0, to: self) })
+            under.closeSubpath()
+            let shape = under.intersection(water)
+            guard !shape.isEmpty else { continue }
+            let veil = underwaterVeils[node.instanceID] ?? {
+                let root = SKNode(), turn = SKNode(), crop = SKCropNode(), mask = SKShapeNode()
+                mask.fillColor = .white
+                mask.strokeColor = .clear
+                crop.maskNode = mask
+                let art = SKSpriteNode(texture: texture)
+                art.alpha = Self.underwaterAlpha
+                crop.addChild(art)
+                turn.addChild(crop)
+                root.addChild(turn)
+                // Over its art and its puppet, under nothing else of its own.
+                root.zPosition = 0.8
+                return UnderwaterVeil(root: root, turn: turn, mask: mask, art: art)
+            }()
+            if veil.root.parent !== node {
+                veil.root.removeFromParent()
+                node.addChild(veil.root)
+            }
+            veil.root.xScale = 1 / node.xScale
+            veil.root.yScale = 1 / node.yScale
+            veil.turn.zRotation = -node.zRotation
+            let origin = node.convert(CGPoint.zero, from: self)
+            veil.turn.position = CGPoint(x: origin.x * node.xScale, y: origin.y * node.yScale)
+            veil.mask.path = shape
+            veil.art.texture = texture
+            veil.art.size = backgroundArt.size
+            veil.art.position = backgroundArt.position
+            underwaterVeils[node.instanceID] = veil
+            kept.insert(node.instanceID)
+        }
+    }
+
     private lazy var stages: [String: StickerStage] = Dictionary(
         uniqueKeysWithValues: pack.manifest.stickers.compactMap { s in s.stage.map { (s.id, $0) } })
     /// Each sticker's moves (its walk, flight or sprout), its usual one
@@ -2154,6 +2326,7 @@ final class CanvasScene: SKScene {
             session.canvasRunner.stopAll()
             session.emitters.clearAll()
             session.waves.clearAll()
+            session.washes.clearAll()
             canvasEffects.clearAll()
             session.applier.restoreAll(stickerNodesByID())
             // Every child's sticker exactly where and as the child had it.
@@ -2183,6 +2356,8 @@ final class CanvasScene: SKScene {
 
     override func update(_ currentTime: TimeInterval) {
         sceneTime = currentTime
+        // (Last, once the stickers are where this frame puts them.)
+        defer { updateUnderwater() }
         updateHints()
         guard let session = playSession else { return }
         let time = session.clock.now()
@@ -2219,7 +2394,8 @@ final class CanvasScene: SKScene {
         session.applier.apply(deltas, to: nodes)
         session.emitters.reconcile(session.runner.active, at: time, nodes: nodes)
         session.waves.reconcile(session.runner.active, at: time, nodes: nodes)
-        canvasEffects.apply(session.canvasRunner.tick(time), at: time)
+        session.washes.reconcile(session.runner.active, at: time, nodes: nodes, in: self)
+        canvasEffects.apply(session.canvasRunner.tick(time), at: time, flows: session.canvasRunner.flows())
         canvasEffects.applySnowCover(session.canvasRunner.snowCover)
         applyLive(session, at: time)
         applyFaces(session.faces, at: time)
@@ -2381,6 +2557,12 @@ final class CanvasScene: SKScene {
             if let (loaded, state, tween) = shown {
                 if let frame = node.showLive(loaded, state: state, tween: tween, wings: wings, faceOver: faceOver) {
                     session.emitters.fire(loaded.animation, frame: frame, on: node)
+                    // The wave rising behind him as he stands up on his board.
+                    for cue in loaded.animation.effects where cue.frame == frame
+                        && !session.runner.active.contains(where: { $0.name == cue.effect && $0.target == node.instanceID && $0.stopTime == nil })
+                    {
+                        session.runner.play(cue.effect, on: node.instanceID, options: EffectOptions(intensity: cue.intensity ?? EffectOptions.defaultIntensity))
+                    }
                 }
             } else if node.liveKey != nil || node.puppetNode != nil {
                 node.parkLive()

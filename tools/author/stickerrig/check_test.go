@@ -67,8 +67,8 @@ func rect30x80(x, y int) bool { return x >= 0 && y >= 0 && x < 30 && y < 80 }
 // from its bottom (a 30×80 box from y 120, its bone at armY) and two eyes
 // on a face bone, eyeR mirrored; the sticker has the same body and limb
 // outlined as one shape, both eyes looking left. limbBehind draws the limb
-// before the body.
-func testPuppet(limbBehind bool, armY float64) *puppet {
+// before the body; extra slots go on top.
+func testPuppet(limbBehind bool, armY float64, extra ...manifest.PuppetSlot) *puppet {
 	atlas := image.NewRGBA(image.Rect(0, 0, 220, 130))
 	paintOutlined(atlas, image.Pt(0, 0), 120, 120, disc120)
 	paintOutlined(atlas, image.Pt(130, 0), 30, 80, rect30x80)
@@ -92,6 +92,7 @@ func testPuppet(limbBehind bool, armY float64) *puppet {
 			"calm": {Part: "eye", X: 70, Y: 70, W: 20, H: 20}}},
 		manifest.PuppetSlot{ID: "eyeR", Bone: "face", Default: "calm", Attachments: map[string]manifest.PuppetAttachment{
 			"calm": {Part: "eye", X: 110, Y: 70, W: 20, H: 20, Flip: true}}})
+	slots = append(slots, extra...)
 	rig := &manifest.PuppetRig{
 		Sticker: "blob", Size: 200,
 		Parts: map[string]manifest.PuppetPart{
@@ -167,5 +168,56 @@ func TestCheckFindsTheFaceSlidingOffTheHead(t *testing.T) {
 	}
 	if found := testPuppet(true, 128).check("blob", []*manifest.StickerAnimation{look(5)}, o); has(found, "face", "") {
 		t.Fatalf("a small shift keeps the eyes on:\n%s", rules(found))
+	}
+}
+
+func TestCheckFindsAMoveTravellingAgainstTheFace(t *testing.T) {
+	// A mouth under the left eye: the face is turned to the left.
+	mouth := manifest.PuppetSlot{ID: "mouth", Bone: "face", Default: "smile", Attachments: map[string]manifest.PuppetAttachment{
+		"smile": {Part: "limb", X: 72, Y: 95, W: 15, H: 10}}}
+	move := func(id, facing, away string) *manifest.StickerAnimation {
+		return &manifest.StickerAnimation{ID: id, Kind: manifest.KindMove, Facing: facing, Away: away,
+			Puppet: &manifest.AnimationPuppet{Keys: []manifest.PuppetKey{{Hold: 0.5}, {Hold: 0.5}}}}
+	}
+	o := defaultCheckOptions()
+	if found := testPuppet(true, 128, mouth).check("blob", []*manifest.StickerAnimation{move("walk", "right", "")}, o); !has(found, "facing", "travels right, but the drawing faces left") {
+		t.Fatalf("a face turned left walking right walks backwards:\n%s", rules(found))
+	}
+	if found := testPuppet(true, 128, mouth).check("blob", []*manifest.StickerAnimation{move("walk", "left", "")}, o); has(found, "facing", "") {
+		t.Fatalf("a move the way the face turns is right:\n%s", rules(found))
+	}
+	if found := testPuppet(true, 128, mouth).check("blob", []*manifest.StickerAnimation{move("walk", "left", "back"), move("back", "right", "")}, o); has(found, "facing", "") {
+		t.Fatalf("a move going away (its back to us) is left alone:\n%s", rules(found))
+	}
+	if found := testPuppet(true, 128).check("blob", []*manifest.StickerAnimation{move("walk", "right", "")}, o); has(found, "facing", "") {
+		t.Fatalf("no nose, mouth or beak: no way to tell:\n%s", rules(found))
+	}
+}
+
+func TestFaceRollTurnsOnlyShapesDrawnLevel(t *testing.T) {
+	for _, c := range []struct {
+		slot, att, def string
+		want           bool
+	}{
+		{"eyeL", "happy", "calm", true},
+		{"eyeR", "closed", "calm", true},
+		{"eyeL", "cry", "calm", true},
+		{"eyeL", "wide", "calm", false}, // open: drawn from the sticker
+		{"eyeL", "calm", "calm", false},
+		{"mouth", "open", "smile", true},
+		{"mouth", "smile", "smile", false}, // the rest mouth leans already
+		{"browL", "sad", "brow", false},    // set by hand
+		{"beak", "open", "closed", false},  // part of the head
+	} {
+		if got := turnsWithFace(c.slot, c.att, c.def); got != c.want {
+			t.Errorf("%s %s: turns %v, want %v", c.slot, c.att, got, c.want)
+		}
+	}
+}
+
+func TestFaceRollNeedsAHeadThatTilts(t *testing.T) {
+	// The test puppet's eyes hang on a face bone on the body: no head.
+	if testPuppet(true, 128).headTilts() {
+		t.Error("eyes on a body, no head bone: a face drawn on the body, not a tilted head")
 	}
 }
