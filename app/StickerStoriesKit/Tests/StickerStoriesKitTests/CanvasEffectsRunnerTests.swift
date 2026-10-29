@@ -72,6 +72,9 @@ struct CanvasEffectsRunnerTests {
         #expect(abs(turned.travel - (8 + 0 - 2)) < 1e-9)
         // Blowing left from the start.
         #expect(CanvasEffectEvaluator.flow(of: .wind, in: [left], at: 12) == CanvasFlow(heading: -1, travel: -2))
+        // After a wind has died down, the next blows its own way at once.
+        let short = ActiveCanvasEffect(name: .wind, startTime: 2, options: CanvasEffectOptions(duration: 5), sequence: 1)
+        #expect(CanvasEffectEvaluator.flow(of: .wind, in: [short, left], at: 10.5) == CanvasFlow(heading: -1, travel: 8 - 0.5))
         #expect(!CanvasEffectName.rain.flows && CanvasEffectName.wind.flows && CanvasEffectName.current.flows)
     }
 

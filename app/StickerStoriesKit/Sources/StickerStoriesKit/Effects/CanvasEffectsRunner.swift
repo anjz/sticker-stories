@@ -145,7 +145,10 @@ public enum CanvasEffectEvaluator {
         for (index, effect) in starts.enumerated() {
             let to = effect.options.toward == .left ? -1.0 : 1.0
             let span = (index + 1 < starts.count ? starts[index + 1].startTime : time) - effect.startTime
-            let from = heading
+            // A wind that has died down does not turn: the next one gets up
+            // its own way.
+            let blowing = starts[..<index].contains { !isFinished($0, at: effect.startTime) }
+            let from = blowing ? heading : to
             if span < turnTime {
                 let x = span / turnTime
                 // ∫ smoothstep = x³ − x⁴/2.
