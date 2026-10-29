@@ -39,6 +39,15 @@
         "prone"
       ],
       "prompt": "Image 1 is a sticker of a boy with a surfboard; images 2 and 3 show the same boy and his yellow surfboard with its red stripe cut into puppet parts. Draw two more cut-out puppet parts of this exact boy lying on his surfboard, for when he paddles in the sea: the same drawing style, colours, texture, line and proportions as in the images, the boy at the size he has in image 1.\n\nDraw each part on its own, far apart on the sheet, nothing touching:\n1. the surfboard lying flat, seen from a three-quarter front view from slightly above: its pointed nose comes towards the viewer at an angle at the lower left, and its long shape runs back and away to the upper right, clearly a long surfboard (not round); the red stripe runs lengthwise along the middle of the board from nose to tail. The boy lies on it chest down, seen from the front: his shoulders at the front near the nose, his back, and his legs lying straight along the board behind him with his bare feet near the tail at the far end. WITHOUT his head and WITHOUT his arms: his shoulders rounded where they join.\n2. the same surfboard lying flat, seen from behind and slightly above, as from the beach watching a surfer paddle out: its rounded tail nearest the viewer at the bottom, its long shape running away up the sheet towards the horizon, narrowing in perspective to its pointed nose at the top; the red stripe runs lengthwise along the middle from tail to nose. The boy lies on it chest down, seen from behind: his legs lying together along the board nearest us with the soles of his bare feet towards the viewer just above the tail, then his bottom in the wetsuit, his back, and his shoulders further up the board; the nose of the board shows beyond where his head will be. WITHOUT his head and WITHOUT his arms: his shoulders rounded where they join.\n\nEvery part drawn whole. No water, no splashes, no waves. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
+    },
+    {
+      "id": "paddling",
+      "size": "1536x1024",
+      "references": [
+        "parts",
+        "lying"
+      ],
+      "prompt": "Image 1 is a sticker of a boy with a surfboard; images 2 and 3 show the same boy and his yellow surfboard with its red stripe cut into puppet parts. Draw three more cut-out puppet parts of this exact boy paddling out to sea on his surfboard, as seen by someone standing on the beach behind him: the same drawing style, colours, texture, line and proportions as in the images, the boy at the size he has in image 1.\n\nThe view: we look at him from low down, just above the water, from behind and a little from his right side. The board lies FLAT on the water, so in this low view it is strongly squashed in perspective: a long, thin, flat shape lying almost level across the sheet, much wider than it is tall, its pointed nose at the LEFT, a little higher and further away (smaller), its rounded tail at the RIGHT, nearer to us (bigger). We see the top of the board only as a thin sliver, and its near edge (rail) along the bottom.\n\nDraw each part on its own, far apart on the sheet, nothing touching:\n1. the surfboard lying flat as described, and the boy lying on it chest down along it, seen from behind and from his right side: his bare feet and legs lying together along the board near the tail at the right, then his bottom and back in the blue-and-orange wetsuit, his shoulders, and his head raised a little near the nose at the left, looking ahead along the board towards the nose and the open sea, so that we see the back and right side of his curly-haired head and his right ear, and NOT his face. WITHOUT his arms: his shoulders rounded where the arms join.\n2. his right arm (the one nearest us) reaching forward towards the nose, down into the water to paddle, seen from behind and from his right side, the hand cupped; drawn whole from a full rounded shoulder.\n3. the same right arm at the end of the stroke, pulled back along his side towards his hip, the hand cupped; drawn whole from a full rounded shoulder.\n\nEvery part drawn whole. No water, no splashes, no waves. No text, no labels, no numbers, no outline around the parts beyond the drawing's own line, no shadows. Fully transparent background."
     }
   ],
   "parts": {
@@ -352,6 +361,27 @@
         838,
         317
       ]
+    },
+    "paddleSide": {
+      "sheet": "paddling",
+      "at": [
+        808,
+        394
+      ]
+    },
+    "paddleReach": {
+      "sheet": "paddling",
+      "at": [
+        400,
+        806
+      ]
+    },
+    "paddlePull": {
+      "sheet": "paddling",
+      "at": [
+        1106,
+        823
+      ]
     }
   },
   "bones": [
@@ -401,6 +431,12 @@
       "parent": "prone",
       "x": 394,
       "y": 392
+    },
+    {
+      "id": "sArm",
+      "parent": "prone",
+      "x": 223.4,
+      "y": 548.4
     },
     {
       "id": "body",
@@ -704,6 +740,38 @@
           "x": 330.2,
           "y": 372.0,
           "scale": 0.37
+        }
+      }
+    },
+    {
+      "id": "paddler",
+      "bone": "prone",
+      "default": "none",
+      "attachments": {
+        "side": {
+          "part": "paddleSide",
+          "x": 330.0,
+          "y": 512.0,
+          "scale": 0.36
+        }
+      }
+    },
+    {
+      "id": "pArmS",
+      "bone": "sArm",
+      "default": "none",
+      "attachments": {
+        "reach": {
+          "part": "paddleReach",
+          "x": 160.4,
+          "y": 575.8,
+          "scale": 0.36
+        },
+        "pull": {
+          "part": "paddlePull",
+          "x": 238.9,
+          "y": 573.6,
+          "scale": 0.36
         }
       }
     },
@@ -1456,6 +1524,18 @@
             "r": 62,
             "x": -29.1,
             "y": 1.0
+          },
+          "legL": {
+            "r": -6.7
+          },
+          "kneeL": {
+            "r": -17.8
+          },
+          "legR": {
+            "r": 2.6
+          },
+          "kneeR": {
+            "r": 3.9
           }
         },
         "then": [
@@ -1513,7 +1593,7 @@
     {
       "id": "paddle",
       "kind": "move",
-      "description": "the surfer boy lies on his surfboard and paddles out to sea with his hands, seen from behind as he heads away over the water.",
+      "description": "the surfer boy lies on his surfboard and paddles out to sea with his arm, seen from behind as he heads away over the water.",
       "loop": {
         "from": 1,
         "to": 16
@@ -1534,800 +1614,783 @@
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": 26,
-              "sy": 0.88
-            },
-            "bArmR": {
-              "r": 14.32,
-              "sy": 1.04
-            },
             "prone": {
-              "r": -61.95,
-              "y": 1.21,
-              "x": 75
+              "r": -0.0,
+              "y": 1.68
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": 12
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "reach",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": 22.3,
-              "sy": 0.895
-            },
-            "bArmR": {
-              "r": 10.92,
-              "sy": 0.985
-            },
             "prone": {
-              "r": -61.76,
-              "y": 0.23,
-              "x": 75
+              "r": -0.71,
+              "y": 1.95
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": 2
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "reach",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": 16.96,
-              "sy": 0.913
-            },
-            "bArmR": {
-              "r": 5.79,
-              "sy": 0.951
-            },
             "prone": {
-              "r": -61.45,
-              "y": -0.88,
-              "x": 75
+              "r": -1.0,
+              "y": 1.08
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": -10
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "reach",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": 11.13,
-              "sy": 0.935
-            },
-            "bArmR": {
-              "r": -1.22,
-              "sy": 0.936
-            },
             "prone": {
-              "r": -61.08,
-              "y": -1.48,
-              "x": 75
+              "r": -0.71,
+              "y": -0.43
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": -22
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "reach",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": 5.02,
-              "sy": 0.965
-            },
-            "bArmR": {
-              "r": -8.76,
-              "sy": 0.926
-            },
             "prone": {
-              "r": -60.69,
-              "y": -1.21,
-              "x": 75
+              "r": -0.0,
+              "y": -1.68
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": -4
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "pull",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": -1.98,
-              "sy": 1.003
-            },
-            "bArmR": {
-              "r": -15.12,
-              "sy": 0.911
-            },
             "prone": {
-              "r": -60.35,
-              "y": -0.23,
-              "x": 75
+              "r": 0.71,
+              "y": -1.95
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": 4
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "pull",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": -8.56,
-              "sy": 1.039
-            },
-            "bArmR": {
-              "r": -20.29,
-              "sy": 0.891
-            },
             "prone": {
-              "r": -60.11,
-              "y": 0.88,
-              "x": 75
+              "r": 1.0,
+              "y": -1.08
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": 22
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "reach",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": -13.37,
-              "sy": 1.059
-            },
-            "bArmR": {
-              "r": -24.55,
-              "sy": 0.877
-            },
             "prone": {
-              "r": -60.0,
-              "y": 1.48,
-              "x": 75
+              "r": 0.71,
+              "y": 0.43
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": 18
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "reach",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": -14.32,
-              "sy": 1.04
-            },
-            "bArmR": {
-              "r": -26,
-              "sy": 0.88
-            },
             "prone": {
-              "r": -60.05,
-              "y": 1.21,
-              "x": 75
+              "r": 0.0,
+              "y": 1.68
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": 12
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "reach",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": -10.92,
-              "sy": 0.985
-            },
-            "bArmR": {
-              "r": -22.3,
-              "sy": 0.895
-            },
             "prone": {
-              "r": -60.24,
-              "y": 0.23,
-              "x": 75
+              "r": -0.71,
+              "y": 1.95
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": 2
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "reach",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": -5.79,
-              "sy": 0.951
-            },
-            "bArmR": {
-              "r": -16.96,
-              "sy": 0.913
-            },
             "prone": {
-              "r": -60.55,
-              "y": -0.88,
-              "x": 75
+              "r": -1.0,
+              "y": 1.08
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": -10
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "reach",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": 1.22,
-              "sy": 0.936
-            },
-            "bArmR": {
-              "r": -11.13,
-              "sy": 0.935
-            },
             "prone": {
-              "r": -60.92,
-              "y": -1.48,
-              "x": 75
+              "r": -0.71,
+              "y": -0.43
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": -22
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "reach",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": 8.76,
-              "sy": 0.926
-            },
-            "bArmR": {
-              "r": -5.02,
-              "sy": 0.965
-            },
             "prone": {
-              "r": -61.31,
-              "y": -1.21,
-              "x": 75
+              "r": -0.0,
+              "y": -1.68
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": -4
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "pull",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": 15.12,
-              "sy": 0.911
-            },
-            "bArmR": {
-              "r": 1.98,
-              "sy": 1.003
-            },
             "prone": {
-              "r": -61.65,
-              "y": -0.23,
-              "x": 75
+              "r": 0.71,
+              "y": -1.95
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": 4
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "pull",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": 20.29,
-              "sy": 0.891
-            },
-            "bArmR": {
-              "r": 8.56,
-              "sy": 1.039
-            },
             "prone": {
-              "r": -61.89,
-              "y": 0.88,
-              "x": 75
+              "r": 1.0,
+              "y": -1.08
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": 22
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "reach",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.069,
           "ease": "linear",
           "bones": {
-            "bArmL": {
-              "r": 24.55,
-              "sy": 0.877
-            },
-            "bArmR": {
-              "r": 13.37,
-              "sy": 1.059
-            },
             "prone": {
-              "r": -62.0,
-              "y": 1.48,
-              "x": 75
+              "r": 0.71,
+              "y": 0.43
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": 18
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "reach",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
+            "mouth": "none"
           }
         },
         {
           "hold": 0.3,
+          "ease": "step",
           "bones": {
-            "bArmL": {
-              "r": 9.1,
-              "sy": 0.88
-            },
-            "bArmR": {
-              "r": 5.01,
-              "sy": 1.04
-            },
             "prone": {
-              "r": -61.67,
-              "y": 0.42,
-              "x": 75
+              "r": 0,
+              "y": 0
             },
-            "root": {
-              "sy": 0.6
+            "sArm": {
+              "r": 12
             }
           },
           "slots": {
-            "bArmL": "back",
-            "bArmR": "back",
+            "upperR": "none",
+            "foreR": "none",
             "board": "none",
             "boardFlat": "none",
+            "bodyFront": "none",
+            "pArmL": "none",
+            "pArmR": "none",
+            "bodyBack": "none",
+            "bArmL": "none",
+            "bArmR": "none",
+            "headBack": "none",
+            "paddler": "side",
+            "pArmS": "reach",
             "body": "none",
-            "bodyBack": "back",
+            "upperL": "none",
+            "thighR": "none",
+            "shinR": "none",
+            "thighL": "none",
+            "shinL": "none",
+            "foreLB": "none",
+            "boardCarry": "none",
+            "upperRF": "none",
+            "foreRF": "none",
+            "head": "none",
+            "foreL": "none",
             "browL": "none",
             "browR": "none",
             "eyeL": "none",
             "eyeR": "none",
-            "foreL": "none",
-            "foreR": "none",
-            "foreRF": "none",
-            "head": "none",
-            "headBack": "back",
-            "mouth": "none",
             "nose": "none",
-            "shinL": "none",
-            "shinR": "none",
-            "thighL": "none",
-            "thighR": "none",
-            "upperL": "none",
-            "upperR": "none"
-          },
-          "ease": "step"
+            "mouth": "none"
+          }
         },
         {
           "hold": 0.35
