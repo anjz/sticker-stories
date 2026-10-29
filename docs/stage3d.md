@@ -137,8 +137,9 @@ Plans the whole story at once, from the cast and the story's triggers:
    can), its frames faster, at 1.5 s at the shortest; a move's later legs
    (the swim after the walk to the pond) in what time is left. A visitor
    whose entrance would hurry so sets off earlier instead, before the
-   words name it (up to 10 s, never before the story starts;
-   `earlyEntrance`), and comes in at its own pace, taking up to 12 s
+   words name it (up to 10 s, never before the story starts, never there
+   before its cue, and not when it comes to someone's side, who may be
+   elsewhere by then; `earlyEntrance`), and comes in at its own pace, taking up to 12 s
    (`maxEntrance`): the boats glide in while the story goes on. Up out
    of the water its water way to a place on land (the surfer riding in to
    the sand), it goes a step or two on from the edge, no further. The
@@ -352,7 +353,12 @@ action that happens in the water (its `place`: riding a wave) takes
 whoever is not there out to it by their water way first
 (`placeWay`): he paddles out, then rides. Its keys can start a sticker
 effect on him (`effects`): the wave rises behind him as he stands up,
-unless the story's own is running.
+unless the story's own is running. One that `drift`s (riding a wave)
+carries him in towards the shore as it plays — between its keys, part of
+the way down to the water's edge and on the way it faces, never past
+where the waves rise (`StageAction.carry`, `shoreward`) — the action
+playing on as he goes (a leg with no move), and he rests on his board
+where it leaves him: surfing always brings him a little nearer the sand.
 
 **Acting over a move that goes on** (afloat on a move that stays, or
 aloft): the action's first and last keys — the sticker's still pose — are

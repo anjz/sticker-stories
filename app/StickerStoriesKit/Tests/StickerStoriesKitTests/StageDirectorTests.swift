@@ -472,6 +472,7 @@ extension StageDirectorTests {
         var actionFrames: [LiveAnimationKey: LiveFrames] = [:]
         /// The way each action faces on screen (`faces`), if it says.
         var actionFaces: [LiveAnimationKey: StageMove.Facing] = [:]
+        var actionDrifts: [LiveAnimationKey: StageAction.Drift] = [:]
         /// Each sticker's painted shape and its drawing's box in its image
         /// (fractions, origin bottom-left).
         var shapes: [String: (grid: OpaqueGrid, box: CGRect)] = [:]
@@ -517,6 +518,12 @@ extension StageDirectorTests {
                     pack.actionFrames[LiveAnimationKey(stickerID: sticker.id, animationID: id)] = LiveFrames(holds: holds, pause: pause)
                     if let faces = (json["faces"] as? String).flatMap(StageMove.Facing.init(rawValue:)) {
                         pack.actionFaces[LiveAnimationKey(stickerID: sticker.id, animationID: id)] = faces
+                    }
+                    if let d = json["drift"] as? [String: Any], let from = d["from"] as? Int, let to = d["to"] as? Int,
+                        let shoreward = d["shoreward"] as? Double
+                    {
+                        pack.actionDrifts[LiveAnimationKey(stickerID: sticker.id, animationID: id)] = StageAction.Drift(
+                            from: from, to: to, shoreward: shoreward)
                     }
                 }
                 if let place = json["place"] as? [String] {
@@ -633,13 +640,13 @@ extension StageDirectorTests {
                     faces: file.expressionTriggers, effects: file.triggers)
                 let plans = StageDirector.plan(
                     world: world, screen: screen, actors: actors, entrances: file.entranceTriggers, goes: goes,
-                    policy: .standard, cast: cast, actions: StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] }),
+                    policy: .standard, cast: cast, actions: StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] }, drift: { pack.actionDrifts[$0] }),
                     live: file.liveTriggers, random: &random)
                 // A move cued after an action waits for it to end; an action
                 // waits only for the moves cued before it.
                 let ids = Dictionary(uniqueKeysWithValues: actors.map { ($0.id, $0.stickerID) })
                 let played = StageDirector.delayed(file.liveTriggers, plans: plans, stickers: ids, places: Set(pack.places.keys))
-                for action in StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] }) {
+                for action in StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] }, drift: { pack.actionDrifts[$0] }) {
                     guard let k = file.liveTriggers.firstIndex(where: { $0.stickerID == action.stickerID && $0.at == action.at }),
                         let a = actors.first(where: { $0.stickerID == action.stickerID }), let plan = plans[a.id]
                     else { continue }

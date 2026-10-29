@@ -123,6 +123,10 @@ type StickerAnimation struct {
 	// (StartEffects); one already running on it is not started again.
 	// Optional.
 	Effects []AnimationEffect `json:"effects,omitempty"`
+	// Drift carries the character part of the way to the shore while an
+	// action done in the water plays (riding a wave in: from the pop-up to
+	// sitting back down). Actions with On only; optional.
+	Drift *AnimationDrift `json:"drift,omitempty"`
 	// Puppet is the animation: keyframes the app poses the sticker's
 	// puppet with (docs/pack-format.md, "Puppets"). Required.
 	Puppet *AnimationPuppet `json:"puppet,omitempty"`
@@ -149,6 +153,16 @@ type AnimationEffect struct {
 	Frame     int      `json:"frame"`
 	Effect    string   `json:"effect"`
 	Intensity *float64 `json:"intensity,omitempty"`
+}
+
+// AnimationDrift is the way an action carries the character towards the
+// shore: from key From to key To (0-based, From before To), Shoreward of
+// the way from where it is to the water's edge in front of it (0–1; 1
+// reaches the edge), a little the way the action faces.
+type AnimationDrift struct {
+	From      int     `json:"from"`
+	To        int     `json:"to"`
+	Shoreward float64 `json:"shoreward"`
 }
 
 // AnimationPoint is a point of the sticker image, as fractions with a
@@ -273,8 +287,8 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 			}
 		}
 	case KindMove:
-		if a.Pause != nil || a.Perched || a.Idle || len(a.Place) > 0 || len(a.Props) > 0 {
-			fail("pause, perched, idle, place and props belong to an action, not a move")
+		if a.Pause != nil || a.Perched || a.Idle || len(a.Place) > 0 || len(a.Props) > 0 || a.Drift != nil {
+			fail("pause, perched, idle, place, props and drift belong to an action, not a move")
 		}
 		if l := a.Loop; l != nil {
 			if l.From < 0 || l.To < l.From || l.To >= count {
@@ -326,6 +340,17 @@ func (a *StickerAnimation) Validate(dir, stickerID string) []error {
 	}
 	if a.Puppet != nil {
 		errs = append(errs, a.validatePuppet(dir)...)
+	}
+	if d := a.Drift; d != nil {
+		if d.From < 0 || d.To <= d.From || d.To >= count {
+			fail("drift: keys %d–%d must be two frames within 0–%d, the first before the second", d.From, d.To, count-1)
+		}
+		if d.Shoreward <= 0 || d.Shoreward > 1 {
+			fail("drift: shoreward %g must be above 0 and at most 1", d.Shoreward)
+		}
+		if len(a.On) == 0 {
+			fail("drift needs on: the water the action is done in")
+		}
 	}
 	for i, e := range a.Effects {
 		field := fmt.Sprintf("effects[%d]", i)

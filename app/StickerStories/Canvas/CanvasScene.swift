@@ -252,6 +252,9 @@ final class CanvasScene: SKScene {
     /// The way each action faces on screen while it plays (`faces`).
     private lazy var actionFaces: [LiveAnimationKey: StageMove.Facing] = Dictionary(
         liveAnimations.filter { $0.kind == .action }.compactMap { a in a.faces.map { (a.liveKey, $0) } }, uniquingKeysWith: { a, _ in a })
+    /// How each action carries its sticker towards the shore (`drift`).
+    private lazy var actionDrifts: [LiveAnimationKey: StageAction.Drift] = Dictionary(
+        liveAnimations.filter { $0.kind == .action }.compactMap { a in a.drift.map { (a.liveKey, $0) } }, uniquingKeysWith: { a, _ in a })
     /// When each sticker's puppet began taking over at rest, this story.
     private var idleBegan: [UUID: TimeInterval] = [:]
     /// The current story's live animations, loaded when play starts and let
@@ -1586,7 +1589,8 @@ final class CanvasScene: SKScene {
                 $0, entrances: triggers.entrances, goes: triggers.goes + placing, cast: cast,
                 actions: policy.allowsLiveAnimations
                     ? StageAction.of(
-                        triggers.live, frames: { [actionTimings] in actionTimings[$0] }, faces: { [actionFaces] in actionFaces[$0] })
+                        triggers.live, frames: { [actionTimings] in actionTimings[$0] }, faces: { [actionFaces] in actionFaces[$0] },
+                        drift: { [actionDrifts] in actionDrifts[$0] })
                     : [],
                 live: triggers.live, policy: policy)
         }

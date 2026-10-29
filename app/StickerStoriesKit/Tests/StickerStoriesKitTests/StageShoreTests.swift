@@ -363,6 +363,39 @@ func shoreWorld() -> StageWorld {
         #expect(plan.sample(at: next.at + 0.1).facing == -1)
     }
 
+    @Test func ridingAWaveCarriesHimTowardsTheShore() throws {
+        // Out at sea, riding a wave that drifts him in (`StageAction.carry`):
+        // between its keys he goes nearer the sand, the way he faces, the
+        // action playing on (no move's frames), still out where waves rise;
+        // after it he rests on his board where it took him.
+        let surf = [
+            StageMove(id: "walk", cycle: 0.8, stride: 0.45, facing: .left),
+            StageMove(id: "paddle", cycle: 0.8, stride: 0.5, on: ["sea"], stays: true, waterline: 0.3, facing: .left, rest: "wait"),
+            StageMove(id: "wait", cycle: 0.8, stride: 0.1, on: ["sea"], stays: true, waterline: 0.3, facing: .left),
+        ]
+        var random = SeededGenerator(state: 3)
+        let actor = StageActor(
+            id: fox, stickerID: "fox", size: 0.3, ratio: 0.6, stage: StickerStage(entrance: .hop, on: ["sand"]), moves: surf,
+            placed: .init(0.3, 0.12))
+        let ride = StageAction(
+            stickerID: "fox", at: 15, duration: 5, tail: 0.6, faces: .right, carry: .init(start: 1.5, end: 4, shoreward: 0.5))
+        let plans = StageDirector.plan(
+            world: world, screen: screen, actors: [actor], entrances: [],
+            goes: [GoTrigger(at: 1, stickerID: "fox", kind: .to, target: "sea", by: "paddle")],
+            policy: .standard, actions: [ride], random: &random)
+        let plan = try #require(plans[fox])
+        let drift = try #require(plan.legs.first { $0.cue == 15 && $0.move == nil && $0.gait == .walk })
+        #expect(abs(drift.at - 16.5) < 1e-9 && abs(drift.duration - 2.5) < 1e-9)
+        let a = try #require(drift.path.first), b = try #require(drift.path.last)
+        let from = try #require(world.outInWater(a.ground)), to = try #require(world.outInWater(b.ground))
+        #expect(to < from && to >= StageWorld.openWater)
+        #expect(world.screen(b).x > world.screen(a).x)
+        #expect(plan.travel(at: 17)?.move == nil)
+        // Over: resting on his board where the ride left him.
+        #expect(plan.travel(at: 21)?.move == "wait")
+        #expect((plan.sample(at: 21).position - b).length < 1e-9)
+    }
+
     @Test func lyingOnHisBoardHeIsKeptWhollyOnTheArt() throws {
         // A narrow surfer standing, lying on his board as wide as he is
         // tall: sent far left along the sea, he stops where all of that

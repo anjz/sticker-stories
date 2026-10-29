@@ -56,7 +56,7 @@ import Testing
             let cast = StageDirector.cast(
                 entrances: file.entranceTriggers, goes: file.goTriggers, live: file.liveTriggers,
                 faces: file.expressionTriggers, effects: file.triggers)
-            let actions = StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] })
+            let actions = StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] }, drift: { pack.actionDrifts[$0] })
             let plans = StageDirector.plan(
                 world: world, screen: screen, actors: actors, entrances: file.entranceTriggers, goes: goes,
                 policy: .standard, cast: cast, actions: actions, live: file.liveTriggers, random: &random)

@@ -409,9 +409,28 @@ public enum StageDirector {
                         let over = last.map { $0.stays && $0.travels } ?? false
                         let end = start + max(action.duration - (over ? action.tail : 0), 0)
                         states[i].busyUntil = end
+                        let turned = action.faces.flatMap { sign($0, for: i) }
+                        // Carried towards the shore as it plays (riding a wave
+                        // in): between its keys, some of the way to the water's
+                        // edge in front of it, a little the way it faces; on
+                        // where it gets to once it is over (`StageAction.carry`).
+                        var carried = false
+                        if let carry = action.carry,
+                            let to = shoreward(i, share: carry.shoreward, way: action.faces.map { $0 == .right ? 1 : -1 })
+                        {
+                            let here = states[i].pose, facing = turned ?? here.facing
+                            var drift = StageLeg(
+                                at: start + carry.start, duration: max(carry.end - carry.start, 0.1), path: [here.position, to],
+                                gait: .walk, kind: .shuffle, facingFrom: facing, facingTo: facing, support: here.support)
+                            drift.move = nil
+                            states[i].legs.append(drift)
+                            states[i].pose.position = to
+                            carried = true
+                        }
                         // Facing on screen as it did (riding the wave, right)
                         // when it is over: no turn back unless a move asks.
-                        if let faces = action.faces, let sign = sign(faces, for: i), (sign < 0) != (states[i].pose.facing < 0) {
+                        if carried || turned.map({ ($0 < 0) != (states[i].pose.facing < 0) }) == true {
+                            let sign = turned ?? states[i].pose.facing
                             states[i].pose.facing = sign
                             let here = states[i].pose
                             var hold = over ? last! : StageLeg(at: 0, duration: 0, path: [here.position], gait: .fade)
@@ -1278,12 +1297,21 @@ public enum StageDirector {
                 // Hurried in, its next cue too soon for its own pace (a boat
                 // gliding past): it sets off earlier, before the words name
                 // it, and comes in at its own pace.
+                // (Not to someone's side — they may be elsewhere by then —
+                // and never there before its words.)
+                let alone: Bool
+                switch target.support {
+                case .beside, .on, .under: alone = false
+                default: alone = true
+                }
                 var early = entrance.at
-                for _ in 0..<4 where leg.rate > 1.05 && leg.gait != .fly && leg.gait != .fade {
+                for _ in 0..<4 where alone && leg.rate > 1.05 && leg.gait != .fly && leg.gait != .fade {
                     let sooner = max(0, entrance.at - StageDirector.earlyEntrance, early - leg.duration * (leg.rate - 1))
                     if sooner > early - 0.05 { break }
+                    let earlier = makeLeg(i, to: target, start: sooner, kind: .entrance, forceFly: stage.entrance == .fly)
+                    if earlier.end < entrance.at - 0.05 { break }
                     early = sooner
-                    leg = makeLeg(i, to: target, start: early, kind: .entrance, forceFly: stage.entrance == .fly)
+                    leg = earlier
                 }
                 if leg.gait == .fly, leg.move != nil, hovers(i, at: target) { leg.stays = true }
                 // Off stage it already faces the way it comes in: no turn on the way.
@@ -1904,8 +1932,13 @@ public enum StageDirector {
                             let away = target.position.ground - exit, reach = states[i].actor.width
                             if case .ground = target.support, away.length > reach {
                                 let belongs = self.belongs(i, way(i).move), world = self.world
-                                if let near = stride(from: reach * 0.6, through: reach, by: 0.01).lazy
-                                    .map({ exit + away * ($0 / away.length) }).first(where: { world.canStand(at: $0, belongsIn: belongs) })
+                                // (Where it hides no one and is seen.)
+                                if let near = stride(from: reach * 0.6, through: reach * 1.5, by: 0.01).lazy
+                                    .map({ exit + away * (min($0, away.length) / away.length) })
+                                    .first(where: {
+                                        world.canStand(at: $0, belongsIn: belongs) && blocking(i, at: $0.onGround) < 0.2
+                                            && hiddenWithHeadroom(i, at: $0.onGround) < 0.2
+                                    })
                                 {
                                     target.position = near.onGround
                                 }
@@ -1969,6 +2002,30 @@ public enum StageDirector {
         /// land side), heading for `from`. Going a way that leans one way
         /// (`leaning`): into the water, one it goes on that way from to
         /// `before`; out of it, one that way from `after`.
+        /// Where riding in from here takes it: `share` of the way down the
+        /// screen to its water's near edge (`StageWorld.outInWater`), and on
+        /// `way` (±1 across the screen) by its width for every half of that
+        /// way — still in the water, never up on the sand. Nil out of water.
+        func shoreward(_ i: Int, share: Double, way: Double?) -> Vec3? {
+            let here = states[i].pose.position
+            guard here.y < 0.01, let out = world.outInWater(here.ground), out > 0.02 else { return nil }
+            // (Out where waves still rise: `StageWorld.openWater`.)
+            let goal = max(out * (1 - min(max(share, 0), 1)), min(out, StageWorld.openWater + 0.02))
+            let a = world.project(here.ground.onGround)
+            let across = (way ?? 0) * states[i].actor.width * share * 2
+            var best: Vec2?
+            for k in 0...200 {
+                let v = a.v - 0.002 * Double(k)
+                guard v > 0 else { break }
+                var g = world.groundPoint(SceneSpace.Point(a.u, v))
+                g.x += across * min(Double(k) / 40, 1)
+                guard let o = world.outInWater(g) else { break }
+                best = g
+                if o <= goal { break }
+            }
+            return best?.onGround
+        }
+
         func shore(of element: [String], near p: Vec2, from q: Vec2, before target: Vec3? = nil, after start: Vec3? = nil) -> Vec2? {
             let polygons = world.grounds.filter { element.contains($0.place) }.map(\.polygon)
             var best: (Vec2, Double)?
@@ -2322,15 +2379,47 @@ public struct StageAction: Equatable, Sendable {
     /// The way it faces on screen while it plays (`faces`): it faces so
     /// after it too, until something turns it.
     public var faces: StageMove.Facing?
+    /// How it carries the sticker towards the shore while it plays (riding
+    /// a wave in), in seconds from its start (`Drift`).
+    public var carry: Carry?
+
+    /// A sidecar's `drift`: from key `from` to key `to`, `shoreward` of the
+    /// way from where the sticker is to the water's edge in front of it.
+    public struct Drift: Decodable, Equatable, Sendable {
+        public var from: Int
+        public var to: Int
+        public var shoreward: Double
+
+        public init(from: Int, to: Int, shoreward: Double) {
+            self.from = from
+            self.to = to
+            self.shoreward = shoreward
+        }
+    }
+
+    /// A drift in time: from `start` to `end` seconds into the action.
+    public struct Carry: Equatable, Sendable {
+        public var start: TimeInterval
+        public var end: TimeInterval
+        public var shoreward: Double
+
+        public init(start: TimeInterval, end: TimeInterval, shoreward: Double) {
+            self.start = start
+            self.end = end
+            self.shoreward = shoreward
+        }
+    }
 
     public init(
-        stickerID: String, at: TimeInterval, duration: TimeInterval, tail: TimeInterval = 0, faces: StageMove.Facing? = nil
+        stickerID: String, at: TimeInterval, duration: TimeInterval, tail: TimeInterval = 0, faces: StageMove.Facing? = nil,
+        carry: Carry? = nil
     ) {
         self.stickerID = stickerID
         self.at = at
         self.duration = duration
         self.tail = tail
         self.faces = faces
+        self.carry = carry
     }
 }
 
@@ -2341,7 +2430,8 @@ extension StageAction {
     /// counts.
     public static func of(
         _ live: [LiveAnimationTrigger], frames: (LiveAnimationKey) -> LiveFrames?,
-        faces: (LiveAnimationKey) -> StageMove.Facing? = { _ in nil }
+        faces: (LiveAnimationKey) -> StageMove.Facing? = { _ in nil },
+        drift: (LiveAnimationKey) -> Drift? = { _ in nil }
     ) -> [StageAction] {
         live.compactMap { trigger in
             let key = LiveAnimationKey(stickerID: trigger.stickerID, animationID: trigger.animationID)
@@ -2356,7 +2446,14 @@ extension StageAction {
             // Its last two keys: from its last pose back to the still.
             let n = timing.holds.count
             let tail = part == .whole && n >= 4 ? timing.holds[n - 2] + timing.holds[n - 1] : 0
-            return StageAction(stickerID: trigger.stickerID, at: trigger.at, duration: duration, tail: tail, faces: faces(key))
+            // Carried in while it plays whole (not held on its pause).
+            let carry = drift(key).flatMap { d -> Carry? in
+                guard part == .whole, d.from >= 0, d.to > d.from, d.to < n, d.shoreward > 0 else { return nil }
+                return Carry(
+                    start: timing.holds.prefix(d.from).reduce(0, +), end: timing.holds.prefix(d.to).reduce(0, +),
+                    shoreward: min(d.shoreward, 1))
+            }
+            return StageAction(stickerID: trigger.stickerID, at: trigger.at, duration: duration, tail: tail, faces: faces(key), carry: carry)
         }
     }
 }

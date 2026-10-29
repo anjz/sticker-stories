@@ -87,6 +87,9 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
     /// Sticker effects the keys start on the character as they come on
     /// show (the wave behind a surfer standing up), unless one is running.
     var effects: [EffectCue]
+    /// How an action done in the water carries it towards the shore while
+    /// it plays (riding a wave in; `StageAction.Drift`).
+    var drift: StageAction.Drift?
     /// The animation as keyframes for the sticker's puppet
     /// (`docs/pack-format.md`, "Puppets"), at least two.
     var puppet: Puppet
@@ -124,7 +127,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
 
     private enum CodingKeys: String, CodingKey {
         case id, sticker, kind, stickerBox, pause, loop, facing, stride, hops, flies, hovers, on, stays, waterline,
-            place, idle, particles, puppet, away, faces, props, rest, effects
+            place, idle, particles, puppet, away, faces, props, rest, effects, drift
     }
 
     /// An effect cue that decodes or is skipped, like a particle cue.
@@ -172,6 +175,7 @@ struct StickerAnimation: Decodable, Identifiable, Sendable {
         particles = (cues ?? []).compactMap(\.cue).filter { $0.effect.firesFromFrames && $0.frame >= 0 && $0.frame < frames }
         let started = (try? c.decodeIfPresent([LenientEffect].self, forKey: .effects)) ?? nil
         effects = (started ?? []).compactMap(\.cue).filter { $0.effect == .surfWave && $0.frame >= 0 && $0.frame < frames }
+        drift = kind == .action ? (try? c.decodeIfPresent(StageAction.Drift.self, forKey: .drift)) ?? nil : nil
     }
 
     var key: String { "\(sticker).\(id)" }
