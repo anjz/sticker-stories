@@ -94,6 +94,14 @@ final class StoryStage {
         return SurfWave.rises(at: plan.sample(at: time).position, in: world)
     }
 
+    /// The beach a `wash` cued on a sticker at `time` runs over
+    /// (`Wash.beach`), its shore sampled across `range` (art `u`); nil
+    /// without open water above it.
+    func washBeach(_ node: StickerNode, at time: TimeInterval, across range: ClosedRange<Double>) -> Wash.Beach? {
+        guard let plan = plans[node.instanceID] else { return nil }
+        return Wash.beach(to: plan.sample(at: time).position, in: world, across: range, columns: 180)
+    }
+
     /// The water a sticker is in at `time`, its feet down in it (afloat,
     /// or on a shallow bottom); nil on land or up in the air.
     func water(of node: StickerNode, at time: TimeInterval) -> String? {

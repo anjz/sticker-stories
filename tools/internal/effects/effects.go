@@ -29,7 +29,7 @@ var Names = []string{
 	"pulse", "wobble", "shake", "hop", "spin", "float",
 	"fade-in", "fade-out", "glow", "tint",
 	"sparkle", "hearts", "dust-puff", "spray", "sparks", "bubble-puff",
-	"surf-wave",
+	"surf-wave", "wash",
 }
 
 // CanvasNames lists every canvas effect (weather and light over the whole

@@ -103,6 +103,9 @@ public struct StageLeg: Equatable, Sendable {
         case move
         /// Making room for someone sharing a spot: it keeps facing its way.
         case shuffle
+        /// Carried across the sand by a wave drawing back (`Wash`): a
+        /// creature of the water out of it for a moment.
+        case ride
     }
 
     public var at: TimeInterval

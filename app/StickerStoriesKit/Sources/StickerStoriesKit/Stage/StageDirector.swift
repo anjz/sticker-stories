@@ -142,11 +142,12 @@ public enum StageDirector {
     public static func plan<R: RandomNumberGenerator>(
         world: StageWorld, screen: StageScreen, actors: [StageActor], entrances: [EntranceTrigger],
         goes: [GoTrigger], policy: EffectPolicy, cast: Set<String>? = nil, actions: [StageAction] = [],
-        live: [LiveAnimationTrigger] = [], random: inout R
+        live: [LiveAnimationTrigger] = [], washes: [StageWash] = [], random: inout R
     ) -> [UUID: StagePlan] {
         var director = Director(world: world, screen: screen, policy: policy, actors: actors)
         director.cast = cast
         director.actions = actions
+        director.washes = washes
         // (Live animations off: no actions to be in time for.)
         director.live = policy.allowsLiveAnimations ? live : []
         for go in goes { director.goesAt[go.stickerID, default: []].append((go.at, go.target)) }
@@ -322,6 +323,9 @@ public enum StageDirector {
         var groups: [String: [Int]] = [:]
         /// The story's actions and how long each plays (`StageAction`).
         var actions: [StageAction] = []
+        /// The story's washes (`StageWash`): a creature of the water sent off
+        /// as one draws back rides it across the sand.
+        var washes: [StageWash] = []
         /// When the story moves each sticker, and its live cues (holds
         /// too): a move gets there by the next (`needed`).
         var goesAt: [String: [(at: TimeInterval, to: String?)]] = [:]
@@ -1924,6 +1928,44 @@ public enum StageDirector {
                     target.position = spot
                 }
                 let fades = !waterReaches(i, from: states[i].pose.position.ground, to: target.position.ground)
+                // A wave on it drawing back (`Wash`): it rides it across the
+                // sand, as the water slides back, instead of fading across.
+                if fades, !policy.isCalm, let wash = washes.first(where: {
+                    $0.stickerID == states[i].actor.stickerID && begin >= $0.at - 0.05 && begin < $0.at + $0.duration
+                }) {
+                    let from = states[i].pose
+                    var target = target
+                    // Back the way the water came: out into the open water
+                    // just past where it left it, where afloat things rest.
+                    if let reach = Wash.reach(to: from.position, in: world) {
+                        let a = world.project(reach.from.onGround)
+                        var v = a.v
+                        while v + 0.002 < world.space.horizon {
+                            v += 0.002
+                            let g = world.groundPoint(SceneSpace.Point(a.u, v))
+                            if (world.outInWater(g) ?? 0) >= StageWorld.openWater + 0.05 {
+                                target.position = g.onGround
+                                break
+                            }
+                        }
+                    }
+                    // (As the water in its own column draws back: it comes in
+                    // from the left.)
+                    let across = world.screen(from.position).x / max(world.frame.width, 1)
+                    let start = max(begin, wash.at + wash.duration * Wash.drawsBackStart(across: across))
+                    let sideways = world.screen(target.position).x - world.screen(from.position).x
+                    let art = states[i].actor.moves.first?.facing ?? .right
+                    let facing: Double = abs(sideways) < 1 ? from.facing : ((sideways > 0) == (art == .right) ? 1 : -1)
+                    var ride = StageLeg(
+                        at: start, duration: max(wash.at + wash.duration - start, 1), path: [from.position, target.position],
+                        gait: .walk, kind: .ride, facingFrom: facing, facingTo: facing, support: target.support)
+                    ride.move = way(i).move?.id
+                    ride.stays = stays
+                    states[i].legs.append(ride)
+                    states[i].pose = StagePose(position: target.position, support: target.support, facing: facing)
+                    states[i].busyUntil = ride.end
+                    return
+                }
                 travel(i, to: target, begin: begin, stays: stays, fades: fades)
                 return
             }
@@ -2418,6 +2460,29 @@ struct SplitMix: RandomNumberGenerator {
 
 /// An action a story cues, as the director needs it: whose, when, and how
 /// long it plays — a move the story cues after it waits until it is over.
+/// A `wash` cued on a sticker (`Wash`): when it starts and how long it
+/// lasts, its water drawing back over the last part (`Wash.drawsBack`).
+public struct StageWash: Equatable, Sendable {
+    public var stickerID: String
+    public var at: TimeInterval
+    public var duration: TimeInterval
+
+    public init(stickerID: String, at: TimeInterval, duration: TimeInterval) {
+        self.stickerID = stickerID
+        self.at = at
+        self.duration = duration
+    }
+
+    /// The story's `wash` cues (one cycle each).
+    public static func of(_ triggers: [EffectTrigger]) -> [StageWash] {
+        triggers.filter { $0.effect == .wash && $0.options.intensity > 0 }.map {
+            StageWash(
+                stickerID: $0.stickerID, at: $0.at,
+                duration: $0.options.duration ?? EffectDefinition.definition(for: .wash).defaultDuration)
+        }
+    }
+}
+
 public struct StageAction: Equatable, Sendable {
     public var stickerID: String
     public var at: TimeInterval

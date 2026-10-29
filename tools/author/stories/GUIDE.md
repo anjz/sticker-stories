@@ -221,6 +221,7 @@ this list, for what each means and accepts:
 | `sparks` | a tool on metal, a machine starting — never fire or danger |
 | `bubble-puff` | a few bubbles from someone in the water: a fish blowing, a bubbly giggle (the fish's `blow` already puffs its own) |
 | `surf-wave` | riding a wave: the surfer, a boat or the seal **out in the water** (on the sand or at the water's edge it draws nothing); a wave swells behind it, pitches and crashes into foam (about 4 s) |
+| `wash` | a big wave washing up the whole beach from the left and back, furthest to the sticker **on the sand or in the rock pool** (about 5 s); a creature of the water sent to the sea (`{fish:go to sea}`) as it draws back rides it there — cue it a few words before the go |
 
 Cue grammar is in `FORMAT.md`.
 

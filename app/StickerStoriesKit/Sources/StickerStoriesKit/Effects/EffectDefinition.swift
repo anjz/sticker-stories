@@ -195,6 +195,11 @@ public struct EffectDefinition: Sendable {
             name: .surfWave, defaultDuration: 4.0, anchor: .bottomCenter, defaultColor: nil,
             summary: "A wave rises behind a sticker in the water, at its waterline: it swells, rolls along with it, its lip pitches forward and crashes into a burst of foam and spray, and it collapses into whitewater that fizzles out. On land the cue draws nothing."
         ) { _, _, _ in EffectDelta() },
+
+        EffectDefinition(
+            name: .wash, defaultDuration: 5.0, anchor: .bottomCenter, defaultColor: nil,
+            summary: "A big wave washes up the whole beach from the left and back, running furthest to the sticker (a little past its feet), leaving the sand wet for a while; a water creature sent off as it draws back rides it across. Out at sea or up in the air the cue draws nothing."
+        ) { _, _, _ in EffectDelta() },
     ]
 }
 

@@ -641,7 +641,7 @@ extension StageDirectorTests {
                 let plans = StageDirector.plan(
                     world: world, screen: screen, actors: actors, entrances: file.entranceTriggers, goes: goes,
                     policy: .standard, cast: cast, actions: StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] }, drift: { pack.actionDrifts[$0] }),
-                    live: file.liveTriggers, random: &random)
+                    live: file.liveTriggers, washes: StageWash.of(file.triggers), random: &random)
                 // A move cued after an action waits for it to end; an action
                 // waits only for the moves cued before it.
                 let ids = Dictionary(uniqueKeysWithValues: actors.map { ($0.id, $0.stickerID) })
@@ -834,7 +834,7 @@ extension StageDirectorTests {
                         }
                         // On its way in the water by its water way (a duckling swims, never
                         // waddles, afloat); on its way over land by a way that walks it.
-                        if let leg = plan.legs.last(where: { $0.at <= t && t < $0.end && $0.gait.carries }), leg.kind != .settle,
+                        if let leg = plan.legs.last(where: { $0.at <= t && t < $0.end && $0.gait.carries }), leg.kind != .settle, leg.kind != .ride,
                             let id = leg.move, let move = a.moves.first(where: { $0.id == id }), !move.flies, onFoot
                         {
                             let water = world.water(at: s.position.ground)

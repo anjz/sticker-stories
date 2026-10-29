@@ -5,7 +5,7 @@ closed libraries:
 
 - **Sticker effects** — one placed sticker does something: a sparkle, a
   wobble, a glow, a fade, a puff of dust at its feet, bubbles, a wave to
-  ride. Seventeen of them.
+  ride, the sea washing up to one. Eighteen of them.
 - **Canvas effects** — the weather or the light changes over the whole
   scene: fog, rain, sunshine, a rainbow, night falling, the lights going low,
   and their counterparts indoors, in space and under the sea. Each suits
@@ -41,7 +41,7 @@ test. Tooling should read that file rather than parse this one.
    skipped with a log line; a pack authored against a future library plays
    with fewer effects.
 
-## The sticker library (17 effects, closed)
+## The sticker library (18 effects, closed)
 
 `i` is the trigger's `intensity` (default 0.6). At `intensity: 0` every effect
 is visually identical to no effect. Anchors and easing are fixed per effect —
@@ -102,6 +102,7 @@ an animation's frames ("Live animations").
 | Effect | What it looks like | Good for | Default cycle | Reduce Motion |
 |---|---|---|---|---|
 | `surf-wave` | A wave rises **behind** a sticker in the water, at its waterline: it swells into a smooth, rounded body, rolls along with the sticker, its lip pitches forward in a short hook and crashes down — a quick burst of white foam and spray thrown forward and up — and the wave collapses into a churning band of whitewater that spreads and fizzles out. Nothing in it plays backwards. Teal-blue with a puffy white lip, like Beach's painted sea, and a low foam line in front of the sticker's base so it sits in the water. On land the cue draws nothing. | Riding a wave: the surfer, a boat or the seal out at sea, a big wave rolling in. | 4.0 s | runs at ≤0.4 |
+| `wash` | A big wave washes up the beach and back: along the whole shore the water rushes up the sand, coming in from the left and sweeping to the right like the painted waves, a thin clear sheet with a lacy foam front, runs furthest where the sticker is (a little past its feet), laps, and slides back into the sea, leaving the sand it covered darker and wet, drying. It lies on the ground in the beach's plane, under every sticker and the scene's layers, never over the rocks round a pool; where rocks stop it short of the sticker it breaks over them in a burst of foam. Out at sea, up in the air, or with no open water above it, the cue draws nothing. | A big wave washing up the beach: reaching the rock pool, a sandcastle, someone's toes; a fish in the pool carried off to the sea. | 5.0 s | runs at ≤0.4 |
 
 It rises only on a sticker **out in the water** when the wave is cued:
 on the water and as far out as afloat stickers rest
@@ -130,6 +131,14 @@ rises from the waterline. `intensity` is a swell to a big wave;
 (`{surfer:surf-wave}`); an animation's frames cannot fire it ("Live
 animations").
 
+`wash` runs where the sticker stands when it is cued (an open water —
+a `space` place with `water` and not `shallow` — above it). A creature
+of the water (every way it gets about is in water) that the story
+sends off over land while it draws back where it is — the last 45 % of
+its column's part of the cycle, the left end first — rides it across the sand to where it goes instead of fading
+across (`docs/stage3d.md`): Little Fish carried out of the rock pool
+into the sea. `intensity` only dims it; `duration` paces it; no colour.
+
 ### Deliberately not in the library
 
 Removed in 2026-09 and not to be reused (older content that names them is
@@ -144,6 +153,9 @@ added when stickers stopped drawing particles of their own.
 `surf-wave` (2026-10) was asked for by the user, as a sticker effect
 rather than a canvas effect: a wave one sticker rides, not the sea
 changing — the canvas list stays closed to waves.
+`wash` (2026-10) followed for the same reason: the user asked for the sea
+washing up the sand to the rock pool and carrying the fish off; kept a
+sticker effect, cued on whom it reaches, like `surf-wave`.
 
 Recorded so nobody re-adds them by accident: entrances/exits beyond fade,
 squash and stretch, keyframe authoring, scene shake and parallax,
@@ -692,7 +704,7 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
 
 - **Reduce Motion** (system setting) is observed live: `shake`, `hop`,
   `spin` and `float` do not run; `pulse` and `wobble` run at
-  intensity ≤0.3; particles, `surf-wave` and the canvas effects that fall or drift
+  intensity ≤0.3; particles, `surf-wave`, `wash` and the canvas effects that fall or drift
   (`rain`, `snow` and the others marked in the canvas table) at ≤0.4;
   fades, `glow`, `tint` and the other canvas effects (slow washes of light)
   run in full because they carry story meaning.
@@ -719,7 +731,8 @@ frame from the narrator's playback time (`Narrator.playbackTime`,
 interpolated between resyncs), renders glow from a cached blurred mask,
 drives the particle emitters defined in
 `app/StickerStories/Effects/emitters.json`, paints `surf-wave` behind its
-sticker (`SurfWaveCoordinator`, in the sticker's layer, level with the sea), and renders canvas effects in
+sticker (`SurfWaveCoordinator`, in the sticker's layer, level with the sea)
+and `wash` on the sand under everyone (`WashCoordinator`), and renders canvas effects in
 `CanvasEffectLayer` (a rain emitter, drifting fog sprites, a sky glow with light shafts, a
 rainbow arc, a vignette and a moon with a halo, all procedurally textured, sized to the pack's
 art frame — the tuning numbers live in that file; every effect added after

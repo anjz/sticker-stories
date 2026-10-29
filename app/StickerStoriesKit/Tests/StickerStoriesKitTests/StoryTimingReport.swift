@@ -59,7 +59,7 @@ import Testing
             let actions = StageAction.of(file.liveTriggers, frames: { pack.actionFrames[$0] }, faces: { pack.actionFaces[$0] }, drift: { pack.actionDrifts[$0] })
             let plans = StageDirector.plan(
                 world: world, screen: screen, actors: actors, entrances: file.entranceTriggers, goes: goes,
-                policy: .standard, cast: cast, actions: actions, live: file.liveTriggers, random: &random)
+                policy: .standard, cast: cast, actions: actions, live: file.liveTriggers, washes: StageWash.of(file.triggers), random: &random)
             let ids = Dictionary(uniqueKeysWithValues: actors.map { ($0.id, $0.stickerID) })
             let played = StageDirector.delayed(file.liveTriggers, plans: plans, stickers: ids, places: Set(pack.places.keys))
             func actor(_ id: String) -> StageActor? { actors.first { $0.stickerID == id } }

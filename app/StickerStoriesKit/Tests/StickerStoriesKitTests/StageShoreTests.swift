@@ -396,6 +396,38 @@ func shoreWorld() -> StageWorld {
         #expect((plan.sample(at: 21).position - b).length < 1e-9)
     }
 
+    @Test func aWashCarriesAFishFromThePoolToTheSea() throws {
+        // A fish in the rock pool, a wave washing up to it, and the story
+        // sending it to the sea as the water draws back: it rides it across
+        // the sand (`Wash`), out into open water — no fade.
+        let moves = [StageMove(id: "swim", cycle: 0.8, stride: 0.7, on: ["pool", "sea"], stays: true, waterline: 0.3, facing: .left)]
+        let actor = StageActor(
+            id: fish, stickerID: "fish", size: 0.1, ratio: 1, stage: StickerStage(entrance: .hop, on: ["pool"]), moves: moves,
+            placed: .init(0.88, 0.15))
+        let feet = try #require(world.water(at: world.groundPoint(.init(0.88, 0.15)))).description
+        #expect(feet == "pool")
+        // Open water above it on screen: the wash runs from there to it.
+        let reach = try #require(Wash.reach(to: world.groundPoint(.init(0.88, 0.15)).onGround, in: world))
+        #expect(world.water(at: reach.from) == "sea")
+        var random = SeededGenerator(state: 5)
+        let plans = StageDirector.plan(
+            world: world, screen: screen, actors: [actor], entrances: [],
+            goes: [GoTrigger(at: 6, stickerID: "fish", kind: .to, target: "sea")], policy: .standard,
+            washes: [StageWash(stickerID: "fish", at: 2, duration: 8)], random: &random)
+        let ride = try #require(plans[fish]?.legs.first { $0.cue == 6 })
+        #expect(ride.kind == .ride && ride.gait == .walk && ride.move == "swim")
+        let across = world.screen(try #require(ride.path.first)).x / world.frame.width
+        #expect(abs(ride.at - max(6, 2 + 8 * Wash.drawsBackStart(across: across))) < 1e-9 && abs(ride.end - 10) < 1e-9)
+        let end = try #require(ride.path.last).ground
+        #expect(world.water(at: end) == "sea" && world.inOpenWater(end))
+        // Without the wash it fades across, as ever.
+        var again = SeededGenerator(state: 5)
+        let faded = StageDirector.plan(
+            world: world, screen: screen, actors: [actor], entrances: [],
+            goes: [GoTrigger(at: 6, stickerID: "fish", kind: .to, target: "sea")], policy: .standard, random: &again)
+        #expect(faded[fish]?.legs.first { $0.cue == 6 }?.gait == .fade)
+    }
+
     @Test func lyingOnHisBoardHeIsKeptWhollyOnTheArt() throws {
         // A narrow surfer standing, lying on his board as wide as he is
         // tall: sent far left along the sea, he stops where all of that
