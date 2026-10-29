@@ -157,6 +157,11 @@ type stickerSpec struct {
 	// FaceNote says what the face is drawn on when that is not obvious
 	// ("the round brown speckled seed centre"), so an expression keeps it.
 	FaceNote string `json:"faceNote,omitempty"`
+	// FaceKeep overrides the face's edge band for the composite only
+	// (fraction of the image's larger side): a far eye drawn on the head's
+	// outline, which the default band would keep from the old face. The
+	// kept generations are re-composited at no cost.
+	FaceKeep float64 `json:"faceKeep,omitempty"`
 	// NoExpressions are pack expressions this sticker never shows (the
 	// beach kids stand all day, so no sleeping face): not drawn, not
 	// installed.
@@ -1001,6 +1006,11 @@ func (r *renderer) face(s stickerSpec, e expressionSpec) error {
 	// The composite has its own version: a change there re-composites the
 	// kept generation at no cost.
 	finishFP := cfg.fillFP(hashOf(genFP, faceVersion, finishVersion, fmt.Sprint(cfg.StickerSize, cfg.Border, cfg.Margin), fmt.Sprint(cfg.finish())), s)
+	compBox := *s.Face
+	if s.FaceKeep > 0 {
+		compBox.Edge = s.FaceKeep
+		finishFP = hashOf(finishFP, "keep", fmt.Sprint(s.FaceKeep))
+	}
 	if s.Prop != nil {
 		// The face goes over the art without the prop.
 		finishFP = hashOf(finishFP, r.fps[r.workingRaw(s)])
@@ -1071,10 +1081,10 @@ func (r *renderer) face(s stickerSpec, e expressionSpec) error {
 			return err
 		}
 	}
-	if seam := stickerimg.FaceSeam(base, edited, *s.Face); seam > faceSeamWarn {
+	if seam := stickerimg.FaceSeam(base, edited, compBox); seam > faceSeamWarn {
 		r.say("! %s: the new face differs a lot at its rim (%.2f) — check %s for the old face showing through", key, seam, final)
 	}
-	png, err := stickerimg.Encode(stickerimg.Face(base, edited, *s.Face))
+	png, err := stickerimg.Encode(stickerimg.Face(base, edited, compBox))
 	if err != nil {
 		return err
 	}

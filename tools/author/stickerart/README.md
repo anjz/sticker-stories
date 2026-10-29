@@ -159,7 +159,12 @@ magenta, to check that treetops and ridges are left out.
    outline inside the old one showed both. The new face is taken fully over
    the whole face box and fades out only across the mask's margin, so no
    half of an old eye or mouth shows next to the new one. A variant whose
-   face differs a lot at that rim is flagged (`!`) to look at. A composite
+   face differs a lot at that rim is flagged (`!`) to look at. A sticker's
+   `faceKeep` narrows that band for the composite alone (Dinosaurs: 0.005,
+   0.003 for the beaked ones): a three-quarter head's far eye sits on the
+   outline, and the default band keeps the old, open eye beside a new,
+   closed one; the kept generations are re-composited at no cost. The rim
+   flag does not catch this, so zoom on every variant. A composite
    change (`faceVersion`) re-composites the kept generations at no cost.
    `-only faces` renders just the variants, `-only bear.happy` one; the
    edits model allows five image inputs a minute, so use `-parallel 2`.
