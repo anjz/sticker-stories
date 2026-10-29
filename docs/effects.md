@@ -246,7 +246,7 @@ or fantastical places) gets no canvas effects at all.
 | `snow` | outdoors | Soft snowflakes drift down at different sizes and speeds; the top of the sky turns white (behind the scenery) and the light a little cooler and brighter. It keeps falling until `sunshine`, `sunrays` or `rain` or the story's end (held, like the time of day), and it **settles**: a snow cover builds while it falls — on the **whole ground** up to its far edge (the scene's `space`; without one, all of the background that is not sky), in perspective (its patches and the flakes lying in it smaller and closer together towards the horizon, the far snow a little thinner), never on water (a `space` place with `water: true`) — in patches that join up, with a cap along the top of the painted treeline or ridge, and **caps on the upward-facing edges of every plane with alpha** (the layers and the foreground: Forest's oak, birch, reeds), a few points thick, following their shape and standing with their plane in the depth stack; all under the stickers (worked out once per pack as it loads, `SnowScenery`), stays after the snowfall, and melts under `sunshine`/`sunrays` (~6 s) or `rain` (~9 s). The cover is a pure function of the timeline (`CanvasEffectsRunner.snowCover`), so seeks and fast playback show it right. | Winter, a snow day, the first flakes, a quiet hush. `intensity` is a few flakes to a thick flurry. | 12 s | 2 / 2.5 s | runs at ≤0.4 |
 | `sunset` | outdoors | A warm orange-pink glow spreads from the horizon while the top of the sky deepens to violet. | The end of the day, going home, a calm golden moment. Followed by `night` it makes a gentle bedtime. Builds slowly — cue it a beat early. | 10 s | 2.5 / 2.5 s | full |
 | `clouds` | outdoors | Big soft clouds drift slowly across the sky behind the scenery; the light dims a little. | A cloudy day, "a cloud shaped like…", the grey before rain, the sun going in. | 12 s | 2.5 / 2.5 s | full |
-| `wind` | outdoors | Pale wisps of air sweep across the scene from left to right, with a few specks tumbling along. | A windy day, a kite, something blown away, a whoosh. `intensity` is a breeze to a gust. | 8 s | 1 / 1.5 s | runs at ≤0.4 |
+| `wind` | outdoors | Pale wisps of air sweep across the scene the way it blows (`toward`: left to right by default), with a few specks tumbling along. | A windy day, a kite, something blown away, a whoosh. `intensity` is a breeze to a gust. | 8 s | 1 / 1.5 s | runs at ≤0.4 |
 | `fireflies` | outdoors | Tiny warm lights drift and pulse slowly, mostly in the lower half of the scene. | A summer evening, a little magic in the dark, lighting the way. Lovely layered over `night` or `sunset`. | 12 s | 2 / 2 s | runs at ≤0.4 |
 | `leaves` | outdoors | Autumn leaves in warm colours flutter down, turning over and drifting sideways. | Autumn, a gust shaking the trees, change, a leaf pile. Only for packs whose scenery has trees. | 10 s | 1.5 / 2 s | runs at ≤0.4 |
 | `shootingstars` | outdoors | Now and then a shooting star streaks across the sky behind the scenery. | Making a wish on a clear night, wonder, "look!". Best over `night`. `intensity` is a single one now and then to a meteor shower. | 10 s | 1 / 1.5 s | runs at ≤0.4 |
@@ -269,7 +269,7 @@ or fantastical places) gets no canvas effects at all.
 | `ripples` | underwater | A net of rippling light plays over the whole scene, brightest near the sea floor. | Shallow water, a sunny lagoon, calm and playful. Layers nicely with `sunrays`. | 12 s | 2 / 2 s | full |
 | `deepwater` | underwater | The water darkens to a deep blue, most of all toward the edges and the surface. | Diving deeper, exploring, bedtime under the sea. Never darkness as a threat. Builds slowly — cue it a beat early. | 12 s | 2.5 / 2.5 s | full |
 | `glowplankton` | underwater | Tiny blue-green lights twinkle and drift slowly through the water. | A little magic in the dark sea, a night swim. Lovely layered over `deepwater`. | 12 s | 2 / 2 s | runs at ≤0.4 |
-| `current` | underwater | A gentle current sweeps specks, wisps and bits of green across the scene from left to right. | Swimming along, being carried away, a whoosh under the sea. `intensity` is a drift to a strong current. | 8 s | 1.2 / 1.5 s | runs at ≤0.4 |
+| `current` | underwater | A gentle current sweeps specks, wisps and bits of green across the scene the way it flows (`toward`: left to right by default). | Swimming along, being carried away, a whoosh under the sea. `intensity` is a drift to a strong current. | 8 s | 1.2 / 1.5 s | runs at ≤0.4 |
 | `sandcloud` | underwater | A cloud of sand swirls up from the sea floor and slowly settles again. | Something stirs, hide and seek, a big fish swishing past, digging in the sand. | 6 s | 1.5 / 2.5 s | runs at ≤0.4 |
 
 - Ramps never eat more than a third of the duration each, so a 3 s effect
@@ -289,6 +289,7 @@ or fantastical places) gets no canvas effects at all.
 | `cue` | no | | Free authoring label; the app ignores it. |
 | `intensity` | no | `0.6` | 0–1. How strong. 0 is visually identical to no effect. |
 | `duration` | no | per effect | Seconds the effect stays on, ramps included, 1–120. |
+| `toward` | no | `right` | `wind` and `current` only: the way it blows, `left` or `right`. A later trigger of it while it blows turns it (over 1.5 s; `storyaudio` ends the earlier one there), and what it carries drifts back the new way. |
 
 ## Trigger file
 
@@ -595,10 +596,12 @@ somewhere. The trigger is `{ "at", "cue"?, "sticker", "go", "target"?, "by"?, "t
   the side that has them arrive facing it.
 - **Which way across the screen**: `toward` (`left` or `right`, on `to`
   and `away` only) says the way it goes when the story says — above all
-  what the wind carries, which goes right, the way the `wind` canvas
-  effect blows: `away` leaves by that side, `to` a place lands on the
-  part of it at least a sticker's width that way (or its far end), `to`
-  a sticker stands on that side of it. Authored `{leaf:go away right}`.
+  what the wind carries, which goes the way the `wind` canvas effect
+  blows then (right unless it blows `left`; for a sticker with no face
+  `storyaudio` sets it from the wind, "Canvas effect parameters"):
+  `away` leaves by that side, `to` a place lands on the part of it at
+  least a sticker's width that way (or its far end), `to` a sticker
+  stands on that side of it. Authored `{leaf:go away right}`.
 - **The way the words say**: a sticker that gets about more than one way
   (`docs/pack-format.md`, "Live animations": the ladybug crawls and
   flies, the bird flies and hops, the duckling waddles and swims) goes its

@@ -43,6 +43,10 @@ var CanvasNames = []string{
 	"deepwater", "glowplankton", "current", "sandcloud",
 }
 
+// CanvasFlows are the canvas effects that blow one way across the scene
+// (toward): what they carry goes that way.
+var CanvasFlows = set("wind", "current")
+
 // CanvasSettings maps each canvas effect to the pack settings it suits
 // (docs/pack-format.md, "setting"). A pack whose setting is "none" gets no
 // canvas effects.
@@ -90,7 +94,7 @@ var (
 	known           = set(Names...)
 	knownCanvas     = set(CanvasNames...)
 	knownKeys       = set("at", "cue", "sticker", "effect", "repeat", "duration", "intensity", "color", "hold")
-	knownCanvasKeys = set("at", "cue", "effect", "intensity", "duration")
+	knownCanvasKeys = set("at", "cue", "effect", "intensity", "duration", "toward")
 	knownLiveKeys   = set("at", "cue", "sticker", "animation", "mode")
 	knownFaceKeys   = set("at", "cue", "sticker", "expression")
 	knownEnterKeys  = set("at", "cue", "sticker", "enter", "by")
@@ -350,8 +354,8 @@ func validateTrigger(label string, fields map[string]json.RawMessage, declared m
 }
 
 // validateCanvasTrigger checks a trigger whose effect is a canvas effect:
-// no sticker, only intensity and duration, and an effect that suits the
-// pack's setting.
+// no sticker, only intensity and duration (and the way a flowing one
+// blows), and an effect that suits the pack's setting.
 func validateCanvasTrigger(label, effect string, fields map[string]json.RawMessage, setting string, fail func(string, ...any)) {
 	for _, k := range sortedKeys(fields) {
 		if !knownCanvasKeys[k] {
@@ -384,6 +388,15 @@ func validateCanvasTrigger(label, effect string, fields map[string]json.RawMessa
 	if raw, ok := fields["intensity"]; ok {
 		if v, ok := number(raw); !ok || v < 0 || v > 1 {
 			fail("%s: intensity must be a number in 0..1", label)
+		}
+	}
+	if raw, ok := fields["toward"]; ok {
+		var s string
+		switch {
+		case !CanvasFlows[effect]:
+			fail("%s: canvas effect %q does not blow a way; remove toward", label, effect)
+		case json.Unmarshal(raw, &s) != nil || (s != "left" && s != "right"):
+			fail("%s: toward must be \"left\" or \"right\"", label)
 		}
 	}
 }

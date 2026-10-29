@@ -1,4 +1,5 @@
 import SpriteKit
+import StickerStoriesKit
 
 /// A field of sprites drifting through the art frame — snowflakes,
 /// confetti, bubbles, fireflies — each placed from the timeline time, so
@@ -72,6 +73,7 @@ final class DriftField {
     private var world: CGRect = .zero
     /// When the effect began (sprites that `enter` count from here).
     private var began: TimeInterval?
+    private var beganFlow: CanvasFlow?
 
     init(_ style: Style) {
         self.style = style
@@ -104,10 +106,21 @@ final class DriftField {
     /// Forgets when the effect began: the next `apply` starts a new entry.
     func reset() { began = nil }
 
-    func apply(strength: Double, at time: TimeInterval) {
+    /// `flow`, for an effect that blows one way (`CanvasEffectName.flows`):
+    /// the field drifts by its travel rather than its time, so it comes in
+    /// from the side it blows from and turns when it turns.
+    func apply(strength: Double, at time: TimeInterval, flow: CanvasFlow? = nil) {
         guard world.width > 0 else { return }
-        if began == nil || time < began! { began = time }
+        if began == nil || time < began! {
+            began = time
+            beganFlow = flow
+        }
         let elapsed = time - began!
+        // The way it came in, and whether it has turned since.
+        let way: Double = (beganFlow?.heading ?? 1) < 0 ? -1 : 1
+        let turned = (flow?.heading ?? way) * way < 0
+        let moved = flow.map { $0.travel - (beganFlow?.travel ?? $0.travel) } ?? elapsed
+        let velocityX = style.velocity.dx * way
         let w = world.width, h = world.height
         let margin = style.margin
         // The wrapped region in world units, margins included.
@@ -126,20 +139,21 @@ final class DriftField {
                 continue
             }
             let speed = Self.lerp(style.depthSpeed, sprite.depth)
-            var x = sprite.x * spanX + style.velocity.dx * speed * h * elapsed
+            var x = sprite.x * spanX + style.velocity.dx * speed * h * moved
             var y = sprite.y * spanY + style.velocity.dy * speed * h * elapsed
             // Entering: start one span back along the direction of travel,
             // and only wrap once the sprite has come in.
             if enters {
                 if travelsX {
-                    x -= style.velocity.dx > 0 ? spanX : -spanX
+                    x -= velocityX > 0 ? spanX : -spanX
                 } else {
                     y -= style.velocity.dy > 0 ? spanY : -spanY
                 }
             }
-            let outside = enters
+            // Turned round, everything has come in: nothing waits outside.
+            let outside = enters && !turned
                 && (travelsX
-                    ? (style.velocity.dx > 0 ? x < 0 : x > spanX)
+                    ? (velocityX > 0 ? x < 0 : x > spanX)
                     : (style.velocity.dy > 0 ? y < 0 : y > spanY))
             if !outside {
                 x = Self.wrap(x, spanX)

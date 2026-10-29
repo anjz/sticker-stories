@@ -113,6 +113,12 @@
         120
       ],
       "description": "Seconds the effect stays on, ramps included. There is no repeat, colour or hold."
+    },
+    "toward": {
+      "type": "\"left\"|\"right\"",
+      "required": false,
+      "default": "right",
+      "description": "The way a flowing effect blows (those that list it: wind, current). Another trigger of it while it blows turns it; things without a face that a story moves meanwhile go its way."
     }
   },
   "reduceMotionValues": {
@@ -784,7 +790,8 @@
       "rampOut": 1.5,
       "parameters": [
         "intensity",
-        "duration"
+        "duration",
+        "toward"
       ],
       "reduceMotion": "damped-0.4"
     },
@@ -1247,7 +1254,8 @@
       "rampOut": 1.5,
       "parameters": [
         "intensity",
-        "duration"
+        "duration",
+        "toward"
       ],
       "reduceMotion": "damped-0.4"
     },

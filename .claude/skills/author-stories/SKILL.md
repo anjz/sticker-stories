@@ -178,8 +178,9 @@ exactly per `FORMAT.md`:
   walks) needs `by` when the words say the other one (`{ladybug:go on
   flower by fly}`, `{ladybug:enter by fly}`), on each such move; never
   write a way the sticker has no move for; **what the wind carries goes
-  right** (`go away right`, `go to <place> right`: the wind effect blows
-  left to right); **where the words put a character, a move takes it**
+  the way it blows** (right unless `{canvas:wind left}`; words that turn
+  the wind need a `wind` cue the other way, and anything without a face
+  then goes back with it by itself); **where the words put a character, a move takes it**
   and **where the words put two characters together** (pushing, giving,
   hugging, whispering to, sitting by, playing with, following) **a move
   brings one to the other first** (`{seal:go to ball}` before "she

@@ -72,6 +72,20 @@ struct EffectTriggerTests {
         #expect(f.warnings.count == 7)
     }
 
+    @Test func aFlowingCanvasEffectBlowsTheWayItSays() throws {
+        let f = try file("""
+            { "schema": 1, "triggers": [
+              { "at": 1.0, "effect": "wind", "toward": "left" },
+              { "at": 2.0, "effect": "wind" },
+              { "at": 3.0, "effect": "wind", "toward": "up" },
+              { "at": 4.0, "effect": "rain", "toward": "left" }
+            ] }
+            """)
+        #expect(f.canvasTriggers.map(\.options.toward) == [.left, nil, nil, nil])
+        // An unknown way, and a way on rain, which does not blow.
+        #expect(f.warnings.count == 2)
+    }
+
     @Test func malformedJSONAndWrongShapesThrow() {
         #expect(throws: EffectTriggerFile.DecodingError.self) { try file("{ not json") }
         #expect(throws: EffectTriggerFile.DecodingError.self) { try file("[]") }

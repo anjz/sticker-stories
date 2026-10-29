@@ -1,8 +1,10 @@
 import SpriteKit
+import StickerStoriesKit
 
-/// `wind`: pale wisps of air sweeping across the scene from the left, each
-/// riding a slow wave, with small specks tumbling along faster and lower.
-/// Both come in from the left edge when the wind gets up.
+/// `wind`: pale wisps of air sweeping across the scene the way it blows
+/// (from the left unless it blows left), each riding a slow wave, with small
+/// specks tumbling along faster and lower. Both come in from the edge it
+/// blows from when the wind gets up, and turn round when it turns.
 @MainActor
 final class WindPainter: CanvasEffectPainter {
     let node = SKNode()
@@ -43,8 +45,12 @@ final class WindPainter: CanvasEffectPainter {
     }
 
     func apply(strength: Double, at time: TimeInterval) {
-        wisps.apply(strength: strength, at: time)
-        specks.apply(strength: strength, at: time)
+        apply(strength: strength, at: time, flow: nil)
+    }
+
+    func apply(strength: Double, at time: TimeInterval, flow: CanvasFlow?) {
+        wisps.apply(strength: strength, at: time, flow: flow)
+        specks.apply(strength: strength, at: time, flow: flow)
     }
 
     func didTurnOff() {

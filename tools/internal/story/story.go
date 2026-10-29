@@ -7,6 +7,7 @@
 package story
 
 import (
+	"cmp"
 	"encoding/json"
 	"fmt"
 	"maps"
@@ -321,7 +322,7 @@ type Cue struct {
 	GoKind     string // a move's kind: to, on, under, away, back
 	Target     string // a move's target: a sticker or (to) a feature
 	By         string // the move an entrance or a move goes by ("" = its usual one)
-	Toward     string // the side a move goes toward: left, right ("" = where it goes decides)
+	Toward     string // the side a move goes toward: left, right ("" = where it goes decides); a flowing canvas effect's way
 	Another    bool   // go to a place: another part of it than where it is ("on to the next tree")
 	Backwards  bool   // a move: backwards, facing away from the way it goes (only when the words say so)
 	Prop       string // go to a sticker: beside a prop it holds out ({seagull:go to girl kite})
@@ -357,6 +358,8 @@ type CanvasEffect struct {
 	Settings      []string  `json:"settings"`
 	Parameters    []string  `json:"parameters"`
 	DurationRange []float64 `json:"durationRange"`
+	// DefaultDuration is how long it stays on when the cue gives no time.
+	DefaultDuration float64 `json:"defaultDuration"`
 	// RampIn and RampOut are how long it takes to build up and to clear,
 	// in seconds, within its duration.
 	RampIn  float64 `json:"rampIn"`
@@ -395,6 +398,10 @@ func LoadCatalog(path string) (*Catalog, error) {
 	}
 	return c, nil
 }
+
+// Flows reports whether the canvas effect blows one way across the scene
+// (it takes toward: the wind, the current), carrying what has no face.
+func (e CanvasEffect) Flows() bool { return slices.Contains(e.Parameters, "toward") }
 
 // SuitsSetting reports whether the canvas effect may be used in a pack
 // with the given setting.
@@ -746,7 +753,7 @@ func parseCue(inner string) (Cue, error) {
 			c.Another = true
 		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind != "" && p == GoBackwards:
 			c.Backwards = true
-		case c.Effect == GoEffect && c.Sticker != "" && c.GoKind != "" && (p == GoLeft || p == GoRight):
+		case (c.Effect == GoEffect && c.Sticker != "" && c.GoKind != "" || c.Canvas) && (p == GoLeft || p == GoRight):
 			if c.Toward != "" {
 				return c, fmt.Errorf("a move goes one way: left or right")
 			}
@@ -1191,6 +1198,8 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		// The feature each sticker is on ("" when beside or on another,
 		// or off the canvas), for actions that happen in one place.
 		place := map[string]string{}
+		// The way each flowing canvas effect blows (the wind), while it does.
+		blowing := map[string]string{}
 		home := func(id string) string {
 			if on := m.LandsOn[id]; len(on) > 0 {
 				return on[0]
@@ -1214,9 +1223,13 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 			if c.Canvas {
 				if c.Stop {
 					shape = append(shape, CanvasTarget+":"+c.Effect+":"+CanvasStop)
+					delete(blowing, c.Effect)
 				} else {
 					canvasCues++
-					shape = append(shape, CanvasTarget+":"+c.Effect)
+					shape = append(shape, CanvasTarget+":"+c.Effect+":"+c.Toward)
+					if cat.Canvas[c.Effect].Flows() {
+						blowing[c.Effect] = cmp.Or(c.Toward, GoRight)
+					}
 				}
 				validateCanvasCue(&is, lang, c, m, cat)
 				continue
@@ -1246,6 +1259,15 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 			if c.Effect == GoEffect {
 				shape = append(shape, c.Sticker+":go:"+c.GoKind+":"+c.Target+":"+c.By+":"+c.Toward+":"+fmt.Sprint(c.Another)+":"+fmt.Sprint(c.Backwards)+":"+c.Prop)
 				validateGoCue(&is, lang, c, m, inStory, enterAt)
+				// What has no face goes with the wind (render.CarryWithFlows
+				// sends it that way when the cue does not say).
+				if len(m.Expressions[c.Sticker]) == 0 && c.Toward != "" {
+					for _, fx := range slices.Sorted(maps.Keys(blowing)) {
+						if blowing[fx] != c.Toward {
+							is.warnf("%s: cue %s: the %s blows %s, and %s goes with it — drop %s or turn the %s first ({%s:%s %s})", lang, c.Raw, fx, blowing[fx], c.Sticker, c.Toward, fx, CanvasTarget, fx, c.Toward)
+						}
+					}
+				}
 				if c.Prop != "" {
 					validatePropGo(&is, lang, c, m, held[c.Target])
 				}
@@ -1929,6 +1951,18 @@ func validateLiveCue(is *Issues, lang string, c Cue, m Manifest) {
 	}
 }
 
+// flowing lists the canvas effects that blow a way, sorted.
+func flowing(cat *Catalog) []string {
+	var out []string
+	for name, e := range cat.Canvas {
+		if e.Flows() {
+			out = append(out, name)
+		}
+	}
+	sort.Strings(out)
+	return out
+}
+
 // validateCanvasCue checks a {canvas:…} cue: a known canvas effect that
 // suits the pack's setting, with only an intensity and a duration.
 func validateCanvasCue(is *Issues, lang string, c Cue, m Manifest, cat *Catalog) {
@@ -1947,7 +1981,10 @@ func validateCanvasCue(is *Issues, lang string, c Cue, m Manifest, cat *Catalog)
 	if c.Repeat > 0 || c.Loop || c.Hold || c.Color != "" {
 		is.errorf("%s: cue %s: a canvas effect takes only an intensity and a duration (Ns), or stop", lang, c.Raw)
 	}
-	if c.Stop && (c.Duration > 0 || c.Intensity != 0) {
+	if c.Toward != "" && !e.Flows() {
+		is.errorf("%s: cue %s: %s does not blow a way; only %s take left or right", lang, c.Raw, c.Effect, strings.Join(flowing(cat), " and "))
+	}
+	if c.Stop && (c.Duration > 0 || c.Intensity != 0 || c.Toward != "") {
 		is.errorf("%s: cue %s: a stop takes nothing else; it ends the %s started before it", lang, c.Raw, c.Effect)
 	}
 	if c.Duration > 0 && !inRange(c.Duration, e.DurationRange) {

@@ -87,7 +87,7 @@ struct EffectCatalogTests {
             #expect(entry.defaultDuration == definition.defaultDuration, Comment(rawValue: entry.name))
             #expect(entry.rampIn == definition.rampIn && entry.rampOut == definition.rampOut, Comment(rawValue: entry.name))
             #expect(entry.durationRange == [CanvasEffectOptions.durationRange.lowerBound, CanvasEffectOptions.durationRange.upperBound], Comment(rawValue: entry.name))
-            #expect(entry.parameters == ["intensity", "duration"], Comment(rawValue: entry.name))
+            #expect(entry.parameters == ["intensity", "duration"] + (name.flows ? ["toward"] : []), Comment(rawValue: entry.name))
             let reduced = EffectPolicy(reduceMotion: true).adjusted(name, CanvasEffectOptions(intensity: 1))
             #expect(entry.reduceMotion == reduceMotionLabel(reduced?.intensity), Comment(rawValue: entry.name))
         }

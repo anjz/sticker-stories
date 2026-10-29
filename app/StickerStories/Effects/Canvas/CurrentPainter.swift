@@ -1,9 +1,11 @@
 import SpriteKit
+import StickerStoriesKit
 
-/// `current`: a gentle current sweeping through the water from the left.
+/// `current`: a gentle current sweeping through the water the way it flows
+/// (from the left unless it flows left; it turns when it turns).
 /// Pale wisps show the moving water, and pale specks and little green bits
 /// of weed are carried along on it, each bobbing on its own wave; all of
-/// them come in from the left edge when the current starts.
+/// them come in from the edge it flows from when the current starts.
 @MainActor
 final class CurrentPainter: CanvasEffectPainter {
     let node = SKNode()
@@ -48,7 +50,11 @@ final class CurrentPainter: CanvasEffectPainter {
     }
 
     func apply(strength: Double, at time: TimeInterval) {
-        for field in [wisps, specks, weed] { field.apply(strength: strength, at: time) }
+        apply(strength: strength, at: time, flow: nil)
+    }
+
+    func apply(strength: Double, at time: TimeInterval, flow: CanvasFlow?) {
+        for field in [wisps, specks, weed] { field.apply(strength: strength, at: time, flow: flow) }
     }
 
     func didTurnOff() {

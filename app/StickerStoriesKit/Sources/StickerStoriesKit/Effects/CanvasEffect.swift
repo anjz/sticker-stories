@@ -59,6 +59,10 @@ public enum CanvasEffectName: String, CaseIterable, Codable, Sendable, Hashable 
     }
 
     public func suits(_ setting: PackSetting) -> Bool { settings.contains(setting) }
+
+    /// Whether it blows one way across the scene (`toward`): the wind, the
+    /// current under the sea. What it carries goes that way.
+    public var flows: Bool { self == .wind || self == .current }
 }
 
 /// One canvas effect's fixed shape. Content tunes `intensity` and
@@ -201,10 +205,14 @@ public struct CanvasEffectOptions: Equatable, Sendable, Hashable {
     public var intensity: Double = CanvasEffectOptions.defaultIntensity
     /// Seconds the effect stays on, ramps included; `nil` = the effect's default.
     public var duration: TimeInterval? = nil
+    /// The way a flowing effect blows (`CanvasEffectName.flows`); `nil` =
+    /// to the right.
+    public var toward: GoTrigger.Side? = nil
 
-    public init(intensity: Double = CanvasEffectOptions.defaultIntensity, duration: TimeInterval? = nil) {
+    public init(intensity: Double = CanvasEffectOptions.defaultIntensity, duration: TimeInterval? = nil, toward: GoTrigger.Side? = nil) {
         self.intensity = intensity
         self.duration = duration
+        self.toward = toward
     }
 
     /// Options with every value inside the documented ranges.

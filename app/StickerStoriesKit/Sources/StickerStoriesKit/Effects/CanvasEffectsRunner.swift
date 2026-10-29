@@ -129,6 +129,40 @@ public enum CanvasEffectEvaluator {
         return amount
     }
 
+    /// A flowing effect (`CanvasEffectName.flows`) at `time`: which way it
+    /// blows (`heading`, +1 to the right, −1 to the left) and how far it has
+    /// carried things since its first start (`travel`, seconds at full
+    /// speed, signed: the integral of the heading), so what drifts in it is
+    /// placed from the timeline like everything else. A later start of the
+    /// same effect turns it, easing over `turnTime` from the way it blew.
+    /// Nil before it first starts.
+    public static func flow(of name: CanvasEffectName, in effects: [ActiveCanvasEffect], at time: TimeInterval) -> CanvasFlow? {
+        let starts = effects.filter { $0.name == name && $0.startTime <= time }
+            .sorted { ($0.startTime, $0.sequence) < ($1.startTime, $1.sequence) }
+        guard let first = starts.first else { return nil }
+        var heading = first.options.toward == .left ? -1.0 : 1.0
+        var travel = 0.0
+        for (index, effect) in starts.enumerated() {
+            let to = effect.options.toward == .left ? -1.0 : 1.0
+            let span = (index + 1 < starts.count ? starts[index + 1].startTime : time) - effect.startTime
+            let from = heading
+            if span < turnTime {
+                let x = span / turnTime
+                // ∫ smoothstep = x³ − x⁴/2.
+                let eased: Double = x * x * x * (1 - x / 2)
+                travel += from * span + (to - from) * turnTime * eased
+                heading = from + (to - from) * smoothstep(x)
+            } else {
+                travel += from * turnTime + (to - from) * turnTime / 2 + to * (span - turnTime)
+                heading = to
+            }
+        }
+        return CanvasFlow(heading: heading, travel: travel)
+    }
+
+    /// Seconds a flowing effect takes to turn round.
+    public static let turnTime: TimeInterval = 1.5
+
     public static let snowBuild: TimeInterval = 14
     public static let sunMelt: TimeInterval = 6
     public static let rainMelt: TimeInterval = 9
@@ -137,6 +171,17 @@ public enum CanvasEffectEvaluator {
     static func smoothstep(_ t: Double) -> Double {
         let x = t.clamped(to: 0...1)
         return x * x * (3 - 2 * x)
+    }
+}
+
+/// A flowing canvas effect's way and travel (`CanvasEffectEvaluator.flow`).
+public struct CanvasFlow: Equatable, Sendable {
+    public var heading: Double
+    public var travel: Double
+
+    public init(heading: Double, travel: Double) {
+        self.heading = heading
+        self.travel = travel
     }
 }
 
@@ -203,6 +248,16 @@ public final class CanvasEffectsRunner {
         }
         coverTime = time
         return strengths
+    }
+
+    /// The flowing effects started so far, at the current time
+    /// (`CanvasEffectEvaluator.flow`).
+    public func flows() -> [CanvasEffectName: CanvasFlow] {
+        var result: [CanvasEffectName: CanvasFlow] = [:]
+        for name in Set(started.map(\.name)) where name.flows {
+            result[name] = CanvasEffectEvaluator.flow(of: name, in: started, at: currentTime)
+        }
+        return result
     }
 
     private func seek(to time: TimeInterval) {

@@ -30,8 +30,8 @@ public struct GoTrigger: Equatable, Sendable {
     /// The move it goes by (`{ladybug:go on flower by fly}`), one of the
     /// sticker's moves; nil for its usual one.
     public var by: String?
-    /// The way it goes across the screen, when the story says (the wind
-    /// blows left to right, so what it carries goes right): off the canvas
+    /// The way it goes across the screen, when the story says (what the
+    /// wind carries goes the way it blows then): off the canvas
     /// by that side, to a place on that side of where it is, beside a
     /// sticker on that side of it. Only `to` and `away`.
     public var toward: Side?
@@ -668,7 +668,7 @@ public enum MotionPlanner {
                     ).first ?? []
                     if let toward = go.toward {
                         // Only the part of the place at least a width away on
-                        // that side of it (the wind carries it right); none
+                        // that side of it (the way the wind carries it); none
                         // there: the far end.
                         let edge = state.center.x + (toward == .right ? 1 : -1) * me.size.width
                         let side = rects.compactMap { r -> StageRect? in

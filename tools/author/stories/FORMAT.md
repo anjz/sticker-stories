@@ -343,11 +343,15 @@ Off {fox:go away} ran Fox, out of the meadow.      off the canvas
   not out.
 - **Which way it goes**: add `left` or `right` to `go to` and `go away`
   when the words say which way across the screen — above all when **the
-  wind** carries something: the wind effect blows from left to right, so
-  whatever it blows away, along or up goes **right** (`Whoosh! {leaf:go
-  away right} Off went the leaf`, `Butterfly {butterfly:go to branches
-  right} tumbled up and away`). `go to <place> right` lands on the part of
-  that place to its right, `go to <sticker> right` on that sticker's
+  wind** carries something: it goes the way the wind blows (right unless
+  the cue says `left`, "Canvas cues"), so whatever it blows away, along or
+  up goes that way (`Whoosh! {leaf:go away right} Off went the leaf`,
+  `Butterfly {butterfly:go to branches right} tumbled up and away`). A
+  sticker with **no face** (a ball, a bottle, a boat) that moves while the
+  wind or a current blows goes with it by itself — `storyaudio` gives the
+  move the wind's way at that moment — and storycheck warns when the cue
+  sends it the other way. `go to <place> right` lands on the part of that
+  place to its right, `go to <sticker> right` on that sticker's
   right-hand side. Not on `go on`, `go under` or `go back` (an error).
 - **Some actions happen in one place** (`storycheck -plan`, "place": the
   woodpecker taps only on a trunk). The app takes the character there
@@ -448,6 +452,7 @@ Weather and light over the whole scene use the reserved target `canvas`
 {canvas:fog 0.4}          thin mist
 {canvas:sunshine} {canvas:rainbow 10s}
 {canvas:rain stop}        the rain started before clears from this word
+{canvas:wind 0.7 left}    the wind blows from right to left
 ```
 
 - `effect` is one of the names in `docs/effects/effects.json` under
@@ -461,7 +466,14 @@ Weather and light over the whole scene use the reserved target `canvas`
   `current`, `sandcloud` (underwater packs). The pack's
   `setting` in its manifest decides which are allowed; a `none` pack
   allows no canvas cues. Only an intensity and a duration (`Ns`) may
-  follow — no `xN`, `loop`, `hold` or colour — or `stop` alone.
+  follow — no `xN`, `loop`, `hold` or colour — or `stop` alone; `wind`
+  and `current` also take the way they blow, `left` or `right` (the
+  default).
+- **The wind turns on the words.** A `wind` cue while the wind blows the
+  other way turns it there: the wind drops, then picks up the other way,
+  and what it carries from then on goes the new way ("Then the wind
+  turned, `{canvas:wind 0.7 left}` …"). Words that say it turns need that
+  cue; a cue the same way only makes it stronger or longer.
 - **`stop` ends it on the words.** `{canvas:<effect> stop}` ends the
   latest effect of that kind started before it: it stays at full strength
   up to the stop's word and clears from there. `storyaudio` sets the

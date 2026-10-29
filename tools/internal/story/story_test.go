@@ -109,6 +109,9 @@ func TestParseCanvasCues(t *testing.T) {
 	if !cues[1].Canvas || cues[1].Effect != "sunshine" || cues[1].WordIndex != 6 {
 		t.Errorf("sunshine cue parsed wrong: %+v", cues[1])
 	}
+	if cues, _, errs := ParseCues("{canvas:wind 0.7 left} Whoosh."); len(errs) != 0 || cues[0].Toward != GoLeft || cues[0].Intensity != 0.7 {
+		t.Errorf("wind blowing left parsed wrong: %+v %v", cues, errs)
+	}
 }
 
 func TestParseTagsSoundsAndSegments(t *testing.T) {
@@ -214,6 +217,7 @@ func TestValidationFailures(t *testing.T) {
 			l.Text += " {canvas:rain} rain {canvas:rain stop 4s}"
 			s.Languages["en-US"] = l
 		}, "a stop takes nothing else"},
+		{"a way on rain", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain left}"; s.Languages["en-US"] = l }, "rain does not blow a way; only current and wind"},
 		{"canvas cue too short", func(s *Story) { l := s.Languages["en-US"]; l.Text += " {canvas:rain 0.5s}"; s.Languages["en-US"] = l }, "stays on for 1–120 s"},
 	}
 	for _, tc := range cases {
@@ -368,6 +372,25 @@ func TestCanvasCuesFollowTheSetting(t *testing.T) {
 	named.Stickers = append(named.Stickers, "canvas")
 	if is := Validate(goodStory(), named, cat); len(is.Errors) == 0 || !strings.Contains(is.Errors[0], "reserved") {
 		t.Errorf("a sticker called canvas must be rejected: %v", is.Errors)
+	}
+}
+
+func TestWhatHasNoFaceGoesWithTheWind(t *testing.T) {
+	cat := testCatalog(t)
+	s := goodStory()
+	for _, lang := range []string{"en-US", "es-ES"} {
+		l := s.Languages[lang]
+		l.Text += " {canvas:wind 0.6 left} Whoosh! {fox:go away left} And {canvas:wind right} back {fox:go back}"
+		s.Languages[lang] = l
+	}
+	if is := Validate(s, forest, cat); len(is.Errors) != 0 || strings.Contains(strings.Join(is.Warnings, "\n"), "goes with it") {
+		t.Fatalf("going with the wind, and turning it: %v %v", is.Errors, is.Warnings)
+	}
+	l := s.Languages["en-US"]
+	l.Text += " {fox:go away left}"
+	s.Languages["en-US"] = l
+	if w := strings.Join(Validate(s, forest, cat).Warnings, "\n"); !strings.Contains(w, "the wind blows right, and fox goes with it") {
+		t.Errorf("against the wind should warn: %v", w)
 	}
 }
 

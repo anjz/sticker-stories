@@ -42,7 +42,9 @@ used here: `snow` (not a beach day), `leaves` (no trees), `fireflies`
 
 - `sunshine`: warm light over everything, a bright sunny day.
 - `clouds`: soft cloud shadows drift over; the painted clouds stay.
-- `wind`: blows left to right; anything carried by it goes right.
+- `wind`: blows left to right, or right to left with `left`; a `wind` cue
+  the other way turns it. Anything carried by it goes its way (anything
+  without a face does so by itself).
 - `rain` / `rainbow`: rain falls over the scene, a rainbow arcs after.
   The sand stays golden: no puddles, no mud.
 - `fog`: a sea mist over the scene; the lighthouse fades but stays painted.
