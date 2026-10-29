@@ -116,6 +116,10 @@ public enum StageDirector {
     /// The shortest a move is squeezed to so it gets there by the story's
     /// next cue on it (`Director.needed`).
     static let minTravelForCue: TimeInterval = 1.5
+    /// How long before its cue a visitor may set off, rather than hurry in.
+    static let earlyEntrance: TimeInterval = 10
+    /// The longest an entrance set off early takes.
+    static let maxEntrance: TimeInterval = 12
     /// A flyer that cannot hover circles this many of its widths either
     /// side of its spot, and comes this much of its depth nearer.
     static let lapAcross = 0.9
@@ -1271,6 +1275,16 @@ public enum StageDirector {
                     states[i].by = move?.flies == true ? move?.id : states[i].by
                 }
                 var leg = makeLeg(i, to: target, start: entrance.at, kind: .entrance, forceFly: stage.entrance == .fly)
+                // Hurried in, its next cue too soon for its own pace (a boat
+                // gliding past): it sets off earlier, before the words name
+                // it, and comes in at its own pace.
+                var early = entrance.at
+                for _ in 0..<4 where leg.rate > 1.05 && leg.gait != .fly && leg.gait != .fade {
+                    let sooner = max(0, entrance.at - StageDirector.earlyEntrance, early - leg.duration * (leg.rate - 1))
+                    if sooner > early - 0.05 { break }
+                    early = sooner
+                    leg = makeLeg(i, to: target, start: early, kind: .entrance, forceFly: stage.entrance == .fly)
+                }
                 if leg.gait == .fly, leg.move != nil, hovers(i, at: target) { leg.stays = true }
                 // Off stage it already faces the way it comes in: no turn on the way.
                 leg.facingFrom = leg.facingTo
@@ -1483,11 +1497,14 @@ public enum StageDirector {
                 // (Leaning: well out in open water, where the waves are, and
                 // no more than a few widths that way, when it can.)
                 let thatWay = spots.filter { gone($0) >= width }
-                let out = { (least: Double) in thatWay.filter { (world.outInWater($0.position.ground) ?? 0) >= least } }
+                // (Short of the boats' deep water: `StageWorld.deepWater`.)
+                let out = { (least: Double) in
+                    thatWay.filter { (least..<StageWorld.deepWater).contains(world.outInWater($0.position.ground) ?? 0) }
+                }
                 let side = thatWay
                 // (Seen there comes first: the farthest out where it is.)
                 var leaned: [StagePose]?
-                for tier in [out(0.7), out(0.5), out(StageWorld.openWater), thatWay] where leaning != nil && leaned == nil {
+                for tier in [out(0.6), out(0.45), out(StageWorld.openWater), thatWay] where leaning != nil && leaned == nil {
                     let near = tier.filter { gone($0) <= 3 * width }
                     let sorted = (near.isEmpty ? tier : near).sorted { ($0.position - here.position).length < ($1.position - here.position).length }
                     let seen = sorted.filter { blocking(i, at: $0.position) < 0.2 && hiddenWithHeadroom(i, at: $0.position) < 0.2 }
@@ -1880,6 +1897,19 @@ public enum StageDirector {
                             let legs = states[i].legs.count
                             travel(i, to: StagePose(position: exit.onGround, support: .ground, facing: states[i].pose.facing), begin: begin)
                             begin = max(begin, states[i].busyUntil + tail(i, since: legs))
+                            // Up out of it to a place: a step or two on from
+                            // the edge, no further (never a rush up the beach
+                            // after riding in).
+                            states[i].by = nil
+                            let away = target.position.ground - exit, reach = states[i].actor.width
+                            if case .ground = target.support, away.length > reach {
+                                let belongs = self.belongs(i, way(i).move), world = self.world
+                                if let near = stride(from: reach * 0.6, through: reach, by: 0.01).lazy
+                                    .map({ exit + away * ($0 / away.length) }).first(where: { world.canStand(at: $0, belongsIn: belongs) })
+                                {
+                                    target.position = near.onGround
+                                }
+                            }
                         }
                         states[i].by = nil
                     }
@@ -2128,7 +2158,9 @@ public enum StageDirector {
                 // its feet always keep pace with the ground.
                 let speed = move.stride * me.width / cycle
                 let natural = length / max(speed, 0.01)
-                var most = StageDirector.maxTravel
+                // (An entrance set off early takes longer: it is not
+                // keeping the story waiting.)
+                var most = kind == .entrance && start < now - 0.05 ? StageDirector.maxEntrance : StageDirector.maxTravel
                 switch target.support {
                 case .beside, .on, .under: if kind == .move { most = StageDirector.maxTravelToSomeone }
                 default: break

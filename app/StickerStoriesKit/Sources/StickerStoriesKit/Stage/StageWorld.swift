@@ -214,8 +214,9 @@ public struct StageWorld: Sendable {
     public static let openWater = 1.0 / 3
 
     /// How far out a boat (a floater `big` or bigger) rests or is sent:
-    /// in deep water, well clear of the sand.
-    public static let deepWater = 0.65
+    /// in deep water, well clear of the sand, and beyond where a surfer
+    /// waits for the waves.
+    public static let deepWater = 0.8
 
     /// How far out into its water `p` is, as the viewer sees it: 0 at the
     /// waterline in front, 1 at the water's far edge, up the art at that
