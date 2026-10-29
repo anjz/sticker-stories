@@ -3759,7 +3759,7 @@
     {
       "id": "ride-wave",
       "kind": "action",
-      "description": "the surfer boy lies down on his surfboard and paddles hard for a moment as a wave comes, pops up and rides it, crouched low with his arms out for balance, then sits back down on his board with a grin.",
+      "description": "the surfer boy lies down on his surfboard and paddles hard for a moment as a wave comes, pops up and rides it in towards the beach, crouched low with his arms out for balance, then sits back down on his board with a grin.",
       "pause": {
         "frame": 22,
         "shows": "the surfer boy riding up a wave, board nose-up, crouched with his arms out for balance"
@@ -5186,7 +5186,12 @@
       ],
       "place": [
         "sea"
-      ]
+      ],
+      "drift": {
+        "from": 19,
+        "to": 27,
+        "shoreward": 0.5
+      }
     },
     {
       "id": "clap",

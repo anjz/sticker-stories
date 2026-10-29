@@ -2,7 +2,7 @@
   "id": "ride-wave",
   "sticker": "surfer",
   "kind": "action",
-  "description": "the surfer boy lies down on his surfboard and paddles hard for a moment as a wave comes, pops up and rides it, crouched low with his arms out for balance, then sits back down on his board with a grin.",
+  "description": "the surfer boy lies down on his surfboard and paddles hard for a moment as a wave comes, pops up and rides it in towards the beach, crouched low with his arms out for balance, then sits back down on his board with a grin.",
   "stickerBox": {
     "x": 0.26302,
     "y": 0.13932,
@@ -27,6 +27,11 @@
       "intensity": 0.8
     }
   ],
+  "drift": {
+    "from": 19,
+    "to": 27,
+    "shoreward": 0.5
+  },
   "puppet": {
     "rig": "anims/surfer.rig.json",
     "keys": [
