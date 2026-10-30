@@ -1723,7 +1723,7 @@ var canvasWords = map[string]map[string]*regexp.Regexp{
 // with no word boundaries (none between their words).
 func init() {
 	more := map[string]map[string]string{
-		"fog":           {"de": `\b(nebel|neblig|dunst)\b`, "fr": `\b(brouillard|brume)\b`, "it": `\b(nebbia|foschia)\b`, "ja": `(霧|もや)`, "zh": `(霧|薄霧)`},
+		"fog":           {"de": `\b(nebel|neblig|dunst)\b`, "fr": `\b(brouillard|brume)\b`, "it": `\b(nebbia|foschia)\b`, "ja": `(霧)`, "zh": `(霧|薄霧)`},
 		"rain":          {"de": `\b(regen|regnet|regnete|nieselregen)\b`, "fr": `\b(pluie|pleut|pleuvait|pleuvoir|bruine)\b`, "it": `\b(pioggia|piove|pioveva|piovere|pioggerella)\b`, "ja": `(雨)`, "zh": `(雨)`},
 		"snow":          {"de": `\b(schnee|schneit|schneite|schneeflocken?)\b`, "fr": `\b(neige|neigeait|flocons?)\b`, "it": `\b(neve|nevica|nevicava|fiocchi)\b`, "ja": `(雪)`, "zh": `(雪)`},
 		"rainbow":       {"de": `\bregenbogen\b`, "fr": `\barc-en-ciel\b`, "it": `\barcobaleno\b`, "ja": `(虹|にじ)`, "zh": `(彩虹)`},
