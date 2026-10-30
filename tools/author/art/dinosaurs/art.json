@@ -299,8 +299,9 @@
       "stage": {
         "entrance": "fly",
         "on": [
-          "sky",
-          "rocks"
+          "rocks",
+          "branches",
+          "meadow"
         ]
       },
       "size": "small",
@@ -323,6 +324,7 @@
       "stage": {
         "entrance": "fly",
         "on": [
+          "branches",
           "rocks",
           "meadow"
         ]
@@ -348,7 +350,7 @@
         "entrance": "fly",
         "on": [
           "sky",
-          "lagoon"
+          "meadow"
         ]
       },
       "size": "tiny",
@@ -396,8 +398,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "lagoon",
-          "shore"
+          "lagoon"
         ]
       },
       "size": "tiny",
@@ -420,6 +421,7 @@
       "stage": {
         "entrance": "fly",
         "on": [
+          "branches",
           "rocks",
           "meadow"
         ]
@@ -594,8 +596,316 @@
   ],
   "scene": {
     "layout": "layout.jpg",
-    "background": "TODO",
-    "foreground": "TODO"
+    "background": "A sunny, peaceful prehistoric valley seen from a small child's eye height, laid out as in the layout image but WITHOUT the tall trees at its left and right edges (those are painted later on their own layers): a calm turquoise lagoon on the left and middle with a gently sloping sandy-mud shore curving across the left half, smooth pebbles along it and four giant round water-lily pads near the left bank; its far side and the distance on the right ringed by low, layered ochre-and-terracotta mesas and flat-topped red rocks with a few small monkey-puzzle trees and cycads on top; far away, just right of the centre behind the mesas, a small, gentle, green-sloped, flat-topped dormant volcano with NO smoke, NO steam, NO lava and NO glow, calm and friendly; soft lilac-blue hills behind; a wide, flat, open meadow of short ferns and grass across the centre and right, the middle wide open; one big, low, flat-topped warm terracotta rock ledge standing on the meadow in the right middle ground, as in the layout, its broad flat sunny top good for basking; a small golden fan-leaved ginkgo and a clump of giant green horsetails at the back right of the meadow; a clear warm pale-blue sky with a few round soft clouds. Exotic prehistoric plants only: it must not look like a European woodland. No animals, no dinosaurs, no birds, no people.",
+    "foreground": "Only a few low prehistoric plants in the two bottom corners, nothing else: in the bottom-left corner a small cycad with stiff palm-like fronds and one golden cone, a curled fern fiddlehead beside it and a round mossy boulder; in the bottom-right corner a low clump of short giant-horsetail shoots and small ferns beside a mossy terracotta stone. Each clump is no wider than a sixth of the picture and no taller than a tenth of it, sitting on the bottom edge. No trees, no trunks. The bottom edge between the two corners, the whole centre and everything above stay fully transparent.",
+    "foregroundWideOwn": "The same two small corner clumps at the wide picture's own bottom corners, each the same size as in the attached 4:3 foreground; everything else fully transparent.",
+    "foregroundDown": 0.04,
+    "layers": [
+      {
+        "id": "araucaria",
+        "prompt": "a tall monkey-puzzle tree (araucaria) seen whole from its roots to its top, about two and a half times as tall as it is wide: a straight, tall brown trunk with rough, scaly bark and a slight lean, a few roots and small ferns at its foot; at the top an umbrella-shaped crown of long curving branches in tiers, each covered in soft-looking dark-green scale leaves like ropes; a little below the crown one long, nearly level branch reaches out to the left, good to sit on.",
+        "area": {
+          "x": 0.3067,
+          "y": -0.34,
+          "width": 1.0,
+          "height": 1.3
+        },
+        "wideArea": {
+          "x": 0.45,
+          "y": -0.24,
+          "width": 1.0,
+          "height": 1.2
+        },
+        "toBottom": 0.1
+      },
+      {
+        "id": "treefern",
+        "prompt": "a big tree fern seen whole from its roots to the top of its crown, about one and a half times as tall as it is wide: a stout, shaggy brown trunk covered in old frond scales, slightly curved, a few roots and small ferns at its foot; a huge, full, lacy crown of long arching bright-green fronds spreading out to both sides at the top, one young frond still curled into a fiddlehead; below the crown one sturdy old frond stalk reaches out to the right, nearly level, good to sit on.",
+        "area": {
+          "x": -0.36,
+          "y": -0.24,
+          "width": 1.0,
+          "height": 1.2
+        },
+        "wideArea": {
+          "x": -0.44,
+          "y": -0.14,
+          "width": 1.0,
+          "height": 1.1
+        },
+        "toBottom": 0.1
+      }
+    ],
+    "features": {
+      "sky": {
+        "description": "the open sky over the valley, between the tree fern and the monkey-puzzle tree",
+        "air": true,
+        "areas": [
+          {
+            "x": [
+              0.38,
+              0.66
+            ],
+            "y": [
+              0.66,
+              0.84
+            ]
+          }
+        ]
+      },
+      "lagoon": {
+        "description": "the calm turquoise lagoon on the left, with giant water-lily pads near its left bank",
+        "words": {
+          "en-US": [
+            "lagoon",
+            "lake"
+          ],
+          "es-ES": [
+            "laguna",
+            "lago"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.24,
+              0.56
+            ],
+            "y": [
+              0.38,
+              0.47
+            ]
+          },
+          {
+            "x": [
+              0.06,
+              0.22
+            ],
+            "y": [
+              0.44,
+              0.48
+            ]
+          }
+        ],
+        "wideAreas": [
+          {
+            "x": [
+              -0.08,
+              0.56
+            ],
+            "y": [
+              0.4,
+              0.47
+            ]
+          }
+        ],
+        "edge": [
+          {
+            "x": [
+              0.27,
+              0.44
+            ],
+            "y": [
+              0.27,
+              0.3
+            ]
+          },
+          {
+            "x": [
+              0.47,
+              0.53
+            ],
+            "y": [
+              0.33,
+              0.37
+            ]
+          },
+          {
+            "x": [
+              0.56,
+              0.64
+            ],
+            "y": [
+              0.41,
+              0.46
+            ]
+          }
+        ]
+      },
+      "shore": {
+        "description": "the sandy-mud bank with pebbles along the near side of the lagoon",
+        "words": {
+          "en-US": [
+            "shore",
+            "bank"
+          ],
+          "es-ES": [
+            "orilla"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.27,
+              0.44
+            ],
+            "y": [
+              0.27,
+              0.3
+            ]
+          },
+          {
+            "x": [
+              0.47,
+              0.53
+            ],
+            "y": [
+              0.33,
+              0.37
+            ]
+          },
+          {
+            "x": [
+              0.56,
+              0.64
+            ],
+            "y": [
+              0.41,
+              0.46
+            ]
+          }
+        ]
+      },
+      "meadow": {
+        "description": "the wide open meadow of short ferns and grass in the middle and on the right",
+        "words": {
+          "en-US": [
+            "meadow",
+            "ferns"
+          ],
+          "es-ES": [
+            "prado",
+            "helechos"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.3,
+              0.88
+            ],
+            "y": [
+              0.08,
+              0.25
+            ]
+          },
+          {
+            "x": [
+              0.66,
+              0.92
+            ],
+            "y": [
+              0.42,
+              0.49
+            ]
+          }
+        ]
+      },
+      "rocks": {
+        "description": "the flat top of the big warm terracotta rock ledge on the right of the meadow, good for basking",
+        "words": {
+          "en-US": [
+            "rock",
+            "ledge"
+          ],
+          "es-ES": [
+            "roca",
+            "repisa"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.68,
+              0.92
+            ],
+            "y": [
+              0.365,
+              0.39
+            ]
+          }
+        ],
+        "wideAreas": [
+          {
+            "x": [
+              0.68,
+              1.08
+            ],
+            "y": [
+              0.365,
+              0.39
+            ]
+          }
+        ]
+      },
+      "branches": {
+        "description": "the long low frond stalk of the tree fern on the left and the low branch of the monkey-puzzle tree on the right",
+        "words": {
+          "en-US": [
+            "branch",
+            "branches"
+          ],
+          "es-ES": [
+            "rama",
+            "ramas"
+          ]
+        },
+        "areas": [
+          {
+            "x": [
+              0.07,
+              0.22
+            ],
+            "y": [
+              0.735,
+              0.75
+            ]
+          },
+          {
+            "x": [
+              0.76,
+              0.9
+            ],
+            "y": [
+              0.755,
+              0.77
+            ]
+          }
+        ],
+        "wideAreas": [
+          {
+            "x": [
+              -0.08,
+              0.05
+            ],
+            "y": [
+              0.7,
+              0.715
+            ]
+          },
+          {
+            "x": [
+              0.95,
+              1.1
+            ],
+            "y": [
+              0.7,
+              0.715
+            ]
+          }
+        ]
+      }
+    }
   },
   "notes": {
     "stickers": "Every character faces slightly left, whole body visible. Living things get faces; nothing inorganic does (eggs, log, puddle, big leaf). Nothing scary: no teeth, no sharp claws, no predation. Edit prompts freely; a changed prompt re-renders only that sticker."
