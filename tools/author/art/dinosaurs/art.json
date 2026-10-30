@@ -185,8 +185,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "meadow",
-          "rocks"
+          "meadow"
         ]
       },
       "size": "medium",
@@ -209,8 +208,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "meadow",
-          "rocks"
+          "meadow"
         ]
       },
       "size": "medium",
@@ -259,7 +257,6 @@
         "entrance": "hop",
         "on": [
           "meadow",
-          "rocks",
           "shore"
         ]
       },
@@ -444,8 +441,7 @@
       "stage": {
         "entrance": "hop",
         "on": [
-          "meadow",
-          "rocks"
+          "meadow"
         ]
       },
       "size": "tiny",
@@ -865,7 +861,7 @@
         ]
       },
       "rocks": {
-        "description": "the flat top of the big warm terracotta rock ledge on the right of the meadow, good for basking",
+        "description": "the flat top of the big warm terracotta rock ledge on the right of the meadow: only flyers land up there",
         "words": {
           "en-US": [
             "rock",
@@ -897,6 +893,21 @@
             "y": [
               0.365,
               0.39
+            ]
+          }
+        ]
+      },
+      "rockside": {
+        "description": "the meadow right at the foot of the big flat rock, in front of it, where walkers come up to the rock",
+        "areas": [
+          {
+            "x": [
+              0.68,
+              1.0
+            ],
+            "y": [
+              0.2,
+              0.245
             ]
           }
         ]
