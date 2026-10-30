@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "too-hot-to-sunbathe",
+  "pack": "dinosaurs",
+  "featured": [
+    "spinosaurus",
+    "stegosaurus",
+    "ankylosaurus"
+  ],
+  "supporting": [],
+  "tags": [
+    "funny",
+    "sunny"
+  ],
+  "premise": "On the hottest day Spinosaurus, Stegosaurus and Ankylosaurus lie in the sun showing off who can soak up the most — sail, plates, bumpy back — until they are far too warm, and Spinosaurus dives into the lagoon and splashes them all cool.",
+  "inspiration": "The three-way boast of folk tales (who is the greatest?) melted by the sun and settled with a splash.",
+  "lesson": "Showing off is no fun when you could be sharing.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "Too Hot to Sunbathe",
+      "text": "{canvas:sunshine 1} {sfx:heat} [proudly] It was the hottest day of the year, and three friends lay in the sun to see who could soak up the most sunshine. {spinosaurus:enter} Spinosaurus {spinosaurus:live sunbathe hold} lifted his big sail up high. \"My sail catches the most!\" {stegosaurus:enter} Stegosaurus {stegosaurus:live sunbathe} lay down and lifted his plates. \"My plates catch more!\" {ankylosaurus:enter} Ankylosaurus {ankylosaurus:glow 0.5 #FFD27A} spread out his wide, bumpy back. \"I'm the biggest of all!\" So there they lay, baking. {stegosaurus:tint #FF9B7A 0.4 2s} Warmer… {ankylosaurus:tint #FF9B7A 0.4 2s} hotter… {stegosaurus:face sad} {ankylosaurus:face sad} [sighs] PHEW. {spinosaurus:live sunbathe resume} \"Too… hot!\" puffed Spinosaurus. He jumped up, {spinosaurus:go to lagoon by swim} hurried down to the lagoon and dived right in. {sfx:splash} SPLOOSH! {spinosaurus:face happy} \"Ahhh! Come in, it's lovely!\" {stegosaurus:go to lagoon} {ankylosaurus:go to lagoon} The other two hurried down to the water's edge. {spinosaurus:live splash} Spinosaurus slapped his tail, splash, splash, {stegosaurus:spray} {ankylosaurus:spray} and cool water flew all over them. {stegosaurus:face happy} {ankylosaurus:face happy} [laughs] {ankylosaurus:live laugh} Ankylosaurus giggled till his bumpy back bounced. \"So who won?\" asked Stegosaurus. [happily] \"The lagoon!\" said everyone. {all:hop} {canvas:sunshine stop}"
+    },
+    "es-ES": {
+      "title": "Demasiado sol",
+      "text": "{canvas:sunshine 1} {sfx:heat} [proudly] Era el día más caluroso del año, y tres amigos se tumbaron al sol a ver quién se calentaba más. {spinosaurus:enter} Espinosaurio {spinosaurus:live sunbathe hold} levantó bien alta su gran vela. —¡Mi vela es la que más sol coge! {stegosaurus:enter} Estegosaurio {stegosaurus:live sunbathe} se tumbó y levantó sus placas. —¡Pues mis placas cogen más! {ankylosaurus:enter} Anquilosaurio {ankylosaurus:glow 0.5 #FFD27A} estiró su ancha espalda llena de bultos. —¡Yo soy el más grande! Y allí se quedaron, tostándose. {stegosaurus:tint #FF9B7A 0.4 2s} Más calor… {ankylosaurus:tint #FF9B7A 0.4 2s} más calor… {stegosaurus:face sad} {ankylosaurus:face sad} [sighs] UF. {spinosaurus:live sunbathe resume} —¡Qué… calor! —resopló Espinosaurio. Se levantó de un salto, {spinosaurus:go to lagoon by swim} bajó corriendo a la laguna y se tiró al agua. {sfx:splash} ¡CHOF! {spinosaurus:face happy} —¡Aaah! ¡Venid, que está buenísima! {stegosaurus:go to lagoon} {ankylosaurus:go to lagoon} Los otros dos bajaron deprisa hasta el borde del agua. {spinosaurus:live splash} Espinosaurio dio coletazos, ¡plas, plas!, {stegosaurus:spray} {ankylosaurus:spray} y el agua fresquita les salpicó por todas partes. {stegosaurus:face happy} {ankylosaurus:face happy} [laughs] {ankylosaurus:live laugh} Anquilosaurio se rio tanto que le botaba la espalda. —¿Y quién ha ganado? —preguntó Estegosaurio. [happily] —¡La laguna! —dijeron todos. {all:hop} {canvas:sunshine stop}"
+    }
+  },
+  "sounds": {
+    "heat": {
+      "prompt": "a hot, still summer afternoon in a grassy valley, lazy buzzing insects, very calm, realistic field recording",
+      "seconds": 20,
+      "loop": true
+    },
+    "splash": {
+      "prompt": "a big animal jumping into a calm lake, one big happy splash and drips, realistic",
+      "seconds": 1.5
+    }
+  }
+}

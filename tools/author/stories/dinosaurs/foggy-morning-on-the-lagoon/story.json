@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "foggy-morning-on-the-lagoon",
+  "pack": "dinosaurs",
+  "featured": [
+    "plesiosaur",
+    "turtle",
+    "ammonite"
+  ],
+  "supporting": [],
+  "tags": [
+    "adventure",
+    "gentle"
+  ],
+  "premise": "Fog sits thick on the lagoon and Turtle and Ammonite can't find each other by the giant lily pads; Plesiosaur rises up tall, his long neck poking out above the fog, calls \"This way!\", and guides Turtle there just as the sun melts the fog away.",
+  "inspiration": "The guiding light of folk tales (the lantern in the window), turned living: a friend with a long neck.",
+  "lesson": "A friend who can see further helps the others find their way.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "The Foggy Lagoon",
+      "text": "{canvas:fog 0.9} {sfx:lapping} [softly] One morning, a thick white fog lay on the lagoon. {turtle:enter} {turtle:go to lagoon by swim} Turtle swam out to meet {ammonite:enter} {ammonite:go to lagoon} Ammonite by the giant lily pads, the way she did every morning. But where were they? {turtle:live look-around} She looked this way. She looked that way. {turtle:face sad} Only white. [nervously] \"Ammonite? Where are you?\" Somewhere in the fog, {ammonite:live peek} Ammonite peeked out of her shell. \"I'm here! But… where's here?\" {ammonite:face sad} Then, out of the fog, something rose up. And up. And UP. {plesiosaur:enter} {plesiosaur:go to lagoon} {plesiosaur:face happy} {plesiosaur:live stretch-neck hold} It was Plesiosaur, stretching his long neck high above the fog. [excited] \"I can see you both!\" he called. \"Turtle, this way! Straight on… a little to the left…\" {turtle:go to ammonite by swim} {sfx:paddle} Paddle, paddle, paddle… {turtle:face happy} {ammonite:face happy} and there was Ammonite, right beside her. {canvas:fog stop} {canvas:sunshine 0.7} [happily] Then the sun came out, and the fog melted away. {plesiosaur:live stretch-neck resume} Plesiosaur settled back down. {turtle:hearts} {ammonite:hearts} \"On foggy mornings,\" said Turtle, \"we'll just look for your neck.\" {plesiosaur:wobble} {canvas:sunshine stop}"
+    },
+    "es-ES": {
+      "title": "Niebla en la laguna",
+      "text": "{canvas:fog 0.9} {sfx:lapping} [softly] Una mañana, una niebla blanca y espesa cubría la laguna. {turtle:enter} {turtle:go to lagoon by swim} Tortuga salió nadando a buscar a {ammonite:enter} {ammonite:go to lagoon} Amonites junto a los nenúfares gigantes, como cada mañana. Pero ¿dónde estaban? {turtle:live look-around} Miró a un lado. Miró al otro. {turtle:face sad} Todo blanco. [nervously] —¿Amonites? ¿Dónde estás? En algún lugar de la niebla, {ammonite:live peek} Amonites asomó la cabeza de su concha. —¡Estoy aquí! Pero… ¿dónde es aquí? {ammonite:face sad} Entonces, de entre la niebla, algo empezó a subir. Y a subir. Y a SUBIR. {plesiosaur:enter} {plesiosaur:go to lagoon} {plesiosaur:face happy} {plesiosaur:live stretch-neck hold} Era Plesiosaurio, estirando su largo cuello por encima de la niebla. [excited] —¡Os veo a las dos! —gritó—. Tortuga, por aquí. Todo recto… un poquito a la izquierda… {turtle:go to ammonite by swim} {sfx:paddle} Chap, chap, chap… {turtle:face happy} {ammonite:face happy} y allí estaba Amonites, justo a su lado. {canvas:fog stop} {canvas:sunshine 0.7} [happily] Entonces salió el sol y la niebla se deshizo. {plesiosaur:live stretch-neck resume} Plesiosaurio volvió a acomodarse. {turtle:hearts} {ammonite:hearts} —Las mañanas de niebla —dijo Tortuga— buscaremos tu cuello. {plesiosaur:wobble} {canvas:sunshine stop}"
+    }
+  },
+  "sounds": {
+    "lapping": {
+      "prompt": "soft water lapping in a still, misty lake at dawn, very quiet, realistic field recording",
+      "seconds": 25,
+      "loop": true
+    },
+    "paddle": {
+      "prompt": "a small animal paddling through calm water, soft little splashes, realistic",
+      "seconds": 2
+    }
+  }
+}

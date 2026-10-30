@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "id": "parasaurolophus-calls-at-sunset",
+  "pack": "dinosaurs",
+  "featured": [
+    "parasaurolophus",
+    "gallimimus",
+    "ankylosaurus"
+  ],
+  "supporting": [],
+  "tags": [
+    "bedtime",
+    "home",
+    "learning"
+  ],
+  "premise": "At sunset Parasaurolophus wants to call her friends from far across the valley; her little hum is far too soft, so she takes a deep breath and blows it through her long hollow crest — HONK — and they come to sleep beside her.",
+  "inspiration": "The shepherd's horn of folk tales (calling the flock home at dusk), with a horn she was born with.",
+  "lesson": "Use the gift you have.",
+  "learning": "Parasaurolophus's long crest was hollow inside; blowing air through it made a deep, booming call.",
+  "languages": {
+    "en-US": {
+      "title": "The Bedtime Honk",
+      "text": "{canvas:sunset 0.8} {sfx:evening} [softly] The sun was going down over the valley, gold and pink. {parasaurolophus:enter} Parasaurolophus looked out across the valley. Bedtime! But her friends were still far away: {gallimimus:enter} Gallimimus, running about, and {ankylosaurus:enter} Ankylosaurus, sniffing the ground, slow as ever. {parasaurolophus:live talk} \"Hmm, hmm,\" she hummed. \"Time for bed!\" Nobody heard. {parasaurolophus:face sad} It was much too soft. Then she had an idea. {parasaurolophus:face happy} Her long crest was hollow inside, just like a horn. So she took a big, deep breath… {parasaurolophus:live honk hold} {sfx:honk} and blew it all through her crest. HOOOONK! Far away, {gallimimus:face surprised} {gallimimus:live look-around} Gallimimus stopped and looked. [excited] \"That's our call!\" {gallimimus:go to parasaurolophus} And off she ran. {ankylosaurus:face happy} {ankylosaurus:go to parasaurolophus} Ankylosaurus came plodding after, step… by… step. {parasaurolophus:live honk resume} {canvas:night 0.7} Up came the moon. {ankylosaurus:live sleep hold} Ankylosaurus lay down and was asleep before he'd even finished his yawn. {gallimimus:face sleeping} [whispers] And Parasaurolophus gave one last honk, the tiniest one of all. {parasaurolophus:pulse 0.3} Honk. Goodnight."
+    },
+    "es-ES": {
+      "title": "El toque de buenas noches",
+      "text": "{canvas:sunset 0.8} {sfx:evening} [softly] El sol se ponía sobre el valle, dorado y rosa. {parasaurolophus:enter} Parasaurolophus miró a lo lejos. ¡Hora de dormir! Pero sus amigos andaban todavía muy lejos: {gallimimus:enter} Gallimimus, corriendo de acá para allá, y {ankylosaurus:enter} Anquilosaurio, olisqueando el suelo, despacito como siempre. {parasaurolophus:live talk} —Mmm, mmm —canturreó—. ¡A la cama! Nadie la oyó. {parasaurolophus:face sad} Era un sonido demasiado flojito. Entonces se le ocurrió una idea. {parasaurolophus:face happy} Su larga cresta estaba hueca por dentro, igual que una trompeta. Así que cogió aire, muchísimo aire… {parasaurolophus:live honk hold} {sfx:honk} y lo sopló todo por la cresta. ¡TUUUUUU! A lo lejos, {gallimimus:face surprised} {gallimimus:live look-around} Gallimimus se paró a mirar. [excited] —¡Nos están llamando! {gallimimus:go to parasaurolophus} Y allá que fue, corriendo. {ankylosaurus:face happy} {ankylosaurus:go to parasaurolophus} Anquilosaurio fue detrás, paso… a… paso. {parasaurolophus:live honk resume} {canvas:night 0.7} Salió la luna. {ankylosaurus:live sleep hold} Anquilosaurio se tumbó y se durmió antes de terminar el bostezo. {gallimimus:face sleeping} [whispers] Y Parasaurolophus dio un último toque, el más chiquitito de todos. {parasaurolophus:pulse 0.3} Tu. Buenas noches."
+    }
+  },
+  "sounds": {
+    "evening": {
+      "prompt": "a calm warm evening in a quiet valley, soft distant insects and a gentle breeze, realistic field recording",
+      "seconds": 30,
+      "loop": true
+    },
+    "honk": {
+      "prompt": "a deep, warm, booming call blown through a long hollow horn, like a big gentle animal calling across a valley at dusk, realistic, no voice",
+      "seconds": 2.5
+    }
+  }
+}

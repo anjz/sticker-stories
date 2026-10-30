@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "the-sleepy-egg",
+  "pack": "dinosaurs",
+  "featured": [
+    "eggs",
+    "triceratops",
+    "brachiosaurus"
+  ],
+  "supporting": [],
+  "tags": [
+    "bedtime",
+    "gentle"
+  ],
+  "premise": "At bedtime Mama Triceratops settles beside her nest; Brachiosaurus hums a slow lullaby, the fireflies come out, and one egg taps, cracks and hatches — a baby who yawns and falls asleep right there in his shell.",
+  "inspiration": "The cradle-song tradition (folk lullabies, 'Hush-a-bye') with a newcomer who arrives just in time to fall asleep.",
+  "lesson": "A lullaby makes a welcome.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "The Sleepy Egg",
+      "text": "{eggs:enter} {canvas:sunset 0.8} {sfx:night} [softly] The sun was going down, and {triceratops:enter} {triceratops:go to eggs} Mama Triceratops settled down beside her nest. {triceratops:face happy} Three speckled eggs, snug in the ferns. {eggs:live wobble-all} They wobbled, one, two, three, as if the babies inside were wriggling. [whispers] \"Shhh,\" said Mama. \"Bedtime.\" {brachiosaurus:enter} {brachiosaurus:go to triceratops} Along came Brachiosaurus, slow and gentle. \"I'll hum them a lullaby,\" he said. {brachiosaurus:live sway} Hmm-mmm, hmm-mmm, he hummed, swaying his long neck. {canvas:night 0.8} Up came the moon. {canvas:fireflies 0.4} Out came the fireflies, to listen. {eggs:live hatch-sleepy hold} Then… {sfx:tap} tap, tap… crack! {triceratops:face surprised} Out popped a baby, in an eggshell cap. He gave a great big yawn… [yawns] and fell fast asleep, right there in his shell. {triceratops:face happy} {triceratops:hearts} [softly] \"Hello, little one,\" whispered Mama. \"And goodnight.\" {triceratops:live sleep hold} She laid her head down beside him and closed her eyes. {brachiosaurus:face sleeping} Brachiosaurus hummed one last, slow note. {brachiosaurus:pulse 0.3} And the other two eggs? They could wait till morning."
+    },
+    "es-ES": {
+      "title": "El huevo dormilón",
+      "text": "{eggs:enter} {canvas:sunset 0.8} {sfx:night} [softly] El sol se ponía, y {triceratops:enter} {triceratops:go to eggs} Mamá Triceratops se tumbó junto a su nido. {triceratops:face happy} Tres huevos moteados, calentitos entre los helechos. {eggs:live wobble-all} Se movieron, uno, dos y tres, como si los bebés se estiraran por dentro. [whispers] —Chist —dijo Mamá—. A dormir. {brachiosaurus:enter} {brachiosaurus:go to triceratops} Llegó Braquiosaurio, despacio y con cuidado. —Les tarareo una nana —dijo. {brachiosaurus:live sway} Mmm-mmm, mmm-mmm, tarareó, meciendo su largo cuello. {canvas:night 0.8} Salió la luna. {canvas:fireflies 0.4} Salieron las luciérnagas, a escuchar. {eggs:live hatch-sleepy hold} Y entonces… {sfx:tap} toc, toc… ¡crac! {triceratops:face surprised} Asomó un bebé con un gorrito de cáscara. Bostezó muy fuerte… [yawns] y se quedó dormido, allí mismo, en su cascarón. {triceratops:face happy} {triceratops:hearts} [softly] —Hola, pequeñín —susurró Mamá—. Y buenas noches. {triceratops:live sleep hold} Apoyó la cabeza a su lado y cerró los ojos. {brachiosaurus:face sleeping} Braquiosaurio tarareó una última nota, muy despacito. {brachiosaurus:pulse 0.3} ¿Y los otros dos huevos? Esos podían esperar a mañana."
+    }
+  },
+  "sounds": {
+    "night": {
+      "prompt": "a quiet warm night in a valley by a lake, soft distant insects, very calm, realistic field recording",
+      "seconds": 30,
+      "loop": true
+    },
+    "tap": {
+      "prompt": "two tiny taps from inside an eggshell, then a soft little crack, close up, realistic",
+      "seconds": 1.5
+    }
+  }
+}

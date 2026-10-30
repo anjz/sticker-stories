@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "the-leaf-that-tickles",
+  "pack": "dinosaurs",
+  "featured": [
+    "fern",
+    "leaf",
+    "psittacosaurus"
+  ],
+  "supporting": [],
+  "tags": [
+    "funny",
+    "weather"
+  ],
+  "premise": "After a short summer rain the sun comes out, but drip, drip — Psittacosaurus, dry under the big leaf, thinks Fern is crying; Fern giggles that it's only the leftover rain and it tickles, and then the big leaf drips on Psittacosaurus's nose and he finds out for himself.",
+  "inspiration": "The country saying that trees rain twice (once with the rain, once after), turned into a tickle.",
+  "lesson": "Ask before you worry — and some surprises tickle.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "The Rain That Tickles",
+      "text": "{fern:enter} {leaf:enter} {canvas:rain 0.6} {sfx:rain} {leaf:wobble} Pitter-patter. A short summer rain fell on the valley. {fern:face happy} {fern:live perk-up} Fern lifted every frond and drank it all in. {psittacosaurus:enter} Little Psittacosaurus came hurrying {psittacosaurus:go under leaf} under the big leaf to keep dry. {canvas:rain stop} Then, as quick as it came, the rain stopped. {canvas:sunshine 0.8} Out came the sun. {psittacosaurus:face happy} But, drip. Drip. Drip. {psittacosaurus:live look-around} Psittacosaurus looked this way and that. Who was still dripping? It was Fern! Drops were rolling off his fronds, drip, drip, drip. {psittacosaurus:face sad} [gently] \"Oh, Fern,\" said Psittacosaurus, \"are you crying?\" {fern:live wiggle} Fern wiggled all over and giggled. [giggles] \"Crying? No! It's the leftover rain, and it TICKLES!\" Just then, {leaf:live drip} the big leaf dripped too. {sfx:plip} Plip! {psittacosaurus:face surprised} Right on Psittacosaurus's nose. [laughs] Then he {psittacosaurus:face happy} {psittacosaurus:live laugh} laughed and laughed. \"It DOES tickle!\" [happily] So that day the rain fell twice: once from the sky, and once, just for fun, from the leaves."
+    },
+    "es-ES": {
+      "title": "Las gotas que hacen cosquillas",
+      "text": "{fern:enter} {leaf:enter} {canvas:rain 0.6} {sfx:rain} {leaf:wobble} Plic, ploc. Cayó sobre el valle una lluvia de verano, cortita. {fern:face happy} {fern:live perk-up} Helecho levantó todas sus frondas y se la bebió enterita. {psittacosaurus:enter} El pequeño Psitacosaurio corrió {psittacosaurus:go under leaf} a meterse bajo la hoja grande para no mojarse. {canvas:rain stop} Y, tan deprisa como había llegado, la lluvia paró. {canvas:sunshine 0.8} Salió el sol. {psittacosaurus:face happy} Pero, plic. Plic. Plic. {psittacosaurus:live look-around} Psitacosaurio miró a un lado y a otro. ¿Quién seguía goteando? ¡Era Helecho! Le resbalaban gotitas por las frondas, plic, plic, plic. {psittacosaurus:face sad} [gently] —Ay, Helecho —dijo Psitacosaurio—, ¿estás llorando? {fern:live wiggle} Helecho se meneó entero y soltó una risita. [giggles] —¿Llorando? ¡Qué va! Son las gotas que sobran de la lluvia, ¡y me hacen COSQUILLAS! Justo entonces, {leaf:live drip} la hoja grande también goteó. {sfx:plip} ¡Plic! {psittacosaurus:face surprised} En toda la nariz de Psitacosaurio. [laughs] Y {psittacosaurus:face happy} {psittacosaurus:live laugh} se echó a reír. —¡Es verdad, hacen cosquillas! [happily] Así que aquel día llovió dos veces: una desde el cielo, y otra, solo por diversión, desde las hojas."
+    }
+  },
+  "sounds": {
+    "rain": {
+      "prompt": "a short gentle summer shower pattering on big leaves and grass, realistic field recording",
+      "seconds": 10,
+      "loop": true
+    },
+    "plip": {
+      "prompt": "a single big water drop falling from a leaf onto something soft, a bright little plip, realistic, close",
+      "seconds": 0.6
+    }
+  }
+}

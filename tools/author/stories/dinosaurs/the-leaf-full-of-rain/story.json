@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "the-leaf-full-of-rain",
+  "pack": "dinosaurs",
+  "featured": [
+    "leaf",
+    "archaeopteryx",
+    "beetle"
+  ],
+  "supporting": [],
+  "tags": [
+    "funny",
+    "weather"
+  ],
+  "premise": "Rain patters on the big leaf while Archaeopteryx and Beetle shelter underneath, warm and dry; but the leaf fills up and bends lower and lower until all its rain slides off at once — SPLOSH — onto Archaeopteryx, while Beetle stays dry under his shell, and she laughs as the sun comes out.",
+  "inspiration": "The overfull pot of folk humour (the magic porridge pot that wouldn't stop), turned small: the leaf holds all the rain it can, then gives it back at once.",
+  "lesson": "A soaking can be the funniest part of the day.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "The Leaf Full of Rain",
+      "text": "{leaf:enter} {canvas:rain 0.6} {sfx:rain} Pitter-patter, pitter-patter. Down came the rain. {archaeopteryx:enter} Archaeopteryx and {beetle:enter} Beetle hurried {archaeopteryx:go under leaf} {beetle:go under leaf} under the big leaf. {archaeopteryx:face happy} \"Warm and dry!\" said Archaeopteryx. {leaf:live bounce} Plip, plop, the raindrops bounced on top. But the rain kept coming, and the leaf filled up. {leaf:live droop hold} It bent lower, and lower, and LOWER. {archaeopteryx:face surprised} [nervously] \"Er… Leaf?\" Beetle knew what was coming. {beetle:live tuck} He tucked his legs in and sat flat and still under his shiny shell. Then, with one last drop, {leaf:live droop resume} the big leaf bent so low that all its rain slid off at once. {sfx:splosh} SPLOSH! Right onto Archaeopteryx. {archaeopteryx:live shiver} \"Brrr!\" She shivered and shook, drip, drip, from her beak to her tail feathers. {beetle:face happy} Beetle popped up, {beetle:sparkle} dry as a pebble. Every drop had run straight off his shell. {canvas:rain stop} {canvas:sunshine 0.8} Then the rain stopped, and out came the sun. {archaeopteryx:face happy} [laughs] {archaeopteryx:live laugh} Archaeopteryx laughed and fluffed her wet feathers. \"Well,\" she said, \"now I'm the cleanest one in the whole valley!\""
+    },
+    "es-ES": {
+      "title": "La hoja llena de lluvia",
+      "text": "{leaf:enter} {canvas:rain 0.6} {sfx:rain} Plic, ploc, plic, ploc. Empezó a llover. {archaeopteryx:enter} Arqueoptérix y {beetle:enter} Escarabajo corrieron {archaeopteryx:go under leaf} {beetle:go under leaf} a meterse bajo la hoja grande. {archaeopteryx:face happy} —¡Aquí, sequitos y calentitos! —dijo Arqueoptérix. {leaf:live bounce} Plic, ploc, las gotas rebotaban encima. Pero seguía lloviendo, y la hoja se iba llenando de agua. {leaf:live droop hold} Se doblaba más, y más, y MÁS. {archaeopteryx:face surprised} [nervously] —Esto… ¿Hoja? Escarabajo sabía lo que iba a pasar. {beetle:live tuck} Metió las patas y se quedó quietecito bajo su caparazón brillante. Y entonces, con una última gota, {leaf:live droop resume} la hoja grande se dobló tanto que toda el agua resbaló de una vez. {sfx:splosh} ¡CHOF! Justo encima de Arqueoptérix. {archaeopteryx:live shiver} —¡Brrr! Tiritó y se sacudió, chorreando de la cabeza a la cola. {beetle:face happy} Escarabajo asomó, {beetle:sparkle} seco como una piedrecita: el agua le había resbalado por el caparazón. {canvas:rain stop} {canvas:sunshine 0.8} Entonces paró de llover y salió el sol. {archaeopteryx:face happy} [laughs] {archaeopteryx:live laugh} Arqueoptérix se echó a reír y ahuecó las plumas mojadas. —Bueno —dijo—, ¡ahora soy la más limpia de todo el valle!"
+    }
+  },
+  "sounds": {
+    "rain": {
+      "prompt": "gentle steady summer rain pattering on big leaves and grass, calm, realistic field recording",
+      "seconds": 30,
+      "loop": true
+    },
+    "splosh": {
+      "prompt": "a big leafful of rainwater pouring off all at once onto the ground, one heavy wet splosh, realistic",
+      "seconds": 1.2
+    }
+  }
+}

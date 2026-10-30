@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "id": "the-hooting-log",
+  "pack": "dinosaurs",
+  "featured": [
+    "log",
+    "dragonfly",
+    "beetle"
+  ],
+  "supporting": [],
+  "tags": [
+    "curiosity",
+    "weather"
+  ],
+  "premise": "On a windy afternoon a soft \"hooo\" comes out of the hollow log; Dragonfly thinks someone is snoring in there, Beetle tucks down flat, then bravely creeps up and peeks in — nobody — it is only the wind blowing through, so they hum along with it.",
+  "inspiration": "The noise-in-the-night folk tale (the sound that turns out to be the wind) made sunny and small: the stranger is the wind, and it sings.",
+  "lesson": "A brave little look turns a mystery into a song.",
+  "learning": "",
+  "languages": {
+    "en-US": {
+      "title": "The Hooting Log",
+      "text": "{log:enter} {canvas:wind 0.5} [curious] It was a windy afternoon. {log:live blow} {sfx:hoot} Hooo… A soft, hooting sound came out of the old hollow log. {dragonfly:enter} {dragonfly:go to log} Dragonfly zipped over to look. {dragonfly:live zigzag} Zig, zag, round the log she went. [excited] \"Somebody's snoring in there!\" {beetle:enter} {beetle:go to dragonfly} Beetle came too, but when he heard it… {sfx:hoot} hooo… {beetle:face surprised} {beetle:live tuck hold} he tucked down flat under his shell and kept very, very still. [whispers] \"Who is it?\" {dragonfly:face surprised} \"Hello?\" called Dragonfly into the log. Nobody answered. Only… hooo. [short pause] Beetle took a deep breath. {beetle:live tuck resume} He popped back up. Then, step by step, {beetle:go to log} he crept to the dark, round end of the log, and peeked inside. Nobody! Just a breeze, blowing in his face. Whoosh! {beetle:face happy} [laughs] \"It's the wind!\" laughed Beetle. \"The wind is blowing through the log!\" {log:live rustle} The little fern on top swayed. {dragonfly:face happy} So when the wind blew again… {log:live blow} hooo… Dragonfly and Beetle hummed along: {dragonfly:hop} {beetle:hop} hmmm… [happily] And that was the windy-day song of the hollow log. {canvas:wind stop}"
+    },
+    "es-ES": {
+      "title": "El tronco que ululaba",
+      "text": "{log:enter} {canvas:wind 0.5} [curious] Era una tarde de viento. {log:live blow} {sfx:hoot} Uuuh… Del viejo tronco hueco salía un sonido suave, como un ulular. {dragonfly:enter} {dragonfly:go to log} Libélula se acercó zumbando a mirar. {dragonfly:live zigzag} Zig, zag, dio vueltas al tronco. [excited] —¡Ahí dentro hay alguien roncando! {beetle:enter} {beetle:go to dragonfly} Escarabajo llegó también, pero al oírlo… {sfx:hoot} uuuh… {beetle:face surprised} {beetle:live tuck hold} se agachó bajo su caparazón y se quedó quieto, quietísimo. [whispers] —¿Quién será? {dragonfly:face surprised} —¿Hola? —dijo Libélula, asomándose al tronco. Nadie contestó. Solo… uuuh. [short pause] Escarabajo respiró hondo. {beetle:live tuck resume} Se levantó. Y luego, pasito a pasito, {beetle:go to log} se acercó a la boca oscura y redonda del tronco, y miró dentro. ¡Nadie! Solo una brisa que le soplaba en la cara. ¡Fiuuu! {beetle:face happy} [laughs] —¡Es el viento! —se rio Escarabajo—. ¡El viento sopla por dentro del tronco! {log:live rustle} El helechito de encima se meció. {dragonfly:face happy} Así que, cuando el viento volvió a soplar… {log:live blow} uuuh… Libélula y Escarabajo cantaron con él: {dragonfly:hop} {beetle:hop} mmmm… [happily] Y esa fue la canción del tronco hueco en los días de viento. {canvas:wind stop}"
+    }
+  },
+  "sounds": {
+    "hoot": {
+      "prompt": "wind blowing across the open end of a hollow wooden log, a soft low hooting hum, realistic",
+      "seconds": 2
+    }
+  }
+}
