@@ -672,7 +672,7 @@ func (r *renderer) run() error {
 		if err := r.scene(sheet, sheetFP); err != nil {
 			failures = append(failures, "scene: "+err.Error())
 		} else if !r.o.dry && len(r.c.cfg.Scene.Layers) > 0 {
-			if err := checkSceneCover(r.out(), r.c.cfg.Scene.Layers); err != nil {
+			if err := checkSceneCover(r.out(), r.c.cfg.Scene.Layers, r.c.cfg.Scene.ForegroundDown); err != nil {
 				failures = append(failures, "scene: "+err.Error())
 			}
 		}
@@ -1612,10 +1612,18 @@ func sceneCover(paths []string) (float64, error) {
 }
 
 // checkSceneCover fails a scene whose foreground and layers together
-// cover more than maxSceneCover of either rendition.
-func checkSceneCover(outDir string, layers []sceneLayer) error {
+// cover more than maxSceneCover of either rendition — the foreground as
+// installed, lowered by `down` (scene.foregroundDown).
+func checkSceneCover(outDir string, layers []sceneLayer, down float64) error {
 	for _, suffix := range []string{"", "-wide"} {
-		paths := []string{filepath.Join(outDir, "art", "foreground"+suffix+".png")}
+		foreground := filepath.Join(outDir, "art", "foreground"+suffix+".png")
+		if lowered := filepath.Join(outDir, "art", "foreground"+suffix+".lowered.png"); down > 0 && exists(foreground) {
+			if err := lowerImage(foreground, lowered, down); err != nil {
+				return err
+			}
+			foreground = lowered
+		}
+		paths := []string{foreground}
 		for _, l := range layers {
 			paths = append(paths, filepath.Join(outDir, "art", "layer-"+l.ID+suffix+".png"))
 		}
@@ -2103,7 +2111,7 @@ func runInstall(args []string) error {
 	// The scene's layers, far to near, each with its wide rendition when
 	// the pack has wide art.
 	if len(c.cfg.Scene.Layers) > 0 {
-		if err := checkSceneCover(outDir, c.cfg.Scene.Layers); err != nil {
+		if err := checkSceneCover(outDir, c.cfg.Scene.Layers, c.cfg.Scene.ForegroundDown); err != nil {
 			return err
 		}
 	}
