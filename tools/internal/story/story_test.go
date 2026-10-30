@@ -1129,3 +1129,30 @@ func TestFirstMentionInsideJapaneseWords(t *testing.T) {
 		t.Errorf("bird found at %d", i)
 	}
 }
+
+func TestMentionWordForms(t *testing.T) {
+	for in, want := range map[string]string{"Fox's": "fox", "l'eau,": "eau", "d’Ourson": "ourson", "dell'acqua": "acqua", "don't": "don't"} {
+		if got := mentionWord(in); got != want {
+			t.Errorf("mentionWord(%q) = %q, want %q", in, got, want)
+		}
+	}
+	for _, w := range []string{"hasen", "rehs", "waschbären", "teiches", "reh"} {
+		target := map[string]string{"hasen": "hase", "rehs": "reh", "waschbären": "waschbär", "teiches": "teich", "reh": "reh"}[w]
+		if !sameWord("de-DE", w, target) {
+			t.Errorf("%q should count as %q in German", w, target)
+		}
+	}
+	if sameWord("en-US", "foxes", "fox") || sameWord("de-DE", "rehkitz", "reh") {
+		t.Error("only declined forms count")
+	}
+}
+
+func TestCanvasWordsKnowAccentedLetters(t *testing.T) {
+	re := canvasWords["wind"]["fr"]
+	if re.MatchString("il s'est éventé") || !re.MatchString("le vent souffle") || !re.MatchString("du vent.") {
+		t.Error("vent must match as a whole word only")
+	}
+	if !canvasWords["rain"]["en"].MatchString("rain fell") || canvasWords["rain"]["en"].MatchString("brain") {
+		t.Error("English boundaries still hold")
+	}
+}

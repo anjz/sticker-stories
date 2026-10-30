@@ -53,11 +53,11 @@ it to see how freely a beat can be retold.
 - **Places by their words.** When a sentence puts a character in a place
   of the scene, use one of that place's `words` in your language (in
   `art.json`, `scene.features`), and keep the move cue that takes it there.
-- **Length by narration time**: within 25 % of the English, and in the
-  100–150 band (the checker warns on both: words, or for Japanese and
-  Chinese, characters converted by measured speaking speed). German runs
-  10–15 % more words for the same time, which is fine; Japanese runs
-  long — cut, do not pad.
+- **Length by narration time**: within 25 % of the English (the checker
+  warns past it: words, or for Japanese and Chinese, characters converted
+  by measured speaking speed). German and French run 10–20 % more words
+  for the same story, which is fine — no need to cut flourishes for a
+  fixed band; Japanese runs long — cut, do not pad.
 - **Audio tags** (`[excited]`, `[whispers]`, …) stay in English, as in
   FORMAT.md; place them where your sentences need them, at most six.
 - **Character names** of people stay: Lola is Lola, Nico is Nico, written
@@ -85,8 +85,8 @@ it to see how freely a beat can be retold.
   the simple kanji a child sees in books; the sticker names exactly as
   given in art.json. Name endings, the same in every story: a he in the
   cast table is 〜くん (キツネくん), a she 〜さん (カエルさん), plants and
-  things bare (どんぐり, お花); a name that already says it is little
-  (アヒルの子, 子ジカ) stays bare. Rich onomatopoeia. Cues sit inside the text with no spaces
+  things bare (どんぐり, お花, キノコ, まつぼっくり); a name that already
+  says it is little (アヒルの子, 子ジカ, ことり, こぐま) stays bare. Rich onomatopoeia. Cues sit inside the text with no spaces
   around them (`キツネは{fox:live jump}ジャンプしました。`). A quoted line
   is 「…」; after its closing 」, leave a space before the narration
   runs on (`{fox:says} 「やった！」 とキツネ。`). About 220–330 characters.
@@ -107,7 +107,7 @@ it to see how freely a beat can be retold.
 
 ## Titles
 
-At most six words' worth (about 15 Japanese or 12 Chinese characters),
+At most six words' worth (about 13 Japanese or 10 Chinese characters),
 natural for the language: a parent sees it in the app.
 
 ## Files and checking
@@ -119,7 +119,8 @@ Write each story's language to `<story>/i18n/<lang>.json`:
 ```
 
 Never edit `story.json` (several languages are written at once; they are
-merged in when the language is recorded). Check with:
+merged in when the language is recorded). Keep any helper scripts in a
+folder of your own (several writers share the machine). Check with:
 
 ```sh
 cd tools && go run ./author/storycheck -pack ../packs/<pack> -lang <lang>

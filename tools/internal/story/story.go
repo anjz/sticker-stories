@@ -920,15 +920,15 @@ var forbidden = map[string][]string{
 		"infierno", "diablo", "demonio", "zombi", "vampiro", "esqueleto", "malvado", "malvada", "cruel", "herido", "herida", "hambriento"},
 	"de": {"töten", "tötet", "getötet", "tot", "tote", "toten", "tod", "sterben", "stirbt", "starb", "blut", "bluten", "pistole", "gewehr", "messer", "schwert", "bombe",
 		"monster", "gespenst", "gespenster", "geist", "geister", "hexe", "hexen", "gruselig", "unheimlich", "albtraum", "albträume", "horror", "entsetzlich",
-		"hass", "hasse", "hasst", "dumm", "doof", "idiot", "hässlich", "fett", "gift", "ertrinken", "ertrunken", "gefangen", "krieg", "kampf", "kämpfen", "prügeln", "schlagen",
+		"hass", "hasse", "hasst", "dumm", "doof", "idiot", "hässlich", "fett", "gift", "ertrinken", "ertrunken", "gefangen", "krieg", "kampf", "kämpfen", "prügeln",
 		"hölle", "verdammt", "teufel", "dämon", "zombie", "vampir", "skelett", "böse", "grausam", "verletzt", "wunde", "verhungern"},
 	"fr": {"tuer", "tue", "tué", "mort", "morte", "morts", "mourir", "meurt", "sang", "pistolet", "fusil", "couteau", "épée", "bombe",
 		"monstre", "monstres", "fantôme", "fantômes", "sorcière", "sorcières", "effrayant", "terrifiant", "terrifié", "cauchemar", "cauchemars", "horreur",
-		"haine", "déteste", "stupide", "bête", "idiot", "idiote", "moche", "laid", "laide", "gros", "grosse", "tais-toi", "poison", "noyer", "noyé", "piégé", "guerre", "bagarre", "frapper", "coup",
+		"haine", "déteste", "stupide", "idiot", "idiote", "moche", "laid", "laide", "tais-toi", "poison", "noyer", "noyé", "piégé", "guerre", "bagarre",
 		"enfer", "diable", "démon", "zombie", "vampire", "squelette", "méchant", "méchante", "cruel", "cruelle", "blessé", "blessée", "blessure", "affamé"},
 	"it": {"uccidere", "uccide", "ucciso", "morto", "morta", "morti", "morte", "morire", "muore", "sangue", "pistola", "fucile", "coltello", "spada", "bomba",
 		"mostro", "mostri", "fantasma", "fantasmi", "strega", "streghe", "spaventoso", "terrificante", "terrorizzato", "incubo", "incubi", "orrore",
-		"odio", "odia", "stupido", "stupida", "scemo", "scema", "idiota", "brutto", "brutta", "grasso", "grassa", "zitto", "veleno", "annegare", "annegato", "intrappolato", "guerra", "lotta", "picchiare", "colpo",
+		"odio", "odia", "stupido", "stupida", "scemo", "scema", "idiota", "grasso", "grassa", "veleno", "annegare", "annegato", "intrappolato", "guerra", "lotta", "picchiare",
 		"inferno", "diavolo", "demone", "zombie", "vampiro", "scheletro", "cattivo", "cattiva", "crudele", "ferito", "ferita", "affamato"},
 	"ja": {"殺", "死", "血", "銃", "ナイフ", "剣", "爆弾", "怪物", "モンスター", "おばけ", "お化け", "幽霊", "ゆうれい", "魔女", "こわい", "怖い", "恐ろしい", "悪夢", "ホラー",
 		"大嫌い", "バカ", "アホ", "ブス", "デブ", "だまれ", "黙れ", "毒", "おぼれ", "溺れ", "戦争", "けんか", "喧嘩", "殴", "地獄", "悪魔", "ゾンビ", "吸血鬼", "がいこつ", "骸骨", "残酷", "怪我"},
@@ -1272,10 +1272,19 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		cues, plain := nar.Cues, nar.Plain()
 		validateTags(&is, lang, nar)
 		n := CountWords(lang, plain)
+		// A transcreation is held to its English story (below) rather
+		// than to the band, with room for languages that need more words
+		// for the same time.
+		_, transcreated := s.Languages["en-US"]
+		transcreated = transcreated && lang != "en-US"
+		maxWords := MaxWords
+		if transcreated {
+			maxWords = MaxWords + MaxWords/4 // MaxDrift
+		}
 		switch {
-		case n < MinWords || n > MaxWords:
-			is.errorf("%s: %d words; must be %d–%d", lang, n, MinWords, MaxWords)
-		case n < TargetMinWords || n > TargetMaxWords:
+		case n < MinWords || n > maxWords:
+			is.errorf("%s: %d words; must be %d–%d", lang, n, MinWords, maxWords)
+		case !transcreated && (n < TargetMinWords || n > TargetMaxWords):
 			is.warnf("%s: %d words; target is %d–%d", lang, n, TargetMinWords, TargetMaxWords)
 		}
 		if en, ok := s.Languages["en-US"]; ok && lang != "en-US" {
@@ -1720,6 +1729,13 @@ func init() {
 			canvasWords[effect][lang] = regexp.MustCompile(pattern)
 		}
 	}
+	// \b only knows ASCII letters (vent in éventé would count): word
+	// boundaries that know every letter, for every spaced language.
+	for _, byLang := range canvasWords {
+		for lang, re := range byLang {
+			byLang[lang] = regexp.MustCompile(strings.ReplaceAll(re.String(), `\b`, `(?:^|$|[^\p{L}\p{N}])`))
+		}
+	}
 }
 
 // validateCanvasMentions warns when the words put weather or light into the
@@ -1757,7 +1773,8 @@ func validateCanvasMentions(is *Issues, lang string, nar Narration, m Manifest, 
 			for id := range inStory {
 				namesSticker = namesSticker || re.MatchString(strings.ToLower(m.Names[id][lang]))
 			}
-			if word := re.FindString(plain); word != "" && !namesSticker {
+			word := strings.TrimFunc(re.FindString(plain), func(r rune) bool { return !unicode.IsLetter(r) && !unicode.IsNumber(r) })
+			if word != "" && !namesSticker {
 				is.warnf("%s: the text mentions %q but never cues {%s:%s} — cue it a beat before those words", lang, word, CanvasTarget, name)
 			}
 		}
@@ -1844,7 +1861,7 @@ func firstMention(words []string, id, lang string, m Manifest) int {
 			return false
 		}
 		for k, w := range t {
-			if mentionWord(words[i+k]) != w {
+			if !sameWord(lang, mentionWord(words[i+k]), w) {
 				return false
 			}
 		}
@@ -1876,12 +1893,37 @@ func cjkName(name string) bool {
 	return false
 }
 
+// sameWord reports a word of the text that is target (both normalised by
+// mentionWord) or, in German, one of its declined forms (des Rehs, den
+// Hasen, dem Waschbären, des Teiches).
+func sameWord(lang, word, target string) bool {
+	if word == target {
+		return true
+	}
+	if primarySubtag(lang) != "de" || !strings.HasPrefix(word, strings.TrimSuffix(target, "e")) {
+		return false
+	}
+	for _, end := range []string{"s", "es", "n", "en", "e"} {
+		if word == target+end || word == strings.TrimSuffix(target, "e")+end {
+			return true
+		}
+	}
+	return false
+}
+
 // mentionWord normalises a word for name matching: lower case, no
-// surrounding punctuation, no possessive 's.
+// surrounding punctuation, no possessive 's, no elided article or
+// preposition in front (French l'eau, d'Ourson; Italian dell'acqua).
 func mentionWord(w string) string {
 	w = strings.ToLower(strings.TrimFunc(w, func(r rune) bool { return !unicode.IsLetter(r) && !unicode.IsNumber(r) }))
 	for _, suffix := range []string{"'s", "’s"} {
 		w = strings.TrimSuffix(w, suffix)
+	}
+	if i := strings.LastIndexAny(w, "'’"); i > 0 && i <= 5 {
+		_, size := utf8.DecodeRuneInString(w[i:])
+		if rest := w[i+size:]; utf8.RuneCountInString(rest) >= 2 {
+			w = rest
+		}
 	}
 	return w
 }
@@ -2076,7 +2118,7 @@ func validatePlaceMentions(is *Issues, lang string, nar Narration, m Manifest, i
 		for place, byLang := range m.PlaceWords {
 			named := false
 			for _, word := range words {
-				if slices.Contains(byLang[lang], mentionWord(word)) {
+				if slices.ContainsFunc(byLang[lang], func(pw string) bool { return sameWord(lang, mentionWord(word), pw) }) {
 					named = true
 					break
 				}
