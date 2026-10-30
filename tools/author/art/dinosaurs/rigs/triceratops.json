@@ -2503,6 +2503,178 @@
           "hold": 0.2
         }
       ]
+    },
+    {
+      "id": "drink",
+      "kind": "action",
+      "description": "the Triceratops lowers its big head to the water's edge and laps up a long drink, lap, lap, then lifts it with a happy smile.",
+      "pause": {
+        "frame": 2,
+        "shows": "the Triceratops with its head down at the water, drinking"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.5,
+          "bones": {
+            "head": {
+              "r": -26,
+              "y": 13
+            },
+            "body": {
+              "r": -3
+            }
+          }
+        },
+        {
+          "hold": 0.7,
+          "bones": {
+            "head": {
+              "r": -26,
+              "y": 13
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -24,
+              "y": 12,
+              "x": -2
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "smile"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -26,
+              "y": 13
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -24,
+              "y": 12,
+              "x": -2
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "smile"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -26,
+              "y": 13
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -24,
+              "y": 12,
+              "x": -2
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "smile"
+          }
+        },
+        {
+          "hold": 0.18,
+          "bones": {
+            "head": {
+              "r": -26,
+              "y": 13
+            },
+            "body": {
+              "r": -3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.45,
+          "bones": {
+            "head": {
+              "r": 4,
+              "y": -1
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy",
+            "mouth": "open"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
     }
   ]
 }

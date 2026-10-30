@@ -2354,6 +2354,89 @@
           "hold": 0.2
         }
       ]
+    },
+    {
+      "id": "tilt-head",
+      "kind": "action",
+      "description": "the pteranodon tips its head to one side, curious, listening very hard, then straightens up with a smile.",
+      "pause": {
+        "frame": 3,
+        "shows": "the pteranodon with its head tipped to one side, curious, listening"
+      },
+      "keys": [
+        {
+          "hold": 0.2
+        },
+        {
+          "hold": 0.3,
+          "bones": {
+            "head": {
+              "r": 3,
+              "y": -2
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.45,
+          "ease": "inOut",
+          "bones": {
+            "head": {
+              "r": 13,
+              "y": -2
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 1.0,
+          "bones": {
+            "head": {
+              "r": 14,
+              "y": -2
+            },
+            "body": {
+              "r": 1
+            }
+          },
+          "slots": {
+            "eyeL": "wide",
+            "eyeR": "wide"
+          }
+        },
+        {
+          "hold": 0.45,
+          "ease": "inOut",
+          "bones": {
+            "head": {
+              "r": 3
+            }
+          },
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.3,
+          "slots": {
+            "eyeL": "happy",
+            "eyeR": "happy"
+          }
+        },
+        {
+          "hold": 0.2
+        }
+      ]
     }
   ]
 }
