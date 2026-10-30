@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "太陽快要下山了。高高的樹枝上，貓",
+      "effect": "sunset",
+      "duration": 18.38,
+      "intensity": 0.7
+    },
+    {
+      "at": 7.08,
+      "cue": "貓",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 7.08,
+      "cue": "貓",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 9,
+      "cue": "到現在還睡得正香。小鴨一搖一擺地走到",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    },
+    {
+      "at": 11.48,
+      "cue": "小鴨一搖一擺地走到",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 11.48,
+      "cue": "小鴨一搖一擺地走到",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 15.88,
+      "cue": "這時，月亮升起來了",
+      "effect": "night",
+      "duration": 59.04,
+      "intensity": 0.8
+    },
+    {
+      "at": 18.64,
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 21.72,
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond",
+      "by": "swim",
+      "another": true
+    },
+    {
+      "at": 24.04,
+      "sticker": "duckling",
+      "animation": "scoop"
+    },
+    {
+      "at": 30.04,
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 34.04,
+      "cue": "嘩啦啦！又不見了。貓",
+      "sticker": "duckling",
+      "effect": "spray"
+    },
+    {
+      "at": 36.52,
+      "cue": "貓",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "resume"
+    },
+    {
+      "at": 42.88,
+      "cue": "我撈緊月",
+      "sticker": "duckling",
+      "effect": "pulse"
+    },
+    {
+      "at": 45.27,
+      "cue": "抬",
+      "sticker": "owl",
+      "expression": "happy"
+    },
+    {
+      "at": 45.27,
+      "cue": "抬",
+      "sticker": "owl",
+      "animation": "talk"
+    },
+    {
+      "at": 48.12,
+      "cue": "月亮在那裏！天上有一個",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 48.12,
+      "cue": "月亮在那裏！天上有一個",
+      "sticker": "duckling",
+      "effect": "sparkle"
+    },
+    {
+      "at": 52.92,
+      "cue": "螢火蟲輕輕飄到",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 52.92,
+      "cue": "螢火蟲輕輕飄到",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 55.52,
+      "cue": "在水面上亮着，像一盞小燈",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 63.4,
+      "cue": "小鴨打了個呵",
+      "sticker": "duckling",
+      "expression": "sleeping"
+    },
+    {
+      "at": 65.08,
+      "cue": "把",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    }
+  ]
+}

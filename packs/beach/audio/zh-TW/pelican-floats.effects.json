@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "鵜鶘站在岩石上，看著水面",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "鵜鶘站在岩石上，看著水面",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 6.2,
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 10.6,
+      "cue": "海豹從水裡冒出",
+      "sticker": "seal",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 13.12,
+      "cue": "鵜鶘",
+      "sticker": "seal",
+      "effect": "wobble"
+    },
+    {
+      "at": 15.24,
+      "cue": "鵜鶘笑了",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 18.92,
+      "sticker": "pelican",
+      "go": "to",
+      "target": "sea",
+      "by": "float"
+    },
+    {
+      "at": 28.99,
+      "sticker": "seal",
+      "expression": "surprised"
+    },
+    {
+      "at": 28.99,
+      "sticker": "seal",
+      "effect": "hop"
+    },
+    {
+      "at": 31.28,
+      "cue": "我的羽毛裡面都是空氣，」鵜鶘說，「連骨",
+      "sticker": "pelican",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 40.52,
+      "cue": "就在這時候，游泳圈一搖一晃地漂過來。它",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 40.52,
+      "cue": "就在這時候，游泳圈一搖一晃地漂過來。它",
+      "sticker": "ring",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 44.36,
+      "cue": "它",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 46.92,
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 46.92,
+      "sticker": "seal",
+      "animation": "laugh"
+    },
+    {
+      "at": 51.24,
+      "cue": "就這樣，鵜鶘和游泳圈並排漂呀漂，是這附近最會浮的",
+      "sticker": "pelican",
+      "effect": "hearts"
+    },
+    {
+      "at": 51.24,
+      "cue": "就這樣，鵜鶘和游泳圈並排漂呀漂，是這附近最會浮的",
+      "sticker": "ring",
+      "effect": "pulse"
+    },
+    {
+      "at": 51.24,
+      "cue": "就這樣，鵜鶘和游泳圈並排漂呀漂，是這附近最會浮的",
+      "sticker": "ring",
+      "go": "to",
+      "target": "pelican"
+    }
+  ]
+}

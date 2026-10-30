@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "creuse",
+      "sticker": "bucket",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "creuse",
+      "sticker": "castle",
+      "enter": true
+    },
+    {
+      "at": 4.92,
+      "cue": "chien",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 4.92,
+      "cue": "chien",
+      "sticker": "dog",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 8.12,
+      "cue": "le",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 8.12,
+      "cue": "le",
+      "sticker": "dog",
+      "animation": "dig"
+    },
+    {
+      "at": 11.48,
+      "cue": "attention",
+      "sticker": "castle",
+      "effect": "wobble"
+    },
+    {
+      "at": 13.64,
+      "cue": "bonk",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 17.28,
+      "cue": "c’était",
+      "sticker": "clam",
+      "enter": true
+    },
+    {
+      "at": 17.28,
+      "cue": "c’était",
+      "sticker": "dog",
+      "go": "to",
+      "target": "clam"
+    },
+    {
+      "at": 18.49,
+      "cue": "elle",
+      "sticker": "clam",
+      "animation": "peek"
+    },
+    {
+      "at": 31.16,
+      "cue": "elle",
+      "sticker": "clam",
+      "effect": "fade-out",
+      "hold": true
+    },
+    {
+      "at": 35.56,
+      "cue": "chien",
+      "sticker": "dog",
+      "animation": "dig"
+    },
+    {
+      "at": 40.56,
+      "cue": "il",
+      "sticker": "bucket",
+      "animation": "tip"
+    },
+    {
+      "at": 44.08,
+      "cue": "chien",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 47.32,
+      "cue": "pop",
+      "sticker": "clam",
+      "effect": "fade-in"
+    },
+    {
+      "at": 49.8,
+      "sticker": "clam",
+      "expression": "happy"
+    },
+    {
+      "at": 51.59,
+      "cue": "et",
+      "sticker": "dog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 51.59,
+      "cue": "et",
+      "sticker": "castle",
+      "effect": "sparkle"
+    }
+  ]
+}

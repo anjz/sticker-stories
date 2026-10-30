@@ -1,0 +1,181 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "太陽",
+      "effect": "sunset",
+      "duration": 29.26,
+      "intensity": 0.7
+    },
+    {
+      "at": 7.08,
+      "cue": "貓",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 7.08,
+      "cue": "貓",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 7.8,
+      "cue": "還在睡覺。浣熊走了過來",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    },
+    {
+      "at": 9.24,
+      "cue": "浣熊走了過來",
+      "sticker": "raccoon",
+      "enter": true
+    },
+    {
+      "at": 10.84,
+      "cue": "貓",
+      "sticker": "raccoon",
+      "effect": "hop"
+    },
+    {
+      "at": 13.32,
+      "cue": "貓",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "resume"
+    },
+    {
+      "at": 18.92,
+      "cue": "浣熊用老方法躲起來：用手掌蒙住眼睛。「只要我看不到貓",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 21.16,
+      "cue": "用手掌蒙住眼睛。「只要我看不到貓",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "hold"
+    },
+    {
+      "at": 26.76,
+      "cue": "天黑了。螢火蟲躲進草叢裡。貓",
+      "effect": "night",
+      "duration": 52.4,
+      "intensity": 0.8
+    },
+    {
+      "at": 27.96,
+      "cue": "螢火蟲躲進草叢裡。貓",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 27.96,
+      "cue": "螢火蟲躲進草叢裡。貓",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "meadow"
+    },
+    {
+      "at": 30.28,
+      "cue": "貓",
+      "sticker": "firefly",
+      "animation": "tuck-in"
+    },
+    {
+      "at": 31,
+      "cue": "飛了下來。沒有啪啪聲，也沒有咻咻聲",
+      "sticker": "owl",
+      "go": "to",
+      "target": "raccoon"
+    },
+    {
+      "at": 41.08,
+      "cue": "我都沒聽到",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "resume"
+    },
+    {
+      "at": 44.52,
+      "sticker": "firefly",
+      "effect": "glow",
+      "repeat": 2,
+      "duration": 0.5,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 47.56,
+      "cue": "我好不會躲喔",
+      "sticker": "firefly",
+      "expression": "sad"
+    },
+    {
+      "at": 50.88,
+      "cue": "那換",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 50.88,
+      "cue": "那換",
+      "sticker": "raccoon",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 55.08,
+      "cue": "靜悄悄地飛去躲起來。浣熊仔細聽。什麼也聽不到。可是螢火蟲從這棵樹飛到那棵樹，亮得好亮好亮……貓",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches",
+      "another": true
+    },
+    {
+      "at": 60.68,
+      "cue": "可是螢火蟲從這棵樹飛到那棵樹，亮得好亮好亮……貓",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 62.2,
+      "cue": "從這棵樹飛到那棵樹，亮得好亮好亮……貓",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "owl"
+    },
+    {
+      "at": 64.36,
+      "cue": "亮得好亮好亮……貓",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 2.5,
+      "intensity": 1,
+      "color": "#FFE27A",
+      "hold": true
+    },
+    {
+      "at": 67.96,
+      "cue": "找到",
+      "sticker": "firefly",
+      "animation": "wave"
+    },
+    {
+      "at": 69.44,
+      "cue": "咕",
+      "sticker": "owl",
+      "expression": "surprised"
+    },
+    {
+      "at": 69.44,
+      "cue": "咕",
+      "sticker": "owl",
+      "animation": "hoot"
+    }
+  ]
+}

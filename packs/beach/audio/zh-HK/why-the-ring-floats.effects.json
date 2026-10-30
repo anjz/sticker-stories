@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "水泡在海面上一浮一浮的",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "水泡在海面上一浮一浮的",
+      "sticker": "ring",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 8.28,
+      "cue": "小魚游到它下面",
+      "sticker": "ring",
+      "effect": "pulse"
+    },
+    {
+      "at": 8.28,
+      "cue": "小魚游到它下面",
+      "sticker": "fish",
+      "enter": true
+    },
+    {
+      "at": 8.28,
+      "cue": "小魚游到它下面",
+      "sticker": "fish",
+      "go": "to",
+      "target": "ring"
+    },
+    {
+      "at": 17.8,
+      "cue": "於是",
+      "sticker": "fish",
+      "expression": "surprised"
+    },
+    {
+      "at": 21.08,
+      "cue": "水泡沉了下去……然後啵！它又彈了上來",
+      "sticker": "ring",
+      "effect": "wobble"
+    },
+    {
+      "at": 26.52,
+      "cue": "海龜",
+      "sticker": "ring",
+      "effect": "hop"
+    },
+    {
+      "at": 26.52,
+      "cue": "海龜",
+      "sticker": "fish",
+      "expression": "happy"
+    },
+    {
+      "at": 26.52,
+      "cue": "海龜",
+      "sticker": "fish",
+      "animation": "laugh"
+    },
+    {
+      "at": 26.52,
+      "cue": "海龜",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 26.52,
+      "cue": "海龜",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 36.4,
+      "cue": "好似水",
+      "sticker": "fish",
+      "expression": "surprised"
+    },
+    {
+      "at": 39.28,
+      "cue": "冇錯，就係噉！」水泡",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 39.28,
+      "cue": "冇錯，就係噉！」水泡",
+      "sticker": "turtle",
+      "animation": "nod"
+    },
+    {
+      "at": 41.4,
+      "cue": "水泡",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 44.92,
+      "cue": "海龜把",
+      "sticker": "turtle",
+      "animation": "peek"
+    },
+    {
+      "at": 48.44,
+      "cue": "小魚擺擺魚鰭，繞着水泡游了一圈又一圈",
+      "sticker": "fish",
+      "animation": "wiggle"
+    },
+    {
+      "at": 48.44,
+      "cue": "小魚擺擺魚鰭，繞着水泡游了一圈又一圈",
+      "sticker": "fish",
+      "effect": "hearts"
+    }
+  ]
+}

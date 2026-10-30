@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "c’était",
+      "sticker": "sailboat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "c’était",
+      "effect": "sunshine",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 5.44,
+      "cue": "nico",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 5.44,
+      "cue": "nico",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 8.14,
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 12.44,
+      "cue": "le",
+      "sticker": "sailboat",
+      "enter": true
+    },
+    {
+      "at": 12.44,
+      "cue": "le",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 13.96,
+      "cue": "ses",
+      "sticker": "sailboat",
+      "animation": "sails"
+    },
+    {
+      "at": 23.36,
+      "cue": "nico",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 27.44,
+      "cue": "il",
+      "sticker": "surfer",
+      "effect": "shake"
+    },
+    {
+      "at": 29.59,
+      "cue": "phoque",
+      "sticker": "seal",
+      "enter": true
+    },
+    {
+      "at": 29.59,
+      "cue": "phoque",
+      "sticker": "seal",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 32.48,
+      "cue": "il",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 32.48,
+      "cue": "il",
+      "sticker": "seal",
+      "animation": "clap"
+    },
+    {
+      "at": 36.42,
+      "cue": "comme",
+      "sticker": "seal",
+      "animation": "nod"
+    },
+    {
+      "at": 36.42,
+      "cue": "comme",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sea",
+      "by": "paddle"
+    },
+    {
+      "at": 41.22,
+      "cue": "zou",
+      "sticker": "surfer",
+      "animation": "ride-wave"
+    },
+    {
+      "at": 43.1,
+      "cue": "tortue",
+      "sticker": "turtle",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 43.1,
+      "cue": "tortue",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "surfer",
+      "by": "swim"
+    },
+    {
+      "at": 44.87,
+      "cue": "toute",
+      "sticker": "turtle",
+      "effect": "hearts"
+    },
+    {
+      "at": 48.26,
+      "cue": "jusqu’au",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand",
+      "by": "surf"
+    },
+    {
+      "at": 49.43,
+      "cue": "puis",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 53.33,
+      "cue": "il",
+      "sticker": "surfer",
+      "animation": "wave"
+    },
+    {
+      "at": 58.42,
+      "sticker": "seal",
+      "effect": "hearts"
+    }
+  ]
+}

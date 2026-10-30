@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.08,
+      "cue": "coniglio",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 5.96,
+      "cue": "si",
+      "sticker": "rabbit",
+      "effect": "hop"
+    },
+    {
+      "at": 11,
+      "cue": "topolino",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 11,
+      "cue": "topolino",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 13.08,
+      "cue": "volpe",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 13.08,
+      "cue": "volpe",
+      "sticker": "fox",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 15.08,
+      "cue": "anch'io",
+      "sticker": "fox",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 16.68,
+      "cue": "coniglio",
+      "sticker": "rabbit",
+      "animation": "listen"
+    },
+    {
+      "at": 20.04,
+      "cue": "un'ape",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 23.08,
+      "cue": "e",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 25.32,
+      "cue": "topolino",
+      "sticker": "mouse",
+      "animation": "sniff"
+    },
+    {
+      "at": 30.28,
+      "cue": "sento",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 30.28,
+      "cue": "sento",
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 33.48,
+      "cue": "ma",
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 37.72,
+      "cue": "volpe",
+      "sticker": "fox",
+      "animation": "scratch"
+    },
+    {
+      "at": 42.57,
+      "cue": "non",
+      "sticker": "fox",
+      "expression": "sad"
+    },
+    {
+      "at": 48.48,
+      "cue": "ha",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 58.52,
+      "cue": "chiocciola",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 58.52,
+      "cue": "chiocciola",
+      "sticker": "snail",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 62.76,
+      "cue": "volpe",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 64.76,
+      "cue": "ho",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 66.52,
+      "cue": "ha",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 66.52,
+      "cue": "ha",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 69.47,
+      "cue": "ssst",
+      "sticker": "fox",
+      "effect": "hearts"
+    }
+  ]
+}

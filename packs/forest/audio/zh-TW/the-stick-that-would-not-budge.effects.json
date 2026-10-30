@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "河狸找到了",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 9.07,
+      "cue": "這正是我要的",
+      "sticker": "beaver",
+      "expression": "happy"
+    },
+    {
+      "at": 10.68,
+      "sticker": "beaver",
+      "animation": "pull"
+    },
+    {
+      "at": 16.28,
+      "cue": "小熊來了。「我來幫忙！」現在",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 17.24,
+      "cue": "我來幫忙！」現在",
+      "sticker": "bear",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 20.76,
+      "cue": "嘿呦，嘿呦！還是拔不動",
+      "sticker": "bear",
+      "effect": "shake"
+    },
+    {
+      "at": 24.04,
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 25.56,
+      "cue": "現在三個一起拔。嘿呦，嘿呦！還是拔不動",
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 27.48,
+      "cue": "嘿呦，嘿呦！還是拔不動",
+      "sticker": "rabbit",
+      "effect": "shake"
+    },
+    {
+      "at": 31.56,
+      "cue": "這時，小老",
+      "sticker": "beaver",
+      "expression": "sad"
+    },
+    {
+      "at": 32.36,
+      "cue": "小老",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 35.88,
+      "cue": "我可以幫忙嗎",
+      "sticker": "mouse",
+      "animation": "sniff"
+    },
+    {
+      "at": 37.32,
+      "sticker": "bear",
+      "expression": "surprised"
+    },
+    {
+      "at": 40.84,
+      "cue": "可是，小老",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 48.04,
+      "cue": "現在四個一起拔！嘿呦……嘿呦！啵！木棍拔出來了，大家咕咚一聲，跌成一",
+      "sticker": "mouse",
+      "animation": "pull"
+    },
+    {
+      "at": 52.2,
+      "cue": "木棍拔出來了，大家咕咚一聲，跌成一",
+      "sticker": "beaver",
+      "effect": "spin"
+    },
+    {
+      "at": 52.2,
+      "cue": "木棍拔出來了，大家咕咚一聲，跌成一",
+      "sticker": "bear",
+      "effect": "spin"
+    },
+    {
+      "at": 52.2,
+      "cue": "木棍拔出來了，大家咕咚一聲，跌成一",
+      "sticker": "rabbit",
+      "effect": "spin"
+    },
+    {
+      "at": 52.2,
+      "cue": "木棍拔出來了，大家咕咚一聲，跌成一",
+      "sticker": "mouse",
+      "effect": "spin"
+    },
+    {
+      "at": 57.32,
+      "cue": "河狸把木棍舉得高高的。「是誰拔出來的",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 57.32,
+      "cue": "河狸把木棍舉得高高的。「是誰拔出來的",
+      "sticker": "beaver",
+      "animation": "gnaw",
+      "mode": "hold"
+    },
+    {
+      "at": 62.27,
+      "cue": "是我們大家呀！」小老",
+      "sticker": "mouse",
+      "animation": "talk"
+    },
+    {
+      "at": 65.2,
+      "cue": "我只是……最後一個拉的",
+      "sticker": "mouse",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

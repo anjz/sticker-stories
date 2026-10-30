@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "太陽",
+      "effect": "sunset",
+      "duration": 34.7,
+      "intensity": 0.7
+    },
+    {
+      "at": 0,
+      "cue": "太陽",
+      "sticker": "firefly",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 6.04,
+      "cue": "開始說晚安",
+      "sticker": "all",
+      "effect": "glow",
+      "intensity": 0.4,
+      "color": "#FFD9A0"
+    },
+    {
+      "at": 13.08,
+      "cue": "草地上的大家，也跟著輕輕搖擺。草叢裡，小花用她自己的方式說晚安：她把花瓣合了起來",
+      "sticker": "all",
+      "effect": "wobble",
+      "intensity": 0.4
+    },
+    {
+      "at": 17.4,
+      "cue": "小花用她自己的方式說晚安：她把花瓣合了起來",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 20.36,
+      "cue": "她把花瓣合了起來",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 27.48,
+      "cue": "貓",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 27.48,
+      "cue": "貓",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 30.28,
+      "cue": "到現在還在睡。天空變成深深的藍色，月亮升起來了，圓圓的，亮亮的。貓",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    },
+    {
+      "at": 32.2,
+      "cue": "天空變成深深的藍色，月亮升起來了，圓圓的，亮亮的。貓",
+      "effect": "night",
+      "duration": 37.36,
+      "intensity": 0.8
+    },
+    {
+      "at": 38.52,
+      "cue": "貓",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "resume"
+    },
+    {
+      "at": 44.68,
+      "cue": "輪到我了。」草叢裡，一盞一盞小小的燈亮了起來。螢火蟲飛過來，也點亮了",
+      "sticker": "owl",
+      "expression": "happy"
+    },
+    {
+      "at": 46.12,
+      "cue": "草叢裡，一盞一盞小小的燈亮了起來。螢火蟲飛過來，也點亮了",
+      "effect": "fireflies",
+      "duration": 18.56,
+      "intensity": 0.5
+    },
+    {
+      "at": 50.12,
+      "cue": "螢火蟲飛過來，也點亮了",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 51.56,
+      "cue": "也點亮了",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A",
+      "hold": true
+    },
+    {
+      "at": 56.6,
+      "cue": "草地上的大家，都閉上了眼睛……只有貓",
+      "sticker": "all",
+      "expression": "sleeping"
+    },
+    {
+      "at": 59.56,
+      "cue": "只有貓",
+      "sticker": "owl",
+      "expression": "happy"
+    },
+    {
+      "at": 59.56,
+      "cue": "只有貓",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 62.68,
+      "cue": "向月亮揮揮手，一直守到天亮",
+      "sticker": "firefly",
+      "animation": "wave"
+    }
+  ]
+}

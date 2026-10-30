@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "die",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 6.21,
+      "cue": "so",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 6.21,
+      "cue": "so",
+      "sticker": "acorn",
+      "animation": "talk"
+    },
+    {
+      "at": 9.56,
+      "cue": "das",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 16.4,
+      "cue": "noch",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "acorn"
+    },
+    {
+      "at": 17.96,
+      "cue": "bettete",
+      "sticker": "squirrel",
+      "animation": "bury"
+    },
+    {
+      "at": 22.23,
+      "cue": "daneben",
+      "sticker": "squirrel",
+      "effect": "hearts"
+    },
+    {
+      "at": 23,
+      "cue": "die",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 23,
+      "cue": "die",
+      "sticker": "acorn",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 23.76,
+      "cue": "fröstelte",
+      "sticker": "flower",
+      "effect": "tint",
+      "color": "#BFE3FF"
+    },
+    {
+      "at": 27.16,
+      "cue": "machte",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 28.84,
+      "cue": "dann",
+      "effect": "snow",
+      "duration": 16.9,
+      "intensity": 0.6
+    },
+    {
+      "at": 30.6,
+      "cue": "die",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 43.24,
+      "cue": "eines",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.9
+    },
+    {
+      "at": 46.76,
+      "cue": "die",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 51.67,
+      "cue": "bin",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 53.4,
+      "cue": "noch",
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 53.4,
+      "cue": "noch",
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 53.4,
+      "cue": "noch",
+      "sticker": "squirrel",
+      "animation": "shake-head"
+    },
+    {
+      "at": 60.92,
+      "cue": "erst",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 60.92,
+      "cue": "erst",
+      "sticker": "acorn",
+      "effect": "glow"
+    }
+  ]
+}

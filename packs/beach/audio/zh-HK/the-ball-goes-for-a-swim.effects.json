@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "沙灘波",
+      "sticker": "ball",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "沙灘波",
+      "sticker": "ball",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 9.16,
+      "cue": "水泡和瓶中信在水面上一浮一浮",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 9.16,
+      "cue": "水泡和瓶中信在水面上一浮一浮",
+      "sticker": "ring",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 9.88,
+      "cue": "瓶中信在水面上一浮一浮",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 9.88,
+      "cue": "瓶中信在水面上一浮一浮",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 17.24,
+      "cue": "忽然，呼——！一陣風吹來，沙灘波滾呀滾，咚、咚、咚，一直滾到岸邊。嘩啦",
+      "sticker": "ball",
+      "effect": "pulse"
+    },
+    {
+      "at": 17.24,
+      "cue": "忽然，呼——！一陣風吹來，沙灘波滾呀滾，咚、咚、咚，一直滾到岸邊。嘩啦",
+      "effect": "wind",
+      "duration": 20,
+      "intensity": 0.7
+    },
+    {
+      "at": 20.12,
+      "cue": "沙灘波滾呀滾，咚、咚、咚，一直滾到岸邊。嘩啦",
+      "sticker": "ball",
+      "go": "to",
+      "target": "shore",
+      "toward": "right"
+    },
+    {
+      "at": 24.92,
+      "cue": "嘩啦",
+      "sticker": "ball",
+      "effect": "spin"
+    },
+    {
+      "at": 29.16,
+      "cue": "水泡轉過身來，跟它打招呼。瓶中信啵的一聲彈開瓶塞，好像在歡呼",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 31.88,
+      "cue": "瓶中信啵的一聲彈開瓶塞，好像在歡呼",
+      "sticker": "bottle",
+      "animation": "pop"
+    },
+    {
+      "at": 36.04,
+      "cue": "三個浮水好朋友，一起浮浮沉沉。浮呀浮，浮呀浮！岩石上，鵜鶘舀起一大口水",
+      "sticker": "ring",
+      "go": "to",
+      "target": "ball",
+      "toward": "right"
+    },
+    {
+      "at": 36.04,
+      "cue": "三個浮水好朋友，一起浮浮沉沉。浮呀浮，浮呀浮！岩石上，鵜鶘舀起一大口水",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "ball",
+      "toward": "right"
+    },
+    {
+      "at": 39.32,
+      "cue": "浮呀浮，浮呀浮！岩石上，鵜鶘舀起一大口水",
+      "sticker": "ball",
+      "effect": "float",
+      "intensity": 0.5
+    },
+    {
+      "at": 41.4,
+      "cue": "岩石上，鵜鶘舀起一大口水",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 41.4,
+      "cue": "岩石上，鵜鶘舀起一大口水",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 42.36,
+      "cue": "鵜鶘舀起一大口水",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 42.84,
+      "cue": "舀起一大口水",
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 44.6,
+      "cue": "然後，風轉了方向，把沙灘波一路送回去。它轉呀轉，停了，剛好停在原來的地方。有點濕，沾了點沙，還有——好開心，好開心",
+      "effect": "wind",
+      "toward": "left",
+      "duration": 7.26,
+      "intensity": 0.7
+    },
+    {
+      "at": 46.68,
+      "cue": "把沙灘波一路送回去。它轉呀轉，停了，剛好停在原來的地方。有點濕，沾了點沙，還有——好開心，好開心",
+      "sticker": "ball",
+      "go": "to",
+      "target": "sand",
+      "toward": "left"
+    },
+    {
+      "at": 49.08,
+      "cue": "它轉呀轉，停了，剛好停在原來的地方。有點濕，沾了點沙，還有——好開心，好開心",
+      "sticker": "ball",
+      "animation": "spin"
+    },
+    {
+      "at": 53.48,
+      "cue": "有點濕，沾了點沙，還有——好開心，好開心",
+      "sticker": "ball",
+      "effect": "sparkle"
+    }
+  ]
+}

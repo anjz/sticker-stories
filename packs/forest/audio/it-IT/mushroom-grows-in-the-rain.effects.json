@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "plic",
+      "effect": "rain",
+      "duration": 60.7,
+      "intensity": 0.7
+    },
+    {
+      "at": 8.2,
+      "cue": "coccinella",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 9.68,
+      "cue": "fungo",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 10.44,
+      "cue": "e",
+      "sticker": "ladybug",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 12.75,
+      "cue": "entra",
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 16.6,
+      "cue": "chiocciola",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 19.08,
+      "cue": "ma",
+      "sticker": "mushroom",
+      "animation": "nod"
+    },
+    {
+      "at": 20.33,
+      "cue": "e",
+      "sticker": "snail",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 23.12,
+      "cue": "rana",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 23.12,
+      "cue": "rana",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 24.44,
+      "cue": "splish",
+      "sticker": "frog",
+      "animation": "jump"
+    },
+    {
+      "at": 32.92,
+      "cue": "rana",
+      "sticker": "frog",
+      "expression": "sad"
+    },
+    {
+      "at": 37.76,
+      "cue": "così",
+      "sticker": "frog",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 39.96,
+      "cue": "che",
+      "sticker": "ladybug",
+      "expression": "surprised"
+    },
+    {
+      "at": 41.64,
+      "cue": "chiocciola",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 49.8,
+      "cue": "ed",
+      "sticker": "mushroom",
+      "effect": "glow"
+    },
+    {
+      "at": 49.8,
+      "cue": "ed",
+      "sticker": "mushroom",
+      "animation": "grow"
+    },
+    {
+      "at": 55.92,
+      "cue": "e",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 55.92,
+      "cue": "e",
+      "sticker": "ladybug",
+      "expression": "happy"
+    },
+    {
+      "at": 60.68,
+      "cue": "fuori",
+      "effect": "sunshine"
+    },
+    {
+      "at": 61.96,
+      "cue": "fuori",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 63.12,
+      "cue": "fuori",
+      "sticker": "ladybug",
+      "go": "back"
+    },
+    {
+      "at": 64.44,
+      "cue": "fuori",
+      "sticker": "frog",
+      "go": "back"
+    }
+  ]
+}

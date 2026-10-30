@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "一天早上，沙灘藏在大霧裏，白白的，灰灰的，軟綿綿的。濱鷸探",
+      "effect": "fog",
+      "duration": 44.38,
+      "intensity": 0.8
+    },
+    {
+      "at": 9.64,
+      "cue": "濱鷸探",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 11.8,
+      "sticker": "sandpiper",
+      "expression": "surprised"
+    },
+    {
+      "at": 13.24,
+      "sticker": "sandpiper",
+      "animation": "look-around"
+    },
+    {
+      "at": 21.56,
+      "cue": "一個黑影穿過大霧",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 25,
+      "cue": "原來是漁船，正要回家。在它旁邊一浮一浮的，是一個",
+      "sticker": "fishing-boat",
+      "effect": "pulse"
+    },
+    {
+      "at": 29.8,
+      "cue": "一個",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 29.8,
+      "cue": "一個",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 31.56,
+      "cue": "一個浪把它一直推到岸邊。濱鷸跑過去，啄了它一下。啵！瓶塞彈了出來",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 34.12,
+      "cue": "濱鷸跑過去，啄了它一下。啵！瓶塞彈了出來",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "bottle",
+      "by": "run"
+    },
+    {
+      "at": 36.28,
+      "cue": "啵！瓶塞彈了出來",
+      "sticker": "bottle",
+      "animation": "pop"
+    },
+    {
+      "at": 39.45,
+      "cue": "然後，太陽",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 39.45,
+      "cue": "然後，太陽",
+      "sticker": "sandpiper",
+      "animation": "laugh"
+    },
+    {
+      "at": 39.8,
+      "cue": "太陽",
+      "effect": "sunshine",
+      "duration": 25,
+      "intensity": 0.8
+    },
+    {
+      "at": 43.64,
+      "cue": "漁船拉起了網，海鷗飛過去跟它說早晨。濱鷸開開心心地啄着地面",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 45.16,
+      "cue": "海鷗飛過去跟它說早晨。濱鷸開開心心地啄着地面",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 45.16,
+      "cue": "海鷗飛過去跟它說早晨。濱鷸開開心心地啄着地面",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 47.56,
+      "cue": "濱鷸開開心心地啄着地面",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 49.96,
+      "cue": "原來，每樣東西一直都在那裏，從來沒有走開過",
+      "sticker": "sandpiper",
+      "effect": "hop"
+    }
+  ]
+}

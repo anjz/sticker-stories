@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "這是夏天第一個暖和的黃昏。螢火蟲的小尾巴亮了起來。閃一閃，閃一閃。哈囉",
+      "effect": "sunset",
+      "duration": 16.38,
+      "intensity": 0.6
+    },
+    {
+      "at": 6.52,
+      "cue": "螢火蟲的小尾巴亮了起來。閃一閃，閃一閃。哈囉",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 7.88,
+      "cue": "亮了起來。閃一閃，閃一閃。哈囉",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 2,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 9,
+      "cue": "閃一閃，閃一閃。哈囉",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 13.88,
+      "cue": "閃一閃，閃一閃。哈囉？小老",
+      "effect": "night",
+      "duration": 53.76,
+      "intensity": 0.7
+    },
+    {
+      "at": 13.88,
+      "cue": "閃一閃，閃一閃。哈囉？小老",
+      "sticker": "firefly",
+      "expression": "sad"
+    },
+    {
+      "at": 17.32,
+      "cue": "小老",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 17.32,
+      "cue": "小老",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "firefly"
+    },
+    {
+      "at": 20.46,
+      "cue": "邊個都得。」螢火蟲說，「我哋螢火蟲，就係",
+      "sticker": "firefly",
+      "animation": "talk"
+    },
+    {
+      "at": 26.2,
+      "cue": "小老",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "hold"
+    },
+    {
+      "at": 31.16,
+      "cue": "刺蝟在草叢裏",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 31.16,
+      "cue": "刺蝟在草叢裏",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "firefly"
+    },
+    {
+      "at": 34,
+      "cue": "試吓閃得",
+      "sticker": "hedgehog",
+      "animation": "talk"
+    },
+    {
+      "at": 38.92,
+      "cue": "發出最亮最亮的",
+      "sticker": "firefly",
+      "effect": "glow",
+      "repeat": 4,
+      "duration": 2,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 42.84,
+      "cue": "這時，在草地的另一邊……一點小",
+      "effect": "fireflies",
+      "duration": 17.6,
+      "intensity": 0.6
+    },
+    {
+      "at": 49.32,
+      "cue": "小老",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "resume"
+    },
+    {
+      "at": 53.08,
+      "cue": "螢火蟲也閃回去：閃一閃，閃一閃。「哈囉，哈囉",
+      "sticker": "firefly",
+      "effect": "glow",
+      "repeat": 2,
+      "duration": 0.4,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 56.44,
+      "cue": "哈囉，哈囉",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 56.44,
+      "cue": "哈囉，哈囉",
+      "sticker": "firefly",
+      "animation": "wave"
+    },
+    {
+      "at": 57.96,
+      "cue": "刺蝟在草叢裏縮成一個暖暖的小球，身邊的小",
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 58.44,
+      "cue": "在草叢裏縮成一個暖暖的小球，身邊的小",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    }
+  ]
+}

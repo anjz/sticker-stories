@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "秋天到了，樹葉打着轉，一片片飄下來。小熊打了一個好大好大的呵",
+      "effect": "leaves",
+      "duration": 39.32,
+      "intensity": 0.6
+    },
+    {
+      "at": 7.32,
+      "cue": "小熊打了一個好大好大的呵",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 10.82,
+      "cue": "我唔想成個冬天都瞓覺呀，咁我咪乜都錯過晒？」獾小步跑過來",
+      "sticker": "bear",
+      "expression": "sad"
+    },
+    {
+      "at": 16.28,
+      "cue": "獾小步跑過來",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 16.28,
+      "cue": "獾小步跑過來",
+      "sticker": "badger",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 21.56,
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 26.52,
+      "cue": "旁邊的小花冷得發抖，把花瓣合了起來。「春天見。」她輕輕地說。於是小熊坐進窩裏，打了最後一個呵",
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 27.04,
+      "cue": "小花冷得發抖，把花瓣合了起來。「春天見。」她輕輕地說。於是小熊坐進窩裏，打了最後一個呵",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 27.48,
+      "cue": "冷得發抖，把花瓣合了起來。「春天見。」她輕輕地說。於是小熊坐進窩裏，打了最後一個呵",
+      "sticker": "flower",
+      "effect": "tint",
+      "color": "#BFE3FF"
+    },
+    {
+      "at": 28.6,
+      "cue": "把花瓣合了起來。「春天見。」她輕輕地說。於是小熊坐進窩裏，打了最後一個呵",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 33.32,
+      "cue": "於是小熊坐進窩裏，打了最後一個呵",
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 34.28,
+      "cue": "坐進窩裏，打了最後一個呵",
+      "sticker": "bear",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 35.32,
+      "cue": "打了最後一個呵",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 37.32,
+      "cue": "接着，雪花飄下來了。小熊睡了一整個冬天，熊就是這樣過冬的",
+      "effect": "snow",
+      "duration": 15.38,
+      "intensity": 0.7
+    },
+    {
+      "at": 50.2,
+      "cue": "一天早上，太陽回來了，把雪都融掉。獾輕手輕",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.9
+    },
+    {
+      "at": 54.2,
+      "cue": "獾輕手輕",
+      "sticker": "badger",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 59.48,
+      "cue": "小熊一下子醒了過來。小花張開了花瓣",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 61.64,
+      "cue": "小花張開了花瓣",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 63.75,
+      "cue": "我係咪錯過咗呀？」「冇呀。」獾哈哈笑，「最精彩",
+      "sticker": "bear",
+      "expression": "surprised"
+    },
+    {
+      "at": 63.75,
+      "cue": "我係咪錯過咗呀？」「冇呀。」獾哈哈笑，「最精彩",
+      "sticker": "bear",
+      "animation": "talk"
+    },
+    {
+      "at": 65.28,
+      "cue": "冇呀。」獾哈哈笑，「最精彩",
+      "sticker": "badger",
+      "animation": "laugh"
+    },
+    {
+      "at": 69.85,
+      "cue": "春天，早晨",
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 69.85,
+      "cue": "春天，早晨",
+      "sticker": "bear",
+      "effect": "hearts"
+    }
+  ]
+}

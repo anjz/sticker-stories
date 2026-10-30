@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "die",
+      "effect": "sunset",
+      "duration": 33.34,
+      "intensity": 0.7
+    },
+    {
+      "at": 0,
+      "cue": "die",
+      "sticker": "firefly",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 5.32,
+      "cue": "fing",
+      "sticker": "all",
+      "effect": "glow",
+      "intensity": 0.4,
+      "color": "#FFD9A0"
+    },
+    {
+      "at": 13.4,
+      "cue": "und",
+      "sticker": "all",
+      "effect": "wobble",
+      "intensity": 0.4
+    },
+    {
+      "at": 17.48,
+      "cue": "die",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 19.88,
+      "cue": "sie",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 26.44,
+      "cue": "die",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 26.44,
+      "cue": "die",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 29.59,
+      "cue": "und",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    },
+    {
+      "at": 30.84,
+      "cue": "der",
+      "effect": "night",
+      "duration": 33.76,
+      "intensity": 0.8
+    },
+    {
+      "at": 35.48,
+      "cue": "die",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "resume"
+    },
+    {
+      "at": 41,
+      "cue": "jetzt",
+      "sticker": "owl",
+      "expression": "happy"
+    },
+    {
+      "at": 42.44,
+      "cue": "überall",
+      "effect": "fireflies",
+      "duration": 19.56,
+      "intensity": 0.5
+    },
+    {
+      "at": 45.16,
+      "cue": "das",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 47.2,
+      "cue": "zündete",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A",
+      "hold": true
+    },
+    {
+      "at": 51.96,
+      "cue": "und",
+      "sticker": "all",
+      "expression": "sleeping"
+    },
+    {
+      "at": 54.84,
+      "cue": "alle",
+      "sticker": "owl",
+      "expression": "happy"
+    },
+    {
+      "at": 54.84,
+      "cue": "alle",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 57.32,
+      "cue": "dem",
+      "sticker": "firefly",
+      "animation": "wave"
+    }
+  ]
+}

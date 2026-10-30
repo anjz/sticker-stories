@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "una",
+      "effect": "fog",
+      "duration": 42.34,
+      "intensity": 0.8
+    },
+    {
+      "at": 9,
+      "cue": "piovanello",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 11.08,
+      "cue": "non",
+      "sticker": "sandpiper",
+      "expression": "surprised"
+    },
+    {
+      "at": 12.44,
+      "cue": "non",
+      "sticker": "sandpiper",
+      "animation": "look-around"
+    },
+    {
+      "at": 20.2,
+      "cue": "un'ombra",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 22.96,
+      "cue": "era",
+      "sticker": "fishing-boat",
+      "effect": "pulse"
+    },
+    {
+      "at": 27.28,
+      "cue": "c'era",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 27.28,
+      "cue": "c'era",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 29.16,
+      "cue": "un'onda",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 31.68,
+      "cue": "piovanello",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "bottle",
+      "by": "run"
+    },
+    {
+      "at": 34.52,
+      "cue": "pop",
+      "sticker": "bottle",
+      "animation": "pop"
+    },
+    {
+      "at": 37.2,
+      "cue": "poi",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 37.2,
+      "cue": "poi",
+      "sticker": "sandpiper",
+      "animation": "laugh"
+    },
+    {
+      "at": 37.68,
+      "cue": "piano",
+      "effect": "sunshine",
+      "duration": 25,
+      "intensity": 0.8
+    },
+    {
+      "at": 41.52,
+      "cue": "il",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 43.44,
+      "cue": "e",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 43.44,
+      "cue": "e",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 46.41,
+      "cue": "piovanello",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 51.64,
+      "cue": "stato",
+      "sticker": "sandpiper",
+      "effect": "hop"
+    }
+  ]
+}

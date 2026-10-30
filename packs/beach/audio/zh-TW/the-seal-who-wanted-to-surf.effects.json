@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "尼可抱起衝浪板，划呀划，划出去了。唰——！他站起來，乘著一道浪。海豹在岩石上看著。啪、啪",
+      "sticker": "surfer",
+      "enter": true,
+      "by": "paddle"
+    },
+    {
+      "at": 7.48,
+      "cue": "唰——！他站起來，乘著一道浪。海豹在岩石上看著。啪、啪",
+      "sticker": "surfer",
+      "animation": "ride-wave"
+    },
+    {
+      "at": 11.24,
+      "cue": "海豹在岩石上看著。啪、啪",
+      "sticker": "seal",
+      "enter": true
+    },
+    {
+      "at": 11.24,
+      "cue": "海豹在岩石上看著。啪、啪",
+      "sticker": "seal",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 13.56,
+      "cue": "啪、啪",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 13.56,
+      "cue": "啪、啪",
+      "sticker": "seal",
+      "animation": "clap"
+    },
+    {
+      "at": 21.1,
+      "cue": "游泳圈一搖一晃地漂過來。海豹游過去，想坐上去試試看。游泳圈轉呀轉，轉呀轉，轉呀轉……嘩啦！海豹滑下去了",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 21.1,
+      "cue": "游泳圈一搖一晃地漂過來。海豹游過去，想坐上去試試看。游泳圈轉呀轉，轉呀轉，轉呀轉……嘩啦！海豹滑下去了",
+      "sticker": "ring",
+      "go": "to",
+      "target": "seal"
+    },
+    {
+      "at": 24.14,
+      "cue": "海豹游過去，想坐上去試試看。游泳圈轉呀轉，轉呀轉，轉呀轉……嘩啦！海豹滑下去了",
+      "sticker": "seal",
+      "go": "to",
+      "target": "ring",
+      "by": "swim"
+    },
+    {
+      "at": 27.34,
+      "cue": "游泳圈轉呀轉，轉呀轉，轉呀轉……嘩啦！海豹滑下去了",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 31.82,
+      "cue": "嘩啦！海豹滑下去了",
+      "sticker": "seal",
+      "effect": "spin"
+    },
+    {
+      "at": 32.7,
+      "cue": "海豹滑下去了",
+      "sticker": "seal",
+      "expression": "surprised"
+    },
+    {
+      "at": 41.98,
+      "cue": "於是海豹試試看",
+      "sticker": "seal",
+      "animation": "nod"
+    },
+    {
+      "at": 50.22,
+      "sticker": "seal",
+      "effect": "glow",
+      "intensity": 0.4
+    },
+    {
+      "at": 57.02,
+      "cue": "他們肩並肩，乘著同一道浪，一路衝回來。尼可把衝浪板舉起來揮呀揮",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand",
+      "by": "surf"
+    },
+    {
+      "at": 57.02,
+      "cue": "他們肩並肩，乘著同一道浪，一路衝回來。尼可把衝浪板舉起來揮呀揮",
+      "sticker": "seal",
+      "go": "to",
+      "target": "surfer",
+      "by": "swim"
+    },
+    {
+      "at": 61.02,
+      "cue": "尼可把衝浪板舉起來揮呀揮",
+      "sticker": "surfer",
+      "animation": "wave"
+    },
+    {
+      "at": 64.05,
+      "cue": "再來一次？」海豹已經等不及啦",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 64.05,
+      "cue": "再來一次？」海豹已經等不及啦",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 65.18,
+      "cue": "海豹已經等不及啦",
+      "sticker": "seal",
+      "effect": "hearts"
+    }
+  ]
+}

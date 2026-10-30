@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "蘿拉坐在太陽傘下面，乾乾爽爽的。小狗就不同了",
+      "sticker": "umbrella",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "蘿拉坐在太陽傘下面，乾乾爽爽的。小狗就不同了",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 5.16,
+      "cue": "乾乾爽爽的。小狗就不同了",
+      "sticker": "girl",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 5.16,
+      "cue": "乾乾爽爽的。小狗就不同了",
+      "sticker": "girl",
+      "animation": "crouch",
+      "mode": "hold"
+    },
+    {
+      "at": 6.68,
+      "cue": "小狗就不同了",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 6.68,
+      "cue": "小狗就不同了",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 9.56,
+      "sticker": "dog",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 10.68,
+      "cue": "嘩啦！又跑回來，用力一抖",
+      "sticker": "dog",
+      "go": "to",
+      "target": "girl"
+    },
+    {
+      "at": 12.68,
+      "cue": "用力一抖",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 14.36,
+      "cue": "小狗！我成身都濕晒喇",
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 18.76,
+      "cue": "嘩啦……又跑回來，抖",
+      "sticker": "dog",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 19.72,
+      "cue": "又跑回來，抖",
+      "sticker": "dog",
+      "go": "to",
+      "target": "girl"
+    },
+    {
+      "at": 20.68,
+      "cue": "抖",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 21.92,
+      "cue": "又嚟",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 28.36,
+      "cue": "她把太陽傘一轉，對着小狗，好像一面",
+      "sticker": "umbrella",
+      "animation": "spin"
+    },
+    {
+      "at": 33.48,
+      "cue": "抖、抖、抖！每一滴水都落在太陽傘上",
+      "sticker": "dog",
+      "effect": "shake"
+    },
+    {
+      "at": 33.48,
+      "cue": "抖、抖、抖！每一滴水都落在太陽傘上",
+      "sticker": "umbrella",
+      "effect": "spray"
+    },
+    {
+      "at": 37.47,
+      "cue": "哈！今次冇濕！」小狗搖搖尾巴，繞過太陽傘……在她的鼻子上，濕濕地舔了一大口",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 39.4,
+      "cue": "小狗搖搖尾巴，繞過太陽傘……在她的鼻子上，濕濕地舔了一大口",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 41,
+      "cue": "繞過太陽傘……在她的鼻子上，濕濕地舔了一大口",
+      "sticker": "dog",
+      "go": "to",
+      "target": "girl"
+    },
+    {
+      "at": 46.48,
+      "cue": "哎呀，小狗",
+      "sticker": "dog",
+      "effect": "hearts"
+    }
+  ]
+}

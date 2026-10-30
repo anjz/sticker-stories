@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "濱鷸沿著岸邊跑呀跑，想找點新鮮的東西",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "濱鷸沿著岸邊跑呀跑，想找點新鮮的東西",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 7.64,
+      "cue": "咦，這是什麼？一個",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 9.24,
+      "cue": "一個",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 9.24,
+      "cue": "一個",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 13.88,
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "bottle",
+      "by": "run"
+    },
+    {
+      "at": 18.04,
+      "cue": "啵！軟木塞跳開了",
+      "sticker": "bottle",
+      "animation": "pop"
+    },
+    {
+      "at": 21.27,
+      "cue": "濱鷸咻地跳到半空中",
+      "sticker": "sandpiper",
+      "expression": "surprised"
+    },
+    {
+      "at": 21.27,
+      "cue": "濱鷸咻地跳到半空中",
+      "sticker": "sandpiper",
+      "animation": "jump"
+    },
+    {
+      "at": 26.84,
+      "cue": "一個圓滾滾的大東西",
+      "sticker": "ball",
+      "enter": true
+    },
+    {
+      "at": 29.08,
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "ball",
+      "by": "run"
+    },
+    {
+      "at": 33.56,
+      "cue": "叩、叩。咕嚕咕嚕，它滾走了！濱鷸在後面追，跑呀、跑呀、跑呀，一直追到它轉了幾圈，停下來為止",
+      "sticker": "sandpiper",
+      "effect": "pulse"
+    },
+    {
+      "at": 34.76,
+      "cue": "咕嚕咕嚕，它滾走了！濱鷸在後面追，跑呀、跑呀、跑呀，一直追到它轉了幾圈，停下來為止",
+      "sticker": "ball",
+      "go": "to",
+      "target": "sand",
+      "another": true
+    },
+    {
+      "at": 37.32,
+      "cue": "濱鷸在後面追，跑呀、跑呀、跑呀，一直追到它轉了幾圈，停下來為止",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "ball",
+      "by": "run"
+    },
+    {
+      "at": 41.96,
+      "cue": "轉了幾圈，停下來為止",
+      "sticker": "ball",
+      "animation": "spin"
+    },
+    {
+      "at": 44.44,
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 44.44,
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 48.75,
+      "cue": "很好，」濱鷸說，「這個會乖乖",
+      "sticker": "sandpiper",
+      "animation": "nod"
+    },
+    {
+      "at": 53.08,
+      "cue": "然後",
+      "sticker": "ball",
+      "effect": "pulse"
+    }
+  ]
+}

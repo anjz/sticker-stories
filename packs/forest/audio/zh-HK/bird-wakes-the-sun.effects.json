@@ -1,0 +1,175 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "天快亮了。高高的樹枝上，小鳥十分肯定：太陽是被",
+      "effect": "night",
+      "duration": 29.96,
+      "intensity": 0.7
+    },
+    {
+      "at": 6.36,
+      "cue": "小鳥十分肯定：太陽是被",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 6.36,
+      "cue": "小鳥十分肯定：太陽是被",
+      "sticker": "bird",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 8.2,
+      "cue": "太陽是被",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 14.12,
+      "cue": "小花靜靜地等着，花瓣合得緊緊的。貓",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 16.04,
+      "cue": "花瓣合得緊緊的。貓",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 17.88,
+      "cue": "貓",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 17.88,
+      "cue": "貓",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 21.76,
+      "cue": "梗係啦。」小鳥說，「我瞇一陣眼",
+      "sticker": "bird",
+      "animation": "nod"
+    },
+    {
+      "at": 25.32,
+      "cue": "結果",
+      "sticker": "bird",
+      "expression": "sleeping"
+    },
+    {
+      "at": 26.44,
+      "cue": "呼呼大睡了。可是，太陽",
+      "sticker": "bird",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 27.96,
+      "cue": "可是，太陽",
+      "effect": "sunshine",
+      "duration": 24,
+      "intensity": 0.8
+    },
+    {
+      "at": 30.68,
+      "cue": "小花張開了花瓣",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 32.36,
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 36,
+      "cue": "首歌呢？冇咗首歌，我點開始新",
+      "sticker": "rabbit",
+      "expression": "sad"
+    },
+    {
+      "at": 41.32,
+      "cue": "冇咗首歌，我都瞓唔着呀。」貓",
+      "sticker": "owl",
+      "expression": "sad"
+    },
+    {
+      "at": 45.8,
+      "cue": "小鳥一下子跳了起來。太陽自己升起來了，沒有等",
+      "sticker": "bird",
+      "animation": "sleep",
+      "mode": "resume"
+    },
+    {
+      "at": 45.8,
+      "cue": "小鳥一下子跳了起來。太陽自己升起來了，沒有等",
+      "sticker": "bird",
+      "expression": "surprised"
+    },
+    {
+      "at": 50.64,
+      "cue": "咁……我首歌唱嚟做乜㗎？」「唱畀我哋聽㗎",
+      "sticker": "bird",
+      "expression": "sad"
+    },
+    {
+      "at": 53.58,
+      "cue": "唱畀我哋聽㗎",
+      "sticker": "rabbit",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 55.96,
+      "cue": "於是小鳥挺起胸膛，唱起歌來",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 57,
+      "cue": "挺起胸膛，唱起歌來",
+      "sticker": "bird",
+      "animation": "sing"
+    },
+    {
+      "at": 59.08,
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 59.08,
+      "sticker": "rabbit",
+      "effect": "hop",
+      "repeat": 3
+    },
+    {
+      "at": 61.4,
+      "cue": "小花對着太陽微笑。而貓",
+      "sticker": "flower",
+      "effect": "glow"
+    },
+    {
+      "at": 63.32,
+      "cue": "而貓",
+      "sticker": "owl",
+      "expression": "sleeping"
+    },
+    {
+      "at": 63.32,
+      "cue": "而貓",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    }
+  ]
+}

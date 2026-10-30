@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.32,
+      "cue": "die",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 10.04,
+      "cue": "der",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 15.08,
+      "cue": "der",
+      "sticker": "butterfly",
+      "animation": "talk"
+    },
+    {
+      "at": 16.28,
+      "cue": "die",
+      "sticker": "caterpillar",
+      "expression": "sad"
+    },
+    {
+      "at": 16.28,
+      "cue": "die",
+      "sticker": "caterpillar",
+      "animation": "reach-up"
+    },
+    {
+      "at": 21.84,
+      "cue": "das",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 21.84,
+      "cue": "das",
+      "sticker": "deer",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 25.56,
+      "cue": "es",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 30.68,
+      "cue": "sie",
+      "sticker": "caterpillar",
+      "go": "on",
+      "target": "deer"
+    },
+    {
+      "at": 36.48,
+      "cue": "da",
+      "effect": "clouds",
+      "duration": 31.1,
+      "intensity": 0.4
+    },
+    {
+      "at": 36.48,
+      "cue": "da",
+      "sticker": "caterpillar",
+      "expression": "surprised"
+    },
+    {
+      "at": 42.92,
+      "cue": "die",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "hold"
+    },
+    {
+      "at": 45.56,
+      "cue": "der",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 45.56,
+      "cue": "der",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "deer"
+    },
+    {
+      "at": 48.84,
+      "cue": "er",
+      "sticker": "butterfly",
+      "animation": "rest"
+    },
+    {
+      "at": 61.16,
+      "cue": "die",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "resume"
+    },
+    {
+      "at": 63.34,
+      "cue": "bis",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 63.34,
+      "cue": "bis",
+      "sticker": "deer",
+      "expression": "happy"
+    },
+    {
+      "at": 63.34,
+      "cue": "bis",
+      "sticker": "deer",
+      "effect": "hearts"
+    }
+  ]
+}

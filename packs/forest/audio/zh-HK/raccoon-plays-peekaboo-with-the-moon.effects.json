@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "月亮出來了，又圓又亮。已經是睡覺的時間，可是浣熊一點睡意也沒有。「哈囉，月亮！」這時，一朵小雲飄過來，遮住了月亮",
+      "effect": "night",
+      "duration": 74.36,
+      "intensity": 0.8
+    },
+    {
+      "at": 8.52,
+      "cue": "浣熊一點睡意也沒有。「哈囉，月亮！」這時，一朵小雲飄過來，遮住了月亮",
+      "sticker": "raccoon",
+      "enter": true
+    },
+    {
+      "at": 10.44,
+      "cue": "哈囉，月亮！」這時，一朵小雲飄過來，遮住了月亮",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 10.44,
+      "cue": "哈囉，月亮！」這時，一朵小雲飄過來，遮住了月亮",
+      "sticker": "raccoon",
+      "effect": "hop"
+    },
+    {
+      "at": 12.12,
+      "cue": "這時，一朵小雲飄過來，遮住了月亮",
+      "effect": "clouds",
+      "duration": 9.54,
+      "intensity": 0.6
+    },
+    {
+      "at": 16.04,
+      "cue": "月亮不見了！「月亮去咗邊呀？」小雲",
+      "sticker": "raccoon",
+      "expression": "surprised"
+    },
+    {
+      "at": 17,
+      "cue": "月亮去咗邊呀？」小雲",
+      "sticker": "raccoon",
+      "animation": "look-around"
+    },
+    {
+      "at": 25.4,
+      "cue": "原來月亮在跟",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 29.96,
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "hold"
+    },
+    {
+      "at": 33.36,
+      "cue": "喺度",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "resume"
+    },
+    {
+      "at": 35.8,
+      "cue": "刺蝟。刺蝟",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 35.8,
+      "cue": "刺蝟。刺蝟",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "raccoon"
+    },
+    {
+      "at": 38.52,
+      "cue": "也笑個不停。接着，螢火蟲也飛下來一起玩",
+      "sticker": "hedgehog",
+      "expression": "happy"
+    },
+    {
+      "at": 38.52,
+      "cue": "也笑個不停。接着，螢火蟲也飛下來一起玩",
+      "sticker": "hedgehog",
+      "animation": "laugh"
+    },
+    {
+      "at": 40.44,
+      "cue": "螢火蟲也飛下來一起玩",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 40.44,
+      "cue": "螢火蟲也飛下來一起玩",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "raccoon"
+    },
+    {
+      "at": 42.6,
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 2,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 45.32,
+      "cue": "一閃，一閃！唔見咗……喺度！大家都咯咯地笑。後來，刺蝟打了個呵",
+      "sticker": "firefly",
+      "effect": "glow",
+      "repeat": 2,
+      "duration": 0.4,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 48.44,
+      "cue": "大家都咯咯地笑。後來，刺蝟打了個呵",
+      "sticker": "raccoon",
+      "effect": "hop"
+    },
+    {
+      "at": 48.44,
+      "cue": "大家都咯咯地笑。後來，刺蝟打了個呵",
+      "sticker": "hedgehog",
+      "effect": "wobble"
+    },
+    {
+      "at": 52.52,
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 52.52,
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    },
+    {
+      "at": 58.68,
+      "cue": "眼睛快要張不開了",
+      "sticker": "raccoon",
+      "expression": "sleeping"
+    },
+    {
+      "at": 60.52,
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "hold"
+    }
+  ]
+}

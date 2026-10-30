@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 6.44,
+      "cue": "狐狸小跑步過來，小鹿也跟著來了",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 8.28,
+      "cue": "小鹿也跟著來了",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 8.28,
+      "cue": "小鹿也跟著來了",
+      "sticker": "deer",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 10.49,
+      "cue": "是誰呀？」狐狸大聲問。原來是啄木鳥，停在樹皮上",
+      "sticker": "fox",
+      "expression": "surprised"
+    },
+    {
+      "at": 10.49,
+      "cue": "是誰呀？」狐狸大聲問。原來是啄木鳥，停在樹皮上",
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 13.84,
+      "cue": "啄木鳥，停在樹皮上",
+      "sticker": "woodpecker",
+      "enter": true
+    },
+    {
+      "at": 13.84,
+      "cue": "啄木鳥，停在樹皮上",
+      "sticker": "woodpecker",
+      "go": "to",
+      "target": "trunks"
+    },
+    {
+      "at": 16.84,
+      "sticker": "deer",
+      "expression": "happy"
+    },
+    {
+      "at": 19.84,
+      "cue": "差不多啦。」啄木鳥說。叩叩叩……然後",
+      "sticker": "woodpecker",
+      "expression": "happy"
+    },
+    {
+      "at": 19.84,
+      "cue": "差不多啦。」啄木鳥說。叩叩叩……然後",
+      "sticker": "woodpecker",
+      "effect": "pulse"
+    },
+    {
+      "at": 22.68,
+      "cue": "叩叩叩……然後",
+      "sticker": "woodpecker",
+      "animation": "tap",
+      "mode": "hold"
+    },
+    {
+      "at": 27.48,
+      "cue": "狐狸踮著",
+      "sticker": "fox",
+      "go": "to",
+      "target": "woodpecker"
+    },
+    {
+      "at": 31,
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 36.84,
+      "cue": "低",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 46.92,
+      "cue": "狐狸睜開眼睛，咧嘴笑了。「叩！」啄木鳥說，「早餐！」「叩叩叩！」小鹿說。「是誰呀？」狐狸說",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 49.48,
+      "cue": "叩！」啄木鳥說，「早餐！」「叩叩叩！」小鹿說。「是誰呀？」狐狸說",
+      "sticker": "woodpecker",
+      "animation": "tap",
+      "mode": "resume"
+    },
+    {
+      "at": 52.48,
+      "cue": "叩叩叩！」小鹿說。「是誰呀？」狐狸說",
+      "sticker": "deer",
+      "animation": "talk"
+    },
+    {
+      "at": 54.44,
+      "cue": "是誰呀？」狐狸說",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 54.44,
+      "cue": "是誰呀？」狐狸說",
+      "sticker": "fox",
+      "animation": "talk"
+    },
+    {
+      "at": 57.88,
+      "cue": "是早餐！」大家一起說",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 57.88,
+      "cue": "是早餐！」大家一起說",
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "啄木鳥緊緊抓著大樹的樹皮，打起鼓來。叩叩叩叩——叩！小小的橡實走了過來，松果也跟在她後面滾過來",
+      "sticker": "woodpecker",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "啄木鳥緊緊抓著大樹的樹皮，打起鼓來。叩叩叩叩——叩！小小的橡實走了過來，松果也跟在她後面滾過來",
+      "sticker": "woodpecker",
+      "go": "to",
+      "target": "trunks"
+    },
+    {
+      "at": 5.64,
+      "cue": "打起鼓來。叩叩叩叩——叩！小小的橡實走了過來，松果也跟在她後面滾過來",
+      "sticker": "woodpecker",
+      "animation": "drum"
+    },
+    {
+      "at": 8.76,
+      "cue": "小小的橡實走了過來，松果也跟在她後面滾過來",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 11,
+      "cue": "松果也跟在她後面滾過來",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 11,
+      "cue": "松果也跟在她後面滾過來",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "acorn"
+    },
+    {
+      "at": 13.62,
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 16.16,
+      "cue": "一個我還沒見過的朋友，」啄木鳥說，「住在好",
+      "sticker": "woodpecker",
+      "expression": "sad"
+    },
+    {
+      "at": 22.52,
+      "cue": "又敲了敲，然後仔細聽",
+      "sticker": "woodpecker",
+      "animation": "tap",
+      "mode": "hold"
+    },
+    {
+      "at": 26.76,
+      "cue": "一點聲音也沒有。橡實好想幫忙。「再一次！」她說，然後緊緊閉上眼睛，許了一個願。松果張開她所有的鱗片，好像每一片都能聽一樣。於是，啄木鳥又敲了一次",
+      "sticker": "pinecone",
+      "expression": "sad"
+    },
+    {
+      "at": 28.84,
+      "cue": "橡實好想幫忙。「再一次！」她說，然後緊緊閉上眼睛，許了一個願。松果張開她所有的鱗片，好像每一片都能聽一樣。於是，啄木鳥又敲了一次",
+      "sticker": "acorn",
+      "expression": "sad"
+    },
+    {
+      "at": 32.92,
+      "cue": "緊緊閉上眼睛，許了一個願。松果張開她所有的鱗片，好像每一片都能聽一樣。於是，啄木鳥又敲了一次",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 36.36,
+      "cue": "張開她所有的鱗片，好像每一片都能聽一樣。於是，啄木鳥又敲了一次",
+      "sticker": "pinecone",
+      "animation": "open"
+    },
+    {
+      "at": 40.44,
+      "cue": "於是，啄木鳥又敲了一次",
+      "sticker": "woodpecker",
+      "animation": "tap",
+      "mode": "resume"
+    },
+    {
+      "at": 49.34,
+      "cue": "橡實一下子睜開眼睛",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 51.78,
+      "sticker": "pinecone",
+      "expression": "surprised"
+    },
+    {
+      "at": 53.02,
+      "cue": "叩叩叩",
+      "sticker": "woodpecker",
+      "expression": "happy"
+    },
+    {
+      "at": 60.06,
+      "cue": "橡實和松果開心得跳了起來",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 60.06,
+      "cue": "橡實和松果開心得跳了起來",
+      "sticker": "acorn",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 60.06,
+      "cue": "橡實和松果開心得跳了起來",
+      "sticker": "pinecone",
+      "expression": "happy"
+    },
+    {
+      "at": 60.06,
+      "cue": "橡實和松果開心得跳了起來",
+      "sticker": "pinecone",
+      "animation": "bounce"
+    }
+  ]
+}

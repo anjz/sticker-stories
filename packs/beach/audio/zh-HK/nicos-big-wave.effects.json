@@ -1,0 +1,162 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "陽",
+      "sticker": "sailboat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "陽",
+      "effect": "sunshine",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 6.44,
+      "cue": "尼可抱着黃色的滑浪板，來到水邊",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 6.44,
+      "cue": "尼可抱着黃色的滑浪板，來到水邊",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 9.88,
+      "cue": "今日我要滑最大嗰個浪",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 13.72,
+      "cue": "帆船輕輕搖晃，白帆鼓得飽飽的。然後，一個浪湧了起來，又高又白",
+      "sticker": "sailboat",
+      "enter": true
+    },
+    {
+      "at": 13.72,
+      "cue": "帆船輕輕搖晃，白帆鼓得飽飽的。然後，一個浪湧了起來，又高又白",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 15.64,
+      "cue": "白帆鼓得飽飽的。然後，一個浪湧了起來，又高又白",
+      "sticker": "sailboat",
+      "animation": "sails"
+    },
+    {
+      "at": 25.76,
+      "cue": "尼可停住了。那個浪真的好大。他的膝",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 29.12,
+      "cue": "他的膝",
+      "sticker": "surfer",
+      "effect": "shake"
+    },
+    {
+      "at": 31.68,
+      "cue": "海豹一扭一扭地爬上岩石，拍起鰭來",
+      "sticker": "seal",
+      "enter": true
+    },
+    {
+      "at": 31.68,
+      "cue": "海豹一扭一扭地爬上岩石，拍起鰭來",
+      "sticker": "seal",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 34,
+      "cue": "拍起鰭來",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 34,
+      "cue": "拍起鰭來",
+      "sticker": "seal",
+      "animation": "clap"
+    },
+    {
+      "at": 37.74,
+      "cue": "好像在說",
+      "sticker": "seal",
+      "animation": "nod"
+    },
+    {
+      "at": 37.74,
+      "cue": "好像在說",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sea",
+      "by": "paddle"
+    },
+    {
+      "at": 43.46,
+      "cue": "唰！他站起來了！海龜在旁邊游着，笑眯眯的。尼可乘着小浪，一直滑回沙灘上。然後，再滑一個。又一個。尼可向海豹揮手，高高舉起滑浪板",
+      "sticker": "surfer",
+      "animation": "ride-wave"
+    },
+    {
+      "at": 45.54,
+      "cue": "海龜在旁邊游着，笑眯眯的。尼可乘着小浪，一直滑回沙灘上。然後，再滑一個。又一個。尼可向海豹揮手，高高舉起滑浪板",
+      "sticker": "turtle",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 45.54,
+      "cue": "海龜在旁邊游着，笑眯眯的。尼可乘着小浪，一直滑回沙灘上。然後，再滑一個。又一個。尼可向海豹揮手，高高舉起滑浪板",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "surfer",
+      "by": "swim"
+    },
+    {
+      "at": 47.14,
+      "cue": "笑眯眯的。尼可乘着小浪，一直滑回沙灘上。然後，再滑一個。又一個。尼可向海豹揮手，高高舉起滑浪板",
+      "sticker": "turtle",
+      "effect": "hearts"
+    },
+    {
+      "at": 50.02,
+      "cue": "一直滑回沙灘上。然後，再滑一個。又一個。尼可向海豹揮手，高高舉起滑浪板",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand",
+      "by": "surf"
+    },
+    {
+      "at": 51.78,
+      "cue": "然後，再滑一個。又一個。尼可向海豹揮手，高高舉起滑浪板",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 56.5,
+      "cue": "高高舉起滑浪板",
+      "sticker": "surfer",
+      "animation": "wave"
+    },
+    {
+      "at": 58.07,
+      "cue": "多謝",
+      "sticker": "seal",
+      "effect": "hearts"
+    }
+  ]
+}

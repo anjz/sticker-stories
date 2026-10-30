@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "die",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 6.16,
+      "cue": "die",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 8.12,
+      "cue": "sie",
+      "sticker": "bee",
+      "go": "on",
+      "target": "flower"
+    },
+    {
+      "at": 10.92,
+      "cue": "über",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 13.56,
+      "cue": "das",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 13.56,
+      "cue": "das",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 16.36,
+      "cue": "oh",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 20.44,
+      "cue": "schon",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 22.72,
+      "cue": "plitsch",
+      "effect": "bubbles",
+      "duration": 22.56,
+      "intensity": 0.6
+    },
+    {
+      "at": 22.72,
+      "cue": "plitsch",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond",
+      "by": "swim"
+    },
+    {
+      "at": 27.99,
+      "cue": "komm",
+      "sticker": "duckling",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 29.05,
+      "cue": "halt",
+      "sticker": "flower",
+      "animation": "shake-head"
+    },
+    {
+      "at": 35.88,
+      "cue": "die",
+      "sticker": "bee",
+      "effect": "pulse"
+    },
+    {
+      "at": 43.78,
+      "cue": "oh",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 47.08,
+      "cue": "es",
+      "sticker": "duckling",
+      "animation": "nap"
+    },
+    {
+      "at": 49.43,
+      "cue": "es",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 49.43,
+      "cue": "es",
+      "sticker": "flower",
+      "animation": "talk"
+    },
+    {
+      "at": 55.96,
+      "cue": "die",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 58.27,
+      "cue": "viel",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 58.27,
+      "cue": "viel",
+      "sticker": "duckling",
+      "animation": "talk"
+    },
+    {
+      "at": 63.28,
+      "cue": "summte",
+      "sticker": "bee",
+      "go": "to",
+      "target": "meadow"
+    }
+  ]
+}

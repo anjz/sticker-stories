@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5,
+      "cue": "chenille",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 10.84,
+      "cue": "papillon",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 15,
+      "sticker": "butterfly",
+      "animation": "talk"
+    },
+    {
+      "at": 16.17,
+      "cue": "alors",
+      "sticker": "caterpillar",
+      "expression": "sad"
+    },
+    {
+      "at": 16.88,
+      "cue": "s’est",
+      "sticker": "caterpillar",
+      "animation": "reach-up"
+    },
+    {
+      "at": 20.84,
+      "cue": "faon",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 20.84,
+      "cue": "faon",
+      "sticker": "deer",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 23.92,
+      "cue": "il",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 27.56,
+      "cue": "elle",
+      "sticker": "caterpillar",
+      "go": "on",
+      "target": "deer"
+    },
+    {
+      "at": 32.25,
+      "cue": "le",
+      "effect": "clouds",
+      "duration": 25.57,
+      "intensity": 0.4
+    },
+    {
+      "at": 32.25,
+      "cue": "le",
+      "sticker": "caterpillar",
+      "expression": "surprised"
+    },
+    {
+      "at": 37.2,
+      "cue": "chenille",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "hold"
+    },
+    {
+      "at": 39.29,
+      "cue": "papillon",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 39.29,
+      "cue": "papillon",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "deer"
+    },
+    {
+      "at": 41.92,
+      "cue": "il",
+      "sticker": "butterfly",
+      "animation": "rest"
+    },
+    {
+      "at": 51.54,
+      "cue": "chenille",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "resume"
+    },
+    {
+      "at": 53.46,
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 53.46,
+      "sticker": "deer",
+      "expression": "happy"
+    },
+    {
+      "at": 53.46,
+      "sticker": "deer",
+      "effect": "hearts"
+    }
+  ]
+}

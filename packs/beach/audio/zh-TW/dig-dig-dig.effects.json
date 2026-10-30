@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "挖呀挖，挖呀挖！小狗最最喜歡挖沙了。沙子到處亂飛，飛得沙",
+      "sticker": "bucket",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "挖呀挖，挖呀挖！小狗最最喜歡挖沙了。沙子到處亂飛，飛得沙",
+      "sticker": "castle",
+      "enter": true
+    },
+    {
+      "at": 4.84,
+      "cue": "小狗最最喜歡挖沙了。沙子到處亂飛，飛得沙",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 4.84,
+      "cue": "小狗最最喜歡挖沙了。沙子到處亂飛，飛得沙",
+      "sticker": "dog",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 7.24,
+      "cue": "沙子到處亂飛，飛得沙",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 7.24,
+      "cue": "沙子到處亂飛，飛得沙",
+      "sticker": "dog",
+      "animation": "dig"
+    },
+    {
+      "at": 10.84,
+      "cue": "小心點呀，小狗",
+      "sticker": "castle",
+      "effect": "wobble"
+    },
+    {
+      "at": 13.56,
+      "cue": "叩",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 17.56,
+      "cue": "原來是蛤蜊",
+      "sticker": "clam",
+      "enter": true
+    },
+    {
+      "at": 17.56,
+      "cue": "原來是蛤蜊",
+      "sticker": "dog",
+      "go": "to",
+      "target": "clam"
+    },
+    {
+      "at": 19.08,
+      "sticker": "clam",
+      "animation": "peek"
+    },
+    {
+      "at": 31.64,
+      "cue": "一下子鑽進沙子裡",
+      "sticker": "clam",
+      "effect": "fade-out",
+      "hold": true
+    },
+    {
+      "at": 35.64,
+      "cue": "小狗挖呀挖，挖呀挖。沙子到處亂飛，飛得小桶上都是。小桶搖搖晃晃、晃晃搖搖……還是站住了。小狗甩掉鼻子上的沙",
+      "sticker": "dog",
+      "animation": "dig"
+    },
+    {
+      "at": 42.04,
+      "cue": "小桶搖搖晃晃、晃晃搖搖……還是站住了。小狗甩掉鼻子上的沙",
+      "sticker": "bucket",
+      "animation": "tip"
+    },
+    {
+      "at": 46.6,
+      "cue": "小狗甩掉鼻子上的沙",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 49.88,
+      "cue": "啵！蛤蜊冒出來了",
+      "sticker": "clam",
+      "effect": "fade-in"
+    },
+    {
+      "at": 52.44,
+      "cue": "找到",
+      "sticker": "clam",
+      "expression": "happy"
+    },
+    {
+      "at": 54.76,
+      "cue": "那天下午",
+      "sticker": "dog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 54.76,
+      "cue": "那天下午",
+      "sticker": "castle",
+      "effect": "sparkle"
+    }
+  ]
+}

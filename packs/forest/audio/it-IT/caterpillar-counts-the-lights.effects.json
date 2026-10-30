@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "bruco",
+      "effect": "night",
+      "duration": 75.08,
+      "intensity": 0.7
+    },
+    {
+      "at": 0,
+      "cue": "bruco",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 11.72,
+      "cue": "erba",
+      "sticker": "caterpillar",
+      "expression": "sad"
+    },
+    {
+      "at": 15.72,
+      "cue": "fungo",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 16.59,
+      "cue": "sali",
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 17.88,
+      "cue": "bruco",
+      "sticker": "caterpillar",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 19.24,
+      "cue": "sul",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 20.44,
+      "cue": "si",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "hold"
+    },
+    {
+      "at": 28.28,
+      "cue": "farfalla",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 32.2,
+      "cue": "si",
+      "sticker": "butterfly",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 34.36,
+      "cue": "ha",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 37,
+      "cue": "lucciola",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 37,
+      "cue": "lucciola",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 39.96,
+      "cue": "si",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 42.04,
+      "cue": "e",
+      "effect": "fireflies",
+      "duration": 30.48,
+      "intensity": 0.6
+    },
+    {
+      "at": 52.52,
+      "cue": "poi",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 59.64,
+      "cue": "bruco",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "resume"
+    },
+    {
+      "at": 62.6,
+      "cue": "si",
+      "sticker": "caterpillar",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 65.64,
+      "cue": "lucciola",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 65.64,
+      "cue": "lucciola",
+      "sticker": "firefly",
+      "animation": "wave"
+    }
+  ]
+}

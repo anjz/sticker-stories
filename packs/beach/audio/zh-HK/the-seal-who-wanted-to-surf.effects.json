@@ -1,0 +1,132 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "尼可拿起滑浪板，划了出去。唰！他站起來了，乘着浪滑行。海豹在岩石上看着",
+      "sticker": "surfer",
+      "enter": true,
+      "by": "paddle"
+    },
+    {
+      "at": 5.8,
+      "cue": "唰！他站起來了，乘着浪滑行。海豹在岩石上看着",
+      "sticker": "surfer",
+      "animation": "ride-wave"
+    },
+    {
+      "at": 9.72,
+      "cue": "海豹在岩石上看着",
+      "sticker": "seal",
+      "enter": true
+    },
+    {
+      "at": 9.72,
+      "cue": "海豹在岩石上看着",
+      "sticker": "seal",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 11.96,
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 11.96,
+      "sticker": "seal",
+      "animation": "clap"
+    },
+    {
+      "at": 17.26,
+      "cue": "水泡一浮一浮地漂了過來。海豹游過去，想坐上去試試。水泡轉呀轉，轉呀轉，轉呀轉……嘩啦！海豹滑了下去",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 17.26,
+      "cue": "水泡一浮一浮地漂了過來。海豹游過去，想坐上去試試。水泡轉呀轉，轉呀轉，轉呀轉……嘩啦！海豹滑了下去",
+      "sticker": "ring",
+      "go": "to",
+      "target": "seal"
+    },
+    {
+      "at": 20.06,
+      "cue": "海豹游過去，想坐上去試試。水泡轉呀轉，轉呀轉，轉呀轉……嘩啦！海豹滑了下去",
+      "sticker": "seal",
+      "go": "to",
+      "target": "ring",
+      "by": "swim"
+    },
+    {
+      "at": 22.94,
+      "cue": "水泡轉呀轉，轉呀轉，轉呀轉……嘩啦！海豹滑了下去",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 27.5,
+      "cue": "嘩啦！海豹滑了下去",
+      "sticker": "seal",
+      "effect": "spin"
+    },
+    {
+      "at": 28.3,
+      "cue": "海豹滑了下去",
+      "sticker": "seal",
+      "expression": "surprised"
+    },
+    {
+      "at": 37.74,
+      "cue": "於是，海豹試試看",
+      "sticker": "seal",
+      "animation": "nod"
+    },
+    {
+      "at": 44.86,
+      "sticker": "seal",
+      "effect": "glow",
+      "intensity": 0.4
+    },
+    {
+      "at": 51.9,
+      "cue": "他們一左一右，乘着浪一直滑回岸上。尼可把滑浪板舉起來，揮呀揮",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand",
+      "by": "surf"
+    },
+    {
+      "at": 51.9,
+      "cue": "他們一左一右，乘着浪一直滑回岸上。尼可把滑浪板舉起來，揮呀揮",
+      "sticker": "seal",
+      "go": "to",
+      "target": "surfer",
+      "by": "swim"
+    },
+    {
+      "at": 55.66,
+      "cue": "尼可把滑浪板舉起來，揮呀揮",
+      "sticker": "surfer",
+      "animation": "wave"
+    },
+    {
+      "at": 58.54,
+      "cue": "再嚟一次？」海豹早就急不及",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 58.54,
+      "cue": "再嚟一次？」海豹早就急不及",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 59.58,
+      "cue": "海豹早就急不及",
+      "sticker": "seal",
+      "effect": "hearts"
+    }
+  ]
+}

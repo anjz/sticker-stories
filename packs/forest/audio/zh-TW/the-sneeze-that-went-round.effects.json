@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "蘑菇靜靜地站在草地上，刺蝟急急忙忙地跑過來，在她旁邊打瞌睡。四周好安靜。這時，狐狸小跑步過來，蝴蝶輕輕飛下來，剛好停在",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 5.96,
+      "cue": "刺蝟急急忙忙地跑過來，在她旁邊打瞌睡。四周好安靜。這時，狐狸小跑步過來，蝴蝶輕輕飛下來，剛好停在",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 7.84,
+      "cue": "在她旁邊打瞌睡。四周好安靜。這時，狐狸小跑步過來，蝴蝶輕輕飛下來，剛好停在",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "mushroom"
+    },
+    {
+      "at": 10.04,
+      "cue": "四周好安靜。這時，狐狸小跑步過來，蝴蝶輕輕飛下來，剛好停在",
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 12.92,
+      "cue": "狐狸小跑步過來，蝴蝶輕輕飛下來，剛好停在",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 14.76,
+      "cue": "蝴蝶輕輕飛下來，剛好停在",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 16.6,
+      "cue": "剛好停在",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "fox"
+    },
+    {
+      "at": 20.92,
+      "cue": "哈……哈……哈——啾",
+      "sticker": "fox",
+      "expression": "surprised"
+    },
+    {
+      "at": 20.92,
+      "cue": "哈……哈……哈——啾",
+      "sticker": "fox",
+      "animation": "sneeze"
+    },
+    {
+      "at": 23.56,
+      "cue": "呼！噴嚏把蝴蝶吹到了蘑菇的菇傘上。蝴蝶合起",
+      "sticker": "fox",
+      "effect": "wobble",
+      "repeat": 2
+    },
+    {
+      "at": 25.32,
+      "cue": "吹到了蘑菇的菇傘上。蝴蝶合起",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 27.48,
+      "cue": "蝴蝶合起",
+      "sticker": "butterfly",
+      "animation": "rest"
+    },
+    {
+      "at": 32.2,
+      "cue": "哈……哈",
+      "sticker": "mushroom",
+      "animation": "sneeze",
+      "mode": "hold"
+    },
+    {
+      "at": 33.6,
+      "cue": "哈啾！一團亮晶晶的粉噗地飛起來，又",
+      "sticker": "mushroom",
+      "animation": "sneeze",
+      "mode": "resume"
+    },
+    {
+      "at": 41.32,
+      "cue": "刺蝟縮成一顆球……然後",
+      "sticker": "hedgehog",
+      "expression": "surprised"
+    },
+    {
+      "at": 41.32,
+      "cue": "刺蝟縮成一顆球……然後",
+      "sticker": "hedgehog",
+      "animation": "curl"
+    },
+    {
+      "at": 48.28,
+      "cue": "哈……啾",
+      "sticker": "hedgehog",
+      "animation": "sneeze"
+    },
+    {
+      "at": 59.4,
+      "cue": "可是，狐狸沒有打噴嚏",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 62.2,
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 62.2,
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 65.32,
+      "cue": "那個笑聲，繞著草地轉了一整圈",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 65.32,
+      "cue": "那個笑聲，繞著草地轉了一整圈",
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}

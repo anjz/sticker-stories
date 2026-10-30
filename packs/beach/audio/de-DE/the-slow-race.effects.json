@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.56,
+      "cue": "der",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 5.56,
+      "cue": "der",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 8.92,
+      "cue": "ich",
+      "sticker": "sandpiper",
+      "animation": "jump"
+    },
+    {
+      "at": 10.68,
+      "cue": "der",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 10.68,
+      "cue": "der",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "sandpiper"
+    },
+    {
+      "at": 12.92,
+      "cue": "ich",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 15.23,
+      "cue": "und",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 15.23,
+      "cue": "und",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "hermit-crab"
+    },
+    {
+      "at": 21.08,
+      "cue": "auf",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 24.36,
+      "cue": "zack",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore",
+      "by": "run",
+      "toward": "right"
+    },
+    {
+      "at": 26.84,
+      "cue": "der",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 26.84,
+      "cue": "der",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 37,
+      "cue": "pick",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 39.72,
+      "cue": "pick",
+      "sticker": "sandpiper",
+      "effect": "hop"
+    },
+    {
+      "at": 43.16,
+      "cue": "und",
+      "sticker": "turtle",
+      "animation": "talk"
+    },
+    {
+      "at": 45.24,
+      "cue": "und",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 50.48,
+      "cue": "zusammen",
+      "sticker": "hermit-crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 51.64,
+      "cue": "der",
+      "sticker": "hermit-crab",
+      "animation": "hide"
+    },
+    {
+      "at": 57.32,
+      "cue": "die",
+      "sticker": "turtle",
+      "animation": "peek"
+    },
+    {
+      "at": 63.8,
+      "cue": "kam",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "pool",
+      "by": "run"
+    },
+    {
+      "at": 69.6,
+      "cue": "aber",
+      "sticker": "sandpiper",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 71.6,
+      "cue": "genascht",
+      "sticker": "hermit-crab",
+      "effect": "hearts"
+    },
+    {
+      "at": 71.6,
+      "cue": "genascht",
+      "sticker": "turtle",
+      "effect": "hearts"
+    }
+  ]
+}

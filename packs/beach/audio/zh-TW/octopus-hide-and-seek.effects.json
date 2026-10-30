@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "潮",
+      "sticker": "clam",
+      "enter": true
+    },
+    {
+      "at": 5.48,
+      "cue": "小魚",
+      "sticker": "fish",
+      "enter": true
+    },
+    {
+      "at": 7.08,
+      "cue": "螃蟹和",
+      "sticker": "crab",
+      "enter": true
+    },
+    {
+      "at": 7.64,
+      "sticker": "octopus",
+      "enter": true
+    },
+    {
+      "at": 7.64,
+      "sticker": "octopus",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 7.64,
+      "sticker": "crab",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 9.8,
+      "cue": "螃蟹躲在石",
+      "sticker": "crab",
+      "expression": "happy"
+    },
+    {
+      "at": 17.88,
+      "cue": "那",
+      "sticker": "crab",
+      "effect": "wobble"
+    },
+    {
+      "at": 23.4,
+      "cue": "找找石",
+      "sticker": "fish",
+      "go": "to",
+      "target": "pool",
+      "another": true
+    },
+    {
+      "at": 27.56,
+      "cue": "打開殼，一起幫忙看。到處都沒有",
+      "sticker": "clam",
+      "animation": "peek"
+    },
+    {
+      "at": 30.2,
+      "cue": "到處都沒有",
+      "sticker": "octopus",
+      "effect": "tint",
+      "duration": 7,
+      "intensity": 1,
+      "color": "#9C948C"
+    },
+    {
+      "at": 30.2,
+      "cue": "到處都沒有",
+      "sticker": "fish",
+      "expression": "sad"
+    },
+    {
+      "at": 30.2,
+      "cue": "到處都沒有",
+      "sticker": "fish",
+      "animation": "look-around"
+    },
+    {
+      "at": 37.36,
+      "cue": "那顆石",
+      "sticker": "fish",
+      "expression": "surprised"
+    },
+    {
+      "at": 43.4,
+      "cue": "原來是",
+      "sticker": "octopus",
+      "expression": "happy"
+    },
+    {
+      "at": 44.92,
+      "sticker": "octopus",
+      "animation": "laugh"
+    },
+    {
+      "at": 53.32,
+      "sticker": "octopus",
+      "animation": "wave"
+    },
+    {
+      "at": 55.08,
+      "cue": "螃蟹喀喀敲著大螯",
+      "sticker": "crab",
+      "animation": "clap"
+    },
+    {
+      "at": 57.88,
+      "cue": "換我躲了！」小魚說",
+      "sticker": "fish",
+      "effect": "hearts"
+    }
+  ]
+}

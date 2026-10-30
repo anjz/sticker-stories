@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "一點點風也沒有。帆船停在平平的藍色海面上，動也不動，白白的帆垂了下來。蘿拉站著，等呀等",
+      "sticker": "sailboat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 5.24,
+      "cue": "帆船停在平平的藍色海面上，動也不動，白白的帆垂了下來。蘿拉站著，等呀等",
+      "sticker": "sailboat",
+      "enter": true
+    },
+    {
+      "at": 5.24,
+      "cue": "帆船停在平平的藍色海面上，動也不動，白白的帆垂了下來。蘿拉站著，等呀等",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 12.04,
+      "cue": "蘿拉站著，等呀等",
+      "sticker": "sailboat",
+      "effect": "pulse"
+    },
+    {
+      "at": 12.04,
+      "cue": "蘿拉站著，等呀等",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 15,
+      "cue": "風啊，快來嘛。」海鷗坐在沙灘上，懶得連飛都不想飛",
+      "sticker": "girl",
+      "expression": "sad"
+    },
+    {
+      "at": 17.88,
+      "cue": "海鷗坐在沙灘上，懶得連飛都不想飛",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 17.88,
+      "cue": "海鷗坐在沙灘上，懶得連飛都不想飛",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 19.56,
+      "cue": "懶得連飛都不想飛",
+      "sticker": "seagull",
+      "expression": "sleeping"
+    },
+    {
+      "at": 26.6,
+      "cue": "呼——！風來了！帆一下子鼓起來，圓圓的、飽飽的",
+      "effect": "wind",
+      "duration": 25,
+      "intensity": 0.7
+    },
+    {
+      "at": 28.76,
+      "cue": "帆一下子鼓起來，圓圓的、飽飽的",
+      "sticker": "sailboat",
+      "animation": "sails"
+    },
+    {
+      "at": 32.25,
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 32.25,
+      "sticker": "girl",
+      "animation": "point"
+    },
+    {
+      "at": 34.28,
+      "cue": "蘿拉把線放長，她的風箏飛上天了。海鷗醒過來，飛到風箏旁邊。帆船也出發了，被風推著，滑過海灣",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 34.28,
+      "cue": "蘿拉把線放長，她的風箏飛上天了。海鷗醒過來，飛到風箏旁邊。帆船也出發了，被風推著，滑過海灣",
+      "sticker": "girl",
+      "animation": "kite",
+      "mode": "hold"
+    },
+    {
+      "at": 38.2,
+      "cue": "海鷗醒過來，飛到風箏旁邊。帆船也出發了，被風推著，滑過海灣",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 38.2,
+      "cue": "海鷗醒過來，飛到風箏旁邊。帆船也出發了，被風推著，滑過海灣",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "girl",
+      "prop": "kite"
+    },
+    {
+      "at": 41,
+      "cue": "帆船也出發了，被風推著，滑過海灣",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "sea",
+      "toward": "right"
+    },
+    {
+      "at": 50.2,
+      "cue": "原來大家等的，都是同一陣風",
+      "sticker": "girl",
+      "effect": "hearts"
+    }
+  ]
+}

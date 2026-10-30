@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "蘑菇靜靜地站在草地上。刺蝟急急",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 6.44,
+      "cue": "刺蝟急急",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 8.2,
+      "cue": "在她身邊打瞌睡。四周靜悄悄的。這時，狐狸一路小跑過來，蝴蝶輕輕飛下來，剛好停在",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "mushroom"
+    },
+    {
+      "at": 10.2,
+      "cue": "四周靜悄悄的。這時，狐狸一路小跑過來，蝴蝶輕輕飛下來，剛好停在",
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 13,
+      "cue": "狐狸一路小跑過來，蝴蝶輕輕飛下來，剛好停在",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 14.84,
+      "cue": "蝴蝶輕輕飛下來，剛好停在",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 16.6,
+      "cue": "剛好停在",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "fox"
+    },
+    {
+      "at": 20.76,
+      "cue": "哈……哈……哈——乞嗤",
+      "sticker": "fox",
+      "expression": "surprised"
+    },
+    {
+      "at": 20.76,
+      "cue": "哈……哈……哈——乞嗤",
+      "sticker": "fox",
+      "animation": "sneeze"
+    },
+    {
+      "at": 23.96,
+      "cue": "呼！這個乞嗤把蝴蝶吹到蘑菇帽上。蝴蝶合起",
+      "sticker": "fox",
+      "effect": "wobble",
+      "repeat": 2
+    },
+    {
+      "at": 25.88,
+      "cue": "吹到蘑菇帽上。蝴蝶合起",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 27.48,
+      "cue": "蝴蝶合起",
+      "sticker": "butterfly",
+      "animation": "rest"
+    },
+    {
+      "at": 32.04,
+      "cue": "哈……哈",
+      "sticker": "mushroom",
+      "animation": "sneeze",
+      "mode": "hold"
+    },
+    {
+      "at": 33.88,
+      "cue": "乞嗤！一團閃閃的金粉噴了出來，又",
+      "sticker": "mushroom",
+      "animation": "sneeze",
+      "mode": "resume"
+    },
+    {
+      "at": 40.6,
+      "cue": "刺蝟縮成一個刺球……然後",
+      "sticker": "hedgehog",
+      "expression": "surprised"
+    },
+    {
+      "at": 40.6,
+      "cue": "刺蝟縮成一個刺球……然後",
+      "sticker": "hedgehog",
+      "animation": "curl"
+    },
+    {
+      "at": 47.24,
+      "cue": "哈……嗤！這個小小的乞嗤，把金粉一路吹到狐狸那裏。狐狸的鼻子抽了抽。哈……哈",
+      "sticker": "hedgehog",
+      "animation": "sneeze"
+    },
+    {
+      "at": 57.4,
+      "cue": "可是狐狸沒有打乞嗤",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 59.56,
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 59.56,
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 62.4,
+      "cue": "這個笑聲，一個傳一個，傳遍了整片草地",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 62.4,
+      "cue": "這個笑聲，一個傳一個，傳遍了整片草地",
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}

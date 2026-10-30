@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 6.28,
+      "cue": "濱鷸",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 6.28,
+      "cue": "濱鷸",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 8.68,
+      "cue": "我跑最快！」寄",
+      "sticker": "sandpiper",
+      "animation": "jump"
+    },
+    {
+      "at": 10.36,
+      "cue": "寄",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 10.36,
+      "cue": "寄",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "sandpiper"
+    },
+    {
+      "at": 12.24,
+      "cue": "我好",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 14.76,
+      "cue": "我……比",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 14.76,
+      "cue": "我……比",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "hermit-crab"
+    },
+    {
+      "at": 19.4,
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 21.8,
+      "cue": "咻！濱鷸跑走了。寄",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore",
+      "by": "run",
+      "toward": "right"
+    },
+    {
+      "at": 24.12,
+      "cue": "寄",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 24.12,
+      "cue": "寄",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 32.92,
+      "cue": "啄、啄、啄！又看到一個。啄、啄！寄",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 35.48,
+      "cue": "啄、啄！寄",
+      "sticker": "sandpiper",
+      "effect": "hop"
+    },
+    {
+      "at": 39.32,
+      "cue": "一路聊個不停。最後，是誰",
+      "sticker": "turtle",
+      "animation": "talk"
+    },
+    {
+      "at": 40.92,
+      "cue": "最後，是誰",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 45.72,
+      "cue": "一起到的！寄",
+      "sticker": "hermit-crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 47,
+      "cue": "寄",
+      "sticker": "hermit-crab",
+      "animation": "hide"
+    },
+    {
+      "at": 51.48,
+      "cue": "海龜也把",
+      "sticker": "turtle",
+      "animation": "peek"
+    },
+    {
+      "at": 57,
+      "cue": "濱鷸才跑過來，是最後一名。「我輸了",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "pool",
+      "by": "run"
+    },
+    {
+      "at": 61.64,
+      "cue": "可是我吃到的點心最多",
+      "sticker": "sandpiper",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 61.64,
+      "cue": "可是我吃到的點心最多",
+      "sticker": "hermit-crab",
+      "effect": "hearts"
+    },
+    {
+      "at": 61.64,
+      "cue": "可是我吃到的點心最多",
+      "sticker": "turtle",
+      "effect": "hearts"
+    }
+  ]
+}

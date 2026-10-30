@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "這是一個暖洋洋、懶洋洋的下午。小鹿站在草地上",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.6
+    },
+    {
+      "at": 7.08,
+      "cue": "小鹿站在草地上",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 8.84,
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 18.2,
+      "cue": "耳朵撥、撥。「走開啦！」蒼",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 18.2,
+      "cue": "耳朵撥、撥。「走開啦！」蒼",
+      "sticker": "deer",
+      "animation": "ear-flick"
+    },
+    {
+      "at": 22.84,
+      "cue": "蝸牛那邊，剛好停在",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 26.2,
+      "cue": "好痕呀！」蝸牛連忙縮進殼裏。嗡——嗡——蒼",
+      "sticker": "snail",
+      "expression": "surprised"
+    },
+    {
+      "at": 27.88,
+      "cue": "蝸牛連忙縮進殼裏。嗡——嗡——蒼",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 34.04,
+      "cue": "小鹿跺跺",
+      "sticker": "deer",
+      "animation": "stamp"
+    },
+    {
+      "at": 36.28,
+      "cue": "怎樣趕也趕不走。蒼",
+      "sticker": "deer",
+      "expression": "sad"
+    },
+    {
+      "at": 41.56,
+      "cue": "青蛙正坐在",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 41.56,
+      "cue": "青蛙正坐在",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 43.28,
+      "cue": "睇我",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 47.96,
+      "cue": "靜靜地，靜靜地",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "hold"
+    },
+    {
+      "at": 54.12,
+      "cue": "小鹿屏住了呼吸",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 56.28,
+      "cue": "啪！咕嘟。草地一下子靜了下來。蝸牛探出",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "resume"
+    },
+    {
+      "at": 59.64,
+      "cue": "蝸牛探出",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 62.84,
+      "cue": "乜嘢烏",
+      "sticker": "frog",
+      "effect": "pulse"
+    },
+    {
+      "at": 68.52,
+      "cue": "整片草地都哈哈大笑起來",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 68.52,
+      "cue": "整片草地都哈哈大笑起來",
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}

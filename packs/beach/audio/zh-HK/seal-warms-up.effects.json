@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "海豹在",
+      "sticker": "seal",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 0,
+      "cue": "海豹在",
+      "sticker": "seal",
+      "go": "to",
+      "target": "sea",
+      "by": "swim"
+    },
+    {
+      "at": 9,
+      "cue": "游了好",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 10.28,
+      "cue": "一扭一扭地爬上岩石，啪嗒！正好躺在陽",
+      "sticker": "seal",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 13.32,
+      "cue": "正好躺在陽",
+      "effect": "sunshine",
+      "duration": 35,
+      "intensity": 0.7
+    },
+    {
+      "at": 16.52,
+      "cue": "啊——好舒服",
+      "sticker": "seal",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 19.56,
+      "cue": "海鷗拍着",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 19.56,
+      "cue": "海鷗拍着",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 23.16,
+      "cue": "海鷗呀呀叫",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 29.64,
+      "cue": "游水游得耐，會凍㗎，」海豹說。「所以我哋海豹會爬上嚟休息，曬吓太陽，暖返個身",
+      "sticker": "seal",
+      "animation": "sleep",
+      "mode": "resume"
+    },
+    {
+      "at": 32.76,
+      "cue": "所以我哋海豹會爬上嚟休息，曬吓太陽，暖返個身",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 38.92,
+      "cue": "海鷗試了一試。哇！真的好暖！鵜鶘也滑翔下來，張開又大又白的",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 38.92,
+      "cue": "海鷗試了一試。哇！真的好暖！鵜鶘也滑翔下來，張開又大又白的",
+      "sticker": "seagull",
+      "effect": "wobble"
+    },
+    {
+      "at": 43.08,
+      "cue": "鵜鶘也滑翔下來，張開又大又白的",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 43.08,
+      "cue": "鵜鶘也滑翔下來，張開又大又白的",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 44.92,
+      "cue": "張開又大又白的",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 47.64,
+      "cue": "海豹開心地輕輕拍了拍鰭",
+      "sticker": "seal",
+      "animation": "clap"
+    },
+    {
+      "at": 50.84,
+      "cue": "有好一陣子，岩石上成了最安靜、最溫暖、最好睡的地方",
+      "sticker": "seagull",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 50.84,
+      "cue": "有好一陣子，岩石上成了最安靜、最溫暖、最好睡的地方",
+      "sticker": "pelican",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 50.84,
+      "cue": "有好一陣子，岩石上成了最安靜、最溫暖、最好睡的地方",
+      "sticker": "seal",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "鵜鶘站在岸邊，張着橙色的大嘴巴。海鷗拍着",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "鵜鶘站在岸邊，張着橙色的大嘴巴。海鷗拍着",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 4.6,
+      "cue": "張着橙色的大嘴巴。海鷗拍着",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 6.84,
+      "cue": "海鷗拍着",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 6.84,
+      "cue": "海鷗拍着",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "pelican"
+    },
+    {
+      "at": 11.9,
+      "cue": "呢個唔止係嘴咁簡單，」鵜鶘說，「下面仲有個袋，好似橡筋咁，可以拉到好大好大㗎。睇住",
+      "sticker": "pelican",
+      "effect": "pulse"
+    },
+    {
+      "at": 21,
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 25.64,
+      "cue": "然後",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 31.4,
+      "cue": "這時，那個",
+      "sticker": "pelican",
+      "effect": "spray"
+    },
+    {
+      "at": 32.04,
+      "cue": "那個",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 34.04,
+      "cue": "隨着浪漂了過來。鵜鶘又舀了一下",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "ring",
+      "by": "float"
+    },
+    {
+      "at": 35.96,
+      "cue": "鵜鶘又舀了一下",
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 39.8,
+      "cue": "水泡！它套在鵜鶘的嘴上，好像一",
+      "sticker": "ring",
+      "go": "on",
+      "target": "pelican"
+    },
+    {
+      "at": 43.96,
+      "cue": "轉呀轉，轉個不停",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 46.76,
+      "cue": "海鷗笑得呀呀大叫。鵜鶘也笑了",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 46.76,
+      "cue": "海鷗笑得呀呀大叫。鵜鶘也笑了",
+      "sticker": "seagull",
+      "animation": "laugh"
+    },
+    {
+      "at": 49.08,
+      "cue": "鵜鶘也笑了",
+      "sticker": "pelican",
+      "animation": "laugh"
+    },
+    {
+      "at": 52.76,
+      "cue": "鵜鶘說，「不過水泡呢……我諗佢想留低喇",
+      "sticker": "pelican",
+      "effect": "hearts"
+    }
+  ]
+}

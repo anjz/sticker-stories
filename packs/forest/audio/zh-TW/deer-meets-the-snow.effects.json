@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "有一天早上，天上飄下來一種新的東西。小鹿抬起",
+      "effect": "snow",
+      "duration": 73.34,
+      "intensity": 0.5
+    },
+    {
+      "at": 7.24,
+      "cue": "小鹿抬起",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 8.36,
+      "cue": "那是什麼？」一小片白白的東西，落在",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 13.48,
+      "cue": "好冰！又好癢！又有一片落在",
+      "sticker": "deer",
+      "animation": "shiver"
+    },
+    {
+      "at": 17.72,
+      "cue": "這個又是什麼",
+      "sticker": "deer",
+      "effect": "hop"
+    },
+    {
+      "at": 21.16,
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 21.16,
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "deer"
+    },
+    {
+      "at": 21.16,
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 24.92,
+      "cue": "從草上咬了一口雪。嗯！冰冰的，咬起來喀滋喀滋！接著，狐狸蹦蹦跳跳地跑來，嘎吱、嘎吱，張嘴去咬飄下來的雪花。「看誰接得到",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 31.16,
+      "cue": "狐狸蹦蹦跳跳地跑來，嘎吱、嘎吱，張嘴去咬飄下來的雪花。「看誰接得到",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 31.16,
+      "cue": "狐狸蹦蹦跳跳地跑來，嘎吱、嘎吱，張嘴去咬飄下來的雪花。「看誰接得到",
+      "sticker": "fox",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 31.16,
+      "cue": "狐狸蹦蹦跳跳地跑來，嘎吱、嘎吱，張嘴去咬飄下來的雪花。「看誰接得到",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 34.44,
+      "cue": "張嘴去咬飄下來的雪花。「看誰接得到",
+      "sticker": "fox",
+      "animation": "snap"
+    },
+    {
+      "at": 41.4,
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 44.52,
+      "cue": "狐狸停了下來",
+      "sticker": "fox",
+      "expression": "normal"
+    },
+    {
+      "at": 46.12,
+      "sticker": "fox",
+      "animation": "listen"
+    },
+    {
+      "at": 55.64,
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 62.84,
+      "cue": "就這樣，三個好朋友站在飄飄的雪裡，聽著世界上最安靜的聲音",
+      "sticker": "deer",
+      "expression": "happy"
+    },
+    {
+      "at": 62.84,
+      "cue": "就這樣，三個好朋友站在飄飄的雪裡，聽著世界上最安靜的聲音",
+      "sticker": "deer",
+      "effect": "hearts"
+    }
+  ]
+}

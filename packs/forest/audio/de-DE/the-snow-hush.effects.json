@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "eines",
+      "effect": "snow",
+      "duration": 72.62,
+      "intensity": 0.4
+    },
+    {
+      "at": 9.16,
+      "cue": "die",
+      "sticker": "all",
+      "effect": "glow",
+      "intensity": 0.3,
+      "color": "#EAF6FF"
+    },
+    {
+      "at": 13.64,
+      "cue": "der",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 13.64,
+      "cue": "der",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 21.08,
+      "cue": "der",
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 29,
+      "cue": "das",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 33.56,
+      "cue": "beugte",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 36.4,
+      "cue": "kalt",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 40.52,
+      "cue": "der",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 40.52,
+      "cue": "der",
+      "sticker": "bird",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 41.04,
+      "cue": "sein",
+      "sticker": "bird",
+      "animation": "shake-feathers"
+    },
+    {
+      "at": 48.12,
+      "cue": "also",
+      "sticker": "deer",
+      "expression": "happy"
+    },
+    {
+      "at": 48.12,
+      "cue": "also",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 52.52,
+      "cue": "pschsch",
+      "sticker": "all",
+      "effect": "pulse",
+      "intensity": 0.3
+    },
+    {
+      "at": 55.56,
+      "cue": "sang",
+      "sticker": "bird",
+      "animation": "sing"
+    },
+    {
+      "at": 58.88,
+      "cue": "der",
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 62.82,
+      "cue": "und",
+      "sticker": "all",
+      "expression": "happy"
+    }
+  ]
+}

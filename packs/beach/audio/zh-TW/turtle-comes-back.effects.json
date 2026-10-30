@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 6.28,
+      "cue": "海龜從水邊爬上沙灘。啪嗒……啪嗒……啪嗒……濱鷸跑過來看",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 6.28,
+      "cue": "海龜從水邊爬上沙灘。啪嗒……啪嗒……啪嗒……濱鷸跑過來看",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 11.88,
+      "cue": "濱鷸跑過來看",
+      "sticker": "sandpiper",
+      "enter": true,
+      "by": "run"
+    },
+    {
+      "at": 11.88,
+      "cue": "濱鷸跑過來看",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "turtle",
+      "by": "run"
+    },
+    {
+      "at": 13.46,
+      "sticker": "sandpiper",
+      "expression": "surprised"
+    },
+    {
+      "at": 16.35,
+      "cue": "可是，我以前來過這裡喔，」海龜說，「很",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 16.35,
+      "cue": "可是，我以前來過這裡喔，」海龜說，「很",
+      "sticker": "turtle",
+      "animation": "talk"
+    },
+    {
+      "at": 30.52,
+      "cue": "後來，我爬到水邊，游走了。游過好寬好寬的大海……又游回來了",
+      "sticker": "sandpiper",
+      "effect": "wobble"
+    },
+    {
+      "at": 37.56,
+      "cue": "海龜啊，總會回家",
+      "sticker": "turtle",
+      "effect": "glow",
+      "intensity": 0.4
+    },
+    {
+      "at": 43.04,
+      "cue": "濱鷸在地上啄呀啄，好像想找到那個地方。海星在潮",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 47.56,
+      "cue": "海星在潮",
+      "sticker": "starfish",
+      "enter": true
+    },
+    {
+      "at": 47.56,
+      "cue": "海星在潮",
+      "sticker": "starfish",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 49.88,
+      "cue": "興奮得不得了。海龜把",
+      "sticker": "starfish",
+      "animation": "wave"
+    },
+    {
+      "at": 51.72,
+      "cue": "海龜把",
+      "sticker": "turtle",
+      "animation": "peek"
+    },
+    {
+      "at": 59.64,
+      "cue": "然後，海龜轉過身，游走了，游到好",
+      "sticker": "turtle",
+      "effect": "hearts"
+    },
+    {
+      "at": 59.64,
+      "cue": "然後，海龜轉過身，游走了，游到好",
+      "sticker": "sandpiper",
+      "effect": "hearts"
+    },
+    {
+      "at": 61.4,
+      "cue": "游走了，游到好",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "sea",
+      "by": "swim"
+    },
+    {
+      "at": 65.4,
+      "cue": "下次見喔",
+      "sticker": "sandpiper",
+      "animation": "wave"
+    }
+  ]
+}

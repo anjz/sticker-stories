@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "石",
+      "sticker": "clam",
+      "enter": true
+    },
+    {
+      "at": 4.92,
+      "cue": "小魚說：「我嚟數！」螃蟹和",
+      "sticker": "fish",
+      "enter": true
+    },
+    {
+      "at": 6.84,
+      "cue": "螃蟹和",
+      "sticker": "crab",
+      "enter": true
+    },
+    {
+      "at": 7.56,
+      "sticker": "octopus",
+      "enter": true
+    },
+    {
+      "at": 7.56,
+      "sticker": "octopus",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 7.56,
+      "sticker": "crab",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 9.48,
+      "cue": "螃蟹躲在一塊石",
+      "sticker": "crab",
+      "expression": "happy"
+    },
+    {
+      "at": 17.24,
+      "cue": "那麼",
+      "sticker": "crab",
+      "effect": "wobble"
+    },
+    {
+      "at": 22.68,
+      "cue": "石",
+      "sticker": "fish",
+      "go": "to",
+      "target": "pool",
+      "another": true
+    },
+    {
+      "at": 27.72,
+      "cue": "也張開殼，幫忙看一看",
+      "sticker": "clam",
+      "animation": "peek"
+    },
+    {
+      "at": 29.8,
+      "sticker": "octopus",
+      "effect": "tint",
+      "duration": 7,
+      "intensity": 1,
+      "color": "#9C948C"
+    },
+    {
+      "at": 29.8,
+      "sticker": "fish",
+      "expression": "sad"
+    },
+    {
+      "at": 29.8,
+      "sticker": "fish",
+      "animation": "look-around"
+    },
+    {
+      "at": 37.1,
+      "cue": "嗰嚿石",
+      "sticker": "fish",
+      "expression": "surprised"
+    },
+    {
+      "at": 41.56,
+      "cue": "原來是",
+      "sticker": "octopus",
+      "expression": "happy"
+    },
+    {
+      "at": 42.84,
+      "cue": "正在哈哈大笑呢",
+      "sticker": "octopus",
+      "animation": "laugh"
+    },
+    {
+      "at": 50.04,
+      "sticker": "octopus",
+      "animation": "wave"
+    },
+    {
+      "at": 52.12,
+      "cue": "螃蟹卡嚓卡嚓地拍着大鉗",
+      "sticker": "crab",
+      "animation": "clap"
+    },
+    {
+      "at": 55.4,
+      "cue": "輪到我匿喇！」小魚說",
+      "sticker": "fish",
+      "effect": "hearts"
+    }
+  ]
+}

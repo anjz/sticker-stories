@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.64,
+      "cue": "螃蟹準備好了",
+      "sticker": "crab",
+      "enter": true
+    },
+    {
+      "at": 6.92,
+      "sticker": "crab",
+      "expression": "happy"
+    },
+    {
+      "at": 8.84,
+      "sticker": "octopus",
+      "enter": true
+    },
+    {
+      "at": 10.68,
+      "cue": "扭來扭去。還有小蝦，小不點也準備好了",
+      "sticker": "octopus",
+      "animation": "dance"
+    },
+    {
+      "at": 12.12,
+      "cue": "小蝦，小不點也準備好了",
+      "sticker": "shrimp",
+      "enter": true
+    },
+    {
+      "at": 14.12,
+      "sticker": "shrimp",
+      "effect": "pulse"
+    },
+    {
+      "at": 16.04,
+      "cue": "螃蟹橫著身子，喀啦喀啦衝出去",
+      "sticker": "crab",
+      "go": "to",
+      "target": "pool",
+      "another": true
+    },
+    {
+      "at": 18.92,
+      "sticker": "octopus",
+      "go": "to",
+      "target": "pool",
+      "another": true
+    },
+    {
+      "at": 25.96,
+      "cue": "可是，好",
+      "sticker": "shrimp",
+      "expression": "sad"
+    },
+    {
+      "at": 31.48,
+      "cue": "小蝦把身體緊緊捲起來，然後——啪！扇子一樣的尾巴用力一彈",
+      "sticker": "shrimp",
+      "animation": "flick",
+      "mode": "hold"
+    },
+    {
+      "at": 35.16,
+      "cue": "扇子一樣的尾巴用力一彈",
+      "sticker": "shrimp",
+      "animation": "flick",
+      "mode": "resume"
+    },
+    {
+      "at": 39.56,
+      "cue": "咻、咻、咻！倒退嚕經過",
+      "sticker": "shrimp",
+      "animation": "dart-back"
+    },
+    {
+      "at": 42.36,
+      "cue": "倒退嚕經過螃蟹，一路倒退嚕，穿過整個潮",
+      "sticker": "octopus",
+      "expression": "surprised"
+    },
+    {
+      "at": 44.04,
+      "cue": "一路倒退嚕，穿過整個潮",
+      "sticker": "crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 44.04,
+      "cue": "一路倒退嚕，穿過整個潮",
+      "sticker": "shrimp",
+      "go": "to",
+      "target": "pool",
+      "another": true,
+      "backwards": true
+    },
+    {
+      "at": 47.48,
+      "cue": "小蝦贏了",
+      "sticker": "shrimp",
+      "expression": "happy"
+    },
+    {
+      "at": 47.48,
+      "cue": "小蝦贏了",
+      "sticker": "shrimp",
+      "effect": "sparkle"
+    },
+    {
+      "at": 50.68,
+      "cue": "螃蟹喀喀敲著大螯，跳起舞來",
+      "sticker": "crab",
+      "animation": "dance"
+    },
+    {
+      "at": 53.64,
+      "sticker": "octopus",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "那是一個灰灰的、陰陰的早上。軟軟的雲",
+      "sticker": "seaweed",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "那是一個灰灰的、陰陰的早上。軟軟的雲",
+      "effect": "clouds",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 10.28,
+      "cue": "噗、噗……漁船開出來，開到海上。海鷗跟在後面飛",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 10.28,
+      "cue": "噗、噗……漁船開出來，開到海上。海鷗跟在後面飛",
+      "sticker": "fishing-boat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 14.92,
+      "cue": "海鷗跟在後面飛",
+      "sticker": "fishing-boat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 14.92,
+      "cue": "海鷗跟在後面飛",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 16.68,
+      "cue": "想討點好吃的。漁船停了下來。網子拉上來了，重重的，還滴著水。海鷗大叫：「裡面有什麼？裡面有什麼",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 18.36,
+      "cue": "漁船停了下來。網子拉上來了，重重的，還滴著水。海鷗大叫：「裡面有什麼？裡面有什麼",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 20.2,
+      "cue": "網子拉上來了，重重的，還滴著水。海鷗大叫：「裡面有什麼？裡面有什麼",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 24.04,
+      "cue": "海鷗大叫：「裡面有什麼？裡面有什麼",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 27.93,
+      "cue": "是海藻。只有一大團濕濕的",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 34.92,
+      "cue": "不",
+      "sticker": "seagull",
+      "expression": "sad"
+    },
+    {
+      "at": 36.6,
+      "cue": "咯咯地笑了",
+      "sticker": "seaweed",
+      "expression": "happy"
+    },
+    {
+      "at": 41.32,
+      "cue": "她搖一搖，打個招呼",
+      "sticker": "seaweed",
+      "animation": "sway"
+    },
+    {
+      "at": 44.28,
+      "cue": "海鷗笑得好開心，連肚子餓都忘記了。漁船把海藻輕輕地放回水裡……海草一直揮手，揮到看不見為止",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 44.28,
+      "cue": "海鷗笑得好開心，連肚子餓都忘記了。漁船把海藻輕輕地放回水裡……海草一直揮手，揮到看不見為止",
+      "sticker": "seagull",
+      "animation": "laugh"
+    },
+    {
+      "at": 48.12,
+      "cue": "漁船把海藻輕輕地放回水裡……海草一直揮手，揮到看不見為止",
+      "sticker": "fishing-boat",
+      "effect": "pulse"
+    },
+    {
+      "at": 51.32,
+      "cue": "海草一直揮手，揮到看不見為止",
+      "sticker": "seaweed",
+      "animation": "wave"
+    }
+  ]
+}

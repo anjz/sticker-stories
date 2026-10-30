@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "piovanello",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "piovanello",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 5.16,
+      "cue": "giù",
+      "sticker": "sandpiper",
+      "effect": "pulse"
+    },
+    {
+      "at": 6.76,
+      "cue": "e",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore",
+      "another": true
+    },
+    {
+      "at": 9.64,
+      "cue": "cane",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 10.92,
+      "cue": "con",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 14.04,
+      "cue": "è",
+      "sticker": "dog",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 22.36,
+      "cue": "cane",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 22.36,
+      "cue": "cane",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 27.96,
+      "cue": "non",
+      "sticker": "sandpiper",
+      "animation": "shake-head"
+    },
+    {
+      "at": 30.52,
+      "cue": "ogni",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 35.08,
+      "cue": "così",
+      "sticker": "sandpiper",
+      "animation": "peck",
+      "mode": "hold"
+    },
+    {
+      "at": 40.68,
+      "cue": "ah",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 42.52,
+      "cue": "allora",
+      "sticker": "dog",
+      "animation": "nod"
+    },
+    {
+      "at": 47.2,
+      "cue": "il",
+      "sticker": "ball",
+      "enter": true
+    },
+    {
+      "at": 48.27,
+      "cue": "e",
+      "sticker": "dog",
+      "go": "to",
+      "target": "ball"
+    },
+    {
+      "at": 48.27,
+      "cue": "e",
+      "sticker": "dog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 52.28,
+      "cue": "il",
+      "sticker": "ball",
+      "animation": "spin"
+    },
+    {
+      "at": 56.44,
+      "cue": "bianco",
+      "sticker": "dog",
+      "effect": "hearts"
+    }
+  ]
+}

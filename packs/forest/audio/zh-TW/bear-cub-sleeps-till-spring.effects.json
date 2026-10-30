@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "秋天到了，葉子一片一片，轉著圈圈飄下來。小熊打了一個好大好大的呵",
+      "effect": "leaves",
+      "duration": 43.24,
+      "intensity": 0.6
+    },
+    {
+      "at": 8.52,
+      "cue": "小熊打了一個好大好大的呵",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 12.27,
+      "cue": "我不要睡一整個冬天。這樣我會錯過好多事！」獾小跑步過來",
+      "sticker": "bear",
+      "expression": "sad"
+    },
+    {
+      "at": 17.88,
+      "cue": "獾小跑步過來",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 17.88,
+      "cue": "獾小跑步過來",
+      "sticker": "badger",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 23.4,
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 28.68,
+      "cue": "旁邊的小花冷得發抖，把花瓣合了起來。「春天見囉。」她小小聲地說。於是小熊坐進窩裡，打了最後一個呵",
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 29.24,
+      "cue": "小花冷得發抖，把花瓣合了起來。「春天見囉。」她小小聲地說。於是小熊坐進窩裡，打了最後一個呵",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 29.72,
+      "cue": "冷得發抖，把花瓣合了起來。「春天見囉。」她小小聲地說。於是小熊坐進窩裡，打了最後一個呵",
+      "sticker": "flower",
+      "effect": "tint",
+      "color": "#BFE3FF"
+    },
+    {
+      "at": 30.84,
+      "cue": "把花瓣合了起來。「春天見囉。」她小小聲地說。於是小熊坐進窩裡，打了最後一個呵",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 36.76,
+      "cue": "於是小熊坐進窩裡，打了最後一個呵",
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 37.96,
+      "cue": "坐進窩裡，打了最後一個呵",
+      "sticker": "bear",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 39.2,
+      "cue": "打了最後一個呵",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 41.24,
+      "cue": "接著，雪花飄下來了。小熊睡了一整個冬天，熊就是這樣過冬的。睡呀睡……睡呀睡……獾一直在旁邊守著",
+      "effect": "snow",
+      "duration": 16.9,
+      "intensity": 0.7
+    },
+    {
+      "at": 55.64,
+      "cue": "有一天早上，太陽回來了，把雪都融化了。獾躡手躡",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.9
+    },
+    {
+      "at": 60.04,
+      "cue": "獾躡手躡",
+      "sticker": "badger",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 65.8,
+      "cue": "小熊一下子醒過來。小花張開了花瓣",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 67.88,
+      "cue": "小花張開了花瓣",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 70.28,
+      "cue": "我錯過了嗎？」「沒有啦。」獾哈哈笑，「最精采的，就是現在",
+      "sticker": "bear",
+      "expression": "surprised"
+    },
+    {
+      "at": 70.28,
+      "cue": "我錯過了嗎？」「沒有啦。」獾哈哈笑，「最精采的，就是現在",
+      "sticker": "bear",
+      "animation": "talk"
+    },
+    {
+      "at": 71.4,
+      "cue": "沒有啦。」獾哈哈笑，「最精采的，就是現在",
+      "sticker": "badger",
+      "animation": "laugh"
+    },
+    {
+      "at": 76.43,
+      "cue": "春天，早安",
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 76.43,
+      "cue": "春天，早安",
+      "sticker": "bear",
+      "effect": "hearts"
+    }
+  ]
+}

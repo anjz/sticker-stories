@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "月",
+      "effect": "night",
+      "duration": 73.32,
+      "intensity": 0.7
+    },
+    {
+      "at": 4.44,
+      "cue": "獾、浣熊，還有小老",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 5.24,
+      "cue": "浣熊，還有小老",
+      "sticker": "raccoon",
+      "enter": true
+    },
+    {
+      "at": 5.24,
+      "cue": "浣熊，還有小老",
+      "sticker": "raccoon",
+      "go": "to",
+      "target": "badger"
+    },
+    {
+      "at": 6.36,
+      "cue": "小老",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 6.36,
+      "cue": "小老",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "badger"
+    },
+    {
+      "at": 9.72,
+      "cue": "可是一大朵雲",
+      "effect": "clouds",
+      "duration": 48.9,
+      "intensity": 0.8
+    },
+    {
+      "at": 16.34,
+      "cue": "我乜都睇唔到呀！」獾說",
+      "sticker": "badger",
+      "expression": "surprised"
+    },
+    {
+      "at": 20,
+      "cue": "我都係！」浣熊用手掩住眼睛說。「返屋企行邊條路㗎",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "hold"
+    },
+    {
+      "at": 23.2,
+      "cue": "返屋企行邊條路㗎",
+      "sticker": "badger",
+      "animation": "scratch-head"
+    },
+    {
+      "at": 29.08,
+      "cue": "小老",
+      "sticker": "mouse",
+      "animation": "twitch-whiskers"
+    },
+    {
+      "at": 31.08,
+      "cue": "跟住我。我啲鬚摸得出條路",
+      "sticker": "mouse",
+      "expression": "happy"
+    },
+    {
+      "at": 34.04,
+      "sticker": "mouse",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 38.92,
+      "cue": "獾",
+      "sticker": "badger",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 40.76,
+      "cue": "浣熊打開雙手偷看——「見到喇！」——也跟在獾的後面。突然，小老",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "resume"
+    },
+    {
+      "at": 43.72,
+      "cue": "也跟在獾的後面。突然，小老",
+      "sticker": "raccoon",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 45.4,
+      "cue": "突然，小老",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "hold"
+    },
+    {
+      "at": 51.32,
+      "cue": "於是大家一個跟一個，鼻子貼着尾巴",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "resume"
+    },
+    {
+      "at": 60.36,
+      "cue": "原來",
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 60.36,
+      "cue": "原來",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 64.84,
+      "cue": "獾也抖抖自己的鬍鬚。「下次",
+      "sticker": "mouse",
+      "effect": "hearts"
+    },
+    {
+      "at": 65.16,
+      "cue": "也抖抖自己的鬍鬚。「下次",
+      "sticker": "badger",
+      "animation": "twitch-whiskers"
+    }
+  ]
+}

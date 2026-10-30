@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "si",
+      "sticker": "clam",
+      "enter": true
+    },
+    {
+      "at": 5.48,
+      "cue": "pesciolino",
+      "sticker": "fish",
+      "enter": true
+    },
+    {
+      "at": 7.16,
+      "cue": "granchio",
+      "sticker": "crab",
+      "enter": true
+    },
+    {
+      "at": 7.64,
+      "cue": "polpo",
+      "sticker": "octopus",
+      "enter": true
+    },
+    {
+      "at": 7.64,
+      "cue": "polpo",
+      "sticker": "octopus",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 7.64,
+      "cue": "polpo",
+      "sticker": "crab",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 10.04,
+      "cue": "granchio",
+      "sticker": "crab",
+      "expression": "happy"
+    },
+    {
+      "at": 17.32,
+      "cue": "e",
+      "sticker": "crab",
+      "effect": "wobble"
+    },
+    {
+      "at": 22.6,
+      "cue": "sotto",
+      "sticker": "fish",
+      "go": "to",
+      "target": "pool",
+      "another": true
+    },
+    {
+      "at": 25.64,
+      "cue": "si",
+      "sticker": "clam",
+      "animation": "peek"
+    },
+    {
+      "at": 27.8,
+      "cue": "di",
+      "sticker": "octopus",
+      "effect": "tint",
+      "duration": 7,
+      "intensity": 1,
+      "color": "#9C948C"
+    },
+    {
+      "at": 27.8,
+      "cue": "di",
+      "sticker": "fish",
+      "expression": "sad"
+    },
+    {
+      "at": 27.8,
+      "cue": "di",
+      "sticker": "fish",
+      "animation": "look-around"
+    },
+    {
+      "at": 34.24,
+      "cue": "quel",
+      "sticker": "fish",
+      "expression": "surprised"
+    },
+    {
+      "at": 38.68,
+      "cue": "ed",
+      "sticker": "octopus",
+      "expression": "happy"
+    },
+    {
+      "at": 39.72,
+      "cue": "che",
+      "sticker": "octopus",
+      "animation": "laugh"
+    },
+    {
+      "at": 45.72,
+      "cue": "ha",
+      "sticker": "octopus",
+      "animation": "wave"
+    },
+    {
+      "at": 48.36,
+      "cue": "granchio",
+      "sticker": "crab",
+      "animation": "clap"
+    },
+    {
+      "at": 51.85,
+      "cue": "adesso",
+      "sticker": "fish",
+      "effect": "hearts"
+    }
+  ]
+}

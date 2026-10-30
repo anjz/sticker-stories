@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "die",
+      "effect": "sunset",
+      "duration": 26.86,
+      "intensity": 0.7
+    },
+    {
+      "at": 6.6,
+      "cue": "die",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 6.6,
+      "cue": "die",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 7.12,
+      "cue": "noch",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    },
+    {
+      "at": 9.36,
+      "cue": "der",
+      "sticker": "raccoon",
+      "enter": true
+    },
+    {
+      "at": 10.34,
+      "cue": "eule",
+      "sticker": "raccoon",
+      "effect": "hop"
+    },
+    {
+      "at": 12.44,
+      "cue": "die",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "resume"
+    },
+    {
+      "at": 17.6,
+      "cue": "der",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 19.68,
+      "cue": "pfoten",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "hold"
+    },
+    {
+      "at": 24.36,
+      "cue": "es",
+      "effect": "night",
+      "duration": 52.96,
+      "intensity": 0.8
+    },
+    {
+      "at": 25.72,
+      "cue": "das",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 25.72,
+      "cue": "das",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "meadow"
+    },
+    {
+      "at": 28.76,
+      "cue": "die",
+      "sticker": "firefly",
+      "animation": "tuck-in"
+    },
+    {
+      "at": 29.24,
+      "cue": "flog",
+      "sticker": "owl",
+      "go": "to",
+      "target": "raccoon"
+    },
+    {
+      "at": 37.88,
+      "cue": "ich",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "resume"
+    },
+    {
+      "at": 41.32,
+      "cue": "blink",
+      "sticker": "firefly",
+      "effect": "glow",
+      "repeat": 2,
+      "duration": 0.5,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 44.87,
+      "cue": "ich",
+      "sticker": "firefly",
+      "expression": "sad"
+    },
+    {
+      "at": 48.68,
+      "cue": "dann",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 48.68,
+      "cue": "dann",
+      "sticker": "raccoon",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 52,
+      "cue": "davon",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches",
+      "another": true
+    },
+    {
+      "at": 58.2,
+      "cue": "aber",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 59.32,
+      "cue": "flog",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "owl"
+    },
+    {
+      "at": 60.76,
+      "cue": "und",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 2.5,
+      "intensity": 1,
+      "color": "#FFE27A",
+      "hold": true
+    },
+    {
+      "at": 66.52,
+      "cue": "hab",
+      "sticker": "firefly",
+      "animation": "wave"
+    },
+    {
+      "at": 67.56,
+      "cue": "schuhu",
+      "sticker": "owl",
+      "expression": "surprised"
+    },
+    {
+      "at": 67.56,
+      "cue": "schuhu",
+      "sticker": "owl",
+      "animation": "hoot"
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "die",
+      "effect": "sunset",
+      "duration": 16.46,
+      "intensity": 0.7
+    },
+    {
+      "at": 6.28,
+      "cue": "die",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 6.28,
+      "cue": "die",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 8.72,
+      "cue": "schlief",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    },
+    {
+      "at": 10.2,
+      "cue": "das",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 10.2,
+      "cue": "das",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 13.96,
+      "cue": "dann",
+      "effect": "night",
+      "duration": 52.32,
+      "intensity": 0.8
+    },
+    {
+      "at": 16.2,
+      "cue": "ein",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 18.92,
+      "cue": "schon",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond",
+      "by": "swim",
+      "another": true
+    },
+    {
+      "at": 20.52,
+      "cue": "es",
+      "sticker": "duckling",
+      "animation": "scoop"
+    },
+    {
+      "at": 25.88,
+      "cue": "doch",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 28.68,
+      "cue": "platsch",
+      "sticker": "duckling",
+      "effect": "spray"
+    },
+    {
+      "at": 30.68,
+      "cue": "die",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "resume"
+    },
+    {
+      "at": 36.68,
+      "cue": "ich",
+      "sticker": "duckling",
+      "effect": "pulse"
+    },
+    {
+      "at": 38.76,
+      "cue": "schau",
+      "sticker": "owl",
+      "expression": "happy"
+    },
+    {
+      "at": 38.76,
+      "cue": "schau",
+      "sticker": "owl",
+      "animation": "talk"
+    },
+    {
+      "at": 41.16,
+      "cue": "da",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 41.16,
+      "cue": "da",
+      "sticker": "duckling",
+      "effect": "sparkle"
+    },
+    {
+      "at": 44.76,
+      "cue": "das",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 44.76,
+      "cue": "das",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 47.4,
+      "cue": "leuchtete",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 55.08,
+      "cue": "das",
+      "sticker": "duckling",
+      "expression": "sleeping"
+    },
+    {
+      "at": 56.52,
+      "cue": "steckte",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    }
+  ]
+}

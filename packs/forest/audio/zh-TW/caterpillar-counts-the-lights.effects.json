@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "毛毛蟲聽說，夏天的晚上有好多好多小亮",
+      "effect": "night",
+      "duration": 81.72,
+      "intensity": 0.7
+    },
+    {
+      "at": 0,
+      "cue": "毛毛蟲聽說，夏天的晚上有好多好多小亮",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 13.88,
+      "cue": "草、草，還是草。這時，蘑菇冒了出來",
+      "sticker": "caterpillar",
+      "expression": "sad"
+    },
+    {
+      "at": 17.56,
+      "cue": "蘑菇冒了出來",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 19.13,
+      "cue": "爬到我身上來。」毛毛蟲爬呀爬，爬上",
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 20.92,
+      "cue": "毛毛蟲爬呀爬，爬上",
+      "sticker": "caterpillar",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 22.68,
+      "cue": "爬上",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 24.36,
+      "cue": "把身體抬得高高的",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "hold"
+    },
+    {
+      "at": 33.64,
+      "cue": "蝴蝶睏睏地飛過來",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 35.56,
+      "sticker": "butterfly",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 37.72,
+      "cue": "合起",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 39.88,
+      "cue": "螢火蟲飛了過來",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 39.88,
+      "cue": "螢火蟲飛了過來",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 43.96,
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 47.08,
+      "cue": "整片草地上，一個個小亮",
+      "effect": "fireflies",
+      "duration": 27.6,
+      "intensity": 0.6
+    },
+    {
+      "at": 57.8,
+      "cue": "這時，蘑菇打了個噴嚏。哈啾！亮晶晶的粉飛得到處都是！十一？十二？一百！毛毛蟲笑得",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 66.44,
+      "cue": "毛毛蟲笑得",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "resume"
+    },
+    {
+      "at": 71.56,
+      "cue": "睡著了。螢火蟲揮揮小",
+      "sticker": "caterpillar",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 72.68,
+      "cue": "螢火蟲揮揮小",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 72.68,
+      "cue": "螢火蟲揮揮小",
+      "sticker": "firefly",
+      "animation": "wave"
+    }
+  ]
+}

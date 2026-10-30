@@ -1,0 +1,175 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "天快亮了。高高的樹枝上，小鳥非常確定：是",
+      "effect": "night",
+      "duration": 30.6,
+      "intensity": 0.7
+    },
+    {
+      "at": 6.2,
+      "cue": "小鳥非常確定：是",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 6.2,
+      "cue": "小鳥非常確定：是",
+      "sticker": "bird",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 8.04,
+      "cue": "是",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 14.04,
+      "cue": "小花靜靜等著，花瓣合得緊緊的。貓",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 15.88,
+      "cue": "花瓣合得緊緊的。貓",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 17.96,
+      "cue": "貓",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 17.96,
+      "cue": "貓",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 21.82,
+      "cue": "當然囉。」小鳥說，「我",
+      "sticker": "bird",
+      "animation": "nod"
+    },
+    {
+      "at": 25.96,
+      "cue": "結果",
+      "sticker": "bird",
+      "expression": "sleeping"
+    },
+    {
+      "at": 27,
+      "cue": "呼呼大睡了。太陽還是",
+      "sticker": "bird",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 28.6,
+      "cue": "太陽還是",
+      "effect": "sunshine",
+      "duration": 24,
+      "intensity": 0.8
+    },
+    {
+      "at": 31.48,
+      "cue": "小花張開了花瓣",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 33.4,
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 36.96,
+      "cue": "歌呢？沒有歌，我的一天要怎麼開始",
+      "sticker": "rabbit",
+      "expression": "sad"
+    },
+    {
+      "at": 42.23,
+      "cue": "沒有歌，我也睡不著呀。」貓",
+      "sticker": "owl",
+      "expression": "sad"
+    },
+    {
+      "at": 46.52,
+      "cue": "小鳥一下子跳了起來。太陽自己出來了，沒有等",
+      "sticker": "bird",
+      "animation": "sleep",
+      "mode": "resume"
+    },
+    {
+      "at": 46.52,
+      "cue": "小鳥一下子跳了起來。太陽自己出來了，沒有等",
+      "sticker": "bird",
+      "expression": "surprised"
+    },
+    {
+      "at": 51.36,
+      "cue": "那……我的歌是唱來做什麼的？」「唱給我們聽的呀",
+      "sticker": "bird",
+      "expression": "sad"
+    },
+    {
+      "at": 54.32,
+      "cue": "唱給我們聽的呀",
+      "sticker": "rabbit",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 56.92,
+      "cue": "於是小鳥挺起胸膛，唱起歌來",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 58.12,
+      "cue": "挺起胸膛，唱起歌來",
+      "sticker": "bird",
+      "animation": "sing"
+    },
+    {
+      "at": 60.44,
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 60.44,
+      "sticker": "rabbit",
+      "effect": "hop",
+      "repeat": 3
+    },
+    {
+      "at": 62.84,
+      "cue": "小花對著太陽微笑。貓",
+      "sticker": "flower",
+      "effect": "glow"
+    },
+    {
+      "at": 64.84,
+      "cue": "貓",
+      "sticker": "owl",
+      "expression": "sleeping"
+    },
+    {
+      "at": 64.84,
+      "cue": "貓",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    }
+  ]
+}

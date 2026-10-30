@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "月",
+      "effect": "night",
+      "duration": 74.04,
+      "intensity": 0.7
+    },
+    {
+      "at": 4.52,
+      "cue": "獾、浣熊和小老",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 5.24,
+      "cue": "浣熊和小老",
+      "sticker": "raccoon",
+      "enter": true
+    },
+    {
+      "at": 5.24,
+      "cue": "浣熊和小老",
+      "sticker": "raccoon",
+      "go": "to",
+      "target": "badger"
+    },
+    {
+      "at": 5.8,
+      "cue": "小老",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 5.8,
+      "cue": "小老",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "badger"
+    },
+    {
+      "at": 9.08,
+      "cue": "可是，一大片雲飄過來，把月亮遮住了，四周一下子暗了下來。「我什麼都看不見！」獾說",
+      "effect": "clouds",
+      "duration": 50.5,
+      "intensity": 0.8
+    },
+    {
+      "at": 15.2,
+      "cue": "我什麼都看不見！」獾說",
+      "sticker": "badger",
+      "expression": "surprised"
+    },
+    {
+      "at": 18.6,
+      "cue": "我也是！」浣熊說",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "hold"
+    },
+    {
+      "at": 22.92,
+      "cue": "家在哪一邊",
+      "sticker": "badger",
+      "animation": "scratch-head"
+    },
+    {
+      "at": 28.84,
+      "cue": "小老",
+      "sticker": "mouse",
+      "animation": "twitch-whiskers"
+    },
+    {
+      "at": 30.99,
+      "cue": "跟我來。我的鬍鬚摸得出路",
+      "sticker": "mouse",
+      "expression": "happy"
+    },
+    {
+      "at": 34.04,
+      "sticker": "mouse",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 38.68,
+      "cue": "獾",
+      "sticker": "badger",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 41,
+      "cue": "浣熊偷偷一看——「哇，看到了！」——也跟在獾的後面。突然，小老",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "resume"
+    },
+    {
+      "at": 43.96,
+      "cue": "也跟在獾的後面。突然，小老",
+      "sticker": "raccoon",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 45.88,
+      "cue": "突然，小老",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "hold"
+    },
+    {
+      "at": 51.96,
+      "cue": "於是大家一個跟著一個，鼻子貼著尾巴，繞了過去。這時，雲飄走了，月亮又露出臉來",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "resume"
+    },
+    {
+      "at": 61.4,
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 61.4,
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 65.08,
+      "cue": "獾也動了動自己的鬍鬚。「下一次",
+      "sticker": "mouse",
+      "effect": "hearts"
+    },
+    {
+      "at": 65.32,
+      "cue": "也動了動自己的鬍鬚。「下一次",
+      "sticker": "badger",
+      "animation": "twitch-whiskers"
+    }
+  ]
+}

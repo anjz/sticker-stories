@@ -1,0 +1,158 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.08,
+      "cue": "rana",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 6.68,
+      "cue": "la",
+      "sticker": "frog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 11.64,
+      "cue": "chiocciola",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 11.64,
+      "cue": "chiocciola",
+      "sticker": "snail",
+      "go": "to",
+      "target": "frog"
+    },
+    {
+      "at": 17.28,
+      "cue": "e",
+      "sticker": "snail",
+      "animation": "hide"
+    },
+    {
+      "at": 19.12,
+      "cue": "la",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 21.48,
+      "cue": "farfalla",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 24.96,
+      "cue": "il",
+      "sticker": "butterfly",
+      "animation": "shake-head"
+    },
+    {
+      "at": 36.12,
+      "cue": "plic",
+      "effect": "rain",
+      "duration": 29.98,
+      "intensity": 0.7
+    },
+    {
+      "at": 40.04,
+      "cue": "rana",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 40.04,
+      "cue": "rana",
+      "sticker": "frog",
+      "animation": "jump"
+    },
+    {
+      "at": 42.44,
+      "cue": "chiocciola",
+      "sticker": "snail",
+      "animation": "stretch-eyes"
+    },
+    {
+      "at": 48.12,
+      "cue": "fungo",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 49.12,
+      "cue": "si",
+      "sticker": "butterfly",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 50.76,
+      "cue": "e",
+      "sticker": "butterfly",
+      "expression": "sad"
+    },
+    {
+      "at": 50.76,
+      "cue": "e",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 56.2,
+      "cue": "chiocciola",
+      "sticker": "snail",
+      "expression": "sad"
+    },
+    {
+      "at": 64.6,
+      "cue": "la",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.8
+    },
+    {
+      "at": 67.88,
+      "cue": "farfalla",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 69.88,
+      "cue": "ed",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 69.88,
+      "cue": "ed",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "sky"
+    },
+    {
+      "at": 71.64,
+      "cue": "guardate",
+      "effect": "rainbow",
+      "duration": 14,
+      "intensity": 0.8
+    },
+    {
+      "at": 75.78,
+      "cue": "il",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 75.78,
+      "cue": "il",
+      "sticker": "all",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "太陽出來了，啄木鳥飛到大樹的樹幹上。該打鼓說早安囉！叩叩叩！高高的樹枝上，貓",
+      "effect": "sunshine",
+      "intensity": 0.7
+    },
+    {
+      "at": 4.28,
+      "cue": "啄木鳥飛到大樹的樹幹上。該打鼓說早安囉！叩叩叩！高高的樹枝上，貓",
+      "sticker": "woodpecker",
+      "enter": true
+    },
+    {
+      "at": 4.28,
+      "cue": "啄木鳥飛到大樹的樹幹上。該打鼓說早安囉！叩叩叩！高高的樹枝上，貓",
+      "sticker": "woodpecker",
+      "go": "to",
+      "target": "trunks"
+    },
+    {
+      "at": 8.28,
+      "cue": "叩叩叩！高高的樹枝上，貓",
+      "sticker": "woodpecker",
+      "animation": "drum"
+    },
+    {
+      "at": 11,
+      "cue": "貓",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 11,
+      "cue": "貓",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 13.32,
+      "cue": "咕？」草地那邊，獾也走了過來，一邊打著呵",
+      "sticker": "owl",
+      "expression": "surprised"
+    },
+    {
+      "at": 15.8,
+      "cue": "獾也走了過來，一邊打著呵",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 17,
+      "cue": "一邊打著呵",
+      "sticker": "badger",
+      "expression": "sad"
+    },
+    {
+      "at": 25.24,
+      "cue": "喔！」啄木鳥說。「對不起",
+      "sticker": "woodpecker",
+      "expression": "surprised"
+    },
+    {
+      "at": 26.92,
+      "cue": "對不起",
+      "sticker": "woodpecker",
+      "effect": "tint",
+      "color": "#FFB6C8"
+    },
+    {
+      "at": 31.24,
+      "cue": "叩……叩……叩",
+      "sticker": "woodpecker",
+      "animation": "tap"
+    },
+    {
+      "at": 33.48,
+      "cue": "嗯，」獾說，「這樣很好聽。」獾在草地上挖了一個舒服的小窩。貓",
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 37.08,
+      "cue": "獾在草地上挖了一個舒服的小窩。貓",
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 42.12,
+      "cue": "打了一個好大的呵",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    },
+    {
+      "at": 46.39,
+      "cue": "於是，啄木鳥繼續輕輕地",
+      "sticker": "badger",
+      "expression": "sleeping"
+    },
+    {
+      "at": 50.04,
+      "cue": "叩……叩……叩",
+      "sticker": "woodpecker",
+      "animation": "tap"
+    },
+    {
+      "at": 51.72,
+      "cue": "叩叩叩！是在說早安。叩……叩……叩……是在說晚安",
+      "sticker": "woodpecker",
+      "expression": "happy"
+    },
+    {
+      "at": 55.72,
+      "cue": "是在說晚安",
+      "sticker": "woodpecker",
+      "effect": "hearts"
+    }
+  ]
+}

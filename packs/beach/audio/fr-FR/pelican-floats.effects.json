@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "pélican",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "pélican",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 6.28,
+      "cue": "il",
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 10,
+      "cue": "phoque",
+      "sticker": "seal",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 11.93,
+      "sticker": "seal",
+      "effect": "wobble"
+    },
+    {
+      "at": 14.04,
+      "cue": "pélican",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 17.32,
+      "cue": "il",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "sea",
+      "by": "float"
+    },
+    {
+      "at": 26.1,
+      "sticker": "seal",
+      "expression": "surprised"
+    },
+    {
+      "at": 26.1,
+      "sticker": "seal",
+      "effect": "hop"
+    },
+    {
+      "at": 28.84,
+      "sticker": "pelican",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 35.72,
+      "cue": "juste",
+      "sticker": "ring",
+      "enter": true
+    },
+    {
+      "at": 35.72,
+      "cue": "juste",
+      "sticker": "ring",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 39.28,
+      "cue": "elle",
+      "sticker": "ring",
+      "animation": "spin"
+    },
+    {
+      "at": 41.43,
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 41.43,
+      "sticker": "seal",
+      "animation": "laugh"
+    },
+    {
+      "at": 45.55,
+      "cue": "et",
+      "sticker": "pelican",
+      "effect": "hearts"
+    },
+    {
+      "at": 45.55,
+      "cue": "et",
+      "sticker": "ring",
+      "effect": "pulse"
+    },
+    {
+      "at": 45.55,
+      "cue": "et",
+      "sticker": "ring",
+      "go": "to",
+      "target": "pelican"
+    }
+  ]
+}

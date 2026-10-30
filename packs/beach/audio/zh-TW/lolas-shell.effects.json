@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "蘿拉最喜歡撿貝殼了",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "蘿拉最喜歡撿貝殼了",
+      "sticker": "girl",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 5.16,
+      "cue": "哇，條紋的耶！一條白、一條粉",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 8.84,
+      "cue": "她伸手去拿。可是，那個貝殼……自己走掉了",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 8.84,
+      "cue": "她伸手去拿。可是，那個貝殼……自己走掉了",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 8.84,
+      "cue": "她伸手去拿。可是，那個貝殼……自己走掉了",
+      "sticker": "girl",
+      "go": "to",
+      "target": "hermit-crab"
+    },
+    {
+      "at": 10.44,
+      "cue": "可是，那個貝殼……自己走掉了",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 15.24,
+      "cue": "原來，裡面緊緊縮著一隻寄",
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 21.88,
+      "cue": "寄",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 23.8,
+      "cue": "揮揮",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 23.8,
+      "cue": "揮揮",
+      "sticker": "hermit-crab",
+      "animation": "wave"
+    },
+    {
+      "at": 33.24,
+      "cue": "她蹲下來仔細看。貝殼打開了……裡面是蛤蜊，還有一顆亮晶晶的珍",
+      "sticker": "clam",
+      "enter": true
+    },
+    {
+      "at": 33.24,
+      "cue": "她蹲下來仔細看。貝殼打開了……裡面是蛤蜊，還有一顆亮晶晶的珍",
+      "sticker": "girl",
+      "go": "to",
+      "target": "clam"
+    },
+    {
+      "at": 34.04,
+      "cue": "仔細看。貝殼打開了……裡面是蛤蜊，還有一顆亮晶晶的珍",
+      "sticker": "girl",
+      "animation": "crouch"
+    },
+    {
+      "at": 35.4,
+      "cue": "貝殼打開了……裡面是蛤蜊，還有一顆亮晶晶的珍",
+      "sticker": "clam",
+      "animation": "peek"
+    },
+    {
+      "at": 41.48,
+      "cue": "原來",
+      "sticker": "clam",
+      "expression": "surprised"
+    },
+    {
+      "at": 43.56,
+      "cue": "所以，蘿拉一個貝殼也沒帶回家。她坐下來，用手指把",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 47.24,
+      "cue": "她坐下來，用手指把",
+      "sticker": "girl",
+      "animation": "play-sand"
+    },
+    {
+      "at": 54.04,
+      "cue": "貝殼都好好地",
+      "sticker": "hermit-crab",
+      "effect": "hearts"
+    },
+    {
+      "at": 54.04,
+      "cue": "貝殼都好好地",
+      "sticker": "clam",
+      "effect": "hearts"
+    }
+  ]
+}

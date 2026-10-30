@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 3.88,
+      "cue": "fleur",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 6.2,
+      "cue": "chenille",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 6.2,
+      "cue": "chenille",
+      "sticker": "caterpillar",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 8.52,
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 8.52,
+      "sticker": "caterpillar",
+      "effect": "pulse"
+    },
+    {
+      "at": 11.28,
+      "cue": "pomme",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 11.28,
+      "cue": "pomme",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 15,
+      "sticker": "pinecone",
+      "expression": "sad"
+    },
+    {
+      "at": 15,
+      "sticker": "pinecone",
+      "animation": "talk"
+    },
+    {
+      "at": 21.3,
+      "sticker": "flower",
+      "animation": "talk"
+    },
+    {
+      "at": 23.72,
+      "cue": "le",
+      "effect": "sunshine",
+      "intensity": 0.8
+    },
+    {
+      "at": 26.48,
+      "cue": "pomme",
+      "sticker": "pinecone",
+      "effect": "shake",
+      "intensity": 0.3
+    },
+    {
+      "at": 29.28,
+      "cue": "et",
+      "sticker": "pinecone",
+      "expression": "happy"
+    },
+    {
+      "at": 29.28,
+      "cue": "et",
+      "sticker": "pinecone",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 32.38,
+      "sticker": "caterpillar",
+      "expression": "surprised"
+    },
+    {
+      "at": 33.13,
+      "cue": "et",
+      "effect": "wind",
+      "duration": 13.1,
+      "intensity": 0.7
+    },
+    {
+      "at": 33.13,
+      "cue": "et",
+      "sticker": "all",
+      "effect": "wobble"
+    },
+    {
+      "at": 36.12,
+      "cue": "de",
+      "sticker": "pinecone",
+      "effect": "sparkle"
+    },
+    {
+      "at": 44.73,
+      "cue": "chenille",
+      "sticker": "caterpillar",
+      "animation": "look-up"
+    },
+    {
+      "at": 48.67,
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 48.67,
+      "sticker": "flower",
+      "effect": "glow"
+    },
+    {
+      "at": 51.45,
+      "cue": "pomme",
+      "sticker": "pinecone",
+      "effect": "glow"
+    }
+  ]
+}

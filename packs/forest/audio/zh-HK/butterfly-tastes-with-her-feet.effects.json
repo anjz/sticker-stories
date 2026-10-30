@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "蝴蝶正在找甜甜的東西",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 10.68,
+      "cue": "小鹿就在附近的草地上，低",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 12.68,
+      "cue": "低",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 14.28,
+      "cue": "蝴蝶輕輕飛下來，剛好停在",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "deer"
+    },
+    {
+      "at": 18.12,
+      "cue": "小",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 19.96,
+      "cue": "嗯……草味。唔甜。」一朵",
+      "sticker": "butterfly",
+      "expression": "sad"
+    },
+    {
+      "at": 24.28,
+      "cue": "蘑菇冒了出來。蝴蝶停在她的蘑菇帽上。嗒、嗒。「嗯……青苔味。都唔甜",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 25.64,
+      "cue": "蝴蝶停在她的蘑菇帽上。嗒、嗒。「嗯……青苔味。都唔甜",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 33.05,
+      "cue": "哈哈，好痕呀！」蘑菇說。這時，旁邊有一朵黃色的小花，正",
+      "sticker": "mushroom",
+      "animation": "laugh"
+    },
+    {
+      "at": 38.2,
+      "cue": "小花，正",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 40.36,
+      "cue": "蝴蝶停在花的正中間。嗒、嗒",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "flower"
+    },
+    {
+      "at": 44,
+      "cue": "好甜呀",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 44,
+      "cue": "好甜呀",
+      "sticker": "butterfly",
+      "effect": "sparkle"
+    },
+    {
+      "at": 45.2,
+      "sticker": "deer",
+      "expression": "normal"
+    },
+    {
+      "at": 45.2,
+      "sticker": "deer",
+      "effect": "pulse"
+    },
+    {
+      "at": 51.24,
+      "cue": "於是小鹿用蹄子在草地上點了點。嗒、嗒。甚麼味道也沒有",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 52.12,
+      "cue": "用蹄子在草地上點了點。嗒、嗒。甚麼味道也沒有",
+      "sticker": "deer",
+      "animation": "tap-hoof"
+    },
+    {
+      "at": 57.4,
+      "sticker": "deer",
+      "expression": "happy"
+    },
+    {
+      "at": 57.84,
+      "cue": "像平常一樣，低",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 65.04,
+      "cue": "蝴蝶在小花上合起",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 67.24,
+      "cue": "心裏甜得不得了",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 67.24,
+      "cue": "心裏甜得不得了",
+      "sticker": "flower",
+      "effect": "hearts"
+    }
+  ]
+}

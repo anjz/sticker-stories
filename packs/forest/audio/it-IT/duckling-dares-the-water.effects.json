@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "era",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.7
+    },
+    {
+      "at": 5.8,
+      "cue": "rana",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 5.8,
+      "cue": "rana",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 8.2,
+      "cue": "ad",
+      "sticker": "frog",
+      "animation": "catch-fly"
+    },
+    {
+      "at": 11.16,
+      "cue": "vieni",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 12.31,
+      "cue": "anatroccolo",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 13.32,
+      "cue": "anatroccolo",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 16.6,
+      "cue": "l'acqua",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 22.8,
+      "cue": "ha",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 27,
+      "cue": "chiocciola",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 27,
+      "cue": "chiocciola",
+      "sticker": "snail",
+      "go": "to",
+      "target": "duckling"
+    },
+    {
+      "at": 33.96,
+      "cue": "ed",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 36.24,
+      "cue": "ha",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 38.68,
+      "cue": "allora",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 41.4,
+      "cue": "ha",
+      "sticker": "duckling",
+      "animation": "dip-foot"
+    },
+    {
+      "at": 47.16,
+      "cue": "le",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond",
+      "by": "swim",
+      "another": true
+    },
+    {
+      "at": 53.85,
+      "cue": "sto",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 55.16,
+      "cue": "qua",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 55.16,
+      "cue": "qua",
+      "sticker": "duckling",
+      "animation": "quack"
+    },
+    {
+      "at": 55.16,
+      "cue": "qua",
+      "sticker": "frog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 56.01,
+      "cue": "chiocciola",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 56.01,
+      "cue": "chiocciola",
+      "sticker": "snail",
+      "effect": "hearts"
+    }
+  ]
+}

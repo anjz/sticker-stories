@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "un",
+      "effect": "fog",
+      "duration": 41.22,
+      "intensity": 0.8
+    },
+    {
+      "at": 9.4,
+      "cue": "bécasseau",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 11.36,
+      "cue": "il",
+      "sticker": "sandpiper",
+      "expression": "surprised"
+    },
+    {
+      "at": 12.64,
+      "cue": "il",
+      "sticker": "sandpiper",
+      "animation": "look-around"
+    },
+    {
+      "at": 20.92,
+      "cue": "une",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 23.48,
+      "cue": "c’était",
+      "sticker": "fishing-boat",
+      "effect": "pulse"
+    },
+    {
+      "at": 28,
+      "cue": "une",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 28,
+      "cue": "une",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 29.72,
+      "cue": "une",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 31.56,
+      "cue": "bécasseau",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "bottle",
+      "by": "run"
+    },
+    {
+      "at": 33.72,
+      "cue": "pop",
+      "sticker": "bottle",
+      "animation": "pop"
+    },
+    {
+      "at": 35.96,
+      "cue": "puis",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 35.96,
+      "cue": "puis",
+      "sticker": "sandpiper",
+      "animation": "laugh"
+    },
+    {
+      "at": 36.48,
+      "cue": "tout",
+      "effect": "sunshine",
+      "duration": 25,
+      "intensity": 0.8
+    },
+    {
+      "at": 40.52,
+      "cue": "le",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 42.56,
+      "cue": "et",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 42.56,
+      "cue": "et",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 44.52,
+      "cue": "bécasseau",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 49.4,
+      "cue": "début",
+      "sticker": "sandpiper",
+      "effect": "hop"
+    }
+  ]
+}

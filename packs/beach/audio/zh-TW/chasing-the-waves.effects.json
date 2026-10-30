@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "濱鷸在岸邊跑來跑去。跑向水邊……再跑回來。過去……回來！小狗看著看著，歪著",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "濱鷸在岸邊跑來跑去。跑向水邊……再跑回來。過去……回來！小狗看著看著，歪著",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 5.4,
+      "cue": "跑向水邊……再跑回來。過去……回來！小狗看著看著，歪著",
+      "sticker": "sandpiper",
+      "effect": "pulse"
+    },
+    {
+      "at": 6.6,
+      "cue": "再跑回來。過去……回來！小狗看著看著，歪著",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore",
+      "another": true
+    },
+    {
+      "at": 9.8,
+      "cue": "小狗看著看著，歪著",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 11.44,
+      "cue": "歪著",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 13.88,
+      "sticker": "dog",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 22.36,
+      "cue": "小狗用力甩甩身體，甩、甩、甩",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 22.36,
+      "cue": "小狗用力甩甩身體，甩、甩、甩",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 26.65,
+      "cue": "濱鷸說：「這不是遊戲啦。」「每一道浪退回去，剛剛水來過的地方，就會留下小小的東西給我吃。所以我衝過去，啄、啄、啄，趁下一道浪還沒來，趕快跑回來！」「喔——」小狗說，「原來那是",
+      "sticker": "sandpiper",
+      "animation": "shake-head"
+    },
+    {
+      "at": 29.32,
+      "cue": "每一道浪退回去，剛剛水來過的地方，就會留下小小的東西給我吃。所以我衝過去，啄、啄、啄，趁下一道浪還沒來，趕快跑回來！」「喔——」小狗說，「原來那是",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 35.08,
+      "cue": "所以我衝過去，啄、啄、啄，趁下一道浪還沒來，趕快跑回來！」「喔——」小狗說，「原來那是",
+      "sticker": "sandpiper",
+      "animation": "peck",
+      "mode": "hold"
+    },
+    {
+      "at": 40.36,
+      "cue": "喔——」小狗說，「原來那是",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 42.92,
+      "cue": "原來那是",
+      "sticker": "dog",
+      "animation": "nod"
+    },
+    {
+      "at": 48.2,
+      "sticker": "ball",
+      "enter": true
+    },
+    {
+      "at": 49.79,
+      "cue": "這個呢，」小狗說，「是我最最喜歡的東西！」球骨碌碌轉呀轉",
+      "sticker": "dog",
+      "go": "to",
+      "target": "ball"
+    },
+    {
+      "at": 49.79,
+      "cue": "這個呢，」小狗說，「是我最最喜歡的東西！」球骨碌碌轉呀轉",
+      "sticker": "dog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 54.04,
+      "cue": "球骨碌碌轉呀轉",
+      "sticker": "ball",
+      "animation": "spin"
+    },
+    {
+      "at": 54.04,
+      "cue": "球骨碌碌轉呀轉",
+      "sticker": "dog",
+      "effect": "hearts"
+    }
+  ]
+}

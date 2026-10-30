@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "一個晴朗的早上，蝸牛出發去大探險：要走過整片草地！小鳥咻地飛下來。「這個我一眨眼就做到了！」咻——飛到",
+      "effect": "sunshine",
+      "intensity": 0.6
+    },
+    {
+      "at": 4.6,
+      "cue": "蝸牛出發去大探險：要走過整片草地！小鳥咻地飛下來。「這個我一眨眼就做到了！」咻——飛到",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 5.48,
+      "cue": "大探險：要走過整片草地！小鳥咻地飛下來。「這個我一眨眼就做到了！」咻——飛到",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 8.84,
+      "cue": "小鳥咻地飛下來。「這個我一眨眼就做到了！」咻——飛到",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 10.64,
+      "cue": "這個我一眨眼就做到了！」咻——飛到",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 13.24,
+      "cue": "咻——飛到",
+      "sticker": "bird",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 15.24,
+      "cue": "再咻——飛回來。蝸牛縮進殼裡，又探出",
+      "sticker": "bird",
+      "go": "back"
+    },
+    {
+      "at": 17.32,
+      "cue": "蝸牛縮進殼裡，又探出",
+      "sticker": "snail",
+      "animation": "hide"
+    },
+    {
+      "at": 21.44,
+      "cue": "呃……草",
+      "sticker": "bird",
+      "expression": "surprised"
+    },
+    {
+      "at": 31,
+      "sticker": "snail",
+      "effect": "pulse"
+    },
+    {
+      "at": 39.48,
+      "cue": "蜜蜂，蜜蜂正貼著三葉草，低低地嗡嗡飛。蜜蜂哼了一首好小好小的歌給",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 39.48,
+      "cue": "蜜蜂，蜜蜂正貼著三葉草，低低地嗡嗡飛。蜜蜂哼了一首好小好小的歌給",
+      "sticker": "bee",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 44.36,
+      "cue": "蜜蜂哼了一首好小好小的歌給",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 44.76,
+      "cue": "哼了一首好小好小的歌給",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 51.16,
+      "cue": "太陽下山的時候，蝸牛終於走到了",
+      "effect": "sunset",
+      "duration": 25.62,
+      "intensity": 0.7
+    },
+    {
+      "at": 52.76,
+      "cue": "蝸牛終於走到了",
+      "sticker": "snail",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 55.24,
+      "cue": "小鳥飛過來。「怎麼樣",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 55.24,
+      "cue": "小鳥飛過來。「怎麼樣",
+      "sticker": "bird",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 58.52,
+      "cue": "蝸牛把看到的",
+      "sticker": "snail",
+      "animation": "talk"
+    },
+    {
+      "at": 61.92,
+      "cue": "這些我一個都沒看到",
+      "sticker": "bird",
+      "expression": "surprised"
+    },
+    {
+      "at": 68.11,
+      "cue": "當然好。」蝸牛說，「我們就從那朵雛菊開始",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 68.11,
+      "cue": "當然好。」蝸牛說，「我們就從那朵雛菊開始",
+      "sticker": "snail",
+      "animation": "nod"
+    }
+  ]
+}

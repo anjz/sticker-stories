@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "c’était",
+      "effect": "sunset",
+      "duration": 14.75,
+      "intensity": 0.6
+    },
+    {
+      "at": 6.44,
+      "cue": "luciole",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 6.88,
+      "cue": "s’est",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 2,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 7.88,
+      "cue": "clignote",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 12.25,
+      "cue": "clignote",
+      "effect": "night",
+      "duration": 49.71,
+      "intensity": 0.7
+    },
+    {
+      "at": 12.25,
+      "cue": "clignote",
+      "sticker": "firefly",
+      "expression": "sad"
+    },
+    {
+      "at": 15.24,
+      "cue": "souris",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 15.24,
+      "cue": "souris",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "firefly"
+    },
+    {
+      "at": 18.53,
+      "sticker": "firefly",
+      "animation": "talk"
+    },
+    {
+      "at": 22.84,
+      "cue": "souris",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "hold"
+    },
+    {
+      "at": 28.76,
+      "cue": "hérisson",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 28.76,
+      "cue": "hérisson",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "firefly"
+    },
+    {
+      "at": 31.16,
+      "sticker": "hedgehog",
+      "animation": "talk"
+    },
+    {
+      "at": 35.48,
+      "cue": "a",
+      "sticker": "firefly",
+      "effect": "glow",
+      "repeat": 4,
+      "duration": 2,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 39,
+      "cue": "et",
+      "effect": "fireflies",
+      "duration": 20.28,
+      "intensity": 0.6
+    },
+    {
+      "at": 45.16,
+      "cue": "souris",
+      "sticker": "mouse",
+      "animation": "sniff",
+      "mode": "resume"
+    },
+    {
+      "at": 48.76,
+      "cue": "luciole",
+      "sticker": "firefly",
+      "effect": "glow",
+      "repeat": 2,
+      "duration": 0.4,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 51.52,
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 51.52,
+      "sticker": "firefly",
+      "animation": "wave"
+    },
+    {
+      "at": 53.08,
+      "cue": "et",
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 53.8,
+      "cue": "s’est",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    }
+  ]
+}

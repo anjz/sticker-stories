@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 6.04,
+      "cue": "松果坐在草地上，鱗片張得開開的。松",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 7.72,
+      "cue": "鱗片張得開開的。松",
+      "sticker": "pinecone",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 9.8,
+      "cue": "松",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 9.8,
+      "cue": "松",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "pinecone"
+    },
+    {
+      "at": 12.27,
+      "cue": "我哋玩足成日啦",
+      "sticker": "squirrel",
+      "effect": "hop"
+    },
+    {
+      "at": 14.12,
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 14.12,
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "pinecone"
+    },
+    {
+      "at": 15.66,
+      "cue": "玩成日！玩成日！」可是松果覺得空氣變得又軟又濕，便把鱗片收得緊緊的",
+      "sticker": "rabbit",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 21.24,
+      "cue": "便把鱗片收得緊緊的",
+      "sticker": "pinecone",
+      "animation": "open",
+      "mode": "resume"
+    },
+    {
+      "at": 23.61,
+      "cue": "收得緊，雨就近。」她說。「落雨？」松",
+      "sticker": "pinecone",
+      "animation": "talk"
+    },
+    {
+      "at": 26.62,
+      "cue": "落雨？」松",
+      "sticker": "squirrel",
+      "expression": "surprised"
+    },
+    {
+      "at": 29.08,
+      "cue": "但係個天咁藍喎！」接着，飄來一朵雲，又一朵",
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 29.08,
+      "cue": "但係個天咁藍喎！」接着，飄來一朵雲，又一朵",
+      "sticker": "rabbit",
+      "effect": "wobble"
+    },
+    {
+      "at": 31.24,
+      "cue": "接着，飄來一朵雲，又一朵",
+      "effect": "clouds",
+      "duration": 30.66,
+      "intensity": 0.7
+    },
+    {
+      "at": 34.2,
+      "sticker": "rabbit",
+      "animation": "listen"
+    },
+    {
+      "at": 41,
+      "cue": "下雨了",
+      "effect": "rain",
+      "duration": 14.06,
+      "intensity": 0.8
+    },
+    {
+      "at": 41.96,
+      "sticker": "rabbit",
+      "expression": "surprised"
+    },
+    {
+      "at": 41.96,
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "squirrel"
+    },
+    {
+      "at": 41.96,
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "squirrel"
+    },
+    {
+      "at": 44.2,
+      "cue": "松",
+      "sticker": "squirrel",
+      "animation": "wrap-tail",
+      "mode": "hold"
+    },
+    {
+      "at": 50.42,
+      "cue": "我",
+      "sticker": "pinecone",
+      "effect": "pulse"
+    },
+    {
+      "at": 57,
+      "cue": "松果把鱗片張得大大的。太陽出來了",
+      "sticker": "pinecone",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 59.4,
+      "cue": "太陽出來了",
+      "effect": "sunshine"
+    },
+    {
+      "at": 60.68,
+      "cue": "張得開，太陽來！」大家一起大叫。然後，大家真的玩了一整天",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 60.68,
+      "cue": "張得開，太陽來！」大家一起大叫。然後，大家真的玩了一整天",
+      "sticker": "all",
+      "effect": "hop"
+    }
+  ]
+}

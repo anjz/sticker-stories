@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "太陽快要下山了。小花在金黃色的陽",
+      "effect": "sunset",
+      "duration": 30.3,
+      "intensity": 0.7
+    },
+    {
+      "at": 5.64,
+      "cue": "小花在金黃色的陽",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 9.24,
+      "cue": "蝸牛爬到她身邊，想把今天發生的事",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 9.24,
+      "cue": "蝸牛爬到她身邊，想把今天發生的事",
+      "sticker": "snail",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 14.92,
+      "cue": "把花瓣合了起來，合得緊緊的，像一個花蕾",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "hold"
+    },
+    {
+      "at": 19.32,
+      "cue": "小花",
+      "sticker": "snail",
+      "expression": "surprised"
+    },
+    {
+      "at": 24.17,
+      "cue": "咁我陪住",
+      "sticker": "snail",
+      "expression": "sad"
+    },
+    {
+      "at": 24.17,
+      "cue": "咁我陪住",
+      "sticker": "snail",
+      "animation": "talk"
+    },
+    {
+      "at": 27.8,
+      "cue": "月亮升起來了。螢火蟲也飛來了。「我都陪",
+      "effect": "night",
+      "duration": 21.04,
+      "intensity": 0.7
+    },
+    {
+      "at": 29.32,
+      "cue": "螢火蟲也飛來了。「我都陪",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 29.32,
+      "cue": "螢火蟲也飛來了。「我都陪",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 31,
+      "cue": "我都陪",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 33.32,
+      "cue": "像一盞小燈",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 35.64,
+      "cue": "於是蝸牛把今天的事",
+      "sticker": "snail",
+      "expression": "normal"
+    },
+    {
+      "at": 36.68,
+      "cue": "把今天的事",
+      "sticker": "snail",
+      "animation": "talk"
+    },
+    {
+      "at": 43.96,
+      "cue": "縮進殼裏，就睡在她旁邊。到了早上，太陽出來了。小花把花瓣張得大大的。「早晨，蝸牛！」蝸牛探出",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 46.84,
+      "cue": "到了早上，太陽出來了。小花把花瓣張得大大的。「早晨，蝸牛！」蝸牛探出",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.8
+    },
+    {
+      "at": 49.4,
+      "cue": "小花把花瓣張得大大的。「早晨，蝸牛！」蝸牛探出",
+      "sticker": "flower",
+      "animation": "close",
+      "mode": "resume"
+    },
+    {
+      "at": 51.68,
+      "cue": "早晨，蝸牛！」蝸牛探出",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 53.32,
+      "cue": "蝸牛探出",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 56.64,
+      "cue": "好多花都係咁，夜晚會合埋，」小花說，「有太陽就會打開",
+      "sticker": "flower",
+      "animation": "talk"
+    },
+    {
+      "at": 62.25,
+      "cue": "咁我每日黃昏，」蝸牛說，「都喺",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 62.25,
+      "cue": "咁我每日黃昏，」蝸牛說，「都喺",
+      "sticker": "snail",
+      "effect": "hearts"
+    }
+  ]
+}

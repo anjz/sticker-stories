@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "papillon",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 5.56,
+      "cue": "gland",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 7.56,
+      "sticker": "acorn",
+      "expression": "sad"
+    },
+    {
+      "at": 10.92,
+      "cue": "papillon",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "meadow"
+    },
+    {
+      "at": 14.8,
+      "cue": "il",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 17.88,
+      "cue": "champignon",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 20.44,
+      "cue": "gland",
+      "sticker": "acorn",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 22.52,
+      "cue": "il",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 22.52,
+      "cue": "il",
+      "sticker": "acorn",
+      "animation": "flap-arms"
+    },
+    {
+      "at": 26.92,
+      "cue": "alors",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 32.68,
+      "cue": "juste",
+      "effect": "wind",
+      "duration": 8,
+      "intensity": 0.6
+    },
+    {
+      "at": 35.52,
+      "cue": "ah",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 37.72,
+      "cue": "gland",
+      "sticker": "acorn",
+      "go": "to",
+      "target": "meadow",
+      "toward": "right"
+    },
+    {
+      "at": 37.72,
+      "cue": "gland",
+      "sticker": "acorn",
+      "effect": "spin"
+    },
+    {
+      "at": 43.21,
+      "cue": "il",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 46.09,
+      "sticker": "mushroom",
+      "expression": "surprised"
+    },
+    {
+      "at": 48.73,
+      "cue": "papillon",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 50.9,
+      "sticker": "butterfly",
+      "animation": "talk"
+    },
+    {
+      "at": 53.92,
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 53.92,
+      "sticker": "acorn",
+      "effect": "hop",
+      "repeat": 3
+    }
+  ]
+}

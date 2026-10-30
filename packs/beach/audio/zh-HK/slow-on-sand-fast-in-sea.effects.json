@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "海龜在沙灘上",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "海龜在沙灘上",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 10.84,
+      "cue": "尼可抱着黃色的滑浪板走過來",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 13.77,
+      "cue": "海龜",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 16.68,
+      "cue": "海龜把",
+      "sticker": "turtle",
+      "animation": "peek"
+    },
+    {
+      "at": 20.67,
+      "cue": "喺陸地上，我係",
+      "sticker": "turtle",
+      "animation": "talk"
+    },
+    {
+      "at": 26.2,
+      "cue": "嚟就嚟！」鵜鶘飛到岩石上，準備看比賽",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 27.4,
+      "cue": "鵜鶘飛到岩石上，準備看比賽",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 27.4,
+      "cue": "鵜鶘飛到岩石上，準備看比賽",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 30.44,
+      "sticker": "pelican",
+      "effect": "pulse"
+    },
+    {
+      "at": 32.04,
+      "cue": "尼可用盡",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sea",
+      "by": "paddle"
+    },
+    {
+      "at": 34.52,
+      "cue": "海龜一滑進水裏——嗖！就在浪裏飛快地穿梭，好像小鳥在天上飛。鵜鶘看呆了，一不小心舀了一大口水",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "sea",
+      "by": "swim"
+    },
+    {
+      "at": 41.32,
+      "cue": "鵜鶘看呆了，一不小心舀了一大口水",
+      "sticker": "pelican",
+      "animation": "scoop"
+    },
+    {
+      "at": 46.2,
+      "cue": "尼可乘着浪滑回來的時候，海龜早就在等他了",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 47.16,
+      "cue": "滑回來的時候，海龜早就在等他了",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand",
+      "by": "surf"
+    },
+    {
+      "at": 51.08,
+      "cue": "好啦，海龜",
+      "sticker": "turtle",
+      "effect": "hearts"
+    },
+    {
+      "at": 51.08,
+      "cue": "好啦，海龜",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 51.08,
+      "cue": "好啦，海龜",
+      "sticker": "surfer",
+      "animation": "laugh"
+    },
+    {
+      "at": 51.08,
+      "cue": "好啦，海龜",
+      "sticker": "surfer",
+      "effect": "hop"
+    }
+  ]
+}

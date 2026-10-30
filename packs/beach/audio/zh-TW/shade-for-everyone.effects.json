@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "這是夏天最熱最熱的一天。寄",
+      "sticker": "umbrella",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "這是夏天最熱最熱的一天。寄",
+      "effect": "sunshine",
+      "duration": 30,
+      "intensity": 0.9
+    },
+    {
+      "at": 6.28,
+      "cue": "寄",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 8.2,
+      "cue": "整個縮進殼裡",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 15.64,
+      "cue": "看見了遮陽傘",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 21.72,
+      "cue": "啊——好舒服",
+      "sticker": "hermit-crab",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 21.72,
+      "cue": "啊——好舒服",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 24.76,
+      "cue": "濱鷸跑過來了，喘吁吁的：「好熱、好熱、好熱！」寄",
+      "sticker": "sandpiper",
+      "enter": true,
+      "by": "run"
+    },
+    {
+      "at": 26.08,
+      "cue": "喘吁吁的：「好熱、好熱、好熱！」寄",
+      "sticker": "sandpiper",
+      "expression": "sad"
+    },
+    {
+      "at": 35.88,
+      "cue": "可是",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 38.91,
+      "cue": "這裡",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 42.36,
+      "cue": "接著，螃蟹橫著走過來",
+      "sticker": "sandpiper",
+      "go": "under",
+      "target": "umbrella",
+      "by": "run"
+    },
+    {
+      "at": 42.36,
+      "cue": "接著，螃蟹橫著走過來",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 42.36,
+      "cue": "接著，螃蟹橫著走過來",
+      "sticker": "crab",
+      "enter": true
+    },
+    {
+      "at": 47.04,
+      "cue": "三個也坐得下！」寄",
+      "sticker": "hermit-crab",
+      "animation": "wave"
+    },
+    {
+      "at": 50.12,
+      "cue": "涼涼的小風輕輕飄過來，遮陽傘轉呀轉，幫大家搧搧風",
+      "sticker": "crab",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 50.12,
+      "cue": "涼涼的小風輕輕飄過來，遮陽傘轉呀轉，幫大家搧搧風",
+      "sticker": "umbrella",
+      "animation": "spin"
+    },
+    {
+      "at": 56.28,
+      "cue": "說也奇怪，那片小小的陰涼，剛好大家都坐得下",
+      "sticker": "hermit-crab",
+      "effect": "hearts"
+    },
+    {
+      "at": 56.28,
+      "cue": "說也奇怪，那片小小的陰涼，剛好大家都坐得下",
+      "sticker": "sandpiper",
+      "effect": "hearts"
+    }
+  ]
+}

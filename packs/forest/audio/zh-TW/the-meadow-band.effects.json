@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "河狸想組一個樂團。一個真正的草地樂團！「誰會演奏",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 6.8,
+      "cue": "誰會演奏",
+      "sticker": "beaver",
+      "expression": "happy"
+    },
+    {
+      "at": 6.8,
+      "cue": "誰會演奏",
+      "sticker": "beaver",
+      "effect": "hop"
+    },
+    {
+      "at": 9.64,
+      "cue": "啄木鳥停在樹幹上。「我會打鼓！」叩叩叩叩——叩！松果滾了過來。「我會搖！」她的鱗片唰唰響。蜜蜂嗡嗡地飛過來。「我會哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "woodpecker",
+      "enter": true
+    },
+    {
+      "at": 9.64,
+      "cue": "啄木鳥停在樹幹上。「我會打鼓！」叩叩叩叩——叩！松果滾了過來。「我會搖！」她的鱗片唰唰響。蜜蜂嗡嗡地飛過來。「我會哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "woodpecker",
+      "go": "to",
+      "target": "trunks"
+    },
+    {
+      "at": 13,
+      "cue": "叩叩叩叩——叩！松果滾了過來。「我會搖！」她的鱗片唰唰響。蜜蜂嗡嗡地飛過來。「我會哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "woodpecker",
+      "animation": "drum"
+    },
+    {
+      "at": 14.6,
+      "cue": "松果滾了過來。「我會搖！」她的鱗片唰唰響。蜜蜂嗡嗡地飛過來。「我會哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 14.6,
+      "cue": "松果滾了過來。「我會搖！」她的鱗片唰唰響。蜜蜂嗡嗡地飛過來。「我會哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 17.24,
+      "cue": "她的鱗片唰唰響。蜜蜂嗡嗡地飛過來。「我會哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "pinecone",
+      "animation": "rattle"
+    },
+    {
+      "at": 19.24,
+      "cue": "蜜蜂嗡嗡地飛過來。「我會哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 19.24,
+      "cue": "蜜蜂嗡嗡地飛過來。「我會哼歌！」嗯——嗯——。青蛙在",
+      "sticker": "bee",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 22.6,
+      "cue": "嗯——嗯——。青蛙在",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 24.6,
+      "cue": "青蛙在",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 24.6,
+      "cue": "青蛙在",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 29.96,
+      "cue": "河狸看看手上的木棍。「我只會啃東西",
+      "sticker": "beaver",
+      "expression": "sad"
+    },
+    {
+      "at": 41,
+      "cue": "大家一起來，可是有的快、有的",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 41,
+      "cue": "大家一起來，可是有的快、有的",
+      "sticker": "all",
+      "effect": "wobble"
+    },
+    {
+      "at": 48.92,
+      "cue": "開始啃木棍。喀滋，喀滋。喀滋，喀滋",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 56.12,
+      "cue": "啄木鳥跟著打鼓。松果跟著搖。青蛙跟著呱呱叫，蜜蜂也跟著嗯嗯哼",
+      "sticker": "woodpecker",
+      "animation": "drum"
+    },
+    {
+      "at": 57.96,
+      "cue": "松果跟著搖。青蛙跟著呱呱叫，蜜蜂也跟著嗯嗯哼",
+      "sticker": "pinecone",
+      "effect": "pulse"
+    },
+    {
+      "at": 59.48,
+      "cue": "青蛙跟著呱呱叫，蜜蜂也跟著嗯嗯哼",
+      "sticker": "frog",
+      "effect": "hop"
+    },
+    {
+      "at": 63.32,
+      "cue": "變成音樂了！「樂團萬歲",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 64.44,
+      "cue": "樂團萬歲",
+      "effect": "confetti"
+    },
+    {
+      "at": 64.44,
+      "cue": "樂團萬歲",
+      "sticker": "all",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

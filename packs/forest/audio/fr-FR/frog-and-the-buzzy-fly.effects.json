@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "c’était",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.6
+    },
+    {
+      "at": 6.24,
+      "cue": "faon",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 7.44,
+      "cue": "broutait",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 14.56,
+      "cue": "flic",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 14.56,
+      "cue": "flic",
+      "sticker": "deer",
+      "animation": "ear-flick"
+    },
+    {
+      "at": 17.8,
+      "cue": "escargot",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 20.39,
+      "sticker": "snail",
+      "expression": "surprised"
+    },
+    {
+      "at": 21.61,
+      "cue": "et",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 26.2,
+      "cue": "faon",
+      "sticker": "deer",
+      "animation": "stamp"
+    },
+    {
+      "at": 28.24,
+      "cue": "rien",
+      "sticker": "deer",
+      "expression": "sad"
+    },
+    {
+      "at": 31.96,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 31.96,
+      "cue": "grenouille",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 34.31,
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 37.8,
+      "cue": "très",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "hold"
+    },
+    {
+      "at": 42.92,
+      "cue": "faon",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 45.3,
+      "cue": "clac",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "resume"
+    },
+    {
+      "at": 49.32,
+      "cue": "escargot",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 52.58,
+      "sticker": "frog",
+      "effect": "pulse"
+    },
+    {
+      "at": 56.88,
+      "cue": "et",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 56.88,
+      "cue": "et",
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}

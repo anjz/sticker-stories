@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "浣熊想到一個遊戲",
+      "sticker": "raccoon",
+      "enter": true
+    },
+    {
+      "at": 6.84,
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "hold"
+    },
+    {
+      "at": 11.56,
+      "cue": "瓢蟲一眨眼就看見了蘑菇，馬上鑽到她",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 13.4,
+      "cue": "蘑菇，馬上鑽到她",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 14.12,
+      "cue": "馬上鑽到她",
+      "sticker": "ladybug",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 17.24,
+      "cue": "哈哈，好痕呀！」可是小熊的身子實在太大了",
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 19.8,
+      "cue": "小熊的身子實在太大了",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 23.96,
+      "cue": "躲在蘑菇後面？藏不住。躲在石",
+      "sticker": "bear",
+      "expression": "sad"
+    },
+    {
+      "at": 29.48,
+      "cue": "這時",
+      "sticker": "bear",
+      "effect": "sparkle"
+    },
+    {
+      "at": 34.84,
+      "cue": "於是",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 43.38,
+      "cue": "匿好未呀？我嚟捉喇！」浣熊豎起耳朵，用心地聽。呼……呼",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "resume"
+    },
+    {
+      "at": 45.16,
+      "cue": "浣熊豎起耳朵，用心地聽。呼……呼",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 45.72,
+      "cue": "豎起耳朵，用心地聽。呼……呼",
+      "sticker": "raccoon",
+      "animation": "listen"
+    },
+    {
+      "at": 50.47,
+      "cue": "捉到",
+      "sticker": "raccoon",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 51.64,
+      "cue": "小熊一下子驚醒了",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 53.24,
+      "sticker": "bear",
+      "expression": "surprised"
+    },
+    {
+      "at": 58.28,
+      "cue": "蘑菇笑得太厲害，結果……哈……哈……乞嗤！瓢蟲爬了出來。「又捉到一個！」現在輪到小熊數了。「一……二……」「三",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 63.16,
+      "cue": "瓢蟲爬了出來。「又捉到一個！」現在輪到小熊數了。「一……二……」「三",
+      "sticker": "ladybug",
+      "go": "back"
+    },
+    {
+      "at": 64.44,
+      "cue": "又捉到一個！」現在輪到小熊數了。「一……二……」「三",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 64.44,
+      "cue": "又捉到一個！」現在輪到小熊數了。「一……二……」「三",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 69.8,
+      "cue": "三",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 71.56,
+      "cue": "於是大家都躲好了，小熊就在草地上，睡了最香甜的一覺",
+      "sticker": "ladybug",
+      "effect": "hearts"
+    }
+  ]
+}

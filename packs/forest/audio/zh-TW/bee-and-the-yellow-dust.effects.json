@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.12,
+      "cue": "小花把花瓣張得開開的，蜜蜂嗡嗡嗡地飛來了",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 6.76,
+      "cue": "蜜蜂嗡嗡嗡地飛來了",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 9.16,
+      "sticker": "bee",
+      "go": "on",
+      "target": "flower"
+    },
+    {
+      "at": 12.6,
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 15.64,
+      "cue": "小鴨搖搖擺擺地走過來",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 15.64,
+      "cue": "小鴨搖搖擺擺地走過來",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 18.64,
+      "cue": "哎呀，蜜蜂",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 23.56,
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 26.44,
+      "cue": "噗通、嘩啦",
+      "effect": "bubbles",
+      "duration": 23.95,
+      "intensity": 0.6
+    },
+    {
+      "at": 26.44,
+      "cue": "噗通、嘩啦",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond",
+      "by": "swim"
+    },
+    {
+      "at": 31.44,
+      "cue": "快下來嘛",
+      "sticker": "duckling",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 33.31,
+      "cue": "等一等！」小花說，「別洗掉。那些黃黃的粉，是我的花粉。蜜蜂把花粉從一朵花帶到另一朵花，我的帶給別人，別人的帶給我。這樣，我們才結得出種子",
+      "sticker": "flower",
+      "animation": "shake-head"
+    },
+    {
+      "at": 39.48,
+      "cue": "蜜蜂把花粉從一朵花帶到另一朵花，我的帶給別人，別人的帶給我。這樣，我們才結得出種子",
+      "sticker": "bee",
+      "effect": "pulse"
+    },
+    {
+      "at": 48.89,
+      "cue": "喔……原來洗澡不是個好主意",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 52.52,
+      "sticker": "duckling",
+      "animation": "nap"
+    },
+    {
+      "at": 54.99,
+      "cue": "那是一個很貼心的主意呀。」小花說。小鴨探出",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 54.99,
+      "cue": "那是一個很貼心的主意呀。」小花說。小鴨探出",
+      "sticker": "flower",
+      "animation": "talk"
+    },
+    {
+      "at": 62.2,
+      "cue": "蜜蜂哼了一首謝謝歌送給",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 65.07,
+      "cue": "今天很忙嗎？」小鴨問。「忙得不得了！」蜜蜂說完，就嗡嗡嗡地飛向下一朵花",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 65.07,
+      "cue": "今天很忙嗎？」小鴨問。「忙得不得了！」蜜蜂說完，就嗡嗡嗡地飛向下一朵花",
+      "sticker": "duckling",
+      "animation": "talk"
+    },
+    {
+      "at": 70.12,
+      "cue": "就嗡嗡嗡地飛向下一朵花",
+      "sticker": "bee",
+      "go": "to",
+      "target": "meadow"
+    }
+  ]
+}

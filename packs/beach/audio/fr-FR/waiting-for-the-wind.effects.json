@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "pas",
+      "sticker": "sailboat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 4.96,
+      "cue": "le",
+      "sticker": "sailboat",
+      "enter": true
+    },
+    {
+      "at": 4.96,
+      "cue": "le",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 10.8,
+      "cue": "lola",
+      "sticker": "sailboat",
+      "effect": "pulse"
+    },
+    {
+      "at": 10.8,
+      "cue": "lola",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 13.37,
+      "sticker": "girl",
+      "expression": "sad"
+    },
+    {
+      "at": 15.84,
+      "cue": "mouette",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 15.84,
+      "cue": "mouette",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 17.72,
+      "cue": "sans",
+      "sticker": "seagull",
+      "expression": "sleeping"
+    },
+    {
+      "at": 23.48,
+      "cue": "fiou",
+      "effect": "wind",
+      "duration": 25,
+      "intensity": 0.7
+    },
+    {
+      "at": 25.75,
+      "cue": "les",
+      "sticker": "sailboat",
+      "animation": "sails"
+    },
+    {
+      "at": 28.04,
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 28.04,
+      "sticker": "girl",
+      "animation": "point"
+    },
+    {
+      "at": 30.9,
+      "cue": "lola",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 30.9,
+      "cue": "lola",
+      "sticker": "girl",
+      "animation": "kite",
+      "mode": "hold"
+    },
+    {
+      "at": 35,
+      "cue": "mouette",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 35,
+      "cue": "mouette",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "girl",
+      "prop": "kite"
+    },
+    {
+      "at": 38.32,
+      "cue": "et",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "sea",
+      "toward": "right"
+    },
+    {
+      "at": 46.72,
+      "cue": "tout",
+      "sticker": "girl",
+      "effect": "hearts"
+    }
+  ]
+}

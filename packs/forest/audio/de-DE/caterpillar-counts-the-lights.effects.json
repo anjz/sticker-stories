@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "die",
+      "effect": "night",
+      "duration": 74.44,
+      "intensity": 0.7
+    },
+    {
+      "at": 0,
+      "cue": "die",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 11.21,
+      "cue": "nur",
+      "sticker": "caterpillar",
+      "expression": "sad"
+    },
+    {
+      "at": 14.92,
+      "cue": "der",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 16.42,
+      "cue": "kletter",
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 17.96,
+      "cue": "die",
+      "sticker": "caterpillar",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 18.92,
+      "cue": "auf",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 20.12,
+      "cue": "reckte",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "hold"
+    },
+    {
+      "at": 29.16,
+      "cue": "der",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 31.24,
+      "cue": "er",
+      "sticker": "butterfly",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 33.28,
+      "cue": "klappte",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 35.56,
+      "cue": "das",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 35.56,
+      "cue": "das",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 39.64,
+      "cue": "es",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 42.28,
+      "cue": "und",
+      "effect": "fireflies",
+      "duration": 29.76,
+      "intensity": 0.6
+    },
+    {
+      "at": 53.88,
+      "cue": "da",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 60.6,
+      "cue": "die",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "resume"
+    },
+    {
+      "at": 63.08,
+      "cue": "sie",
+      "sticker": "caterpillar",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 66.36,
+      "cue": "das",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 66.36,
+      "cue": "das",
+      "sticker": "firefly",
+      "animation": "wave"
+    }
+  ]
+}

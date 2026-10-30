@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "castor",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 7.7,
+      "sticker": "beaver",
+      "expression": "happy"
+    },
+    {
+      "at": 9.29,
+      "cue": "il",
+      "sticker": "beaver",
+      "animation": "pull"
+    },
+    {
+      "at": 16.04,
+      "cue": "ourson",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 16.84,
+      "sticker": "bear",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 19.56,
+      "cue": "oh",
+      "sticker": "bear",
+      "effect": "shake"
+    },
+    {
+      "at": 23.24,
+      "cue": "lapin",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 25.08,
+      "cue": "les",
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 26.88,
+      "cue": "oh",
+      "sticker": "rabbit",
+      "effect": "shake"
+    },
+    {
+      "at": 31.64,
+      "cue": "alors",
+      "sticker": "beaver",
+      "expression": "sad"
+    },
+    {
+      "at": 31.96,
+      "cue": "souris",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 35.24,
+      "sticker": "mouse",
+      "animation": "sniff"
+    },
+    {
+      "at": 36.36,
+      "sticker": "bear",
+      "expression": "surprised"
+    },
+    {
+      "at": 39.75,
+      "cue": "mais",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 47,
+      "cue": "les",
+      "sticker": "mouse",
+      "animation": "pull"
+    },
+    {
+      "at": 51.11,
+      "cue": "le",
+      "sticker": "beaver",
+      "effect": "spin"
+    },
+    {
+      "at": 51.11,
+      "cue": "le",
+      "sticker": "bear",
+      "effect": "spin"
+    },
+    {
+      "at": 51.11,
+      "cue": "le",
+      "sticker": "rabbit",
+      "effect": "spin"
+    },
+    {
+      "at": 51.11,
+      "cue": "le",
+      "sticker": "mouse",
+      "effect": "spin"
+    },
+    {
+      "at": 56.04,
+      "cue": "castor",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 56.04,
+      "cue": "castor",
+      "sticker": "beaver",
+      "animation": "gnaw",
+      "mode": "hold"
+    },
+    {
+      "at": 60.19,
+      "sticker": "mouse",
+      "animation": "talk"
+    },
+    {
+      "at": 61.99,
+      "sticker": "mouse",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

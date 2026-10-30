@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "秋天到了，葉子轉呀轉地飄下來。松",
+      "effect": "leaves",
+      "intensity": 0.6
+    },
+    {
+      "at": 7.08,
+      "cue": "松",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 12.04,
+      "cue": "橡實來了，她總是好奇得不得了。松",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 12.04,
+      "cue": "橡實來了，她總是好奇得不得了。松",
+      "sticker": "acorn",
+      "go": "to",
+      "target": "squirrel"
+    },
+    {
+      "at": 15.56,
+      "cue": "松",
+      "sticker": "squirrel",
+      "expression": "surprised"
+    },
+    {
+      "at": 15.56,
+      "cue": "松",
+      "sticker": "squirrel",
+      "animation": "hide-nut",
+      "mode": "hold"
+    },
+    {
+      "at": 20.43,
+      "sticker": "acorn",
+      "effect": "pulse"
+    },
+    {
+      "at": 25.8,
+      "cue": "於是橡實許了一個願：「我好想知道喔！」一整天都是這樣",
+      "sticker": "acorn",
+      "animation": "wish"
+    },
+    {
+      "at": 32.16,
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 32.16,
+      "sticker": "acorn",
+      "effect": "hop"
+    },
+    {
+      "at": 36.32,
+      "cue": "太陽下山的時候，小熊搖搖晃晃地走過來",
+      "effect": "sunset",
+      "duration": 43.82,
+      "intensity": 0.7
+    },
+    {
+      "at": 37.96,
+      "cue": "小熊搖搖晃晃地走過來",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 42.07,
+      "cue": "冬天快到了",
+      "sticker": "bear",
+      "animation": "talk"
+    },
+    {
+      "at": 48.12,
+      "cue": "松",
+      "sticker": "squirrel",
+      "animation": "hide-nut",
+      "mode": "resume"
+    },
+    {
+      "at": 52.44,
+      "cue": "蹦蹦跳跳地跑到小熊身邊",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 56.68,
+      "cue": "埋在這裡，藏得好好的，等春天",
+      "sticker": "squirrel",
+      "animation": "bury"
+    },
+    {
+      "at": 62.6,
+      "cue": "小熊笑了，打了一個好大好大的呵",
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 62.6,
+      "cue": "小熊笑了，打了一個好大好大的呵",
+      "sticker": "bear",
+      "effect": "hearts"
+    },
+    {
+      "at": 63.8,
+      "cue": "打了一個好大好大的呵",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 67.71,
+      "cue": "原來，這就是祕密呀！」橡實說。「現在不是祕密了，」松",
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 71.44,
+      "cue": "現在不是祕密了，」松",
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 71.44,
+      "cue": "現在不是祕密了，」松",
+      "sticker": "squirrel",
+      "effect": "hearts"
+    }
+  ]
+}

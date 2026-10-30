@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "海豹在涼涼的藍色大海裡游泳，咻、咻、咻。游了好",
+      "sticker": "seal",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 0,
+      "cue": "海豹在涼涼的藍色大海裡游泳，咻、咻、咻。游了好",
+      "sticker": "seal",
+      "go": "to",
+      "target": "sea",
+      "by": "swim"
+    },
+    {
+      "at": 7.96,
+      "cue": "游了好",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 10.2,
+      "cue": "一扭一扭爬上岩石，啪",
+      "sticker": "seal",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 13.4,
+      "cue": "正好躺在陽",
+      "effect": "sunshine",
+      "duration": 35,
+      "intensity": 0.7
+    },
+    {
+      "at": 15.48,
+      "cue": "啊——好舒服",
+      "sticker": "seal",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 18.44,
+      "cue": "海鷗拍著",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 18.44,
+      "cue": "海鷗拍著",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 22.2,
+      "cue": "海鷗大叫一聲",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 28.51,
+      "cue": "游泳游",
+      "sticker": "seal",
+      "animation": "sleep",
+      "mode": "resume"
+    },
+    {
+      "at": 32.04,
+      "cue": "所以我們海豹會爬上來休息，曬曬太陽，暖和一下",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 38.36,
+      "cue": "海鷗試了一下。哇！真的好暖和！鵜鶘也滑翔下來，張開",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 38.36,
+      "cue": "海鷗試了一下。哇！真的好暖和！鵜鶘也滑翔下來，張開",
+      "sticker": "seagull",
+      "effect": "wobble"
+    },
+    {
+      "at": 42.84,
+      "cue": "鵜鶘也滑翔下來，張開",
+      "sticker": "pelican",
+      "enter": true
+    },
+    {
+      "at": 42.84,
+      "cue": "鵜鶘也滑翔下來，張開",
+      "sticker": "pelican",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 44.6,
+      "cue": "張開",
+      "sticker": "pelican",
+      "expression": "happy"
+    },
+    {
+      "at": 47.24,
+      "cue": "海豹開心地拍拍鰭，啪、啪",
+      "sticker": "seal",
+      "animation": "clap"
+    },
+    {
+      "at": 50.57,
+      "cue": "有好一會",
+      "sticker": "seagull",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 50.57,
+      "cue": "有好一會",
+      "sticker": "pelican",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 50.57,
+      "cue": "有好一會",
+      "sticker": "seal",
+      "effect": "hearts"
+    }
+  ]
+}

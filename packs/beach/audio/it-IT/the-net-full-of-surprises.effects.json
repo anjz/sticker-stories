@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "era",
+      "sticker": "seaweed",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "era",
+      "effect": "clouds",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 8.52,
+      "cue": "tuf",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 8.52,
+      "cue": "tuf",
+      "sticker": "fishing-boat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 12.04,
+      "cue": "gabbiano",
+      "sticker": "fishing-boat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 12.04,
+      "cue": "gabbiano",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 13.72,
+      "cue": "sperando",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 15.72,
+      "cue": "la",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 17.32,
+      "cue": "ecco",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 20.68,
+      "cue": "gabbiano",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 24.52,
+      "cue": "alghe",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 30,
+      "cue": "poco",
+      "sticker": "seagull",
+      "expression": "sad"
+    },
+    {
+      "at": 31.28,
+      "cue": "ha",
+      "sticker": "seaweed",
+      "expression": "happy"
+    },
+    {
+      "at": 34.92,
+      "cue": "ha",
+      "sticker": "seaweed",
+      "animation": "sway"
+    },
+    {
+      "at": 37.64,
+      "cue": "gabbiano",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 37.64,
+      "cue": "gabbiano",
+      "sticker": "seagull",
+      "animation": "laugh"
+    },
+    {
+      "at": 41.4,
+      "cue": "il",
+      "sticker": "fishing-boat",
+      "effect": "pulse"
+    },
+    {
+      "at": 45.44,
+      "cue": "e",
+      "sticker": "seaweed",
+      "animation": "wave"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "蘿拉和小狗在沙灘上野餐。忽然……滴。答。滴滴答答！下雨了",
+      "sticker": "umbrella",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "蘿拉和小狗在沙灘上野餐。忽然……滴。答。滴滴答答！下雨了",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "蘿拉和小狗在沙灘上野餐。忽然……滴。答。滴滴答答！下雨了",
+      "sticker": "girl",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 3.64,
+      "cue": "小狗在沙灘上野餐。忽然……滴。答。滴滴答答！下雨了",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 3.64,
+      "cue": "小狗在沙灘上野餐。忽然……滴。答。滴滴答答！下雨了",
+      "sticker": "dog",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 5.88,
+      "cue": "忽然……滴。答。滴滴答答！下雨了",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 5.88,
+      "cue": "忽然……滴。答。滴滴答答！下雨了",
+      "sticker": "dog",
+      "animation": "wag-tail"
+    },
+    {
+      "at": 8.28,
+      "cue": "滴滴答答！下雨了",
+      "effect": "rain",
+      "duration": 30.7,
+      "intensity": 0.8
+    },
+    {
+      "at": 10.52,
+      "cue": "小狗，快啲！走",
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 13.24,
+      "cue": "他們一起",
+      "sticker": "girl",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 13.24,
+      "cue": "他們一起",
+      "sticker": "dog",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 13.24,
+      "cue": "他們一起",
+      "sticker": "girl",
+      "animation": "crouch",
+      "mode": "hold"
+    },
+    {
+      "at": 16.84,
+      "cue": "雨點打在傘",
+      "sticker": "umbrella",
+      "effect": "pulse"
+    },
+    {
+      "at": 20.28,
+      "cue": "真舒服！可是小狗坐不定",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 21.72,
+      "cue": "可是小狗坐不定",
+      "sticker": "dog",
+      "animation": "play-bow"
+    },
+    {
+      "at": 23.56,
+      "sticker": "dog",
+      "go": "to",
+      "target": "girl",
+      "toward": "right"
+    },
+    {
+      "at": 25.4,
+      "cue": "跑了一圈又一圈。然後",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 29.16,
+      "sticker": "dog",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 30.76,
+      "cue": "就在蘿拉身邊，用力一抖",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 33.8,
+      "cue": "小狗！我而家仲濕過",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 39.32,
+      "cue": "太陽傘輕輕轉了一個圈，把最後幾滴水甩掉",
+      "sticker": "umbrella",
+      "animation": "spin"
+    },
+    {
+      "at": 44.04,
+      "cue": "看！海灣上空，出現了一道彩虹",
+      "effect": "rainbow",
+      "duration": 14
+    },
+    {
+      "at": 47.52,
+      "cue": "濕咗都值得呀",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 47.52,
+      "cue": "濕咗都值得呀",
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 47.52,
+      "cue": "濕咗都值得呀",
+      "sticker": "dog",
+      "effect": "hearts"
+    }
+  ]
+}

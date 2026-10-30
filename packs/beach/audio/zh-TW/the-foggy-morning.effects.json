@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "有一天早上，整片海灘都躲進了霧裡，白白的、灰灰的、軟綿綿的。濱鷸探出",
+      "effect": "fog",
+      "duration": 48.46,
+      "intensity": 0.8
+    },
+    {
+      "at": 10.84,
+      "cue": "濱鷸探出",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 13,
+      "sticker": "sandpiper",
+      "expression": "surprised"
+    },
+    {
+      "at": 14.44,
+      "cue": "也看不見燈塔",
+      "sticker": "sandpiper",
+      "animation": "look-around"
+    },
+    {
+      "at": 22.28,
+      "cue": "一個黑黑的影子，從霧裡",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 26.2,
+      "cue": "是漁船，它回家了。在它旁邊，一搖一晃地漂著一個",
+      "sticker": "fishing-boat",
+      "effect": "pulse"
+    },
+    {
+      "at": 31.24,
+      "cue": "一個",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 31.24,
+      "cue": "一個",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 33.4,
+      "cue": "一道浪把它推呀推，一直推到水邊。濱鷸跑過去，啄了它一下。啵！軟木塞跳開了",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 37.4,
+      "cue": "濱鷸跑過去，啄了它一下。啵！軟木塞跳開了",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "bottle",
+      "by": "run"
+    },
+    {
+      "at": 39.64,
+      "cue": "啵！軟木塞跳開了",
+      "sticker": "bottle",
+      "animation": "pop"
+    },
+    {
+      "at": 43.08,
+      "cue": "接著，太陽",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 43.08,
+      "cue": "接著，太陽",
+      "sticker": "sandpiper",
+      "animation": "laugh"
+    },
+    {
+      "at": 43.56,
+      "cue": "太陽",
+      "effect": "sunshine",
+      "duration": 25,
+      "intensity": 0.8
+    },
+    {
+      "at": 47.88,
+      "cue": "漁船拉起了網子，海鷗也飛過去，跟大家說早安。濱鷸開心地在地上啄呀啄",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 49.64,
+      "cue": "海鷗也飛過去，跟大家說早安。濱鷸開心地在地上啄呀啄",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 49.64,
+      "cue": "海鷗也飛過去，跟大家說早安。濱鷸開心地在地上啄呀啄",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "fishing-boat"
+    },
+    {
+      "at": 52.84,
+      "cue": "濱鷸開心地在地上啄呀啄",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 55.48,
+      "cue": "原來，每樣東西都好好的，一直都在原來的地方",
+      "sticker": "sandpiper",
+      "effect": "hop"
+    }
+  ]
+}

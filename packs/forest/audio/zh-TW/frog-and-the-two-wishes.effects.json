@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.64,
+      "cue": "青蛙知道。「下雨天！滴滴答答、嘩啦嘩啦的下雨天！」蝸牛",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 6.72,
+      "cue": "下雨天！滴滴答答、嘩啦嘩啦的下雨天！」蝸牛",
+      "sticker": "frog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 11,
+      "cue": "蝸牛",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 11,
+      "cue": "蝸牛",
+      "sticker": "snail",
+      "go": "to",
+      "target": "frog"
+    },
+    {
+      "at": 16.92,
+      "cue": "縮進殼裡。「下雨最棒了！」可是，飛過來的蝴蝶可不這麼想。「晴天！暖洋洋、金燦燦的大太陽！」於是，青蛙希望下雨。蝸牛希望下雨。蝴蝶希望出太陽。滴滴答答，滴滴答答……下雨了！青蛙開心得跳起來。蝸牛把眼睛觸角伸得長長的。可是，蝴蝶的",
+      "sticker": "snail",
+      "animation": "hide"
+    },
+    {
+      "at": 18.04,
+      "cue": "下雨最棒了！」可是，飛過來的蝴蝶可不這麼想。「晴天！暖洋洋、金燦燦的大太陽！」於是，青蛙希望下雨。蝸牛希望下雨。蝴蝶希望出太陽。滴滴答答，滴滴答答……下雨了！青蛙開心得跳起來。蝸牛把眼睛觸角伸得長長的。可是，蝴蝶的",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 21.56,
+      "cue": "蝴蝶可不這麼想。「晴天！暖洋洋、金燦燦的大太陽！」於是，青蛙希望下雨。蝸牛希望下雨。蝴蝶希望出太陽。滴滴答答，滴滴答答……下雨了！青蛙開心得跳起來。蝸牛把眼睛觸角伸得長長的。可是，蝴蝶的",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 23.04,
+      "cue": "晴天！暖洋洋、金燦燦的大太陽！」於是，青蛙希望下雨。蝸牛希望下雨。蝴蝶希望出太陽。滴滴答答，滴滴答答……下雨了！青蛙開心得跳起來。蝸牛把眼睛觸角伸得長長的。可是，蝴蝶的",
+      "sticker": "butterfly",
+      "animation": "shake-head"
+    },
+    {
+      "at": 33.4,
+      "cue": "滴滴答答，滴滴答答……下雨了！青蛙開心得跳起來。蝸牛把眼睛觸角伸得長長的。可是，蝴蝶的",
+      "effect": "rain",
+      "duration": 31.58,
+      "intensity": 0.7
+    },
+    {
+      "at": 37.16,
+      "cue": "青蛙開心得跳起來。蝸牛把眼睛觸角伸得長長的。可是，蝴蝶的",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 37.16,
+      "cue": "青蛙開心得跳起來。蝸牛把眼睛觸角伸得長長的。可是，蝴蝶的",
+      "sticker": "frog",
+      "animation": "jump"
+    },
+    {
+      "at": 39.24,
+      "cue": "蝸牛把眼睛觸角伸得長長的。可是，蝴蝶的",
+      "sticker": "snail",
+      "animation": "stretch-eyes"
+    },
+    {
+      "at": 46.84,
+      "cue": "蘑菇那裡，躲進菇傘底下，合起",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 47.88,
+      "cue": "躲進菇傘底下，合起",
+      "sticker": "butterfly",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 49.48,
+      "cue": "合起",
+      "sticker": "butterfly",
+      "expression": "sad"
+    },
+    {
+      "at": 49.48,
+      "cue": "合起",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 54.28,
+      "cue": "蝸牛也看看蝴蝶。於是",
+      "sticker": "snail",
+      "expression": "sad"
+    },
+    {
+      "at": 63.48,
+      "cue": "雨停了，太陽出來了。蝴蝶張開",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.8
+    },
+    {
+      "at": 65.96,
+      "cue": "蝴蝶張開",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 67.64,
+      "cue": "輕輕飛上天空",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 67.64,
+      "cue": "輕輕飛上天空",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "sky"
+    },
+    {
+      "at": 69.88,
+      "effect": "rainbow",
+      "duration": 14,
+      "intensity": 0.8
+    },
+    {
+      "at": 73.8,
+      "cue": "大家的願望，一下子",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 73.8,
+      "cue": "大家的願望，一下子",
+      "sticker": "all",
+      "effect": "hearts"
+    }
+  ]
+}

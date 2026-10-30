@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 6.04,
+      "cue": "renard",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 7.64,
+      "cue": "faon",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 7.64,
+      "cue": "faon",
+      "sticker": "deer",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 8.81,
+      "sticker": "fox",
+      "expression": "surprised"
+    },
+    {
+      "at": 8.81,
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 12.6,
+      "cue": "pic-vert",
+      "sticker": "woodpecker",
+      "enter": true
+    },
+    {
+      "at": 12.6,
+      "cue": "pic-vert",
+      "sticker": "woodpecker",
+      "go": "to",
+      "target": "trunks"
+    },
+    {
+      "at": 14.04,
+      "sticker": "deer",
+      "expression": "happy"
+    },
+    {
+      "at": 16.76,
+      "sticker": "woodpecker",
+      "expression": "happy"
+    },
+    {
+      "at": 16.76,
+      "sticker": "woodpecker",
+      "effect": "pulse"
+    },
+    {
+      "at": 18.6,
+      "cue": "toc-toc-toc",
+      "sticker": "woodpecker",
+      "animation": "tap",
+      "mode": "hold"
+    },
+    {
+      "at": 21.72,
+      "cue": "renard",
+      "sticker": "fox",
+      "go": "to",
+      "target": "woodpecker"
+    },
+    {
+      "at": 24.96,
+      "cue": "il",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 29.92,
+      "cue": "a",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 39.24,
+      "cue": "renard",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 41.42,
+      "sticker": "woodpecker",
+      "animation": "tap",
+      "mode": "resume"
+    },
+    {
+      "at": 44.25,
+      "sticker": "deer",
+      "animation": "talk"
+    },
+    {
+      "at": 45.9,
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 45.9,
+      "sticker": "fox",
+      "animation": "talk"
+    },
+    {
+      "at": 48.22,
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 48.22,
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}

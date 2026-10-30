@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "nico",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "nico",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 5.16,
+      "cue": "und",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 7.32,
+      "cue": "da",
+      "sticker": "sailboat",
+      "enter": true
+    },
+    {
+      "at": 9.16,
+      "cue": "und",
+      "sticker": "fishing-boat",
+      "enter": true
+    },
+    {
+      "at": 18.28,
+      "cue": "tuck",
+      "sticker": "fishing-boat",
+      "go": "to",
+      "target": "sea",
+      "toward": "right"
+    },
+    {
+      "at": 24.44,
+      "cue": "doch",
+      "sticker": "sailboat",
+      "effect": "pulse"
+    },
+    {
+      "at": 30.28,
+      "cue": "komm",
+      "sticker": "surfer",
+      "expression": "sad"
+    },
+    {
+      "at": 32.48,
+      "cue": "und",
+      "effect": "wind",
+      "duration": 20,
+      "intensity": 0.8
+    },
+    {
+      "at": 35.72,
+      "cue": "die",
+      "sticker": "sailboat",
+      "animation": "sails"
+    },
+    {
+      "at": 39,
+      "cue": "und",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "fishing-boat",
+      "toward": "right"
+    },
+    {
+      "at": 41.72,
+      "cue": "tuck",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 45.88,
+      "cue": "das",
+      "sticker": "fishing-boat",
+      "animation": "net"
+    },
+    {
+      "at": 51,
+      "cue": "und",
+      "sticker": "surfer",
+      "animation": "point"
+    },
+    {
+      "at": 55.53,
+      "cue": "unentschieden",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 55.53,
+      "cue": "unentschieden",
+      "sticker": "surfer",
+      "animation": "laugh"
+    },
+    {
+      "at": 58.04,
+      "cue": "nico",
+      "sticker": "surfer",
+      "animation": "wave"
+    }
+  ]
+}

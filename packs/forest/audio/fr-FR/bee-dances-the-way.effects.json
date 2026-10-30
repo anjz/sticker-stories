@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "abeille",
+      "sticker": "bee",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.4
+    },
+    {
+      "at": 0,
+      "cue": "abeille",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 4.95,
+      "cue": "elle",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 10.31,
+      "cue": "elle",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 13.2,
+      "cue": "chenille",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 13.2,
+      "cue": "chenille",
+      "sticker": "caterpillar",
+      "go": "to",
+      "target": "bee"
+    },
+    {
+      "at": 15.88,
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 17.38,
+      "cue": "coccinelle",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 17.38,
+      "cue": "coccinelle",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "bee"
+    },
+    {
+      "at": 21.59,
+      "cue": "tortille",
+      "sticker": "caterpillar",
+      "animation": "wiggle"
+    },
+    {
+      "at": 24.09,
+      "cue": "coccinelle",
+      "sticker": "ladybug",
+      "animation": "wings"
+    },
+    {
+      "at": 28.02,
+      "sticker": "bee",
+      "expression": "sad"
+    },
+    {
+      "at": 34.9,
+      "cue": "elle",
+      "sticker": "bee",
+      "animation": "waggle-dance"
+    },
+    {
+      "at": 38.08,
+      "cue": "chenille",
+      "sticker": "caterpillar",
+      "animation": "look-up"
+    },
+    {
+      "at": 40.69,
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 40.69,
+      "sticker": "bee",
+      "effect": "hop"
+    },
+    {
+      "at": 43.48,
+      "cue": "fleur",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 44.47,
+      "cue": "et",
+      "sticker": "bee",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 44.47,
+      "cue": "et",
+      "sticker": "caterpillar",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 44.47,
+      "cue": "et",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "flower",
+      "by": "fly"
+    },
+    {
+      "at": 47.22,
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 48.92,
+      "sticker": "caterpillar",
+      "expression": "surprised"
+    },
+    {
+      "at": 51.32,
+      "cue": "et",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 52.64,
+      "cue": "fleur",
+      "sticker": "flower",
+      "effect": "wobble"
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "neanche",
+      "sticker": "sailboat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.2
+    },
+    {
+      "at": 5.08,
+      "cue": "la",
+      "sticker": "sailboat",
+      "enter": true
+    },
+    {
+      "at": 5.08,
+      "cue": "la",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 10.64,
+      "cue": "lola",
+      "sticker": "sailboat",
+      "effect": "pulse"
+    },
+    {
+      "at": 10.64,
+      "cue": "lola",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 13.6,
+      "cue": "forza",
+      "sticker": "girl",
+      "expression": "sad"
+    },
+    {
+      "at": 16.36,
+      "cue": "gabbiano",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 16.36,
+      "cue": "gabbiano",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 18.56,
+      "cue": "senza",
+      "sticker": "seagull",
+      "expression": "sleeping"
+    },
+    {
+      "at": 23.96,
+      "cue": "fiuuu",
+      "effect": "wind",
+      "duration": 25,
+      "intensity": 0.7
+    },
+    {
+      "at": 26.76,
+      "cue": "le",
+      "sticker": "sailboat",
+      "animation": "sails"
+    },
+    {
+      "at": 30.03,
+      "cue": "guarda",
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 30.03,
+      "cue": "guarda",
+      "sticker": "girl",
+      "animation": "point"
+    },
+    {
+      "at": 32.68,
+      "cue": "lola",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 32.68,
+      "cue": "lola",
+      "sticker": "girl",
+      "animation": "kite",
+      "mode": "hold"
+    },
+    {
+      "at": 36.76,
+      "cue": "gabbiano",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 36.76,
+      "cue": "gabbiano",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "girl",
+      "prop": "kite"
+    },
+    {
+      "at": 40.36,
+      "cue": "e",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "sea",
+      "toward": "right"
+    },
+    {
+      "at": 49.8,
+      "cue": "tutti",
+      "sticker": "girl",
+      "effect": "hearts"
+    }
+  ]
+}

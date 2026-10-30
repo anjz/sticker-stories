@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "champignon",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 5.76,
+      "cue": "hérisson",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 7.4,
+      "cue": "pour",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "mushroom"
+    },
+    {
+      "at": 9.13,
+      "cue": "tout",
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 10.76,
+      "cue": "renard",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 12.28,
+      "cue": "papillon",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 13.96,
+      "cue": "se",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "fox"
+    },
+    {
+      "at": 16.72,
+      "cue": "ah",
+      "sticker": "fox",
+      "expression": "surprised"
+    },
+    {
+      "at": 16.72,
+      "cue": "ah",
+      "sticker": "fox",
+      "animation": "sneeze"
+    },
+    {
+      "at": 19.08,
+      "cue": "fouuu",
+      "sticker": "fox",
+      "effect": "wobble",
+      "repeat": 2
+    },
+    {
+      "at": 21.56,
+      "cue": "sur",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 23.12,
+      "cue": "il",
+      "sticker": "butterfly",
+      "animation": "rest"
+    },
+    {
+      "at": 27.04,
+      "cue": "ah",
+      "sticker": "mushroom",
+      "animation": "sneeze",
+      "mode": "hold"
+    },
+    {
+      "at": 28.36,
+      "cue": "atchoum",
+      "sticker": "mushroom",
+      "animation": "sneeze",
+      "mode": "resume"
+    },
+    {
+      "at": 34.08,
+      "cue": "hérisson",
+      "sticker": "hedgehog",
+      "expression": "surprised"
+    },
+    {
+      "at": 34.08,
+      "cue": "hérisson",
+      "sticker": "hedgehog",
+      "animation": "curl"
+    },
+    {
+      "at": 40.52,
+      "cue": "ah",
+      "sticker": "hedgehog",
+      "animation": "sneeze"
+    },
+    {
+      "at": 50.32,
+      "cue": "mais",
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 52.36,
+      "cue": "a",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 52.36,
+      "cue": "a",
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 54.48,
+      "cue": "et",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 54.48,
+      "cue": "et",
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}

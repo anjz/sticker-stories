@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "一天早上，有什麼東西從天上飄了下來。不是小水",
+      "effect": "snow",
+      "duration": 77.5,
+      "intensity": 0.4
+    },
+    {
+      "at": 10.6,
+      "cue": "是第一",
+      "sticker": "all",
+      "effect": "glow",
+      "intensity": 0.3,
+      "color": "#EAF6FF"
+    },
+    {
+      "at": 15.24,
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 15.24,
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 23,
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 31.48,
+      "cue": "小鹿走了過來，小心翼翼的，小心翼翼的，低下",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 35.72,
+      "cue": "低下",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 37.4,
+      "cue": "好冰！一片雪花落在",
+      "sticker": "deer",
+      "expression": "surprised"
+    },
+    {
+      "at": 41.16,
+      "cue": "小鳥在樹枝上把羽毛蓬得鼓鼓的。抖抖抖，好冷喔。大家都不想吵吵鬧鬧。大家都不想錯過任何一片雪花。於是，大家看著雪花一片一片飄下來：噓，噓，噓。接著，小鳥輕輕地唱了一首小小的雪之歌",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 41.16,
+      "cue": "小鳥在樹枝上把羽毛蓬得鼓鼓的。抖抖抖，好冷喔。大家都不想吵吵鬧鬧。大家都不想錯過任何一片雪花。於是，大家看著雪花一片一片飄下來：噓，噓，噓。接著，小鳥輕輕地唱了一首小小的雪之歌",
+      "sticker": "bird",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 42.52,
+      "cue": "把羽毛蓬得鼓鼓的。抖抖抖，好冷喔。大家都不想吵吵鬧鬧。大家都不想錯過任何一片雪花。於是，大家看著雪花一片一片飄下來：噓，噓，噓。接著，小鳥輕輕地唱了一首小小的雪之歌",
+      "sticker": "bird",
+      "animation": "shake-feathers"
+    },
+    {
+      "at": 51.96,
+      "cue": "於是，大家看著雪花一片一片飄下來：噓，噓，噓。接著，小鳥輕輕地唱了一首小小的雪之歌",
+      "sticker": "deer",
+      "expression": "happy"
+    },
+    {
+      "at": 51.96,
+      "cue": "於是，大家看著雪花一片一片飄下來：噓，噓，噓。接著，小鳥輕輕地唱了一首小小的雪之歌",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 56.04,
+      "cue": "噓，噓，噓。接著，小鳥輕輕地唱了一首小小的雪之歌",
+      "sticker": "all",
+      "effect": "pulse",
+      "intensity": 0.3
+    },
+    {
+      "at": 59.88,
+      "cue": "輕輕地唱了一首小小的雪之歌",
+      "sticker": "bird",
+      "animation": "sing"
+    },
+    {
+      "at": 63.08,
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 67.56,
+      "cue": "雪花一直下，下了一整天，靜悄悄的，就像一個祕密",
+      "sticker": "all",
+      "expression": "happy"
+    }
+  ]
+}

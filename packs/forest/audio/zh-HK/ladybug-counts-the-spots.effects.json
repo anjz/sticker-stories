@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "瓢蟲最喜歡數數",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 11.16,
+      "cue": "太容易了！接着，數小鹿的點點——小鹿身上有好多白色的小點點。瓢蟲爬了過去。一、二、三……可是小鹿低",
+      "sticker": "ladybug",
+      "expression": "happy"
+    },
+    {
+      "at": 11.16,
+      "cue": "太容易了！接着，數小鹿的點點——小鹿身上有好多白色的小點點。瓢蟲爬了過去。一、二、三……可是小鹿低",
+      "sticker": "ladybug",
+      "effect": "hop"
+    },
+    {
+      "at": 13.32,
+      "cue": "小鹿的點點——小鹿身上有好多白色的小點點。瓢蟲爬了過去。一、二、三……可是小鹿低",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 17.72,
+      "cue": "瓢蟲爬了過去。一、二、三……可是小鹿低",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "deer"
+    },
+    {
+      "at": 22.84,
+      "cue": "低",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 24.64,
+      "cue": "哎呀！唔記得數到邊喇！」然後是青蛙的點點，青蛙就在",
+      "sticker": "ladybug",
+      "expression": "surprised"
+    },
+    {
+      "at": 27.96,
+      "cue": "青蛙的點點，青蛙就在",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 27.96,
+      "cue": "青蛙的點點，青蛙就在",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 31,
+      "cue": "瓢蟲飛了過去",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "frog",
+      "by": "fly"
+    },
+    {
+      "at": 34.68,
+      "cue": "青蛙定住了，一動也不動。一、二、三……啪！青蛙捉住了一隻蒼",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "hold"
+    },
+    {
+      "at": 39.4,
+      "cue": "啪！青蛙捉住了一隻蒼",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "resume"
+    },
+    {
+      "at": 45.56,
+      "cue": "蘑菇那",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 45.56,
+      "cue": "蘑菇那",
+      "sticker": "ladybug",
+      "go": "on",
+      "target": "mushroom",
+      "by": "fly"
+    },
+    {
+      "at": 51.16,
+      "cue": "咯咯地笑起來。數了三次，三次都數亂了！小鴨一搖一擺地走過來。「數吓我",
+      "sticker": "mushroom",
+      "animation": "laugh"
+    },
+    {
+      "at": 52.76,
+      "cue": "數了三次，三次都數亂了！小鴨一搖一擺地走過來。「數吓我",
+      "sticker": "ladybug",
+      "expression": "sad"
+    },
+    {
+      "at": 55.88,
+      "cue": "小鴨一搖一擺地走過來。「數吓我",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 55.88,
+      "cue": "小鴨一搖一擺地走過來。「數吓我",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "mushroom"
+    },
+    {
+      "at": 65.08,
+      "cue": "一粒點點也沒有",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 70.36,
+      "cue": "瓢蟲想到一個好主意：不數點點了，改數朋友！「瓢蟲，一！小鹿，二！青蛙，三！蘑菇，四！小鴨，五！」瓢蟲拍拍",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 70.36,
+      "cue": "瓢蟲想到一個好主意：不數點點了，改數朋友！「瓢蟲，一！小鹿，二！青蛙，三！蘑菇，四！小鴨，五！」瓢蟲拍拍",
+      "sticker": "duckling",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 70.36,
+      "cue": "瓢蟲想到一個好主意：不數點點了，改數朋友！「瓢蟲，一！小鹿，二！青蛙，三！蘑菇，四！小鴨，五！」瓢蟲拍拍",
+      "sticker": "ladybug",
+      "expression": "happy"
+    },
+    {
+      "at": 81.56,
+      "cue": "瓢蟲拍拍",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 81.56,
+      "cue": "瓢蟲拍拍",
+      "sticker": "ladybug",
+      "animation": "wings"
+    }
+  ]
+}
