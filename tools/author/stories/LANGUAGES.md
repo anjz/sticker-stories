@@ -4,9 +4,9 @@ A pack is written and reviewed in **English only** (`en-US`). Once the user
 has approved it, its stories are **transcreated** from the English into
 each of the app's other languages:
 
-| tag | language | narration | quotes |
+| tag | language | narration | a voiced line (`{x:says}`) |
 |---|---|---|---|
-| `es-ES` | Spanish (Spain) | Spanish | «…» |
+| `es-ES` | Spanish (Spain) | Spanish | «…» (other dialogue with the raya) |
 | `de-DE` | German (Germany) | German | „…“ |
 | `fr-FR` | French (France) | French | «…» |
 | `it-IT` | Italian (Italy) | Italian | «…» |
@@ -15,7 +15,8 @@ each of the app's other languages:
 | `zh-HK` | Chinese, Hong Kong (Traditional) | Cantonese | 「…」 |
 
 Read `GUIDE.md` (audience, safety, tone) and `FORMAT.md` (the cue syntax)
-first, then the pack's `scene.md`. This file only adds what is different
+first, then the pack's `scene.md` and the cast table in its `plan.md`
+(which sticker is a he or a she). This file only adds what is different
 when the story already exists in English.
 
 ## Transcreation, not translation
@@ -52,12 +53,22 @@ it to see how freely a beat can be retold.
 - **Places by their words.** When a sentence puts a character in a place
   of the scene, use one of that place's `words` in your language (in
   `art.json`, `scene.features`), and keep the move cue that takes it there.
-- **Length by narration time**, within about 10 % of the English (the
-  checker counts it: words, or for Japanese and Chinese, characters).
+- **Length by narration time**: within 25 % of the English, and in the
+  100–150 band (the checker warns on both: words, or for Japanese and
+  Chinese, characters converted by measured speaking speed). German runs
+  10–15 % more words for the same time, which is fine; Japanese runs
+  long — cut, do not pad.
 - **Audio tags** (`[excited]`, `[whispers]`, …) stay in English, as in
   FORMAT.md; place them where your sentences need them, at most six.
 - **Character names** of people stay: Lola is Lola, Nico is Nico, written
   in your script (ローラ, ニコ; 蘿拉, 尼可).
+- **Grammar decides pronouns.** A sticker's name has the grammatical
+  gender of its language (die Maus, la volpe, le hibou) even where the
+  cast table makes the character a he or a she: follow the language's
+  grammar, as its picture books do.
+- **Each character keeps its own sound.** Where the English gives two
+  animals different sounds and the story leans on it (the duckling's QUAK
+  is his own), make them clearly different in your language too.
 
 ## Per language
 
@@ -71,20 +82,23 @@ it to see how freely a beat can be retold.
 - **Italian** — passato prossimo and imperfetto (or passato remoto only if
   it reads naturally for a fairy-tale opening); «…» quotes.
 - **Japanese** — picture-book です・ます narration, mostly hiragana with
-  the simple kanji a child sees in books; animal names in katakana as
-  given. Rich onomatopoeia. Cues sit inside the text with no spaces
+  the simple kanji a child sees in books; the sticker names exactly as
+  given in art.json. Name endings, the same in every story: a he in the
+  cast table is 〜くん (キツネくん), a she 〜さん (カエルさん), plants and
+  things bare (どんぐり, お花); a name that already says it is little
+  (アヒルの子, 子ジカ) stays bare. Rich onomatopoeia. Cues sit inside the text with no spaces
   around them (`キツネは{fox:live jump}ジャンプしました。`). A quoted line
   is 「…」; after its closing 」, leave a space before the narration
-  runs on (`{fox:says} 「やった！」 とキツネ。`). About 250–375 characters.
+  runs on (`{fox:says} 「やった！」 とキツネ。`). About 220–330 characters.
 - **Chinese (Taiwan)** — Traditional characters, Taiwan Mandarin words
   (腳踏車, 冰淇淋, 好棒), full-width punctuation, 「…」 quotes with the
-  same space rule as Japanese. Narration read in Mandarin. About 200–300
+  same space rule as Japanese. Narration read in Mandarin. About 175–260
   characters.
 - **Chinese (Hong Kong)** — Traditional characters, Hong Kong words (雪糕,
   單車, 士多啤梨), read aloud in **Cantonese**: the narration in written
   Chinese that sounds natural read in Cantonese, the characters' quoted
   lines in natural spoken Cantonese (佢、係、唔、咗、啲、嘅、喺、嘩). Not a
-  copy of the Taiwan text: write it for a Hong Kong child. About 200–300
+  copy of the Taiwan text: write it for a Hong Kong child. About 175–260
   characters.
 
 ## Titles

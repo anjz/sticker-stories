@@ -540,23 +540,27 @@ func joinSep(prev, next string) string {
 
 // cjkCharsPerWord is how many Japanese or Chinese characters take as long
 // to narrate as an English word (about two words a second): the word
-// budgets and limits mean the same time in every language.
-var cjkCharsPerWord = map[string]float64{"ja": 2.5, "zh": 2.0}
+// budgets and limits mean the same time in every language. Measured on
+// Eleven v4: Japanese about 4.6 characters a second, Mandarin and
+// Cantonese about 3.6.
+var cjkCharsPerWord = map[string]float64{"ja": 2.2, "zh": 1.75}
+
+// MaxDrift is how far a transcreation's narration may run from the
+// English story's, as a share of it, before a warning.
+const MaxDrift = 0.25
 
 // CountWords counts a plain text's words as narration time in lang: words
-// between spaces, and in Japanese or Chinese, its characters (Han, kana)
-// by cjkCharsPerWord.
+// between spaces that hold a letter or a number (a spaced dash or ellipsis
+// is not one), and in Japanese or Chinese, its characters (Han, kana, the
+// long-vowel mark) by cjkCharsPerWord.
 func CountWords(lang, plain string) int {
 	per := cjkCharsPerWord[primarySubtag(lang)]
-	if per == 0 {
-		return len(strings.Fields(plain))
-	}
 	chars, words := 0, 0
 	for _, f := range strings.Fields(plain) {
 		latin := false
 		for _, r := range f {
 			switch {
-			case unicode.In(r, unicode.Han, unicode.Hiragana, unicode.Katakana):
+			case per > 0 && (unicode.In(r, unicode.Han, unicode.Hiragana, unicode.Katakana) || r == 'ー'):
 				chars++
 			case unicode.IsLetter(r) || unicode.IsNumber(r):
 				latin = true
@@ -1273,6 +1277,12 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 			is.errorf("%s: %d words; must be %d–%d", lang, n, MinWords, MaxWords)
 		case n < TargetMinWords || n > TargetMaxWords:
 			is.warnf("%s: %d words; target is %d–%d", lang, n, TargetMinWords, TargetMaxWords)
+		}
+		if en, ok := s.Languages["en-US"]; ok && lang != "en-US" {
+			ref, _ := Parse(en.Text)
+			if e := CountWords("en-US", ref.Plain()); e > 0 && math.Abs(float64(n-e)) > MaxDrift*float64(e) {
+				is.warnf("%s: %d words' narration time against the English story's %d; keep within %.0f %%", lang, n, e, MaxDrift*100)
+			}
 		}
 		if strings.ContainsAny(plain, "*_#`") {
 			is.warnf("%s: text contains Markdown-looking characters", lang)

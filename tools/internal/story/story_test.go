@@ -1095,8 +1095,14 @@ func TestCountWordsByNarrationTime(t *testing.T) {
 	if n := CountWords("ja-JP", "キツネはジャンプしました。"); n != 5 {
 		t.Errorf("Japanese: %d, want 5", n)
 	}
+	if n := CountWords("en-US", "Nothing … and then – QUAK!"); n != 4 {
+		t.Errorf("a spaced ellipsis or dash is no word: %d, want 4", n)
+	}
 	if n := CountWords("zh-TW", "狐狸跳得好高。"); n != 3 {
 		t.Errorf("Chinese: %d, want 3", n)
+	}
+	if n := CountWords("ja-JP", "はっくしょーん"); n != 3 {
+		t.Errorf("the long-vowel mark is spoken: %d, want 3", n)
 	}
 }
 

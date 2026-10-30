@@ -75,9 +75,11 @@ reads it.
   Target **100–150 words** per language, 50–80 seconds (Spanish tends to
   run ~10 % longer for the same story); the validator rejects outside
   65–170. Japanese and Chinese have no spaces between words, so they are
-  counted by narration time: 2.5 Japanese or 2 Chinese characters (kanji,
-  kana, hanzi) to a word — about 250–375 Japanese or 200–300 Chinese
-  characters for the target. A cue inside their text needs no spaces
+  counted by narration time, as measured on Eleven v4: 2.2 Japanese or 1.75
+  Chinese characters (kanji, kana, the long-vowel mark, hanzi) to a word —
+  about 220–330 Japanese or 175–260 Chinese characters for the target.
+  Every other language is checked against the English story too: its
+  narration within 25 % of the English story's. A cue inside their text needs no spaces
   around it (`キツネは{fox:live jump}ジャンプしました。`); spaces there are
   never read.
 - Plain text: no Markdown, no stage directions, no emoji. Sound words

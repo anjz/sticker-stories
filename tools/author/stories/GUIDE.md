@@ -686,7 +686,11 @@ designer would brief a foley artist: concrete, one sound, its character
 and crackle"); the tool adds "gentle, for a children's story, no music,
 no voices". Never a scary sound: no roars, growls, thunder claps, bangs.
 
-## Both languages
+## Every language
+
+The method below is written for Spanish, the first language after
+English; every other language (`LANGUAGES.md`) is written the same way,
+with its own sound words, idioms and punctuation.
 
 Each language is **transcreated**: written by a native author from the
 story's beats, not translated from the English sentences. Only the beats
