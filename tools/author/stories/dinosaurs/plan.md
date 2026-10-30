@@ -214,6 +214,25 @@ not made yet — the stories read fine without them.)
 | triceratops | drink | lowers her big head to the water's edge and laps, then lifts it with a happy smile | the-sail-shade ("she went down to the lagoon for a drink") |
 | glider | nibble | holds a berry up in both little paws and nibbles it, nibble-nibble, then licks his whiskers | berry-bush-shares ("Glider nibbled and nibbled") |
 
+**Made (action pass, 2026-10-30)** — keyframes on the existing puppets,
+no drawings; installed into the pack, keys looked at, `stickerrig check`
+clean (triceratops keeps its two rest-pose seam notes from before);
+cued cue-only, both languages, `storycheck` clean.
+
+| sticker | id | as made | pause | cued in |
+|---|---|---|---|---|
+| beetle | open-wings | lifts its wing cases (the fly gait's lift), spreads the clear wings, flutters them without flying off, folds all away; 3.5 s | key 11: cases lifted, wings spread | beetle-has-wings ("He lifted up his shiny shell"), beetle-and-the-magnolia ("Then … he lifted his shiny shell", before `go away by fly`) |
+| pteranodon | tilt-head | tips its head to one side (head 14°), eyes wide, curious, then straightens with a smile; 2.9 s | key 3: head tipped, listening | the-friend-in-the-puddle ("Pteranodon tipped her head") |
+| dragonfly | dip | drops ~130 px tail-down, wings beating, the tail tip reaching down, and zips back up; 2.1 s; no splash particles (it can be cued away from water) | — | dragonfly-flies-backwards (replaces `{dragonfly:hop}` on "dipped down to the water and up"), the-prettiest-ripples (on "Then she touched it with the very tip of her tail") |
+| triceratops | drink | lowers its head (like `sniff`, deeper), laps three times, eyes content, lifts it with a smile; 3.4 s | key 2: head down at the water, drinking | the-sail-shade (after "for a drink", waits for her to reach the lagoon; played whole so the later `go to eggs` is not held up) |
+| glider | nibble | both paws (the `groom` paws piece) held at its mouth, mouth munching — no berry prop; `perched`; 2.9 s | — | berry-bush-shares ("Glider nibbled and nibbled") |
+
+Trades to stay at ≤ 5 live animations per story: the-prettiest-ripples
+drops `{dragonfly:live hover hold}`/`resume` (the dip takes that moment;
+she still hangs in the air from her fly move); dragonfly-flies-backwards
+drops `{plesiosaur:live talk}`; berry-bush-shares turns
+`{bush:live shake}` into the `{bush:shake}` effect.
+
 ## Writer B's changes (rows 26–50, 2026-10-30)
 
 Rows 26–50 above now match the written stories (premise, canvas, live).
