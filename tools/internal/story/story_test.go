@@ -1156,3 +1156,11 @@ func TestCanvasWordsKnowAccentedLetters(t *testing.T) {
 		t.Error("English boundaries still hold")
 	}
 }
+
+func TestSplitSentencesInsideChineseWords(t *testing.T) {
+	nar, _ := Parse("{snail:go to pond}蝸牛擠了進去。池塘那邊，「好！」大家說。")
+	got := splitSentences(nar)
+	if len(got.Words) != 3 || got.Words[0] != "蝸牛擠了進去。" || got.Words[1] != "池塘那邊，「好！」" || got.Cues[0].WordIndex != 0 {
+		t.Errorf("pieces %q, cue at %d", got.Words, got.Cues[0].WordIndex)
+	}
+}

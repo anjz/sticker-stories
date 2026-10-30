@@ -1590,7 +1590,7 @@ func validateSoundCue(is *Issues, lang string, c Cue, s *Story, nar Narration) {
 			is.errorf("%s: cue %s: a looping ambience cannot play solo", lang, c.Raw)
 		}
 		if c.WordIndex > 0 && c.WordIndex < len(nar.Words) {
-			if prev := nar.Words[c.WordIndex-1]; !strings.ContainsRune(".!?…", lastRune(prev)) {
+			if prev := nar.Words[c.WordIndex-1]; !strings.ContainsRune(".!?…。！？」』", lastRune(prev)) {
 				is.warnf("%s: cue %s pauses the narration mid-sentence (after %q); put solo sounds between sentences", lang, c.Raw, prev)
 			}
 		}
@@ -1882,6 +1882,47 @@ func firstMention(words []string, id, lang string, m Manifest) int {
 	return -1
 }
 
+// splitSentences splits the words of Japanese or Chinese narration where a
+// sentence ends inside one (their words run on between cues: 「蝸牛擠了進
+// 去。池塘那邊，」 is one word, two sentences), cues kept on the piece that
+// starts their word, so sentence by sentence checks see each sentence.
+func splitSentences(nar Narration) Narration {
+	var words []string
+	first := make([]int, len(nar.Words)) // each word's first piece
+	for i, w := range nar.Words {
+		first[i] = len(words)
+		runes := []rune(w)
+		start := 0
+		for k := 0; k < len(runes); k++ {
+			if !strings.ContainsRune("。！？", runes[k]) {
+				continue
+			}
+			// Closing quotes after the stop stay with their sentence.
+			for k+1 < len(runes) && strings.ContainsRune("」』）", runes[k+1]) {
+				k++
+			}
+			words = append(words, string(runes[start:k+1]))
+			start = k + 1
+		}
+		if start < len(runes) || first[i] == len(words) {
+			words = append(words, string(runes[start:]))
+		}
+	}
+	if len(words) == len(nar.Words) {
+		return nar
+	}
+	out := nar
+	out.Words = words
+	out.Cues = make([]Cue, len(nar.Cues))
+	for i, c := range nar.Cues {
+		if c.WordIndex < len(first) {
+			c.WordIndex = first[c.WordIndex]
+		}
+		out.Cues[i] = c
+	}
+	return out
+}
+
 // cjkName reports a name written in Japanese or Chinese, matched inside
 // the words around it rather than as whole words.
 func cjkName(name string) bool {
@@ -2063,6 +2104,7 @@ func validatePlaceMentions(is *Issues, lang string, nar Narration, m Manifest, i
 	if len(m.PlaceWords) == 0 {
 		return
 	}
+	nar = splitSentences(nar)
 	at := map[string]string{}   // where the story's moves have put each sticker
 	with := map[string]string{} // whom a move has put it with (beside, on, under)
 	canBe := func(id, place string) bool {
