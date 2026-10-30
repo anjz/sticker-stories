@@ -51,6 +51,9 @@ final class StickerNode: SKSpriteNode {
 
     private(set) var isSelected = false
 
+    /// Held up off the art by the child's finger (`setLifted`).
+    private(set) var isLifted = false
+
     /// A sticker the story brought in because it names it and the child
     /// had not placed it (`CanvasScene.beginPlayMode`): never part of the
     /// child's canvas, and gone when the story ends.
@@ -114,6 +117,7 @@ final class StickerNode: SKSpriteNode {
     /// Peels the sticker up: the contact shadow fades, the cast shadow drops
     /// further away and softens.
     func setLifted(_ lifted: Bool) {
+        isLifted = lifted
         contactPose = lifted ? Self.liftedContact : Self.restingContact
         castPose = lifted ? Self.liftedCast : Self.restingCast
         applyShadowPoses(animated: true)
@@ -202,6 +206,49 @@ final class StickerNode: SKSpriteNode {
         layoutShadows()
         applyShadowPoses(animated: false)
     }
+
+    /// The still art and its silhouette shadow afloat (`float`): drawn
+    /// sunk by `sink` and cut off at the waterline `line` (fractions of the
+    /// image's height, from its bottom), by a shader, so the sprite keeps
+    /// its size, its touch and its shadow's pose.
+    func floatStill(line: CGFloat, sink: CGFloat) {
+        let k = shadowSizeMultiplier
+        let sprites: [(SKSpriteNode, line: CGFloat, sink: CGFloat, black: Bool)] =
+            ([self] + liveSprites).map { ($0, line, sink, false) }
+            + [contactShadow, castShadow].map { ($0, 0.5 + (line - 0.5) / k, sink / k, true) }
+        for (sprite, line, sink, black) in sprites {
+            if sprite.shader !== Self.afloatShader { sprite.shader = Self.afloatShader }
+            sprite.setValue(
+                SKAttributeValue(vectorFloat3: vector_float3(Float(line), Float(sink), black ? 1 : 0)),
+                forAttribute: "a_afloat")
+        }
+    }
+
+    /// The still art whole again (`float`).
+    func standStill() {
+        for sprite in [self, contactShadow, castShadow] + liveSprites where sprite.shader != nil {
+            sprite.shader = nil
+        }
+    }
+
+    /// Samples the art `sink` higher than the pixel drawn, clear below
+    /// `line` (`a_afloat`: line, sink, and 1 for a black silhouette).
+    private static let afloatShader: SKShader = {
+        let shader = SKShader(source: """
+            void main() {
+                vec2 uv = vec2(v_tex_coord.x, v_tex_coord.y + a_afloat.y);
+                if (uv.y < a_afloat.x || uv.y > 1.0) {
+                    gl_FragColor = vec4(0.0);
+                } else {
+                    vec4 c = texture2D(u_texture, uv);
+                    c.rgb = mix(c.rgb, vec3(0.0), a_afloat.z);
+                    gl_FragColor = c * v_color_mix.a;
+                }
+            }
+            """)
+        shader.attributes = [SKAttribute(name: "a_afloat", type: .vectorFloat3)]
+        return shader
+    }()
 
     /// The frame of the live animation on show (`showLive`), to tell a new
     /// one; nil when none is.

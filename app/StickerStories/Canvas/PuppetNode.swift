@@ -358,18 +358,21 @@ extension StickerNode {
     /// its feet, is under the water. The puppet and its shadows are cut off
     /// at the waterline and sunk by as much, so the waterline lies where
     /// its feet were, and ripples ring it there. 0 shows it whole again.
-    /// Only a puppet floats: the still art stands where it is.
+    /// The still art floats too (`floatStill`): a swimmer the child put in
+    /// its water, before its puppet takes over and after the story.
     func float(_ depth: Double, drawing: CGRect) {
         let base = unscaledSize
         let feet = CGPoint(x: (drawing.midX - 0.5) * base.width, y: (drawing.minY - 0.5) * base.height)
-        let sink = puppetNode == nil ? 0 : CGFloat(depth) * drawing.height * base.height
+        let sink = CGFloat(depth) * drawing.height * base.height
         puppetNode?.float(waterline: feet.y + sink, sink: sink)
         for shadow in puppetShadows { shadow.float(waterline: feet.y + sink, sink: sink) }
         let ripple = childNode(withName: Self.rippleName)
         guard sink > 0.5 else {
+            standStill()
             ripple?.removeFromParent()
             return
         }
+        floatStill(line: drawing.minY + CGFloat(depth) * drawing.height, sink: CGFloat(depth) * drawing.height)
         let rings = ripple ?? Self.makeRipple(width: drawing.width * base.width)
         if ripple == nil { addChild(rings) }
         rings.position = feet
@@ -381,8 +384,8 @@ extension StickerNode {
 
     /// Ripples round a sticker afloat, `width` across: a ring where it
     /// meets the water and two more spreading out from it in turn, each
-    /// in two halves — the far one behind the puppet, the near one in
-    /// front, so the ring goes round it.
+    /// in two halves — the far one behind the puppet and the still art (in
+    /// front of the shadow), the near one in front, so the ring goes round it.
     private static func makeRipple(width: CGFloat) -> SKNode {
         let node = SKNode()
         node.name = rippleName
@@ -390,7 +393,7 @@ extension StickerNode {
         let size = CGSize(width: width * 1.15, height: width * 1.15 * 0.24)
         func ring(alpha: CGFloat) -> SKNode {
             let ring = SKNode()
-            for (texture, z, y) in [(back, 0.45, size.height / 4), (front, 0.55, -size.height / 4)] {
+            for (texture, z, y) in [(back, -0.2, size.height / 4), (front, 0.55, -size.height / 4)] {
                 let half = SKSpriteNode(texture: texture, size: CGSize(width: size.width, height: size.height / 2))
                 half.position = CGPoint(x: 0, y: y)
                 half.zPosition = z
