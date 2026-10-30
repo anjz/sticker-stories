@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.28,
+      "cue": "あおむしさんがすんでいました。ひ",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 12.04,
+      "cue": "チョウチョさんが、ずっと上をひらひら",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 17.12,
+      "cue": "おそらよ！」あおむしさんは、うーんと、うーんとのびました。それでも、くさばかり。そこへ子ジカが、長い足でそっとやってきて、あたまを、すぐそばまでさげました",
+      "sticker": "butterfly",
+      "animation": "talk"
+    },
+    {
+      "at": 18.6,
+      "cue": "あおむしさんは、うーんと、うーんとのびました。それでも、くさばかり。そこへ子ジカが、長い足でそっとやってきて、あたまを、すぐそばまでさげました",
+      "sticker": "caterpillar",
+      "expression": "sad"
+    },
+    {
+      "at": 19.88,
+      "cue": "うーんと、うーんとのびました。それでも、くさばかり。そこへ子ジカが、長い足でそっとやってきて、あたまを、すぐそばまでさげました",
+      "sticker": "caterpillar",
+      "animation": "reach-up"
+    },
+    {
+      "at": 26.2,
+      "cue": "子ジカが、長い足でそっとやってきて、あたまを、すぐそばまでさげました",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 26.2,
+      "cue": "子ジカが、長い足でそっとやってきて、あたまを、すぐそばまでさげました",
+      "sticker": "deer",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 29.24,
+      "cue": "あたまを、すぐそばまでさげました",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 33.48,
+      "cue": "あおむしさんがのると、あたまが上へ…上へ…上へ",
+      "sticker": "caterpillar",
+      "go": "on",
+      "target": "deer"
+    },
+    {
+      "at": 38.92,
+      "cue": "ありました。おそらです！大きくて、あおくて、白いくもがながれていきます。あおむしさんは、のびあがって、じーっ。チョウチョさんがひらひらおりてきて、となりにとまりました。はねをやすめて",
+      "effect": "clouds",
+      "duration": 34.68,
+      "intensity": 0.4
+    },
+    {
+      "at": 38.92,
+      "cue": "ありました。おそらです！大きくて、あおくて、白いくもがながれていきます。あおむしさんは、のびあがって、じーっ。チョウチョさんがひらひらおりてきて、となりにとまりました。はねをやすめて",
+      "sticker": "caterpillar",
+      "expression": "surprised"
+    },
+    {
+      "at": 45.72,
+      "cue": "あおむしさんは、のびあがって、じーっ。チョウチョさんがひらひらおりてきて、となりにとまりました。はねをやすめて",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "hold"
+    },
+    {
+      "at": 49.48,
+      "cue": "チョウチョさんがひらひらおりてきて、となりにとまりました。はねをやすめて",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 49.48,
+      "cue": "チョウチョさんがひらひらおりてきて、となりにとまりました。はねをやすめて",
+      "sticker": "butterfly",
+      "go": "on",
+      "target": "deer"
+    },
+    {
+      "at": 53.48,
+      "cue": "はねをやすめて",
+      "sticker": "butterfly",
+      "animation": "rest"
+    },
+    {
+      "at": 66.28,
+      "cue": "あおむしさんは、から",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "resume"
+    },
+    {
+      "at": 69.39,
+      "cue": "またね、おそら」とささやきました",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 69.39,
+      "cue": "またね、おそら」とささやきました",
+      "sticker": "deer",
+      "expression": "happy"
+    },
+    {
+      "at": 69.39,
+      "cue": "またね、おそら」とささやきました",
+      "sticker": "deer",
+      "effect": "hearts"
+    }
+  ]
+}

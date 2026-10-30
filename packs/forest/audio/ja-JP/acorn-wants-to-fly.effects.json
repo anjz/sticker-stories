@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "チョウチョさんが、はらっぱをひらひら。小さなどんぐりが、じっと見ています",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 6.64,
+      "cue": "どんぐりが、じっと見ています",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 9.72,
+      "cue": "わたしも、とべたらいいのに。」チョウチョさんが、くさにおりてきました。「じゃあ、高いところからやってごらん！」そういって、はねをとじて見まもります。ひょっこりキノコが出てきました",
+      "sticker": "acorn",
+      "expression": "sad"
+    },
+    {
+      "at": 13.16,
+      "cue": "チョウチョさんが、くさにおりてきました。「じゃあ、高いところからやってごらん！」そういって、はねをとじて見まもります。ひょっこりキノコが出てきました",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "meadow"
+    },
+    {
+      "at": 19.56,
+      "cue": "はねをとじて見まもります。ひょっこりキノコが出てきました",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 22.6,
+      "cue": "キノコが出てきました",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 25.64,
+      "cue": "どんぐりは、赤いかさによじのぼって、小さなうでを、ぱたぱたぱた！…なんにもおこりません。目をぎ",
+      "sticker": "acorn",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 28.44,
+      "cue": "小さなうでを、ぱたぱたぱた！…なんにもおこりません。目をぎ",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 28.44,
+      "cue": "小さなうでを、ぱたぱたぱた！…なんにもおこりません。目をぎ",
+      "sticker": "acorn",
+      "animation": "flap-arms"
+    },
+    {
+      "at": 33.48,
+      "cue": "目をぎ",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 38.84,
+      "cue": "そのとき、そよかぜがキノコをくすぐりました。は…は…はっくしょん！どんぐりは、かさからぴ",
+      "effect": "wind",
+      "duration": 8,
+      "intensity": 0.6
+    },
+    {
+      "at": 43,
+      "cue": "は…は…はっくしょん！どんぐりは、かさからぴ",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 44.36,
+      "cue": "どんぐりは、かさからぴ",
+      "sticker": "acorn",
+      "go": "to",
+      "target": "meadow",
+      "toward": "right"
+    },
+    {
+      "at": 44.36,
+      "cue": "どんぐりは、かさからぴ",
+      "sticker": "acorn",
+      "effect": "spin"
+    },
+    {
+      "at": 51.24,
+      "cue": "目をあけると",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 54.2,
+      "cue": "まあ、いちおうね」とキノコ。チョウチョさんが、はねをひらいてひらひら",
+      "sticker": "mushroom",
+      "expression": "surprised"
+    },
+    {
+      "at": 57.64,
+      "cue": "チョウチョさんが、はねをひらいてひらひら",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 60.8,
+      "cue": "とべたわよ。とってもすてきに。」「もういっかい！」キノコは、つぎのくしゃみもとっておくね、とやくそくしました",
+      "sticker": "butterfly",
+      "animation": "talk"
+    },
+    {
+      "at": 63.54,
+      "cue": "もういっかい！」キノコは、つぎのくしゃみもとっておくね、とやくそくしました",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 63.54,
+      "cue": "もういっかい！」キノコは、つぎのくしゃみもとっておくね、とやくそくしました",
+      "sticker": "acorn",
+      "effect": "hop",
+      "repeat": 3
+    }
+  ]
+}

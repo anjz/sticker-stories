@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 6.12,
+      "cue": "まつぼっくりは、のはらでかさをぱあっとひらいていました。リスさんが、ぴょんぴょんやってきて",
+      "sticker": "pinecone",
+      "enter": true
+    },
+    {
+      "at": 7.88,
+      "cue": "かさをぱあっとひらいていました。リスさんが、ぴょんぴょんやってきて",
+      "sticker": "pinecone",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 10.84,
+      "cue": "リスさんが、ぴょんぴょんやってきて",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 10.84,
+      "cue": "リスさんが、ぴょんぴょんやってきて",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "pinecone"
+    },
+    {
+      "at": 13.22,
+      "cue": "きょうは、いちにちあそぼう！」ウサギくんも、ぴょこぴょこ。「いちにちじ",
+      "sticker": "squirrel",
+      "effect": "hop"
+    },
+    {
+      "at": 15.4,
+      "cue": "ウサギくんも、ぴょこぴょこ。「いちにちじ",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 15.4,
+      "cue": "ウサギくんも、ぴょこぴょこ。「いちにちじ",
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "pinecone"
+    },
+    {
+      "at": 17.08,
+      "cue": "いちにちじ",
+      "sticker": "rabbit",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 24.04,
+      "cue": "かさをぎ",
+      "sticker": "pinecone",
+      "animation": "open",
+      "mode": "resume"
+    },
+    {
+      "at": 26.27,
+      "cue": "ぎ",
+      "sticker": "pinecone",
+      "animation": "talk"
+    },
+    {
+      "at": 28.76,
+      "cue": "雨？」とリスさん",
+      "sticker": "squirrel",
+      "expression": "surprised"
+    },
+    {
+      "at": 31.4,
+      "cue": "でも、空はまっさお",
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 31.4,
+      "cue": "でも、空はまっさお",
+      "sticker": "rabbit",
+      "effect": "wobble"
+    },
+    {
+      "at": 33.72,
+      "cue": "すると、くもがひとつ。またひとつ。ウサギくんの耳が、ぴーん。とおくで…ぽつ、ぽつ…ざあーっと雨！ウサギくんとまつぼっくりがくっつくと、リスさんがふさふさのしっぽを、かさみたいにかぶせてくれました",
+      "effect": "clouds",
+      "duration": 34.02,
+      "intensity": 0.7
+    },
+    {
+      "at": 37.72,
+      "cue": "ウサギくんの耳が、ぴーん。とおくで…ぽつ、ぽつ…ざあーっと雨！ウサギくんとまつぼっくりがくっつくと、リスさんがふさふさのしっぽを、かさみたいにかぶせてくれました",
+      "sticker": "rabbit",
+      "animation": "listen"
+    },
+    {
+      "at": 43.72,
+      "cue": "ざあーっと雨！ウサギくんとまつぼっくりがくっつくと、リスさんがふさふさのしっぽを、かさみたいにかぶせてくれました",
+      "effect": "rain",
+      "duration": 16.06,
+      "intensity": 0.8
+    },
+    {
+      "at": 45.8,
+      "cue": "ウサギくんとまつぼっくりがくっつくと、リスさんがふさふさのしっぽを、かさみたいにかぶせてくれました",
+      "sticker": "rabbit",
+      "expression": "surprised"
+    },
+    {
+      "at": 45.8,
+      "cue": "ウサギくんとまつぼっくりがくっつくと、リスさんがふさふさのしっぽを、かさみたいにかぶせてくれました",
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "squirrel"
+    },
+    {
+      "at": 45.8,
+      "cue": "ウサギくんとまつぼっくりがくっつくと、リスさんがふさふさのしっぽを、かさみたいにかぶせてくれました",
+      "sticker": "pinecone",
+      "go": "to",
+      "target": "squirrel"
+    },
+    {
+      "at": 48.28,
+      "cue": "リスさんがふさふさのしっぽを、かさみたいにかぶせてくれました",
+      "sticker": "squirrel",
+      "animation": "wrap-tail",
+      "mode": "hold"
+    },
+    {
+      "at": 55.17,
+      "cue": "かさで、わかるの」とまつぼっくり。やがて雨がやんで、くうきがからっとしてきました。まつぼっくりは、かさをぱあっと。お日さまが、でてきました",
+      "sticker": "pinecone",
+      "effect": "pulse"
+    },
+    {
+      "at": 62.28,
+      "cue": "まつぼっくりは、かさをぱあっと。お日さまが、でてきました",
+      "sticker": "pinecone",
+      "animation": "open",
+      "mode": "hold"
+    },
+    {
+      "at": 65.24,
+      "cue": "お日さまが、でてきました",
+      "effect": "sunshine"
+    },
+    {
+      "at": 66.99,
+      "cue": "ぱあっとひらけば、お日さま",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 66.99,
+      "cue": "ぱあっとひらけば、お日さま",
+      "sticker": "all",
+      "effect": "hop"
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "おひさまが、しずんでいきます。え",
+      "effect": "sunset",
+      "duration": 18.86,
+      "intensity": 0.7
+    },
+    {
+      "at": 6.92,
+      "cue": "フクロウくんは、一日じ",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 6.92,
+      "cue": "フクロウくんは、一日じ",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 9.72,
+      "cue": "ま",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    },
+    {
+      "at": 11.64,
+      "cue": "アヒルの子が、さいごのひとおよぎに",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 11.64,
+      "cue": "アヒルの子が、さいごのひとおよぎに",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 16.36,
+      "cue": "やがて、おつきさまがのぼりました",
+      "effect": "night",
+      "duration": 57.44,
+      "intensity": 0.8
+    },
+    {
+      "at": 19.48,
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 22.68,
+      "cue": "すいすいおよいで、くちばしで、すくって…ちゃぽん！おつきさまは、ゆらゆらばらばら。でも、すこしずつ、もとどおり。もういちど…ばしゃーん！また、きえちゃった。フクロウくんが、かためをあけて、もうかためも。「ホー？なんのさわぎ",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond",
+      "by": "swim",
+      "another": true
+    },
+    {
+      "at": 23.88,
+      "cue": "くちばしで、すくって…ちゃぽん！おつきさまは、ゆらゆらばらばら。でも、すこしずつ、もとどおり。もういちど…ばしゃーん！また、きえちゃった。フクロウくんが、かためをあけて、もうかためも。「ホー？なんのさわぎ",
+      "sticker": "duckling",
+      "animation": "scoop"
+    },
+    {
+      "at": 29.8,
+      "cue": "でも、すこしずつ、もとどおり。もういちど…ばしゃーん！また、きえちゃった。フクロウくんが、かためをあけて、もうかためも。「ホー？なんのさわぎ",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 33.32,
+      "cue": "ばしゃーん！また、きえちゃった。フクロウくんが、かためをあけて、もうかためも。「ホー？なんのさわぎ",
+      "sticker": "duckling",
+      "effect": "spray"
+    },
+    {
+      "at": 36.52,
+      "cue": "フクロウくんが、かためをあけて、もうかためも。「ホー？なんのさわぎ",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "resume"
+    },
+    {
+      "at": 42.22,
+      "cue": "おつきさま、つかまえてるの",
+      "sticker": "duckling",
+      "effect": "pulse"
+    },
+    {
+      "at": 44.89,
+      "cue": "上を見てごらん」とフクロウくん。あった！おそらにも",
+      "sticker": "owl",
+      "expression": "happy"
+    },
+    {
+      "at": 44.89,
+      "cue": "上を見てごらん」とフクロウくん。あった！おそらにも",
+      "sticker": "owl",
+      "animation": "talk"
+    },
+    {
+      "at": 47.4,
+      "cue": "あった！おそらにも",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 47.4,
+      "cue": "あった！おそらにも",
+      "sticker": "duckling",
+      "effect": "sparkle"
+    },
+    {
+      "at": 50.36,
+      "cue": "ホタルさんが、ふわりと見にきて、ちょうちんみたいに、ぽうっ",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 50.36,
+      "cue": "ホタルさんが、ふわりと見にきて、ちょうちんみたいに、ぽうっ",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 52.68,
+      "cue": "ちょうちんみたいに、ぽうっ",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 58.84,
+      "cue": "アヒルの子は、ふわあとあくび。つばさにあたまをうずめました",
+      "sticker": "duckling",
+      "expression": "sleeping"
+    },
+    {
+      "at": 61.8,
+      "cue": "つばさにあたまをうずめました",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    }
+  ]
+}

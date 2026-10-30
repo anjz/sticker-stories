@@ -1,0 +1,158 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "きりの朝、どんぐりは、かくれんぼがしたくなりました。「まず、かぞえよう！テントウ",
+      "effect": "fog",
+      "duration": 58.22,
+      "intensity": 0.6
+    },
+    {
+      "at": 4.2,
+      "cue": "どんぐりは、かくれんぼがしたくなりました。「まず、かぞえよう！テントウ",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 6.52,
+      "cue": "まず、かぞえよう！テントウ",
+      "sticker": "acorn",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 8.2,
+      "cue": "テントウ",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 8.2,
+      "cue": "テントウ",
+      "sticker": "ladybug",
+      "effect": "pulse"
+    },
+    {
+      "at": 10.12,
+      "cue": "ハリネズミくん、ふたり。ネズミくん、さんにん",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 10.12,
+      "cue": "ハリネズミくん、ふたり。ネズミくん、さんにん",
+      "sticker": "hedgehog",
+      "effect": "pulse"
+    },
+    {
+      "at": 11.88,
+      "cue": "ネズミくん、さんにん",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 11.88,
+      "cue": "ネズミくん、さんにん",
+      "sticker": "mouse",
+      "effect": "pulse"
+    },
+    {
+      "at": 14.15,
+      "cue": "あれ？よにんのはずなのに！」ネズミくんが、くんくん",
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 16.68,
+      "cue": "ネズミくんが、くんくん",
+      "sticker": "mouse",
+      "animation": "sniff"
+    },
+    {
+      "at": 20.84,
+      "cue": "ハリネズミくんは、まるくなって、うーん。「あら、石ころ！」とどんぐり。「ぼく",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    },
+    {
+      "at": 24.24,
+      "cue": "あら、石ころ！」とどんぐり。「ぼく",
+      "sticker": "acorn",
+      "animation": "talk"
+    },
+    {
+      "at": 26.68,
+      "cue": "ぼく",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "resume"
+    },
+    {
+      "at": 37,
+      "cue": "やっぱり、さんにん！目をぎ",
+      "sticker": "acorn",
+      "expression": "sad"
+    },
+    {
+      "at": 38.68,
+      "cue": "目をぎ",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "hold"
+    },
+    {
+      "at": 43.4,
+      "cue": "テントウ",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "acorn"
+    },
+    {
+      "at": 47.08,
+      "cue": "ハリネズミくん、ひとり。ネズミくん、ふたり。わたし、さんにん。それから…あなたで、よにん！」目をあけると、きりがはれて…ひとり、ふたり、さんにん、よにん",
+      "sticker": "ladybug",
+      "animation": "talk"
+    },
+    {
+      "at": 52.84,
+      "cue": "あなたで、よにん！」目をあけると、きりがはれて…ひとり、ふたり、さんにん、よにん",
+      "sticker": "ladybug",
+      "effect": "sparkle"
+    },
+    {
+      "at": 54.6,
+      "cue": "目をあけると、きりがはれて…ひとり、ふたり、さんにん、よにん",
+      "sticker": "acorn",
+      "animation": "wish",
+      "mode": "resume"
+    },
+    {
+      "at": 55.72,
+      "cue": "きりがはれて…ひとり、ふたり、さんにん、よにん",
+      "effect": "sunshine",
+      "duration": 14,
+      "intensity": 0.8
+    },
+    {
+      "at": 60.84,
+      "cue": "じぶんを、かぞえわすれていたのです！みんなで大わらい。それからは、かぞえるときはいつもこう。「どんぐり…ひとり",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 63.24,
+      "cue": "みんなで大わらい。それからは、かぞえるときはいつもこう。「どんぐり…ひとり",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 63.24,
+      "cue": "みんなで大わらい。それからは、かぞえるときはいつもこう。「どんぐり…ひとり",
+      "sticker": "all",
+      "effect": "wobble",
+      "repeat": 2
+    }
+  ]
+}

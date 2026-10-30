@@ -1,18 +1,21 @@
 {
   "schemaVersion": 2,
   "id": "beach",
-  "version": 51,
+  "version": 52,
   "languages": [
     "en-US",
-    "es-ES"
+    "es-ES",
+    "ja-JP"
   ],
   "displayName": {
     "en-US": "Beach",
-    "es-ES": "Playa"
+    "es-ES": "Playa",
+    "ja-JP": "うみべ"
   },
   "description": {
     "en-US": "A day at the beach: rock pools, boats, kites and sand castles.",
-    "es-ES": "Un día de playa: charcas, barcos, cometas y castillos de arena."
+    "es-ES": "Un día de playa: charcas, barcos, cometas y castillos de arena.",
+    "ja-JP": "うみべの一日：潮だまり、ボート、たこあげ、砂のお城。"
   },
   "theme": "beach",
   "setting": "outdoors",
@@ -545,6 +548,10 @@
         "es-ES": [
           "charca",
           "poza"
+        ],
+        "ja-JP": [
+          "潮だまり",
+          "しおだまり"
         ]
       },
       "edge": [
@@ -594,6 +601,10 @@
         "es-ES": [
           "roca",
           "rocas"
+        ],
+        "ja-JP": [
+          "岩",
+          "いわ"
         ]
       }
     },
@@ -629,6 +640,13 @@
         "es-ES": [
           "arena",
           "playa"
+        ],
+        "ja-JP": [
+          "砂",
+          "すな",
+          "砂浜",
+          "すなはま",
+          "うみべ"
         ]
       }
     },
@@ -656,6 +674,10 @@
           "mar",
           "olas",
           "bahía"
+        ],
+        "ja-JP": [
+          "海",
+          "うみ"
         ]
       },
       "edge": [
@@ -725,6 +747,10 @@
         ],
         "es-ES": [
           "orilla"
+        ],
+        "ja-JP": [
+          "波打ち際",
+          "なみうちぎわ"
         ]
       },
       "wideAreas": [
@@ -779,14 +805,16 @@
   },
   "narrationPacks": {
     "en-US": "beach-narration-en-e3488af7",
-    "es-ES": "beach-narration-es-6fac2942"
+    "es-ES": "beach-narration-es-6fac2942",
+    "ja-JP": "beach-narration-ja-c5598af6"
   },
   "stickers": [
     {
       "id": "ball",
       "name": {
         "en-US": "Beach ball",
-        "es-ES": "Pelota de playa"
+        "es-ES": "Pelota de playa",
+        "ja-JP": "ビーチボール"
       },
       "image": "stickers/ball.webp",
       "animations": [
@@ -820,7 +848,8 @@
       "id": "bottle",
       "name": {
         "en-US": "Message in a bottle",
-        "es-ES": "Mensaje en una botella"
+        "es-ES": "Mensaje en una botella",
+        "ja-JP": "ボトルメール"
       },
       "image": "stickers/bottle.webp",
       "animations": [
@@ -853,7 +882,8 @@
       "id": "bucket",
       "name": {
         "en-US": "Bucket and spade",
-        "es-ES": "Cubo y pala"
+        "es-ES": "Cubo y pala",
+        "ja-JP": "バケツとシャベル"
       },
       "image": "stickers/bucket.webp",
       "animations": [
@@ -885,7 +915,8 @@
       "id": "castle",
       "name": {
         "en-US": "Sand castle",
-        "es-ES": "Castillo de arena"
+        "es-ES": "Castillo de arena",
+        "ja-JP": "砂のお城"
       },
       "image": "stickers/castle.webp",
       "animations": [
@@ -919,7 +950,8 @@
       "id": "clam",
       "name": {
         "en-US": "Clam",
-        "es-ES": "Almeja"
+        "es-ES": "Almeja",
+        "ja-JP": "貝"
       },
       "image": "stickers/clam.webp",
       "animations": [
@@ -964,7 +996,8 @@
       "id": "crab",
       "name": {
         "en-US": "Crab",
-        "es-ES": "Cangrejo"
+        "es-ES": "Cangrejo",
+        "ja-JP": "カニ"
       },
       "image": "stickers/crab.webp",
       "animations": [
@@ -1015,7 +1048,8 @@
       "id": "dog",
       "name": {
         "en-US": "Dog",
-        "es-ES": "Perro"
+        "es-ES": "Perro",
+        "ja-JP": "イヌ"
       },
       "image": "stickers/dog.webp",
       "animations": [
@@ -1064,7 +1098,8 @@
       "id": "fish",
       "name": {
         "en-US": "Little fish",
-        "es-ES": "Pececito"
+        "es-ES": "Pececito",
+        "ja-JP": "おさかな"
       },
       "image": "stickers/fish.webp",
       "animations": [
@@ -1114,7 +1149,8 @@
       "id": "fishing-boat",
       "name": {
         "en-US": "Fishing boat",
-        "es-ES": "Barca de pesca"
+        "es-ES": "Barca de pesca",
+        "ja-JP": "漁船"
       },
       "image": "stickers/fishing-boat.webp",
       "animations": [
@@ -1148,7 +1184,8 @@
       "id": "girl",
       "name": {
         "en-US": "Girl",
-        "es-ES": "Niña"
+        "es-ES": "Niña",
+        "ja-JP": "女の子"
       },
       "image": "stickers/girl.webp",
       "animations": [
@@ -1199,7 +1236,8 @@
       "id": "hermit-crab",
       "name": {
         "en-US": "Hermit crab",
-        "es-ES": "Cangrejo ermitaño"
+        "es-ES": "Cangrejo ermitaño",
+        "ja-JP": "ヤドカリ"
       },
       "image": "stickers/hermit-crab.webp",
       "animations": [
@@ -1248,7 +1286,8 @@
       "id": "octopus",
       "name": {
         "en-US": "Octopus",
-        "es-ES": "Pulpo"
+        "es-ES": "Pulpo",
+        "ja-JP": "タコ"
       },
       "image": "stickers/octopus.webp",
       "animations": [
@@ -1297,7 +1336,8 @@
       "id": "pelican",
       "name": {
         "en-US": "Pelican",
-        "es-ES": "Pelícano"
+        "es-ES": "Pelícano",
+        "ja-JP": "ペリカン"
       },
       "image": "stickers/pelican.webp",
       "animations": [
@@ -1346,7 +1386,8 @@
       "id": "ring",
       "name": {
         "en-US": "Rubber ring",
-        "es-ES": "Flotador"
+        "es-ES": "Flotador",
+        "ja-JP": "うきわ"
       },
       "image": "stickers/ring.webp",
       "animations": [
@@ -1379,7 +1420,8 @@
       "id": "sailboat",
       "name": {
         "en-US": "Sailboat",
-        "es-ES": "Velero"
+        "es-ES": "Velero",
+        "ja-JP": "ヨット"
       },
       "image": "stickers/sailboat.webp",
       "animations": [
@@ -1413,7 +1455,8 @@
       "id": "sandpiper",
       "name": {
         "en-US": "Sandpiper",
-        "es-ES": "Correlimos"
+        "es-ES": "Correlimos",
+        "ja-JP": "シギ"
       },
       "image": "stickers/sandpiper.webp",
       "animations": [
@@ -1462,7 +1505,8 @@
       "id": "seagull",
       "name": {
         "en-US": "Seagull",
-        "es-ES": "Gaviota"
+        "es-ES": "Gaviota",
+        "ja-JP": "カモメ"
       },
       "image": "stickers/seagull.webp",
       "animations": [
@@ -1511,7 +1555,8 @@
       "id": "seal",
       "name": {
         "en-US": "Seal",
-        "es-ES": "Foca"
+        "es-ES": "Foca",
+        "ja-JP": "アザラシ"
       },
       "image": "stickers/seal.webp",
       "animations": [
@@ -1561,7 +1606,8 @@
       "id": "seaweed",
       "name": {
         "en-US": "Seaweed",
-        "es-ES": "Alga"
+        "es-ES": "Alga",
+        "ja-JP": "海藻"
       },
       "image": "stickers/seaweed.webp",
       "animations": [
@@ -1606,7 +1652,8 @@
       "id": "shrimp",
       "name": {
         "en-US": "Shrimp",
-        "es-ES": "Gamba"
+        "es-ES": "Gamba",
+        "ja-JP": "エビ"
       },
       "image": "stickers/shrimp.webp",
       "animations": [
@@ -1655,7 +1702,8 @@
       "id": "starfish",
       "name": {
         "en-US": "Starfish",
-        "es-ES": "Estrella de mar"
+        "es-ES": "Estrella de mar",
+        "ja-JP": "ヒトデ"
       },
       "image": "stickers/starfish.webp",
       "animations": [
@@ -1704,7 +1752,8 @@
       "id": "surfer",
       "name": {
         "en-US": "Surfer",
-        "es-ES": "Surfista"
+        "es-ES": "Surfista",
+        "ja-JP": "サーファー"
       },
       "image": "stickers/surfer.webp",
       "animations": [
@@ -1756,7 +1805,8 @@
       "id": "turtle",
       "name": {
         "en-US": "Sea turtle",
-        "es-ES": "Tortuga marina"
+        "es-ES": "Tortuga marina",
+        "ja-JP": "ウミガメ"
       },
       "image": "stickers/turtle.webp",
       "animations": [
@@ -1806,7 +1856,8 @@
       "id": "umbrella",
       "name": {
         "en-US": "Beach umbrella",
-        "es-ES": "Sombrilla"
+        "es-ES": "Sombrilla",
+        "ja-JP": "ビーチパラソル"
       },
       "image": "stickers/umbrella.webp",
       "animations": [
@@ -1841,7 +1892,8 @@
       "id": "urchin",
       "name": {
         "en-US": "Sea urchin",
-        "es-ES": "Erizo de mar"
+        "es-ES": "Erizo de mar",
+        "ja-JP": "ウニ"
       },
       "image": "stickers/urchin.webp",
       "animations": [
@@ -1913,6 +1965,12 @@
           "text": "Cangrejo Ermitaño llegó correteando por la arena, y suspiró. Su concha de rayas le quedaba un poquito justa. Era una concha prestada, como las de todos los ermitaños: una vacía que había encontrado para vivir dentro. Y ahora estaba creciendo. ¡Tocaba buscar una más grande! Así que Ermitaño salió a buscar casa. Primero, el cubo rojo. Se asomó dentro. ¡Era enorme! Hola… hola… hola…, contestaba el eco. Demasiado grande. Después, el castillo de arena, con su banderita roja. Probó la puerta. Cruc, cruc, se desmoronaba. Demasiado arenoso. Entonces llegó corriendo una olita y, ¡chof!, salpicó todo el cubo. Ermitaño se sorprendió tanto que se metió del todo en su propia concha. Y dentro… se estaba de maravilla. Justo de su tamaño, por hoy. Se asomó, y sonrió. La casa grande podía esperar.",
           "audio": "audio/es-ES/a-bigger-house.m4a",
           "effects": "audio/es-ES/a-bigger-house.effects.json"
+        },
+        "ja-JP": {
+          "title": "ヤドカリくんの おうちさがし",
+          "text": "ヤドカリくんが、砂の上をちょこちょこやってきて、ふうっと、ためいき。しましまのかいがらが、ちょっぴりきゅうくつなのです。ヤドカリはみんな、からっぽのかいがらを見つけて、おうちにします。そしてヤドカリくんは、いま、ぐんぐん大きくなっているところ。もっと大きなおうちに、おひっこしだ！ヤドカリくんは、おうちさがしに出かけました。まずは、赤いバケツ。なかを、のぞいてみると…ひろーい！「こんにちはー…ちはー…はー…」と、こだまがかえってきます。これじゃ、大きすぎ。つぎは、赤いはたの立った、砂のお城。入り口に、もぐってみると…さらさら、ぽろぽろ。これじゃ、くずれちゃう。そのとき、小さな波が、ざざーっとかけあがってきて、ざぶん！バケツのまわりは、水びたしです。ヤドカリくんは、びっくりして、じぶんのかいがらに、すっぽり。なかは…ぬくぬく。きょうのぼくに、ちょうどいい大きさです。ひょっこり顔を出して、にっこり。大きなおうちは、もっと大きくなってからね。",
+          "audio": "audio/ja-JP/a-bigger-house.m4a",
+          "effects": "audio/ja-JP/a-bigger-house.effects.json"
         }
       }
     },
@@ -1937,6 +1995,12 @@
           "text": "¡Qué día de sol para ir a la playa! Todos están jugando. Y entonces… plic. ¿Qué ha sido eso? Plic. Ploc. Tip-tap, tip-tap… ¡un chaparrón de verano, en plena mañana de playa! Todos se sacuden. Unos saltan. Otros chapotean. Otros levantan la cara hacia la lluvia y se ríen. Al mar no le importa nada. ¡Ya estaba mojado! Luego la lluvia va más despacio… plic… ploc… y para. ¡Mirad! ¡Un arcoíris sobre la bahía! Rojo y naranja, amarillo y verde, azul y violeta. Y todos están de acuerdo: un poco de lluvia trae un arcoíris buenísimo.",
           "audio": "audio/es-ES/a-shower-at-the-beach.m4a",
           "effects": "audio/es-ES/a-shower-at-the-beach.effects.json"
+        },
+        "ja-JP": {
+          "title": "うみべの にわか雨",
+          "text": "きょうは、ぴかぴかのいいおてんき！みんな、むちゅうであそんでいます。すると…ぽつん。あれ、いまのはなあに？ぽつん。ぽつ。ぽつぽつ、ぱらぱら…なつのにわか雨です。あそんでいる、まっさいちゅうに！みんな、ぶるぶるっ。ぴょんぴょんはねたり、ぱしゃぱしゃしたり、雨にかおをむけて、けらけらわらったり。海は、へっちゃら。だって、もともとぬれているもの！やがて雨は、ぽつり…ぽつり…やみました。見て！海の上に、にじ！あか、オレンジ、きいろ、みどり、あお、むらさき。みんな、うんうん。ちょっぴり雨がふったから、こんなにすてきなにじが出たんだね。",
+          "audio": "audio/ja-JP/a-shower-at-the-beach.m4a",
+          "effects": "audio/ja-JP/a-shower-at-the-beach.effects.json"
         }
       }
     },
@@ -1966,6 +2030,12 @@
           "text": "¡Una carrera de punta a punta de la charca! Cangrejo estaba listo, con las pinzas en alto. Pulpo estaba listo, con sus ocho brazos meneándose. Y la pequeña Gamba también estaba lista. Preparados, listos… ¡YA! Cangrejo salió de lado. Pulpo salió zumbando. Gamba nadaba hacia delante con sus patitas, chap, chap, chap… pero iba TAN despacio. Entonces tuvo una idea. Gamba se hizo una bolita, y ¡FLIC! Estiró de repente su cola de abanico y salió disparada… ¡hacia atrás! ¡Zis, zis, zis! Hacia atrás, pasó a Pulpo, hacia atrás pasó a Cangrejo, hacia atrás cruzó toda la charca. Gamba había ganado, sin mirar siquiera por dónde iba. Cangrejo chocó las pinzas y bailó. Así es como las gambas van más rápido, dijo Pulpo. ¡Hacia atrás!",
           "audio": "audio/es-ES/backwards-shrimp.m4a",
           "effects": "audio/es-ES/backwards-shrimp.effects.json"
+        },
+        "ja-JP": {
+          "title": "うしろむきの エビさん",
+          "text": "潮だまりで、きょうそう！カニくんは、はさみを上げて、じゅんびばんたん。タコくんは、八本のうでをくねくね。そして、小さなエビさんも、やる気まんまん。よーい…ドン！カニくんは、よこにカサカサ。タコくんは、すいーっ。エビさんは、小さなあしで、まえへせっせ、せっせ…でも、とってもおそいのです。そのとき、ひらめきました。エビさんは、くるんとまるくなって、ぴしっ！おうぎのしっぽをぱっとひらくと…うしろへ、びゅーん！ぴゅっ、ぴゅっ、ぴゅっ！うしろむきのまま、タコくんをおいぬいて、カニくんもおいぬいて、潮だまりのむこうまで、ひとっとび。エビさんのかち！行くさきを、見てもいないのにね。カニくんは、はさみをカチカチならして、おどりました。「エビがいちばんはやいのはね…うしろむき！」とタコくん。",
+          "audio": "audio/ja-JP/backwards-shrimp.m4a",
+          "effects": "audio/ja-JP/backwards-shrimp.effects.json"
         }
       }
     },
@@ -1995,6 +2065,12 @@
           "text": "Blup. Blup. Blup. Unas burbujitas subían por la charca. Pececito nadaba en círculos. ¿Quién hace burbujas? ¿Sería Erizo? Erizo meneó sus pinchos. ¡Yo no! ¿Sería Alga? Alga se meció. ¡Yo no! Entonces Pececito oyó una risita, justo en el fondo. Almeja se abrió… y se cerró de golpecito, y subió una ristra de burbujas. ¡Blup, blup! ¡Eres tú, Almeja! Almeja se volvió a reír, y subieron más burbujas. Pececito meneó las aletas y las persiguió. Y al poco, todos se reían, y todo estaba lleno de burbujas.",
           "audio": "audio/es-ES/bubbles-in-the-pool.m4a",
           "effects": "audio/es-ES/bubbles-in-the-pool.effects.json"
+        },
+        "ja-JP": {
+          "title": "ぽこぽこ あわは だあれ？",
+          "text": "ぽこっ。ぽこっ。ぽこっ。潮だまりに、小さなあわがのぼっていきます。おさかなくんは、ぐるぐるおよいで、「あわを出すのは、だあれ？」ウニくんかな？ウニくんは、とげをゆらゆら。「ぼくじゃないよ！」海藻かな？海藻は、ゆーらゆら。「わたしじゃないよ！」そのとき、水のそこで、ちいさく、くすくす。貝さんがぱかっとひらいて…ぱちんととじると、あわがつながって、のぼっていきました。ぽこぽこっ！「貝さんだったんだ！」貝さんがまたくすくすわらうと、またまたあわがぽこぽこ。おさかなくんは、ひれをぴちぴちふって、あわをおいかけます。みんな、わらって、わらって、あたりはあわでいっぱい。",
+          "audio": "audio/ja-JP/bubbles-in-the-pool.m4a",
+          "effects": "audio/ja-JP/bubbles-in-the-pool.effects.json"
         }
       }
     },
@@ -2024,6 +2100,12 @@
           "text": "Correlimos corría por la orilla. Hasta el agua… y otra vez arriba. ¡Abajo… arriba! Perro lo miraba, con la cabeza ladeada. ¡Un juego! Bajó dando brincos para jugar. Hasta el agua… ¡CHOF! Una ola le mojó las patas. Perro se sacudió, sacude, sacude, sacude. No es un juego, dijo Correlimos. Cada ola deja cositas de comer justo donde ha pasado el agua. ¡Así que entro corriendo, pico, pico, pico, y salgo antes de que llegue la siguiente! Ah, dijo Perro. Así que esa es tu merienda. Entonces sonrió y fue a buscar su pelota. Y ESTO, dijo Perro, es lo que más me gusta. La pelota dio vueltas, roja, amarilla, azul y blanca.",
           "audio": "audio/es-ES/chasing-the-waves.m4a",
           "effects": "audio/es-ES/chasing-the-waves.effects.json"
+        },
+        "ja-JP": {
+          "title": "波と おいかけっこ",
+          "text": "シギくんが、波打ち際をはしっています。水のほうへ、ちょこちょこ…またもどって。いって…もどって！イヌくんは、くびをかしげて見ていました。「たのしそう！ぼくもまぜて！」イヌくんも、かけおりていきます。水のほうへ…ざぶーん！波が、あしにざばっとかかりました。イヌくんは、ぶるぶるぶるっと水をはらいます。「あそびじゃないよ」とシギくん。「水がひいたところには、小さなごはんがのこるんだ。だから、はしっていって、つん、つん、つん。つぎの波がくるまえに、にげるのさ！」「へえ！」とイヌくん。「それが、きみのおやつなんだね」それからイヌくんはにっこりして、じぶんのビーチボールをとってきました。「で、ぼくのだいすきなのは、これ！」ボールがくるくるまわります。あか、きいろ、あお、しろ。",
+          "audio": "audio/ja-JP/chasing-the-waves.m4a",
+          "effects": "audio/ja-JP/chasing-the-waves.effects.json"
         }
       }
     },
@@ -2054,6 +2136,12 @@
           "text": "Lola y Nico estaban sentados juntos, mirando las nubes. Pasaban nubes grandes y esponjosas. «¡Esa parece una cometa!» Lola levantó su cometa para comparar. «Esa es una tabla de surf. ¡Una gigante!» Algo blanco pasó aleteando. «¿Es un pájaro de nube?» «¡Es Gaviota!» Entonces Nico señaló. «¡Mira! ¡Una nube con forma de velero!» Lola miró arriba… y luego abajo. Y allí en el agua, justo debajo, navegaba el velero de verdad, con sus velas blancas hinchadas. Un velero en el cielo, y un velero en el mar. Y saludaron a los dos.",
           "audio": "audio/es-ES/cloud-shapes.m4a",
           "effects": "audio/es-ES/cloud-shapes.effects.json"
+        },
+        "ja-JP": {
+          "title": "雲の かたち",
+          "text": "ローラとニコは、ならんですわって、空の雲を見上げていました。ふわふわの大きな雲が、ゆっくりながれていきます。「あの雲、わたしのたこにそっくり！」ローラは、じぶんのたこを上げて、くらべてみました。「あっちはサーフボード。しかも、きょだいなやつ！」そのとき、白いものが、ぱたぱたとんでいきました。「雲のとり？」「カモメさんだよ！」すると、ニコがゆびさしました。「見て！ヨットの形の雲だ！」ローラは、上を見て…それから下を見ました。海の上、ちょうど雲の下を、ほんもののヨットが、白い帆をふくらませて、すすんでいきます。空にもヨット、海にもヨット。ふたりは、どっちのヨットにも、手をふりました。",
+          "audio": "audio/ja-JP/cloud-shapes.m4a",
+          "effects": "audio/ja-JP/cloud-shapes.effects.json"
         }
       }
     },
@@ -2083,6 +2171,12 @@
           "text": "Pececito estaba contando a sus amigos. Uno… Almeja, en el fondo, callada como una piedra. Dos… Erizo, redondo, morado y meneón. Tres… Gamba, rosa y rapidísima, de aquí para allá. ¿Tres? ¡Pero esta mañana éramos cuatro! Volvió a contar. Uno, dos, tres. ¡Ay, no! ¡Falta uno! Erizo meneó sus pinchos. Gamba se rió. Almeja se abrió, y se volvió a cerrar. Pececito, dijo, ¿quién está contando? ¡Yo!, dijo Pececito… y entonces lo entendió. ¡CUATRO! ¡Se me olvidó contarME! Meneó la cola y agitó las aletas. Uno, dos, tres… y cuatro. Todos estaban justo donde tenían que estar.",
           "audio": "audio/es-ES/counting-in-the-pool.m4a",
           "effects": "audio/es-ES/counting-in-the-pool.effects.json"
+        },
+        "ja-JP": {
+          "title": "ひとり たりない？",
+          "text": "おさかなくんが、潮だまりのおともだちを、かぞえています。いーち…水のそこで、小石みたいにしずかな、貝さん。にーい…まんまるで、むらさきで、もぞもぞの、ウニくん。さーん…ピンクで、すばしっこい、エビさん。三人？けさは、四人だったのに！もういちど、かぞえます。いち、に、さん。たいへん、ひとりたりない！ウニくんは、とげをもぞもぞ。エビさんは、くすくす。貝さんが、ぱかっとひらいて、またとじました。「おさかなくん、かぞえているのは、だあれ？」「ぼく！」とこたえて…おさかなくんは、はっとしました。「四人だ！ぼく、じぶんをかぞえるの、わすれてた！」しっぽをぴちぴち、ひれをひらひら。いち、に、さん…そして、よん。みんな、ちゃーんといました。",
+          "audio": "audio/ja-JP/counting-in-the-pool.m4a",
+          "effects": "audio/ja-JP/counting-in-the-pool.effects.json"
         }
       }
     },
@@ -2113,6 +2207,12 @@
           "text": "¡Cava, cava, cava! A Perro le encantaba cavar más que nada en el mundo. La arena volaba por todas partes, alrededor del castillo de arena. ¡Cuidado, Perro! Entonces, ¡bonc! Su hocico encontró algo duro y redondo. ¡Era Almeja! Se abrió para saludar, y se volvió a cerrar. ¿Te gusta cavar?, dijo Almeja. ¡A mí también! Mira esto. Sacó un pie fuerte, y meneo, meneo, meneo… se enterró hasta desaparecer. ¡Ya no está! Perro cavó y cavó. La arena volaba por todas partes, hasta el cubo. Se tambaleó, se bamboleó, y aguantó de pie. Perro se sacudió la arena del hocico. Entonces, ¡pop! Salió Almeja. ¡Te encontré!, dijo Perro. Y cavaron juntos toda la tarde: una pata grande, y un pie pequeño y fuerte.",
           "audio": "audio/es-ES/dig-dig-dig.m4a",
           "effects": "audio/es-ES/dig-dig-dig.effects.json"
+        },
+        "ja-JP": {
+          "title": "あなほり だいすき",
+          "text": "ほりほり、ほりほり！イヌくんは、あなほりがなによりだいすき。砂がぱっぱっととびちって、砂のお城のまわりじゅう、砂だらけ。イヌくん、気をつけて！そのとき、こつん。はなさきに、かたくてまるいものがあたりました。貝さんです！ぱかっとひらいて、こんにちは。ぱちんと、またとじました。「あなほり、すきなの？わたしもよ。見ててね」と貝さん。つよい足をいっぽん、にゅっと出して、もぞもぞ、もぞもぞ…砂のなかへ、すっかりもぐってしまいました。きえちゃった！イヌくんは、ほって、ほって、ほりまくり。砂がとびちって、バケツも砂まみれ。ぐらぐら、ゆらゆら…でも、たおれません。イヌくんは、はなの砂をぶるぶるっ。そのとき、ぽこっ！貝さんが出てきました。「みーつけた！」とイヌくん。それからふたりは、ごごいっぱい、いっしょにほりほり。大きなまえあしと、小さなちからもちの足で。",
+          "audio": "audio/ja-JP/dig-dig-dig.m4a",
+          "effects": "audio/ja-JP/dig-dig-dig.effects.json"
         }
       }
     },
@@ -2140,6 +2240,12 @@
           "text": "Lola estaba sentada debajo de la sombrilla, sequita. Perro no estaba seco. Bajó corriendo hasta el agua, ¡chof! Y volvió, y se SACUDIÓ. «¡Perro! ¡Me has mojado!» Allá fue otra vez. Chof… y de vuelta, ¡SACUDIDA! «¡OTRA vez no!» Así que Lola tuvo una idea. Cuando Perro volvió por tercera vez, giró la sombrilla hacia él, como un gran escudo rojo y blanco. ¡Sacude, sacude, sacude! Todas las gotas cayeron en la sombrilla. «¡Ja! ¡Seca!» Perro movió la cola, rodeó la sombrilla… y le dio un gran lametón mojado en la nariz. «¡Ay, PERRO!»",
           "audio": "audio/es-ES/dog-shakes.m4a",
           "effects": "audio/es-ES/dog-shakes.effects.json"
+        },
+        "ja-JP": {
+          "title": "イヌくんの ぶるぶるっ",
+          "text": "ローラは、ビーチパラソルの下で、からっと、いいきもち。イヌくんは、びしょびしょ。水へかけていって、ざぶん！もどってくると、ぶるぶるぶるっ！「イヌくん！ぬれちゃったー！」イヌくんは、また、いっちゃった。ざぶん…もどってきて、ぶるぶるっ！「もう、またなのー！」そこでローラは、ひらめきました。三どめにイヌくんがもどってきたとき、パラソルをくるっとまわして、イヌくんにむけたのです。赤と白の、大きなたてみたいに。ぶるぶる、ぶるぶる、ぶるぶるっ！しずくは、ぜんぶパラソルに。「へへん！ぬれてないもん！」イヌくんは、しっぽをふりふり、パラソルのむこうへ、とことこまわって…ローラのはなを、ぺろーん！「もう、イヌくんったら！」",
+          "audio": "audio/ja-JP/dog-shakes.m4a",
+          "effects": "audio/ja-JP/dog-shakes.effects.json"
         }
       }
     },
@@ -2169,6 +2275,12 @@
           "text": "¡Al escondite en la charca! Estrella contaba. ¡Uno, dos, tres, cuatro, cinco! Gamba se escondió de un salto detrás de una piedra. Pececito se puso detrás de Estrella, justo a su espalda. Aquí no me ve. Pero Estrella levantó un brazo y lo movió de aquí para allá. ¡Te pillé, Pececito! ¿Cómo? Luego apuntó otro brazo hacia la piedra. ¡Y a ti, Gamba! Gamba movió las antenas y sacudió la cola. ¿Cómo lo HACES? Estrella se rió. En la punta de cada brazo tengo un ojito. Cinco brazos, cinco ojitos. No ven mucho… ¡pero a vosotros sí! Ahora cuento yo, dijo Pececito. Y esta vez se escondió… justo delante de ella.",
           "audio": "audio/es-ES/eyes-on-the-tips.m4a",
           "effects": "audio/es-ES/eyes-on-the-tips.effects.json"
+        },
+        "ja-JP": {
+          "title": "うでの さきっぽに 目",
+          "text": "潮だまりで、かくれんぼ！ヒトデさんが、かぞえます。いーち、にーい、さーん、しーい、ごーお！エビさんは、ぴゅっと石のうしろへ。おさかなくんは、ヒトデさんのすぐうしろにかくれました。ここなら、ぜったい見つからないぞ。ところがヒトデさんは、うでをいっぽん上げて、ふりふり。「おさかなくん、みーつけた！」「えっ、どうして？」それから、べつのうでを石のほうへむけて、「エビさんも、みーつけた！」エビさんは、ひげをぴくぴく、しっぽをぴしっ。「どうして、わかるの？」ヒトデさんは、くすくす。「うでのさきっぽに、小さな目がひとつずつあるの。うでが五本で、目も五つ。よくは見えないけど…あなたたちなら、見えるのよ！」「こんどは、ぼくがかぞえるね！」とおさかなくん。…といいながら、こんどはヒトデさんのまんまえに、かくれちゃいました。",
+          "audio": "audio/ja-JP/eyes-on-the-tips.m4a",
+          "effects": "audio/ja-JP/eyes-on-the-tips.effects.json"
         }
       }
     },
@@ -2193,6 +2305,12 @@
           "text": "Chist. La playa todavía duerme. Chas… chas… llegan las olas pequeñitas, una detrás de otra, como si el mar respirara. Entonces sale el sol sobre la bahía, cálido y dorado. Toca cada concha y cada piedrecita. A lo lejos, llama un pájaro. ¿Quién será? Los ojos se abren. Uno. Dos. Tres. ¡Buenos días, arena! ¡Buenos días, olas! ¡Buenos días, faro, que vigilas al otro lado de la bahía! El agua brilla. La arena está calentita. Y toda la playa, todos juntos, está lista para jugar.",
           "audio": "audio/es-ES/good-morning-beach.m4a",
           "effects": "audio/es-ES/good-morning-beach.effects.json"
+        },
+        "ja-JP": {
+          "title": "おはよう、うみべ",
+          "text": "しーっ。うみべは、まだねんねです。ざざーん…ざざーん…小さな波が、つぎつぎによせてきます。まるで、海がいきをしているみたい。やがて、海のむこうから、おひさまがのぼってきました。ぽかぽかの、金いろのひかり。かいがらにも、小石にも、ひかりがとどきます。とおくで、とりがなきました。あれ、だれかな？目が、ぱちっ。ひとつ。ふたつ。みっつ。おはよう、砂浜！おはよう、波！おはよう、海をみまもる、とうだい！海は、きらきら。砂は、ぽかぽか。さあ、うみべのみんなで、あそぼう！",
+          "audio": "audio/ja-JP/good-morning-beach.m4a",
+          "effects": "audio/ja-JP/good-morning-beach.effects.json"
         }
       }
     },
@@ -2223,6 +2341,12 @@
           "text": "Gaviota lo vio la primera: algo verde que se mecía en el agua. Graznó y graznó. ¡Una botella! Una ola la dejó justo en la orilla. Lola llegó corriendo, y Nico también. «¡Hay una nota dentro!» ¡Pop! Saltó el corcho, y la nota asomó. Lola la desenrolló: un dibujo de un pez sonriente, y unas palabras. «Hola desde muy lejos.» Aquella botella había flotado muchísimo, durante semanas y semanas, sobre el agua, solo para decir hola. «¡Vamos a contestar!» Así que dibujaron su propia playa, con un castillo y una cometa, lo enrollaron y pusieron el corcho. Nico le dio a la botella un empujoncito, y allá se fue, meciéndose. Muy lejos, alguien la encontrará, y sonreirá.",
           "audio": "audio/es-ES/hello-from-far-away.m4a",
           "effects": "audio/es-ES/hello-from-far-away.effects.json"
+        },
+        "ja-JP": {
+          "title": "とおくから こんにちは",
+          "text": "カモメさんが、さいしょに見つけました。海に、みどりいろのなにかが、ぷかぷか。「クワーッ、クワーッ！」なんども、なきました。ボトルメールです！ちゃぷちゃぷ、波打ち際までながれてきました。ローラがかけてきて、ニコもやってきました。「なかに、てがみが入ってる！」ぽんっ！コルクがぬけて、てがみがちょこん。ローラがひらいてみると、にこにこのさかなの絵と、みじかいことば。「とおくから、こんにちは」ボトルは、なんしゅうかんもかけて、ずーっととおくからながれてきたのです。こんにちはを、いうためだけに。「おへんじ、書こうよ！」そこでふたりは、じぶんたちのうみべの絵をかきました。お城と、たこもいれて。くるくるまいて、コルクをきゅっ。ニコがそっとボトルをおすと、ぷかり、ぷかりと、ながれていきました。いつか、どこかとおくで、だれかが見つけて、にっこりするでしょう。",
+          "audio": "audio/ja-JP/hello-from-far-away.m4a",
+          "effects": "audio/ja-JP/hello-from-far-away.effects.json"
         }
       }
     },
@@ -2253,6 +2377,12 @@
           "text": "¡Fiuuu! El viento soplaba justo como hacía falta. Lola llegó dando saltitos. «¡Arriba!» Arriba subió la cometa, roja y amarilla, azul y verde, con su cola de cintas bailando. Hasta la sombrilla se abrió con la brisa, y entonces dio vueltas y más vueltas. Entonces Gaviota bajó volando hasta las rocas. Se quedó mirando. ¿Un pájaro nuevo? ¿Un pájaro de colores, con forma de rombo y cola de cintas? Gaviota graznó para saludar. La cometa no dijo nada. Solo daba vueltas y piruetas. Gaviota saltó y aleteó. «¡Es una cometa, Gaviota! Pero puedes volar con ella.» Así que Gaviota subió volando junto a la cometa, y bailó con el viento. Perro ladró y movió la cola. Lola sostuvo el hilo bien alto. Y así fue como Gaviota se hizo amiga de una cometa.",
           "audio": "audio/es-ES/lolas-kite.m4a",
           "effects": "audio/es-ES/lolas-kite.effects.json"
+        },
+        "ja-JP": {
+          "title": "ローラの たこあげ",
+          "text": "びゅうーん！ちょうどいい風です。ローラが、スキップでやってきました。「さあ、あがれー！」たこは、ぐんぐん空へ。あか、きいろ、あお、みどり。リボンのしっぽが、ひらひらおどります。ビーチパラソルも、風でぱっとひらいて、くるくるくる。そこへ、カモメさんが、岩にまいおりました。じーっ。あたらしいとり？リボンのしっぽの、ぴかぴかのとり？カモメさんは、「クワーッ！」とあいさつ。たこは、なんにもいいません。くるりんとまわって、すいーっとすべるだけ。カモメさんは、ぴょんぴょん、ばたばた。「それは、たこだよ、カモメさん！でも、いっしょにとべるよ」カモメさんは、たこのそばまでとんでいって、風にのっておどりました。イヌくんは、ワンワン！しっぽをふりふり。ローラは、糸を高くかかげました。こうしてカモメさんは、たこと、おともだちになったのです。",
+          "audio": "audio/ja-JP/lolas-kite.m4a",
+          "effects": "audio/ja-JP/lolas-kite.effects.json"
         }
       }
     },
@@ -2281,6 +2411,12 @@
           "text": "A Lola le encantaba coleccionar conchas. «¡Uy, una de rayas! ¡Rosa y blanca!» Alargó la mano. Pero la concha… ¡se fue andando! Dentro, bien escondido, estaba Cangrejo Ermitaño. «¡Ay! Perdona. Es tu casa.» Ermitaño se asomó, y saludó con una pinza diminuta. Luego Lola encontró otra concha, redonda, con rayitas y de color melocotón. Se agachó a mirarla. Se abrió… ¡y allí estaba Almeja, con una perla brillante dentro! «¡Tú también vives en la tuya!» Así que Lola no se llevó ni una sola concha a casa. Se sentó y las dibujó todas con el dedo, grandes y alegres. Y las conchas se quedaron justo donde tenían que estar, con alguien viviendo dentro.",
           "audio": "audio/es-ES/lolas-shell.m4a",
           "effects": "audio/es-ES/lolas-shell.effects.json"
+        },
+        "ja-JP": {
+          "title": "ローラの かいがら",
+          "text": "ローラは、かいがらあつめがだいすき。「わあ、しましま！クリームいろと、ピンク！」手をのばすと…かいがらが、ずりずり、にげていく！なかには、ちぢこまったヤドカリくん！「あっ、ごめんね。ここは、あなたのおうちなんだね」ヤドカリくんは、ひょっこり顔を出して、小さなはさみを、ふりふり。つぎに見つけたのは、まるくて、すじすじの、ももいろのかいがら。しゃがんで、のぞいてみると…ぱかっ！ぴかぴかのしんじゅをもった、貝さんです！「あなたも、じぶんのおうちにすんでるんだね！」だからローラは、かいがらを、ひとつももってかえりません。すわって、ゆびで、みんなの絵をかきました。大きく、にこにこに。かいがらは、みんな、そのままに。なかに、だれかがすんでいるからね。",
+          "audio": "audio/ja-JP/lolas-shell.m4a",
+          "effects": "audio/ja-JP/lolas-shell.effects.json"
         }
       }
     },
@@ -2311,6 +2447,12 @@
           "text": "Era una mañana perfecta para hacer surf. Nico bajó por la playa con su tabla amarilla. «¡Hoy voy a coger la ola MÁS GRANDE!» En la bahía, el velero se mecía, con las velas hinchadas por la brisa. Entonces se levantó una ola alta, blanca y llena de espuma. Nico se paró. Aquella ola era muy grande. Le temblaban las rodillas. Foca subió a las rocas dando saltitos. Dio palmadas con las aletas. Como diciendo: empieza por las pequeñas. Así que Nico esperó una ola pequeñita. ¡Zas! ¡Ya estaba de pie! Tortuga nadaba a su lado, sonriendo. Nico se dejó llevar por la ola hasta la arena. Luego otra. Y otra más. Nico saludó a Foca con la tabla en alto. «¡Gracias, Foca! La grande puede esperar a mañana.»",
           "audio": "audio/es-ES/nicos-big-wave.m4a",
           "effects": "audio/es-ES/nicos-big-wave.effects.json"
+        },
+        "ja-JP": {
+          "title": "ニコの でっかい波",
+          "text": "サーフィンに、ぴったりの朝です。ニコが、きいろいボードをかかえて、やってきました。「きょうは、いちばんでっかいのに、のってやる！」むこうの海では、ヨットが、ぷかぷか。帆が、ふっくら。そのとき、大きな波が、ざばーっ！高くて、白くて、あわあわです。ニコは、たちどまりました。あれは、すごく大きい。ひざが、がくがく。アザラシさんが、岩の上に、よいしょ。ひれで、ぱちぱち、はくしゅ。まるで、「小さいのから、はじめてごらん」といっているみたい。そこでニコは、小さな波をまちました。ざざーっ！ボードの上に、たった！ウミガメさんが、となりをおよいで、にっこり。ニコは、そのまま砂浜まで、すいーっ！もういっぽん。もういっぽん！ニコはアザラシさんに、ボードを高く上げて、手をふりました。「ありがとう、アザラシさん！でっかいのは、またあしたね」",
+          "audio": "audio/ja-JP/nicos-big-wave.m4a",
+          "effects": "audio/ja-JP/nicos-big-wave.effects.json"
         }
       }
     },
@@ -2342,6 +2484,12 @@
           "text": "¡Al escondite en la charca! Pececito contaba. Cangrejo y Pulpo se fueron a esconder. Cangrejo se escondió detrás de una piedra, pero sus grandes pinzas rojas asomaban. ¡Te pillé, Cangrejo! ¿Y dónde estaba Pulpo? Pececito buscó por todas partes. Debajo de las piedras. Detrás de los pedruscos. Almeja se abrió para mirar también. Ni rastro de Pulpo. Entonces, una piedra gris… parpadeó. ¡Esa piedra tiene OJOS! El gris se volvió naranja rosado, y allí estaba Pulpo, riéndose. Soy un pulpo, dijo. ¡Puedo ponerme del color de lo que tengo al lado! Movió sus ocho brazos. Cangrejo chocó las pinzas. Ahora me escondo yo, dijo Pececito. ¿Me enseñas a ser una piedra?",
           "audio": "audio/es-ES/octopus-hide-and-seek.m4a",
           "effects": "audio/es-ES/octopus-hide-and-seek.effects.json"
+        },
+        "ja-JP": {
+          "title": "タコくんの かくれんぼ",
+          "text": "潮だまりで、かくれんぼ！おさかなくんが、かぞえます。カニくんとタコくんは、かくれにいきました。カニくんは、石のうしろにかくれたけれど、大きな赤いはさみが、にょきっ。「カニくん、みーつけた！」さて、タコくんは、どこかな？おさかなくんは、あちこちさがしました。石の下。大きな岩のうしろ。貝さんもぱかっとひらいて、のぞいてみます。タコくんは、どこにもいません。そのとき、はいいろの石が…ぱちっと、まばたき！「あの石、目があるよ！」はいいろが、ふわっとピンクがかったオレンジいろにかわって、タコくんが、けらけらわらっていました。「ぼく、タコだもん。そばにあるものと、おなじいろになれるんだ！」八本のうでを、ふりふり。カニくんは、はさみをカチカチ。「こんどは、ぼくがかくれるばん。石になるやりかた、おしえて！」とおさかなくん。",
+          "audio": "audio/ja-JP/octopus-hide-and-seek.m4a",
+          "effects": "audio/ja-JP/octopus-hide-and-seek.effects.json"
         }
       }
     },
@@ -2371,6 +2519,12 @@
           "text": "Pelícano estaba en las rocas, mirando el agua. Recogió un buen trago con el pico, y se lo tragó. Foca asomó por debajo. Pelícano, ¿tú sabes nadar? Pelícano sonrió. Mira, dijo. Bajó aleteando, y se sentó en el agua, ligero como una pluma. Se mecía. Flotaba. No se hundía ni un poquito. ¿Cómo lo HACES?, preguntó Foca. Mis plumas están llenas de aire, dijo Pelícano. Hasta mis huesos tienen aire dentro. ¡Por eso floto como un corcho! En ese momento pasó el flotador, meciéndose. Giró despacito. ¡Mira!, dijo Foca. ¡Flotas igual que el flotador! Y allí se quedaron, meciéndose uno al lado del otro, Pelícano y el flotador, los mejores flotadores de por aquí.",
           "audio": "audio/es-ES/pelican-floats.m4a",
           "effects": "audio/es-ES/pelican-floats.effects.json"
+        },
+        "ja-JP": {
+          "title": "ぷかぷか ペリカンくん",
+          "text": "ペリカンくんは、岩の上にたって、水を見ていました。くちばしで水をすくって、ごくん。アザラシさんが、下からひょっこり。「ペリカンくん、およげるの？」ペリカンくんは、にっこり。「見ててごらん」ぱたぱたとおりて、水の上に、ふわりとすわりました。はねみたいに、かるがると。ぷかぷか。ゆらゆら。ちっとも、しずみません。「どうやったら、そんなふうにできるの？」とアザラシさん。「ぼくのはねには、空気がいっぱい。ほねのなかにも、空気が入っているんだ。だから、ぷかーっとうくのさ！」ちょうどそこへ、うきわが、ぷかぷかながれてきました。ゆっくり、くるり。「見て！うきわと、おんなじだね！」とアザラシさん。そうして、ならんでぷかぷか。ペリカンくんとうきわは、このあたりでいちばんの、ぷかぷかめいじんです。",
+          "audio": "audio/ja-JP/pelican-floats.m4a",
+          "effects": "audio/ja-JP/pelican-floats.effects.json"
         }
       }
     },
@@ -2400,6 +2554,12 @@
           "text": "Pelícano estaba en la orilla, con su gran pico naranja. Gaviota llegó aleteando. Pelícano, ¿por qué tienes un pico tan GRANDE? No es solo un pico, dijo Pelícano. Debajo tengo una bolsa, que se estira como un saco. ¡Mira! Lo metió en el agua y sacó una bolsa entera llena de agua. Luego inclinó la cabeza, y el agua salió a chorros por los lados. ¡Chis, chas! En ese momento, el flotador de rayas llegó flotando con una ola. Pelícano volvió a recoger agua. Salió el agua… ¡y el flotador! Se le quedó en el pico como un sombrero, y daba vueltas y vueltas. Gaviota se rió tanto que graznó. Pelícano también se rió. Bueno, dijo Pelícano, el agua siempre se escurre. Pero me parece que el flotador se queda.",
           "audio": "audio/es-ES/pelicans-pouch.m4a",
           "effects": "audio/es-ES/pelicans-pouch.effects.json"
+        },
+        "ja-JP": {
+          "title": "ペリカンくんの ふくろ",
+          "text": "ペリカンくんが、水ぎわにたっていました。大きな、オレンジいろのくちばし。カモメさんが、ぱたぱたとんできました。「ペリカンくんのくちばしは、どうしてそんなに、大きいの？」「ただのくちばしじゃ、ないんだよ」とペリカンくん。「下に、のびーるふくろがついているんだ。見てて！」くちばしを水にいれて、ふくろいっぱいに、ざぶっとすくいました。それから、くいっと首をかたむけると、水が、りょうがわから、じゃーっ。ぴちゃ、ぱちゃ！ちょうどそこへ、しましまのうきわが、ぷかぷか、ながれてきました。ペリカンくんは、もういちど、ざぶっ。水が上がってきて…うきわも！くちばしの上に、ぼうしみたいにのっかって、くるくる、くるくる。カモメさんは、わらいすぎて、おもわず「クワーッ！」ペリカンくんも、わっはっは。「水は、いつもながれていっちゃうけど…うきわは、のこるみたいだね」",
+          "audio": "audio/ja-JP/pelicans-pouch.m4a",
+          "effects": "audio/ja-JP/pelicans-pouch.effects.json"
         }
       }
     },
@@ -2429,6 +2589,12 @@
           "text": "Foca nadaba por el mar azul y fresquito, fis, fis, fis. Después de nadar un buen rato, subió a las rocas de un salto, ¡chof!, justo al sol. Aaah. Gaviota bajó aleteando a su lado. Gaviota graznó. ¿Qué haces tumbada en las rocas, Foca? ¡El mar es para nadar! Nadar me da fresquito, dijo Foca. Por eso las focas salen a descansar y a calentarse al sol. ¡Pruébalo! Gaviota lo probó. ¡Anda! Se estaba calentito DE VERDAD. Pelícano bajó planeando también, y extendió sus grandes alas blancas. Foca dio una palmadita feliz. Y durante un rato, las rocas fueron el sitio más tranquilo, calentito y dormilón de todos.",
           "audio": "audio/es-ES/seal-warms-up.m4a",
           "effects": "audio/es-ES/seal-warms-up.effects.json"
+        },
+        "ja-JP": {
+          "title": "アザラシさんの ひなたぼっこ",
+          "text": "アザラシさんが、つめたくて青い海を、すいすいすい。たくさんおよいだら、岩の上へ、よいしょっと、べたーん。おひさまの、ど真ん中です。ふうー。カモメさんが、そのとなりにまいおりてきました。クワッ、クワッ！「アザラシさん、どうして岩の上で、ごろごろしてるの？海は、およぐところでしょ！」「およぐと、からだがひえちゃうの」とアザラシさん。「だからアザラシは、岩にあがってひと休み。おひさまで、ぽかぽかあたたまるのよ。やってごらん！」カモメさんも、やってみました。あら！ほんとうに、ぽかぽか！ペリカンくんも、すーっとまいおりて、大きな白いはねを、ひろげました。アザラシさんは、うれしくて、ぱちぱち。しばらくのあいだ、岩の上は、いちばんしずかで、ぽかぽかで、ねむたいばしょになりました。",
+          "audio": "audio/ja-JP/seal-warms-up.m4a",
+          "effects": "audio/ja-JP/seal-warms-up.effects.json"
         }
       }
     },
@@ -2458,6 +2624,12 @@
           "text": "El sol de la mañana entraba en la charca. Alga se despertó y se estiró hacia él. Gamba la miraba, extrañada. Las conchas se tumban. Las piedras se tumban. Hasta Almeja se queda tumbada en el fondo todo el día. Alga, ¿cómo te quedas de pie en el agua? Fíjate bien, dijo Alga. ¿Ves mis bolitas redondas? Están llenas de aire, como globitos. Me suben, arriba, arriba, hacia el sol. Y se meció, bien alta, hacia la luz. Gamba movió las antenas. ¡Yo también quiero un globito! Almeja se abrió, medio dormida, y se volvió a cerrar. Yo me quedo aquí abajo, gracias, dijo. El fondo es muy cómodo. Y las tres amigas pasaron toda la mañana, una alta, una pequeña y una dormilona, al sol.",
           "audio": "audio/es-ES/seaweed-reaches-up.m4a",
           "effects": "audio/es-ES/seaweed-reaches-up.effects.json"
+        },
+        "ja-JP": {
+          "title": "うーんと のびる 海藻",
+          "text": "あさのおひさまが、潮だまりにさしこみました。海藻は、目をさまして、うーんと、のび。エビさんは、きょとん。かいがらは、ごろん。小石も、ごろん。貝さんだって、水のそこで、いちにちじゅうごろん。「ねえ、海藻。どうして、水のなかでたっていられるの？」「よーく見て」と海藻。「この、まあるいつぶ、見える？なかは、空気。ちっちゃなふうせんみたいにね。だから、上へ、上へ、おひさまのほうへ、うかんでいけるの」海藻は、ひかりのなかで、すーっと、ゆらゆら。エビさんは、ひげをぴくぴく。「いいなあ、わたしもふうせん、ほしい！」貝さんが、ねむそうにぱかっとひらいて、またとじました。「わたしは、ここでいいの、ありがとう。ここ、ふかふかなんだもの」こうして三人は、あさのあいだずっと、おひさまのなか。のっぽさんと、おちびさんと、おねぼうさん。",
+          "audio": "audio/ja-JP/seaweed-reaches-up.m4a",
+          "effects": "audio/ja-JP/seaweed-reaches-up.effects.json"
         }
       }
     },
@@ -2488,6 +2660,12 @@
           "text": "Era el día más caluroso del verano. Cangrejo Ermitaño tenía tanto calor que se metió del todo en su concha. Uf. Luego se asomó… y vio la sombrilla, roja y blanca, con una sombra fresquita debajo. Aaah. Qué gusto. Llegó corriendo Correlimos, jadeando. ¡Qué calor, qué calor! Ermitaño miró la sombra. Era SU sombra. Él la había encontrado primero. Luego se hizo a un lado. Aquí cabemos dos, dijo. Después pasó Cangrejo correteando, rojo y acalorado. ¡Cabemos tres!, dijo Ermitaño. Llegó una brisita, y la sombrilla dio vueltas, abanicándolos a todos. Y la sombra, no se sabe cómo, alcanzó para todos.",
           "audio": "audio/es-ES/shade-for-everyone.m4a",
           "effects": "audio/es-ES/shade-for-everyone.effects.json"
+        },
+        "ja-JP": {
+          "title": "みんなの ひかげ",
+          "text": "なつでいちばん、あつい日のことです。ヤドカリくんは、あんまりあつくて、かいがらのなかに、すっぽり。ふう。それから、ひょっこり顔を出すと…赤と白のビーチパラソル。その下には、すずしいひかげ。ああ、いいきもち。シギくんが、はしってきました。はあ、はあ。あつい、あつい、あつーい！ヤドカリくんは、ひかげを見ました。ぼくのひかげだ。ぼくが、さきに見つけたんだもん。…それから、ちょこっと、よこへずれました。「ふたり、はいれるよ」つぎに、カニくんが、まっかっかで、カサカサやってきました。「三人、はいれるよ！」とヤドカリくん。そよかぜで、パラソルがくるりとまわって、みんなをそよそよ。ひかげは、ふしぎと、みんながはいれる大きさでした。",
+          "audio": "audio/ja-JP/shade-for-everyone.m4a",
+          "effects": "audio/ja-JP/shade-for-everyone.effects.json"
         }
       }
     },
@@ -2517,6 +2695,12 @@
           "text": "Tortuga cruzaba la arena arrastrándose. Flip… flop… despacito, despacito. Nico pasó con su tabla amarilla. «¡Tortuga, qué LENTA eres!» Tortuga escondió la cabeza y la volvió a asomar, sonriendo. En tierra soy lenta, dijo. ¿Pero en el agua? ¡Te echo una carrera! «¡Vale!» Pelícano se posó en las rocas para mirar. Preparados, listos… ¡YA! Nico remó tan rápido como pudo. Tortuga se deslizó en el agua y ¡FIUUU! Volaba entre las olas como un pájaro por el cielo. Pelícano se quedó tan asombrado que recogió un buen trago de agua. Cuando Nico volvió cogiendo una ola hasta la arena, Tortuga ya lo estaba esperando. «Vale, Tortuga. ¡Eres la que nada más rápido de aquí!»",
           "audio": "audio/es-ES/slow-on-sand-fast-in-sea.m4a",
           "effects": "audio/es-ES/slow-on-sand-fast-in-sea.effects.json"
+        },
+        "ja-JP": {
+          "title": "おそくて はやい ウミガメさん",
+          "text": "ウミガメさんが、砂の上をはっていました。ぺたん…ぺたん…ゆっくり、ゆっくり。ニコが、きいろいボードをもって、とおりかかりました。「ウミガメさん、すっごくおそいね！」ウミガメさんは、くびをひっこめて…また出して、にっこり。「りくでは、おそいの。でも、水のなかなら？きょうそうしましょ！」「よーし、しょうぶだ！」ペリカンくんが、岩にとまって見物です。よーい…ドン！ニコは、ちからいっぱいこいでいきます。ウミガメさんは、するりと水に入って…びゅーん！まるで、空をとぶとりみたいに、波のなかをすすんでいきます。ペリカンくんは、びっくりして、おもわず水をすくっちゃった。ニコが、ボードですいーっともどってきたときには、ウミガメさんは、もうまっていました。「まいった！およぐのは、ウミガメさんがいちばんだね！」",
+          "audio": "audio/ja-JP/slow-on-sand-fast-in-sea.m4a",
+          "effects": "audio/ja-JP/slow-on-sand-fast-in-sea.effects.json"
         }
       }
     },
@@ -2545,6 +2729,12 @@
           "text": "Era de noche en la playa, y la luna brillaba sobre el agua. Estrella no podía dormir. Estaba mirando hacia arriba. ¡Una estrella cruzó el cielo, zas! ¡Y otra! ¡Mirad! ¡Mis primas! ¡Son estrellas de mar, como yo! Tortuga llegó arrastrándose, despacito. Esas son estrellas del cielo, pequeña. Están muy, muy lejos. Y tú… tú eres una estrella del mar. Estrella saludó al cielo con sus cinco brazos. ¡Buenas noches, primas! Foca levantó la vista desde las rocas. Pedid un deseo, dijo Foca. Y eso hicieron, las tres. Tortuga escondió la cabeza. Foca cerró los ojos. Y Estrella, la estrellita más pequeña de todas, se durmió bajo las estrellas del cielo.",
           "audio": "audio/es-ES/starfish-and-the-shooting-stars.m4a",
           "effects": "audio/es-ES/starfish-and-the-shooting-stars.effects.json"
+        },
+        "ja-JP": {
+          "title": "ヒトデさんと ながれぼし",
+          "text": "うみべの夜。お月さまが、水の上をてらしています。ヒトデさんは、ねむれません。空を、見上げていました。ほしが、すーっと空をはしった！ほら、もうひとつ！「見て！わたしのいとこたち！みんな、ほしのかたちだもん！」ウミガメさんが、ゆっくり、はってきました。「あれは、空のおほしさまよ、おちびさん。ずっと、ずーっと、とおく。そして、あなたは…海のおほしさま」ヒトデさんは、五本のうでを、空にふりふり。「おやすみ、いとこたち！」アザラシさんも、岩の上から見上げました。「おねがいごと、しよう」とアザラシさん。三人は、そっとおねがいしました。ウミガメさんは、くびをひっこめました。アザラシさんは、目をとじました。そして、いちばん小さなおほしさま、ヒトデさんも、空のおほしさまの下で、すやすやねむりました。",
+          "audio": "audio/ja-JP/starfish-and-the-shooting-stars.m4a",
+          "effects": "audio/ja-JP/starfish-and-the-shooting-stars.effects.json"
         }
       }
     },
@@ -2573,6 +2763,12 @@
           "text": "Perro tenía una pelota, roja, amarilla, azul y blanca, y la quería más que a nada. Le dio un empujoncito con el hocico. ¡Boing! Y allá se fue, botando hasta la orilla. ¡Vuelve, pelota! Perro salió corriendo detrás. ¡CHOF! Una ola lo mojó del hocico a la cola. Perro se sacudió, ¡sacude, sacude, sacude! La pelota se mecía en la espuma. Entonces asomó una cabeza gris. Era Foca. Empujó la pelota con el hocico, y la pelota rodó hasta Perro. Dio vueltas y se paró junto a sus patas. Perro se la devolvió de un empujoncito. Foca se la devolvió otra vez. Dio palmadas con las aletas. ¡Arf! Y así descubrió Perro que las focas juegan a la pelota muy, muy bien.",
           "audio": "audio/es-ES/the-ball-and-the-seal.m4a",
           "effects": "audio/es-ES/the-ball-and-the-seal.effects.json"
+        },
+        "ja-JP": {
+          "title": "ボールと アザラシさん",
+          "text": "イヌくんは、ビーチボールをもっていました。あか、きいろ、あお、しろのボール。なによりも、だいすきなボールです。はなで、ちょんとつつくと…ぽーん！ボールは、ころころ、ぽんぽん、水ぎわまでころがっていきました。「まってー、ボール！」イヌくんは、おいかけました。ざぶーん！波が、はなのさきからしっぽまで、ばしゃーっ。イヌくんは、ぶるぶるぶるっ！ボールは、白いあわのなかで、ぷかぷか。そのとき、はいいろの頭が、ひょっこり。アザラシさんです！アザラシさんがはなでボールをおすと、ボールは、イヌくんのほうへ、ころころ。くるくるまわって、イヌくんのあしもとで、ぴたり。イヌくんは、ちょんとおしかえしました。アザラシさんも、またおしかえします。ひれで、ぱちぱち。オウッ！こうしてイヌくんは、しったのです。アザラシって、ボールあそびが、とってもとってもじょうずなんだって。",
+          "audio": "audio/ja-JP/the-ball-and-the-seal.m4a",
+          "effects": "audio/ja-JP/the-ball-and-the-seal.effects.json"
         }
       }
     },
@@ -2603,6 +2799,12 @@
           "text": "La pelota estaba tan a gusto, roja, amarilla, azul y blanca, mirando cómo el flotador y la botella se mecían en el agua. Arriba, abajo, arriba. Parecía divertido. Entonces, ¡fiuuu! Llegó un soplo de viento, y la pelota salió rodando, bum, bum, bum, hasta el borde del agua. ¡CHOF! Se quedó meciéndose en la espuma. El flotador se giró para saludarla. La botella hizo saltar su corcho, como para aplaudir. Tres flotadores, meciéndose juntos. ¡Arriba, abajo, arriba! En las rocas, Pelícano recogió un buen trago de agua. Luego el viento cambió, y llevó la pelota rodando de vuelta. Dio vueltas y se paró, justo donde había empezado. Un poco mojada. Un poco llena de arena. Y muy, muy contenta.",
           "audio": "audio/es-ES/the-ball-goes-for-a-swim.m4a",
           "effects": "audio/es-ES/the-ball-goes-for-a-swim.effects.json"
+        },
+        "ja-JP": {
+          "title": "ボールも ぷかぷか",
+          "text": "ビーチボールは、砂の上で、ぽかぽか、いいきもち。あか、きいろ、あお、しろのボールです。海では、うきわとボトルメールが、ゆらゆらしているのが見えます。ぷか、ぷか、ぷか。たのしそう。すると、びゅうっ！風がふいてきて、ボールは、ころころ、ぽんぽん、水ぎわまでころがっていきました。ばっしゃーん！白いあわのなかで、ぷかぷか。うきわは、くるりとまわって、ごあいさつ。ボトルメールは、ぽんっとコルクをとばして、ばんざいみたい。三つのぷかぷかなかまが、ならんでゆらゆら。ぷか、ぷか、ぷか！岩の上では、ペリカンくんが、くちばしで水をすくっています。すると、風のむきがかわって、ボールを、ころころ、もとのところまでころがしてくれました。くるくるっとまわって、ぴたり。ちょうど、さいしょのばしょです。ちょっぴりぬれて、ちょっぴり砂だらけ。でも、とってもとっても、しあわせそう。",
+          "audio": "audio/ja-JP/the-ball-goes-for-a-swim.m4a",
+          "effects": "audio/ja-JP/the-ball-goes-for-a-swim.effects.json"
         }
       }
     },
@@ -2627,6 +2829,12 @@
           "text": "El sol se esconde sobre la bahía. El cielo se pone naranja, luego rosa, luego dorado. Las olas van más despacio. Chas… chas… Todos han tenido un día grande y movido. ¡Cuánto cavar! ¡Cuánto chapotear! ¡Cuánto correr de aquí para allá! Ahora la arena está fresquita. Las conchas, calladas. La noche llega despacito, y la luna sale sobre el agua. Un escalofrío… un bostezo… Y uno a uno, todos cierran los ojos. Al otro lado de la bahía, el viejo faro vigila toda la noche. Que duermas bien, playa. Hasta mañana.",
           "audio": "audio/es-ES/the-beach-falls-asleep.m4a",
           "effects": "audio/es-ES/the-beach-falls-asleep.effects.json"
+        },
+        "ja-JP": {
+          "title": "おやすみ うみべ",
+          "text": "お日さまが、海のむこうにしずんでいきます。空は、オレンジ、ピンク、それから、きんいろに。波も、ゆっくりになりました。ざざーん…ざざーん…きょうは、みんな、いそがしい一日でした。いっぱいほったね！いっぱいぱしゃぱしゃしたね！いっぱいかけまわったね！砂は、もうひんやり。かいがらも、しずかです。よるが、そっとやってきて、お月さまが、水の上にのぼります。ちょっぴり、ぶるっ…ちょっぴり、ふわぁ…ひとり、またひとりと、みんな、目をとじていきます。海のむこうでは、ふるいとうだいが、ひとばんじゅう見まもっています。おやすみ、うみべ。またあしたね。",
+          "audio": "audio/ja-JP/the-beach-falls-asleep.m4a",
+          "effects": "audio/ja-JP/the-beach-falls-asleep.effects.json"
         }
       }
     },
@@ -2656,6 +2864,12 @@
           "text": "El sol se escondía, dorado y rosa. Foca estaba en las rocas, mirando el agua. Su amiga llegaba tarde. Entonces, a lo lejos, vio una figura blanca que volaba en círculos. ¡Era Gaviota! Cuando un barco sale a pescar, las gaviotas lo siguen hasta casa, por si cae algo de comer. Así que si Gaviota estaba aquí… Chuc, chuc, chuc. Ahí llegaba la barca de pesca, azul y blanca, con Gaviota volando justo detrás. Foca dio palmadas con las aletas. La barca subió su red, chorreando, y se meció despacio. Gaviota bajó a descansar. El cielo se puso azul oscuro. Salió la luna. Gaviota metió la cabeza bajo el ala. Foca cerró los ojos. Y la barca, por fin en casa, se mecía despacito en la oscuridad. Chis… chas…",
           "audio": "audio/es-ES/the-boat-comes-home.m4a",
           "effects": "audio/es-ES/the-boat-comes-home.effects.json"
+        },
+        "ja-JP": {
+          "title": "ふねが かえってきた",
+          "text": "お日さまが、きんいろとピンクにそまって、しずんでいきます。アザラシさんは、岩の上にすわって、水のむこうを見ていました。おともだちが、まだかえってこないのです。そのとき、ずっととおくで、白いものが、くるくるまわっているのが見えました。カモメさんです！ふねがりょうに出ると、カモメたちは、おさかなをもらおうと、ふねについてかえってくるのです。カモメさんがいるってことは…ポン、ポン、ポン。青と白の漁船が、かえってきました。すぐうしろを、カモメさんがとんでいます。アザラシさんは、ひれで、ぱちぱち。漁船は、しずくのぽたぽたおちるあみを引きあげて、ゆーらゆら。カモメさんも、おりてきて、ひとやすみ。空は、こいあおいろ。お月さまが、のぼりました。カモメさんは、つばさに頭をうずめて、アザラシさんは、目をとじました。やっとかえってきた漁船も、くらやみのなかで、ゆらり、ゆらり。ちゃぷん…ちゃぷん…",
+          "audio": "audio/ja-JP/the-boat-comes-home.m4a",
+          "effects": "audio/ja-JP/the-boat-comes-home.effects.json"
         }
       }
     },
@@ -2684,6 +2898,12 @@
           "text": "Nico estaba con su tabla, mirando el agua. Por ahí llegaba el velero. Y por ahí llegaba la barca de pesca. «¡Una carrera! ¡Gana el primero que llegue al lado del faro! Preparados, listos… ¡YA!» ¡Chuc, chuc, chuc! Allá fue la barca de pesca, despacio pero sin parar. Pero el velero no se movía. Sin viento. Con las velas colgando. «¡Vamos, velero!» Y entonces, FIUUU, llegó el viento. Las velas se llenaron, redondas y gordas, ¡y el velero salió disparado por el agua! Chuc, chuc… fiu, fiu… uno al lado del otro… La barca subió su red, para ir más despacio y esperar a su amigo. Y llegaron al otro lado… exactamente a la vez. «¡Empate! ¡Ganáis los dos!» Nico agitó su tabla en el aire.",
           "audio": "audio/es-ES/the-boat-race.m4a",
           "effects": "audio/es-ES/the-boat-race.effects.json"
+        },
+        "ja-JP": {
+          "title": "ふねの きょうそう",
+          "text": "ニコが、ボードをかかえて、砂浜に立っていました。水のむこうを見ていると…ヨットがやってきました。漁船も、やってきました。「きょうそうだ！とうだいのほうに、さきについたほうが、かち！よーい…ドン！」ポン、ポン、ポン！漁船は、ゆっくり、こつこつ、すすみだしました。ところが、ヨットは、ぴくりともうごきません。風がないのです。帆は、だらーん。「がんばれ、ヨット！」そのとき、びゅうーん！風がふいてきました。帆が、まあるく、ぱんぱんにふくらんで、ヨットは、すいーっと、水の上をかけていきます！ポンポン…すいすい…ならんで、ならんで…漁船は、あみを引きあげて、スピードをおとし、おともだちをまちました。そして、むこうがわに…ぴったりいっしょに、とうちゃく！「ひきわけだ！どっちも、かち！」ニコは、ボードを空に高くあげて、ふりました。",
+          "audio": "audio/ja-JP/the-boat-race.m4a",
+          "effects": "audio/ja-JP/the-boat-race.effects.json"
         }
       }
     },
@@ -2712,6 +2932,12 @@
           "text": "Pelícano estaba en la orilla, buscando algo de comer. Gaviota lo miraba desde arriba. ¿Qué pescará? Algo verde llegó flotando. ¡Zas!, hizo el gran buche de Pelícano. Se escurrió el agua… ¡y en su pico había una botella! Gaviota graznó de la risa. ¡Eso no es un pez! Pelícano la giró de un lado a otro. ¡POP!, hizo el corcho, y asomó una nota enrollada. Pelícano la abrió con el pico. Era un dibujo… de un pájaro grande y blanco, con un gran pico naranja. ¡Soy YO!, dijo Pelícano. ¡Alguien muy lejos ha dibujado un pelícano! ¡Entonces eres famoso!, dijo Gaviota. Y Pelícano se puso muy derecho, orgullosísimo.",
           "audio": "audio/es-ES/the-bottle-and-the-pelican.m4a",
           "effects": "audio/es-ES/the-bottle-and-the-pelican.effects.json"
+        },
+        "ja-JP": {
+          "title": "びんと ペリカンくん",
+          "text": "ペリカンくんが、波打ち際で、おやつをさがしていました。カモメさんは、高いところから、じっと見ています。なにが、とれるかな？みどりいろのものが、ぷかぷか、ながれてきました。ペリカンくんの大きなふくろが、がばっ！水が、ざーっとこぼれると…くちばしのなかには、びんが！カモメさんは、「クワッ、クワッ！」と大わらい。おさかなじゃないよ！ペリカンくんは、びんを、あっちにくるり、こっちにくるり。スポンッ！コルクがぬけて、まるめたてがみが、ひょっこり。くちばしでひらいてみると…絵です。オレンジいろの大きなくちばしの、大きな白いとり。「ぼくだ！」とペリカンくん。とおくのだれかが、ペリカンをかいてくれたんだ！「じゃあ、きみ、ゆうめいじんだね！」とカモメさん。ペリカンくんは、むねをはって、えっへん！",
+          "audio": "audio/ja-JP/the-bottle-and-the-pelican.m4a",
+          "effects": "audio/ja-JP/the-bottle-and-the-pelican.effects.json"
         }
       }
     },
@@ -2741,6 +2967,12 @@
           "text": "Nico quería construir algo increíble. Llenó su cubo de arena suave y seca, y la aplastó bien. Luego le dio la vuelta… fsss. Se deshizo en un montón. «Oh, no.» Lo intentó otra vez. Se deshizo. Y otra. ¡Se deshizo! Nico bajó hasta el agua para pensar. Una ola pequeñita le mojó los pies, y donde había pasado, el suelo estaba oscuro y firme. «¡La arena mojada se pega! ¡Eso es!» Subió arena mojada playa arriba. Plas, plas, plas. Le dio la vuelta. Y AGUANTÓ. Una torre. Dos torres. ¡Tres! Y allí estaba su castillo de arena, con una banderita roja arriba. La bandera ondeaba con la brisa. «El mejor castillo del mundo.»",
           "audio": "audio/es-ES/the-castle-that-stood.m4a",
           "effects": "audio/es-ES/the-castle-that-stood.effects.json"
+        },
+        "ja-JP": {
+          "title": "くずれない 砂のお城",
+          "text": "ニコは、砂浜で、すごいものをつくりたくなりました。バケツに、さらさらのかわいた砂をつめて、ぎゅっ、ぎゅっ。それから、ひっくりかえすと…ざざーっ。くずれて、ただの山になってしまいました。「あーあ」もういちど。ぽろぽろ。もういちど。ぽろぽろっ！ニコは、波打ち際へいって、かんがえました。小さな波が、ざざっとあしをぬらして、ひいたあとは、色がこくなって、かちっとかたまっています。「ぬれた砂は、くっつくんだ！これだ！」ニコは、ぬれた砂をバケツのところまで、はこびました。ぺた、ぺた、ぺた。ひっくりかえすと…くずれない！とうが、ひとつ。ふたつ。みっつ！砂のお城の、できあがりです。てっぺんには、小さな赤いはた。はたが、ぱたぱた、はためきます。「せかいいちの、砂のお城だ！」",
+          "audio": "audio/ja-JP/the-castle-that-stood.m4a",
+          "effects": "audio/ja-JP/the-castle-that-stood.effects.json"
         }
       }
     },
@@ -2770,6 +3002,12 @@
           "text": "Almeja vivía en el fondo de la charca, y tenía un secreto. Cangrejo se acercó correteando. ¿Qué guardas en tu concha, Almeja? Algo especial, dijo Almeja. Pero tienes que esperar. Cangrejo esperó. Un segundo. Dos segundos. ¿YA está? Erizo se dio la vuelta, despacito. Algunas cosas tardan mucho, mucho tiempo, Cangrejo. Como crecer. Por fin, Almeja se abrió de par en par. Allí dentro había una perla pequeña y redonda, brillando suavecito. Empezó siendo una motita, dijo Almeja. Y muy despacio, capa a capa, fue creciendo. Durante años y años. Cangrejo chocó las pinzas y bailó. Y por una vez, Cangrejo no dijo ni una palabra. Solo miró, durante mucho, mucho rato.",
           "audio": "audio/es-ES/the-clams-secret.m4a",
           "effects": "audio/es-ES/the-clams-secret.effects.json"
+        },
+        "ja-JP": {
+          "title": "貝さんの ひみつ",
+          "text": "貝さんは、潮だまりのそこにすんでいました。ひみつが、ひとつあります。カニくんが、カサカサッとやってきました。「ねえ、なかに、なにが入ってるの？」「とくべつなもの。でも、まっててね」と貝さん。カニくんは、まちました。いーち。にーい。「まーだー？」ウニくんが、ゆっくりころがってきました。「うーんと、じかんがかかるものもあるんだよ、カニくん。大きくなるみたいにね」やっと、貝さんが、ぱかーっとひらきました。なかには、まあるい小さなしんじゅが、ぽうっとひかっています。「はじめは、ちいさなつぶだったの。うすーいまくを、一まい、また一まいとかさねて、ゆっくり、なんねんもかけて、大きくなったのよ」と貝さん。カニくんは、はさみをカチカチ、おどりました。そして、めずらしく、だまったまま。ただ、じーっと、いつまでも見ていました。",
+          "audio": "audio/ja-JP/the-clams-secret.m4a",
+          "effects": "audio/ja-JP/the-clams-secret.effects.json"
         }
       }
     },
@@ -2798,6 +3036,12 @@
           "text": "Correlimos corría por la orilla, buscando algo nuevo. ¿Y esto qué es? Una botella de cristal verde, rodando entre la espuma. Fue corriendo. Toc, toc, hizo su pico. ¡POP!, hizo el corcho. ¡Correlimos dio un salto en el aire! Luego vio otra cosa: una cosa grande y redonda, roja, amarilla, azul y blanca. Fue corriendo. Toc, toc. ¡Y se fue rodando! Correlimos corrió detrás, corre, corre, corre, hasta que dio unas vueltas y se paró. Le dio un picotazo diminuto. No pasó nada. Bien, dijo Correlimos. Algo que se queda quieto. Y se fue a buscar cositas pequeñas, donde todo era mucho, mucho más pequeño.",
           "audio": "audio/es-ES/the-curious-sandpiper.m4a",
           "effects": "audio/es-ES/the-curious-sandpiper.effects.json"
+        },
+        "ja-JP": {
+          "title": "しりたがりの シギくん",
+          "text": "シギくんが、波打ち際を、ちょこちょこはしっていました。なにか、あたらしいものはないかな。あれ、なんだろう？みどりいろのガラスのびんが、あわのなかで、ころん、ころん。かけよって、くちばしで、コツ、コツ。スポンッ！コルクがとびだしました。シギくんは、ぴょーんと、とびあがりました！それから、またべつのものを見つけました。大きくて、まあるいもの。あか、きいろ、あお、しろ。かけよって、コツ、コツ。ころころころーっ！シギくんは、おいかけます。タタタタッ…くるくるっとまわって、ぴたり。ちょん、とひとつつき。…なんにも、おきません。「よしよし。こんどは、じっとしてる」とシギくん。そしてシギくんは、もっと、もっと小さなものをさがしに、はしっていきました。",
+          "audio": "audio/ja-JP/the-curious-sandpiper.m4a",
+          "effects": "audio/ja-JP/the-curious-sandpiper.effects.json"
         }
       }
     },
@@ -2828,6 +3072,12 @@
           "text": "Una mañana, la playa amaneció escondida en la niebla, suave, blanca y gris. Correlimos se asomó. No veía el agua. No veía el faro. ¿Dónde se ha ido todo? Chuc, chuc, chuc. Algo grande había ahí fuera. Una sombra se acercaba despacio entre la niebla… la barca de pesca, que volvía a casa. Y meciéndose a su lado, una botellita verde. Una ola la llevó rodando hasta el borde. Correlimos fue corriendo y le dio un picotazo. ¡Pop!, hizo el corcho. Entonces, poco a poco, salió el sol, y la niebla se deshizo. La barca subió su red, y Gaviota salió volando a darle los buenos días. Correlimos picoteó el suelo, contento. Todo estaba en su sitio, como siempre.",
           "audio": "audio/es-ES/the-foggy-morning.m4a",
           "effects": "audio/es-ES/the-foggy-morning.effects.json"
+        },
+        "ja-JP": {
+          "title": "きりの 朝",
+          "text": "ある朝、うみべは、きりにすっぽりつつまれていました。ふんわり白くて、はいいろの、きり。シギくんが、きょろり。水が、見えません。とうだいも、見えません。みんな、どこへいっちゃったの？ポン、ポン、ポン。なにか、大きなものがいます。くろいかげが、きりのなかから、ゆっくり…漁船です。かえってきたのです。そのよこで、ぷかぷかゆれているのは、小さなみどりいろのびん。波が、びんを、波打ち際まで、ころころはこんできました。シギくんは、かけよって、コツン。スポンッ！コルクがぬけました。それから、ゆっくりと、お日さまが顔を出して、きりは、とけるように、きえていきました。漁船があみを引きあげると、カモメさんが、「おはよう！」といいに、とんできました。シギくんは、うれしそうに、足もとをつんつん。なにもかも、はじめから、ちゃんとそこにあったのです。",
+          "audio": "audio/ja-JP/the-foggy-morning.m4a",
+          "effects": "audio/ja-JP/the-foggy-morning.effects.json"
         }
       }
     },
@@ -2855,6 +3105,12 @@
           "text": "Allí estaba un castillo de arena, con tres torres y una banderita roja. La bandera ondeaba con la brisa. Gaviota lo vio desde el cielo. ¡Qué sitio perfecto para sentarse! Bajó en picado, hasta la torre más alta. Tambaleo, tambaleo. Ay, madre… La torre empezó a desmoronarse. ¡Gaviota graznó! Entonces llegó una olita hasta el cubo, y dejó arena mojada. Gaviota supo qué hacer. ¡Pic! ¡Plas! ¡Pic! ¡Plas! Arena mojada para la torre, bien apretada. La torre volvió a estar derecha y fuerte. Gaviota ahuecó las plumas. Desde lo alto de la torre más alta, veía muy lejos sobre el agua. Y desde aquel día, Gaviota fue la guardiana del castillo. La mejor guardiana. Y la que más gritaba.",
           "audio": "audio/es-ES/the-gull-on-the-castle.m4a",
           "effects": "audio/es-ES/the-gull-on-the-castle.effects.json"
+        },
+        "ja-JP": {
+          "title": "砂のお城の みはりばん",
+          "text": "砂のお城が、たっていました。とうがみっつに、小さな赤いはた。はたが、ぱたぱた、はためいています。カモメさんが、空から見つけました。「すわるのに、ぴったり！」すいーっとおりて、いちばん高いとうのてっぺんへ。ぐら、ぐら。あらら…とうが、ぽろぽろ、くずれはじめました。「クワーッ！」とカモメさん。そこへ、小さな波が、バケツのまわりまで、ざざっとやってきて、ぬれた砂をおいていきました。カモメさんは、ピンときました。つんつん、ぺたぺた！つんつん、ぺたぺた！とうに、ぬれた砂をつけて、しっかりかためます。とうは、また、まっすぐ、がっしり。カモメさんは、はねを、ふわっとふくらませました。いちばん高いとうからは、水のむこうまで、ずうっと見わたせます。その日から、カモメさんは、砂のお城のみはりばん。いちばんたよりになる、みはりばん。そして、いちばんこえの大きな、みはりばん。",
+          "audio": "audio/ja-JP/the-gull-on-the-castle.m4a",
+          "effects": "audio/ja-JP/the-gull-on-the-castle.effects.json"
         }
       }
     },
@@ -2883,6 +3139,12 @@
           "text": "En la charca, junto a las frondas de Alga, vivía Pececito, amarillo con dos rayas azules. Alga se mecía, despacio y suave. La charca era acogedora. Pero Pececito no paraba de preguntarse: ¿qué habrá ahí fuera? Un día, una ola entró chapoteando por encima de las rocas. Y cuando volvió a salir, ¡Pececito se fue con ella! El mar era ENORME. Azul por todas partes, y sin bordes por ningún lado. Se sintió muy, muy pequeño. Entonces se acercó una cara amable, deslizándose. Era Tortuga. ¿Tan lejos de casa, pequeño? Yo nado contigo. Nadó a su lado, despacio y sin parar, hasta que se vieron las rocas. Y entonces Pececito volvió nadando a casa. Alga movió sus frondas. ¡Bienvenido! Pececito meneó la cola y agitó las aletas. El mar era maravilloso. Pero la charca era su casa.",
           "audio": "audio/es-ES/the-little-fish-and-the-big-sea.m4a",
           "effects": "audio/es-ES/the-little-fish-and-the-big-sea.effects.json"
+        },
+        "ja-JP": {
+          "title": "おさかなくんと 大きな海",
+          "text": "海藻がゆれる潮だまりに、おさかなくんがすんでいました。きいろに、青いしまが二本。海藻は、ゆーらり、ゆーらり。いごこちのいい、おうちです。でも、おさかなくんは、いつもおもっていました。そとには、なにがあるのかな？ある日、波が、岩をこえて、ざぶーん！その波がひいていくと…おさかなくんも、いっしょにながされてしまいました！海は、とーっても大きい！どっちを見ても、青、青、青。はしっこなんて、ありません。じぶんが、ちっちゃく、ちっちゃく、かんじます。そのとき、やさしい顔が、すうっとちかづいてきました。ウミガメさんです。「おうちからとおいのね、ぼうや。いっしょに、およぎましょう」となりを、ゆっくり、ゆっくり、およいでくれます。岩が見えてくるまで。おさかなくんは、潮だまりへ、すいすい。海藻が、ゆらゆら手をふります。「おかえり！」おさかなくんは、しっぽをぴちぴち、ひれをひらひら。海は、すばらしかった。でも、おうちは、やっぱり潮だまり。",
+          "audio": "audio/ja-JP/the-little-fish-and-the-big-sea.m4a",
+          "effects": "audio/ja-JP/the-little-fish-and-the-big-sea.effects.json"
         }
       }
     },
@@ -2911,6 +3173,12 @@
           "text": "Era una mañana gris y nublada. Unas nubes suaves pasaban sobre la bahía. Chuc, chuc… la barca de pesca salió por el agua. Gaviota voló detrás, esperando algo rico. La barca se paró. Subió la red, chorreando y pesada. Gaviota graznó: ¿qué hay? ¿Qué hay? Algas. Solo una gran maraña verde de algas. No muy lejos, Alga se rió. ¡Anda, mira! ¡Son mis primas! Se meció para saludar. Gaviota se rió tanto que se le olvidó el hambre. La barca devolvió las algas al agua con cuidado… y Alga las saludó hasta que se perdieron de vista.",
           "audio": "audio/es-ES/the-net-full-of-surprises.m4a",
           "effects": "audio/es-ES/the-net-full-of-surprises.effects.json"
+        },
+        "ja-JP": {
+          "title": "あみの なかは なあに？",
+          "text": "はいいろの、くもり空の朝です。やわらかな雲が、海の上を、ゆっくりながれていきます。ポン、ポン…漁船が、海へ出ていきました。カモメさんが、あとをおいかけます。おいしいもの、もらえるかな？ふねが、とまりました。ぽたぽたしずくをたらして、おもたいあみが、あがってきます。「クワーッ！なにかな？なにかな？」…わかめ。ぬれて、もじゃもじゃの、みどりのわかめだけ。がっかり…すこしはなれたところで、海藻がくすくすわらいました。「あら、見て！わたしの、いとこだわ！」ゆらゆらゆれて、こんにちは。カモメさんは、おなかがすいていたのもわすれて、大わらい。漁船は、わかめを、そうっと水にかえしてあげました…海藻は、見えなくなるまで、手をふっていました。",
+          "audio": "audio/ja-JP/the-net-full-of-surprises.m4a",
+          "effects": "audio/ja-JP/the-net-full-of-surprises.effects.json"
         }
       }
     },
@@ -2941,6 +3209,12 @@
           "text": "Nico quería coger la ola perfecta. Remó mar adentro y se sentó en su tabla, esperando. Arriba y abajo. Arriba y abajo. Llegó una ola pequeña. «Demasiado pequeña.» Llegó otra. «Demasiado movida.» El velero pasó deslizándose, con las velas redondas y llenas. La barca de pesca pasó haciendo chuc, chuc, y subió su red. «¿Dónde está MI ola?» Perro ladró desde lejos, como diciendo: ten paciencia. Así que Nico esperó. Y miró. Y esperó. Entonces, a lo lejos, empezó a levantarse una ola, suave, azul y perfecta. Nico se puso de pie. ¡FIUUU! La cabalgó hasta el final, suave como la seda. Saludó a los barcos con la tabla. «¡ESA sí que era la ola perfecta!»",
           "audio": "audio/es-ES/the-perfect-wave.m4a",
           "effects": "audio/es-ES/the-perfect-wave.effects.json"
+        },
+        "ja-JP": {
+          "title": "さいこうの 波",
+          "text": "ニコは、さいこうの波に、のりたいとおもっていました。海へこぎだして、ボードにすわって、まちます。ゆーらゆら。ゆーらゆら。小さな波がきました。「ちっちゃすぎ」また、きました。「でこぼこすぎ」ヨットが、すいーっととおりすぎます。帆は、まあるく、ふっくら。漁船が、ポンポンポンととおって、あみを引きあげました。「ぼくの波は、どこなのー？」とおくの砂浜で、イヌくんが「ワン！」まるで、「あせらない、あせらない」といっているみたい。だからニコは、まちました。じっと見て、まちました。すると、ずっとむこうで、波がもりあがってきました。なめらかで、青くて、ちょうどいい波です。ニコは、すっくと立ちあがりました。ざざざーっ！砂浜まで、すーっと、なめらかに。ニコは、ふねたちに、ボードをふりました。「これこれ！これが、さいこうの波！」",
+          "audio": "audio/ja-JP/the-perfect-wave.m4a",
+          "effects": "audio/ja-JP/the-perfect-wave.effects.json"
         }
       }
     },
@@ -2970,6 +3244,12 @@
           "text": "¡Era el cumpleaños de Estrella, y todos fueron a la charca para hacer una fiesta! Cangrejo trajo la música. Clic-clac, clic-clac, hacían sus pinzas. Pulpo trajo el baile. ¡Con ocho brazos podía bailar con TODOS a la vez! Y Gamba trajo… nada. No he traído regalo, susurró. Estrella movió sus cinco brazos. Has venido, dijo Estrella. Ese es el mejor regalo. Así que Gamba dio vueltas y más vueltas, la bailarina más giratoria de todas. ¡Hurra! Cangrejo chocó las pinzas y bailó. Pulpo abrazó a todos a la vez. Y Estrella tuvo el cumpleaños más feliz que ha tenido nunca una estrella.",
           "audio": "audio/es-ES/the-pool-party.m4a",
           "effects": "audio/es-ES/the-pool-party.effects.json"
+        },
+        "ja-JP": {
+          "title": "潮だまりの パーティー",
+          "text": "きょうは、ヒトデさんのおたんじょうび。潮だまりで、パーティー！カニくんのプレゼントは、おんがく。はさみで、カチカチ、カチカチ。タコくんのプレゼントは、ダンス。うでが八本だから、みーんなと、いっぺんにおどれます！そして、エビさんのプレゼントは…なんにもなし。「わたし、なにも、もってこなかったの」と、ちいさなこえ。ヒトデさんは、五本のうでを、ふりふり。「きてくれたのが、いちばんのプレゼントよ」エビさんは、だれよりもじょうずに、くるくるくるりん！ばんざーい！カニくんは、カチカチおどり、タコくんは、みんなをいっぺんにぎゅーっ。ヒトデさんの、いちばんしあわせなおたんじょうび。",
+          "audio": "audio/ja-JP/the-pool-party.m4a",
+          "effects": "audio/ja-JP/the-pool-party.effects.json"
         }
       }
     },
@@ -2998,6 +3278,12 @@
           "text": "En la charca vivía Erizo, redondo, morado y cubierto de pinchos. Lo que más quería Erizo era un abrazo. Pero todos miraban sus pinchos y decían: ¡Uy, cómo pincha! Estrella lo saludaba de lejos. Saludar está bien. Pero no es un abrazo. Entonces llegó nadando Pulpo. ¿Por qué estás triste, Erizo? Porque pincho demasiado para que me abracen, dijo Erizo. Pulpo miró de cerca. Erizo meneó sus pinchos. Eran suaves y redondos en la punta, como un pincel. No pinchas nada, dijo Pulpo. Y yo tengo ocho brazos. Eso es mucho abrazo. Así que nadó hasta él y lo envolvió con sus ocho brazos rizados. Estrella llegó dando volteretas para unirse. Tres amigos, un abrazo enorme y blandito.",
           "audio": "audio/es-ES/the-prickly-hug.m4a",
           "effects": "audio/es-ES/the-prickly-hug.effects.json"
+        },
+        "ja-JP": {
+          "title": "チクチクの ぎゅー",
+          "text": "潮だまりのなかに、ウニくんがすんでいました。まあるくて、むらさきいろで、とげとげだらけ。ウニくんのねがいは、ぎゅっとしてもらうこと。でも、みんな、とげを見ると、「わあ、チクチクしそう！」って。ヒトデさんは、とおくから手をふるだけ。うれしいけど、ぎゅっとは、ちがうよね。そこへ、タコくんが、およいできました。「ウニくん、どうしてしょんぼり？」「ぼく、チクチクだから、ぎゅってしてもらえないの」とウニくん。タコくんは、よーく見てみました。ウニくんが、とげを、ふりふり。とげのさきは、まあるくて、ふわふわ。まるで、えふでみたい。「ぜんぜん、チクチクしないよ」とタコくん。「それに、ぼく、うでが八本もあるんだ。ぎゅっとなら、まかせて！」すいーっとよっていって、くるくるのうで八本で、ぎゅーっ。ヒトデさんも、くるりん、くるりんところがってきて、なかまいり。なかよし三びき、大きな、むぎゅーっ！",
+          "audio": "audio/ja-JP/the-prickly-hug.m4a",
+          "effects": "audio/ja-JP/the-prickly-hug.effects.json"
         }
       }
     },
@@ -3028,6 +3314,12 @@
           "text": "El sol se escondía sobre la charca, dorado y rosa. Erizo bostezó un bostezo pequeñito y morado. Meneó sus pinchos suaves, un último meneo. Buenas noches, Erizo, dijo Almeja. Se abrió de par en par, enseñó su perla al cielo de la tarde, y se volvió a cerrar, bien calentita. Alga se mecía, despacio… despacio… La noche llegó despacito. La luna se asomó al agua. Estrella movió un brazo dormilón. Buenas noches a todos. Erizo cerró los ojos. Almeja cerró los suyos. Y Alga se inclinó sobre sus amigos callados, suave como una manta. Chist. La charca está dormida. Buenas noches.",
           "audio": "audio/es-ES/the-quietest-friends.m4a",
           "effects": "audio/es-ES/the-quietest-friends.effects.json"
+        },
+        "ja-JP": {
+          "title": "しずかな なかまたち",
+          "text": "潮だまりの上で、お日さまが、きんいろとピンクにしずんでいきます。ウニくんが、ちいさなむらさきのあくび。ふわぁ。やわらかいとげを、さいごに、ふりふり。「おやすみ、ウニくん」と貝さん。ぱかっとひらいて、ゆうやけ空にしんじゅを見せると、また、ぴたっ。ぬくぬくです。海藻は、ゆらり…ゆらり…そっと、よるがきました。お月さまが、水をのぞきこみます。ヒトデさんが、ねむそうに、うでを一本ふりました。「みんな、おやすみ」ウニくんが、目をとじました。貝さんも、目をとじました。海藻は、しずかななかまたちに、もうふみたいに、そうっとかぶさりました。しーっ。潮だまりは、おねむです。おやすみ。",
+          "audio": "audio/ja-JP/the-quietest-friends.m4a",
+          "effects": "audio/ja-JP/the-quietest-friends.effects.json"
         }
       }
     },
@@ -3056,6 +3348,12 @@
           "text": "Lola y Perro estaban de picnic en la arena. Entonces… plic. Ploc. ¡Tip-tap! ¡Lluvia! «¡Rápido, Perro! ¡Debajo de la sombrilla!» Se apretujaron bajo la gran sombrilla roja y blanca. Tac, tac, tac, hacía la lluvia encima. ¡Qué a gustito! Pero Perro no podía estarse quieto. Salió corriendo bajo la lluvia, vueltas y más vueltas. Luego volvió, chorreando, y se SACUDIÓ justo al lado de Lola. «¡Perro! ¡Ahora estoy más mojada que la lluvia!» Luego dejó de llover. La sombrilla dio una vueltecita, sacudiéndose las últimas gotas. Y allí, sobre la bahía, apareció un arcoíris. «Ha merecido la pena mojarse.»",
           "audio": "audio/es-ES/the-rainy-picnic.m4a",
           "effects": "audio/es-ES/the-rainy-picnic.effects.json"
+        },
+        "ja-JP": {
+          "title": "あめの ピクニック",
+          "text": "ローラとイヌくんは、砂浜で、ピクニックをしていました。すると…ぽつん。ぽつん。ぱらぱらぱら！あめです！「イヌくん、はやく！パラソルのしたへ！」赤と白の、大きなビーチパラソルのしたに、ぎゅうぎゅうもぐりこみました。あめが、うえで、とん、とん、とん。ぬくぬく！でも、イヌくんは、じっとしていられません。あめのなかへとびだして、ぐるぐる、ぐるぐる。それから、びしょぬれでもどってきて、ローラのすぐよこで、ぶるぶるぶるっ！「イヌくんったら！あめより、びっしょびしょ！」やがて、あめがやみました。パラソルが、くるっとまわって、さいごのしずくを、ぴっぴっ。海のむこうに、にじがかかっています。「ぬれても、よかったね」",
+          "audio": "audio/ja-JP/the-rainy-picnic.m4a",
+          "effects": "audio/ja-JP/the-rainy-picnic.effects.json"
         }
       }
     },
@@ -3084,6 +3382,12 @@
           "text": "Nico cogió su tabla y remó mar adentro. ¡Fiuuu! Se puso de pie sobre una ola. Foca lo miraba desde las rocas. Dio palmadas con las aletas. ¡Ella también quería hacer surf! El flotador pasó meciéndose. Foca nadó hasta él para probar a subirse. El flotador dio vueltas, y vueltas, y vueltas… y ¡CHOF! Foca resbaló al agua. Nico la llamó desde su tabla. «¡Foca! No te hace falta tabla. ¡Tú puedes surfear sola!» Así que Foca lo intentó. Se estiró, larga y suave, y cuando llegó la siguiente ola… ¡la cabalgó, fiuuu, como una tabla de surf gris y con bigotes! Juntos, cabalgaron la ola hasta la orilla. Nico agitó su tabla en el aire. «¿Otra vez?» ¡Foca estaba encantada!",
           "audio": "audio/es-ES/the-seal-who-wanted-to-surf.m4a",
           "effects": "audio/es-ES/the-seal-who-wanted-to-surf.effects.json"
+        },
+        "ja-JP": {
+          "title": "サーフィンしたい アザラシさん",
+          "text": "ニコが、ボードをかかえて、こぎだしました。ざざーっ！すっくと立って、波のりです。アザラシさんは、岩の上から見ていました。ひれで、ぱちぱち。わたしも、サーフィンしたい！うきわが、ぷかぷかながれてきました。アザラシさんは、のってみようと、およいでいきます。うきわは、くるくる、くるくる…ざぶーん！アザラシさん、つるーん！ニコが、ボードの上からよびかけます。「アザラシさん！ボードは、いらないよ。そのままで、サーフィンできるよ！」よーし、やってみよう。からだを、ながーく、すうっとのばして、つぎの波がきたら…すいーっ！まるで、おひげのはえた、はいいろのサーフボード！ふたりならんで、波にのって、すーっと、もどってきました。ニコは、ボードを高くあげて、ふりました。「もういっかい？」オウッ！アザラシさんは、まちきれません。",
+          "audio": "audio/ja-JP/the-seal-who-wanted-to-surf.m4a",
+          "effects": "audio/ja-JP/the-seal-who-wanted-to-surf.effects.json"
         }
       }
     },
@@ -3112,6 +3416,12 @@
           "text": "¡Una carrera hasta la charca! Correlimos saltaba de una pata a otra. ¡Yo soy el más rápido! Cangrejo Ermitaño suspiró. Yo soy muy lento. Y yo… todavía… más lenta, dijo Tortuga. Preparados, listos… ¡YA! ¡Zas! Allá fue Correlimos. Ermitaño y Tortuga salieron, paso… a paso… Pero a medio camino, Correlimos vio algo rico. ¡Pic, pic, pic! Luego otra cosa. ¡Pic, pic! Ermitaño y Tortuga siguieron andando, charlando todo el rato. ¿Y quién llegó primero a la charca? ¡Ermitaño y Tortuga, a la vez! Ermitaño se sorprendió tanto que se metió en su concha, y volvió a asomarse. Tortuga escondió la cabeza, y también se asomó, sonriendo. Por fin, llegó Correlimos, el último. He perdido, dijo, ¡pero he ganado más meriendas!",
           "audio": "audio/es-ES/the-slow-race.m4a",
           "effects": "audio/es-ES/the-slow-race.effects.json"
+        },
+        "ja-JP": {
+          "title": "ゆっくり きょうそう",
+          "text": "潮だまりまで、きょうそうだ！シギくんは、あしぶみして、うずうず。「ぼくが、いちばんはやいよ！」ヤドカリくんは、ふうっとためいき。「ぼく、すごくおそいんだ」「わたしは…もっと…おそいわよ」とウミガメさん。よーい…ドン！ピューッ！シギくんは、かけだしました。ヤドカリくんとウミガメさんは、いっぽ…いっぽ…でも、シギくん、とちゅうで、おいしそうなもの、みーつけた！つんつんつん！また、べつのもの。つんつん！ヤドカリくんとウミガメさんは、おしゃべりしながら、こつこつ、すすみます。さあ、さきに潮だまりについたのは？ヤドカリくんとウミガメさん、いっしょに！ヤドカリくんは、びっくりして、かいがらにすっぽり。それから、ひょっこり。ウミガメさんも、くびをひっこめて、にこにこ、ひょっこり。さいごに、いちばんびりのシギくんが、とうちゃく。「まけちゃった」とシギくん。「でも、おやつなら、ぼくのかち！」",
+          "audio": "audio/ja-JP/the-slow-race.m4a",
+          "effects": "audio/ja-JP/the-slow-race.effects.json"
         }
       }
     },
@@ -3140,6 +3450,12 @@
           "text": "Era un día de mucho sol y mucho calor. Cangrejo tenía muchísimo calor. ¡Uf! Entonces vio la sombrilla, roja y blanca, con su borde de volantes. Se metió correteando en su sombra. Aaah. Qué fresquito. Y entonces, ¡fiuuu! Llegó el viento. La sombrilla dio vueltas y vueltas, con los volantes al aire. Y la pelota pasó botando, ¡y se fue con el viento! Cangrejo salió detrás, de lado, todo lo rápido que pudo. ¡Clic, clic, clic! Por fin, el viento paró. La pelota volvió rodando, y Cangrejo volvió detrás, empujándola con las pinzas. La pelota dio vueltas y se paró. Cangrejo se metió otra vez en la sombra. Bailó un bailecito, clic, clic. Y la sombrilla se quedó muy, muy quieta.",
           "audio": "audio/es-ES/the-spinning-umbrella.m4a",
           "effects": "audio/es-ES/the-spinning-umbrella.effects.json"
+        },
+        "ja-JP": {
+          "title": "くるくる パラソル",
+          "text": "かんかんでりの、あつい日です。カニくんは、あつくて、あつくて、たまりません。ふうーっ！そのとき、ビーチパラソルが目に入りました。赤と白で、ふちには、ひらひらのフリル。カニくんは、カサカサッと、そのかげへ。はあ…すずしい。そのとき、びゅうーん！風がふいてきました。パラソルが、くるくるまわって、フリルが、ぱたぱた。そして、ビーチボールが、ぽんぽんはずんで、風にのって、とんでいっちゃった！カニくんは、よこあるきで、せいいっぱいおいかけます。カサカサカサッ！やっと、風がやみました。ボールが、ころころもどってきて、カニくんも、はさみでボールをおしながら、もどってきました。ボールは、くるっとまわって、ぴたり。カニくんは、また、パラソルのかげへ、カサカサッ。カチカチ、ちいさなダンス。パラソルは、もう、ぴくりともうごきませんでした。",
+          "audio": "audio/ja-JP/the-spinning-umbrella.m4a",
+          "effects": "audio/ja-JP/the-spinning-umbrella.effects.json"
         }
       }
     },
@@ -3169,6 +3485,12 @@
           "text": "Despacito, despacito, Tortuga subió arrastrándose por la arena. Flip… flop… flip… Correlimos vino corriendo a mirar. ¿Quién eres? ¡Nunca te había visto! Ah, pero yo ya he estado aquí, dijo Tortuga. Hace muchísimo tiempo nací justo aquí, una tortuguita diminuta en la arena calentita. Luego bajé hasta el agua y me fui nadando. Crucé todo el ancho mar… y he vuelto. Las tortugas siempre vuelven, dijo, a la playa donde nacieron. Correlimos picoteó el suelo, como si pudiera encontrar el sitio exacto. Estrella saludaba desde la charca, emocionadísima. Tortuga escondió la cabeza, un poco tímida, y luego asomó con una sonrisa. Bienvenida a casa, dijo Correlimos. Después, Tortuga se dio la vuelta y se alejó nadando, muy lejos. Hasta la próxima.",
           "audio": "audio/es-ES/turtle-comes-back.m4a",
           "effects": "audio/es-ES/turtle-comes-back.effects.json"
+        },
+        "ja-JP": {
+          "title": "ウミガメさんの かえるところ",
+          "text": "ゆっくり、ゆっくり、ウミガメさんが、砂浜をはいあがってきました。ずりっ…ずりっ…ずりっ…シギくんが、かけてきました。「だあれ？見たことないなあ！」「あら、わたしは、ここにきたことがあるのよ」とウミガメさん。「ずうっとむかし、ここでうまれたの。あったかい砂のなかの、ちっちゃな、ちっちゃなあかちゃんだったのよ」「それから、水のほうへはっていって、およいでいったの。ひろーい海をわたって…また、もどってきたのよ」「ウミガメはね、うまれたうみべに、かならずかえってくるの」シギくんは、あしもとを、つんつん。そのばしょが、見つかるかもしれないから。潮だまりから、ヒトデさんが、うれしそうに手をふっています。ウミガメさんは、ちょっぴりてれて、くびをひっこめると、にっこり、かおを出しました。「おかえりなさい」とシギくん。それからウミガメさんは、くるりとむきをかえて、とおくの海へ、およいでいきました。またね。",
+          "audio": "audio/ja-JP/turtle-comes-back.m4a",
+          "effects": "audio/ja-JP/turtle-comes-back.effects.json"
         }
       }
     },
@@ -3198,6 +3520,12 @@
           "text": "Lola y Nico estaban construyendo algo grande. «¡Hagamos una torre altísima, como el faro!» «¡No, una muralla! ¡Una muralla enorme!» Torre. Muralla. Torre. MURALLA. Así que cada uno construyó solo. Lola llenó el cubo y levantó una torre… alta, más alta… plof. Se desplomó. Nico alisó una muralla larga… pero no tenía nada que proteger. Mmm. Se miraron. «¿Y si… hacemos una torre, con una muralla alrededor?» «¡Y una puerta! ¡Y una bandera!» Así que lo hicieron juntos. Plas, plas, zas. Y allí estaba su castillo de arena, con tres torres. Su banderita roja ondeaba. Lola hizo volar su cometa por encima, y Nico aplaudió. Un castillo, tres torres y dos constructores.",
           "audio": "audio/es-ES/two-towers.m4a",
           "effects": "audio/es-ES/two-towers.effects.json"
+        },
+        "ja-JP": {
+          "title": "タワーと かべ",
+          "text": "ローラとニコは、なにか大きなものを、つくろうとしていました。「とうだいくらい、たかーいタワーをつくろう！」「ちがうよ、かべだよ！でーっかいかべ！」タワー。かべ。タワー。かーべー！そこで、ふたりは、べつべつにつくりました。ローラは、バケツで、タワーをつみあげます…たかく、もっとたかく…どさっ。くたっと、たおれちゃった。ニコは、ながーいかべを、ぺたぺた…でも、まもるものが、なんにもありません。うーん。ふたりは、かおを見あわせました。「じゃあ…タワーのまわりに、かべをつくったら？」「それと、ドアも！はたも！」こんどは、ふたりいっしょに。ぺたぺた、ざっくん。ほら、ふたりの砂のお城が、できました。タワーが、みっつ！小さな赤いはたが、ぱたぱた。ローラはお城の上に、たこを高くあげて、ニコは、ばんざい！お城がひとつ、タワーがみっつ、だいくさんは、ふたり。",
+          "audio": "audio/ja-JP/two-towers.m4a",
+          "effects": "audio/ja-JP/two-towers.effects.json"
         }
       }
     },
@@ -3227,6 +3555,12 @@
           "text": "Ni una pizca de viento. El velero estaba quieto en el mar azul y liso, con las velas blancas colgando. Lola esperaba y esperaba. «Venga, viento.» Gaviota estaba sentada en la arena, sin ganas ni de volar. Entonces… una ondita. Un aleteo. ¡Fiuuu! ¡Ya llegaba el viento! Las velas se hincharon, redondas y llenas. «¡Mira! ¡El viento empuja la vela!» Lola soltó hilo, y arriba subió su cometa. Gaviota se despertó y subió volando junto a la cometa. Y el velero cruzó la bahía, empujado por el viento. Viento para el barco, viento para la cometa, viento bajo las alas de Gaviota. Todos estaban esperando lo mismo.",
           "audio": "audio/es-ES/waiting-for-the-wind.m4a",
           "effects": "audio/es-ES/waiting-for-the-wind.effects.json"
+        },
+        "ja-JP": {
+          "title": "風を まって",
+          "text": "風が、そよりともふきません。ヨットは、たいらな青い海の上で、じっとしたまま。白い帆も、だらーん。ローラは、立ったまま、まっていました。「風さん、ふいてよ…」カモメさんは、砂の上にすわりこんで、とぶ気も、ありません。そのとき…水が、さわっ。なにかが、ひらっ。びゅうーん！風がきた！帆が、まあるく、ぱんぱんにふくらみました。「見て！風が、帆をおしてる！」ローラが糸をのばすと、たこが、すうっと空へ。カモメさんも目をさまして、たこのそばへ、とんでいきました。そしてヨットは、風におされて、海をすいすい、わたっていきます。ヨットに風、たこに風、カモメさんのつばさにも風。みんな、おなじものを、まっていたのです。",
+          "audio": "audio/ja-JP/waiting-for-the-wind.m4a",
+          "effects": "audio/ja-JP/waiting-for-the-wind.effects.json"
         }
       }
     },
@@ -3256,6 +3590,12 @@
           "text": "Lola se acercó a la charca de las rocas y miró dentro. «¿Quién hay hoy en casa?» Salió Pulpo, naranja y rizado. Y luego Estrella, muy sonriente. «¡Vamos a jugar! ¿Quién tiene más brazos?» Empezó Lola. Uno, dos. ¡Dos brazos! Estrella se estiró bien. Uno, dos, tres, cuatro, cinco. ¡Cinco brazos! Entonces Pulpo meneó todos los suyos. «Uno, dos, tres, cuatro, cinco, seis, siete… ¡OCHO!» ¡Ocho brazos! Todos los pulpos tienen ocho. «¡Has ganado, Pulpo!» Pero dos brazos son perfectos para aplaudir, dijo Pulpo. Así que Lola aplaudió, Estrella lo celebró y Pulpo giró y giró, con sus ocho brazos al vuelo.",
           "audio": "audio/es-ES/who-has-the-most-arms.m4a",
           "effects": "audio/es-ES/who-has-the-most-arms.effects.json"
+        },
+        "ja-JP": {
+          "title": "うでが いちばん おおいのは？",
+          "text": "ローラが、潮だまりのふちにきて、のぞきこみました。「きょうは、だれが、おうちにいるかな？」ぬうっと出てきたのは、オレンジいろで、くるくるの、タコくん。それから、ヒトデさんも、にっこり。「ゲームしよう！うでがいちばんおおいのは、だーれだ？」まずは、ローラ。いーち、にーい。二本！ヒトデさんは、ぐーんとのびました。いち、に、さん、し、ご。五本！それから、タコくんが、うでをぜんぶ、くねくね。「いち、に、さん、し、ご、ろく、なな…はーち！」八本！タコは、みんな、うでが八本なのです。「タコくんの、かち！」「でも、はくしゅするなら、二本がちょうどいいね」とタコくん。ローラは、ぱちぱち。ヒトデさんは、ばんざい。タコくんは、八本のうでをひらひらさせて、くるりん、くるりん。",
+          "audio": "audio/ja-JP/who-has-the-most-arms.m4a",
+          "effects": "audio/ja-JP/who-has-the-most-arms.effects.json"
         }
       }
     },
@@ -3284,6 +3624,12 @@
           "text": "Cangrejo estaba sentado en las rocas. Abajo, en la charca, estaba Estrella, sobre dos de sus cinco brazos naranjas. Ella lo saludó. Cangrejo quería ir a verla como todo el mundo: hacia delante. Un paso adelante. ¡Tambaleo! Dos pasos adelante. ¡Huy! Se le enredaron las patas y se dio la vuelta, boca arriba. Entonces llegó Cangrejo Ermitaño, con su concha de rayas a cuestas. ¿Por qué andas hacia delante?, preguntó. Las patas de los cangrejos se doblan de lado. ¡Están hechas así! Así que Cangrejo lo probó. Clic, clic, de lado… ¡zas! Llegó en un momento. Cangrejo chocó las pinzas y bailó de lado, muy contento. Y desde entonces, los cangrejos van de lado.",
           "audio": "audio/es-ES/why-crab-walks-sideways.m4a",
           "effects": "audio/es-ES/why-crab-walks-sideways.effects.json"
+        },
+        "ja-JP": {
+          "title": "カニくんは なぜ よこあるき？",
+          "text": "カニくんは、岩の上にすわっていました。下の潮だまりには、ヒトデさん。五本のうでのうち、二本で立っています。「こんにちは」と手をふりました。カニくんは、みんなとおなじように、まっすぐまえにあるいて、あいにいくことに。まえに、いっぽ。ぐらっ！まえに、にほ。おっとっと！あしがこんがらがって、ころん。ひっくりかえっちゃった。そこへ、ヤドカリくんが、しましまのかいがらをしょって、やってきました。「どうして、まえにあるいてるの？」とヤドカリくん。「カニのあしは、よこにまがるんだよ。そういうふうに、できてるの！」そこで、カニくんは、やってみました。カサカサッ、よこへ…シューッ！あっというまに、とうちゃく。カニくんは、はさみをカチカチ。うれしい、よこあるきダンス。それからずっと、カニは、よこあるき。",
+          "audio": "audio/ja-JP/why-crab-walks-sideways.m4a",
+          "effects": "audio/ja-JP/why-crab-walks-sideways.effects.json"
         }
       }
     },
@@ -3313,6 +3659,12 @@
           "text": "El flotador se mecía sobre el mar, rojo, blanco y redondo. Pececito nadó hasta ponerse debajo. ¿Cómo puede quedarse ahí encima del agua?, se preguntó. Las piedras se hunden. Las conchas se hunden. Así que lo empujó hacia abajo con el hocico. Abajo se fue… y ¡BLUP! Volvió a subir. Tortuga bajó arrastrándose hasta la orilla para verlo. Está lleno de aire, dijo Tortuga. Y el aire siempre quiere subir, por eso el flotador flota. ¿Como un globo en el agua?, dijo Pececito. Exacto. El flotador giró despacito, como si dijera que sí. Tortuga escondió la cabeza y volvió a asomarla, sonriendo. Y Pececito meneó las aletas y nadó alrededor del flotador una y otra vez, porque ya conocía su secreto.",
           "audio": "audio/es-ES/why-the-ring-floats.m4a",
           "effects": "audio/es-ES/why-the-ring-floats.effects.json"
+        },
+        "ja-JP": {
+          "title": "うきわは なぜ うくの？",
+          "text": "うきわが、海の上で、ぷかぷか。赤と白の、まあるいうきわです。おさかなくんが、そのしたに、およいできました。どうして、水の上に、のっかっていられるのかな？小石は、しずむ。かいがらも、しずむ。そこで、はなさきで、ぐいっとおしてみました。しずんで…ぽこんっ！また、うかんできました。おさかなくんは、くすくす。ウミガメさんが、波打ち際まで、見にきました。「なかに、くうきが、いっぱいつまっているのよ」とウミガメさん。「くうきは、いつも上へいきたがるの。だから、うきわは、うくのよ」「水のなかの、ふうせんみたいに？」とおさかなくん。「そのとおり」うきわが、ゆっくりまわりました。まるで、うんうん、とうなずいているみたい。ウミガメさんは、くびをひっこめて、また、にっこりかおを出しました。おさかなくんは、ひれをぴちぴち。うきわのまわりを、ぐるぐるおよぎました。だって、もう、うきわのひみつを、しっているんだもの。",
+          "audio": "audio/ja-JP/why-the-ring-floats.m4a",
+          "effects": "audio/ja-JP/why-the-ring-floats.effects.json"
         }
       }
     }

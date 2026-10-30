@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "あおむしさんは、なつのよるの小さなあかりを、かぞえてみたかったのです。でも、くさのなかからは見えません。くさ、くさ、くさばかり。そこへ、ひょっこりキノコ",
+      "effect": "night",
+      "duration": 76.76,
+      "intensity": 0.7
+    },
+    {
+      "at": 0,
+      "cue": "あおむしさんは、なつのよるの小さなあかりを、かぞえてみたかったのです。でも、くさのなかからは見えません。くさ、くさ、くさばかり。そこへ、ひょっこりキノコ",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 12.12,
+      "cue": "くさ、くさ、くさばかり。そこへ、ひょっこりキノコ",
+      "sticker": "caterpillar",
+      "expression": "sad"
+    },
+    {
+      "at": 16.68,
+      "cue": "キノコ",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 17.55,
+      "cue": "わたしにのぼって。」あおむしさんは、赤いかさの上で、ぐーん",
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 19.56,
+      "cue": "あおむしさんは、赤いかさの上で、ぐーん",
+      "sticker": "caterpillar",
+      "go": "on",
+      "target": "mushroom"
+    },
+    {
+      "at": 20.92,
+      "cue": "赤いかさの上で、ぐーん",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 22.28,
+      "cue": "ぐーん",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "hold"
+    },
+    {
+      "at": 29.64,
+      "cue": "チョウチョさんが、キノコのかさの下へもぐって、はねをとじました。するとホタルさんがとんできて",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 30.76,
+      "cue": "キノコのかさの下へもぐって、はねをとじました。するとホタルさんがとんできて",
+      "sticker": "butterfly",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 32.84,
+      "cue": "はねをとじました。するとホタルさんがとんできて",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 35.08,
+      "cue": "ホタルさんがとんできて",
+      "sticker": "firefly",
+      "enter": true
+    },
+    {
+      "at": 35.08,
+      "cue": "ホタルさんがとんできて",
+      "sticker": "firefly",
+      "go": "to",
+      "target": "caterpillar"
+    },
+    {
+      "at": 38.04,
+      "cue": "ぴかーっと、いちばんあかるく。はらっぱじ",
+      "sticker": "firefly",
+      "effect": "glow",
+      "duration": 3,
+      "intensity": 1,
+      "color": "#FFE27A"
+    },
+    {
+      "at": 41.16,
+      "cue": "はらっぱじ",
+      "effect": "fireflies",
+      "duration": 28.88,
+      "intensity": 0.6
+    },
+    {
+      "at": 52.6,
+      "cue": "そのとき、キノコがくしゃみ。はっくしょん！キラキラが、いっぱい！じ",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 60.44,
+      "cue": "あおむしさんは、くねくね大わらい",
+      "sticker": "caterpillar",
+      "animation": "look-up",
+      "mode": "resume"
+    },
+    {
+      "at": 66.52,
+      "cue": "すやすや。ホタルさんが、おやすみとてをふって、「あかりは、あしたもあるよ",
+      "sticker": "caterpillar",
+      "animation": "sleep",
+      "mode": "hold"
+    },
+    {
+      "at": 68.04,
+      "cue": "ホタルさんが、おやすみとてをふって、「あかりは、あしたもあるよ",
+      "sticker": "firefly",
+      "expression": "happy"
+    },
+    {
+      "at": 68.04,
+      "cue": "ホタルさんが、おやすみとてをふって、「あかりは、あしたもあるよ",
+      "sticker": "firefly",
+      "animation": "wave"
+    }
+  ]
+}

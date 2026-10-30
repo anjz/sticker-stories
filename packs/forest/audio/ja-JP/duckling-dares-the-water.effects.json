@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ぽかぽかの、はれた朝。カエルさんが",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.7
+    },
+    {
+      "at": 5.88,
+      "cue": "カエルさんが",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 5.88,
+      "cue": "カエルさんが",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 7.72,
+      "cue": "ハエをつかまえています。ぺろっ！ごくん！「おいでよ！」と、アヒルの子をよびました。アヒルの子は、ふちまでよちよち",
+      "sticker": "frog",
+      "animation": "catch-fly"
+    },
+    {
+      "at": 11,
+      "cue": "おいでよ！」と、アヒルの子をよびました。アヒルの子は、ふちまでよちよち",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 13.16,
+      "cue": "アヒルの子をよびました。アヒルの子は、ふちまでよちよち",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 15.48,
+      "cue": "アヒルの子は、ふちまでよちよち",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 18.76,
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 25.96,
+      "cue": "つばさにあたまをかくしました。ゆっくり、ゆっくり、カタツ",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 31.32,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 31.32,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "go": "to",
+      "target": "duckling"
+    },
+    {
+      "at": 39.8,
+      "cue": "すぽっ。それから…ちょっぴり、のぞきました。アヒルの子も、そっとのぞきました。オレンジの足を、かたほう",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 42.28,
+      "cue": "ちょっぴり、のぞきました。アヒルの子も、そっとのぞきました。オレンジの足を、かたほう",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 44.68,
+      "cue": "アヒルの子も、そっとのぞきました。オレンジの足を、かたほう",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 47.88,
+      "cue": "オレンジの足を、かたほう",
+      "sticker": "duckling",
+      "animation": "dip-foot"
+    },
+    {
+      "at": 55.08,
+      "cue": "みずかきが、オールみたいに水をおして、すい、すい…ういてる",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond",
+      "by": "swim",
+      "another": true
+    },
+    {
+      "at": 61.29,
+      "cue": "およいでる！」ガーッ",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 62.68,
+      "cue": "ガーッ",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 62.68,
+      "cue": "ガーッ",
+      "sticker": "duckling",
+      "animation": "quack"
+    },
+    {
+      "at": 62.68,
+      "cue": "ガーッ",
+      "sticker": "frog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 63.96,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 63.96,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "effect": "hearts"
+    }
+  ]
+}

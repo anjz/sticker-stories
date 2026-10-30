@@ -1,0 +1,161 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "サーフィンに、ぴったりの朝です。ニコが、きいろいボードをかかえて、やってきました",
+      "sticker": "sailboat",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.3
+    },
+    {
+      "at": 0,
+      "cue": "サーフィンに、ぴったりの朝です。ニコが、きいろいボードをかかえて、やってきました",
+      "effect": "sunshine",
+      "duration": 30,
+      "intensity": 0.6
+    },
+    {
+      "at": 5.8,
+      "cue": "ニコが、きいろいボードをかかえて、やってきました",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 5.8,
+      "cue": "ニコが、きいろいボードをかかえて、やってきました",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 9.08,
+      "cue": "きょうは、いちばんでっかいのに、のってやる！」むこうの海では、ヨットが、ぷかぷか。帆が、ふっくら。そのとき、大きな波が、ざばーっ！高くて、白くて、あわあわです",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 13.68,
+      "cue": "ヨットが、ぷかぷか。帆が、ふっくら。そのとき、大きな波が、ざばーっ！高くて、白くて、あわあわです",
+      "sticker": "sailboat",
+      "enter": true
+    },
+    {
+      "at": 13.68,
+      "cue": "ヨットが、ぷかぷか。帆が、ふっくら。そのとき、大きな波が、ざばーっ！高くて、白くて、あわあわです",
+      "sticker": "sailboat",
+      "go": "to",
+      "target": "sea"
+    },
+    {
+      "at": 15.72,
+      "cue": "帆が、ふっくら。そのとき、大きな波が、ざばーっ！高くて、白くて、あわあわです",
+      "sticker": "sailboat",
+      "animation": "sails"
+    },
+    {
+      "at": 28.08,
+      "cue": "ニコは、たちどまりました。あれは、すごく大きい。ひざが、がくがく",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 32.56,
+      "cue": "ひざが、がくがく",
+      "sticker": "surfer",
+      "effect": "shake"
+    },
+    {
+      "at": 35.02,
+      "cue": "アザラシさんが、岩の上に、よいしょ。ひれで、ぱちぱち、はくし",
+      "sticker": "seal",
+      "enter": true
+    },
+    {
+      "at": 35.02,
+      "cue": "アザラシさんが、岩の上に、よいしょ。ひれで、ぱちぱち、はくし",
+      "sticker": "seal",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 38.48,
+      "cue": "ひれで、ぱちぱち、はくし",
+      "sticker": "seal",
+      "expression": "happy"
+    },
+    {
+      "at": 38.48,
+      "cue": "ひれで、ぱちぱち、はくし",
+      "sticker": "seal",
+      "animation": "clap"
+    },
+    {
+      "at": 43.78,
+      "cue": "まるで、「小さいのから、はじめてごらん」といっているみたい。そこでニコは、小さな波をまちました。ざざーっ！ボードの上に、たった！ウミガメさんが、となりをおよいで、にっこり。ニコは、そのまま",
+      "sticker": "seal",
+      "animation": "nod"
+    },
+    {
+      "at": 43.78,
+      "cue": "まるで、「小さいのから、はじめてごらん」といっているみたい。そこでニコは、小さな波をまちました。ざざーっ！ボードの上に、たった！ウミガメさんが、となりをおよいで、にっこり。ニコは、そのまま",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sea",
+      "by": "paddle"
+    },
+    {
+      "at": 52.1,
+      "cue": "ざざーっ！ボードの上に、たった！ウミガメさんが、となりをおよいで、にっこり。ニコは、そのまま",
+      "sticker": "surfer",
+      "animation": "ride-wave"
+    },
+    {
+      "at": 55.86,
+      "cue": "ウミガメさんが、となりをおよいで、にっこり。ニコは、そのまま",
+      "sticker": "turtle",
+      "enter": true,
+      "by": "swim"
+    },
+    {
+      "at": 55.86,
+      "cue": "ウミガメさんが、となりをおよいで、にっこり。ニコは、そのまま",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "surfer",
+      "by": "swim"
+    },
+    {
+      "at": 58.26,
+      "cue": "にっこり。ニコは、そのまま",
+      "sticker": "turtle",
+      "effect": "hearts"
+    },
+    {
+      "at": 61.06,
+      "sticker": "surfer",
+      "go": "to",
+      "target": "sand",
+      "by": "surf"
+    },
+    {
+      "at": 63.54,
+      "cue": "もういっぽん。もういっぽん！ニコはアザラシさんに、ボードを高く上げて、手をふりました",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 67.22,
+      "cue": "ボードを高く上げて、手をふりました",
+      "sticker": "surfer",
+      "animation": "wave"
+    },
+    {
+      "at": 69.86,
+      "cue": "ありがとう、アザラシさん！でっかいのは、またあしたね",
+      "sticker": "seal",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "なつでいちばん、あつい日のことです。ヤドカリくんは、あんまりあつくて、かいがらのなかに、すっぽり",
+      "sticker": "umbrella",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "なつでいちばん、あつい日のことです。ヤドカリくんは、あんまりあつくて、かいがらのなかに、すっぽり",
+      "effect": "sunshine",
+      "duration": 30,
+      "intensity": 0.9
+    },
+    {
+      "at": 6.6,
+      "cue": "ヤドカリくんは、あんまりあつくて、かいがらのなかに、すっぽり",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 9.24,
+      "cue": "かいがらのなかに、すっぽり",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 14.24,
+      "cue": "ひょっこり顔を出すと…赤と白のビーチパラソル。その下には、すずしいひかげ。ああ、いいきもち",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 22.52,
+      "cue": "ああ、いいきもち",
+      "sticker": "hermit-crab",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 22.52,
+      "cue": "ああ、いいきもち",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 25.4,
+      "cue": "シギくんが、はしってきました。はあ、はあ。あつい、あつい、あつーい！ヤドカリくんは、ひかげを見ました。ぼくのひかげ",
+      "sticker": "sandpiper",
+      "enter": true,
+      "by": "run"
+    },
+    {
+      "at": 27.8,
+      "cue": "はあ、はあ。あつい、あつい、あつーい！ヤドカリくんは、ひかげを見ました。ぼくのひかげ",
+      "sticker": "sandpiper",
+      "expression": "sad"
+    },
+    {
+      "at": 39.24,
+      "cue": "それから、ちょこっと、よこへずれました",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 43.08,
+      "cue": "ふたり、はいれるよ」つぎに、カニくんが、まっかっかで、カサカサやってきました。「三人、はいれるよ！」とヤドカリくん",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 45.16,
+      "cue": "つぎに、カニくんが、まっかっかで、カサカサやってきました。「三人、はいれるよ！」とヤドカリくん",
+      "sticker": "sandpiper",
+      "go": "under",
+      "target": "umbrella",
+      "by": "run"
+    },
+    {
+      "at": 45.16,
+      "cue": "つぎに、カニくんが、まっかっかで、カサカサやってきました。「三人、はいれるよ！」とヤドカリくん",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 45.16,
+      "cue": "つぎに、カニくんが、まっかっかで、カサカサやってきました。「三人、はいれるよ！」とヤドカリくん",
+      "sticker": "crab",
+      "enter": true
+    },
+    {
+      "at": 49.72,
+      "cue": "三人、はいれるよ！」とヤドカリくん",
+      "sticker": "hermit-crab",
+      "animation": "wave"
+    },
+    {
+      "at": 53.4,
+      "cue": "そよかぜで、パラソルがくるりとまわって、みんなをそよそよ",
+      "sticker": "crab",
+      "go": "under",
+      "target": "umbrella"
+    },
+    {
+      "at": 53.4,
+      "cue": "そよかぜで、パラソルがくるりとまわって、みんなをそよそよ",
+      "sticker": "umbrella",
+      "animation": "spin"
+    },
+    {
+      "at": 58.66,
+      "cue": "ひかげは、ふしぎと、みんながはいれる大きさでした",
+      "sticker": "hermit-crab",
+      "effect": "hearts"
+    },
+    {
+      "at": 58.66,
+      "cue": "ひかげは、ふしぎと、みんながはいれる大きさでした",
+      "sticker": "sandpiper",
+      "effect": "hearts"
+    }
+  ]
+}

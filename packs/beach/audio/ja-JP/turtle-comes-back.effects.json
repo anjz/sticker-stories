@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 6.36,
+      "cue": "ウミガメさんが",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 6.36,
+      "cue": "ウミガメさんが",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 13.08,
+      "cue": "シギくんが、かけてきました",
+      "sticker": "sandpiper",
+      "enter": true,
+      "by": "run"
+    },
+    {
+      "at": 13.08,
+      "cue": "シギくんが、かけてきました",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "turtle",
+      "by": "run"
+    },
+    {
+      "at": 15.3,
+      "sticker": "sandpiper",
+      "expression": "surprised"
+    },
+    {
+      "at": 18.2,
+      "cue": "あら、わたしは、ここにきたことがあるのよ」とウミガメさん。「ずうっとむかし、ここでうまれたの。あったかい",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 18.2,
+      "cue": "あら、わたしは、ここにきたことがあるのよ」とウミガメさん。「ずうっとむかし、ここでうまれたの。あったかい",
+      "sticker": "turtle",
+      "animation": "talk"
+    },
+    {
+      "at": 31.24,
+      "cue": "それから、水のほうへはっていって、およいでいったの。ひろーい海をわたって…また、もどってきたのよ",
+      "sticker": "sandpiper",
+      "effect": "wobble"
+    },
+    {
+      "at": 39.94,
+      "cue": "ウミガメはね、うまれたうみべに、かならずかえってくるの」シギくんは、あしもとを、つんつん。そのばしょが、見つかるかもしれないから。潮",
+      "sticker": "turtle",
+      "effect": "glow",
+      "intensity": 0.4
+    },
+    {
+      "at": 44.6,
+      "cue": "シギくんは、あしもとを、つんつん。そのばしょが、見つかるかもしれないから。潮",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 51.16,
+      "cue": "潮",
+      "sticker": "starfish",
+      "enter": true
+    },
+    {
+      "at": 51.16,
+      "cue": "潮",
+      "sticker": "starfish",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 53.24,
+      "cue": "うれしそうに手をふっています。ウミガメさんは、ちょっぴりてれて、くびをひっこめると、にっこり、かおを出しました。「おかえりなさい」とシギくん",
+      "sticker": "starfish",
+      "animation": "wave"
+    },
+    {
+      "at": 55.48,
+      "cue": "ウミガメさんは、ちょっぴりてれて、くびをひっこめると、にっこり、かおを出しました。「おかえりなさい」とシギくん",
+      "sticker": "turtle",
+      "animation": "peek"
+    },
+    {
+      "at": 64.28,
+      "cue": "それからウミガメさんは、くるりとむきをかえて、とおくの海へ、およいでいきました。またね",
+      "sticker": "turtle",
+      "effect": "hearts"
+    },
+    {
+      "at": 64.28,
+      "cue": "それからウミガメさんは、くるりとむきをかえて、とおくの海へ、およいでいきました。またね",
+      "sticker": "sandpiper",
+      "effect": "hearts"
+    },
+    {
+      "at": 67.72,
+      "cue": "とおくの海へ、およいでいきました。またね",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "sea",
+      "by": "swim"
+    },
+    {
+      "at": 70.68,
+      "cue": "またね",
+      "sticker": "sandpiper",
+      "animation": "wave"
+    }
+  ]
+}

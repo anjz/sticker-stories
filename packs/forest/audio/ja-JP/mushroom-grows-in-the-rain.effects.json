@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ぽつぽつ、ぽつぽつ。のはらに雨がふってきました。テントウ",
+      "effect": "rain",
+      "duration": 55.3,
+      "intensity": 0.7
+    },
+    {
+      "at": 8.52,
+      "cue": "テントウ",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 10.68,
+      "cue": "キノコのかさのしたへ",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 11.24,
+      "cue": "かさのしたへ",
+      "sticker": "ladybug",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 12.42,
+      "cue": "どうぞ、どうぞ！」とキノコ。ゆっくり、ゆっくり、カタツ",
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 16.92,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 19.86,
+      "cue": "もちろん！」ぎ",
+      "sticker": "mushroom",
+      "animation": "nod"
+    },
+    {
+      "at": 20.92,
+      "cue": "ぎ",
+      "sticker": "snail",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 22.76,
+      "cue": "カエルさんが、ぴっちぴっち、ちゃっぷちゃっぷ",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 22.76,
+      "cue": "カエルさんが、ぴっちぴっち、ちゃっぷちゃっぷ",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 23.72,
+      "cue": "ぴっちぴっち、ちゃっぷちゃっぷ",
+      "sticker": "frog",
+      "animation": "jump"
+    },
+    {
+      "at": 30.76,
+      "cue": "カエルさんは、ぴたっ",
+      "sticker": "frog",
+      "expression": "sad"
+    },
+    {
+      "at": 34.6,
+      "cue": "カエルさんも、ぎ",
+      "sticker": "frog",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 36.28,
+      "cue": "むぎ",
+      "sticker": "ladybug",
+      "expression": "surprised"
+    },
+    {
+      "at": 37.24,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 46.84,
+      "cue": "ちょっぴりのびました。「ほら、みんなはいれる",
+      "sticker": "mushroom",
+      "effect": "glow"
+    },
+    {
+      "at": 46.84,
+      "cue": "ちょっぴりのびました。「ほら、みんなはいれる",
+      "sticker": "mushroom",
+      "animation": "grow"
+    },
+    {
+      "at": 50.36,
+      "cue": "みんなでぎ",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 50.36,
+      "cue": "みんなでぎ",
+      "sticker": "ladybug",
+      "expression": "happy"
+    },
+    {
+      "at": 55.24,
+      "cue": "お日さまが、にっこり。カタツ",
+      "effect": "sunshine"
+    },
+    {
+      "at": 57,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 59,
+      "cue": "テントウ",
+      "sticker": "ladybug",
+      "go": "back"
+    },
+    {
+      "at": 61.08,
+      "cue": "カエルさんが、ぴょーん",
+      "sticker": "frog",
+      "go": "back"
+    }
+  ]
+}

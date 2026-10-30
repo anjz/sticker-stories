@@ -1,0 +1,133 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "カモメさんが、さいしょに見つけました。海に、みどりいろのなにかが、ぷかぷか。「クワーッ、クワーッ！」なんども、なきました。ボトルメールです！ちゃぷちゃぷ、波打ち際までながれてきました。ローラがかけてきて、ニコもやってきました",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "カモメさんが、さいしょに見つけました。海に、みどりいろのなにかが、ぷかぷか。「クワーッ、クワーッ！」なんども、なきました。ボトルメールです！ちゃぷちゃぷ、波打ち際までながれてきました。ローラがかけてきて、ニコもやってきました",
+      "sticker": "seagull",
+      "go": "to",
+      "target": "rocks"
+    },
+    {
+      "at": 9.44,
+      "cue": "クワーッ、クワーッ！」なんども、なきました。ボトルメールです！ちゃぷちゃぷ、波打ち際までながれてきました。ローラがかけてきて、ニコもやってきました",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 14.04,
+      "cue": "ボトルメールです！ちゃぷちゃぷ、波打ち際までながれてきました。ローラがかけてきて、ニコもやってきました",
+      "sticker": "bottle",
+      "enter": true
+    },
+    {
+      "at": 14.04,
+      "cue": "ボトルメールです！ちゃぷちゃぷ、波打ち際までながれてきました。ローラがかけてきて、ニコもやってきました",
+      "sticker": "bottle",
+      "go": "to",
+      "target": "shore"
+    },
+    {
+      "at": 19.16,
+      "cue": "ローラがかけてきて、ニコもやってきました",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 20.6,
+      "cue": "ニコもやってきました",
+      "sticker": "surfer",
+      "enter": true
+    },
+    {
+      "at": 22.02,
+      "cue": "なかに、てがみが",
+      "sticker": "girl",
+      "go": "to",
+      "target": "bottle"
+    },
+    {
+      "at": 22.02,
+      "cue": "なかに、てがみが",
+      "sticker": "surfer",
+      "go": "to",
+      "target": "bottle"
+    },
+    {
+      "at": 22.02,
+      "cue": "なかに、てがみが",
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 24.28,
+      "cue": "ぽんっ！コルクがぬけて、てがみがちょこん。ローラがひらいてみると、にこにこのさかなの絵と、みじかいことば",
+      "sticker": "bottle",
+      "animation": "pop",
+      "mode": "hold"
+    },
+    {
+      "at": 28.04,
+      "cue": "ローラがひらいてみると、にこにこのさかなの絵と、みじかいことば",
+      "sticker": "surfer",
+      "expression": "surprised"
+    },
+    {
+      "at": 35.24,
+      "cue": "ボトルは、なんし",
+      "sticker": "bottle",
+      "effect": "glow",
+      "intensity": 0.5
+    },
+    {
+      "at": 42.75,
+      "cue": "おへんじ、書こうよ！」そこでふたりは、じぶんたちのうみべの絵をかきました。お城と、たこもいれて。くるくるまいて、コルクをき",
+      "sticker": "surfer",
+      "expression": "happy"
+    },
+    {
+      "at": 42.75,
+      "cue": "おへんじ、書こうよ！」そこでふたりは、じぶんたちのうみべの絵をかきました。お城と、たこもいれて。くるくるまいて、コルクをき",
+      "sticker": "surfer",
+      "animation": "clap"
+    },
+    {
+      "at": 50.84,
+      "cue": "くるくるまいて、コルクをき",
+      "sticker": "bottle",
+      "animation": "pop",
+      "mode": "resume"
+    },
+    {
+      "at": 56,
+      "cue": "ぷかり、ぷかりと、ながれていきました",
+      "sticker": "bottle",
+      "go": "away",
+      "toward": "left"
+    },
+    {
+      "at": 56,
+      "cue": "ぷかり、ぷかりと、ながれていきました",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 56,
+      "cue": "ぷかり、ぷかりと、ながれていきました",
+      "sticker": "girl",
+      "animation": "wave"
+    },
+    {
+      "at": 59.82,
+      "cue": "いつか、どこかとおくで",
+      "sticker": "seagull",
+      "effect": "hop"
+    }
+  ]
+}

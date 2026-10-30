@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ローラは、かいがらあつめが",
+      "sticker": "girl",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ローラは、かいがらあつめが",
+      "sticker": "girl",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 5.79,
+      "cue": "わあ、しましま！クリー",
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 9.56,
+      "cue": "手をのばすと…かいがらが、ずりずり、にげていく",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 9.56,
+      "cue": "手をのばすと…かいがらが、ずりずり、にげていく",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 9.56,
+      "cue": "手をのばすと…かいがらが、ずりずり、にげていく",
+      "sticker": "girl",
+      "go": "to",
+      "target": "hermit-crab"
+    },
+    {
+      "at": 11,
+      "cue": "かいがらが、ずりずり、にげていく",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 14.12,
+      "cue": "なかには、ちぢこまったヤドカリくん",
+      "sticker": "girl",
+      "expression": "surprised"
+    },
+    {
+      "at": 20.92,
+      "cue": "ヤドカリくんは、ひょっこり顔を出して、小さなはさみを、ふりふり",
+      "sticker": "hermit-crab",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 23.72,
+      "cue": "小さなはさみを、ふりふり",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 24.92,
+      "cue": "ふりふり",
+      "sticker": "hermit-crab",
+      "animation": "wave"
+    },
+    {
+      "at": 32.04,
+      "cue": "しゃがんで、のぞいてみると…ぱかっ！ぴかぴかのしんじ",
+      "sticker": "clam",
+      "enter": true
+    },
+    {
+      "at": 32.04,
+      "cue": "しゃがんで、のぞいてみると…ぱかっ！ぴかぴかのしんじ",
+      "sticker": "girl",
+      "go": "to",
+      "target": "clam"
+    },
+    {
+      "at": 32.92,
+      "cue": "のぞいてみると…ぱかっ！ぴかぴかのしんじ",
+      "sticker": "girl",
+      "animation": "crouch"
+    },
+    {
+      "at": 34.36,
+      "cue": "ぱかっ！ぴかぴかのしんじ",
+      "sticker": "clam",
+      "animation": "peek"
+    },
+    {
+      "at": 39.24,
+      "cue": "あなたも、じぶんのおうちにすんでるん",
+      "sticker": "clam",
+      "expression": "surprised"
+    },
+    {
+      "at": 42.04,
+      "sticker": "girl",
+      "expression": "happy"
+    },
+    {
+      "at": 46.44,
+      "cue": "すわって、ゆびで、みんなの絵をかきました。大きく、にこにこに",
+      "sticker": "girl",
+      "animation": "play-sand"
+    },
+    {
+      "at": 52.28,
+      "cue": "かいがらは、みんな、そのままに。なかに",
+      "sticker": "hermit-crab",
+      "effect": "hearts"
+    },
+    {
+      "at": 52.28,
+      "cue": "かいがらは、みんな、そのままに。なかに",
+      "sticker": "clam",
+      "effect": "hearts"
+    }
+  ]
+}

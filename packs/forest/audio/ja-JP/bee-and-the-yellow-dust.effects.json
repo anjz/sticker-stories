@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.04,
+      "cue": "お花がぱあっとひらくと、ミツバチさんが、ぶんぶんやってきました。すーっとおりて…また上がってくると、から",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 6.12,
+      "cue": "ミツバチさんが、ぶんぶんやってきました。すーっとおりて…また上がってくると、から",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 9.16,
+      "cue": "すーっとおりて…また上がってくると、から",
+      "sticker": "bee",
+      "go": "on",
+      "target": "flower"
+    },
+    {
+      "at": 13.08,
+      "cue": "から",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 15.64,
+      "cue": "アヒルの子が、よちよちやってきました",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 15.64,
+      "cue": "アヒルの子が、よちよちやってきました",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 18.81,
+      "cue": "ミツバチさん、こな",
+      "sticker": "duckling",
+      "expression": "surprised"
+    },
+    {
+      "at": 22.44,
+      "cue": "よちよち",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 24.32,
+      "cue": "ちゃぷん、ぱしゃぱしゃ！あわが、ぶくぶく！「おいでよ",
+      "effect": "bubbles",
+      "duration": 22.17,
+      "intensity": 0.6
+    },
+    {
+      "at": 24.32,
+      "cue": "ちゃぷん、ぱしゃぱしゃ！あわが、ぶくぶく！「おいでよ",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "pond",
+      "by": "swim"
+    },
+    {
+      "at": 27.32,
+      "cue": "おいでよ",
+      "sticker": "duckling",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 28.51,
+      "cue": "まって！」とお花。「あらわないで。そのきいろいこなは、わたしのなの。ミツバチさんが、花から花へはこんでくれるの。わたしのをよその花へ、よその花のをわたしへ。そうして、たねができるのよ",
+      "sticker": "flower",
+      "animation": "shake-head"
+    },
+    {
+      "at": 34.84,
+      "cue": "ミツバチさんが、花から花へはこんでくれるの。わたしのをよその花へ、よその花のをわたしへ。そうして、たねができるのよ",
+      "sticker": "bee",
+      "effect": "pulse"
+    },
+    {
+      "at": 44.99,
+      "cue": "そっか…おふろは、いいかんがえじゃなかったね。」アヒルの子は、つばさにかおをうずめました",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 49.24,
+      "cue": "アヒルの子は、つばさにかおをうずめました",
+      "sticker": "duckling",
+      "animation": "nap"
+    },
+    {
+      "at": 52.59,
+      "cue": "やさしいかんがえ",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 52.59,
+      "cue": "やさしいかんがえ",
+      "sticker": "flower",
+      "animation": "talk"
+    },
+    {
+      "at": 60.04,
+      "cue": "ミツバチさんは、ありがとうのはなうた",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 62.91,
+      "cue": "いそがしい日？」「とってもね！」とミツバチさん。つぎの花へ、ぶーん",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 62.91,
+      "cue": "いそがしい日？」「とってもね！」とミツバチさん。つぎの花へ、ぶーん",
+      "sticker": "duckling",
+      "animation": "talk"
+    },
+    {
+      "at": 66.36,
+      "cue": "つぎの花へ、ぶーん",
+      "sticker": "bee",
+      "go": "to",
+      "target": "meadow"
+    }
+  ]
+}

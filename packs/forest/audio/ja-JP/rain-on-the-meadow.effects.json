@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ぽつん。ぽとん。のはらに雨がふってきて、のはらがおんがくをはじめました",
+      "effect": "rain",
+      "duration": 58.18,
+      "intensity": 0.6
+    },
+    {
+      "at": 10.84,
+      "sticker": "all",
+      "expression": "surprised"
+    },
+    {
+      "at": 16.2,
+      "cue": "カエルさんは",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 16.2,
+      "cue": "カエルさんは",
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 18.04,
+      "cue": "にっこにこ。大きな木のはっぱでは、とん、とん、とん。小さなたいこみたい。くさのなかでは、さあ、さあ",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 19.56,
+      "cue": "大きな木のはっぱでは、とん、とん、とん。小さなたいこみたい。くさのなかでは、さあ、さあ",
+      "sticker": "all",
+      "effect": "pulse",
+      "intensity": 0.4
+    },
+    {
+      "at": 25.08,
+      "cue": "くさのなかでは、さあ、さあ",
+      "sticker": "all",
+      "effect": "wobble",
+      "intensity": 0.4
+    },
+    {
+      "at": 30.28,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 36.68,
+      "cue": "すぽっと、ひっこみました",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 40.04,
+      "cue": "アヒルの子が、ぬれたくさのなかをよちよち。「ガー、ガー！」とうたいます。ぴちょん、とん、さあ、ガー",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 43.4,
+      "cue": "ガー、ガー！」とうたいます。ぴちょん、とん、さあ、ガー",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 43.4,
+      "cue": "ガー、ガー！」とうたいます。ぴちょん、とん、さあ、ガー",
+      "sticker": "duckling",
+      "animation": "quack"
+    },
+    {
+      "at": 48.44,
+      "cue": "なんてすてきな歌！やがて、しずくがゆっくりになって…ぽつ…ぽつ…ぽとん。お日さまがでてきました。カタツ",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 48.44,
+      "cue": "なんてすてきな歌！やがて、しずくがゆっくりになって…ぽつ…ぽつ…ぽとん。お日さまがでてきました。カタツ",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 56.68,
+      "cue": "お日さまがでてきました。カタツ",
+      "effect": "sunshine"
+    },
+    {
+      "at": 58.6,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 60.92,
+      "cue": "歌のさいごの音は、なんにもきこえませんでした。それは、のはらの上にかかった、にじ",
+      "effect": "rainbow"
+    },
+    {
+      "at": 69.16,
+      "cue": "カエルさんはハエをぱくっ。アヒルの子は、つばさにあたまをうずめて、ひなたでおひるね",
+      "sticker": "frog",
+      "animation": "catch-fly"
+    },
+    {
+      "at": 71.4,
+      "cue": "アヒルの子は、つばさにあたまをうずめて、ひなたでおひるね",
+      "sticker": "duckling",
+      "animation": "nap",
+      "mode": "hold"
+    }
+  ]
+}

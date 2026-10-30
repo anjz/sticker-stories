@@ -1,0 +1,100 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "sticker": "bucket",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "sticker": "castle",
+      "enter": true
+    },
+    {
+      "at": 9.16,
+      "cue": "はたが、ぱたぱた、はためいています。カモメさんが、空から見つけました",
+      "sticker": "castle",
+      "animation": "flag"
+    },
+    {
+      "at": 12.44,
+      "cue": "カモメさんが、空から見つけました",
+      "sticker": "seagull",
+      "enter": true
+    },
+    {
+      "at": 15.3,
+      "cue": "すわるのに、ぴったり！」すいーっとおりて、いちばん高いとうのてっぺんへ。ぐら、ぐら",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 17.32,
+      "cue": "すいーっとおりて、いちばん高いとうのてっぺんへ。ぐら、ぐら",
+      "sticker": "seagull",
+      "go": "on",
+      "target": "castle"
+    },
+    {
+      "at": 21.32,
+      "cue": "ぐら、ぐら",
+      "sticker": "castle",
+      "effect": "wobble"
+    },
+    {
+      "at": 22.92,
+      "cue": "あらら…とうが、ぽろぽろ、くずれはじめました。「クワーッ！」とカモメさん",
+      "sticker": "seagull",
+      "expression": "surprised"
+    },
+    {
+      "at": 24.12,
+      "cue": "とうが、ぽろぽろ、くずれはじめました。「クワーッ！」とカモメさん",
+      "sticker": "castle",
+      "effect": "shake"
+    },
+    {
+      "at": 26.88,
+      "cue": "クワーッ！」とカモメさん",
+      "sticker": "seagull",
+      "animation": "squawk"
+    },
+    {
+      "at": 34.84,
+      "cue": "ぬれた",
+      "sticker": "bucket",
+      "animation": "wash"
+    },
+    {
+      "at": 40.12,
+      "cue": "つんつん、ぺたぺた！つんつん、ぺたぺた！とうに、ぬれた",
+      "sticker": "seagull",
+      "animation": "peck"
+    },
+    {
+      "at": 47.96,
+      "cue": "とうは、また、まっすぐ、がっしり。カモメさんは、はねを、ふわっとふくらませました。いちばん高いとうからは、水のむこうまで、ずうっと見わたせます",
+      "sticker": "castle",
+      "effect": "pulse"
+    },
+    {
+      "at": 51.32,
+      "cue": "カモメさんは、はねを、ふわっとふくらませました。いちばん高いとうからは、水のむこうまで、ずうっと見わたせます",
+      "sticker": "seagull",
+      "expression": "happy"
+    },
+    {
+      "at": 51.32,
+      "cue": "カモメさんは、はねを、ふわっとふくらませました。いちばん高いとうからは、水のむこうまで、ずうっと見わたせます",
+      "sticker": "seagull",
+      "animation": "preen"
+    },
+    {
+      "at": 64.52,
+      "cue": "いちばんたよりになる、みはりばん。そして、いちばんこえの大きな、みはりばん",
+      "sticker": "castle",
+      "effect": "sparkle"
+    }
+  ]
+}

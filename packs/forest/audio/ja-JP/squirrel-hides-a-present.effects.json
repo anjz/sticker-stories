@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "あきです。はっぱが、くるくるまいおちてきます。リスさんには、ひみつがありました。とっておきの木の実です。そこへしりたがりやのどんぐりが、やってきました。リスさんは木の実をせなかにかくして、しらんぷり",
+      "effect": "leaves",
+      "intensity": 0.6
+    },
+    {
+      "at": 7.64,
+      "cue": "リスさんには、ひみつがありました。とっておきの木の実です。そこへしりたがりやのどんぐりが、やってきました。リスさんは木の実をせなかにかくして、しらんぷり",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 13.48,
+      "cue": "しりたがりやのどんぐりが、やってきました。リスさんは木の実をせなかにかくして、しらんぷり",
+      "sticker": "acorn",
+      "enter": true
+    },
+    {
+      "at": 13.48,
+      "cue": "しりたがりやのどんぐりが、やってきました。リスさんは木の実をせなかにかくして、しらんぷり",
+      "sticker": "acorn",
+      "go": "to",
+      "target": "squirrel"
+    },
+    {
+      "at": 16.76,
+      "cue": "リスさんは木の実をせなかにかくして、しらんぷり",
+      "sticker": "squirrel",
+      "expression": "surprised"
+    },
+    {
+      "at": 16.76,
+      "cue": "リスさんは木の実をせなかにかくして、しらんぷり",
+      "sticker": "squirrel",
+      "animation": "hide-nut",
+      "mode": "hold"
+    },
+    {
+      "at": 20.92,
+      "cue": "せなかに、なにがあるの？」とどんぐり",
+      "sticker": "acorn",
+      "effect": "pulse"
+    },
+    {
+      "at": 26.68,
+      "cue": "そこで、どんぐりはおねがい。「なにがあるか、わかりますように！」いちにちじ",
+      "sticker": "acorn",
+      "animation": "wish"
+    },
+    {
+      "at": 34.4,
+      "cue": "せなかに、なにがあるの？」「なーんにも",
+      "sticker": "acorn",
+      "expression": "happy"
+    },
+    {
+      "at": 34.4,
+      "cue": "せなかに、なにがあるの？」「なーんにも",
+      "sticker": "acorn",
+      "effect": "hop"
+    },
+    {
+      "at": 38.92,
+      "cue": "お日さまがしずむころ、こぐまが、よちよちやってきました",
+      "effect": "sunset",
+      "duration": 41.86,
+      "intensity": 0.7
+    },
+    {
+      "at": 40.6,
+      "cue": "こぐまが、よちよちやってきました",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 44.52,
+      "cue": "もうすぐふゆ",
+      "sticker": "bear",
+      "animation": "talk"
+    },
+    {
+      "at": 49.48,
+      "cue": "リスさんは木の実をとり",
+      "sticker": "squirrel",
+      "animation": "hide-nut",
+      "mode": "resume"
+    },
+    {
+      "at": 53.24,
+      "cue": "こぐまのところへ、ぴょんぴょん",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 57.64,
+      "sticker": "squirrel",
+      "animation": "bury"
+    },
+    {
+      "at": 62.6,
+      "cue": "こぐまはにっこり。ふわあーっと大あくびをして、こっくり",
+      "sticker": "bear",
+      "expression": "happy"
+    },
+    {
+      "at": 62.6,
+      "cue": "こぐまはにっこり。ふわあーっと大あくびをして、こっくり",
+      "sticker": "bear",
+      "effect": "hearts"
+    },
+    {
+      "at": 64.44,
+      "cue": "ふわあーっと大あくびをして、こっくり",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 68.5,
+      "cue": "そっか、それがひみつ",
+      "sticker": "acorn",
+      "expression": "surprised"
+    },
+    {
+      "at": 72.28,
+      "cue": "もう、ひみつじゃないよ」とリスさん。「やくそく",
+      "sticker": "squirrel",
+      "expression": "happy"
+    },
+    {
+      "at": 72.28,
+      "cue": "もう、ひみつじゃないよ」とリスさん。「やくそく",
+      "sticker": "squirrel",
+      "effect": "hearts"
+    }
+  ]
+}

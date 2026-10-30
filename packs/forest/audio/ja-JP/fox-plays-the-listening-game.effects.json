@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.84,
+      "cue": "ウサギくん。「じっと目をつぶって、きこえたものをいってね。」ネズミくんは、すぐちょこん。キツネくんも、かけてきて、「ぼくも！ぼくも！」ウサギくんの耳が、ぴーん",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 5.72,
+      "cue": "じっと目をつぶって、きこえたものをいってね。」ネズミくんは、すぐちょこん。キツネくんも、かけてきて、「ぼくも！ぼくも！」ウサギくんの耳が、ぴーん",
+      "sticker": "rabbit",
+      "effect": "hop"
+    },
+    {
+      "at": 9.16,
+      "cue": "ネズミくんは、すぐちょこん。キツネくんも、かけてきて、「ぼくも！ぼくも！」ウサギくんの耳が、ぴーん",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 9.16,
+      "cue": "ネズミくんは、すぐちょこん。キツネくんも、かけてきて、「ぼくも！ぼくも！」ウサギくんの耳が、ぴーん",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 11.48,
+      "cue": "キツネくんも、かけてきて、「ぼくも！ぼくも！」ウサギくんの耳が、ぴーん",
+      "sticker": "fox",
+      "enter": true
+    },
+    {
+      "at": 11.48,
+      "cue": "キツネくんも、かけてきて、「ぼくも！ぼくも！」ウサギくんの耳が、ぴーん",
+      "sticker": "fox",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 13.2,
+      "cue": "ぼくも！ぼくも！」ウサギくんの耳が、ぴーん",
+      "sticker": "fox",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 14.68,
+      "cue": "ウサギくんの耳が、ぴーん",
+      "sticker": "rabbit",
+      "animation": "listen"
+    },
+    {
+      "at": 18.36,
+      "cue": "ミツバチさん！」ぶーんととんできて、ふんふーん。ネズミくんは、つまさき",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 21.32,
+      "cue": "ふんふーん。ネズミくんは、つまさき",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 22.76,
+      "cue": "ネズミくんは、つまさき",
+      "sticker": "mouse",
+      "animation": "sniff"
+    },
+    {
+      "at": 27.46,
+      "cue": "きこえる…キツネ！」とキツネくん。「それ、じぶんでしょ」とウサギくんはくすくす。キツネくんは、もぞもぞ。ぽりぽり。そわそわ",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 27.46,
+      "cue": "きこえる…キツネ！」とキツネくん。「それ、じぶんでしょ」とウサギくんはくすくす。キツネくんは、もぞもぞ。ぽりぽり。そわそわ",
+      "sticker": "fox",
+      "effect": "wobble"
+    },
+    {
+      "at": 30.2,
+      "cue": "それ、じぶんでしょ」とウサギくんはくすくす。キツネくんは、もぞもぞ。ぽりぽり。そわそわ",
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 36.2,
+      "cue": "ぽりぽり。そわそわ",
+      "sticker": "fox",
+      "animation": "scratch"
+    },
+    {
+      "at": 39.4,
+      "cue": "なんにもきこえない！」「石みたいに、じっとしてごらん」とネズミくん。キツネくんは、耳をぴんと立てて、目をつぶりました。しーん。しーん",
+      "sticker": "fox",
+      "expression": "sad"
+    },
+    {
+      "at": 46.28,
+      "cue": "耳をぴんと立てて、目をつぶりました。しーん。しーん",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 56.28,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 56.28,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "go": "to",
+      "target": "fox"
+    },
+    {
+      "at": 60.52,
+      "cue": "キツネくんは目をあけて、「カタツ",
+      "sticker": "fox",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 62.4,
+      "cue": "カタツ",
+      "sticker": "fox",
+      "expression": "happy"
+    },
+    {
+      "at": 64.36,
+      "cue": "キツネくんのかち！」とウサギくん",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 64.36,
+      "cue": "キツネくんのかち！」とウサギくん",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 67.12,
+      "cue": "しーっ。ま",
+      "sticker": "fox",
+      "effect": "hearts"
+    }
+  ]
+}

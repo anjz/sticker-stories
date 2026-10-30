@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "お日さまがのぼると、キツツキくんは、大きな木のみきへとんでいきました。おはようのたいこのじかん！トントントン！え",
+      "effect": "sunshine",
+      "intensity": 0.7
+    },
+    {
+      "at": 4.52,
+      "cue": "キツツキくんは、大きな木のみきへとんでいきました。おはようのたいこのじかん！トントントン！え",
+      "sticker": "woodpecker",
+      "enter": true
+    },
+    {
+      "at": 4.52,
+      "cue": "キツツキくんは、大きな木のみきへとんでいきました。おはようのたいこのじかん！トントントン！え",
+      "sticker": "woodpecker",
+      "go": "to",
+      "target": "trunks"
+    },
+    {
+      "at": 10.2,
+      "cue": "トントントン！え",
+      "sticker": "woodpecker",
+      "animation": "drum"
+    },
+    {
+      "at": 12.76,
+      "cue": "フクロウくんの目が、ぱちっ。「ホウ？」のはらのむこうからは、アナグマくんが、ふわあ、とあくび",
+      "sticker": "owl",
+      "enter": true
+    },
+    {
+      "at": 12.76,
+      "cue": "フクロウくんの目が、ぱちっ。「ホウ？」のはらのむこうからは、アナグマくんが、ふわあ、とあくび",
+      "sticker": "owl",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 14.88,
+      "cue": "ホウ？」のはらのむこうからは、アナグマくんが、ふわあ、とあくび",
+      "sticker": "owl",
+      "expression": "surprised"
+    },
+    {
+      "at": 17.72,
+      "cue": "アナグマくんが、ふわあ、とあくび",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 19.08,
+      "cue": "ふわあ、とあくび",
+      "sticker": "badger",
+      "expression": "sad"
+    },
+    {
+      "at": 28.08,
+      "cue": "あっ！」「ごめんね！」キツツキくんは、こんどは、そうっと、そうっと。とん…とん…とん",
+      "sticker": "woodpecker",
+      "expression": "surprised"
+    },
+    {
+      "at": 28.74,
+      "cue": "ごめんね！」キツツキくんは、こんどは、そうっと、そうっと。とん…とん…とん",
+      "sticker": "woodpecker",
+      "effect": "tint",
+      "color": "#FFB6C8"
+    },
+    {
+      "at": 34.84,
+      "cue": "とん…とん…とん",
+      "sticker": "woodpecker",
+      "animation": "tap"
+    },
+    {
+      "at": 37.4,
+      "cue": "うん、いいね」とアナグマくん。くさのなかに、ねどこをほりました。え",
+      "sticker": "badger",
+      "expression": "happy"
+    },
+    {
+      "at": 40.28,
+      "cue": "くさのなかに、ねどこをほりました。え",
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 45.24,
+      "cue": "大あくびをして、ぐっすり",
+      "sticker": "owl",
+      "animation": "doze",
+      "mode": "hold"
+    },
+    {
+      "at": 47.48,
+      "cue": "キツツキくんは、しずかに、ゆっくり、たたきつづけました。とん…とん…とん",
+      "sticker": "badger",
+      "expression": "sleeping"
+    },
+    {
+      "at": 52.76,
+      "cue": "とん…とん…とん",
+      "sticker": "woodpecker",
+      "animation": "tap"
+    },
+    {
+      "at": 55.24,
+      "cue": "トントントンは、おはよう。とん…とん…とん…は、おやすみ",
+      "sticker": "woodpecker",
+      "expression": "happy"
+    },
+    {
+      "at": 59.32,
+      "cue": "おやすみ",
+      "sticker": "woodpecker",
+      "effect": "hearts"
+    }
+  ]
+}

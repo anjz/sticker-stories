@@ -1,0 +1,212 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "はいいろのくもが、もくもく。雨がくるぞ！みんな、いそいでおうちへ。ビーバーくんが、カタツ",
+      "effect": "clouds",
+      "duration": 57.34,
+      "intensity": 0.7
+    },
+    {
+      "at": 7.88,
+      "cue": "ビーバーくんが、カタツ",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 9,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 10.84,
+      "cue": "カタツ",
+      "sticker": "beaver",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 10.84,
+      "cue": "カタツ",
+      "sticker": "beaver",
+      "expression": "surprised"
+    },
+    {
+      "at": 13.22,
+      "cue": "ここ",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 13.22,
+      "cue": "ここ",
+      "sticker": "snail",
+      "animation": "talk"
+    },
+    {
+      "at": 15.96,
+      "cue": "かりかり、やねにするぼうをかじってくれました。「ねんのためね」そしていそいで、おうちへ。こんどはアナグマくん。「カタツ",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 21,
+      "cue": "いそいで、おうちへ。こんどはアナグマくん。「カタツ",
+      "sticker": "beaver",
+      "go": "away"
+    },
+    {
+      "at": 23,
+      "cue": "こんどはアナグマくん。「カタツ",
+      "sticker": "badger",
+      "enter": true
+    },
+    {
+      "at": 23,
+      "cue": "こんどはアナグマくん。「カタツ",
+      "sticker": "badger",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 24.36,
+      "cue": "カタツ",
+      "sticker": "badger",
+      "expression": "surprised"
+    },
+    {
+      "at": 29.24,
+      "cue": "ざくざく、小さなあなをほってくれました。「ねんのためね」そしていそいで、すあなへ。ことりも、さっとおりてきました。「カタツ",
+      "sticker": "badger",
+      "animation": "dig"
+    },
+    {
+      "at": 33.96,
+      "cue": "いそいで、すあなへ。ことりも、さっとおりてきました。「カタツ",
+      "sticker": "badger",
+      "go": "away"
+    },
+    {
+      "at": 36.04,
+      "cue": "ことりも、さっとおりてきました。「カタツ",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 36.04,
+      "cue": "ことりも、さっとおりてきました。「カタツ",
+      "sticker": "bird",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 38.24,
+      "cue": "カタツ",
+      "sticker": "bird",
+      "expression": "surprised"
+    },
+    {
+      "at": 41.27,
+      "cue": "ここ",
+      "sticker": "snail",
+      "animation": "laugh"
+    },
+    {
+      "at": 42.68,
+      "cue": "ことりは、すへび",
+      "sticker": "bird",
+      "go": "away"
+    },
+    {
+      "at": 45.24,
+      "cue": "ぽつぽつ、雨がふり",
+      "effect": "rain",
+      "duration": 11.1,
+      "intensity": 0.8
+    },
+    {
+      "at": 48.04,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "hold"
+    },
+    {
+      "at": 54.84,
+      "cue": "雨がやんで、お日さまがでると、みんながもどってきました",
+      "effect": "sunshine"
+    },
+    {
+      "at": 57.08,
+      "cue": "みんながもどってきました",
+      "sticker": "beaver",
+      "go": "back"
+    },
+    {
+      "at": 57.08,
+      "cue": "みんながもどってきました",
+      "sticker": "badger",
+      "go": "back"
+    },
+    {
+      "at": 57.08,
+      "cue": "みんながもどってきました",
+      "sticker": "bird",
+      "go": "back"
+    },
+    {
+      "at": 57.08,
+      "cue": "みんながもどってきました",
+      "sticker": "beaver",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 57.08,
+      "cue": "みんながもどってきました",
+      "sticker": "badger",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 57.08,
+      "cue": "みんながもどってきました",
+      "sticker": "bird",
+      "go": "to",
+      "target": "snail"
+    },
+    {
+      "at": 58.98,
+      "cue": "カタツ",
+      "sticker": "badger",
+      "expression": "sad"
+    },
+    {
+      "at": 61.8,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "animation": "hide",
+      "mode": "resume"
+    },
+    {
+      "at": 65.52,
+      "cue": "いったでしょ",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 66.83,
+      "cue": "ぼくのおうちは、いつもいっしょなん",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 66.83,
+      "cue": "ぼくのおうちは、いつもいっしょなん",
+      "sticker": "all",
+      "effect": "wobble"
+    }
+  ]
+}

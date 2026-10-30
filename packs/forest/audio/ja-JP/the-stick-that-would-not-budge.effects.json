@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ビーバーくんが、森でいちばんのぼうを見つけました。じめんに、しっかりささっています",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 9.56,
+      "cue": "これ、ほしかったん",
+      "sticker": "beaver",
+      "expression": "happy"
+    },
+    {
+      "at": 11.72,
+      "cue": "うんとこしょ、どっこいしょ。それでも、ぼうはぬけません。こぐまがきて、「てつ",
+      "sticker": "beaver",
+      "animation": "pull"
+    },
+    {
+      "at": 17.8,
+      "cue": "こぐまがきて、「てつ",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 19.04,
+      "cue": "てつ",
+      "sticker": "bear",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 21.08,
+      "cue": "うんとこしょ、どっこいしょ。それでも、ぬけません。ウサギくんも、ぴょんぴょん。さんにんで、うんとこしょ、どっこいしょ。ま",
+      "sticker": "bear",
+      "effect": "shake"
+    },
+    {
+      "at": 26.36,
+      "cue": "ウサギくんも、ぴょんぴょん。さんにんで、うんとこしょ、どっこいしょ。ま",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 28.28,
+      "cue": "さんにんで、うんとこしょ、どっこいしょ。ま",
+      "sticker": "rabbit",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 29.32,
+      "cue": "うんとこしょ、どっこいしょ。ま",
+      "sticker": "rabbit",
+      "effect": "shake"
+    },
+    {
+      "at": 35.64,
+      "cue": "ちいさなネズミくんが、なにかなと、ちょろちょろ。「てつ",
+      "sticker": "beaver",
+      "expression": "sad"
+    },
+    {
+      "at": 36.12,
+      "cue": "ネズミくんが、なにかなと、ちょろちょろ。「てつ",
+      "sticker": "mouse",
+      "enter": true
+    },
+    {
+      "at": 39.12,
+      "cue": "てつ",
+      "sticker": "mouse",
+      "animation": "sniff"
+    },
+    {
+      "at": 40.48,
+      "cue": "きみが？」とこぐま。「そんなにちいさいのに！」ネズミくんがウサギくんを、ウサギくんがこぐまを、こぐまがビーバーくんを、ビーバーくんがぼうをひっぱって…よにんで、うんとこしょ…どっこいしょ！すっぽーん！ぼうがぬけて、みんな、どっしーん、ころころ",
+      "sticker": "bear",
+      "expression": "surprised"
+    },
+    {
+      "at": 44.36,
+      "cue": "ネズミくんがウサギくんを、ウサギくんがこぐまを、こぐまがビーバーくんを、ビーバーくんがぼうをひっぱって…よにんで、うんとこしょ…どっこいしょ！すっぽーん！ぼうがぬけて、みんな、どっしーん、ころころ",
+      "sticker": "mouse",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 52.28,
+      "cue": "よにんで、うんとこしょ…どっこいしょ！すっぽーん！ぼうがぬけて、みんな、どっしーん、ころころ",
+      "sticker": "mouse",
+      "animation": "pull"
+    },
+    {
+      "at": 57.24,
+      "cue": "ぼうがぬけて、みんな、どっしーん、ころころ",
+      "sticker": "beaver",
+      "effect": "spin"
+    },
+    {
+      "at": 57.24,
+      "cue": "ぼうがぬけて、みんな、どっしーん、ころころ",
+      "sticker": "bear",
+      "effect": "spin"
+    },
+    {
+      "at": 57.24,
+      "cue": "ぼうがぬけて、みんな、どっしーん、ころころ",
+      "sticker": "rabbit",
+      "effect": "spin"
+    },
+    {
+      "at": 57.24,
+      "cue": "ぼうがぬけて、みんな、どっしーん、ころころ",
+      "sticker": "mouse",
+      "effect": "spin"
+    },
+    {
+      "at": 62.32,
+      "cue": "ビーバーくんは、ぼうをたかくかかげました",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 62.32,
+      "cue": "ビーバーくんは、ぼうをたかくかかげました",
+      "sticker": "beaver",
+      "animation": "gnaw",
+      "mode": "hold"
+    },
+    {
+      "at": 68.02,
+      "cue": "みんなで",
+      "sticker": "mouse",
+      "animation": "talk"
+    },
+    {
+      "at": 70.32,
+      "cue": "ぼくは、さいごにひっぱった",
+      "sticker": "mouse",
+      "effect": "hop",
+      "repeat": 2
+    }
+  ]
+}

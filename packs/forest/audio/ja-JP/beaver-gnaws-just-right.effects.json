@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 4.56,
+      "cue": "ビーバーくんが、またかじっています。ぼうをかじると、木くずがぱらぱら…おひるねしたいハリネズミくんの上に。「むむっ！」ぷんぷん、まるくなってしまいました",
+      "sticker": "beaver",
+      "enter": true
+    },
+    {
+      "at": 7.38,
+      "cue": "ぼうをかじると、木くずがぱらぱら…おひるねしたいハリネズミくんの上に。「むむっ！」ぷんぷん、まるくなってしまいました",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 10.68,
+      "cue": "おひるねしたいハリネズミくんの上に。「むむっ！」ぷんぷん、まるくなってしまいました",
+      "sticker": "hedgehog",
+      "enter": true
+    },
+    {
+      "at": 10.68,
+      "cue": "おひるねしたいハリネズミくんの上に。「むむっ！」ぷんぷん、まるくなってしまいました",
+      "sticker": "hedgehog",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 14.88,
+      "cue": "むむっ！」ぷんぷん、まるくなってしまいました",
+      "sticker": "hedgehog",
+      "expression": "sad"
+    },
+    {
+      "at": 15.8,
+      "cue": "ぷんぷん、まるくなってしまいました",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "hold"
+    },
+    {
+      "at": 20.98,
+      "cue": "まえばが、ずっとのびつづけるからさ」とビーバーくん。「かじらないと、足までのびちゃう！」そこへことりが、ぱたぱたおりてきました",
+      "sticker": "beaver",
+      "expression": "surprised"
+    },
+    {
+      "at": 20.98,
+      "cue": "まえばが、ずっとのびつづけるからさ」とビーバーくん。「かじらないと、足までのびちゃう！」そこへことりが、ぱたぱたおりてきました",
+      "sticker": "beaver",
+      "effect": "wobble"
+    },
+    {
+      "at": 28.36,
+      "cue": "ことりが、ぱたぱたおりてきました",
+      "sticker": "bird",
+      "enter": true
+    },
+    {
+      "at": 28.36,
+      "cue": "ことりが、ぱたぱたおりてきました",
+      "sticker": "bird",
+      "go": "to",
+      "target": "beaver"
+    },
+    {
+      "at": 31.07,
+      "cue": "すづくりのぼうが、ぜんぶ長すぎるん",
+      "sticker": "bird",
+      "expression": "sad"
+    },
+    {
+      "at": 34.51,
+      "cue": "まかせて！」カリカリカリ…ちょうどいいぼうのできあがり。「ぴったり！」ことりはぼうをくわえて、高いえ",
+      "sticker": "beaver",
+      "expression": "happy"
+    },
+    {
+      "at": 35.64,
+      "cue": "カリカリカリ…ちょうどいいぼうのできあがり。「ぴったり！」ことりはぼうをくわえて、高いえ",
+      "sticker": "beaver",
+      "animation": "gnaw"
+    },
+    {
+      "at": 39.12,
+      "cue": "ぴったり！」ことりはぼうをくわえて、高いえ",
+      "sticker": "bird",
+      "expression": "happy"
+    },
+    {
+      "at": 39.12,
+      "cue": "ぴったり！」ことりはぼうをくわえて、高いえ",
+      "sticker": "bird",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 40.2,
+      "cue": "ことりはぼうをくわえて、高いえ",
+      "sticker": "bird",
+      "go": "to",
+      "target": "branches"
+    },
+    {
+      "at": 43.48,
+      "cue": "ありがとうの歌をうたいました。下では、カリカリの音がやんで、ハリネズミくんがかおを出しました。まわりには、ふわふわくるくるの木くず。「ふむ。ちょうどいい。」「カリカリ、してもいい？」とビーバーくん",
+      "sticker": "bird",
+      "animation": "sing"
+    },
+    {
+      "at": 48.68,
+      "cue": "ハリネズミくんがかおを出しました。まわりには、ふわふわくるくるの木くず。「ふむ。ちょうどいい。」「カリカリ、してもいい？」とビーバーくん",
+      "sticker": "hedgehog",
+      "animation": "curl",
+      "mode": "resume"
+    },
+    {
+      "at": 54.88,
+      "cue": "ふむ。ちょうどいい。」「カリカリ、してもいい？」とビーバーくん",
+      "sticker": "hedgehog",
+      "expression": "happy"
+    },
+    {
+      "at": 63.08,
+      "cue": "そしてもぐりこんで、いちばんふかふかのおひるね",
+      "sticker": "hedgehog",
+      "expression": "sleeping"
+    },
+    {
+      "at": 63.48,
+      "cue": "もぐりこんで、いちばんふかふかのおひるね",
+      "sticker": "hedgehog",
+      "animation": "sleep",
+      "mode": "hold"
+    }
+  ]
+}

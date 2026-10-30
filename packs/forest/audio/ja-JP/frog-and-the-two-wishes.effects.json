@@ -1,0 +1,158 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.4,
+      "cue": "カエルさんは、しっています。「あめ！ぴちぴち、ちゃぷちゃぷ！」ゆっくりカタツ",
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 7.28,
+      "cue": "あめ！ぴちぴち、ちゃぷちゃぷ！」ゆっくりカタツ",
+      "sticker": "frog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 10.44,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "enter": true
+    },
+    {
+      "at": 10.44,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "go": "to",
+      "target": "frog"
+    },
+    {
+      "at": 14.92,
+      "cue": "からにもぐって、「あめが、いちばん！」でもチョウチョさんは、ちがいました。「おひさまよ！ぽかぽかの！」ふたりは、あめをおねがい。チョウチョさんは、おひさまを。ぽつぽつ…ざあざあ、あめです！カエルさんは、大よろこび。カタツ",
+      "sticker": "snail",
+      "animation": "hide"
+    },
+    {
+      "at": 16.04,
+      "cue": "あめが、いちばん！」でもチョウチョさんは、ちがいました。「おひさまよ！ぽかぽかの！」ふたりは、あめをおねがい。チョウチョさんは、おひさまを。ぽつぽつ…ざあざあ、あめです！カエルさんは、大よろこび。カタツ",
+      "sticker": "snail",
+      "expression": "happy"
+    },
+    {
+      "at": 18.12,
+      "cue": "チョウチョさんは、ちがいました。「おひさまよ！ぽかぽかの！」ふたりは、あめをおねがい。チョウチョさんは、おひさまを。ぽつぽつ…ざあざあ、あめです！カエルさんは、大よろこび。カタツ",
+      "sticker": "butterfly",
+      "enter": true
+    },
+    {
+      "at": 19.96,
+      "cue": "おひさまよ！ぽかぽかの！」ふたりは、あめをおねがい。チョウチョさんは、おひさまを。ぽつぽつ…ざあざあ、あめです！カエルさんは、大よろこび。カタツ",
+      "sticker": "butterfly",
+      "animation": "shake-head"
+    },
+    {
+      "at": 26.52,
+      "cue": "ぽつぽつ…ざあざあ、あめです！カエルさんは、大よろこび。カタツ",
+      "effect": "rain",
+      "duration": 26.38,
+      "intensity": 0.7
+    },
+    {
+      "at": 30.04,
+      "cue": "カエルさんは、大よろこび。カタツ",
+      "sticker": "frog",
+      "expression": "happy"
+    },
+    {
+      "at": 30.04,
+      "cue": "カエルさんは、大よろこび。カタツ",
+      "sticker": "frog",
+      "animation": "jump"
+    },
+    {
+      "at": 32.04,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "animation": "stretch-eyes"
+    },
+    {
+      "at": 37.24,
+      "cue": "キノコのかさの下へ。はねをとじて",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 37.76,
+      "cue": "かさの下へ。はねをとじて",
+      "sticker": "butterfly",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 39.08,
+      "cue": "はねをとじて",
+      "sticker": "butterfly",
+      "expression": "sad"
+    },
+    {
+      "at": 39.08,
+      "cue": "はねをとじて",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "hold"
+    },
+    {
+      "at": 44.36,
+      "cue": "カタツ",
+      "sticker": "snail",
+      "expression": "sad"
+    },
+    {
+      "at": 51.4,
+      "cue": "あめがやんで、おひさまが！チョウチョさんがはねをひらいて…ひらひら、そらへ",
+      "effect": "sunshine",
+      "duration": 20,
+      "intensity": 0.8
+    },
+    {
+      "at": 53.4,
+      "cue": "チョウチョさんがはねをひらいて…ひらひら、そらへ",
+      "sticker": "butterfly",
+      "animation": "rest",
+      "mode": "resume"
+    },
+    {
+      "at": 55.4,
+      "cue": "ひらひら、そらへ",
+      "sticker": "butterfly",
+      "expression": "happy"
+    },
+    {
+      "at": 55.4,
+      "cue": "ひらひら、そらへ",
+      "sticker": "butterfly",
+      "go": "to",
+      "target": "sky"
+    },
+    {
+      "at": 57.56,
+      "cue": "見て！あめとおひさまが、にじをつくったよ",
+      "effect": "rainbow",
+      "duration": 14,
+      "intensity": 0.8
+    },
+    {
+      "at": 60.92,
+      "cue": "みんなのおねがい、いっぺんにかなったね",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 60.92,
+      "cue": "みんなのおねがい、いっぺんにかなったね",
+      "sticker": "all",
+      "effect": "hearts"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "アライグマくんが、いい",
+      "sticker": "raccoon",
+      "enter": true
+    },
+    {
+      "at": 8.04,
+      "cue": "目をかくして、「いーち、にーい、さーん…」すばやくテントウ",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "hold"
+    },
+    {
+      "at": 12.92,
+      "cue": "テントウ",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 14.28,
+      "cue": "キノコの赤いかさの下へ、すっぽり",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 14.92,
+      "cue": "赤いかさの下へ、すっぽり",
+      "sticker": "ladybug",
+      "go": "under",
+      "target": "mushroom"
+    },
+    {
+      "at": 17.64,
+      "cue": "くすぐったい！」でもこぐまは、大きすぎて、かくれるところがありません。キノコのうしろも",
+      "sticker": "mushroom",
+      "expression": "happy"
+    },
+    {
+      "at": 19.56,
+      "cue": "こぐまは、大きすぎて、かくれるところがありません。キノコのうしろも",
+      "sticker": "bear",
+      "enter": true
+    },
+    {
+      "at": 23.88,
+      "cue": "キノコのうしろも",
+      "sticker": "bear",
+      "expression": "sad"
+    },
+    {
+      "at": 29.16,
+      "cue": "そう",
+      "sticker": "bear",
+      "effect": "sparkle"
+    },
+    {
+      "at": 32.84,
+      "cue": "目をつぶって…うとうと。ぐう…ぐう…「…はーち、き",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 41.44,
+      "cue": "もういいかい？さがすよー！」アライグマくんは、耳をすませました。ぐう…ぐう",
+      "sticker": "raccoon",
+      "animation": "peekaboo",
+      "mode": "resume"
+    },
+    {
+      "at": 43.56,
+      "cue": "アライグマくんは、耳をすませました。ぐう…ぐう",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 44.84,
+      "cue": "耳をすませました。ぐう…ぐう",
+      "sticker": "raccoon",
+      "animation": "listen"
+    },
+    {
+      "at": 49.61,
+      "cue": "みーつけた！」こぐまは、はっ！「どうしてわかったの？」「いびきが、きこえたもん！」キノコはわらいすぎて…は…は…はっくしょん！テントウ",
+      "sticker": "raccoon",
+      "go": "to",
+      "target": "bear"
+    },
+    {
+      "at": 50.92,
+      "cue": "こぐまは、はっ！「どうしてわかったの？」「いびきが、きこえたもん！」キノコはわらいすぎて…は…は…はっくしょん！テントウ",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "resume"
+    },
+    {
+      "at": 52.36,
+      "cue": "どうしてわかったの？」「いびきが、きこえたもん！」キノコはわらいすぎて…は…は…はっくしょん！テントウ",
+      "sticker": "bear",
+      "expression": "surprised"
+    },
+    {
+      "at": 55.48,
+      "cue": "キノコはわらいすぎて…は…は…はっくしょん！テントウ",
+      "sticker": "mushroom",
+      "animation": "sneeze"
+    },
+    {
+      "at": 59.72,
+      "cue": "テントウ",
+      "sticker": "ladybug",
+      "go": "back"
+    },
+    {
+      "at": 62.4,
+      "cue": "みーつけた！」こんどは、こぐまがおにのばん。「いーち、にーい…」「さーん",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 62.4,
+      "cue": "みーつけた！」こんどは、こぐまがおにのばん。「いーち、にーい…」「さーん",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 68.24,
+      "cue": "さーん",
+      "sticker": "bear",
+      "animation": "nap",
+      "mode": "hold"
+    },
+    {
+      "at": 70.52,
+      "cue": "みんながかくれているあい",
+      "sticker": "ladybug",
+      "effect": "hearts"
+    }
+  ]
+}

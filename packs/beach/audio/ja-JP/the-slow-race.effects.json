@@ -1,0 +1,153 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 5.64,
+      "cue": "シギくんは、あしぶみして、うずうず。「ぼくが、いちばんはやいよ！」ヤドカリくんは、ふうっとためいき。「ぼく、すごくおそいん",
+      "sticker": "sandpiper",
+      "enter": true
+    },
+    {
+      "at": 5.64,
+      "cue": "シギくんは、あしぶみして、うずうず。「ぼくが、いちばんはやいよ！」ヤドカリくんは、ふうっとためいき。「ぼく、すごくおそいん",
+      "sticker": "sandpiper",
+      "expression": "happy"
+    },
+    {
+      "at": 8.44,
+      "cue": "ぼくが、いちばんはやいよ！」ヤドカリくんは、ふうっとためいき。「ぼく、すごくおそいん",
+      "sticker": "sandpiper",
+      "animation": "jump"
+    },
+    {
+      "at": 10.6,
+      "cue": "ヤドカリくんは、ふうっとためいき。「ぼく、すごくおそいん",
+      "sticker": "hermit-crab",
+      "enter": true
+    },
+    {
+      "at": 10.6,
+      "cue": "ヤドカリくんは、ふうっとためいき。「ぼく、すごくおそいん",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "sandpiper"
+    },
+    {
+      "at": 13.4,
+      "cue": "ぼく、すごくおそいん",
+      "sticker": "hermit-crab",
+      "expression": "sad"
+    },
+    {
+      "at": 16.75,
+      "cue": "わたしは…もっと…おそいわよ」とウミガメさん。よーい…ドン！ピューッ！シギくんは、かけ",
+      "sticker": "turtle",
+      "enter": true
+    },
+    {
+      "at": 16.75,
+      "cue": "わたしは…もっと…おそいわよ」とウミガメさん。よーい…ドン！ピューッ！シギくんは、かけ",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "hermit-crab"
+    },
+    {
+      "at": 22.76,
+      "cue": "よーい…ドン！ピューッ！シギくんは、かけ",
+      "sticker": "turtle",
+      "expression": "happy"
+    },
+    {
+      "at": 24.52,
+      "cue": "ピューッ！シギくんは、かけ",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "shore",
+      "by": "run",
+      "toward": "right"
+    },
+    {
+      "at": 28.28,
+      "cue": "ヤドカリくんとウミガメさんは、いっぽ…いっぽ",
+      "sticker": "hermit-crab",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 28.28,
+      "cue": "ヤドカリくんとウミガメさんは、いっぽ…いっぽ",
+      "sticker": "turtle",
+      "go": "to",
+      "target": "pool"
+    },
+    {
+      "at": 36.92,
+      "cue": "つんつんつん！また、べつのもの。つんつん！ヤドカリくんとウミガメさんは、おしゃべりしながら、こつこつ、すすみます。さあ、さきに潮",
+      "sticker": "sandpiper",
+      "animation": "peck"
+    },
+    {
+      "at": 39.72,
+      "cue": "つんつん！ヤドカリくんとウミガメさんは、おしゃべりしながら、こつこつ、すすみます。さあ、さきに潮",
+      "sticker": "sandpiper",
+      "effect": "hop"
+    },
+    {
+      "at": 42.68,
+      "cue": "おしゃべりしながら、こつこつ、すすみます。さあ、さきに潮",
+      "sticker": "turtle",
+      "animation": "talk"
+    },
+    {
+      "at": 45.88,
+      "cue": "さあ、さきに潮",
+      "sticker": "hermit-crab",
+      "expression": "happy"
+    },
+    {
+      "at": 50.92,
+      "cue": "いっしょに！ヤドカリくんは、びっくりして、かいがらにすっぽり。それから、ひょっこり。ウミガメさんも、くびをひっこめて、にこにこ、ひょっこり",
+      "sticker": "hermit-crab",
+      "expression": "surprised"
+    },
+    {
+      "at": 52.2,
+      "cue": "ヤドカリくんは、びっくりして、かいがらにすっぽり。それから、ひょっこり。ウミガメさんも、くびをひっこめて、にこにこ、ひょっこり",
+      "sticker": "hermit-crab",
+      "animation": "hide"
+    },
+    {
+      "at": 57.24,
+      "cue": "ウミガメさんも、くびをひっこめて、にこにこ、ひょっこり",
+      "sticker": "turtle",
+      "animation": "peek"
+    },
+    {
+      "at": 62.92,
+      "cue": "いちばんびりのシギくんが、とうちゃく。「まけちゃった」とシギくん。「でも、おやつなら、ぼくのかち",
+      "sticker": "sandpiper",
+      "go": "to",
+      "target": "pool",
+      "by": "run"
+    },
+    {
+      "at": 67.84,
+      "cue": "でも、おやつなら、ぼくのかち",
+      "sticker": "sandpiper",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 67.84,
+      "cue": "でも、おやつなら、ぼくのかち",
+      "sticker": "hermit-crab",
+      "effect": "hearts"
+    },
+    {
+      "at": 67.84,
+      "cue": "でも、おやつなら、ぼくのかち",
+      "sticker": "turtle",
+      "effect": "hearts"
+    }
+  ]
+}

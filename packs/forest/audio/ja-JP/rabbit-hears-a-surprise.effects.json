@@ -1,0 +1,170 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ウサギくんの耳は、のはらでいちばん大きな耳。あるあさ、その耳が、ぴーん！とおくで、ひそひそごえ",
+      "sticker": "rabbit",
+      "enter": true
+    },
+    {
+      "at": 8.6,
+      "cue": "その耳が、ぴーん！とおくで、ひそひそごえ",
+      "sticker": "rabbit",
+      "expression": "surprised"
+    },
+    {
+      "at": 8.6,
+      "cue": "その耳が、ぴーん！とおくで、ひそひそごえ",
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "hold"
+    },
+    {
+      "at": 26.72,
+      "cue": "クローバーをもぐもぐ。その日は、みんながなん",
+      "sticker": "rabbit",
+      "animation": "listen",
+      "mode": "resume"
+    },
+    {
+      "at": 32.44,
+      "cue": "リスさんは、とおりかかるとなにかをせなかにかくして、しらんぷり。ミツバチさんは、ぶーんときて、ウサギくんを見ると…くすくすとんでいっちゃった",
+      "sticker": "squirrel",
+      "enter": true
+    },
+    {
+      "at": 32.44,
+      "cue": "リスさんは、とおりかかるとなにかをせなかにかくして、しらんぷり。ミツバチさんは、ぶーんときて、ウサギくんを見ると…くすくすとんでいっちゃった",
+      "sticker": "squirrel",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 34.24,
+      "cue": "なにかをせなかにかくして、しらんぷり。ミツバチさんは、ぶーんときて、ウサギくんを見ると…くすくすとんでいっちゃった",
+      "sticker": "squirrel",
+      "animation": "hide-nut",
+      "mode": "hold"
+    },
+    {
+      "at": 37.72,
+      "cue": "ミツバチさんは、ぶーんときて、ウサギくんを見ると…くすくすとんでいっちゃった",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 37.72,
+      "cue": "ミツバチさんは、ぶーんときて、ウサギくんを見ると…くすくすとんでいっちゃった",
+      "sticker": "bee",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 40.28,
+      "cue": "ウサギくんを見ると…くすくすとんでいっちゃった",
+      "sticker": "bee",
+      "expression": "surprised"
+    },
+    {
+      "at": 40.28,
+      "cue": "ウサギくんを見ると…くすくすとんでいっちゃった",
+      "sticker": "bee",
+      "effect": "shake"
+    },
+    {
+      "at": 42.04,
+      "cue": "くすくすとんでいっちゃった",
+      "sticker": "bee",
+      "go": "away"
+    },
+    {
+      "at": 44.92,
+      "cue": "ウサギくんは、なんにもいいません。ごごになると、アライグマくんが、そろりそろり。目をかくして…ちらっ",
+      "sticker": "rabbit",
+      "expression": "happy"
+    },
+    {
+      "at": 49.4,
+      "cue": "アライグマくんが、そろりそろり。目をかくして…ちらっ",
+      "sticker": "raccoon",
+      "enter": true
+    },
+    {
+      "at": 49.4,
+      "cue": "アライグマくんが、そろりそろり。目をかくして…ちらっ",
+      "sticker": "raccoon",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 52.36,
+      "cue": "目をかくして…ちらっ",
+      "sticker": "raccoon",
+      "expression": "happy"
+    },
+    {
+      "at": 52.36,
+      "cue": "目をかくして…ちらっ",
+      "sticker": "raccoon",
+      "animation": "peekaboo"
+    },
+    {
+      "at": 54.59,
+      "cue": "じゃじゃーん！おめでとう",
+      "effect": "confetti"
+    },
+    {
+      "at": 57.21,
+      "cue": "ぼくに？」森でいちばんの、びっくりがお。リスさんのプレゼントは、とっておきの木の実。ミツバチさんは、おたんじょうびのうたを、ふんふーん",
+      "sticker": "bee",
+      "go": "back"
+    },
+    {
+      "at": 57.21,
+      "cue": "ぼくに？」森でいちばんの、びっくりがお。リスさんのプレゼントは、とっておきの木の実。ミツバチさんは、おたんじょうびのうたを、ふんふーん",
+      "sticker": "rabbit",
+      "expression": "surprised"
+    },
+    {
+      "at": 57.21,
+      "cue": "ぼくに？」森でいちばんの、びっくりがお。リスさんのプレゼントは、とっておきの木の実。ミツバチさんは、おたんじょうびのうたを、ふんふーん",
+      "sticker": "rabbit",
+      "effect": "hop",
+      "repeat": 3
+    },
+    {
+      "at": 61.4,
+      "cue": "リスさんのプレゼントは、とっておきの木の実。ミツバチさんは、おたんじょうびのうたを、ふんふーん",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 61.4,
+      "cue": "リスさんのプレゼントは、とっておきの木の実。ミツバチさんは、おたんじょうびのうたを、ふんふーん",
+      "sticker": "bee",
+      "go": "to",
+      "target": "rabbit"
+    },
+    {
+      "at": 61.4,
+      "cue": "リスさんのプレゼントは、とっておきの木の実。ミツバチさんは、おたんじょうびのうたを、ふんふーん",
+      "sticker": "squirrel",
+      "animation": "hide-nut",
+      "mode": "resume"
+    },
+    {
+      "at": 65.16,
+      "cue": "ミツバチさんは、おたんじょうびのうたを、ふんふーん",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 69.3,
+      "cue": "ウサギくんの大きな耳が、ぽっとピンクに。あの耳は、ぜんぶきいていました。でも",
+      "sticker": "rabbit",
+      "effect": "tint",
+      "color": "#FFC0D0"
+    }
+  ]
+}

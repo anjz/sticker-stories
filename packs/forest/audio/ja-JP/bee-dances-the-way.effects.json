@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ミツバチさんが、ぶんぶん、うきうき、かえってきました。あまーいものを見つけたから、なかまにおしえたいの",
+      "sticker": "bee",
+      "effect": "float",
+      "repeat": "loop",
+      "intensity": 0.4
+    },
+    {
+      "at": 0,
+      "cue": "ミツバチさんが、ぶんぶん、うきうき、かえってきました。あまーいものを見つけたから、なかまにおしえたいの",
+      "sticker": "bee",
+      "enter": true
+    },
+    {
+      "at": 7.88,
+      "cue": "あまーいものを見つけたから、なかまにおしえたいの",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 13.36,
+      "cue": "はなうたをうたって、ふりふりダンス！あおむしさんが、もぞもぞ見にきました",
+      "sticker": "bee",
+      "animation": "hum"
+    },
+    {
+      "at": 16.2,
+      "cue": "あおむしさんが、もぞもぞ見にきました",
+      "sticker": "caterpillar",
+      "enter": true
+    },
+    {
+      "at": 16.2,
+      "cue": "あおむしさんが、もぞもぞ見にきました",
+      "sticker": "caterpillar",
+      "go": "to",
+      "target": "bee"
+    },
+    {
+      "at": 19.96,
+      "cue": "おもしろいダンス！」テントウ",
+      "sticker": "caterpillar",
+      "expression": "happy"
+    },
+    {
+      "at": 21.8,
+      "cue": "テントウ",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 21.8,
+      "cue": "テントウ",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "bee"
+    },
+    {
+      "at": 25.8,
+      "cue": "くねくね、ふりふり！テントウ",
+      "sticker": "caterpillar",
+      "animation": "wiggle"
+    },
+    {
+      "at": 27.64,
+      "cue": "テントウ",
+      "sticker": "ladybug",
+      "animation": "wings"
+    },
+    {
+      "at": 33.32,
+      "cue": "ちがうの、ちがうの」とミツバチさん。「これは、ミツバチのちずなの！花のあるところを、おしえてるのよ。」もういちど、あっちのほうへ、ふりふり。あおむしさんが、ぐーんとのびあがって",
+      "sticker": "bee",
+      "expression": "sad"
+    },
+    {
+      "at": 42.04,
+      "cue": "もういちど、あっちのほうへ、ふりふり。あおむしさんが、ぐーんとのびあがって",
+      "sticker": "bee",
+      "animation": "waggle-dance"
+    },
+    {
+      "at": 44.84,
+      "cue": "あおむしさんが、ぐーんとのびあがって",
+      "sticker": "caterpillar",
+      "animation": "look-up"
+    },
+    {
+      "at": 48.8,
+      "cue": "あっち！」ほんとうに、ダンスのとおりのところに、きいろいお花！ぶーん、もぞもぞ、ぱたぱた",
+      "sticker": "bee",
+      "expression": "happy"
+    },
+    {
+      "at": 48.8,
+      "cue": "あっち！」ほんとうに、ダンスのとおりのところに、きいろいお花！ぶーん、もぞもぞ、ぱたぱた",
+      "sticker": "bee",
+      "effect": "hop"
+    },
+    {
+      "at": 53.08,
+      "cue": "お花！ぶーん、もぞもぞ、ぱたぱた",
+      "sticker": "flower",
+      "enter": true
+    },
+    {
+      "at": 54.2,
+      "cue": "ぶーん、もぞもぞ、ぱたぱた",
+      "sticker": "bee",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 54.2,
+      "cue": "ぶーん、もぞもぞ、ぱたぱた",
+      "sticker": "caterpillar",
+      "go": "to",
+      "target": "flower"
+    },
+    {
+      "at": 54.2,
+      "cue": "ぶーん、もぞもぞ、ぱたぱた",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "flower",
+      "by": "fly"
+    },
+    {
+      "at": 56.75,
+      "cue": "こんにちは！」とお花。「ダンス、あたってた！」とあおむしさん。みんなでまたおどりました。お花も、いっしょに。ふりふり、くねくね…あまーい",
+      "sticker": "flower",
+      "expression": "happy"
+    },
+    {
+      "at": 58.48,
+      "cue": "ダンス、あたってた！」とあおむしさん。みんなでまたおどりました。お花も、いっしょに。ふりふり、くねくね…あまーい",
+      "sticker": "caterpillar",
+      "expression": "surprised"
+    },
+    {
+      "at": 61.72,
+      "cue": "みんなでまたおどりました。お花も、いっしょに。ふりふり、くねくね…あまーい",
+      "sticker": "all",
+      "effect": "hop"
+    },
+    {
+      "at": 63.8,
+      "cue": "お花も、いっしょに。ふりふり、くねくね…あまーい",
+      "sticker": "flower",
+      "effect": "wobble"
+    }
+  ]
+}

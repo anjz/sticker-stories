@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "テントウ",
+      "sticker": "ladybug",
+      "enter": true
+    },
+    {
+      "at": 12.76,
+      "cue": "かんたん！」つぎは、子ジカの白いてんてん。いっぱいです。ちょこちょこ…いち、に、さ…あれ、子ジカがくさをもぐもぐ",
+      "sticker": "ladybug",
+      "expression": "happy"
+    },
+    {
+      "at": 12.76,
+      "cue": "かんたん！」つぎは、子ジカの白いてんてん。いっぱいです。ちょこちょこ…いち、に、さ…あれ、子ジカがくさをもぐもぐ",
+      "sticker": "ladybug",
+      "effect": "hop"
+    },
+    {
+      "at": 15,
+      "cue": "子ジカの白いてんてん。いっぱいです。ちょこちょこ…いち、に、さ…あれ、子ジカがくさをもぐもぐ",
+      "sticker": "deer",
+      "enter": true
+    },
+    {
+      "at": 18.04,
+      "cue": "ちょこちょこ…いち、に、さ…あれ、子ジカがくさをもぐもぐ",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "deer"
+    },
+    {
+      "at": 23.64,
+      "cue": "くさをもぐもぐ",
+      "sticker": "deer",
+      "animation": "graze"
+    },
+    {
+      "at": 25.72,
+      "cue": "あーん、わからなくなっちゃった！」こんどは",
+      "sticker": "ladybug",
+      "expression": "surprised"
+    },
+    {
+      "at": 29.56,
+      "sticker": "frog",
+      "enter": true
+    },
+    {
+      "at": 29.56,
+      "sticker": "frog",
+      "go": "to",
+      "target": "pond"
+    },
+    {
+      "at": 31,
+      "cue": "ぶーん",
+      "sticker": "ladybug",
+      "go": "to",
+      "target": "frog",
+      "by": "fly"
+    },
+    {
+      "at": 33.72,
+      "cue": "カエルさんは、ぴたっ。いち、に、さん…ぱくっ！ハエをつかまえました",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "hold"
+    },
+    {
+      "at": 37.64,
+      "cue": "ぱくっ！ハエをつかまえました",
+      "sticker": "frog",
+      "animation": "catch-fly",
+      "mode": "resume"
+    },
+    {
+      "at": 43.72,
+      "cue": "キノコの、てんてんもようの赤いかさへ、ぶーん。でも、あしがくすぐったくて、キノコはくすくすくす。これで、さんかいめ！そこへアヒルの子が、よちよち。「ぼくのも、かぞえて！」じーっと見ると…ふわふわ、ふわふわ、ふわふわばかり。てんてんは、ひとつもなし",
+      "sticker": "mushroom",
+      "enter": true
+    },
+    {
+      "at": 43.72,
+      "cue": "キノコの、てんてんもようの赤いかさへ、ぶーん。でも、あしがくすぐったくて、キノコはくすくすくす。これで、さんかいめ！そこへアヒルの子が、よちよち。「ぼくのも、かぞえて！」じーっと見ると…ふわふわ、ふわふわ、ふわふわばかり。てんてんは、ひとつもなし",
+      "sticker": "ladybug",
+      "go": "on",
+      "target": "mushroom",
+      "by": "fly"
+    },
+    {
+      "at": 50.44,
+      "cue": "くすくすくす。これで、さんかいめ！そこへアヒルの子が、よちよち。「ぼくのも、かぞえて！」じーっと見ると…ふわふわ、ふわふわ、ふわふわばかり。てんてんは、ひとつもなし",
+      "sticker": "mushroom",
+      "animation": "laugh"
+    },
+    {
+      "at": 51.8,
+      "cue": "これで、さんかいめ！そこへアヒルの子が、よちよち。「ぼくのも、かぞえて！」じーっと見ると…ふわふわ、ふわふわ、ふわふわばかり。てんてんは、ひとつもなし",
+      "sticker": "ladybug",
+      "expression": "sad"
+    },
+    {
+      "at": 54.04,
+      "cue": "アヒルの子が、よちよち。「ぼくのも、かぞえて！」じーっと見ると…ふわふわ、ふわふわ、ふわふわばかり。てんてんは、ひとつもなし",
+      "sticker": "duckling",
+      "enter": true
+    },
+    {
+      "at": 54.04,
+      "cue": "アヒルの子が、よちよち。「ぼくのも、かぞえて！」じーっと見ると…ふわふわ、ふわふわ、ふわふわばかり。てんてんは、ひとつもなし",
+      "sticker": "duckling",
+      "go": "to",
+      "target": "mushroom"
+    },
+    {
+      "at": 63.48,
+      "cue": "てんてんは、ひとつもなし",
+      "sticker": "duckling",
+      "expression": "sad"
+    },
+    {
+      "at": 69.64,
+      "cue": "そう",
+      "sticker": "duckling",
+      "expression": "happy"
+    },
+    {
+      "at": 69.64,
+      "cue": "そう",
+      "sticker": "duckling",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 69.64,
+      "cue": "そう",
+      "sticker": "ladybug",
+      "expression": "happy"
+    },
+    {
+      "at": 79,
+      "cue": "テントウ",
+      "sticker": "all",
+      "expression": "happy"
+    },
+    {
+      "at": 79,
+      "cue": "テントウ",
+      "sticker": "ladybug",
+      "animation": "wings"
+    }
+  ]
+}

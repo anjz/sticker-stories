@@ -430,7 +430,7 @@ func materialize(_ manifest: PackManifest, includeManifestJSON: Bool = true) thr
             return  // not running inside the monorepo
         }
         let pack = try PackLoader().loadPack(at: forestDir, source: .bundled)
-        #expect(pack.manifest.languages == ["en-US", "es-ES"])
+        #expect(pack.manifest.languages.starts(with: ["en-US", "es-ES"]))  // English first: the fallback
         #expect(pack.manifest.setting == .outdoors)
         #expect(pack.manifest.stickers.count == 25)
         // Every sticker carries an action and a move at least

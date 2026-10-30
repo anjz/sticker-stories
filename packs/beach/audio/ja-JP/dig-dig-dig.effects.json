@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "triggers": [
+    {
+      "at": 0,
+      "cue": "ほりほり、ほりほり！イヌくんは、あなほりがなにより",
+      "sticker": "bucket",
+      "enter": true
+    },
+    {
+      "at": 0,
+      "cue": "ほりほり、ほりほり！イヌくんは、あなほりがなにより",
+      "sticker": "castle",
+      "enter": true
+    },
+    {
+      "at": 4.92,
+      "cue": "イヌくんは、あなほりがなにより",
+      "sticker": "dog",
+      "enter": true
+    },
+    {
+      "at": 4.92,
+      "cue": "イヌくんは、あなほりがなにより",
+      "sticker": "dog",
+      "go": "to",
+      "target": "sand"
+    },
+    {
+      "at": 8.12,
+      "sticker": "dog",
+      "expression": "happy"
+    },
+    {
+      "at": 8.12,
+      "sticker": "dog",
+      "animation": "dig"
+    },
+    {
+      "at": 12.44,
+      "cue": "イヌくん、気をつけて",
+      "sticker": "castle",
+      "effect": "wobble"
+    },
+    {
+      "at": 15.32,
+      "cue": "こつん。はなさきに、かたくてまるいものがあたりました。貝さんです！ぱかっとひらいて、こんにちは。ぱちんと、またとじました",
+      "sticker": "dog",
+      "expression": "surprised"
+    },
+    {
+      "at": 19.88,
+      "cue": "貝さんです！ぱかっとひらいて、こんにちは。ぱちんと、またとじました",
+      "sticker": "clam",
+      "enter": true
+    },
+    {
+      "at": 19.88,
+      "cue": "貝さんです！ぱかっとひらいて、こんにちは。ぱちんと、またとじました",
+      "sticker": "dog",
+      "go": "to",
+      "target": "clam"
+    },
+    {
+      "at": 21,
+      "cue": "ぱかっとひらいて、こんにちは。ぱちんと、またとじました",
+      "sticker": "clam",
+      "animation": "peek"
+    },
+    {
+      "at": 34.92,
+      "sticker": "clam",
+      "effect": "fade-out",
+      "hold": true
+    },
+    {
+      "at": 39.24,
+      "cue": "イヌくんは、ほって、ほって、ほりまくり",
+      "sticker": "dog",
+      "animation": "dig"
+    },
+    {
+      "at": 45.56,
+      "cue": "ぐらぐら、ゆらゆら…でも、たおれません。イヌくんは、はなの",
+      "sticker": "bucket",
+      "animation": "tip"
+    },
+    {
+      "at": 48.92,
+      "cue": "イヌくんは、はなの",
+      "sticker": "dog",
+      "animation": "shake"
+    },
+    {
+      "at": 52.6,
+      "cue": "ぽこっ！貝さんが出てきました",
+      "sticker": "clam",
+      "effect": "fade-in"
+    },
+    {
+      "at": 55.64,
+      "cue": "みーつけた！」とイヌくん。それからふたりは、ごごいっぱい、いっしょにほりほり。大きなまえあしと、小さなちからもちの足で",
+      "sticker": "clam",
+      "expression": "happy"
+    },
+    {
+      "at": 57.72,
+      "cue": "それからふたりは、ごごいっぱい、いっしょにほりほり。大きなまえあしと、小さなちからもちの足で",
+      "sticker": "dog",
+      "effect": "hop",
+      "repeat": 2
+    },
+    {
+      "at": 57.72,
+      "cue": "それからふたりは、ごごいっぱい、いっしょにほりほり。大きなまえあしと、小さなちからもちの足で",
+      "sticker": "castle",
+      "effect": "sparkle"
+    }
+  ]
+}
