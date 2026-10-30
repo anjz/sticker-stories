@@ -598,6 +598,44 @@
     "foreground": "Only a few low prehistoric plants in the two bottom corners, nothing else: in the bottom-left corner a small cycad with stiff palm-like fronds and one golden cone, a curled fern fiddlehead beside it and a round mossy boulder; in the bottom-right corner a low clump of short giant-horsetail shoots and small ferns beside a mossy terracotta stone. Each clump is no wider than a sixth of the picture and no taller than a tenth of it, sitting on the bottom edge. No trees, no trunks. The bottom edge between the two corners, the whole centre and everything above stay fully transparent.",
     "foregroundWideOwn": "The same two small corner clumps at the wide picture's own bottom corners, each the same size as in the attached 4:3 foreground; everything else fully transparent.",
     "foregroundDown": 0.04,
+    "edits": [
+      {
+        "prompt": "Make the lagoon smaller, so the valley has more dry land. At the left edge of this area the lagoon's turquoise water and the right ends of its lily pads come in: continue them only a short way, then the water ends in a gently curving sandy-mud shore with a few smooth pebbles, like the lagoon's near shore at the bottom-left — the shore curves from the far bank at the top of the area round to the near bank at the bottom, about a third of the way across the area. Everything to the right of that new shore is dry, flat, open meadow of short grass and a few small ferns, continuing the meadow around it seamlessly, the same colours, texture and light; at the top it runs back to the low bushes at the foot of the distant mesas. No more water, lily pads, puddles, rocks or trees in the meadow part.",
+        "area": {
+          "x": 0.29,
+          "y": 0.45,
+          "width": 0.24,
+          "height": 0.32
+        }
+      },
+      {
+        "prompt": "Here the far right end of the lagoon becomes dry land: repaint it as flat, open meadow of short grass and a few small ferns, continuing the meadow around it seamlessly, the same colours, texture and light, running back at the top to the low bushes at the foot of the distant mesas. No water, no shore, no pebbles, no puddles, no rocks, no trees.",
+        "area": {
+          "x": 0.49,
+          "y": 0.45,
+          "width": 0.15,
+          "height": 0.15
+        }
+      },
+      {
+        "prompt": "Mend this near corner of the lagoon so it has clear, separate shapes: turquoise water with two giant round water-lily pads floating in it well apart, each drawn whole and perfectly round with its upturned rim, not touching or overlapping each other; on the right the water ends in a gently curving sandy-mud shore with a few smooth pebbles and a soft white ripple line at the water's edge, joining the sandy shore at the top and the sandy shore at the bottom-left into one smooth curve; beyond the shore, on the right, the open meadow of short grass continues. No soft or blurry fading anywhere: water, then sand, then grass.",
+        "area": {
+          "x": 0.2,
+          "y": 0.585,
+          "width": 0.16,
+          "height": 0.17
+        }
+      },
+      {
+        "prompt": "In the middle of this area, one giant round water-lily pad floats on the turquoise water, drawn whole: a flat, round, bright green pad with fine radiating veins and a thin dark rim, exactly like the other lily pads of this lagoon, the same size, colours and outline. Around it only calm turquoise water with soft reflections; keep the edges of the other pads just above and below exactly as they are.",
+        "area": {
+          "x": 0.198,
+          "y": 0.572,
+          "width": 0.074,
+          "height": 0.042
+        }
+      }
+    ],
     "layers": [
       {
         "id": "araucaria",
@@ -652,7 +690,7 @@
         ]
       },
       "lagoon": {
-        "description": "the calm turquoise lagoon on the left, with giant water-lily pads near its left bank",
+        "description": "the calm turquoise lagoon at the back on the left, with three giant water-lily pads",
         "words": {
           "en-US": [
             "lagoon",
@@ -666,21 +704,11 @@
         "areas": [
           {
             "x": [
-              0.24,
-              0.56
+              0.02,
+              0.2
             ],
             "y": [
-              0.38,
-              0.47
-            ]
-          },
-          {
-            "x": [
-              0.06,
-              0.22
-            ],
-            "y": [
-              0.44,
+              0.36,
               0.48
             ]
           }
@@ -688,50 +716,50 @@
         "wideAreas": [
           {
             "x": [
-              -0.08,
-              0.56
+              -0.1,
+              0.2
             ],
             "y": [
-              0.4,
-              0.47
+              0.41,
+              0.48
             ]
           }
         ],
         "edge": [
           {
             "x": [
-              0.27,
-              0.43
+              0.08,
+              0.24
             ],
             "y": [
-              0.25,
-              0.27
+              0.265,
+              0.285
             ]
           },
           {
             "x": [
-              0.52,
-              0.56
+              0.29,
+              0.32
             ],
             "y": [
-              0.31,
-              0.34
+              0.32,
+              0.37
             ]
           },
           {
             "x": [
-              0.6,
-              0.66
+              0.22,
+              0.25
             ],
             "y": [
-              0.4,
-              0.44
+              0.43,
+              0.48
             ]
           }
         ]
       },
       "shore": {
-        "description": "the sandy-mud bank with pebbles along the near side of the lagoon",
+        "description": "the sandy-mud bank with pebbles along the near and right sides of the lagoon",
         "words": {
           "en-US": [
             "shore",
@@ -744,32 +772,32 @@
         "areas": [
           {
             "x": [
-              0.27,
-              0.43
+              0.08,
+              0.24
             ],
             "y": [
-              0.25,
-              0.27
+              0.265,
+              0.285
             ]
           },
           {
             "x": [
-              0.52,
-              0.56
+              0.29,
+              0.32
             ],
             "y": [
-              0.31,
-              0.34
+              0.32,
+              0.37
             ]
           },
           {
             "x": [
-              0.6,
-              0.66
+              0.22,
+              0.25
             ],
             "y": [
-              0.4,
-              0.44
+              0.43,
+              0.48
             ]
           }
         ]
@@ -795,6 +823,16 @@
             "y": [
               0.08,
               0.25
+            ]
+          },
+          {
+            "x": [
+              0.36,
+              0.62
+            ],
+            "y": [
+              0.3,
+              0.48
             ]
           },
           {
