@@ -43,9 +43,16 @@ final class AppSettings {
     }
 
     /// Locale for SwiftUI's environment so UI text follows the override
-    /// live. Uses the primary subtag ("es") to match the String Catalog's
-    /// language identifiers; nil means follow the system.
+    /// live. Uses the String Catalog's language identifiers: the primary
+    /// subtag ("es"), and for Chinese `zh-Hant` (Taiwan) or `zh-HK`; nil
+    /// means follow the system.
     var uiLocale: Locale? {
-        languageOverride.map { Locale(identifier: LanguageResolver.primarySubtag($0)) }
+        languageOverride.map { tag in
+            switch LanguageResolver.chinese(tag) {
+            case "zh-TW": Locale(identifier: "zh-Hant")
+            case "zh-HK": Locale(identifier: "zh-HK")
+            default: Locale(identifier: LanguageResolver.primarySubtag(tag))
+            }
+        }
     }
 }

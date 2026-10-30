@@ -11,6 +11,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"maps"
+	"math"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -269,10 +270,12 @@ const GoEffect = "go"
 // after the closing quote. It is not an effect: the app never sees it.
 const SaysEffect = "says"
 
-// Quote marks that open and close a character's line.
+// Quote marks that open and close a character's line: English and
+// Spanish, German („…“), French and Italian («…»), Japanese and Chinese
+// (「…」, 『…』).
 const (
-	openQuotes  = "\"“«"
-	closeQuotes = "\"”»"
+	openQuotes  = "\"“«„「『"
+	closeQuotes = "\"”»“」』"
 )
 
 // GoBy introduces the move an entrance or a move goes by: {x:go … by fly}.
@@ -502,9 +505,86 @@ type Line struct {
 	Raw      string // the says cue as written
 }
 
-// Plain is the narration as prose: the words only, single-spaced. This is
-// what word counts, forbidden-word checks and the pack manifest see.
-func (n Narration) Plain() string { return strings.Join(n.Words, " ") }
+// Plain is the narration as prose: the words only, single-spaced (or not
+// spaced at all between Japanese or Chinese words, joinSep). This is what
+// word counts, forbidden-word checks and the pack manifest see.
+func (n Narration) Plain() string {
+	var b strings.Builder
+	for i, w := range n.Words {
+		if i > 0 {
+			b.WriteString(joinSep(n.Words[i-1], w))
+		}
+		b.WriteString(w)
+	}
+	return b.String()
+}
+
+// wide reports a character of a script written without spaces between
+// words — Han, hiragana, katakana — or their full-width punctuation.
+func wide(r rune) bool {
+	return unicode.In(r, unicode.Han, unicode.Hiragana, unicode.Katakana) ||
+		r >= 0x3000 && r <= 0x303f || r >= 0xff00 && r <= 0xffef
+}
+
+// joinSep is what goes between two words of the narration: nothing where
+// either side is Japanese or Chinese (a cue there splits the text, it
+// does not mean a space), else a space.
+func joinSep(prev, next string) string {
+	last, _ := utf8.DecodeLastRuneInString(prev)
+	first, _ := utf8.DecodeRuneInString(next)
+	if wide(last) || wide(first) {
+		return ""
+	}
+	return " "
+}
+
+// cjkCharsPerWord is how many Japanese or Chinese characters take as long
+// to narrate as an English word (about two words a second): the word
+// budgets and limits mean the same time in every language. Measured on
+// Eleven v4: Japanese about 4.6 characters a second, Mandarin and
+// Cantonese about 3.6.
+var cjkCharsPerWord = map[string]float64{"ja": 2.2, "zh": 1.75}
+
+// wordTime is how long a word of a spaced language takes to narrate
+// against an English word, measured on Eleven v4 (German 149 words in
+// 64.8 s, French 145 in 58.0 s, Italian 151 in 64.8 s, English 127 in
+// 60.2 s). Missing languages count 1.
+var wordTime = map[string]float64{"de": 0.92, "fr": 0.85, "it": 0.90}
+
+// MaxDrift is how far a transcreation's narration may run from the
+// English story's, as a share of it, before a warning.
+const MaxDrift = 0.25
+
+// CountWords counts a plain text's words as narration time in lang: words
+// between spaces that hold a letter or a number (a spaced dash or ellipsis
+// is not one), and in Japanese or Chinese, its characters (Han, kana, the
+// long-vowel mark) by cjkCharsPerWord.
+func CountWords(lang, plain string) int {
+	per := cjkCharsPerWord[primarySubtag(lang)]
+	chars, words := 0, 0
+	for _, f := range strings.Fields(plain) {
+		latin := false
+		for _, r := range f {
+			switch {
+			case per > 0 && (unicode.In(r, unicode.Han, unicode.Hiragana, unicode.Katakana) || r == 'ー'):
+				chars++
+			case unicode.IsLetter(r) || unicode.IsNumber(r):
+				latin = true
+			}
+		}
+		if latin {
+			words++
+		}
+	}
+	n := float64(words)
+	if t := wordTime[primarySubtag(lang)]; t > 0 {
+		n *= t
+	}
+	if per > 0 {
+		n += float64(chars) / per
+	}
+	return int(math.Round(n))
+}
 
 // Segment is a run of words the narrator reads in one go. A solo sound
 // cue splits the narration: Solo is the index into Cues of the solo cue
@@ -539,20 +619,28 @@ func (n Narration) Spoken(from, to int) (text string, wordStarts []int) {
 	for tagIndex < len(n.Tags) && n.Tags[tagIndex].WordIndex < from {
 		tagIndex++
 	}
+	tagged := false // the last thing written is an audio tag
 	emit := func(s string) {
 		if b.Len() > 0 {
 			b.WriteByte(' ')
 		}
 		b.WriteString(s)
+		tagged = true
 	}
 	for i := from; i < to; i++ {
 		for tagIndex < len(n.Tags) && n.Tags[tagIndex].WordIndex == i {
 			emit(n.Tags[tagIndex].Raw)
 			tagIndex++
 		}
-		if b.Len() > 0 {
+		switch {
+		case b.Len() == 0:
+		case tagged || i == from:
 			b.WriteByte(' ')
+		default:
+			// Japanese and Chinese words run on with no space between.
+			b.WriteString(joinSep(n.Words[i-1], n.Words[i]))
 		}
+		tagged = false
 		wordStarts = append(wordStarts, b.Len())
 		b.WriteString(n.Words[i])
 	}
@@ -675,7 +763,7 @@ func (n *Narration) closeLines() []error {
 		first := n.Words[l.From]
 		r, size := utf8.DecodeRuneInString(first)
 		if !strings.ContainsRune(openQuotes, r) {
-			errs = append(errs, fmt.Errorf("cue %s: the line it gives a voice must start with a quote (\"…\", “…” or «…»), not %q", l.Raw, first))
+			errs = append(errs, fmt.Errorf("cue %s: the line it gives a voice must start with a quote (\"…\", “…”, «…», „…“ or 「…」), not %q", l.Raw, first))
 			continue
 		}
 		limit := len(n.Words)
@@ -843,6 +931,22 @@ var forbidden = map[string][]string{
 		"monstruo", "monstruos", "fantasma", "fantasmas", "bruja", "brujas", "aterrador", "aterrorizado", "pesadilla", "pesadillas", "terror", "horror",
 		"odio", "odia", "odiaba", "estúpido", "estúpida", "tonto", "tonta", "idiota", "feo", "fea", "gordo", "gorda", "cállate", "veneno", "ahogar", "ahogado", "atrapado", "guerra", "pelea", "peleas", "pegar", "golpe", "golpear",
 		"infierno", "diablo", "demonio", "zombi", "vampiro", "esqueleto", "malvado", "malvada", "cruel", "herido", "herida", "hambriento"},
+	"de": {"töten", "tötet", "getötet", "tot", "tote", "toten", "tod", "sterben", "stirbt", "starb", "blut", "bluten", "pistole", "gewehr", "messer", "schwert", "bombe",
+		"monster", "gespenst", "gespenster", "geist", "geister", "hexe", "hexen", "gruselig", "unheimlich", "albtraum", "albträume", "horror", "entsetzlich",
+		"hass", "hasse", "hasst", "dumm", "doof", "idiot", "hässlich", "fett", "gift", "ertrinken", "ertrunken", "gefangen", "krieg", "kampf", "kämpfen", "prügeln",
+		"hölle", "verdammt", "teufel", "dämon", "zombie", "vampir", "skelett", "böse", "grausam", "verletzt", "wunde", "verhungern"},
+	"fr": {"tuer", "tue", "tué", "mort", "morte", "morts", "mourir", "meurt", "sang", "pistolet", "fusil", "couteau", "épée", "bombe",
+		"monstre", "monstres", "fantôme", "fantômes", "sorcière", "sorcières", "effrayant", "terrifiant", "terrifié", "cauchemar", "cauchemars", "horreur",
+		"haine", "déteste", "stupide", "idiot", "idiote", "moche", "laid", "laide", "tais-toi", "poison", "noyer", "noyé", "piégé", "guerre", "bagarre",
+		"enfer", "diable", "démon", "zombie", "vampire", "squelette", "méchant", "méchante", "cruel", "cruelle", "blessé", "blessée", "blessure", "affamé"},
+	"it": {"uccidere", "uccide", "ucciso", "morto", "morta", "morti", "morte", "morire", "muore", "sangue", "pistola", "fucile", "coltello", "spada", "bomba",
+		"mostro", "mostri", "fantasma", "fantasmi", "strega", "streghe", "spaventoso", "terrificante", "terrorizzato", "incubo", "incubi", "orrore",
+		"odio", "odia", "stupido", "stupida", "scemo", "scema", "idiota", "grasso", "grassa", "veleno", "annegare", "annegato", "intrappolato", "guerra", "lotta", "picchiare",
+		"inferno", "diavolo", "demone", "zombie", "vampiro", "scheletro", "cattivo", "cattiva", "crudele", "ferito", "ferita", "affamato"},
+	"ja": {"殺", "死", "血", "銃", "ナイフ", "剣", "爆弾", "怪物", "モンスター", "おばけ", "お化け", "幽霊", "ゆうれい", "魔女", "こわい", "怖い", "恐ろしい", "悪夢", "ホラー",
+		"大嫌い", "バカ", "アホ", "ブス", "デブ", "だまれ", "黙れ", "毒", "おぼれ", "溺れ", "戦争", "けんか", "喧嘩", "殴", "地獄", "悪魔", "ゾンビ", "吸血鬼", "がいこつ", "骸骨", "残酷", "怪我"},
+	"zh": {"殺", "死", "血", "手槍", "刀子", "劍", "炸彈", "怪物", "鬼魂", "鬼怪", "巫婆", "女巫", "可怕", "恐怖", "惡夢", "噩夢", "討厭", "恨", "笨蛋", "白痴", "醜八怪", "肥豬", "閉嘴", "毒",
+		"溺", "戰爭", "打架", "打人", "地獄", "魔鬼", "惡魔", "殭屍", "吸血鬼", "骷髏", "壞蛋", "殘忍", "受傷", "傷口", "餓死"},
 }
 
 func primarySubtag(lang string) string {
@@ -859,6 +963,16 @@ func ForbiddenWords(lang, plain string) []string {
 		return nil
 	}
 	lower := strings.ToLower(plain)
+	if cjkCharsPerWord[primarySubtag(lang)] > 0 {
+		// No spaces between words: any occurrence counts.
+		var found []string
+		for _, f := range list {
+			if strings.Contains(lower, f) {
+				found = append(found, f)
+			}
+		}
+		return found
+	}
 	// Whole-word match: split on non-letters (accents count as letters).
 	words := strings.FieldsFunc(lower, func(r rune) bool { return !unicode.IsLetter(r) && r != '\'' })
 	set := make(map[string]bool, len(words))
@@ -1161,7 +1275,7 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		}
 		if strings.TrimSpace(loc.Title) == "" {
 			is.errorf("%s: title is required", lang)
-		} else if n := len(strings.Fields(loc.Title)); n > MaxTitleWords {
+		} else if n := CountWords(lang, loc.Title); n > MaxTitleWords {
 			is.warnf("%s: title has %d words (max %d)", lang, n, MaxTitleWords)
 		}
 		nar, parseErrs := Parse(loc.Text)
@@ -1170,12 +1284,27 @@ func Validate(s *Story, m Manifest, cat *Catalog) Issues {
 		}
 		cues, plain := nar.Cues, nar.Plain()
 		validateTags(&is, lang, nar)
-		n := len(strings.Fields(plain))
+		n := CountWords(lang, plain)
+		// A transcreation is held to its English story (below) rather
+		// than to the band, with room for languages that need more words
+		// for the same time.
+		_, transcreated := s.Languages["en-US"]
+		transcreated = transcreated && lang != "en-US"
+		maxWords := MaxWords
+		if transcreated {
+			maxWords = MaxWords + MaxWords/4 // MaxDrift
+		}
 		switch {
-		case n < MinWords || n > MaxWords:
-			is.errorf("%s: %d words; must be %d–%d", lang, n, MinWords, MaxWords)
-		case n < TargetMinWords || n > TargetMaxWords:
+		case n < MinWords || n > maxWords:
+			is.errorf("%s: %d words; must be %d–%d", lang, n, MinWords, maxWords)
+		case !transcreated && (n < TargetMinWords || n > TargetMaxWords):
 			is.warnf("%s: %d words; target is %d–%d", lang, n, TargetMinWords, TargetMaxWords)
+		}
+		if en, ok := s.Languages["en-US"]; ok && lang != "en-US" {
+			ref, _ := Parse(en.Text)
+			if e := CountWords("en-US", ref.Plain()); e > 0 && math.Abs(float64(n-e)) > MaxDrift*float64(e) {
+				is.warnf("%s: %d words' narration time against the English story's %d; keep within %.0f %%", lang, n, e, MaxDrift*100)
+			}
 		}
 		if strings.ContainsAny(plain, "*_#`") {
 			is.warnf("%s: text contains Markdown-looking characters", lang)
@@ -1474,7 +1603,7 @@ func validateSoundCue(is *Issues, lang string, c Cue, s *Story, nar Narration) {
 			is.errorf("%s: cue %s: a looping ambience cannot play solo", lang, c.Raw)
 		}
 		if c.WordIndex > 0 && c.WordIndex < len(nar.Words) {
-			if prev := nar.Words[c.WordIndex-1]; !strings.ContainsRune(".!?…", lastRune(prev)) {
+			if prev := nar.Words[c.WordIndex-1]; !strings.ContainsRune(".!?…。！？」』", lastRune(prev)) {
 				is.warnf("%s: cue %s pauses the narration mid-sentence (after %q); put solo sounds between sentences", lang, c.Raw, prev)
 			}
 		}
@@ -1529,7 +1658,7 @@ func validateLines(is *Issues, lang string, nar Narration, inStory map[string]bo
 				is.errorf("%s: cue %s: a solo sound inside %s's line; put it before or after the line", lang, c.Raw, l.Speaker)
 			}
 		}
-		if n := l.To - l.From; n > MaxLineWords {
+		if n := CountWords(lang, Narration{Words: nar.Words[l.From:l.To]}.Plain()); n > MaxLineWords {
 			is.warnf("%s: cue %s: %s's line is %d words; keep a character's line under %d", lang, l.Raw, l.Speaker, n, MaxLineWords)
 		}
 	}
@@ -1590,6 +1719,38 @@ var canvasWords = map[string]map[string]*regexp.Regexp{
 	"floodlights":   {"en": regexp.MustCompile(`\bfloodlights?\b`), "es": regexp.MustCompile(`\b(focos|reflectores)\b`)},
 }
 
+// The canvas words of the languages added later: Japanese and Chinese
+// with no word boundaries (none between their words).
+func init() {
+	more := map[string]map[string]string{
+		"fog":           {"de": `\b(nebel|neblig|dunst)\b`, "fr": `\b(brouillard|brume)\b`, "it": `\b(nebbia|foschia)\b`, "ja": `(霧)`, "zh": `(霧|薄霧)`},
+		"rain":          {"de": `\b(regen|regnet|regnete|nieselregen)\b`, "fr": `\b(pluie|pleut|pleuvait|pleuvoir|bruine)\b`, "it": `\b(pioggia|piove|pioveva|piovere|pioggerella)\b`, "ja": `(雨)`, "zh": `(雨)`},
+		"snow":          {"de": `\b(schnee|schneit|schneite|schneeflocken?)\b`, "fr": `\b(neige|neigeait|flocons?)\b`, "it": `\b(neve|nevica|nevicava|fiocchi)\b`, "ja": `(雪)`, "zh": `(雪)`},
+		"rainbow":       {"de": `\bregenbogen\b`, "fr": `\barc-en-ciel\b`, "it": `\barcobaleno\b`, "ja": `(虹|にじ)`, "zh": `(彩虹)`},
+		"night":         {"de": `\b(mond|mondschein)\b`, "fr": `\b(lune|clair de lune)\b`, "it": `\b(luna|chiaro di luna)\b`, "ja": `(月|お月さま)`, "zh": `(月亮|月光)`},
+		"sunset":        {"de": `\b(sonnenuntergang|sonne ging unter)\b`, "fr": `\b(coucher du soleil|soleil se couch)`, "it": `\b(tramonto)\b`, "ja": `(夕焼け|夕日|ゆうひ|ゆうやけ)`, "zh": `(夕陽|日落|黃昏)`},
+		"clouds":        {"de": `\b(wolken?|wolkig|bewölkt)\b`, "fr": `\b(nuages?|nuageux)\b`, "it": `\b(nuvol[ae]|nuvoloso)\b`, "ja": `(雲)`, "zh": `(雲)`},
+		"wind":          {"de": `\b(wind|windig|windstoß)\b`, "fr": `\b(vent|venteux|rafale)\b`, "it": `\b(vento|ventoso|raffica)\b`, "ja": `(風)`, "zh": `(大風|微風|颳風|刮風|吹風|風吹|起風|一陣風|風好大)`},
+		"fireflies":     {"de": `\bglühwürmchen\b`, "fr": `\blucioles\b`, "it": `\blucciole\b`, "ja": `(ほたる|ホタル|蛍)`, "zh": `(螢火蟲)`},
+		"leaves":        {"de": `\bherbst\b`, "fr": `\bautomne\b`, "it": `\bautunno\b`, "ja": `(秋)`, "zh": `(秋天)`},
+		"confetti":      {"de": `\b(party|konfetti)\b`, "fr": `\b(fête|confettis)\b`, "it": `\b(festa|coriandoli)\b`, "ja": `(パーティー|紙吹雪)`, "zh": `(派對|彩紙)`},
+		"bubbles":       {"de": `\bseifenblasen\b`, "fr": `\bbulles\b`, "it": `\bbolle\b`, "ja": `(しゃぼん玉|シャボン玉)`, "zh": `(泡泡)`},
+		"shootingstars": {"de": `\bsternschnuppen?\b`, "fr": `\bétoiles? filantes?\b`, "it": `\bstelle? cadent[ei]\b`, "ja": `(流れ星|ながれぼし)`, "zh": `(流星)`},
+	}
+	for effect, byLang := range more {
+		for lang, pattern := range byLang {
+			canvasWords[effect][lang] = regexp.MustCompile(pattern)
+		}
+	}
+	// \b only knows ASCII letters (vent in éventé would count): word
+	// boundaries that know every letter, for every spaced language.
+	for _, byLang := range canvasWords {
+		for lang, re := range byLang {
+			byLang[lang] = regexp.MustCompile(strings.ReplaceAll(re.String(), `\b`, `(?:^|$|[^\p{L}\p{N}])`))
+		}
+	}
+}
+
 // validateCanvasMentions warns when the words put weather or light into the
 // scene that a canvas effect for the pack's setting can show, and the story
 // never cues it: the child should see the snow the narrator talks about.
@@ -1625,7 +1786,8 @@ func validateCanvasMentions(is *Issues, lang string, nar Narration, m Manifest, 
 			for id := range inStory {
 				namesSticker = namesSticker || re.MatchString(strings.ToLower(m.Names[id][lang]))
 			}
-			if word := re.FindString(plain); word != "" && !namesSticker {
+			word := strings.TrimFunc(re.FindString(plain), func(r rune) bool { return !unicode.IsLetter(r) && !unicode.IsNumber(r) })
+			if word != "" && !namesSticker {
 				is.warnf("%s: the text mentions %q but never cues {%s:%s} — cue it a beat before those words", lang, word, CanvasTarget, name)
 			}
 		}
@@ -1681,6 +1843,23 @@ func firstMention(words []string, id, lang string, m Manifest) int {
 	if len(want) == 0 {
 		return -1
 	}
+	if name := strings.Join(want, ""); cjkName(name) {
+		// Japanese and Chinese run a name on into the words around it.
+		for i, w := range words {
+			if !strings.Contains(w, name) {
+				continue
+			}
+			shadowed := false
+			for other, names := range m.Names {
+				longer := strings.Join(tokens(names[lang]), "")
+				shadowed = shadowed || other != id && len(longer) > len(name) && strings.Contains(longer, name) && strings.Contains(w, longer)
+			}
+			if !shadowed {
+				return i
+			}
+		}
+		return -1
+	}
 	var longer [][]string
 	for other, names := range m.Names {
 		if other == id {
@@ -1695,7 +1874,7 @@ func firstMention(words []string, id, lang string, m Manifest) int {
 			return false
 		}
 		for k, w := range t {
-			if mentionWord(words[i+k]) != w {
+			if !sameWord(lang, mentionWord(words[i+k]), w) {
 				return false
 			}
 		}
@@ -1716,12 +1895,89 @@ func firstMention(words []string, id, lang string, m Manifest) int {
 	return -1
 }
 
+// splitSentences splits the words of Japanese or Chinese narration where a
+// sentence ends inside one (their words run on between cues: 「蝸牛擠了進
+// 去。池塘那邊，」 is one word, two sentences), cues kept on the piece that
+// starts their word, so sentence by sentence checks see each sentence.
+func splitSentences(nar Narration) Narration {
+	var words []string
+	first := make([]int, len(nar.Words)) // each word's first piece
+	for i, w := range nar.Words {
+		first[i] = len(words)
+		runes := []rune(w)
+		start := 0
+		for k := 0; k < len(runes); k++ {
+			if !strings.ContainsRune("。！？", runes[k]) {
+				continue
+			}
+			// Closing quotes after the stop stay with their sentence.
+			for k+1 < len(runes) && strings.ContainsRune("」』）", runes[k+1]) {
+				k++
+			}
+			words = append(words, string(runes[start:k+1]))
+			start = k + 1
+		}
+		if start < len(runes) || first[i] == len(words) {
+			words = append(words, string(runes[start:]))
+		}
+	}
+	if len(words) == len(nar.Words) {
+		return nar
+	}
+	out := nar
+	out.Words = words
+	out.Cues = make([]Cue, len(nar.Cues))
+	for i, c := range nar.Cues {
+		if c.WordIndex < len(first) {
+			c.WordIndex = first[c.WordIndex]
+		}
+		out.Cues[i] = c
+	}
+	return out
+}
+
+// cjkName reports a name written in Japanese or Chinese, matched inside
+// the words around it rather than as whole words.
+func cjkName(name string) bool {
+	for _, r := range name {
+		if wide(r) {
+			return true
+		}
+	}
+	return false
+}
+
+// sameWord reports a word of the text that is target (both normalised by
+// mentionWord) or, in German, one of its declined forms (des Rehs, den
+// Hasen, dem Waschbären, des Teiches).
+func sameWord(lang, word, target string) bool {
+	if word == target {
+		return true
+	}
+	if primarySubtag(lang) != "de" || !strings.HasPrefix(word, strings.TrimSuffix(target, "e")) {
+		return false
+	}
+	for _, end := range []string{"s", "es", "n", "en", "e"} {
+		if word == target+end || word == strings.TrimSuffix(target, "e")+end {
+			return true
+		}
+	}
+	return false
+}
+
 // mentionWord normalises a word for name matching: lower case, no
-// surrounding punctuation, no possessive 's.
+// surrounding punctuation, no possessive 's, no elided article or
+// preposition in front (French l'eau, d'Ourson; Italian dell'acqua).
 func mentionWord(w string) string {
 	w = strings.ToLower(strings.TrimFunc(w, func(r rune) bool { return !unicode.IsLetter(r) && !unicode.IsNumber(r) }))
 	for _, suffix := range []string{"'s", "’s"} {
 		w = strings.TrimSuffix(w, suffix)
+	}
+	if i := strings.LastIndexAny(w, "'’"); i > 0 && i <= 5 {
+		_, size := utf8.DecodeRuneInString(w[i:])
+		if rest := w[i+size:]; utf8.RuneCountInString(rest) >= 2 {
+			w = rest
+		}
 	}
 	return w
 }
@@ -1861,6 +2117,7 @@ func validatePlaceMentions(is *Issues, lang string, nar Narration, m Manifest, i
 	if len(m.PlaceWords) == 0 {
 		return
 	}
+	nar = splitSentences(nar)
 	at := map[string]string{}   // where the story's moves have put each sticker
 	with := map[string]string{} // whom a move has put it with (beside, on, under)
 	canBe := func(id, place string) bool {
@@ -1881,7 +2138,7 @@ func validatePlaceMentions(is *Issues, lang string, nar Narration, m Manifest, i
 	for end := range nar.Words {
 		w := nar.Words[end]
 		last := end == len(nar.Words)-1
-		if !last && !strings.ContainsAny(strings.TrimRight(w, "»\"”'’)"), ".!?…") {
+		if !last && !strings.ContainsAny(strings.TrimRight(w, "»\"”“'’)」』）"), ".!?…。！？") {
 			continue
 		}
 		words := nar.Words[start : end+1]
@@ -1913,12 +2170,63 @@ func validatePlaceMentions(is *Issues, lang string, nar Narration, m Manifest, i
 			ids = append(ids, id)
 		}
 		sort.Strings(ids)
+		// Words of a sticker's name are not its place (Étoile de mer is not
+		// at the sea, nor 海龜 or 海星).
+		inName := map[int]bool{}
+		var names []string
+		for _, byID := range m.Names {
+			name := byID[lang]
+			if cjkName(name) {
+				names = append(names, name)
+				continue
+			}
+			tokens := strings.Fields(name)
+			for i := 0; len(tokens) > 1 && i+len(tokens) <= len(words); i++ {
+				match := true
+				for k, t := range tokens {
+					match = match && sameWord(lang, mentionWord(words[i+k]), mentionWord(t))
+				}
+				for k := range tokens {
+					inName[i+k] = inName[i+k] || match
+				}
+			}
+		}
+		// Japanese and Chinese place words sit inside the words: the longest
+		// first, so a shorter one inside it (波 in 波打ち際) is not named too.
+		type placeWord struct{ place, word string }
+		var cjkWords []placeWord
 		for place, byLang := range m.PlaceWords {
-			named := false
-			for _, word := range words {
-				if slices.Contains(byLang[lang], mentionWord(word)) {
-					named = true
+			for _, pw := range byLang[lang] {
+				if cjkName(pw) {
+					cjkWords = append(cjkWords, placeWord{place, pw})
+				}
+			}
+		}
+		slices.SortFunc(cjkWords, func(a, b placeWord) int { return cmp.Compare(len(b.word), len(a.word)) })
+		cjkNamed := map[string]bool{}
+		for i, word := range words {
+			if inName[i] || len(cjkWords) == 0 {
+				continue
+			}
+			bare := word
+			for _, name := range names {
+				bare = strings.ReplaceAll(bare, name, "\x00")
+			}
+			for _, pw := range cjkWords {
+				if strings.Contains(bare, pw.word) {
+					cjkNamed[pw.place] = true
+					bare = strings.ReplaceAll(bare, pw.word, "\x00")
+				}
+			}
+		}
+		for place, byLang := range m.PlaceWords {
+			named := cjkNamed[place]
+			for i, word := range words {
+				if named {
 					break
+				}
+				if !inName[i] && slices.ContainsFunc(byLang[lang], func(pw string) bool { return sameWord(lang, mentionWord(word), pw) }) {
+					named = true
 				}
 			}
 			if !named {

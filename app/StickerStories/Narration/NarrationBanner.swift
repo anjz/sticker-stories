@@ -43,8 +43,10 @@ struct NarrationBanner: View {
         }
     }
 
-    /// A language's name in the language the app is shown in.
+    /// A language's name in the language the app is shown in — with its
+    /// region for the two Chinese ("Chinese (Hong Kong)").
     private func name(_ tag: String) -> String {
-        locale.localizedString(forLanguageCode: LanguageResolver.primarySubtag(tag)) ?? tag
+        if LanguageResolver.chinese(tag) != nil { return locale.localizedString(forIdentifier: tag) ?? tag }
+        return locale.localizedString(forLanguageCode: LanguageResolver.primarySubtag(tag)) ?? tag
     }
 }

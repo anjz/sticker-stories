@@ -74,7 +74,14 @@ reads it.
 - Eleven v4 narration with its sounds runs about two words a second.
   Target **100–150 words** per language, 50–80 seconds (Spanish tends to
   run ~10 % longer for the same story); the validator rejects outside
-  65–170.
+  65–170. Japanese and Chinese have no spaces between words, so they are
+  counted by narration time, as measured on Eleven v4: 2.2 Japanese or 1.75
+  Chinese characters (kanji, kana, the long-vowel mark, hanzi) to a word —
+  about 220–330 Japanese or 175–260 Chinese characters for the target.
+  Every other language is checked against the English story too: its
+  narration within 25 % of the English story's. A cue inside their text needs no spaces
+  around it (`キツネは{fox:live jump}ジャンプしました。`); spaces there are
+  never read.
 - Plain text: no Markdown, no stage directions, no emoji. Sound words
   (pitter-patter, whoosh, plic ploc) are welcome — they are what the cues
   and the sound effects hang on — but a real sound can also stand in for
@@ -221,7 +228,10 @@ La mujer señaló el cielo. {woman:says} [excited] «¡Mira, un cometa!» El hom
 ```
 
 - `{x:says}` goes right before the line, which opens and closes with
-  quotes: `"…"`, `“…”` or `«…»` (Spanish usually «…»). Everything from the
+  quotes: `"…"`, `“…”`, `«…»`, `„…“` or `「…」` (Spanish, French and
+  Italian usually «…», German „…“, Japanese and Chinese 「…」). In Japanese
+  and Chinese, put a space after the closing 「…」 when the narration runs on
+  (`{fox:says} 「やった！」 とキツネ。`): the line ends at that space. Everything from the
   opening to the closing quote — and an audio tag between the cue and the
   quote — is read by the character's voice; the narrator reads the rest.
   The whole story is still one take, with every speaker in it.

@@ -1060,3 +1060,111 @@ func TestGoToAProp(t *testing.T) {
 		t.Fatalf("a walker cannot go up to the kite: %v", is.Errors)
 	}
 }
+
+func TestJapaneseAndChineseRunOnWithoutSpaces(t *testing.T) {
+	nar, errs := Parse("キツネは{fox:live jump}ジャンプしました。 [excited] {fox:says} 「やった！」 とキツネ。")
+	if len(errs) > 0 {
+		t.Fatal(errs)
+	}
+	if got, want := nar.Plain(), "キツネはジャンプしました。「やった！」とキツネ。"; got != want {
+		t.Errorf("plain %q, want %q", got, want)
+	}
+	spoken, starts := nar.Spoken(0, len(nar.Words))
+	if want := "キツネはジャンプしました。 [excited] 「やった！」とキツネ。"; spoken != want {
+		t.Errorf("spoken %q, want %q", spoken, want)
+	}
+	for i, at := range starts {
+		if !strings.HasPrefix(spoken[at:], nar.Words[i]) {
+			t.Errorf("word %d %q starts at %d, which reads %q", i, nar.Words[i], at, spoken[at:])
+		}
+	}
+	if len(nar.Lines) != 1 || nar.Words[nar.Lines[0].From] != "「やった！」" || nar.Lines[0].To != nar.Lines[0].From+1 {
+		t.Errorf("lines %+v over %q", nar.Lines, nar.Words)
+	}
+	// Latin stays spaced.
+	if got := (Narration{Words: []string{"Der", "Fuchs", "springt."}}).Plain(); got != "Der Fuchs springt." {
+		t.Errorf("plain %q", got)
+	}
+}
+
+func TestCountWordsByNarrationTime(t *testing.T) {
+	if n := CountWords("en-US", "The fox jumps up high."); n != 5 {
+		t.Errorf("English: %d words, want 5", n)
+	}
+	// German words go by a little faster than English ones.
+	if n := CountWords("de-DE", "Der Fuchs springt ganz hoch in die Luft, juhu!"); n != 8 {
+		t.Errorf("German: %d, want 8 (9 words × 0.92)", n)
+	}
+	// Twelve kana read about as long as five English words.
+	if n := CountWords("ja-JP", "キツネはジャンプしました。"); n != 5 {
+		t.Errorf("Japanese: %d, want 5", n)
+	}
+	if n := CountWords("en-US", "Nothing … and then – QUAK!"); n != 4 {
+		t.Errorf("a spaced ellipsis or dash is no word: %d, want 4", n)
+	}
+	if n := CountWords("zh-TW", "狐狸跳得好高。"); n != 3 {
+		t.Errorf("Chinese: %d, want 3", n)
+	}
+	if n := CountWords("ja-JP", "はっくしょーん"); n != 3 {
+		t.Errorf("the long-vowel mark is spoken: %d, want 3", n)
+	}
+}
+
+func TestGermanQuotesAndCJKForbiddenWords(t *testing.T) {
+	nar, errs := Parse(`Da rief er: {fox:says} „Hallo, Welt!“ und lachte.`)
+	if len(errs) > 0 || len(nar.Lines) != 1 || nar.Lines[0].To-nar.Lines[0].From != 2 {
+		t.Errorf("German line: %v %+v", errs, nar.Lines)
+	}
+	if bad := ForbiddenWords("zh-HK", "小熊做了一個鬼臉，大家笑了。"); len(bad) != 0 {
+		t.Errorf("a funny face is not forbidden: %v", bad)
+	}
+	if bad := ForbiddenWords("ja-JP", "おばけが出た。"); len(bad) != 1 {
+		t.Errorf("want おばけ forbidden, got %v", bad)
+	}
+}
+
+func TestFirstMentionInsideJapaneseWords(t *testing.T) {
+	m := Manifest{Names: map[string]map[string]string{"fox": {"ja-JP": "キツネ"}, "bird": {"ja-JP": "トリ"}}}
+	words := []string{"ある日、", "森で", "キツネは", "あそびました。"}
+	if i := firstMention(words, "fox", "ja-JP", m); i != 2 {
+		t.Errorf("first mention at %d, want 2", i)
+	}
+	if i := firstMention(words, "bird", "ja-JP", m); i != -1 {
+		t.Errorf("bird found at %d", i)
+	}
+}
+
+func TestMentionWordForms(t *testing.T) {
+	for in, want := range map[string]string{"Fox's": "fox", "l'eau,": "eau", "d’Ourson": "ourson", "dell'acqua": "acqua", "don't": "don't"} {
+		if got := mentionWord(in); got != want {
+			t.Errorf("mentionWord(%q) = %q, want %q", in, got, want)
+		}
+	}
+	for _, w := range []string{"hasen", "rehs", "waschbären", "teiches", "reh"} {
+		target := map[string]string{"hasen": "hase", "rehs": "reh", "waschbären": "waschbär", "teiches": "teich", "reh": "reh"}[w]
+		if !sameWord("de-DE", w, target) {
+			t.Errorf("%q should count as %q in German", w, target)
+		}
+	}
+	if sameWord("en-US", "foxes", "fox") || sameWord("de-DE", "rehkitz", "reh") {
+		t.Error("only declined forms count")
+	}
+}
+
+func TestCanvasWordsKnowAccentedLetters(t *testing.T) {
+	re := canvasWords["wind"]["fr"]
+	if re.MatchString("il s'est éventé") || !re.MatchString("le vent souffle") || !re.MatchString("du vent.") {
+		t.Error("vent must match as a whole word only")
+	}
+	if !canvasWords["rain"]["en"].MatchString("rain fell") || canvasWords["rain"]["en"].MatchString("brain") {
+		t.Error("English boundaries still hold")
+	}
+}
+
+func TestSplitSentencesInsideChineseWords(t *testing.T) {
+	nar, _ := Parse("{snail:go to pond}蝸牛擠了進去。池塘那邊，「好！」大家說。")
+	got := splitSentences(nar)
+	if len(got.Words) != 3 || got.Words[0] != "蝸牛擠了進去。" || got.Words[1] != "池塘那邊，「好！」" || got.Cues[0].WordIndex != 0 {
+		t.Errorf("pieces %q, cue at %d", got.Words, got.Cues[0].WordIndex)
+	}
+}
